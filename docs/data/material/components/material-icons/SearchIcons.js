@@ -19,6 +19,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import SvgIcon from '@mui/material/SvgIcon';
 import * as mui from '@mui/icons-material';
 import { Link } from '@mui/docs/Link';
@@ -478,11 +480,16 @@ function useLatest(value) {
   return value ?? latest.current;
 }
 
+const initialIconsDisplayed = 100;
+
 export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
   const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
+  const targetRef = React.useRef(null);
+  const [visibleIconsCount, setVisibleIconsCount] =
+    React.useState(initialIconsDisplayed);
 
   const handleOpenClick = React.useCallback(
     (event) => {
@@ -532,6 +539,37 @@ export default function SearchIcons() {
     [theme, keys],
   );
 
+  React.useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        if (icons.length >= 100) {
+          setVisibleIconsCount(
+            (prevCount) =>
+              prevCount + Math.min(initialIconsDisplayed, icons.length - prevCount),
+          );
+        } else {
+          setVisibleIconsCount(icons.length);
+        }
+      }
+    });
+
+    const currentTargetRef = targetRef.current;
+    if (currentTargetRef) {
+      observer.observe(currentTargetRef);
+    }
+
+    return () => {
+      if (currentTargetRef) {
+        observer.unobserve(currentTargetRef);
+      }
+    };
+  }, [visibleIconsCount, icons.length]);
+
+  const visbleIcons = React.useMemo(
+    () => icons.filter((_, index) => index < visibleIconsCount),
+    [icons, visibleIconsCount],
+  );
+
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,
   );
@@ -553,7 +591,10 @@ export default function SearchIcons() {
                       <Radio
                         size="small"
                         checked={theme === currentTheme}
-                        onChange={() => setTheme(currentTheme)}
+                        onChange={() => {
+                          setTheme(currentTheme);
+                          setVisibleIconsCount(100);
+                        }}
                         value={currentTheme}
                       />
                     }
@@ -579,9 +620,22 @@ export default function SearchIcons() {
           />
         </Paper>
         <Typography sx={{ mb: 1 }}>{`${formatNumber(
-          icons.length,
+          visbleIcons.length,
         )} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        <Icons icons={visbleIcons} handleOpenClick={handleOpenClick} />
+        {visbleIcons.length < icons.length && (
+          <Box
+            sx={{
+              width: '100%',
+              display: 'grid',
+              placeItems: 'center',
+              mt: 4,
+            }}
+            ref={targetRef}
+          >
+            <CircularProgress size={24} />
+          </Box>
+        )}
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
