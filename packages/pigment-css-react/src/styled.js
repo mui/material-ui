@@ -16,16 +16,26 @@ function getVariantClasses(componentProps, variants) {
   return variantClasses;
 }
 
+function isHtmlTag(tag) {
+  return (
+    typeof tag === 'string' &&
+    // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96
+  );
+}
+
 const slotShouldForwardProp = (key) => key !== 'sx' && key !== 'as' && key !== 'ownerState';
 const rootShouldForwardProp = (key) => slotShouldForwardProp(key) && key !== 'classes';
 
 /**
- * @typedef {typeof defaultShouldForwardProp} ShouldForwardProp
+ * @typedef {(propKey: string) => boolean} ShouldForwardProp
  */
 
 /**
  * This is the runtime `styled` function that finally renders the component
- * after transpilation through linaria. It makes sure to add the base classes,
+ * after transpilation through WyW-in-JS. It makes sure to add the base classes,
  * variant classes if they satisfy the prop value and also adds dynamic css
  * variables at runtime, if any.
  * @param {string | Function} tag
@@ -40,13 +50,7 @@ export default function styled(tag, componentMeta = {}) {
 
   let finalShouldForwardProp = shouldForwardProp;
   if (!shouldForwardProp) {
-    if (
-      typeof tag === 'string' &&
-      // 96 is one less than the char code
-      // for "a" so this is checking that
-      // it's a lowercase character
-      tag.charCodeAt(0) > 96
-    ) {
+    if (isHtmlTag(tag)) {
       finalShouldForwardProp = isPropValid;
     } else if (slot === 'Root' || slot === 'root') {
       finalShouldForwardProp = rootShouldForwardProp;
@@ -55,17 +59,14 @@ export default function styled(tag, componentMeta = {}) {
     }
   }
   const shouldUseAs = !finalShouldForwardProp('as');
-
   /**
-   * @TODO - Filter props and only pass necessary props to children
-   *
    * This is the runtime `styled` function that finally renders the component
-   * after transpilation through linaria. It makes sure to add the base classes,
+   * after transpilation through WyW-in-JS. It makes sure to add the base classes,
    * variant classes if they satisfy the prop value and also adds dynamic css
    * variables at runtime, if any.
    * @param {string | Function} tag
    * @param {Object} options
-   * @param {string} options.displayName Set by linaria. Mostly is same as the variable name. For this code, ```const Comp = styled(...)(...)```, `displayName` will be `Comp`.
+   * @param {string} options.displayName Set by WyW-in-JS. Mostly is same as the variable name. For this code, ```const Comp = styled(...)(...)```, `displayName` will be `Comp`.
    * @param {string[]} options.classes List of class names that reference the inline css object styles.
    * @param {Object} options.vars Dynamically generated css variables inlined directly on the element for runtime styling.
    * @param {Object[]} options.variants
@@ -77,17 +78,6 @@ export default function styled(tag, componentMeta = {}) {
    */
   function scopedStyledWithOptions(options = {}) {
     const { displayName, classes = [], vars: cssVars = {}, variants = [] } = options;
-    let componentName = 'Component';
-
-    if (name) {
-      if (slot) {
-        componentName = `${name}${slot}`;
-      } else {
-        componentName = name;
-      }
-    } else if (displayName) {
-      componentName = displayName;
-    }
 
     const StyledComponent = React.forwardRef(function StyledComponent(inProps, ref) {
       const { as, className, sx, style, ownerState, ...props } = inProps;
@@ -139,26 +129,12 @@ export default function styled(tag, componentMeta = {}) {
         }
       }
 
-      // eslint-disable-next-line no-underscore-dangle
-      if (!Component.__isStyled || typeof Component === 'string') {
-        return (
-          // eslint-disable-next-line react/jsx-filename-extension
-          <Component
-            {...newProps}
-            ref={ref}
-            className={finalClassName}
-            style={{
-              ...varStyles,
-              ...style,
-            }}
-          />
-        );
-      }
-
       return (
         <Component
           {...newProps}
-          ownerState={ownerState}
+          // pass down `ownerState` to nested styled components
+          // eslint-disable-next-line no-underscore-dangle
+          {...(Component.__styled_by_pigment_css && { ownerState })}
           ref={ref}
           className={finalClassName}
           style={{
@@ -169,9 +145,13 @@ export default function styled(tag, componentMeta = {}) {
       );
     });
 
+    let componentName = displayName;
+    if (!componentName && name) {
+      componentName = `${name}${slot ? `-${slot}` : ''}`;
+    }
     StyledComponent.displayName = `Styled(${componentName})`;
     // eslint-disable-next-line no-underscore-dangle
-    StyledComponent.__isStyled = true;
+    StyledComponent.__styled_by_pigment_css = true;
 
     return StyledComponent;
   }

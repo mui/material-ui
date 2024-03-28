@@ -1,6 +1,6 @@
 {
   "name": "@pigment-css/react",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
@@ -137,6 +137,9 @@
     },
     "./exports/sx-plugin": {
       "default": "./exports/sx-plugin.js"
+    },
+    "./exports/remove-prop-types-plugin": {
+      "default": "./exports/remove-prop-types-plugin.js"
     },
     "./exports/sx": {
       "default": "./exports/sx.js"
