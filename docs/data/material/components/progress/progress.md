@@ -142,7 +142,7 @@ You can solve the latter with:
 @keyframes circular-rotate {
   0% {
     transform: rotate(0deg);
-    /* Fix IE11 wobbly */
+    /* Fix IE 11 wobbly */
     transform-origin: 50% 50%;
   }
   100% {
