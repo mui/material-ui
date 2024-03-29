@@ -22,7 +22,7 @@ overrides:
   '@definitelytyped/header-parser': ^0.2.8
   '@definitelytyped/typescript-versions': ^0.1.1
   '@definitelytyped/utils': ^0.1.5
-  '@types/node': ^18.19.25
+  '@types/node': ^18.19.26
   '@types/react': 18.2.55
   '@types/react-dom': 18.2.19
   cross-fetch: ^4.0.0
@@ -144,7 +144,7 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
       '@types/prettier':
         specifier: ^2.7.3
@@ -406,7 +406,7 @@ importers:
         specifier: workspace:^
         version: link:../../packages/pigment-css-nextjs-plugin
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
       '@types/react':
         specifier: 18.2.55
@@ -885,7 +885,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
       '@types/prop-types':
         specifier: ^15.7.12
@@ -994,7 +994,7 @@ importers:
         specifier: ^4.17.0
         version: 4.17.0
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
       '@types/prettier':
         specifier: ^2.7.3
@@ -1088,7 +1088,7 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
       '@types/react-docgen':
         specifier: workspace:*
@@ -1125,7 +1125,7 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
       '@types/sinon':
         specifier: ^10.0.20
@@ -1223,7 +1223,7 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
       babel-plugin-tester:
         specifier: ^11.0.4
@@ -1372,7 +1372,7 @@ importers:
         specifier: workspace:*
         version: link:../mui-material/build
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
       '@types/prop-types':
         specifier: ^15.7.12
@@ -2108,7 +2108,7 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
       '@types/react':
         specifier: 18.2.55
@@ -2240,7 +2240,7 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
       '@types/react':
         specifier: 18.2.55
@@ -2333,7 +2333,7 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
+        specifier: ^18.19.26
         version: 18.19.26
 
   packages/test-utils:
@@ -21803,7 +21803,7 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
-      '@types/node': ^18.19.25
+      '@types/node': ^18.19.26
       less: '*'
       lightningcss: ^1.21.0
       sass: '*'
