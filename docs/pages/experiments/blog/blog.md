@@ -4,7 +4,7 @@ description: Our internationally distributed startup gathered on a remote island
 date: 2022-07-28T00:00:00.000Z
 authors: ['samuelsycamore']
 tags: ['Company']
-card: false
+manualCard: false
 ---
 
 ## Description
