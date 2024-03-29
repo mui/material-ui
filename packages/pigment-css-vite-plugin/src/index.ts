@@ -41,8 +41,6 @@ function isZeroRuntimeProcessableFile(fileName: string, transformLibraries: stri
   );
 }
 
-const defaultTheme = extendTheme({});
-
 export function pigment(options?: PigmentOptions) {
   const {
     theme = {},
