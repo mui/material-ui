@@ -173,6 +173,12 @@ function excludeDemoFixture(suite, name) {
     return true;
   }
 
+  // Skip files that are not PascalCase
+  // PascalCase starts with a capital letter and has zero or more capital letters in the middle
+  if (/[^A-Z][A-Za-z]*$/.test(name)) {
+    return true;
+  }
+
   if (suite.includes('docs-joy') && name.match(/(Variables|Usage)$/)) {
     return true;
   }
