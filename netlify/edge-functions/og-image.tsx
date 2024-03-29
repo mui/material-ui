@@ -126,10 +126,12 @@ export default async function handler(req: Request) {
             {description && (
               <p
                 style={{
-                  fontSize: '24px',
+                  fontFamily: 'IBM Plex Sans',
+                  fontSize: '36px',
                   fontWeight: 600,
-                  lineHeight: '40px',
-                  marginTop: 20,
+                  color: '#434D5B',
+                  lineHeight: '58px',
+                  marginTop: 24,
                   marginBottom: 0,
                   marginLeft: 0,
                   marginRight: 0,
@@ -225,10 +227,10 @@ export default async function handler(req: Request) {
       fonts: [
         {
           name: 'General Sans',
-          data: await fetch('https://fonts.cdnfonts.com/s/85793/GeneralSans-Medium.woff').then(
+          data: await fetch('https://fonts.cdnfonts.com/s/15449/IBMPlexSans-SemiBold.woff').then(
             (a) => a.arrayBuffer(),
           ),
-          weight: 1000,
+          weight: 600,
           style: 'normal',
         },
         {
