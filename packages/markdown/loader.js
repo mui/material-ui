@@ -154,11 +154,6 @@ module.exports = async function demoLoader() {
         '',
       )}`;
 
-      // Skip non-editable demos
-      if (nonEditableDemos.has(demoName)) {
-        return;
-      }
-
       if (multipleDemoVersionsUsed) {
         moduleID = `${moduleID}/system/index.js`;
       }
