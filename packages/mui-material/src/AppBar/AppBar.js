@@ -141,8 +141,12 @@ const AppBarRoot = styled(Paper, {
         backgroundColor: 'var(--AppBar-background)',
         color: 'var(--AppBar-color)',
         ...theme.applyStyles('dark', {
-          backgroundColor: theme.vars ? joinVars(theme.vars.palette.AppBar.darkBg, 'var(--AppBar-background)') : null,
-          color: theme.vars ? joinVars(theme.vars.palette.AppBar.darkColor, 'var(--AppBar-color)') : null,
+          backgroundColor: theme.vars
+            ? joinVars(theme.vars.palette.AppBar.darkBg, 'var(--AppBar-background)')
+            : null,
+          color: theme.vars
+            ? joinVars(theme.vars.palette.AppBar.darkColor, 'var(--AppBar-color)')
+            : null,
         }),
       },
     },
