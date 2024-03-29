@@ -326,9 +326,9 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                 color: 'white',
                 backgroundColor: brand[300],
                 backgroundImage: `linear-gradient(to bottom, ${alpha(brand[400], 0.8)}, ${brand[500]})`,
-                boxShadow: `inset 0 1px 0 1px ${alpha(brand[200], 0.2)}, inset 0 -1.5px 0 1px ${alpha(brand[700], 0.4)}`,
+                boxShadow: `inset 0 2px 0  ${alpha(brand[200], 0.2)}, inset 0 -1.5px 0 1px ${alpha(brand[700], 0.4)}`,
                 border: `1px solid ${brand[500]}`,
-                transition: 'all 100ms ease-in',
+                transition: 'background 100ms ease-in, box-shadow 100ms ease-in',
                 '&:hover': {
                   backgroundColor: brand[600],
                   boxShadow: 'none',
