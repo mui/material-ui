@@ -270,7 +270,7 @@ export default function TopLayoutBlog(props) {
   const slug = router.pathname.replace(/(.*)\/(.*)/, '$2');
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card =
-    headers.card === 'true'
+    headers.manualCard === 'true'
       ? `https://mui.com/static/blog/${slug}/card.png`
       : `/edge-functions/og-image/?title=${headers.cardTitle || finalTitle}&authors=${headers.authors
           .map((author) => {
@@ -280,11 +280,11 @@ export default function TopLayoutBlog(props) {
           .join(',')}&product=Blog`;
 
   if (process.env.NODE_ENV !== 'production') {
-    if (headers.card === undefined) {
+    if (headers.manualCard === undefined) {
       throw new Error(
         [
-          `MUI: the "card" markdown header for the blog post "${slug}" is missing.`,
-          `Set card: true or card: false header in docs/pages/blog/${slug}.md.`,
+          `MUI: the "manualCard" markdown header for the blog post "${slug}" is missing.`,
+          `Set manualCard: true or manualCard: false header in docs/pages/blog/${slug}.md.`,
         ].join('\n'),
       );
     }
@@ -296,7 +296,7 @@ export default function TopLayoutBlog(props) {
       <Head
         title={`${finalTitle} - MUI`}
         description={description}
-        largeCard={headers.card === 'true'}
+        largeCard
         disableAlternateLocale
         card={card}
         type="article"
