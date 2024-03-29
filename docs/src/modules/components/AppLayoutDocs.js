@@ -137,7 +137,7 @@ export default function AppLayoutDocs(props) {
   const Layout = disableLayout ? React.Fragment : AppFrame;
   const layoutProps = disableLayout ? {} : { BannerComponent };
 
-  const card = `/edge-functions/og-image?product=${productName}&title=${title}`;
+  const card = `/edge-functions/og-image?product=${productName}&title=${title}&description=${description}`;
   return (
     <Layout {...layoutProps}>
       <GlobalStyles

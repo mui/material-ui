@@ -8,6 +8,7 @@ export default async function handler(req: Request) {
   const title = params.get('title');
   const authors = params.get('authors');
   const product = params.get('product');
+  const description = params.get('description');
 
   const parsedAuthors =
     authors &&
@@ -122,6 +123,22 @@ export default async function handler(req: Request) {
                   })}
                 </p>
               ))}
+            {description && (
+              <p
+                style={{
+                  fontSize: '24px',
+                  fontWeight: 600,
+                  lineHeight: '40px',
+                  marginTop: 20,
+                  marginBottom: 0,
+                  marginLeft: 0,
+                  marginRight: 0,
+                  width: '100%',
+                }}
+              >
+                {description}
+              </p>
+            )}
           </div>
           <div
             style={{
