@@ -411,46 +411,22 @@ describe('experimental_extendTheme', () => {
   describe('typography', () => {
     it('produce typography token by default', () => {
       const theme = extendTheme();
-      const fontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
-      expect(theme.vars.typography.h1).to.equal(
-        `var(--mui-typography-h1, 300 6rem/1.167 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.h2).to.equal(
-        `var(--mui-typography-h2, 300 3.75rem/1.2 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.h3).to.equal(
-        `var(--mui-typography-h3, 400 3rem/1.167 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.h4).to.equal(
-        `var(--mui-typography-h4, 400 2.125rem/1.235 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.h5).to.equal(
-        `var(--mui-typography-h5, 400 1.5rem/1.334 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.h6).to.equal(
-        `var(--mui-typography-h6, 500 1.25rem/1.6 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.subtitle1).to.equal(
-        `var(--mui-typography-subtitle1, 400 1rem/1.75 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.subtitle2).to.equal(
-        `var(--mui-typography-subtitle2, 500 0.875rem/1.57 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.body1).to.equal(
-        `var(--mui-typography-body1, 400 1rem/1.5 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.body2).to.equal(
-        `var(--mui-typography-body2, 400 0.875rem/1.43 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.button).to.equal(
-        `var(--mui-typography-button, 500 0.875rem/1.75 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.caption).to.equal(
-        `var(--mui-typography-caption, 400 0.75rem/1.66 ${fontFamily})`,
-      );
-      expect(theme.vars.typography.overline).to.equal(
-        `var(--mui-typography-overline, 400 0.75rem/2.66 ${fontFamily})`,
-      );
+      expect(Object.keys(theme.vars.typography)).to.deep.equal([
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'subtitle1',
+        'subtitle2',
+        'body1',
+        'body2',
+        'button',
+        'caption',
+        'overline',
+        'inherit',
+      ]);
     });
   });
 

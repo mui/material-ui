@@ -8,6 +8,7 @@ import {
   SxConfig,
   ApplyStyles,
 } from '@mui/system';
+import { ExtractTypographyTokens } from '@mui/system/cssVars';
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
 import { Focus } from './focus';
@@ -82,7 +83,9 @@ export type ThemeScalesOptions = MergeDefault<
 interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {
   palette: Omit<ColorSystem['palette'], 'mode'>;
 }
-export interface ThemeVars extends ThemeScales, ColorSystemVars {}
+export interface ThemeVars extends ThemeScales, ColorSystemVars {
+  typography: ExtractTypographyTokens<TypographySystem>;
+}
 
 export interface ThemeCssVarOverrides {}
 

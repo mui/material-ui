@@ -152,6 +152,25 @@ describe('extendTheme', () => {
     });
   });
 
+  describe('typography', () => {
+    it('produce typography token by default', () => {
+      const theme = extendTheme();
+      expect(Object.keys(theme.vars.typography)).to.deep.equal([
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'title-lg',
+        'title-md',
+        'title-sm',
+        'body-lg',
+        'body-md',
+        'body-sm',
+        'body-xs',
+      ]);
+    });
+  });
+
   describe('theme.unstable_sx', () => {
     const { render } = createRenderer();
 
