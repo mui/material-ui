@@ -37,6 +37,7 @@
     "@babel/parser": "^7.23.9",
     "@babel/types": "^7.23.9",
     "@emotion/css": "^11.11.2",
+    "@emotion/is-prop-valid": "^1.2.2",
     "@emotion/react": "^11.11.4",
     "@emotion/serialize": "^1.1.3",
     "@emotion/styled": "^11.11.0",
@@ -56,7 +57,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/babel__helper-module-imports": "^7.18.3",
     "@types/babel__helper-plugin-utils": "^7.10.3",
-    "@types/chai": "^4.3.12",
+    "@types/chai": "^4.3.14",
     "@types/cssesc": "^3.0.2",
     "@types/lodash": "^4.17.0",
     "@types/mocha": "^10.0.6",
@@ -65,6 +66,7 @@
     "@types/stylis": "^4.2.5",
     "chai": "^4.4.1",
     "prettier": "^3.2.5",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0"
   },
   "peerDependencies": {

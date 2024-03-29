@@ -22,13 +22,13 @@
     "react-docgen": "^5.4.3",
     "recast": "^0.23.6",
     "remark": "^13.0.0",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.3",
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.5",
     "@types/babel__traverse": "^7.20.5",
-    "@types/chai": "^4.3.12",
+    "@types/chai": "^4.3.14",
     "@types/doctrine": "^0.0.9",
     "@types/mdast": "4.0.3",
     "@types/mocha": "^10.0.6",
