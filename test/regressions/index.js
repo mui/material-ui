@@ -173,9 +173,10 @@ function excludeDemoFixture(suite, name) {
     return true;
   }
 
-  // Skip files that are not PascalCase
+  // Skip JavaScript/TypeScript files that are not PascalCase
+  // Tantamount to skipping files that are not React components
   // PascalCase starts with a capital letter and has zero or more capital letters in the middle
-  if (/[^A-Z][A-Za-z]*$/.test(name)) {
+  if (/[^A-Z][A-Za-z]*.js|.ts$/.test(name)) {
     return true;
   }
 
