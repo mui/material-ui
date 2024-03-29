@@ -166,7 +166,7 @@ Then, you can access those variables from the `theme.vars` object:
 const Divider = styled('hr')(({ theme }) => ({
   height: 1,
   border: '1px solid',
-  borderColor: theme.vars.palette.border.subtile,
+  borderColor: theme.vars.palette.border.subtle,
   backgroundColor: theme.vars.palette.gradient,
 }));
 ```

@@ -71,6 +71,10 @@ If you're using Material UI's theming system, the Data Grid will adapt to your 
 Without it, you may need to manually set an appropriate background color to maintain your design.
 :::
 
+:::success
+Our teammate [Romain](https://github.com/romgrk) details various performance optimization techniques in his blog post [Optimizing JavaScript](https://romgrk.com/posts/optimizing-javascript/).
+:::
+
 ### Improved columns panel design
 
 As part of an overarching project aimed at enhancing usability in managing columns within the Data Grid, we've redesigned the column visibility panel, introducing a more streamlined, checkbox-based interface to replace the previous toggle switch design.

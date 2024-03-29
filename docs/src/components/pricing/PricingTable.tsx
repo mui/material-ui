@@ -1361,8 +1361,8 @@ export default function PricingTable({
           sx={[
             (theme) => ({
               px: 1,
-              py: 1.5,
               justifyContent: 'flex-start',
+              fontSize: '0.875rem',
               fontWeight: 'medium',
               borderRadius: '0px',
               position: 'absolute',
@@ -1512,8 +1512,8 @@ export default function PricingTable({
           sx={[
             (theme) => ({
               px: 1,
-              py: 1.5,
               justifyContent: 'flex-start',
+              fontSize: '0.875rem',
               fontWeight: 'medium',
               borderRadius: '0px',
               position: 'absolute',
