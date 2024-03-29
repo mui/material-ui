@@ -160,12 +160,21 @@ export default function Features() {
                   backgroundColor:
                     selectedItemIndex === index ? 'action.selected' : undefined,
                   '&:hover': {
-                    outlineColor: (theme) => {
+                    background: (theme) => {
+                      return theme.palette.mode === 'light'
+                        ? 'linear-gradient(to bottom right, rgba(235, 245, 255, 0.3) 25%, rgba(243, 246, 249, 0.2) 100%)'
+                        : 'linear-gradient(to right bottom, rgba(0, 58, 117, 0.1) 25%, rgba(20, 26, 31, 0.2) 100%) rgb(16, 20, 24)';
+                    },
+                    borderColor: (theme) => {
                       return theme.palette.mode === 'light'
                         ? 'primary.light'
-                        : 'primary.main';
+                        : 'primary.dark';
                     },
-                    boxShadow: `0 0 24px ${'primary.light'}`,
+                    boxShadow: (theme) => {
+                      return theme.palette.mode === 'light'
+                        ? '0px 2px 8px #CCE5FF'
+                        : 'rgba(0, 58, 117, 0.4) 0px 1px 8px';
+                    },
                   },
                   borderColor: (theme) => {
                     if (theme.palette.mode === 'light') {

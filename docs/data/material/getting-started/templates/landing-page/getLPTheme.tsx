@@ -87,6 +87,18 @@ const getDesignTokens = (mode: PaletteMode) => ({
         dark: brand[800],
       }),
     },
+    info: {
+      light: brand[100],
+      main: brand[300],
+      dark: brand[600],
+      contrastText: gray[50],
+      ...(mode === 'dark' && {
+        contrastText: brand[300],
+        light: brand[500],
+        main: brand[700],
+        dark: brand[900],
+      }),
+    },
     secondary: {
       light: secondary[300],
       main: secondary[500],
@@ -347,13 +359,20 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                   borderColor: gray[200],
                 },
               }),
-            ...(ownerState.variant === 'text' && {
-              color: brand[600],
-              '&:hover': {
-                backgroundColor: alpha(brand[300], 0.3),
-                borderColor: brand[200],
-              },
-            }),
+            ...(ownerState.variant === 'text' &&
+              ownerState.color === 'primary' && {
+                color: brand[600],
+                '&:hover': {
+                  backgroundColor: alpha(brand[300], 0.3),
+                },
+              }),
+            ...(ownerState.variant === 'text' &&
+              ownerState.color === 'info' && {
+                color: gray[700],
+                '&:hover': {
+                  backgroundColor: alpha(gray[300], 0.3),
+                },
+              }),
             ...(theme.palette.mode === 'dark' && {
               ...(ownerState.variant === 'outlined' && {
                 color: brand[200],
@@ -366,6 +385,13 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                   boxShadow: 'none',
                 },
               }),
+              ...(ownerState.variant === 'text' &&
+                ownerState.color === 'info' && {
+                  color: gray[200],
+                  '&:hover': {
+                    backgroundColor: alpha(gray[700], 0.3),
+                  },
+                }),
               ...(ownerState.variant === 'outlined' &&
                 ownerState.color === 'secondary' && {
                   backgroundColor: alpha(gray[600], 0.1),
@@ -376,13 +402,13 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                     borderColor: gray[700],
                   },
                 }),
-              ...(ownerState.variant === 'text' && {
-                color: brand[200],
-                '&:hover': {
-                  backgroundColor: alpha(brand[600], 0.3),
-                  borderColor: brand[700],
-                },
-              }),
+              ...(ownerState.variant === 'text' &&
+                ownerState.color === 'primary' && {
+                  color: brand[200],
+                  '&:hover': {
+                    backgroundColor: alpha(brand[700], 0.3),
+                  },
+                }),
             }),
           }),
         },
@@ -418,18 +444,18 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme, ownerState }) => ({
             backgroundColor: gray[50],
             borderRadius: '10px',
-            outline: `1px solid ${alpha(gray[200], 0.8)}`,
-            boxShadow: 'none',
+            border: `1px solid ${alpha(gray[200], 0.8)}`,
+            boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.7)} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
             ...(ownerState.variant === 'outlined' && {
-              border: 0,
-              boxSizing: 'border-box',
+              boxShadow: 'none',
               background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.6),
-              outline: `1px solid ${alpha(gray[700], 0.5)}`,
+              boxShadow: `${alpha(theme.palette.grey[700], 0.2)} 0 1px 0 1px inset, ${alpha(theme.palette.common.black, 0.2)} 0 -2px 0 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
+              border: `1px solid ${alpha(gray[700], 0.5)}`,
               ...(ownerState.variant === 'outlined' && {
-                boxSizing: 'border-box',
+                boxShadow: 'none',
                 background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
                   gray[800],
                   0.5,

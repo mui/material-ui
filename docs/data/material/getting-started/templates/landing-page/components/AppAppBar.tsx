@@ -83,19 +83,47 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
             >
               <Sitemark sx={{ fontSize: 100, mr: 2 }} />
               <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5 }}>
-                <MenuItem onClick={() => scrollToSection('features')}>
+                <Button
+                  variant="text"
+                  color="info"
+                  size="small"
+                  onClick={() => scrollToSection('features')}
+                >
                   Features
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('testimonials')}>
+                </Button>
+                <Button
+                  variant="text"
+                  color="info"
+                  size="small"
+                  onClick={() => scrollToSection('testimonials')}
+                >
                   Testimonials
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('highlights')}>
+                </Button>
+                <Button
+                  variant="text"
+                  color="info"
+                  size="small"
+                  onClick={() => scrollToSection('highlights')}
+                >
                   Highlights
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('pricing')}>
+                </Button>
+                <Button
+                  variant="text"
+                  color="info"
+                  size="small"
+                  onClick={() => scrollToSection('pricing')}
+                >
                   Pricing
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('faq')}>FAQ</MenuItem>
+                </Button>
+                <Button
+                  variant="text"
+                  color="info"
+                  size="small"
+                  onClick={() => scrollToSection('faq')}
+                  sx={{ minWidth: 0 }}
+                >
+                  FAQ
+                </Button>
               </Box>
             </Box>
             <Box

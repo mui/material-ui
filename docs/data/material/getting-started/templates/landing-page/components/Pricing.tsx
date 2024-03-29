@@ -9,6 +9,9 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+
+import { alpha } from '@mui/material/styles';
+
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
@@ -94,19 +97,26 @@ export default function Pricing() {
             md={4}
           >
             <Card
-              sx={{
+              sx={(theme) => ({
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 4,
-                border: tier.title === 'Professional' ? '1px solid' : undefined,
-                borderColor:
-                  tier.title === 'Professional' ? 'primary.main' : undefined,
+                border: tier.title === 'Professional' ? 'none' : undefined,
+                outline: tier.title === 'Professional' ? '1px solid' : undefined,
+                outlineColor:
+                  tier.title === 'Professional'
+                    ? alpha(theme.palette.primary.main, 0.4)
+                    : undefined,
+                boxShadow:
+                  tier.title === 'Professional'
+                    ? `0 0 12px ${alpha('#026BD4', 0.4)}`
+                    : undefined,
                 background:
                   tier.title === 'Professional'
-                    ? 'linear-gradient(#033363, #021F3B)'
+                    ? 'radial-gradient(circle at 11% 0%, #004080, #001F3D)'
                     : undefined,
-              }}
+              })}
             >
               <CardContent>
                 <Box
