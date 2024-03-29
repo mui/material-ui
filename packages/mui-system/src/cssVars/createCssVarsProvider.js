@@ -153,6 +153,9 @@ export default function createCssVarsProvider(options) {
       cssVarPrefix,
       vars: themeVars,
     };
+    if (typeof theme.generateSpacing === 'function') {
+      theme.spacing = theme.generateSpacing();
+    }
 
     // 4. Resolve the color scheme and merge it to the theme
     Object.entries(colorSchemes).forEach(([key, scheme]) => {

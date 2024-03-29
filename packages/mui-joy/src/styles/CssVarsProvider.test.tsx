@@ -526,7 +526,7 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal('16px');
+      expect(container.firstChild?.textContent).to.equal('calc(2 * var(--joy-spacing))');
     });
   });
 

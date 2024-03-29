@@ -38,6 +38,7 @@ describe('extendTheme', () => {
         'shouldSkipGeneratingVar',
         'generateStyleSheets',
         'generateThemeVars',
+        'generateSpacing',
         'applyStyles',
       ]).to.includes(field);
     });
@@ -103,6 +104,51 @@ describe('extendTheme', () => {
       fontSize: 'var(--joy-fontSize-md, 1rem)',
       lineHeight: 'var(--joy-lineHeight-md, 1.5)',
       color: 'var(--joy-palette-text-secondary, var(--joy-palette-neutral-700, #32383E))',
+    });
+  });
+
+  describe('spacing', () => {
+    it('produce spacing token by default', () => {
+      const theme = extendTheme();
+      expect(theme.vars.spacing).to.equal('var(--joy-spacing, 8px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 8px))');
+    });
+
+    it('turn number to pixel', () => {
+      const theme = extendTheme({ spacing: 4 });
+      expect(theme.vars.spacing).to.equal('var(--joy-spacing, 4px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 4px))');
+    });
+
+    it('can be customized as a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.vars.spacing).to.equal('var(--joy-spacing, 0.5rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 0.5rem))');
+    });
+
+    it('uses the provided value if it is a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.spacing('1rem')).to.equal('1rem');
+    });
+
+    it('can be customized as an array', () => {
+      const theme = extendTheme({ spacing: [0, 1, 2, 4, 8, 16, 32] });
+      expect(theme.vars.spacing).to.deep.equal([
+        'var(--joy-spacing-0, 0px)',
+        'var(--joy-spacing-1, 1px)',
+        'var(--joy-spacing-2, 2px)',
+        'var(--joy-spacing-3, 4px)',
+        'var(--joy-spacing-4, 8px)',
+        'var(--joy-spacing-5, 16px)',
+        'var(--joy-spacing-6, 32px)',
+      ]);
+      expect(theme.spacing(2)).to.equal('var(--joy-spacing-2, 2px)');
+    });
+
+    it('can be customized as a function', () => {
+      const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
+      expect(theme.vars.spacing).to.deep.equal('var(--joy-spacing, 0.25rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 0.25rem))');
     });
   });
 
