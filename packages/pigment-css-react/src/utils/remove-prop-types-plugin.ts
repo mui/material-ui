@@ -14,7 +14,7 @@ export const removePropTypesPlugin = declare<{}>((api) => {
         if (!property.isIdentifier({ name: 'propTypes' })) {
           return;
         }
-        if (path.parentPath.isExpressionStatement()) {
+        if (path.parentPath.isExpressionStatement() || path.parentPath.isConditionalExpression()) {
           path.parentPath.remove();
         }
       },
