@@ -51,7 +51,10 @@ export async function runTransformation(
       babelrc: false,
       plugins: ['@babel/plugin-syntax-jsx'],
     },
-    tagResolver(_source: string, tag: string) {
+    tagResolver(source: string, tag: string) {
+      if (source !== '@pigment-css/react') {
+        return null;
+      }
       return require.resolve(`../exports/${tag}`);
     },
   };

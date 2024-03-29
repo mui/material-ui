@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
 import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 
 const content = [
   {
@@ -50,7 +50,7 @@ export default function BaseUISummary() {
       <Box sx={{ mt: 6 }}>
         <Grid container spacing={3}>
           {content.map(({ icon, title, description, link }) => (
-            <Grid key={title} item xs={12} md={4}>
+            <Grid key={title} xs={12} md={4}>
               <InfoCard link={link} title={title} icon={icon} description={description} />
             </Grid>
           ))}

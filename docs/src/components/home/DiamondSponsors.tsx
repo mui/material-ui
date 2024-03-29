@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -46,8 +46,8 @@ export default function DiamondSponsors() {
         sx={(theme) => ({
           mt: 4,
           mb: 1.5,
-          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.primary[400]} 50%, ${
-            (theme.vars || theme).palette.primary[700]
+          background: `linear-gradient(45deg, ${(theme.vars || theme).palette.primary[400]} 50%, ${
+            (theme.vars || theme).palette.primary[800]
           } 100%)`,
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
@@ -57,12 +57,12 @@ export default function DiamondSponsors() {
       </Typography>
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {DIAMONDs.map((item) => (
-          <Grid item key={item.name} xs={12} sm={6} md={4}>
+          <Grid key={item.name} xs={12} sm={6} md={4}>
             <SponsorCard logoSize={64} inView={inView} item={item} />
           </Grid>
         ))}
         {spotIsAvailable && (
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid xs={12} sm={6} md={4}>
             <Paper
               variant="outlined"
               sx={{

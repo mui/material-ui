@@ -6,6 +6,9 @@ const theme = {
     primary: {
       main: 'red',
     },
+    secondary: {
+      main: 'blue',
+    },
   },
   size: {
     font: {

@@ -77,6 +77,7 @@ import { PaginationItemClassKey } from '../PaginationItem';
 import { PaperClassKey } from '../Paper';
 import { PopoverClassKey } from '../Popover';
 import { RadioClassKey } from '../Radio';
+import { RadioGroupClassKey } from '../RadioGroup';
 import { RatingClassKey } from '../Rating';
 import { ScopedCssBaselineClassKey } from '../ScopedCssBaseline';
 import { SelectClassKey } from '../Select';
@@ -222,6 +223,7 @@ export interface ComponentNameToClassKey {
   MuiPopover: PopoverClassKey;
   MuiPopper: PopperClassKey;
   MuiRadio: RadioClassKey;
+  MuiRadioGroup: RadioGroupClassKey;
   MuiRating: RatingClassKey;
   MuiScopedCssBaseline: ScopedCssBaselineClassKey;
   MuiSelect: SelectClassKey;
