@@ -1,6 +1,6 @@
 # Connect plugin
 
-<p class="description">Connect is a Figma plugin that lets you generate a theme from the Material UI Design Kit.</p>
+<p class="description">Connect is a Figma plugin that generates Material UI themes directly from design to code.</p>
 
 ## Introduction
 
