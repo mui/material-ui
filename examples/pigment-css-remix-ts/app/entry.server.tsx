@@ -10,7 +10,7 @@ import type { AppLoadContext, EntryContext } from '@remix-run/node';
 import { createReadableStreamFromReadable } from '@remix-run/node';
 import { RemixServer } from '@remix-run/react';
 import { isbot } from 'isbot';
-import { renderToPipeableStream } from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 
 const ABORT_DELAY = 5_000;
 
@@ -83,7 +83,7 @@ function handleBrowserRequest(
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
-    const { pipe, abort } = renderToPipeableStream(
+    const { pipe, abort } = ReactDOMServer.renderToPipeableStream(
       <RemixServer context={remixContext} url={request.url} abortDelay={ABORT_DELAY} />,
       {
         onShellReady() {
