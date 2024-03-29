@@ -857,16 +857,16 @@ function App() {
 
 ## Building reusable components for UI libraries
 
-The purpose of this guide is to demonstrate how to create reusable components for a UI library that can be shared across multiple projects and used to implement different design systems through custom theming. 
+The purpose of this guide is to demonstrate how to create reusable components for a UI library that can be shared across multiple projects and used to implement different design systems through custom theming.
 The approach outlined here is not necessary when constructing components to be consumed and themed in a single project.
 It's most relevant for developers who want to build a component library that could be published as a package to be consumed and themed by other developers.
 
 The steps below will walk you through how to create a statistics component that could serve as part of a reusable UI library built with Pigment CSS.
 This process has three parts:
 
-1. Create component slots.
-2. Compose slots to create the component.
-3. Style slots with `ownerState`.
+1. [Create component slots](#1-create-component-slots).
+2. [Compose slots to create the component](#2-create-the-component).
+3. [Style slots based on props](#3-style-slots-based-on-props).
 
 ### 1. Create component slots
 
@@ -942,33 +942,30 @@ const Stat = React.forwardRef(function Stat(props, ref) {
 export default Stat;
 ```
 
-### 3. Style slots with ownerState
+### 3. Style slots based on props
 
-When you need to style the slot-based props or internal state, wrap them in the `ownerState` object and pass it to each slot as a prop.
-The `ownerState` is a special name that does not spread to the DOM via the `styled` API.
+In this example, a prop named `variant` is defined to let consumers change the appearance of the `Stat` component.
 
-Add a `variant` prop to the `Stat` component and use it to style the `root` slot, as shown below:
+Pass down the `variant` prop to `<StatRoot>` to style the `root` slot, as shown below:
 
 ```diff
   const Stat = React.forwardRef(function Stat(props, ref) {
 +   const { value, unit, variant, ...other } = props;
-+
-+   const ownerState = { ...props, variant };
 
     return (
 -      <StatRoot ref={ref} {...other}>
 -        <StatValue>{value}</StatValue>
 -        <StatUnit>{unit}</StatUnit>
 -      </StatRoot>
-+      <StatRoot ref={ref} ownerState={ownerState} {...other}>
-+        <StatValue ownerState={ownerState}>{value}</StatValue>
-+        <StatUnit ownerState={ownerState}>{unit}</StatUnit>
++      <StatRoot ref={ref} variant={variant} {...other}>
++        <StatValue>{value}</StatValue>
++        <StatUnit>{unit}</StatUnit>
 +      </StatRoot>
     );
   });
 ```
 
-Then you can read `ownerState` in the slot to style it based on the `variant` prop:
+Then you can use Pigment CSS variants API to style it when `variant` prop has a value of `outlined`:
 
 ```diff
   const StatRoot = styled('div', {
@@ -995,7 +992,7 @@ Then you can read `ownerState` in the slot to style it based on the `variant` pr
   });
 ```
 
-This completes the reusable statistics component. 
+This completes the reusable statistics component.
 If this were a real UI library, the component would be ready to upload to a package registry so others could use it.
 
 ### Consumer usage
@@ -1065,7 +1062,6 @@ module.exports = withPigment(
   },
 );
 ```
-
 
 Developers can also access theme values and apply styles based on the component's props using the `variants` key:
 
