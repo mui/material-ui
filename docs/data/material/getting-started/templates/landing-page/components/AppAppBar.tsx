@@ -81,8 +81,8 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                 px: 0,
               }}
             >
-              <Sitemark sx={{ fontSize: 100, mr: 1 }} />
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Sitemark sx={{ fontSize: 100, mr: 2 }} />
+              <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5 }}>
                 <MenuItem onClick={() => scrollToSection('features')}>
                   Features
                 </MenuItem>

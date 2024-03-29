@@ -19,8 +19,8 @@ export default function Hero() {
         width: '100%',
         backgroundImage:
           theme.palette.mode === 'light'
-            ? 'linear-gradient(180deg, #CEE5FD, #FFF)'
-            : `linear-gradient(#02294F, ${alpha('#090E10', 0.0)})`,
+            ? `linear-gradient(${alpha('#CEE5FD', 0.5)}, #FFF)`
+            : `linear-gradient(${alpha('#02294F', 0.5)}, transparent)`,
         backgroundSize: '100% 20%',
         backgroundRepeat: 'no-repeat',
       })}
@@ -41,8 +41,7 @@ export default function Hero() {
               display: 'flex',
               flexDirection: { xs: 'column', md: 'row' },
               alignSelf: 'center',
-              textAlign: 'center',
-              fontSize: 'clamp(3.5rem, 10vw, 4rem)',
+              fontSize: 'clamp(3rem, 10vw, 3.5rem)',
             }}
           >
             Our latest&nbsp;
@@ -50,7 +49,7 @@ export default function Hero() {
               component="span"
               variant="h1"
               sx={{
-                fontSize: 'clamp(3rem, 10vw, 4rem)',
+                fontSize: 'clamp(3rem, 10vw, 3.5rem)',
                 color: (theme) =>
                   theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
               }}
