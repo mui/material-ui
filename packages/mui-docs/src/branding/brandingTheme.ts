@@ -257,8 +257,8 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       gradients: {
         radioSubtle:
           mode === 'dark'
-            ? `radial-gradient(100% 100% at 50% 0, transparent 0, ${alpha(blue[900], 0.3)} 300%)`
-            : `radial-gradient(100% 90% at 50% 0, transparent 0, ${alpha(blue[100], 0.6)} 300%)`,
+            ? `radial-gradient(100% 100% at 100% 100%, transparent 0, ${alpha(blue[900], 0.3)} 300%)`
+            : `radial-gradient(100% 90% at 50% 0, transparent 0, ${alpha(blue[100], 0.3)} 300%)`,
         linearSubtle:
           mode === 'light'
             ? `linear-gradient(to bottom right, ${alpha(blue[50], 0.3)} 25%, ${alpha(grey[50], 0.2)} 100%)`
