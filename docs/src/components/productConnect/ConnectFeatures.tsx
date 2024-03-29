@@ -48,7 +48,7 @@ export default function ConnectFeatures() {
                 The way developers and designers <GradientText>ship faster</GradientText>
               </Typography>
             }
-            description="Connect is perfect for teams of developers and designers building with the Material UI React library and design kit."
+            description="Connect is perfect for who is designing and developing using the Material UI React library and Design Kit,"
           />
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
@@ -62,14 +62,14 @@ export default function ConnectFeatures() {
               <Item
                 icon={<FormatShapesRoundedIcon color="primary" />}
                 title="Redesign your components"
-                description="Want to make your primary button fully rounded and with lowercase text? Use Connect to output code for custom component styles."
+                description="Want to make your primary button fully rounded and with lowercase text? Use Connect to generate code for custom component styles."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
                 icon={<SvgStorybook />}
                 title="Preview your changes on Storybook"
-                description="All of the changes you run through the Connect plugin can also be visualized on a built-in Storybook preview instance."
+                description="Quickly visualize all the changes you run through Connect on a built-in Storybook preview instance."
               />
             </Highlighter>
           </Group>
@@ -362,7 +362,8 @@ export default function ConnectFeatures() {
                 Stay on the loop about the Connect progress!
               </Typography>
               <Typography variant="body2" color="text.secondary" mb={1}>
-                Add your email to be notified about the plugin progress as we go.
+                There are lots of exciting updates lined up for Connect. Add your email if you want
+                to stay up to date. No spams!
               </Typography>
               <MUIConnectSignUp />
             </Frame.Info>

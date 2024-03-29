@@ -56,14 +56,14 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
               <Item
                 icon={<DrawRoundedIcon color="primary" />}
                 title="Figma Design Kit"
-                description="Design with many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
+                description="Use with many of the Material UI components with states, variations, colors, typography, and icons directly on Figma. Frequently updated to stay up-to-date with the latest release."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
                 icon={<ExtensionRoundedIcon color="primary" />}
                 title="Connect plugin"
-                description="Generate a theme file with theme and components customizations done directly on Figma, and then export and paste it directly into your codebase."
+                description="Quickly generate a theme file with token and component customizations done on Figma."
               />
             </Highlighter>
           </Group>
