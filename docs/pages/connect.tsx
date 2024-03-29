@@ -40,8 +40,8 @@ export default function Connect() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="Connect: A Figma plugin that exports a Material UI theme"
-        description="A Figma plugin that exports a full-fledged Material UI theme."
+        title="Connect: A Figma plugin that exports complete Material UI themes"
+        description="Connect is a Figma plugin that exports complete Material UI themes."
         card="/static/social-previews/connect-preview.jpg"
       />
       <AppHeaderBanner />
@@ -62,10 +62,10 @@ export default function Connect() {
               }
               title={
                 <Typography variant="h2" component="h1">
-                  <GradientText>Bridge the gap</GradientText> between Figma and your codebase
+                  <GradientText>Bridge the gap</GradientText> between design and code
                 </Typography>
               }
-              description="Connect is a Figma plugin that exports a full-fledged Material UI theme to get your design customization up as fast as possible."
+              description="Connect is a Figma plugin that exports complete Material UI themes directly from design to code."
             />
             <GetStartedButtons
               primaryLabel="Use Connect now"
