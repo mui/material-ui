@@ -855,25 +855,28 @@ function App() {
 }
 ```
 
-## Building a UI library
+## Building reusable components for UI libraries
 
-The key of a UI library is to provide a set of reusable components that can be used and themed across **different projects**.
+The purpose of this guide is to demonstrate how to create reusable components for a UI library that can be shared across multiple projects and used to implement different design systems through custom theming. 
+The approach outlined here is not necessary when constructing components to be consumed and themed in a single project.
+It's most relevant for developers who want to build a component library that could be published as a package to be consumed and themed by other developers.
 
-This guide will show you how to build a statistics component as part of a UI library using Pigment CSS. There are 3 steps to follow:
+The steps below will walk you through how to create a statistics component that could serve as part of a reusable UI library built with Pigment CSS.
+This process has three parts:
 
-1. Create the component slots.
+1. Create component slots.
 2. Compose slots to create the component.
-3. Style the slot with `ownerState`.
+3. Style slots with `ownerState`.
 
-### 1. Create the component slots
+### 1. Create component slots
 
 Slots let the consumers customize each individual element of the component by targeting its respective name in the [theme's styleOverrides](#themeable-statistics-component).
 
 This statistics component is composed of three slots:
 
 - `root`: the container of the component
-- `value`: the number of the statistics
-- `unit`: the unit or description of the statistics
+- `value`: the number to be displayed
+- `unit`: the unit or description of the value
 
 > 💡 Though you can give these slots any names you prefer, we recommend using `root` for the outermost container element for consistency with the rest of the library.
 
@@ -939,10 +942,10 @@ const Stat = React.forwardRef(function Stat(props, ref) {
 export default Stat;
 ```
 
-### 3. Style the slot with ownerState
+### 3. Style slots with ownerState
 
 When you need to style the slot-based props or internal state, wrap them in the `ownerState` object and pass it to each slot as a prop.
-The `ownerState` is a special name that will not spread to the DOM via the `styled` API.
+The `ownerState` is a special name that does not spread to the DOM via the `styled` API.
 
 Add a `variant` prop to the `Stat` component and use it to style the `root` slot, as shown below:
 
@@ -965,7 +968,7 @@ Add a `variant` prop to the `Stat` component and use it to style the `root` slot
   });
 ```
 
-Then you can read `ownerState` in the slot to style it based on the `variant` prop.
+Then you can read `ownerState` in the slot to style it based on the `variant` prop:
 
 ```diff
   const StatRoot = styled('div', {
@@ -992,18 +995,19 @@ Then you can read `ownerState` in the slot to style it based on the `variant` pr
   });
 ```
 
-That's it! You've successfully created a statistics component with Pigment CSS. The next step is to upload your component to a package registry to let other people use it.
+This completes the reusable statistics component. 
+If this were a real UI library, the component would be ready to upload to a package registry so others could use it.
 
 ### Consumer usage
 
-The developers who want to use your component need to install your package and Pigment packages based on their [framework](#start-with-nextjs).
+Developers using your component must first install your package as well as the Pigment CSS packages that correspond to the [framework](#start-with-nextjs) they're using.
 
 ```bash
 npm install your-package-name @pigment-css/react
 npm install -D @pigment-css/nextjs-plugin
 ```
 
-Then, they need to set up Pigment CSS in their project:
+Next, they must set up Pigment CSS in their project:
 
 ```js
 // framework config file, for example next.config.js
@@ -1017,14 +1021,14 @@ module.exports = withPigment(
 );
 ```
 
-Import the stylesheet in the root layout file:
+Finally, they must import the stylesheet in the root layout file:
 
 ```js
 // index.tsx
 import '@pigment-css/react/styles.css';
 ```
 
-That's it. Now they can use your component in their project:
+Then they can use your component in their project:
 
 ```jsx
 import Stat from 'your-package-name/Stat';
@@ -1036,7 +1040,8 @@ function App() {
 
 ### Consumer theming
 
-By defining the component's name and slots in [step 2](#2-create-the-component), the consumers can customize the component's styles using the theme's `styleOverrides` key:
+Developers can customize the component's styles using the theme's `styleOverrides` key and the component name and slots you defined in [step 2](#2-create-the-component).
+For example, the custom theme below sets the background color of the statistics component's root slot to `tomato`:
 
 ```js
 module.exports = withPigment(
@@ -1061,9 +1066,8 @@ module.exports = withPigment(
 );
 ```
 
-When the consumer renders the `Stat` component, the default background of the root slot will be `tomato`.
 
-The consumer can also access the theme values and apply the styles based on the component's prop using the `variants` key:
+Developers can also access theme values and apply styles based on the component's props using the `variants` key:
 
 ```js
 module.exports = withPigment(
