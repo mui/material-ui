@@ -2254,6 +2254,9 @@ importers:
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
+      prop-types:
+        specifier: ^15.8.1
+        version: 15.8.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
