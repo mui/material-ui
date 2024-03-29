@@ -24,7 +24,7 @@ If you encounter an error that says "package `@pigment-css/react` not found," ad
 
 ### Note
 
-If you're testing changes in Pigment CSS-related packages while also running this demo app, run the watch command in a separate terminal to watch and build Pigment CSS package files as they change:
+If you're testing changes in Pigment CSS-related packages while also running this demo app, run the watch command in a separate terminal to watch and build Pigment CSS package files as they change:
 
 ```bash
 pnpm watch:zero
