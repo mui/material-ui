@@ -122,24 +122,7 @@ const AppBarRoot = styled(Paper, {
           (theme.vars ?? theme).palette[key].contrastText,
       )
       .map((color) => ({
-        props: { color, enableColorOnDark: false },
-        style: {
-          '--AppBar-background': theme.vars
-            ? joinVars(theme.vars.palette.AppBar.darkBg, theme.vars.palette[color].main)
-            : theme.palette[color].main,
-          '--AppBar-color': theme.vars
-            ? joinVars(theme.vars.palette.AppBar.darkColor, theme.vars.palette[color].contrastText)
-            : theme.palette[color].contrastText,
-        },
-      })),
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter(
-        (key) =>
-          (theme.vars ?? theme).palette[key].main &&
-          (theme.vars ?? theme).palette[key].contrastText,
-      )
-      .map((color) => ({
-        props: { color, enableColorOnDark: true },
+        props: { color },
         style: {
           '--AppBar-background': (theme.vars ?? theme).palette[color].main,
           '--AppBar-color': (theme.vars ?? theme).palette[color].contrastText,
@@ -158,8 +141,8 @@ const AppBarRoot = styled(Paper, {
         backgroundColor: 'var(--AppBar-background)',
         color: 'var(--AppBar-color)',
         ...theme.applyStyles('dark', {
-          backgroundColor: theme.vars ? 'var(--AppBar-background)' : null,
-          color: theme.vars ? 'var(--AppBar-color)' : null,
+          backgroundColor: theme.vars ? joinVars(theme.vars.palette.AppBar.darkBg, 'var(--AppBar-background)') : null,
+          color: theme.vars ? joinVars(theme.vars.palette.AppBar.darkColor, 'var(--AppBar-color)') : null,
         }),
       },
     },
