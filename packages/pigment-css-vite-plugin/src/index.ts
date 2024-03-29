@@ -45,7 +45,7 @@ const defaultTheme = extendTheme({});
 
 export function pigment(options?: PigmentOptions) {
   const {
-    theme = defaultTheme,
+    theme = {},
     babelOptions = {},
     preprocessor = basePreprocessor,
     transformLibraries = [],
