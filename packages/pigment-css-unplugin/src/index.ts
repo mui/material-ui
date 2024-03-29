@@ -151,8 +151,8 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
     return asyncResolveFallback(what, importer, stack);
   };
 
-  const linariaTransformPlugin: UnpluginOptions = {
-    name: 'zero-plugin-transform-linaria',
+  const wywInJSTransformPlugin: UnpluginOptions = {
+    name: 'zero-plugin-transform-wyw-in-js',
     enforce: 'post',
     buildEnd() {
       onDone(process.cwd());
@@ -221,7 +221,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
             babelOptions: {
               ...rest.babelOptions,
               plugins: [
-                ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+                `${process.env.RUNTIME_PACKAGE_NAME}/exports/remove-prop-types-plugin`,
                 'babel-plugin-define-var', // A fix for undefined variables in the eval phase of wyw-in-js, more details on https://github.com/siriwatknp/babel-plugin-define-var?tab=readme-ov-file#problem
                 ...(rest.babelOptions?.plugins ?? []),
               ],
@@ -356,7 +356,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
   if (transformSx) {
     plugins.push(babelTransformPlugin);
   }
-  plugins.push(linariaTransformPlugin);
+  plugins.push(wywInJSTransformPlugin);
 
   // This is already handled separately for Next.js using `placeholderCssFile`
   if (!isNext) {

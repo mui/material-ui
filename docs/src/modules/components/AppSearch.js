@@ -54,7 +54,7 @@ const SearchButton = styled('button')(({ theme }) => [
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
-    boxShadow: `inset 0 -1px 1px ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
+    boxShadow: `inset 0 -1px 0 ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
       theme.palette.grey[100],
       0.6,
     )}`,

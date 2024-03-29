@@ -324,7 +324,7 @@ const Heading = styled('h1')({
 });
 ```
 
-Pigment CSS replaces the callback with a CSS variable and inject the value through inline style. This makes it possible to create a static CSS file while still allowing dynamic styles.
+Pigment CSS replaces the callback with a CSS variable and injects the value through inline styles. This makes it possible to create a static CSS file while still allowing dynamic styles.
 
 ```css
 .Heading_class_akjsdfb {
