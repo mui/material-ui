@@ -181,15 +181,15 @@ const getDesignTokens = (mode: PaletteMode) => ({
       fontSize: '1.125rem', // 18px
     },
     subtitle2: {
-      fontSize: '1rem',
+      fontSize: '1rem', // 16px
     },
     body1: {
       fontWeight: 400,
-      fontSize: '0.938', // 15rem
+      fontSize: '0.938rem', // 15px
     },
     body2: {
       fontWeight: 400,
-      fontSize: '0.875rem', // 14rem
+      fontSize: '0.875rem', // 14px
     },
     caption: {
       fontWeight: 400,
