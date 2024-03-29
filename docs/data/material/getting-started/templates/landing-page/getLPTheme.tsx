@@ -151,49 +151,49 @@ const getDesignTokens = (mode: PaletteMode) => ({
   typography: {
     fontFamily: ['"Inter", "sans-serif"'].join(','),
     h1: {
-      fontSize: 60,
+      fontSize: '3.75rem', // 60px
       fontWeight: 600,
-      lineHeight: 78 / 70,
-      letterSpacing: -0.2,
+      lineHeight: 1.5,
+      letterSpacing: -0.5,
     },
     h2: {
-      fontSize: 48,
+      fontSize: '3rem', // 48rem
       fontWeight: 600,
       lineHeight: 1.2,
     },
     h3: {
-      fontSize: 42,
+      fontSize: '2.625rem', // 42px
       lineHeight: 1.2,
     },
     h4: {
-      fontSize: 36,
+      fontSize: '2.25rem', // 36px
       fontWeight: 500,
       lineHeight: 1.5,
     },
     h5: {
-      fontSize: 20,
+      fontSize: '1.25rem', // 20px
       fontWeight: 600,
     },
     h6: {
-      fontSize: 18,
+      fontSize: '1.125rem', // 18px
     },
     subtitle1: {
-      fontSize: 18,
+      fontSize: '1.125rem', // 18px
     },
     subtitle2: {
-      fontSize: 16,
+      fontSize: '1rem',
     },
     body1: {
       fontWeight: 400,
-      fontSize: 15,
+      fontSize: '0.938', // 15rem
     },
     body2: {
       fontWeight: 400,
-      fontSize: 14,
+      fontSize: '0.875rem', // 14rem
     },
     caption: {
       fontWeight: 400,
-      fontSize: 12,
+      fontSize: '0.75rem', // 12px
     },
   },
 });
@@ -304,32 +304,30 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             borderRadius: '10px',
             textTransform: 'none',
             ...(ownerState.size === 'small' && {
-              maxHeight: '32px',
+              height: '2rem', // 32px
             }),
             ...(ownerState.size === 'medium' && {
-              height: '40px',
+              height: '2.5rem', // 40px
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: 'white',
-                textShadow: '0 0 2px rgba(0, 0, 0, 0.8)',
-                background: brand[500],
-                backgroundImage: `linear-gradient(to bottom, ${brand[300]}, ${brand[400]})`,
-                boxShadow: `inset 0 1px ${alpha(brand[200], 0.5)}, inset 0 -1px ${alpha(brand[500], 0.5)}`,
-                border: `1px solid ${brand[400]}`,
+                backgroundColor: brand[300],
+                backgroundImage: `linear-gradient(to bottom, ${alpha(brand[400], 0.8)}, ${brand[500]})`,
+                boxShadow: `inset 0 2.5px ${alpha(brand[200], 0.2)}, inset 0 -2px ${alpha(brand[700], 0.6)}`,
                 '&:hover': {
-                  background: brand[400],
-                  backgroundImage: 'none',
-                  boxShadow: `0 0 0 1px  ${alpha(brand[300], 0.5)}`,
+                  backgroundColor: brand[500],
+                  boxShadow: 'none',
                 },
                 '&:active': {
-                  background: brand[600],
+                  backgroundColor: brand[700],
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
+              color: brand[600],
               backgroundColor: alpha(brand[300], 0.1),
-              borderColor: brand[300],
-              color: brand[500],
+              borderColor: alpha(brand[200], 0.8),
+              boxShadow: `inset 0 2px ${alpha(brand[50], 0.5)}, inset 0 -2px ${alpha(brand[200], 0.2)}`,
               '&:hover': {
                 backgroundColor: alpha(brand[300], 0.3),
                 borderColor: brand[200],
@@ -353,27 +351,15 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               },
             }),
             ...(theme.palette.mode === 'dark' && {
-              ...(ownerState.variant === 'contained' &&
-                ownerState.color === 'primary' && {
-                  border: `1px solid ${brand[600]}`,
-                  backgroundImage: `linear-gradient(to bottom, ${brand[400]}, ${brand[600]})`,
-                  boxShadow: `inset 0 1px ${alpha(brand[300], 0.5)}, inset 0 -1px ${alpha(brand[700], 0.5)}`,
-                  '&:hover': {
-                    background: brand[600],
-                    backgroundImage: 'none',
-                    boxShadow: `0 0 0 1px  ${alpha(brand[700], 0.5)}`,
-                  },
-                  '&:active': {
-                    background: brand[700],
-                  },
-                }),
               ...(ownerState.variant === 'outlined' && {
+                color: brand[200],
                 backgroundColor: alpha(brand[600], 0.1),
-                borderColor: brand[700],
-                color: brand[300],
+                borderColor: alpha(brand[600], 0.6),
+                boxShadow: `inset 0 2.5px ${alpha(brand[400], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
                 '&:hover': {
                   backgroundColor: alpha(brand[600], 0.3),
                   borderColor: brand[700],
+                  boxShadow: 'none',
                 },
               }),
               ...(ownerState.variant === 'outlined' &&
@@ -427,7 +413,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             backgroundColor: gray[50],
-            borderRadius: 10,
+            borderRadius: '10px',
             outline: `1px solid ${alpha(gray[200], 0.8)}`,
             boxShadow: 'none',
             ...(ownerState.variant === 'outlined' && {
@@ -541,13 +527,14 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiMenuItem: {
         styleOverrides: {
           root: ({ theme }) => ({
-            borderRadius: 10,
-            color: gray[500],
+            paddingRight: 6,
+            paddingLeft: 6,
+            color: gray[700],
+            fontSize: '0.875rem',
             fontWeight: 500,
-            paddingRight: 8,
-            paddingLeft: 8,
+            borderRadius: '10px',
             ...(theme.palette.mode === 'dark' && {
-              color: gray[300],
+              color: gray[200],
             }),
           }),
         },
@@ -653,7 +640,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             borderRadius: '10px',
             border: '1px solid',
             borderColor: alpha(gray[300], 0.8),
-            boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.04) inset',
+            boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.02) inset',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
             '&:hover': {
