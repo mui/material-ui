@@ -530,7 +530,7 @@ importers:
         specifier: workspace:^
         version: link:../docs
       express:
-        specifier: ^4.18.3
+        specifier: ^4.19.2
         version: 4.19.2
       fs-extra:
         specifier: ^11.2.0
@@ -1718,7 +1718,7 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
       express:
-        specifier: ^4.18.3
+        specifier: ^4.19.2
         version: 4.19.2
       fast-glob:
         specifier: ^3.3.2
