@@ -809,8 +809,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-number-format:
-        specifier: ^5.3.3
-        version: 5.3.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.3.4
+        version: 5.3.4(react-dom@18.2.0)(react@18.2.0)
       react-router-dom:
         specifier: ^6.21.3
         version: 6.22.1(react-dom@18.2.0)(react@18.2.0)
@@ -18770,8 +18770,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /react-number-format@5.3.3(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-maGHWmOvwYzyeRIpL0YC6drWqYaX6iFqjisdJXpZ+HzEtSEJsL6nqw4azTpF5Sm6SAvwUeAr7JY924Ebqq8EdA==}
+  /react-number-format@5.3.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-2hHN5mbLuCDUx19bv0Q8wet67QqYK6xmtLQeY5xx+h7UXiMmRtaCwqko4mMPoKXLc6xAzwRrutg8XbTRlsfjRg==}
     peerDependencies:
       react: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
       react-dom: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
