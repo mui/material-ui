@@ -494,8 +494,8 @@ importers:
         specifier: 5.2.2
         version: 5.2.2(@types/node@18.19.26)
       vite-plugin-pages:
-        specifier: ^0.32.0
-        version: 0.32.0(vite@5.2.2)
+        specifier: ^0.32.1
+        version: 0.32.1(vite@5.2.2)
 
   benchmark:
     dependencies:
@@ -21775,8 +21775,8 @@ packages:
       vfile-message: 2.0.4
     dev: false
 
-  /vite-plugin-pages@0.32.0(vite@5.2.2):
-    resolution: {integrity: sha512-OxS3n0zUo5wsfgNCAuw2FiG/KD1ipgQV+2Flst4RyeI2iPv+m0YueVq+nx41k5NOWJj/zhqEas6I0b7HXveXjA==}
+  /vite-plugin-pages@0.32.1(vite@5.2.2):
+    resolution: {integrity: sha512-4oPlIbb+J+zpJGfT2xI/27xqY+qTkRc3MBgWKfbW6IWM3CTcSyybuL9kRMCFRdBHfmgkF28qDs7fqVf/HjH1Xw==}
     peerDependencies:
       '@vue/compiler-sfc': ^2.7.0 || ^3.0.0
       vite: ^2.0.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0
