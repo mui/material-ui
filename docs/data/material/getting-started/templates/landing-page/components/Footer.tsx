@@ -93,22 +93,22 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="body2" fontWeight="medium">
             Product
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Features
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Testimonials
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Highlights
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Pricing
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             FAQs
           </Link>
         </Box>
@@ -119,16 +119,16 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="body2" fontWeight="medium">
             Company
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             About us
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Careers
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Press
           </Link>
         </Box>
@@ -139,16 +139,16 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="body2" fontWeight="medium">
             Legal
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Terms
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Privacy
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Contact
           </Link>
         </Box>
@@ -164,13 +164,13 @@ export default function Footer() {
         }}
       >
         <div>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Privacy Policy
           </Link>
           <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
             &nbsp;•&nbsp;
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" variant="body2" href="#">
             Terms of Service
           </Link>
           <Copyright />

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -9,8 +10,6 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-
-import { alpha } from '@mui/material/styles';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
@@ -102,20 +101,14 @@ export default function Pricing() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 4,
-                border: tier.title === 'Professional' ? 'none' : undefined,
-                outline: tier.title === 'Professional' ? '1px solid' : undefined,
-                outlineColor:
-                  tier.title === 'Professional'
-                    ? alpha(theme.palette.primary.main, 0.4)
-                    : undefined,
-                boxShadow:
-                  tier.title === 'Professional'
-                    ? `0 0 12px ${alpha('#026BD4', 0.4)}`
-                    : undefined,
-                background:
-                  tier.title === 'Professional'
-                    ? 'radial-gradient(circle at 11% 0%, #004080, #001F3D)'
-                    : undefined,
+                ...(tier.title === 'Professional' && {
+                  border: 'none',
+                  boxShadow:
+                    theme.palette.mode === 'light'
+                      ? `0 8px 12px ${alpha('#026BD4', 0.2)}`
+                      : `0 8px 12px rgba(0,0,0,0.8)`,
+                  background: 'radial-gradient(circle at 50% 0%, #025AB1, #002951)',
+                }),
               })}
             >
               <CardContent>
@@ -125,6 +118,7 @@ export default function Pricing() {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
+                    gap: 2,
                     color: tier.title === 'Professional' ? 'grey.100' : '',
                   }}
                 >
@@ -136,20 +130,14 @@ export default function Pricing() {
                       icon={<AutoAwesomeIcon />}
                       label={tier.subheader}
                       size="small"
-                      sx={(theme) => ({
-                        background: 'none',
-                        border: '1px solid',
-                        borderColor: alpha(theme.palette.primary.main, 0.8),
-                        backgroundColor:
-                          theme.palette.mode === 'light'
-                            ? 'info.dark'
-                            : 'info.light',
+                      sx={{
+                        borderColor: 'rgba(255,255,255,0.3)',
+                        backgroundColor: 'rgba(255,255,255,0.1)',
                         '& .MuiChip-label': {
-                          color: 'primary.contrastText',
+                          color: '#FFF',
                         },
                         '& .MuiChip-icon': {
-                          color: 'primary.contrastText',
-                          fontSize: '0.875rem',
+                          color: 'primary.light',
                         },
                       })}
                     />
@@ -172,8 +160,8 @@ export default function Pricing() {
                 <Divider
                   sx={{
                     my: 2,
-                    opacity: 0.2,
-                    borderColor: 'grey.500',
+                    opacity: 0.8,
+                    borderColor: 'divider',
                   }}
                 />
                 {tier.description.map((line) => (
@@ -196,11 +184,9 @@ export default function Pricing() {
                       }}
                     />
                     <Typography
-                      component="text"
                       variant="subtitle2"
                       sx={{
-                        color:
-                          tier.title === 'Professional' ? 'grey.200' : undefined,
+                        color: tier.title === 'Professional' ? 'grey.50' : undefined,
                       }}
                     >
                       {line}

@@ -1,5 +1,5 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { ThemeOptions, alpha } from '@mui/material/styles';
+import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
 
@@ -19,6 +19,8 @@ declare module '@mui/material/styles/createPalette' {
 
   interface PaletteColor extends ColorRange {}
 }
+
+const customTheme = createTheme();
 
 export const brand = {
   50: '#F0F7FF',
@@ -131,16 +133,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
       }),
     },
     grey: {
-      50: gray[50],
-      100: gray[100],
-      200: gray[200],
-      300: gray[300],
-      400: gray[400],
-      500: gray[500],
-      600: gray[600],
-      700: gray[700],
-      800: gray[800],
-      900: gray[900],
+      ...gray,
     },
     divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
@@ -166,50 +159,53 @@ const getDesignTokens = (mode: PaletteMode) => ({
   typography: {
     fontFamily: ['"Inter", "sans-serif"'].join(','),
     h1: {
-      fontSize: '3.75rem', // 60px
+      fontSize: customTheme.typography.pxToRem(60),
       fontWeight: 600,
       lineHeight: 1.5,
       letterSpacing: -0.5,
     },
     h2: {
-      fontSize: '3rem', // 48rem
+      fontSize: customTheme.typography.pxToRem(48),
       fontWeight: 600,
       lineHeight: 1.2,
     },
     h3: {
-      fontSize: '2.625rem', // 42px
+      fontSize: customTheme.typography.pxToRem(42),
       lineHeight: 1.2,
     },
     h4: {
-      fontSize: '2.25rem', // 36px
+      fontSize: customTheme.typography.pxToRem(36),
       fontWeight: 500,
       lineHeight: 1.5,
     },
     h5: {
-      fontSize: '1.25rem', // 20px
+      fontSize: customTheme.typography.pxToRem(20),
       fontWeight: 600,
     },
     h6: {
-      fontSize: '1.125rem', // 18px
+      fontSize: customTheme.typography.pxToRem(18),
     },
     subtitle1: {
-      fontSize: '1.125rem', // 18px
+      fontSize: customTheme.typography.pxToRem(18),
     },
     subtitle2: {
-      fontSize: '1rem', // 16px
+      fontSize: customTheme.typography.pxToRem(16),
     },
     body1: {
+      fontSize: customTheme.typography.pxToRem(15),
       fontWeight: 400,
-      fontSize: '0.938rem', // 15px
     },
     body2: {
+      fontSize: customTheme.typography.pxToRem(14),
       fontWeight: 400,
-      fontSize: '0.875rem', // 14px
     },
     caption: {
+      fontSize: customTheme.typography.pxToRem(12),
       fontWeight: 400,
-      fontSize: '0.75rem', // 12px
     },
+  },
+  shape: {
+    borderRadius: 12,
   },
 });
 
@@ -304,7 +300,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: {
             boxSizing: 'border-box',
-            transition: 'all 100ms ease-in',
+            transition: 'all 120ms ease-in',
             '&:focus-visible': {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
               outlineOffset: '2px',
@@ -329,9 +325,8 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                 color: 'white',
                 backgroundColor: brand[300],
                 backgroundImage: `linear-gradient(to bottom, ${alpha(brand[400], 0.8)}, ${brand[500]})`,
-                boxShadow: `inset 0 2px 0  ${alpha(brand[200], 0.2)}, inset 0 -1.5px 0 1px ${alpha(brand[700], 0.4)}`,
+                boxShadow: `inset 0 2px 0 ${alpha(brand[200], 0.2)}, inset 0 -2px 0 ${alpha(brand[700], 0.4)}`,
                 border: `1px solid ${brand[500]}`,
-                transition: 'background 100ms ease-in, box-shadow 100ms ease-in',
                 '&:hover': {
                   backgroundColor: brand[600],
                   boxShadow: 'none',
@@ -420,14 +415,14 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             ...(ownerState.size === 'small' && {
-              height: '32px',
-              width: '32px',
+              height: '2rem',
+              width: '2rem',
             }),
             ...(ownerState.size === 'medium' && {
-              height: '40px',
-              width: '40px',
+              height: '2.5rem',
+              width: '2.rem',
             }),
-            color: brand[600],
+            color: brand[500],
             '&:hover': {
               backgroundColor: alpha(brand[300], 0.3),
               borderColor: brand[200],
@@ -448,15 +443,14 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             backgroundColor: gray[50],
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${alpha(gray[200], 0.8)}`,
-            boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.7)} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+            boxShadow: 'none',
             ...(ownerState.variant === 'outlined' && {
               boxShadow: 'none',
               background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
             }),
             ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[800], 0.6),
-              boxShadow: `${alpha(theme.palette.grey[700], 0.2)} 0 1px 0 1px inset, ${alpha(theme.palette.common.black, 0.2)} 0 -2px 0 1px inset, ${theme.palette.common.black} 0 1px 2px 0`,
-              border: `1px solid ${alpha(gray[700], 0.5)}`,
+              backgroundColor: alpha(gray[800], 0.4),
+              border: `1px solid ${gray[800]}`,
               ...(ownerState.variant === 'outlined' && {
                 boxShadow: 'none',
                 background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
@@ -471,18 +465,17 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiChip: {
         styleOverrides: {
           root: ({ theme }) => ({
-            alignSelf: 'center',
             py: 1.5,
             px: 0.5,
-            background: `linear-gradient(to bottom right, ${brand[50]}, ${brand[100]})`,
             border: '1px solid',
-            borderColor: `${alpha(brand[500], 0.3)}`,
-            fontWeight: '600',
+            borderColor: brand[100],
+            fontWeight: 600,
+            backgroundColor: brand[50],
             '&:hover': {
               backgroundColor: brand[500],
             },
             '&:focus-visible': {
-              borderColor: brand[800],
+              borderColor: brand[300],
               backgroundColor: brand[200],
             },
             '& .MuiChip-label': {
@@ -492,14 +485,14 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               color: brand[500],
             },
             ...(theme.palette.mode === 'dark' && {
-              background: `linear-gradient(to bottom right, ${brand[700]}, ${brand[900]})`,
-              borderColor: `${alpha(brand[500], 0.5)}`,
+              borderColor: `${alpha(brand[500], 0.2)}`,
+              backgroundColor: `${alpha(brand[900], 0.5)}`,
               '&:hover': {
                 backgroundColor: brand[600],
               },
               '&:focus-visible': {
-                borderColor: brand[200],
-                backgroundColor: brand[600],
+                borderColor: brand[500],
+                backgroundColor: brand[800],
               },
               '& .MuiChip-label': {
                 color: brand[200],
