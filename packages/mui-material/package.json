@@ -69,7 +69,7 @@
     "@types/sinon": "^10.0.20",
     "chai": "^4.4.1",
     "css-mediaquery": "^0.1.2",
-    "express": "^4.18.3",
+    "express": "^4.19.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
