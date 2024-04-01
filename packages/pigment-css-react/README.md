@@ -965,7 +965,7 @@ Pass down the `variant` prop to `<StatRoot>` to style the `root` slot, as shown 
   });
 ```
 
-Then you can use Pigment CSS variants API to style it when `variant` prop has a value of `outlined`:
+Then you can use Pigment CSS variants API to style it when `variant` prop has a value of `outlined`:
 
 ```diff
   const StatRoot = styled('div', {
@@ -997,7 +997,7 @@ If this were a real UI library, the component would be ready to upload to a pack
 
 ### Consumer usage
 
-Developers using your component must first install your package as well as the Pigment CSS packages that correspond to the [framework](#start-with-nextjs) they're using.
+Developers using your component must first install your package as well as the Pigment CSS packages that correspond to the [framework](#start-with-nextjs) they're using.
 
 ```bash
 npm install your-package-name @pigment-css/react
