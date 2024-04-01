@@ -22,7 +22,7 @@ overrides:
   '@definitelytyped/header-parser': ^0.2.8
   '@definitelytyped/typescript-versions': ^0.1.1
   '@definitelytyped/utils': ^0.1.5
-  '@types/node': ^18.19.25
+  '@types/node': ^18.19.28
   '@types/react': 18.2.55
   '@types/react-dom': 18.2.19
   cross-fetch: ^4.0.0
@@ -144,8 +144,8 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
       '@types/prettier':
         specifier: ^2.7.3
         version: 2.7.3
@@ -371,6 +371,9 @@ importers:
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../../packages/mui-icons-material/build
+      '@mui/lab':
+        specifier: workspace:^
+        version: link:../../packages/mui-lab/build
       '@mui/material':
         specifier: workspace:^
         version: link:../../packages/mui-material/build
@@ -403,8 +406,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/pigment-css-nextjs-plugin
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -426,6 +429,9 @@ importers:
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../../packages/mui-icons-material/build
+      '@mui/lab':
+        specifier: workspace:^
+        version: link:../../packages/mui-lab/build
       '@mui/material':
         specifier: workspace:^
         version: link:../../packages/mui-material/build
@@ -454,8 +460,8 @@ importers:
         specifier: ^4.0.13
         version: 4.0.13(react@18.2.0)
       react-router:
-        specifier: ^6.22.1
-        version: 6.22.1(react@18.2.0)
+        specifier: ^6.22.3
+        version: 6.22.3(react@18.2.0)
       react-router-dom:
         specifier: ^6.22.1
         version: 6.22.1(react-dom@18.2.0)(react@18.2.0)
@@ -486,7 +492,7 @@ importers:
         version: 1.0.1
       vite:
         specifier: 5.2.2
-        version: 5.2.2(@types/node@18.19.26)
+        version: 5.2.2(@types/node@18.19.28)
       vite-plugin-pages:
         specifier: ^0.32.0
         version: 0.32.0(vite@5.2.2)
@@ -524,7 +530,7 @@ importers:
         specifier: workspace:^
         version: link:../docs
       express:
-        specifier: ^4.18.3
+        specifier: ^4.19.2
         version: 4.19.2
       fs-extra:
         specifier: ^11.2.0
@@ -870,8 +876,8 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/css-mediaquery':
         specifier: ^0.1.4
         version: 0.1.4
@@ -879,8 +885,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -979,8 +985,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -988,8 +994,8 @@ importers:
         specifier: ^4.17.0
         version: 4.17.0
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
       '@types/prettier':
         specifier: ^2.7.3
         version: 2.7.3
@@ -1070,8 +1076,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -1082,8 +1088,8 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
       '@types/react-docgen':
         specifier: workspace:*
         version: link:../react-docgen-types
@@ -1113,14 +1119,14 @@ importers:
         version: 4.17.21
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/mocha':
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
       '@types/sinon':
         specifier: ^10.0.20
         version: 10.0.20
@@ -1160,8 +1166,8 @@ importers:
         version: 9.0.1
     optionalDependencies:
       aws-sdk:
-        specifier: ^2.1579.0
-        version: 2.1585.0
+        specifier: ^2.1589.0
+        version: 2.1589.0
     devDependencies:
       claudia:
         specifier: ^5.14.1
@@ -1183,8 +1189,8 @@ importers:
         version: 1.29.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       chai:
         specifier: ^4.4.1
         version: 4.4.1
@@ -1211,14 +1217,14 @@ importers:
         specifier: ^3.1.3
         version: 3.1.3
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/mocha':
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
       babel-plugin-tester:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.24.3)
@@ -1263,8 +1269,8 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@9.3.4)
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -1325,8 +1331,8 @@ importers:
         version: 17.7.2
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/jscodeshift':
         specifier: 0.11.5
         version: 0.11.5
@@ -1366,8 +1372,8 @@ importers:
         specifier: workspace:*
         version: link:../mui-material/build
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -1389,8 +1395,8 @@ importers:
         version: 7.11.1
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       chai:
         specifier: ^4.4.1
         version: 4.4.1
@@ -1442,8 +1448,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1525,8 +1531,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -1599,8 +1605,8 @@ importers:
         specifier: workspace:*
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -1691,8 +1697,8 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@9.3.4)
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -1712,7 +1718,7 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
       express:
-        specifier: ^4.18.3
+        specifier: ^4.19.2
         version: 4.19.2
       fast-glob:
         specifier: ^3.3.2
@@ -1806,8 +1812,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1847,8 +1853,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1882,8 +1888,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/hoist-non-react-statics':
         specifier: ^3.3.5
         version: 3.3.5
@@ -1962,8 +1968,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -2030,8 +2036,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -2096,14 +2102,14 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/mocha':
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -2222,8 +2228,8 @@ importers:
         specifier: ^7.10.3
         version: 7.10.3
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/cssesc':
         specifier: ^3.0.2
         version: 3.0.2
@@ -2234,8 +2240,8 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -2248,6 +2254,9 @@ importers:
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
+      prop-types:
+        specifier: ^15.8.1
+        version: 15.8.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2303,7 +2312,7 @@ importers:
         version: 7.20.5
       vite:
         specifier: ^5.0.12
-        version: 5.2.2(@types/node@18.19.26)
+        version: 5.2.2(@types/node@18.19.28)
 
   packages/react-docgen-types:
     devDependencies:
@@ -2324,8 +2333,8 @@ importers:
         specifier: ^10.0.6
         version: 10.0.6
       '@types/node':
-        specifier: ^18.19.25
-        version: 18.19.26
+        specifier: ^18.19.28
+        version: 18.19.28
 
   packages/test-utils:
     dependencies:
@@ -2403,8 +2412,8 @@ importers:
         version: 15.2.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/chai-dom':
         specifier: ^1.11.3
         version: 1.11.3
@@ -2477,8 +2486,8 @@ importers:
         specifier: ^9.3.4
         version: 9.3.4
       '@types/chai':
-        specifier: ^4.3.12
-        version: 4.3.12
+        specifier: ^4.3.14
+        version: 4.3.14
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -4967,7 +4976,7 @@ packages:
   /@fast-csv/format@4.3.5:
     resolution: {integrity: sha512-8iRn6QF3I8Ak78lNAa+Gdl5MJJBM5vRHivFtMRUWINdevNo00K7OXxS2PshawLKTejVwieIlPmK5YlLu6w4u8A==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       lodash.escaperegexp: 4.1.2
       lodash.isboolean: 3.0.3
       lodash.isequal: 4.5.0
@@ -4978,7 +4987,7 @@ packages:
   /@fast-csv/parse@4.3.6:
     resolution: {integrity: sha512-uRsLYksqpbDmWaSmzvJcuApSEe38+6NQZBUsuAyMZKqHxH0g1wcJgsKUvN3WC8tewaqFjBMMGrkHmC+T7k8LvA==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       lodash.escaperegexp: 4.1.2
       lodash.groupby: 4.6.0
       lodash.isfunction: 3.0.9
@@ -5170,7 +5179,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       jest-mock: 29.7.0
     dev: false
 
@@ -5180,7 +5189,7 @@ packages:
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -5198,7 +5207,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       '@types/yargs': 15.0.19
       chalk: 4.1.2
     dev: false
@@ -5210,7 +5219,7 @@ packages:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       '@types/yargs': 17.0.32
       chalk: 4.1.2
     dev: false
@@ -7189,6 +7198,11 @@ packages:
     resolution: {integrity: sha512-zcU0gM3z+3iqj8UX45AmWY810l3oUmXM7uH4dt5xtzvMhRtYVhKGOmgOd1877dOPPepfCjUv57w+syamWIYe7w==}
     engines: {node: '>=14.0.0'}
 
+  /@remix-run/router@1.15.3:
+    resolution: {integrity: sha512-Oy8rmScVrVxWZVOpEF57ovlnhpZ8CCPlnIIumVcV9nFdiSIrus99+Lw78ekXyGvVDlIsFJbSfmSovJUhCWYV3w==}
+    engines: {node: '>=14.0.0'}
+    dev: false
+
   /@rollup/plugin-replace@5.0.5(rollup@3.29.4):
     resolution: {integrity: sha512-rYO4fOi8lMaTg/z5Jb+hKnrHHVn8j2lwkqwyS4kTRhKyWOLf2wST2sWXr4WzWiTcoHTp2sTjqUbqIj2E39slKQ==}
     engines: {node: '>=14.0.0'}
@@ -7459,14 +7473,14 @@ packages:
     resolution: {integrity: sha512-DTuBFbqu4gGfajREEMrkq5jBhcnskinhr4+AnfJEk48zhVeEv3XnUKGIX98B74kxhYsIMfApGGySTn7V3b5yBA==}
     engines: {node: '>= 12.13.0', npm: '>= 6.12.0'}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: false
 
   /@slack/logger@4.0.0:
     resolution: {integrity: sha512-Wz7QYfPAlG/DR+DfABddUZeNgoeY7d1J39OCR2jR+v7VBsB8ezulDK5szTnDDPDwLH5IWhLvXIHlCFZV7MSKgA==}
     engines: {node: '>= 18', npm: '>= 8.6.0'}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: false
 
   /@slack/oauth@2.6.2:
@@ -7476,7 +7490,7 @@ packages:
       '@slack/logger': 3.0.0
       '@slack/web-api': 6.12.0
       '@types/jsonwebtoken': 8.5.9
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       jsonwebtoken: 9.0.0
       lodash.isstring: 4.0.1
     transitivePeerDependencies:
@@ -7489,7 +7503,7 @@ packages:
     dependencies:
       '@slack/logger': 3.0.0
       '@slack/web-api': 6.12.0
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       '@types/p-queue': 2.3.2
       '@types/ws': 7.4.7
       eventemitter3: 3.1.2
@@ -7515,7 +7529,7 @@ packages:
       '@slack/logger': 3.0.0
       '@slack/types': 2.11.0
       '@types/is-stream': 1.1.0
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       axios: 1.6.5(debug@4.3.4)
       eventemitter3: 3.1.2
       form-data: 2.5.1
@@ -7835,7 +7849,7 @@ packages:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
       '@types/connect': 3.4.35
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: false
 
   /@types/cacheable-request@6.0.2:
@@ -7843,30 +7857,30 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       '@types/responselike': 1.0.0
     dev: true
 
   /@types/chai-dom@1.11.3:
     resolution: {integrity: sha512-EUEZI7uID4ewzxnU7DJXtyvykhQuwe+etJ1wwOiJyQRTH/ifMWKX+ghiXkxCUvNJ6IQDodf0JXhuP6zZcy2qXQ==}
     dependencies:
-      '@types/chai': 4.3.12
+      '@types/chai': 4.3.14
     dev: true
 
-  /@types/chai@4.3.12:
-    resolution: {integrity: sha512-zNKDHG/1yxm8Il6uCCVsm+dRdEsJlFoDu73X17y09bId6UwoYww+vFBsAcRzl8knM1sab3Dp1VRikFQwDOtDDw==}
+  /@types/chai@4.3.14:
+    resolution: {integrity: sha512-Wj71sXE4Q4AkGdG9Tvq1u/fquNz9EdG4LIJMwVVII7ashjD/8cf8fyIfJAjRr6YcsXnSE8cOGQPq1gqeR8z+3w==}
     dev: true
 
   /@types/cheerio@0.22.31:
     resolution: {integrity: sha512-Kt7Cdjjdi2XWSfrZ53v4Of0wG3ZcmaegFXjMmz9tfNrZSkzzo36G0AL1YqSdcIA78Etjt6E609pt5h1xnQkPUw==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: true
 
   /@types/connect@3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: false
 
   /@types/cookie@0.4.1:
@@ -7920,7 +7934,7 @@ packages:
   /@types/express-serve-static-core@4.17.35:
     resolution: {integrity: sha512-wALWQwrgiB2AWTT91CB62b6Yt0sNHpznUXeZEcnPU3DRdlDIz74x8Qg1UUYKSVFi+va5vKOLYRBI1bRKiLLKIg==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
       '@types/send': 0.17.1
@@ -7942,7 +7956,7 @@ packages:
     resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
     dependencies:
       '@types/jsonfile': 6.1.1
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: true
 
   /@types/hoist-non-react-statics@3.3.5:
@@ -7966,7 +7980,7 @@ packages:
   /@types/is-stream@1.1.0:
     resolution: {integrity: sha512-jkZatu4QVbR60mpIzjINmtS1ZF4a/FqdTUTBeQDVOQ2PYyidtwFKr0B5G6ERukKwliq+7mIXvxyppwzG5EgRYg==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: false
 
   /@types/istanbul-lib-coverage@2.0.6:
@@ -8006,19 +8020,19 @@ packages:
   /@types/jsonfile@6.1.1:
     resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: true
 
   /@types/jsonwebtoken@8.5.9:
     resolution: {integrity: sha512-272FMnFGzAVMGtu9tkr29hRL6bZj4Zs1KZNeHLnKqAvp06tAIcarTMwOh8/8bz4FmKRcMxZhZNeUAQsNLoiPhg==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: false
 
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: true
 
   /@types/lodash.mergewith@4.6.7:
@@ -8066,8 +8080,8 @@ packages:
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
     dev: true
 
-  /@types/node@18.19.26:
-    resolution: {integrity: sha512-+wiMJsIwLOYCvUqSdKTrfkS8mpTp+MPINe6+Np4TAGFWWRWiBQ5kSq9nZGCSPkzx9mvT+uEukzpX4MOSCydcvw==}
+  /@types/node@18.19.28:
+    resolution: {integrity: sha512-J5cOGD9n4x3YGgVuaND6khm5x07MMdAKkRyXnjVR6KFhLMNh2yONGiP7Z+4+tBOt5mK+GvDTiacTOVGGpqiecw==}
     dependencies:
       undici-types: 5.26.5
 
@@ -8165,13 +8179,13 @@ packages:
   /@types/resolve@0.0.8:
     resolution: {integrity: sha512-auApPaJf3NPfe18hSoJkp8EbZzer2ISk7o8mCC3M9he/a04+gbMF97NkpD2S8riMGvm4BMRI59/SZQSaLTKpsQ==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: true
 
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: true
 
   /@types/retry@0.12.0:
@@ -8189,7 +8203,7 @@ packages:
     resolution: {integrity: sha512-Cwo8LE/0rnvX7kIIa3QHCkcuF21c05Ayb0ZfxPiv0W8VRiZiNW/WuRupHKpqqGVGf7SUA44QSOUKaEd9lIrd/Q==}
     dependencies:
       '@types/mime': 1.3.2
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: false
 
   /@types/serve-static@1.15.2:
@@ -8197,7 +8211,7 @@ packages:
     dependencies:
       '@types/http-errors': 2.0.1
       '@types/mime': 3.0.1
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: false
 
   /@types/sinon@10.0.20:
@@ -8253,7 +8267,7 @@ packages:
   /@types/ws@7.4.7:
     resolution: {integrity: sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
     dev: false
 
   /@types/yargs-parser@21.0.3:
@@ -8417,7 +8431,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.3)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: 5.2.2(@types/node@18.19.26)
+      vite: 5.2.2(@types/node@18.19.28)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -9286,8 +9300,8 @@ packages:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  /aws-sdk@2.1585.0:
-    resolution: {integrity: sha512-zDJ76hivdnBLH2+hXTO0F5y3Sdx5RRSDCf4EqZILZCUkPLTwaVmKmaU6XO3pyhrMTcWk58m7UBgHFyARE5SCkQ==}
+  /aws-sdk@2.1589.0:
+    resolution: {integrity: sha512-Tt3UHH6hoUEAjbCscqvfEAoq9VSTN5iSQO9XSisiiH/QJo8sf+iLCYmfJHM4tVkd92bQH61/xxj9t2Mazwc/WQ==}
     engines: {node: '>= 10.0.0'}
     requiresBuild: true
     dependencies:
@@ -10096,7 +10110,7 @@ packages:
     engines: {node: '>=12.13.0'}
     hasBin: true
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -10111,7 +10125,7 @@ packages:
   /chromium-edge-launcher@1.0.0:
     resolution: {integrity: sha512-pgtgjNKZ7i5U++1g1PWv75umkHvhVTDOQIZ+sjeUX9483S7Y6MUvO0lrd7ShGlQlFHMN4SwKTCq/X8hWrbv2KA==}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -10153,7 +10167,7 @@ packages:
     hasBin: true
     dependencies:
       archiver: 3.1.1
-      aws-sdk: 2.1585.0
+      aws-sdk: 2.1589.0
       fs-extra: 6.0.1
       glob: 7.2.3
       gunzip-maybe: 1.4.2
@@ -11538,7 +11552,7 @@ packages:
     dependencies:
       '@types/cookie': 0.4.1
       '@types/cors': 2.8.12
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.4.2
@@ -14573,7 +14587,7 @@ packages:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       jest-mock: 29.7.0
       jest-util: 29.7.0
     dev: false
@@ -14602,7 +14616,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       jest-util: 29.7.0
     dev: false
 
@@ -14611,7 +14625,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -14634,7 +14648,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -14643,7 +14657,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -14651,7 +14665,7 @@ packages:
     resolution: {integrity: sha512-eIz2msL/EzL9UFTFFx7jBTkeZfku0yUAyZZZmJ93H2TYEiroIx2PQjEXcwYtYl8zXCxb+PAmA2hLIt/6ZEkPHw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -18846,6 +18860,16 @@ packages:
       '@remix-run/router': 1.15.1
       react: 18.2.0
 
+  /react-router@6.22.3(react@18.2.0):
+    resolution: {integrity: sha512-dr2eb3Mj5zK2YISHK++foM9w4eBnO23eKnZEDs7c880P6oKbrjz/Svg9+nxqtHQK+oMW4OtjZca0RqPglXxguQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.15.3
+      react: 18.2.0
+    dev: false
+
   /react-runner@1.0.3(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-KyAzNzSVdrBc4A7aGW3FD0wVuujfgcBlyIGF0QVicJu0ucMpLYyTHE+PgBu82Iq698TPKRH+eEi6Mrq/e7OffA==}
     peerDependencies:
@@ -21768,18 +21792,18 @@ packages:
       json5: 2.2.3
       local-pkg: 0.5.0
       picocolors: 1.0.0
-      vite: 5.2.2(@types/node@18.19.26)
+      vite: 5.2.2(@types/node@18.19.28)
       yaml: 2.4.1
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite@5.2.2(@types/node@18.19.26):
+  /vite@5.2.2(@types/node@18.19.28):
     resolution: {integrity: sha512-FWZbz0oSdLq5snUI0b6sULbz58iXFXdvkZfZWR/F0ZJuKTSPO7v72QPXt6KqYeMFb0yytNp6kZosxJ96Nr/wDQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
-      '@types/node': ^18.19.25
+      '@types/node': ^18.19.28
       less: '*'
       lightningcss: ^1.21.0
       sass: '*'
@@ -21802,7 +21826,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.19.26
+      '@types/node': 18.19.28
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.13.0

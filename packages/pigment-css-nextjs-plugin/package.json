@@ -45,6 +45,7 @@
     "loader.js",
     "next-font.js",
     "next-image.js",
+    "third-party-styled.js",
     "zero-virtual.css",
     "package.json",
     "LICENSE"

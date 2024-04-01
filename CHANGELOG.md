@@ -13057,7 +13057,7 @@ Here are some highlights ✨:
 
   1. `stable` (default, formerly `esm`) which targets a snapshot (on release) of `> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"`
   2. `node` (formerly default) which targets a snapshot (on release) of `maintained node versions`
-  3. `legacy` (new) which is `stable` + IE11
+  3. `legacy` (new) which is `stable` + IE 11
   4. `modern` (formerly `es`) which targets the last 1 version of evergreen browsers and active node (currently that is 14
 
   The change yields a 6% reduction in bundle size 📦 (Babel only).
