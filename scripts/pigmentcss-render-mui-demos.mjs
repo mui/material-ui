@@ -2,20 +2,14 @@ import path from 'path';
 import fse from 'fs-extra';
 import * as prettier from 'prettier';
 
-function capitalize(string) {
+function pascalCase(string) {
   if (typeof string !== 'string') {
-    throw new Error('`capitalize(string)` expects a string argument.');
+    throw new Error('`pascalCase(string)` expects a string argument.');
   }
 
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+  const result = string.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
 
-function toPascalCase(string) {
-  if (typeof string !== 'string') {
-    throw new Error('`toPascalCase(string)` expects a string argument.');
-  }
-
-  return capitalize(string).replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+  return result.charAt(0).toUpperCase() + result.slice(1);
 }
 
 function titleCase(str) {
@@ -65,7 +59,7 @@ async function run() {
     return `import ${componentName} from '../../../../../../docs/data/material/components/${dataFolderName}/${componentName}';`;
   });
 
-  const functionName = toPascalCase(dataFolderName);
+  const functionName = pascalCase(dataFolderName);
 
   const nextFileContent = `'use client';
 import * as React from 'react';
@@ -106,7 +100,7 @@ ${viteImports.join('\n')}
 export default function ${functionName}() {
   return (
     <MaterialUILayout>
-      <h1>${capitalize(dataFolderName)}</h1>
+      <h1>${functionName}</h1>
 ${renders.join('\n')}
     </MaterialUILayout>
   );
