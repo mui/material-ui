@@ -159,6 +159,9 @@ const getDesignTokens = (mode: PaletteMode) => ({
         selected: alpha(brand[800], 0.2),
       }),
     },
+    shape: {
+      borderRadius: theme.shape.borderRadius,
+    },
   },
   typography: {
     fontFamily: ['"Inter", "sans-serif"'].join(','),
@@ -264,7 +267,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiToggleButtonGroup: {
         styleOverrides: {
           root: ({ theme }) => ({
-            borderRadius: '10px',
+            borderRadius: theme.shape.borderRadius,
             boxShadow: `0 4px 16px ${alpha(gray[400], 0.2)}`,
             '& .Mui-selected': {
               color: brand[500],
@@ -283,7 +286,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme }) => ({
             padding: '12px 16px',
             textTransform: 'none',
-            borderRadius: '10px',
+            borderRadius: theme.shape.borderRadius,
             fontWeight: 500,
             ...(theme.palette.mode === 'dark' && {
               color: gray[400],
@@ -313,7 +316,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             boxShadow: 'none',
-            borderRadius: '10px',
+            borderRadius: theme.shape.borderRadius,
             textTransform: 'none',
             ...(ownerState.size === 'small' && {
               height: '2rem', // 32px
@@ -443,7 +446,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             backgroundColor: gray[50],
-            borderRadius: '10px',
+            borderRadius: theme.shape.borderRadius,
             border: `1px solid ${alpha(gray[200], 0.8)}`,
             boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.7)} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
             ...(ownerState.variant === 'outlined' && {
@@ -562,7 +565,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             color: gray[700],
             fontSize: '0.875rem',
             fontWeight: 500,
-            borderRadius: '10px',
+            borderRadius: theme.shape.borderRadius,
             ...(theme.palette.mode === 'dark' && {
               color: gray[200],
             }),
@@ -667,7 +670,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             boxSizing: 'border-box',
             flexGrow: 1,
             height: '40px',
-            borderRadius: '10px',
+            borderRadius: theme.shape.borderRadius,
             border: '1px solid',
             borderColor: alpha(gray[300], 0.8),
             boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.02) inset',
