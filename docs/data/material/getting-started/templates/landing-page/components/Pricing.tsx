@@ -139,7 +139,7 @@ export default function Pricing() {
                         '& .MuiChip-icon': {
                           color: 'primary.light',
                         },
-                      })}
+                      }}
                     />
                   )}
                 </Box>

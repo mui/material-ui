@@ -98,11 +98,11 @@ export default function Highlights() {
                 sx={{
                   p: 3,
                   height: '100%',
-                  outline: 'none',
                   border: '1px solid',
                   borderColor: 'grey.800',
                   background: 'transparent',
                   backgroundColor: 'grey.900',
+                  boxShadow: 'none',
                 }}
               >
                 <Box sx={{ opacity: '50%' }}>{item.icon}</Box>
