@@ -273,5 +273,14 @@
     "locationCountry": "au",
     "about": "Enjoy creating open source libraries and reading about AI 🤖",
     "github": "atomiks"
+  },
+  {
+    "name": "Aarón García",
+    "title": "Design Engineer - Core",
+    "location": "Alicante, Spain",
+    "locationCountry": "es",
+    "about": "Minimalism, web development, user experience, football, cycling",
+    "twitter": "aarongarciah",
+    "github": "aarongarciah"
   }
 ]
