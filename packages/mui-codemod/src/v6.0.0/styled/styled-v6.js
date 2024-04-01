@@ -7,6 +7,61 @@ export default function styledV6(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
+  /**
+   *
+   * @param {import('ast-types').namedTypes.MemberExpression | import('ast-types').namedTypes.Identifier} node
+   */
+  function getIdentifierKey(node) {
+    if (node.type === 'MemberExpression') {
+      return node.property;
+    }
+    return node;
+  }
+
+  /**
+   *
+   * @param {import('ast-types').namedTypes.ObjectExpression} objectExpression
+   * @param {import('ast-types').namedTypes.BinaryExpression} addtional
+   */
+  function objectToArrowFunction(objectExpression, addtional) {
+    /**
+     *
+     * @param {import('ast-types').namedTypes.MemberExpression | import('ast-types').namedTypes.Identifier} node
+     */
+    function getObjectKey(node) {
+      if (node.type === 'MemberExpression') {
+        return node.object;
+      }
+      return node;
+    }
+    const paramKeys = new Set();
+    let left;
+    objectExpression.properties.forEach((prop, index) => {
+      paramKeys.add(prop.key.name);
+      const result = j.binaryExpression('===', prop.key, prop.value);
+      if (index === 0) {
+        left = result;
+      } else {
+        left = j.logicalExpression('&&', left, result);
+      }
+    });
+    if (addtional) {
+      paramKeys.add(getObjectKey(addtional.left).name);
+    }
+    return j.arrowFunctionExpression(
+      [
+        j.objectPattern(
+          [...paramKeys].map((k) => {
+            const item = j.objectProperty(j.identifier(k), j.identifier(k));
+            item.shorthand = true;
+            return item;
+          }),
+        ),
+      ],
+      addtional ? j.logicalExpression('&&', left, addtional) : left,
+    );
+  }
+
   root.find(j.CallExpression).forEach((path) => {
     const styles = [];
 
@@ -32,8 +87,16 @@ export default function styledV6(file, api, options) {
       const variants = [];
 
       const removingIndexes = [];
+      let objectExpression = style.body;
+      while (objectExpression.type !== 'ObjectExpression') {
+        if (objectExpression.type === 'BlockStatement') {
+          objectExpression = objectExpression.body.find(
+            (item) => item.type === 'ReturnStatement',
+          ).argument;
+        }
+      }
       // Only expression with '===' operator
-      style.body.properties.forEach((prop, index) => {
+      objectExpression.properties.forEach((prop, index) => {
         // handle case: equal expression and boolean
         // like `ownerState.size === 'small'` and `ownerState.contained`
         if (prop.type === 'SpreadElement') {
@@ -43,42 +106,23 @@ export default function styledV6(file, api, options) {
             if (node.operator !== '&&') {
               break;
             }
-            const left = node.left;
-
-            // handle case: `prop === 'small' &&`
-            if (left.type === 'BinaryExpression' && left.operator === '===') {
-              if (left.left.type === 'Identifier') {
-                properties.push(j.objectProperty(left.left, left.right));
-                break;
-              }
-              if (left.left.type === 'MemberExpression') {
-                properties.push(j.objectProperty(left.left.property, left.right));
-                break;
-              }
-            }
-
-            // handle case: `prop &&`
-            if (left.type === 'MemberExpression') {
-              properties.push(j.objectProperty(left.property, j.booleanLiteral(true)));
+            if (node.left.type === 'BinaryExpression' && node.left.operator === '===') {
+              properties.push(j.objectProperty(getIdentifierKey(node.left.left), node.left.right));
               break;
             }
-            if (left.type === 'Identifier') {
-              properties.push(j.objectProperty(left, j.booleanLiteral(true)));
+            if (node.left.type === 'MemberExpression' || node.left.type === 'Identifier') {
+              properties.push(
+                j.objectProperty(getIdentifierKey(node.left), j.booleanLiteral(true)),
+              );
               break;
             }
-
-            // handle case: `!prop &&`
-            if (left.type === 'UnaryExpression' && left.operator === '!') {
-              if (left.argument.type === 'Identifier') {
-                properties.push(j.objectProperty(left.argument, j.booleanLiteral(false)));
-                break;
-              }
-              if (left.argument.type === 'MemberExpression') {
-                properties.push(j.objectProperty(left.argument.property, j.booleanLiteral(false)));
-                break;
-              }
+            if (node.left.type === 'UnaryExpression') {
+              properties.push(
+                j.objectProperty(getIdentifierKey(node.left.argument), j.booleanLiteral(false)),
+              );
+              break;
             }
-            node = left;
+            node = node.left;
           }
           if (properties.length) {
             removingIndexes.push(index);
@@ -92,10 +136,10 @@ export default function styledV6(file, api, options) {
         }
       });
 
-      style.body.properties = style.body.properties.filter(
+      objectExpression.properties = objectExpression.properties.filter(
         (_, index) => !removingIndexes.includes(index),
       );
-      style.body.properties.push(
+      objectExpression.properties.push(
         j.objectProperty(j.identifier('variants'), j.arrayExpression(variants)),
       );
 
