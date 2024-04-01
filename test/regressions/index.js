@@ -168,15 +168,15 @@ const blacklist = [
 
 const unusedBlacklistPatterns = new Set(blacklist);
 
-function excludeDemoFixture(suite, name) {
+function excludeDemoFixture(suite, name, image) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
     return true;
   }
 
-  // Skip JavaScript/TypeScript files that are not PascalCase
+  // Exclude files that are not images and are not PascalCase
   // Tantamount to skipping files that are not React components
   // PascalCase starts with a capital letter and has zero or more capital letters in the middle
-  if (/[^A-Z][A-Za-z]*.js|.ts$/.test(name)) {
+  if (!image && !/[^A-Z][A-Za-z]*$/.test(name)) {
     return true;
   }
 
@@ -213,6 +213,7 @@ function excludeDemoFixture(suite, name) {
 const importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/, 'lazy');
 const demoFixtures = [];
 importDemos.keys().forEach((path) => {
+  const image = path.endsWith('.png');
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
   const suite = `docs-${suiteArray
     .reverse()
@@ -221,7 +222,7 @@ importDemos.keys().forEach((path) => {
 
   // TODO: Why does webpack include a key for the absolute and relative path?
   // We just want the relative path
-  if (path.startsWith('./') && !excludeDemoFixture(suite, name)) {
+  if (path.startsWith('./') && !excludeDemoFixture(suite, name, image)) {
     demoFixtures.push({
       path,
       suite,
