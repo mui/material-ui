@@ -160,7 +160,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
       }),
     },
     shape: {
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: 10,
     },
   },
   typography: {
