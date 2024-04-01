@@ -6,37 +6,31 @@ import { styled as _styled } from '@pigment-css/react';
 import _theme from '@pigment-css/react/theme';
 import * as React from 'react';
 const StatRoot = /*#__PURE__*/ _styled('div', {
-  name: 'MuiStat',
+  name: 'PigmentState',
   // The component name
   slot: 'root', // The slot name
 })({
-  classes: ['si9gu6v', 'si9gu6v-1'],
+  classes: ['si9gu6v'],
   variants: [
     {
       props: {
         variant: 'outlined',
       },
-      className: 'si9gu6v-2',
-    },
-    {
-      props: {
-        variant: 'outlined',
-      },
-      className: 'si9gu6v-3',
+      className: 'si9gu6v-1',
     },
   ],
 });
 const StatValue = /*#__PURE__*/ _styled2('div', {
-  name: 'MuiStat',
+  name: 'PigmentState',
   slot: 'value',
 })({
-  classes: ['sbfbm5t', 'sbfbm5t-1'],
+  classes: ['sbfbm5t'],
 });
 const StatUnit = /*#__PURE__*/ _styled3('div', {
-  name: 'MuiStat',
+  name: 'PigmentState',
   slot: 'unit',
 })({
-  classes: ['s1xscf0o', 's1xscf0o-1'],
+  classes: ['s1xscf0o'],
 });
 const Stat = React.forwardRef(function Stat(props, ref) {
   const { value, unit, ...other } = props;
