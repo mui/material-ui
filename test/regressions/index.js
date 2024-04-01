@@ -176,7 +176,7 @@ function excludeDemoFixture(suite, name, image) {
   // Exclude files that are not images and are not PascalCase
   // Tantamount to skipping files that are not React components
   // PascalCase starts with a capital letter and has zero or more capital letters in the middle
-  if (!image && !/[^A-Z][A-Za-z]*$/.test(name)) {
+  if (!image && !/^[A-Z][A-Za-z0-9]*$/.test(name)) {
     return true;
   }
 
