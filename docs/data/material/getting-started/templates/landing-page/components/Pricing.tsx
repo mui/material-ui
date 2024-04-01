@@ -136,17 +136,22 @@ export default function Pricing() {
                       icon={<AutoAwesomeIcon />}
                       label={tier.subheader}
                       size="small"
-                      sx={{
-                        background: (theme) =>
-                          theme.palette.mode === 'light' ? '' : 'none',
-                        backgroundColor: 'primary.contrastText',
+                      sx={(theme) => ({
+                        background: 'none',
+                        border: '1px solid',
+                        borderColor: alpha(theme.palette.primary.main, 0.8),
+                        backgroundColor:
+                          theme.palette.mode === 'light'
+                            ? 'info.dark'
+                            : 'info.light',
                         '& .MuiChip-label': {
-                          color: 'primary.dark',
+                          color: 'primary.contrastText',
                         },
                         '& .MuiChip-icon': {
-                          color: 'primary.dark',
+                          color: 'primary.contrastText',
+                          fontSize: '0.875rem',
                         },
-                      }}
+                      })}
                     />
                   )}
                 </Box>

@@ -157,6 +157,8 @@ export default function Features() {
                   height: 'fit-content',
                   width: '100%',
                   background: 'none',
+                  transition:
+                    'background 100ms ease-in-out, box-shadow 100ms ease-in-out, border-color 100ms ease-in-out',
                   backgroundColor:
                     selectedItemIndex === index ? 'action.selected' : undefined,
                   '&:hover': {
