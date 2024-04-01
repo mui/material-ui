@@ -893,7 +893,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - [material-ui] Revise the Alert demo page (#34892) @samuelsycamore
 - [material-ui] Revise the Accordion page (#40284) @anle9650
 - [material-ui] Add docs for complementary Card components (#40346) @anle9650
-- [material-ui] Add Material 3 components page (#40350) @DiegoAndai
+- [material-ui] Add Material Design 3 components page (#40350) @DiegoAndai
 - Fix strange italic style @oliviertassinari
 - Fix references to ESLint @oliviertassinari
 - Fix 301 redirections @oliviertassinari
