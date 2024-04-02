@@ -416,16 +416,6 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
-      MuiDivider: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            borderColor: `${alpha(gray[200], 0.8)}`,
-            ...(theme.palette.mode === 'dark' && {
-              borderColor: `${alpha(gray[700], 0.4)}`,
-            }),
-          }),
-        },
-      },
       MuiDialog: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -434,6 +424,16 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
               border: '1px solid',
               borderColor: theme.palette.divider,
             },
+          }),
+        },
+      },
+      MuiDivider: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            borderColor: `${alpha(gray[200], 0.8)}`,
+            ...(theme.palette.mode === 'dark' && {
+              borderColor: `${alpha(gray[700], 0.4)}`,
+            }),
           }),
         },
       },
