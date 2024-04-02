@@ -81,8 +81,8 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                 px: 0,
               }}
             >
-              <Sitemark sx={{ fontSize: 100, mr: 2 }} />
-              <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5 }}>
+              <Sitemark />
+              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <Button
                   variant="text"
                   color="info"

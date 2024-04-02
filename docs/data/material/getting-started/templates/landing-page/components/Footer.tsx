@@ -56,12 +56,12 @@ export default function Footer() {
           }}
         >
           <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
-            <SitemarkIcon sx={{ fontSize: 100, height: 'fit-content', mb: 2 }} />
-            <Typography variant="body2" fontWeight={600} gutterBottom>
-              Newsletter
+            <SitemarkIcon />
+            <Typography variant="body2" fontWeight={600} gutterBottom sx={{ mt: 2 }}>
+              Join the newsletter
             </Typography>
             <Typography variant="body2" color="text.secondary" mb={2}>
-              Subscribe to our newsletter for weekly updates and promotions.
+              Subscribe for weekly updates. No spams ever!
             </Typography>
             <Stack direction="row" spacing={1} useFlexGap>
               <InputLabel htmlFor="email-newsletter" sx={visuallyHidden}>
