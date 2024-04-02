@@ -62,6 +62,12 @@ export default function styledV6(file, api, options) {
     );
   }
 
+  function removeProperty(objectExpression, child) {
+    if (objectExpression) {
+      objectExpression.properties = objectExpression.properties.filter((prop) => prop !== child);
+    }
+  }
+
   root.find(j.CallExpression).forEach((path) => {
     const styles = [];
 
@@ -86,7 +92,6 @@ export default function styledV6(file, api, options) {
     styles.forEach((style) => {
       const variants = [];
 
-      const removingIndexes = [];
       let objectExpression = style.body;
       while (objectExpression.type !== 'ObjectExpression') {
         if (objectExpression.type === 'BlockStatement') {
@@ -95,13 +100,30 @@ export default function styledV6(file, api, options) {
           ).argument;
         }
       }
-      // Only expression with '===' operator
-      objectExpression.properties.forEach((prop, index) => {
-        // handle case: equal expression and boolean
-        // like `ownerState.size === 'small'` and `ownerState.contained`
-        if (prop.type === 'SpreadElement') {
+
+      function recurseObjectExpression(data) {
+        if (data.node.type === 'ObjectExpression') {
+          data.node.properties.forEach((prop) => {
+            if (prop.type === 'ObjectProperty') {
+              recurseObjectExpression({ node: prop.value, parentNode: data.node });
+            } else {
+              recurseObjectExpression({ node: prop, parentNode: data.node });
+            }
+          });
+        }
+        if (data.node.type === 'SpreadElement' && data.node.argument.type === 'LogicalExpression') {
+          const variant = {
+            props: j.objectExpression([]),
+            style: data.node.argument.right,
+          };
+          variants.push(
+            j.objectExpression([
+              j.objectProperty(j.identifier('props'), variant.props),
+              j.objectProperty(j.identifier('style'), variant.style),
+            ]),
+          );
           const properties = [];
-          let node = prop.argument;
+          let node = data.node.argument;
           while (node.left) {
             if (node.operator !== '&&') {
               break;
@@ -125,20 +147,24 @@ export default function styledV6(file, api, options) {
             node = node.left;
           }
           if (properties.length) {
-            removingIndexes.push(index);
-            variants.push(
-              j.objectExpression([
-                j.objectProperty(j.identifier('props'), j.objectExpression(properties)),
-                j.objectProperty(j.identifier('style'), prop.argument.right),
-              ]),
-            );
+            variant.props.properties.push(...properties);
           }
+          variant.style.properties.forEach((prop) => {
+            if (prop.type === 'ObjectProperty') {
+              recurseObjectExpression({ node: prop.value, parentNode: variant.style });
+            } else {
+              recurseObjectExpression({ node: prop, parentNode: variant.style });
+            }
+          });
+          removeProperty(data.parentNode, data.node);
         }
-      });
+        if (data.node.type === 'ConditionalExpression') {
+          removeProperty(data.parentNode, data.node);
+        }
+      }
 
-      objectExpression.properties = objectExpression.properties.filter(
-        (_, index) => !removingIndexes.includes(index),
-      );
+      recurseObjectExpression({ node: objectExpression });
+
       objectExpression.properties.push(
         j.objectProperty(j.identifier('variants'), j.arrayExpression(variants)),
       );
