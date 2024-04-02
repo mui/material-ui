@@ -11,6 +11,31 @@ import { processCssObject } from '../utils/processCssObject';
 import { cssFnValueToVariable } from '../utils/cssFnValueToVariable';
 import BaseProcessor from './base-processor';
 
+// @TODO: Maybe figure out a better way allow imports.
+const allowedSxTransformImports = [`${process.env.PACKAGE_NAME}/Box`];
+
+/**
+ * Specifically looks for whether the sx prop should be transformed or not.
+ * If it's a Pigment CSS styled component, the value of `argumentValue` will
+ * be a string className starting with "."
+ * In other cases, it explicitly checks if the import is allowed for sx transformation.
+ */
+function allowSxTransform(argumentExpression: ExpressionValue, argumentValue?: string) {
+  if (!argumentExpression) {
+    return false;
+  }
+  if (
+    argumentExpression.kind === ValueType.LAZY &&
+    argumentExpression.importedFrom?.some((i) => allowedSxTransformImports.includes(i))
+  ) {
+    return true;
+  }
+  if (argumentValue && argumentValue[0] === '.') {
+    return true;
+  }
+  return false;
+}
+
 export class SxProcessor extends BaseProcessor {
   sxArguments: ExpressionValue[] = [];
 
@@ -41,7 +66,7 @@ export class SxProcessor extends BaseProcessor {
       }
     }
 
-    if (!this.elementClassName || this.elementClassName[0] !== '.') {
+    if (!allowSxTransform(elementClassExpression, this.elementClassName)) {
       return;
     }
 
@@ -95,7 +120,7 @@ export class SxProcessor extends BaseProcessor {
   doRuntimeReplacement() {
     const t = this.astService;
     // do not replace if sx prop is not a Pigment styled component
-    if (!this.elementClassName) {
+    if (this.artifacts.length === 0) {
       return;
     }
     if (this.collectedVariables.length) {
