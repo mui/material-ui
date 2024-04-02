@@ -193,8 +193,9 @@ export type SelectProps<Value = unknown> =
  * - [Select API](https://mui.com/material-ui/api/select/)
  * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
-export default function Select<Value = unknown>(
-  props: SelectProps<Value>,
-): JSX.Element & {
+
+declare const Select:(<Value>(props: SelectProps<Value>)=>JSX.Element) & {
   muiName: string;
 };
+
+export default Select;
