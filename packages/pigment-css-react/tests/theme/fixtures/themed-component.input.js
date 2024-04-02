@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled } from '@pigment-css/react';
 
 const StatRoot = styled('div', {
-  name: 'PigmentState', // The component name
+  name: 'PigmentStat', // The component name
   slot: 'root', // The slot name
 })(({ theme }) => ({
   display: 'flex',
@@ -25,14 +25,14 @@ const StatRoot = styled('div', {
 }));
 
 const StatValue = styled('div', {
-  name: 'PigmentState',
+  name: 'PigmentStat',
   slot: 'value',
 })(({ theme }) => ({
   ...theme.typography.h3,
 }));
 
 const StatUnit = styled('div', {
-  name: 'PigmentState',
+  name: 'PigmentStat',
   slot: 'unit',
 })(({ theme }) => ({
   ...theme.typography.body2,
