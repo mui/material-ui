@@ -361,16 +361,18 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme, ownerState }) => ({
             backgroundColor: gray[50],
             borderRadius: theme.shape.borderRadius,
-            border: `1px solid ${alpha(gray[200], 0.8)}`,
+            border: `1px solid ${alpha(gray[200], 0.1)}`,
             boxShadow: 'none',
             ...(ownerState.variant === 'outlined' && {
+              border: `1px solid ${alpha(gray[200], 0.5)}`,
               boxShadow: 'none',
               background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.4),
-              border: `1px solid ${gray[800]}`,
+              border: `1px solid ${alpha(gray[700], 0.2)}`,
               ...(ownerState.variant === 'outlined' && {
+                border: `1px solid ${alpha(gray[700], 0.4)}`,
                 boxShadow: 'none',
                 background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
                   gray[800],
