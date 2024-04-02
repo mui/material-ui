@@ -79,10 +79,11 @@ export default function Features() {
                       theme.palette.mode === 'light'
                         ? 'primary.light'
                         : 'primary.dark',
-                    background: 'linear-gradient(to bottom right, #027AF2, #025AB1)',
-                    color: '#FFF',
+                    background:
+                      'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
+                    color: 'hsl(0, 0%, 100%)',
                     '& .MuiChip-label': {
-                      color: '#FFF',
+                      color: 'hsl(0, 0%, 100%)',
                     },
                   }),
                 })}
