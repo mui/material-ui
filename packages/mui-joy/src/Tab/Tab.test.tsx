@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import { TabsProps } from '@mui/base/Tabs';
 import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { useTabsList, TabsListProvider as BaseTabsListProvider } from '@mui/base/useTabsList';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tab, { tabClasses as classes } from '@mui/joy/Tab';
+import describeConformance from '../../test/describeConformance';
 
 function TabsListProvider({ children }: React.PropsWithChildren<{}>) {
   const { contextValue: tabsListContextValue } = useTabsList({

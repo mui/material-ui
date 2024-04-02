@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses } from '@mui/material/Button';
 import ButtonGroupContext from './ButtonGroupContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
@@ -35,6 +36,28 @@ describe('<ButtonGroup />', () => {
     expect(buttonGroup).to.have.class(classes.root);
     expect(buttonGroup).not.to.have.class(classes.contained);
     expect(buttonGroup).not.to.have.class(classes.fullWidth);
+  });
+
+  it('should have colorPrimary, horizontal class', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).to.have.class(classes.colorPrimary);
+    expect(buttonGroup).to.have.class(classes.horizontal);
+  });
+
+  it('should have colorSecondary class', () => {
+    const { container } = render(
+      <ButtonGroup color="secondary">
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).to.have.class(classes.colorSecondary);
   });
 
   it('should render an outlined button', () => {

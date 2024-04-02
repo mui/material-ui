@@ -1,15 +1,24 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { styled, alpha } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 import { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
+import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
+import { useTranslate } from '@mui/docs/i18n';
+import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
+    textAlign: 'left',
+    // Override docs/src/modules/components/MarkdownElement styles
+    '&&': {
+      display: 'table',
+      width: '100%',
+    },
     '& .class-name': {
       flexShrink: 0,
       fontWeight: theme.typography.fontWeightSemiBold,
@@ -27,6 +36,9 @@ const StyledTable = styled('table')(
       border: '1px solid',
       borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+    },
+    '& .classes-table-alert': {
+      marginTop: 12,
     },
   }),
   ({ theme }) => ({
@@ -51,36 +63,57 @@ interface ClassesTableProps {
 
 export default function ClassesTable(props: ClassesTableProps) {
   const { classes, componentName, displayClassKeys } = props;
-  return (
-    <StyledTable>
-      <thead>
-        <tr>
-          <th>Class name</th>
-          {displayClassKeys && <th>Rule name</th>}
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        {classes.map((params) => {
-          const { className, key, description, isGlobal } = params;
+  const t = useTranslate();
 
-          return (
-            <tr key={className} id={getHash({ componentName, className: key })}>
-              <td>
-                <span className="class-name">.{className}</span>
-              </td>
-              {displayClassKeys && <td>{!isGlobal && <span className="class-key">{key}</span>}</td>}
-              <td>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: description || '',
-                  }}
-                />
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </StyledTable>
+  return (
+    <StyledTableContainer>
+      <StyledTable>
+        <thead>
+          <tr>
+            <th>Class name</th>
+            {displayClassKeys && <th>Rule name</th>}
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {classes.map((params) => {
+            const { className, key, description, isGlobal, isDeprecated, deprecationInfo } = params;
+
+            return (
+              <tr key={className} id={getHash({ componentName, className: key })}>
+                <td className="algolia-lvl3">
+                  <span className="class-name">.{className}</span>
+                </td>
+                {displayClassKeys && (
+                  <td>{!isGlobal && <span className="class-key">{key}</span>}</td>
+                )}
+                <td className="algolia-content">
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: description || '',
+                    }}
+                  />
+                  {isDeprecated && (
+                    <ApiWarning className="classes-table-alert">
+                      {t('api-docs.deprecated')}
+                      {deprecationInfo && (
+                        <React.Fragment>
+                          {' - '}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: deprecationInfo,
+                            }}
+                          />
+                        </React.Fragment>
+                      )}
+                    </ApiWarning>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </StyledTable>
+    </StyledTableContainer>
   );
 }

@@ -1,4 +1,3 @@
-'use client';
 export { default } from './Rating';
 
 export { default as ratingClasses } from './ratingClasses';

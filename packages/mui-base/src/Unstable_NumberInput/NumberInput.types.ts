@@ -12,19 +12,26 @@ export interface NumberInputRootSlotPropsOverrides {}
 export interface NumberInputInputSlotPropsOverrides {}
 export interface NumberInputStepperButtonSlotPropsOverrides {}
 
-export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
+export type NumberInputOwnProps = Omit<
+  UseNumberInputParameters,
+  'error' | 'inputId' | 'inputRef'
+> & {
   /**
    * Trailing adornment for this input.
    */
   endAdornment?: React.ReactNode;
   /**
-   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `baseui--error` class on the root element.
    */
   error?: boolean;
   /**
    * The id of the `input` element.
    */
   id?: string;
+  /**
+   * The short hint displayed in the `input` before the user enters a value.
+   */
+  placeholder?: React.InputHTMLAttributes<HTMLInputElement>['placeholder'];
   /**
    * The props used for each slot inside the NumberInput.
    * @default {}

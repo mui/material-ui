@@ -46,10 +46,12 @@ describe('useMediaQuery', () => {
 
   describe('without window.matchMedia', () => {
     let originalMatchmedia;
+
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
       delete window.matchMedia;
     });
+
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });

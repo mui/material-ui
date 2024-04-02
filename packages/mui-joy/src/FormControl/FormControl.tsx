@@ -72,7 +72,7 @@ export const FormControlRoot = styled('div', {
     '--FormHelperText-color': theme.variants.plainDisabled?.[ownerState.color || 'neutral']?.color,
   },
   display: 'flex',
-  position: 'relative', // for keeping the control action area, e.g. Switch
+  position: 'relative', // for keeping the control action area, for example Switch
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   ...(ownerState.orientation === 'horizontal' && {
     [`& > label ~ .${switchClasses.root}`]: {
@@ -181,10 +181,10 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 }) as OverridableComponent<FormControlTypeMap>;
 
 FormControl.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

@@ -426,7 +426,8 @@ export default function FilesExample() {
                 <AspectRatio ratio="16/9" color="primary" sx={{ borderRadius: 0 }}>
                   <img
                     alt=""
-                    src="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?auto=format&fit=crop&q=80&w=3024&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=400&h=400&auto=format"
+                    srcSet="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=400&h=400&auto=format&dpr=2 2x"
                   />
                 </AspectRatio>
               </CardOverflow>
@@ -576,7 +577,8 @@ export default function FilesExample() {
               <CardCover>
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
+                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format"
+                  srcSet="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format&dpr=2 2x"
                 />
               </CardCover>
               <CardCover
@@ -656,7 +658,8 @@ export default function FilesExample() {
               <CardCover>
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1599593752325-ffa41031056e?auto=format&fit=crop&q=80&w=3570&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="https://images.unsplash.com/photo-1599593752325-ffa41031056e?w=400&h=400&auto=format"
+                  srcSet="https://images.unsplash.com/photo-1599593752325-ffa41031056e?w=400&h=400&auto=format&dpr=2 2x"
                 />
               </CardCover>
               <CardCover
@@ -726,7 +729,8 @@ export default function FilesExample() {
                 <AspectRatio ratio="16/9" color="primary" sx={{ borderRadius: 0 }}>
                   <img
                     alt=""
-                    src="https://images.unsplash.com/photo-1572445271230-a78b5944a659?auto=format&fit=crop&q=80&w=3024&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="https://images.unsplash.com/photo-1572445271230-a78b5944a659?w=400&h=400&auto=format"
+                    srcSet="https://images.unsplash.com/photo-1572445271230-a78b5944a659?w=400&h=400&auto=format&dpr=2 2x"
                   />
                 </AspectRatio>
               </CardOverflow>
@@ -838,7 +842,8 @@ export default function FilesExample() {
               <AspectRatio ratio="21/9">
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
+                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format"
+                  srcSet="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format&dpr=2 2x"
                 />
               </AspectRatio>
               <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>

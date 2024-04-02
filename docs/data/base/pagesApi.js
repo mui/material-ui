@@ -6,6 +6,14 @@ module.exports = [
       '/base-ui/react-click-away-listener/components-api/#click-away-listener',
     title: 'ClickAwayListener',
   },
+  {
+    pathname: '/base-ui/react-transitions/components-api/#css-animation',
+    title: 'CssAnimation',
+  },
+  {
+    pathname: '/base-ui/react-transitions/components-api/#css-transition',
+    title: 'CssTransition',
+  },
   { pathname: '/base-ui/react-menu/components-api/#dropdown', title: 'Dropdown' },
   {
     pathname: '/base-ui/react-focus-trap/components-api/#focus-trap',
@@ -98,4 +106,12 @@ module.exports = [
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tab-panel', title: 'useTabPanel' },
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tabs', title: 'useTabs' },
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tabs-list', title: 'useTabsList' },
+  {
+    pathname: '/base-ui/react-transitions/hooks-api/#use-transition-state-manager',
+    title: 'useTransitionStateManager',
+  },
+  {
+    pathname: '/base-ui/react-transitions/hooks-api/#use-transition-trigger',
+    title: 'useTransitionTrigger',
+  },
 ];

@@ -3,9 +3,10 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { refType, unstable_useId as useId } from '@mui/utils';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
+import composeClasses from '@mui/utils/composeClasses';
+import useId from '@mui/utils/useId';
+import refType from '@mui/utils/refType';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
@@ -489,8 +490,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const listboxId = useId();
 
-  const hiddenInputId = useId();
-
   return (
     <React.Fragment>
       <SelectSelect
@@ -525,7 +524,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <SelectNativeInput
         aria-invalid={error}
         value={Array.isArray(value) ? value.join(',') : value}
-        name={name ?? hiddenInputId}
+        name={name}
         ref={inputRef}
         aria-hidden
         onChange={handleChange}
@@ -601,7 +600,6 @@ SelectInput.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export * from './components';
 export { default as describeConformance } from './describeConformance';
-export { default as describeConformanceUnstyled } from './describeConformanceUnstyled';
+export * from './describeConformance';
 export { default as createDescribe } from './createDescribe';
 export * from './createRenderer';
 export { default as createMount } from './createMount';
@@ -15,6 +15,7 @@ export {
 export {} from './initMatchers';
 export * as fireDiscreteEvent from './fireDiscreteEvent';
 export * as userEvent from './userEvent';
+export { default as flushMicrotasks } from './flushMicrotasks';
 
 /**
  * Set to true if console logs during [lifecycles that are invoked twice in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) are suppressed.

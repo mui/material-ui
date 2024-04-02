@@ -34,7 +34,10 @@ export default function findPagesMarkdown(
       .replace('.md', '');
 
     // Remove the last pathname segment.
-    pathname = pathname.split('/').slice(0, 4).join('/');
+    pathname = pathname
+      .split('/')
+      .slice(0, pathname.split('/').length - 1)
+      .join('/');
 
     pagesMarkdown.push({
       // Relative location of the markdown file in the file system.

@@ -16,16 +16,30 @@ Tabs organize and allow navigation between groups of content that are related an
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic tabs
+## Introduction
 
-A basic example with tab panels.
+Tabs are implemented using a collection of related components:
+
+- `<Tab />` - the tab element itself. Clicking on a tab displays its corresponding panel.
+- `<Tabs />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
 
 {{"demo": "BasicTabs.js"}}
+
+## Basics
+
+```jsx
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+```
 
 ## Experimental API
 
 `@mui/lab` offers utility components that inject props to implement accessible tabs
-following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+following [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/):
+
+- `<TabList />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
+- `<TabPanel />` - the card that hosts the content associated with a tab.
+- `<TabContext />` - the top-level component that wraps the Tab List and Tab Panel components.
 
 {{"demo": "LabTabs.js"}}
 
@@ -90,7 +104,7 @@ If you want to make sure the buttons are always visible, you should customize th
 ### Prevent scroll buttons
 
 Left and right scroll buttons are never be presented with `scrollButtons={false}`.
-All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift mouse wheel, etc.)
+All scrolling must be initiated through user agent scrolling mechanisms (for example left/right swipe, shift mouse wheel, etc.)
 
 {{"demo": "ScrollableTabsButtonPrevent.js", "bg": true}}
 
@@ -101,7 +115,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 {{"demo": "CustomizedTabs.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/tabs-introduction--docs).
 
 ## Vertical tabs
 
@@ -121,7 +135,7 @@ By default, tabs use a `button` element, but you can provide your custom tag or 
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `Tab` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
+Here is a [more detailed guide](/material-ui/integrations/routing/#tabs).
 
 ## Icon tabs
 
@@ -159,7 +173,7 @@ The WAI-ARIA authoring practices have a detailed guide on [how to decide when to
 #### Demo
 
 The following two demos only differ in their keyboard navigation behavior.
-Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
+Focus a tab and navigate with arrow keys to notice the difference, for example <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
 /* Tabs where selection follows focus */

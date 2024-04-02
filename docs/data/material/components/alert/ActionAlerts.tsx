@@ -6,15 +6,18 @@ import Stack from '@mui/material/Stack';
 export default function ActionAlerts() {
   return (
     <Stack sx={{ width: '100%' }} spacing={2}>
-      <Alert onClose={() => {}}>This is a success alert — check it out!</Alert>
+      <Alert severity="warning" onClose={() => {}}>
+        This Alert displays the default close icon.
+      </Alert>
       <Alert
+        severity="success"
         action={
           <Button color="inherit" size="small">
             UNDO
           </Button>
         }
       >
-        This is a success alert — check it out!
+        This Alert uses a Button component for its action.
       </Alert>
     </Stack>
   );

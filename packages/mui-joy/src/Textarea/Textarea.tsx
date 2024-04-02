@@ -105,7 +105,7 @@ const TextareaRoot = styled('div', {
       ...theme.typography[`body-${ownerState.size!}`],
       ...variantStyle,
       backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-      '&:before': {
+      '&::before': {
         boxSizing: 'border-box',
         content: '""',
         display: 'block',
@@ -324,10 +324,10 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
 }) as OverridableComponent<TextareaTypeMap>;
 
 Textarea.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

@@ -91,8 +91,8 @@
     }
   },
   "slotDescriptions": {
+    "endAction": "The component that renders the end action.",
     "root": "The component that renders the root.",
-    "startAction": "The component that renders the start action.",
-    "endAction": "The component that renders the end action."
+    "startAction": "The component that renders the start action."
   }
 }

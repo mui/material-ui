@@ -80,7 +80,7 @@ export function useMenuButton(parameters: UseMenuButtonParameters = {}): UseMenu
     externalProps: ExternalProps = {} as ExternalProps,
   ) => {
     const externalEventHandlers = extractEventHandlers(externalProps);
-    const getCombinedProps = combineHooksSlotProps(getButtonRootProps, getOwnRootProps);
+    const getCombinedProps = combineHooksSlotProps(getOwnRootProps, getButtonRootProps);
 
     return {
       'aria-haspopup': 'menu' as const,

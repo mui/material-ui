@@ -21,7 +21,7 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the popup element.",
-    "listbox": "The component that renders the listbox."
+    "listbox": "The component that renders the listbox.",
+    "root": "The component that renders the popup element."
   }
 }

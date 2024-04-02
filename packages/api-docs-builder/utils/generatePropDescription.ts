@@ -7,6 +7,7 @@ import {
 } from './generatePropTypeDescription';
 import { DescribeablePropDescriptor } from './createDescribeableProp';
 import escapeCell from './escapeCell';
+import { SeeMore } from '../ApiBuilders/ComponentApiBuilder';
 
 function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   if (type.type === 'AllLiteral') {
@@ -76,6 +77,7 @@ export default function generatePropDescription(
   propName: string,
 ): {
   deprecated: string;
+  seeMore?: SeeMore;
   jsDocText: string;
   signature?: string;
   signatureArgs?: { name: string; description: string }[];
@@ -90,6 +92,21 @@ export default function generatePropDescription(
     const deprecatedInfo = getDeprecatedInfo(type);
     if (deprecatedInfo) {
       deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
+    }
+  }
+
+  const seeTag = annotation.tags.find((tag) => tag.title === 'see');
+  let seeMore;
+  if (seeTag && seeTag.description) {
+    const params = seeTag.description.match(/{@link ([^|| ]*)[|| ]([^}]*)}/);
+    if (params?.length === 3) {
+      seeMore = {
+        description: seeTag.description.replace(/{@link ([^|| ]*)[|| ]([^}]*)}/, '{{link}}'),
+        link: {
+          url: params[1],
+          text: params[2],
+        },
+      };
     }
   }
 
@@ -153,6 +170,7 @@ export default function generatePropDescription(
 
   return {
     deprecated,
+    seeMore,
     jsDocText,
     signature,
     signatureArgs,

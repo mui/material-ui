@@ -1,16 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 /**
  * more comprehensive simulation of a user click (mousedown + click)
@@ -174,7 +169,15 @@ describe('<Dialog />', () => {
       const onBackdropClick = spy();
       const onClose = spy();
       render(
-        <Dialog onBackdropClick={onBackdropClick} onClose={onClose} open>
+        <Dialog
+          onClose={(event, reason) => {
+            onClose();
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+        >
           foo
         </Dialog>,
       );
@@ -187,7 +190,14 @@ describe('<Dialog />', () => {
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
       const onBackdropClick = spy();
       const { getByRole } = render(
-        <Dialog onBackdropClick={onBackdropClick} open>
+        <Dialog
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+        >
           <div tabIndex={-1}>
             <h2>my dialog</h2>
           </div>

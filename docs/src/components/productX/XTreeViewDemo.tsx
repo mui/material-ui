@@ -155,7 +155,7 @@ const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => [
     },
     '& .MuiTreeItem-root': {
       position: 'relative',
-      '&:before': {
+      '&::before': {
         content: '""',
         display: 'block',
         position: 'absolute',
@@ -175,13 +175,13 @@ const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => [
   },
   theme.applyDarkStyles({
     '& .MuiTreeItem-root': {
-      '&:before': {
+      '&::before': {
         backgroundColor: (theme.vars || theme).palette.primaryDark[700],
       },
     },
     '& .MuiTreeItem-group': {
       '& .MuiTreeItem-content': {
-        '&:before': {
+        '&::before': {
           backgroundColor: (theme.vars || theme).palette.primaryDark[500],
         },
       },

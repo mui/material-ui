@@ -52,6 +52,12 @@
       "isGlobal": true
     },
     {
+      "key": "firstButton",
+      "className": "MuiToggleButtonGroup-firstButton",
+      "description": "Styles applied to the first button in the toggle button group.",
+      "isGlobal": false
+    },
+    {
       "key": "fullWidth",
       "className": "MuiToggleButtonGroup-fullWidth",
       "description": "Styles applied to the root element if `fullWidth={true}`.",
@@ -73,6 +79,18 @@
       "key": "groupedVertical",
       "className": "MuiToggleButtonGroup-groupedVertical",
       "description": "Styles applied to the children if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "lastButton",
+      "className": "MuiToggleButtonGroup-lastButton",
+      "description": "Styles applied to the last button in the toggle button group.",
+      "isGlobal": false
+    },
+    {
+      "key": "middleButton",
+      "className": "MuiToggleButtonGroup-middleButton",
+      "description": "Styles applied to buttons in the middle of the toggle button group.",
       "isGlobal": false
     },
     {

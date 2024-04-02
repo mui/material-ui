@@ -4,8 +4,8 @@ import { styled, alpha } from '@mui/material/styles';
 import {
   brandingLightTheme as lightTheme,
   brandingDarkTheme as darkTheme,
-} from 'docs/src/modules/brandingTheme';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+} from '@mui/docs/branding';
+import { useTranslate } from '@mui/docs/i18n';
 import ExpandableApiItem, {
   ApiItemContaier,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
@@ -43,18 +43,19 @@ const StyledApiItem = styled(ExpandableApiItem)(
   }),
 );
 
+type HashParams = { componentName: string; className: string };
+
+export function getHash({ componentName, className }: HashParams) {
+  return `${componentName}-css-${className}`;
+}
+
 export type SlotsFormatedParams = {
   className: string;
-  componentName?: string;
+  componentName: string;
   description?: string;
   name: string;
   defaultValue?: string;
 };
-
-type HashParams = { componentName?: string; className: string };
-
-export const getHash = ({ componentName, className }: HashParams) =>
-  `${componentName ? `${componentName}-` : ''}css-${className}`;
 
 interface SlotsListProps {
   slots: SlotsFormatedParams[];

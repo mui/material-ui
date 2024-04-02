@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
+import { createMount, createRenderer } from '@mui-internal/test-utils';
 import { Tab, tabClasses } from '@mui/base/Tab';
 import { TabsListProvider, TabsListProviderValue } from '../useTabsList';
 import { TabsContext } from '../Tabs';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Tab />', () => {
   const mount = createMount();
@@ -55,7 +56,6 @@ describe('<Tab />', () => {
     },
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'div',
-    muiName: 'MuiTab',
     slots: {
       root: {
         expectedClassName: tabClasses.root,

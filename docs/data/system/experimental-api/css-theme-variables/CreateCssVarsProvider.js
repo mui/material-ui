@@ -35,7 +35,7 @@ const darkColorScheme = {
 };
 
 function extendTheme({ cssVarPrefix = 'system-demo' } = {}) {
-  const { vars: themeVars, generateCssVars } = prepareCssVars(
+  const { vars: themeVars, ...params } = prepareCssVars(
     {
       colorSchemes: {
         light: lightColorScheme,
@@ -54,11 +54,11 @@ function extendTheme({ cssVarPrefix = 'system-demo' } = {}) {
     // ... any other objects independent of color-scheme,
     // like fontSizes, spacing etc
     vars: themeVars,
-    generateCssVars,
     palette: {
       ...lightColorScheme.palette,
       colorScheme: 'light',
     },
+    ...params,
   };
 
   return theme;

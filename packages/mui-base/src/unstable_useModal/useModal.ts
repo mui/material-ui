@@ -54,7 +54,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   // @ts-ignore internal logic
   const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
-  const mountNodeRef = React.useRef<null | HTMLElement>(null);
+  const mountNodeRef = React.useRef<HTMLElement | null>(null);
   const modalRef = React.useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = React.useState(!open);

@@ -6,5 +6,6 @@ module.exports.rules = {
   'no-hardcoded-labels': require('./rules/no-hardcoded-labels'),
   'rules-of-use-theme-variants': require('./rules/rules-of-use-theme-variants'),
   'no-empty-box': require('./rules/no-empty-box'),
+  'no-styled-box': require('./rules/no-styled-box'),
   'straight-quotes': require('./rules/straight-quotes'),
 };

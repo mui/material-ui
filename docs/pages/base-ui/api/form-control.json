@@ -22,46 +22,48 @@
     "import { FormControl } from '@mui/base/FormControl';",
     "import { FormControl } from '@mui/base';"
   ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-FormControl-root"
+    }
+  ],
   "classes": [
     {
       "key": "disabled",
-      "className": "Mui-disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "error",
-      "className": "Mui-error",
+      "className": "base--error",
       "description": "State class applied to the root element if `error={true}`.",
       "isGlobal": true
     },
     {
       "key": "filled",
-      "className": "MuiFormControl-filled",
+      "className": "base-FormControl-filled",
       "description": "State class applied to the root element if the inner input has value.",
       "isGlobal": false
     },
     {
       "key": "focused",
-      "className": "Mui-focused",
+      "className": "base--focused",
       "description": "State class applied to the root element if the inner input is focused.",
       "isGlobal": true
     },
     {
       "key": "required",
-      "className": "Mui-required",
+      "className": "base--required",
       "description": "State class applied to the root element if `required={true}`.",
       "isGlobal": true
-    },
-    {
-      "key": "root",
-      "className": "MuiFormControl-root",
-      "description": "Class applied to the root element.",
-      "isGlobal": false
     }
   ],
   "spread": true,
-  "muiName": "MuiFormControl",
+  "muiName": "FormControl",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/FormControl/FormControl.tsx",
   "inheritance": null,

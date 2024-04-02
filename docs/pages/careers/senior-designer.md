@@ -11,17 +11,17 @@
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
 We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -48,17 +48,17 @@ We need talented people to keep that going!
 
 Our products empower React developers to build amazing applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
-However, despite Material UI – our biggest library – being [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, its adoption is only at 25%.
+However, despite Material UI – our biggest library – being [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, its adoption is only at 25%.
 More importantly, our challenges go way beyond the ones of design systems.
 
 We envision a future where MUI becomes the default toolkit for web developers to create UIs.
-It's why we've been expanding our offering with Joy UI, Base UI, and MUI Toolpad.
+It's why we've been expanding our offering with Joy UI, Base UI, and Toolpad.
 Design is foundational to achieving this goal.
 
 ## The role
 
 Designers at MUI are essentially _team leaders_.
-That means you'll be working closely with your engineering lead counterpart to shape work and scope targeting a set of problems revolving around our component area, either on MUI Core or MUI X (to be further defined).
+That means you'll be working closely with your engineering lead counterpart to shape work and scope targeting a set of problems revolving around our component area, either on MUI Core or MUI X (to be further defined).
 
 As our [design philosophy](https://mui-org.notion.site/Design-philosophy-bdbef60d6fad4134a43870df3e452ebc) states, you'll be conducting and guiding the whole team, making sure everything we do is adding a special design spice that only you can add.
 We imagine a world where design execution is a definitive product differentiator.
@@ -67,19 +67,19 @@ We imagine a world where design execution is a definitive product differentiator
 
 - Understand how your role fits into the organization and get acquainted with team members and processes
 - Learn about MUI's products, business, goals, and how users experience the MUI ecosystem
-- Make your first contribution to either MUI Core or MUI X on an approachable, simple problem
+- Make your first contribution to either MUI Core or MUI X on an approachable, simple problem
 
 ### What you'll do in your first 3 months
 
 - Conduct one-on-one user interviews with community members
 - Review and give feedback to work from other designers on the team
-- Understand the MUI Core and MUI X library patterns to improve existing components' UX & UI
+- Understand the MUI Core and MUI X library patterns to improve existing components' UX & UI
 - Open your first PR improving documentation or demos
 
 ### What you'll do in your first 6 months
 
-- Design a new component for one of the MUI Core libraries from scratch in partnership with a developer
-- Design new templates for either Joy UI or Material UI and support their implementation
+- Design a new component for one of the MUI Core libraries from scratch in partnership with a developer
+- Design new templates for either Joy UI or Material UI and support their implementation
 - Review new Figma Design kit versions and coordinate their next release
 
 ### What you'll have done in your first year

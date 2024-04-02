@@ -1,9 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 import childProcess from 'child_process';
-import { Octokit } from '@octokit/rest';
-import fetch from 'node-fetch';
-import chalk from 'chalk';
 import { promisify } from 'util';
+import { Octokit } from '@octokit/rest';
+import chalk from 'chalk';
 import yargs from 'yargs';
 
 const exec = promisify(childProcess.exec);
@@ -196,7 +195,7 @@ yargs(process.argv.slice(2))
         })
         .option('release', {
           // #default-branch-switch
-          default: 'master',
+          default: 'next',
           describe: 'Ref which we want to release',
           type: 'string',
         })

@@ -8,7 +8,7 @@ import {
 import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
 import { menuReducer } from './menuReducer';
 import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
-import { useList } from '../useList';
+import { ListActionTypes, useList } from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
 import { DropdownActionTypes } from '../useDropdown';
 import { EventHandlers } from '../utils/types';
@@ -22,7 +22,7 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
   popupId: '',
   registerPopup: () => {},
   registerTrigger: () => {},
-  state: { open: true },
+  state: { open: true, changeReason: null },
   triggerElement: null,
 };
 
@@ -44,6 +44,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     disabledItemsFocusable = true,
     disableListWrap = false,
     autoFocus = true,
+    componentName = 'useMenu',
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement>(null);
@@ -52,7 +53,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
   const listboxId = useId(idParam) ?? '';
 
   const {
-    state: { open },
+    state: { open, changeReason },
     dispatch: menuDispatch,
     triggerElement,
     registerPopup,
@@ -115,11 +116,25 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     reducerActionContext,
     selectionMode: 'none',
     stateReducer: menuReducer,
+    componentName,
   });
 
   useEnhancedEffect(() => {
     registerPopup(listboxId);
   }, [listboxId, registerPopup]);
+
+  useEnhancedEffect(() => {
+    if (
+      open &&
+      changeReason?.type === 'keydown' &&
+      (changeReason as React.KeyboardEvent).key === 'ArrowUp'
+    ) {
+      listDispatch({
+        type: ListActionTypes.highlightLast,
+        event: changeReason as React.KeyboardEvent,
+      });
+    }
+  }, [open, changeReason, listDispatch]);
 
   React.useEffect(() => {
     if (open && autoFocus && highlightedValue && !isInitiallyOpen.current) {

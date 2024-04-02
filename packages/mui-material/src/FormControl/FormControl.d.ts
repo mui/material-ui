@@ -12,7 +12,7 @@ export interface FormControlOwnProps {
   /**
    * The content of the component.
    */
-  children?: React.ReactNode;
+  children?: React.HTMLAttributes<HTMLDivElement>['children'];
   /**
    * Override or extend the styles applied to the component.
    */

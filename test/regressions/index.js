@@ -27,6 +27,14 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
+  'docs-getting-started-templates-sign-in-side/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-in/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-up/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png', // Theme file
+  'docs-getting-started-templates-sign-in/getSignInTheme.png', // Theme file
+  'docs-getting-started-templates-sign-up/getSignUpTheme.png', // Theme file
+  'docs-getting-started-templates-checkout/getCheckoutTheme.png', // Theme file
+  'docs-getting-started-templates-landing-page/getLPTheme.png', // Theme file
   'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
   'docs-joy-core-features-automatic-adjustment/ListThemes.png', // No public components
   'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
@@ -132,10 +140,11 @@ const blacklist = [
   'docs-customization-density/DensityTool.png', // Redux isolation
   'docs-customization-transitions/TransitionHover.png', // Need interaction
   'docs-customization-typography/ResponsiveFontSizesChart.png',
+  'docs-customization-right-to-left/RtlDemo.png',
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
-  'docs-getting-started-templates-album/Album.png', // Flaky image loading
+  'docs-getting-started-templates-landing-page/LandingPage.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Flaky random images
   'docs-getting-started-templates-checkout/AddressForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
   'docs-getting-started-templates-checkout/PaymentForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout

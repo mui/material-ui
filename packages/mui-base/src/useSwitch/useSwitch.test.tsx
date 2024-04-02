@@ -65,7 +65,7 @@ describe('useSwitch', () => {
       render(<Switch />);
 
       act(() => {
-        screen.getByRole('checkbox').click();
+        screen.getByRole('switch').click();
       });
 
       expect(handleChange.callCount).to.equal(1);
@@ -85,11 +85,11 @@ describe('useSwitch', () => {
         return <input {...getInputProps()} />;
       }
       render(<Switch />);
-      const checkbox = screen.getByRole('checkbox');
+      const switchElement = screen.getByRole('switch');
 
       simulatePointerDevice();
       act(() => {
-        checkbox.focus();
+        switchElement.focus();
       });
 
       expect(handleBlur.callCount).to.equal(0);
@@ -99,7 +99,7 @@ describe('useSwitch', () => {
       );
 
       act(() => {
-        checkbox.blur();
+        switchElement.blur();
       });
 
       expect(handleBlur.callCount).to.equal(1);
@@ -108,7 +108,7 @@ describe('useSwitch', () => {
         programmaticFocusTriggersFocusVisible() ? 1 : 0,
       );
 
-      focusVisible(checkbox);
+      focusVisible(switchElement);
 
       expect(handleBlur.callCount).to.equal(1);
       expect(handleFocus.callCount).to.equal(2);

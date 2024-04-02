@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
@@ -23,6 +22,7 @@ import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tooltip from '@mui/material/Tooltip';
+import describeConformance from '../../test/describeConformance';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -144,6 +144,23 @@ describe('<Autocomplete />', () => {
       );
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
+    });
+
+    it('should show supplied options to the "options" prop even when loading', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two']}
+          loading
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      expect(document.querySelector(`.${classes.paper}`).textContent).not.to.equal('Loading…');
+
+      const listbox = screen.getByRole('listbox');
+      const htmlOptions = listbox.querySelectorAll('li');
+      expect(htmlOptions[0].innerHTML).to.equal('one');
     });
   });
 
@@ -587,6 +604,7 @@ describe('<Autocomplete />', () => {
       expect(handleClose.callCount).to.equal(0);
       expect(textbox).to.have.attribute('aria-expanded', 'true');
     });
+
     it('should close listbox on pressing left or right keys when inputValue is empty', () => {
       const handleClose = spy();
       const options = ['one', 'two', 'three'];
@@ -1835,9 +1853,15 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // three option is added and autocomplete re-renders, restore the highlight
-      setProps({ options: [{ label: 'one' }, { label: 'two' }, { label: 'three' }] });
+      // zero and three options are added and autocomplete re-renders, restore the highlight
+      setProps({
+        options: [{ label: 'zero' }, { label: 'one' }, { label: 'two' }, { label: 'three' }],
+      });
       checkHighlightIs(listbox, 'two');
+
+      // check that the highlighted option is still in sync with the internal highlighted index
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'three'
+      checkHighlightIs(listbox, 'three');
     });
 
     it('should reset the highlight when the input changed', () => {
@@ -2334,6 +2358,22 @@ describe('<Autocomplete />', () => {
       );
 
       expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
+    });
+
+    it('should not render popper when there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          freeSolo
+          options={[]}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{
+            popper: { 'data-testid': 'popperRoot' },
+          }}
+        />,
+      );
+      const popper = screen.queryByTestId('popperRoot');
+      expect(popper).to.equal(null);
     });
   });
 

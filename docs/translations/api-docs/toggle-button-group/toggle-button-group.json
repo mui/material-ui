@@ -37,6 +37,10 @@
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
+    "firstButton": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the first button in the toggle button group"
+    },
     "fullWidth": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -52,6 +56,14 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
       "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "lastButton": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the last button in the toggle button group"
+    },
+    "middleButton": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "buttons in the middle of the toggle button group"
     },
     "root": { "description": "Styles applied to the root element." },
     "vertical": {

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "moduleResolution": "node",
+    "types": ["node", "mocha"],
+    "strict": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
+  },
+  "include": ["./src/*.ts", "./test/*.ts"],
+  "references": [{ "path": "../../docs-utils/tsconfig.build.json" }]
+}
