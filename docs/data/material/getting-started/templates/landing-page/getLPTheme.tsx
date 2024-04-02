@@ -169,7 +169,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     h1: {
       fontSize: customTheme.typography.pxToRem(60),
       fontWeight: 600,
-      lineHeight: 1.5,
+      lineHeight: 1.2,
       letterSpacing: -0.5,
     },
     h2: {
@@ -257,6 +257,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             border: 'none',
             borderRadius: 8,
             '&:hover': { backgroundColor: gray[100] },
+            '&:focus-visible': { backgroundColor: 'transparent' },
             ...(theme.palette.mode === 'dark' && {
               '&:hover': { backgroundColor: gray[800] },
             }),
@@ -276,9 +277,9 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: {
             boxSizing: 'border-box',
-            transition: 'all 120ms ease-in',
+            transition: 'all 100ms ease',
             '&:focus-visible': {
-              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outline: `3px solid ${alpha(brand[400], 0.5)}`,
               outlineOffset: '2px',
             },
           },
@@ -292,6 +293,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             textTransform: 'none',
             ...(ownerState.size === 'small' && {
               height: '2rem', // 32px
+              padding: '0 0.5rem',
             }),
             ...(ownerState.size === 'medium' && {
               height: '2.5rem', // 40px
@@ -310,7 +312,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                 '&:active': {
                   backgroundColor: brand[600],
                   boxShadow: `inset 0 2.5px 0 ${alpha(brand[700], 0.4)}`,
-                  backgroundImage: 'none',
+                  // backgroundImage: `linear-gradient(to bottom, ${alpha(brand[400], 0.8)}, ${brand[500]})`,
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
@@ -414,6 +416,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiCard: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
+            transition: 'all 100ms ease',
             backgroundColor: gray[50],
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${alpha(gray[200], 0.1)}`,
