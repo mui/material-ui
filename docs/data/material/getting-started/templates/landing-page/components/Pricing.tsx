@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -105,9 +104,10 @@ export default function Pricing() {
                   border: 'none',
                   boxShadow:
                     theme.palette.mode === 'light'
-                      ? `0 8px 12px ${alpha('#026BD4', 0.2)}`
-                      : `0 8px 12px rgba(0,0,0,0.8)`,
-                  background: 'radial-gradient(circle at 50% 0%, #025AB1, #002951)',
+                      ? `0 8px 12px hsla(210, 98%, 42%, 0.2)`
+                      : `0 8px 12px hsla(0, 0%, 0%, 0.8)`,
+                  background:
+                    'radial-gradient(circle at 50% 0%, hsl(210, 98%, 35%), hsl(210, 100%, 16%))',
                 }),
               })}
             >
@@ -134,7 +134,7 @@ export default function Pricing() {
                         borderColor: 'rgba(255,255,255,0.3)',
                         backgroundColor: 'rgba(255,255,255,0.1)',
                         '& .MuiChip-label': {
-                          color: '#FFF',
+                          color: 'hsl(0, 0%, 100%)',
                         },
                         '& .MuiChip-icon': {
                           color: 'primary.light',

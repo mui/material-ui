@@ -1,6 +1,5 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
 
 declare module '@mui/material/styles/createPalette' {
@@ -23,55 +22,68 @@ declare module '@mui/material/styles/createPalette' {
 const customTheme = createTheme();
 
 export const brand = {
-  50: '#F0F7FF',
-  100: '#CCE5FF',
-  200: '#99CCFF',
-  300: '#4CA6FF',
-  400: '#027AF2',
-  500: '#026BD4',
-  600: '#025AB1',
-  700: '#004080',
-  800: '#002951',
-  900: '#001F3D',
-};
-
-export const secondary = {
-  50: '#F9F0FF',
-  100: '#E9CEFD',
-  200: '#D49CFC',
-  300: '#B355F6',
-  400: '#750AC2',
-  500: '#6709AA',
-  600: '#490679',
-  700: '#3B0363',
-  800: '#2F024F',
-  900: '#23023B',
+  50: 'hsl(210, 100%, 97%)',
+  100: 'hsl(210, 100%, 90%)',
+  200: 'hsl(210, 100%, 80%)',
+  300: 'hsl(210, 100%, 65%)',
+  400: 'hsl(210, 98%, 48%)',
+  500: 'hsl(210, 98%, 42%)',
+  600: 'hsl(210, 98%, 55%)',
+  700: 'hsl(210, 100%, 25%)',
+  800: 'hsl(210, 100%, 16%)',
+  900: 'hsl(210, 100%, 21%)',
 };
 
 export const gray = {
-  50: '#FBFCFE',
-  100: '#EAF0F5',
-  200: '#D6E2EB',
-  300: '#BFCCD9',
-  400: '#94A6B8',
-  500: '#5B6B7C',
-  600: '#4C5967',
-  700: '#364049',
-  800: '#131B20',
-  900: '#090E10',
+  50: 'hsl(220, 60%, 99%)',
+  100: 'hsl(220, 35%, 94%)',
+  200: 'hsl(220, 35%, 88%)',
+  300: 'hsl(220, 25%, 80%)',
+  400: 'hsl(220, 20%, 65%)',
+  500: 'hsl(220, 20%, 42%)',
+  600: 'hsl(220, 25%, 35%)',
+  700: 'hsl(220, 25%, 25%)',
+  800: 'hsl(220, 25%, 10%)',
+  900: 'hsl(220, 30%, 5%)',
 };
 
 export const green = {
-  50: '#F6FEF6',
-  100: '#E3FBE3',
-  200: '#C7F7C7',
-  300: '#A1E8A1',
-  400: '#51BC51',
-  500: '#1F7A1F',
-  600: '#136C13',
-  700: '#0A470A',
-  800: '#042F04',
-  900: '#021D02',
+  50: 'hsl(120, 80%, 98%)',
+  100: 'hsl(120, 75%, 94%)',
+  200: 'hsl(120, 75%, 87%)',
+  300: 'hsl(120, 61%, 77%)',
+  400: 'hsl(120, 44%, 53%)',
+  500: 'hsl(120, 59%, 30%)',
+  600: 'hsl(120, 70%, 25%)',
+  700: 'hsl(120, 75%, 16%)',
+  800: 'hsl(120, 84%, 10%)',
+  900: 'hsl(120, 87%, 6%)',
+};
+
+export const orange = {
+  50: 'hsl(45, 100%, 97%)',
+  100: 'hsl(45, 92%, 90%)',
+  200: 'hsl(45, 94%, 80%)',
+  300: 'hsl(45, 90%, 65%)',
+  400: 'hsl(45, 90%, 40%)',
+  500: 'hsl(45, 90%, 35%)',
+  600: 'hsl(45, 91%, 25%)',
+  700: 'hsl(45, 94%, 20%)',
+  800: 'hsl(45, 95%, 16%)',
+  900: 'hsl(45, 93%, 12%)',
+};
+
+export const red = {
+  50: 'hsl(0, 100%, 97%)',
+  100: 'hsl(0, 92%, 90%)',
+  200: 'hsl(0, 94%, 80%)',
+  300: 'hsl(0, 90%, 65%)',
+  400: 'hsl(0, 90%, 40%)',
+  500: 'hsl(0, 90%, 30%)',
+  600: 'hsl(0, 91%, 25%)',
+  700: 'hsl(0, 94%, 20%)',
+  800: 'hsl(0, 95%, 16%)',
+  900: 'hsl(0, 93%, 12%)',
 };
 
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -101,26 +113,25 @@ const getDesignTokens = (mode: PaletteMode) => ({
         dark: brand[900],
       }),
     },
-    secondary: {
-      light: secondary[300],
-      main: secondary[500],
-      dark: secondary[800],
+    warning: {
+      light: orange[300],
+      main: orange[400],
+      dark: orange[800],
       ...(mode === 'dark' && {
-        light: secondary[400],
-        main: secondary[500],
-        dark: secondary[900],
+        light: orange[400],
+        main: orange[500],
+        dark: orange[700],
       }),
     },
-    warning: {
-      main: '#F7B538',
-      dark: '#F79F00',
-      ...(mode === 'dark' && { main: '#F7B538', dark: '#F79F00' }),
-    },
     error: {
-      light: red[50],
-      main: red[500],
-      dark: red[700],
-      ...(mode === 'dark' && { light: '#D32F2F', main: '#D32F2F', dark: '#B22A2A' }),
+      light: red[300],
+      main: red[400],
+      dark: red[800],
+      ...(mode === 'dark' && {
+        light: red[400],
+        main: red[500],
+        dark: red[700],
+      }),
     },
     success: {
       light: green[300],
@@ -137,14 +148,14 @@ const getDesignTokens = (mode: PaletteMode) => ({
     },
     divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
-      default: '#fff',
+      default: 'hsl(0, 0%, 100%)',
       paper: gray[50],
       ...(mode === 'dark' && { default: gray[900], paper: gray[800] }),
     },
     text: {
       primary: gray[800],
       secondary: gray[600],
-      ...(mode === 'dark' && { primary: '#fff', secondary: gray[400] }),
+      ...(mode === 'dark' && { primary: 'hsl(0, 0%, 100%)', secondary: gray[400] }),
     },
     action: {
       selected: `${alpha(brand[200], 0.2)}`,
@@ -219,7 +230,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme }) => ({
             padding: 8,
             overflow: 'clip',
-            backgroundColor: '#fff',
+            backgroundColor: 'hsl(0, 0%, 100%)',
             border: '1px solid',
             borderColor: gray[100],
             ':before': {
@@ -409,7 +420,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             boxShadow: 'none',
             ...(ownerState.variant === 'outlined' && {
               boxShadow: 'none',
-              background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
+              background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.4),
@@ -688,7 +699,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             },
             '& .MuiSwitch-thumb': {
               boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
-              backgroundColor: '#FFF',
+              backgroundColor: 'hsl(0, 0%, 100%)',
               width: 16,
               height: 16,
               margin: 2,
@@ -710,7 +721,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               },
               '& .MuiSwitch-thumb': {
                 boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
-                backgroundColor: '#FFF',
+                backgroundColor: 'hsl(0, 0%, 100%)',
                 width: 16,
                 height: 16,
                 margin: 2,
@@ -721,7 +732,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             height: 24,
             width: 24,
             padding: 0,
-            color: '#fff',
+            color: 'hsl(0, 0%, 100%)',
             '&.Mui-checked + .MuiSwitch-track': {
               opacity: 1,
             },
@@ -738,7 +749,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             },
             ...(theme.palette.mode === 'dark' && {
               '& .Mui-selected': {
-                color: '#fff',
+                color: 'hsl(0, 0%, 100%)',
               },
               boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
             }),

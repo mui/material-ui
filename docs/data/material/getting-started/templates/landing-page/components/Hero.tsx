@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -19,8 +18,8 @@ export default function Hero() {
         width: '100%',
         backgroundImage:
           theme.palette.mode === 'light'
-            ? `linear-gradient(${alpha('#CEE5FD', 0.5)}, #FFF)`
-            : `linear-gradient(${alpha('#02294F', 0.5)}, transparent)`,
+            ? 'linear-gradient(hsla(210, 100%, 90%, 0.7), hsl(0, 0%, 100%))'
+            : 'linear-gradient(hsla(210, 100%, 16%, 0.5), transparent)',
         backgroundSize: '100% 20%',
         backgroundRepeat: 'no-repeat',
       })}
@@ -120,12 +119,12 @@ export default function Hero() {
             outline: '1px solid',
             outlineColor:
               theme.palette.mode === 'light'
-                ? alpha('#BFCCD9', 0.5)
-                : alpha('#9CCCFC', 0.1),
+                ? 'hsla(220, 25%, 80%, 0.5)'
+                : 'hsla(210, 100%, 80%, 0.1)',
             boxShadow:
               theme.palette.mode === 'light'
-                ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
-                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
+                ? '0 0 12px 8px hsla(220, 25%, 80%, 0.2)'
+                : '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
           })}
         />
       </Container>
