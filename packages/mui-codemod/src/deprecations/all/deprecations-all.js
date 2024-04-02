@@ -9,6 +9,7 @@ import transformPaginationItemClasses from '../pagination-item-classes';
 import transformAlertClasses from '../alert-classes';
 import transformStepLabelProps from '../step-label-props';
 import transformBackdropProps from '../backdrop-props';
+import transformStepConnectorClasses from '../step-connector-classes';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -26,6 +27,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformAlertClasses(file, api, options);
   file.source = transformStepLabelProps(file, api, options);
   file.source = transformBackdropProps(file, api, options);
+  file.source = transformStepConnectorClasses(file, api, options);
 
   return file.source;
 }
