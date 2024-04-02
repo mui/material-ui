@@ -226,7 +226,7 @@ export default async function handler(req: Request) {
       // debug: true,
       fonts: [
         {
-          name: 'General Sans',
+          name: 'IBM Plex Sans',
           data: await fetch('https://fonts.cdnfonts.com/s/15449/IBMPlexSans-SemiBold.woff').then(
             (a) => a.arrayBuffer(),
           ),
