@@ -767,8 +767,8 @@ importers:
         specifier: ^7.4.5
         version: 7.4.5(react@18.2.0)
       material-ui-popup-state:
-        specifier: ^5.0.10
-        version: 5.0.10(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.1.0
+        version: 5.1.0(@mui/material@packages+mui-material+build)(react@18.2.0)
       next:
         specifier: ^13.5.1
         version: 13.5.1(@babel/core@7.24.3)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
@@ -15918,21 +15918,20 @@ packages:
     resolution: {integrity: sha512-q9JtQJKjpsVxCRVgQ+WapguSbKC3SQ5HEzFGPAJMStgh3QjCawp00UKv3MTTAArTmGmmPUvllHZoNbZ3gs0I+Q==}
     dev: false
 
-  /material-ui-popup-state@5.0.10(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-gd0DI8skwCSdth/j/yndoIwNkS2eDusosTe5hyPZ3jbrMzDkbQBs+tBbwapQ9hLfgiVLwICd1mwyerUV9Y5Elw==}
+  /material-ui-popup-state@5.1.0(@mui/material@packages+mui-material+build)(react@18.2.0):
+    resolution: {integrity: sha512-kG0xGqdPx3WM6AYnq0h7hCb3gk2M1FM/G/NFQN+HahcyABxCx3EFzLj5mdJICu2NYj0etZ2s7VDhAbrAezkxYg==}
+    engines: {node: '>=16'}
     peerDependencies:
+      '@mui/material': ^5.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.24.1
-      '@mui/material': 5.15.4(@emotion/react@11.11.4)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/material': link:packages/mui-material/build
+      '@types/prop-types': 15.7.12
+      '@types/react': 18.2.55
       classnames: 2.3.2
       prop-types: 15.8.1
       react: 18.2.0
-    transitivePeerDependencies:
-      - '@emotion/react'
-      - '@emotion/styled'
-      - '@types/react'
-      - react-dom
     dev: false
 
   /mathml-tag-names@2.1.3:
