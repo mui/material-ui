@@ -636,6 +636,11 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
+      MuiStack: {
+        defaultProps: {
+          useFlexGap: true,
+        },
+      },
       MuiSwitch: {
         styleOverrides: {
           root: ({ theme }) => ({
