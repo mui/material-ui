@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -146,24 +146,18 @@ const openRolesData = [
   {
     title: 'Engineering',
     roles: [
-      {
-        title: 'React Engineer — xCharts',
-        description:
-          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-charts/',
-      },
       // {
-      //   title: 'React Engineer - X',
+      //   title: 'React Engineer — xCharts',
+      //   description:
+      //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x-charts/',
+      // },
+      // {
+      //   title: 'React Engineer — X',
       //   description:
       //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
       //   url: '/careers/react-engineer-x/',
       // },
-      {
-        title: 'Staff UI Engineer — Base UI',
-        description:
-          'Research, build, document, and ship high-quality, unstyled UI components with a focus on a11y.',
-        url: '/careers/staff-ui-engineer-base-ui/',
-      },
     ],
   },
   {
@@ -222,6 +216,12 @@ const nextRolesData = [
         description:
           'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
         url: '/careers/react-engineer-x/',
+      },
+      {
+        title: 'React Engineer — xCharts',
+        description:
+          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x-charts/',
       },
       {
         title: 'React Tech Lead — Core',
@@ -328,6 +328,56 @@ function renderFAQItem(index: number, defaultExpanded?: boolean) {
   );
 }
 
+function RemoteAwardCard() {
+  return (
+    <Paper
+      component={Link}
+      href="/blog/remote-award-win-2024/"
+      noLinkStyle
+      variant="outlined"
+      sx={{ p: 2 }}
+    >
+      <Box
+        sx={{
+          mb: 2,
+          maxWidth: { xs: 315, sm: 325 },
+          maxHeight: 315,
+          border: '1px solid',
+          borderColor: 'divider',
+          borderRadius: '6px',
+          overflow: 'clip',
+        }}
+      >
+        <Box
+          component="img"
+          src="/static/branding/careers/remote-award-light.png"
+          alt="MUI is the winner of the Remote Excellence Awards in the Small and Mighty for SMEs category."
+          height="1200px"
+          width="1200px"
+          sx={(theme) => ({
+            width: '100%',
+            height: '100%',
+            ...theme.applyDarkStyles({
+              content: `url(/static/branding/careers/remote-award-dark.png)`,
+            }),
+          })}
+        />
+      </Box>
+      <div>
+        <Typography component="h2" variant="body2" fontWeight="semiBold">
+          Remote Excellence Awards
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          Winners in the first-ever Remote Excellence Awards, in the Small & Mighty category! 🎉
+        </Typography>
+        <Typography variant="body2" fontWeight="bold" color="primary">
+          Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+        </Typography>
+      </div>
+    </Paper>
+  );
+}
+
 export default function Careers() {
   return (
     <BrandingCssVarsProvider>
@@ -356,9 +406,9 @@ export default function Careers() {
         <OurValues />
         <Divider />
         {/* Perks & benefits */}
-        <Section bg="gradient">
+        <Section bg="gradient" cozy>
           <Grid container spacing={5} alignItems="center">
-            <Grid item md={6}>
+            <Grid md={6}>
               <SectionHeadline
                 overline="Working at MUI"
                 title={
@@ -398,16 +448,26 @@ export default function Careers() {
                 ))}
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid
+              xs={12}
+              md={6}
+              sx={{
+                p: { xs: 2, sm: 0 },
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' },
+                gap: 2,
+              }}
+            >
+              <RemoteAwardCard />
               <Stack spacing={2} useFlexGap>
                 {companyInfo.map(({ title, description, routeUrl }) => (
                   <Paper
+                    key={title}
                     component={Link}
                     href={routeUrl}
                     noLinkStyle
                     variant="outlined"
-                    sx={{ p: 2, width: '100%' }}
-                    key={title}
+                    sx={{ p: 2, width: '100%', flexGrow: 1 }}
                   >
                     <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
                       {title}
@@ -415,16 +475,7 @@ export default function Careers() {
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                       {description}
                     </Typography>
-                    <Typography
-                      sx={(theme) => ({
-                        color: 'primary.600',
-                        ...theme.applyDarkStyles({
-                          color: 'primary.400',
-                        }),
-                      })}
-                      variant="body2"
-                      fontWeight="bold"
-                    >
+                    <Typography variant="body2" fontWeight="bold" color="primary">
                       Learn more{' '}
                       <KeyboardArrowRightRounded
                         fontSize="small"
@@ -537,11 +588,11 @@ export default function Careers() {
             Frequently asked questions
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               {renderFAQItem(0, true)}
               {renderFAQItem(1)}
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               {renderFAQItem(2)}
               <Paper
                 variant="outlined"

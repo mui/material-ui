@@ -19,10 +19,10 @@ export default function ThemeTabs() {
         variant="fullWidth"
         sx={[
           {
-            background:
-              'linear-gradient(180deg, var(--muidocs-palette-primary-500) 0%, var(--muidocs-palette-primary-600) 100%)',
             borderRadius: 1,
-            boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+            background:
+              'linear-gradient(180deg, var(--muidocs-palette-primary-600) 0%, var(--muidocs-palette-primary-700) 100%)',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.04)',
             [`& .${tabsClasses.indicator}`]: {
               backgroundColor: 'transparent',
               '&::before': {
@@ -47,12 +47,6 @@ export default function ThemeTabs() {
               },
             },
           },
-          (theme) =>
-            theme.applyDarkStyles({
-              [`& .${tabClasses.root}`]: {
-                color: 'primary.200',
-              },
-            }),
         ]}
       >
         <Tab label="Material UI" />

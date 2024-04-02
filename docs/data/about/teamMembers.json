@@ -265,5 +265,22 @@
     "about": "Product experience geek \uD83D\uDECB, Mediterranean vibes \uD83C\uDF4A",
     "twitter": "vadym_raksha",
     "github": "hasdfa"
+  },
+  {
+    "name": "James Nelson",
+    "title": "Software Engineer - Base UI",
+    "location": "Gold Coast, Australia",
+    "locationCountry": "au",
+    "about": "Enjoy creating open source libraries and reading about AI 🤖",
+    "github": "atomiks"
+  },
+  {
+    "name": "Aarón García",
+    "title": "Design Engineer - Core",
+    "location": "Alicante, Spain",
+    "locationCountry": "es",
+    "about": "Minimalism, web development, user experience, football, cycling",
+    "twitter": "aarongarciah",
+    "github": "aarongarciah"
   }
 ]

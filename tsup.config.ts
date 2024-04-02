@@ -27,4 +27,10 @@ export default defineConfig({
   banner: {
     js: licenseText,
   },
+  env: {
+    PACKAGE_NAME: pkgJson.name,
+  },
+  loader: {
+    '.js': 'jsx',
+  },
 });

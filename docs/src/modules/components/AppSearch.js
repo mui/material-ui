@@ -54,7 +54,7 @@ const SearchButton = styled('button')(({ theme }) => [
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
-    boxShadow: `inset 0 -1px 1px ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
+    boxShadow: `inset 0 -1px 0 ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
       theme.palette.grey[100],
       0.6,
     )}`,
@@ -273,6 +273,8 @@ const productNameProductId = {
   x: 'MUI X',
   system: 'MUI System',
   toolpad: 'Toolpad',
+  'toolpad-studio': 'Toolpad Studio',
+  'toolpad-core': 'Toolpad Core',
 };
 
 export function convertProductIdToName(productInfo) {
@@ -546,8 +548,8 @@ export default function AppSearch(props) {
               fontSize: theme.typography.pxToRem(11),
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
-              letterSpacing: '.08rem',
-              color: theme.palette.grey[600],
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-NewStartScreenTitleIcon': {
               fontSize: theme.typography.pxToRem(18),
@@ -616,6 +618,10 @@ export default function AppSearch(props) {
                 width: '18px',
                 height: '18px',
               },
+              '& .DocSearch-VisuallyHiddenForAccessibility': {
+                width: 0,
+                visibility: 'hidden',
+              },
             },
             '& .DocSearch-Cancel': {
               display: 'block',
@@ -666,8 +672,8 @@ export default function AppSearch(props) {
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
               lineHeight: 1,
-              letterSpacing: '.08rem',
-              color: theme.palette.grey[600],
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-Hit': {
               paddingBottom: 8,

@@ -9,7 +9,7 @@ import { getInitColorSchemeScript as getMuiInitColorSchemeScript } from '@mui/ma
 import { getInitColorSchemeScript as getJoyInitColorSchemeScript } from '@mui/joy/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
-import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
+import { getMetaThemeColor } from '@mui/docs/branding';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -226,7 +226,7 @@ MyDocument.getInitialProps = async (ctx) => {
           enhanceApp: (App) => (props) => jssSheets.collect(<App {...props} />),
           resolveProps: async (initialProps) => {
             let css = jssSheets.toString();
-            // It might be undefined, e.g. after an error.
+            // It might be undefined, for example after an error.
             if (css && process.env.NODE_ENV === 'production') {
               const result1 = await prefixer.process(css, { from: undefined });
               css = result1.css;

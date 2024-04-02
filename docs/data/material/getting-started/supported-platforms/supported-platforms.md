@@ -9,9 +9,9 @@ You don't need to provide any JavaScript polyfill as it manages unsupported brow
 
 <!-- #stable-snapshot -->
 
-| Edge  | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE                   |
-| :---- | :------ | :----- | :------------- | :----------- | :------------------- |
-| >= 91 | >= 78   | >= 90  | >= 14          | >= 12.5      | 11 (partial support) |
+| Edge   | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE                   |
+| :----- | :------ | :----- | :------------- | :----------- | :------------------- |
+| >= 121 | >= 115  | >= 109 | >= 15.4        | >= 15.4      | 11 (partial support) |
 
 <!-- #default-branch-switch -->
 

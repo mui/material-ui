@@ -35,7 +35,7 @@ import Tab from '@mui/material/Tab';
 ## Experimental API
 
 `@mui/lab` offers utility components that inject props to implement accessible tabs
-following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/):
+following [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/):
 
 - `<TabList />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
 - `<TabPanel />` - the card that hosts the content associated with a tab.
@@ -104,7 +104,7 @@ If you want to make sure the buttons are always visible, you should customize th
 ### Prevent scroll buttons
 
 Left and right scroll buttons are never be presented with `scrollButtons={false}`.
-All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift mouse wheel, etc.)
+All scrolling must be initiated through user agent scrolling mechanisms (for example left/right swipe, shift mouse wheel, etc.)
 
 {{"demo": "ScrollableTabsButtonPrevent.js", "bg": true}}
 
@@ -173,7 +173,7 @@ The WAI-ARIA authoring practices have a detailed guide on [how to decide when to
 #### Demo
 
 The following two demos only differ in their keyboard navigation behavior.
-Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
+Focus a tab and navigate with arrow keys to notice the difference, for example <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
 /* Tabs where selection follows focus */

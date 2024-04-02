@@ -220,7 +220,7 @@ We have the following objectives:
   You can follow our progress in the [umbrella issue](https://github.com/mui/material-ui/issues/27170).
 - 🌈 Do a proof of concept on supporting a second design system.
   Some of our users (and potential users) dislike Material Design. We will try to make the second design system one that they love!
-- 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/18/views/1).
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/23/views/12).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Advanced components

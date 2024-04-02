@@ -5,7 +5,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 import { Properties, getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
@@ -166,7 +166,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 key={propName}
                 id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
               >
-                <td className="MuiApi-table-item-title">
+                <td className="MuiApi-table-item-title algolia-lvl3">
                   {propName}
                   {isRequired ? '*' : ''}
                   {isOptional ? '?' : ''}
@@ -200,7 +200,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                     )}
                   </td>
                 )}
-                <td className="MuiPropTable-description-column">
+                <td className="MuiPropTable-description-column algolia-content">
                   {description && <PropDescription description={description} />}
                   {seeMoreDescription && (
                     <p

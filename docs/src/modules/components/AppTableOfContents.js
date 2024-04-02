@@ -34,8 +34,8 @@ const NavLabel = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.pxToRem(11),
   fontWeight: theme.typography.fontWeightBold,
   textTransform: 'uppercase',
-  letterSpacing: '.08rem',
-  color: theme.palette.grey[600],
+  letterSpacing: '.1rem',
+  color: (theme.vars || theme).palette.text.tertiary,
 }));
 
 const NavList = styled(Typography)({
@@ -205,7 +205,7 @@ export default function AppTableOfContents(props) {
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166);
 
   const handleClick = (hash) => (event) => {
-    // Ignore click events meant for native link handling, e.g. open in new tab
+    // Ignore click events meant for native link handling, for example open in new tab
     if (samePageLinkNavigation(event)) {
       return;
     }

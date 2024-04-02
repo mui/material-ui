@@ -2,12 +2,12 @@ fn({
   MuiAlert: {
     defaultProps: {
       slots: {
-        closeButton: ComponentsButton,
+        closeButton: ComponentsButton
       },
 
       slotProps: {
-        closeButton: componentsButtonProps,
-      },
+        closeButton: componentsButtonProps
+      }
     },
   },
 });
@@ -17,13 +17,13 @@ fn({
     defaultProps: {
       slots: {
         closeButton: ComponentsButton,
-        closeIcon: SlotsIcon,
+        closeIcon: SlotsIcon
       },
 
       slotProps: {
         closeButton: componentsButtonProps,
-        closeIcon: slotsIconProps,
-      },
+        closeIcon: slotsIconProps
+      }
     },
   },
 });
@@ -33,13 +33,40 @@ fn({
     defaultProps: {
       slots: {
         closeButton: SlotsButton,
-        closeIcon: SlotsIcon,
+        closeIcon: SlotsIcon
       },
 
       slotProps: {
-        closeButton: slotsButtonProps,
-        closeIcon: slotsIconProps,
+        closeButton: {
+          ...componentsButtonProps,
+          ...slotsButtonProps
+        },
+
+        closeIcon: slotsIconProps
+      }
+    },
+  },
+});
+
+fn({
+  MuiAlert: {
+    defaultProps: {
+      slots: {
+        closeButton: SlotsButton,
+        closeIcon: SlotsIcon
       },
+
+      slotProps: {
+        closeButton: {
+          ...componentsButtonProps,
+          ...slotsButtonProps
+        },
+
+        closeIcon: {
+          ...componentsIconProps,
+          ...slotsIconProps
+        }
+      }
     },
   },
 });
