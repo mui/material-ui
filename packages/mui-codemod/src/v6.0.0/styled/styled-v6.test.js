@@ -10,7 +10,7 @@ function read(fileName) {
 
 describe('@mui/codemod', () => {
   describe('v6.0.0', () => {
-    describe('styled-v6', () => {
+    describe('basic styled-v6', () => {
       it('transforms props as needed', () => {
         const actual = transform(
           { source: read('./test-cases/BasicStyled.actual.js') },
@@ -34,26 +34,26 @@ describe('@mui/codemod', () => {
       });
     });
 
-    describe('[theme] styled-v6', () => {
+    describe('nested spread styled-v6', () => {
       it('transforms props as needed', () => {
         const actual = transform(
-          { source: read('./test-cases/BasicStyled.actual.js') },
+          { source: read('./test-cases/NestedSpread.actual.js') },
           { jscodeshift },
           { printOptions: { trailingComma: false } },
         );
 
-        const expected = read('./test-cases/BasicStyled.expected.js');
+        const expected = read('./test-cases/NestedSpread.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
         const actual = transform(
-          { source: read('./test-cases/BasicStyled.expected.js') },
+          { source: read('./test-cases/NestedSpread.expected.js') },
           { jscodeshift },
           {},
         );
 
-        const expected = read('./test-cases/BasicStyled.expected.js');
+        const expected = read('./test-cases/NestedSpread.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
