@@ -265,8 +265,14 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
               borderColor: alpha(brand[200], 0.8),
               boxShadow: `inset 0 2px ${alpha(brand[50], 0.5)}, inset 0 -2px ${alpha(brand[200], 0.2)}`,
               '&:hover': {
+                backgroundColor: alpha(brand[300], 0.2),
+                borderColor: alpha(brand[300], 0.5),
+                boxShadow: 'none',
+              },
+              '&:active': {
                 backgroundColor: alpha(brand[300], 0.3),
-                borderColor: brand[200],
+                boxShadow: `inset 0 2.5px 0 ${alpha(brand[400], 0.2)}`,
+                backgroundImage: 'none',
               },
             }),
             ...(ownerState.variant === 'outlined' &&
@@ -276,7 +282,13 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
                 color: gray[700],
                 '&:hover': {
                   backgroundColor: alpha(gray[300], 0.3),
-                  borderColor: gray[200],
+                  borderColor: alpha(gray[300], 0.5),
+                  boxShadow: 'none',
+                },
+                '&:active': {
+                  backgroundColor: alpha(gray[300], 0.4),
+                  boxShadow: `inset 0 2.5px 0 ${alpha(gray[400], 0.2)}`,
+                  backgroundImage: 'none',
                 },
               }),
             ...(ownerState.variant === 'text' &&
@@ -300,9 +312,14 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
                 borderColor: alpha(brand[600], 0.6),
                 boxShadow: `inset 0 2.5px ${alpha(brand[400], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
                 '&:hover': {
-                  backgroundColor: alpha(brand[600], 0.3),
-                  borderColor: brand[700],
+                  backgroundColor: alpha(brand[700], 0.2),
+                  borderColor: alpha(brand[700], 0.5),
                   boxShadow: 'none',
+                },
+                '&:active': {
+                  backgroundColor: alpha(brand[800], 0.2),
+                  boxShadow: `inset 0 2.5px 0 ${alpha(brand[900], 0.4)}`,
+                  backgroundImage: 'none',
                 },
               }),
               ...(ownerState.variant === 'text' &&
@@ -314,12 +331,19 @@ export default function getSignUpTheme(mode: PaletteMode): ThemeOptions {
                 }),
               ...(ownerState.variant === 'outlined' &&
                 ownerState.color === 'secondary' && {
+                  color: gray[300],
                   backgroundColor: alpha(gray[600], 0.1),
                   borderColor: alpha(gray[700], 0.5),
-                  color: gray[300],
+                  boxShadow: `inset 0 2.5px ${alpha(gray[600], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
                   '&:hover': {
-                    backgroundColor: alpha(gray[600], 0.3),
-                    borderColor: gray[700],
+                    backgroundColor: alpha(gray[700], 0.2),
+                    borderColor: alpha(gray[700], 0.5),
+                    boxShadow: 'none',
+                  },
+                  '&:active': {
+                    backgroundColor: alpha(gray[800], 0.2),
+                    boxShadow: `inset 0 2.5px 0 ${alpha(gray[900], 0.4)}`,
+                    backgroundImage: 'none',
                   },
                 }),
               ...(ownerState.variant === 'text' &&
