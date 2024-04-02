@@ -106,7 +106,7 @@ export default function transformer(file, api, options) {
         });
       });
 
-    const selectorRegex = new RegExp(`${replacementSelectorPrefix}${deprecatedClass}(.|$)`);
+    const selectorRegex = new RegExp(`${replacementSelectorPrefix}${deprecatedClass}$`);
     root
       .find(
         j.Literal,

@@ -16,7 +16,7 @@ const plugin = () => {
       const { selector } = rule;
 
       classes.forEach(({ deprecatedClass, replacementSelector }) => {
-        const selectorRegex = new RegExp(`${deprecatedClass}`);
+        const selectorRegex = new RegExp(`${deprecatedClass}$`);
 
         if (selector.match(selectorRegex)) {
           rule.selector = selector.replace(selectorRegex, replacementSelector);
