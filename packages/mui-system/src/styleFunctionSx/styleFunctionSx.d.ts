@@ -70,9 +70,10 @@ export type SystemStyleObject<Theme extends object = {}> =
 export type SxProps<Theme extends object = {}> =
   | SystemStyleObject<Theme>
   | ((theme: Theme) => SystemStyleObject<Theme>)
-  | ReadonlyArray<
-      boolean | SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)
-    >;
+  | ReadonlyArray<boolean | SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)>
+  // Pigment CSS APIs
+  | string
+  | { className?: string; vars?: Record<string, [string | number, boolean]> };
 
 export interface StyleFunctionSx {
   (props: object): CSSObject;
