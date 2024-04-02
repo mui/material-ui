@@ -1,0 +1,36 @@
+const FormHelperTextRoot = styled('p')(({ theme, ownerState, disabled }) => ({
+  color: (theme.vars || theme).palette.text.secondary,
+  ...theme.typography.caption,
+  textAlign: 'left',
+  [`&.${formHelperTextClasses.disabled}`]: {
+    color: (theme.vars || theme).palette.text.disabled,
+  },
+  ...(ownerState.size === 'small' && {
+    marginTop: 4,
+  }),
+  ...(ownerState.size === 'small' &&
+    ownerState.variant === 'contained' && {
+      marginTop: 6,
+    }),
+  ...(ownerState.size === 'small' &&
+    ownerState.variant === 'contained' &&
+    disabled && {
+      marginTop: 6,
+    }),
+  ...(ownerState.size !== 'small' && {
+    marginBottom: 4,
+  }),
+  ...(ownerState.size !== 'small' &&
+    ownerState.variant !== 'contained' &&
+    !disabled && {
+      marginBottom: 6,
+    }),
+  ...(ownerState.contained && {
+    marginLeft: 14,
+    marginRight: 14,
+  }),
+  ...(!ownerState.contained && {
+    marginTop: 14,
+    marginBottom: 14,
+  }),
+}));
