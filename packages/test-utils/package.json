@@ -35,14 +35,14 @@
     "fs-extra": "^11.2.0",
     "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
-    "mocha": "^10.3.0",
+    "mocha": "^10.4.0",
     "playwright": "^1.42.1",
     "prop-types": "^15.8.1",
     "react-test-renderer": "^18.2.0",
     "sinon": "^15.2.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.12",
+    "@types/chai": "^4.3.14",
     "@types/chai-dom": "^1.11.3",
     "@types/enzyme": "^3.10.18",
     "@types/format-util": "^1.0.4",

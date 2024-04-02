@@ -12,4 +12,12 @@ module.exports = {
     // create-vite generates .jsx
     'react/jsx-filename-extension': 'off',
   },
+  overrides: [
+    {
+      files: ['pigment-css-remix-ts/**/*.*'],
+      rules: {
+        'react/react-in-jsx-scope': 'off',
+      },
+    },
+  ],
 };
