@@ -20,20 +20,21 @@ export default function styledV6(file, api, options) {
 
   /**
    *
+   * @param {import('ast-types').namedTypes.MemberExpression | import('ast-types').namedTypes.Identifier} node
+   */
+  function getObjectKey(node) {
+    if (node.type === 'MemberExpression') {
+      return node.object;
+    }
+    return node;
+  }
+
+  /**
+   *
    * @param {import('ast-types').namedTypes.ObjectExpression} objectExpression
    * @param {import('ast-types').namedTypes.BinaryExpression} addtional
    */
   function objectToArrowFunction(objectExpression, addtional) {
-    /**
-     *
-     * @param {import('ast-types').namedTypes.MemberExpression | import('ast-types').namedTypes.Identifier} node
-     */
-    function getObjectKey(node) {
-      if (node.type === 'MemberExpression') {
-        return node.object;
-      }
-      return node;
-    }
     const paramKeys = new Set();
     let left;
     objectExpression.properties.forEach((prop, index) => {
@@ -62,10 +63,120 @@ export default function styledV6(file, api, options) {
     );
   }
 
+  /**
+   *
+   * @param {import('ast-types').namedTypes.BinaryExpression} node
+   */
+  function inverseBinaryExpression(node) {
+    if (node.operator === '===') {
+      return { ...node, operator: '!==' };
+    }
+    if (node.operator === '!==') {
+      return { ...node, operator: '===' };
+    }
+    return node;
+  }
+
   function removeProperty(objectExpression, child) {
     if (objectExpression) {
-      objectExpression.properties = objectExpression.properties.filter((prop) => prop !== child);
+      objectExpression.properties = objectExpression.properties.filter(
+        (prop) => prop !== child && prop.value !== child,
+      );
     }
+  }
+
+  function buildObjectAST(jsObject) {
+    const result = j.objectExpression([]);
+    Object.entries(jsObject).forEach(([key, value]) => {
+      result.properties.push(j.objectProperty(j.identifier(key), value));
+    });
+    return result;
+  }
+
+  /**
+   *
+   * @param {import('ast-types').namedTypes.LogicalExpression} node
+   */
+  function buildProps(node) {
+    const properties = [];
+    const variables = new Set();
+    let isAllEqual = true;
+    let tempNode = { ...node };
+    function assignProperties(_node) {
+      if (_node.type === 'BinaryExpression') {
+        variables.add(getObjectKey(_node.left).name);
+        if (_node.operator === '===') {
+          properties.push(j.objectProperty(getIdentifierKey(_node.left), _node.right));
+        } else {
+          isAllEqual = false;
+        }
+      }
+      if (_node.type === 'MemberExpression' || _node.type === 'Identifier') {
+        isAllEqual = false;
+        variables.add(getObjectKey(_node).name);
+      }
+      if (_node.type === 'UnaryExpression') {
+        isAllEqual = false;
+        variables.add(getObjectKey(_node.argument).name);
+      }
+    }
+    if (tempNode.type !== 'LogicalExpression') {
+      assignProperties(tempNode);
+    } else {
+      while (tempNode.type === 'LogicalExpression') {
+        if (tempNode.operator !== '&&') {
+          isAllEqual = false;
+        }
+
+        assignProperties(tempNode.right);
+        if (tempNode.left.type !== 'LogicalExpression') {
+          assignProperties(tempNode.left);
+          break;
+        }
+
+        tempNode = { ...tempNode.left };
+      }
+    }
+
+    if (!isAllEqual) {
+      return j.arrowFunctionExpression(
+        [
+          j.objectPattern(
+            [...variables].map((k) => ({
+              ...j.objectProperty(j.identifier(k), j.identifier(k)),
+              shorthand: true,
+            })),
+          ),
+        ],
+        node,
+      );
+    }
+    return j.objectExpression(properties);
+  }
+
+  function mergeProps(parentProps, currentProps) {
+    if (parentProps.type === 'ObjectExpression' && currentProps.type === 'ObjectExpression') {
+      return j.objectExpression([...parentProps.properties, ...currentProps.properties]);
+    }
+    const parentArrow =
+      parentProps.type === 'ObjectExpression' ? objectToArrowFunction(parentProps) : parentProps;
+    const currentArrow =
+      currentProps.type === 'ObjectExpression' ? objectToArrowFunction(currentProps) : currentProps;
+    const variables = new Set();
+    [...parentArrow.params[0].properties, ...currentArrow.params[0].properties].forEach((param) => {
+      variables.add(param.key.name);
+    });
+    return j.arrowFunctionExpression(
+      [
+        j.objectPattern(
+          [...variables].map((k) => ({
+            ...j.objectProperty(j.identifier(k), j.identifier(k)),
+            shorthand: true,
+          })),
+        ),
+      ],
+      j.logicalExpression('&&', parentArrow.body, currentArrow.body),
+    );
   }
 
   root.find(j.CallExpression).forEach((path) => {
@@ -90,6 +201,14 @@ export default function styledV6(file, api, options) {
 
     // 2. Find logical spread expressions to convert to variants
     styles.forEach((style) => {
+      const parameters = new Set();
+      style.params.forEach((param) => {
+        if (param.type === 'ObjectPattern') {
+          param.properties.forEach((prop) => {
+            parameters.add(prop.key.name);
+          });
+        }
+      });
       const variants = [];
 
       let objectExpression = style.body;
@@ -105,60 +224,70 @@ export default function styledV6(file, api, options) {
         if (data.node.type === 'ObjectExpression') {
           data.node.properties.forEach((prop) => {
             if (prop.type === 'ObjectProperty') {
-              recurseObjectExpression({ node: prop.value, parentNode: data.node });
+              recurseObjectExpression({ node: prop.value, parentNode: data.node, key: prop.key });
             } else {
               recurseObjectExpression({ node: prop, parentNode: data.node });
             }
           });
         }
         if (data.node.type === 'SpreadElement' && data.node.argument.type === 'LogicalExpression') {
+          const paramName = getObjectKey(data.node.argument.left)?.name;
+          if (paramName && !parameters.has(paramName)) {
+            return;
+          }
+
+          const scopeProps = buildProps(data.node.argument.left);
           const variant = {
-            props: j.objectExpression([]),
+            props: data.props ? mergeProps(data.props, scopeProps) : scopeProps,
             style: data.node.argument.right,
           };
-          variants.push(
-            j.objectExpression([
-              j.objectProperty(j.identifier('props'), variant.props),
-              j.objectProperty(j.identifier('style'), variant.style),
-            ]),
-          );
-          const properties = [];
-          let node = data.node.argument;
-          while (node.left) {
-            if (node.operator !== '&&') {
-              break;
-            }
-            if (node.left.type === 'BinaryExpression' && node.left.operator === '===') {
-              properties.push(j.objectProperty(getIdentifierKey(node.left.left), node.left.right));
-              break;
-            }
-            if (node.left.type === 'MemberExpression' || node.left.type === 'Identifier') {
-              properties.push(
-                j.objectProperty(getIdentifierKey(node.left), j.booleanLiteral(true)),
-              );
-              break;
-            }
-            if (node.left.type === 'UnaryExpression') {
-              properties.push(
-                j.objectProperty(getIdentifierKey(node.left.argument), j.booleanLiteral(false)),
-              );
-              break;
-            }
-            node = node.left;
-          }
-          if (properties.length) {
-            variant.props.properties.push(...properties);
-          }
+
           variant.style.properties.forEach((prop) => {
             if (prop.type === 'ObjectProperty') {
-              recurseObjectExpression({ node: prop.value, parentNode: variant.style });
+              recurseObjectExpression({
+                node: prop.value,
+                parentNode: variant.style,
+                props: variant.props,
+                key: prop.key,
+              });
             } else {
-              recurseObjectExpression({ node: prop, parentNode: variant.style });
+              recurseObjectExpression({
+                node: prop,
+                parentNode: variant.style,
+                props: variant.props,
+              });
             }
           });
+          variants.push(buildObjectAST(variant));
           removeProperty(data.parentNode, data.node);
         }
-        if (data.node.type === 'ConditionalExpression') {
+        if (
+          data.node.type === 'ConditionalExpression' &&
+          data.node.test.type === 'BinaryExpression'
+        ) {
+          if (getIdentifierKey(data.node.test.left).name !== 'theme') {
+            if (data.key && data.key.type === 'Identifier') {
+              const props = objectToArrowFunction(data.props, data.node.test);
+              const styleVal = data.node.consequent;
+              const variant = {
+                props,
+                style: j.objectExpression([j.objectProperty(data.key, styleVal)]),
+              };
+              variants.push(buildObjectAST(variant));
+
+              // create another variant with inverted condition
+              const props2 = objectToArrowFunction(
+                data.props,
+                inverseBinaryExpression(data.node.test),
+              );
+              const styleVal2 = data.node.alternate;
+              const variant2 = {
+                props: props2,
+                style: j.objectExpression([j.objectProperty(data.key, styleVal2)]),
+              };
+              variants.push(buildObjectAST(variant2));
+            }
+          }
           removeProperty(data.parentNode, data.node);
         }
       }
@@ -166,7 +295,22 @@ export default function styledV6(file, api, options) {
       recurseObjectExpression({ node: objectExpression });
 
       objectExpression.properties.push(
-        j.objectProperty(j.identifier('variants'), j.arrayExpression(variants)),
+        j.objectProperty(
+          j.identifier('variants'),
+          j.arrayExpression(
+            variants.filter((variant) => {
+              const props = variant.properties.find((prop) => prop.key.name === 'props');
+              const styleVal = variant.properties.find((prop) => prop.key.name === 'style');
+              return (
+                props &&
+                styleVal &&
+                styleVal.value.properties.length > 0 &&
+                (props.value.type === 'ArrowFunctionExpression' ||
+                  props.value.properties.length > 0)
+              );
+            }),
+          ),
+        ),
       );
 
       style.params.forEach((param) => {
