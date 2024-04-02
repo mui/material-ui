@@ -24,7 +24,7 @@ const Root = styled('div')(
       lineHeight: 1.5, // Developers like when the code is dense.
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
-      backgroundColor: 'hsl(210, 20%, 10%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
+      backgroundColor: 'hsl(210, 35%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
       color: 'hsl(60, 30%, 96%)',
       colorScheme: 'dark',
       borderRadius: `var(--muidocs-shape-borderRadius, ${
@@ -540,7 +540,7 @@ const Root = styled('div')(
       fontWeight: 500,
       borderRadius: 6,
       border: 'none',
-      backgroundColor: 'hsl(210, 20%, 10%)', // using the code block one-off background color (defined in line 23)
+      backgroundColor: 'hsl(210, 35%, 9%)', // using the code block one-off background color (defined in line 23)
       color: '#FFF',
       transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
