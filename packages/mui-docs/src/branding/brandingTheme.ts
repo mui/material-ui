@@ -91,82 +91,81 @@ declare module '@mui/material/SvgIcon' {
 const defaultTheme = createTheme();
 
 export const blue = {
-  50: '#EBF5FF',
-  100: '#CCE5FF',
-  200: '#99CCFF',
-  300: '#66B2FF',
-  400: '#3399FF',
-  main: '#0073E6',
-  500: '#0073E6',
-  600: '#006BD6',
-  700: '#0061C2',
-  800: '#004C99',
-  900: '#003A75',
+  50: 'hsl(210, 100%, 96%)',
+  100: 'hsl(210, 100%, 90%)',
+  200: 'hsl(210, 100%, 80%)',
+  300: 'hsl(210, 100%, 70%)',
+  400: 'hsl(210, 100%, 60%)',
+  main: 'hsl(210, 100%, 45%)',
+  500: 'hsl(210, 100%, 45%)',
+  600: 'hsl(210, 100%, 42%)',
+  700: 'hsl(210, 100%, 38%)',
+  800: 'hsl(210, 100%, 30%)',
+  900: 'hsl(210, 100%, 23%)',
 };
 export const blueDark = {
-  50: 'hsl(210, 16%, 92%)',
-  100: 'hsl(210, 16%, 87%)',
-  200: 'hsl(210, 16%, 72%)',
-  300: 'hsl(210, 16%, 56%)',
-  main: 'hsl(210, 16%, 56%)',
-  400: 'hsl(210, 16%, 36%)',
-  500: 'hsl(210, 16%, 28%)',
-  600: 'hsl(210, 16%, 22%)',
-  700: 'hsl(210, 16%, 13%)',
-  800: 'hsl(210, 16%, 9%)',
-  900: 'hsl(210, 16%, 7%)',
+  50: 'hsl(210, 14%, 92%)',
+  100: 'hsl(210, 14%, 87%)',
+  200: 'hsl(210, 14%, 72%)',
+  300: 'hsl(210, 14%, 56%)',
+  main: 'hsl(210, 14%, 56%)',
+  400: 'hsl(210, 14%, 36%)',
+  500: 'hsl(210, 14%, 28%)',
+  600: 'hsl(210, 14%, 22%)',
+  700: 'hsl(210, 14%, 13%)',
+  800: 'hsl(210, 14%, 9%)',
+  900: 'hsl(210, 14%, 7%)',
 };
 export const grey = {
-  50: '#F3F6F9',
-  100: '#E5EAF2',
-  200: '#DAE2ED',
-  300: '#C5D0E0', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
-  400: '#AEBACB', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
-  500: '#99A7BB', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
-  600: '#6F7F95', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
-  700: '#576375', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
-  800: '#303740', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
-  900: '#1C2025',
+  50: 'hsl(215, 15%, 97%)',
+  100: 'hsl(215, 15%, 92%)',
+  200: 'hsl(215, 15%, 89%)',
+  300: 'hsl(215, 15%, 82%)',
+  400: 'hsl(215, 15%, 75%)',
+  500: 'hsl(215, 15%, 65%)',
+  600: 'hsl(215, 15%, 50%)',
+  700: 'hsl(215, 15%, 40%)',
+  800: 'hsl(215, 15%, 22%)',
+  900: 'hsl(215, 15%, 12%)',
 };
 export const error = {
-  50: '#FFF0F1',
-  100: '#FFDBDE',
-  200: '#FFBDC2',
-  300: '#FF99A2',
-  400: '#FF7A86',
-  500: '#FF505F',
-  main: '#EB0014', // contrast 4.63:1
-  600: '#EB0014',
-  700: '#C70011',
-  800: '#94000D',
-  900: '#570007',
+  50: 'hsl(355, 98%, 97%)',
+  100: 'hsl(355, 98%, 93%)',
+  200: 'hsl(355, 98%, 87%)',
+  300: 'hsl(355, 98%, 80%)',
+  400: 'hsl(355, 98%, 74%)',
+  500: 'hsl(355, 98%, 66%)',
+  main: 'hsl(355, 98%, 66%)',
+  600: 'hsl(355, 98%, 46%)',
+  700: 'hsl(355, 98%, 39%)',
+  800: 'hsl(355, 98%, 29%)',
+  900: 'hsl(355, 98%, 17%)',
 };
 export const success = {
-  50: '#E9FBF0',
-  100: '#C6F6D9',
-  200: '#9AEFBC',
-  300: '#6AE79C',
-  400: '#3EE07F',
-  500: '#21CC66',
-  600: '#1DB45A',
-  700: '#1AA251',
-  800: '#178D46',
-  900: '#0F5C2E',
+  50: 'hsl(144, 72%, 95%)',
+  100: 'hsl(144, 72%, 87%)',
+  200: 'hsl(144, 72%, 77%)',
+  300: 'hsl(144, 72%, 66%)',
+  400: 'hsl(144, 72%, 56%)',
+  500: 'hsl(144, 72%, 46%)',
+  600: 'hsl(144, 72%, 41%)',
+  700: 'hsl(144, 72%, 37%)',
+  800: 'hsl(144, 72%, 32%)',
+  900: 'hsl(144, 72%, 21%)',
 };
 export const warning = {
-  50: '#FFF9EB',
-  100: '#FFF3C1',
-  200: '#FFECA1',
-  300: '#FFDC48', // vs blueDark900: WCAG 10.4 AAA, APCA 72 Ok for text
-  400: '#F4C000', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
-  500: '#DEA500', // vs blueDark900: WCAG 8 AAA normal, APCA 58 Only large text
-  main: '#DEA500',
-  600: '#D18E00', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
-  700: '#AB6800', // vs white bg: WCAG 4.4 AA large, APCA 71 Ok for text
-  800: '#8C5800', // vs white bg: WCAG 5.9 AAA large, APCA 80 Best for text
-  900: '#5A3600', // vs white bg: WCAG 10.7 AAA, APCA 95 Best for text
+  50: 'hsl(48, 100%, 96%)',
+  100: 'hsl(48, 100%, 88%)',
+  200: 'hsl(48, 100%, 82%)',
+  300: 'hsl(48, 100%, 64%)',
+  400: 'hsl(48, 100%, 48%)',
+  500: 'hsl(48, 100%, 44%)',
+  main: 'hsl(48, 100%, 44%)',
+  600: 'hsl(40, 100%, 40%)',
+  700: 'hsl(36, 100%, 34%)',
+  800: 'hsl(36, 100%, 27%)',
+  900: 'hsl(36, 100%, 18%)',
 };
-// context on the Advanced Perceptual Contrast Algorithm (APCA) used above here: https://github.com/w3c/wcag/issues/695
 
 const systemFont = [
   '-apple-system',
@@ -219,7 +218,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         },
       }),
       common: {
-        black: '#0B0D0E',
+        black: 'hsl(200, 10%, 4%)',
       },
       text: {
         ...(mode === 'light' && {
@@ -248,10 +247,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       success: {
         ...success,
         ...(mode === 'dark' && {
-          main: '#1DB45A', // contrast 6.17:1 (blueDark.800)
+          main: success[600],
         }),
         ...(mode === 'light' && {
-          main: '#1AA251', // contrast 3.31:1
+          main: success[700],
         }),
       },
       warning,
@@ -718,7 +717,7 @@ export function getThemedComponents(): ThemeOptions {
                 color: (theme.vars || theme).palette.primary.main,
                 backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
-                boxShadow: `${alpha(theme.palette.grey[50], 0.4)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                boxShadow: `${alpha(theme.palette.grey[50], 0.4)} 0 2px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                   background: (theme.vars || theme).palette.grey[50],
@@ -728,7 +727,7 @@ export function getThemedComponents(): ThemeOptions {
                 color: (theme.vars || theme).palette.primary[300],
                 borderColor: alpha(theme.palette.primaryDark[600], 0.5),
                 backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
-                boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+                boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                 '&:hover': {
                   borderColor: (theme.vars || theme).palette.primaryDark[500],
                   background: alpha(theme.palette.primaryDark[700], 0.4),
@@ -747,7 +746,7 @@ export function getThemedComponents(): ThemeOptions {
                 border: `1px solid`,
                 backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
-                boxShadow: `${alpha(theme.palette.grey[50], 0.4)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                boxShadow: `${alpha(theme.palette.grey[50], 0.4)} 0 2px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   color: (theme.vars || theme).palette.primary.main,
                   borderColor: (theme.vars || theme).palette.grey[300],
@@ -757,7 +756,7 @@ export function getThemedComponents(): ThemeOptions {
               theme.applyDarkStyles({
                 borderColor: alpha(theme.palette.primaryDark[600], 0.5),
                 backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
-                boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+                boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                 '&:hover': {
                   color: (theme.vars || theme).palette.primary[400],
                   borderColor: (theme.vars || theme).palette.primaryDark[500],
@@ -1081,7 +1080,7 @@ export function getThemedComponents(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.grey[100],
                 '&[href]': {
                   textDecorationLine: 'none',
-                  boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.3)} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                  boxShadow: `hsl(200, 0%, 100%) 0 2px 0 inset, ${alpha(theme.palette.grey[100], 0.3)} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                   '&:hover': {
                     borderColor: (theme.vars || theme).palette.primary[200],
                     boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.primary[100]}`,
@@ -1106,7 +1105,7 @@ export function getThemedComponents(): ThemeOptions {
                 backgroundColor: alpha(theme.palette.primaryDark[800], 0.6),
                 '&[href]': {
                   textDecorationLine: 'none',
-                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+                  boxShadow: `${alpha(theme.palette.primaryDark[700], 0.4)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
                     borderColor: alpha(theme.palette.primary[600], 0.5),
                     boxShadow: `0px 2px 8px ${alpha(theme.palette.primary[900], 0.6)}`,
