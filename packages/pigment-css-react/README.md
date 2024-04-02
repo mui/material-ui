@@ -1113,4 +1113,4 @@ module.exports = withPigment(
 
 ## How Pigment CSS works
 
-See [How Pigment CSS works](HOW_PIGMENT_CSS_WORKS.md) for details on the build process.
+See [How Pigment CSS works](HOW_PIGMENT_CSS_WORKS.md) for details on the build process.

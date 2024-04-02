@@ -1,6 +1,6 @@
 # How Pigment CSS works
 
-Pigment CSS is a zero-runtime CSS-in-JS library. This means it does not have access to the end user's browser runtime which would be necessary to generate and insert authored CSS at runtime. Instead, it does all its processing at build time to pre-generate the CSS which then becomes part of the output bundle. This is why it cannot be consumed on its own. You must install the Pigment CSS plugin that corresponds to the framework you're using and configure your bundler accordingly—Pigment CSS currently supports Next.js and Vite.
+Pigment CSS is a zero-runtime CSS-in-JS library. This means it does not have access to the end user's browser runtime which would be necessary to generate and insert authored CSS at runtime. Instead, it does all its processing at build time to pre-generate the CSS which then becomes part of the output bundle. This is why it cannot be consumed on its own. You must install the Pigment CSS plugin that corresponds to the framework you're using and configure your bundler accordingly—Pigment CSS currently supports Next.js and Vite.
 
 - [Processor](#processor)
   - [1. Detection and evaluation](#1-detection-and-evaluation)
@@ -10,7 +10,7 @@ Pigment CSS is a zero-runtime CSS-in-JS library. This means it does not have ac
 
 ## Processor
 
-Pigment CSS uses the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/). It has a concept of `processors` which enables custom logic around what to do when users use an import from the library.
+Pigment CSS uses the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/). It has a concept of `processors` which enables custom logic around what to do when users use an import from the library. What a `processor` does is looks through the source code for `styled` (or other function) calls and extracts the arguments to be evaluatable. Then these evaluated values are handed back to Pigmen CSS to add our own customization on top.
 
 For example, take a look at this implementation of the `css` function:
 
@@ -57,7 +57,7 @@ const pigmentConfig = {
 
 ### 1. Detection and evaluation
 
-When the source file above (`app.js`) goes through the bundler transform, Pigment CSS's bundler plugin looks for the call site of `css` imported from `@pigment-css/react` and prepares an intermediate source file to get the actual values of the arguments of the `css` call. In this case, the simplified intermediate code is:
+When the source file above (`app.js`) goes through the bundler transform, Pigment CSS's bundler plugin looks for the call site of `css` imported from `@pigment-css/react` and prepares an intermediate source file to get the actual values of the arguments of the `css` call. This happens through WyW-in-JS's processors. In this case, the simplified intermediate code is:
 
 ```js
 const _exp1 = ({ theme }) => ({
@@ -88,7 +88,7 @@ const testClass = 'c1aiqtje';
 
 ### 3. Extraction
 
-At the same time as the transformation in step 2, Pigment CSS also generates the CSS string for the above styles at build time. This generation happens through the internal use of the `@mui/system` and `emotion` packages. In the [detection and evaluation](#1-detection-and-evaluation) step, Pigment gets access to the callback function defined as the first argument of the `css` function. Since it's a function, it's called by Pigment CSS which also passes an object containing the `theme` as the first argument. This `theme` is the same object that was defined as part of the bundler config and passed to Pigment CSS. The returned object then goes through the same transforms it would go through when using Material UI components directly with `emotion`. This also makes it possible to write shorthand properties‚—for example, the snippet below uses `p` for `padding` and `mr` for `margin-right`:
+At the same time as the transformation in step 2, Pigment CSS also generates the CSS string for the above styles at build time. This generation happens through the internal use of the `@mui/system` and `emotion` packages. In the [detection and evaluation](#1-detection-and-evaluation) step, Pigment gets access to the callback function defined as the first argument of the `css` function. Since it's a function, it's called by Pigment CSS which also passes an object containing the `theme` as the first argument. This `theme` is the same object that was defined as part of the bundler config and passed to Pigment CSS. The returned object then goes through the same transforms it would go through when using Material UI components directly with `emotion`. This also makes it possible to write shorthand properties‚—for example, the snippet below uses `p` for `padding` and `mr` for `margin-right`:
 
 ```js
 import { css } from '@pigment-css/react';
