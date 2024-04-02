@@ -18,9 +18,8 @@ export default function Hero() {
         width: '100%',
         backgroundImage:
           theme.palette.mode === 'light'
-            ? 'linear-gradient(hsla(210, 100%, 90%, 0.7), hsl(0, 0%, 100%))'
-            : 'linear-gradient(hsla(210, 100%, 16%, 0.5), transparent)',
-        backgroundSize: '100% 20%',
+            ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 90%), transparent)'
+            : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 16%), transparent)',
         backgroundRepeat: 'no-repeat',
       })}
     >
