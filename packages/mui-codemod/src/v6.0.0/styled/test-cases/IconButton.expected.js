@@ -47,21 +47,31 @@ const IconButtonRoot = styled(ButtonBase, {
         },
       },
       {
-        props: {
-          edge: 'start',
-        },
+        props: ({ edge, ownerState }) => edge === 'start' && ownerState.size === 'small',
 
         style: {
-          marginLeft: ownerState.size === 'small' ? -3 : -12,
+          marginLeft: -3,
         },
       },
       {
-        props: {
-          edge: 'end',
-        },
+        props: ({ edge, ownerState }) => edge === 'start' && ownerState.size !== 'small',
 
         style: {
-          marginRight: ownerState.size === 'small' ? -3 : -12,
+          marginLeft: -12,
+        },
+      },
+      {
+        props: ({ edge, ownerState }) => edge === 'end' && ownerState.size === 'small',
+
+        style: {
+          marginRight: -3,
+        },
+      },
+      {
+        props: ({ edge, ownerState }) => edge === 'end' && ownerState.size !== 'small',
+
+        style: {
+          marginRight: -12,
         },
       },
     ],
@@ -69,24 +79,6 @@ const IconButtonRoot = styled(ButtonBase, {
   ({ theme }) => {
     const palette = (theme.vars || theme).palette?.[ownerState.color];
     return {
-      ...(ownerState.color !== 'inherit' &&
-        ownerState.color !== 'default' && {
-          color: palette?.main,
-          ...(!ownerState.disableRipple && {
-            '&:hover': {
-              ...(palette && {
-                backgroundColor: theme.vars
-                  ? `rgba(${palette.mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(palette.main, theme.palette.action.hoverOpacity),
-              }),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: 'transparent',
-              },
-            },
-          }),
-        }),
-
       [`&.${iconButtonClasses.disabled}`]: {
         backgroundColor: 'transparent',
         color: (theme.vars || theme).palette.action.disabled,
@@ -100,6 +92,38 @@ const IconButtonRoot = styled(ButtonBase, {
 
           style: {
             color: 'inherit',
+          },
+        },
+        {
+          props: {},
+
+          style: {
+            color: palette?.main,
+          },
+        },
+        {
+          props: {
+            disableRipple: false,
+          },
+
+          style: {
+            '&:hover': {
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: 'transparent',
+              },
+            },
+          },
+        },
+        {
+          props: {
+            palette: true,
+          },
+
+          style: {
+            backgroundColor: theme.vars
+              ? `rgba(${palette.mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+              : alpha(palette.main, theme.palette.action.hoverOpacity),
           },
         },
         {
