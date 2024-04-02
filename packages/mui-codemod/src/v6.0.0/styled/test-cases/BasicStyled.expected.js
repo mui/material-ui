@@ -86,3 +86,19 @@ const FormHelperTextRoot = styled('p')(({
     }
   }]
 })));
+
+const Component = styled.div(({
+  theme
+}) => (({
+  ...theme.typography.caption,
+
+  variants: [{
+    props: {
+      size: 'small'
+    },
+
+    style: {
+      marginTop: (theme.vars || theme).spacing(1),
+    }
+  }]
+})));

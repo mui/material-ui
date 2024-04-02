@@ -181,23 +181,36 @@ export default function styledV6(file, api, options) {
 
   root.find(j.CallExpression).forEach((path) => {
     const styles = [];
+    let args = [];
 
-    // 1. collecting styles that should be tranformed
+    // styled('div')(...arguments)
     if (
       path.node.callee.type === 'Identifier' &&
       path.node.callee.name === 'styled' &&
       path.parentPath.node.type === 'CallExpression'
     ) {
-      path.parentPath.node.arguments.forEach((arg) => {
-        if (
-          arg.type === 'ArrowFunctionExpression' &&
-          arg.params[0] &&
-          arg.params[0].properties.some((prop) => prop.key.name !== 'theme')
-        ) {
-          styles.push(arg);
-        }
-      });
+      args = path.parentPath.node.arguments;
     }
+
+    // styled.div(...arguments)
+    if (
+      path.node.callee.type === 'MemberExpression' &&
+      path.node.callee.object.type === 'Identifier' &&
+      path.node.callee.object.name === 'styled'
+    ) {
+      args = path.node.arguments;
+    }
+
+    // 1. collecting styles that should be tranformed
+    args.forEach((arg) => {
+      if (
+        arg.type === 'ArrowFunctionExpression' &&
+        arg.params[0] &&
+        arg.params[0].properties.some((prop) => prop.key.name !== 'theme')
+      ) {
+        styles.push(arg);
+      }
+    });
 
     // 2. Find logical spread expressions to convert to variants
     styles.forEach((style) => {
@@ -288,6 +301,28 @@ export default function styledV6(file, api, options) {
               variants.push(buildObjectAST(variant2));
             }
           }
+          removeProperty(data.parentNode, data.node);
+        }
+        if (
+          data.key &&
+          data.key.type === 'Identifier' &&
+          data.node.type === 'MemberExpression' &&
+          data.node.object.type === 'ObjectExpression' &&
+          parameters.has(getObjectKey(data.node.property).name)
+        ) {
+          data.node.object.properties.forEach((prop) => {
+            variants.push(
+              buildObjectAST({
+                props: j.objectExpression([
+                  j.objectProperty(
+                    getIdentifierKey(data.node.property),
+                    j.stringLiteral(prop.key.name),
+                  ),
+                ]),
+                style: j.objectExpression([j.objectProperty(data.key, prop.value)]),
+              }),
+            );
+          });
           removeProperty(data.parentNode, data.node);
         }
       }

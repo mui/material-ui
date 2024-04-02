@@ -34,3 +34,10 @@ const FormHelperTextRoot = styled('p')(({ theme, ownerState, disabled }) => ({
     marginBottom: 14,
   }),
 }));
+
+const Component = styled.div(({ theme, ownerState }) => ({
+  ...theme.typography.caption,
+  ...(ownerState.size === 'small' && {
+    marginTop: (theme.vars || theme).spacing(1),
+  }),
+}));
