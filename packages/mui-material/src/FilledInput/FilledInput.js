@@ -445,6 +445,11 @@ FilledInput.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
+    PropTypes.shape({
+      className: PropTypes.string,
+      vars: PropTypes.object,
+    }),
+    PropTypes.string,
   ]),
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
