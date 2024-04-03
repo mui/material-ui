@@ -143,7 +143,7 @@ const getDesignTokens = (mode) => ({
     h1: {
       fontSize: customTheme.typography.pxToRem(60),
       fontWeight: 600,
-      lineHeight: 1.5,
+      lineHeight: 1.2,
       letterSpacing: -0.5,
     },
     h2: {
@@ -203,9 +203,9 @@ export default function getSignInSideTheme(mode) {
         styleOverrides: {
           root: {
             boxSizing: 'border-box',
-            transition: 'all 120ms ease-in',
+            transition: 'all 100ms ease',
             '&:focus-visible': {
-              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outline: `3px solid ${alpha(brand[400], 0.5)}`,
               outlineOffset: '2px',
             },
           },
@@ -219,6 +219,7 @@ export default function getSignInSideTheme(mode) {
             textTransform: 'none',
             ...(ownerState.size === 'small' && {
               height: '2rem', // 32px
+              padding: '0 0.5rem',
             }),
             ...(ownerState.size === 'medium' && {
               height: '2.5rem', // 40px
@@ -231,13 +232,12 @@ export default function getSignInSideTheme(mode) {
                 boxShadow: `inset 0 2px 0 ${alpha(brand[200], 0.2)}, inset 0 -2px 0 ${alpha(brand[700], 0.4)}`,
                 border: `1px solid ${brand[500]}`,
                 '&:hover': {
-                  backgroundColor: brand[600],
+                  backgroundColor: brand[700],
                   boxShadow: 'none',
                 },
                 '&:active': {
-                  backgroundColor: brand[600],
+                  backgroundColor: brand[700],
                   boxShadow: `inset 0 2.5px 0 ${alpha(brand[700], 0.4)}`,
-                  backgroundImage: 'none',
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
@@ -341,18 +341,19 @@ export default function getSignInSideTheme(mode) {
       MuiCard: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
+            transition: 'all 100ms ease',
             backgroundColor: gray[50],
             borderRadius: theme.shape.borderRadius,
-            border: `1px solid ${alpha(gray[200], 0.1)}`,
+            border: `1px solid ${alpha(gray[200], 0.5)}`,
             boxShadow: 'none',
             ...(ownerState.variant === 'outlined' && {
-              border: `1px solid ${alpha(gray[200], 0.5)}`,
+              border: `1px solid ${gray[200]}`,
               boxShadow: 'none',
               background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.4),
-              border: `1px solid ${alpha(gray[700], 0.2)}`,
+              border: `1px solid ${alpha(gray[700], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
                 border: `1px solid ${alpha(gray[700], 0.4)}`,
                 boxShadow: 'none',
