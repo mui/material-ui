@@ -75,6 +75,8 @@ const Component = styled('div')(({
         ownerState.color !== 'default' && !ownerState.disableRipple,
       style: {
         '&:hover': {
+          // The codemod won't handle this case when the variable is not declared in the style argument.
+          // In this case, the `palette` create a new variable in the style argument.
           ...(palette && {
             backgroundColor: theme.vars
               ? `rgba(${palette.mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
