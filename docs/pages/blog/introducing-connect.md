@@ -52,7 +52,7 @@ That's why there's an embedded Storybook preview panel in Connect so that you ca
   <source src="/static/blog/introducing-connect/storybook.mp4" type="video/mp4">
 </video>
 
-## Try Connect now!
+## Try Connect now
 
 Get the beta version of Connect now, availble **for free** on [MUI's Figma community profile](https://www.figma.com/community/plugin/1336346114713490235/connect).
 There's still a lot to do, and we're looking forward to hearing from all of you [who requested this plugin years ago](https://github.com/mui/mui-design-kits/issues/10).
