@@ -9,16 +9,11 @@ import {
 import { transformAsync } from '@babel/core';
 import baseWywPluginPlugin, { type VitePluginOptions } from './vite-plugin';
 
-export interface PigmentOptions extends VitePluginOptions {
+export interface PigmentOptions extends Omit<VitePluginOptions, 'themeArgs'> {
   /**
    * The theme object that you want to be passed to the `styled` function
    */
   theme: Theme;
-  /**
-   * Whether the css variables for the default theme should target the :root selector or not.
-   * @default true
-   */
-  injectDefaultThemeInRoot?: boolean;
 }
 
 const VIRTUAL_CSS_FILE = `\0zero-runtime-styles.css`;
