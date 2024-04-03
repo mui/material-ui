@@ -1,5 +1,84 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.1
+
+<!-- generated comparing v6.0.0-alpha.0..next -->
+
+_Apr 3, 2024_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔥 Converted 3 Material UI components to support static CSS extraction. The progress is at 36%!
+- 🚀 Added a spacing CSS variable to Material UI and Joy UI theme.
+
+### `@mui/material@6.0.0-alpha.1`
+
+- [AppBar] Convert to support CSS extraction (#41247) @mnajdova
+- [Badge] Deprecate components and componentsProps (#41655) @skmanoj322
+- [Button] Convert to support CSS extraction (#41378) @siriwatknp
+- [ButtonGroup] Convert to support CSS extraction (#41666) @zanivan
+- [RadioGroup] Apply classnames (#41610) @ZeeshanTamboli
+- [slider] Move palette styles to the bottom (#41676) @siriwatknp
+- Add `spacing` theme token (#40224) @siriwatknp
+
+### `@mui/system@6.0.0-alpha.1`
+
+- Add `spacing` theme token to be used in `theme.spacing()` (#40224) @siriwatknp
+
+### `@mui/codemod@6.0.0-alpha.1`
+
+- [codemod] Setup v6 codemod structure (#41668) @DiegoAndai
+
+### `@mui/lab@6.0.0-alpha.1`
+
+- [TabPanel] Add keepMounted prop to match joy-ui (#41651) @ppaskaris-plooto
+
+### `@mui/joy@5.0.0-beta.34`
+
+- Add `spacing` theme token (#40224) @siriwatknp
+
+### `@pigment-css/react@0.0.5`
+
+- Improve sx prop support (#41589) @brijeshb42
+- Fix emotion styled error (#41699) @siriwatknp
+- Fix propTypes removal during eval stage (#41695) @brijeshb42
+- Fix props forwarding (#41688) @siriwatknp
+- Fix sx prop transformation on Box (#41705) @brijeshb42
+
+### `@pigment-css/vite-plugin@0.0.5`
+
+- Use constant filename for pigment styles (#41667) @brijeshb42
+
+### Docs
+
+- [pigment-css] Update README.md installation to use the next tag (#41649) @mnajdova
+- [pigment-css] Add "Building design system components" guide with Pigment CSS (#41635) @siriwatknp
+- Continue migration of Base UI to sperate repository @oliviertassinari
+- Stick to one way to write IE 11 @oliviertassinari
+- Fix typo in CONTRIBUTING.md (#41670) @adriancuadrado
+- [material-ui]Fix typo on the Accordion page (#41687) @connorshea
+- [pigment-css]Add small edits on the README (#41646) @danilo-leal
+- [pigment-css]Edit the example app's README files (#41639) @danilo-leal
+
+### Core
+
+- [code-infra] Move BrandingProvider/brandingTheme/InfoCard to @mui/docs (#41206) @Janpot
+- [core] Automate cherry-pick of PRs from `next` -> `master` (#41741) @aarongarciah
+- [core] Update the prettier script to use the next branch (#41637) @mnajdova
+- [docs-infra] Skip loading source for non-editable modules (#41588) @bharatkashyap
+- [docs-infra] Vale rule for M3 (#41737) @oliviertassinari
+- [docs-infra] Allows to remove edit button (#41702) @alexfauquette
+- [pigment-css][examples] Add example project with Remix (#41700) @brijeshb42
+- [examples] Update MUI's packages to the next version (#41701) @mnajdova
+- [material-ui] Refine the Sign-in and Sign-up templates (#41192) @zanivan
+- [test] Add test to display options provided to the options prop even if loading is true. (#41675) @ZeeshanTamboli
+- [website] Use en-US over en-UK for career link @oliviertassinari
+- [website] Add Aarón to About Us (#41736) @aarongarciah
+- [website] Refine button design and other details (#41686) @danilo-leal
+- [website] Improve job og image (#41672) @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @adriancuadrado, @alexfauquette, @bharatkashyap, @brijeshb42, @connorshea, @danilo-leal, @DiegoAndai, @Janpot, @mnajdova, @oliviertassinari, @ppaskaris-plooto, @siriwatknp, @skmanoj322, @zanivan, @ZeeshanTamboli
+
 ## v6.0.0-alpha.0
 
 <!-- generated comparing v5.15.14..next -->
