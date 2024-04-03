@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { PaletteMode } from '@mui/material';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -12,15 +13,66 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
 import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
+
+import { mainListItems, secondaryListItems } from './components/listItems';
+import Chart from './components/Chart';
+import Deposits from './components/Deposits';
+import Orders from './components/Orders';
+import ToggleColorMode from './components/ToggleColorMode';
+import getDashboardTheme from './getDashboardTheme';
+
+interface ToggleCustomThemeProps {
+  showCustomTheme: Boolean;
+  toggleCustomTheme: () => void;
+}
+
+function ToggleCustomTheme({
+  showCustomTheme,
+  toggleCustomTheme,
+}: ToggleCustomThemeProps) {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100dvw',
+        position: 'fixed',
+        bottom: 24,
+      }}
+    >
+      <ToggleButtonGroup
+        color="primary"
+        exclusive
+        value={showCustomTheme}
+        onChange={toggleCustomTheme}
+        aria-label="Platform"
+        sx={{
+          backgroundColor: 'background.default',
+          '& .Mui-selected': {
+            pointerEvents: 'none',
+          },
+        }}
+      >
+        <ToggleButton value>
+          <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
+          Custom theme
+        </ToggleButton>
+        <ToggleButton value={false}>Material Design 2</ToggleButton>
+      </ToggleButtonGroup>
+    </Box>
+  );
+}
 
 function Copyright(props: any) {
   return (
@@ -85,23 +137,33 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
-
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
+  const [mode, setMode] = React.useState<PaletteMode>('light');
+  const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+  const dashboardTheme = createTheme(getDashboardTheme(mode));
+  const defaultTheme = createTheme({ palette: { mode } });
+
+  const toggleColorMode = () => {
+    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const toggleCustomTheme = () => {
+    setShowCustomTheme((prev) => !prev);
+  };
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={showCustomTheme ? dashboardTheme : defaultTheme}>
+      <CssBaseline />
       <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: '24px', // keep right padding when drawer closed
+              pr: '24px',
             }}
           >
             <IconButton
@@ -125,11 +187,14 @@ export default function Dashboard() {
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <Stack direction="row" gap={2} alignItems="center">
+              <IconButton color="inherit">
+                <Badge badgeContent={4} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            </Stack>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -169,7 +234,7 @@ export default function Dashboard() {
             <Grid container spacing={3}>
               {/* Chart */}
               <Grid item xs={12} md={8} lg={9}>
-                <Paper
+                <Card
                   sx={{
                     p: 2,
                     display: 'flex',
@@ -178,11 +243,11 @@ export default function Dashboard() {
                   }}
                 >
                   <Chart />
-                </Paper>
+                </Card>
               </Grid>
               {/* Recent Deposits */}
               <Grid item xs={12} md={4} lg={3}>
-                <Paper
+                <Card
                   sx={{
                     p: 2,
                     display: 'flex',
@@ -191,18 +256,22 @@ export default function Dashboard() {
                   }}
                 >
                   <Deposits />
-                </Paper>
+                </Card>
               </Grid>
               {/* Recent Orders */}
               <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                <Card sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <Orders />
-                </Paper>
+                </Card>
               </Grid>
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
+        <ToggleCustomTheme
+          showCustomTheme={showCustomTheme}
+          toggleCustomTheme={toggleCustomTheme}
+        />
       </Box>
     </ThemeProvider>
   );
