@@ -93,8 +93,8 @@ export default async function handler(req: Request) {
               fontFamily: 'General Sans',
               fontStyle: 'normal',
               fontWeight: 600,
-              fontSize: '68px',
-              lineHeight: '82px',
+              fontSize: '46px',
+              lineHeight: '70px',
               color: '#0B0D0E',
               display: 'flex',
               flexDirection: 'column',
@@ -127,10 +127,10 @@ export default async function handler(req: Request) {
               <p
                 style={{
                   fontFamily: 'IBM Plex Sans',
-                  fontSize: '36px',
+                  fontSize: '28px',
                   fontWeight: 600,
                   color: '#434D5B',
-                  lineHeight: '58px',
+                  lineHeight: '50px',
                   marginTop: 24,
                   marginBottom: 0,
                   marginLeft: 0,
