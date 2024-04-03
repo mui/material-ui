@@ -126,6 +126,7 @@ module.exports = async function demoLoader() {
   const components = {};
   const demoModuleIDs = new Set();
   const componentModuleIDs = new Set();
+  const nonEditableDemos = new Set();
   const relativeModules = new Map();
   const demoNames = Array.from(
     new Set(
@@ -133,7 +134,12 @@ module.exports = async function demoLoader() {
         .filter((markdownOrComponentConfig) => {
           return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
         })
-        .map((demoConfig) => demoConfig.demo),
+        .map((demoConfig) => {
+          if (demoConfig.hideToolbar) {
+            nonEditableDemos.add(demoConfig.demo);
+          }
+          return demoConfig.demo;
+        }),
     ),
   );
 
@@ -204,6 +210,15 @@ module.exports = async function demoLoader() {
         raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
       };
       demoModuleIDs.add(moduleID);
+
+      // Skip non-editable demos
+      if (!nonEditableDemos.has(demoName)) {
+        extractImports(demos[demoName].raw).forEach((importModuleID) => {
+          // detect relative import
+          detectRelativeImports(demoName, moduleFilepath, 'JS', importModuleID);
+          importedModuleIDs.add(importModuleID);
+        });
+      }
 
       extractImports(demos[demoName].raw).forEach((importModuleID) => {
         // detect relative import
