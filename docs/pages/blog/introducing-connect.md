@@ -17,8 +17,8 @@ The Connect plugin, that's [available now in beta](https://www.figma.com/communi
 
 ## Theme customization
 
-Connect works from the Design Kit's v0 up because that was when it started to support Figma's local variables.
-This feature has significantly matured the world of design tokens for Figma, and Material UI has been doing this for a while with all of its theming features.
+Connect works from the [Design Kit's v5.16.0](https://github.com/mui/mui-design-kits/releases/tag/v5.16.0) up because that was when it started to support Figma's local variables.
+This feature has significantly matured the world of design tokens for Figma, and Material UI has been doing this for a while with all of [its theming features](/material-ui/customization/theming/).
 
 So, you can use Connect to generate a theme for any local variable and style included in the Design Kit.
 Maybe you want to go very far from a standard Material Design-looking button and explore something different?
