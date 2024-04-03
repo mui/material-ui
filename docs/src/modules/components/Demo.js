@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import { styled as joyStyled } from '@mui/joy/styles';
+import { Tabs } from '@mui/base/Tabs';
+import { TabPanel } from '@mui/base/TabPanel';
 import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
@@ -21,8 +23,9 @@ import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
-import { BrandingProvider, blue, blueDark, grey } from '@mui/docs/branding';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
+import { BrandingProvider, blue, blueDark, grey } from '@mui/docs/branding';
+import { CodeTab, CodeTabList } from 'docs/src/modules/components/HighlightedCodeWithTabs';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -68,24 +71,31 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
     }
 
     let codeOptions = {};
-
     if (codeStyling === CODE_STYLING.SYSTEM) {
       if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
         codeOptions = {
           codeVariant: CODE_VARIANTS.TS,
           githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
           raw: demo.rawTS,
-          Component: demo.tsx,
+          module: demo.moduleTS,
+          Component: demo.tsx ?? null,
           sourceLanguage: 'tsx',
         };
+        if (demo.relativeModules) {
+          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
+        }
       } else {
         codeOptions = {
           codeVariant: CODE_VARIANTS.JS,
           githubLocation,
           raw: demo.raw,
+          module: demo.module,
           Component: demo.js,
           sourceLanguage: 'jsx',
         };
+        if (demo.relativeModules) {
+          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
+        }
       }
     } else if (codeStyling === CODE_STYLING.TAILWIND) {
       if (codeVariant === CODE_VARIANTS.TS && demo.rawTailwindTS) {
@@ -93,6 +103,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.TS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.tsx'),
           raw: demo.rawTailwindTS,
+          module: demo.moduleTS,
           Component: demo.tsxTailwind,
           sourceLanguage: 'tsx',
         };
@@ -101,6 +112,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.JS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.js'),
           raw: demo.rawTailwind ?? demo.raw,
+          module: demo.module,
           Component: demo.jsTailwind ?? demo.js,
           sourceLanguage: 'jsx',
         };
@@ -111,6 +123,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.TS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.tsx'),
           raw: demo.rawCSSTS,
+          module: demo.moduleTS,
           Component: demo.tsxCSS,
           sourceLanguage: 'tsx',
         };
@@ -119,6 +132,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
           codeVariant: CODE_VARIANTS.JS,
           githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.js'),
           raw: demo.rawCSS ?? demo.raw,
+          module: demo.module,
           Component: demo.jsCSS ?? demo.js,
           sourceLanguage: 'jsx',
         };
@@ -220,6 +234,7 @@ const DemoRootMaterial = styled('div', {
     borderRightWidth: 0,
     ...theme.applyDarkStyles({
       backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
+      borderBottom: 0,
     }),
   }),
   /* Similar to the outlined one but without padding. Ideal for playground demos. */
@@ -327,9 +342,12 @@ const DemoRootJoy = joyStyled('div', {
 const DemoCodeViewer = styled(HighlightedCode)(() => ({
   '& pre': {
     margin: 0,
+    marginTop: -1,
     maxHeight: 'min(68vh, 1000px)',
     maxWidth: 'initial',
     borderRadius: 0,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
   },
 }));
 
@@ -346,6 +364,25 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
   height: theme.spacing(4),
   pointerEvents: 'none',
 }));
+
+const bordersOverride = {
+  borderTopLeftRadius: 0,
+  borderTopRightRadius: 0,
+};
+
+const selectionOverride = (theme) => ({
+  cursor: 'pointer',
+  '&.base--selected': {
+    color: (theme.vars || theme).palette.primary[700],
+    backgroundColor: (theme.vars || theme).palette.primary[50],
+    borderColor: (theme.vars || theme).palette.primary[200],
+    ...theme.applyDarkStyles({
+      color: (theme.vars || theme).palette.primary[200],
+      backgroundColor: alpha((theme.vars || theme).palette.primary[900], 0.4),
+      borderColor: (theme.vars || theme).palette.primary[800],
+    }),
+  },
+});
 
 export default function Demo(props) {
   const { demo, demoOptions, disableAd, githubLocation, mode } = props;
@@ -495,6 +532,32 @@ export default function Demo(props) {
     liveDemoActive,
   });
 
+  const [activeTab, setActiveTab] = React.useState(0);
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+  };
+  const ownerState = { mounted: true, contained: true };
+
+  const tabs = React.useMemo(() => {
+    if (!demoData.relativeModules) {
+      return [{ module: demoData.module, raw: demoData.raw }];
+    }
+    let demoModule = demoData.module;
+    if (codeVariant === CODE_VARIANTS.TS && demo.moduleTS) {
+      demoModule =
+        demo.moduleTS === demo.module ? demoData.module.replace(/\.js$/, '.tsx') : demo.moduleTS;
+    }
+
+    return [{ module: demoModule, raw: demoData.raw }, ...demoData.relativeModules];
+  }, [
+    codeVariant,
+    demo.moduleTS,
+    demo.module,
+    demoData.module,
+    demoData.raw,
+    demoData.relativeModules,
+  ]);
+
   return (
     <Root>
       <AnchorLink id={demoName} />
@@ -553,46 +616,81 @@ export default function Demo(props) {
               </React.Suspense>
             </NoSsr>
           </DemoToolbarRoot>
-          <Collapse in={openDemoSource} unmountOnExit timeout={150}>
-            {/* A limitation from https://github.com/nihgwu/react-runner,
+          <Tabs defaultValue={0} value={activeTab} onChange={handleTabChange}>
+            {demoData.relativeModules && openDemoSource && !editorCode.isPreview ? (
+              <CodeTabList sx={bordersOverride} ownerState={ownerState}>
+                {tabs.map((tab, index) => (
+                  <CodeTab
+                    sx={selectionOverride}
+                    ownerState={ownerState}
+                    key={tab.module}
+                    value={index}
+                  >
+                    {tab.module}
+                  </CodeTab>
+                ))}
+              </CodeTabList>
+            ) : null}
+            <Collapse in={openDemoSource} unmountOnExit timeout={150}>
+              {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-            {demoOptions.disableLiveEdit ? (
-              <DemoCodeViewer
-                code={editorCode.value}
-                id={demoSourceId}
-                language={demoData.sourceLanguage}
-                copyButtonProps={{
-                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                  'data-ga-event-label': demo.gaLabel,
-                  'data-ga-event-action': 'copy-click',
-                }}
-              />
-            ) : (
-              <DemoEditor
-                // Mount a new text editor when the preview mode change to reset the undo/redo history.
-                key={editorCode.isPreview}
-                value={editorCode.value}
-                onChange={(value) => {
-                  setEditorCode({
-                    ...editorCode,
-                    value,
-                  });
-                }}
-                onFocus={() => {
-                  setLiveDemoActive(true);
-                }}
-                id={demoSourceId}
-                language={demoData.sourceLanguage}
-                copyButtonProps={{
-                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                  'data-ga-event-label': demo.gaLabel,
-                  'data-ga-event-action': 'copy-click',
-                }}
-              >
-                <DemoEditorError>{debouncedError}</DemoEditorError>
-              </DemoEditor>
-            )}
-          </Collapse>
+              {demoOptions.disableLiveEdit
+                ? tabs.map((tab, index) => (
+                    <DemoCodeViewer
+                      key={index}
+                      code={tab.raw}
+                      id={demoSourceId}
+                      language={demoData.sourceLanguage}
+                      copyButtonProps={{
+                        'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                        'data-ga-event-label': demo.gaLabel,
+                        'data-ga-event-action': 'copy-click',
+                      }}
+                    />
+                  ))
+                : tabs.map((tab, index) => (
+                    <TabPanel value={index} index={index} key={index}>
+                      {index === 0 ? (
+                        <DemoEditor
+                          // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                          key={editorCode.isPreview}
+                          value={editorCode.value}
+                          onChange={(value) => {
+                            setEditorCode({
+                              ...editorCode,
+                              value,
+                            });
+                          }}
+                          onFocus={() => {
+                            setLiveDemoActive(true);
+                          }}
+                          id={demoSourceId}
+                          language={demoData.sourceLanguage}
+                          copyButtonProps={{
+                            'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                            'data-ga-event-label': demo.gaLabel,
+                            'data-ga-event-action': 'copy-click',
+                          }}
+                        >
+                          <DemoEditorError>{debouncedError}</DemoEditorError>
+                        </DemoEditor>
+                      ) : (
+                        <DemoCodeViewer
+                          code={tab.raw}
+                          key={tab.module}
+                          id={`relative-${tab.module}`}
+                          language={demoData.sourceLanguage}
+                          copyButtonProps={{
+                            'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                            'data-ga-event-label': demo.gaLabel,
+                            'data-ga-event-action': 'copy-click',
+                          }}
+                        />
+                      )}
+                    </TabPanel>
+                  ))}
+            </Collapse>
+          </Tabs>
           {adVisibility ? <AdCarbonInline /> : null}
         </Wrapper>
       )}

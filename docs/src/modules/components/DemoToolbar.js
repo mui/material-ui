@@ -84,8 +84,8 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
 ]);
 
 const Button = styled(MDButton)(({ theme }) => ({
-  height: 24,
-  padding: '5px 8px 6px 8px', // the one-off 5px is for visually centering the text on the button's container
+  height: 26,
+  padding: '6px 8px',
   flexShrink: 0,
   borderRadius: 999,
   border: '1px solid',
@@ -130,6 +130,7 @@ const MenuItem = styled(MDMenuItem)(({ theme }) => ({
 
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
+    height: 26,
     padding: theme.spacing(0, 1, 0.1, 1),
     fontSize: theme.typography.pxToRem(13),
     borderColor: 'grey.200',
@@ -281,6 +282,18 @@ function useToolbar(controlRefs, options = {}) {
   };
 }
 
+function copyWithRelativeModules(raw, relativeModules) {
+  if (relativeModules) {
+    relativeModules.forEach(({ module, raw: content }) => {
+      // remove exports from relative module
+      content = content.replace(/export( )*(default)*( )*\w+;|export default|export/gm, '');
+      // replace import statement with relative module content
+      raw = raw.replace(new RegExp(`import (.*) from '${module}';`, 'g'), content);
+    });
+  }
+  return copy(raw);
+}
+
 export default function DemoToolbar(props) {
   const {
     codeOpen,
@@ -332,9 +345,10 @@ export default function DemoToolbar(props) {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
+
   const handleCopyClick = async () => {
     try {
-      await copy(demoData.raw);
+      await copyWithRelativeModules(demoData.raw);
       setSnackbarMessage(t('copiedSource'));
       setSnackbarOpen(true);
     } finally {
