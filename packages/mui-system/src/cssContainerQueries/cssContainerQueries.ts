@@ -14,29 +14,6 @@ export interface CssContainerQueries {
 }
 
 /**
- * A wrapper of the `breakpoints`'s utilities to create container queries.
- */
-function createBreakpointToCQ<T extends { breakpoints: Partial<Breakpoints> }>(themeInput: T) {
-  return function toContainerQuery(key: keyof ContainerQueries, name?: string) {
-    return (...args: Array<Breakpoint | number>) => {
-      // @ts-ignore
-      const result = themeInput.breakpoints[key](...args).replace(
-        '@media',
-        name ? `@container ${name}` : '@container',
-      );
-      if (key === 'not' && result.includes('not all and')) {
-        // `@container` does not work with `not all and`, so need to invert the logic
-        return result
-          .replace('not all and ', '')
-          .replace('min-width:', 'width<')
-          .replace('max-width:', 'width>');
-      }
-      return result;
-    };
-  };
-}
-
-/**
  * For using in `sx` prop to sort the breakpoint from low to high.
  * Note: this function does not work and will not support multiple units.
  *       e.g. input: { '@container (min-width:300px)': '1rem', '@container (min-width:40rem)': '2rem' }
@@ -98,21 +75,42 @@ export function getContainerQuery(theme: CssContainerQueries, shorthand: string)
 export default function cssContainerQueries<T extends { breakpoints: Breakpoints }>(
   themeInput: T,
 ): T & CssContainerQueries {
-  const toContainerQuery = createBreakpointToCQ(themeInput);
-  function cq(name: string) {
-    return {
-      up: toContainerQuery('up', name),
-      down: toContainerQuery('down', name),
-      between: toContainerQuery('between', name),
-      only: toContainerQuery('only', name),
-      not: toContainerQuery('not', name),
+  const toContainerQuery = (mediaQuery: string, name?: string) =>
+    mediaQuery.replace('@media', name ? `@container ${name}` : '@container');
+
+  function attachCq(node: any, name?: string) {
+    node.up = (...args: Parameters<Breakpoints['up']>) =>
+      toContainerQuery(themeInput.breakpoints.up(...args), name);
+
+    node.down = (...args: Parameters<Breakpoints['down']>) =>
+      toContainerQuery(themeInput.breakpoints.down(...args), name);
+
+    node.between = (...args: Parameters<Breakpoints['between']>) =>
+      toContainerQuery(themeInput.breakpoints.between(...args), name);
+
+    node.only = (...args: Parameters<Breakpoints['only']>) =>
+      toContainerQuery(themeInput.breakpoints.only(...args), name);
+
+    node.not = (...args: Parameters<Breakpoints['not']>) => {
+      const result = toContainerQuery(themeInput.breakpoints.not(...args), name);
+      if (result.includes('not all and')) {
+        // `@container` does not work with `not all and`, so need to invert the logic
+        return result
+          .replace('not all and ', '')
+          .replace('min-width:', 'width<')
+          .replace('max-width:', 'width>');
+      }
+      return result;
     };
   }
-  cq.up = toContainerQuery('up');
-  cq.down = toContainerQuery('down');
-  cq.between = toContainerQuery('between');
-  cq.only = toContainerQuery('only');
-  cq.not = toContainerQuery('not');
+  const node = {};
+  const cq = ((name: string) => {
+    attachCq(node, name);
+    return node;
+  }) as CssContainerQueries['cq'];
+
+  attachCq(cq);
+
   return {
     ...themeInput,
     cq,

@@ -20,6 +20,20 @@ const defaultBreakpoints = {
   up: (key) => `@media (min-width:${values[key]}px)`,
 };
 
+const defaultContainerQueries = {
+  cq: (containerName) => ({
+    up: (key) => {
+      let result = typeof key === 'number' ? key : values[key] || key;
+      if (typeof result === 'number') {
+        result = `${result}px`;
+      }
+      return containerName
+        ? `@container ${containerName} (min-width:${result})`
+        : `@container (min-width:${result})`;
+    },
+  }),
+};
+
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
   const theme = props.theme || {};
 
@@ -35,7 +49,10 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
     const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     return Object.keys(propValue).reduce((acc, breakpoint) => {
       if (isCqShorthand(themeBreakpoints.keys, breakpoint)) {
-        const containerKey = getContainerQuery({ breakpoints: themeBreakpoints }, breakpoint);
+        const containerKey = getContainerQuery(
+          theme.cq ? theme : defaultContainerQueries,
+          breakpoint,
+        );
         if (containerKey) {
           acc[containerKey] = styleFromPropValue(propValue[breakpoint], breakpoint);
         }
