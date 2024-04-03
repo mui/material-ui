@@ -3,11 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getFormGroupUtilityClass } from './formGroupClasses';
 import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';
+
+const useThemeProps = createUseThemeProps('MuiFormGroup');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, row, error } = ownerState;
@@ -27,14 +28,19 @@ const FormGroupRoot = styled('div', {
 
     return [styles.root, ownerState.row && styles.row];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
   flexDirection: 'column',
   flexWrap: 'wrap',
-  ...(ownerState.row && {
-    flexDirection: 'row',
-  }),
-}));
+  variants: [
+    {
+      props: { row: true },
+      style: {
+        flexDirection: 'row',
+      },
+    },
+  ],
+});
 
 /**
  * `FormGroup` wraps controls such as `Checkbox` and `Switch`.

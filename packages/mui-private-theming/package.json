@@ -38,14 +38,14 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.4",
     "@mui/utils": "workspace:^",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@mui-internal/test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.12",
+    "@types/chai": "^4.3.14",
     "@types/react": "^18.2.55",
     "chai": "^4.4.1",
     "react": "^18.2.0"

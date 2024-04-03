@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-beta.40",
+  "version": "5.0.0-beta.41",
   "private": false,
   "author": "MUI Team",
   "description": "Base UI is a library of headless ('unstyled') React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.",
@@ -41,7 +41,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.4",
     "@floating-ui/react-dom": "^2.0.8",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -53,10 +53,10 @@
     "@mui-internal/test-utils": "workspace:^",
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/types": "workspace:^",
-    "@testing-library/react": "^14.2.1",
+    "@testing-library/react": "^14.2.2",
     "@testing-library/user-event": "^14.5.2",
-    "@types/chai": "^4.3.12",
-    "@types/prop-types": "^15.7.11",
+    "@types/chai": "^4.3.14",
+    "@types/prop-types": "^15.7.12",
     "@types/react": "18.2.55",
     "@types/react-dom": "18.2.19",
     "@types/sinon": "^10.0.20",

@@ -16,6 +16,28 @@ export type PluginCustomOptions = {
    * Object to pass as parameter to the styled css callback functions.
    */
   themeArgs?: { theme?: Theme };
+  /**
+   * Customize the output CSS. Mainly used for RTL support right now.
+   */
+  css?: {
+    /**
+     * To denote that whatever default css is being authored pertains to this
+     * direction so that when Pigment CSS generates the CSS for the other direction,
+     * it can revert the direction of the selector accordingly.
+     * @default 'ltr'
+     */
+    defaultDirection: 'ltr' | 'rtl';
+    /**
+     * Pass this as true if you want to output the CSS for both ltr and rtl.
+     * The css of the non-default direction will be wrapped in a `dir` selector.
+     */
+    generateForBothDir: boolean;
+    /**
+     * Pass this callback to customize the selector for the `dir` attribute. The default
+     * is [dir=ltr] or [dir=rtl].
+     */
+    getDirSelector?: (dir: 'ltr' | 'rtl') => string;
+  };
 };
 
 type CssFnValueToVariableParams = {
@@ -27,8 +49,6 @@ type CssFnValueToVariableParams = {
   includeThemeArg?: boolean;
   themeImportIdentifier?: string;
 };
-
-// const expressionCache = new WeakMap<ExpressionValue, Expression>();
 
 // @TODO - Implement default theme argument for non-theme config as well.
 function parseAndWrapExpression(

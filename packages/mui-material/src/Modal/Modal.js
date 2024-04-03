@@ -9,10 +9,11 @@ import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import composeClasses from '@mui/utils/composeClasses';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Backdrop from '../Backdrop';
 import { getModalUtilityClass } from './modalClasses';
+
+const useThemeProps = createUseThemeProps('MuiModal');
 
 const useUtilityClasses = (ownerState) => {
   const { open, exited, classes } = ownerState;
@@ -33,17 +34,21 @@ const ModalRoot = styled('div', {
 
     return [styles.root, !ownerState.open && ownerState.exited && styles.hidden];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   position: 'fixed',
   zIndex: (theme.vars || theme).zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
   left: 0,
-  ...(!ownerState.open &&
-    ownerState.exited && {
-      visibility: 'hidden',
-    }),
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.open && ownerState.exited,
+      style: {
+        visibility: 'hidden',
+      },
+    },
+  ],
 }));
 
 const ModalBackdrop = styled(Backdrop, {
