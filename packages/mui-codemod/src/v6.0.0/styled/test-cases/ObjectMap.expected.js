@@ -4,24 +4,18 @@ const IconRoot = styled('span')(({
   userSelect: 'none',
   width: '1em',
   height: '1em',
-
   // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
   // To remove at some point.
   overflow: 'hidden',
-
   // allow overflow hidden to take action
   display: 'inline-block',
-
   // support non-square icon
   textAlign: 'center',
-
   flexShrink: 0,
-
   variants: [{
     props: {
       fontSize: "inherit"
     },
-
     style: {
       fontSize: 'inherit'
     }
@@ -29,7 +23,6 @@ const IconRoot = styled('span')(({
     props: {
       fontSize: "small"
     },
-
     style: {
       fontSize: theme.typography.pxToRem(20)
     }
@@ -37,7 +30,6 @@ const IconRoot = styled('span')(({
     props: {
       fontSize: "medium"
     },
-
     style: {
       fontSize: theme.typography.pxToRem(24)
     }
@@ -45,7 +37,6 @@ const IconRoot = styled('span')(({
     props: {
       fontSize: "large"
     },
-
     style: {
       fontSize: theme.typography.pxToRem(36)
     }
@@ -53,7 +44,6 @@ const IconRoot = styled('span')(({
     props: {
       color: "primary"
     },
-
     style: {
       color: (theme.vars || theme).palette.primary.main
     }
@@ -61,7 +51,6 @@ const IconRoot = styled('span')(({
     props: {
       color: "secondary"
     },
-
     style: {
       color: (theme.vars || theme).palette.secondary.main
     }
@@ -69,7 +58,6 @@ const IconRoot = styled('span')(({
     props: {
       color: "info"
     },
-
     style: {
       color: (theme.vars || theme).palette.info.main
     }
@@ -77,7 +65,6 @@ const IconRoot = styled('span')(({
     props: {
       color: "success"
     },
-
     style: {
       color: (theme.vars || theme).palette.success.main
     }
@@ -85,7 +72,6 @@ const IconRoot = styled('span')(({
     props: {
       color: "warning"
     },
-
     style: {
       color: (theme.vars || theme).palette.warning.main
     }
@@ -93,7 +79,6 @@ const IconRoot = styled('span')(({
     props: {
       color: "action"
     },
-
     style: {
       color: (theme.vars || theme).palette.action.active
     }
@@ -101,7 +86,6 @@ const IconRoot = styled('span')(({
     props: {
       color: "error"
     },
-
     style: {
       color: (theme.vars || theme).palette.error.main
     }
@@ -109,7 +93,6 @@ const IconRoot = styled('span')(({
     props: {
       color: "disabled"
     },
-
     style: {
       color: (theme.vars || theme).palette.action.disabled
     }
@@ -117,7 +100,6 @@ const IconRoot = styled('span')(({
     props: {
       color: "inherit"
     },
-
     style: {
       color: undefined
     }

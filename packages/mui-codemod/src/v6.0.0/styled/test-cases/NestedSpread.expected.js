@@ -5,20 +5,16 @@ const Component = styled('div')(({
   return {
     // Explicitly set the default value to solve a bug on IE11.
     overflow: 'visible',
-
     color: (theme.vars || theme).palette.action.active,
-
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
-
     variants: [{
       props: (
         {
           ownerState
         }
       ) => !ownerState.disableRipple,
-
       style: {
         '&:hover': {
           backgroundColor: theme.vars
@@ -37,7 +33,6 @@ const Component = styled('div')(({
           ownerState
         }
       ) => edge === 'start' && ownerState.size === 'small',
-
       style: {
         marginLeft: -3
       }
@@ -48,7 +43,6 @@ const Component = styled('div')(({
           ownerState
         }
       ) => edge === 'start' && ownerState.size !== 'small',
-
       style: {
         marginLeft: -12
       }
@@ -59,7 +53,6 @@ const Component = styled('div')(({
           ownerState
         }
       ) => edge === 'end' && ownerState.size === 'small',
-
       style: {
         marginRight: -3
       }
@@ -70,7 +63,6 @@ const Component = styled('div')(({
           ownerState
         }
       ) => edge === 'end' && ownerState.size !== 'small',
-
       style: {
         marginRight: -12
       }
@@ -81,7 +73,6 @@ const Component = styled('div')(({
         }
       ) => ownerState.color !== 'inherit' &&
         ownerState.color !== 'default' && !ownerState.disableRipple,
-
       style: {
         '&:hover': {
           ...(palette && {
@@ -102,7 +93,6 @@ const Component = styled('div')(({
         }
       ) => ownerState.color !== 'inherit' &&
         ownerState.color !== 'default',
-
       style: {
         color: palette?.main
       }

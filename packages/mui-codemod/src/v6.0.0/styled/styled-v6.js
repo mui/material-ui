@@ -356,5 +356,25 @@ export default function styledV6(file, api, options) {
     });
   });
 
-  return root.toSource(printOptions);
+  const transformed = root.toSource(printOptions);
+
+  // recast adds extra newlines that we don't want, https://github.com/facebook/jscodeshift/issues/249
+  // need to remove them manually
+  const lines = [];
+  let isInStyled = false;
+  transformed.split('\n').forEach((line) => {
+    if (!isInStyled) {
+      lines.push(line);
+    } else if (line !== '') {
+      if (line.match(/^}\)+;?$/)) {
+        isInStyled = false;
+      }
+      lines.push(line);
+    }
+    if (line.includes('styled.') || line.includes('styled(')) {
+      isInStyled = true;
+    }
+  });
+
+  return lines.join('\n');
 }

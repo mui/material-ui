@@ -4,16 +4,13 @@ const FormHelperTextRoot = styled('p')(({
   color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.caption,
   textAlign: 'left',
-
   [`&.${formHelperTextClasses.disabled}`]: {
     color: (theme.vars || theme).palette.text.disabled,
   },
-
   variants: [{
     props: {
       size: 'small'
     },
-
     style: {
       marginTop: 4,
     }
@@ -22,7 +19,6 @@ const FormHelperTextRoot = styled('p')(({
       variant: 'contained',
       size: 'small'
     },
-
     style: {
         marginTop: 6,
       }
@@ -35,7 +31,6 @@ const FormHelperTextRoot = styled('p')(({
     ) => ownerState.size === 'small' &&
       ownerState.variant === 'contained' &&
       disabled,
-
     style: {
         marginTop: 6,
       }
@@ -45,7 +40,6 @@ const FormHelperTextRoot = styled('p')(({
         ownerState
       }
     ) => ownerState.size !== 'small',
-
     style: {
       marginBottom: 4,
     }
@@ -58,7 +52,6 @@ const FormHelperTextRoot = styled('p')(({
     ) => ownerState.size !== 'small' &&
       ownerState.variant !== 'contained' &&
       !disabled,
-
     style: {
         marginBottom: 6,
       }
@@ -68,7 +61,6 @@ const FormHelperTextRoot = styled('p')(({
         ownerState
       }
     ) => ownerState.contained,
-
     style: {
       marginLeft: 14,
       marginRight: 14,
@@ -79,7 +71,6 @@ const FormHelperTextRoot = styled('p')(({
         ownerState
       }
     ) => !ownerState.contained,
-
     style: {
       marginTop: 14,
       marginBottom: 14,
@@ -91,12 +82,10 @@ const Component = styled.div(({
   theme
 }) => (({
   ...theme.typography.caption,
-
   variants: [{
     props: {
       size: 'small'
     },
-
     style: {
       marginTop: (theme.vars || theme).spacing(1),
     }
