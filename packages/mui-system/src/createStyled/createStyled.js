@@ -193,6 +193,19 @@ export default function createStyled(input = {}) {
       });
     });
 
+    AugmentedTag.proptypes = {
+      sx: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+        PropTypes.func,
+        PropTypes.object,
+        PropTypes.shape({
+          className: PropTypes.string,
+          vars: PropTypes.object,
+        }),
+        PropTypes.string,
+      ]),
+    }
+
     const defaultStyledResolver = styledEngineStyled(AugmentedTag, {
       label,
       ...options,
