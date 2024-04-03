@@ -48,7 +48,7 @@ export default function ConnectFeatures() {
                 The way developers and designers <GradientText>ship faster</GradientText>
               </Typography>
             }
-            description="Connect is perfect for who is designing and developing using the Material UI React library and Design Kit,"
+            description="Connect is perfect for designing and developing using the Material UI React library and Design Kit."
           />
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
