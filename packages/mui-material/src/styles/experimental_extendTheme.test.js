@@ -408,6 +408,14 @@ describe('experimental_extendTheme', () => {
     });
   });
 
+  describe('container queries', () => {
+    it('should generate container queries', () => {
+      const theme = extendTheme();
+      expect(theme.cq('sidebar').up('sm')).to.equal('@container sidebar (min-width:600px)');
+      expect(theme.cq.up(300)).to.equal('@container (min-width:300px)');
+    });
+  });
+
   it('shallow merges multiple arguments', () => {
     const theme = extendTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
     expect(theme.foo).to.equal('I am foo');
