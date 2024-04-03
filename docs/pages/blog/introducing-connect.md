@@ -3,16 +3,16 @@ title: 'Introducing Connect: a Figma plugin that exports Material UI code'
 description: Connect is perfect for designing and developing using the Material UI React library and Design Kit.
 date: 2024-04-05T00:00:00.000Z
 authors: ['danilo-leal', 'DavidCnoops']
-tags: ['Connect', 'Material UI', 'Product']
+tags: ['Connect', 'Material UI', 'Product']
 card: true
 ---
 
 A few years ago, we released the [Material UI Design Kit for Figma](/store/items/figma-react/).
-Since then, many designers who use it expressed how much faster their process would be if they could hand over production-ready code generated directly from the design software to developers using the Material UI React library.
+Since then, many designers who use it expressed how much faster their process would be if they could hand over production-ready code generated directly from the design software to developers using the Material UI React library.
 
 That's why Connect, a Figma plugin, was developed and it's now [available now in beta](https://www.figma.com/community/plugin/1336346114713490235/connect)! 🎉
 
-Ultimately, the goal for the Design Kits is to increase the efficiency and speed of the entire team that is using Material UI, drawing designers and developers closer by facilitating the way new designs reach the codebase.
+Ultimately, the goal for the Design Kits is to increase the efficiency and speed of the entire team that is using Material UI, drawing designers and developers closer by facilitating the way new designs reach the codebase.
 
 ## Theme customization
 
