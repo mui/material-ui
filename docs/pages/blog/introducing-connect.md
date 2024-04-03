@@ -7,13 +7,13 @@ tags: ['Connect', 'Material UI', 'Product']
 card: false
 ---
 
-A few years ago, we released the Material UI Design Kit for Figma.
+A few years ago, we released the [Material UI Design Kit for Figma](/store/items/figma-react/).
 Since then, we've heard from many designers who use Material UI as their React component library of choice.
 They've expressed how much faster their process could be if they could hand over production-ready code generated directly from the design software to developers.
 
 That's precisely why we developed Connect.
 Ultimately, the goal for the Design Kits has always been to increase the efficiency and speed of the whole team that uses Material UI.
-The Connect plugin, that's available now in beta, is a bridge that draws designers and developers closer, facilitating the way new designs reach the codebase.
+The Connect plugin, that's [available now in beta](https://www.figma.com/community/plugin/1336346114713490235/connect), is a bridge that draws designers and developers closer, facilitating the way new designs reach the codebase.
 
 ## Theme customizations
 
@@ -40,11 +40,11 @@ That's why we've included a quick Storybook preview panel on the plugin so that 
 
 ## Try Connect now!
 
-Get the beta version of Connect now, availble for free on MUI's Figma community profile.
+Get the beta version of Connect now, [availble for free](https://www.figma.com/community/plugin/1336346114713490235/connect) on MUI's Figma community profile.
 We're excited to see you take it for a spin.
-There's still a lot to do, but we're looking forward to hearing from all of you who requested this plugin years ago.
+There's still a lot to do, but we're looking forward to hearing from all of you [who requested this plugin years ago](https://github.com/mui/mui-design-kits/issues/10).
 
-- Check out further documentation for the Connect plugin and the Material UI Design Kit
-- If you've got any feedback, we'd love to hear from you here.
+- Check out further documentation for the Connect plugin and the Material UI Design Kit (To-be-removed note: I'll add links here once the corresponding PR for their docs is merged).
+- If you've got any feedback, we'd love to [hear from you here](https://mui-connect.canny.io/feedback).
 
 Happy designing!
