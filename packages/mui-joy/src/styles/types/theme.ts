@@ -110,6 +110,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem, CssContainerQuer
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
   generateThemeVars: () => ThemeVars;
   generateStyleSheets: () => Record<string, any>[];
+  generateSpacing: () => Spacing;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.

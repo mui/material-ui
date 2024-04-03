@@ -10,7 +10,7 @@
     "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   },
   "dependencies": {
-    "@mui/base": "latest",
+    "@mui/base": "next",
     "clsx": "latest",
     "next": "latest",
     "react": "latest",

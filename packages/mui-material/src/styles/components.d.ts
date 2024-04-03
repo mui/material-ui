@@ -392,6 +392,11 @@ export interface Components<Theme = unknown> {
     styleOverrides?: ComponentsOverrides<Theme>['MuiRadio'];
     variants?: ComponentsVariants<Theme>['MuiRadio'];
   };
+  MuiRadioGroup?: {
+    defaultProps?: ComponentsProps['MuiRadioGroup'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiRadioGroup'];
+    variants?: ComponentsVariants<Theme>['MuiRadioGroup'];
+  };
   MuiRating?: {
     defaultProps?: ComponentsProps['MuiRating'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiRating'];
