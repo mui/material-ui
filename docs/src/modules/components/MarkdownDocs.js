@@ -54,7 +54,7 @@ export default function MarkdownDocs(props) {
 
   return (
     <AppLayoutDocs
-      cardOtions={{
+      cardOptions={{
         description: localizedDoc.headers.cardDescription,
         title: localizedDoc.headers.cardTitle,
       }}
