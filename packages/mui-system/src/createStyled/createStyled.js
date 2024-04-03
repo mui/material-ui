@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
