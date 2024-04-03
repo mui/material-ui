@@ -32,8 +32,7 @@ declare module '@mui/material/styles/createPalette' {
   interface Palette {
     primaryDark: PaletteColor;
     gradients: {
-      lightGrayRadio: string;
-      stylizedRadio: string;
+      radioSubtle: string;
       linearSubtle: string;
     };
   }
@@ -255,12 +254,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       },
       warning,
       gradients: {
-        lightGrayRadio:
-          'radial-gradient(50% 50% at 50% 50%, #F0F7FF 0%, rgba(240, 247, 255, 0.05) 100%)',
-        stylizedRadio:
+        radioSubtle:
           mode === 'dark'
-            ? 'linear-gradient(rgba(0 0 0 / 0.1), rgba(0 0 0 / 0.1)), linear-gradient(254.86deg, rgba(0, 58, 117, 0.18) 0%, rgba(11, 13, 14, 0.3) 49.98%, rgba(0, 76, 153, 0.21) 100.95%)'
-            : 'linear-gradient(rgba(255 255 255 / 0.3), rgba(255 255 255 / 0.3)), linear-gradient(254.86deg, rgba(194, 224, 255, 0.12) 0%, rgba(194, 224, 255, 0.12) 0%, rgba(255, 255, 255, 0.3) 49.98%, rgba(240, 247, 255, 0.3) 100.95%)',
+            ? `radial-gradient(100% 100% at 100% 100%, transparent 0, ${alpha(blue[900], 0.3)} 300%)`
+            : `radial-gradient(100% 90% at 50% 0, transparent 0, ${alpha(blue[100], 0.3)} 300%)`,
         linearSubtle:
           mode === 'light'
             ? `linear-gradient(to bottom right, ${alpha(blue[50], 0.3)} 25%, ${alpha(grey[50], 0.2)} 100%)`
@@ -953,6 +950,9 @@ export function getThemedComponents(): ThemeOptions {
                   '&:hover': {
                     color: (theme.vars || theme).palette.primary[700],
                   },
+                },
+                '&.Mui-focusVisible': {
+                  backgroundColor: (theme.vars || theme).palette.primary[200],
                 },
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[100],
