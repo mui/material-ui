@@ -227,7 +227,7 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
           width: { xs: 80, sm: 100 },
           height: { xs: 80, sm: 100 },
         },
-        ...props.sx,
+        ...(typeof props.sx === 'object' && props.sx),
       }}
     >
       <FadeDelay delay={200}>{renderTool('figma')}</FadeDelay>

@@ -205,7 +205,7 @@ export default function createStyled(input = {}) {
         }),
         PropTypes.string,
       ]),
-    }
+    };
 
     const defaultStyledResolver = styledEngineStyled(AugmentedTag, {
       label,

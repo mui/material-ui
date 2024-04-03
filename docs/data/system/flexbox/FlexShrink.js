@@ -17,7 +17,7 @@ function Item(props) {
         borderRadius: 2,
         fontSize: '0.875rem',
         fontWeight: '700',
-        ...sx,
+        ...(typeof sx === 'object' && sx),
       }}
       {...other}
     />

@@ -21,7 +21,7 @@ export default function Slide({
         [`@keyframes ${animationName}`]: {
           ...keyframes,
         },
-        ...props.sx,
+        ...(typeof props.sx === 'object' && props.sx),
       }}
     />
   );

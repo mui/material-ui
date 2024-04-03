@@ -28,7 +28,7 @@ export default function ShowcaseContainer({
             borderBottomLeftRadius: '12px',
             borderBottomRightRadius: '12px',
           },
-          ...sx,
+          ...(typeof sx === 'object' && sx),
         }}
       >
         <Frame.Demo

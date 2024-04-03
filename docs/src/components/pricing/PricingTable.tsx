@@ -1281,7 +1281,7 @@ export default function PricingTable({
   const renderNestedRow = (key: string) => renderMasterRow(key, nestedGridSx, plans);
 
   return (
-    <Box ref={tableRef} {...props} sx={{ pt: 8, ...props.sx }}>
+    <Box ref={tableRef} {...props} sx={{ pt: 8, ...(typeof props.sx === 'object' && props.sx) }}>
       <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
         <Box sx={gridSx}>

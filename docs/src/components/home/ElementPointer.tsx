@@ -66,7 +66,7 @@ export default function PointerContainer({
         ref={container}
         {...props}
         onMouseLeave={() => handleMouseOver({ id: null, name: null, target: null })}
-        sx={{ position: 'relative', ...props.sx }}
+        sx={{ position: 'relative', ...(typeof props.sx === 'object' && props.sx) }}
       >
         {props.children}
         {container.current && data.target && (

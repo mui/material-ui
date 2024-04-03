@@ -65,7 +65,7 @@ export function Group({
             insetInlineEnd: -20,
           },
         },
-        ...props.sx,
+        ...(typeof props.sx === 'object' && props.sx),
       }}
     />
   );
@@ -92,7 +92,7 @@ export default function Item({
         pr: smallerIconDistance ? 3 : 2,
         display: 'flex',
         alignItems: 'center',
-        ...props.sx,
+        ...(typeof props.sx === 'object' && props.sx),
       }}
     >
       <Box component="span" sx={{ mr: smallerIconDistance ? 1 : 2, lineHeight: 0 }}>

@@ -51,7 +51,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           '&& > *': {
             minWidth: { xs: '100%', md: '0%' },
           },
-          ...other.sx,
+          ...(typeof props.sx === 'object' && props.sx),
         }}
       >
         <Button

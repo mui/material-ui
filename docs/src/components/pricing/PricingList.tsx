@@ -28,7 +28,11 @@ const Plan = React.forwardRef<
     <Paper
       ref={ref}
       variant="outlined"
-      sx={{ p: 2, ...(unavailable && { '& .MuiTypography-root': { opacity: 0.5 } }), ...sx }}
+      sx={{
+        p: 2,
+        ...(unavailable && { '& .MuiTypography-root': { opacity: 0.5 } }),
+        ...(typeof sx === 'object' && sx),
+      }}
       {...props}
     >
       <PlanName plan={plan} />
