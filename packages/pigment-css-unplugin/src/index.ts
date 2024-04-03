@@ -25,12 +25,15 @@ import {
 } from '@pigment-css/react/utils';
 import type { ResolvePluginInstance } from 'webpack';
 
+import { handleUrlReplacement, type AsyncResolver } from './utils';
+
 type NextMeta = {
   type: 'next';
   dev: boolean;
   isServer: boolean;
   outputCss: boolean;
   placeholderCssFile: string;
+  projectPath: string;
 };
 
 type ViteMeta = {
@@ -42,7 +45,6 @@ type WebpackMeta = {
 };
 
 type Meta = NextMeta | ViteMeta | WebpackMeta;
-export type AsyncResolver = (what: string, importer: string, stack: string[]) => Promise<string>;
 
 export type PigmentOptions<Theme extends BaseTheme = BaseTheme> = {
   theme?: Theme;
@@ -140,6 +142,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
       };
     },
   };
+  const projectPath = meta?.type === 'next' ? meta.projectPath : process.cwd();
 
   let webpackResolver: AsyncResolver;
 
@@ -255,14 +258,24 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
           };
         }
 
+        if (isNext) {
+          // Handle url() replacement in css. Only handled in Next.js as the css is injected
+          // through the use of a placeholder CSS file that lies in the nextjs plugin package.
+          // So url paths can't be resolved relative to that file.
+          if (cssText && cssText.includes('url(')) {
+            cssText = await handleUrlReplacement(cssText, id, asyncResolve, projectPath);
+          }
+        }
+
         if (sourceMap && result.cssSourceMapText) {
           const map = Buffer.from(result.cssSourceMapText).toString('base64');
           cssText += `/*# sourceMappingURL=data:application/json;base64,${map}*/`;
         }
 
         // Virtual modules do not work consistently in Next.js (the build is done at least
-        // thrice) resulting in error in subsequent builds. So we use a placeholder CSS
-        // file with the actual CSS content as part of the query params.
+        // thrice with different combination of parameters) resulting in error in
+        // subsequent builds. So we use a placeholder CSS file with the actual CSS content
+        // as part of the query params.
         if (isNext) {
           const data = `${meta.placeholderCssFile}?${encodeURIComponent(
             JSON.stringify({
@@ -392,4 +405,4 @@ export const webpack = plugin.webpack as unknown as UnpluginFactoryOutput<
   WebpackPluginInstance
 >;
 
-export { extendTheme };
+export { type AsyncResolver, extendTheme };
