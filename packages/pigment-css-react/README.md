@@ -3,7 +3,7 @@
 Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated styles to their own CSS files at build time.
 
 - [Getting started](#getting-started)
-  - [Why this project exists?](#why-choose-pigment-css)
+  - [Why choose Pigment CSS](#why-choose-pigment-css)
   - [Start with Next.js](#start-with-nextjs)
   - [Start with Vite](#start-with-vite)
 - [Basic usage](#basic-usage)
@@ -24,8 +24,8 @@ Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated sty
 
 ## Getting started
 
-Pigment CSS supports Next.js and Vite with support for more bundlers in the future.
-You must install the corresponding plugin, as shown below.
+Pigment CSS supports Next.js and Vite; support for other bundlers is coming in the future.
+You must install the corresponding plugin as shown below.
 
 ### Why choose Pigment CSS
 
@@ -34,11 +34,11 @@ Thanks to recent advancements in CSS (like CSS variables and `color-mix()`), "tr
 Pigment CSS addresses the needs of the modern React developer by providing a zero-runtime CSS-in-JS styling solution as a successor to tools like Emotion and styled-components.
 
 Compared to its predecessors, Pigment CSS offers improved DX and runtime performance (though at the cost of increased build time) while also being compatible with React Server Components.
-Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/), enabling to provide the smoothest possible experience for Material UI users when migrating from Emotion in v5 to Pigment CSS in v6.
+Pigment CSS is built on top of [WyW-in-JS](https://wyw-in-js.dev/) which helps to provide the smoothest possible experience for Material UI users migrating from Emotion in v5 to Pigment CSS in v6.
 
 ### Start with Next.js
 
-Use the following commands to create a new Next.js project with Pigment CSS set up:
+Run the following commands to create a new Next.js project with Pigment CSS already set up:
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/pigment-css-nextjs-ts
@@ -47,12 +47,14 @@ cd pigment-css-nextjs-ts
 
 #### Manual installation
 
+Run the following commands to manually install Pigment CSS in your Next.js project:
+
 ```bash
 npm install @pigment-css/react
 npm install --save-dev @pigment-css/nextjs-plugin
 ```
 
-Then, in your `next.config.js` file, import the plugin and wrap the exported config object:
+Next, in your `next.config.js` file, import the plugin and wrap the exported config object:
 
 ```js
 const { withPigment } = require('@pigment-css/nextjs-plugin');
@@ -84,7 +86,7 @@ Finally, import the stylesheet in the root `layout.tsx` file:
 
 ### Start with Vite
 
-Use the following commands to create a new Vite project with Pigment CSS set up:
+Run the following commands to create a new Vite project with Pigment CSS already set up:
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/pigment-css-vite-ts
@@ -93,12 +95,14 @@ cd pigment-css-vite-ts
 
 #### Manual installation
 
+Run the following commands to manually install Pigment CSS in your Vite project:
+
 ```bash
 npm install @pigment-css/react
 npm install --save-dev @pigment-css/vite-plugin
 ```
 
-Then, in your Vite config file, import the plugin and pass it to the `plugins` array as shown:
+Next, in your Vite config file, import the plugin and pass it to the `plugins` array as shown below:
 
 ```js
 import { pigment } from '@pigment-css/vite-plugin';
@@ -131,11 +135,12 @@ Finally, import the stylesheet in the root `main.tsx` file:
 
 ## Basic usage
 
-**You must configure Pigment CSS with [Next.js](#nextjs) or [Vite](#vite) first.**
+> ⚠️ You must configure Pigment CSS with your bundler—either [Next.js](#start-with-nextjs) or [Vite](#start-with-vite)—before proceeding.
 
 ### Creating styles
 
-Use the `css` API to create reusable styles:
+Use the `css` API to create reusable styles.
+For example, the snippet below creates a `visuallyHidden` class that can be applied to a component:
 
 ```js
 import { css } from '@pigment-css/react';
@@ -159,7 +164,7 @@ function App() {
 
 The call to the `css` function is replaced with a unique string that represents the CSS class name for the generated styles.
 
-Use a callback function to get access to the [theme](#theming) values:
+Use a callback function to access [theme](#theming) values as shown below:
 
 ```js
 const title = css(({ theme }) => ({
@@ -171,7 +176,7 @@ const title = css(({ theme }) => ({
 
 ### Creating components
 
-Use the `styled` API to create a component by passing styles at the end. The usage should be familiar if you've worked with Emotion or styled-components:
+Use the `styled` API to create a component by passing styles at the end, as shown below:
 
 ```js
 import { styled } from '@pigment-css/react';
@@ -187,7 +192,8 @@ function App() {
 }
 ```
 
-The Pigment CSS library differs from "standard" runtime CSS-in-JS libraries in a few ways:
+This usage should be familiar if you've worked with Emotion or styled-components.
+But Pigment CSS differs from these runtime CSS-in-JS libraries in a few ways:
 
 1. You never get direct access to props in your styled declarations. This is because prop values are only available at runtime, but the CSS is extracted at build time. See [Styling based on runtime values](#styling-based-on-runtime-values) for a workaround.
 2. Your styles must be declarative and must account for all combinations of props that you want to style.
@@ -195,13 +201,14 @@ The Pigment CSS library differs from "standard" runtime CSS-in-JS libraries in 
 
 #### Styling based on props
 
-> 💡 This approach is recommended when the value of the prop is known at build time (finite values).
+> 💡 This approach is recommended when the values of the props are known at build time (finite values).
 
-Use the `variants` key to define styles for a combination of the component's props.
+Use the `variants` key to define styles for a combination of a component's props.
 
-Each variant is an object with `props` and `style` keys. The styles are applied when the component's props match the `props` object.
+Each variant is an object with `props` and `style` keys.
+The styles are applied when the component's props match the `props` object.
 
-**Example 1** — A button component with `small` and `large` sizes:
+**Example 1** – A button component with `small` and `large` sizes:
 
 ```jsx
 const Button = styled('button')({
@@ -225,7 +232,7 @@ const Button = styled('button')({
 <Button size="small">Small button</Button>; // padding: 0.5rem
 ```
 
-**Example 2** — A button component with variants and colors:
+**Example 2** – A button component with variants and colors:
 
 ```jsx
 const Button = styled('button')({
@@ -246,9 +253,10 @@ const Button = styled('button')({
 </Button>;
 ```
 
-**Example 3** — Apply styles based on a condition:
+**Example 3** – Conditionally applied styles:
 
-The value of the `props` can be a function that returns a boolean. If the function returns `true`, the styles are applied.
+The value of the `props` can be a function that returns a boolean.
+If the function returns `true`, then the styles are applied.
 
 ```jsx
 const Button = styled('button')({
@@ -264,7 +272,7 @@ const Button = styled('button')({
 });
 ```
 
-Note that the `props` function doesn't work if it is inside another closure, for example, inside an `array.map`:
+Note that the `props` function doesn't work if it's inside another closure—for example, this won't work inside an `array.map`:
 
 ```jsx
 const Button = styled('button')({
@@ -281,7 +289,7 @@ const Button = styled('button')({
 });
 ```
 
-Instead, use plain objects to define the variants:
+Instead you must use plain objects to define the variants:
 
 ```jsx
 const Button = styled('button')({
@@ -297,11 +305,12 @@ const Button = styled('button')({
 
 #### Styling based on runtime values
 
-> 💡 This approach is recommended when the value of a prop is **unknown** ahead of time or possibly unlimited values, for example styling based on the user's input.
+> 💡 This approach is recommended when the values of the props are not known ahead of time or are potentially unlimited—for example, styling based on the user's input.
 
-There are two ways to acheive this (both involve using a CSS variable):
+There are two ways to apply styles based on runtime values.
+Both involve using a CSS variable:
 
-1. Declare a CSS variable directly in the styles and set its value using inline styles:
+**Option 1** – Declare a CSS variable directly in the styles and set its value using inline styles:
 
 ```jsx
 const Heading = styled('h1')({
@@ -315,7 +324,7 @@ function Heading() {
 }
 ```
 
-2. Use a callback function as a value to create a dynamic style for the specific CSS property:
+**Option 2** – Use a callback function as a value to create a dynamic style for the specific CSS property:
 
 ```jsx
 const Heading = styled('h1')({
@@ -323,7 +332,8 @@ const Heading = styled('h1')({
 });
 ```
 
-Pigment CSS replaces the callback with a CSS variable and inject the value through inline style. This makes it possible to create a static CSS file while still allowing dynamic styles.
+Pigment CSS replaces the callback with a CSS variable and injects the value through inline styles.
+This makes it possible to create a static CSS file while still allowing for dynamic styles.
 
 ```css
 .Heading_class_akjsdfb {
@@ -343,7 +353,8 @@ Pigment CSS replaces the callback with a CSS variable and inject the value thro
 
 #### Styled component as a CSS selector
 
-All of the components that you create are also available as CSS selectors. For example, for the `Heading` component described in the previous section, you can target that component inside another styled component like this:
+All of the components that you create are also available as CSS selectors.
+For example, for the `Heading` component described in the previous section, you can target that component inside another styled component like this:
 
 ```jsx
 const Wrapper = styled.div({
@@ -353,7 +364,7 @@ const Wrapper = styled.div({
 });
 ```
 
-This enables you to override the default `color` of the Heading component rendered inside the Wrapper:
+This enables you to override the default `color` of the `Heading` component rendered inside the `Wrapper`:
 
 ```tsx
 <Wrapper>
@@ -369,9 +380,10 @@ const ExtraHeading = styled(Heading)({
 });
 ```
 
-#### Media and Container queries
+#### Media and container queries
 
-Pigment CSS APIs have built-in support for writing media queries and container queries. Use the `@media` and `@container` keys to define styles for different screen and container sizes.
+Pigment CSS APIs have built-in support for writing media queries and container queries.
+Use the `@media` and `@container` keys to define styles for different screen and container sizes.
 
 ```jsx
 import { css, styled } from '@pigment-css/react';
@@ -397,13 +409,11 @@ const Heading = styled('h1')({
 });
 ```
 
-> 💡 **Good to know**:
->
-> Pigment CSS uses Emotion behind the scenes for turning tagged templates and objects into CSS strings.
+> 💡 Pigment CSS uses Emotion behind the scenes for turning tagged templates and objects into CSS strings.
 
 #### Typing props
 
-If you use TypeScript, add the props typing before the styles to get the type checking:
+When using TypeScript, add the props typing before the styles to enable type-checking:
 
 ```tsx
 const Heading = styled('h1')<{ isError?: boolean }>({
@@ -413,7 +423,8 @@ const Heading = styled('h1')<{ isError?: boolean }>({
 
 ### Creating animation keyframes
 
-Use the `keyframes` API to create reusable [animation keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes):
+Use the `keyframes` API to create reusable [animation keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes).
+For example, the snippet below creates a fade-in effect:
 
 ```js
 import { keyframes } from '@pigment-css/react';
@@ -427,12 +438,13 @@ const fadeIn = keyframes`
   }
 `;
 
-function Example1() {
-  return <div style={{ animation: `${fadeIn} 0.5s` }}>I am invisible</div>;
+function KeyFramesExample() {
+  return <div style={{ animation: `${fadeIn} 0.5s` }}>I fade into view</div>;
 }
 ```
 
-The call to the `keyframes` function is replaced with a unique string that represents the CSS animation name. It can be used with `css` or `styled` too.
+The call to the `keyframes` function is replaced with a unique string that represents the name of the CSS animation.
+The `keyframes` function can also be used with `css` or `styled`, as shown below:
 
 ```js
 import { css, styled, keyframes } from '@pigment-css/react';
@@ -446,7 +458,7 @@ const Example2 = styled('div')({
 function App() {
   return (
     <>
-      <Example1 />
+      <KeyFramesExamples />
       <div
         className={css`
           animation: ${fadeIn} 0.5s;
@@ -459,11 +471,10 @@ function App() {
 
 ### Theming
 
-Theming is an **optional** feature that lets you reuse the same values, such as colors, spacing, and typography, across your application. It is a plain object of any structure that you can define in your config file.
+> 💡 The theme object is used at build time and does not exist in the final JavaScript bundle; this means that components created using the `styled` function are compatible with React Server Components.
 
-> **💡 Good to know**:
->
-> The **theme** object is used at build time and does not exist in the final JavaScript bundle. This means that components created using Pigment CSS's `styled` can be used with React Server Components by default while still getting the benefits of theming.
+Theming is an optional feature that lets you reuse values such as colors, spacing, and typography across your application.
+The theme is a plain object that can take any structure, which is defined in your config file.
 
 For example, in Next.js, you can define a theme in the `next.config.js` file like this:
 
@@ -486,7 +497,7 @@ module.exports = withPigment(
       typography: {
         fontFamily: 'Inter, sans-serif',
       },
-      // ...more keys and values, it's free style!
+      // ...additional keys and values as needed
     },
   },
 );
@@ -494,7 +505,7 @@ module.exports = withPigment(
 
 #### Accessing theme values
 
-A callback can be used with **styled()** and **css()** APIs to access the theme values:
+You can use a callback with the `styled` and `css` APIs to access theme values:
 
 ```js
 const Heading = styled('h1')(({ theme }) => ({
@@ -506,7 +517,8 @@ const Heading = styled('h1')(({ theme }) => ({
 
 #### CSS variables support
 
-Pigment CSS can generate CSS variables from the theme values when you wrap your theme with `extendTheme` utility. For example, in a `next.config.js` file:
+Pigment CSS can generate CSS variables from theme values when you wrap your theme with the `extendTheme` utility.
+For example, this is what it would look like in a `next.config.js` file:
 
 ```js
 const { withPigment, extendTheme } = require('@pigment-css/nextjs-plugin');
@@ -532,7 +544,7 @@ module.exports = withPigment(
 );
 ```
 
-The `extendTheme` utility goes through the theme and create a `vars` object which represents the tokens that refer to CSS variables.
+The `extendTheme` utility goes through the theme and creates a `vars` object which represents the tokens that refer to CSS variables.
 
 ```jsx
 const theme = extendTheme({
@@ -567,9 +579,12 @@ The generated CSS variables has the `pigment` prefix:
 
 #### Color schemes
 
-Some tokens, especially color-related tokens, can have different values for different scenarios. For example in a daylight condition, the background color might be white, but in a dark condition, it might be black.
+Color-related tokens sometimes require multiple values to cover different color schemes in an app.
+For example, the app might have light mode with a white background and a dark mode with a black background.
 
-The `extendTheme` utility lets you define a theme with a special `colorSchemes` key:
+The `extendTheme` utility lets you define a theme with a special `colorSchemes` key to accommmodate this.
+The structure of each color scheme must be a plain object with keys and values.
+The snippet below shows how to create basic `light` and `dark` schemes:
 
 ```jsx
 extendTheme({
@@ -590,13 +605,11 @@ extendTheme({
 });
 ```
 
-In the above example, `light` (default) and `dark` color schemes are defined. The structure of each color scheme must be a plain object with keys and values.
-
 #### Switching color schemes
 
 By default, when `colorSchemes` is defined, Pigment CSS uses the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query to switch between color schemes based on the user's system settings.
 
-However, if you want to control the color scheme based on application logic, for example, using a button to switch between light and dark mode, you can customize the behavior by providing a `getSelector` function:
+But if you want to control the color scheme based on application logic—for example, using a button to switch between light and dark mode—you can customize the behavior by providing a `getSelector` function as shown below:
 
 ```diff
   extendTheme({
@@ -608,7 +621,7 @@ However, if you want to control the color scheme based on application logic, for
   });
 ```
 
-Note that you need to add the logic to a button by yourself. Here is an example of how to do it:
+Note that you'll also need to add the logic to the button—here's an example of how to do it:
 
 ```jsx
 function App() {
@@ -626,8 +639,10 @@ function App() {
 
 #### Styling based on color scheme
 
-The `extendTheme` utility attaches a function called `applyStyles` to the theme object. It receives a color scheme as the first argument followed by a style object.
-It returns a proper CSS selector based on the theme configuration.
+The `extendTheme` utility attaches a function called `applyStyles` to the theme object.
+This function receives a color scheme as the first argument followed by a style object, and returns a proper CSS selector based on the theme configuration.
+
+Here's an example implementation:
 
 ```jsx
 const Heading = styled('h1')(({ theme }) => ({
@@ -642,7 +657,7 @@ const Heading = styled('h1')(({ theme }) => ({
 
 #### TypeScript
 
-To get the type checking for the theme, you need to augment the theme type:
+When using TypeScript, you must augment the theme type to enable type-checking:
 
 ```ts
 // any file that is included in your tsconfig.json
@@ -666,13 +681,15 @@ declare module '@pigment-css/react/theme' {
 
 ### Coming from Emotion or styled-components
 
-Emotion and styled-components are runtime CSS-in-JS libraries. What you write in your styles is what you get in the final bundle, which means the styles can be as dynamic as you want with bundle size and performance overhead trade-offs.
+Emotion and styled-components are runtime CSS-in-JS libraries: What you write in your styles is what you get in the final bundle.
+This means styles can be dynamic, but that comes with corresponding trade-offs in terms of bundle size and performance overhead.
 
-On the other hand, Pigment CSS extracts CSS at build time and replaces the JavaScript code with hashed class names and some CSS variables. This means that it has to know all of the styles to be extracted ahead of time, so there are rules and limitations that you need to be aware of when using JavaScript callbacks or variables in Pigment CSS's APIs.
+By contrast, Pigment CSS extracts CSS at build time and replaces the JavaScript code with hashed class names and CSS variables.
+This means it needs to know all of the styles to be extracted ahead of time, so there are some rules and limitations to be aware of when using JavaScript callbacks or variables with the Pigment CSS APIs.
 
-Here are some common patterns and how to achieve them with Pigment CSS:
+Here are some common patterns from Emotion and styled-components, and how to implement them with Pigment CSS:
 
-1. **Fixed set of styles**
+#### Fixed set of styles
 
 In Emotion or styled-components, you can use props to create styles conditionally:
 
@@ -713,11 +730,12 @@ const Flex = styled('div')((props) => ({
 }));
 ```
 
-> 💡 Keep in mind that the `variants` key is for fixed values of props, for example, a component's colors, sizes, and states.
+> 💡 Keep in mind that the `variants` key is for fixed values of props—for example, a component's colors, sizes, and states.
 
-2. **Programatically generated styles**
+#### Programatically generated styles
 
-For Emotion and styled-components, the styles is different on each render and instance because the styles are generated at runtime:
+Because Emotion and styled-components generate styles at runtime, those styles can potentially be different between renders and instances.
+For example, the calculated values in the code snippet below would be different each time the component renders:
 
 ```js
 function randomBetween(min: number, max: number) {
@@ -734,16 +752,22 @@ function App() {
   return (
     <div>
       {[...Array(10)].map((_, index) => (
-        <div key={index} className={css`${generateBubbleVars()}`} />
+        <div
+          key={index}
+          className={css`
+            ${generateBubbleVars()}
+          `}
+        />
       ))}
     </div>
-  )
+  );
 }
 ```
 
-However, in Pigment CSS with the same code as above, all instances have the same styles and won't change between renders because the styles are extracted at build time.
+But if you wrote the code above with Pigment CSS, all instances would have the same styles that would never change between renders because they're extracted at build time.
 
-To achieve the same result, you need to move the dynamic logic to props and pass the value to CSS variables instead:
+To implement programmatically generated styles with Pigment CSS, you must move the dynamic logic to props and pass the value to CSS variables instead.
+The snippet below leads to values that change between renders and instances as intended in the prior example:
 
 ```js
 function randomBetween(min: number, max: number) {
@@ -751,8 +775,8 @@ function randomBetween(min: number, max: number) {
 }
 
 const Bubble = styled('div')({
-  '--x': props => props.x,
-  '--y': props => props.y,
+  '--x': (props) => props.x,
+  '--y': (props) => props.y,
 });
 
 function App() {
@@ -762,6 +786,6 @@ function App() {
         <Bubble key={index} x={`${randomBetween(10, 90)}%`} y={`${randomBetween(15, 85)}%`} />
       ))}
     </div>
-  )
+  );
 }
 ```
