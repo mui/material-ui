@@ -31,11 +31,11 @@
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@babel/core": "^7.23.9",
-    "@babel/helper-module-imports": "^7.22.15",
-    "@babel/helper-plugin-utils": "^7.22.5",
-    "@babel/parser": "^7.23.9",
-    "@babel/types": "^7.23.9",
+    "@babel/core": "^7.24.4",
+    "@babel/helper-module-imports": "^7.24.3",
+    "@babel/helper-plugin-utils": "^7.24.0",
+    "@babel/parser": "^7.24.4",
+    "@babel/types": "^7.24.0",
     "@emotion/css": "^11.11.2",
     "@emotion/is-prop-valid": "^1.2.2",
     "@emotion/react": "^11.11.4",
@@ -53,7 +53,7 @@
     "stylis-plugin-rtl": "^2.1.1"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-jsx": "^7.23.3",
+    "@babel/plugin-syntax-jsx": "^7.24.1",
     "@types/babel__core": "^7.20.5",
     "@types/babel__helper-module-imports": "^7.18.3",
     "@types/babel__helper-plugin-utils": "^7.10.3",
