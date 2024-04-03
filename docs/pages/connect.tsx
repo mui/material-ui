@@ -69,7 +69,7 @@ export default function Connect() {
             />
             <GetStartedButtons
               primaryLabel="Use Connect now"
-              primaryUrl="/connect/"
+              primaryUrl="https://www.figma.com/community/plugin/1336346114713490235/connect"
               secondaryLabel="View docs"
               secondaryUrl="/connect/" // I'll swap it later to /material-ui/design-resources/connect/ once that's merged
             />

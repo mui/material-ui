@@ -362,8 +362,7 @@ export default function ConnectFeatures() {
                 Stay on the loop about the Connect progress!
               </Typography>
               <Typography variant="body2" color="text.secondary" mb={1}>
-                There are lots of exciting updates lined up for Connect. Add your email if you want
-                to stay up to date. No spams!
+                Add your email to stay up to date with the exciting lined-up updates for Connect.
               </Typography>
               <MUIConnectSignUp />
             </Frame.Info>
