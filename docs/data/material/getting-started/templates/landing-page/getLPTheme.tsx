@@ -418,16 +418,16 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             transition: 'all 100ms ease',
             backgroundColor: gray[50],
             borderRadius: theme.shape.borderRadius,
-            border: `1px solid ${alpha(gray[200], 0.1)}`,
+            border: `1px solid ${alpha(gray[200], 0.5)}`,
             boxShadow: 'none',
             ...(ownerState.variant === 'outlined' && {
-              border: `1px solid ${alpha(gray[200], 0.5)}`,
+              border: `1px solid ${gray[200]}`,
               boxShadow: 'none',
               background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
             }),
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[800], 0.4),
-              border: `1px solid ${alpha(gray[700], 0.2)}`,
+              border: `1px solid ${alpha(gray[700], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
                 border: `1px solid ${alpha(gray[700], 0.4)}`,
                 boxShadow: 'none',
