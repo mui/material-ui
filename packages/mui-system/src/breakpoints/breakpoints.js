@@ -17,15 +17,7 @@ const defaultBreakpoints = {
   // Sorted ASC by size. That's important.
   // It can't be configured as it's used statically for propTypes.
   keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-  up: (key) => {
-    let result = typeof key === 'number' ? key : values[key];
-    if (typeof result === 'number') {
-      result = `${result}px`;
-    } else {
-      result = key;
-    }
-    return `@media (min-width:${result})`;
-  },
+  up: (key) => `@media (min-width:${values[key]}px)`,
 };
 
 export function handleBreakpoints(props, propValue, styleFromPropValue) {

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import createTheme from '@mui/system/createTheme';
-import cssContainerQueries, {
+import {
   isCqShorthand,
   sortContainerQueries,
   getContainerQuery,
@@ -24,7 +24,7 @@ describe('cssContainerQueries', () => {
   });
 
   it('should have `up`, `down`, `between`, `only`, and `not` functions', () => {
-    const theme = cssContainerQueries(createTheme());
+    const theme = createTheme();
 
     expect(theme.cq.up('sm')).to.equal('@container (min-width:600px)');
     expect(theme.cq.down('sm')).to.equal('@container (max-width:599.95px)');
@@ -38,7 +38,7 @@ describe('cssContainerQueries', () => {
   });
 
   it('should be able to create named containment context', () => {
-    const theme = cssContainerQueries(createTheme());
+    const theme = createTheme();
 
     expect(theme.cq('sidebar').up('sm')).to.equal('@container sidebar (min-width:600px)');
     expect(theme.cq('sidebar').down('sm')).to.equal('@container sidebar (max-width:599.95px)');
@@ -56,7 +56,7 @@ describe('cssContainerQueries', () => {
   });
 
   it('should sort container queries', () => {
-    const theme = cssContainerQueries(createTheme());
+    const theme = createTheme();
 
     const css = {
       '@container (min-width:960px)': {},
@@ -76,7 +76,7 @@ describe('cssContainerQueries', () => {
   });
 
   it('should sort container queries with other unit', () => {
-    const theme = cssContainerQueries(createTheme());
+    const theme = createTheme();
 
     const css = {
       '@container (min-width:30.5rem)': {},
@@ -97,7 +97,7 @@ describe('cssContainerQueries', () => {
 
   it('should throw an error if shorthand is invalid', () => {
     expect(() => {
-      const theme = cssContainerQueries(createTheme());
+      const theme = createTheme();
       getContainerQuery(theme, 'cq0');
     }).to.throw(
       'MUI: The provided shorthand (cq0) is invalid. The format should be `@<breakpoint | number>` or `@<breakpoint | number>/<container>`.\n' +

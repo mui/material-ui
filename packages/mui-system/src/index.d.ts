@@ -5,7 +5,7 @@ export * from './borders';
 
 export { default as breakpoints, handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
 
-export { default as cssContainerQueries } from './cssContainerQueries';
+export { default as cssContainerQueries, type CssContainerQueries } from './cssContainerQueries';
 
 export { default as compose } from './compose';
 

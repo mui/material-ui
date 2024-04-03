@@ -17,7 +17,6 @@ export {
   lighten,
   css,
   keyframes,
-  cssContainerQueries,
 } from '@mui/system';
 // TODO: Remove this function in v6.
 // eslint-disable-next-line @typescript-eslint/naming-convention

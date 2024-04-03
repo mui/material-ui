@@ -1,17 +1,23 @@
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { Breakpoints, Breakpoint } from '../createTheme/createBreakpoints';
 
-type Fn = 'up' | 'down' | 'between' | 'only' | 'not';
+interface ContainerQueries {
+  up: Breakpoints['up'];
+  down: Breakpoints['down'];
+  between: Breakpoints['between'];
+  only: Breakpoints['only'];
+  not: Breakpoints['not'];
+}
 
-interface CssContainerQueries {
-  cq: ((name: string) => Pick<Breakpoints, Fn>) & Pick<Breakpoints, Fn>;
+export interface CssContainerQueries {
+  cq: ((name: string) => ContainerQueries) & ContainerQueries;
 }
 
 /**
  * A wrapper of the `breakpoints`'s utilities to create container queries.
  */
 function createBreakpointToCQ<T extends { breakpoints: Partial<Breakpoints> }>(themeInput: T) {
-  return function toContainerQuery(key: Fn, name?: string) {
+  return function toContainerQuery(key: keyof ContainerQueries, name?: string) {
     return (...args: Array<Breakpoint | number>) => {
       // @ts-ignore
       const result = themeInput.breakpoints[key](...args).replace(
@@ -70,10 +76,7 @@ export function isCqShorthand(breakpointKeys: string[], value: string) {
   );
 }
 
-export function getContainerQuery(
-  theme: Partial<CssContainerQueries> & { breakpoints: Pick<Breakpoints, 'up'> },
-  shorthand: string,
-) {
+export function getContainerQuery(theme: CssContainerQueries, shorthand: string) {
   const matches = shorthand.match(/^@([^/]+)\/?(.+)?$/);
   if (!matches) {
     if (process.env.NODE_ENV !== 'production') {
@@ -89,13 +92,7 @@ export function getContainerQuery(
   const value = (Number.isNaN(+containerQuery) ? containerQuery : +containerQuery) as
     | Breakpoint
     | number;
-  if (theme.cq) {
-    return containerName ? theme.cq(containerName).up(value) : theme.cq.up(value);
-  }
-  if (theme.breakpoints) {
-    return createBreakpointToCQ(theme)('up', containerName)(value);
-  }
-  return null;
+  return theme.cq(containerName).up(value);
 }
 
 export default function cssContainerQueries<T extends { breakpoints: Breakpoints }>(

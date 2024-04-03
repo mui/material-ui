@@ -1,6 +1,5 @@
 'use client';
 // reexports from system for module augmentation
-export { cssContainerQueries } from '@mui/system';
 export type { BreakpointOverrides } from '@mui/system';
 
 // Joy typings
