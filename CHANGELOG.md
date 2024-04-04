@@ -893,7 +893,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - [material-ui] Revise the Alert demo page (#34892) @samuelsycamore
 - [material-ui] Revise the Accordion page (#40284) @anle9650
 - [material-ui] Add docs for complementary Card components (#40346) @anle9650
-- [material-ui] Add Material 3 components page (#40350) @DiegoAndai
+- [material-ui] Add Material Design 3 components page (#40350) @DiegoAndai
 - Fix strange italic style @oliviertassinari
 - Fix references to ESLint @oliviertassinari
 - Fix 301 redirections @oliviertassinari
@@ -13057,7 +13057,7 @@ Here are some highlights ✨:
 
   1. `stable` (default, formerly `esm`) which targets a snapshot (on release) of `> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"`
   2. `node` (formerly default) which targets a snapshot (on release) of `maintained node versions`
-  3. `legacy` (new) which is `stable` + IE11
+  3. `legacy` (new) which is `stable` + IE 11
   4. `modern` (formerly `es`) which targets the last 1 version of evergreen browsers and active node (currently that is 14
 
   The change yields a 6% reduction in bundle size 📦 (Babel only).

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
 
-export const Box = React.forwardRef(
+const Box = React.forwardRef(
   (
     {
       as = 'div',
@@ -50,3 +50,5 @@ export const Box = React.forwardRef(
     return <Component ref={ref} className={classes} style={styles} {...rest} />;
   },
 );
+
+export default Box;

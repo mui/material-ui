@@ -4,6 +4,7 @@ import Link from 'next/link';
 import fs from 'fs/promises';
 import path from 'path';
 import { css } from '@pigment-css/react';
+import Box from '@pigment-css/react/Box';
 
 export default async function MaterialUIPage() {
   const rootPaths = await fs.readdir(path.join(process.cwd(), `src/app/material-ui`));
@@ -11,8 +12,9 @@ export default async function MaterialUIPage() {
     <div>
       <h1>Material UI Components</h1>
       <nav>
-        <ul
-          className={css({
+        <Box
+          as="ul"
+          sx={{
             margin: 0,
             marginBlock: '1rem',
             padding: 0,
@@ -20,7 +22,7 @@ export default async function MaterialUIPage() {
             display: 'flex',
             flexDirection: 'column',
             gap: '0.5rem',
-          })}
+          }}
         >
           {rootPaths
             .filter((item) => !item.match(/\.(js|tsx)$/))
@@ -37,7 +39,7 @@ export default async function MaterialUIPage() {
                 </Link>
               </li>
             ))}
-        </ul>
+        </Box>
       </nav>
     </div>
   );
