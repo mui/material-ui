@@ -4,23 +4,51 @@
 
 ## Introduction
 
-Connect is a Figma plugin that lets you generate a theme from the [Material UI Design Kit for Figma](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x).
-You can customize design tokens and components, export a JSON file with the changes to your theme, and visualize your customizations through an embedded Storybook instance.
+[Connect](https://www.figma.com/community/plugin/1336346114713490235/) is a Figma plugin that lets you generate a theme from the [Material UI for Figma Design Kit](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/).
+You can customize design tokens and components, export the generated theme as a JSON file, and visualize your customizations through an embedded Storybook instance.
 
 :::warning
-This plugin is currently **in beta** and some Material UI components cannot be customized yet.
+This plugin is **in beta**. Component customization support is currently limited to the Button and Switch components. More components will follow soon!
 
-Connect only supports the Material UI Design Kit; others, such as the Joy UI Design Kit, are not yet supported.
+Connect works in combination with the Material UI for Figma Design Kit v5.16.0 and later. Other kits, such as the Joy UI Design Kit, are not yet supported.
 :::
 
 <img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="A screenshot of Figma together with the Connect plugin running on the side, customizing the Material UI Switch component." width="1628" height="400" />
 
 ## Running the plugin
 
+### Getting started
+
+Follow these steps to generate a Material UI theme using the Connect plugin:
+
+1. Download the [Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/) or purchase the [Complete version](https://mui.com/store/items/figma-react/) of the Material UI for Figma Design Kit.
+2. Download and install the [Connect Figma plugin](https://www.figma.com/community/plugin/1336346114713490235/).
+3. Open your copy of the Material UI for Figma Design Kit.
+4. In the opened Design Kit, right-click anywhere in the canvas, then click **Plugins** > **Connect**.
+5. The Connect plugin will appear. Now click on **Generate theme**.
+6. After a few seconds a theme is generated (the theme will be empty if the default design kit is unaltered).
+7. Click on the **Storybook preview** tab to preview your theme applied to the Material UI component library.
+
+There are several ways to start customizing the Desing Kit in order to generate a non-empty theme file.
+Currently the Connect plugin supports customizations applied to:
+
+- `Local variables > palette` to generate custom [color palette tokens](https://mui.com/material-ui/customization/palette/)
+- `Local variables > breakpoints` to generate custom [breakpoint tokens](https://mui.com/material-ui/customization/breakpoints/)
+- `Local variables > shape` to generate custom [border radius tokens](https://mui.com/system/borders/#border-radius/)
+- `Local variables > spacing` to generate custom [spacing tokens](https://mui.com/material-ui/customization/spacing/)
+- `Effect styles > elevation` to generate custom [shadow tokens](https://mui.com/system/shadows/)
+- `Text styles > typography` to generate custom [Typography component](https://mui.com/material-ui/react-typography/) styles
+- `Components > Button > any variant` to generate custom [Button component](https://mui.com/material-ui/react-button/) theme styles
+- `Components > Switch > any variant` to generate custom [Switch component](https://mui.com/material-ui/react-switch/) theme styles
+
+(Note: More components will soon be supported)
+
+Once you've made any of these changes to the Design Kit, rerun the plugin to generate a new theme.
+
 ### Basics
 
-Test the plugin by starting with [the Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x).
-Then, visit the Store to get access to [the complete version](https://mui.com/r/material-ui-figma-latest/) with all of the Material UI components.
+Test the plugin by starting with [the Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/).
+Then, visit the Store to get access to [the Complete version](https://mui.com/store/items/figma-react/) with all of the Material UI components.
 
 Once you've installed it, go to your copy of the Material UI Design Kit, click on the **"Resources"** button, go to the **"Plugins"** tab, and then click on **"Connect"**.
 
