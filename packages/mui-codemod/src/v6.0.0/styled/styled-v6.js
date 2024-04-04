@@ -231,13 +231,57 @@ export default function styledV6(file, api, options) {
       });
       const variants = [];
 
-      let objectExpression = style.body;
-      while (objectExpression.type !== 'ObjectExpression') {
-        if (objectExpression.type === 'BlockStatement') {
-          objectExpression = objectExpression.body.find(
-            (item) => item.type === 'ReturnStatement',
-          ).argument;
+      if (style.body.type === 'LogicalExpression') {
+        if (
+          style.params[0] &&
+          style.params[0].type === 'ObjectPattern' &&
+          style.params[0].properties.some((prop) => prop.key.name !== 'theme')
+        ) {
+          // case: ({ theme, ownerState }) => ownerState.variant === 'regular' && theme.mixins.toolbar
+          style.body = j.objectExpression([
+            j.objectProperty(
+              j.identifier('variants'),
+              j.arrayExpression([
+                j.objectExpression([
+                  j.objectProperty(j.identifier('props'), buildProps(style.body.left)),
+                  j.objectProperty(j.identifier('style'), style.body.right),
+                ]),
+              ]),
+            ),
+          ]);
         }
+      } else if (style.body.type === 'ConditionalExpression') {
+        // skip ConditionalExpression
+      } else {
+        let objectExpression = style.body;
+        while (objectExpression.type !== 'ObjectExpression') {
+          if (objectExpression.type === 'BlockStatement') {
+            objectExpression = objectExpression.body.find(
+              (item) => item.type === 'ReturnStatement',
+            ).argument;
+          }
+        }
+
+        recurseObjectExpression({ node: objectExpression });
+
+        objectExpression.properties.push(
+          j.objectProperty(
+            j.identifier('variants'),
+            j.arrayExpression(
+              variants.filter((variant) => {
+                const props = variant.properties.find((prop) => prop.key.name === 'props');
+                const styleVal = variant.properties.find((prop) => prop.key.name === 'style');
+                return (
+                  props &&
+                  styleVal &&
+                  styleVal.value.properties.length > 0 &&
+                  (props.value.type === 'ArrowFunctionExpression' ||
+                    props.value.properties.length > 0)
+                );
+              }),
+            ),
+          ),
+        );
       }
 
       function recurseObjectExpression(data) {
@@ -333,27 +377,6 @@ export default function styledV6(file, api, options) {
           removeProperty(data.parentNode, data.node);
         }
       }
-
-      recurseObjectExpression({ node: objectExpression });
-
-      objectExpression.properties.push(
-        j.objectProperty(
-          j.identifier('variants'),
-          j.arrayExpression(
-            variants.filter((variant) => {
-              const props = variant.properties.find((prop) => prop.key.name === 'props');
-              const styleVal = variant.properties.find((prop) => prop.key.name === 'style');
-              return (
-                props &&
-                styleVal &&
-                styleVal.value.properties.length > 0 &&
-                (props.value.type === 'ArrowFunctionExpression' ||
-                  props.value.properties.length > 0)
-              );
-            }),
-          ),
-        ),
-      );
 
       style.params.forEach((param) => {
         if (param.type === 'ObjectPattern') {

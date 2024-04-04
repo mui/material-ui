@@ -34,6 +34,30 @@ describe('@mui/codemod', () => {
       });
     });
 
+    describe('logical styled-v6', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/LogicalStyled.actual.js') },
+          { jscodeshift },
+          { printOptions: { trailingComma: false } },
+        );
+
+        const expected = read('./test-cases/LogicalStyled.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/LogicalStyled.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/LogicalStyled.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
+
     describe('nested spread styled-v6', () => {
       it('transforms props as needed', () => {
         const actual = transform(
