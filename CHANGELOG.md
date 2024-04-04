@@ -9,7 +9,7 @@ _Apr 3, 2024_
 A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
 - 🔥 Converted 3 Material UI components to support static CSS extraction. The progress is at 36%!
-- 🚀 Added a spacing CSS variable to Material UI and Joy UI theme.
+- 🚀 Added a spacing CSS variable to Material UI and Joy UI theme.
 
 ### `@mui/material@6.0.0-alpha.1`
 
@@ -52,7 +52,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 ### Docs
 
 - [pigment-css] Update README.md installation to use the next tag (#41649) @mnajdova
-- [pigment-css] Add "Building design system components" guide with Pigment CSS (#41635) @siriwatknp
+- [pigment-css] Add "Building design system components" guide with Pigment CSS (#41635) @siriwatknp
 - Continue migration of Base UI to sperate repository @oliviertassinari
 - Stick to one way to write IE 11 @oliviertassinari
 - Fix typo in CONTRIBUTING.md (#41670) @adriancuadrado
