@@ -17,7 +17,7 @@ const NativeLink = styled('a')(({ theme }) => ({
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.divider,
   transition: theme.transitions.create(['color', 'border-color']),
-  boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.3)} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+  boxShadow: `${alpha(theme.palette.grey[100], 0.3)} 0 -2px 0 inset`,
   '&:hover': {
     backgroundColor: (theme.vars || theme).palette.grey[50],
   },
@@ -29,10 +29,10 @@ const NativeLink = styled('a')(({ theme }) => ({
     display: 'inline-block',
   },
   ...theme.applyDarkStyles({
-    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.15)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset`,
     '&:hover': {
       backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-      borderColor: (theme.vars || theme).palette.primaryDark[600],
+      borderColor: (theme.vars || theme).palette.primary[900],
     },
   }),
 }));
