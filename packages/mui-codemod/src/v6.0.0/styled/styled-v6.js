@@ -389,11 +389,14 @@ export default function styledV6(file, api, options) {
   // need to remove them manually
   const lines = [];
   let isInStyled = false;
-  transformed.split('\n').forEach((line) => {
+  transformed.split('\n').forEach((line, index, array) => {
     if (!isInStyled) {
       lines.push(line);
-    } else if (line !== '') {
-      if (line.match(/^}\)+;?$/)) {
+    } else if (
+      line !== '' ||
+      (line === '' && array[index + 1] && array[index + 1].includes('return'))
+    ) {
+      if (line.match(/^}\)+(\({}\)|\(\))?;?$/)) {
         isInStyled = false;
       }
       lines.push(line);
