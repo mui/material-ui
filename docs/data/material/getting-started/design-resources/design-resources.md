@@ -13,10 +13,12 @@ It accounting for over 1,500 unique elements, built to speed up the development 
 ## Connect Figma plugin
 
 Connect is a Figma plugin to help bridge the gap between designers and developers using Material UI.
-It generates a theme file with all the design tokens and component customizations done on Figma that you'll be able to export and paste into your codebase, as well as visualize in a Storybook instance.
 
-It's currently in beta and available for testing.
-Get it on [the MUI Figma Community profile 👉](/)
+It generates a theme file, that you can export and add into your codebase, with all the design tokens and component customizations done on Figma.
+You can also quickly preview all of the changes through an embedded Storybook panel directly on the plugin interface.
+
+It's currently in beta and [available for free](https://www.figma.com/community/plugin/1336346114713490235/) on the Figma Community.
+Head over to [the Connect page](/material-ui/design-resources/connect/) to learn more about it.
 
 <img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="A screenshot of Figma together with the Connect plugin running on the side, doing customziations to the Material UI Switch component." width="1628" height="400" />
 
