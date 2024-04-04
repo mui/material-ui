@@ -877,7 +877,7 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#form-control-label-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/form-control-label-props <path>
+npx @mui/codemod@next deprecations/form-control-label-props <path>
 ```
 
 ### componentsProps
