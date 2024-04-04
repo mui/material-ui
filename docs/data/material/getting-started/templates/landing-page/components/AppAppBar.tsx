@@ -62,16 +62,16 @@ export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
             borderRadius: '999px',
             bgcolor:
               theme.palette.mode === 'light'
-                ? 'rgba(255, 255, 255, 0.4)'
-                : 'rgba(0, 0, 0, 0.4)',
+                ? 'hsla(220, 60%, 99%, 0.6)'
+                : 'hsla(220, 0%, 0%, 0.7)',
             backdropFilter: 'blur(24px)',
             maxHeight: 40,
             border: '1px solid',
             borderColor: 'divider',
             boxShadow:
               theme.palette.mode === 'light'
-                ? `0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)`
-                : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
+                ? '0 1px 2px hsla(210, 0%, 0%, 0.05), 0 2px 12px hsla(210, 100%, 80%, 0.5)'
+                : '0 1px 2px hsla(210, 0%, 0%, 0.5), 0 2px 12px hsla(210, 100%, 25%, 0.3)',
           })}
         >
           <Box

@@ -131,8 +131,8 @@ export default function Pricing() {
                       label={tier.subheader}
                       size="small"
                       sx={{
-                        borderColor: 'rgba(255,255,255,0.3)',
-                        backgroundColor: 'rgba(255,255,255,0.1)',
+                        borderColor: 'hsla(220, 60%, 99%, 0.3)',
+                        backgroundColor: 'hsla(220, 60%, 99%, 0.1)',
                         '& .MuiChip-label': {
                           color: 'hsl(0, 0%, 100%)',
                         },

@@ -162,16 +162,16 @@ export default function Features() {
                   '&:hover': {
                     background:
                       theme.palette.mode === 'light'
-                        ? 'linear-gradient(to bottom right, rgba(235, 245, 255, 0.4) 25%, rgba(243, 246, 249, 0.2) 100%)'
-                        : 'linear-gradient(to right bottom, rgba(0, 58, 117, 0.1) 25%, rgba(20, 26, 31, 0.2) 100%)',
+                        ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
+                        : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
                     borderColor:
                       theme.palette.mode === 'light'
                         ? 'primary.light'
                         : 'primary.dark',
                     boxShadow:
                       theme.palette.mode === 'light'
-                        ? '0px 2px 8px rgba(0,0,0,0.1)'
-                        : 'rgba(0, 58, 117, 0.4) 0px 1px 8px',
+                        ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
+                        : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
                   },
                 })}
               >
