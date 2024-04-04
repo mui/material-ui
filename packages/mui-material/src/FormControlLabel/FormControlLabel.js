@@ -288,7 +288,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
-    typography: PropTypes.func,
+    typography: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
