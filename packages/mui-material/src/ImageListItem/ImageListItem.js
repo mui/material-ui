@@ -34,32 +34,49 @@ const ImageListItemRoot = styled('li', {
       styles[ownerState.variant],
     ];
   },
-})(({ ownerState }) => ({
+})({
   display: 'block',
   position: 'relative',
-  ...(ownerState.variant === 'standard' && {
-    // For titlebar under list item
-    display: 'flex',
-    flexDirection: 'column',
-  }),
-  ...(ownerState.variant === 'woven' && {
-    height: '100%',
-    alignSelf: 'center',
-    '&:nth-of-type(even)': {
-      height: '70%',
-    },
-  }),
   [`& .${imageListItemClasses.img}`]: {
     objectFit: 'cover',
     width: '100%',
     height: '100%',
     display: 'block',
-    ...(ownerState.variant === 'standard' && {
-      height: 'auto',
-      flexGrow: 1,
-    }),
   },
-}));
+  variants: [
+    {
+      props: {
+        variant: 'standard',
+      },
+      style: {
+        // For titlebar under list item
+        display: 'flex',
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: {
+        variant: 'woven',
+      },
+      style: {
+        height: '100%',
+        alignSelf: 'center',
+        '&:nth-of-type(even)': {
+          height: '70%',
+        },
+      },
+    },
+    {
+      props: {
+        variant: 'standard',
+      },
+      style: {
+        height: 'auto',
+        flexGrow: 1,
+      },
+    },
+  ],
+});
 
 const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
   const props = useThemeProps({
