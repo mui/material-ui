@@ -201,14 +201,6 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
               extraProps.orientation =
                 'orientation' in child.props ? child.props.orientation : dividerOrientation;
             }
-            if (isMuiElement(child, ['CardOverflow'])) {
-              if (orientation === 'horizontal') {
-                extraProps['data-parent'] = 'Card-horizontal';
-              }
-              if (orientation === 'vertical') {
-                extraProps['data-parent'] = 'Card-vertical';
-              }
-            }
             if (index === 0) {
               extraProps['data-first-child'] = '';
             }
@@ -224,10 +216,10 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
 }) as OverridableComponent<ModalDialogTypeMap>;
 
 ModalDialog.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

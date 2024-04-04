@@ -7,9 +7,10 @@ import FormLabel from '@mui/joy/FormLabel';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 
-export default function ContrySelector({ sx, ...props }: FormControlProps) {
+export default function ContrySelector(props: FormControlProps) {
+  const { sx, ...other } = props;
   return (
-    <FormControl {...props} sx={sx}>
+    <FormControl {...other} sx={sx}>
       <FormLabel>Country</FormLabel>
       <Autocomplete
         autoHighlight
@@ -427,7 +428,7 @@ const countries: readonly CountryType[] = [
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
-    label: 'Taiwan, Republic of China',
+    label: 'Taiwan',
     phone: '886',
   },
   {

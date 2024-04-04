@@ -38,7 +38,6 @@ const DialogContentRoot = styled(StyledCardContentRoot, {
   },
 }));
 /**
- * ⚠️ DialogContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *
@@ -89,10 +88,10 @@ const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
 }) as OverridableComponent<DialogContentTypeMap>;
 
 DialogContent.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the CardContent if `src` is not set.
    * This can be an element, or just a string.

@@ -14,13 +14,14 @@ function renderFullPage(html, css) {
     <!DOCTYPE html>
     <html lang="en">
       <head>
+        <meta charset="utf-8" />
         <title>My page</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
         />
         <meta name="emotion-insertion-point" content="" />
         ${css}

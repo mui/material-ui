@@ -1,13 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled } from '@mui/system';
+import { styled, alpha, lighten } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ExpandIcon from '@mui/icons-material/ExpandMore';
 import CollapseIcon from '@mui/icons-material/ChevronRight';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem as MuiTreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
-import { lighten } from '@mui/material/styles';
-import { blue, blueDark } from 'docs/src/modules/brandingTheme';
+import { blue, blueDark } from '@mui/docs/branding';
 
 function getType(value: any) {
   if (Array.isArray(value)) {
@@ -24,7 +23,6 @@ function getType(value: any) {
 
   return typeof value;
 }
-
 /**
  * @param {unknown} value
  * @param {ReturnType<typeof getType>} type
@@ -98,23 +96,25 @@ function ObjectEntryLabel(props: { objectKey: string; objectValue: any }) {
   );
 }
 
-const TreeItem = styled(MuiTreeItem)({
-  [`&:focus > .${treeItemClasses.content}`]: {
-    backgroundColor: lighten(blue[900], 0.05),
-    outline: `2px dashed ${lighten(blue[900], 0.3)}`,
-  },
+const TreeItem = styled(MuiTreeItem)(({ theme }) => ({
   [`& .${treeItemClasses.content}`]: {
     padding: 4,
-    borderRadius: '12px',
+    borderRadius: 8,
     '&:hover': {
-      backgroundColor: lighten(blueDark[900], 0.1),
+      backgroundColor: alpha(blueDark[600], 0.2),
+    },
+    '&:focus': {
+      [`& .${treeItemClasses.content}`]: {
+        backgroundColor: lighten(blue[900], 0.05),
+        outline: `2px dashed ${lighten(blue[900], 0.3)}`,
+      },
     },
     [`& .${treeItemClasses.label}`]: {
-      fontFamily: 'Menlo, Consolas',
-      fontSize: '0.825rem',
+      fontFamily: 'Menlo, Consolas, Droid Sans Mono, monospace',
+      fontSize: theme.typography.pxToRem(13),
     },
   },
-});
+}));
 
 function ObjectEntry(props: { nodeId: string; objectKey: string; objectValue: any }) {
   const { nodeId, objectKey, objectValue } = props;
@@ -205,10 +205,9 @@ export default function ThemeViewer({
       sx={{
         color: '#FFF',
         p: 1.5,
-        bgcolor: '#0F1924', // one-off code container color
+        bgcolor: 'hsl(210, 35%, 9%)', // one-off code container color
         borderRadius: 3,
-        border: '1px solid',
-        borderColor: blueDark[700],
+        border: `1px solid ${blueDark[700]}`,
       }}
     >
       {Object.keys(data).map((objectKey) => {

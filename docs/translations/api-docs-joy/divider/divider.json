@@ -16,16 +16,10 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
     "horizontal": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"horizontal\"</code>"
-    },
-    "vertical": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
     },
     "insetContext": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -36,6 +30,11 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>inset=\"none\"</code>"
+    },
+    "vertical": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"vertical\"</code>"
     }
   },
   "slotDescriptions": { "root": "The component that renders the root." }

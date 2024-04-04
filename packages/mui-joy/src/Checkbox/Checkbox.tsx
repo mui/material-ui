@@ -120,7 +120,12 @@ const CheckboxCheckbox = styled('span', {
             ...variantStyle,
             backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
           },
-          { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+          {
+            '&:hover': {
+              '@media (hover: hover)':
+                theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+            },
+          },
           { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
           {
             [`&.${checkboxClasses.disabled}`]:
@@ -317,6 +322,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       name,
       value,
       readOnly,
+      role: undefined,
       required: required ?? formControl?.required,
       'aria-describedby': formControl?.['aria-describedby'],
       ...(indeterminate && {
@@ -369,10 +375,10 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 }) as OverridableComponent<CheckboxTypeMap>;
 
 Checkbox.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */

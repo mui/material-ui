@@ -12,8 +12,8 @@ import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { getDesignTokens } from 'docs/src/modules/brandingTheme';
+import { useTranslate } from '@mui/docs/i18n';
+import { getDesignTokens } from '@mui/docs/branding';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
 const iframeDefaultJoyTheme = extendTheme({

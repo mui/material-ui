@@ -14,13 +14,8 @@ type ChatBubbleProps = MessageProps & {
   variant: 'sent' | 'received';
 };
 
-export default function ChatBubble({
-  content,
-  variant,
-  timestamp,
-  attachment = undefined,
-  sender,
-}: ChatBubbleProps) {
+export default function ChatBubble(props: ChatBubbleProps) {
+  const { content, variant, timestamp, attachment = undefined, sender } = props;
   const isSent = variant === 'sent';
   const [isHovered, setIsHovered] = React.useState<boolean>(false);
   const [isLiked, setIsLiked] = React.useState<boolean>(false);
@@ -117,7 +112,6 @@ export default function ChatBubble({
               >
                 {isLiked ? '❤️' : <FavoriteBorderIcon />}
               </IconButton>
-
               <IconButton
                 variant={isCelebrated ? 'soft' : 'plain'}
                 color={isCelebrated ? 'warning' : 'neutral'}

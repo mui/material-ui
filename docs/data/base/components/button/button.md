@@ -32,14 +32,14 @@ The Button behaves similar to the native HTML `<button>`, so it wraps around the
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
 
-{{"demo": "UnstyledButtonsSimple"}}
+{{"demo": "UnstyledButtonsSimple.js"}}
 
 ### Anatomy
 
 The Button component is composed of a root `<button>` slot with no interior slots:
 
 ```html
-<button class="BaseButton-root">
+<button class="base-Button-root">
   <!-- button text goes here -->
 </button>
 ```
@@ -61,7 +61,7 @@ If you provide a non-interactive element such as a `<span>`, the Button componen
 
 Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your browser's dev tools:
 
-{{"demo": "UnstyledButtonsSpan"}}
+{{"demo": "UnstyledButtonsSpan.js"}}
 
 :::warning
 If a Button is customized with a non-button element (for instance, `<Button slots={{ root: "span" }} />`), it will not submit the form it's in when clicked.
@@ -115,7 +115,7 @@ Do not add the `ref` parameter to the button element manually, as the correct re
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Custom elements
@@ -127,7 +127,7 @@ You can even use SVGs, as shown in the demo below:
 
 ### Using with links
 
-The following demo illustrates how to use the Button as a link, whether using the Base UI Button itself for the `href`, or with the [Next.js Link component](https://nextjs.org/learn/basics/navigate-between-pages/link-component):
+The following demo illustrates how to use the Button as a link, whether using the Base UI Button itself for the `href`, or with the [Next.js Link component](https://nextjs.org/docs/pages/api-reference/components/link):
 
 {{"demo": "UnstyledLinkButton.js", "defaultCodeOpen": true}}
 
@@ -142,7 +142,7 @@ Instead, `aria-disabled` is used, which makes the Button focusable.
 
 This should be used whenever the disabled Button needs to be read by screen readers.
 
-Base UI uses this prop internally in [menu items](/base-ui/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
+Base UI uses this prop internally in [menu items](/base-ui/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
 
 The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd class="key">Tab</kbd> key to navigate within this document to see that only the second Button accepts the focus:
 

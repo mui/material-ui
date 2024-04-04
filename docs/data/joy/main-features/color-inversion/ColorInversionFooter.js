@@ -41,8 +41,8 @@ export default function ColorInversionFooter() {
           onClick={() => {
             const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
-            const nextColor = colors.indexOf(color);
-            setColor(colors[nextColor + 1] ?? colors[0]);
+            const nextColorIndex = colors.indexOf(color) + 1;
+            setColor(colors[nextColorIndex] ?? colors[0]);
           }}
         >
           <ColorLensRoundedIcon fontSize="small" />
@@ -103,7 +103,7 @@ export default function ColorInversionFooter() {
           size="sm"
           orientation="horizontal"
           wrap
-          sx={{ flexGrow: 0, '--ListItem-radius': '8px', '--ListItem-gap': '0px' }}
+          sx={{ flexGrow: 0, '--ListItem-radius': '8px' }}
         >
           <ListItem nested sx={{ width: { xs: '50%', md: 140 } }}>
             <ListSubheader sx={{ fontWeight: 'xl' }}>Sitemap</ListSubheader>
@@ -121,7 +121,7 @@ export default function ColorInversionFooter() {
           </ListItem>
           <ListItem nested sx={{ width: { xs: '50%', md: 180 } }}>
             <ListSubheader sx={{ fontWeight: 'xl' }}>Products</ListSubheader>
-            <List sx={{ '--ListItemDecorator-size': '32px' }}>
+            <List>
               <ListItem>
                 <ListItemButton>Joy UI</ListItemButton>
               </ListItem>

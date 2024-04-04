@@ -9,9 +9,12 @@ import useSlot from '../utils/useSlot';
 import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
+import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
+import CircularProgress from '../CircularProgress';
 
 const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
+  const { color, disabled, focusVisible, focusVisibleClassName, size, variant, loading } =
+    ownerState;
 
   const slots = {
     root: [
@@ -21,7 +24,9 @@ const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      loading && 'loading',
     ],
+    loadingIndicator: ['loadingIndicator'],
   };
 
   const composedClasses = composeClasses(slots, getIconButtonUtilityClass, {});
@@ -51,7 +56,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
         minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
         minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
-        paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
+        paddingInline: '2px', // add a gap, in case the content is long, for example multiple icons
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2.25rem) / 1.5)', // 1.5rem by default
@@ -75,8 +80,8 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       paddingBlock: 0,
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.md,
-      margin: `var(--IconButton-margin)`, // to be controlled by other components, e.g. Input
-      borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
+      margin: `var(--IconButton-margin)`, // to be controlled by other components, for example Input
+      borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, for example Input
       border: 'none',
       boxSizing: 'border-box',
       backgroundColor: 'transparent',
@@ -109,6 +114,22 @@ export const IconButtonRoot = styled(StyledIconButton, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
+
+const ButtonLoading = styled('span', {
+  name: 'JoyIconButton',
+  slot: 'LoadingIndicator',
+  overridesResolver: (props, styles) => styles.loadingIndicator,
+})<{ ownerState: IconButtonOwnerState }>(({ theme, ownerState }) => ({
+  display: 'inherit',
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
+  ...(ownerState.disabled && {
+    color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
+  }),
+}));
+
 /**
  *
  * Demos:
@@ -134,16 +155,20 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color: colorProp = 'neutral',
     disabled: disabledProp,
     variant: variantProp = 'plain',
+    loading = false,
+    loadingIndicator: loadingIndicatorProp,
     size: sizeProp = 'md',
     slots = {},
     slotProps = {},
     ...other
   } = props;
   const buttonGroup = React.useContext(ButtonGroupContext);
+  const toggleButtonGroup = React.useContext(ToggleButtonGroupContext);
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
   const color = inProps.color || buttonGroup.color || colorProp;
-  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp);
+  const disabled =
+    (inProps.loading || inProps.disabled) ?? (buttonGroup.disabled || loading || disabledProp);
 
   const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -153,6 +178,10 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     disabled,
     rootRef: handleRef,
   });
+
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
+  );
 
   React.useImperativeHandle(
     action,
@@ -171,12 +200,45 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color,
     disabled,
     variant,
+    loading,
     size,
     focusVisible,
     instanceSize: inProps.size,
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    let onClick = props.onClick;
+    if (typeof slotProps.root === 'function') {
+      onClick = slotProps.root(ownerState).onClick;
+    } else if (slotProps.root) {
+      onClick = slotProps.root.onClick;
+    }
+
+    onClick?.(event);
+
+    if (toggleButtonGroup) {
+      toggleButtonGroup.onClick?.(event, props.value);
+    }
+  };
+
+  let ariaPressed = props['aria-pressed'];
+
+  if (typeof slotProps.root === 'function') {
+    ariaPressed = slotProps.root(ownerState)['aria-pressed'];
+  } else if (slotProps.root) {
+    ariaPressed = slotProps.root['aria-pressed'];
+  }
+
+  if (toggleButtonGroup?.value) {
+    if (Array.isArray(toggleButtonGroup.value)) {
+      ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
+    } else {
+      ariaPressed = toggleButtonGroup.value === props.value;
+    }
+  }
+
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
@@ -186,16 +248,35 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     getSlotProps: getRootProps,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      onClick: handleClick,
+      'aria-pressed': ariaPressed,
+    },
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  const [SlotLoadingIndicator, loadingIndicatorProps] = useSlot('loadingIndicator', {
+    className: classes.loadingIndicator,
+    elementType: ButtonLoading,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  return (
+    <SlotRoot {...rootProps}>
+      {loading ? (
+        <SlotLoadingIndicator {...loadingIndicatorProps}>{loadingIndicator}</SlotLoadingIndicator>
+      ) : (
+        children
+      )}
+    </SlotRoot>
+  );
 }) as ExtendIconButton<IconButtonTypeMap>;
 
 IconButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -239,6 +320,21 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
+   * If `true`, the loading indicator is shown and the icon button becomes disabled.
+   * @default false
+   */
+  loading: PropTypes.bool,
+  /**
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
+   * @default <CircularProgress />
+   */
+  loadingIndicator: PropTypes.node,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
    * The size of the component.
    * @default 'md'
    */
@@ -251,6 +347,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    loadingIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -258,6 +355,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    loadingIndicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**
@@ -272,6 +370,14 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
+  /**
+   * @ignore
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'

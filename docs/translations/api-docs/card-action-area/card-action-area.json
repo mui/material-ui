@@ -8,16 +8,16 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "focusHighlight": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the overlay that covers the action area",
+      "conditions": "it is keyboard focused"
+    },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the ButtonBase root element",
       "conditions": "the action area is keyboard focused"
     },
-    "focusHighlight": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the overlay that covers the action area",
-      "conditions": "it is keyboard focused"
-    }
+    "root": { "description": "Styles applied to the root element." }
   }
 }

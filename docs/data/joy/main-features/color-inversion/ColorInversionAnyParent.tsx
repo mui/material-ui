@@ -61,7 +61,7 @@ export default function ColorInversionAnyParent() {
         <Stat value="4M" description="Weekly downloads" />
         <Stat value="87k" description="Stars on GitHub" />
         <Stat value="2.7k" description="Open source contributors" />
-        <Stat value="18.4k" description="Followers on Twitter" />
+        <Stat value="18.4k" description="Followers on X" />
       </Box>
     </Box>
   );

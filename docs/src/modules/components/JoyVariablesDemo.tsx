@@ -13,7 +13,7 @@ import Input, { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 
 interface DataItem {
   var: string;
@@ -219,7 +219,6 @@ export default function JoyVariablesDemo(props: {
                             tabIndex={-1}
                             variant="plain"
                             color="neutral"
-                            size="sm"
                             disabled={!sx[item.var] && sx[item.var] !== item.defaultValue}
                             onClick={() =>
                               setSx((prevSx) => {

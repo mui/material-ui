@@ -2,14 +2,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
 import bottomNavigationActionClasses, {
   getBottomNavigationActionUtilityClass,
 } from './bottomNavigationActionClasses';
+
+const useThemeProps = createUseThemeProps('MuiBottomNavigationAction');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, showLabel, selected } = ownerState;
@@ -30,7 +31,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
 
     return [styles.root, !ownerState.showLabel && !ownerState.selected && styles.iconOnly];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   transition: theme.transitions.create(['color', 'padding-top'], {
     duration: theme.transitions.duration.short,
   }),
@@ -40,38 +41,47 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   color: (theme.vars || theme).palette.text.secondary,
   flexDirection: 'column',
   flex: '1',
-  ...(!ownerState.showLabel &&
-    !ownerState.selected && {
-      paddingTop: 14,
-    }),
-  ...(!ownerState.showLabel &&
-    !ownerState.selected &&
-    !ownerState.label && {
-      paddingTop: 0,
-    }),
   [`&.${bottomNavigationActionClasses.selected}`]: {
     color: (theme.vars || theme).palette.primary.main,
   },
+  variants: [
+    {
+      props: ({ showLabel, selected }) => !showLabel && !selected,
+      style: {
+        paddingTop: 14,
+      },
+    },
+    {
+      props: ({ showLabel, selected, label }) => !showLabel && !selected && !label,
+      style: {
+        paddingTop: 0,
+      },
+    },
+  ],
 }));
 
 const BottomNavigationActionLabel = styled('span', {
   name: 'MuiBottomNavigationAction',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   fontFamily: theme.typography.fontFamily,
   fontSize: theme.typography.pxToRem(12),
   opacity: 1,
   transition: 'font-size 0.2s, opacity 0.2s',
   transitionDelay: '0.1s',
-  ...(!ownerState.showLabel &&
-    !ownerState.selected && {
-      opacity: 0,
-      transitionDelay: '0s',
-    }),
   [`&.${bottomNavigationActionClasses.selected}`]: {
     fontSize: theme.typography.pxToRem(14),
   },
+  variants: [
+    {
+      props: ({ showLabel, selected }) => !showLabel && !selected,
+      style: {
+        opacity: 0,
+        transitionDelay: '0s',
+      },
+    },
+  ],
 }));
 
 const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(inProps, ref) {
@@ -120,10 +130,10 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
 });
 
 BottomNavigationAction.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.

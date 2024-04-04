@@ -113,6 +113,14 @@ const LinearProgressRoot = styled('div', {
       color: 'inherit',
       position: 'absolute', // required to make `left` animation works.
     },
+    ...(ownerState.variant === 'soft' && {
+      backgroundColor: theme.variants.soft.neutral.backgroundColor,
+      color: theme.variants.solid?.[ownerState.color!].backgroundColor,
+    }),
+    ...(ownerState.variant === 'solid' && {
+      backgroundColor: theme.variants.softHover?.[ownerState.color!].backgroundColor,
+      color: theme.variants.solid?.[ownerState.color!].backgroundColor,
+    }),
   }),
   ({ ownerState }) =>
     ownerState.determinate
@@ -220,10 +228,10 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 }) as OverridableComponent<LinearProgressTypeMap>;
 
 LinearProgress.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

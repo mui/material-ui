@@ -4,7 +4,7 @@ import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui
 import { useTabsContext } from '../Tabs';
 import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
-import { useCompoundItem } from '../utils/useCompoundItem';
+import { useCompoundItem } from '../useCompound';
 import { useListItem } from '../useList';
 import { useButton } from '../useButton';
 import { TabMetadata } from '../useTabs';
@@ -42,7 +42,6 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
 
   const {
     getRootProps: getTabProps,
-    rootRef: listItemRefHandler,
     highlighted,
     selected,
   } = useListItem({
@@ -61,7 +60,7 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
     type: 'button',
   });
 
-  const handleRef = useForkRef(tabRef, externalRef, listItemRefHandler, buttonRefHandler);
+  const handleRef = useForkRef(tabRef, externalRef, buttonRefHandler);
 
   const tabPanelId = value !== undefined ? getTabPanelId(value) : undefined;
 

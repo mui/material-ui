@@ -3,9 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 
-const RadioButtonIconRoot = styled('span')({
+const RadioButtonIconRoot = styled('span', { shouldForwardProp: rootShouldForwardProp })({
   position: 'relative',
   display: 'flex',
 });
@@ -59,7 +59,6 @@ RadioButtonIcon.propTypes = {
   checked: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

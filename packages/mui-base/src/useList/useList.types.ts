@@ -215,13 +215,15 @@ export interface UseListParameters<
       ListActionContext<ItemValue> & CustomActionContext
     >,
   ) => State;
+  /**
+   * The name of the component using useList.
+   * For debugging purposes.
+   * @default 'useList'
+   */
+  componentName?: string;
 }
 
 export interface ListItemState {
-  /**
-   * If `true` the item is disabled.
-   */
-  disabled: boolean;
   /**
    * Determines if the item is focusable (its focus is managed by the DOM).
    */
@@ -230,10 +232,6 @@ export interface ListItemState {
    * If `true` the item is highlighted.
    */
   highlighted: boolean;
-  /**
-   * The 0-based index of the item.
-   */
-  index: number;
   /**
    * If `true` the item is selected.
    */

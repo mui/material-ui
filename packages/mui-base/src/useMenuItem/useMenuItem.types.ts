@@ -2,6 +2,7 @@ import { UseButtonRootSlotProps } from '../useButton';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 interface UseMenuItemRootSlotOwnProps {
+  id: string | undefined;
   role: 'menuitem';
   ref: React.RefCallback<Element> | null;
 }
@@ -22,9 +23,15 @@ export type UseMenuItemRootSlotProps<ExternalProps = {}> = ExternalProps &
 export interface UseMenuItemParameters {
   disabled?: boolean;
   id?: string;
+  label?: string;
   onClick?: React.MouseEventHandler<any>;
   rootRef: React.Ref<Element>;
-  label?: string;
+  /**
+   * If `true`, the menu item won't receive focus when the mouse moves over it.
+   *
+   * @default false
+   */
+  disableFocusOnHover?: boolean;
 }
 
 export interface UseMenuItemReturnValue {

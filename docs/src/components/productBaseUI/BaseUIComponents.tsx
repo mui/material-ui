@@ -43,8 +43,8 @@ const StyledButton = materialStyled(Button)(({ theme }) => ({
   },
   '&.MuiButton-outlined': {
     color: '#fff',
-    backgroundColor: 'var(--palette-primary-dark)',
-    borderColor: 'var(--palette-primary)',
+    backgroundColor: 'var(--primary-active)',
+    borderColor: 'var(--primary-hover)',
   },
 }));
 
@@ -99,44 +99,57 @@ export default function BaseUIComponents() {
             sx={[
               {
                 height: '100%',
-                '--palette-primary': 'var(--muidocs-palette-primary-main)',
-                '--palette-primary-light': 'var(--muidocs-palette-primary-300)',
-                '--palette-primary-hover': 'var(--muidocs-palette-primary-600)',
-                '--palette-primary-dark': 'var(--muidocs-palette-primary-800)',
-                '--focus-ring': 'rgba(102, 178, 255, 0.3)',
-                '--shadow': '0px 2px 2px rgba(205, 210, 215, 0.5)',
+                '--primary': 'var(--muidocs-palette-primary-600)',
+                '--primary-hover': 'var(--muidocs-palette-primary-700)',
+                '--primary-active': 'var(--muidocs-palette-primary-800)',
+                '--focus-ring': 'rgba(0, 114, 229, 0.3)',
+                '--slider-ring': 'rgba(0, 114, 229, 0.3)',
+                '--shadow': '0px 2px 4px rgba(229, 234, 232, 0.8)',
+                '--solid-btn-shadow':
+                  '0 -2px 0.5px 0 var(--muidocs-palette-primary-700) inset, 0 2px 0.5px 0 var(--muidocs-palette-primary-400) inset, 0 1px 0.5px 0 var(--muidocs-palette-primary-900)',
+                '--outlined-btn-shadow':
+                  '0 -2px 0.5px 0 var(--muidocs-palette-grey-100) inset, 0 1px 0.5px 0 var(--muidocs-palette-grey-300)',
                 ...(styling === 'tailwindcss' && {
-                  '--palette-primary': '#4F46E5',
-                  '--palette-primary-light': '#7B74EC',
-                  '--palette-primary-hover': '#463EC6',
-                  '--palette-primary-dark': '#3730A3',
-                  '--focus-ring': 'rgba(165, 180, 252, 0.6)',
-                  '--shadow': '0px 2px 2px rgba(205, 210, 215, 0.5)',
+                  '--primary': '#7716D0',
+                  '--primary-hover': '#6512B0',
+                  '--primary-active': '#500E8B',
+                  '--focus-ring': 'rgba(119, 22, 208, 0.3)',
+                  '--slider-ring': 'rgba(119, 22, 208, 0.3)',
+                  '--shadow': '0px 2px 4px rgba(229, 234, 232, 0.8)',
+                  '--solid-btn-shadow':
+                    '0 -2px 0.5px 0 #500E8B inset, 0 2px 0.5px 0 #902FE9 inset, 0 1px 0.5px 0 #902FE9',
                 }),
                 ...(styling === 'css' && {
-                  '--palette-primary': '#9333EA',
-                  '--palette-primary-light': '#AC62EF',
-                  '--palette-hover': '#7F17DE',
-                  '--palette-primary-dark': '#581C87',
-                  '--focus-ring': 'rgba(216, 180, 254, 0.6)',
-                  '--shadow': '0px 2px 2px rgba(205, 210, 215, 0.5)',
+                  '--primary': '#EA2FAC',
+                  '--primary-hover': '#B0127B',
+                  '--primary-active': '#8B0E61',
+                  '--focus-ring': 'rgba(234, 47, 172, 0.3)',
+                  '--slider-ring': 'rgba(234, 47, 172, 0.3)',
+                  '--shadow': '0px 2px 4px rgba(229, 234, 232, 0.8)',
+                  '--solid-btn-shadow':
+                    '0 -2px 0.5px 0 #B0127B inset, 0 2px 0.5px 0 #EE5DBE inset, 0 1px 0.5px 0 #F495D4',
                 }),
               },
               (theme) =>
                 theme.applyDarkStyles({
-                  '--focus-ring': 'rgba(102, 178, 255, 0.3)',
+                  '--focus-ring': 'rgba(0, 114, 229, 0.6)',
+                  '--slider-ring': 'rgba(0, 114, 229, 0.4)',
                   '--shadow': '0px 2px 2px rgba(0, 0, 0, 0.5)',
+                  '--outlined-btn-shadow':
+                    '0 -2px 0.5px 0 var(--muidocs-palette-grey-900) inset, 0 1px 0.5px 0 var(--muidocs-palette-primaryDark-900)',
                   ...(styling === 'tailwindcss' && {
-                    '--palette-primary': '#5B69F6',
-                    '--palette-primary-hover': '#3446F4',
-                    '--focus-ring': 'rgba(123, 120, 207, 0.6)',
+                    '--focus-ring': 'rgba(119, 22, 208, 0.5)',
+                    '--slider-ring': 'rgba(119, 22, 208, 0.5)',
                     '--shadow': '0px 2px 2px rgba(0, 0, 0, 0.5)',
+                    '--solid-btn-shadow':
+                      '0 -2px 0.5px 0 #500E8B inset, 0 2px 0.5px 0 #902FE9 inset, 0 1px 0.5px 0 rgba(0, 0, 0, 0.5)',
                   }),
                   ...(styling === 'css' && {
-                    '--palette-primary': '#B56FFB',
-                    '--palette-primary-hover': '#A651FB',
-                    '--focus-ring': 'rgba(166, 94, 222, 0.6)',
+                    '--focus-ring': 'rgba(176, 18, 123, 0.8)',
+                    '--slider-ring': 'rgba(176, 18, 123, 0.5)',
                     '--shadow': '0px 2px 2px rgba(0, 0, 0, 0.5)',
+                    '--solid-btn-shadow':
+                      '0 -2px 0.5px 0 #B0127B inset, 0 2px 0.5px 0 #EE5DBE inset, 0 1px 0.5px 0 rgba(0, 0, 0, 0.5)',
                   }),
                 }),
             ]}
@@ -149,6 +162,7 @@ export default function BaseUIComponents() {
               {demo === 'Slider' && <BaseSliderDemo styling={styling} />}
             </Frame.Demo>
             <Frame.Info
+              data-mui-color-scheme="dark"
               sx={{
                 height: 360,
                 position: 'relative',
@@ -185,8 +199,9 @@ export default function BaseUIComponents() {
                   display: 'flex',
                   alignItems: 'center',
                   position: 'absolute',
+                  gap: 1,
                   top: 12,
-                  left: 16,
+                  left: 12,
                   right: 0,
                   zIndex: 10,
                   background: `linear-gradient(to bottom, ${
@@ -209,7 +224,6 @@ export default function BaseUIComponents() {
                   onClick={() => {
                     setStyling('tailwindcss');
                   }}
-                  sx={{ ml: 1 }}
                 >
                   Tailwind CSS
                 </StyledButton>
@@ -219,7 +233,6 @@ export default function BaseUIComponents() {
                   onClick={() => {
                     setStyling('css');
                   }}
-                  sx={{ ml: 1 }}
                 >
                   Plain CSS
                 </StyledButton>

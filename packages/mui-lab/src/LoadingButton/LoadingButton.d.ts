@@ -60,6 +60,7 @@ export type LoadingButtonTypeMap<
  *
  * Demos:
  *
+ * - [Button Group](https://mui.com/material-ui/react-button-group/)
  * - [Button](https://mui.com/material-ui/react-button/)
  *
  * API:

@@ -59,69 +59,49 @@ export const skipInvertedColors = (theme: ThemeFragment) => {
     '--Badge-ringColor': 'var(--Badge-ringColor) !important',
     colorScheme: 'unset',
     [theme.getColorSchemeSelector('light')]: {
-      [prefixVar(
-        '--palette-focusVisible',
-      )]: `${theme.colorSchemes.light?.palette.focusVisible} !important`,
-      [prefixVar(
-        '--palette-background-body',
-      )]: `${theme.colorSchemes.light?.palette.background.body} !important`,
-      [prefixVar(
-        '--palette-background-surface',
-      )]: `${theme.colorSchemes.light?.palette.background.surface} !important`,
-      [prefixVar(
-        '--palette-background-popup',
-      )]: `${theme.colorSchemes.light?.palette.background.popup} !important`,
-      [prefixVar(
-        '--palette-background-level1',
-      )]: `${theme.colorSchemes.light?.palette.background.level1} !important`,
-      [prefixVar(
-        '--palette-background-level2',
-      )]: `${theme.colorSchemes.light?.palette.background.level2} !important`,
-      [prefixVar(
-        '--palette-background-level3',
-      )]: `${theme.colorSchemes.light?.palette.background.level3} !important`,
-      [prefixVar(
-        '--palette-text-primary',
-      )]: `${theme.colorSchemes.light?.palette.text.primary} !important`,
-      [prefixVar(
-        '--palette-text-secondary',
-      )]: `${theme.colorSchemes.light?.palette.text.secondary} !important`,
-      [prefixVar(
-        '--palette-text-tertiary',
-      )]: `${theme.colorSchemes.light?.palette.text.tertiary} !important`,
+      [prefixVar('--palette-focusVisible')]:
+        `${theme.colorSchemes.light?.palette.focusVisible} !important`,
+      [prefixVar('--palette-background-body')]:
+        `${theme.colorSchemes.light?.palette.background.body} !important`,
+      [prefixVar('--palette-background-surface')]:
+        `${theme.colorSchemes.light?.palette.background.surface} !important`,
+      [prefixVar('--palette-background-popup')]:
+        `${theme.colorSchemes.light?.palette.background.popup} !important`,
+      [prefixVar('--palette-background-level1')]:
+        `${theme.colorSchemes.light?.palette.background.level1} !important`,
+      [prefixVar('--palette-background-level2')]:
+        `${theme.colorSchemes.light?.palette.background.level2} !important`,
+      [prefixVar('--palette-background-level3')]:
+        `${theme.colorSchemes.light?.palette.background.level3} !important`,
+      [prefixVar('--palette-text-primary')]:
+        `${theme.colorSchemes.light?.palette.text.primary} !important`,
+      [prefixVar('--palette-text-secondary')]:
+        `${theme.colorSchemes.light?.palette.text.secondary} !important`,
+      [prefixVar('--palette-text-tertiary')]:
+        `${theme.colorSchemes.light?.palette.text.tertiary} !important`,
       [prefixVar('--palette-divider')]: `${theme.colorSchemes.light?.palette.divider} !important`,
     },
     [theme.getColorSchemeSelector('dark')]: {
-      [prefixVar(
-        '--palette-focusVisible',
-      )]: `${theme.colorSchemes.dark?.palette.focusVisible} !important`,
-      [prefixVar(
-        '--palette-background-body',
-      )]: `${theme.colorSchemes.dark?.palette.background.body} !important`,
-      [prefixVar(
-        '--palette-background-surface',
-      )]: `${theme.colorSchemes.dark?.palette.background.surface} !important`,
-      [prefixVar(
-        '--palette-background-popup',
-      )]: `${theme.colorSchemes.dark?.palette.background.popup} !important`,
-      [prefixVar(
-        '--palette-background-level1',
-      )]: `${theme.colorSchemes.dark?.palette.background.level1} !important`,
-      [prefixVar(
-        '--palette-background-level2',
-      )]: `${theme.colorSchemes.dark?.palette.background.level2} !important`,
-      [prefixVar(
-        '--palette-background-level3',
-      )]: `${theme.colorSchemes.dark?.palette.background.level3} !important`,
-      [prefixVar(
-        '--palette-text-primary',
-      )]: `${theme.colorSchemes.dark?.palette.text.primary} !important`,
-      [prefixVar(
-        '--palette-text-secondary',
-      )]: `${theme.colorSchemes.dark?.palette.text.secondary} !important`,
-      [prefixVar(
-        '--palette-text-tertiary',
-      )]: `${theme.colorSchemes.dark?.palette.text.tertiary} !important`,
+      [prefixVar('--palette-focusVisible')]:
+        `${theme.colorSchemes.dark?.palette.focusVisible} !important`,
+      [prefixVar('--palette-background-body')]:
+        `${theme.colorSchemes.dark?.palette.background.body} !important`,
+      [prefixVar('--palette-background-surface')]:
+        `${theme.colorSchemes.dark?.palette.background.surface} !important`,
+      [prefixVar('--palette-background-popup')]:
+        `${theme.colorSchemes.dark?.palette.background.popup} !important`,
+      [prefixVar('--palette-background-level1')]:
+        `${theme.colorSchemes.dark?.palette.background.level1} !important`,
+      [prefixVar('--palette-background-level2')]:
+        `${theme.colorSchemes.dark?.palette.background.level2} !important`,
+      [prefixVar('--palette-background-level3')]:
+        `${theme.colorSchemes.dark?.palette.background.level3} !important`,
+      [prefixVar('--palette-text-primary')]:
+        `${theme.colorSchemes.dark?.palette.text.primary} !important`,
+      [prefixVar('--palette-text-secondary')]:
+        `${theme.colorSchemes.dark?.palette.text.secondary} !important`,
+      [prefixVar('--palette-text-tertiary')]:
+        `${theme.colorSchemes.dark?.palette.text.tertiary} !important`,
       [prefixVar('--palette-divider')]: `${theme.colorSchemes.dark?.palette.divider} !important`,
     },
   };

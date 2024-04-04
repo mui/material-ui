@@ -50,11 +50,32 @@
     "import FormControl from '@mui/material/FormControl';",
     "import { FormControl } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "marginNormal", "marginDense", "fullWidth"],
-    "globalClasses": {},
-    "name": "MuiFormControl"
-  },
+  "classes": [
+    {
+      "key": "fullWidth",
+      "className": "MuiFormControl-fullWidth",
+      "description": "Styles applied to the root element if `fullWidth={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "marginDense",
+      "className": "MuiFormControl-marginDense",
+      "description": "Styles applied to the root element if `margin=\"dense\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "marginNormal",
+      "className": "MuiFormControl-marginNormal",
+      "description": "Styles applied to the root element if `margin=\"normal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiFormControl-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiFormControl",

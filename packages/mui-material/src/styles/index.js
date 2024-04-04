@@ -1,5 +1,5 @@
 'use client';
-import MuiError from '@mui/utils/macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
 export { default as THEME_ID } from './identifier';
 export { default as adaptV4Theme } from './adaptV4Theme';
@@ -51,4 +51,5 @@ export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 
 // Private methods for creating parts of the theme
 export { default as private_createTypography } from './createTypography';
+export { default as private_createMixins } from './createMixins';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';

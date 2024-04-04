@@ -18,37 +18,25 @@ function ValueLabelComponent(props: SliderValueLabelProps) {
 const iOSBoxShadow =
   '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
 
-const marks = [
-  {
-    value: 0,
-  },
-  {
-    value: 20,
-  },
-  {
-    value: 37,
-  },
-  {
-    value: 100,
-  },
-];
-
 const IOSSlider = styled(Slider)(({ theme }) => ({
-  color: theme.palette.mode === 'dark' ? '#3880ff' : '#3880ff',
-  height: 2,
+  color: theme.palette.mode === 'dark' ? '#0a84ff' : '#007bff',
+  height: 5,
   padding: '15px 0',
   '& .MuiSlider-thumb': {
-    height: 28,
-    width: 28,
+    height: 20,
+    width: 20,
     backgroundColor: '#fff',
-    boxShadow: iOSBoxShadow,
+    boxShadow: '0 0 2px 0px rgba(0, 0, 0, 0.1)',
     '&:focus, &:hover, &.Mui-active': {
-      boxShadow:
-        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+      boxShadow: '0px 0px 3px 1px rgba(0, 0, 0, 0.1)',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         boxShadow: iOSBoxShadow,
       },
+    },
+    '&:before': {
+      boxShadow:
+        '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
     },
   },
   '& .MuiSlider-valueLabel': {
@@ -57,7 +45,7 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     top: -6,
     backgroundColor: 'unset',
     color: theme.palette.text.primary,
-    '&:before': {
+    '&::before': {
       display: 'none',
     },
     '& *': {
@@ -67,19 +55,12 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
   },
   '& .MuiSlider-track': {
     border: 'none',
+    height: 5,
   },
   '& .MuiSlider-rail': {
     opacity: 0.5,
-    backgroundColor: '#bfbfbf',
-  },
-  '& .MuiSlider-mark': {
-    backgroundColor: '#bfbfbf',
-    height: 8,
-    width: 1,
-    '&.MuiSlider-markActive': {
-      opacity: 1,
-      backgroundColor: 'currentColor',
-    },
+    boxShadow: 'inset 0px 0px 4px -2px #000',
+    backgroundColor: '#d0d0d0',
   },
 }));
 
@@ -97,7 +78,7 @@ const PrettoSlider = styled(Slider)({
     '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
       boxShadow: 'inherit',
     },
-    '&:before': {
+    '&::before': {
       display: 'none',
     },
   },
@@ -112,7 +93,7 @@ const PrettoSlider = styled(Slider)({
     backgroundColor: '#52af77',
     transformOrigin: 'bottom left',
     transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
-    '&:before': { display: 'none' },
+    '&::before': { display: 'none' },
     '&.MuiSlider-valueLabelOpen': {
       transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
     },
@@ -170,12 +151,7 @@ export default function CustomizedSlider() {
   return (
     <Box sx={{ width: 320 }}>
       <Typography gutterBottom>iOS</Typography>
-      <IOSSlider
-        aria-label="ios slider"
-        defaultValue={60}
-        marks={marks}
-        valueLabelDisplay="on"
-      />
+      <IOSSlider aria-label="ios slider" defaultValue={60} valueLabelDisplay="on" />
       <Box sx={{ m: 3 }} />
       <Typography gutterBottom>pretto.fr</Typography>
       <PrettoSlider

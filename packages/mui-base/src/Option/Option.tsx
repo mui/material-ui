@@ -3,11 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
-import { OptionProps, OptionOwnerState, OptionType } from './Option.types';
+import { OptionProps, OptionOwnerState, OptionType, OptionRootSlotProps } from './Option.types';
 import { getOptionUtilityClass } from './optionClasses';
-import { useSlotProps } from '../utils';
-import { useOption } from '../useOption';
+import { WithOptionalOwnerState, useSlotProps } from '../utils';
+import { useOption, useOptionContextStabilizer } from '../useOption';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { ListContext } from '../useList';
 
 function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue>) {
   const { disabled, highlighted, selected } = ownerState;
@@ -19,18 +20,7 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
   return composeClasses(slots, useClassNamesOverride(getOptionUtilityClass));
 }
 
-/**
- * An unstyled option to be used within a Select.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base-ui/react-select/)
- *
- * API:
- *
- * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
- */
-const Option = React.memo(
+const InnerOption = React.memo(
   React.forwardRef(function Option<OptionValue, RootComponentType extends React.ElementType>(
     props: OptionProps<OptionValue, RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>,
@@ -53,7 +43,7 @@ const Option = React.memo(
     // If `label` is not explicitly provided, the `children` are used for convenience.
     // This is used to populate the select's trigger with the selected option's label.
     const computedLabel =
-      label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
+      label ?? (typeof children === 'string' ? children : optionRef.current?.textContent?.trim());
 
     const { getRootProps, selected, highlighted, index } = useOption({
       disabled,
@@ -72,7 +62,7 @@ const Option = React.memo(
 
     const classes = useUtilityClasses(ownerState);
 
-    const rootProps = useSlotProps({
+    const rootProps: WithOptionalOwnerState<OptionRootSlotProps<OptionValue>> = useSlotProps({
       getSlotProps: getRootProps,
       elementType: Root,
       externalSlotProps: slotProps.root,
@@ -83,13 +73,43 @@ const Option = React.memo(
 
     return <Root {...rootProps}>{children}</Root>;
   }),
-) as OptionType;
+);
+
+/**
+ * An unstyled option to be used within a Select.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
+ */
+const Option = React.forwardRef(function Option<OptionValue>(
+  props: OptionProps<OptionValue>,
+  ref: React.ForwardedRef<Element>,
+) {
+  const { value } = props;
+
+  // This wrapper component is used as a performance optimization.
+  // `useOptionContextStabilizer` ensures that the context value
+  // is stable across renders, so that the actual Option re-renders
+  // only when it needs to.
+  const { contextValue } = useOptionContextStabilizer(value);
+
+  return (
+    <ListContext.Provider value={contextValue}>
+      <InnerOption {...props} ref={ref} />
+    </ListContext.Provider>
+  );
+}) as OptionType;
 
 Option.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

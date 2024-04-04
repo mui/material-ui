@@ -1,19 +1,28 @@
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import cssVarsParser from './cssVarsParser';
 
 export interface DefaultCssVarsTheme {
-  colorSchemes: Record<string, any>;
+  attribute?: string;
+  colorSchemes?: Record<string, any>;
+  defaultColorScheme?: string;
 }
 
 function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<string, any>>(
   theme: T,
-  parserConfig?: {
+  {
+    getSelector,
+    ...parserConfig
+  }: {
     prefix?: string;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
-  },
+    getSelector?: (
+      colorScheme: keyof T['colorSchemes'] | undefined,
+      css: Record<string, any>,
+    ) => string | Record<string, any>;
+  } = {},
 ) {
   // @ts-ignore - ignore components do not exist
-  const { colorSchemes = {}, components, ...otherTheme } = theme;
+  const { colorSchemes = {}, components, defaultColorScheme = 'light', ...otherTheme } = theme;
   const {
     vars: rootVars,
     css: rootCss,
@@ -23,32 +32,64 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
 
   const colorSchemesMap: Record<string, { css: Record<string, string | number>; vars: ThemeVars }> =
     {};
-  const { light, ...otherColorSchemes } = colorSchemes;
+  const { [defaultColorScheme]: defaultScheme, ...otherColorSchemes } = colorSchemes;
   Object.entries(otherColorSchemes || {}).forEach(([key, scheme]) => {
     const { vars, css, varsWithDefaults } = cssVarsParser<ThemeVars>(scheme, parserConfig);
     themeVars = deepmerge(themeVars, varsWithDefaults);
     colorSchemesMap[key] = { css, vars };
   });
-  if (light) {
-    // light color scheme vars should be merged last to set as default
-    const { css, vars, varsWithDefaults } = cssVarsParser<ThemeVars>(light, parserConfig);
+  if (defaultScheme) {
+    // default color scheme vars should be merged last to set as default
+    const { css, vars, varsWithDefaults } = cssVarsParser<ThemeVars>(defaultScheme, parserConfig);
     themeVars = deepmerge(themeVars, varsWithDefaults);
-    colorSchemesMap.light = { css, vars };
+    colorSchemesMap[defaultColorScheme] = { css, vars };
   }
 
-  const generateCssVars = (colorScheme?: string) => {
-    if (!colorScheme) {
-      return { css: { ...rootCss }, vars: rootVars };
+  const generateThemeVars = () => {
+    let vars = { ...rootVars };
+    Object.entries(colorSchemesMap).forEach(([, { vars: schemeVars }]) => {
+      vars = deepmerge(vars, schemeVars);
+    });
+    return vars;
+  };
+
+  const generateStyleSheets = () => {
+    const stylesheets: Array<Record<string, any>> = [];
+    const colorScheme = theme.defaultColorScheme || 'light';
+    function insertStyleSheet(selector: string | object, css: Record<string, string | number>) {
+      if (Object.keys(css).length) {
+        stylesheets.push(typeof selector === 'string' ? { [selector]: { ...css } } : selector);
+      }
     }
-    return {
-      css: { ...colorSchemesMap[colorScheme].css },
-      vars: colorSchemesMap[colorScheme].vars,
-    };
+    insertStyleSheet(getSelector?.(undefined, { ...rootCss }) || ':root', rootCss);
+
+    const { [colorScheme]: defaultSchemeVal, ...rest } = colorSchemesMap;
+
+    if (defaultSchemeVal) {
+      // default color scheme has to come before other color schemes
+      const { css } = defaultSchemeVal;
+      insertStyleSheet(
+        getSelector?.(colorScheme as keyof T['colorSchemes'], { ...css }) ||
+          `[${theme.attribute || 'data-color-scheme'}="${colorScheme}"]`,
+        css,
+      );
+    }
+
+    Object.entries(rest).forEach(([key, { css }]) => {
+      insertStyleSheet(
+        getSelector?.(key as keyof T['colorSchemes'], { ...css }) ||
+          `[${theme.attribute || 'data-color-scheme'}="${key}"]`,
+        css,
+      );
+    });
+
+    return stylesheets;
   };
 
   return {
     vars: themeVars,
-    generateCssVars,
+    generateThemeVars,
+    generateStyleSheets,
   };
 }
 

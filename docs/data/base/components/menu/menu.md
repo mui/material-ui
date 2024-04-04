@@ -2,7 +2,7 @@
 productId: base-ui
 title: React Menu components and hooks
 components: Menu, MenuItem, MenuButton, Dropdown
-hooks: useMenu, useMenuItem, useMenuButton, useDropdown
+hooks: useMenu, useMenuItem, useMenuButton, useDropdown, useMenuItemContextStabilizer
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---
@@ -17,7 +17,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 ## Introduction
 
-The Base UI Dropdown Menu is implemented using a collection of related components:
+The Base UI Dropdown Menu is implemented using a collection of related components:
 
 - Dropdown - The outermost container that houses all Menu components.
 - Menu Button - The button that toggles the visibility of the Menu.
@@ -59,10 +59,10 @@ Clicking on a Menu Item closes its associated Menu.
 - The `<MenuItem />` renders a `<li>`.
 
 ```html
-<button class="MuiMenuButton-root">Click me</button>
-<div class="MuiMenu-root">
-  <ul class="MuiMenu-listbox">
-    <li class="MuiMenuItem-root">List item</li>
+<button class="base-MenuButton-root">Click me</button>
+<div class="base-Menu-root">
+  <ul class="base-Menu-listbox">
+    <li class="base-MenuItem-root">List item</li>
   </ul>
 </div>
 ```
@@ -102,6 +102,13 @@ The same applies to props specific to custom primitive elements:
 <Menu<'ol'> slots={{ root: 'ol' }} start={5} />
 ```
 
+### Transitions
+
+The Menu component supports the [Transitions API](/base-ui/react-transitions/), so it's possible to animate the appearing and disappearing Listbox.
+To do this, override the Listbox slot of the Menu and wrap it with a transition component ([CssTransition](/base-ui/react-transitions/#css-transition), [CssAnimation](/base-ui/react-transitions/#css-animation), or a custom-built one).
+
+{{"demo": "MenuTransitions.js", "defaultCodeOpen": false}}
+
 ## Hooks
 
 ```jsx
@@ -129,11 +136,37 @@ The following demo shows how to build a Dropdown Menu using hooks:
 
 Components and their corresponding hooks work interchangeably with one another—for example, you can create a Menu component that contains custom menu items built with the `useMenuItem` hook.
 
+### Performance
+
+The `useMenuItem` hook listens to changes in a context that is set up by the parent Menu component.
+This context changes every time an item is highlighted.
+Usually, it shouldn't be a problem, however, when your menu has hundreds of items, you may notice it's not very responsive, as every item is rerendered whenever highlight changes.
+
+To improve performance by preventing menu items from rendering unnecessarily, you can create a component that wraps the menu item.
+Inside this component, call `useMenuItemContextStabilizer` and create a ListContext with the value from the hook's result:
+
+```tsx
+const StableMenuItem = React.forwardRef(function StableMenuItem(
+  props: MenuItemProps,
+  ref: React.ForwardedRef<Element>,
+) {
+  const { contextValue, id } = useMenuItemContextStabilizer(props.id);
+
+  return (
+    <ListContext.Provider value={contextValue}>
+      <MenuItem {...props} id={id} ref={ref} />
+    </ListContext.Provider>
+  );
+});
+```
+
+The `useMenuItemContextStabilizer` hook ensures that the context value changes only when the state of the menu item is updated.
+
 ## Customization
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Wrapping Menu Items

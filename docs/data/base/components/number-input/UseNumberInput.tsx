@@ -67,7 +67,7 @@ const grey = {
 
 const StyledInputRoot: React.ElementType = styled('div')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
   border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -163,7 +163,7 @@ const StyledStepperButton = styled('button')(
       border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
       background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
       color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
-      
+
       &:hover {
         cursor: pointer;
         color: #FFF;

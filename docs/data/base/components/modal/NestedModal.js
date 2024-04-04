@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled, Box } from '@mui/system';
+import { styled, css } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 import { Button } from '@mui/base/Button';
 
@@ -25,9 +25,9 @@ export default function NestedModal() {
         slots={{ backdrop: StyledBackdrop }}
       >
         <ModalContent sx={style}>
-          <h3 id="parent-modal-title" className="modal-title">
+          <h2 id="parent-modal-title" className="modal-title">
             Text in a modal
-          </h3>
+          </h2>
           <p id="parent-modal-description" className="modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
@@ -58,9 +58,9 @@ function ChildModal() {
         slots={{ backdrop: StyledBackdrop }}
       >
         <ModalContent sx={[style, { width: '240px' }]}>
-          <h3 id="child-modal-title" className="modal-title">
+          <h2 id="child-modal-title" className="modal-title">
             Text in a child modal
-          </h3>
+          </h2>
           <p id="child-modal-description" className="modal-description">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </p>
@@ -75,7 +75,7 @@ const Backdrop = React.forwardRef((props, ref) => {
   const { open, className, ...other } = props;
   return (
     <div
-      className={clsx({ 'MuiBackdrop-open': open }, className)}
+      className={clsx({ 'base-Backdrop-open': open }, className)}
       ref={ref}
       {...other}
     />
@@ -134,44 +134,43 @@ const style = {
   width: 400,
 };
 
-const ModalContent = styled(Box)(
-  ({ theme }) => `
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  overflow: hidden;
-  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
-  border-radius: 8px;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 4px 12px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.20)'
-  };
-  padding: 1rem;
-  color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: 500;
-  text-align: start;
-  position: relative;
+const ModalContent = styled('div')(
+  ({ theme }) => css`
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 500;
+    text-align: start;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+    border-radius: 8px;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    box-shadow: 0 4px 12px
+      ${theme.palette.mode === 'dark' ? 'rgb(0 0 0 / 0.5)' : 'rgb(0 0 0 / 0.2)'};
+    padding: 24px;
+    color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
 
+    & .modal-title {
+      margin: 0;
+      line-height: 1.5rem;
+      margin-bottom: 8px;
+    }
 
-  & .modal-title {
-    margin: 0;
-    line-height: 1.5rem;
-    margin-right: 0.5rem;
-  }
-
-  & .modal-description {
-    margin: 0;
-    line-height: 1.5rem;
-    font-weight: 400;
-    color: ${theme.palette.mode === 'dark' ? grey[400] : grey[800]};
-  }
+    & .modal-description {
+      margin: 0;
+      line-height: 1.5rem;
+      font-weight: 400;
+      color: ${theme.palette.mode === 'dark' ? grey[400] : grey[800]};
+      margin-bottom: 4px;
+    }
   `,
 );
 
 const TriggerButton = styled(Button)(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -184,18 +183,17 @@ const TriggerButton = styled(Button)(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  
+
   &:hover {
     background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
-  
-  &.active {
-    background-color: ${blue[700]};
-    box-shadow: none;
+
+  &:active {
+    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
   }
-  
-  &.focusVisible {
+
+  &:focus-visible {
     box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
     outline: none;
   }
@@ -204,7 +202,7 @@ const TriggerButton = styled(Button)(
 
 const ModalButton = styled(Button)(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -224,7 +222,8 @@ const ModalButton = styled(Button)(
   }
 
   &:active {
-    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
+    background-color: ${blue[700]};
+    box-shadow: none;
   }
 
   &:focus-visible {
@@ -232,7 +231,7 @@ const ModalButton = styled(Button)(
     outline: none;
   }
 
-  &.disabled {
+  &:disabled {
     opacity: 0.4;
     cursor: not-allowed;
     box-shadow: none;

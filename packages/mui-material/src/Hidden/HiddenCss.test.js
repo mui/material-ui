@@ -71,6 +71,7 @@ describe('<HiddenCss />', () => {
 
       expect(container.firstChild).to.have.class(classes.mdUp);
     });
+
     it('should handle provided className prop', () => {
       const { container } = render(
         <HiddenCss mdUp className="custom">

@@ -23,7 +23,7 @@ import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 
@@ -31,10 +31,10 @@ const nProgressStart = debounce(() => {
   NProgress.start();
 }, 200);
 
-const nProgressDone = () => {
+function nProgressDone() {
   nProgressStart.clear();
   NProgress.done();
-};
+}
 
 export function NextNProgressBar() {
   const router = useRouter();
@@ -67,6 +67,7 @@ export function NextNProgressBar() {
 const sx = { minWidth: { sm: 160 } };
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
+
 export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -114,13 +115,12 @@ const StyledAppBar = styled(AppBar, {
     boxShadow: 'none',
     backdropFilter: 'blur(8px)',
     borderStyle: 'solid',
-    borderColor: (theme.vars || theme).palette.grey[100],
+    borderColor: (theme.vars || theme).palette.divider,
     borderWidth: 0,
     borderBottomWidth: 'thin',
-    backgroundColor: 'rgba(255,255,255,0.9)',
+    backgroundColor: 'rgba(255,255,255,0.8)',
     color: (theme.vars || theme).palette.grey[800],
     ...theme.applyDarkStyles({
-      borderColor: alpha(theme.palette.primary[100], 0.08),
       backgroundColor: alpha(theme.palette.primaryDark[900], 0.8),
       color: (theme.vars || theme).palette.grey[500],
     }),
@@ -204,7 +204,7 @@ export default function AppFrame(props) {
             </Box>
           </NextLink>
           <GrowingDiv />
-          <Stack direction="row" spacing="10px">
+          <Stack direction="row" spacing={1} useFlexGap>
             <BannerComponent />
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>

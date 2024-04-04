@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import CompareIcon from '@mui/icons-material/Compare';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
+import { GlowingIconContainer } from '@mui/docs/InfoCard';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -20,16 +20,15 @@ export default function BaseUIEnd() {
       sx={{
         color: 'text.secondary',
         background: (theme) =>
-          `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[800]} 50%, 
+          `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[900]} 50%, 
           ${alpha(theme.palette.primary[800], 0.2)} 100%), ${
-            (theme.vars || theme).palette.primaryDark[800]
+            (theme.vars || theme).palette.primaryDark[900]
           }`,
       }}
     >
       <Grid container spacing={{ xs: 6, sm: 10 }} alignItems="center">
         <Grid xs={12} sm={6}>
           <SectionHeadline
-            inverted
             overline="Community"
             title={
               <Typography variant="h2">
@@ -52,34 +51,10 @@ export default function BaseUIEnd() {
         </Grid>
         <Grid xs={12} sm={6}>
           <List sx={{ '& > li': { alignItems: 'flex-start' } }}>
-            <ListItem sx={{ p: 0, mb: 4 }}>
-              <Box
-                sx={(theme) => ({
-                  width: 40,
-                  height: 40,
-                  mr: 2.5,
-                  flexShrink: 0,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: '12px',
-                  border: '1px solid',
-                  borderColor: 'primary.200',
-                  bgcolor: 'primary.50',
-                  boxShadow:
-                    '0px 1px 6px 0px rgba(194, 224, 255, 1), 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset',
-                  ...theme.applyDarkStyles({
-                    borderColor: 'primary.400',
-                    bgcolor: 'primary.900',
-                    boxShadow:
-                      '0px 1px 6px 0px rgba(0, 89, 178, 1), 0px 2px 30px 0px rgba(0, 0, 0, 0.25) inset',
-                  }),
-                })}
-              >
-                <CompareIcon color="primary" />
-              </Box>
+            <ListItem sx={{ p: 0, mb: 4, gap: 2.5 }}>
+              <GlowingIconContainer icon={<CompareIcon color="primary" />} />
               <div>
-                <Typography sx={{ color: 'text.primary', mb: 0.75 }} fontWeight="500">
+                <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
                   Base UI vs. Material UI
                 </Typography>
                 <Typography>
@@ -88,34 +63,10 @@ export default function BaseUIEnd() {
                 </Typography>
               </div>
             </ListItem>
-            <ListItem sx={{ p: 0 }}>
-              <Box
-                sx={(theme) => ({
-                  width: 40,
-                  height: 40,
-                  mr: 2.5,
-                  flexShrink: 0,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: '12px',
-                  border: '1px solid',
-                  borderColor: 'primary.200',
-                  bgcolor: 'primary.50',
-                  boxShadow:
-                    '0px 1px 6px 0px rgba(194, 224, 255, 1), 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset',
-                  ...theme.applyDarkStyles({
-                    borderColor: 'primary.400',
-                    bgcolor: 'primary.900',
-                    boxShadow:
-                      '0px 1px 6px 0px rgba(0, 89, 178, 1), 0px 2px 30px 0px rgba(0, 0, 0, 0.25) inset',
-                  }),
-                })}
-              >
-                <StyleRoundedIcon color="primary" />
-              </Box>
+            <ListItem sx={{ p: 0, gap: 2.5 }}>
+              <GlowingIconContainer icon={<StyleRoundedIcon color="primary" />} />
               <div>
-                <Typography sx={{ color: 'text.primary', mb: 0.75 }} fontWeight="500">
+                <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
                   Does it come with styles?
                 </Typography>
                 <Typography>

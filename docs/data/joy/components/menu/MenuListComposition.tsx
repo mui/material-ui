@@ -58,7 +58,13 @@ export default function MenuListComposition() {
           },
         ]}
       >
-        <ClickAwayListener onClickAway={handleClose}>
+        <ClickAwayListener
+          onClickAway={(event) => {
+            if (event.target !== buttonRef.current) {
+              handleClose();
+            }
+          }}
+        >
           <MenuList
             variant="outlined"
             onKeyDown={handleListKeyDown}

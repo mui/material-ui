@@ -29,7 +29,7 @@ export default function CustomizedDialogs() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open dialog
       </Button>
@@ -75,6 +75,6 @@ export default function CustomizedDialogs() {
           </Button>
         </DialogActions>
       </BootstrapDialog>
-    </div>
+    </React.Fragment>
   );
 }

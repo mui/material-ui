@@ -35,25 +35,46 @@
     "import ListDivider from '@mui/joy/ListDivider';",
     "import { ListDivider } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiListDivider" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'li'",
-      "class": ".MuiListDivider-root"
+      "class": "MuiListDivider-root"
     }
   ],
-  "classes": {
-    "classes": [
-      "horizontal",
-      "insetGutter",
-      "insetStartContent",
-      "insetStartDecorator",
-      "vertical"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "horizontal",
+      "className": "MuiListDivider-horizontal",
+      "description": "Class name applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "insetGutter",
+      "className": "MuiListDivider-insetGutter",
+      "description": "Class name applied to the root element if `inset=\"gutter\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "insetStartContent",
+      "className": "MuiListDivider-insetStartContent",
+      "description": "Class name applied to the root element if `inset=\"startContent\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "insetStartDecorator",
+      "className": "MuiListDivider-insetStartDecorator",
+      "description": "Class name applied to the root element if `inset=\"startDecorator\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiListDivider-vertical",
+      "description": "Class name applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyListDivider",

@@ -11,7 +11,10 @@ export function menuReducer(
   action: ActionWithContext<ListAction<string>, MenuActionContext>,
 ) {
   if (action.type === ListActionTypes.itemHover) {
-    return state;
+    return {
+      ...state,
+      highlightedValue: action.item,
+    };
   }
 
   const newState = listReducer(state, action);

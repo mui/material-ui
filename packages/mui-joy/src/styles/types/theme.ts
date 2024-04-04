@@ -6,6 +6,7 @@ import {
   SystemProps as SystemSystemProps,
   CSSObject,
   SxConfig,
+  ApplyStyles,
 } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
@@ -31,15 +32,16 @@ type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
   : never;
 
-type ConcatDeep<T, D extends string = '-'> = T extends Record<string | number, infer V>
-  ? keyof T extends string | number
-    ? V extends string | number
-      ? keyof T
-      : keyof V extends string | number
-      ? `${keyof T}${D}${ConcatDeep<Split<V>, D>}`
+type ConcatDeep<T, D extends string = '-'> =
+  T extends Record<string | number, infer V>
+    ? keyof T extends string | number
+      ? V extends string | number
+        ? keyof T
+        : keyof V extends string | number
+          ? `${keyof T}${D}${ConcatDeep<Split<V>, D>}`
+          : never
       : never
-    : never
-  : never;
+    : never;
 
 /**
  * Does not work for these cases:
@@ -85,7 +87,7 @@ export interface ThemeVars extends ThemeScales, ColorSystemVars {}
 export interface ThemeCssVarOverrides {}
 
 /**
- * For providing `sx` autocomplete, e.g. `color`, `bgcolor`, `borderColor`.
+ * For providing `sx` autocomplete, for example `color`, `bgcolor`, `borderColor`.
  */
 export type TextColor =
   | NormalizeVars<Omit<ColorSystem['palette'], 'mode'>, '.'>
@@ -95,6 +97,7 @@ export type ThemeCssVar = OverridableStringUnion<NormalizeVars<ThemeVars>, Theme
 
 export interface Theme extends ThemeScales, RuntimeColorSystem {
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
+  defaultColorScheme: DefaultColorScheme | ExtendedColorScheme;
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
@@ -104,10 +107,9 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
-  generateCssVars: (colorScheme?: DefaultColorScheme | ExtendedColorScheme) => {
-    css: Record<string, string | number>;
-    vars: ThemeVars;
-  };
+  generateThemeVars: () => ThemeVars;
+  generateStyleSheets: () => Record<string, any>[];
+  generateSpacing: () => Spacing;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
@@ -118,6 +120,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps) => CSSObject;
+  applyStyles: ApplyStyles<DefaultColorScheme | ExtendedColorScheme>;
 }
 
 export type SxProps = SystemSxProps<Theme>;

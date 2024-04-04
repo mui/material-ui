@@ -12,6 +12,10 @@ import useSlot from '../utils/useSlot';
 
 export const AvatarGroupContext = React.createContext<AvatarGroupOwnerState | undefined>(undefined);
 
+if (process.env.NODE_ENV !== 'production') {
+  AvatarGroupContext.displayName = 'AvatarGroupContext';
+}
+
 const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
@@ -100,10 +104,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 }) as OverridableComponent<AvatarGroupTypeMap>;
 
 AvatarGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the AvatarGroup if `src` is not set.
    * This can be an element, or just a string.

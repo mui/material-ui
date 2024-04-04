@@ -33,7 +33,7 @@ const NumberInput = React.forwardRef(function CustomNumberInput(
 });
 
 export default function NumberInputBasic() {
-  const [value, setValue] = React.useState<number | undefined>();
+  const [value, setValue] = React.useState<number | null>(null);
   return (
     <NumberInput
       aria-label="Demo number input"
@@ -67,7 +67,7 @@ const grey = {
 
 const StyledInputRoot = styled('div')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
   border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};

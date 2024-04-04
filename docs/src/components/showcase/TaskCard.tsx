@@ -13,18 +13,17 @@ export default function TaskCard() {
     <Fade in timeout={700}>
       <Card
         data-mui-color-scheme="dark"
-        sx={(theme) => ({
+        sx={{
           minWidth: 280,
           maxWidth: 360,
           minHeight: 280,
           display: 'flex',
           flexDirection: 'column',
           p: 3,
-          background: `linear-gradient(to right bottom, ${
-            (theme.vars || theme).palette.primary[500]
-          }, ${(theme.vars || theme).palette.primary[600]} 120%)`,
-          boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
-        })}
+          background:
+            'linear-gradient(180deg, var(--muidocs-palette-primary-600) 0%, var(--muidocs-palette-primary-700) 100%)',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.04)',
+        }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
           <ScheduleRounded fontSize="inherit" />
@@ -33,7 +32,7 @@ export default function TaskCard() {
           </Typography>
         </Box>
         <Box sx={{ my: 'auto' }}>
-          <CodeRounded color="white" />
+          <CodeRounded />
           <Typography fontSize={18} component="div" fontWeight="semiBold" sx={{ lineHeight: 1.4 }}>
             Customize every button and chip instance primary color
           </Typography>
@@ -49,8 +48,8 @@ export default function TaskCard() {
             }}
           >
             <Avatar
-              imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
-              src="https://i.scdn.co/image/ab67616d0000b273992e45c95fa03ee72c52a526"
+              slotProps={{ img: { 'aria-labelledby': 'demo-task-card-assignee-name' } }}
+              src="/static/images/avatar/2.jpg"
             />
           </Box>
           <div>
@@ -58,7 +57,7 @@ export default function TaskCard() {
               Assigned to
             </Typography>
             <Typography id="demo-task-card-assignee-name" variant="body2" fontWeight="semiBold">
-              Michael Scott
+              Lucas Smith
             </Typography>
           </div>
         </Box>

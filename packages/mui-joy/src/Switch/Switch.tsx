@@ -91,12 +91,16 @@ const SwitchRoot = styled('div', {
     '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
     ...getColorVariables(),
     '&:hover': {
-      ...getColorVariables({ state: 'Hover' }),
+      '@media (hover: hover)': {
+        ...getColorVariables({ state: 'Hover' }),
+      },
     },
     [`&.${switchClasses.checked}`]: {
       ...getColorVariables(),
       '&:hover': {
-        ...getColorVariables({ state: 'Hover' }),
+        '@media (hover: hover)': {
+          ...getColorVariables({ state: 'Hover' }),
+        },
       },
     },
     [`&.${switchClasses.disabled}`]: {
@@ -377,10 +381,10 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 }) as OverridableComponent<SwitchTypeMap>;
 
 Switch.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */

@@ -37,21 +37,21 @@
       "description": "The length of the transition in <code>ms</code>, or &#39;auto&#39;"
     },
     "TransitionProps": {
-      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"https://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
     },
     "variant": {
       "description": "The variant to use. Use <code>menu</code> to prevent selected items from impacting the initial focus."
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "list": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the List component via <code>MenuList</code>"
+    },
     "paper": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Paper component"
     },
-    "list": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the List component via <code>MenuList</code>"
-    }
+    "root": { "description": "Styles applied to the root element." }
   }
 }

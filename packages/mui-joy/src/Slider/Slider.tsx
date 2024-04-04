@@ -104,7 +104,9 @@ const SliderRoot = styled('span', {
       '--Slider-thumbWidth': 'var(--Slider-thumbSize)',
       ...getColorVariables(),
       '&:hover': {
-        ...getColorVariables({ state: 'Hover' }),
+        '@media (hover: hover)': {
+          ...getColorVariables({ state: 'Hover' }),
+        },
       },
       '&:active': {
         ...getColorVariables({ state: 'Active' }),
@@ -419,6 +421,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     onChangeCommitted,
     onMouseDown,
     orientation = 'horizontal',
+    shiftStep = 10,
     scale = Identity,
     step = 1,
     tabIndex,
@@ -447,6 +450,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     max,
     min,
     orientation,
+    shiftStep,
     scale,
     step,
     track,
@@ -654,10 +658,10 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
 }) as OverridableComponent<SliderTypeMap>;
 
 Slider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The label of the slider.
    */
@@ -791,6 +795,11 @@ Slider.propTypes /* remove-proptypes */ = {
    * }
    */
   scale: PropTypes.func,
+  /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep: PropTypes.number,
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.

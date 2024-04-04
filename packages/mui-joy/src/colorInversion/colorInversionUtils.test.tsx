@@ -7,6 +7,7 @@ import { applySoftInversion, applySolidInversion } from '@mui/joy/colorInversion
 
 describe('colorInversionUtil', () => {
   const { render } = createRenderer();
+
   it('should not throw error using sx prop', () => {
     expect(() =>
       render(<Box sx={[applySoftInversion('primary'), applySolidInversion('primary')]} />),
@@ -15,7 +16,7 @@ describe('colorInversionUtil', () => {
 
   it('should not throw error using styled API', () => {
     expect(() => {
-      styled(Box)(applySoftInversion('primary'), applySolidInversion('primary'));
+      styled('div')(applySoftInversion('primary'), applySolidInversion('primary'));
     }).not.to.throw();
   });
 });
