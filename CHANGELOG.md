@@ -1,5 +1,45 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.15
+
+<!-- generated comparing v5.15.14..master -->
+
+_Apr 4, 2024_
+
+A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.15`
+
+- [Autocomplete] Display options provided to the `options` prop even if loading is true (#41677) @ZeeshanTamboli
+- [RadioGroup] Apply classnames (#41681) @ZeeshanTamboli
+
+### `@mui/system@5.15.15`
+
+- Fix typo to avoid infinite recursion in function call (#41678) @ZeeshanTamboli
+
+### Docs
+
+- [material-ui][Slider] Remove `valueLabelFormat` from restricted values demo so that the tooltip thumb label displays the same as the value text (#41679) @ZeeshanTamboli
+- [material-ui] Remove deleted page from the sidenav (#41594) @danilo-leal
+- [material-ui] Fix typo in CSS theme variables customization (#41680) @ZeeshanTamboli
+- Continue migration of Base UI to sperate repository @oliviertassinari
+- Add notification for MUI X v7 blog post (#41587) (#41605) @cherniavskii
+- Update the versions dropdown to show v6 (#41557) @mnajdova
+
+### Core
+
+- [blog] Link to Romain's blog post in MUI X v7 announcement post (#41641) @cherniavskii
+- [blog] Blog post with MUI X v7.0.0 annoucement (#41563) (#41604) @cherniavskii
+- [blog] Add post about remote (#41565) @danilo-leal
+- [core] Continue rename of Toolpad @oliviertassinari
+- [docs-infra] Add Toolpad product/category IDs to types (#41551) @bharatkashyap
+- [website] Add Aarón to About Us (#41747) @aarongarciah
+- [website] Add stray design adjustments throughout the site (#41642) @mnajdova
+- [website] Update pricing table (#41606) @cherniavskii
+
+All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @cherniavskii, @danilo-leal, @mnajdova, @oliviertassinari, @ZeeshanTamboli
+
 ## v5.15.14
 
 <!-- generated comparing v5.15.13..master -->
