@@ -42,7 +42,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.4",
     "@mui/base": "workspace:*",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
@@ -76,7 +76,7 @@
     "playwright": "^1.42.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.3",
+    "react-router-dom": "^6.22.3",
     "rollup": "^3.29.4",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
