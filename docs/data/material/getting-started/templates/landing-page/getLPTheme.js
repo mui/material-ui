@@ -490,7 +490,7 @@ export default function getLPTheme(mode) {
             }),
             ...(ownerState.size === 'medium' && {
               height: '2.5rem',
-              width: '2.rem',
+              width: '2.5rem',
             }),
             color: brand[500],
             '&:hover': {
@@ -591,7 +591,7 @@ export default function getLPTheme(mode) {
             borderRadius: theme.shape.borderRadius,
             border: '1px solid',
             borderColor: alpha(gray[300], 0.8),
-            boxShadow: '0 0 0 1.5px rgba(0, 0, 0, 0.02) inset',
+            boxShadow: '0 0 0 1.5px hsla(210, 0%, 0%, 0.02) inset',
             transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
             '&:hover': {
@@ -622,7 +622,7 @@ export default function getLPTheme(mode) {
                 },
               },
               borderColor: alpha(gray[700], 0.5),
-              boxShadow: '0 0 0 1.5px rgb(0, 0, 0) inset',
+              boxShadow: '0 0 0 1.5px hsl(210, 0%, 0%) inset',
               backgroundColor: alpha(gray[900], 0.8),
               transition: 'border-color 120ms ease-in',
               '&:hover': {
@@ -682,7 +682,7 @@ export default function getLPTheme(mode) {
               borderRadius: 50,
             },
             '& .MuiSwitch-thumb': {
-              boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
+              boxShadow: '0 0 2px 2px hsla(220, 0%, 0%, 0.2)',
               backgroundColor: 'hsl(0, 0%, 100%)',
               width: 16,
               height: 16,
@@ -704,7 +704,7 @@ export default function getLPTheme(mode) {
                 },
               },
               '& .MuiSwitch-thumb': {
-                boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
+                boxShadow: '0 0 2px 2px hsla(220, 0%, 0%, 0.2)',
                 backgroundColor: 'hsl(0, 0%, 100%)',
                 width: 16,
                 height: 16,
@@ -727,7 +727,7 @@ export default function getLPTheme(mode) {
         styleOverrides: {
           root: ({ theme }) => ({
             borderRadius: theme.shape.borderRadius,
-            boxShadow: `0 4px 16px ${alpha(gray[400], 0.2)}`,
+            boxShadow: `0 1px 2px hsla(210, 0%, 0%, 0.05), 0 2px 12px ${alpha(brand[200], 0.5)}`,
             '& .Mui-selected': {
               color: brand[500],
             },
@@ -735,7 +735,7 @@ export default function getLPTheme(mode) {
               '& .Mui-selected': {
                 color: 'hsl(0, 0%, 100%)',
               },
-              boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
+              boxShadow: `0 0 0 1px hsla(210, 0%, 0%, 0.5), 0 2px 12px ${alpha(brand[700], 0.5)}`,
             }),
           }),
         },
@@ -749,7 +749,6 @@ export default function getLPTheme(mode) {
             fontWeight: 500,
             ...(theme.palette.mode === 'dark' && {
               color: gray[400],
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
               '&.Mui-selected': { color: brand[300] },
             }),
           }),
