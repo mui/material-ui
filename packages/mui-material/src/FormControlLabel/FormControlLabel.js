@@ -229,6 +229,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   componentsProps: PropTypes.shape({
     typography: PropTypes.object,
@@ -278,7 +279,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    typography: PropTypes.object,
+    typography: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.

@@ -3,6 +3,7 @@ import { SxProps } from '@mui/system';
 import { Theme, InternalStandardProps as StandardProps } from '..';
 import Typography, { TypographyProps } from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
+import { SlotProps } from '../utils/types';
 
 export interface FormControlLabelSlots {
   /**
@@ -11,6 +12,15 @@ export interface FormControlLabelSlots {
    * @default Typography
    */
   typography?: typeof Typography;
+}
+
+export interface FormControlLabelSlotProps {
+  /**
+   * Props applied to the Typography wrapper of the passed label.
+   * This is unused if disableTypography is true.
+   * @default {}
+   */
+  typography?: SlotProps<typeof Typography, {}, FormControlLabelProps>;
 }
 
 export interface FormControlLabelProps
@@ -82,14 +92,7 @@ export interface FormControlLabelProps
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps?: {
-    /**
-     * Props applied to the Typography wrapper of the passed label.
-     * This is unused if disableTypography is true.
-     * @default {}
-     */
-    typography?: TypographyProps;
-  };
+  slotProps?: FormControlLabelSlotProps;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
