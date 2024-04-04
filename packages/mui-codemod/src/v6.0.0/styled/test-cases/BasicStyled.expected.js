@@ -91,3 +91,20 @@ const Component = styled.div(({
     }
   }]
 })));
+
+const ImageListRoot = styled('ul')({
+  display: 'grid',
+  overflowY: 'auto',
+  listStyle: 'none',
+  padding: 0,
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
+  variants: [{
+    props: {
+      variant: 'masonry'
+    },
+    style: {
+      display: 'block',
+    }
+  }]
+});

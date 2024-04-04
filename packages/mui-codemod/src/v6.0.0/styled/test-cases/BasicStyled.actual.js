@@ -41,3 +41,17 @@ const Component = styled.div(({ theme, ownerState }) => ({
     marginTop: (theme.vars || theme).spacing(1),
   }),
 }));
+
+const ImageListRoot = styled('ul')(({ ownerState }) => {
+  return {
+    display: 'grid',
+    overflowY: 'auto',
+    listStyle: 'none',
+    padding: 0,
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch',
+    ...(ownerState.variant === 'masonry' && {
+      display: 'block',
+    }),
+  };
+});

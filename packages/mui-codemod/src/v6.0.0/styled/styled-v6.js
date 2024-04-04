@@ -206,6 +206,7 @@ export default function styledV6(file, api, options) {
       if (
         arg.type === 'ArrowFunctionExpression' &&
         arg.params[0] &&
+        arg.params[0].type === 'ObjectPattern' &&
         arg.params[0].properties.some((prop) => prop.key.name !== 'theme')
       ) {
         styles.push(arg);
@@ -353,6 +354,26 @@ export default function styledV6(file, api, options) {
           param.properties = param.properties.filter((prop) => prop.key.name === 'theme');
         }
       });
+    });
+
+    // Replace arrow function with object expression if the arg properties is empty
+    args.forEach((arg, index) => {
+      if (
+        arg.type === 'ArrowFunctionExpression' &&
+        arg.params[0] &&
+        arg.params[0].type === 'ObjectPattern' &&
+        arg.params[0].properties.length === 0
+      ) {
+        if (arg.body.type === 'ObjectExpression') {
+          args[index] = arg.body;
+        }
+        if (arg.body.type === 'BlockStatement') {
+          const returnStatement = arg.body.body.find((item) => item.type === 'ReturnStatement');
+          if (returnStatement) {
+            args[index] = returnStatement.argument;
+          }
+        }
+      }
     });
   });
 
