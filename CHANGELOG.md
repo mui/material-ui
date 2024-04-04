@@ -10,6 +10,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 - 🔥 Converted 3 more Material UI components to use Pigment CSS. Current progress is 36%!
 - 🚀 Added a spacing CSS variable to Material UI and Joy UI theme.
+- 💫 Added a redesigned [Sign-in page template](https://mui.com/material-ui/getting-started/templates/sign-in/) and [Sign-up page template](https://mui.com/material-ui/getting-started/templates/sign-up/).
 
 ### `@mui/material@6.0.0-alpha.1`
 
