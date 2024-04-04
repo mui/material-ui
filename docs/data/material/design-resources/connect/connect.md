@@ -19,15 +19,15 @@ Connect works in combination with the Material UI for Figma Design Kit v5.16.0 
 
 ### Getting started
 
-Follow these steps to generate a Material UI theme using the Connect plugin:
+Follow these steps to generate a Material UI theme using the Connect plugin:
 
-1. Download the [Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/) or purchase the [Complete version](https://mui.com/store/items/figma-react/) of the Material UI for Figma Design Kit.
+1. Download the [Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/) or purchase the [Complete version](https://mui.com/store/items/figma-react/) of the Material UI for Figma Design Kit.
 2. Download and install the [Connect Figma plugin](https://www.figma.com/community/plugin/1336346114713490235/).
-3. Open your copy of the Material UI for Figma Design Kit.
+3. Open your copy of the Material UI for Figma Design Kit.
 4. In the opened Design Kit, right-click anywhere in the canvas, then click **Plugins** > **Connect**.
 5. The Connect plugin will appear. Now click on **Generate theme**.
 6. After a few seconds a theme is generated (the theme will be empty if the default design kit is unaltered).
-7. Click on the **Storybook preview** tab to preview your theme applied to the Material UI component library.
+7. Click on the **Storybook preview** tab to preview your theme applied to the Material UI component library.
 
 There are several ways to start customizing the Desing Kit in order to generate a non-empty theme file.
 Currently the Connect plugin supports customizations applied to:
