@@ -8,7 +8,7 @@ _Apr 3, 2024_
 
 A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
-- 🔥 Converted 3 Material UI components to support static CSS extraction. The progress is at 36%!
+- 🔥 Converted 3 more Material UI components to use Pigment CSS. Current progress is 36%!
 - 🚀 Added a spacing CSS variable to Material UI and Joy UI theme.
 
 ### `@mui/material@6.0.0-alpha.1`
@@ -18,12 +18,12 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [Button] Convert to support CSS extraction (#41378) @siriwatknp
 - [ButtonGroup] Convert to support CSS extraction (#41666) @zanivan
 - [RadioGroup] Apply classnames (#41610) @ZeeshanTamboli
-- [slider] Move palette styles to the bottom (#41676) @siriwatknp
-- Add `spacing` theme token (#40224) @siriwatknp
+- [Slider] Move palette styles to the bottom (#41676) @siriwatknp
+- Add the `spacing` theme token (#40224) @siriwatknp
 
 ### `@mui/system@6.0.0-alpha.1`
 
-- Add `spacing` theme token to be used in `theme.spacing()` (#40224) @siriwatknp
+- Add the `spacing` theme token to be used in `theme.spacing()` (#40224) @siriwatknp
 
 ### `@mui/codemod@6.0.0-alpha.1`
 
@@ -31,7 +31,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 ### `@mui/lab@6.0.0-alpha.1`
 
-- [TabPanel] Add keepMounted prop to match joy-ui (#41651) @ppaskaris-plooto
+- [TabPanel] Add keepMounted prop to match Joy UI (#41651) @ppaskaris-plooto
 
 ### `@mui/joy@5.0.0-beta.34`
 
@@ -40,7 +40,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 ### `@pigment-css/react@0.0.5`
 
 - Improve sx prop support (#41589) @brijeshb42
-- Fix emotion styled error (#41699) @siriwatknp
+- Fix Emotion styled error (#41699) @siriwatknp
 - Fix propTypes removal during eval stage (#41695) @brijeshb42
 - Fix props forwarding (#41688) @siriwatknp
 - Fix sx prop transformation on Box (#41705) @brijeshb42
@@ -56,9 +56,9 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - Continue migration of Base UI to sperate repository @oliviertassinari
 - Stick to one way to write IE 11 @oliviertassinari
 - Fix typo in CONTRIBUTING.md (#41670) @adriancuadrado
-- [material-ui]Fix typo on the Accordion page (#41687) @connorshea
-- [pigment-css]Add small edits on the README (#41646) @danilo-leal
-- [pigment-css]Edit the example app's README files (#41639) @danilo-leal
+- [material-ui] Fix typo on the Accordion page (#41687) @connorshea
+- [pigment-css] Add small edits on the README (#41646) @danilo-leal
+- [pigment-css] Edit the example app's README files (#41639) @danilo-leal
 
 ### Core
 
