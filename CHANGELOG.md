@@ -4,19 +4,19 @@
 
 <!-- generated comparing v5.15.14..master -->
 
-_Apr 3, 2024_
+_Apr 4, 2024_
 
 A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.15.15`
 
-- [Autocomplete] Display options provided to the `options` prop even if loading is true. (#41677) @ZeeshanTamboli
+- [Autocomplete] Display options provided to the `options` prop even if loading is true (#41677) @ZeeshanTamboli
 - [RadioGroup] Apply classnames (#41681) @ZeeshanTamboli
 
 ### `@mui/system@5.15.15`
 
-- Fix typo to avoid infinite recursion in function call. (#41678) @ZeeshanTamboli
+- Fix typo to avoid infinite recursion in function call (#41678) @ZeeshanTamboli
 
 ### Docs
 
