@@ -509,7 +509,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
             }),
             ...(ownerState.size === 'medium' && {
               height: '2.5rem',
-              width: '2.rem',
+              width: '2.5rem',
             }),
             color: brand[500],
             '&:hover': {
