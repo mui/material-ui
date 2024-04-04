@@ -58,7 +58,7 @@ We have already defined everything as a style, so your only point of command is 
 
 ### Do the kits output React code?
 
-You can export the design tokens and component customizations to code if paired with [the Connect Figma plugin](/material-ui/design-resources/connect/).
+You can export theme tokens and component customizations to code if paired with [the Connect Figma plugin](/material-ui/design-resources/connect/).
 Material UI for Figma has been built to be as close to the React components as possible, making it for a fluid integration with code.
 
 ### How do I migrate from Design to React?
