@@ -520,12 +520,12 @@ describe('createStyled', () => {
         },
       });
 
-      const Test = styled('div')(({ theme, color }) => ({
+      const Test = styled('div')(({ theme, ownerState }) => ({
         variants: [
           {
             props: (props) => props.color === 'green' || props.color === 'red',
             style: {
-              backgroundColor: theme.colors[color],
+              backgroundColor: theme.colors[ownerState.color],
             },
           },
         ],

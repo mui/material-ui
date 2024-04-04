@@ -44,7 +44,7 @@ export default function StylingInfo({
         borderTop: '1px solid',
         borderColor: 'divider',
         borderRadius: '0 0 10px 10px',
-        ...props.sx,
+        ...(typeof props.sx === 'object' && props.sx),
       }}
     >
       <IconButton

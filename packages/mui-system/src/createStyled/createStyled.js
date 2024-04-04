@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import isPropValid from '@emotion/is-prop-valid';
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
@@ -26,7 +27,8 @@ function isStringTag(tag) {
 
 // Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
-  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'as';
+  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'as' && prop !== 'sx';
+  // return prop !== 'ownerState' && prop !== 'theme';
 }
 
 export const systemDefaultTheme = createTheme();
@@ -153,22 +155,16 @@ export default function createStyled(input = {}) {
       shouldForwardPropOption = slotShouldForwardProp;
     } else if (isStringTag(tag)) {
       // for string (html) tag, preserve the behavior in emotion & styled-components.
-      shouldForwardPropOption = undefined;
+      shouldForwardPropOption = isPropValid;
     }
 
     if (shouldForwardPropInput) {
       shouldForwardPropOption = shouldForwardPropInput;
     }
 
-    // Always propagated the sx prop, the augmented component will make sure to intercept if needed
-    const shouldForwardPropEmotionOption = (prop) =>
-      prop === 'sx' ||
-      shouldForwardPropOption === undefined ||
-      (typeof shouldForwardPropOption === 'function' && shouldForwardPropOption(prop));
-
     // This is needed in order to intercept the transformed sx values potentially done by the zero-runtime library
     const AugmentedTag = React.forwardRef(function Component(props, ref) {
-      const { sx, ...other } = props;
+      const { sx, as, ...other } = props;
       const sxClass = typeof sx === 'string' ? sx : sx?.className;
       const sxVars = sx && typeof sx !== 'string' ? sx.vars : undefined;
       const sxVarsStyles = {};
@@ -183,18 +179,39 @@ export default function createStyled(input = {}) {
         });
       }
 
-      const propsToFrward =
-        shouldForwardPropOption === undefined || !shouldForwardPropOption('sx') ? other : props;
+      console.log("tag = ", tag);
+      console.log(props);
 
-      return React.createElement(tag, {
-        ...propsToFrward,
+      const Component = typeof tag !== 'string' ? tag : as ?? tag;
+
+      const hasTransformedSx = !(sxClass === undefined && sxVars === undefined);
+      const shouldForwardSx = hasTransformedSx ? false : shouldForwardPropOption('sx');
+      const shouldForwardAs = typeof Component !== 'string';
+
+      const filteredProps = Object.keys(other).reduce((acc, prop) => {
+        if (shouldForwardPropOption(prop)) {
+          acc[prop] = other[prop];
+        }
+        return acc;
+      }, {});
+      // console.log(other);
+      // console.log({
+      //   ...(typeof Component === 'string' ? filteredProps : other),
+      //   ...(shouldForwardAs && { as }),
+      //   ...(shouldForwardSx && { sx }),
+      // });
+
+      return React.createElement(Component, {
+        ...(typeof Component === 'string' ? filteredProps : other),
+        ...(shouldForwardAs && { as }),
+        ...(shouldForwardSx && { sx }),
         className: clsx(props.className, sxClass),
         style: { ...sxVarsStyles, ...props.style },
         ref,
       });
     });
 
-    AugmentedTag.proptypes = {
+    AugmentedTag.propTypes = {
       sx: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
         PropTypes.func,
@@ -210,7 +227,8 @@ export default function createStyled(input = {}) {
     const defaultStyledResolver = styledEngineStyled(AugmentedTag, {
       label,
       ...options,
-      shouldForwardProp: shouldForwardPropEmotionOption,
+      // The AugmentedTag will handle the props interception
+      shouldForwardProp: () => true,
     });
 
     const transformStyleArg = (stylesArg) => {

@@ -1018,7 +1018,7 @@ function testSupportPigmentCssSxProp(
     expect(classList).to.contain('sx-classname');
   });
 
-  it('should support sx as string', () => {
+  it('should support sx as Pigment CSS object', () => {
     const { getByTestId } = render(
       React.cloneElement(element, {
         'data-testid': 'component',
