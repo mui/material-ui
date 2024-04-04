@@ -33,6 +33,9 @@ const FormHelperTextRoot = styled('p')(({ theme, ownerState, disabled }) => ({
     marginTop: 14,
     marginBottom: 14,
   }),
+  ...(!!ownerState.disabled && {
+    opacity: 0.5,
+  }),
 }));
 
 const Component = styled.div(({ theme, ownerState }) => ({

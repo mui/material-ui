@@ -75,6 +75,15 @@ const FormHelperTextRoot = styled('p')(({
       marginTop: 14,
       marginBottom: 14,
     }
+  }, {
+    props: (
+      {
+        ownerState
+      }
+    ) => !!ownerState.disabled,
+    style: {
+      opacity: 0.5,
+    }
   }]
 })));
 

@@ -117,7 +117,13 @@ export default function styledV6(file, api, options) {
       }
       if (_node.type === 'UnaryExpression') {
         isAllEqual = false;
-        variables.add(getObjectKey(_node.argument).name);
+        if (_node.argument.type === 'UnaryExpression') {
+          // handle `!!variable`
+          variables.add(getObjectKey(_node.argument.argument).name);
+        } else {
+          // handle `!variable`
+          variables.add(getObjectKey(_node.argument).name);
+        }
       }
     }
     if (tempNode.type !== 'LogicalExpression') {
