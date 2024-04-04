@@ -11,6 +11,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.15.15`
 
+- [Autocomplete] Display options provided to the `options` prop even if loading is true. (#41677) @ZeeshanTamboli
 - [RadioGroup] Apply classnames (#41681) @ZeeshanTamboli
 
 ### `@mui/system@5.15.15`
@@ -19,6 +20,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Docs
 
+- [material-ui][Slider] Remove `valueLabelFormat` from restricted values demo so that the tooltip thumb label displays the same as the value text (#41679) @ZeeshanTamboli
 - [material-ui] Remove deleted page from the sidenav (#41594) @danilo-leal
 - [material-ui] Fix typo in CSS theme variables customization (#41680) @ZeeshanTamboli
 - Continue migration of Base UI to sperate repository @oliviertassinari
