@@ -8,7 +8,7 @@ _Apr 3, 2024_
 
 A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
-- 🔥 Converted 3 more Material UI components to use Pigment CSS. Current progress is 36%!
+- 🔥 Converted 3 more Material UI components to use Pigment CSS. Current progress is 36%!
 - 🚀 Added a spacing CSS variable to Material UI and Joy UI theme.
 
 ### `@mui/material@6.0.0-alpha.1`
