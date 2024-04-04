@@ -24,13 +24,13 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui] Remove deleted page from the sidenav (#41594) @danilo-leal
 - [material-ui] Fix typo in CSS theme variables customization (#41680) @ZeeshanTamboli
 - Continue migration of Base UI to sperate repository @oliviertassinari
-- Add notification for MUI X v7 blog post (#41587) (#41605) @cherniavskii
+- Add notification for MUI X v7 blog post (#41587) (#41605) @cherniavskii
 - Update the versions dropdown to show v6 (#41557) @mnajdova
 
 ### Core
 
-- [blog] Link to Romain's blog post in MUI X v7 announcement post (#41641) @cherniavskii
-- [blog] Blog post with MUI X v7.0.0 annoucement (#41563) (#41604) @cherniavskii
+- [blog] Link to Romain's blog post in MUI X v7 announcement post (#41641) @cherniavskii
+- [blog] Blog post with MUI X v7.0.0 annoucement (#41563) (#41604) @cherniavskii
 - [blog] Add post about remote (#41565) @danilo-leal
 - [core] Continue rename of Toolpad @oliviertassinari
 - [docs-infra] Add Toolpad product/category IDs to types (#41551) @bharatkashyap
