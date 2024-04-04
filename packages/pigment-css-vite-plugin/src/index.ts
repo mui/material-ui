@@ -13,7 +13,7 @@ export interface PigmentOptions extends VitePluginOptions {
   /**
    * The theme object that you want to be passed to the `styled` function
    */
-  theme: Theme;
+  theme?: Theme;
   /**
    * Whether the css variables for the default theme should target the :root selector or not.
    * @default true
@@ -43,7 +43,7 @@ function isZeroRuntimeProcessableFile(fileName: string, transformLibraries: stri
 
 export function pigment(options?: PigmentOptions) {
   const {
-    theme = {},
+    theme,
     babelOptions = {},
     preprocessor = basePreprocessor,
     transformLibraries = [],
@@ -65,11 +65,11 @@ export function pigment(options?: PigmentOptions) {
         return null;
       },
       load(id) {
-        if (id === VIRTUAL_CSS_FILE) {
+        if (id === VIRTUAL_CSS_FILE && theme) {
           return generateTokenCss(theme);
         }
         if (id === VIRTUAL_THEME_FILE) {
-          return `export default ${JSON.stringify(generateThemeTokens(theme))};`;
+          return `export default ${theme ? JSON.stringify(generateThemeTokens(theme)) : {}};`;
         }
         return null;
       },
