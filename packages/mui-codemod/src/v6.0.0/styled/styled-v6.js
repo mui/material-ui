@@ -419,7 +419,7 @@ export default function styledV6(file, api, options) {
       line !== '' ||
       (line === '' && array[index + 1] && array[index + 1].includes('return'))
     ) {
-      if (line.match(/^}\)+(\({}\)|\(\))?;?$/)) {
+      if (line.match(/^}\)+(\({}\)|\(\))?;?$/) || line.match(/^\);?$/)) {
         isInStyled = false;
       }
       lines.push(line);
