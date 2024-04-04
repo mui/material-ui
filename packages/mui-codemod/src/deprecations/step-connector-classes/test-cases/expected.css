@@ -1,7 +1,7 @@
-.MuiStepConnector-root.MuiStepConnector-line > .MuiStepConnector-horizontal {
+.MuiStepConnector-root.MuiStepConnector-horizontal > .MuiStepConnector-linr {
   color: red;
 }
 
-.MuiStepConnector-root.MuiStepConnector-line > .MuiStepConnector-vertical {
+.MuiStepConnector-root.MuiStepConnector-vertical > .MuiStepConnector-line {
   color: red;
 }
