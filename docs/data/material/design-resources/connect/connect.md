@@ -19,7 +19,7 @@ Connect works in combination with the Material UI for Figma Design Kit v5.16.0 
 
 ## Running the plugin
 
-If you don't have [the Complete and latest](/store/items/figma-react/) Material UI Design Kit version installed, you can test the plugin by using [the Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/) instead.
+If you don't have [the Complete and latest](/store/items/figma-react/) Material UI Design Kit version installed, you can test the plugin by using [the Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/) instead.
 
 After installing it, open the Design Kit file on Figma.
 Once that's done, head over to [the Connect profile page](https://www.figma.com/community/plugin/1336346114713490235/) on Figma's Community tab and click on "**Open in Figma**".
