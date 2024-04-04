@@ -1,8 +1,17 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme, InternalStandardProps as StandardProps } from '..';
-import { TypographyProps } from '../Typography';
+import Typography, { TypographyProps } from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
+
+export interface FormControlLabelSlots {
+  /**
+   * The component that renders the label.
+   * This is unused if `disableTypography` is true.
+   * @default Typography
+   */
+  typography?: typeof Typography;
+}
 
 export interface FormControlLabelProps
   extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'> {
@@ -17,6 +26,7 @@ export interface FormControlLabelProps
   /**
    * The props used for each slot inside.
    * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   componentsProps?: {
     /**
@@ -63,6 +73,11 @@ export interface FormControlLabelProps
    * If `true`, the label will indicate that the `input` is required.
    */
   required?: boolean;
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots?: FormControlLabelSlots;
   /**
    * The props used for each slot inside.
    * @default {}

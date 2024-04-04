@@ -30,6 +30,10 @@
       "type": { "name": "shape", "description": "{ typography?: object }" },
       "default": "{}"
     },
+    "slots": {
+      "type": { "name": "shape", "description": "{ typography?: func }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -43,6 +47,14 @@
   "imports": [
     "import FormControlLabel from '@mui/material/FormControlLabel';",
     "import { FormControlLabel } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "typography",
+      "description": "The component that renders the label.\nThis is unused if `disableTypography` is true.",
+      "default": "Typography",
+      "class": null
+    }
   ],
   "classes": [
     {
