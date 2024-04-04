@@ -3,7 +3,7 @@ import { SxProps } from '@mui/system';
 import { Theme, InternalStandardProps as StandardProps } from '..';
 import Typography, { TypographyProps } from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
-import { SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface FormControlLabelSlots {
   /**
@@ -14,17 +14,16 @@ export interface FormControlLabelSlots {
   typography?: React.ElementType;
 }
 
-export interface FormControlLabelSlotProps {
-  /**
-   * Props applied to the Typography wrapper of the passed label.
-   * This is unused if disableTypography is true.
-   * @default {}
-   */
-  typography?: SlotProps<typeof Typography, {}, FormControlLabelProps>;
-}
+export type FormControlLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  FormControlLabelSlots,
+  {
+    typography: SlotProps<typeof Typography, {}, FormControlLabelProps>;
+  }
+>;
 
 export interface FormControlLabelProps
-  extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'> {
+  extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'>,
+    FormControlLabelSlotsAndSlotProps {
   /**
    * If `true`, the component appears selected.
    */
@@ -83,16 +82,6 @@ export interface FormControlLabelProps
    * If `true`, the label will indicate that the `input` is required.
    */
   required?: boolean;
-  /**
-   * The components used for each slot inside.
-   * @default {}
-   */
-  slots?: FormControlLabelSlots;
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  slotProps?: FormControlLabelSlotProps;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

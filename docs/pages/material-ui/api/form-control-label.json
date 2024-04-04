@@ -33,7 +33,7 @@
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ typography?: func }" },
+      "type": { "name": "shape", "description": "{ typography?: elementType }" },
       "default": "{}"
     },
     "sx": {
