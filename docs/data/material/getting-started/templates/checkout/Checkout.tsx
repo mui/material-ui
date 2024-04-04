@@ -147,7 +147,7 @@ export default function Checkout() {
               sx={{ ml: '-8px' }}
             >
               Back to
-              <SitemarkIcon sx={{ fontSize: 88, ml: 1 }} />
+              <SitemarkIcon />
             </Button>
           </Box>
           <Box
@@ -203,7 +203,7 @@ export default function Checkout() {
                 sx={{ alignSelf: 'start' }}
               >
                 Back to
-                <SitemarkIcon sx={{ fontSize: 88, ml: 1 }} />
+                <SitemarkIcon />
               </Button>
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
             </Box>
