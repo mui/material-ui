@@ -49,6 +49,10 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 - Use constant filename for pigment styles (#41667) @brijeshb42
 
+### `@pigment-css/nextjs-plugin@0.0.5`
+
+- Add missing RTL implementation (#41751) @brijeshb42
+
 ### Docs
 
 - [pigment-css] Update README.md installation to use the next tag (#41649) @mnajdova
@@ -72,6 +76,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [examples] Update MUI's packages to the next version (#41701) @mnajdova
 - [material-ui] Refine the Sign-in and Sign-up templates (#41192) @zanivan
 - [test] Add test to display options provided to the options prop even if loading is true. (#41675) @ZeeshanTamboli
+- [blog] Refresh the design slightly (#41697) @danilo-leal
 - [website] Use en-US over en-UK for career link @oliviertassinari
 - [website] Add Aarón to About Us (#41736) @aarongarciah
 - [website] Refine button design and other details (#41686) @danilo-leal
