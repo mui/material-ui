@@ -174,6 +174,8 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     ownerState,
   });
 
+  delete typographySlotProps.ownerState;
+
   let label = labelProp;
   if (label != null && label.type !== Typography && !disableTypography) {
     label = (
