@@ -6,7 +6,7 @@
 
 _Apr 4, 2024_
 
-A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - 🔥 Converted 3 more Material UI components to use Pigment CSS. Current progress is 36%!
 - 🚀 Added a spacing CSS variable to the Material UI and Joy UI themes.
@@ -61,6 +61,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - Continue migration of Base UI to sperate repository @oliviertassinari
 - Stick to one way to write IE 11 @oliviertassinari
 - Fix typo in CONTRIBUTING.md (#41670) @adriancuadrado
+- Drop IE 11 official support (#41611) @iammminzzy
 - [material-ui] Fix typo on the Accordion page (#41687) @connorshea
 - [pigment-css] Add small edits on the README (#41646) @danilo-leal
 - [pigment-css] Edit the example app's README files (#41639) @danilo-leal
@@ -82,8 +83,9 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [website] Add Aarón to About Us (#41736) @aarongarciah
 - [website] Refine button design and other details (#41686) @danilo-leal
 - [website] Improve job og image (#41672) @oliviertassinari
+- [website] Page <title> should have no dots @oliviertassinari
 
-All contributors of this release in alphabetical order: @aarongarciah, @adriancuadrado, @alexfauquette, @bharatkashyap, @brijeshb42, @connorshea, @danilo-leal, @DiegoAndai, @Janpot, @mnajdova, @oliviertassinari, @ppaskaris-plooto, @siriwatknp, @skmanoj322, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @aarongarciah, @adriancuadrado, @alexfauquette, @bharatkashyap, @brijeshb42, @connorshea, @danilo-leal, @DiegoAndai, @iammminzzy, @Janpot, @JCQuintas, @levigunz, @mnajdova, @oliviertassinari, @ppaskaris-plooto, @siriwatknp, @skmanoj322, @zanivan, @ZeeshanTamboli
 
 ## v6.0.0-alpha.0
 
