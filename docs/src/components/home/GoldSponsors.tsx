@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
@@ -98,18 +98,19 @@ export default function GoldSponsors() {
       </Typography>
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {GOLDs.map((item) => (
-          <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
+          <Grid key={item.name} xs={12} sm={6} md={4} lg={3}>
             <SponsorCard inView={inView} item={item} />
           </Grid>
         ))}
-        <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Grid xs={12} sm={6} md={4} lg={3}>
           <Paper
             variant="outlined"
             sx={{
               p: 2,
+              height: '100%',
               display: 'flex',
               alignItems: 'center',
-              height: '100%',
+              gap: 2,
               borderStyle: 'dashed',
             }}
           >
@@ -120,14 +121,6 @@ export default function GoldSponsors() {
               target="_blank"
               rel="noopener"
               color="primary"
-              sx={(theme) => ({
-                mr: 2,
-                border: '1px solid',
-                borderColor: 'grey.300',
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
-                }),
-              })}
             >
               <AddRounded />
             </IconButton>

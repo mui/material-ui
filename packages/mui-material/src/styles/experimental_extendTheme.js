@@ -1,8 +1,7 @@
 import deepmerge from '@mui/utils/deepmerge';
-import {
-  unstable_createGetCssVar as systemCreateGetCssVar,
-  unstable_prepareCssVars as prepareCssVars,
-} from '@mui/system';
+import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
+import { createUnarySpacing } from '@mui/system/spacing';
+import { prepareCssVars } from '@mui/system/cssVars';
 import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
 } from '@mui/system/styleFunctionSx';
@@ -61,6 +60,22 @@ function setColorChannel(obj, key) {
         `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, for example "12 12 12") or undefined if you want to remove the channel token.`,
     );
   }
+}
+
+function getSpacingVal(spacingInput) {
+  if (typeof spacingInput === 'number') {
+    return `${spacingInput}px`;
+  }
+  if (typeof spacingInput === 'string') {
+    return spacingInput;
+  }
+  if (typeof spacingInput === 'function') {
+    return getSpacingVal(spacingInput(1));
+  }
+  if (Array.isArray(spacingInput)) {
+    return spacingInput;
+  }
+  return '8px';
 }
 
 const silent = (fn) => {
@@ -124,6 +139,7 @@ export default function extendTheme(options = {}, ...args) {
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
       },
     },
+    spacing: getSpacingVal(input.spacing),
   };
 
   Object.keys(theme.colorSchemes).forEach((key) => {
@@ -414,7 +430,11 @@ export default function extendTheme(options = {}, ...args) {
   });
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
+  theme.generateSpacing = function generateSpacing() {
+    return createSpacing(input.spacing, createUnarySpacing(this));
+  };
   theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;
+  theme.spacing = theme.generateSpacing();
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,

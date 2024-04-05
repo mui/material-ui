@@ -2,12 +2,14 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Section from 'docs/src/layouts/Section';
 import AppFooter from 'docs/src/layouts/AppFooter';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function BrandingThemeTest() {
   return (
@@ -30,20 +32,26 @@ export default function BrandingThemeTest() {
           </Stack>
           <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
             <Button variant="contained" size="small" color="primary">
-              This button
+              Contained primary
             </Button>
             <Button variant="contained" size="small" color="secondary">
-              This button
+              Contained secondary
             </Button>
             <Button variant="outlined" size="small" color="primary">
-              This button
+              Outlined primary
             </Button>
             <Button variant="outlined" size="small" color="secondary">
-              This button
+              Outlined secondary
             </Button>
             <Button variant="text" size="small" color="info">
               This button
             </Button>
+            <IconButton color="primary">
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+            <IconButton color="info">
+              <GitHubIcon fontSize="small" />
+            </IconButton>
           </Stack>
         </Section>
         <Divider />

@@ -27,6 +27,5 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformStepLabelProps(file, api, options);
   file.source = transformBackdropProps(file, api, options);
 
-
   return file.source;
 }

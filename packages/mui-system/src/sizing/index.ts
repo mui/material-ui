@@ -1,3 +1,3 @@
-'use client'
-export { default } from './sizing'
-export * from './sizing'
+'use client';
+export { default } from './sizing';
+export * from './sizing';

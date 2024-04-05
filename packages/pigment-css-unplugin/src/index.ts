@@ -21,6 +21,7 @@ import {
   generateThemeTokens,
   extendTheme,
   type Theme as BaseTheme,
+  type PluginCustomOptions,
 } from '@pigment-css/react/utils';
 import type { ResolvePluginInstance } from 'webpack';
 
@@ -52,7 +53,8 @@ export type PigmentOptions<Theme extends BaseTheme = BaseTheme> = {
   meta?: Meta;
   asyncResolve?: (...args: Parameters<AsyncResolver>) => Promise<string | null>;
   transformSx?: boolean;
-} & Partial<WywInJsPluginOptions>;
+} & Partial<WywInJsPluginOptions> &
+  Omit<PluginCustomOptions, 'themeArgs'>;
 
 const extensions = ['.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx', '.mts', '.cts'];
 
@@ -100,13 +102,14 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
     theme,
     meta,
     transformLibraries = [],
-    preprocessor = basePreprocessor,
+    preprocessor,
     asyncResolve: asyncResolveOpt,
     debug = false,
     sourceMap = false,
     transformSx = true,
     overrideContext,
     tagResolver,
+    css,
     ...rest
   } = options;
   const cache = new TransformCacheCollection();
@@ -151,8 +154,12 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
     return asyncResolveFallback(what, importer, stack);
   };
 
-  const linariaTransformPlugin: UnpluginOptions = {
-    name: 'zero-plugin-transform-linaria',
+  const withRtl = (selector: string, cssText: string) => {
+    return basePreprocessor(selector, cssText, css);
+  };
+
+  const wywInJSTransformPlugin: UnpluginOptions = {
+    name: 'zero-plugin-transform-wyw-in-js',
     enforce: 'post',
     buildEnd() {
       onDone(process.cwd());
@@ -188,12 +195,13 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
       compiler.options.resolve.plugins = compiler.options.resolve.plugins || [];
       compiler.options.resolve.plugins.push(resolverPlugin);
     },
-    async transform(code, id) {
+    async transform(code, filePath) {
+      const [id] = filePath.split('?');
       const transformServices = {
         options: {
           filename: id,
           root: process.cwd(),
-          preprocessor,
+          preprocessor: preprocessor ?? withRtl,
           pluginOptions: {
             ...rest,
             themeArgs: {
@@ -221,7 +229,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
             babelOptions: {
               ...rest.babelOptions,
               plugins: [
-                ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+                `${process.env.RUNTIME_PACKAGE_NAME}/exports/remove-prop-types-plugin`,
                 'babel-plugin-define-var', // A fix for undefined variables in the eval phase of wyw-in-js, more details on https://github.com/siriwatknp/babel-plugin-define-var?tab=readme-ov-file#problem
                 ...(rest.babelOptions?.plugins ?? []),
               ],
@@ -246,8 +254,6 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
             map: result.sourceMap,
           };
         }
-        const slug = slugify(cssText);
-        const cssFilename = `${slug}.zero.css`;
 
         if (sourceMap && result.cssSourceMapText) {
           const map = Buffer.from(result.cssSourceMapText).toString('base64');
@@ -260,7 +266,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
         if (isNext) {
           const data = `${meta.placeholderCssFile}?${encodeURIComponent(
             JSON.stringify({
-              filename: cssFilename,
+              filename: id.split('/').pop(),
               source: cssText,
             }),
           )}`;
@@ -270,9 +276,13 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
             map: result.sourceMap,
           };
         }
+
+        const slug = slugify(cssText);
+        const cssFilename = `${slug}.zero.css`;
         const cssId = `./${cssFilename}`;
         cssFileLookup.set(cssId, cssFilename);
         cssLookup.set(cssFilename, cssText);
+
         return {
           code: `${result.code}\nimport ${JSON.stringify(`./${cssFilename}`)};`,
           map: result.sourceMap,
@@ -356,7 +366,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
   if (transformSx) {
     plugins.push(babelTransformPlugin);
   }
-  plugins.push(linariaTransformPlugin);
+  plugins.push(wywInJSTransformPlugin);
 
   // This is already handled separately for Next.js using `placeholderCssFile`
   if (!isNext) {
