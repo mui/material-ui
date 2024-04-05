@@ -32,6 +32,13 @@
       },
       "default": "'medium'"
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ first?: func<br>&#124;&nbsp;object, last?: func<br>&#124;&nbsp;object, next?: func<br>&#124;&nbsp;object, previous?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
     "slots": {
       "type": {
         "name": "shape",
