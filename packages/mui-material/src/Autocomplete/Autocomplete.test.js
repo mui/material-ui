@@ -503,6 +503,18 @@ describe('<Autocomplete />', () => {
       });
     });
 
+    it('should apply the hasMultiple class', () => {
+      const { container } = render(
+        <Autocomplete
+          openOnFocus
+          options={[]}
+          renderInput={(params) => <TextField {...params} />}
+          multiple
+        />,
+      );
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasMultiple);
+    });
+
     it('should remove the last option', () => {
       const handleChange = spy();
       const options = ['one', 'two'];

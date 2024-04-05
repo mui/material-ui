@@ -110,11 +110,14 @@ const AutocompleteRoot = styled('div', {
     },
   },
   [`&.${autocompleteClasses.focused}`]: {
-    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+    [`& .${autocompleteClasses.clearIndicator}`]: {
       visibility: 'visible',
     },
-    [`&:hover .${autocompleteClasses.input}:not(.${autocompleteClasses.hasMultiple})`]: {
+    [`& .${autocompleteClasses.input}`]: {
       minWidth: 4,
+    },
+    [`& .${autocompleteClasses.input}.${autocompleteClasses.hasMultiple}`]: {
+      minWidth: 30,
     },
   },
   /* Avoid double tap issue on iOS */
@@ -122,8 +125,11 @@ const AutocompleteRoot = styled('div', {
     [`&:hover .${autocompleteClasses.clearIndicator}`]: {
       visibility: 'visible',
     },
-    [`&:hover .${autocompleteClasses.input}:not(.${autocompleteClasses.hasMultiple})`]: {
+    [`&:hover .${autocompleteClasses.input}`]: {
       minWidth: 4,
+    },
+    [`&:hover .${autocompleteClasses.input}.${autocompleteClasses.hasMultiple}`]: {
+      minWidth: 30,
     },
   },
   [`& .${inputClasses.root}`]: {
