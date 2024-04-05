@@ -1,27 +1,27 @@
 'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import integerPropType from '@mui/utils/integerPropType';
-import chainPropTypes from '@mui/utils/chainPropTypes';
-import { useAutocomplete, createFilterOptions } from '@mui/base';
-import composeClasses from '@mui/utils/composeClasses';
+import { createFilterOptions, useAutocomplete } from '@mui/base';
 import { alpha } from '@mui/system/colorManipulator';
-import Popper from '../Popper';
-import ListSubheader from '../ListSubheader';
-import Paper from '../Paper';
-import IconButton from '../IconButton';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import integerPropType from '@mui/utils/integerPropType';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import Chip from '../Chip';
+import filledInputClasses from '../FilledInput/filledInputClasses';
+import IconButton from '../IconButton';
 import inputClasses from '../Input/inputClasses';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
+import ListSubheader from '../ListSubheader';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
-import filledInputClasses from '../FilledInput/filledInputClasses';
-import ClearIcon from '../internal/svg-icons/Close';
+import Paper from '../Paper';
+import Popper from '../Popper';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import { styled, createUseThemeProps } from '../zero-styled';
-import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
+import ClearIcon from '../internal/svg-icons/Close';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
+import { createUseThemeProps, styled } from '../zero-styled';
+import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 
 const useThemeProps = createUseThemeProps('MuiAutocomplete');
 
@@ -90,23 +90,6 @@ const AutocompleteRoot = styled('div', {
     ];
   },
 })({
-  [`&.${autocompleteClasses.focused}`]: {
-    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
-      visibility: 'visible',
-    },
-    [`&:hover .${autocompleteClasses.input}`]: {
-      minWidth: '0 !important',
-    },
-  },
-  /* Avoid double tap issue on iOS */
-  '@media (pointer: fine)': {
-    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
-      visibility: 'visible',
-    },
-    [`&:hover .${autocompleteClasses.input}`]: {
-      minWidth: '0 !important',
-    },
-  },
   [`& .${autocompleteClasses.tag}`]: {
     margin: 3,
     maxWidth: 'calc(100% - 6px)',
@@ -124,6 +107,23 @@ const AutocompleteRoot = styled('div', {
     [`& .${autocompleteClasses.input}`]: {
       width: 0,
       minWidth: 30,
+    },
+  },
+  [`&.${autocompleteClasses.focused}`]: {
+    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+      visibility: 'visible',
+    },
+    [`&:hover .${autocompleteClasses.input}`]: {
+      minWidth: 0,
+    },
+  },
+  /* Avoid double tap issue on iOS */
+  '@media (pointer: fine)': {
+    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+      visibility: 'visible',
+    },
+    [`&:hover .${autocompleteClasses.input}`]: {
+      minWidth: 0,
     },
   },
   [`& .${inputClasses.root}`]: {
