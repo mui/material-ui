@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardActionsUtilityClass } from './cardActionsClasses';
@@ -67,6 +68,7 @@ export const StyledCardActionsRoot = styled('div')<{ ownerState: CardActionsOwne
 const CardActionsRoot = styled(StyledCardActionsRoot, {
   name: 'JoyCardActions',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardActionsOwnerState }>({});
 /**

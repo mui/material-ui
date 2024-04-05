@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '@mui/base/useButton';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { shouldForwardProp } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { getIconButtonUtilityClass } from './iconButtonClasses';
@@ -112,6 +113,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
 export const IconButtonRoot = styled(StyledIconButton, {
   name: 'JoyIconButton',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })({});
 

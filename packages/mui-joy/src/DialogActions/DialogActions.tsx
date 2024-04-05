@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getDialogActionsUtilityClass } from './dialogActionsClasses';
@@ -21,6 +22,7 @@ const useUtilityClasses = () => {
 const DialogActionsRoot = styled(StyledCardActionsRoot, {
   name: 'JoyDialogActions',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: DialogActionsProps }>({});
 /**

@@ -8,6 +8,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps } from '../styles';
 import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';
@@ -104,6 +105,7 @@ export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(({
 const CardRoot = styled(StyledCardRoot, {
   name: 'JoyCard',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardOwnerState }>({});
 

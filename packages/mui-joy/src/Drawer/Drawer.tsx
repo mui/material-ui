@@ -11,6 +11,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps, styled } from '../styles';
 import { applySoftInversion, applySolidInversion } from '../colorInversion';
 import { StyledModalBackdrop, StyledModalRoot } from '../Modal/Modal';
@@ -43,6 +44,7 @@ const useUtilityClasses = (ownerState: DrawerOwnerState) => {
 const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
   name: 'JoyDrawer',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
   '--Drawer-transitionDuration': '0.3s',
@@ -77,6 +79,7 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
 const DrawerBackdrop = styled(StyledModalBackdrop as unknown as 'div', {
   name: 'JoyDrawer',
   slot: 'Backdrop',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.backdrop,
 })<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
   opacity: ownerState.open ? 1 : 0,

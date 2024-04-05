@@ -5,6 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/useButton';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useVariantColor } from '../styles/variantColorInheritance';
@@ -33,6 +34,7 @@ const useUtilityClasses = (ownerState: ChipDeleteOwnerState) => {
 const ChipDeleteRoot = styled(StyledIconButton as unknown as 'button', {
   name: 'JoyChipDelete',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ChipDeleteOwnerState }>(({ theme }) => ({
   '--IconButton-size': 'var(--Chip-deleteSize, 2rem)',
