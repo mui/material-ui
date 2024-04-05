@@ -22,14 +22,7 @@ describe('<PaginationItem />', () => {
       previous: {},
       next: {},
     },
-    skip: [
-      'componentProp',
-      'componentsProp',
-      // uses non-standard camel-case fields in `components`
-      'slotsProp',
-      'slotPropsProp',
-      'slotPropsCallback', // not supported yet
-    ],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render', () => {
