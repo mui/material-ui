@@ -14,6 +14,7 @@ import LastPageIcon from '../internal/svg-icons/LastPage';
 import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
 import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import styled from '../styles/styled';
+import useSlot from '../utils/useSlot';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -293,17 +294,60 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
 
   const normalizedIcons = isRtl
     ? {
-        previous: slots.next || components.next || NavigateNextIcon,
-        next: slots.previous || components.previous || NavigateBeforeIcon,
-        last: slots.first || components.first || FirstPageIcon,
-        first: slots.last || components.last || LastPageIcon,
+        previous: slots.next ?? components.next ?? NavigateNextIcon,
+        next: slots.previous ?? components.previous ?? NavigateBeforeIcon,
+        last: slots.first ?? components.first ?? FirstPageIcon,
+        first: slots.last ?? components.last ?? LastPageIcon,
       }
     : {
-        previous: slots.previous || components.previous || NavigateBeforeIcon,
-        next: slots.next || components.next || NavigateNextIcon,
-        first: slots.first || components.first || FirstPageIcon,
-        last: slots.last || components.last || LastPageIcon,
+        previous: slots.previous ?? components.previous ?? NavigateBeforeIcon,
+        next: slots.next ?? components.next ?? NavigateNextIcon,
+        first: slots.first ?? components.first ?? FirstPageIcon,
+        last: slots.last ?? components.last ?? LastPageIcon,
       };
+
+  const externalForwardedProps = {
+    slots: { ...normalizedIcons, ...slots },
+    slotProps,
+  };
+
+  const [PreviousSlot, previousSlotProps] = useSlot('previous', {
+    elementType: PaginationItemPageIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [NextSlot, nextSlotProps] = useSlot('next', {
+    elementType: PaginationItemPageIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [FirstSlot, firstSlotProps] = useSlot('first', {
+    elementType: PaginationItemPageIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [LastSlot, lastSlotProps] = useSlot('last', {
+    elementType: PaginationItemPageIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const IconSlot = {
+    previous: PreviousSlot,
+    next: NextSlot,
+    first: FirstSlot,
+    last: LastSlot,
+  }[type];
+
+  const iconSlotProps = {
+    previous: previousSlotProps,
+    next: nextSlotProps,
+    first: firstSlotProps,
+    last: lastSlotProps,
+  }[type];
 
   const Icon = normalizedIcons[type];
 
@@ -325,9 +369,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       {...other}
     >
       {type === 'page' && page}
-      {Icon ? (
-        <PaginationItemPageIcon as={Icon} ownerState={ownerState} className={classes.icon} />
-      ) : null}
+      {Icon ? <IconSlot className={classes.icon} {...iconSlotProps} /> : null}
     </PaginationItemPage>
   );
 });
@@ -371,6 +413,7 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * It's recommended to use the `slots` prop instead.
    *
    * @default {}
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   components: PropTypes.shape({
     first: PropTypes.elementType,
@@ -407,9 +450,6 @@ PaginationItem.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slots: PropTypes.shape({
