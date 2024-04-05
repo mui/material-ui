@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import toggleButtonGroupClasses, {
   getToggleButtonGroupUtilityClass,
@@ -14,6 +13,8 @@ import toggleButtonGroupClasses, {
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from './ToggleButtonGroupButtonContext';
 import toggleButtonClasses from '../ToggleButton/toggleButtonClasses';
+
+const useThemeProps = createUseThemeProps('MuiToggleButtonGroup');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, fullWidth, disabled } = ownerState;
@@ -55,47 +56,21 @@ const ToggleButtonGroupRoot = styled('div', {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})(({ ownerState, theme }) => ({
+})(({ theme }) => ({
   display: 'inline-flex',
   borderRadius: (theme.vars || theme).shape.borderRadius,
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'column',
-  }),
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-  [`& .${toggleButtonGroupClasses.grouped}`]: {
-    ...(ownerState.orientation === 'horizontal'
-      ? {
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
-            {
-              borderLeft: 0,
-              marginLeft: 0,
-            },
-        }
-      : {
+  variants: [
+    {
+      props: { orientation: 'vertical' },
+      style: {
+        flexDirection: 'column',
+        [`& .${toggleButtonGroupClasses.grouped}`]: {
           [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
             {
               borderTop: 0,
               marginTop: 0,
             },
-        }),
-  },
-  ...(ownerState.orientation === 'horizontal'
-    ? {
-        [`& .${toggleButtonGroupClasses.firstButton},& .${toggleButtonGroupClasses.middleButton}`]:
-          {
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
-          },
-        [`& .${toggleButtonGroupClasses.lastButton},& .${toggleButtonGroupClasses.middleButton}`]: {
-          marginLeft: -1,
-          borderLeft: '1px solid transparent',
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
         },
-      }
-    : {
         [`& .${toggleButtonGroupClasses.firstButton},& .${toggleButtonGroupClasses.middleButton}`]:
           {
             borderBottomLeftRadius: 0,
@@ -107,20 +82,47 @@ const ToggleButtonGroupRoot = styled('div', {
           borderTopLeftRadius: 0,
           borderTopRightRadius: 0,
         },
-      }),
-  ...(ownerState.orientation === 'horizontal'
-    ? {
-        [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled},& .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
-          {
-            borderLeft: '1px solid transparent',
-          },
-      }
-    : {
         [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled},& .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
           {
             borderTop: '1px solid transparent',
           },
-      }),
+      },
+    },
+    {
+      props: { fullWidth: true },
+      style: {
+        width: '100%',
+      },
+    },
+
+    {
+      props: { orientation: 'horizontal' },
+      style: {
+        [`& .${toggleButtonGroupClasses.grouped}`]: {
+          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+            {
+              borderLeft: 0,
+              marginLeft: 0,
+            },
+        },
+        [`& .${toggleButtonGroupClasses.firstButton},& .${toggleButtonGroupClasses.middleButton}`]:
+          {
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+        [`& .${toggleButtonGroupClasses.lastButton},& .${toggleButtonGroupClasses.middleButton}`]: {
+          marginLeft: -1,
+          borderLeft: '1px solid transparent',
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
+        },
+        [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled},& .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
+          {
+            borderLeft: '1px solid transparent',
+          },
+      },
+    },
+  ],
 }));
 
 const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, ref) {
