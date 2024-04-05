@@ -1,11 +1,9 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-
 import SvgIcon from '@mui/material/SvgIcon';
 
-function SitemarkIcon({ sx }) {
+export function SitemarkIcon() {
   return (
-    <SvgIcon sx={sx}>
+    <SvgIcon sx={{ height: 21, width: 100, mr: 2 }}>
       <svg
         width={86}
         height={19}
@@ -53,18 +51,6 @@ function SitemarkIcon({ sx }) {
     </SvgIcon>
   );
 }
-
-SitemarkIcon.propTypes = {
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-    ),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-};
-
-export { SitemarkIcon };
 
 export function FacebookIcon() {
   return (
