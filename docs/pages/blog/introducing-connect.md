@@ -1,7 +1,7 @@
 ---
 title: 'Introducing Connect: a Figma plugin that exports Material UI code'
 description: Connect is perfect for designing and developing using the Material UI React library and Design Kit.
-date: 2024-04-05T00:00:00.000Z
+date: 2024-04-06T00:00:00.000Z
 authors: ['danilo-leal', 'DavidCnoops']
 tags: ['Connect', 'Material UI', 'Product']
 card: true
@@ -16,7 +16,7 @@ Ultimately, the goal for the Design Kits is to increase the efficiency and speed
 
 ## Theme customization
 
-Connect works from the [Design Kit's v5.16.0](https://github.com/mui/mui-design-kits/releases/tag/v5.16.0) up because that was when it started to support Figma's local variables.
+Connect works from the [Design Kit's v5.16.0](https://github.com/mui/mui-design-kits/releases/tag/v5.16.0) up as that was when it started to support Figma's local variables.
 This feature has significantly matured the use of design tokens, which is something Material UI has been doing for a while with all of [its theming features](/material-ui/customization/theming/).
 
 That means you can use Connect to generate code for any customized local variable and style included in the Design Kit.
@@ -25,8 +25,8 @@ That means you can use Connect to generate code for any customized local variabl
   <source src="/static/blog/introducing-connect/theme-customization.mp4" type="video/mp4">
 </video>
 
-Visit the documentation to learn how to insert the generated code into your theme file.
-_(I'll add this link once we have it.)_
+<!-- Visit the documentation to learn [how to insert the generated code into your theme file](/material-ui/design-resources/connect/#using-the-generated-theme/). -->
+<!-- I remove the comment from the line above once we publish the docs, otherwise this PR's checks will fail -->
 
 ## Component customization
 
@@ -54,7 +54,7 @@ That's why there's an embedded Storybook preview panel in Connect so that you ca
 
 ## Try Connect now
 
-Get the beta version of Connect now, availble **for free** on [MUI's Figma community profile](https://www.figma.com/community/plugin/1336346114713490235/connect).
+Get the beta version of Connect now, availble **for free** on the [Figma Community](https://www.figma.com/community/plugin/1336346114713490235/connect).
 There's still a lot to do, and we're looking forward to hearing from all of you [who requested this plugin years ago](https://github.com/mui/mui-design-kits/issues/10).
 
 - Check out further documentation for the Connect plugin and the Material UI Design Kit (To-be-removed note: I'll add links here once the corresponding PR for their docs is merged).
