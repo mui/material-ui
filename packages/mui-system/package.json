@@ -40,7 +40,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.4",
     "@emotion/is-prop-valid": "^1.2.2",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/styled": "^11.11.5",
     "@mui-internal/test-utils": "workspace:^",
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/system": "workspace:*",

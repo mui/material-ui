@@ -282,5 +282,13 @@
     "about": "Minimalism, web development, user experience, football, cycling",
     "twitter": "aarongarciah",
     "github": "aarongarciah"
+  },
+  {
+    "name": "Jose Quintas",
+    "title": "React Engineer - X",
+    "location": "Amsterdam, Netherlands",
+    "locationCountry": "nl",
+    "about": "A general knowledge gatherer. Gamer and programmer in the off hours.",
+    "github": "JCQuintas"
   }
 ]
