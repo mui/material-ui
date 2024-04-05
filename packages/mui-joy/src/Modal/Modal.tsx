@@ -7,6 +7,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
+import { shouldForwardProp } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { getModalUtilityClass } from './modalClasses';
@@ -46,6 +47,7 @@ export const StyledModalRoot = styled('div')<{ ownerState: ModalOwnerState }>(
 const ModalRoot = styled(StyledModalRoot, {
   name: 'JoyModal',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalOwnerState }>({});
 
@@ -64,6 +66,7 @@ export const StyledModalBackdrop = styled('div')<{ ownerState: ModalOwnerState }
 export const ModalBackdrop = styled(StyledModalBackdrop, {
   name: 'JoyModal',
   slot: 'Backdrop',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.backdrop,
 })<{ ownerState: ModalOwnerState }>({});
 /**

@@ -5,6 +5,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenuItem, useMenuItemContextStabilizer } from '@mui/base/useMenuItem';
 import { ListContext } from '@mui/base/useList';
+import { shouldForwardProp } from '@mui/system';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useVariantColor } from '../styles/variantColorInheritance';
@@ -40,6 +41,7 @@ const useUtilityClasses = (ownerState: MenuItemOwnerState) => {
 const MenuItemRoot = styled(StyledListItemButton, {
   name: 'JoyMenuItem',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuItemOwnerState }>({});
 

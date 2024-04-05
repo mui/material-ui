@@ -8,8 +8,8 @@ import {
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { shouldForwardProp } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
-
 import useSlot from '../utils/useSlot';
 import { ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
@@ -118,6 +118,7 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
 const ListItemRoot = styled(StyledListItem, {
   name: 'JoyListItem',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemOwnerState }>({});
 

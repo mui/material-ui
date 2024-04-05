@@ -8,6 +8,7 @@ import { useMenu, MenuProvider } from '@mui/base/useMenu';
 import { ListActionTypes } from '@mui/base/useList';
 import { Popper } from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
+import { shouldForwardProp } from '@mui/system';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
@@ -37,6 +38,7 @@ const useUtilityClasses = (ownerState: MenuOwnerState) => {
 const MenuRoot = styled(StyledList, {
   name: 'JoyMenu',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];

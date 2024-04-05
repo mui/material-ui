@@ -16,6 +16,7 @@ import useSlot from '../utils/useSlot';
 import AccordionContext from './AccordionContext';
 import { StyledListItem } from '../ListItem/ListItem';
 import accordionDetailsClasses from '../AccordionDetails/accordionDetailsClasses';
+import { shouldForwardProp } from '@mui/system';
 
 const useUtilityClasses = (ownerState: AccordionOwnerState) => {
   const { variant, color, expanded, disabled } = ownerState;
@@ -35,6 +36,7 @@ const useUtilityClasses = (ownerState: AccordionOwnerState) => {
 const AccordionRoot = styled(StyledListItem as unknown as 'div', {
   name: 'JoyAccordion',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AccordionOwnerState }>({
   borderBottom: 'var(--Accordion-borderBottom)',

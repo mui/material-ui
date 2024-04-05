@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { shouldForwardProp } from '@mui/system';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useVariantColor } from '../styles/variantColorInheritance';
@@ -26,7 +27,9 @@ const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
   return composeClasses(slots, getAutocompleteOptionUtilityClass, {});
 };
 
-export const StyledAutocompleteOption = styled(StyledListItemButton as unknown as 'li')<{
+export const StyledAutocompleteOption = styled(StyledListItemButton as unknown as 'li', {
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
+})<{
   ownerState: AutocompleteOptionOwnerState;
 }>(({ theme, ownerState }) => ({
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
@@ -39,6 +42,7 @@ export const StyledAutocompleteOption = styled(StyledListItemButton as unknown a
 const AutocompleteOptionRoot = styled(StyledAutocompleteOption, {
   name: 'JoyAutocompleteOption',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })({});
 /**

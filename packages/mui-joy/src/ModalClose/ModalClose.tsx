@@ -5,6 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useButton } from '@mui/base/useButton';
+import { shouldForwardProp } from '@mui/system';
 import useSlot from '../utils/useSlot';
 import { useThemeProps, styled } from '../styles';
 import { StyledIconButton } from '../IconButton/IconButton';
@@ -35,6 +36,7 @@ const useUtilityClasses = (ownerState: ModalCloseOwnerState) => {
 export const ModalCloseRoot = styled(StyledIconButton, {
   name: 'JoyModalClose',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalCloseOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {

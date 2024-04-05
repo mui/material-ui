@@ -9,6 +9,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
 import styled from '../styles/styled';
@@ -162,6 +163,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
 const ButtonGroupRoot = styled(StyledButtonGroup, {
   name: 'JoyButtonGroup',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ButtonGroupOwnerState }>({});
 

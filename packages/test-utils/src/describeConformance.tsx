@@ -1032,7 +1032,7 @@ function testSupportPigmentCssSxProp(
     const classList = Array.from(getByTestId('component').classList);
 
     expect(classList).to.contain('sx-classname');
-    expect(getByTestId('component').getAttribute('style')).to.equal('--spacing: 10px;');
+    expect(getByTestId('component').getAttribute('style')).to.contain('--spacing: 10px;');
   });
 }
 const fullSuite = {

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAccordionGroupUtilityClass } from './accordionGroupClasses';
@@ -35,6 +36,7 @@ const useUtilityClasses = (ownerState: AccordionGroupOwnerState) => {
 const AccordionGroupRoot = styled(StyledList as unknown as 'div', {
   name: 'JoyAccordionGroup',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AccordionGroupOwnerState }>(({ theme, ownerState }) => {
   let transition: Record<string, any> = {};

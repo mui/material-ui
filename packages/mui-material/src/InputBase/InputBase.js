@@ -104,29 +104,32 @@ export const InputBaseRoot = styled('div', {
   name: 'MuiInputBase',
   slot: 'Root',
   overridesResolver: rootOverridesResolver,
-})(({ theme, ownerState }) => ({
-  ...theme.typography.body1,
-  color: (theme.vars || theme).palette.text.primary,
-  lineHeight: '1.4375em', // 23px
-  boxSizing: 'border-box', // Prevent padding issue with fullWidth.
-  position: 'relative',
-  cursor: 'text',
-  display: 'inline-flex',
-  alignItems: 'center',
-  [`&.${inputBaseClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.text.disabled,
-    cursor: 'default',
-  },
-  ...(ownerState.multiline && {
-    padding: '4px 0 5px',
-    ...(ownerState.size === 'small' && {
-      paddingTop: 1,
+})(({ theme, ownerState }) => {
+  // console.log(ownerState);
+  return {
+    ...theme.typography.body1,
+    color: (theme.vars || theme).palette.text.primary,
+    lineHeight: '1.4375em', // 23px
+    boxSizing: 'border-box', // Prevent padding issue with fullWidth.
+    position: 'relative',
+    cursor: 'text',
+    display: 'inline-flex',
+    alignItems: 'center',
+    [`&.${inputBaseClasses.disabled}`]: {
+      color: (theme.vars || theme).palette.text.disabled,
+      cursor: 'default',
+    },
+    ...(ownerState.multiline && {
+      padding: '4px 0 5px',
+      ...(ownerState.size === 'small' && {
+        paddingTop: 1,
+      }),
     }),
-  }),
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-}));
+    ...(ownerState.fullWidth && {
+      width: '100%',
+    }),
+  };
+});
 
 export const InputBaseComponent = styled('input', {
   name: 'MuiInputBase',

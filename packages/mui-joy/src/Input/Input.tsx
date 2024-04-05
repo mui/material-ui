@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { shouldForwardProp } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
@@ -211,24 +212,28 @@ export const StyledInputEndDecorator = styled('div')<{ ownerState: InputOwnerSta
 const InputRoot = styled(StyledInputRoot, {
   name: 'JoyInput',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })({});
 
 const InputInput = styled(StyledInputHtml, {
   name: 'JoyInput',
   slot: 'Input',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.input,
 })({});
 
 const InputStartDecorator = styled(StyledInputStartDecorator, {
   name: 'JoyInput',
   slot: 'StartDecorator',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.startDecorator,
 })({});
 
 const InputEndDecorator = styled(StyledInputEndDecorator, {
   name: 'JoyInput',
   slot: 'EndDecorator',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.endDecorator,
 })({});
 /**

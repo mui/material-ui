@@ -32,7 +32,8 @@ const useUtilityClasses = (ownerState) => {
 };
 
 const InputRoot = styled(InputBaseRoot, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop) =>
+    rootShouldForwardProp(prop) || prop === 'classes' || prop === 'ownerState',
   name: 'MuiInput',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -49,6 +50,7 @@ const InputRoot = styled(InputBaseRoot, {
   if (theme.vars) {
     bottomLineColor = `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`;
   }
+  // console.log(ownerState);
   return {
     position: 'relative',
     ...(ownerState.formControl && {

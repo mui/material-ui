@@ -8,6 +8,7 @@ import { Popper, PopperProps } from '@mui/base/Popper';
 import { useSelect, SelectProvider, SelectValue } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { shouldForwardProp } from '@mui/system';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
@@ -229,6 +230,7 @@ const SelectButton = styled('button', {
 const SelectListbox = styled(StyledList, {
   name: 'JoySelect',
   slot: 'Listbox',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: SelectOwnerState<any, any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];

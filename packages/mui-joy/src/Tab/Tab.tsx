@@ -5,6 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useTab } from '@mui/base/useTab';
+import { shouldForwardProp } from '@mui/system';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -35,6 +36,7 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
 const TabRoot = styled(StyledListItemButton, {
   name: 'JoyTab',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabOwnerState }>(({ ownerState }) => [
   {

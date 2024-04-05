@@ -11,6 +11,7 @@ import {
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/useAutocomplete';
 import { Popper } from '@mui/base/Popper';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -99,6 +100,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
 const AutocompleteRoot = styled(StyledInputRoot as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   ...(ownerState.size === 'sm' && {
@@ -151,6 +153,7 @@ const AutocompleteWrapper = styled('div', {
 const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   name: 'JoyAutocomplete',
   slot: 'Input',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   minWidth: 30,
@@ -163,12 +166,14 @@ const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
 const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'StartDecorator',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: OwnerState }>({});
 
 const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'EndDecorator',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   // don't adjust if end decorator is not the last of the autocomplete
@@ -182,6 +187,7 @@ const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'd
 const AutocompleteClearIndicator = styled(StyledIconButton as unknown as 'button', {
   name: 'JoyAutocomplete',
   slot: 'ClearIndicator',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.clearIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   alignSelf: 'center',
@@ -195,6 +201,7 @@ const AutocompleteClearIndicator = styled(StyledIconButton as unknown as 'button
 const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button', {
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.popupIndicator,
 })<{ ownerState: OwnerState }>({
   alignSelf: 'center',
@@ -209,6 +216,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
 const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: OwnerState }>(({ theme }) => ({
   // `unstable_popup-zIndex` is a private variable that lets other component, for example Modal, to override the z-index so that the listbox can be displayed above the Modal.
@@ -218,6 +226,7 @@ const AutocompleteListbox = styled(StyledAutocompleteListbox, {
 const AutocompleteOption = styled(StyledAutocompleteOption, {
   name: 'JoyAutocomplete',
   slot: 'Option',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.option,
 })<{ ownerState: OwnerState }>({});
 

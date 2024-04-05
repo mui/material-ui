@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { shouldForwardProp } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import { styled, useThemeProps } from '../styles';
@@ -46,7 +47,9 @@ const excludePopperProps = <T extends Record<string, any>>({
   ...other
 }: T) => other;
 
-export const StyledAutocompleteListbox = styled(StyledList)<{
+export const StyledAutocompleteListbox = styled(StyledList, {
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
+})<{
   ownerState: AutocompleteListboxOwnerState;
 }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
@@ -84,6 +87,7 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
 const AutocompleteListboxRoot = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocompleteListbox',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })({});
 /**

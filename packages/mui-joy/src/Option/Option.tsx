@@ -5,6 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { useOption, useOptionContextStabilizer } from '@mui/base/useOption';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { ListContext } from '@mui/base/useList';
+import { shouldForwardProp } from '@mui/system';
 import useSlot from '../utils/useSlot';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
@@ -26,6 +27,7 @@ const useUtilityClasses = (ownerState: OptionOwnerState) => {
 const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
   name: 'JoyOption',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];

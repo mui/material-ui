@@ -9,7 +9,7 @@ import {
   unstable_isMuiElement as isMuiElement,
   unstable_useId as useId,
 } from '@mui/utils';
-import { Breakpoint } from '@mui/system';
+import { Breakpoint, shouldForwardProp } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import { Theme } from '../styles/types/theme';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
@@ -44,6 +44,7 @@ function getBreakpointValue(theme: Theme, breakpoint: string | undefined) {
 const ModalDialogRoot = styled(StyledCardRoot, {
   name: 'JoyModalDialog',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalDialogOwnerState }>(({ theme, ownerState }) => ({
   '--ModalDialog-minWidth':

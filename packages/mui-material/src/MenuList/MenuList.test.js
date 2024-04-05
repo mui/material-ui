@@ -25,6 +25,7 @@ describe('<MenuList />', () => {
   describeConformance(<MenuList />, () => ({
     classes: {},
     inheritComponent: List,
+    render,
     refInstanceof: window.HTMLUListElement,
     skip: [
       'componentProp',

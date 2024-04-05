@@ -34,7 +34,8 @@ const useUtilityClasses = (ownerState) => {
 };
 
 const OutlinedInputRoot = styled(InputBaseRoot, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop) =>
+    rootShouldForwardProp(prop) || prop === 'classes' || prop === 'ownerState',
   name: 'MuiOutlinedInput',
   slot: 'Root',
   overridesResolver: inputBaseRootOverridesResolver,

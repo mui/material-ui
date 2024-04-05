@@ -8,6 +8,7 @@ import {
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getToggleButtonGroupUtilityClass } from './toggleButtonGroupClasses';
@@ -44,6 +45,7 @@ const useUtilityClasses = (ownerState: ToggleButtonGroupOwnerState<any>) => {
 const ToggleButtonGroupRoot = styled(StyledButtonGroup as unknown as 'div', {
   name: 'JoyToggleButtonGroup',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ToggleButtonGroupOwnerState<any> }>({});
 /**

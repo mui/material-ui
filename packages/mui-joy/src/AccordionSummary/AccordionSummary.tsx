@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import accordionSummaryClasses, {
@@ -33,6 +34,7 @@ const useUtilityClasses = (ownerState: AccordionSummaryOwnerState) => {
 const AccordionSummaryRoot = styled(StyledListItem as unknown as 'div', {
   name: 'JoyAccordionSummary',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AccordionSummaryOwnerState }>(({ theme }) => ({
   fontWeight: theme.vars.fontWeight.md,
@@ -45,6 +47,7 @@ const AccordionSummaryRoot = styled(StyledListItem as unknown as 'div', {
 const AccordionSummaryButton = styled(StyledListItemButton as unknown as 'button', {
   name: 'JoyAccordionSummary',
   slot: 'Button',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'ownerState',
   overridesResolver: (props, styles) => styles.button,
 })<{ ownerState: AccordionSummaryOwnerState }>({
   gap: 'inherit',
