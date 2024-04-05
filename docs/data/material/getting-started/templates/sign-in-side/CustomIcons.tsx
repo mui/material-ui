@@ -1,14 +1,9 @@
 import * as React from 'react';
-import { SxProps, Theme } from '@mui/system';
 import SvgIcon from '@mui/material/SvgIcon';
 
-interface IconProps {
-  sx?: SxProps<Theme>;
-}
-
-export function SitemarkIcon({ sx }: IconProps) {
+export function SitemarkIcon() {
   return (
-    <SvgIcon sx={sx}>
+    <SvgIcon sx={{ height: 21, width: 100, mr: 2 }}>
       <svg
         width={86}
         height={19}
