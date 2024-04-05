@@ -309,7 +309,19 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
 
   const externalForwardedProps = {
     slots: { ...normalizedIcons, ...slots },
-    slotProps,
+    slotProps: isRtl
+      ? {
+          previous: slotProps.next,
+          next: slotProps.previous,
+          first: slotProps.last,
+          last: slotProps.first,
+        }
+      : {
+          previous: slotProps.previous,
+          next: slotProps.next,
+          first: slotProps.first,
+          last: slotProps.last,
+        },
   };
 
   const [PreviousSlot, previousSlotProps] = useSlot('previous', {
@@ -370,7 +382,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       {...other}
     >
       {type === 'page' && page}
-      {Icon ? <IconSlot className={classes.icon} {...iconSlotProps} /> : null}
+      {Icon ? <IconSlot {...iconSlotProps} className={classes.icon} /> : null}
     </PaginationItemPage>
   );
 });
