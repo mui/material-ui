@@ -46,11 +46,10 @@ const useUtilityClasses = (ownerState) => {
       expanded && 'expanded',
       focused && 'focused',
       fullWidth && 'fullWidth',
-      hasMultiple && 'hasMultiple',
       hasClearIcon && 'hasClearIcon',
       hasPopupIcon && 'hasPopupIcon',
     ],
-    inputRoot: ['inputRoot'],
+    inputRoot: ['inputRoot', hasMultiple && 'hasMultiple'],
     input: ['input', inputFocused && 'inputFocused'],
     tag: ['tag', `tagSize${capitalize(size)}`],
     endAdornment: ['endAdornment'],
@@ -95,7 +94,7 @@ const AutocompleteRoot = styled('div', {
     maxWidth: 'calc(100% - 6px)',
   },
   [`& .${autocompleteClasses.inputRoot}`]: {
-    [`& .${autocompleteClasses.hasMultiple}`]: {
+    [`&.${autocompleteClasses.hasMultiple}`]: {
       flexWrap: 'wrap',
     },
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
@@ -114,7 +113,7 @@ const AutocompleteRoot = styled('div', {
       visibility: 'visible',
     },
     [`&:hover .${autocompleteClasses.input}`]: {
-      minWidth: 0,
+      minWidth: 4,
     },
   },
   /* Avoid double tap issue on iOS */
@@ -123,7 +122,7 @@ const AutocompleteRoot = styled('div', {
       visibility: 'visible',
     },
     [`&:hover .${autocompleteClasses.input}`]: {
-      minWidth: 0,
+      minWidth: 4,
     },
   },
   [`& .${inputClasses.root}`]: {
@@ -509,7 +508,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     groupedOptions,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
-  const hasMultiple = props.multiple;
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
@@ -530,7 +528,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     focused,
     fullWidth,
     getOptionLabel,
-    hasMultiple,
+    hasMultiple: multiple,
     hasClearIcon,
     hasPopupIcon,
     inputFocused: focusedTag === -1,
