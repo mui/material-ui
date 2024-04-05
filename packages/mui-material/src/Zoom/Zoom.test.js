@@ -24,6 +24,8 @@ describe('<Zoom />', () => {
         'themeDefaultProps',
         'themeStyleOverrides',
         'themeVariants',
+        // does not support sx prop, propagates to the children
+        'supportPigmentCssSxProp',
         // react-transition-group issue
         'reactTestRenderer',
       ],
