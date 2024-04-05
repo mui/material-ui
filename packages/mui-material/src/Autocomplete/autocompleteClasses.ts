@@ -18,6 +18,8 @@ export interface AutocompleteClasses {
   tagSizeSmall: string;
   /** Styles applied to the tag elements, for example the chips if `size="medium"`. */
   tagSizeMedium: string;
+  /** Styles applied when the autocomplete supports multiple selections. */
+  hasMultiple: string;
   /** Styles applied when the popup icon is rendered. */
   hasPopupIcon: string;
   /** Styles applied when the clear icon is rendered. */
@@ -71,6 +73,7 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('MuiAuto
   'tag',
   'tagSizeSmall',
   'tagSizeMedium',
+  'hasMultiple',
   'hasPopupIcon',
   'hasClearIcon',
   'inputRoot',

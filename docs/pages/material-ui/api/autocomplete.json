@@ -246,6 +246,12 @@
       "isGlobal": false
     },
     {
+      "key": "hasMultiple",
+      "className": "MuiAutocomplete-hasMultiple",
+      "description": "Styles applied when the autocomplete supports multiple selections.",
+      "isGlobal": false
+    },
+    {
       "key": "hasPopupIcon",
       "className": "MuiAutocomplete-hasPopupIcon",
       "description": "Styles applied when the popup icon is rendered.",

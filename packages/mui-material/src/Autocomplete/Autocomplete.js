@@ -32,6 +32,7 @@ const useUtilityClasses = (ownerState) => {
     expanded,
     focused,
     fullWidth,
+    hasMultiple,
     hasClearIcon,
     hasPopupIcon,
     inputFocused,
@@ -45,6 +46,7 @@ const useUtilityClasses = (ownerState) => {
       expanded && 'expanded',
       focused && 'focused',
       fullWidth && 'fullWidth',
+      hasMultiple && 'hasMultiple',
       hasClearIcon && 'hasClearIcon',
       hasPopupIcon && 'hasPopupIcon',
     ],
@@ -72,7 +74,7 @@ const AutocompleteRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
+    const { fullWidth, hasMultiple, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
 
     return [
       { [`& .${autocompleteClasses.tag}`]: styles.tag },
@@ -82,18 +84,27 @@ const AutocompleteRoot = styled('div', {
       { [`& .${autocompleteClasses.input}`]: inputFocused && styles.inputFocused },
       styles.root,
       fullWidth && styles.fullWidth,
+      hasMultiple && styles.hasMultiple,
       hasPopupIcon && styles.hasPopupIcon,
       hasClearIcon && styles.hasClearIcon,
     ];
   },
 })({
-  [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
-    visibility: 'visible',
+  [`&.${autocompleteClasses.focused}`]: {
+    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+      visibility: 'visible',
+    },
+    [`&:hover .${autocompleteClasses.input}`]: {
+      minWidth: '0 !important',
+    },
   },
   /* Avoid double tap issue on iOS */
   '@media (pointer: fine)': {
     [`&:hover .${autocompleteClasses.clearIndicator}`]: {
       visibility: 'visible',
+    },
+    [`&:hover .${autocompleteClasses.input}`]: {
+      minWidth: '0 !important',
     },
   },
   [`& .${autocompleteClasses.tag}`]: {
@@ -101,7 +112,9 @@ const AutocompleteRoot = styled('div', {
     maxWidth: 'calc(100% - 6px)',
   },
   [`& .${autocompleteClasses.inputRoot}`]: {
-    flexWrap: 'wrap',
+    [`& .${autocompleteClasses.hasMultiple}`]: {
+      flexWrap: 'wrap',
+    },
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 26 + 4,
     },
@@ -496,6 +509,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     groupedOptions,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
+  const hasMultiple = props.multiple;
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
@@ -516,6 +530,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     focused,
     fullWidth,
     getOptionLabel,
+    hasMultiple,
     hasClearIcon,
     hasPopupIcon,
     inputFocused: focusedTag === -1,
