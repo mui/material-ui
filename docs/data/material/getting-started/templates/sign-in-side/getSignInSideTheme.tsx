@@ -596,6 +596,7 @@ export default function getSignInSideTheme(mode: PaletteMode): ThemeOptions {
                 borderRadius: '8px',
               },
               '& .MuiInputBase-input': {
+                fontSize: '1rem',
                 '&::placeholder': {
                   opacity: 1,
                   color: gray[500],
