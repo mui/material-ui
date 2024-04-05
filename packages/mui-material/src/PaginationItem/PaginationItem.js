@@ -273,6 +273,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     shape = 'circular',
     size = 'medium',
     slots = {},
+    slotProps = {},
     type = 'page',
     variant = 'text',
     ...other
@@ -448,6 +449,16 @@ PaginationItem.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    first: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    last: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    next: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    previous: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * The components used for each slot inside.
    * @default {}
