@@ -631,7 +631,7 @@ describe('<Button />', () => {
     });
   });
 
-  it.only('should automatically change the button to an anchor element when href is provided', () => {
+  it('should automatically change the button to an anchor element when href is provided', () => {
     const { container } = render(<Button href="https://google.com">Hello</Button>);
     const button = container.firstChild;
 

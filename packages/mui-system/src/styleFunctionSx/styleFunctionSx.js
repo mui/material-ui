@@ -77,7 +77,7 @@ export function unstable_createStyleFunctionSx() {
   function styleFunctionSx(props) {
     const { sx, theme = {} } = props || {};
 
-    if (!sx) {
+    if (!sx || typeof sx === 'string' || (typeof sx === 'object' && (sx.className || sx.vars))) {
       return null; // Emotion & styled-components will neglect null
     }
 

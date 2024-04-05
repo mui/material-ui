@@ -27,8 +27,7 @@ function isStringTag(tag) {
 
 // Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
-  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'as' && prop !== 'sx';
-  // return prop !== 'ownerState' && prop !== 'theme';
+  return prop !== 'ownerState' && prop !== 'theme';
 }
 
 export const systemDefaultTheme = createTheme();
@@ -153,9 +152,6 @@ export default function createStyled(input = {}) {
     } else if (componentSlot) {
       // any other slot specified
       shouldForwardPropOption = slotShouldForwardProp;
-    } else if (isStringTag(tag)) {
-      // for string (html) tag, preserve the behavior in emotion & styled-components.
-      shouldForwardPropOption = isPropValid;
     }
 
     if (shouldForwardPropInput) {
@@ -179,32 +175,19 @@ export default function createStyled(input = {}) {
         });
       }
 
-      console.log("tag = ", tag);
-      console.log(props);
-
-      const Component = typeof tag !== 'string' ? tag : as ?? tag;
-
-      const hasTransformedSx = !(sxClass === undefined && sxVars === undefined);
-      const shouldForwardSx = hasTransformedSx ? false : shouldForwardPropOption('sx');
-      const shouldForwardAs = typeof Component !== 'string';
-
-      const filteredProps = Object.keys(other).reduce((acc, prop) => {
-        if (shouldForwardPropOption(prop)) {
-          acc[prop] = other[prop];
-        }
-        return acc;
-      }, {});
-      // console.log(other);
-      // console.log({
-      //   ...(typeof Component === 'string' ? filteredProps : other),
-      //   ...(shouldForwardAs && { as }),
-      //   ...(shouldForwardSx && { sx }),
-      // });
+      const Component = as ?? tag;
+      let filteredProps = other;
+      if (typeof Component === 'string') {
+        filteredProps = {};
+        Object.keys(other).forEach((prop) => {
+          if (isPropValid(prop)) {
+            filteredProps[prop] = other[prop];
+          }
+        });
+      }
 
       return React.createElement(Component, {
-        ...(typeof Component === 'string' ? filteredProps : other),
-        ...(shouldForwardAs && { as }),
-        ...(shouldForwardSx && { sx }),
+        ...filteredProps,
         className: clsx(props.className, sxClass),
         style: { ...sxVarsStyles, ...props.style },
         ref,
@@ -228,7 +211,7 @@ export default function createStyled(input = {}) {
       label,
       ...options,
       // The AugmentedTag will handle the props interception
-      shouldForwardProp: () => true,
+      shouldForwardProp: shouldForwardPropOption,
     });
 
     const transformStyleArg = (stylesArg) => {
