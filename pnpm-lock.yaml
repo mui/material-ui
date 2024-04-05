@@ -1205,7 +1205,7 @@ importers:
         version: 7.24.4
       '@mui/utils':
         specifier: ^5.0.0
-        version: link:../mui-utils/build
+        version: 5.15.14(@types/react@18.2.55)(react@18.2.0)
       babel-plugin-macros:
         specifier: ^3.1.0
         version: 3.1.0
