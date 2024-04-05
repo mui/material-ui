@@ -75,17 +75,11 @@ export default function PaymentForm() {
           }}
         >
           <Card
-            raised={paymentType === 'creditCard'}
             sx={(theme) => ({
               maxWidth: { sm: '100%', md: '50%' },
               flexGrow: 1,
               border: '1px solid',
               borderColor: 'divider',
-              '& .MuiButtonBase-root': {
-                '&:hover': {
-                  backgroundColor: 'transparent',
-                },
-              },
               '&:hover': {
                 background:
                   theme.palette.mode === 'light'
@@ -105,7 +99,17 @@ export default function PaymentForm() {
               }),
             })}
           >
-            <CardActionArea onClick={() => setPaymentType('creditCard')}>
+            <CardActionArea
+              onClick={() => setPaymentType('creditCard')}
+              sx={{
+                '.MuiCardActionArea-focusHighlight': {
+                  backgroundColor: 'transparent',
+                },
+                '&:focus-visible': {
+                  backgroundColor: 'action.hover',
+                },
+              }}
+            >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <CreditCardRoundedIcon
                   fontSize="small"
@@ -121,17 +125,11 @@ export default function PaymentForm() {
             </CardActionArea>
           </Card>
           <Card
-            raised={paymentType === 'bankTransfer'}
             sx={(theme) => ({
               maxWidth: { sm: '100%', md: '50%' },
               flexGrow: 1,
               border: '1px solid',
               borderColor: 'divider',
-              '& .MuiButtonBase-root': {
-                '&:hover': {
-                  backgroundColor: 'transparent',
-                },
-              },
               '&:hover': {
                 background:
                   theme.palette.mode === 'light'
@@ -151,7 +149,17 @@ export default function PaymentForm() {
               }),
             })}
           >
-            <CardActionArea onClick={() => setPaymentType('bankTransfer')}>
+            <CardActionArea
+              onClick={() => setPaymentType('bankTransfer')}
+              sx={{
+                '.MuiCardActionArea-focusHighlight': {
+                  backgroundColor: 'transparent',
+                },
+                '&:focus-visible': {
+                  backgroundColor: 'action.hover',
+                },
+              }}
+            >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <AccountBalanceRoundedIcon
                   fontSize="small"
