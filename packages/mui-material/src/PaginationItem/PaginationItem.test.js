@@ -22,7 +22,13 @@ describe('<PaginationItem />', () => {
       previous: {},
       next: {},
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotsProp',
+      'slotPropsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should render', () => {
