@@ -10,7 +10,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 - 🔥 Converted 3 more Material UI components to use Pigment CSS. Current progress is 36%!
 - 🚀 Added a spacing CSS variable to the Material UI and Joy UI themes.
-- 💫 Added 3 redesigned free Material UI templates: [Sign-in](https://next.mui.com/material-ui/getting-started/templates/sign-in/), [Sign-in side](https://next.mui.com/material-ui/getting-started/templates/sign-in-side/), and [Sign-up](https://next.mui.com/material-ui/getting-started/templates/sign-up/).
+- 💫 Added 3 redesigned free Material UI templates: [Sign-in](https://next.mui.com/material-ui/getting-started/templates/sign-in/), [Sign-in side](https://next.mui.com/material-ui/getting-started/templates/sign-in-side/), and [Sign-up](https://next.mui.com/material-ui/getting-started/templates/sign-up/).
 
 ### `@mui/material@6.0.0-alpha.1`
 
