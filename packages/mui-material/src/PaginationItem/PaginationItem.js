@@ -325,25 +325,25 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   };
 
   const [PreviousSlot, previousSlotProps] = useSlot('previous', {
-    elementType: PaginationItemPageIcon,
+    elementType: NavigateBeforeIcon,
     externalForwardedProps,
     ownerState,
   });
 
   const [NextSlot, nextSlotProps] = useSlot('next', {
-    elementType: PaginationItemPageIcon,
+    elementType: NavigateNextIcon,
     externalForwardedProps,
     ownerState,
   });
 
   const [FirstSlot, firstSlotProps] = useSlot('first', {
-    elementType: PaginationItemPageIcon,
+    elementType: FirstPageIcon,
     externalForwardedProps,
     ownerState,
   });
 
   const [LastSlot, lastSlotProps] = useSlot('last', {
-    elementType: PaginationItemPageIcon,
+    elementType: LastPageIcon,
     externalForwardedProps,
     ownerState,
   });
@@ -361,8 +361,6 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     first: firstSlotProps,
     last: lastSlotProps,
   }[type];
-
-  const Icon = normalizedIcons[type];
 
   return type === 'start-ellipsis' || type === 'end-ellipsis' ? (
     <PaginationItemEllipsis
@@ -382,7 +380,9 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       {...other}
     >
       {type === 'page' && page}
-      {Icon ? <IconSlot {...iconSlotProps} className={classes.icon} /> : null}
+      {IconSlot ? (
+        <PaginationItemPageIcon {...iconSlotProps} className={classes.icon} as={IconSlot} />
+      ) : null}
     </PaginationItemPage>
   );
 });
