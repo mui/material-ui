@@ -68,6 +68,100 @@ More components will follow soon!
 
 ## Using the generated theme
 
+The code Connect generates uses [the `CssVarsProvider` API](/material-ui/experimental-api/css-theme-variables/migration/) under the hood, which primarily impacts you if your project supports both light and dark modes, whereas component customization code should work on your theme regardless of which API you're using because Connect utilizes CSS classes to target component slots.
+
+### Theme tokens
+
+For example, say you've changed the primary main color in light mode as well as the border-radius value.
+This is how your code should be inserted into your theme:
+
+```js
+const theme = extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: '#BBDEFB', // example color
+        },
+      },
+    },
+  },
+  shape: {
+    borderRadius: 12,
+  },
+});
+```
+
+:::info
+The `colorSchemes` node and `extendTheme` function are the only elements particular to the `CssVarsProvider` API.
+Remove the former and change the latter to `createTheme` if you're using [the standard `ThemeProvider` API](/material-ui/customization/theming/) instead.
+:::
+
+## Component customizations
+
+The code Connect generates for component customizations should work well if you just copy it into your theme's `component` node.
+For example, imagine you've customized the Switch's track and thumb size.
+Here's how you'd add the code to your theme:
+
+```js
+const theme = createTheme({
+  components: {
+    MuiSwitch: {
+      styleOverrides: {
+        root: {
+          '&.MuiSwitch-sizeMedium:has(.MuiSwitch-colorPrimary)': {
+            '&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))':
+              {
+                '& .MuiSwitch-switchBase': {
+                  transform: 'translateX(20px) translateY(5px)',
+                  '& .MuiSwitch-thumb': {
+                    width: '15px',
+                    height: '15px',
+                    boxShadow: 'none',
+                  },
+                  '& + .MuiSwitch-track': {
+                    height: '20px',
+                  },
+                },
+              },
+          },
+        },
+      },
+    },
+  },
+});
+```
+
+You can clean it up further by removing all of the `has()` pseudo-classes.
+Connect needs that to be able to isolate the changes done through Figma, but you might not need it on your code.
+So, here's the updated code:
+
+```js
+const theme = createTheme({
+  components: {
+    MuiSwitch: {
+      styleOverrides: {
+        root: {
+          '&.MuiSwitch-sizeMedium.MuiSwitch-colorPrimary': {
+            '& .MuiSwitch-switchBase': {
+              transform: 'translateX(20px) translateY(5px)',
+              '& .MuiSwitch-thumb': {
+                width: '15px',
+                height: '15px',
+                boxShadow: 'none',
+              },
+              '& + .MuiSwitch-track': {
+                height: '20px',
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+});
+```
+
 ## Feedback and bug reports
 
 Use [the dedicated Canny.io board](https://mui-connect.canny.io/feedback) to share any feedback, report bugs, or drop feature requests.
