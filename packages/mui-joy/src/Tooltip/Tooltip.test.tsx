@@ -49,6 +49,8 @@ describe('<Tooltip />', () => {
         'rootClass',
         'componentProp',
         'componentsProp',
+        // similar as rootClass, no root element
+        'supportPigmentCssSxProp',        
         'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
