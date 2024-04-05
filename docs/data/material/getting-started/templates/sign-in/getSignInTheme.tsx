@@ -142,7 +142,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     background: {
       default: 'hsl(0, 0%, 100%)',
       paper: gray[50],
-      ...(mode === 'dark' && { default: gray[900], paper: gray[800] }),
+      ...(mode === 'dark' && { default: 'hsl(220, 30%, 3%)', paper: gray[900] }),
     },
     text: {
       primary: gray[800],
@@ -624,14 +624,8 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
         },
       },
       MuiPaper: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            backgroundImage: 'none',
-            backgroundColor: gray[100],
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[900], 0.6),
-            }),
-          }),
+        defaultProps: {
+          elevation: 0,
         },
       },
       MuiStack: {
