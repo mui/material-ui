@@ -295,16 +295,16 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
 
   const normalizedIcons = isRtl
     ? {
-        previous: slots.next ?? components.next ?? NavigateNextIcon,
-        next: slots.previous ?? components.previous ?? NavigateBeforeIcon,
-        last: slots.first ?? components.first ?? FirstPageIcon,
-        first: slots.last ?? components.last ?? LastPageIcon,
+        previous: slots.next ?? components.next,
+        next: slots.previous ?? components.previous,
+        last: slots.first ?? components.first,
+        first: slots.last ?? components.last,
       }
     : {
-        previous: slots.previous ?? components.previous ?? NavigateBeforeIcon,
-        next: slots.next ?? components.next ?? NavigateNextIcon,
-        first: slots.first ?? components.first ?? FirstPageIcon,
-        last: slots.last ?? components.last ?? LastPageIcon,
+        previous: slots.previous ?? components.previous,
+        next: slots.next ?? components.next,
+        first: slots.first ?? components.first,
+        last: slots.last ?? components.last,
       };
 
   const externalForwardedProps = {
