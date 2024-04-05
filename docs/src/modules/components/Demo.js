@@ -218,8 +218,8 @@ const DemoRootMaterial = styled('div', {
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderBottomWidth: 0,
     ...theme.applyDarkStyles({
+      borderBottomWidth: 0,
       backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
     }),
   }),
