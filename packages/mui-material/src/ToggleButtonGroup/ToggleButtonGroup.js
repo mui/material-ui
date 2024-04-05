@@ -94,7 +94,6 @@ const ToggleButtonGroupRoot = styled('div', {
         width: '100%',
       },
     },
-
     {
       props: { orientation: 'horizontal' },
       style: {
