@@ -522,7 +522,6 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
           input: {
             paddingLeft: 10,
           },
-
           root: ({ theme, ownerState }) => ({
             'input:-webkit-autofill': {
               WebkitBoxShadow: `0 0 0 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
@@ -530,6 +529,7 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               borderRadius: '8px',
             },
             '& .MuiInputBase-input': {
+              fontSize: '1rem',
               '&::placeholder': {
                 opacity: 0.7,
                 color: gray[500],
