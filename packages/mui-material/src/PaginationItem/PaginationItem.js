@@ -324,26 +324,40 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
         },
   };
 
+  const slotElementType = isRtl
+    ? {
+        previous: NavigateNextIcon,
+        next: NavigateBeforeIcon,
+        first: LastPageIcon,
+        last: FirstPageIcon,
+      }
+    : {
+        previous: NavigateBeforeIcon,
+        next: NavigateNextIcon,
+        first: FirstPageIcon,
+        last: LastPageIcon,
+      };
+
   const [PreviousSlot, previousSlotProps] = useSlot('previous', {
-    elementType: NavigateBeforeIcon,
+    elementType: slotElementType.previous,
     externalForwardedProps,
     ownerState,
   });
 
   const [NextSlot, nextSlotProps] = useSlot('next', {
-    elementType: NavigateNextIcon,
+    elementType: slotElementType.next,
     externalForwardedProps,
     ownerState,
   });
 
   const [FirstSlot, firstSlotProps] = useSlot('first', {
-    elementType: FirstPageIcon,
+    elementType: slotElementType.first,
     externalForwardedProps,
     ownerState,
   });
 
   const [LastSlot, lastSlotProps] = useSlot('last', {
-    elementType: LastPageIcon,
+    elementType: slotElementType.last,
     externalForwardedProps,
     ownerState,
   });
