@@ -666,8 +666,8 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           label: ({ theme }) => ({
             '&.Mui-completed': {
-              opacity: 0.4,
-              ...(theme.palette.mode === 'dark' && { opacity: 0.3 }),
+              opacity: 0.6,
+              ...(theme.palette.mode === 'dark' && { opacity: 0.5 }),
             },
           }),
         },
