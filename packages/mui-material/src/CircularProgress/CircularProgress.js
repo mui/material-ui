@@ -39,6 +39,14 @@ const circularDashKeyframe = keyframes`
   }
 `;
 
+const rotateAnimation = css`
+  animation: ${circularRotateKeyframe} 1.4s linear infinite;
+`;
+
+const dashAnimation = css`
+  animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
+`;
+
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, color, disableShrink } = ownerState;
 
@@ -63,22 +71,38 @@ const CircularProgressRoot = styled('span', {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(
-  ({ ownerState, theme }) => ({
-    display: 'inline-block',
-    ...(ownerState.variant === 'determinate' && {
-      transition: theme.transitions.create('transform'),
-    }),
-    ...(ownerState.color !== 'inherit' && {
-      color: (theme.vars || theme).palette[ownerState.color].main,
-    }),
-  }),
-  ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
-    css`
-      animation: ${circularRotateKeyframe} 1.4s linear infinite;
-    `,
-);
+})(({ theme }) => ({
+  display: 'inline-block',
+  variants: [
+    {
+      props: {
+        variant: 'determinate',
+      },
+      style: {
+        transition: theme.transitions.create('transform'),
+      },
+    },
+    ...(typeof rotateAnimation !== 'string'
+      ? [
+          // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
+          {
+            props: {
+              variant: 'indeterminate',
+            },
+            style: rotateAnimation,
+          },
+        ]
+      : []),
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          color: (theme.vars || theme).palette[color].main,
+        },
+      })),
+  ],
+}));
 
 const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
@@ -100,27 +124,39 @@ const CircularProgressCircle = styled('circle', {
       ownerState.disableShrink && styles.circleDisableShrink,
     ];
   },
-})(
-  ({ ownerState, theme }) => ({
-    stroke: 'currentColor',
-    // Use butt to follow the specification, by chance, it's already the default CSS value.
-    // strokeLinecap: 'butt',
-    ...(ownerState.variant === 'determinate' && {
-      transition: theme.transitions.create('stroke-dashoffset'),
-    }),
-    ...(ownerState.variant === 'indeterminate' && {
-      // Some default value that looks fine waiting for the animation to kicks in.
-      strokeDasharray: '80px, 200px',
-      strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-    }),
-  }),
-  ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
-    !ownerState.disableShrink &&
-    css`
-      animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-    `,
-);
+})(({ theme }) => ({
+  stroke: 'currentColor',
+  variants: [
+    {
+      props: {
+        variant: 'determinate',
+      },
+      style: {
+        transition: theme.transitions.create('stroke-dashoffset'),
+      },
+    },
+    {
+      props: {
+        variant: 'indeterminate',
+      },
+      style: {
+        // Some default value that looks fine waiting for the animation to kicks in.
+        strokeDasharray: '80px, 200px',
+        strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+      },
+    },
+    ...(typeof dashAnimation !== 'string'
+      ? [
+          {
+            // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
+            props: ({ ownerState }) =>
+              ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+            style: dashAnimation,
+          },
+        ]
+      : []),
+  ],
+}));
 
 /**
  * ## ARIA
@@ -169,7 +205,11 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
 
   return (
     <CircularProgressRoot
-      className={clsx(classes.root, className)}
+      className={clsx(
+        classes.root,
+        typeof rotateAnimation === 'string' && rotateAnimation,
+        className,
+      )}
       style={{ width: size, height: size, ...rootStyle, ...style }}
       ownerState={ownerState}
       ref={ref}
@@ -183,7 +223,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
         viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}
       >
         <CircularProgressCircle
-          className={classes.circle}
+          className={clsx(classes.circle, typeof dashAnimation === 'string' && dashAnimation)}
           style={circleStyle}
           ownerState={ownerState}
           cx={SIZE}
