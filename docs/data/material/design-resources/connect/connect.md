@@ -57,6 +57,10 @@ After adding them, click on **Regenerate theme** again to see them in the code e
 
 You can customize how a component looks in all of its variants and states and generate its theme using Connect.
 
+<video controls muted loop width="1584" height="1080" style="border-radius: 12px; border: 1px solid; border-color: hsla(0, 0%, 0%, .1);">
+  <source src="/static/material-ui/design-resources/custom-component.mp4" type="video/mp4">
+</video>
+
 :::warning
 Component customization support is currently limited to the Button, Switch, and Typography components.
 More components will follow soon!
