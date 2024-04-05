@@ -25,6 +25,8 @@ describe('<Fade />', () => {
       'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
+      // does not support sx prop, propagates to the children
+      'supportPigmentCssSxProp',
       // TODO: really?
       // react-transition-group issue
       'reactTestRenderer',

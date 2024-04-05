@@ -291,6 +291,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     sx,
     slots = {},
     slotProps = {},
+    style,
     ...other
   } = props;
   const externalForwardedProps = {
@@ -298,7 +299,19 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     component,
     slots,
     slotProps,
-    sx: [{ width, height }, ...(Array.isArray(sx) ? sx : [sx])],
+    // @ts-ignore
+    ...(typeof sx === 'string' || (typeof sx === 'object' && (sx.className || sx.vars))
+      ? {
+          style: {
+            width,
+            height,
+            ...style,
+          },
+          sx,
+        }
+      : {
+          sx: [{ width, height }, ...(Array.isArray(sx) ? sx : [sx])],
+        }),
   };
 
   const ownerState = {
@@ -423,6 +436,10 @@ Skeleton.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -143,10 +143,26 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const sxClass = typeof sx === 'string' ? sx : sx?.className;
+  const sxVars = sx && typeof sx !== 'string' ? sx.vars : undefined;
+  const sxVarsStyles = {};
+
+  if (sxVars) {
+    Object.entries(sxVars).forEach(([cssVariable, [value, isUnitLess]]) => {
+      if (typeof value === 'string' || isUnitLess) {
+        sxVarsStyles[`--${cssVariable}`] = value;
+      } else {
+        sxVarsStyles[`--${cssVariable}`] = `${value}px`;
+      }
+    });
+  }
+
+  const pigmentCssTrasformedSx = sxClass || sxVars;
+
   return (
     <LinkRoot
       color={color}
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, className, sxClass)}
       classes={TypographyClasses}
       component={component}
       onBlur={handleBlur}
@@ -154,9 +170,13 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       ref={handlerRef}
       ownerState={ownerState}
       variant={variant}
+      style={{
+        ...sxVarsStyles,
+        ...props.style,
+      }}
       sx={[
         ...(!Object.keys(colorTransformations).includes(color) ? [{ color }] : []),
-        ...(Array.isArray(sx) ? sx : [sx]),
+        ...(!pigmentCssTrasformedSx ? (Array.isArray(sx) ? sx : [sx]) : []),
       ]}
       {...other}
     />
