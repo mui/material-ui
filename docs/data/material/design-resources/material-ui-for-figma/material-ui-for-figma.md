@@ -46,7 +46,7 @@ To access it, make sure you don't have any layers or frames selected so you can 
 
 Unfortunately typography variables are not currently supported, but this feature is planned.
 Until then, changing global styles such as the font family requires a few minutes of extra effort.
-We have already defined everything as a style, so your only point of command is the right-hand panel.
+All of it is already defined as a style, so your only point of command is the right-hand panel.
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/HepVDfrLmak?si=gklG_3ZZyxDWzlPM" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -73,7 +73,7 @@ Learn more about the Material UI theme structure by visiting the [Theming](http
 
 ## FAQ
 
-### How can I edit the master components?
+### How can I edit the main components?
 
 Master components were difficult to maintain, and it required sticking to the elements available in that master instance only, so we decided to move away from master components in favor of a plugin called [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer).
 
@@ -95,17 +95,15 @@ In Figma, you will see:
 
 ### Table component
 
-#### How do I add a new column in the table?
+#### Adding new columns
 
 <iframe src="https://www.loom.com/embed/6dd71cc374bc4d84af35ebb75d107d38?sid=1d3a4790-4c28-433e-94ce-97dd969601dd" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="width: 100%; height: 500px;"></iframe>
 
-#### How do I add new columns in the main component?
+#### Adding new columns in the main component
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/s_n3LHm1daI?si=_QbXvtYPkc8EBd5d" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
 
-## Updates
-
-### I've received an update; how can I replace one component with another?
+## Using new design kit versions
 
 We generally don't release breaking changes in the updates—we add new content instead.
 If you need to replace a single component that's been updated, there are a couple of options:
