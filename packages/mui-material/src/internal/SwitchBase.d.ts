@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 import { SwitchBaseClasses } from './switchBaseClasses';
@@ -72,6 +74,10 @@ export interface SwitchBaseProps
    * @default false
    */
   required?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   tabIndex?: number;
   type?: React.InputHTMLAttributes<HTMLInputElement>['type'];
   /**

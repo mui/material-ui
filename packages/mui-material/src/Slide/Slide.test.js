@@ -29,10 +29,10 @@ describe('<Slide />', () => {
       skip: [
         'componentProp',
         'componentsProp',
-        'themeDefaultProps',
-        'themeStyleOverrides',
         // does not support sx prop, propagates to the children
         'supportPigmentCssSxProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
         'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',

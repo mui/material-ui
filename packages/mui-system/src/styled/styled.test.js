@@ -696,7 +696,7 @@ describe('styled', () => {
 
   it('should support sx as string', () => {
     const Component = styled('div', {
-      shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+      shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size',
       name: 'MuiComponent',
     })`
       width: 200px;
@@ -710,9 +710,9 @@ describe('styled', () => {
     expect(classList).to.contain('sx-classname');
   });
 
-  it('should support sx as string', () => {
+  it('should support sx as object', () => {
     const Component = styled('div', {
-      shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+      shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size',
       name: 'MuiComponent',
     })`
       width: 200px;

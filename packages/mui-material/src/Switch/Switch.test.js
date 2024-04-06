@@ -17,7 +17,15 @@ describe('<Switch />', () => {
       { slotName: 'input', slotClassName: classes.input },
     ],
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp', 'propsSpread', 'themeDefaultProps', 'themeVariants'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'propsSpread',
+      // does not spread props to root
+      'supportPigmentCssSxProp',
+      'themeDefaultProps',
+      'themeVariants'
+    ],
   }));
 
   describe('styleSheet', () => {

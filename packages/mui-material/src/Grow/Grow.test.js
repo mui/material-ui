@@ -27,11 +27,11 @@ describe('<Grow />', () => {
       skip: [
         'componentProp',
         'componentsProp',
+        // does not support sx prop, propagates to the children
+        'supportPigmentCssSxProp',
         'themeDefaultProps',
         'themeStyleOverrides',
         'themeVariants',
-        // does not support sx prop, propagates to the children
-        'supportPigmentCssSxProp',
         // does not support sx prop, propagates to the children
         // react-transition-group issue
         'reactTestRenderer',
