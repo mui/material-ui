@@ -833,8 +833,8 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
       react-virtuoso:
-        specifier: ^4.7.2
-        version: 4.7.2(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^4.7.7
+        version: 4.7.7(react-dom@18.2.0)(react@18.2.0)
       react-window:
         specifier: ^1.8.10
         version: 1.8.10(react-dom@18.2.0)(react@18.2.0)
@@ -18990,8 +18990,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-virtuoso@4.7.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-xF4es1ajK36Hs9MciaiGA9l16tV2bpkpgxM9JVKh0rJSn6uhdAUrxSQ6FttQOOPAGt4GRG2A4gdjlo18JWhyRw==}
+  /react-virtuoso@4.7.7(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-n9NdMNaAtxHYH6e3H6zr1Kb08sp+1XPVnfE4cEMgrvmPBLugd9eeJtQo/1uA+SHhGaPX3uqZOuQsfKbX1r8P/A==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>=16 || >=17 || >= 18'
