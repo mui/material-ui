@@ -1,5 +1,92 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.1
+
+<!-- generated comparing v6.0.0-alpha.0..next -->
+
+_Apr 5, 2024_
+
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔥 Converted 3 more Material UI components to use Pigment CSS. Current progress is 36%!
+- 🚀 Added a spacing CSS variable to the Material UI and Joy UI themes.
+- 💫 Added 3 redesigned free Material UI templates: [Sign-in](https://next.mui.com/material-ui/getting-started/templates/sign-in/), [Sign-in side](https://next.mui.com/material-ui/getting-started/templates/sign-in-side/), and [Sign-up](https://next.mui.com/material-ui/getting-started/templates/sign-up/).
+
+### `@mui/material@6.0.0-alpha.1`
+
+- [AppBar] Convert to support CSS extraction (#41247) @mnajdova
+- [Badge] Deprecate components and componentsProps (#41655) @skmanoj322
+- [Button] Convert to support CSS extraction (#41378) @siriwatknp
+- [ButtonGroup] Convert to support CSS extraction (#41666) @zanivan
+- [RadioGroup] Apply classnames (#41610) @ZeeshanTamboli
+- [Slider] Move palette styles to the bottom (#41676) @siriwatknp
+- Add the `spacing` theme token (#40224) @siriwatknp
+
+### `@mui/system@6.0.0-alpha.1`
+
+- Add the `spacing` theme token to be used in `theme.spacing()` (#40224) @siriwatknp
+
+### `@mui/codemod@6.0.0-alpha.1`
+
+- [codemod] Setup v6 codemod structure (#41668) @DiegoAndai
+
+### `@mui/lab@6.0.0-alpha.1`
+
+- [TabPanel] Add keepMounted prop to match Joy UI (#41651) @ppaskaris-plooto
+
+### `@mui/joy@5.0.0-beta.34`
+
+- Add `spacing` theme token (#40224) @siriwatknp
+
+### `@pigment-css/react@0.0.5`
+
+- Improve sx prop support (#41589) @brijeshb42
+- Fix Emotion styled error (#41699) @siriwatknp
+- Fix propTypes removal during eval stage (#41695) @brijeshb42
+- Fix props forwarding (#41688) @siriwatknp
+- Fix sx prop transformation on Box (#41705) @brijeshb42
+
+### `@pigment-css/vite-plugin@0.0.5`
+
+- Use constant filename for pigment styles (#41667) @brijeshb42
+
+### `@pigment-css/nextjs-plugin@0.0.5`
+
+- Add missing RTL implementation (#41751) @brijeshb42
+
+### Docs
+
+- [pigment-css] Update README.md installation to use the next tag (#41649) @mnajdova
+- [pigment-css] Add "Building design system components" guide with Pigment CSS (#41635) @siriwatknp
+- Continue migration of Base UI to sperate repository @oliviertassinari
+- Stick to one way to write IE 11 @oliviertassinari
+- Fix typo in CONTRIBUTING.md (#41670) @adriancuadrado
+- Drop IE 11 official support (#41611) @iammminzzy
+- [material-ui] Fix typo on the Accordion page (#41687) @connorshea
+- [pigment-css] Add small edits on the README (#41646) @danilo-leal
+- [pigment-css] Edit the example app's README files (#41639) @danilo-leal
+
+### Core
+
+- [code-infra] Move BrandingProvider/brandingTheme/InfoCard to @mui/docs (#41206) @Janpot
+- [core] Automate cherry-pick of PRs from `next` -> `master` (#41741) @aarongarciah
+- [core] Update the prettier script to use the next branch (#41637) @mnajdova
+- [docs-infra] Skip loading source for non-editable modules (#41588) @bharatkashyap
+- [docs-infra] Vale rule for M3 (#41737) @oliviertassinari
+- [docs-infra] Allows to remove edit button (#41702) @alexfauquette
+- [pigment-css][examples] Add example project with Remix (#41700) @brijeshb42
+- [examples] Update MUI's packages to the next version (#41701) @mnajdova
+- [material-ui] Refine the Sign-in and Sign-up templates (#41192) @zanivan
+- [test] Add test to display options provided to the options prop even if loading is true. (#41675) @ZeeshanTamboli
+- [blog] Refresh the design slightly (#41697) @danilo-leal
+- [website] Use en-US over en-UK for career link @oliviertassinari
+- [website] Add Aarón to About Us (#41736) @aarongarciah
+- [website] Refine button design and other details (#41686) @danilo-leal
+- [website] Improve job og image (#41672) @oliviertassinari
+- [website] Page <title> should have no dots @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @adriancuadrado, @alexfauquette, @bharatkashyap, @brijeshb42, @connorshea, @danilo-leal, @DiegoAndai, @iammminzzy, @Janpot, @JCQuintas, @levigunz, @mnajdova, @oliviertassinari, @ppaskaris-plooto, @siriwatknp, @skmanoj322, @zanivan, @ZeeshanTamboli
+
 ## v6.0.0-alpha.0
 
 <!-- generated comparing v5.15.14..next -->
@@ -78,6 +165,46 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [website] Add stray design adjustments throughout the site (#41547) @danilo-leal
 
 All contributors of this release in alphabetical order: @aacevski, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @harry-whorlow, @Janpot, @joserodolfofreitas, @michael-land, @michaldudak, @mnajdova, @nekoya, @sai6855, @siriwatknp, @StylesTrip, @zanivan, @ZeeshanTamboli
+
+## v5.15.15
+
+<!-- generated comparing v5.15.14..master -->
+
+_Apr 4, 2024_
+
+A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.15`
+
+- [Autocomplete] Display options provided to the `options` prop even if loading is true (#41677) @ZeeshanTamboli
+- [RadioGroup] Apply classnames (#41681) @ZeeshanTamboli
+
+### `@mui/system@5.15.15`
+
+- Fix typo to avoid infinite recursion in function call (#41678) @ZeeshanTamboli
+
+### Docs
+
+- [material-ui][Slider] Remove `valueLabelFormat` from restricted values demo so that the tooltip thumb label displays the same as the value text (#41679) @ZeeshanTamboli
+- [material-ui] Remove deleted page from the sidenav (#41594) @danilo-leal
+- [material-ui] Fix typo in CSS theme variables customization (#41680) @ZeeshanTamboli
+- Continue migration of Base UI to sperate repository @oliviertassinari
+- Add notification for MUI X v7 blog post (#41587) (#41605) @cherniavskii
+- Update the versions dropdown to show v6 (#41557) @mnajdova
+
+### Core
+
+- [blog] Link to Romain's blog post in MUI X v7 announcement post (#41641) @cherniavskii
+- [blog] Blog post with MUI X v7.0.0 annoucement (#41563) (#41604) @cherniavskii
+- [blog] Add post about remote (#41565) @danilo-leal
+- [core] Continue rename of Toolpad @oliviertassinari
+- [docs-infra] Add Toolpad product/category IDs to types (#41551) @bharatkashyap
+- [website] Add Aarón to About Us (#41747) @aarongarciah
+- [website] Add stray design adjustments throughout the site (#41642) @mnajdova
+- [website] Update pricing table (#41606) @cherniavskii
+
+All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @cherniavskii, @danilo-leal, @mnajdova, @oliviertassinari, @ZeeshanTamboli
 
 ## v5.15.14
 

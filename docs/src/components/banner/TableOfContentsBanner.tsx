@@ -34,10 +34,9 @@ export default function TableOfContentsBanner() {
         (theme) =>
           theme.applyDarkStyles({
             backgroundColor: alpha(theme.palette.primary[900], 0.2),
-            borderColor: (theme.vars || theme).palette.divider,
             '&:hover, &:focus-visible': {
               backgroundColor: alpha(theme.palette.primary[900], 0.4),
-              borderColor: (theme.vars || theme).palette.primaryDark[500],
+              borderColor: (theme.vars || theme).palette.primary[900],
             },
           }),
       ]}
