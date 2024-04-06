@@ -65,6 +65,7 @@ describe('<SwipeableDrawer />', () => {
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
     classes: {},
     inheritComponent: Drawer,
+    render,
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',

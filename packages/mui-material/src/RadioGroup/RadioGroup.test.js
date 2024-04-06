@@ -14,6 +14,7 @@ describe('<RadioGroup />', () => {
   describeConformance(<RadioGroup value="" />, () => ({
     classes: {},
     inheritComponent: FormGroup,
+    render,
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
