@@ -50,7 +50,7 @@ describe('<Tooltip />', () => {
         'componentProp',
         'componentsProp',
         // similar as rootClass, no root element
-        'supportPigmentCssSxProp',        
+        'supportPigmentCssSxProp',
         'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',

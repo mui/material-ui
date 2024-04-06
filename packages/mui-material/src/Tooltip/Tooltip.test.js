@@ -59,7 +59,7 @@ describe('<Tooltip />', () => {
         'componentsProp',
         'themeVariants',
         // no root element
-        'supportPigmentCssSxProp',   
+        'supportPigmentCssSxProp',
         // react-transition-group issue
         'reactTestRenderer',
         'slotPropsCallback', // not supported yet

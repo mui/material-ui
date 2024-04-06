@@ -39,7 +39,13 @@ describe('<StepContent />', () => {
       );
       return { container: container.firstChild.firstChild, ...other };
     },
-    skip: ['componentProp', 'componentsProp', 'supportPigmentCssSxProp', 'themeVariants', 'reactTestRenderer'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'supportPigmentCssSxProp',
+      'themeVariants',
+      'reactTestRenderer',
+    ],
   }));
 
   it('renders children inside an Collapse component', () => {

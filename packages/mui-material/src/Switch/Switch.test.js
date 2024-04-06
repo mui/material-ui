@@ -24,7 +24,7 @@ describe('<Switch />', () => {
       // does not spread props to root
       'supportPigmentCssSxProp',
       'themeDefaultProps',
-      'themeVariants'
+      'themeVariants',
     ],
   }));
 
