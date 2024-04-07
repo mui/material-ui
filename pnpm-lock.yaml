@@ -764,8 +764,8 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0
       markdown-to-jsx:
-        specifier: ^7.4.5
-        version: 7.4.5(react@18.2.0)
+        specifier: ^7.4.6
+        version: 7.4.6(react@18.2.0)
       material-ui-popup-state:
         specifier: ^5.1.0
         version: 5.1.0(@mui/material@packages+mui-material+build)(react@18.2.0)
@@ -15872,8 +15872,8 @@ packages:
       uc.micro: 2.0.0
     dev: true
 
-  /markdown-to-jsx@7.4.5(react@18.2.0):
-    resolution: {integrity: sha512-c8NB0H/ig+FOWssE9be0PKsYbCDhcWEkicxMnpdfUuHbFljnen4LAdgUShOyR/PgO3/qKvt9cwfQ0U/zQvZ44A==}
+  /markdown-to-jsx@7.4.6(react@18.2.0):
+    resolution: {integrity: sha512-3cyNxI/PwotvYkjg6KmFaN1uyN/7NqETteD2DobBB8ro/FR9jsHIh4Fi7ywAz0s9QHRKCmGlOUggs5GxSWACKA==}
     engines: {node: '>= 10'}
     peerDependencies:
       react: '>= 0.14.0'
