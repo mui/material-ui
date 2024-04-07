@@ -590,7 +590,7 @@ importers:
         specifier: ^7.24.4
         version: 7.24.4
       '@babel/runtime-corejs2':
-        specifier: ^7.24.1
+        specifier: ^7.24.4
         version: 7.24.4
       '@docsearch/react':
         specifier: ^3.6.0
