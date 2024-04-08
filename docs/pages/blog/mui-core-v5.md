@@ -377,7 +377,7 @@ const CustomButton = React.forwardRef(function CustomButton(
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/7lc1r?file=/demo.tsx">CodeSandbox</a></p>
 
 We discuss the effort in [#6218](https://github.com/mui/material-ui/issues/6218).
-You can use [#27170](https://github.com/mui/material-ui/issues/27170) to follow our progress.
+You can use [#27170](https://github.com/mui/base-ui/issues/10) to follow our progress.
 
 ## Improved DX
 
@@ -725,7 +725,7 @@ To continue improving the customization experience, we are doubling down on the 
 These components and hooks contain the main functionalities and accessibility, without being opinionated about how styles are applied nor what styles.
 We still have work to do to have a full set of unstyled components.
 
-You can read more about them in [the docs](/base-ui/getting-started/) and keep track of our progress in [#27170](https://github.com/mui/material-ui/issues/27170).
+You can read more about them in [the docs](/base-ui/getting-started/) and keep track of our progress in [#27170](https://github.com/mui/base-ui/issues/10).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).
