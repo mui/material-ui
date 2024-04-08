@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "6.0.0-alpha.0",
+  "version": "6.0.0-alpha.1",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
@@ -38,7 +38,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.4",
     "@emotion/cache": "^11.11.0",
     "csstype": "^3.1.3",
     "prop-types": "^15.8.1"
