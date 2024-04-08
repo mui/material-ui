@@ -293,7 +293,7 @@ describe('System <Grid />', () => {
           })}
         >
           {/* `lg` is to mimic mistake, it is not a breakpoint anymore */}
-          <Grid mobile={2} tablet={3} laptop="auto" lg={5} />
+          <Grid component={(p) => <div {...p} />} mobile={2} tablet={3} laptop="auto" lg={5} />
         </ThemeProvider>,
       );
 
