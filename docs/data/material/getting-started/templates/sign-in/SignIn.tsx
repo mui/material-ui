@@ -50,7 +50,7 @@ function ToggleCustomTheme({
         exclusive
         value={showCustomTheme}
         onChange={toggleCustomTheme}
-        aria-label="Platform"
+        aria-label="Toggle design language"
         sx={{
           backgroundColor: 'background.default',
           '& .Mui-selected': {

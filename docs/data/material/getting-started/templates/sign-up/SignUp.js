@@ -42,7 +42,7 @@ function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
         exclusive
         value={showCustomTheme}
         onChange={toggleCustomTheme}
-        aria-placeholder="Platform"
+        aria-label="Toggle design language"
         sx={{
           backgroundColor: 'background.default',
           '& .Mui-selected': {
@@ -78,14 +78,11 @@ export default function SignUp() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
-  const [lastNameError, setLastNameError] = React.useState(false);
-  const [lastNameErrorMessage, setLastNameErrorMessage] = React.useState('');
 
   const validateInputs = () => {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
     const name = document.getElementById('name');
-    const lastName = document.getElementById('lastName');
 
     let isValid = true;
 
@@ -116,15 +113,6 @@ export default function SignUp() {
       setNameErrorMessage('');
     }
 
-    if (!lastName.value || lastName.value.length < 1) {
-      setLastNameError(true);
-      setLastNameErrorMessage('Name is required.');
-      isValid = false;
-    } else {
-      setLastNameError(false);
-      setLastNameErrorMessage('');
-    }
-
     return isValid;
   };
 
@@ -151,18 +139,17 @@ export default function SignUp() {
     <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
       <CssBaseline />
       <Stack
+        component="main"
         direction="column"
         justifyContent="space-between"
         sx={(theme) => ({
+          backgroundRepeat: 'no-repeat',
           backgroundImage:
             theme.palette.mode === 'light'
               ? 'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))'
               : 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.3), hsl(220, 30%, 5%))',
-          backgroundRepeat: 'no-repeat',
-          height: { xs: 'auto', sm: '100dvh' },
           pb: { xs: 12, sm: 0 },
         })}
-        component="main"
       >
         <Stack
           direction="row"
@@ -214,31 +201,17 @@ export default function SignUp() {
               sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
             >
               <FormControl>
-                <FormLabel htmlFor="name">Name</FormLabel>
+                <FormLabel htmlFor="name">Full name</FormLabel>
                 <TextField
                   autoComplete="name"
                   name="name"
                   required
                   fullWidth
                   id="name"
-                  placeholder="John"
+                  placeholder="Jon Snow"
                   error={nameError}
                   helperText={nameErrorMessage}
                   color={nameError ? 'error' : 'primary'}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="lastName">Last name</FormLabel>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  placeholder="Snow"
-                  name="lastName"
-                  autoComplete="last-name"
-                  error={lastNameError}
-                  helperText={lastNameErrorMessage}
-                  color={lastNameError ? 'error' : 'primary'}
                 />
               </FormControl>
               <FormControl>
