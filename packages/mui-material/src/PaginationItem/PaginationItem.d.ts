@@ -23,23 +23,11 @@ export interface PaginationItemSlots {
 export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
   PaginationItemSlots,
   {
-    first: SlotProps<
-      React.ElementType<React.HTMLProps<HTMLSpanElement>>,
-      {},
-      PaginationItemOwnerState
-    >;
-    last: SlotProps<
-      React.ElementType<React.HTMLProps<HTMLSpanElement>>,
-      {},
-      PaginationItemOwnerState
-    >;
-    next: SlotProps<
-      React.ElementType<React.HTMLProps<HTMLSpanElement>>,
-      {},
-      PaginationItemOwnerState
-    >;
+    first: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
+    last: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
+    next: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
     previous: SlotProps<
-      React.ElementType<React.HTMLProps<HTMLSpanElement>>,
+      React.ElementType<React.HTMLProps<HTMLElement>>,
       {},
       PaginationItemOwnerState
     >;
