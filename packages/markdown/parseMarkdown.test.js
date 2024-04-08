@@ -295,9 +295,9 @@ authors:
       ).to.equal(
         [
           `<h1>Accordion</h1>`,
-          `<h2 id="basic-features"><a href="#basic-features" class="title-link-to-anchor">Basic features 🧪<button title="Post a comment" class="comment-link" data-feedback-hash="basic-features"><svg><use xlink:href="#comment-link-icon" /></svg></button></h2>`,
-          `<h2 id="using-slots-and-slotprops">Using <code>slots</code> and <code>slotProps</code><a aria-labelledby="using-slots-and-slotprops" class="anchor-link" href="#using-slots-and-slotprops" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a><button title="Post a comment" class="comment-link" data-feedback-hash="using-slots-and-slotprops"><svg><use xlink:href="#comment-link-icon" /></svg></button></h2>`,
-          `<h3 id="specific-example">Specific example<a aria-labelledby="specific-example" class="anchor-link" href="#specific-example" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a><button title="Post a comment" class="comment-link" data-feedback-hash="specific-example"><svg><use xlink:href="#comment-link-icon" /></svg></button></h3>`,
+          `<h2 id="basic-features"><a href="#basic-features" class="title-link-to-anchor">Basic features 🧪<div class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></div></a><button title="Post a comment" class="comment-link" data-feedback-hash="basic-features"><svg><use xlink:href="#comment-link-icon" /></svg></button></h2>`,
+          `<h2 id="using-slots-and-slotprops"><a href="#using-slots-and-slotprops" class="title-link-to-anchor">Using <code>slots</code> and <code>slotProps</code><div class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></div></a><button title="Post a comment" class="comment-link" data-feedback-hash="using-slots-and-slotprops"><svg><use xlink:href="#comment-link-icon" /></svg></button></h2>`,
+          `<h3 id="specific-example"><a href="#specific-example" class="title-link-to-anchor">Specific example<div class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></div></a><button title="Post a comment" class="comment-link" data-feedback-hash="specific-example"><svg><use xlink:href="#comment-link-icon" /></svg></button></h3>`,
         ].join(''),
       );
 
