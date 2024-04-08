@@ -166,6 +166,9 @@ export default function AppFrame(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
 
+  const closeDrawer = React.useCallback(() => setMobileOpen(false), []);
+  const openDrawer = React.useCallback(() => setMobileOpen(true), []);
+
   const { activePage } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
@@ -230,8 +233,8 @@ export default function AppFrame(props) {
       </StyledAppBar>
       <StyledAppNavDrawer
         disablePermanent={disablePermanent}
-        onClose={() => setMobileOpen(false)}
-        onOpen={() => setMobileOpen(true)}
+        onClose={closeDrawer}
+        onOpen={openDrawer}
         mobileOpen={mobileOpen}
       />
       {children}
