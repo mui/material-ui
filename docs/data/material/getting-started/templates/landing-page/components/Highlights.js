@@ -99,7 +99,7 @@ export default function Highlights() {
                   p: 3,
                   height: '100%',
                   border: '1px solid',
-                  borderColor: 'grey.800',
+                  borderColor: 'hsla(220, 25%, 25%, .3)',
                   background: 'transparent',
                   backgroundColor: 'grey.900',
                   boxShadow: 'none',
