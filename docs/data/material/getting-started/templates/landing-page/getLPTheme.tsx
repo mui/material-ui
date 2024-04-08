@@ -29,7 +29,7 @@ export const brand = {
   400: 'hsl(210, 98%, 48%)',
   500: 'hsl(210, 98%, 42%)',
   600: 'hsl(210, 98%, 55%)',
-  700: 'hsl(210, 100%, 25%)',
+  700: 'hsl(210, 100%, 35%)',
   800: 'hsl(210, 100%, 16%)',
   900: 'hsl(210, 100%, 21%)',
 };
@@ -149,7 +149,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
       default: 'hsl(0, 0%, 100%)',
-      paper: gray[50],
+      paper: gray[100],
       ...(mode === 'dark' && { default: 'hsl(220, 30%, 3%)', paper: gray[900] }),
     },
     text: {
@@ -315,7 +315,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
-              color: brand[600],
+              color: brand[700],
               backgroundColor: alpha(brand[300], 0.1),
               borderColor: alpha(brand[200], 0.8),
               boxShadow: `inset 0 2px ${alpha(brand[50], 0.5)}, inset 0 -2px ${alpha(brand[200], 0.2)}`,
@@ -348,7 +348,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
               }),
             ...(ownerState.variant === 'text' &&
               ownerState.color === 'primary' && {
-                color: brand[600],
+                color: brand[700],
                 '&:hover': {
                   backgroundColor: alpha(brand[300], 0.3),
                 },
@@ -539,7 +539,7 @@ export default function getLPTheme(mode: PaletteMode): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme }) => ({
-            color: brand[600],
+            color: brand[700],
             fontWeight: 500,
             position: 'relative',
             textDecoration: 'none',

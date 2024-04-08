@@ -15,7 +15,7 @@ export const brand = {
   400: 'hsl(210, 98%, 48%)',
   500: 'hsl(210, 98%, 42%)',
   600: 'hsl(210, 98%, 55%)',
-  700: 'hsl(210, 100%, 25%)',
+  700: 'hsl(210, 100%, 35%)',
   800: 'hsl(210, 100%, 16%)',
   900: 'hsl(210, 100%, 21%)',
 };
@@ -123,7 +123,7 @@ const getDesignTokens = (mode) => ({
     divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
       default: 'hsl(0, 0%, 100%)',
-      paper: gray[50],
+      paper: gray[100],
       ...(mode === 'dark' && { default: 'hsl(220, 30%, 3%)', paper: gray[900] }),
     },
     text: {
@@ -258,7 +258,7 @@ export default function getCheckoutTheme(mode) {
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
-              color: brand[600],
+              color: brand[700],
               backgroundColor: alpha(brand[300], 0.1),
               borderColor: alpha(brand[200], 0.8),
               boxShadow: `inset 0 2px ${alpha(brand[50], 0.5)}, inset 0 -2px ${alpha(brand[200], 0.2)}`,
@@ -291,7 +291,7 @@ export default function getCheckoutTheme(mode) {
               }),
             ...(ownerState.variant === 'text' &&
               ownerState.color === 'primary' && {
-                color: brand[600],
+                color: brand[700],
                 '&:hover': {
                   backgroundColor: alpha(brand[300], 0.3),
                 },
@@ -486,6 +486,42 @@ export default function getCheckoutTheme(mode) {
           root: {
             border: 'none',
           },
+        },
+      },
+      MuiLink: {
+        defaultProps: {
+          underline: 'none',
+        },
+        styleOverrides: {
+          root: ({ theme }) => ({
+            color: brand[700],
+            fontWeight: 500,
+            position: 'relative',
+            textDecoration: 'none',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              width: 0,
+              height: '1px',
+              bottom: 0,
+              left: 0,
+              backgroundColor: brand[200],
+              opacity: 0.7,
+              transition: 'width 0.3s ease, opacity 0.3s ease',
+            },
+            '&:hover::before': {
+              width: '100%',
+              opacity: 1,
+            },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '4px',
+              borderRadius: '2px',
+            },
+            ...(theme.palette.mode === 'dark' && {
+              color: brand[200],
+            }),
+          }),
         },
       },
       MuiOutlinedInput: {

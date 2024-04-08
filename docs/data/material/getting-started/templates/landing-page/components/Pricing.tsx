@@ -185,6 +185,7 @@ export default function Pricing() {
                     />
                     <Typography
                       variant="subtitle2"
+                      component={'span'}
                       sx={{
                         color: tier.title === 'Professional' ? 'grey.50' : undefined,
                       }}
