@@ -19,7 +19,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, Palette, PaletteOptions } from './types/colorSystem';
 import { Focus } from './types/focus';
-import { TypographySystem, TypographySystemOptions, FontSize } from './types/typography';
+import { TypographySystemOptions, FontSize } from './types/typography';
 import { Variants } from './types/variants';
 import { Theme, ThemeCssVar, ThemeScalesOptions, SxProps, ThemeVars } from './types';
 import { Components } from './components';
@@ -677,7 +677,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     return createSpacing(spacing, createUnarySpacing(this));
   };
   theme.spacing = theme.generateSpacing();
-  theme.typography = mergedScales.typography as TypographySystem;
+  theme.typography = mergedScales.typography as any;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,
