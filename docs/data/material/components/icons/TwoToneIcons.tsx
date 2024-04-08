@@ -12,8 +12,8 @@ export default function TwoToneIcons() {
 
   return (
     <Icon
-      sx={{ ...(isDarkMode && { filter: 'invert(1)' }) }}
       baseClassName="material-icons-two-tone"
+      style={isDarkMode ? { filter: 'invert(1)' } : undefined}
     >
       add_circle
     </Icon>
