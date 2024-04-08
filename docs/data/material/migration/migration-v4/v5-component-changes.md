@@ -796,7 +796,7 @@ Rename the `GridList` components to `ImageList` to align with the current Materi
 
 ### Use CSS object-fit
 
-Use CSS `object-fit`. For IE11 support either use a polyfill such as
+Use CSS `object-fit`. For IE 11 support either use a polyfill such as
 [this npm package](https://www.npmjs.com/package/object-fit-images), or else continue to use the v4 component.
 
 ```diff
