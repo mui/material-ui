@@ -343,7 +343,7 @@ Pigment CSS replaces the callback with a CSS variable and injects the value thr
 ```jsx
 <h1
   style={{
-    '--Heading_class_akjsdfb-0': ({ isError }) => (isError ? 'red' : 'black'),
+    '--Heading_class_akjsdfb-0': isError ? 'red' : 'black',
   }}
 >
   Hello
@@ -814,7 +814,7 @@ const Flex = styled('div')((props) => ({
 
 2. **Programatically generated styles**
 
-For Emotion and styled-components, the styles is different on each render and instance because the styles are generated at runtime:
+For Emotion and styled-components, the styles are different on each render and instance because the styles are generated at runtime:
 
 ```js
 function randomBetween(min: number, max: number) {
@@ -957,47 +957,47 @@ In this example, a prop named `variant` is defined to let consumers change the a
 Pass down the `variant` prop to `<StatRoot>` to style the `root` slot, as shown below:
 
 ```diff
-  const Stat = React.forwardRef(function Stat(props, ref) {
-+   const { value, unit, variant, ...other } = props;
+ const Stat = React.forwardRef(function Stat(props, ref) {
++  const { value, unit, variant, ...other } = props;
 
-    return (
--      <StatRoot ref={ref} {...other}>
--        <StatValue>{value}</StatValue>
--        <StatUnit>{unit}</StatUnit>
--      </StatRoot>
-+      <StatRoot ref={ref} variant={variant} {...other}>
-+        <StatValue>{value}</StatValue>
-+        <StatUnit>{unit}</StatUnit>
-+      </StatRoot>
-    );
-  });
+   return (
+-     <StatRoot ref={ref} {...other}>
+-       <StatValue>{value}</StatValue>
+-       <StatUnit>{unit}</StatUnit>
+-     </StatRoot>
++     <StatRoot ref={ref} variant={variant} {...other}>
++       <StatValue>{value}</StatValue>
++       <StatUnit>{unit}</StatUnit>
++     </StatRoot>
+   );
+ });
 ```
 
 Then you can use Pigment CSS variants API to style it when `variant` prop has a value of `outlined`:
 
 ```diff
-  const StatRoot = styled('div', {
-    name: 'PigmentStat',
-    slot: 'root',
-  })({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-    padding: '0.75rem 1rem',
-    backgroundColor: '#f9f9f9',
-    borderRadius: '8px',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    letterSpacing: '-0.025em',
-    fontWeight: 600,
-+   variants: [
-+     {
-+       props: { variant: 'outlined' },
-+       style: {
-+         border: `2px solid #e9e9e9`,
-+       },
-+     },
-+   ],
-  });
+ const StatRoot = styled('div', {
+   name: 'PigmentStat',
+   slot: 'root',
+ })({
+   display: 'flex',
+   flexDirection: 'column',
+   gap: '1rem',
+   padding: '0.75rem 1rem',
+   backgroundColor: '#f9f9f9',
+   borderRadius: '8px',
+   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+   letterSpacing: '-0.025em',
+   fontWeight: 600,
++  variants: [
++    {
++      props: { variant: 'outlined' },
++      style: {
++        border: `2px solid #e9e9e9`,
++      },
++    },
++  ],
+ });
 ```
 
 This completes the reusable statistics component.
