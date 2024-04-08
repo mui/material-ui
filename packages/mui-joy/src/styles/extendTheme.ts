@@ -677,7 +677,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     return createSpacing(spacing, createUnarySpacing(this));
   };
   theme.spacing = theme.generateSpacing();
-  theme.typography = mergedScales.typography as any;
+  theme.typography = mergedScales.typography as any; // cast to `any` to avoid internal module augmentation in the repo.
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,
