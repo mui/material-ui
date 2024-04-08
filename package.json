@@ -9,7 +9,7 @@
     "benchmark:browser": "pnpm --filter benchmark browser",
     "build": "lerna run build --ignore docs",
     "build:public": "lerna run --no-private build",
-    "build:ci": "lerna run build --ignore docs --concurrency 7 --skip-nx-cache",
+    "build:ci": "lerna run build --ignore docs --concurrency 8 --skip-nx-cache",
     "build:zero": "lerna run --scope \"@pigmentcss/*\" build",
     "clean:zero": "pnpm --filter \"@pigmentcss/*\" clean",
     "build:codesandbox": "NODE_OPTIONS=\"--max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" --scope \"@mui-internal/*\" --no-private build",

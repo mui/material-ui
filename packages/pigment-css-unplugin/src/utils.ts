@@ -1,4 +1,4 @@
-// import * as path from 'node:path';
+import * as path from 'node:path';
 
 export type AsyncResolver = (what: string, importer: string, stack: string[]) => Promise<string>;
 
@@ -39,9 +39,12 @@ export const handleUrlReplacement = async (
       if (!resolvedAbsolutePath) {
         newCss += `url(${mainItem})`;
       } else {
+        let pathFromRoot = resolvedAbsolutePath.replace(projectPath, '');
+        // Need to do this for Windows paths
+        pathFromRoot = pathFromRoot.split(path.sep).join('/');
         // const relativePathToProjectRoot = path.relative()
         // Next.js expects the path to be relative to the project root and starting with ~
-        newCss += `url(~${resolvedAbsolutePath.replace(projectPath, '')})`;
+        newCss += `url(~${pathFromRoot})`;
       }
     }
     lastIndex = match.index + match[0].length;
