@@ -50,3 +50,5 @@ process.env.NODE_ENV !== 'production'
       children: PropTypes.element,
     })
   : void 0;
+
+process.env.NODE_ENV !== 'production' ? (App.muiName = 'muiName') : void 0;
