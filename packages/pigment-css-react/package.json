@@ -127,6 +127,9 @@
       "require": "./utils/index.js",
       "default": "./utils/index.js"
     },
+    "./exports/css": {
+      "default": "./exports/css.js"
+    },
     "./exports/generateAtomics": {
       "default": "./exports/generateAtomics.js"
     },
