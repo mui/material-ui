@@ -9,16 +9,11 @@ import {
 import { transformAsync } from '@babel/core';
 import baseWywPluginPlugin, { type VitePluginOptions } from './vite-plugin';
 
-export interface PigmentOptions extends VitePluginOptions {
+export interface PigmentOptions extends Omit<VitePluginOptions, 'themeArgs'> {
   /**
    * The theme object that you want to be passed to the `styled` function
    */
   theme?: Theme;
-  /**
-   * Whether the css variables for the default theme should target the :root selector or not.
-   * @default true
-   */
-  injectDefaultThemeInRoot?: boolean;
 }
 
 const VIRTUAL_CSS_FILE = `\0zero-runtime-styles.css`;
@@ -45,9 +40,10 @@ export function pigment(options?: PigmentOptions) {
   const {
     theme,
     babelOptions = {},
-    preprocessor = basePreprocessor,
+    preprocessor,
     transformLibraries = [],
     transformSx = true,
+    css,
     ...rest
   } = options ?? {};
 
@@ -104,11 +100,15 @@ export function pigment(options?: PigmentOptions) {
     };
   }
 
+  const withRtl = (selector: string, cssText: string) => {
+    return basePreprocessor(selector, cssText, css);
+  };
+
   const zeroPlugin = baseWywPluginPlugin({
     themeArgs: {
       theme,
     },
-    preprocessor,
+    preprocessor: preprocessor ?? withRtl,
     babelOptions: {
       ...babelOptions,
       plugins: ['@babel/plugin-syntax-typescript', ...(babelOptions.plugins ?? [])],

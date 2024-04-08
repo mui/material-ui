@@ -10,6 +10,12 @@ export default function EditPage(props) {
   const { sourceLocation } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
+
+  if (!sourceLocation) {
+    // An empty div such that the footer layout stays unchanged.
+    return <div />;
+  }
+
   const CROWDIN_ROOT_URL = 'https://crowdin.com/project/material-ui-docs/';
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
   const crowdInPath = sourceLocation.substring(0, sourceLocation.lastIndexOf('/'));
@@ -19,6 +25,7 @@ export default function EditPage(props) {
       component="a"
       size="small"
       variant="outlined"
+      color="secondary"
       startIcon={<GitHubIcon sx={{ mr: 0.5 }} />}
       href={
         userLanguage === 'en'

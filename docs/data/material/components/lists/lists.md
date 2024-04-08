@@ -97,7 +97,6 @@ The switch is the secondary action and a separate target.
 
 Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
 This feature relies on CSS sticky positioning.
-(⚠️ no IE 11 support)
 
 {{"demo": "PinnedSubheaderList.js", "bg": true}}
 

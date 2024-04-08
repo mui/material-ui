@@ -90,15 +90,15 @@ async function getWebpackEntries() {
     },
     {
       id: '@material-ui/system',
-      path: 'packages/mui-system/build/esm/index.js',
+      path: 'packages/mui-system/build/index.js',
     },
     {
       id: 'createBox',
-      path: 'packages/mui-system/build/esm/createBox.js',
+      path: 'packages/mui-system/build/createBox/index.js',
     },
     {
       id: 'createStyled',
-      path: 'packages/mui-system/build/esm/createStyled.js',
+      path: 'packages/mui-system/build/createStyled/index.js',
     },
     {
       id: '@material-ui/core/styles/createTheme',
@@ -106,7 +106,7 @@ async function getWebpackEntries() {
     },
     {
       id: 'colorManipulator',
-      path: 'packages/mui-system/build/colorManipulator.js',
+      path: 'packages/mui-system/build/colorManipulator/index.js',
     },
     {
       id: 'useAutocomplete',

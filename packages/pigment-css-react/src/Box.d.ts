@@ -23,4 +23,4 @@ export interface PolymorphicComponent<BaseProps extends BaseDefaultProps>
 
 declare const Box: PolymorphicComponent<{}>;
 
-export { Box };
+export default Box;
