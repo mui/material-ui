@@ -934,11 +934,6 @@ Tabs.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
-    PropTypes.shape({
-      className: PropTypes.string,
-      vars: PropTypes.object,
-    }),
-    PropTypes.string,
   ]),
   /**
    * Props applied to the tab indicator element.

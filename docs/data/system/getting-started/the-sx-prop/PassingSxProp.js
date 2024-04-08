@@ -28,11 +28,6 @@ ListHeader.propTypes = {
     ),
     PropTypes.func,
     PropTypes.object,
-    PropTypes.shape({
-      className: PropTypes.string,
-      vars: PropTypes.object,
-    }),
-    PropTypes.string,
   ]),
 };
 

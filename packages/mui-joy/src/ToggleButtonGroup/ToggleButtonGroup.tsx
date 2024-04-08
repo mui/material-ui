@@ -297,11 +297,6 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
-    PropTypes.shape({
-      className: PropTypes.string,
-      vars: PropTypes.object,
-    }),
-    PropTypes.string,
   ]),
   /**
    * The currently selected value within the group or an array of selected values.

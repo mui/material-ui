@@ -268,11 +268,6 @@ RadioGroup.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
-    PropTypes.shape({
-      className: PropTypes.string,
-      vars: PropTypes.object,
-    }),
-    PropTypes.string,
   ]),
   /**
    * Value of the selected radio button. The DOM API casts this to a string.
