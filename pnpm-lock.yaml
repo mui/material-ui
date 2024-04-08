@@ -2285,6 +2285,15 @@ importers:
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
+      '@types/chai':
+        specifier: ^4.3.14
+        version: 4.3.14
+      '@types/mocha':
+        specifier: ^10.0.6
+        version: 10.0.6
+      chai:
+        specifier: ^4.4.1
+        version: 4.4.1
 
   packages/pigment-css-vite-plugin:
     dependencies:

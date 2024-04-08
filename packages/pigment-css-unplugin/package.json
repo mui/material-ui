@@ -25,7 +25,9 @@
     "watch": "tsup --watch --tsconfig tsconfig.build.json",
     "copy-license": "node ../../scripts/pigment-license.mjs",
     "build": "tsup --tsconfig tsconfig.build.json",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p .",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/pigment-css-unplugin/**/*.test.{js,ts,tsx}'",
+    "test:ci": "cd ../../ && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --report-dir=./coverage/pigment-css-unplugin mocha 'packages/pigment-css-unplugin/**/*.test.{js,ts,tsx}'"
   },
   "dependencies": {
     "@babel/core": "^7.24.4",
@@ -36,7 +38,10 @@
     "unplugin": "^1.7.1"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.5"
+    "@types/babel__core": "^7.20.5",
+    "@types/chai": "^4.3.14",
+    "@types/mocha": "^10.0.6",
+    "chai": "^4.4.1"
   },
   "sideEffects": false,
   "publishConfig": {
