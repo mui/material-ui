@@ -184,7 +184,7 @@ export default function createStyled(input = {}) {
     });
 
     AugmentedTag.propTypes = {
-      as: PropTypes.ReactElement,
+      as: PropTypes.elementType,
       className: PropTypes.string,
       style: PropTypes.object,
       sx: PropTypes.oneOfType([
