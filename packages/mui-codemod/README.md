@@ -932,7 +932,7 @@ npx @mui/codemod@next deprecations/pagination-item-classes <path>
 ```
 
 ```diff
- MuiSlider: {
+ MuiPaginationItem: {
    defaultProps: {
 -    components: { first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }
 +    slots: { first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }
