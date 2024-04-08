@@ -148,7 +148,7 @@ export default function createStyled(input = {}) {
     }
 
     // This is needed in order to intercept the transformed sx values potentially done by the zero-runtime library
-    const AugmentedTag = React.forwardRef(function Component(props, ref) {
+    const AugmentedTag = React.forwardRef(function AugmentedTag(props, ref) {
       const { sx, as, ...other } = props;
       const sxClass = typeof sx === 'string' ? sx : sx?.className;
       const sxVars = sx && typeof sx !== 'string' ? sx.vars : undefined;
@@ -164,9 +164,9 @@ export default function createStyled(input = {}) {
         });
       }
 
-      const Component = as ?? tag;
+      const C = as ?? tag;
       let filteredProps = other;
-      if (typeof Component === 'string') {
+      if (typeof C === 'string') {
         filteredProps = {};
         Object.keys(other).forEach((prop) => {
           if (isPropValid(prop)) {
@@ -175,7 +175,7 @@ export default function createStyled(input = {}) {
         });
       }
 
-      return React.createElement(Component, {
+      return React.createElement(C, {
         ...filteredProps,
         className: clsx(props.className, sxClass),
         style: { ...sxVarsStyles, ...props.style },
@@ -184,6 +184,9 @@ export default function createStyled(input = {}) {
     });
 
     AugmentedTag.propTypes = {
+      as: PropTypes.ReactElement,
+      className: PropTypes.string,
+      style: PropTypes.object,
       sx: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
         PropTypes.func,

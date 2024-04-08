@@ -23,7 +23,7 @@ const splitProps = (props) => {
 
 export default function extendSxProp(props) {
   const { sx: inSx, ...other } = props;
-  let { systemProps, otherProps = {} } = splitProps(other);
+  const { systemProps, otherProps = {} } = splitProps(other);
 
   let finalSx;
   if (Array.isArray(inSx)) {

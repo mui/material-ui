@@ -159,6 +159,11 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const pigmentCssTrasformedSx = sxClass || sxVars;
 
+  let spreadedSxValue = [];
+  if (!pigmentCssTrasformedSx) {
+    spreadedSxValue = Array.isArray(sx) ? sx : [sx];
+  }
+
   return (
     <LinkRoot
       color={color}
@@ -176,7 +181,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       }}
       sx={[
         ...(!Object.keys(colorTransformations).includes(color) ? [{ color }] : []),
-        ...(!pigmentCssTrasformedSx ? (Array.isArray(sx) ? sx : [sx]) : []),
+        ...spreadedSxValue,
       ]}
       {...other}
     />

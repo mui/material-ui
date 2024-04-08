@@ -8,6 +8,7 @@ import {
   unstable_useControlled as useControlled,
   unstable_useId as useId,
 } from '@mui/utils';
+import { shouldForwardProp } from '@mui/system';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAccordionUtilityClass } from './accordionClasses';
@@ -16,7 +17,6 @@ import useSlot from '../utils/useSlot';
 import AccordionContext from './AccordionContext';
 import { StyledListItem } from '../ListItem/ListItem';
 import accordionDetailsClasses from '../AccordionDetails/accordionDetailsClasses';
-import { shouldForwardProp } from '@mui/system';
 
 const useUtilityClasses = (ownerState: AccordionOwnerState) => {
   const { variant, color, expanded, disabled } = ownerState;
