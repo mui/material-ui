@@ -18,17 +18,17 @@ Connect works in combination with the Material UI for Figma Design Kit [v5.16.0
 Other kits, such as the Joy UI Design Kit, are not supported yet.
 :::
 
-<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="A screenshot of Figma together with the Connect plugin running on the side, customizing the Material UI Switch component." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Connect plugin running." width="1628" height="400" />
 
 ## Running the plugin
 
-If you don't have [the complete and latest](/store/items/figma-react/) Material  UI Design Kit version installed, you can test the plugin by using [the Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/) instead.
+If you don't have [the complete and latest](/store/items/figma-react/) Material UI Design Kit version installed, you can test the plugin by using [the Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/) instead.
 
 After installing it, open the Design Kit file on Figma.
 Then head over to [the Connect profile page](https://www.figma.com/community/plugin/1336346114713490235/) on Figma's Community tab and click on **Open in...**
 Select the Design Kit file.
 
-<img src="/static/material-ui/design-resources/connect-access.png" style="width: 814px;" alt="A screenshot of Figma showcasing the resources menu, which is where you'd go to access Connect." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-access.png" style="width: 814px;" alt="Accessing Connect via the Resources menu in Figma." width="1628" height="400" />
 
 ## Customizing design tokens
 
@@ -39,15 +39,15 @@ Design tokens consist of the styles that are defined through Figma's [local vari
 The Material UI Design Kit comes fully loaded with design tokens that map out to [the default theme of the Material UI React library](/material-ui/customization/default-theme/).
 Connect can read all of the existing tokens in the theme.
 
-To customize them using local variables, open the modal by clicking on the filter icon as shown below.
+To customize tokens using local variables, open the modal by clicking on the filter icon as shown below.
 Tweak any of the variables available there as you see fit.
 
-<img src="/static/material-ui/design-resources/connect-variables.png" style="width: 814px; margin-bottom: 8px;" alt="A screenshot of Figma showcasing the locals variables menu, which is where all of the design tokens are stored and where you'd go to add new ones." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-variables.png" style="width: 814px; margin-bottom: 8px;" alt="The Locals variables menu in Figma, where all design tokens are stored and new ones can be added." width="1628" height="400" />
 
 Then open the plugin and click on **Generate theme**.
 The theme will then be updated in the code editor with your customizations.
 
-<img src="/static/material-ui/design-resources/connect-generate.png" style="width: 814px" alt="A screenshot of the Connect plugin UI highlighting the Generate theme button." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-generate.png" style="width: 814px" alt="The Generate theme button in the Connect plugin UI." width="1628" height="400" />
 
 ### Adding new tokens
 
@@ -69,8 +69,7 @@ This primarily impacts you if your project supports both light and dark modes, w
 
 ### Theme tokens
 
-For example, say you've changed the primary main color in light mode as well as the border-radius value.
-This is how your code should be inserted into your theme:
+For example, if you've changed the primary main color in light mode as well as the border-radius value, you would add the code to your theme as shown below:
 
 ```js
 const theme = extendTheme({
@@ -97,8 +96,7 @@ Remove the former and change the latter to `createTheme` if you're using [the st
 ## Component customizations
 
 The code Connect generates for component customizations can be copied and pasted into your theme's `component` node.
-For example, imagine you've customized the Switch's track and thumb size.
-Here's how you'd add the code to your theme:
+For example, if you've customized the Switch's track and thumb size, you would add the code to your theme as shown below:
 
 ```js
 const theme = createTheme({
@@ -129,9 +127,9 @@ const theme = createTheme({
 });
 ```
 
-You can clean it up further by removing all of the `has()` pseudo-classes.
-Connect needs those to be able to isolate changes made through Figma, but you might not need it on your code.
-Here's the updated code:
+You can safely remove the `has()` pseudo-classes unless you know you have a specific need for them—they're used by the Connect plugin to isolate changes made in Figma.
+
+Here's what the snippet above would look like in that case:
 
 ```js
 const theme = createTheme({
@@ -161,4 +159,4 @@ const theme = createTheme({
 
 ## Feedback and bug reports
 
-Use [the dedicated Canny.io board](https://mui-connect.canny.io/feedback) to share any feedback, report bugs, or drop feature requests.
+Use [the dedicated Canny.io board](https://mui-connect.canny.io/feedback) to share feedback, report bugs, or drop feature requests.
