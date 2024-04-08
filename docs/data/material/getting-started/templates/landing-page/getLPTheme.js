@@ -407,7 +407,7 @@ export default function getLPTheme(mode) {
               background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
             }),
             ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[800], 0.4),
+              backgroundColor: alpha(gray[800], 0.6),
               border: `1px solid ${alpha(gray[700], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
                 border: `1px solid ${alpha(gray[700], 0.4)}`,

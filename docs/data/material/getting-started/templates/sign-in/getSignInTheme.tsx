@@ -369,7 +369,7 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
               background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
             }),
             ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[800], 0.4),
+              backgroundColor: alpha(gray[800], 0.6),
               border: `1px solid ${alpha(gray[700], 0.2)}`,
               ...(ownerState.variant === 'outlined' && {
                 border: `1px solid ${alpha(gray[700], 0.4)}`,
@@ -402,8 +402,8 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
             border: '1px solid ',
             borderColor: alpha(gray[300], 0.8),
             boxShadow: '0 0 0 1.5px hsla(210, 0%, 0%, 0.04) inset',
-            transition: 'border-color 120ms ease-in',
             backgroundColor: alpha(gray[100], 0.4),
+            transition: 'border-color, background-color, 120ms ease-in',
             '&:hover': {
               borderColor: brand[300],
             },
@@ -415,8 +415,9 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
             '&.Mui-checked': {
               color: 'white',
               backgroundColor: brand[500],
+              borderColor: brand[500],
+              boxShadow: `none`,
               '&:hover': {
-                borderColor: brand[300],
                 backgroundColor: brand[600],
               },
             },
@@ -426,15 +427,6 @@ export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
               backgroundColor: alpha(gray[900], 0.8),
               '&:hover': {
                 borderColor: brand[300],
-              },
-              '&.Mui-checked': {
-                color: 'white',
-                backgroundColor: brand[600],
-                boxShadow: '0 0 0 1px hsla(210, 0%, 0%, 0.2) inset',
-                '&:hover': {
-                  borderColor: brand[300],
-                  backgroundColor: brand[800],
-                },
               },
               '&.Mui-focusVisible': {
                 borderColor: brand[400],

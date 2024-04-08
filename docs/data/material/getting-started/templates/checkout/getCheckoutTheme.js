@@ -369,7 +369,7 @@ export default function getCheckoutTheme(mode) {
               background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
             }),
             ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[800], 0.4),
+              backgroundColor: alpha(gray[800], 0.6),
               border: `1px solid ${alpha(gray[700], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
                 border: `1px solid ${alpha(gray[700], 0.4)}`,
@@ -415,8 +415,9 @@ export default function getCheckoutTheme(mode) {
             '&.Mui-checked': {
               color: 'white',
               backgroundColor: brand[500],
+              borderColor: brand[500],
+              boxShadow: `none`,
               '&:hover': {
-                borderColor: brand[300],
                 backgroundColor: brand[600],
               },
             },
@@ -426,15 +427,6 @@ export default function getCheckoutTheme(mode) {
               backgroundColor: alpha(gray[900], 0.8),
               '&:hover': {
                 borderColor: brand[300],
-              },
-              '&.Mui-checked': {
-                color: 'white',
-                backgroundColor: brand[600],
-                boxShadow: '0 0 0 1px hsla(210, 0%, 0%, 0.2) inset',
-                '&:hover': {
-                  borderColor: brand[300],
-                  backgroundColor: brand[800],
-                },
               },
               '&.Mui-focusVisible': {
                 borderColor: brand[400],
