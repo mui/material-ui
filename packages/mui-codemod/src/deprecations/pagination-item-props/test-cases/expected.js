@@ -1,9 +1,10 @@
-import StepLabel from '@mui/material/StepLabel';
+import PaginationItem from '@mui/material/PaginationItem';
 
-<StepLabel slotProps={{ label: componentsLabelProps }} />;
-<StepLabel
-  slots={{ label: SlotsLabel }}
-  slotProps={{ label: {
-    ...componentsLabelProps,
-    ...slotLabelProps
-  } }} />;
+<PaginationItem slots={{
+  first: first,
+  last: last,
+  next: next,
+  previous: previous
+}} />;
+<PaginationItem
+  slots={{ first: slotFirst, last: slotLast, next: slotNext, previous: slotPrevious }} />;
