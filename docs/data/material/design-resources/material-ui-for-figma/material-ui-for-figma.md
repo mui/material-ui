@@ -30,35 +30,31 @@ Then you can either follow [Figma's import guide](https://help.figma.com/hc/en-u
 
 ## Theme
 
-### Values in the local variables panel
+### Local variables
 
-When opening the local variables panel for the first time, you will see this:
+The design kit uses Figma's local variables to create a collection of styles that is comparable to the theme structure of the Material UI code.
+Follow the steps shown in the video to see all of the variables available:
 
-<img src="/static/material-ui/design-resources/local-variables.png" style="width: 814px; margin-bottom: 12px;" alt="The Local variables modal open in the Material UI Design Kit for Figma file" width="1628" height="400" />
-
-To access the rest of the props, navigate to the variable collections, which is comparable to the theme structure of Material UI code.
-Then follow the steps shown in the video below:
-
-<iframe width="100%" height="490" src="https://www.youtube.com/embed/u3zR6p-OjKQ?si=DDVEsedwmJQeik3T" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/u3zR6p-OjKQ?si=DDVEsedwmJQeik3T" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
 ### Customizing colors
 
-The design kit uses variables, meaning colors can only be modified from the variables panel.
-Deselect all layers and frames to view the the variables panel in the global panel on the right.
+Make sure you use the variables panel to customize colors, as shown in the video below:
 
-<iframe width="100%" height="490" src="https://www.youtube.com/embed/YuzkWFm0-bA?si=XvgPR0vNGtiBPqKY" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/YuzkWFm0-bA?si=XvgPR0vNGtiBPqKY" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
 ### Customizing typography
 
-Typography variables are not currently supported, but this feature is planned.
-Until then, changing global styles such as the font family requires a few minutes of extra effort.
-All of it is already defined as a style, so your only point of command is the right-hand panel.
+On the other hand, typography styles are not available as local variables but as local styles.
+The customization experience is similar to modifying colors, though, as shown in the video below:
 
-<iframe width="100%" height="490" src="https://www.youtube.com/embed/HepVDfrLmak?si=gklG_3ZZyxDWzlPM" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/HepVDfrLmak?si=gklG_3ZZyxDWzlPM" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
 ### Switching between light and dark modes
 
-<iframe width="100%" height="490" src="https://www.youtube.com/embed/ydTF1HhLnJM?si=1Fj4CFLgVavfg4Fz" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
+The design kits leverage Figma's local variables to quickly offer you a way to toggle the variable mode to either light or dark, as shown in the video below:
+
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/ydTF1HhLnJM?si=1Fj4CFLgVavfg4Fz" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
 ## Components
 
@@ -66,17 +62,17 @@ All of it is already defined as a style, so your only point of command is the ri
 
 Main components were difficult to maintain, and it required sticking to the elements available in that main instance only, so we decided to move away from it in favor of a plugin called [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer).
 
-<iframe width="100%" height="490" src="https://www.youtube.com/embed/eHBk0FbS0P8?si=QbOiMU2F1yvGB6s8" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/eHBk0FbS0P8?si=QbOiMU2F1yvGB6s8" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
-### Table
+### Table component
 
-#### Adding new custom columns
+#### Adding new columns
 
 <iframe src="https://www.loom.com/embed/6dd71cc374bc4d84af35ebb75d107d38?sid=1d3a4790-4c28-433e-94ce-97dd969601dd" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="width: 100%; height: 500px;"></iframe>
 
 #### Adding new columns in the main component
 
-<iframe width="100%" height="490" src="https://www.youtube.com/embed/s_n3LHm1daI?si=_QbXvtYPkc8EBd5d" title="YouTube video player" frameborder="0" allow="picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="490" src="https://www.youtube.com/embed/s_n3LHm1daI?si=_QbXvtYPkc8EBd5d" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
 ## Code sync
 
