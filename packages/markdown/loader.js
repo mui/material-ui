@@ -156,7 +156,9 @@ module.exports = async function demoLoader() {
       const demoMap = relativeModules.get(demoName);
       // If the moduleID does not end with an extension, or ends with an unsupported extension (e.g. ".styling") we need to resolve it
       // Fastest way to get a file extension, see: https://stackoverflow.com/a/12900504/
-      let importType = importModuleID.slice(((importModuleID.lastIndexOf('.') - 1) >>> 0) + 2);
+      const importType = importModuleID.slice(
+        (Math.max(0, importModuleID.lastIndexOf('.')) || Infinity) + 1,
+      );
       const supportedTypes = ['js', 'jsx', 'ts', 'tsx', 'css', 'json'];
       if (!importType || !supportedTypes.includes(importType)) {
         // If the demo is a JS demo, we can assume that the relative import is either
@@ -174,7 +176,11 @@ module.exports = async function demoLoader() {
         });
         if (!extension) {
           throw new Error(
-            `You are trying to import a module "${importModuleID}" in the demo "${demoName}" that could not be resolved. Please make sure that one of: \n\t\t - ${extensions.map((ext) => `${importModuleID}${ext}`).join('\n\t\t - ')} \n exists.`,
+            [
+              `You are trying to import a module "${importModuleID}" in the demo "${demoName}" that could not be resolved.`,
+              `Please make sure that one of the following file exists:`,
+              ...extensions.map((ext) => `- ${importModuleID}${ext}`),
+            ].join('\n'),
           );
         } else {
           relativeModuleFilename = `${importModuleID}${extension}`;
