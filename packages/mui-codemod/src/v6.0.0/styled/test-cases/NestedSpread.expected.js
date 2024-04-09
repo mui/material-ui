@@ -27,12 +27,10 @@ const Component = styled('div')(({
         },
       }
     }, {
-      props: (
-        {
-          edge,
-          ownerState
-        }
-      ) => edge === 'start' && ownerState.size === 'small',
+      props: {
+        edge: 'start',
+        size: 'small'
+      },
       style: {
         marginLeft: -3
       }
@@ -47,12 +45,10 @@ const Component = styled('div')(({
         marginLeft: -12
       }
     }, {
-      props: (
-        {
-          edge,
-          ownerState
-        }
-      ) => edge === 'end' && ownerState.size === 'small',
+      props: {
+        edge: 'end',
+        size: 'small'
+      },
       style: {
         marginRight: -3
       }
