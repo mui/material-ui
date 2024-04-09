@@ -1,5 +1,44 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.2
+
+<!-- generated comparing v6.0.0-alpha.1..next -->
+
+_Apr 9, 2024_
+
+A big thanks to the 5 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@6.0.0-alpha.2`
+
+- &#8203;<!-- 03 -->[typescript][Select] Fix `muiName` property TypeScript error (#41726) @EyaOuenniche
+- &#8203;<!-- 04 -->[l10n] Fix typo in is-IS locale (#41810) @magnimarels
+
+### `@pigment-css/react@0.0.6`
+
+- &#8203;<!-- 12 -->[core] Remove `muiName` during eval phase (#41811) @brijeshb42
+
+### `@pigment-css/nextjs-plugin@0.0.6`
+
+- &#8203;<!-- 02 -->[nextjs] Handle file references passed through imports (#41817) @brijeshb42
+- &#8203;<!-- 01 -->[nextjs] Allow usage of url() CSS function (#41758) @brijeshb42
+
+### Docs
+
+- &#8203;<!-- 11 -->[docs] Fix 301 links @oliviertassinari
+- &#8203;<!-- 06 -->[pigment-css][docs] Fix README typo (#41808) @aarongarciah
+- &#8203;<!-- 05 -->[pigment-css][docs] Fix output on dynamic styles example (#41805) @aarongarciah
+- &#8203;<!-- 07 -->[material-ui][docs] Fix Material 3 message typo (#41821) @aarongarciah
+- &#8203;<!-- 08 -->[material-ui][docs] Add stray design tweaks to free templates (#41696) @zanivan
+
+### Core
+
+- &#8203;<!-- 13 -->[core] Remove unused files (#41818) @mnajdova
+- &#8203;<!-- 10 -->[docs-infra] Fix analytics about inline ads (#41474) (#41819) @alexfauquette
+- &#8203;<!-- 08 -->[docs-infra] Fix drawer performances (#41807) @alexfauquette
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @brijeshb42, @EyaOuenniche, @oliviertassinari
+
 ## v6.0.0-alpha.1
 
 <!-- generated comparing v6.0.0-alpha.0..next -->
