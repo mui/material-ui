@@ -20,7 +20,7 @@ You can quickly preview all of the changes through an embedded Storybook panel d
 Connect is currently in beta and [available for free](https://www.figma.com/community/plugin/1336346114713490235/) in the Figma Community.
 Head over to [the Connect page](/material-ui/design-resources/connect/) to learn more.
 
-<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="A screenshot of Figma together with the Connect plugin running on the side, doing customziations to the Material UI Switch component." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Connect plugin running." width="1628" height="400" />
 
 ## Third-party resources
 
