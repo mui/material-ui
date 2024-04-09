@@ -348,9 +348,10 @@ export default function styledV6(file, api, options) {
           const leftName = getObjectKey(data.node.test.left)?.name;
           if (parameters.has(leftName) && leftName !== 'theme') {
             if (data.key && (data.key.type === 'Identifier' || data.key.type === 'StringLiteral')) {
-              const props = data.props
-                ? objectToArrowFunction(data.props, data.node.test)
-                : buildProps(data.node.test);
+              let props = buildProps(data.node.test);
+              if (data.props) {
+                props = mergeProps(data.props, props);
+              }
               const styleVal = data.node.consequent;
               const variant = {
                 props,
@@ -359,9 +360,10 @@ export default function styledV6(file, api, options) {
               variants.push(buildObjectAST(variant));
 
               // create another variant with inverted condition
-              const props2 = data.props
-                ? objectToArrowFunction(data.props, inverseBinaryExpression(data.node.test))
-                : buildProps(inverseBinaryExpression(data.node.test));
+              let props2 = buildProps(inverseBinaryExpression(data.node.test));
+              if (data.props) {
+                props2 = mergeProps(data.props, props2);
+              }
               const styleVal2 = data.node.alternate;
               const variant2 = {
                 props: props2,

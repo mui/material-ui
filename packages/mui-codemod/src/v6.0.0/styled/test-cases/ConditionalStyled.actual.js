@@ -29,4 +29,10 @@ const LinearProgressBar1 = styled('span', {
           }),
     },
   }),
+  ...(ownerState.variant !== 'buffer' && {
+    backgroundColor:
+      ownerState.color === 'inherit'
+        ? 'currentColor'
+        : (theme.vars || theme).palette[ownerState.color].main,
+  }),
 }));

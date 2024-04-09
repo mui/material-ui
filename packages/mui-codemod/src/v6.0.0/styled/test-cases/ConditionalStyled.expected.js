@@ -27,12 +27,10 @@ const LinearProgressBar1 = styled('span', {
       backgroundColor: 'currentColor'
     }
   }, {
-    props: (
-      {
-        variant,
-        ownerState
-      }
-    ) => variant === 'buffer' && ownerState.variant === 'normal',
+    props: {
+      variant: 'buffer',
+      variant: 'normal'
+    },
     style: {
       backgroundColor: (theme.vars || theme).palette[ownerState.color].light
     }
@@ -49,12 +47,10 @@ const LinearProgressBar1 = styled('span', {
           }
     }
   }, {
-    props: (
-      {
-        variant,
-        ownerState
-      }
-    ) => variant === 'buffer' && ownerState.color === 'inherit',
+    props: {
+      variant: 'buffer',
+      color: 'inherit'
+    },
     style: {
       '&:hover': {
             backgroundColor: 'currentColor',
@@ -66,6 +62,25 @@ const LinearProgressBar1 = styled('span', {
     },
     style: {
       '&:hover': {}
+    }
+  }, {
+    props: (
+      {
+        ownerState,
+        color
+      }
+    ) => ownerState.variant !== 'buffer' && color === 'inherit',
+    style: {
+      backgroundColor: 'currentColor'
+    }
+  }, {
+    props: (
+      {
+        ownerState
+      }
+    ) => ownerState.variant !== 'buffer' && ownerState.color !== 'inherit',
+    style: {
+      backgroundColor: (theme.vars || theme).palette[ownerState.color].main
     }
   }]
 })));
