@@ -210,6 +210,11 @@ const DemoRootMaterial = styled('div', {
     ...(bg === 'inline' && {
       padding: theme.spacing(0),
     }),
+    ...(bg === 'gradient' && {
+      padding: theme.spacing(12, 8),
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+    }),
   },
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
@@ -218,7 +223,6 @@ const DemoRootMaterial = styled('div', {
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderBottomWidth: 0,
     ...theme.applyDarkStyles({
       backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
     }),
@@ -232,28 +236,25 @@ const DemoRootMaterial = styled('div', {
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: alpha(theme.palette.grey[50], 0.6),
+    backgroundColor: alpha((theme.vars || theme).palette.grey[50], 0.5),
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.15),
+      backgroundColor: alpha((theme.vars || theme).palette.primaryDark[700], 0.4),
     }),
   }),
   /* Mostly meant for introduction demos. */
   ...(bg === 'gradient' && {
     overflow: 'auto',
-    padding: theme.spacing(20, 8),
-    border: `1px solid`,
-    borderColor: (theme.vars || theme).palette.divider,
+    padding: theme.spacing(4, 2),
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
     backgroundClip: 'padding-box',
-    backgroundColor: alpha(theme.palette.primary[50], 0.5),
-    backgroundImage: `radial-gradient(140% 108% at 50% 8%, transparent 40%, ${
-      theme.palette.primary[50]
-    } 70%, ${alpha(theme.palette.primary[100], 0.2)} 100%)`,
+    backgroundColor: alpha(theme.palette.primary[50], 0.2),
+    backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 40%, ${alpha((theme.vars || theme).palette.primary[100], 0.2)} 70%)`,
     ...theme.applyDarkStyles({
-      borderColor: (theme.vars || theme).palette.divider,
-      backgroundColor: '#00111A',
-      backgroundImage:
-        'radial-gradient(140% 120% at 50% 8%, transparent 40%, #051729 70%, #041425 100%)',
+      backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+      backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 30%, ${alpha((theme.vars || theme).palette.primary[900], 0.3)} 80%)`,
     }),
   }),
 }));
@@ -331,6 +332,9 @@ const DemoCodeViewer = styled(HighlightedCode)(() => ({
     maxHeight: 'min(68vh, 1000px)',
     maxWidth: 'initial',
     borderRadius: 0,
+  },
+  '& .MuiCode-copy': {
+    visibility: 'hidden',
   },
 }));
 
