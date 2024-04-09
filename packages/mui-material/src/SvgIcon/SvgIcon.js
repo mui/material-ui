@@ -42,7 +42,7 @@ const SvgIconRoot = styled('svg', {
   display: 'inline-block',
   flexShrink: 0,
   transition: theme.transitions?.create?.('fill', {
-    duration: theme.transitions?.duration?.shorter,
+    duration: (theme.vars ?? theme).transitions?.duration?.shorter,
   }),
   variants: [
     {
@@ -70,19 +70,19 @@ const SvgIconRoot = styled('svg', {
       style: { fontSize: theme.typography?.pxToRem?.(35) || '2.1875rem' },
     },
     // TODO v5 deprecate color prop, v6 remove for sx
-    ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main || value.action || value.disabled)
+    ...Object.entries((theme.vars ?? theme).palette)
+      .filter(([, value]) => value.main)
       .map(([color]) => ({
         props: { color },
-        style: { color: theme.palette?.[color]?.main },
+        style: { color: (theme.vars ?? theme).palette?.[color]?.main },
       })),
     {
       props: { color: 'action' },
-      style: { color: theme.palette?.action?.active },
+      style: { color: (theme.vars ?? theme).palette?.action?.active },
     },
     {
       props: { color: 'disabled' },
-      style: { color: theme.palette?.action?.disabled },
+      style: { color: (theme.vars ?? theme).palette?.action?.disabled },
     },
     {
       props: { color: 'inherit' },
