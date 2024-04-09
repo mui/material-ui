@@ -77,11 +77,17 @@ export default function styledV6(file, api, options) {
     return node;
   }
 
-  function removeProperty(objectExpression, child) {
-    if (objectExpression) {
-      objectExpression.properties = objectExpression.properties.filter(
-        (prop) => prop !== child && prop.value !== child,
-      );
+  /**
+   *
+   * @param {import('ast-types').namedTypes.ObjectExpression} node
+   */
+  function removeProperty(parentNode, child) {
+    if (parentNode) {
+      if (parentNode.type === 'ObjectExpression') {
+        parentNode.properties = parentNode.properties.filter(
+          (prop) => prop !== child && prop.value !== child,
+        );
+      }
     }
   }
 
@@ -95,7 +101,7 @@ export default function styledV6(file, api, options) {
 
   /**
    *
-   * @param {import('ast-types').namedTypes.LogicalExpression} node
+   * @param {import('ast-types').namedTypes.LogicalExpression | import('ast-types').namedTypes.BinaryExpression | import('ast-types').namedTypes.UnaryExpression | import('ast-types').namedTypes.MemberExpression} node
    */
   function buildProps(node) {
     const properties = [];
@@ -288,50 +294,63 @@ export default function styledV6(file, api, options) {
         if (data.node.type === 'ObjectExpression') {
           data.node.properties.forEach((prop) => {
             if (prop.type === 'ObjectProperty') {
-              recurseObjectExpression({ node: prop.value, parentNode: data.node, key: prop.key });
-            } else {
-              recurseObjectExpression({ node: prop, parentNode: data.node });
-            }
-          });
-        }
-        if (data.node.type === 'SpreadElement' && data.node.argument.type === 'LogicalExpression') {
-          const paramName = getObjectKey(data.node.argument.left)?.name;
-          if (paramName && !parameters.has(paramName)) {
-            return;
-          }
-
-          const scopeProps = buildProps(data.node.argument.left);
-          const variant = {
-            props: data.props ? mergeProps(data.props, scopeProps) : scopeProps,
-            style: data.node.argument.right,
-          };
-
-          variant.style.properties.forEach((prop) => {
-            if (prop.type === 'ObjectProperty') {
               recurseObjectExpression({
+                ...data,
                 node: prop.value,
-                parentNode: variant.style,
-                props: variant.props,
+                parentNode: data.node,
                 key: prop.key,
               });
             } else {
-              recurseObjectExpression({
-                node: prop,
-                parentNode: variant.style,
-                props: variant.props,
-              });
+              recurseObjectExpression({ ...data, node: prop, parentNode: data.node });
             }
           });
-          variants.push(buildObjectAST(variant));
-          removeProperty(data.parentNode, data.node);
         }
-        if (
-          data.node.type === 'ConditionalExpression' &&
-          data.node.test.type === 'BinaryExpression'
-        ) {
-          if (getIdentifierKey(data.node.test.left).name !== 'theme') {
-            if (data.key && data.key.type === 'Identifier') {
-              const props = objectToArrowFunction(data.props, data.node.test);
+        if (data.node.type === 'SpreadElement') {
+          if (data.node.argument.type === 'LogicalExpression') {
+            const paramName = getObjectKey(data.node.argument.left)?.name;
+            if (paramName && !parameters.has(paramName)) {
+              return;
+            }
+
+            const scopeProps = buildProps(data.node.argument.left);
+            const variant = {
+              props: data.props ? mergeProps(data.props, scopeProps) : scopeProps,
+              style: data.node.argument.right,
+            };
+
+            variant.style.properties.forEach((prop) => {
+              if (prop.type === 'ObjectProperty') {
+                recurseObjectExpression({
+                  ...data,
+                  node: prop.value,
+                  parentNode: variant.style,
+                  props: variant.props,
+                  key: prop.key,
+                });
+              } else {
+                recurseObjectExpression({
+                  ...data,
+                  node: prop,
+                  parentNode: variant.style,
+                  props: variant.props,
+                });
+              }
+            });
+            variants.push(buildObjectAST(variant));
+            removeProperty(data.parentNode, data.node);
+          }
+          if (data.node.argument.type === 'ConditionalExpression') {
+            recurseObjectExpression({ ...data, node: data.node.argument, parentNode: data.node });
+            removeProperty(data.parentNode, data.node);
+          }
+        }
+        if (data.node.type === 'ConditionalExpression' && data.node.test.left) {
+          const leftName = getObjectKey(data.node.test.left)?.name;
+          if (parameters.has(leftName) && leftName !== 'theme') {
+            if (data.key && (data.key.type === 'Identifier' || data.key.type === 'StringLiteral')) {
+              const props = data.props
+                ? objectToArrowFunction(data.props, data.node.test)
+                : buildProps(data.node.test);
               const styleVal = data.node.consequent;
               const variant = {
                 props,
@@ -340,19 +359,20 @@ export default function styledV6(file, api, options) {
               variants.push(buildObjectAST(variant));
 
               // create another variant with inverted condition
-              const props2 = objectToArrowFunction(
-                data.props,
-                inverseBinaryExpression(data.node.test),
-              );
+              const props2 = data.props
+                ? objectToArrowFunction(data.props, inverseBinaryExpression(data.node.test))
+                : buildProps(inverseBinaryExpression(data.node.test));
               const styleVal2 = data.node.alternate;
               const variant2 = {
                 props: props2,
                 style: j.objectExpression([j.objectProperty(data.key, styleVal2)]),
               };
               variants.push(buildObjectAST(variant2));
+              if (data.parentNode?.type === 'ObjectExpression') {
+                removeProperty(data.parentNode, data.node);
+              }
             }
           }
-          removeProperty(data.parentNode, data.node);
         }
         if (
           data.key &&
