@@ -435,7 +435,7 @@ module.exports = async function demoLoader() {
         if (!demos[demoName].relativeModules) {
           demos[demoName].relativeModules = {};
         }
-        console.log('relativeModules', relativeModules.get(demoName));
+
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
             let raw = '';
