@@ -154,13 +154,16 @@ module.exports = async function demoLoader() {
     if (importModuleID.startsWith('.')) {
       let relativeModuleFilename = importModuleID;
       const demoMap = relativeModules.get(demoName);
-      // If the moduleID does not end with an extension, we resolve it
-      // Check for an extension (ending with a "." followed by 2-4 letters)
-      if (!/\.\w{2,4}$/.test(importModuleID)) {
+      // If the moduleID does not end with an extension, or ends with an unsupported extension (e.g. ".styling") we need to resolve it
+      // Fastest way to get a file extension, see: https://stackoverflow.com/a/12900504/
+      let importType = importModuleID.slice(((importModuleID.lastIndexOf('.') - 1) >>> 0) + 2);
+      const supportedTypes = ['js', 'jsx', 'ts', 'tsx', 'css', 'json'];
+      if (!importType || !supportedTypes.includes(importType)) {
         // If the demo is a JS demo, we can assume that the relative import is either
         // a `.js` or a `.jsx` file, with `.js` taking precedence over `.jsx`
         // likewise for TS demos, with `.ts` taking precedence over `.tsx`
-        const extensions = variant === 'JS' ? ['.js', '.jsx'] : ['.ts', '.tsx', '.js', '.jsx'];
+        const extensions =
+          variant === 'JS' ? ['.js', '.jsx', '.ts', '.tsx'] : ['.ts', '.tsx', '.js', '.jsx'];
         const extension = extensions.find((ext) => {
           try {
             return statSync(path.join(moduleFilepath, '..', `${importModuleID}${ext}`));
@@ -169,16 +172,22 @@ module.exports = async function demoLoader() {
             return false;
           }
         });
-        relativeModuleFilename = `${importModuleID}${extension}`;
-      }
-      if (!demoMap) {
-        relativeModules.set(demoName, new Map([[relativeModuleFilename, [variant]]]));
-      } else {
-        const variantArray = demoMap.get(relativeModuleFilename);
-        if (variantArray) {
-          variantArray.push(variant);
+        if (!extension) {
+          throw new Error(
+            `You are trying to import a module "${importModuleID}" in the demo "${demoName}" that could not be resolved. Please make sure that one of: \n\t\t - ${extensions.map((ext) => `${importModuleID}${ext}`).join('\n\t\t - ')} \n exists.`,
+          );
         } else {
-          demoMap.set(relativeModuleFilename, [variant]);
+          relativeModuleFilename = `${importModuleID}${extension}`;
+        }
+        if (!demoMap) {
+          relativeModules.set(demoName, new Map([[relativeModuleFilename, [variant]]]));
+        } else {
+          const variantArray = demoMap.get(relativeModuleFilename);
+          if (variantArray) {
+            variantArray.push(variant);
+          } else {
+            demoMap.set(relativeModuleFilename, [variant]);
+          }
         }
       }
     }
@@ -426,7 +435,7 @@ module.exports = async function demoLoader() {
         if (!demos[demoName].relativeModules) {
           demos[demoName].relativeModules = {};
         }
-
+        console.log('relativeModules', relativeModules.get(demoName));
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
             let raw = '';
