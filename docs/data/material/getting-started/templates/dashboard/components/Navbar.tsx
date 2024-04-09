@@ -11,13 +11,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ToggleColorMode from './ToggleColorMode';
 import SideNav from './SideNav';
 import MenuButton from './MenuButton';
+import NavbarBreadcrumbs from './NavbarBreadcrumbs';
 
 const logoStyle = {
   width: '140px',
   height: 'auto',
   cursor: 'pointer',
 };
-
 interface NavBarProps {
   mode: PaletteMode;
   toggleColorMode: () => void;
@@ -58,13 +58,16 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
             justifyContent="space-between"
             flexGrow={1}
           >
-            <img
-              src={
-                'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-              }
-              style={logoStyle}
-              alt="logo of sitemark"
-            />
+            <Stack direction="row" gap={1} alignItems="center">
+              <img
+                src={
+                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                }
+                style={logoStyle}
+                alt="logo of sitemark"
+              />
+              <NavbarBreadcrumbs />
+            </Stack>
             <Stack
               sx={{ display: { xs: 'none', md: 'flex' } }}
               direction="row"
