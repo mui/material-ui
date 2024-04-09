@@ -14,13 +14,15 @@ Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated sty
     - [Styled component as a CSS selector](#styled-component-as-a-css-selector)
     - [Typing props](#typing-props)
 - [Theming](#theming)
-  - [Accesing theme values](#accesing-theme-values)
+  - [Accessing theme values](#accesing-theme-values)
   - [CSS variables support](#css-variables-support)
   - [Color schemes](#color-schemes)
   - [Switching color schemes](#switching-color-schemes)
   - [TypeScript](#typescript)
+- [Right-to-left support](#right-to-left-support)
 - [How-to guides](#how-to-guides)
   - [Coming from Emotion or styled-components](#coming-from-emotion-or-styled-components)
+- [Building reusable components for UI libraries](#building-reusable-components-for-ui-libraries)
 
 ## Getting started
 
