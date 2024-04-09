@@ -677,6 +677,94 @@ declare module '@pigment-css/react/theme' {
 }
 ```
 
+## Right-to-left support
+
+To support right-to-left (RTL) languages, add the `dir="rtl"` attribute to your app's `<html>` element or any other equivalent top level container. Then, update your bundler config as follows to generate styles for both directions:
+
+### Next.js
+
+```js
+const { withPigment } = require('@pigment-css/nextjs-plugin');
+
+// ...
+module.exports = withPigment(nextConfig, {
+  theme: yourCustomTheme,
+  // CSS output option
+  css: {
+    // Specify your default CSS authoring direction
+    defaultDirection: 'ltr',
+    // Generate CSS for the opposite of the `defaultDirection`
+    // This is set to `false` by default
+    generateForBothDir: true,
+  },
+});
+```
+
+### Vite
+
+```js
+import { pigment } from '@pigment-css/vite-plugin';
+
+export default defineConfig({
+  plugins: [
+    pigment({
+      theme: yourTheme,
+      css: {
+        // Specify your default CSS authoring direction
+        defaultDirection: 'ltr',
+        // Generate CSS for the opposite of the `defaultDirection`
+        // This is set to `false` by default
+        generateForBothDir: true,
+      },
+    }),
+    // ... other plugins.
+  ],
+});
+```
+
+### Generated CSS
+
+For example, if you've specified `defaultDirection: 'ltr'` and `dir="rtl"`, and your authored CSS looks like this:
+
+```js
+import { css } from '@pigment-css/react';
+
+const className = css`
+  margin-left: 10px,
+  margin-right: 20px,
+  padding: '0 10px 20px 30px'
+`;
+```
+
+Then the actual CSS output would be:
+
+```css
+.cmip3v5 {
+  margin-left: 10px;
+  margin-right: 20px;
+  padding: 0 10px 20px 30px;
+}
+
+[dir='rtl'] .cmip3v5 {
+  margin-right: 10px;
+  margin-left: 20px;
+  padding: 0 30px 20px 10px;
+}
+```
+
+### Custom dir selector
+
+The default selector in the output CSS is `[dir=rtl]` or `[dir=ltr]`. You can customize it by passing an optional `getDirSelector` method to the `css` property in your bundler config:
+
+```js
+    css: {
+      getDirSelector(dir: string) {
+        // return a custom selector you'd like to use
+        return `:dir(${dir})`;
+      },
+    },
+```
+
 ## How-to guides
 
 ### Coming from Emotion or styled-components
