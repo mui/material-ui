@@ -11,8 +11,10 @@ Joy UI is an open-source React component library that implements MUI's own desi
 
 Install the package in your project directory with:
 
+<!-- #default-branch-switch -->
+
 ```bash
-npm install @mui/joy @emotion/react @emotion/styled
+npm install @mui/joy@next @emotion/react @emotion/styled
 ```
 
 ## Documentation

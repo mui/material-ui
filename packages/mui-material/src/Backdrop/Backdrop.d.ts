@@ -5,10 +5,46 @@ import { TransitionProps } from '../transitions/transition';
 import { Theme } from '../styles';
 import { BackdropClasses } from './backdropClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface BackdropSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Fade
+   */
+  transition?: React.JSXElementConstructor<
+    TransitionProps & { children: React.ReactElement<any, any> }
+  >;
+}
 export interface BackdropComponentsPropsOverrides {}
 
-export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
+export interface BackdropTransitionSlotPropsOverrides {}
+
+export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  BackdropSlots,
+  {
+    root: SlotProps<
+      React.ElementType<HTMLDivElement>,
+      BackdropComponentsPropsOverrides,
+      BackdropOwnerState
+    >;
+    transition: SlotProps<
+      React.JSXElementConstructor<TransitionProps>,
+      BackdropTransitionSlotPropsOverrides,
+      BackdropOwnerState
+    >;
+  }
+>;
+
+export interface BackdropOwnProps
+  extends Partial<Omit<FadeProps, 'children'>>,
+    BackdropSlotsAndSlotProps {
   /**
    * The content of the component.
    */
@@ -51,27 +87,6 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
    */
   open: boolean;
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement> & BackdropComponentsPropsOverrides;
-  };
-  /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-  };
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -84,6 +99,7 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & {
@@ -123,5 +139,7 @@ export type BackdropProps<
 > = OverrideProps<BackdropTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
 };
+
+export interface BackdropOwnerState extends BackdropProps {}
 
 export default Backdrop;
