@@ -1,5 +1,38 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.2
+
+<!-- generated comparing v6.0.0-alpha.1..next -->
+
+_Apr 9, 2024_
+
+A big thanks to the 5 contributors who made this release possible. Here are some highlights ✨:
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@6.0.0-alpha.2`
+
+- &#8203;<!-- 2 -->[material-ui][Select] Fix `muiName` property TypeScript error (#41726) @EyaOuenniche
+
+### `@pigment-css/react@0.0.6`
+
+- &#8203;<!-- 7 -->[pigment-css][core] Remove `muiName` during eval phase (#41811) @brijeshb42
+
+### `@pigment-css/nextjs-plugin@0.0.6`
+
+- &#8203;<!-- 1 -->[pigment-css][nextjs] Allow usage of url() CSS function (#41758) @brijeshb42
+
+### Docs
+
+- &#8203;<!-- 6 -->[docs] Fix 301 links @oliviertassinari
+- &#8203;<!-- 4 -->[pigment-css][docs] Fix README typo (#41808) @aarongarciah
+- &#8203;<!-- 3 -->[pigment-css][docs] Fix output on dynamic styles example (#41805) @aarongarciah
+
+### Core
+
+- &#8203;<!-- 5 -->[docs-infra] Fix drawer performances (#41807) @alexfauquette
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @brijeshb42, @EyaOuenniche, @oliviertassinari
+
 ## v6.0.0-alpha.1
 
 <!-- generated comparing v6.0.0-alpha.0..next -->
