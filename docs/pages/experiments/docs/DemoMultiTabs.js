@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { axisClasses } from '@mui/x-charts';
-import dataset from './dataset';
+import dataset from './dataset.json';
 
 const chartSetting = {
   yAxis: [
@@ -23,7 +23,7 @@ const valueFormatter = (value) => `${value}mm`;
 export default function BarsDataset() {
   return (
     <BarChart
-      dataset={dataset}
+      dataset={dataset.data}
       xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
       series={[
         { dataKey: 'london', label: 'London', valueFormatter },
