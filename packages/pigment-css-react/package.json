@@ -127,29 +127,8 @@
       "require": "./utils/index.js",
       "default": "./utils/index.js"
     },
-    "./exports/css": {
-      "default": "./exports/css.js"
-    },
-    "./exports/generateAtomics": {
-      "default": "./exports/generateAtomics.js"
-    },
-    "./exports/keyframes": {
-      "default": "./exports/keyframes.js"
-    },
-    "./exports/styled": {
-      "default": "./exports/styled.js"
-    },
-    "./exports/sx-plugin": {
-      "default": "./exports/sx-plugin.js"
-    },
-    "./exports/remove-prop-types-plugin": {
-      "default": "./exports/remove-prop-types-plugin.js"
-    },
-    "./exports/sx": {
-      "default": "./exports/sx.js"
-    },
-    "./exports/createUseThemeProps": {
-      "default": "./exports/createUseThemeProps.js"
+    "./exports/*": {
+      "default": "./exports/*.js"
     },
     "./Box": {
       "types": "./build/Box.d.ts",
