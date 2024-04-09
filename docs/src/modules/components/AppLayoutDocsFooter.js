@@ -552,7 +552,7 @@ export default function AppLayoutDocsFooter(props) {
             <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
               &bull;
             </Typography>
-            <Link href="https://mui.com/blog/" target="_blank" rel="noopener noreferrer">
+            <Link href="https://mui.com/blog/" target="_blank" rel="noopener">
               <FooterLink>
                 Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
@@ -560,7 +560,7 @@ export default function AppLayoutDocsFooter(props) {
             <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
               &bull;
             </Typography>
-            <Link href="https://mui.com/store/" target="_blank" rel="noopener noreferrer">
+            <Link href="https://mui.com/store/" target="_blank" rel="noopener">
               <FooterLink>
                 Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
@@ -569,7 +569,7 @@ export default function AppLayoutDocsFooter(props) {
           <Stack spacing={1} direction="row" useFlexGap>
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               href="https://mui.com/feed/blog/rss.xml"
               aria-label="RSS Feed"
               title="RSS Feed"
@@ -579,7 +579,7 @@ export default function AppLayoutDocsFooter(props) {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               href="https://twitter.com/MUI_hq"
               aria-label="twitter"
               title="X"
@@ -589,7 +589,7 @@ export default function AppLayoutDocsFooter(props) {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               href="https://www.youtube.com/@MUI_hq"
               aria-label="YouTube"
               title="YouTube"
@@ -599,7 +599,7 @@ export default function AppLayoutDocsFooter(props) {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               href="https://mui.com/r/discord/"
               aria-label="Discord"
               title="Discord"

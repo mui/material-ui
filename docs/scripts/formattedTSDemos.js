@@ -23,7 +23,7 @@ const {
   createTypeScriptProjectBuilder,
 } = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
 const yargs = require('yargs');
-const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui-internal/docs-utils');
+const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui/internal-docs-utils');
 const { default: CORE_TYPESCRIPT_PROJECTS } = require('../../scripts/coreTypeScriptProjects');
 
 const babelConfig = {
@@ -84,7 +84,9 @@ async function transpileFile(tsxPath, project) {
     const source = await fse.readFile(tsxPath, 'utf8');
 
     const transformOptions = { ...babelConfig, filename: tsxPath };
-    const enableJSXPreview = !tsxPath.includes(path.join('pages', 'premium-themes'));
+    const enableJSXPreview =
+      !tsxPath.includes(path.join('pages', 'premium-themes')) &&
+      !tsxPath.includes(path.join('getting-started', 'templates'));
     if (enableJSXPreview) {
       transformOptions.plugins = transformOptions.plugins.concat([
         [

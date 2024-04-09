@@ -57,7 +57,7 @@ function Ripple(props) {
   );
 }
 
-Ripple.propTypes = {
+Ripple.propTypes /* remove-proptypes */ = {
   /**
    * Override or extend the styles applied to the component.
    */

@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
@@ -123,7 +123,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
                 borderRadius: 40,
                 border: '2px solid',
                 borderColor: 'primary.50',
-                boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
+                boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
                 transform: 'translateX(50%)',
                 overflow: 'hidden',
                 ...theme.applyDarkStyles({
@@ -185,7 +185,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
       </Typography>
       {props.about && <Divider sx={{ my: 1.5 }} />}
       {props.about && (
-        <Typography variant="body2" color="grey.600">
+        <Typography variant="body2" color="text.tertiary">
           {props.about}
         </Typography>
       )}
@@ -369,7 +369,7 @@ export default function Team() {
               ...profileJson,
             };
             return (
-              <Grid key={profile.name} item xs={12} sm={6} md={3}>
+              <Grid key={profile.name} xs={12} sm={6} md={3}>
                 <Person {...profile} />
               </Grid>
             );
@@ -389,7 +389,7 @@ export default function Team() {
           </Typography>
           <Grid container spacing={2} mt={2}>
             {contributors.map((profile) => (
-              <Grid key={profile.name} item xs={12} sm={6} md={3}>
+              <Grid key={profile.name} xs={12} sm={6} md={3}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
               </Grid>
             ))}
@@ -404,7 +404,7 @@ export default function Team() {
           </Typography>
           <Grid container spacing={2} mt={2}>
             {emeriti.map((profile) => (
-              <Grid key={profile.name} item xs={12} sm={6} md={3}>
+              <Grid key={profile.name} xs={12} sm={6} md={3}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
               </Grid>
             ))}

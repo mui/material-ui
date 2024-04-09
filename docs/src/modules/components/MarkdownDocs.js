@@ -8,7 +8,7 @@ import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useUserLanguage } from '@mui/docs/i18n';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 
@@ -32,7 +32,7 @@ export default function MarkdownDocs(props) {
     disableAd = false,
     disableToc = false,
     /**
-     * Some pages, e.g. Joy theme builder, should not be a nested CssVarsProvider to control its own state.
+     * Some pages, for example Joy theme builder, should not be a nested CssVarsProvider to control its own state.
      * This config will skip the CssVarsProvider at the root of the page.
      */
     disableCssVarsProvider = false,

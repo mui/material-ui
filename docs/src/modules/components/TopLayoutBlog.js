@@ -111,6 +111,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/805073',
     github: 'colmtuite',
   },
+  diegoandai: {
+    name: 'Diego Andai',
+    avatar: 'https://avatars.githubusercontent.com/u/16889233',
+    github: 'DiegoAndai',
+  },
 };
 
 const classes = {
@@ -174,6 +179,19 @@ const Root = styled('div')(
         display: 'block',
         margin: 'auto',
         marginBottom: 16,
+      },
+      '& figure': {
+        margin: 0,
+        padding: 0,
+        marginBottom: 16,
+        '& img, & video': {
+          marginBottom: 8,
+        },
+      },
+      '& figcaption': {
+        color: (theme.vars || theme).palette.text.tertiary,
+        fontSize: theme.typography.pxToRem(14),
+        textAlign: 'center',
       },
       '& strong': {
         color: (theme.vars || theme).palette.grey[900],

@@ -115,13 +115,12 @@ const StyledAppBar = styled(AppBar, {
     boxShadow: 'none',
     backdropFilter: 'blur(8px)',
     borderStyle: 'solid',
-    borderColor: (theme.vars || theme).palette.grey[100],
+    borderColor: (theme.vars || theme).palette.divider,
     borderWidth: 0,
     borderBottomWidth: 'thin',
     backgroundColor: 'rgba(255,255,255,0.8)',
     color: (theme.vars || theme).palette.grey[800],
     ...theme.applyDarkStyles({
-      borderColor: alpha(theme.palette.primary[100], 0.08),
       backgroundColor: alpha(theme.palette.primaryDark[900], 0.8),
       color: (theme.vars || theme).palette.grey[500],
     }),
@@ -166,6 +165,9 @@ export default function AppFrame(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
 
+  const closeDrawer = React.useCallback(() => setMobileOpen(false), []);
+  const openDrawer = React.useCallback(() => setMobileOpen(true), []);
+
   const { activePage } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
@@ -205,7 +207,7 @@ export default function AppFrame(props) {
             </Box>
           </NextLink>
           <GrowingDiv />
-          <Stack direction="row" spacing="10px">
+          <Stack direction="row" spacing={1} useFlexGap>
             <BannerComponent />
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
@@ -230,8 +232,8 @@ export default function AppFrame(props) {
       </StyledAppBar>
       <StyledAppNavDrawer
         disablePermanent={disablePermanent}
-        onClose={() => setMobileOpen(false)}
-        onOpen={() => setMobileOpen(true)}
+        onClose={closeDrawer}
+        onOpen={openDrawer}
         mobileOpen={mobileOpen}
       />
       {children}

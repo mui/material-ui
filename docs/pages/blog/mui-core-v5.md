@@ -106,7 +106,7 @@ const StyledDiv = styled.div`
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/elastic-yonath-uedfv?file=/src/App.js">CodeSandbox</a></p>
 
 You can find it in [styled-components](https://styled-components.com/), [emotion](https://emotion.sh/docs/styled), [goober](https://goober.js.org/), [stitches](https://stitches.dev/docs/api#styled), or [linaria](https://linaria.dev/).
-While Material UI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/system/styles/basics/#hook-api) API.
+While Material UI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/system/styles/basics/#hook-api) API.
 
 2. Our React integration with JSS (`@mui/styles`) is **too slow** to unlock the next layer of customization DX we aim for.
    The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/p/sandbox/nb05w?file=/src/App.js) than emotion,
@@ -377,7 +377,7 @@ const CustomButton = React.forwardRef(function CustomButton(
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/7lc1r?file=/demo.tsx">CodeSandbox</a></p>
 
 We discuss the effort in [#6218](https://github.com/mui/material-ui/issues/6218).
-You can use [#27170](https://github.com/mui/material-ui/issues/27170) to follow our progress.
+You can use [#27170](https://github.com/mui/base-ui/issues/10) to follow our progress.
 
 ## Improved DX
 
@@ -651,7 +651,7 @@ This breaking change is an opportunity to drop the support of legacy upstream de
 - We have updated the minimum supported React version from 16.8 to **17.0**.
   The breaking changes released between the two versions are [very limited](https://legacy.reactjs.org/blog/2020/10/20/react-v17.html).
 - We have updated the supported browsers.
-  - IE: **partial**. We have kept the logic added in the past to support IE 11,
+  - Internet Explorer: **partial**. We have kept the logic added in the past to support IE 11,
     however, we have stopped actively working on it. We can't guarantee that it works correctly. It's discontinued.
   - Edge: from 14 to **91**. The minimum version based on Chromium.
   - Firefox: from 52 to **78**.
@@ -701,9 +701,9 @@ We hope we can reach 50% of the React community by 2026. This is an ambitious go
 
 ### A public roadmap
 
-You can use our public roadmap on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
+You can use the GitHub projects to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
-- [MUI Core](https://github.com/mui/material-ui/projects/25)
+- [MUI Core](https://github.com/mui/material-ui/projects?query=is:open)
 - [MUI X](https://github.com/mui/mui-x/projects/1)
 
 We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we're building.
@@ -725,7 +725,7 @@ To continue improving the customization experience, we are doubling down on the 
 These components and hooks contain the main functionalities and accessibility, without being opinionated about how styles are applied nor what styles.
 We still have work to do to have a full set of unstyled components.
 
-You can read more about them in [the docs](/base-ui/getting-started/) and keep track of our progress in [#27170](https://github.com/mui/material-ui/issues/27170).
+You can read more about them in [the docs](/base-ui/getting-started/) and keep track of our progress in [#27170](https://github.com/mui/base-ui/issues/10).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).
@@ -758,7 +758,7 @@ Once we would have grown the team and made enough progress, we will expand to a 
 
 We plan to run extended research and surveys.
 We have already identified that accessibility is something leading companies care about.
-We are planning to cover more user interaction states for prototyping, e.g. focus-visible.
+We are planning to cover more user interaction states for prototyping, for example focus-visible.
 
 ## Thank you
 

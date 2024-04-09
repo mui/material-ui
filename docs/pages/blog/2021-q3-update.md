@@ -189,13 +189,13 @@ We'll do our best, no guarantee!
 
 ### MUI Core
 
-- 🚀 We will double down on v5 before starting to solve new large problems, e.g. a revamp of the select.
+- 🚀 We will double down on v5 before starting to solve new large problems, for example a revamp of the select.
   We have made bold changes in this version since v4, but until recently, only a small percentage of the community was using v5.
   In the last few weeks, we have seen a strong influx of feedback from the community.
   We need to make the most of this feedback to solve regressions, improve the documentation for the new APIs, adjust the tradeoffs we took in the light of more information, and more.
   [15%](https://npm-stat.com/charts.html?package=%40material-ui%2Fcore&package=%40mui%2Fmaterial&from=2020-10-25&to=2021-10-15) of the community has migrated, so far.
 - 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Button](https://mui.com/base-ui/react-button/).
-  You can follow our progress in the [umbrella issue](https://github.com/mui/material-ui/issues/27170).
+  You can follow our progress in the [umbrella issue](https://github.com/mui/base-ui/issues/10).
 - 🎨 We are [exploring](https://github.com/mui/material-ui/discussions/29024) the introduction of CSS variables.
   Since v5, Material UI is no longer actively supporting IE 11. Dropping this browser requirement unlocks new capabilities of the web platform.
 - 🌈 Resume work on the second design system.

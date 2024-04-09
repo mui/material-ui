@@ -2,19 +2,20 @@ import path from 'path';
 import fse from 'fs-extra';
 import * as prettier from 'prettier';
 
-function capitalize(string) {
+function pascalCase(string) {
   if (typeof string !== 'string') {
-    throw new Error('`capitalize(string)` expects a string argument.');
+    throw new Error('`pascalCase(string)` expects a string argument.');
   }
 
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  const result = string.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+
+  return result.charAt(0).toUpperCase() + result.slice(1);
 }
 
 function titleCase(str) {
   const result = str.replace(/([A-Z])/g, ' $1');
   return result.charAt(0).toUpperCase() + result.slice(1);
 }
-
 const args = process.argv.slice(2);
 
 async function run() {
@@ -57,11 +58,14 @@ async function run() {
     const componentName = filename.replace('.tsx', '');
     return `import ${componentName} from '../../../../../../docs/data/material/components/${dataFolderName}/${componentName}';`;
   });
+
+  const functionName = pascalCase(dataFolderName);
+
   const nextFileContent = `'use client';
 import * as React from 'react';
 ${nextImports.join('\n')}
 
-export default function ${capitalize(dataFolderName)}() {
+export default function ${functionName}() {
   return (
     <React.Fragment>
 ${renders.join('\n')}
@@ -73,13 +77,13 @@ ${renders.join('\n')}
   // Create the page in pigment apps
   const nextFilepath = path.join(
     process.cwd(),
-    `apps/pigment-next-app/src/app/material-ui/${args[0]}/page.tsx`,
+    `apps/pigment-css-next-app/src/app/material-ui/${args[0]}/page.tsx`,
   );
   const prettiedNextFileContent = await prettier.format(nextFileContent, {
     ...prettierConfig,
     filepath: nextFilepath,
   });
-  await fse.mkdirp(`apps/pigment-next-app/src/app/material-ui/${args[0]}`);
+  await fse.mkdirp(`apps/pigment-css-next-app/src/app/material-ui/${args[0]}`);
   await fse.writeFile(nextFilepath, prettiedNextFileContent);
 
   /**
@@ -93,10 +97,10 @@ ${renders.join('\n')}
 import MaterialUILayout from '../../Layout';
 ${viteImports.join('\n')}
 
-export default function ${capitalize(dataFolderName)}() {
+export default function ${functionName}() {
   return (
     <MaterialUILayout>
-      <h1>${capitalize(dataFolderName)}</h1>
+      <h1>${functionName}</h1>
 ${renders.join('\n')}
     </MaterialUILayout>
   );
@@ -105,13 +109,13 @@ ${renders.join('\n')}
   // Create the page in pigment apps
   const viteFilepath = path.join(
     process.cwd(),
-    `apps/pigment-vite-app/src/pages/material-ui/${args[0]}.tsx`,
+    `apps/pigment-css-vite-app/src/pages/material-ui/${args[0]}.tsx`,
   );
   const prettiedViteFileContent = await prettier.format(viteFileContent, {
     ...prettierConfig,
     filepath: viteFilepath,
   });
-  await fse.mkdirp(`apps/pigment-vite-app/src/pages/material-ui`);
+  await fse.mkdirp(`apps/pigment-css-vite-app/src/pages/material-ui`);
   await fse.writeFile(viteFilepath, prettiedViteFileContent);
 }
 
