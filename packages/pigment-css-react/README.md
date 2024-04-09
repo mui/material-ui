@@ -3,7 +3,7 @@
 Pigment CSS is a zero-runtime CSS-in-JS library that extracts the colocated styles to their own CSS files at build time.
 
 - [Getting started](#getting-started)
-  - [Why this project exists?](#why-choose-pigment-css)
+  - [Why choose Pigment CSS](#why-choose-pigment-css)
   - [Start with Next.js](#start-with-nextjs)
   - [Start with Vite](#start-with-vite)
 - [Basic usage](#basic-usage)
