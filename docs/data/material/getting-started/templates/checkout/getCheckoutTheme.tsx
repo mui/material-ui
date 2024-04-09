@@ -263,8 +263,14 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               ownerState.color === 'primary' && {
                 color: 'white',
                 backgroundColor: brand[300],
-                backgroundImage: `linear-gradient(to bottom, ${alpha(brand[400], 0.8)}, ${brand[500]})`,
-                boxShadow: `inset 0 2px 0 ${alpha(brand[200], 0.2)}, inset 0 -2px 0 ${alpha(brand[700], 0.4)}`,
+                backgroundImage: `linear-gradient(to bottom, ${alpha(
+                  brand[400],
+                  0.8,
+                )}, ${brand[500]})`,
+                boxShadow: `inset 0 2px 0 ${alpha(
+                  brand[200],
+                  0.2,
+                )}, inset 0 -2px 0 ${alpha(brand[700], 0.4)}`,
                 border: `1px solid ${brand[500]}`,
                 '&:hover': {
                   backgroundColor: brand[700],
@@ -279,7 +285,10 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               color: brand[700],
               backgroundColor: alpha(brand[300], 0.1),
               borderColor: alpha(brand[200], 0.8),
-              boxShadow: `inset 0 2px ${alpha(brand[50], 0.5)}, inset 0 -2px ${alpha(brand[200], 0.2)}`,
+              boxShadow: `inset 0 2px ${alpha(brand[50], 0.5)}, inset 0 -2px ${alpha(
+                brand[200],
+                0.2,
+              )}`,
               '&:hover': {
                 backgroundColor: alpha(brand[300], 0.2),
                 borderColor: alpha(brand[300], 0.5),
@@ -326,7 +335,10 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
                 color: brand[200],
                 backgroundColor: alpha(brand[600], 0.1),
                 borderColor: alpha(brand[600], 0.6),
-                boxShadow: `inset 0 2.5px ${alpha(brand[400], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
+                boxShadow: `inset 0 2.5px ${alpha(
+                  brand[400],
+                  0.1,
+                )}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
                 '&:hover': {
                   backgroundColor: alpha(brand[700], 0.2),
                   borderColor: alpha(brand[700], 0.5),
@@ -350,7 +362,10 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
                   color: gray[300],
                   backgroundColor: alpha(gray[600], 0.1),
                   borderColor: alpha(gray[700], 0.5),
-                  boxShadow: `inset 0 2.5px ${alpha(gray[600], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
+                  boxShadow: `inset 0 2.5px ${alpha(
+                    gray[600],
+                    0.1,
+                  )}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
                   '&:hover': {
                     backgroundColor: alpha(gray[700], 0.2),
                     borderColor: alpha(gray[700], 0.5),
@@ -699,7 +714,10 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme }) => ({
             borderRadius: theme.shape.borderRadius,
-            boxShadow: `0 1px 2px hsla(210, 0%, 0%, 0.05), 0 2px 12px ${alpha(brand[200], 0.5)}`,
+            boxShadow: `0 1px 2px hsla(210, 0%, 0%, 0.05), 0 2px 12px ${alpha(
+              brand[200],
+              0.5,
+            )}`,
             '& .Mui-selected': {
               color: brand[500],
             },
@@ -707,7 +725,10 @@ export default function getCheckoutTheme(mode: PaletteMode): ThemeOptions {
               '& .Mui-selected': {
                 color: 'hsl(0, 0%, 100%)',
               },
-              boxShadow: `0 0 0 1px hsla(210, 0%, 0%, 0.5), 0 2px 12px ${alpha(brand[700], 0.5)}`,
+              boxShadow: `0 0 0 1px hsla(210, 0%, 0%, 0.5), 0 2px 12px ${alpha(
+                brand[700],
+                0.5,
+              )}`,
             }),
           }),
         },
