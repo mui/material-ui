@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
 import Button, { ButtonProps } from '@mui/material/Button';
+
+interface StyledMenuButtonProps extends ButtonProps {
+  showBadge?: boolean;
+}
 
 const StyledMenuButton = styled(Button)(({ theme }) => ({
   textTransform: 'none',
@@ -21,6 +26,18 @@ const StyledMenuButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export default function MenuButton(props: ButtonProps) {
-  return <StyledMenuButton variant="outlined" {...props} />;
+export default function MenuButton({
+  showBadge = false,
+  ...props
+}: StyledMenuButtonProps) {
+  return (
+    <Badge
+      color="error"
+      variant="dot"
+      invisible={!showBadge}
+      sx={{ '& .MuiBadge-badge': { right: 2, top: 2 } }}
+    >
+      <StyledMenuButton variant="outlined" {...props} />
+    </Badge>
+  );
 }
