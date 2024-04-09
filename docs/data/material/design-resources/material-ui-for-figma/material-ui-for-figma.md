@@ -15,7 +15,7 @@ In Figma, you will see:
 
 ### Community vs. full version
 
-The Material UI design kit is available in the [community (free) version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x) and the [full (paid) version](https://mui.com/store/items/figma-react/).
+The Material UI design kit is available in the [community (free) version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x) and the [full (paid) version](https://mui.com/store/items/figma-react/).
 
 |                                   | Community | Full version |
 | :-------------------------------- | --------: | -----------: |

@@ -18,7 +18,7 @@ Connect works in combination with the Material UI for Figma Design Kit [v5.16.0
 Other kits, such as the Joy UI Design Kit, are not supported yet.
 :::
 
-<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Connect plugin running." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Connect plugin running." width="1628" height="400" />
 
 ## Running the plugin
 
