@@ -185,15 +185,16 @@ module.exports = async function demoLoader() {
         } else {
           relativeModuleFilename = `${importModuleID}${extension}`;
         }
-        if (!demoMap) {
-          relativeModules.set(demoName, new Map([[relativeModuleFilename, [variant]]]));
+      }
+
+      if (!demoMap) {
+        relativeModules.set(demoName, new Map([[relativeModuleFilename, [variant]]]));
+      } else {
+        const variantArray = demoMap.get(relativeModuleFilename);
+        if (variantArray) {
+          variantArray.push(variant);
         } else {
-          const variantArray = demoMap.get(relativeModuleFilename);
-          if (variantArray) {
-            variantArray.push(variant);
-          } else {
-            demoMap.set(relativeModuleFilename, [variant]);
-          }
+          demoMap.set(relativeModuleFilename, [variant]);
         }
       }
     }
@@ -234,12 +235,6 @@ module.exports = async function demoLoader() {
           importedModuleIDs.add(importModuleID);
         });
       }
-
-      extractImports(demos[demoName].raw).forEach((importModuleID) => {
-        // detect relative import
-        detectRelativeImports(demoName, moduleFilepath, 'JS', importModuleID);
-        importedModuleIDs.add(importModuleID);
-      });
 
       if (multipleDemoVersionsUsed) {
         // Add Tailwind demo data
@@ -437,6 +432,7 @@ module.exports = async function demoLoader() {
        *   }
        * }
        */
+
       if (relativeModules.has(demoName)) {
         if (!demos[demoName].relativeModules) {
           demos[demoName].relativeModules = {};
