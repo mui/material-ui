@@ -366,11 +366,6 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
   pointerEvents: 'none',
 }));
 
-const bordersOverride = {
-  borderTopLeftRadius: 0,
-  borderTopRightRadius: 0,
-};
-
 const selectionOverride = (theme) => ({
   cursor: 'pointer',
   '&.base--selected': {
@@ -617,9 +612,9 @@ export default function Demo(props) {
               </React.Suspense>
             </NoSsr>
           </DemoToolbarRoot>
-          <Tabs defaultValue={0} value={activeTab} onChange={handleTabChange}>
+          <Tabs value={activeTab} onChange={handleTabChange}>
             {demoData.relativeModules && openDemoSource && !editorCode.isPreview ? (
-              <CodeTabList sx={bordersOverride} ownerState={ownerState}>
+              <CodeTabList ownerState={ownerState}>
                 {tabs.map((tab, index) => (
                   <CodeTab
                     sx={selectionOverride}
@@ -635,8 +630,9 @@ export default function Demo(props) {
             <Collapse in={openDemoSource} unmountOnExit timeout={150}>
               {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-              {demoOptions.disableLiveEdit
-                ? tabs.map((tab, index) => (
+              {tabs.map((tab, index) => (
+                <TabPanel value={index} index={index} key={index}>
+                  {demoOptions.disableLiveEdit || index > 0 ? (
                     <DemoCodeViewer
                       key={index}
                       code={tab.raw}
@@ -648,48 +644,33 @@ export default function Demo(props) {
                         'data-ga-event-action': 'copy-click',
                       }}
                     />
-                  ))
-                : tabs.map((tab, index) => (
-                    <TabPanel value={index} index={index} key={index}>
-                      {index === 0 ? (
-                        <DemoEditor
-                          // Mount a new text editor when the preview mode change to reset the undo/redo history.
-                          key={editorCode.isPreview}
-                          value={editorCode.value}
-                          onChange={(value) => {
-                            setEditorCode({
-                              ...editorCode,
-                              value,
-                            });
-                          }}
-                          onFocus={() => {
-                            setLiveDemoActive(true);
-                          }}
-                          id={demoSourceId}
-                          language={demoData.sourceLanguage}
-                          copyButtonProps={{
-                            'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                            'data-ga-event-label': demo.gaLabel,
-                            'data-ga-event-action': 'copy-click',
-                          }}
-                        >
-                          <DemoEditorError>{debouncedError}</DemoEditorError>
-                        </DemoEditor>
-                      ) : (
-                        <DemoCodeViewer
-                          code={tab.raw}
-                          key={tab.module}
-                          id={`relative-${tab.module}`}
-                          language={demoData.sourceLanguage}
-                          copyButtonProps={{
-                            'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                            'data-ga-event-label': demo.gaLabel,
-                            'data-ga-event-action': 'copy-click',
-                          }}
-                        />
-                      )}
-                    </TabPanel>
-                  ))}
+                  ) : (
+                    <DemoEditor
+                      // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                      key={editorCode.isPreview}
+                      value={editorCode.value}
+                      onChange={(value) => {
+                        setEditorCode({
+                          ...editorCode,
+                          value,
+                        });
+                      }}
+                      onFocus={() => {
+                        setLiveDemoActive(true);
+                      }}
+                      id={demoSourceId}
+                      language={demoData.sourceLanguage}
+                      copyButtonProps={{
+                        'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                        'data-ga-event-label': demo.gaLabel,
+                        'data-ga-event-action': 'copy-click',
+                      }}
+                    >
+                      <DemoEditorError>{debouncedError}</DemoEditorError>
+                    </DemoEditor>
+                  )}
+                </TabPanel>
+              ))}
             </Collapse>
           </Tabs>
           {adVisibility ? <AdCarbonInline /> : null}
