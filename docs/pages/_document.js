@@ -94,7 +94,7 @@ export default class MyDocument extends Document {
             // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
-              __html: `@font-face{font-family:'General Sans';font-style:normal;font-weight:600;font-display:swap;src:url('/static/fonts/GeneralSans-Semibold-subset.woff2') format('woff2');}`,
+              __html: `@font-face{font-family:'Graphik';font-style:normal;font-weight:600;font-display:swap;src:url('/static/fonts/GeneralSans-Semibold-subset.woff2') format('woff2');}`,
             }}
           />
           <link
@@ -119,7 +119,12 @@ export default class MyDocument extends Document {
             // use https://cssminifier.com/ to minify
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
-              __html: `@font-face{font-family:'General Sans';src:url(/static/fonts/GeneralSans-Regular.woff2) format('woff2'),url(/static/fonts/GeneralSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap;}@font-face{font-family:'General Sans';src:url(/static/fonts/GeneralSans-Medium.woff2) format('woff2'),url(/static/fonts/GeneralSans-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap;}@font-face{font-family:'General Sans';src:url(/static/fonts/GeneralSans-SemiBold.woff2) format('woff2'),url(/static/fonts/GeneralSans-SemiBold.ttf) format('truetype');font-weight:600;font-style:normal;font-display:swap;}@font-face{font-family:'General Sans';src:url(/static/fonts/GeneralSans-Bold.woff2) format('woff2'),url(/static/fonts/GeneralSans-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap;}`,
+              __html: `
+              @font-face{font-family:'Graphik';src:url(/static/fonts/Graphik-Regular.woff2) format('woff2'),url(/static/fonts/Graphik-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap;}
+
+              @font-face{font-family:'Graphik';src:url(/static/fonts/Graphik-Medium.woff2) format('woff2'),url(/static/fonts/Graphik-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap;}
+
+              @font-face{font-family:'Graphik';src:url(/static/fonts/Graphik-Semibold.woff2) format('woff2'),url(/static/fonts/Graphik-Semibold.ttf) format('truetype');font-weight:600;font-style:normal;font-display:swap;}`,
             }}
           />
           <style
