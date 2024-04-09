@@ -195,6 +195,8 @@ export default function styledV6(file, api, options) {
     );
   }
 
+  let shouldTransform = false;
+
   root.find(j.CallExpression).forEach((path) => {
     const styles = [];
     let args = [];
@@ -228,6 +230,10 @@ export default function styledV6(file, api, options) {
         styles.push(arg);
       }
     });
+
+    if (!shouldTransform && styles.length > 0) {
+      shouldTransform = true;
+    }
 
     // 2. Find logical spread expressions to convert to variants
     styles.forEach((style) => {
@@ -436,26 +442,29 @@ export default function styledV6(file, api, options) {
 
   const transformed = root.toSource(printOptions);
 
-  // recast adds extra newlines that we don't want, https://github.com/facebook/jscodeshift/issues/249
-  // need to remove them manually
-  const lines = [];
-  let isInStyled = false;
-  transformed.split('\n').forEach((line, index, array) => {
-    if (!isInStyled) {
-      lines.push(line);
-    } else if (
-      line !== '' ||
-      (line === '' && array[index + 1] && array[index + 1].includes('return'))
-    ) {
-      if (line.match(/^}\)+(\({}\)|\(\))?;?$/) || line.match(/^\);?$/)) {
-        isInStyled = false;
+  if (shouldTransform) {
+    // recast adds extra newlines that we don't want, https://github.com/facebook/jscodeshift/issues/249
+    // need to remove them manually
+    const lines = [];
+    let isInStyled = false;
+    transformed.split('\n').forEach((line, index, array) => {
+      if (!isInStyled) {
+        lines.push(line);
+      } else if (
+        line !== '' ||
+        (line === '' && array[index + 1] && array[index + 1].includes('return'))
+      ) {
+        if (line.match(/^}\)+(\({}\)|\(\))?;?$/) || line.match(/^\);?$/)) {
+          isInStyled = false;
+        }
+        lines.push(line);
       }
-      lines.push(line);
-    }
-    if (line.includes('styled.') || line.includes('styled(')) {
-      isInStyled = true;
-    }
-  });
+      if (line.includes('styled.') || line.includes('styled(')) {
+        isInStyled = true;
+      }
+    });
+    return lines.join('\n');
+  }
 
-  return lines.join('\n');
+  return transformed;
 }
