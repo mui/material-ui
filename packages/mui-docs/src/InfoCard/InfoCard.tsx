@@ -79,7 +79,7 @@ export function InfoCard(props: InfoCardProps) {
         height: '100%',
         background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
         ...theme.applyDarkStyles({
-          bgcolor: 'primaryDark.900',
+          bgcolor: alpha(theme.palette.primaryDark[800], 0.25),
           background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
           borderColor: 'primaryDark.700',
         }),

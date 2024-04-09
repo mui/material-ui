@@ -126,6 +126,7 @@ export function AdCarbonInline(props) {
           name: ad.company,
           description: `<strong>${ad.company}</strong> - ${ad.description}`,
           poweredby: 'Carbon',
+          label: 'carbon-demo-inline',
         }}
       />
     </React.Fragment>
