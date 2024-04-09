@@ -343,7 +343,7 @@ Pigment CSS replaces the callback with a CSS variable and injects the value thr
 ```jsx
 <h1
   style={{
-    '--Heading_class_akjsdfb-0': ({ isError }) => (isError ? 'red' : 'black'),
+    '--Heading_class_akjsdfb-0': isError ? 'red' : 'black',
   }}
 >
   Hello
@@ -814,7 +814,7 @@ const Flex = styled('div')((props) => ({
 
 2. **Programatically generated styles**
 
-For Emotion and styled-components, the styles is different on each render and instance because the styles are generated at runtime:
+For Emotion and styled-components, the styles are different on each render and instance because the styles are generated at runtime:
 
 ```js
 function randomBetween(min: number, max: number) {

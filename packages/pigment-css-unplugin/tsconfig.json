@@ -11,7 +11,8 @@
       "@mui/utils/*": ["./packages/mui-utils/src/*"],
       "@pigment-css/react": ["./packages/pigment-css-react/src"],
       "@pigment-css/react/*": ["./packages/pigment-css-react/src/*"]
-    }
+    },
+    "types": ["node", "mocha", "chai"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["./tsup.config.ts"]
