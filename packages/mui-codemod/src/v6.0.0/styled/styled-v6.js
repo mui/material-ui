@@ -1,3 +1,5 @@
+const MAX_DEPTH = 20;
+
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -132,10 +134,12 @@ export default function styledV6(file, api, options) {
         }
       }
     }
+    let counter = 0;
     if (tempNode.type !== 'LogicalExpression') {
       assignProperties(tempNode);
     } else {
-      while (tempNode.type === 'LogicalExpression') {
+      while (tempNode.type === 'LogicalExpression' && counter < MAX_DEPTH) {
+        counter += 1;
         if (tempNode.operator !== '&&') {
           isAllEqual = false;
         }
@@ -260,7 +264,9 @@ export default function styledV6(file, api, options) {
         // skip ConditionalExpression
       } else {
         let objectExpression = style.body;
-        while (objectExpression.type !== 'ObjectExpression') {
+        let counter = 0;
+        while (objectExpression.type !== 'ObjectExpression' && counter < MAX_DEPTH) {
+          counter += 1;
           if (objectExpression.type === 'BlockStatement') {
             objectExpression = objectExpression.body.find(
               (item) => item.type === 'ReturnStatement',
