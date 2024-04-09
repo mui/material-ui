@@ -372,9 +372,10 @@ export default function styledV6(file, api, options) {
         if (data.node.type === 'ConditionalExpression') {
           if (
             data.node.test.type === 'BinaryExpression' ||
-            data.node.test.type === 'UnaryExpression'
+            data.node.test.type === 'UnaryExpression' ||
+            data.node.test.type === 'Identifier'
           ) {
-            let leftName;
+            let leftName = getObjectKey(data.node.test)?.name;
             if (data.node.test.left) {
               leftName = getObjectKey(data.node.test.left)?.name;
             }
@@ -382,35 +383,44 @@ export default function styledV6(file, api, options) {
               leftName = getObjectKey(data.node.test.argument)?.name;
             }
             if (parameters.has(leftName) && leftName !== 'theme') {
+              let props = buildProps(data.node.test);
+              if (data.props) {
+                props = mergeProps(data.props, props);
+              }
+              const styleVal = data.node.consequent;
+              let newStyle = styleVal;
               if (
                 data.key &&
                 (data.key.type === 'Identifier' || data.key.type === 'StringLiteral')
               ) {
-                let props = buildProps(data.node.test);
-                if (data.props) {
-                  props = mergeProps(data.props, props);
-                }
-                const styleVal = data.node.consequent;
-                const variant = {
-                  props,
-                  style: j.objectExpression([j.objectProperty(data.key, styleVal)]),
-                };
-                variants.push(buildObjectAST(variant));
+                newStyle = j.objectExpression([j.objectProperty(data.key, styleVal)]);
+              }
+              const variant = {
+                props,
+                style: newStyle,
+              };
+              variants.push(buildObjectAST(variant));
 
-                // create another variant with inverted condition
-                let props2 = buildProps(inverseBinaryExpression(data.node.test));
-                if (data.props) {
-                  props2 = mergeProps(data.props, props2);
-                }
-                const styleVal2 = data.node.alternate;
-                const variant2 = {
-                  props: props2,
-                  style: j.objectExpression([j.objectProperty(data.key, styleVal2)]),
-                };
-                variants.push(buildObjectAST(variant2));
-                if (data.parentNode?.type === 'ObjectExpression') {
-                  removeProperty(data.parentNode, data.node);
-                }
+              // create another variant with inverted condition
+              let props2 = buildProps(inverseBinaryExpression(data.node.test));
+              if (data.props) {
+                props2 = mergeProps(data.props, props2);
+              }
+              const styleVal2 = data.node.alternate;
+              let newStyle2 = styleVal2;
+              if (
+                data.key &&
+                (data.key.type === 'Identifier' || data.key.type === 'StringLiteral')
+              ) {
+                newStyle2 = j.objectExpression([j.objectProperty(data.key, styleVal2)]);
+              }
+              const variant2 = {
+                props: props2,
+                style: newStyle2,
+              };
+              variants.push(buildObjectAST(variant2));
+              if (data.parentNode?.type === 'ObjectExpression') {
+                removeProperty(data.parentNode, data.node);
               }
             }
           }
