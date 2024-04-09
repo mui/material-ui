@@ -342,16 +342,15 @@ type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
   : never;
 
-type ConcatDeep<T> =
-  T extends Record<string | number, infer V>
-    ? keyof T extends string | number
-      ? V extends string | number
-        ? keyof T
-        : keyof V extends string | number
-          ? `${keyof T}-${ConcatDeep<Split<V>>}`
-          : never
+type ConcatDeep<T> = T extends Record<string | number, infer V>
+  ? keyof T extends string | number
+    ? V extends string | number
+      ? keyof T
+      : keyof V extends string | number
+      ? `${keyof T}-${ConcatDeep<Split<V>>}`
       : never
-    : never;
+    : never
+  : never;
 
 /**
  * Does not work for these cases:

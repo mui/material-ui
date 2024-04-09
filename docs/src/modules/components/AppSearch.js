@@ -54,7 +54,10 @@ const SearchButton = styled('button')(({ theme }) => [
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
-    boxShadow: `hsl(200, 0%, 100%) 0 2px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+    boxShadow: `hsl(200, 0%, 100%) 0 2px 0 inset, ${alpha(
+      theme.palette.grey[100],
+      0.5,
+    )} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
     '&:hover': {
       background: (theme.vars || theme).palette.grey[100],
       borderColor: (theme.vars || theme).palette.grey[300],
@@ -67,7 +70,9 @@ const SearchButton = styled('button')(({ theme }) => [
   theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
     borderColor: (theme.vars || theme).palette.primaryDark[700],
-    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${
+      (theme.vars || theme).palette.common.black
+    } 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
     '&:hover': {
       background: (theme.vars || theme).palette.primaryDark[700],
       borderColor: (theme.vars || theme).palette.primaryDark[600],

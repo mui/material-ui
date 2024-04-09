@@ -29,7 +29,9 @@ const NativeLink = styled('a')(({ theme }) => ({
     display: 'inline-block',
   },
   ...theme.applyDarkStyles({
-    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset`,
+    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${
+      (theme.vars || theme).palette.common.black
+    } 0 -2px 0 inset`,
     '&:hover': {
       backgroundColor: (theme.vars || theme).palette.primaryDark[800],
       borderColor: (theme.vars || theme).palette.primary[900],

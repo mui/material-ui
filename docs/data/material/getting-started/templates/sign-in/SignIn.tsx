@@ -141,7 +141,10 @@ export default function SignIn() {
           backgroundImage:
             theme.palette.mode === 'light'
               ? `linear-gradient(180deg, ${alpha('#CEE5FD', 0.2)}, #FFF)`
-              : `linear-gradient(${alpha('#02294F', 0.2)}, ${alpha('#021F3B', 0.0)})`,
+              : `linear-gradient(${alpha('#02294F', 0.2)}, ${alpha(
+                  '#021F3B',
+                  0.0,
+                )})`,
           backgroundRepeat: 'no-repeat',
           height: { xs: 'auto', sm: '100dvh' },
           pb: { xs: 12, sm: 0 },

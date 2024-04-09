@@ -904,7 +904,7 @@ This statistics component is composed of three slots:
 - `unit`: the unit or description of the value
 
 > 💡 Though you can give these slots any names you prefer, we recommend using `root` for the outermost container element for consistency with the rest of the library.
-Use the `styled` API with `name` and `slot` parameters to create the slots, as shown below:
+> Use the `styled` API with `name` and `slot` parameters to create the slots, as shown below:
 
 ```js
 // /path/to/Stat.js
