@@ -165,6 +165,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   const externalForwardedProps = {
     slots,
     slotProps: {
+      stepIcon: StepIconProps,
       ...componentsProps,
       ...slotProps,
     },
@@ -176,6 +177,12 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     ownerState,
   });
 
+  const [StepIconSlot, stepIconProps] = useSlot('stepIcon', {
+    elementType: StepIconComponent,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
     <StepLabelRoot
       className={clsx(classes.root, className)}
@@ -183,14 +190,14 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {icon || StepIconComponent ? (
+      {icon || StepIconSlot ? (
         <StepLabelIconContainer className={classes.iconContainer} ownerState={ownerState}>
-          <StepIconComponent
+          <StepIconSlot
             completed={completed}
             active={active}
             error={error}
             icon={icon}
-            {...StepIconProps}
+            {...stepIconProps}
           />
         </StepLabelIconContainer>
       ) : null}
