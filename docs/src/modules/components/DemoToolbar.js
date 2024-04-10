@@ -296,6 +296,7 @@ function copyWithRelativeModules(raw, relativeModules) {
           if (module.endsWith(ext)) {
             return module.replace(ext, '');
           }
+          return '';
         })
         .filter(Boolean)
         .join('|');
