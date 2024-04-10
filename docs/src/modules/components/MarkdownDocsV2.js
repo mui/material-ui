@@ -243,6 +243,10 @@ export default function MarkdownDocsV2(props) {
 
   return (
     <AppLayoutDocs
+      cardOptions={{
+        description: localizedDoc.headers.cardDescription,
+        title: localizedDoc.headers.cardTitle,
+      }}
       description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}

@@ -12,7 +12,7 @@ authors:
     'danilo-leal',
     'mbrookes',
   ]
-card: true
+manualCard: true
 tags: ['Product', 'Material UI']
 ---
 

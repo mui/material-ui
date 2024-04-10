@@ -3,7 +3,7 @@ title: Introducing Toolpad: MUI's low-code admin builder
 description: Assemble admin panels and internal tools faster than ever before with Toolpad—now in beta.
 date: 2023-07-24T00:00:00.000Z
 authors: ['prakhargupta']
-card: true
+manualCard: true
 tags: ['Product', 'Toolpad']
 ---
 
