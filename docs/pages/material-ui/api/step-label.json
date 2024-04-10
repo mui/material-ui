@@ -40,6 +40,11 @@
       "description": "The component that renders the label.",
       "default": "span",
       "class": "MuiStepLabel-label"
+    },
+    {
+      "name": "stepIcon",
+      "description": "The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).",
+      "class": null
     }
   ],
   "classes": [

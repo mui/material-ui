@@ -181,6 +181,11 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     elementType: StepIconComponent,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      icon,
+      active,
+      completed,
+    },
   });
 
   return (
@@ -192,13 +197,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     >
       {icon || StepIconSlot ? (
         <StepLabelIconContainer className={classes.iconContainer} ownerState={ownerState}>
-          <StepIconSlot
-            completed={completed}
-            active={active}
-            error={error}
-            icon={icon}
-            {...stepIconProps}
-          />
+          <StepIconSlot {...stepIconProps} />
         </StepLabelIconContainer>
       ) : null}
       <StepLabelLabelContainer className={classes.labelContainer} ownerState={ownerState}>
@@ -257,6 +256,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    stepIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -264,13 +264,16 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     label: PropTypes.elementType,
+    stepIcon: PropTypes.elementType,
   }),
   /**
    * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
+   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   StepIconComponent: PropTypes.elementType,
   /**
    * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
+   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   StepIconProps: PropTypes.object,
   /**
