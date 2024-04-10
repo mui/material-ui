@@ -209,7 +209,7 @@ export interface AutocompleteProps<
    * The component used to render the body of the popup.
    * @default Paper
    */
-  PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  PaperComponent?: React.JSXElementConstructor<PaperProps>;
   /**
    * The component used to position the popup.
    * @default Popper
@@ -278,7 +278,7 @@ export interface AutocompleteProps<
    */
   slotProps?: {
     clearIndicator?: Partial<IconButtonProps>;
-    paper?: PaperProps;
+    paper?: Partial<PaperProps>;
     popper?: Partial<PopperProps>;
     popupIndicator?: Partial<IconButtonProps>;
   };
