@@ -132,9 +132,9 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     <TypographyRoot
       as={Component}
       ref={ref}
-      ownerState={ownerState}
       className={clsx(classes.root, className)}
       {...other}
+      ownerState={ownerState}
     />
   );
 });
