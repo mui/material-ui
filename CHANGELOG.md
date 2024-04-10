@@ -1,5 +1,44 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.2
+
+<!-- generated comparing v6.0.0-alpha.1..next -->
+
+_Apr 9, 2024_
+
+A big thanks to the 5 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@6.0.0-alpha.2`
+
+- &#8203;<!-- 03 -->[typescript][Select] Fix `muiName` property TypeScript error (#41726) @EyaOuenniche
+- &#8203;<!-- 04 -->[l10n] Fix typo in is-IS locale (#41810) @magnimarels
+
+### `@pigment-css/react@0.0.6`
+
+- &#8203;<!-- 12 -->[core] Remove `muiName` during eval phase (#41811) @brijeshb42
+
+### `@pigment-css/nextjs-plugin@0.0.6`
+
+- &#8203;<!-- 02 -->[nextjs] Handle file references passed through imports (#41817) @brijeshb42
+- &#8203;<!-- 01 -->[nextjs] Allow usage of url() CSS function (#41758) @brijeshb42
+
+### Docs
+
+- &#8203;<!-- 11 -->[docs] Fix 301 links @oliviertassinari
+- &#8203;<!-- 06 -->[pigment-css][docs] Fix README typo (#41808) @aarongarciah
+- &#8203;<!-- 05 -->[pigment-css][docs] Fix output on dynamic styles example (#41805) @aarongarciah
+- &#8203;<!-- 07 -->[material-ui][docs] Fix Material 3 message typo (#41821) @aarongarciah
+- &#8203;<!-- 08 -->[material-ui][docs] Add stray design tweaks to free templates (#41696) @zanivan
+
+### Core
+
+- &#8203;<!-- 13 -->[core] Remove unused files (#41818) @mnajdova
+- &#8203;<!-- 10 -->[docs-infra] Fix analytics about inline ads (#41474) (#41819) @alexfauquette
+- &#8203;<!-- 08 -->[docs-infra] Fix drawer performances (#41807) @alexfauquette
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @brijeshb42, @EyaOuenniche, @oliviertassinari
+
 ## v6.0.0-alpha.1
 
 <!-- generated comparing v6.0.0-alpha.0..next -->
@@ -8128,7 +8167,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 
   <a href="https://mui.com/components/tables/#unstyled-table"><img width="800" alt="unstyled table" src="https://user-images.githubusercontent.com/4512430/144862194-584356ef-7d9d-462c-a631-186a7e716193.png"></a>
 
-  You can follow our progress with unstyled components at https://github.com/mui/material-ui/issues/27170.
+  You can follow our progress with unstyled components at https://github.com/mui/base-ui/issues/10.
 
 - 🎉 We have added an example of how to use MUI with [Remix](https://remix.run/) (#29952) @mnajdova
 
@@ -9598,7 +9637,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
   <a href="https://mui.com/components/switches/#unstyled"><img width="832" alt="switch" src="https://user-images.githubusercontent.com/3165635/125192249-236f8a80-e247-11eb-9df9-17d476379a32.png"></a>
 
-  You can follow our progress at https://github.com/mui/material-ui/issues/27170.
+  You can follow our progress at https://github.com/mui/base-ui/issues/10.
 
 - 💄 We have updated the default `info` `success` `warning` color to be more accessible (#26817) @siriwatknp.
   You can find the new [default values](https://mui.com/material-ui/customization/palette/#default-values) in the documentation.

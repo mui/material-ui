@@ -62,9 +62,9 @@ export default function Features() {
               color="text.secondary"
               sx={{ mb: { xs: 2, sm: 4 } }}
             >
-              Here you can provide a brief overview of the key features of the
-              product. For example, you could list the number of features, the types
-              of features, add-ons, or the benefits of the features.
+              Provide a brief overview of the key features of the product. For
+              example, you could list the number of features, their types or
+              benefits, and add-ons.
             </Typography>
           </div>
           <Grid container item gap={1} sx={{ display: { xs: 'auto', sm: 'none' } }}>
@@ -73,29 +73,24 @@ export default function Features() {
                 key={index}
                 label={title}
                 onClick={() => handleItemClick(index)}
-                sx={{
-                  borderColor: (theme) => {
-                    if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === index ? 'primary.light' : '';
-                    }
-                    return selectedItemIndex === index ? 'primary.light' : '';
-                  },
-                  background: (theme) => {
-                    if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === index ? 'none' : '';
-                    }
-                    return selectedItemIndex === index ? 'none' : '';
-                  },
-                  backgroundColor: selectedItemIndex === index ? 'primary.main' : '',
-                  '& .MuiChip-label': {
-                    color: selectedItemIndex === index ? '#fff' : '',
-                  },
-                }}
+                sx={(theme) => ({
+                  ...(selectedItemIndex === index && {
+                    borderColor:
+                      theme.palette.mode === 'light'
+                        ? 'primary.light'
+                        : 'primary.dark',
+                    background:
+                      'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
+                    color: 'hsl(0, 0%, 100%)',
+                    '& .MuiChip-label': {
+                      color: 'hsl(0, 0%, 100%)',
+                    },
+                  }),
+                })}
               />
             ))}
           </Grid>
-          <Box
-            component={Card}
+          <Card
             variant="outlined"
             sx={{
               display: { xs: 'auto', sm: 'none' },
@@ -114,10 +109,10 @@ export default function Features() {
               }}
             />
             <Box sx={{ px: 2, pb: 2 }}>
-              <Typography color="text.primary" variant="body2" fontWeight="bold">
+              <Typography color="text.primary" fontWeight="medium" gutterBottom>
                 {selectedFeature.title}
               </Typography>
-              <Typography color="text.secondary" variant="body2" sx={{ my: 0.5 }}>
+              <Typography color="text.secondary" variant="body2" sx={{ mb: 1.5 }}>
                 {selectedFeature.description}
               </Typography>
               <Link
@@ -138,7 +133,7 @@ export default function Features() {
                 />
               </Link>
             </Box>
-          </Box>
+          </Card>
           <Stack
             direction="column"
             justifyContent="center"
@@ -150,25 +145,35 @@ export default function Features() {
             {items.map(({ icon, title, description }, index) => (
               <Card
                 key={index}
-                variant="outlined"
                 component={Button}
                 onClick={() => handleItemClick(index)}
-                sx={{
+                sx={(theme) => ({
                   p: 3,
                   height: 'fit-content',
                   width: '100%',
                   background: 'none',
-                  backgroundColor:
-                    selectedItemIndex === index ? 'action.selected' : undefined,
-                  borderColor: (theme) => {
-                    if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === index
+                  ...(selectedItemIndex === index && {
+                    backgroundColor: 'action.selected',
+                    borderColor:
+                      theme.palette.mode === 'light'
                         ? 'primary.light'
-                        : 'grey.200';
-                    }
-                    return selectedItemIndex === index ? 'primary.dark' : 'grey.800';
+                        : 'primary.dark',
+                  }),
+                  '&:hover': {
+                    background:
+                      theme.palette.mode === 'light'
+                        ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
+                        : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+                    borderColor:
+                      theme.palette.mode === 'light'
+                        ? 'primary.light'
+                        : 'primary.dark',
+                    boxShadow:
+                      theme.palette.mode === 'light'
+                        ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
+                        : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
                   },
-                }}
+                })}
               >
                 <Box
                   sx={{
@@ -181,33 +186,28 @@ export default function Features() {
                   }}
                 >
                   <Box
-                    sx={{
-                      color: (theme) => {
-                        if (theme.palette.mode === 'light') {
-                          return selectedItemIndex === index
-                            ? 'primary.main'
-                            : 'grey.300';
-                        }
-                        return selectedItemIndex === index
-                          ? 'primary.main'
-                          : 'grey.700';
-                      },
-                    }}
+                    sx={(theme) => ({
+                      color:
+                        theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
+                      ...(selectedItemIndex === index && {
+                        color: 'primary.main',
+                      }),
+                    })}
                   >
                     {icon}
                   </Box>
-                  <Box sx={{ textTransform: 'none' }}>
+                  <div>
                     <Typography
                       color="text.primary"
-                      variant="body2"
-                      fontWeight="bold"
+                      fontWeight="medium"
+                      gutterBottom
                     >
                       {title}
                     </Typography>
                     <Typography
                       color="text.secondary"
                       variant="body2"
-                      sx={{ my: 0.5 }}
+                      sx={{ mb: 1.5 }}
                     >
                       {description}
                     </Typography>
@@ -231,7 +231,7 @@ export default function Features() {
                         sx={{ mt: '1px', ml: '2px' }}
                       />
                     </Link>
-                  </Box>
+                  </div>
                 </Box>
               </Card>
             ))}
