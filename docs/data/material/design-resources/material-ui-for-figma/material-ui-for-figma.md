@@ -5,13 +5,11 @@
 ## Getting started
 
 Material UI for Figma consists of representations of the library's React components in Figma so designers and developers can communicate and iterate more efficiently.
-The way the components (as well as properties and variables) are structured in Figma is meant to closely mirror what you'd experience in the code.
-
 In Figma, you will see:
 
 - extra components and features that aren't covered in Material Design
-- the same UI output as Material UI
-- shared terminology for props, design tokens, and other values
+- components with the same design as Material UI
+- closely mirroed terminology for props, variables, design tokens, and other values
 
 ### Community vs. full version
 
@@ -60,7 +58,7 @@ The design kits leverage Figma's local variables to quickly offer you a way to t
 
 ### Editing the main components
 
-Main components were difficult to maintain, and it required sticking to the elements available in that main instance only, so we decided to move away from it in favor of a plugin called [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer).
+The Material UI for Figma Design Kit uses a plugin called [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer) to create multiple variants of a given component that essentially build up to the main component.
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/eHBk0FbS0P8?si=QbOiMU2F1yvGB6s8" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
