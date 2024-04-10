@@ -181,11 +181,6 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     elementType: StepIconComponent,
     externalForwardedProps,
     ownerState,
-    additionalProps: {
-      icon,
-      active,
-      completed,
-    },
   });
 
   return (
@@ -197,7 +192,13 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     >
       {icon || StepIconSlot ? (
         <StepLabelIconContainer className={classes.iconContainer} ownerState={ownerState}>
-          <StepIconSlot {...stepIconProps} />
+          <StepIconSlot
+            completed={completed}
+            active={active}
+            error={error}
+            icon={icon}
+            {...stepIconProps}
+          />
         </StepLabelIconContainer>
       ) : null}
       <StepLabelLabelContainer className={classes.labelContainer} ownerState={ownerState}>
