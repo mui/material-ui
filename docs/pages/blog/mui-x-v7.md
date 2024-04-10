@@ -83,7 +83,7 @@ The goal is to further enhance this panel by incorporating additional column man
 
 <figure>
   <img width="310" alt="The new column management panel design" src="/static/blog/mui-x-v7/column-management-panel.png">
-  <figcaption>The new column managemeent panel design</figcaption>
+  <figcaption>The new column management panel design</figcaption>
 </figure>
 
 ### Date Object support in filter model

@@ -25,12 +25,15 @@ import {
 } from '@pigment-css/react/utils';
 import type { ResolvePluginInstance } from 'webpack';
 
+import { handleUrlReplacement, type AsyncResolver } from './utils';
+
 type NextMeta = {
   type: 'next';
   dev: boolean;
   isServer: boolean;
   outputCss: boolean;
   placeholderCssFile: string;
+  projectPath: string;
 };
 
 type ViteMeta = {
@@ -42,7 +45,6 @@ type WebpackMeta = {
 };
 
 type Meta = NextMeta | ViteMeta | WebpackMeta;
-export type AsyncResolver = (what: string, importer: string, stack: string[]) => Promise<string>;
 
 export type PigmentOptions<Theme extends BaseTheme = BaseTheme> = {
   theme?: Theme;
@@ -119,7 +121,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
   const isNext = meta?.type === 'next';
   const outputCss = isNext && meta.outputCss;
   const babelTransformPlugin: UnpluginOptions = {
-    name: 'zero-plugin-transform-babel',
+    name: 'pigment-css-plugin-transform-babel',
     enforce: 'post',
     transformInclude(id) {
       return isZeroRuntimeProcessableFile(id, transformLibraries);
@@ -140,6 +142,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
       };
     },
   };
+  const projectPath = meta?.type === 'next' ? meta.projectPath : process.cwd();
 
   let webpackResolver: AsyncResolver;
 
@@ -159,7 +162,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
   };
 
   const wywInJSTransformPlugin: UnpluginOptions = {
-    name: 'zero-plugin-transform-wyw-in-js',
+    name: 'pigment-css-plugin-transform-wyw-in-js',
     enforce: 'post',
     buildEnd() {
       onDone(process.cwd());
@@ -255,14 +258,24 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
           };
         }
 
+        if (isNext) {
+          // Handle url() replacement in css. Only handled in Next.js as the css is injected
+          // through the use of a placeholder CSS file that lies in the nextjs plugin package.
+          // So url paths can't be resolved relative to that file.
+          if (cssText && cssText.includes('url(')) {
+            cssText = await handleUrlReplacement(cssText, id, asyncResolve, projectPath);
+          }
+        }
+
         if (sourceMap && result.cssSourceMapText) {
           const map = Buffer.from(result.cssSourceMapText).toString('base64');
           cssText += `/*# sourceMappingURL=data:application/json;base64,${map}*/`;
         }
 
         // Virtual modules do not work consistently in Next.js (the build is done at least
-        // thrice) resulting in error in subsequent builds. So we use a placeholder CSS
-        // file with the actual CSS content as part of the query params.
+        // thrice with different combination of parameters) resulting in error in
+        // subsequent builds. So we use a placeholder CSS file with the actual CSS content
+        // as part of the query params.
         if (isNext) {
           const data = `${meta.placeholderCssFile}?${encodeURIComponent(
             JSON.stringify({
@@ -278,7 +291,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
         }
 
         const slug = slugify(cssText);
-        const cssFilename = `${slug}.zero.css`;
+        const cssFilename = `${slug}.pigment.css`;
         const cssId = `./${cssFilename}`;
         cssFileLookup.set(cssId, cssFilename);
         cssLookup.set(cssFilename, cssText);
@@ -297,7 +310,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
 
   const plugins: Array<UnpluginOptions> = [
     {
-      name: 'zero-plugin-theme-tokens',
+      name: 'pigment-css-plugin-theme-tokens',
       enforce: 'pre',
       webpack(compiler) {
         compiler.hooks.normalModuleFactory.tap(pluginName, (nmf) => {
@@ -305,7 +318,7 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
             pluginName,
             // @ts-expect-error CreateData is typed as 'object'...
             (createData: { matchResource?: string; settings: { sideEffects?: boolean } }) => {
-              if (createData.matchResource && createData.matchResource.endsWith('.zero.css')) {
+              if (createData.matchResource && createData.matchResource.endsWith('.pigment.css')) {
                 createData.settings.sideEffects = true;
               }
             },
@@ -371,13 +384,13 @@ export const plugin = createUnplugin<PigmentOptions, true>((options) => {
   // This is already handled separately for Next.js using `placeholderCssFile`
   if (!isNext) {
     plugins.push({
-      name: 'zero-plugin-load-output-css',
+      name: 'pigment-css-plugin-load-output-css',
       enforce: 'pre',
       resolveId(source: string) {
         return cssFileLookup.get(source);
       },
       loadInclude(id) {
-        return id.endsWith('.zero.css');
+        return id.endsWith('.pigment.css');
       },
       load(id) {
         return cssLookup.get(id) ?? '';
@@ -392,4 +405,4 @@ export const webpack = plugin.webpack as unknown as UnpluginFactoryOutput<
   WebpackPluginInstance
 >;
 
-export { extendTheme };
+export { type AsyncResolver, extendTheme };
