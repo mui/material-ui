@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import path from 'path';
-import yargs from 'yargs';
 import {
   createModulePackages,
   createPackageFile,
@@ -14,6 +13,7 @@ const buildPath = path.join(packagePath, './build');
 const srcPath = path.join(packagePath, './src');
 
 async function addLicense(packageData) {
+  const esmExtension = process.env.MUI_SKIP_CORE_EXPORTS_FORMAT ? 'js' : 'mjs';
   const license = `/**
  * ${packageData.name} v${packageData.version}
  *
@@ -24,9 +24,9 @@ async function addLicense(packageData) {
 `;
   await Promise.all(
     [
-      './index.mjs',
-      './legacy/index.mjs',
-      './modern/index.mjs',
+      `./index.${esmExtension}`,
+      `./legacy/index.${esmExtension}`,
+      `./modern/index.${esmExtension}`,
       './node/index.js',
       './umd/material-ui.development.js',
       './umd/material-ui.production.min.js',
@@ -44,14 +44,14 @@ async function addLicense(packageData) {
   );
 }
 
-async function run(argv) {
-  const { extraFiles, skipExportsField } = argv;
+async function run() {
+  const extraFiles = process.argv.slice(2);
 
   try {
     // TypeScript
     await typescriptCopy({ from: srcPath, to: buildPath });
 
-    const packageData = await createPackageFile(skipExportsField);
+    const packageData = await createPackageFile();
 
     await Promise.all(
       ['./README.md', '../../CHANGELOG.md', '../../LICENSE', ...extraFiles].map(async (file) => {
@@ -69,26 +69,4 @@ async function run(argv) {
   }
 }
 
-yargs(process.argv.slice(2))
-  .command({
-    command: '$0 [extraFiles..]',
-    description: 'copy files',
-    builder: (command) => {
-      return command
-        .positional('extraFiles', {
-          type: 'array',
-          default: [],
-        })
-        .option('skipExportsField', {
-          type: 'boolean',
-          default: false,
-          describe:
-            'Set to `true` if you wish to skip adding the exports field. Adding the exports field is only supported for top level ESM packages.',
-        });
-    },
-    handler: run,
-  })
-  .help()
-  .strict(true)
-  .version(false)
-  .parse();
+run();

@@ -31,7 +31,7 @@ async function run(argv) {
     NODE_ENV: 'production',
     BABEL_ENV: bundle,
     MUI_BUILD_VERBOSE: verbose,
-    MUI_ADD_IMPORT_EXTENSIONS: true,
+    MUI_ADD_IMPORT_EXTENSIONS: !process.env.MUI_SKIP_CORE_EXPORTS_FORMAT,
   };
   const babelConfigPath = path.resolve(getWorkspaceRoot(), 'babel.config.js');
   const srcDir = path.resolve('./src');
@@ -70,8 +70,6 @@ async function run(argv) {
     }[bundle],
   );
 
-  const outExtension = bundle === 'node' ? '.js' : '.mjs';
-
   const babelArgs = [
     '--config-file',
     babelConfigPath,
@@ -80,14 +78,17 @@ async function run(argv) {
     srcDir,
     '--out-dir',
     outDir,
-    '--out-file-extension',
-    outExtension,
     '--ignore',
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
     `"${ignore.join('","')}"`,
   ];
   if (largeFiles) {
     babelArgs.push('--compact false');
+  }
+
+  if (!process.env.MUI_SKIP_CORE_EXPORTS_FORMAT) {
+    const outExtension = bundle === 'node' ? '.js' : `.mjs`;
+    babelArgs.push('--out-file-extension', outExtension);
   }
 
   const command = ['pnpm babel', ...babelArgs].join(' ');

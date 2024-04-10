@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "mkdir build && pnpm build:copy-files",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs --skipExportsField",
+    "build:copy-files": "cross-env MUI_SKIP_CORE_EXPORTS_FORMAT=true node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish"
   },
