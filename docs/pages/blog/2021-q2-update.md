@@ -217,7 +217,7 @@ We have the following objectives:
 - ⚛️ Support [React 18](https://legacy.reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
   We want our most demanding users to feel empowered by Material UI, not slowed down by a third-party library.
 - 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://mui.com/base-ui/react-switch/).
-  You can follow our progress in the [umbrella issue](https://github.com/mui/material-ui/issues/27170).
+  You can follow our progress in the [umbrella issue](https://github.com/mui/base-ui/issues/10).
 - 🌈 Do a proof of concept on supporting a second design system.
   Some of our users (and potential users) dislike Material Design. We will try to make the second design system one that they love!
 - 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/23/views/12).

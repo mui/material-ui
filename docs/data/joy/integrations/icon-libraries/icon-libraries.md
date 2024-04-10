@@ -189,7 +189,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 ### Font Awesome Icons
 
 - [Browse icons](https://fontawesome.com/icons)
-- [Installation](https://fontawesome.com/docs/web/use-with/react/)
+- [Installation](https://docs.fontawesome.com/web/use-with/react)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-fontawesome-kjbnqj?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
      style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"

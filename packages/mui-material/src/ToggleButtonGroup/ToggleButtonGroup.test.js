@@ -39,6 +39,15 @@ describe('<ToggleButtonGroup />', () => {
     expect(getByRole('button')).to.have.class('MuiToggleButtonGroup-groupedVertical');
   });
 
+  it('should have horizontal class', () => {
+    const { getByRole } = render(
+      <ToggleButtonGroup>
+        <ToggleButton value="one">1</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+    expect(getByRole('group')).to.have.class(classes.horizontal);
+  });
+
   it('should disable all ToggleButton if disabled prop is passed', () => {
     render(
       <ToggleButtonGroup disabled>

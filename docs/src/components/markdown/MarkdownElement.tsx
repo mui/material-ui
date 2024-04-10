@@ -10,7 +10,7 @@ const Root = styled('div')(({ theme }) => ({
   ...theme.typography.caption,
   color: (theme.vars || theme).palette.text.primary,
   '& pre': {
-    backgroundColor: '#0F1924', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
+    backgroundColor: 'hsl(210, 35%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
     color: '#f8f8f2', // fallback color until Prism's theme is loaded
     overflow: 'auto',
     margin: 0,

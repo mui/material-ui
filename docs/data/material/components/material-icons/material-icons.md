@@ -44,6 +44,8 @@ See the [Installation](/material-ui/getting-started/installation/) page for addi
 
 <hr/>
 
+## Search Material Icons
+
 Browse through the icons below to find the one you need.
 The search field supports synonyms—for example, try searching for "hamburger" or "logout."
 

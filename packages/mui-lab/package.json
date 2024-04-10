@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.169",
+  "version": "6.0.0-alpha.2",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -41,7 +41,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.9",
+    "@babel/runtime": "^7.24.4",
     "@mui/base": "workspace:*",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
@@ -51,8 +51,9 @@
   },
   "devDependencies": {
     "@mui-internal/test-utils": "workspace:^",
-    "@types/chai": "^4.3.12",
-    "@types/prop-types": "^15.7.11",
+    "@mui/material": "workspace:*",
+    "@types/chai": "^4.3.14",
+    "@types/prop-types": "^15.7.12",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@types/sinon": "^10.0.20",
@@ -64,7 +65,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@mui/material": ">=5.15.0",
+    "@mui/material": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"

@@ -8,7 +8,7 @@ import Radio from '@mui/joy/Radio';
 import Stack from '@mui/joy/Stack';
 import { styled } from '@mui/joy/styles';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 
 const Item = styled(Sheet)(({ theme }) => ({
   ...theme.typography['body-sm'],

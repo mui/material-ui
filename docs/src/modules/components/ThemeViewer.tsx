@@ -6,7 +6,7 @@ import ExpandIcon from '@mui/icons-material/ExpandMore';
 import CollapseIcon from '@mui/icons-material/ChevronRight';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem as MuiTreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
-import { blue, blueDark } from 'docs/src/modules/brandingTheme';
+import { blue, blueDark } from '@mui/docs/branding';
 
 function getType(value: any) {
   if (Array.isArray(value)) {
@@ -205,7 +205,7 @@ export default function ThemeViewer({
       sx={{
         color: '#FFF',
         p: 1.5,
-        bgcolor: '#0F1924', // one-off code container color
+        bgcolor: 'hsl(210, 35%, 9%)', // one-off code container color
         borderRadius: 3,
         border: `1px solid ${blueDark[700]}`,
       }}
