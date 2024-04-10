@@ -82,17 +82,18 @@ const CircularProgressRoot = styled('span', {
         transition: theme.transitions.create('transform'),
       },
     },
-    ...(typeof rotateAnimation !== 'string'
-      ? [
-          // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-          {
-            props: {
-              variant: 'indeterminate',
+    {
+      props: {
+        variant: 'indeterminate',
+      },
+      style:
+        // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
+        rotateAnimation !== 'string'
+          ? rotateAnimation
+          : {
+              animation: `${circularRotateKeyframe} 1.4s linear infinite`,
             },
-            style: rotateAnimation,
-          },
-        ]
-      : []),
+    },
     ...Object.entries(theme.palette)
       .filter(([, palette]) => palette.main)
       .map(([color]) => ({
@@ -145,16 +146,17 @@ const CircularProgressCircle = styled('circle', {
         strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
       },
     },
-    ...(typeof dashAnimation !== 'string'
-      ? [
-          {
-            // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-            props: ({ ownerState }) =>
-              ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
-            style: dashAnimation,
-          },
-        ]
-      : []),
+    {
+      // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
+      props: ({ ownerState }) =>
+        ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+      style:
+        typeof dashAnimation !== 'string'
+          ? dashAnimation
+          : {
+              animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
+            },
+    },
   ],
 }));
 
@@ -205,11 +207,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
 
   return (
     <CircularProgressRoot
-      className={clsx(
-        classes.root,
-        typeof rotateAnimation === 'string' && rotateAnimation,
-        className,
-      )}
+      className={clsx(classes.root, className)}
       style={{ width: size, height: size, ...rootStyle, ...style }}
       ownerState={ownerState}
       ref={ref}
@@ -223,7 +221,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
         viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}
       >
         <CircularProgressCircle
-          className={clsx(classes.circle, typeof dashAnimation === 'string' && dashAnimation)}
+          className={classes.circle}
           style={circleStyle}
           ownerState={ownerState}
           cx={SIZE}
