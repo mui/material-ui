@@ -696,8 +696,8 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             minWidth: 'fit-content',
             color: theme.palette.grey[400],
             '&.Mui-selected': {
-              color: theme.palette.grey[800],
-              fontWeight: 600,
+              color: theme.palette.grey[900],
+              fontWeight: 700,
             },
             ...(theme.palette.mode === 'dark' && {
               '&.Mui-selected': {
