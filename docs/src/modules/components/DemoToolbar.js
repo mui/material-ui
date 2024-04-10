@@ -301,7 +301,6 @@ function copyWithRelativeModules(raw, relativeModules) {
         .filter(Boolean)
         .join('|');
       const importPattern = new RegExp(`import .* from '(${patterns})';`);
-
       raw = raw.replace(importPattern, content);
     });
   }
