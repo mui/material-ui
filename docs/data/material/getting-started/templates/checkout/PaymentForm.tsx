@@ -75,39 +75,101 @@ export default function PaymentForm() {
           }}
         >
           <Card
-            raised={paymentType === 'creditCard'}
-            sx={{
+            sx={(theme) => ({
               maxWidth: { sm: '100%', md: '50%' },
               flexGrow: 1,
-              outline: '1px solid',
-              outlineColor:
-                paymentType === 'creditCard' ? 'primary.main' : 'divider',
-              backgroundColor:
-                paymentType === 'creditCard' ? 'background.default' : '',
-            }}
+              border: '1px solid',
+              borderColor: 'divider',
+              '&:hover': {
+                background:
+                  theme.palette.mode === 'light'
+                    ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
+                    : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+                borderColor:
+                  theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
+                boxShadow:
+                  theme.palette.mode === 'light'
+                    ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
+                    : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
+              },
+              ...(paymentType === 'creditCard' && {
+                backgroundColor: 'action.selected',
+                borderColor:
+                  theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
+              }),
+            })}
           >
-            <CardActionArea onClick={() => setPaymentType('creditCard')}>
+            <CardActionArea
+              onClick={() => setPaymentType('creditCard')}
+              sx={{
+                '.MuiCardActionArea-focusHighlight': {
+                  backgroundColor: 'transparent',
+                },
+                '&:focus-visible': {
+                  backgroundColor: 'action.hover',
+                },
+              }}
+            >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <CreditCardRoundedIcon color="primary" fontSize="small" />
+                <CreditCardRoundedIcon
+                  fontSize="small"
+                  sx={(theme) => ({
+                    color: theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
+                    ...(paymentType === 'creditCard' && {
+                      color: 'primary.main',
+                    }),
+                  })}
+                />
                 <Typography fontWeight="medium">Card</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
           <Card
-            raised={paymentType === 'bankTransfer'}
-            sx={{
+            sx={(theme) => ({
               maxWidth: { sm: '100%', md: '50%' },
               flexGrow: 1,
-              outline: '1px solid',
-              outlineColor:
-                paymentType === 'bankTransfer' ? 'primary.main' : 'divider',
-              backgroundColor:
-                paymentType === 'bankTransfer' ? 'background.default' : '',
-            }}
+              border: '1px solid',
+              borderColor: 'divider',
+              '&:hover': {
+                background:
+                  theme.palette.mode === 'light'
+                    ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
+                    : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+                borderColor:
+                  theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
+                boxShadow:
+                  theme.palette.mode === 'light'
+                    ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
+                    : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
+              },
+              ...(paymentType === 'bankTransfer' && {
+                backgroundColor: 'action.selected',
+                borderColor:
+                  theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
+              }),
+            })}
           >
-            <CardActionArea onClick={() => setPaymentType('bankTransfer')}>
+            <CardActionArea
+              onClick={() => setPaymentType('bankTransfer')}
+              sx={{
+                '.MuiCardActionArea-focusHighlight': {
+                  backgroundColor: 'transparent',
+                },
+                '&:focus-visible': {
+                  backgroundColor: 'action.hover',
+                },
+              }}
+            >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <AccountBalanceRoundedIcon color="primary" fontSize="small" />
+                <AccountBalanceRoundedIcon
+                  fontSize="small"
+                  sx={(theme) => ({
+                    color: theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
+                    ...(paymentType === 'bankTransfer' && {
+                      color: 'primary.main',
+                    }),
+                  })}
+                />
                 <Typography fontWeight="medium">Bank account</Typography>
               </CardContent>
             </CardActionArea>
@@ -134,7 +196,7 @@ export default function PaymentForm() {
               border: '1px solid ',
               borderColor: 'divider',
               backgroundColor: 'background.paper',
-              boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)',
+              boxShadow: '0px 4px 8px hsla(210, 0%, 0%, 0.05)',
             }}
           >
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

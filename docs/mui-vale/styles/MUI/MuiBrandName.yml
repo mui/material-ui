@@ -3,7 +3,7 @@
 # For example, Apple does this meticulously with their brand name: https://www.apple.com/macbook-air/.
 # Also read https://www.chrisdpeters.com/blog/using-non-breaking-spaces-to-help-with-branding/ for why.
 extends: substitution
-message: Use a non-breaking space for brand name ('%s' instead of '%s')
+message: Use a non-breaking space (option+space on Mac, Alt+0160 on Windows or AltGr+Space on Linux, instead of space) for brand name ('%s' instead of '%s')
 level: error
 ignorecase: true
 # swap maps tokens in form of bad: good

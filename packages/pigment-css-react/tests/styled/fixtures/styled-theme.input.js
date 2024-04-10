@@ -1,4 +1,5 @@
 import { styled, keyframes } from '@pigment-css/react';
+import PropTypes from 'prop-types';
 
 const rotateKeyframe = keyframes({
   from: {
@@ -34,3 +35,20 @@ const SliderRail2 = styled.span`
     display: none;
   }
 `;
+
+export function App() {
+  return (
+    <Component>
+      <SliderRail />
+      <SliderRail2 />
+    </Component>
+  );
+}
+
+process.env.NODE_ENV !== 'production'
+  ? (App.propTypes = {
+      children: PropTypes.element,
+    })
+  : void 0;
+
+process.env.NODE_ENV !== 'production' ? (App.muiName = 'App') : void 0;

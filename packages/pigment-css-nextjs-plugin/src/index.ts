@@ -53,12 +53,18 @@ export function withPigment(nextConfig: NextConfig, pigmentConfig?: PigmentOptio
           isServer,
           outputCss: dev || hasAppDir || !isServer,
           placeholderCssFile: extractionFile,
+          projectPath: dir,
         },
         async asyncResolve(what: string, importer: string, stack: string[]) {
+          // Using the same stub file as "next/font". Should be updated in future to
+          // use it's own stub depdending on the actual usage.
+          if (what.startsWith('__barrel_optimize__')) {
+            return require.resolve('../next-font');
+          }
           // Need to point to the react from node_modules during eval time.
           // Otherwise, next makes it point to its own version of react that
           // has a lot of RSC specific logic which is not actually needed.
-          if (what.startsWith('react') || what.startsWith('next')) {
+          if (what.startsWith('@babel') || what.startsWith('react') || what.startsWith('next')) {
             return require.resolve(what);
           }
           if (what === 'next/image') {
@@ -66,6 +72,9 @@ export function withPigment(nextConfig: NextConfig, pigmentConfig?: PigmentOptio
           }
           if (what.startsWith('next/font')) {
             return require.resolve('../next-font');
+          }
+          if (what.startsWith('@emotion/styled') || what.startsWith('styled-components')) {
+            return require.resolve('../third-party-styled');
           }
           if (asyncResolve) {
             return asyncResolve(what, importer, stack);

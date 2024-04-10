@@ -180,6 +180,19 @@ const Root = styled('div')(
         margin: 'auto',
         marginBottom: 16,
       },
+      '& figure': {
+        margin: 0,
+        padding: 0,
+        marginBottom: 16,
+        '& img, & video': {
+          marginBottom: 8,
+        },
+      },
+      '& figcaption': {
+        color: (theme.vars || theme).palette.text.tertiary,
+        fontSize: theme.typography.pxToRem(14),
+        textAlign: 'center',
+      },
       '& strong': {
         color: (theme.vars || theme).palette.grey[900],
       },
