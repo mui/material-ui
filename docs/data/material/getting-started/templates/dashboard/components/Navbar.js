@@ -4,14 +4,15 @@ import { styled } from '@mui/material/styles';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ToggleColorMode from './ToggleColorMode';
 import SideNav from './SideNav';
 import MenuButton from './MenuButton';
+import NavbarBreadcrumbs from './NavbarBreadcrumbs';
 
 const logoStyle = {
   width: '140px',
@@ -54,29 +55,33 @@ function Navbar({ mode, toggleColorMode }) {
             justifyContent="space-between"
             flexGrow={1}
           >
-            <img
-              src={
-                'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-              }
-              style={logoStyle}
-              alt="logo of sitemark"
-            />
-            <Stack direction="row" gap={1.5}>
+            <Stack direction="row" gap={1} alignItems="center">
+              <img
+                src={
+                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                }
+                style={logoStyle}
+                alt="logo of sitemark"
+              />
+              <NavbarBreadcrumbs />
+            </Stack>
+            <Stack
+              sx={{ display: { xs: 'none', md: 'flex' } }}
+              direction="row"
+              gap={1.5}
+            >
+              <MenuButton showBadge>
+                <NotificationsIcon />
+              </MenuButton>
               <MenuButton>
                 <SettingsIcon />
               </MenuButton>
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
             </Stack>
-            <Box sx={{ display: { sm: '', md: 'none' } }}>
-              <Button
-                variant="text"
-                color="primary"
-                aria-label="menu"
-                onClick={toggleDrawer(true)}
-                sx={{ minWidth: '30px', p: '4px' }}
-              >
+            <Box sx={{ display: { sm: 'flex', md: 'none' } }}>
+              <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
                 <MenuIcon />
-              </Button>
+              </MenuButton>
               <SideNav open={open} toggleDrawer={toggleDrawer} />
             </Box>
           </Stack>

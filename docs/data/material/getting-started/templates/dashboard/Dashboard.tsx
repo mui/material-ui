@@ -8,6 +8,7 @@ import getDashboardTheme from './getDashboardTheme';
 import ToggleCustomTheme from './internals/components/ToggleCustomTheme';
 import Copyright from './internals/components/Copyright';
 import Navbar from './components/Navbar';
+import SecondaryNavbar from './components/SecondaryNavbar';
 
 export default function Dashboard() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
@@ -28,14 +29,12 @@ export default function Dashboard() {
       <CssBaseline />
       <Box sx={{ display: 'flex' }}>
         <Navbar mode={mode} toggleColorMode={toggleColorMode} />
-
+        <SecondaryNavbar />
         <Box
           component="main"
           sx={{
             backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
+              theme.palette.mode === 'light' ? '#FBFCFE' : 'rgba(0, 0, 0, 0.35)',
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
@@ -44,7 +43,10 @@ export default function Dashboard() {
           {/* Main content */}
           <Container
             maxWidth="xl"
-            sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 } }}
+            sx={{
+              pt: { xs: 14, sm: 20 },
+              pb: { xs: 8, sm: 12 },
+            }}
           >
             Main content
             <Copyright sx={{ pt: 4 }} />

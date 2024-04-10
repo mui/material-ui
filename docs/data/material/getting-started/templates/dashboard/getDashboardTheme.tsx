@@ -363,6 +363,49 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
+      MuiIconButton: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            boxSizing: 'border-box',
+            boxShadow: 'none',
+            borderRadius: '10px',
+            textTransform: 'none',
+            fontWeight: theme.typography.fontWeightMedium,
+            letterSpacing: 0,
+            '&:active': {
+              transform: 'scale(0.98)',
+            },
+            ...(ownerState.size === 'small' && {
+              minWidth: '32px',
+              height: '32px',
+              padding: '4px',
+            }),
+            ...(ownerState.size === 'medium' && {
+              minWidth: '40px',
+              height: '40px',
+            }),
+
+            color: theme.palette.grey[600],
+            border: `1.2px solid`,
+            borderColor: theme.palette.grey[200],
+            backgroundColor: theme.palette.grey[50],
+            '&:hover': {
+              backgroundColor: alpha(brand[100], 0.4),
+              borderColor: theme.palette.grey[400],
+            },
+
+            ...(theme.palette.mode === 'dark' && {
+              backgroundColor: theme.palette.grey[900],
+              borderColor: theme.palette.grey[700],
+              color: theme.palette.grey[300],
+              '&:hover': {
+                backgroundColor: alpha(brand[600], 0.3),
+                borderColor: theme.palette.grey[400],
+              },
+            }),
+          }),
+        },
+      },
       MuiCard: {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
@@ -623,6 +666,42 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                   outline: '4px solid',
                   outlineColor: alpha(brand[500], 0.5),
                 },
+              },
+            }),
+          }),
+        },
+      },
+      MuiTabs: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            '& .Mui-selected': {
+              color: theme.palette.grey[900],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              '& .Mui-selected': {
+                color: '#fff',
+              },
+            }),
+          }),
+          indicator: ({ theme }) => ({
+            backgroundColor: theme.palette.grey[800],
+          }),
+        },
+      },
+      MuiTab: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            textTransform: 'none',
+            px: 4,
+            minWidth: 'fit-content',
+            color: theme.palette.grey[400],
+            '&.Mui-selected': {
+              color: theme.palette.grey[800],
+              fontWeight: 600,
+            },
+            ...(theme.palette.mode === 'dark' && {
+              '&.Mui-selected': {
+                color: '#fff',
               },
             }),
           }),
