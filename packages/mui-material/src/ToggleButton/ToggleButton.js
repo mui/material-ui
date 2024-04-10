@@ -66,7 +66,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
       props: { color: 'standard' },
       style: {
         [`&.${toggleButtonClasses.selected}`]: {
-          color: theme.palette.text.primary,
+          color: (theme.vars || theme).palette.text.primary,
           backgroundColor: theme.vars
             ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.selectedOpacity})`
             : alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
@@ -87,7 +87,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
         },
       },
     },
-    ...Object.keys((theme.vars ?? theme).palette)
+    ...Object.keys((theme.vars || theme).palette)
       .filter((key) =>
         theme.vars
           ? theme.vars.palette[key].main && theme.vars.palette[key].mainChannel
@@ -97,7 +97,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
         props: { color },
         style: {
           [`&.${toggleButtonClasses.selected}`]: {
-            color: (theme.vars ?? theme).palette[color].main,
+            color: (theme.vars || theme).palette[color].main,
             backgroundColor: theme.vars
               ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
               : alpha(theme.palette[color].main, theme.palette.action.selectedOpacity),
