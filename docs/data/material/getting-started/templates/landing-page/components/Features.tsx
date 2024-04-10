@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
@@ -40,6 +41,25 @@ const items = [
   },
 ];
 
+interface StyledChipProps {
+  selected?: boolean;
+}
+
+const StyledChip = styled(Chip)<StyledChipProps>(({ theme, selected }) => ({
+  ...(selected && {
+    borderColor:
+      theme.palette.mode === 'light'
+        ? theme.palette.primary.light
+        : theme.palette.primary.dark,
+    background:
+      'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
+    color: 'hsl(0, 0%, 100%)',
+    '& .MuiChip-label': {
+      color: 'hsl(0, 0%, 100%)',
+    },
+  }),
+}));
+
 export default function Features() {
   const [selectedItemIndex, setSelectedItemIndex] = React.useState(0);
 
@@ -69,24 +89,11 @@ export default function Features() {
           </div>
           <Grid container item gap={1} sx={{ display: { xs: 'auto', sm: 'none' } }}>
             {items.map(({ title }, index) => (
-              <Chip
+              <StyledChip
                 key={index}
                 label={title}
                 onClick={() => handleItemClick(index)}
-                sx={(theme) => ({
-                  ...(selectedItemIndex === index && {
-                    borderColor:
-                      theme.palette.mode === 'light'
-                        ? 'primary.light'
-                        : 'primary.dark',
-                    background:
-                      'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
-                    color: 'hsl(0, 0%, 100%)',
-                    '& .MuiChip-label': {
-                      color: 'hsl(0, 0%, 100%)',
-                    },
-                  }),
-                })}
+                selected={selectedItemIndex === index}
               />
             ))}
           </Grid>

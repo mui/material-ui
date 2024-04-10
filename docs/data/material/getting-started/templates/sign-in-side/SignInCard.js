@@ -10,9 +10,17 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 
 import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
+
+const StyledCard = styled(Card)(({ theme }) => ({
+  boxShadow:
+    theme.palette.mode === 'light'
+      ? 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px'
+      : 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
+}));
 
 export default function SignInCard() {
   const [emailError, setEmailError] = React.useState(false);
@@ -66,7 +74,7 @@ export default function SignInCard() {
   };
 
   return (
-    <Card
+    <StyledCard
       sx={(theme) => ({
         display: 'flex',
         flexDirection: 'column',
@@ -74,10 +82,6 @@ export default function SignInCard() {
         width: { xs: '100%', sm: '450px' },
         p: { xs: 2, sm: 4 },
         gap: 2,
-        boxShadow:
-          theme.palette.mode === 'light'
-            ? 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px'
-            : 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
       })}
     >
       <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -186,6 +190,6 @@ export default function SignInCard() {
           Sign in with Facebook
         </Button>
       </Box>
-    </Card>
+    </StyledCard>
   );
 }

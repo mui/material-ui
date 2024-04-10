@@ -15,7 +15,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { PaletteMode } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
@@ -66,6 +66,21 @@ function ToggleCustomTheme({
     </Box>
   );
 }
+
+const StyledCard = styled(Card)(({ theme }) => ({
+  boxShadow:
+    theme.palette.mode === 'light'
+      ? 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px'
+      : 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
+}));
+
+const StyledStack = styled(Stack)(({ theme }) => ({
+  backgroundImage:
+    theme.palette.mode === 'light'
+      ? 'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))'
+      : 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.3), hsl(220, 30%, 5%))',
+  backgroundRepeat: 'no-repeat',
+}));
 
 export default function SignUp() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
@@ -138,18 +153,10 @@ export default function SignUp() {
   return (
     <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
       <CssBaseline />
-      <Stack
-        component="main"
+      <StyledStack
         direction="column"
         justifyContent="space-between"
-        sx={(theme) => ({
-          backgroundRepeat: 'no-repeat',
-          backgroundImage:
-            theme.palette.mode === 'light'
-              ? 'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))'
-              : 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.3), hsl(220, 30%, 5%))',
-          pb: { xs: 12, sm: 0 },
-        })}
+        sx={{ pb: { xs: 12, sm: 0 } }}
       >
         <Stack
           direction="row"
@@ -173,19 +180,15 @@ export default function SignUp() {
           justifyContent="center"
           sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
         >
-          <Card
-            sx={(theme) => ({
+          <StyledCard
+            sx={{
               display: 'flex',
               flexDirection: 'column',
               alignSelf: 'center',
               width: { xs: '100%', sm: '450px' },
               p: { xs: 2, sm: 4 },
               gap: 4,
-              boxShadow:
-                theme.palette.mode === 'light'
-                  ? 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px'
-                  : 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
-            })}
+            }}
           >
             <SitemarkIcon />
             <Typography
@@ -290,9 +293,9 @@ export default function SignUp() {
                 Sign up with Facebook
               </Button>
             </Box>
-          </Card>
+          </StyledCard>
         </Stack>
-      </Stack>
+      </StyledStack>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
