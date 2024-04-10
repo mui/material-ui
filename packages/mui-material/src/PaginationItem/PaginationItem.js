@@ -207,9 +207,9 @@ const PaginationItemPage = styled(ButtonBase, {
               [`&.${paginationItemClasses.focusVisible}`]: {
                 backgroundColor: (theme.vars || theme).palette[color].dark,
               },
-            },
-            [`&.${paginationItemClasses.disabled}`]: {
-              color: (theme.vars || theme).palette.action.disabled,
+              [`&.${paginationItemClasses.disabled}`]: {
+                color: (theme.vars || theme).palette.action.disabled,
+              },
             },
           },
         })),
@@ -258,10 +258,10 @@ const PaginationItemPage = styled(ButtonBase, {
                       theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
                     ),
               },
-            },
-            [`&.${paginationItemClasses.disabled}`]: {
-              borderColor: (theme.vars || theme).palette.action.disabledBackground,
-              color: (theme.vars || theme).palette.action.disabled,
+              [`&.${paginationItemClasses.disabled}`]: {
+                borderColor: (theme.vars || theme).palette.action.disabledBackground,
+                color: (theme.vars || theme).palette.action.disabled,
+              },
             },
           },
         })),
