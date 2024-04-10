@@ -325,7 +325,7 @@ const Heading = styled('h1')({
   color: 'var(--color)',
 });
 
-function Heading() {
+function InlineStyledHeading() {
   const [color, setColor] = React.useState('red');
 
   return <Heading style={{ '--color': color }} />;
