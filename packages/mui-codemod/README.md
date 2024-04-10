@@ -973,6 +973,50 @@ npx @mui/codemod@latest deprecations/step-label-props <path>
 
 ### v6.0.0
 
+#### `styled-v6`
+
+Updates the usage of `styled` from `@mui/system@v5` to be compatible with `@pigment-css/react`.
+
+This codemod transforms the styles based on props to `variants` by looking for `styled` calls:
+
+```diff
+ styled('div')(({ theme, disabled }) => ({
+   color: theme.palette.primary.main,
+-  ...disabled && {
+-    opacity: 0.5,
++  variants: [
++    {
++      prop: 'disabled',
++      style: {
++        opacity: 0.5,
++      },
++    },
++  ],
+   },
+}));
+```
+
+This codemod can handle complex styles with spread operators, ternary operators, and nested objects.
+
+However, it has some **limitations**:
+
+- It does not transform dynamic values
+
+  ```js
+  const ResizableContainer = styled('div')(({ ownerState, theme }) => ({
+    width: ownerState.width ?? '100%',
+    height: ownerState.height ?? '100%',
+  }));
+  ```
+
+- It does not transform dynamic reference from the theme, e.g. color palette.
+
+  ```js
+  const Test = styled('div')(({ ownerState, theme }) => ({
+    backgroundColor: (theme.vars || theme).palette[ownerState.color]?.main,
+  }));
+  ```
+
 ### v5.0.0
 
 #### `base-use-named-exports`
