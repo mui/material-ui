@@ -280,7 +280,7 @@ const Button = styled('button')({
 });
 ```
 
-Note that the `props` function doesn't work if it's inside another closure—for example, this won't work inside an `array.map`:
+Note that the `props` function won't work if you try to access theme values inside another closure—for example, this won't work inside an `array.map`:
 
 ```jsx
 const Button = styled('button')({
@@ -828,7 +828,7 @@ const Flex = styled('div')((props) => ({
 
 > 💡 Keep in mind that the `variants` key is for fixed values of props—for example, a component's colors, sizes, and states.
 
-#### Programatically generated styles
+#### Programmatically generated styles
 
 Because Emotion and styled-components generate styles at runtime, those styles can potentially be different between renders and instances.
 For example, the calculated values in the code snippet below would be different each time the component renders:
@@ -871,8 +871,8 @@ function randomBetween(min: number, max: number) {
 }
 
 const Bubble = styled('div')({
-  '--x': (props) => props.x,
-  '--y': (props) => props.y,
+  '--x': props => props.x,
+  '--y': props => props.y,
 });
 
 function App() {
