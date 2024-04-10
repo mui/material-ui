@@ -27,12 +27,20 @@ export const handleUrlReplacement = async (
     const mainItem = match[3];
     // no need to handle data uris or absolute paths
     if (
-      mainItem[0] === '/' ||
       mainItem.startsWith('data:') ||
       mainItem.startsWith('http:') ||
       mainItem.startsWith('https:')
     ) {
       newCss += `url(${mainItem})`;
+    } else if (mainItem[0] === '/') {
+      const newPath = mainItem.replace(projectPath, '').split(path.sep).join('/');
+      if (newPath === mainItem) {
+        // absolute path unrelated to files in the project or in public directory
+        newCss += `url(${mainItem})`;
+      } else {
+        // absolute path to files in the project
+        newCss += `url(~${mainItem.replace(projectPath, '').split(path.sep).join('/')})`;
+      }
     } else {
       // eslint-disable-next-line no-await-in-loop
       const resolvedAbsolutePath = await asyncResolver(mainItem, filename, []);

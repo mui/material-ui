@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { adShape } from 'docs/src/modules/components/AdManager';
+import { GA_ADS_DISPLAY_RATIO } from 'docs/src/modules/constants';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 
 const Root = styled('span', { shouldForwardProp: (prop) => prop !== 'shape' })(({
@@ -22,6 +23,18 @@ const Root = styled('span', { shouldForwardProp: (prop) => prop !== 'shape' })((
 
 export default function AdDisplay(props) {
   const { ad, className, shape = 'auto' } = props;
+
+  React.useEffect(() => {
+    // Avoid an exceed on the Google Analytics quotas.
+    if (Math.random() > GA_ADS_DISPLAY_RATIO || !ad.label) {
+      return;
+    }
+
+    window.gtag('event', 'ad', {
+      eventAction: 'display',
+      eventLabel: ad.label,
+    });
+  }, [ad.label]);
 
   /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (

@@ -60,6 +60,7 @@ describe('utils', () => {
         background-image: url(${ABSOLUTE_PATH});
         background-image: url('../../assets/mui.svg');
         background-image: url('@/assets/mui.svg');
+        background-image: url('${projectPath}/src/assets/mui.svg');
         background-image: url('/assets/mui.svg');
         background-image: url('@/assets/mui.svg');
         display: flex;
@@ -71,6 +72,7 @@ describe('utils', () => {
         background-image: url(${DATA_URI});
         background-image: url(${HTML_LOGO_URL});
         background-image: url(${ABSOLUTE_PATH});
+        background-image: url(~/src/assets/mui.svg);
         background-image: url(~/src/assets/mui.svg);
         background-image: url(~/src/assets/mui.svg);
         background-image: url(/assets/mui.svg);
