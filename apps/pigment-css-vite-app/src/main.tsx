@@ -5,7 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CircularProgress from '@mui/material/CircularProgress';
 import CssBaseline from '@mui/material/CssBaseline';
 import { css } from '@pigment-css/react';
-import { Box } from '@pigment-css/react/Box';
+import Box from '@pigment-css/react/Box';
 import { ErrorBoundary } from 'react-error-boundary';
 import routes from '~react-pages';
 import '@pigment-css/react/styles.css';
