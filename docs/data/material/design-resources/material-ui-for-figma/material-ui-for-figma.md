@@ -58,7 +58,7 @@ The design kits leverage Figma's local variables to quickly offer you a way to t
 
 ### Editing the main components
 
-The Material UI for Figma Design Kit uses a plugin called [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer) to create multiple variants of a given component that essentially build up to the main component.
+The Material UI for Figma Design Kit uses a plugin called [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer) to create multiple variants of a given component that essentially build up to the main component.
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/eHBk0FbS0P8?si=QbOiMU2F1yvGB6s8" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
