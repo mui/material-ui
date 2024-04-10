@@ -871,8 +871,8 @@ function randomBetween(min: number, max: number) {
 }
 
 const Bubble = styled('div')({
-  '--x': props => props.x,
-  '--y': props => props.y,
+  '--x': (props) => props.x,
+  '--y': (props) => props.y,
 });
 
 function App() {
