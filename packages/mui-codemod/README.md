@@ -1030,7 +1030,7 @@ This codemod transforms the styles based on props to `variants` by looking for `
 +    },
 +  ],
    },
-}));
+ }));
 ```
 
 This codemod can handle complex styles with spread operators, ternary operators, and nested objects.
