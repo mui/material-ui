@@ -46,3 +46,5 @@ export function App() {
 App.propTypes = {
   children: PropTypes.element,
 };
+
+App.muiName = 'App';

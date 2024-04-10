@@ -19,10 +19,10 @@
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "stickyFooter": {
-      "description": "If <code>true</code>, the footer always appear at the bottom of the overflow table.<br>⚠️ It doesn&#39;t work with IE11."
+      "description": "If <code>true</code>, the footer always appear at the bottom of the overflow table."
     },
     "stickyHeader": {
-      "description": "If <code>true</code>, the header always appear at the top of the overflow table.<br>⚠️ It doesn&#39;t work with IE11."
+      "description": "If <code>true</code>, the header always appear at the top of the overflow table."
     },
     "stripe": {
       "description": "The odd or even row of the table body will have subtle background color."
