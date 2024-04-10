@@ -271,6 +271,36 @@ The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.tran
 +  slots={{ transition: CustomTransition }}
 ```
 
+## Badge
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/badge-props <path>
+```
+
+### components
+
+The Badge's `components` was deprecated in favor of `slots`:
+
+```diff
+ <Badge
+-  components={{ root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+ />
+```
+
+### componentsProps
+
+The Badge's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Badge
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
 ## Button
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#button-classes) below to migrate the code as described in the following sections:
@@ -922,6 +952,46 @@ The Slider's `componentsProps` was deprecated in favor of `slotProps`:
 -  componentsProps={{ track: { testid: 'test-id' } }}
 +  slotProps={{ track: { testid: 'test-id' } }}
  />
+```
+
+## ToggleButtonGroup
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#toggle-button-group-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes composing the `orientation` prop value and `grouped` CSS class have been removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedHorizontal
++.MuiToggleButtonGroup-root.MuiToggleButtonGroup-horizontal > .MuiToggleButtonGroup-grouped
+-.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedVertical
++.MuiToggleButtonGroup-root.MuiToggleButtonGroup-vertical > .MuiToggleButtonGroup-grouped
+```
+
+```diff
+
+ import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
+
+  MuiButtonGroup: {
+   styleOverrides: {
+     root: {
+-      [`& .${toggleButtonGroupClasses.groupedHorizontal}`]: {
++      [`&.${toggleButtonGroupClasses.horizontal} > .${toggleButtonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${toggleButtonGroupClasses.groupedVertical}`]: {
++      [`&.${toggleButtonGroupClasses.vertical} > .${toggleButtonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+   },
+  },
 ```
 
 ## StepLabel

@@ -152,7 +152,7 @@ For example, if `min={0}` and `step={2}`, valid values for the component would b
 ```
 
 :::warning
-Support for decimal values and step sizes isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/material-ui/issues/38518) to see it arrive sooner.
+Support for decimal values and step sizes isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/base-ui/issues/41) to see it arrive sooner.
 :::
 
 When the input field is in focus, you can enter values that fall outside the valid range.

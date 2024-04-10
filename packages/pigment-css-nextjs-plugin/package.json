@@ -1,6 +1,6 @@
 {
   "name": "@pigment-css/nextjs-plugin",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
@@ -45,6 +45,7 @@
     "loader.js",
     "next-font.js",
     "next-image.js",
+    "third-party-styled.js",
     "zero-virtual.css",
     "package.json",
     "LICENSE"

@@ -29,6 +29,7 @@ import InfoMobile from './InfoMobile';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ToggleColorMode from './ToggleColorMode';
+import SitemarkIcon from './SitemarkIcon';
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -55,7 +56,7 @@ function ToggleCustomTheme({
         exclusive
         value={showCustomTheme}
         onChange={toggleCustomTheme}
-        aria-label="Platform"
+        aria-label="Toggle design language"
         sx={{
           backgroundColor: 'background.default',
           '& .Mui-selected': {
@@ -74,13 +75,6 @@ function ToggleCustomTheme({
 }
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
-
-const logoStyle = {
-  width: '140px',
-  height: '56px',
-  marginLeft: '-4px',
-  marginRight: '-8px',
-};
 
 function getStepContent(step: number) {
   switch (step) {
@@ -153,13 +147,7 @@ export default function Checkout() {
               sx={{ ml: '-8px' }}
             >
               Back to
-              <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
-                style={logoStyle}
-                alt="Sitemark's logo"
-              />
+              <SitemarkIcon />
             </Button>
           </Box>
           <Box
@@ -215,13 +203,7 @@ export default function Checkout() {
                 sx={{ alignSelf: 'start' }}
               >
                 Back to
-                <img
-                  src={
-                    'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                  }
-                  style={logoStyle}
-                  alt="Sitemark's logo"
-                />
+                <SitemarkIcon />
               </Button>
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
             </Box>

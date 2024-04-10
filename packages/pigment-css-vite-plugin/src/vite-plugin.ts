@@ -10,7 +10,7 @@ import path from 'node:path';
 import type { ModuleNode, Plugin, ResolvedConfig, ViteDevServer, FilterPattern } from 'vite';
 import { optimizeDeps, createFilter } from 'vite';
 
-import { slugify, logger as wywLogger, syncResolve } from '@wyw-in-js/shared';
+import { logger as wywLogger, syncResolve } from '@wyw-in-js/shared';
 import {
   TransformCacheCollection,
   transform,
@@ -54,8 +54,8 @@ export default function wywVitePlugin({
   ...rest
 }: VitePluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
-  const cssLookup: { [key: string]: string } = {};
-  const cssFileLookup: { [key: string]: string } = {};
+  const cssLookup = new Map<string, string>();
+  const cssFileLookup = new Map<string, string>();
   let config: ResolvedConfig;
   let devServer: ViteDevServer;
 
@@ -78,14 +78,14 @@ export default function wywVitePlugin({
     },
     resolveId(importeeUrl: string) {
       const [id] = importeeUrl.split('?', 1);
-      if (cssLookup[id]) {
+      if (cssLookup.has(id)) {
         return id;
       }
-      return cssFileLookup[id];
+      return cssFileLookup.get(id);
     },
     load(url: string) {
       const [id] = url.split('?', 1);
-      return cssLookup[id];
+      return cssLookup.get(id);
     },
     handleHotUpdate(ctx) {
       // it's module, so just transform it
@@ -113,10 +113,10 @@ export default function wywVitePlugin({
         .concat(ctx.modules)
         .filter((m): m is ModuleNode => !!m);
     },
-    async transform(code: string, url: string) {
+    async transform(code, url) {
       const [id] = url.split('?', 1);
 
-      // Main modification start
+      // Main modification starts
       if (id in cssLookup) {
         return null;
       }
@@ -189,7 +189,7 @@ export default function wywVitePlugin({
                 babelOptions: {
                   ...rest.babelOptions,
                   plugins: [
-                    ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+                    `${process.env.RUNTIME_PACKAGE_NAME}/exports/remove-prop-types-plugin`,
                     'babel-plugin-define-var', // A fix for undefined variables in the eval phase of wyw-in-js, more details on https://github.com/siriwatknp/babel-plugin-define-var?tab=readme-ov-file#problem
                     ...(rest.babelOptions?.plugins ?? []),
                   ],
@@ -231,9 +231,8 @@ export default function wywVitePlugin({
 
         dependencies ??= [];
 
-        const slug = slugify(cssText);
         const cssFilename = path
-          .normalize(`${id.replace(/\.[jt]sx?$/, '')}_${slug}.css`)
+          .normalize(`${id.replace(/\.[jt]sx?$/, '')}.pigment.css`)
           .replace(/\\/g, path.posix.sep);
 
         const cssRelativePath = path
@@ -247,18 +246,10 @@ export default function wywVitePlugin({
           cssText += `/*# sourceMappingURL=data:application/json;base64,${map}*/`;
         }
 
-        cssLookup[cssFilename] = cssText;
-        cssFileLookup[cssId] = cssFilename;
+        cssLookup.set(cssFilename, cssText);
+        cssFileLookup.set(cssId, cssFilename);
 
         result.code += `\nimport ${JSON.stringify(cssFilename)};\n`;
-        if (devServer?.moduleGraph) {
-          const module = devServer.moduleGraph.getModuleById(cssId);
-
-          if (module) {
-            devServer.moduleGraph.invalidateModule(module);
-            module.lastHMRTimestamp = module.lastInvalidationTimestamp || Date.now();
-          }
-        }
 
         for (let i = 0, end = dependencies.length; i < end; i += 1) {
           // eslint-disable-next-line no-await-in-loop
@@ -275,9 +266,17 @@ export default function wywVitePlugin({
         } else {
           target.dependencies = dependencies;
         }
+        // Reload the contents of the CSS file in the dev server
+        if (devServer?.moduleGraph) {
+          const cssModule = devServer.moduleGraph.getModuleById(cssFilename);
+          if (cssModule) {
+            devServer.reloadModule(cssModule);
+          }
+        }
+
         return { code: result.code, map: result.sourceMap };
       } catch (ex) {
-        const err = new Error(`MUI: Error while transforming file '${id}'`);
+        const err = new Error(`${process.env.PACKAGE_NAME}: Error while transforming file '${id}'`);
         err.message = (ex as Error).message;
         err.stack = (ex as Error).stack;
         throw err;

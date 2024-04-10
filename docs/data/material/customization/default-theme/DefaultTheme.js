@@ -8,7 +8,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import ThemeViewer, {
   useNodeIdsLazy,
 } from 'docs/src/modules/components/ThemeViewer';
-import { blue, grey } from 'docs/src/modules/brandingTheme';
+import { blue, grey } from '@mui/docs/branding';
 
 const StyledSwitch = styled(Switch)(({ theme }) => [
   {
