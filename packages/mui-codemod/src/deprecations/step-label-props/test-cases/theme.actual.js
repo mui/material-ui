@@ -14,3 +14,11 @@ fn({
     },
   },
 });
+
+fn({
+  MuiStepLabel: {
+    defaultProps: {
+      StepIconComponent: StepIconComponent,
+    },
+  },
+});
