@@ -334,7 +334,7 @@ const DemoCodeViewer = styled(HighlightedCode)(() => ({
     borderRadius: 0,
   },
   '& .MuiCode-copy': {
-    visibility: 'hidden',
+    display: 'none',
   },
 }));
 

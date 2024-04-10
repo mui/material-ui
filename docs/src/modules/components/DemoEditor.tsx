@@ -36,7 +36,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       maxHeight: 'initial',
     },
     '& .MuiCode-copy': {
-      visibility: 'hidden',
+      display: 'none',
     },
   },
   theme.applyDarkStyles({
