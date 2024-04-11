@@ -83,6 +83,12 @@ async function runJscodeshiftTransform(transform, files, flags, codemodFlags) {
 
   if (jscodeshiftProcess.error) {
     throw jscodeshiftProcess.error;
+  } else {
+    if (!flags.skipPrettier) {
+      childProcess.spawnSync('prettier', ['--write', `prettier --write $(git diff --name-only)`], {
+        stdio: 'inherit',
+      });
+    }
   }
 }
 
@@ -162,11 +168,6 @@ function run(argv) {
 
   runJscodeshiftTransform(codemod, files, flags, argv._);
   runPostcssTransform(codemod, files);
-  if (!flags.skipPrettier) {
-    childProcess.spawnSync('prettier', ['--write', `prettier --write $(git diff --name-only)`], {
-      stdio: 'inherit',
-    });
-  }
 }
 
 yargs
