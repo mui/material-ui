@@ -4,7 +4,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { blueberryTwilightPaletteLight } from '@mui/x-charts';
 import Frame from 'docs/src/components/action/Frame';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 
 const code = `
 <BarChart

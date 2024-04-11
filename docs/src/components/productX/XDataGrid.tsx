@@ -18,7 +18,7 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import StylingInfo from 'docs/src/components/action/StylingInfo';

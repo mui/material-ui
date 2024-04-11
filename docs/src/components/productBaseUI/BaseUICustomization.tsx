@@ -15,7 +15,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import Frame from 'docs/src/components/action/Frame';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 
 const code = `
 import clsx from 'clsx';

@@ -21,7 +21,7 @@ import ROUTES from 'docs/src/route';
 // switcher icons
 
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import BaseButtonDemo from './components/BaseButtonDemo';
 import BaseMenuDemo from './components/BaseMenuDemo';
 import BaseInputDemo from './components/BaseInputDemo';

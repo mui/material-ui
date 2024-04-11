@@ -12,7 +12,7 @@ import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import Frame from 'docs/src/components/action/Frame';
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 
 const code = `
 <Card
