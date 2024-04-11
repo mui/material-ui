@@ -5,11 +5,11 @@
 ## Getting started
 
 Material UI for Figma consists of representations of the library's React components in Figma so designers and developers can communicate and iterate more efficiently.
-In Figma, you will see:
+The kit includes:
 
-- extra components and features that aren't covered in Material Design
-- components with the same design as Material UI
-- closely mirroed terminology for props, variables, design tokens, and other values
+- components with the same design as Material UI
+- additional components and features not covered by Material Design
+- shared terminology from the React library for props, variables, design tokens, and other values
 
 ### Community vs. full version
 
@@ -30,27 +30,27 @@ Then you can either follow [Figma's import guide](https://help.figma.com/hc/en-u
 
 ### Local variables
 
-The design kit uses Figma's local variables to create a collection of styles that is comparable to the theme structure of the Material UI code.
-Follow the steps shown in the video to see all of the variables available:
+The design kit uses Figma's local variables to create a collection of styles comparable to the theme structure of Material UI code.
+Follow the steps in the video below to see all the variables available:
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/u3zR6p-OjKQ?si=DDVEsedwmJQeik3T" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
 ### Customizing colors
 
-Make sure you use the variables panel to customize colors, as shown in the video below:
+Use the variables panel to customize colors as shown in the video below:
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/YuzkWFm0-bA?si=XvgPR0vNGtiBPqKY" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
 ### Customizing typography
 
-On the other hand, typography styles are not available as local variables but as local styles.
-The customization experience is similar to modifying colors, though, as shown in the video below:
+Typography customization uses local styles rather than local variables.
+The experience is similar to modifying colors, as shown in the video below:
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/HepVDfrLmak?si=gklG_3ZZyxDWzlPM" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
 ### Switching between light and dark modes
 
-The design kits leverage Figma's local variables to quickly offer you a way to toggle the variable mode to either light or dark, as shown in the video below:
+The design kit uses Figma's local variables to let you toggle the variable mode between light and dark, as shown in the video below:
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/ydTF1HhLnJM?si=1Fj4CFLgVavfg4Fz" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
@@ -74,7 +74,7 @@ The Material UI for Figma Design Kit uses a plugin called [Similayer](https://w
 
 ## Code sync
 
-You can export theme tokens and component customizations to code if paired with [the Connect Figma plugin](/material-ui/design-resources/connect/).
+You can export theme tokens and component customizations to code using [the Connect plugin for Figma](/material-ui/design-resources/connect/).
 Material UI for Figma has been built to be as close to the React components as possible, making it for a fluid integration with code.
 
 Learn more about the Material UI theme structure by visiting the [Theming](https://mui.com/material-ui/customization/theming/) and [Default theme viewer](https://mui.com/material-ui/customization/theming/) pages.
