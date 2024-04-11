@@ -4,15 +4,18 @@
 
 ## Standard demo
 
+"Standard" refers to when no background is explicitly defined.
+So, it renders the "outlined" background variant.
+
 {{"demo": "DemoInDocs.js"}}
-
-## "bg": "inline"
-
-{{"demo": "DemoInDocs.js", "bg": "inline"}}
 
 ## "bg": "outlined"
 
 {{"demo": "DemoInDocs.js", "bg": "outlined"}}
+
+## "bg": "inline"
+
+{{"demo": "DemoInDocs.js", "bg": "inline"}}
 
 ## "bg": true
 
