@@ -7,7 +7,7 @@
 Material UI for Figma consists of representations of the library's React components in Figma so designers and developers can communicate and iterate more efficiently.
 The kit includes:
 
-- components with the same design as Material UI
+- components with the same design as Material UI
 - additional components and features not covered by Material Design
 - shared terminology from the React library for props, variables, design tokens, and other values
 
@@ -30,7 +30,7 @@ Then you can either follow [Figma's import guide](https://help.figma.com/hc/en-u
 
 ### Local variables
 
-The design kit uses Figma's local variables to create a collection of styles comparable to the theme structure of Material UI code.
+The design kit uses Figma's local variables to create a collection of styles comparable to the theme structure of Material UI code.
 Follow the steps in the video below to see all the variables available:
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/u3zR6p-OjKQ?si=DDVEsedwmJQeik3T" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
