@@ -88,7 +88,7 @@ async function runJscodeshiftTransform(transform, files, flags, codemodFlags) {
       childProcess.execSync('prettier --write $(git diff --name-only)', {
         stdio: 'inherit',
       });
-    } catch (error) {
+    } catch (err) {
       // silentyly ignore errors
     }
   }
