@@ -10,6 +10,8 @@ import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 
+const useThemeProps = createUseThemeProps('MuiIconButton');
+
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, color, edge, size } = ownerState;
 
@@ -156,7 +158,6 @@ const IconButtonRoot = styled(ButtonBase, {
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
-  const useThemeProps = createUseThemeProps('MuiIconButton');
   const props = useThemeProps({ props: inProps, name: 'MuiIconButton' });
   const {
     edge = false,
