@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.4",
+    "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1"
