@@ -228,7 +228,7 @@ From here you can run Connect to generate a new theme—here's what would be gen
 :::info
 The generated theme may contain the CSS `has()` selector, which is used to target specific child classes.
 This selector is not used by other theme-related examples in the docs because it used to have limited browser support.
-But with the release of Firefox v124, the selector is now [supported by all modern browsers](https://caniuse.com/css-has).
+It is now [supported by all modern browsers](https://caniuse.com/css-has).
 :::
 
 You can also check out the Storybook preview to test the Material UI version of your component.

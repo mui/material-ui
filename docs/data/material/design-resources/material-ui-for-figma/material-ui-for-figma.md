@@ -58,7 +58,7 @@ The design kit uses Figma's local variables to let you toggle the variable mode 
 
 ### Editing the main components
 
-The Material UI for Figma Design Kit uses a plugin called [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer) to create multiple variants of a given component that essentially build up to the main component.
+You can use the [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer) plugin to select multiple components at once that share some property.
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/eHBk0FbS0P8?si=QbOiMU2F1yvGB6s8" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
@@ -66,9 +66,14 @@ The Material UI for Figma Design Kit uses a plugin called [Similayer](https://w
 
 #### Adding new columns
 
+The video below shows how to add new columns by detaching cells from their row components, allowing you to freely move content around.
+
 <iframe src="https://www.loom.com/embed/6dd71cc374bc4d84af35ebb75d107d38?sid=1d3a4790-4c28-433e-94ce-97dd969601dd" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="width: 100%; height: 500px;"></iframe>
 
 #### Adding new columns in the main component
+
+The Table and Data Grid components come with a limited number of columns by default.
+The video below shows how to add new columns by copying cells directly on the main component:
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/s_n3LHm1daI?si=_QbXvtYPkc8EBd5d" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
