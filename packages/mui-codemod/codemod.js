@@ -84,9 +84,13 @@ async function runJscodeshiftTransform(transform, files, flags, codemodFlags) {
   if (jscodeshiftProcess.error) {
     throw jscodeshiftProcess.error;
   } else if (!flags.skipPrettier) {
-    childProcess.execSync('prettier --write $(git diff --name-only)', {
-      stdio: 'inherit',
-    });
+    try {
+      childProcess.execSync('prettier --write $(git diff --name-only)', {
+        stdio: 'inherit',
+      });
+    } catch (error) {
+      // silentyly ignore errors
+    }
   }
 }
 
