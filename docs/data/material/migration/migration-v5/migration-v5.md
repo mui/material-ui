@@ -33,11 +33,13 @@ The `exports` field has been added to the `@mui/material/package.json` file to i
 "exports": {
     ".": {
         "types": "./index.d.ts",
+        "modern": "./modern/index.mjs",
         "import": "./index.mjs",
         "default": "./node/index.js"
     },
     "./*": {
         "types": "./*/index.d.ts",
+        "modern": "./modern/index.mjs",
         "import": "./*/index.mjs",
         "default": "./node/*/index.js"
     }
@@ -45,7 +47,9 @@ The `exports` field has been added to the `@mui/material/package.json` file to i
 // ...
 ```
 
-This limits the exported modules to the root import and one level deep imports.
+Read more about the `exports` field in the [Node.js documentation](https://nodejs.org/api/packages.html#exports).
+
+This change limits the exported modules to the root import and one level deep imports.
 If you were importing from deeper levels, you will need to update your imports:
 
 ```diff title="index.mjs"
@@ -58,7 +62,34 @@ If you were importing from deeper levels, you will need to update your imports:
 + const { default: Button } = require('@mui/material/Button');
 ```
 
-If you were importing from `/node` as a workaround, this is no longer necessary as the `exports` field maps CJS to the correct files.
 You might have to update your bundler configuration to support the new structure.
+Following are some common use cases that require changes:
 
-Read more about the `exports` field in the [Node.js documentation](https://nodejs.org/api/packages.html#exports).
+#### Importing CJS
+
+If you were importing from `/node` as a workaround, this is no longer necessary as the `exports` field maps CJS to the correct files.
+
+#### Using the modern bundle
+
+The way the modern bundle should be imported has changed.
+Previously, you would alias `@mui/material` to `@mui/material/modern` in your bundler configuration.
+Now, you should configure your bundler's resolve conditions to use the `"modern"` condition name.
+Here's the updated Webpack example that was previously documented:
+
+```diff title="webpack.config.js"
+ module.exports = {
+   //...
+   resolve: {
+-    alias: {
+-      '@mui/material': '@mui/material/modern',
+-    }
++    conditionNames: ['modern', 'import', 'default'],
+   },
+ };
+```
+
+Documentation: [resolve.conditionNames](https://webpack.js.org/configuration/resolve/#resolveconditionnames)
+
+:::info
+For guidance on other bundlers, refer to the [How to use custom bundlers documentation](/material-ui/guides/minimizing-bundle-size/#how-to-use-custom-bundles).
+:::

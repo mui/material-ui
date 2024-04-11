@@ -33,11 +33,13 @@ The `exports` field has been added to the `@mui/system/package.json` file to imp
 "exports": {
     ".": {
         "types": "./index.d.ts",
+        "modern": "./modern/index.mjs",
         "import": "./index.mjs",
         "default": "./node/index.js"
     },
     "./*": {
         "types": "./*/index.d.ts",
+        "modern": "./modern/index.mjs",
         "import": "./*/index.mjs",
         "default": "./node/*/index.js"
     }
@@ -45,7 +47,9 @@ The `exports` field has been added to the `@mui/system/package.json` file to imp
 // ...
 ```
 
-This limits the exported modules to the root import and one level deep imports.
+Read more about the `exports` field in the [Node.js documentation](https://nodejs.org/api/packages.html#exports).
+
+This change limits the exported modules to the root import and one level deep imports.
 If you were importing from deeper levels, you will need to update your imports:
 
 ```diff
@@ -53,10 +57,12 @@ If you were importing from deeper levels, you will need to update your imports:
 + import styled from '@mui/system/styled';
 ```
 
-If you were importing from `/esm` as a workaround, this is no longer necessary as the `exports` field maps ESM to the correct files.
 You might have to update your bundler configuration to support the new structure.
+Following are some common use cases that require changes:
 
-Read more about the `exports` field in the [Node.js documentation](https://nodejs.org/api/packages.html#exports).
+#### Importing ESM
+
+If you were importing from `/esm` as a workaround, this is no longer necessary as the `exports` field maps ESM to the correct files.
 
 ### GridProps type
 

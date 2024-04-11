@@ -104,6 +104,7 @@ function getCoreExportsField() {
     // Asumes the types file and node build are set up correctly
     coreExportsField['.'] = {
       types: './index.d.ts',
+      modern: './modern/index.mjs',
       import: './index.mjs',
       default: './node/index.js',
     };
@@ -114,6 +115,7 @@ function getCoreExportsField() {
     // Asumes the types files and node build are set up correctly
     coreExportsField['./*'] = {
       types: './*/index.d.ts',
+      modern: './modern/*/index.mjs',
       import: './*/index.mjs',
       default: './node/*/index.js',
     };
