@@ -31,9 +31,9 @@ Typography and shadow-related tokens are found in the [local styles collection](
 The Material UI for Figma Design Kit comes fully loaded with design tokens that map out to the [default theme of the Material UI React library](/material-ui/customization/default-theme/).
 
 To customize existing tokens, open the [local variable modal](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables) by clicking on the filter icon as shown below.
-Tweak any of the variables available in the various collections (palette, breakpoints, shapes & spacing) as you see fit.
+Tweak any of the variables available in the collections (such as palettes, breakpoints, shapes, and spacing) as you see fit.
 
-<img src="/static/material-ui/design-resources/connect-variables.png" style="width: 814px; margin-bottom: 8px;" alt="The Locals variables menu in Figma, where all design tokens are stored and new ones can be added." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-variables.png" style="width: 814px; margin-bottom: 8px;" alt="The Local variables menu in Figma, where all design tokens are stored and new ones can be added." width="1628" height="400" />
 
 Then open the Connect plugin and click on **Generate theme**.
 
@@ -49,27 +49,29 @@ You can also preview the generated theme and the customized tokens by navigating
 
 ### Adding new tokens
 
-Extend the existing tokens set with your own by either adding new variables to the existing local variable collections, or by adding new elevation and typography styles to the local style collections.
-After you've added your custom tokens, click on **Regenerate theme** to includes these tokens in your theme.
+You can extend the existing tokens set with your own either by adding new variables to the existing local variable collections, or by adding new elevation and typography styles to the local style collections.
+After you've added your custom tokens, click on **Regenerate theme** to include these tokens in your theme.
 
-<img src="/static/material-ui/design-resources/connect-regenerate.png" style="width: 814px" alt="The 'Regenerate button' in the Connect plugin UI." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-regenerate.png" style="width: 814px" alt="The Regenerate button in the Connect plugin UI." width="1628" height="400" />
 
 ## Customizing components
 
-Connect can also generate theme styles for customized components, enabling you to completely change their look and feel and from within Figma create your custom design system.
+Connect can also generate theme styles for customized components, enabling you to completely change their look and feel and create your custom design system from within Figma.
 
 :::info
 This feature is currently limited to the Button and Switch components.
 Support for more components is coming soon.
 :::
 
-To demonstrate, let's customize a Switch's checked state, medium size, with primary color, so it looks closer to the iOS design.
+As an example, here's how to customize the checked state, medium size, and primary color of a Switch component to replicate the iOS design system:
 
-Note that the Design Kit's component layer hierarchy and layer names should remain unaltered in order for Connect to correctly extract the custom component styles and generate a theme for them.
+:::warning
+The Design Kit's component layer hierarchy and layer names must remain unaltered for Connect to correctly extract custom component styles and generate the theme.
+:::
 
-<img src="/static/material-ui/design-resources/connect-component-variant.png" style="width: 814px; margin-bottom: 8px;" alt="A specific variant of the Switch component selected in the Design Kit" width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-component-variant.png" style="width: 814px; margin-bottom: 8px;" alt="A specific variant of the Switch component selected in the Design Kit." width="1628" height="400" />
 
-Connect generates the following theme code for our customized Switch:
+Connect generates the following theme code for the customized Switch:
 
 ```js
 {
@@ -107,23 +109,23 @@ Connect generates the following theme code for our customized Switch:
 }
 ```
 
-The generated theme targets classes that correspond to the specific Switch configuration defined above, so styles are only applied when the Material UI component's props and state match those of the customized Figma component.
+The generated theme targets classes that correspond to the specific Switch configuration defined above, so styles are only applied when the props and state of the Material UI component match those of the customized Figma component.
 
-To customize the other states, you need to apply the desired design chances to each variant in Figma. To efficiently do this follow these steps:
+To customize other states, you need to apply the desired design changes to each variant in Figma by following these steps:
 
-1. Customize a single "base" variant. For example, a Switch component in the checked state, of medium size, and primary color.
-2. Clone this variant and rename it to target the next variant you'd like to customize. For example, rename the cloned version of `Checked=True, Size=Medium, Color=Primary, State=Enabled` to `Checked=False, Size=Medium, Color=Primary, State=Enabled`).
+1. Customize a single "base" variant—for example, a Switch component in the checked state, of medium size, and primary color.
+2. Clone this variant and rename it to target the next variant you'd like to customize—for example, rename the cloned version of `Checked=True, Size=Medium, Color=Primary, State=Enabled` to `Checked=False, Size=Medium, Color=Primary, State=Enabled`.
 3. Delete the old versions of the same variant.
 4. Move the new version to the correct square in the variant grid.
 5. Make the necessary style adjustments to the variant's child layers.
 
 Repeat this process for each variant you want to customize.
-Below you can see what the result can look like.
+Here's an example of what this might look like:
 
-<img src="/static/material-ui/design-resources/connect-switch-component-customized.png" style="width: 814px; margin-bottom: 8px;" alt="A fully customized Switch component in the Material UI Design Kit" width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-switch-component-customized.png" style="width: 814px; margin-bottom: 8px;" alt="A fully customized Switch component in the Material UI Design Kit." width="1628" height="400" />
 
 You can run Connect to generate a new theme.
-For the example shown above, this the generated theme:
+From here you can run Connect to generate a new theme—here's what would be generated from the example above:
 
 ```js
 {
@@ -224,19 +226,22 @@ For the example shown above, this the generated theme:
 ```
 
 :::info
-The generated theme may contain the CSS `has()` selector, which is used to target specific child classes. This selector is not used by other theme-related examples in the docs because up until recently it had limited browser support. However, since the release of Firefox v124, the selector is [supported by all modern browsers](https://caniuse.com/css-has).
+The generated theme may contain the CSS `has()` selector, which is used to target specific child classes.
+This selector is not used by other theme-related examples in the docs because it used to have limited browser support.
+But with the release of Firefox v124, the selector is now [supported by all modern browsers](https://caniuse.com/css-has).
 :::
 
 You can also check out the Storybook preview to test the Material UI version of your component.
 
-<img src="/static/material-ui/design-resources/connect-switch-component-customized-storybook.png" style="width: 814px" alt="A fully customized Switch component in Storybook" width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-switch-component-customized-storybook.png" style="width: 814px" alt="A fully customized Switch component in Storybook." width="1628" height="400" />
 
 ## Using the generated theme
 
-The theme generated by Connect should be used in combination with Material UI's [CssVarsProvider](/material-ui/experimental-api/css-theme-variables/migration/).
-The default [ThemeProvider](/material-ui/customization/theming/#theme-provider) is currently not supported.
+:::warning
+Themes generated by Connect must be used with Material UI's [`CssVarsProvider`](/material-ui/experimental-api/css-theme-variables/migration/)—the default [`ThemeProvider`](/material-ui/customization/theming/#theme-provider) is not supported.
+:::
 
-Here's an example of how you can add the Connect-generated theme to your codebase:
+Here's an example of how to add a Connect theme to your codebase:
 
 ```tsx title="_app.tsx"
 import {
