@@ -2,9 +2,10 @@
 title: Blog post title
 description: Our internationally distributed startup gathered on a remote island to get to know each other better. Here's what happened!
 date: 2022-07-28T00:00:00.000Z
-authors: ['samuelsycamore']
+authors: ['alexfauquette']
 tags: ['Company']
 manualCard: false
+cardTitle: blog with\n*custom* card
 ---
 
 ## Description

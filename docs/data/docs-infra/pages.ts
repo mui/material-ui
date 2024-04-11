@@ -7,6 +7,7 @@ const pages: readonly MuiPage[] = [
     children: [
       { pathname: '/experiments/docs/headers' },
       { pathname: '/experiments/docs/markdown' },
+      { pathname: '/experiments/docs/og-card' },
     ],
   },
   {

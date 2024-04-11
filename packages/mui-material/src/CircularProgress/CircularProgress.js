@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { keyframes, css } from '@mui/system';
+import { keyframes, css, createUseThemeProps, styled } from '../zero-styled';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
+
+const useThemeProps = createUseThemeProps('MuiCircularProgress');
 
 const SIZE = 44;
 
@@ -39,6 +39,14 @@ const circularDashKeyframe = keyframes`
   }
 `;
 
+const rotateAnimation = css`
+  animation: ${circularRotateKeyframe} 1.4s linear infinite;
+`;
+
+const dashAnimation = css`
+  animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
+`;
+
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, color, disableShrink } = ownerState;
 
@@ -63,22 +71,39 @@ const CircularProgressRoot = styled('span', {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(
-  ({ ownerState, theme }) => ({
-    display: 'inline-block',
-    ...(ownerState.variant === 'determinate' && {
-      transition: theme.transitions.create('transform'),
-    }),
-    ...(ownerState.color !== 'inherit' && {
-      color: (theme.vars || theme).palette[ownerState.color].main,
-    }),
-  }),
-  ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
-    css`
-      animation: ${circularRotateKeyframe} 1.4s linear infinite;
-    `,
-);
+})(({ theme }) => ({
+  display: 'inline-block',
+  variants: [
+    {
+      props: {
+        variant: 'determinate',
+      },
+      style: {
+        transition: theme.transitions.create('transform'),
+      },
+    },
+    {
+      props: {
+        variant: 'indeterminate',
+      },
+      style:
+        // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
+        rotateAnimation !== 'string'
+          ? rotateAnimation
+          : {
+              animation: `${circularRotateKeyframe} 1.4s linear infinite`,
+            },
+    },
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          color: (theme.vars || theme).palette[color].main,
+        },
+      })),
+  ],
+}));
 
 const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
@@ -100,27 +125,40 @@ const CircularProgressCircle = styled('circle', {
       ownerState.disableShrink && styles.circleDisableShrink,
     ];
   },
-})(
-  ({ ownerState, theme }) => ({
-    stroke: 'currentColor',
-    // Use butt to follow the specification, by chance, it's already the default CSS value.
-    // strokeLinecap: 'butt',
-    ...(ownerState.variant === 'determinate' && {
-      transition: theme.transitions.create('stroke-dashoffset'),
-    }),
-    ...(ownerState.variant === 'indeterminate' && {
-      // Some default value that looks fine waiting for the animation to kicks in.
-      strokeDasharray: '80px, 200px',
-      strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-    }),
-  }),
-  ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
-    !ownerState.disableShrink &&
-    css`
-      animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-    `,
-);
+})(({ theme }) => ({
+  stroke: 'currentColor',
+  variants: [
+    {
+      props: {
+        variant: 'determinate',
+      },
+      style: {
+        transition: theme.transitions.create('stroke-dashoffset'),
+      },
+    },
+    {
+      props: {
+        variant: 'indeterminate',
+      },
+      style: {
+        // Some default value that looks fine waiting for the animation to kicks in.
+        strokeDasharray: '80px, 200px',
+        strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+      },
+    },
+    {
+      // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
+      props: ({ ownerState }) =>
+        ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+      style:
+        typeof dashAnimation !== 'string'
+          ? dashAnimation
+          : {
+              animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
+            },
+    },
+  ],
+}));
 
 /**
  * ## ARIA
