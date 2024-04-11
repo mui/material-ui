@@ -2,13 +2,15 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import Chip from '@mui/material/Chip';
+import { Chip as MuiChip } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+
 import { styled } from '@mui/material/styles';
+
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
@@ -41,7 +43,7 @@ const items = [
   },
 ];
 
-const StyledChip = styled(Chip)(({ theme, selected }) => ({
+const Chip = styled(MuiChip)(({ theme, selected }) => ({
   ...(selected && {
     borderColor:
       theme.palette.mode === 'light'
@@ -85,7 +87,7 @@ export default function Features() {
           </div>
           <Grid container item gap={1} sx={{ display: { xs: 'auto', sm: 'none' } }}>
             {items.map(({ title }, index) => (
-              <StyledChip
+              <Chip
                 key={index}
                 label={title}
                 onClick={() => handleItemClick(index)}

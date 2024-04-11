@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
 import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -13,8 +12,7 @@ import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import { PaletteMode } from '@mui/material';
+import { PaletteMode, Stack as MuiStack, Card as MuiCard } from '@mui/material';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
@@ -68,14 +66,14 @@ function ToggleCustomTheme({
   );
 }
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const Card = styled(MuiCard)(({ theme }) => ({
   boxShadow:
     theme.palette.mode === 'light'
       ? 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px'
       : 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
 }));
 
-const StyledStack = styled(Stack)(({ theme }) => ({
+const Stack = styled(MuiStack)(({ theme }) => ({
   backgroundImage:
     theme.palette.mode === 'light'
       ? 'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))'
@@ -149,12 +147,12 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
       <CssBaseline />
-      <StyledStack
+      <Stack
         direction="column"
         justifyContent="space-between"
         sx={{ height: { xs: 'auto', sm: '100dvh' }, pb: { xs: 12, sm: 0 } }}
       >
-        <Stack
+        <MuiStack
           direction="row"
           justifyContent="space-between"
           sx={{
@@ -171,12 +169,12 @@ export default function SignIn() {
             Back
           </Button>
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-        </Stack>
-        <Stack
+        </MuiStack>
+        <MuiStack
           justifyContent="center"
           sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
         >
-          <StyledCard
+          <Card
             sx={{
               display: 'flex',
               flexDirection: 'column',
@@ -299,9 +297,9 @@ export default function SignIn() {
                 Sign in with Facebook
               </Button>
             </Box>
-          </StyledCard>
-        </Stack>
-      </StyledStack>
+          </Card>
+        </MuiStack>
+      </Stack>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}

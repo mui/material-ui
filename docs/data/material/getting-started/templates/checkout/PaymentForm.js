@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
+import { Card as MuiCard } from '@mui/material';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import Checkbox from '@mui/material/Checkbox';
@@ -14,14 +14,14 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import { styled } from '@mui/material/styles';
+
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
 import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
 import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 
-import { styled } from '@mui/material/styles';
-
-const StyledCard = styled(Card)(({ theme }) => ({
+const Card = styled(MuiCard)(({ theme }) => ({
   flexGrow: 1,
   border: '1px solid',
   borderColor: theme.palette.divider,
@@ -38,7 +38,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const StyledBox = styled(Box)(({ theme }) => ({
+const StyledBox = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -101,7 +101,7 @@ export default function PaymentForm() {
             gap: 2,
           }}
         >
-          <StyledCard
+          <Card
             sx={(theme) => ({
               maxWidth: { sm: '100%', md: '50%' },
               ...(paymentType === 'creditCard' && {
@@ -135,8 +135,8 @@ export default function PaymentForm() {
                 <Typography fontWeight="medium">Card</Typography>
               </CardContent>
             </CardActionArea>
-          </StyledCard>
-          <StyledCard
+          </Card>
+          <Card
             sx={(theme) => ({
               maxWidth: { sm: '100%', md: '50%' },
               ...(paymentType === 'bankTransfer' && {
@@ -170,7 +170,7 @@ export default function PaymentForm() {
                 <Typography fontWeight="medium">Bank account</Typography>
               </CardContent>
             </CardActionArea>
-          </StyledCard>
+          </Card>
         </RadioGroup>
       </FormControl>
       {paymentType === 'creditCard' && (
