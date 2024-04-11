@@ -8,3 +8,18 @@ fn({
     },
   },
 });
+
+fn({
+  MuiAvatar: {
+    defaultProps: {
+      imgProps: {
+        onLoad: () => {},
+      },
+      slotProps: {
+        img: {
+          onError: () => {},
+        },
+      },
+    },
+  },
+});

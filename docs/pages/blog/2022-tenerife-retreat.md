@@ -4,7 +4,7 @@ description: Our internationally distributed startup gathered on a remote island
 date: 2022-07-28T00:00:00.000Z
 authors: ['samuelsycamore']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 One of the toughest challenges to overcome as a fully remote team is fostering a supportive and inclusive company culture.

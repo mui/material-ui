@@ -4,7 +4,7 @@ description: The unstyled component library will get a stable release, lots of n
 date: 2024-02-13T00:00:00.000Z
 authors: ['danilo-leal', 'michaldudak', 'colmtuite', 'oliviertassinari']
 tags: ['Base UI', 'Product']
-card: true
+manualCard: true
 ---
 
 The [story of Base UI](/blog/introducing-base-ui/) began several years ago—long before headless React component libraries skyrocketed in popularity—when we started to imagine a world in which Material UI could exist without Material Design.
