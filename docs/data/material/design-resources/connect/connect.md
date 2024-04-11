@@ -107,7 +107,7 @@ Connect generates the following theme code for our customized Switch:
 }
 ```
 
-The generated theme targets classes that correspond to the specific Switch configuration defined above, so styles are only applied when the Material UI component's props and state match those of the customized Figma component.
+The generated theme targets classes that correspond to the specific Switch configuration defined above, so styles are only applied when the Material UI component's props and state match those of the customized Figma component.
 
 To customize the other states, you need to apply the desired design chances to each variant. To do this efficiently follow these steps:
 
