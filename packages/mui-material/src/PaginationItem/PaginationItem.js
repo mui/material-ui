@@ -272,7 +272,7 @@ const PaginationItemPage = styled(ButtonBase, {
 const PaginationItemPageIcon = styled('div', {
   name: 'MuiPaginationItem',
   slot: 'Icon',
-  overridesResolver: (_props, styles) => styles.icon,
+  overridesResolver: (props, styles) => styles.icon,
 })(({ theme }) => ({
   fontSize: theme.typography.pxToRem(20),
   margin: '0 -8px',
