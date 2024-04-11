@@ -1352,6 +1352,9 @@ importers:
       '@mui/base':
         specifier: '*'
         version: link:../mui-base/build
+      '@mui/internal-markdown':
+        specifier: workspace:^
+        version: link:../markdown
       '@mui/system':
         specifier: ^5.0.0
         version: 5.15.14(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.55)(react@18.2.0)

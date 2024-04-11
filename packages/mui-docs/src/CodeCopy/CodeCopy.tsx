@@ -15,22 +15,22 @@ const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivEleme
  *  <button className="MuiCode-copy">...</button>
  * </div>
  */
-export function useCodeCopy() {
+export function useCodeCopy(): React.HTMLAttributes<HTMLDivElement> {
   const rootNode = React.useContext(CodeBlockContext);
   return {
-    onMouseEnter: (event: React.MouseEvent) => {
-      rootNode.current = event.currentTarget as HTMLDivElement;
+    onMouseEnter: (event) => {
+      rootNode.current = event.currentTarget;
     },
-    onMouseLeave: (event: React.MouseEvent) => {
+    onMouseLeave: (event) => {
       if (rootNode.current === event.currentTarget) {
         (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
         rootNode.current = null;
       }
     },
-    onFocus: (event: React.MouseEvent) => {
-      rootNode.current = event.currentTarget as HTMLDivElement;
+    onFocus: (event) => {
+      rootNode.current = event.currentTarget;
     },
-    onBlur: (event: React.FocusEvent) => {
+    onBlur: (event) => {
       if (rootNode.current === event.currentTarget) {
         rootNode.current = null;
       }

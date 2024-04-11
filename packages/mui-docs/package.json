@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.4",
+    "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.0",
     "nprogress": "^0.2.0",
