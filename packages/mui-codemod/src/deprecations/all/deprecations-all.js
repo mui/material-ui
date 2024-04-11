@@ -1,5 +1,5 @@
-import transformFormControlLabelProps from '../form-control-label-props';
 import transformAccordionProps from '../accordion-props';
+import transformFormControlLabelProps from '../form-control-label-props';
 import transformAvatarProps from '../avatar-props';
 import transformDividerProps from '../divider-props';
 import transformAccordionClasses from '../accordion-summary-classes';
@@ -17,8 +17,8 @@ import transformBackdropProps from '../backdrop-props';
  * @param {import('jscodeshift').API} api
  */
 export default function deprecationsAll(file, api, options) {
-  file.source = transformFormControlLabelProps(file, api, options);
   file.source = transformAccordionProps(file, api, options);
+  file.source = transformFormControlLabelProps(file, api, options);
   file.source = transformAvatarProps(file, api, options);
   file.source = transformDividerProps(file, api, options);
   file.source = transformAccordionClasses(file, api, options);
