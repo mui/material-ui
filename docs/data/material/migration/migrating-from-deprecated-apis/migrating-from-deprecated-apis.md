@@ -169,9 +169,9 @@ Here's how to migrate:
 ```
 
 ```diff
- import { alertClasses } from '@mui/material/PaginationItem';
+ import { alertClasses } from '@mui/material/Alert';
 
- MuiPaginationItem: {
+ MuiAlert: {
    styleOverrides: {
      root: {
 -      [`&.${alertClasses.standardSuccess}`]: {
