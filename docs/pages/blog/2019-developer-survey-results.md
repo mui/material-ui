@@ -4,7 +4,7 @@ description: Your feedback helps us to build better products. Here's what we lea
 date: 2019-03-16T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Developer Survey']
-card: true
+manualCard: true
 ---
 
 While we are currently working on the upcoming release of Material UI v4, we need to prioritize our

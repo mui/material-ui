@@ -8,6 +8,7 @@ const { plugin: chipClassesPlugin } = require('../chip-classes/postcss-plugin');
 const {
   plugin: paginationItemClassesPlugin,
 } = require('../pagination-item-classes/postcss-plugin');
+const { plugin: stepConnectorClassesPlugin } = require('../step-connector-classes/postcss-plugin');
 const {
   plugin: toggleButtonGroupClassesPlugin,
 } = require('../toggle-button-group-classes/postcss-plugin');
@@ -20,6 +21,7 @@ module.exports = {
     buttonGroupClassesPlugin,
     chipClassesPlugin,
     paginationItemClassesPlugin,
+    stepConnectorClassesPlugin,
     toggleButtonGroupClassesPlugin,
   ],
 };
