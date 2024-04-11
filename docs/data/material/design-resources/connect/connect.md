@@ -224,7 +224,7 @@ For the example shown above, this the generated theme:
 ```
 
 :::info
-The generated theme may contain the CSS `has()` selector, which is used to target state-specific child classes of components (e.g. `:has(.Mui-checked)`). This selector is not used by other theme-related examples in the docs because up until recently it had limited browser support. However, since the release of Firefox v124, the selector is [supported by all modern browsers](https://caniuse.com/css-has).
+The generated theme may contain the CSS `has()` selector, which is used to target specific child classes. This selector is not used by other theme-related examples in the docs because up until recently it had limited browser support. However, since the release of Firefox v124, the selector is [supported by all modern browsers](https://caniuse.com/css-has).
 :::
 
 You can also check out the Storybook preview to test the Material UI version of your component.
