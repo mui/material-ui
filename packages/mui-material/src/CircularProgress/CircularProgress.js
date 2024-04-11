@@ -88,7 +88,7 @@ const CircularProgressRoot = styled('span', {
       },
       style:
         // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-        rotateAnimation !== 'string'
+        typeof rotateAnimation !== 'string'
           ? rotateAnimation
           : {
               animation: `${circularRotateKeyframe} 1.4s linear infinite`,

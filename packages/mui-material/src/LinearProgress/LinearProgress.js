@@ -48,7 +48,6 @@ const indeterminate2Keyframe = keyframes`
     right: -8%;
   }
 `;
-
 const indeterminate2Animation = css`
   animation: ${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
 `;
@@ -269,15 +268,17 @@ const LinearProgressBar1 = styled('span', {
         width: 'auto',
       },
     },
-    ...(typeof indeterminate1Animation !== 'string'
-      ? [
-          {
-            props: ({ ownerState }) =>
-              ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-            style: indeterminate1Animation,
-          },
-        ]
-      : []),
+    {
+      props: ({ ownerState }) =>
+        ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+      style:
+        // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
+        typeof indeterminate1Animation !== 'string'
+          ? indeterminate1Animation
+          : {
+              animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
+            },
+    },
   ],
 }));
 
@@ -342,15 +343,17 @@ const LinearProgressBar2 = styled('span', {
         width: 'auto',
       },
     },
-    ...(typeof indeterminate2Animation !== 'string'
-      ? [
-          {
-            props: ({ ownerState }) =>
-              ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-            style: indeterminate2Animation,
-          },
-        ]
-      : []),
+    {
+      props: ({ ownerState }) =>
+        ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+      style:
+        // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
+        typeof indeterminate2Animation !== 'string'
+          ? indeterminate2Animation
+          : {
+              animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
+            },
+    },
   ],
 }));
 
@@ -425,29 +428,16 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       {...other}
     >
       {variant === 'buffer' ? (
-        <LinearProgressDashed
-          className={clsx(classes.dashed, typeof bufferAnimation === 'string' && bufferAnimation)}
-          ownerState={ownerState}
-        />
+        <LinearProgressDashed className={classes.dashed} ownerState={ownerState} />
       ) : null}
       <LinearProgressBar1
-        className={clsx(
-          classes.bar1,
-          typeof indeterminate1Animation === 'string' &&
-            (variant === 'indeterminate' || variant === 'query') &&
-            indeterminate1Animation,
-        )}
+        className={classes.bar1}
         ownerState={ownerState}
         style={inlineStyles.bar1}
       />
       {variant === 'determinate' ? null : (
         <LinearProgressBar2
-          className={clsx(
-            classes.bar2,
-            typeof indeterminate2Animation === 'string' &&
-              (variant === 'indeterminate' || variant === 'query') &&
-              indeterminate2Animation,
-          )}
+          className={classes.bar2}
           ownerState={ownerState}
           style={inlineStyles.bar2}
         />
