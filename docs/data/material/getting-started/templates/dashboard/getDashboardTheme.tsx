@@ -149,7 +149,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
       default: 'hsl(0, 0%, 100%)',
-      paper: gray[100],
+      paper: gray[50],
       ...(mode === 'dark' && { default: 'hsl(220, 30%, 3%)', paper: gray[900] }),
     },
     text: {
@@ -298,6 +298,34 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                   backgroundColor: alpha(brand[600], 0.3),
                   borderColor: brand[700],
                 },
+              }),
+            }),
+          }),
+        },
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            transition: 'all 100ms ease',
+            backgroundColor: gray[50],
+            borderRadius: theme.shape.borderRadius,
+            border: `1px solid ${alpha(gray[200], 0.5)}`,
+            boxShadow: 'none',
+            ...(ownerState.variant === 'outlined' && {
+              border: `1px solid ${gray[200]}`,
+              boxShadow: 'none',
+              background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
+            }),
+            ...(theme.palette.mode === 'dark' && {
+              backgroundColor: alpha(gray[800], 0.6),
+              border: `1px solid ${alpha(gray[700], 0.3)}`,
+              ...(ownerState.variant === 'outlined' && {
+                border: `1px solid ${alpha(gray[700], 0.4)}`,
+                boxShadow: 'none',
+                background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
+                  gray[800],
+                  0.5,
+                )})`,
               }),
             }),
           }),
