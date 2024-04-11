@@ -1046,7 +1046,7 @@ However, it has some **limitations**:
   }));
   ```
 
-- It does not transform dynamic reference from the theme, e.g. color palette.
+- It does not transform dynamic reference from the theme, for example color palette.
 
   ```js
   const Test = styled('div')(({ ownerState, theme }) => ({
