@@ -83,14 +83,6 @@ async function runJscodeshiftTransform(transform, files, flags, codemodFlags) {
 
   if (jscodeshiftProcess.error) {
     throw jscodeshiftProcess.error;
-  } else if (!flags.skipPrettier) {
-    try {
-      childProcess.execSync('prettier --write $(git diff --name-only)', {
-        stdio: 'inherit',
-      });
-    } catch (err) {
-      // silentyly ignore errors
-    }
   }
 }
 
@@ -199,11 +191,6 @@ yargs
         })
         .option('print', {
           description: 'print transformed files to stdout, useful for development',
-          default: false,
-          type: 'boolean',
-        })
-        .option('skip-prettier', {
-          description: 'skip running prettier on the changed files after the transformation',
           default: false,
           type: 'boolean',
         })
