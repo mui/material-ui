@@ -9,6 +9,8 @@ import fabClasses, { getFabUtilityClass } from './fabClasses';
 import { rootShouldForwardProp } from '../styles/styled';
 import { styled, createUseThemeProps } from '../zero-styled';
 
+const useThemeProps = createUseThemeProps('MuiFab');
+
 const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
 
@@ -161,7 +163,6 @@ const FabRoot = styled(ButtonBase, {
 );
 
 const Fab = React.forwardRef(function Fab(inProps, ref) {
-  const useThemeProps = createUseThemeProps('MuiFab');
   const props = useThemeProps({ props: inProps, name: 'MuiFab' });
   const {
     children,
