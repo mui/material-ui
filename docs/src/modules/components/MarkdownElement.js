@@ -160,7 +160,7 @@ const Root = styled('div')(
         justifyContent: 'center',
         flexShrink: 0,
         textAlign: 'center',
-        marginLeft: 4,
+        marginLeft: 8,
         height: 26,
         width: 26,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.grey[50]})`,
