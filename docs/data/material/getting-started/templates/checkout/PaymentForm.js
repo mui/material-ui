@@ -22,9 +22,9 @@ import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 
 const Card = styled(MuiCard)(({ theme }) => ({
-  flexGrow: 1,
   border: '1px solid',
   borderColor: theme.palette.divider,
+  width: '100%',
   '&:hover': {
     background:
       theme.palette.mode === 'light'
@@ -36,6 +36,10 @@ const Card = styled(MuiCard)(({ theme }) => ({
         ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
         : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
   },
+  [theme.breakpoints.up('md')]: {
+    flexGrow: 1,
+    maxWidth: `calc(50% - ${theme.spacing(1)})`,
+  },
 }));
 
 const StyledBox = styled('div')(({ theme }) => ({
@@ -43,11 +47,22 @@ const StyledBox = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'space-between',
   width: '100%',
+  height: 375,
+  padding: theme.spacing(3),
   borderRadius: '20px',
   border: '1px solid ',
   borderColor: theme.palette.divider,
-  backgroundColor: theme.palette.background.paper,
+  background:
+    theme.palette.mode === 'light'
+      ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.3) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
+      : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
   boxShadow: '0px 4px 8px hsla(210, 0%, 0%, 0.05)',
+  [theme.breakpoints.up('xs')]: {
+    height: 300,
+  },
+  [theme.breakpoints.up('sm')]: {
+    height: 350,
+  },
 }));
 
 const FormGrid = styled('div')(() => ({
@@ -97,13 +112,13 @@ export default function PaymentForm() {
           value={paymentType}
           onChange={handlePaymentTypeChange}
           sx={{
-            flexDirection: { sm: 'column', md: 'row' },
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
             gap: 2,
           }}
         >
           <Card
             sx={(theme) => ({
-              maxWidth: { sm: '100%', md: '50%' },
               ...(paymentType === 'creditCard' && {
                 backgroundColor: 'action.selected',
                 borderColor:
@@ -138,7 +153,6 @@ export default function PaymentForm() {
           </Card>
           <Card
             sx={(theme) => ({
-              maxWidth: { sm: '100%', md: '50%' },
               ...(paymentType === 'bankTransfer' && {
                 backgroundColor: 'action.selected',
                 borderColor:
@@ -181,7 +195,7 @@ export default function PaymentForm() {
             gap: 2,
           }}
         >
-          <StyledBox sx={{ height: { xs: 300, sm: 350, md: 375 }, p: 3 }}>
+          <StyledBox>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="subtitle2">Credit card</Typography>
               <CreditCardRoundedIcon sx={{ color: 'text.secondary' }} />
