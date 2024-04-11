@@ -954,6 +954,46 @@ The Slider's `componentsProps` was deprecated in favor of `slotProps`:
  />
 ```
 
+## ToggleButtonGroup
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#toggle-button-group-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes composing the `orientation` prop value and `grouped` CSS class have been removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedHorizontal
++.MuiToggleButtonGroup-root.MuiToggleButtonGroup-horizontal > .MuiToggleButtonGroup-grouped
+-.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedVertical
++.MuiToggleButtonGroup-root.MuiToggleButtonGroup-vertical > .MuiToggleButtonGroup-grouped
+```
+
+```diff
+
+ import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
+
+  MuiButtonGroup: {
+   styleOverrides: {
+     root: {
+-      [`& .${toggleButtonGroupClasses.groupedHorizontal}`]: {
++      [`&.${toggleButtonGroupClasses.horizontal} > .${toggleButtonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${toggleButtonGroupClasses.groupedVertical}`]: {
++      [`&.${toggleButtonGroupClasses.vertical} > .${toggleButtonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+   },
+  },
+```
+
 ## StepLabel
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-label-props) below to migrate the code as described in the following sections:
@@ -971,4 +1011,44 @@ The StepLabel's `componentsProps` was deprecated in favor of `slotProps`:
 -  componentsProps={{ label: labelProps }}
 +  slotProps={{ label: labelProps }}
  />
+```
+
+## StepConnector
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-connector-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/step-connector-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `line` CSS class and `orientation` prop values were removed.
+
+Here's how to migrate:
+
+```diff
+- .MuiStepConnector-lineHorizontal
++.MuiStepConnector-horizontal > .MuiStepConnector-line
+- .MuiStepConnector-lineVertical
++.MuiStepConnector-vertical > .MuiStepConnector-line
+```
+
+```diff
+ import { stepConnectorClasses } from '@mui/material/StepConnector';
+
+ MuiStepConnector: {
+   styleOverrides: {
+     root: {
+-      [`& .${stepConnectorClasses.lineHorizontal}`]: {
++      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+-      [`& .${stepConnectorClasses.lineVertical}`]: {
++      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
 ```

@@ -4,7 +4,7 @@ description: It has taken us two years to do it, but Material UI v1 has finally
 date: 2018-05-18T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Material UI', 'Product']
-card: true
+manualCard: true
 ---
 
 > React components that implement Google's Material Design.

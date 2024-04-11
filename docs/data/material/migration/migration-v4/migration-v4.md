@@ -67,7 +67,7 @@ The default bundle supports the following minimum versions:
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v5.0.0/.browserslistrc#L11))
 
 Material UI no longer supports IE 11.
-If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
+If you need to support IE 11, check out the [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
 
 ## Update React & TypeScript version
 
