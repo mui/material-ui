@@ -1,7 +1,7 @@
 ---
 title: 'Introducing Connect: a Figma plugin that exports Material UI code'
 description: Connect is perfect for designing and developing using the Material UI React library and Design Kit.
-date: 2024-04-11T00:00:00.000Z
+date: 2024-04-13T00:00:00.000Z
 authors: ['danilo-leal', 'DavidCnoops']
 tags: ['Connect', 'Material UI', 'Product']
 card: true
