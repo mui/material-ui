@@ -15,29 +15,51 @@ export default function transformer(file, api, options) {
       (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'button',
     );
     if (index !== -1) {
-      elementPath.node.openingElement.name.name = 'ListItemButton';
+      if(elementPath.node.openingElement.name.name === 'ListItem') {
+        elementPath.node.openingElement.name.name = 'ListItemButton';
+      }
       elementPath.node.openingElement.attributes.splice(index, 1);
     }
   });
 
-  //Find if there are ListItem imports/named imports.
-  let containsListItemImport = root.find(j.ImportDeclaration).filter(path => path.node.source.value === '@mui/material');
-  let containsListItemNamedImport = containsListItemImport.find(j.ImportSpecifier).filter(path => path.node.imported.name === 'ListItem');
+  
   let containsListItem = false;
-
   //Find components that use ListItem. If they do, we shouldn't remove it
   findComponentJSX(j, { root, componentName: 'ListItem' }, (elementPath) => {
     if(elementPath.node.openingElement.name.name === 'ListItem') {
       containsListItem = true;
     }
   });
-
-  //Remove ListItem import if there is no usage
-  if(containsListItemNamedImport.length === 0 || !containsListItem) {
-    // root.find(j.ImportDeclaration).filter(path => path.node.source.value === '@mui/material').find(j.ImportSpecifier)
-    // .filter(path => path.node.imported.name === 'ListItem').remove();
+ 
+  //Find if there are ListItem named imports.
+  let containsListItemNamedImport = root.find(j.ImportSpecifier).filter(path => path.node.imported.name === 'ListItem');
+  
+  // Remove ListItem imports if there is no usage
+  if(!containsListItem) { 
+    // Remove default imports
     root.find(j.ImportDeclaration).filter(path => path.node.source.value === '@mui/material/ListItem').remove();
   }
+
+  // If there is no usage of alias imports, remove it. Or else rename the imported component to ListItemButton
+  if(!containsListItemNamedImport) {
+    root.find(j.ImportDeclaration).filter(path => path.node.source.value === '@mui/material').find(j.ImportSpecifier).filter(path => path.node.imported.name === 'ListItem').remove();
+  }
+  else {
+    root
+    .find(j.ImportDeclaration)
+    .filter(path => path.node.source.value === '@mui/material')
+    .find(j.ImportSpecifier)
+    .filter(path => path.node.imported.name === 'ListItem')
+    .forEach(path => {
+      const originalLocalName = path.node.local.name;
+      const newImport = j.importSpecifier(
+        j.identifier('ListItemButton'),
+        j.identifier(originalLocalName)
+      );
+      path.replace(newImport);
+    });
+  }
+  
 
   //If ListItemButton does not already exist, add it at the end
   let imports = root.find(j.ImportDeclaration).filter(path => path.node.source.value === '@mui/material/ListItemButton');

@@ -1,6 +1,6 @@
-import ListItemButton from '@mui/material/ListItemButton';
-import {ListItemButton as MyListItemButton} from '@mui/material';
+import {ListItemButton as MyListItem} from "@mui/material";
+import ListItemButton from "@mui/material/ListItemButton";
 
 <ListItemButton />;
 
-<MyListItemButton />;
+<MyListItem />;
