@@ -1,10 +1,9 @@
 import * as React from 'react';
 import prism from '@mui/internal-markdown/prism';
 import { NoSsr } from '@mui/base/NoSsr';
-import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
-import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
 import { ButtonProps } from '@mui/material/Button';
 import { SxProps } from '@mui/material/styles';
+import { useCodeCopy, CodeCopyButton } from '../CodeCopy';
 import { MarkdownElement } from '../MarkdownElement';
 
 export interface HighlightedCodeProps {
