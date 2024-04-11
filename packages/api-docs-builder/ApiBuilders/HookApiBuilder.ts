@@ -482,7 +482,7 @@ const extractInfoFromType = async (
  * @param filename The filename where its defined (to infer the package)
  * @returns an array of import command
  */
-const getHookImports = (name: string, filename: string) => {
+const defaultGetHookImports = (name: string, filename: string) => {
   const githubPath = toGitHubPath(filename);
   const rootImportPath = githubPath.replace(
     /\/packages\/mui(?:-(.+?))?\/src\/.*/,
@@ -552,6 +552,8 @@ export default async function generateHookApi(
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
+
+  const { getHookImports = defaultGetHookImports } = projectSettings;
   reactApi.filename = filename;
   reactApi.name = name;
   reactApi.imports = getHookImports(name, filename);
