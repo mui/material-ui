@@ -3,7 +3,7 @@ import Paper from '@mui/material/Paper';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { blueberryTwilightPaletteLight } from '@mui/x-charts';
 import Frame from 'docs/src/components/action/Frame';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const code = `

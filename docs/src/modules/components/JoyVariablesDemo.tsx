@@ -12,7 +12,7 @@ import FormHelperText from '@mui/joy/FormHelperText';
 import Input, { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
 
 interface DataItem {

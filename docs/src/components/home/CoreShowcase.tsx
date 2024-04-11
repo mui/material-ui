@@ -2,7 +2,7 @@ import * as React from 'react';
 import { alpha, ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button, { buttonClasses } from '@mui/material/Button';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';

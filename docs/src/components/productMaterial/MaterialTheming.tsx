@@ -11,7 +11,7 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import Frame from 'docs/src/components/action/Frame';
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const code = `
