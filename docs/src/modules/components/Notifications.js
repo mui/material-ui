@@ -15,6 +15,7 @@ import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 async function fetchNotifications() {
   if (process.env.NODE_ENV === 'development') {
@@ -64,21 +65,7 @@ export default function Notifications() {
     lastSeen: undefined,
     messages: undefined,
   });
-
-  const messageList = messages
-    ? messages
-        .filter((message) => {
-          if (
-            message.userLanguage &&
-            message.userLanguage !== userLanguage &&
-            message.userLanguage !== navigator.language.substring(0, 2)
-          ) {
-            return false;
-          }
-          return true;
-        })
-        .reverse()
-    : null;
+  const { productId } = React.useContext(PageContext);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -89,8 +76,8 @@ export default function Notifications() {
       return;
     }
 
-    if (messageList && messageList.length > 0) {
-      const newLastSeen = messageList[0].id;
+    if (messages && messages.length > 0) {
+      const newLastSeen = messages[0].id;
       setNotifications((notifications) => {
         if (newLastSeen !== notifications.lastSeen) {
           return {
@@ -121,8 +108,8 @@ export default function Notifications() {
       });
 
       if (active) {
-        // Permanent notifications
         const filteredNotifications = [
+          // Permanent notifications
           /* {
             id: 0,
             title: "Let's translate!",
@@ -133,14 +120,28 @@ export default function Notifications() {
             id: 1,
             text: 'You can <a style="color: inherit;" target="_blank" rel="noopener" href="https://twitter.com/MUI_hq">follow us on X</a> or subscribe on <a style="color: inherit;" target="_blank" rel="noopener" href="/blog/">our blog</a> to receive exclusive tips and updates about MUI and the React ecosystem.',
           },
-          // Only 3
-          ...notifications.splice(-3),
+          ...notifications
+            .filter((notification) => {
+              if (
+                notification.userLanguage &&
+                notification.userLanguage !== userLanguage &&
+                notification.userLanguage !== navigator.language.substring(0, 2)
+              ) {
+                return false;
+              }
+              if (notification.productId && !notification.productId.includes(productId)) {
+                return false;
+              }
+
+              return true;
+            })
+            .splice(-3), // Only show the last 3 notifications.
         ];
 
         const seen = getCookie('lastSeenNotification');
         const lastSeenNotification = seen === undefined ? 0 : parseInt(seen, 10);
         setNotifications({
-          messages: filteredNotifications,
+          messages: filteredNotifications.reverse(),
           lastSeen: lastSeenNotification,
         });
       }
@@ -150,7 +151,7 @@ export default function Notifications() {
       clearTimeout(timeout);
       active = false;
     };
-  }, [messages]);
+  }, [messages, productId, userLanguage]);
 
   return (
     <React.Fragment>
@@ -171,11 +172,8 @@ export default function Notifications() {
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
           aria-label={`${
-            messageList
-              ? messageList.reduce(
-                  (count, message) => (message.id > lastSeen ? count + 1 : count),
-                  0,
-                )
+            messages
+              ? messages.reduce((count, message) => (message.id > lastSeen ? count + 1 : count), 0)
               : 0
           } ${t('unreadNotifications')}`}
           data-ga-event-category="AppBar"
@@ -185,8 +183,8 @@ export default function Notifications() {
           <Badge
             color="error"
             badgeContent={
-              messageList
-                ? messageList.reduce(
+              messages
+                ? messages.reduce(
                     (count, message) => (message.id > lastSeen ? count + 1 : count),
                     0,
                   )
@@ -226,8 +224,8 @@ export default function Notifications() {
                 })}
               >
                 <List>
-                  {messageList ? (
-                    messageList.map((message, index) => (
+                  {messages ? (
+                    messages.map((message, index) => (
                       <React.Fragment key={message.id}>
                         <ListItem alignItems="flex-start">
                           <Typography gutterBottom>
@@ -250,7 +248,7 @@ export default function Notifications() {
                             </Typography>
                           )}
                         </ListItem>
-                        {index < messageList.length - 1 ? <Divider /> : null}
+                        {index < messages.length - 1 ? <Divider /> : null}
                       </React.Fragment>
                     ))
                   ) : (
