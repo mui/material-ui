@@ -23,14 +23,14 @@ After installing and opening it in Figma, head over to the [Connect plugin page]
 
 ## Customizing design tokens
 
-Design tokens are defined in the [local variable collections](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables) and it includes color palettes, breakpoints, shapes, and spacing tokens.
+Design tokens are defined in the Design Kit's [local variable collections](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables) and include color palettes, breakpoints, shapes, and spacing tokens.
 Typography and shadow-related tokens are found in the [local styles collection](https://help.figma.com/hc/en-us/articles/360039820134-Manage-and-share-styles#:~:text=Local%20styles%20are%20styles%20that,or%20from%20the%20style%20picker.).
 
 ### Altering existing tokens
 
-The Material UI Design Kit comes fully loaded with design tokens that map out to the [default theme of the Material UI React library](/material-ui/customization/default-theme/).
+The Material UI for Figma Design Kit comes fully loaded with design tokens that map out to the [default theme of the Material UI React library](/material-ui/customization/default-theme/).
 
-To customize existing tokens, open the local variables modal by clicking on the filter icon as shown below.
+To customize existing tokens, open the [local variable modal](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables) by clicking on the filter icon as shown below.
 Tweak any of the variables available in the various collections (palette, breakpoints, shapes & spacing) as you see fit.
 
 <img src="/static/material-ui/design-resources/connect-variables.png" style="width: 814px; margin-bottom: 8px;" alt="The Locals variables menu in Figma, where all design tokens are stored and new ones can be added." width="1628" height="400" />
@@ -56,7 +56,7 @@ After you've added your custom tokens, click on **Regenerate theme** to includes
 
 ## Customizing components
 
-Connect can also generate theme styles for customized components, enabling you to completely change their look and feel.
+Connect can also generate theme styles for customized components, enabling you to completely change their look and feel and from within Figma create your custom design system.
 
 :::info
 This feature is currently limited to the Button and Switch components.
@@ -65,7 +65,7 @@ Support for more components is coming soon.
 
 To demonstrate, let's customize a Switch's checked state, medium size, with primary color, so it looks closer to the iOS design.
 
-Note that the Desing Kit's component layer hierarchy and layer names should remain unaltered in order for Connect to correctly extract the custom component styles and generate a theme for them.
+Note that the Design Kit's component layer hierarchy and layer names should remain unaltered in order for Connect to correctly extract the custom component styles and generate a theme for them.
 
 <img src="/static/material-ui/design-resources/connect-component-variant.png" style="width: 814px; margin-bottom: 8px;" alt="A specific variant of the Switch component selected in the Design Kit" width="1628" height="400" />
 
@@ -109,12 +109,12 @@ Connect generates the following theme code for our customized Switch:
 
 The generated theme targets classes that correspond to the specific Switch configuration defined above, so styles are only applied when the Material UI component's props and state match those of the customized Figma component.
 
-To customize the other states, you need to apply the desired design chances to each variant. To do this efficiently follow these steps:
+To customize the other states, you need to apply the desired design chances to each variant in Figma. To efficiently do this follow these steps:
 
-1. Start by customizing the "base" variant, for example, the checked state, medium size, and primary color.
-2. Clone this variant and rename it to target the next variant you'd like to customize. For example, rename the cloned version of `Checked=True, Size=Medium, Color=Primary, State=Enabled` to `Checked=False, Size=Medium, Color=Primary, State=Enabled`)
+1. Customize a single "base" variant. For example, a Switch component in the checked state, of medium size, and primary color.
+2. Clone this variant and rename it to target the next variant you'd like to customize. For example, rename the cloned version of `Checked=True, Size=Medium, Color=Primary, State=Enabled` to `Checked=False, Size=Medium, Color=Primary, State=Enabled`).
 3. Delete the old versions of the same variant.
-4. Move the new version to the correct square in the variant grid
+4. Move the new version to the correct square in the variant grid.
 5. Make the necessary style adjustments to the variant's child layers.
 
 Repeat this process for each variant you want to customize.
@@ -145,90 +145,76 @@ For the example shown above, this the generated theme:
               "& + .MuiSwitch-track": {
                 width: "38px",
                 height: "21px",
+                borderRadius: "100px",
+                opacity: "1",
               },
             },
-            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))":
-              {
-                "& .MuiSwitch-switchBase": {
-                  transform: "translateX(3px) translateY(2px)",
-                  "& + .MuiSwitch-track": {
-                    background: "#BDBDBD",
-                    opacity: "1",
-                  },
+            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))": {
+              "& .MuiSwitch-switchBase": {
+                transform: "translateX(3px) translateY(2px)",
+                "& + .MuiSwitch-track": {
+                  background: "#BDBDBD",
                 },
               },
-            "&:not(:has(.Mui-checked)):has(.Mui-disabled):not(:has(.Mui-focusVisible))":
-              {
-                "& .MuiSwitch-switchBase": {
-                  transform: "translateX(3px) translateY(2px)",
-                  "& + .MuiSwitch-track": {
-                    background: "rgba(229, 229, 229, 0.99)",
-                    opacity: "1",
-                  },
+            },
+            "&:not(:has(.Mui-checked)):has(.Mui-disabled):not(:has(.Mui-focusVisible))": {
+              "& .MuiSwitch-switchBase": {
+                transform: "translateX(3px) translateY(2px)",
+                "& + .MuiSwitch-track": {
+                  background: "rgba(229, 229, 229, 0.99)",
                 },
               },
-            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):has(.Mui-focusVisible)":
-              {
-                "& .MuiSwitch-switchBase": {
-                  transform: "translateX(3px) translateY(2px)",
-                  "& + .MuiSwitch-track": {
-                    border: "1px solid #000",
-                    background: "#BDBDBD",
-                    opacity: "1",
-                  },
+            },
+            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):has(.Mui-focusVisible)": {
+              "& .MuiSwitch-switchBase": {
+                transform: "translateX(3px) translateY(2px)",
+                "& + .MuiSwitch-track": {
+                  border: "1px solid #000",
+                  background: "#BDBDBD",
                 },
               },
-            "&:has(.Mui-checked):has(.Mui-disabled):not(:has(.Mui-focusVisible))":
-              {
-                "& .MuiSwitch-switchBase": {
-                  transform: "translateX(19px) translateY(2px)",
-                  "& + .MuiSwitch-track": {
-                    background: "rgba(187, 231, 188, 0.99)",
-                    opacity: "1",
-                  },
+            },
+            "&:has(.Mui-checked):has(.Mui-disabled):not(:has(.Mui-focusVisible))": {
+              "& .MuiSwitch-switchBase": {
+                transform: "translateX(19px) translateY(2px)",
+                "& + .MuiSwitch-track": {
+                  background: "rgba(187, 231, 188, 0.99)",
                 },
               },
-            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover":
-              {
-                "& .MuiSwitch-switchBase": {
-                  transform: "translateX(3px) translateY(2px)",
-                  "& + .MuiSwitch-track": {
-                    background: "#616161",
-                    opacity: "1",
-                  },
+            },
+            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover": {
+              "& .MuiSwitch-switchBase": {
+                transform: "translateX(3px) translateY(2px)",
+                "& + .MuiSwitch-track": {
+                  background: "#616161",
                 },
               },
-            "&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))":
-              {
-                "& .MuiSwitch-switchBase": {
-                  transform: "translateX(19px) translateY(2px)",
-                  "& + .MuiSwitch-track": {
-                    background: "var(--mui-palette-success-light)",
-                    opacity: "1",
-                  },
+            },
+            "&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))": {
+              "& .MuiSwitch-switchBase": {
+                transform: "translateX(19px) translateY(2px)",
+                "& + .MuiSwitch-track": {
+                  background: "var(--mui-palette-success-light)",
                 },
               },
-            "&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover":
-              {
-                "& .MuiSwitch-switchBase": {
-                  transform: "translateX(19px) translateY(2px)",
-                  "& + .MuiSwitch-track": {
-                    background: "var(--mui-palette-success-dark)",
-                    opacity: "1",
-                  },
+            },
+            "&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover": {
+              "& .MuiSwitch-switchBase": {
+                transform: "translateX(19px) translateY(2px)",
+                "& + .MuiSwitch-track": {
+                  background: "var(--mui-palette-success-dark)",
                 },
               },
-            "&:has(.Mui-checked):not(:has(.Mui-disabled)):has(.Mui-focusVisible)":
-              {
-                "& .MuiSwitch-switchBase": {
-                  transform: "translateX(19px) translateY(2px)",
-                  "& + .MuiSwitch-track": {
-                    border: "1px solid #000",
-                    background: "var(--mui-palette-success-light)",
-                    opacity: "1",
-                  },
+            },
+            "&:has(.Mui-checked):not(:has(.Mui-disabled)):has(.Mui-focusVisible)": {
+              "& .MuiSwitch-switchBase": {
+                transform: "translateX(19px) translateY(2px)",
+                "& + .MuiSwitch-track": {
+                  border: "1px solid #000",
+                  background: "var(--mui-palette-success-light)",
                 },
               },
+            },
           },
         },
       },
@@ -236,6 +222,10 @@ For the example shown above, this the generated theme:
   },
 }
 ```
+
+:::info
+The generated theme may contain the CSS `has()` selector, which is used to target state-specific child classes of components (e.g. `:has(.Mui-checked)`). This selector is not used by other theme-related examples in the docs because up until recently it had limited browser support. However, since the release of Firefox v124, the selector is [supported by all modern browsers](https://caniuse.com/css-has).
+:::
 
 You can also check out the Storybook preview to test the Material UI version of your component.
 
@@ -246,7 +236,7 @@ You can also check out the Storybook preview to test the Material UI version of
 The theme generated by Connect should be used in combination with Material UI's [CssVarsProvider](/material-ui/experimental-api/css-theme-variables/migration/).
 The default [ThemeProvider](/material-ui/customization/theming/#theme-provider) is currently not supported.
 
-Here's how you'd add the Connect-generated theme code to your codebase:
+Here's an example of how you can add the Connect-generated theme to your codebase:
 
 ```tsx title="_app.tsx"
 import {
@@ -257,7 +247,7 @@ import {
 export default function MyApp({ Component, pageProps }) {
   const theme = extendTheme({
     shape: {
-      borderRadius: 12,
+      borderRadiusRound: 999,
     },
     components: {
       MuiSwitch: {
@@ -281,64 +271,11 @@ export default function MyApp({ Component, pageProps }) {
                       width: '38px',
                       height: '21px',
                       background: 'var(--mui-palette-success-light)',
+                      borderRadius: 'var(--mui-shape-borderRadiusRound)',
                       opacity: '1',
                     },
                   },
                 },
-            },
-          },
-        },
-      },
-    },
-  });
-
-  return (
-    <CssVarsProvider theme={theme}>
-      <Component {...pageProps} />
-    </CssVarsProvider>
-  );
-}
-```
-
-You can clean it up further by removing all of the `has()` pseudo-classes.
-Connect needs those to be able to isolate changes made through Figma, but you might not need it on your code.
-
-Here's the updated code:
-
-```tsx title="_app.tsx"
-import {
-  experimental_extendTheme as extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
-} from '@mui/material/styles';
-
-export default function MyApp({ Component, pageProps }) {
-  const theme = extendTheme({
-    shape: {
-      borderRadius: 12,
-    },
-    components: {
-      MuiSwitch: {
-        styleOverrides: {
-          root: {
-            '&.MuiSwitch-sizeMedium:has(.MuiSwitch-colorPrimary)': {
-              width: '40px',
-              height: '21px',
-              padding: '0',
-              '& .MuiSwitch-switchBase': {
-                transform: 'translateX(19px) translateY(2px)',
-                padding: '0',
-                '& .MuiSwitch-thumb': {
-                  width: '17px',
-                  height: '17px',
-                  background: '#FAFAFA',
-                },
-                '& + .MuiSwitch-track': {
-                  width: '38px',
-                  height: '21px',
-                  background: 'var(--mui-palette-success-light)',
-                  opacity: '1',
-                },
-              },
             },
           },
         },
