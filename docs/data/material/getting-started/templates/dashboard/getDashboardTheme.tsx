@@ -1,6 +1,5 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { ThemeOptions, alpha } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
+import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 
 declare module '@mui/material/styles/createPalette' {
@@ -20,56 +19,71 @@ declare module '@mui/material/styles/createPalette' {
   interface PaletteColor extends ColorRange {}
 }
 
-export const brand = {
-  50: '#F0F7FF',
-  100: '#CEE5FD',
-  200: '#9CCCFC',
-  300: '#55A6F6',
-  400: '#0A66C2',
-  500: '#0959AA',
-  600: '#064079',
-  700: '#033363',
-  800: '#02294F',
-  900: '#021F3B',
-};
+const customTheme = createTheme();
 
-export const secondary = {
-  50: '#F9F0FF',
-  100: '#E9CEFD',
-  200: '#D49CFC',
-  300: '#B355F6',
-  400: '#750AC2',
-  500: '#6709AA',
-  600: '#490679',
-  700: '#3B0363',
-  800: '#2F024F',
-  900: '#23023B',
+export const brand = {
+  50: 'hsl(210, 100%, 97%)',
+  100: 'hsl(210, 100%, 90%)',
+  200: 'hsl(210, 100%, 80%)',
+  300: 'hsl(210, 100%, 65%)',
+  400: 'hsl(210, 98%, 48%)',
+  500: 'hsl(210, 98%, 42%)',
+  600: 'hsl(210, 98%, 55%)',
+  700: 'hsl(210, 100%, 35%)',
+  800: 'hsl(210, 100%, 16%)',
+  900: 'hsl(210, 100%, 21%)',
 };
 
 export const gray = {
-  50: '#FBFCFE',
-  100: '#EAF0F5',
-  200: '#D6E2EB',
-  300: '#BFCCD9',
-  400: '#94A6B8',
-  500: '#5B6B7C',
-  600: '#4C5967',
-  700: '#364049',
-  800: '#131B20',
-  900: '#090E10',
+  50: 'hsl(220, 60%, 99%)',
+  100: 'hsl(220, 35%, 94%)',
+  200: 'hsl(220, 35%, 88%)',
+  300: 'hsl(220, 25%, 80%)',
+  400: 'hsl(220, 20%, 65%)',
+  500: 'hsl(220, 20%, 42%)',
+  600: 'hsl(220, 25%, 35%)',
+  700: 'hsl(220, 25%, 25%)',
+  800: 'hsl(220, 25%, 10%)',
+  900: 'hsl(220, 30%, 5%)',
 };
 
 export const green = {
-  50: '#F6FEF6',
-  100: '#E3FBE3',
-  200: '#C7F7C7',
-  300: '#A1E8A1',
-  400: '#51BC51',
-  500: '#1F7A1F',
-  600: '#136C13',
-  700: '#0A470A',
-  800: '#042F04',
-  900: '#021D02',
+  50: 'hsl(120, 80%, 98%)',
+  100: 'hsl(120, 75%, 94%)',
+  200: 'hsl(120, 75%, 87%)',
+  300: 'hsl(120, 61%, 77%)',
+  400: 'hsl(120, 44%, 53%)',
+  500: 'hsl(120, 59%, 30%)',
+  600: 'hsl(120, 70%, 25%)',
+  700: 'hsl(120, 75%, 16%)',
+  800: 'hsl(120, 84%, 10%)',
+  900: 'hsl(120, 87%, 6%)',
+};
+
+export const orange = {
+  50: 'hsl(45, 100%, 97%)',
+  100: 'hsl(45, 92%, 90%)',
+  200: 'hsl(45, 94%, 80%)',
+  300: 'hsl(45, 90%, 65%)',
+  400: 'hsl(45, 90%, 40%)',
+  500: 'hsl(45, 90%, 35%)',
+  600: 'hsl(45, 91%, 25%)',
+  700: 'hsl(45, 94%, 20%)',
+  800: 'hsl(45, 95%, 16%)',
+  900: 'hsl(45, 93%, 12%)',
+};
+
+export const red = {
+  50: 'hsl(0, 100%, 97%)',
+  100: 'hsl(0, 92%, 90%)',
+  200: 'hsl(0, 94%, 80%)',
+  300: 'hsl(0, 90%, 65%)',
+  400: 'hsl(0, 90%, 40%)',
+  500: 'hsl(0, 90%, 30%)',
+  600: 'hsl(0, 91%, 25%)',
+  700: 'hsl(0, 94%, 20%)',
+  800: 'hsl(0, 95%, 16%)',
+  900: 'hsl(0, 93%, 12%)',
 };
 
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -81,32 +95,43 @@ const getDesignTokens = (mode: PaletteMode) => ({
       dark: brand[800],
       contrastText: brand[50],
       ...(mode === 'dark' && {
-        contrastText: brand[100],
+        contrastText: brand[50],
         light: brand[300],
         main: brand[400],
         dark: brand[800],
       }),
     },
-    secondary: {
-      light: secondary[300],
-      main: secondary[500],
-      dark: secondary[800],
+    info: {
+      light: brand[100],
+      main: brand[300],
+      dark: brand[600],
+      contrastText: gray[50],
       ...(mode === 'dark' && {
-        light: secondary[400],
-        main: secondary[500],
-        dark: secondary[900],
+        contrastText: brand[300],
+        light: brand[500],
+        main: brand[700],
+        dark: brand[900],
       }),
     },
     warning: {
-      main: '#F7B538',
-      dark: '#F79F00',
-      ...(mode === 'dark' && { main: '#F7B538', dark: '#F79F00' }),
+      light: orange[300],
+      main: orange[400],
+      dark: orange[800],
+      ...(mode === 'dark' && {
+        light: orange[400],
+        main: orange[500],
+        dark: orange[700],
+      }),
     },
     error: {
-      light: red[50],
-      main: red[500],
-      dark: red[700],
-      ...(mode === 'dark' && { light: '#D32F2F', main: '#D32F2F', dark: '#B22A2A' }),
+      light: red[300],
+      main: red[400],
+      dark: red[800],
+      ...(mode === 'dark' && {
+        light: red[400],
+        main: red[500],
+        dark: red[700],
+      }),
     },
     success: {
       light: green[300],
@@ -119,27 +144,18 @@ const getDesignTokens = (mode: PaletteMode) => ({
       }),
     },
     grey: {
-      50: gray[50],
-      100: gray[100],
-      200: gray[200],
-      300: gray[300],
-      400: gray[400],
-      500: gray[500],
-      600: gray[600],
-      700: gray[700],
-      800: gray[800],
-      900: gray[900],
+      ...gray,
     },
     divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
-      default: '#fff',
-      paper: gray[50],
-      ...(mode === 'dark' && { default: gray[900], paper: gray[800] }),
+      default: 'hsl(0, 0%, 100%)',
+      paper: gray[100],
+      ...(mode === 'dark' && { default: 'hsl(220, 30%, 3%)', paper: gray[900] }),
     },
     text: {
       primary: gray[800],
       secondary: gray[600],
-      ...(mode === 'dark' && { primary: '#fff', secondary: gray[400] }),
+      ...(mode === 'dark' && { primary: 'hsl(0, 0%, 100%)', secondary: gray[400] }),
     },
     action: {
       selected: `${alpha(brand[200], 0.2)}`,
@@ -151,50 +167,53 @@ const getDesignTokens = (mode: PaletteMode) => ({
   typography: {
     fontFamily: ['"Inter", "sans-serif"'].join(','),
     h1: {
-      fontSize: 60,
+      fontSize: customTheme.typography.pxToRem(60),
       fontWeight: 600,
-      lineHeight: 78 / 70,
-      letterSpacing: -0.2,
+      lineHeight: 1.2,
+      letterSpacing: -0.5,
     },
     h2: {
-      fontSize: 48,
+      fontSize: customTheme.typography.pxToRem(48),
       fontWeight: 600,
       lineHeight: 1.2,
     },
     h3: {
-      fontSize: 42,
+      fontSize: customTheme.typography.pxToRem(42),
       lineHeight: 1.2,
     },
     h4: {
-      fontSize: 36,
+      fontSize: customTheme.typography.pxToRem(36),
       fontWeight: 500,
       lineHeight: 1.5,
     },
     h5: {
-      fontSize: 20,
+      fontSize: customTheme.typography.pxToRem(20),
       fontWeight: 600,
     },
     h6: {
-      fontSize: 18,
+      fontSize: customTheme.typography.pxToRem(18),
     },
     subtitle1: {
-      fontSize: 18,
+      fontSize: customTheme.typography.pxToRem(18),
     },
     subtitle2: {
-      fontSize: 16,
+      fontSize: customTheme.typography.pxToRem(16),
     },
     body1: {
+      fontSize: customTheme.typography.pxToRem(15),
       fontWeight: 400,
-      fontSize: 15,
     },
     body2: {
+      fontSize: customTheme.typography.pxToRem(14),
       fontWeight: 400,
-      fontSize: 14,
     },
     caption: {
+      fontSize: customTheme.typography.pxToRem(12),
       fontWeight: 400,
-      fontSize: 12,
     },
+  },
+  shape: {
+    borderRadius: 12,
   },
 });
 
@@ -202,85 +221,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
   return {
     ...getDesignTokens(mode),
     components: {
-      MuiAccordion: {
-        defaultProps: {
-          elevation: 0,
-          disableGutters: true,
-        },
-        styleOverrides: {
-          root: ({ theme }) => ({
-            padding: 8,
-            overflow: 'clip',
-            backgroundColor: '#fff',
-            border: '1px solid',
-            borderColor: gray[100],
-            ':before': {
-              backgroundColor: 'transparent',
-            },
-            '&:first-of-type': {
-              borderTopLeftRadius: 10,
-              borderTopRightRadius: 10,
-            },
-            '&:last-of-type': {
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
-            },
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: gray[900],
-              borderColor: gray[800],
-            }),
-          }),
-        },
-      },
-      MuiAccordionSummary: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            border: 'none',
-            borderRadius: 8,
-            '&:hover': { backgroundColor: gray[100] },
-            ...(theme.palette.mode === 'dark' && {
-              '&:hover': { backgroundColor: gray[800] },
-            }),
-          }),
-        },
-      },
-      MuiAccordionDetails: {
-        styleOverrides: {
-          root: { mb: 20, border: 'none' },
-        },
-      },
-      MuiToggleButtonGroup: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            borderRadius: '10px',
-            boxShadow: `0 4px 16px ${alpha(gray[400], 0.2)}`,
-            '& .Mui-selected': {
-              color: brand[500],
-            },
-            ...(theme.palette.mode === 'dark' && {
-              '& .Mui-selected': {
-                color: '#fff',
-              },
-              boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
-            }),
-          }),
-        },
-      },
-      MuiToggleButton: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            padding: '12px 16px',
-            textTransform: 'none',
-            borderRadius: '10px',
-            fontWeight: 500,
-            ...(theme.palette.mode === 'dark' && {
-              color: gray[400],
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
-              '&.Mui-selected': { color: brand[300] },
-            }),
-          }),
-        },
-      },
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
@@ -406,91 +346,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
-      MuiCard: {
-        styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            backgroundColor: gray[50],
-            borderRadius: 10,
-            border: `1px solid ${alpha(gray[200], 0.8)}`,
-            boxShadow: 'none',
-            transition: 'background-color, border, 80ms ease',
-            ...(ownerState.variant === 'outlined' && {
-              background: `linear-gradient(to bottom, #FFF, ${gray[50]})`,
-              '&:hover': {
-                borderColor: brand[300],
-                boxShadow: `0 0 24px ${brand[100]}`,
-              },
-            }),
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[800], 0.6),
-              border: `1px solid ${alpha(gray[700], 0.3)}`,
-              ...(ownerState.variant === 'outlined' && {
-                background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
-                  gray[800],
-                  0.5,
-                )})`,
-                '&:hover': {
-                  borderColor: brand[700],
-                  boxShadow: `0 0 24px ${brand[800]}`,
-                },
-              }),
-            }),
-          }),
-        },
-      },
-      MuiChip: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            alignSelf: 'center',
-            py: 1.5,
-            px: 0.5,
-            background: `linear-gradient(to bottom right, ${brand[50]}, ${brand[100]})`,
-            border: '1px solid',
-            borderColor: `${alpha(brand[500], 0.3)}`,
-            fontWeight: '600',
-            '&:hover': {
-              backgroundColor: brand[500],
-            },
-            '&:focus-visible': {
-              borderColor: brand[800],
-              backgroundColor: brand[200],
-            },
-            '& .MuiChip-label': {
-              color: brand[500],
-            },
-            '& .MuiChip-icon': {
-              color: brand[500],
-            },
-            ...(theme.palette.mode === 'dark' && {
-              background: `linear-gradient(to bottom right, ${brand[700]}, ${brand[900]})`,
-              borderColor: `${alpha(brand[500], 0.5)}`,
-              '&:hover': {
-                backgroundColor: brand[600],
-              },
-              '&:focus-visible': {
-                borderColor: brand[200],
-                backgroundColor: brand[600],
-              },
-              '& .MuiChip-label': {
-                color: brand[200],
-              },
-              '& .MuiChip-icon': {
-                color: brand[200],
-              },
-            }),
-          }),
-        },
-      },
-      MuiDivider: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            borderColor: `${alpha(gray[200], 0.8)}`,
-            ...(theme.palette.mode === 'dark' && {
-              borderColor: `${alpha(gray[700], 0.4)}`,
-            }),
-          }),
-        },
-      },
       MuiLink: {
         defaultProps: {
           underline: 'none',
@@ -522,151 +377,39 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
-      MuiMenuItem: {
+      MuiPaper: {
+        defaultProps: {
+          elevation: 0,
+        },
+      },
+      MuiToggleButtonGroup: {
         styleOverrides: {
           root: ({ theme }) => ({
-            borderRadius: '99px',
-            color: gray[500],
+            borderRadius: '10px',
+            boxShadow: `0 4px 16px ${alpha(gray[400], 0.2)}`,
+            '& .Mui-selected': {
+              color: brand[500],
+            },
+            ...(theme.palette.mode === 'dark' && {
+              '& .Mui-selected': {
+                color: '#fff',
+              },
+              boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
+            }),
+          }),
+        },
+      },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            padding: '12px 16px',
+            textTransform: 'none',
+            borderRadius: '10px',
             fontWeight: 500,
             ...(theme.palette.mode === 'dark' && {
-              color: gray[300],
-            }),
-          }),
-        },
-      },
-      MuiPaper: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            backgroundImage: 'none',
-            backgroundColor: gray[100],
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[900], 0.6),
-            }),
-          }),
-        },
-      },
-      MuiSwitch: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            boxSizing: 'border-box',
-            width: 36,
-            height: 24,
-            padding: 0,
-            transition: 'background-color 100ms ease-in',
-            '&:hover': {
-              '& .MuiSwitch-track': {
-                backgroundColor: brand[600],
-              },
-            },
-            '& .MuiSwitch-switchBase': {
-              '&.Mui-checked': {
-                transform: 'translateX(13px)',
-              },
-            },
-            '& .MuiSwitch-track': {
-              borderRadius: 50,
-            },
-            '& .MuiSwitch-thumb': {
-              boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
-              backgroundColor: '#FFF',
-              width: 16,
-              height: 16,
-              margin: 2,
-            },
-            ...(theme.palette.mode === 'dark' && {
-              width: 36,
-              height: 24,
-              padding: 0,
-              transition: 'background-color 100ms ease-in',
-              '&:hover': {
-                '& .MuiSwitch-track': {
-                  backgroundColor: brand[600],
-                },
-              },
-              '& .MuiSwitch-switchBase': {
-                '&.Mui-checked': {
-                  transform: 'translateX(13px)',
-                },
-              },
-              '& .MuiSwitch-thumb': {
-                boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.2)',
-                backgroundColor: '#FFF',
-                width: 16,
-                height: 16,
-                margin: 2,
-              },
-            }),
-          }),
-          switchBase: {
-            height: 24,
-            width: 24,
-            padding: 0,
-            color: '#fff',
-            '&.Mui-checked + .MuiSwitch-track': {
-              opacity: 1,
-            },
-          },
-        },
-      },
-      MuiTextField: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            '& label .Mui-focused': {
-              color: 'white',
-            },
-            '& .MuiInputBase-input': {
-              boxSizing: 'border-box',
-              '&::placeholder': {
-                opacity: 0.7,
-              },
-            },
-            '& .MuiOutlinedInput-root': {
-              boxSizing: 'border-box',
-              minWidth: 280,
-              minHeight: 40,
-              height: '100%',
-              borderRadius: '10px',
-              border: '1px solid',
-              borderColor: gray[200],
-              transition: 'border-color 120ms ease-in',
-              '& fieldset': {
-                border: 'none',
-                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-                background: `${alpha('#FFF', 0.3)}`,
-              },
-              '&:hover': {
-                borderColor: brand[300],
-              },
-              '&.Mui-focused': {
-                borderColor: brand[400],
-                outline: '4px solid',
-                outlineColor: brand[200],
-              },
-            },
-            ...(theme.palette.mode === 'dark' && {
-              '& .MuiOutlinedInput-root': {
-                boxSizing: 'border-box',
-                minWidth: 280,
-                minHeight: 40,
-                height: '100%',
-                borderRadius: '10px',
-                border: '1px solid',
-                borderColor: gray[600],
-                transition: 'border-color 120ms ease-in',
-                '& fieldset': {
-                  border: 'none',
-                  boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.4)',
-                  background: `${alpha(gray[800], 0.4)}`,
-                },
-                '&:hover': {
-                  borderColor: brand[300],
-                },
-                '&.Mui-focused': {
-                  borderColor: brand[400],
-                  outline: '4px solid',
-                  outlineColor: alpha(brand[500], 0.5),
-                },
-              },
+              color: gray[400],
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
+              '&.Mui-selected': { color: brand[300] },
             }),
           }),
         },
@@ -685,6 +428,9 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           }),
           indicator: ({ theme }) => ({
             backgroundColor: theme.palette.grey[800],
+            ...(theme.palette.mode === 'dark' && {
+              backgroundColor: theme.palette.grey[200],
+            }),
           }),
         },
       },
@@ -697,7 +443,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             color: theme.palette.grey[400],
             '&.Mui-selected': {
               color: theme.palette.grey[900],
-              fontWeight: 700,
             },
             ...(theme.palette.mode === 'dark' && {
               '&.Mui-selected': {
