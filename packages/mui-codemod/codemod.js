@@ -162,6 +162,11 @@ function run(argv) {
 
   runJscodeshiftTransform(codemod, files, flags, argv._);
   runPostcssTransform(codemod, files);
+  if (!flags.skipPrettier) {
+    childProcess.spawnSync('prettier', ['--write', `prettier --write $(git diff --name-only)`], {
+      stdio: 'inherit',
+    });
+  }
 }
 
 yargs
@@ -191,6 +196,11 @@ yargs
         })
         .option('print', {
           description: 'print transformed files to stdout, useful for development',
+          default: false,
+          type: 'boolean',
+        })
+        .option('skip-prettier', {
+          description: 'skip running prettier on the changed files after the transformation',
           default: false,
           type: 'boolean',
         })
