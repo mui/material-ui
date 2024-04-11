@@ -24,7 +24,7 @@ jobs:
       - name: Cherry pick and create the new PR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: carloscastrojumo/github-cherry-pick-action@a145da1b8142e752d3cbc11aaaa46a535690f0c5 # v1.0.9
+        uses: carloscastrojumo/github-cherry-pick-action@503773289f4a459069c832dc628826685b75b4b3 # v1.0.10
         with:
           branch: master
           body: 'Cherry-pick of #{old_pull_request_id}'

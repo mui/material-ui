@@ -821,7 +821,7 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme }) => ({
             borderColor: (theme.vars || theme).palette.grey[100],
             ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primaryDark[700], 0.8),
+              borderColor: alpha(theme.palette.primaryDark[500], 0.3),
             }),
           }),
         },

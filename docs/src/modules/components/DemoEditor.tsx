@@ -2,7 +2,7 @@ import * as React from 'react';
 import SimpleCodeEditor from 'react-simple-code-editor';
 import Box from '@mui/material/Box';
 import { NoSsr } from '@mui/base/NoSsr';
-import { styled, useTheme, alpha } from '@mui/material/styles';
+import { styled, alpha, useTheme } from '@mui/material/styles';
 import prism from '@mui/internal-markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
@@ -37,6 +37,9 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       // https://github.com/mui/material-ui/blob/269c1d0c7572fcb6ae3b270a2622d16c7e40c848/docs/src/modules/components/MarkdownElement.js#L27-L26
       maxWidth: 'initial',
       maxHeight: 'initial',
+    },
+    '& .MuiCode-copy': {
+      display: 'none',
     },
   },
 ]) as any;
