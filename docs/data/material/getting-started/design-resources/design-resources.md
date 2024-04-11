@@ -4,9 +4,9 @@
 
 ## Design kits
 
-Material UI components are available on design tools such as Figma, Sketch, and Adobe XD, using their latest design system features to represent all of the same states, variants, and permutations of each component.
+Material UI component designs are available for Figma, Sketch, and Adobe XD, providing accurate representations using shared terminology for all states, variants, and permutations of each component.
 
-It's composed of over 1,500 unique elements built to speed up the development process and ease communication for teams of designers and developers using the library.
+The design kits are composed of over 1,500 unique elements built to speed up the development process and ease communication for teams of designers and developers using the library.
 
 {{"component": "modules/components/MaterialUIDesignResources.js"}}
 
