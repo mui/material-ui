@@ -28,6 +28,10 @@ const indeterminate1Keyframe = keyframes`
     right: -90%;
   }
 `;
+
+// This implementation is for supporting both Styled-components v4+ and Pigment CSS.
+// A global animation has to be created here for Styled-components v4+ (https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12).
+// which can be done by checking typeof indeterminate1Keyframe !== 'string' (at runtime, Pigment CSS transform keyframes`` to a string).
 const indeterminate1Animation =
   typeof indeterminate1Keyframe !== 'string'
     ? css`
@@ -74,6 +78,12 @@ const bufferKeyframe = keyframes`
     background-position: -200px -23px;
   }
 `;
+const bufferAnimation =
+  typeof bufferKeyframe !== 'string'
+    ? css`
+        animation: ${bufferKeyframe} 3s infinite linear;
+      `
+    : null;
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, color } = ownerState;
@@ -204,11 +214,10 @@ const LinearProgressDashed = styled('span', {
         }),
     ],
   }),
-  typeof bufferKeyframe !== 'string'
-    ? css`
-        animation: ${bufferKeyframe} 3s infinite linear;
-      `
-    : null,
+  bufferAnimation || {
+    // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
+    animation: `${bufferKeyframe} 3s infinite linear`,
+  },
 );
 
 const LinearProgressBar1 = styled('span', {
@@ -278,11 +287,9 @@ const LinearProgressBar1 = styled('span', {
     {
       props: ({ ownerState }) =>
         ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-      style:
-        // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-        indeterminate1Animation || {
-          animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
-        },
+      style: indeterminate1Animation || {
+        animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
+      },
     },
   ],
 }));
@@ -351,11 +358,9 @@ const LinearProgressBar2 = styled('span', {
     {
       props: ({ ownerState }) =>
         ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-      style:
-        // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-        indeterminate2Animation || {
-          animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
-        },
+      style: indeterminate2Animation || {
+        animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
+      },
     },
   ],
 }));
