@@ -14,7 +14,6 @@ import transformBackdropProps from '../backdrop-props';
 import transformStepConnectorClasses from '../step-connector-classes';
 import transformSpeedDialProps from '../speed-dial-props';
 
-
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
