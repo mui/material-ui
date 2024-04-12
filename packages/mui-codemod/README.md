@@ -991,14 +991,22 @@ npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
  <StepLabel
 -  componentsProps={{ label: labelProps }}
 +  slotProps={{ label: labelProps }}
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
  />
 ```
 
 ```diff
  MuiStepLabel: {
    defaultProps: {
--  componentsProps={{ label: labelProps }}
-+  slotProps={{ label: labelProps }}
+-  componentsProps:{ label: labelProps }
++  slotProps:{ label: labelProps }
+-  StepIconComponent:StepIconComponent
++  slots:{ stepIcon: StepIconComponent }
+-  StepIconProps:StepIconProps
++  slotProps:{ stepIcon: StepIconProps }
   },
  },
 ```
