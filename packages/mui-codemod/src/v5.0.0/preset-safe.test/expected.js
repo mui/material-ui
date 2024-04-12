@@ -87,7 +87,7 @@ const Header = () => {
   const classes = useStyles();
   const { dark, setDark } = React.useContext(DarkContext);
   return (
-    <AppBar color="default" position="sticky">
+    (<AppBar color="default" position="sticky">
       <Toolbar>
         <Typography className={classes.head} variant="h6">
           👋 Hello
@@ -110,7 +110,7 @@ const Header = () => {
           onChange={(event, checked) => setDark(checked)}
         />
       </Toolbar>
-    </AppBar>
+    </AppBar>)
   );
 };
 
@@ -119,7 +119,7 @@ function App() {
   const handleClose = () => setOpen(false);
   const { setDark } = React.useContext(DarkContext);
   const classes = useStyles();
-  return <>
+  return (<>
     <CssBaseline />
     <Header />
     <Container>
@@ -173,7 +173,7 @@ function App() {
         </DialogActions>
       </Dialog>
     </Container>
-  </>;
+  </>);
 }
 
 const withThemeProvider = (Component) => (props) => {
@@ -188,7 +188,7 @@ const withThemeProvider = (Component) => (props) => {
     [dark],
   );
   return (
-    <DarkContext.Provider value={{ dark, setDark }}>
+    (<DarkContext.Provider value={{ dark, setDark }}>
       <StylesProvider injectFirst>
         <StyledEngineProvider injectFirst>
           <ThemeProvider theme={theme}>
@@ -196,7 +196,7 @@ const withThemeProvider = (Component) => (props) => {
           </ThemeProvider>
         </StyledEngineProvider>
       </StylesProvider>
-    </DarkContext.Provider>
+    </DarkContext.Provider>)
   );
 };
 

@@ -4,7 +4,7 @@ description: The new Grid v2 features simplified logic, support for offsetting a
 date: 2022-08-20T00:00:00.000Z
 authors: ['siriwatknp']
 tags: ['Material UI', 'Guide']
-card: true
+manualCard: true
 ---
 
 You can now use the new `Grid` component, shipped with [Material UI v5.9.0](https://github.com/mui/material-ui/releases/tag/v5.9.0), for updated features and a better developer experience when building layouts.
