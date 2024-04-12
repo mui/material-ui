@@ -29,10 +29,10 @@ export default function styledV6(file, api, options) {
     while (tempNode.type === 'UnaryExpression') {
       tempNode = tempNode.argument;
     }
-    if (tempNode.type === 'MemberExpression') {
-      return node.object;
+    while (tempNode.type === 'MemberExpression') {
+      tempNode = tempNode.object;
     }
-    return node;
+    return tempNode;
   }
 
   /**
@@ -197,6 +197,16 @@ export default function styledV6(file, api, options) {
     );
   }
 
+  function isThemePaletteMode(node) {
+    return (
+      node.type === 'MemberExpression' &&
+      node.object.type === 'MemberExpression' &&
+      node.object.object.name === 'theme' &&
+      node.object.property.name === 'palette' &&
+      node.property.name === 'mode'
+    );
+  }
+
   let shouldTransform = false;
 
   root.find(j.CallExpression).forEach((path) => {
@@ -226,8 +236,7 @@ export default function styledV6(file, api, options) {
       if (
         arg.type === 'ArrowFunctionExpression' &&
         arg.params[0] &&
-        arg.params[0].type === 'ObjectPattern' &&
-        arg.params[0].properties.some((prop) => prop.key.name !== 'theme')
+        arg.params[0].type === 'ObjectPattern'
       ) {
         styles.push(arg);
       }
@@ -284,24 +293,26 @@ export default function styledV6(file, api, options) {
 
         recurseObjectExpression({ node: objectExpression });
 
-        objectExpression.properties.push(
-          j.objectProperty(
-            j.identifier('variants'),
-            j.arrayExpression(
-              variants.filter((variant) => {
-                const props = variant.properties.find((prop) => prop.key.name === 'props');
-                const styleVal = variant.properties.find((prop) => prop.key.name === 'style');
-                return (
-                  props &&
-                  styleVal &&
-                  styleVal.value.properties.length > 0 &&
-                  (props.value.type === 'ArrowFunctionExpression' ||
-                    props.value.properties.length > 0)
-                );
-              }),
+        if (variants.length) {
+          objectExpression.properties.push(
+            j.objectProperty(
+              j.identifier('variants'),
+              j.arrayExpression(
+                variants.filter((variant) => {
+                  const props = variant.properties.find((prop) => prop.key.name === 'props');
+                  const styleVal = variant.properties.find((prop) => prop.key.name === 'style');
+                  return (
+                    props &&
+                    styleVal &&
+                    styleVal.value.properties.length > 0 &&
+                    (props.value.type === 'ArrowFunctionExpression' ||
+                      props.value.properties.length > 0)
+                  );
+                }),
+              ),
             ),
-          ),
-        );
+          );
+        }
       }
 
       function recurseObjectExpression(data) {
@@ -313,6 +324,9 @@ export default function styledV6(file, api, options) {
                 node: prop.value,
                 parentNode: data.node,
                 key: prop.key,
+                replaceValue: (newValue) => {
+                  prop.value = newValue;
+                },
               });
             } else {
               recurseObjectExpression({ ...data, node: prop, parentNode: data.node });
@@ -340,6 +354,9 @@ export default function styledV6(file, api, options) {
                   parentNode: variant.style,
                   props: variant.props,
                   key: prop.key,
+                  replaceValue: (newValue) => {
+                    prop.value = newValue;
+                  },
                 });
               } else {
                 recurseObjectExpression({
@@ -410,6 +427,30 @@ export default function styledV6(file, api, options) {
               variants.push(buildObjectAST(variant2));
               if (data.parentNode?.type === 'ObjectExpression') {
                 removeProperty(data.parentNode, data.node);
+              }
+            }
+            if (
+              leftName === 'theme' &&
+              data.parentNode?.type === 'ObjectExpression' &&
+              data.node.test?.type === 'BinaryExpression' &&
+              isThemePaletteMode(data.node.test.left)
+            ) {
+              if (
+                data.node.consequent.type !== 'ObjectExpression' &&
+                data.node.alternate.type !== 'ObjectExpression'
+              ) {
+                data.parentNode.properties.push(
+                  j.spreadElement(
+                    j.callExpression(
+                      j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')),
+                      [
+                        data.node.test.right,
+                        j.objectExpression([j.objectProperty(data.key, data.node.consequent)]),
+                      ],
+                    ),
+                  ),
+                );
+                data.replaceValue(data.node.alternate);
               }
             }
           }
