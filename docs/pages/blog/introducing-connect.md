@@ -9,15 +9,13 @@ card: true
 
 Ever since we released the [Material UI Design Kit for Figma](/store/items/figma-react/), designers continuously expressed how much faster and more efficient their experience collaborating with developers would be if they could hand over production-ready code generated directly from the design software that nicely integrates with a codebase using Material UI.
 
-That's why Connect, a Figma plugin, was developed and it's now [available now in beta](https://www.figma.com/community/plugin/1336346114713490235/connect)!
+That's why Connect, a Figma plugin, was created and it's [available now in beta](https://www.figma.com/community/plugin/1336346114713490235/connect)!
 Let's walkthough some of the available features.
 
 ## Theme customization
 
-Connect is compatible with [v5.16.0 and later versions of the Design Kit](https://github.com/mui/mui-design-kits/releases/tag/v5.16.0), because it relies on Figma's local variables.
-This feature has significantly matured the use of design tokens, making it possible to more closely mirror [Material UI's theming features](/material-ui/customization/theming/).
-
-That means you can use Connect to generate code for any customized local variable and style included in the Design Kit.
+Figma's local variables significantly matured the use of design tokens, making it possible to mirror Material UI more closely.
+Parting from version [v5.16.0 and later versions](https://github.com/mui/mui-design-kits/releases/tag/v5.16.0), Connect takes advantage of that to allow you to generate code for any available or created token using local variables.
 
 <video preload="metadata" controls muted loop playsinline width="1584" height="1080">
   <source src="/static/blog/introducing-connect/theme-customization.mp4" type="video/mp4">
@@ -28,7 +26,7 @@ Visit the documentation to learn [how to insert the generated code into your the
 ## Component customization
 
 You can fully customize a component's appearance across multiple states in the Design Kit and then generate the corresponding theme code.
-This is one of the most exciting features because it makes tweaking components incredibly fast!
+This is one of the most exciting features because it makes tweaking components incredibly fast and easier for designers!
 
 <video preload="metadata" controls muted loop playsinline width="1584" height="1080">
   <source src="/static/blog/introducing-connect/custom-component.mp4" type="video/mp4">
@@ -42,8 +40,7 @@ For now you can experiment with the Button and Switch.
 
 ## Quick Storybook preview
 
-In Figma you can see all states of any given component, but you may not be able to interact with them.
-That's why there's an embedded Storybook preview panel in Connect so that you can conveniently play around with your changes and also see how they interact with other props available in the component API.
+The Connect plugin also bakes in an embedded Storybook preview panel so that you can conveniently play around with your changes and see how they interact with other props and states available in the component API.
 
 <video preload="metadata" autoplay muted loop playsinline width="1584" height="1080">
   <source src="/static/blog/introducing-connect/storybook.mp4" type="video/mp4">
@@ -51,10 +48,11 @@ That's why there's an embedded Storybook preview panel in Connect so that you ca
 
 ## Try Connect now
 
-Get the beta version of Connect now, availble **for free** on the [Figma Community](https://www.figma.com/community/plugin/1336346114713490235/connect).
+Get the beta version of Connect now, availble **for free** on the [Figma Community](https://www.figma.com/community/plugin/1336346114713490235/connect)!
+
 There's still a lot to do, and we're looking forward to hearing from all of you [who requested this plugin years ago](https://github.com/mui/mui-design-kits/issues/10).
 
-- Check out further documentation for the Connect plugin and the Material UI Design Kit (To-be-removed note: I'll add links here once the corresponding PR for their docs is merged).
-- If you've got any feedback, we'd love to [hear from you here](https://mui-connect.canny.io/feedback).
+- Check out further documentation for [the Connect plugin](/material-ui/design-resources/connect/) and [the Material UI Design Kit](/material-ui/design-resources/material-ui-for-figma/).
+- If you've got any feedback, we'd love to [hear from you](https://mui-connect.canny.io/feedback).
 
-Happy designing!
+Happy designing! 👨‍🎨
