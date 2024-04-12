@@ -45,13 +45,15 @@ export default function Dashboard() {
           <Container
             maxWidth="xl"
             sx={{
-              pt: { xs: 14, sm: 20 },
+              display: 'flex',
+              flexDirection: 'column',
+              pt: { xs: 12, sm: 16 },
               pb: { xs: 8, sm: 12 },
+              gap: { xs: 4, sm: 4 },
             }}
           >
             <Header />
             <ChartUserByCountry />
-            Main content
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>

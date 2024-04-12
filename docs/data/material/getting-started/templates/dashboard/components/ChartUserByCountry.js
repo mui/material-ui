@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { useDrawingArea } from '@mui/x-charts/hooks';
 import { styled } from '@mui/material/styles';
@@ -50,13 +51,9 @@ const countries = [
   },
 ];
 
-interface StyledTextProps {
-  variant: 'primary' | 'secondary';
-}
-
 const StyledText = styled('text', {
   shouldForwardProp: (prop) => prop !== 'variant',
-})<StyledTextProps>(({ theme, variant }) => ({
+})(({ theme, variant }) => ({
   textAnchor: 'middle',
   dominantBaseline: 'central',
   fill: theme.palette.text.secondary,
@@ -70,15 +67,7 @@ const StyledText = styled('text', {
       : theme.typography.body2.fontWeight,
 }));
 
-interface PieCenterLabelProps {
-  primaryText: string;
-  secondaryText: string;
-}
-
-const PieCenterLabel: React.FC<PieCenterLabelProps> = ({
-  primaryText,
-  secondaryText,
-}) => {
+const PieCenterLabel = ({ primaryText, secondaryText }) => {
   const { width, height, left, top } = useDrawingArea();
   const primaryY = top + height / 2 - 10;
   const secondaryY = primaryY + 24;
@@ -93,6 +82,11 @@ const PieCenterLabel: React.FC<PieCenterLabelProps> = ({
       </StyledText>
     </>
   );
+};
+
+PieCenterLabel.propTypes = {
+  primaryText: PropTypes.string.isRequired,
+  secondaryText: PropTypes.string.isRequired,
 };
 
 const colors = [

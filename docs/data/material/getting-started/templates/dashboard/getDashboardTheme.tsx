@@ -284,6 +284,22 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                 borderColor: theme.palette.grey[400],
               },
             }),
+            ...(ownerState.variant === 'outlined' &&
+              ownerState.color === 'secondary' && {
+                backgroundColor: alpha(gray[300], 0.1),
+                borderColor: alpha(gray[300], 0.5),
+                color: gray[700],
+                '&:hover': {
+                  backgroundColor: alpha(gray[300], 0.3),
+                  borderColor: alpha(gray[300], 0.5),
+                  boxShadow: 'none',
+                },
+                '&:active': {
+                  backgroundColor: alpha(gray[300], 0.4),
+                  boxShadow: `inset 0 2.5px 0 ${alpha(gray[400], 0.2)}`,
+                  backgroundImage: 'none',
+                },
+              }),
             ...(theme.palette.mode === 'dark' && {
               ...(ownerState.variant === 'outlined' && {
                 backgroundColor: theme.palette.grey[900],
@@ -293,6 +309,23 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                   backgroundColor: alpha(brand[600], 0.3),
                   borderColor: theme.palette.grey[400],
                 },
+                ...(ownerState.variant === 'outlined' &&
+                  ownerState.color === 'secondary' && {
+                    color: gray[300],
+                    backgroundColor: alpha(gray[600], 0.1),
+                    borderColor: alpha(gray[700], 0.5),
+                    boxShadow: `inset 0 2.5px ${alpha(gray[600], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
+                    '&:hover': {
+                      backgroundColor: alpha(gray[700], 0.2),
+                      borderColor: alpha(gray[700], 0.5),
+                      boxShadow: 'none',
+                    },
+                    '&:active': {
+                      backgroundColor: alpha(gray[800], 0.2),
+                      boxShadow: `inset 0 2.5px 0 ${alpha(gray[900], 0.4)}`,
+                      backgroundImage: 'none',
+                    },
+                  }),
               }),
               ...(ownerState.variant === 'text' && {
                 color: brand[300],
@@ -354,7 +387,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               minWidth: '40px',
               height: '40px',
             }),
-
             color: theme.palette.grey[600],
             border: `1.2px solid`,
             borderColor: theme.palette.grey[200],
@@ -372,6 +404,18 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                 backgroundColor: alpha(brand[600], 0.3),
                 borderColor: theme.palette.grey[400],
               },
+            }),
+          }),
+        },
+      },
+      MuiLinearProgress: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            height: 8,
+            borderRadius: 8,
+            backgroundColor: gray[200],
+            ...(theme.palette.mode === 'dark' && {
+              backgroundColor: gray[800],
             }),
           }),
         },
@@ -403,6 +447,87 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             },
             ...(theme.palette.mode === 'dark' && {
               color: brand[200],
+            }),
+          }),
+        },
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          notchedOutline: {
+            border: 'none',
+          },
+          input: {
+            paddingLeft: 10,
+          },
+          root: ({ theme, ownerState }) => ({
+            'input:-webkit-autofill': {
+              WebkitBoxShadow: `0 0 0 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
+              maxHeight: '4px',
+              borderRadius: '8px',
+            },
+            '& .MuiInputBase-input': {
+              fontSize: '1rem',
+              '&::placeholder': {
+                opacity: 0.7,
+                color: gray[500],
+              },
+            },
+            boxSizing: 'border-box',
+            flexGrow: 1,
+            height: '40px',
+            borderRadius: theme.shape.borderRadius,
+            border: '1px solid',
+            borderColor: alpha(gray[300], 0.8),
+            boxShadow: '0 0 0 1.5px hsla(210, 0%, 0%, 0.02) inset',
+            transition: 'border-color 120ms ease-in',
+            backgroundColor: alpha(gray[100], 0.4),
+            '&:hover': {
+              borderColor: brand[300],
+            },
+            '&.Mui-focused': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
+              borderColor: brand[400],
+            },
+            ...(ownerState.color === 'error' && {
+              borderColor: red[200],
+              color: red[500],
+              '& + .MuiFormHelperText-root': {
+                color: red[500],
+              },
+            }),
+            ...(theme.palette.mode === 'dark' && {
+              'input:-webkit-autofill': {
+                WebkitBoxShadow: `0 0 0 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
+                maxHeight: '6px',
+                borderRadius: '8px',
+              },
+              '& .MuiInputBase-input': {
+                fontSize: '1rem',
+                '&::placeholder': {
+                  opacity: 1,
+                  color: gray[500],
+                },
+              },
+              borderColor: alpha(gray[700], 0.5),
+              boxShadow: '0 0 0 1.5px hsl(210, 0%, 0%) inset',
+              backgroundColor: alpha(gray[900], 0.8),
+              transition: 'border-color 120ms ease-in',
+              '&:hover': {
+                borderColor: brand[300],
+              },
+              '&.Mui-focused': {
+                borderColor: brand[400],
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
+              },
+              ...(ownerState.color === 'error' && {
+                borderColor: red[700],
+                color: red[300],
+                '& + .MuiFormHelperText-root': {
+                  color: red[300],
+                },
+              }),
             }),
           }),
         },

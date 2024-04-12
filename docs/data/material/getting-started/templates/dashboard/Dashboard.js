@@ -9,6 +9,8 @@ import ToggleCustomTheme from './internals/components/ToggleCustomTheme';
 import Copyright from './internals/components/Copyright';
 import Navbar from './components/Navbar';
 import SecondaryNavbar from './components/SecondaryNavbar';
+import ChartUserByCountry from './components/ChartUserByCountry';
+import Header from './components/Header';
 
 export default function Dashboard() {
   const [mode, setMode] = React.useState('light');
@@ -33,8 +35,7 @@ export default function Dashboard() {
         <Box
           component="main"
           sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light' ? '#FBFCFE' : 'rgba(0, 0, 0, 0.35)',
+            backgroundColor: 'background.paper',
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
@@ -44,11 +45,15 @@ export default function Dashboard() {
           <Container
             maxWidth="xl"
             sx={{
-              pt: { xs: 14, sm: 20 },
+              display: 'flex',
+              flexDirection: 'column',
+              pt: { xs: 12, sm: 16 },
               pb: { xs: 8, sm: 12 },
+              gap: { xs: 4, sm: 4 },
             }}
           >
-            Main content
+            <Header />
+            <ChartUserByCountry />
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>

@@ -53,7 +53,7 @@ function ButtonField(props: ButtonFieldProps) {
 function ButtonDatePicker(
   props: Omit<DatePickerProps<Dayjs>, 'open' | 'onOpen' | 'onClose'>,
 ) {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   return (
     <DatePicker

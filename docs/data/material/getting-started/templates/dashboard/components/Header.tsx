@@ -9,10 +9,13 @@ export default function Header() {
   return (
     <Stack direction="row" alignItems="flex-end" sx={{ pb: 3 }}>
       <Stack flexGrow={1}>
-        <Typography variant="h5" component="h1" gutterBottom>
+        <Typography variant="h4" component="h1" gutterBottom>
           Dashboard
         </Typography>
-        <Typography>Make data-driven decisions with analytics.</Typography>
+        <Typography>
+          Explore real-time analytics and trends on user behavior to enhance
+          engagement and drive strategic decisions.
+        </Typography>
       </Stack>
       <Stack direction="row" gap={1}>
         <Search />
