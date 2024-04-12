@@ -40,75 +40,71 @@ const countries = [
     name: 'Brazil',
     value: 10,
     flag: <BrazilFlag />,
-    color: 'hsl(220, 25%, 25%)',
+    color: 'hsl(220, 25%, 30%)',
   },
   {
     name: 'Other',
     value: 5,
     flag: <GlobeFlag />,
-    color: 'hsl(220, 25%, 10%)',
+    color: 'hsl(220, 25%, 20%)',
   },
 ];
 
-const StyledText = styled('text')(({ theme }) => ({
+interface StyledTextProps {
+  variant: 'primary' | 'secondary';
+}
+
+const StyledText = styled('text', {
+  shouldForwardProp: (prop) => prop !== 'variant',
+})<StyledTextProps>(({ theme, variant }) => ({
   textAnchor: 'middle',
   dominantBaseline: 'central',
-  fontSize: theme.typography.h5.fontSize,
-  fontWeight: theme.typography.fontWeightBold,
   fill: theme.palette.text.secondary,
+  fontSize:
+    variant === 'primary'
+      ? theme.typography.h5.fontSize
+      : theme.typography.body2.fontSize,
+  fontWeight:
+    variant === 'primary'
+      ? theme.typography.h5.fontWeight
+      : theme.typography.body2.fontWeight,
 }));
 
-function PieCenterLabel({
-  primaryText,
-  secondaryText,
-}: {
+interface PieCenterLabelProps {
   primaryText: string;
   secondaryText: string;
-}) {
+}
+
+const PieCenterLabel: React.FC<PieCenterLabelProps> = ({
+  primaryText,
+  secondaryText,
+}) => {
   const { width, height, left, top } = useDrawingArea();
-  const primaryY = top + height / 2 - 10; // Adjust this value as needed for spacing
-  const secondaryY = primaryY + 20; // This positions the second line below the first
+  const primaryY = top + height / 2 - 10;
+  const secondaryY = primaryY + 24;
 
   return (
     <>
-      <StyledText x={left + width / 2} y={primaryY}>
+      <StyledText variant="primary" x={left + width / 2} y={primaryY}>
         {primaryText}
       </StyledText>
-      <StyledText
-        x={left + width / 2}
-        y={secondaryY}
-        style={{ fontSize: 'smaller' }}
-      >
+      <StyledText variant="secondary" x={left + width / 2} y={secondaryY}>
         {secondaryText}
       </StyledText>
     </>
   );
-}
+};
 
 const colors = [
   'hsl(220, 25%, 65%)',
   'hsl(220, 25%, 45%)',
-  'hsl(220, 25%, 25%)',
-  'hsl(220, 25%, 10%)',
+  'hsl(220, 25%, 30%)',
+  'hsl(220, 25%, 20%)',
 ];
-
-const BorderLinearProgress = styled(LinearProgress, {
-  shouldForwardProp: (prop) => prop !== 'color',
-})<{ color: string }>(({ theme, color }) => ({
-  height: 8,
-  borderRadius: 8,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 5,
-    backgroundColor: color,
-  },
-}));
 
 export default function ChartUserByCountry() {
   return (
-    <Card variant="outlined" sx={{ maxWidth: '25%' }}>
+    <Card variant="outlined" sx={{ maxWidth: { sm: '100%', md: '35%', lg: '25%' } }}>
       <CardContent>
         <Typography variant="subtitle2">Users by country</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -148,13 +144,17 @@ export default function ChartUserByCountry() {
                 alignItems="center"
                 gap={2}
               >
-                <Typography fontWeight={700}>{countries.name}</Typography>
-                <Typography fontWeight={700}>{countries.value}%</Typography>
+                <Typography variant="body2">{countries.name}</Typography>
+                <Typography variant="body2">{countries.value}%</Typography>
               </Stack>
-              <BorderLinearProgress
+              <LinearProgress
                 variant="determinate"
                 value={countries.value}
-                color={countries.color}
+                sx={{
+                  [`& .${linearProgressClasses.bar}`]: {
+                    backgroundColor: countries.color,
+                  },
+                }}
               />
             </Stack>
           </Stack>

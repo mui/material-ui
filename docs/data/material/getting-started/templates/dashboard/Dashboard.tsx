@@ -49,7 +49,6 @@ export default function Dashboard() {
             }}
           >
             <ChartUserByCountry />
-            Main content
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>

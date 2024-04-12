@@ -352,7 +352,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               minWidth: '40px',
               height: '40px',
             }),
-
             color: theme.palette.grey[600],
             border: `1.2px solid`,
             borderColor: theme.palette.grey[200],
@@ -370,6 +369,18 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                 backgroundColor: alpha(brand[600], 0.3),
                 borderColor: theme.palette.grey[400],
               },
+            }),
+          }),
+        },
+      },
+      MuiLinearProgress: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            height: 8,
+            borderRadius: 8,
+            backgroundColor: gray[200],
+            ...(theme.palette.mode === 'dark' && {
+              backgroundColor: gray[800],
             }),
           }),
         },
