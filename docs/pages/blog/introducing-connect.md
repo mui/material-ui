@@ -1,23 +1,21 @@
 ---
 title: 'Introducing Connect: a Figma plugin that exports Material UI code'
-description: Connect is perfect for designing and developing using the Material UI React library and Design Kit.
-date: 2024-04-13T00:00:00.000Z
+description: Connect is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit.
+date: 2024-04-16T00:00:00.000Z
 authors: ['danilo-leal', 'DavidCnoops']
 tags: ['Connect', 'Material UI', 'Product']
 card: true
 ---
 
-A few years ago, we released the [Material UI Design Kit for Figma](/store/items/figma-react/).
-Since then, many designers who use it expressed how much faster their process would be if they could hand over production-ready code generated directly from the design software to developers using the Material UI React library.
+Ever since we released the [Material UI Design Kit for Figma](/store/items/figma-react/), designers continuously expressed how much faster and more efficient their experience collaborating with developers would be if they could hand over production-ready code generated directly from the design software that nicely integrates with a codebase using Material UI.
 
-That's why Connect, a Figma plugin, was developed and it's now [available now in beta](https://www.figma.com/community/plugin/1336346114713490235/connect)! 🎉
-
-Ultimately, the goal for the Design Kits is to increase the efficiency and speed of the entire team that is using Material UI, drawing designers and developers closer by facilitating the way new designs reach the codebase.
+That's why Connect, a Figma plugin, was developed and it's now [available now in beta](https://www.figma.com/community/plugin/1336346114713490235/connect)!
+Let's walkthough some of the available features.
 
 ## Theme customization
 
-Connect works from the [Design Kit's v5.16.0](https://github.com/mui/mui-design-kits/releases/tag/v5.16.0) up as that was when it started to support Figma's local variables.
-This feature has significantly matured the use of design tokens, which is something Material UI has been doing for a while with all of [its theming features](/material-ui/customization/theming/).
+Connect is compatible with [v5.16.0 and later versions of the Design Kit](https://github.com/mui/mui-design-kits/releases/tag/v5.16.0), because it relies on Figma's local variables.
+This feature has significantly matured the use of design tokens, making it possible to more closely mirror [Material UI's theming features](/material-ui/customization/theming/).
 
 That means you can use Connect to generate code for any customized local variable and style included in the Design Kit.
 
@@ -25,12 +23,11 @@ That means you can use Connect to generate code for any customized local variabl
   <source src="/static/blog/introducing-connect/theme-customization.mp4" type="video/mp4">
 </video>
 
-<!-- Visit the documentation to learn [how to insert the generated code into your theme file](/material-ui/design-resources/connect/#using-the-generated-theme/). -->
-<!-- I remove the comment from the line above once we publish the docs, otherwise this PR's checks will fail -->
+Visit the documentation to learn [how to insert the generated code into your theme file](/material-ui/design-resources/connect/#using-the-generated-theme/).
 
 ## Component customization
 
-You can also drastically change a component's appearance (in multiple states) in the Design Kit and generate the corresponding theme code.
+You can fully customize a component's appearance across multiple states in the Design Kit and then generate the corresponding theme code.
 This is one of the most exciting features because it makes tweaking components incredibly fast!
 
 <video preload="metadata" controls muted loop playsinline width="1584" height="1080">
@@ -40,12 +37,12 @@ This is one of the most exciting features because it makes tweaking components i
 :::warning
 While in beta, not all components are supported yet.
 We'll expand component coverage progressively in the coming months.
-For now, you can play around with the Button, Switch, and Typography!
+For now you can experiment with the Button and Switch.
 :::
 
 ## Quick Storybook preview
 
-On Figma, it's possible to see all states of a certain component but not necessarily interact with them.
+In Figma you can see all states of any given component, but you may not be able to interact with them.
 That's why there's an embedded Storybook preview panel in Connect so that you can conveniently play around with your changes and also see how they interact with other props available in the component API.
 
 <video preload="metadata" autoplay muted loop playsinline width="1584" height="1080">
