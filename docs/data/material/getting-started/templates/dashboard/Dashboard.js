@@ -10,6 +10,7 @@ import Copyright from './internals/components/Copyright';
 import Navbar from './components/Navbar';
 import SecondaryNavbar from './components/SecondaryNavbar';
 import ChartUserByCountry from './components/ChartUserByCountry';
+import Header from './components/Header';
 
 export default function Dashboard() {
   const [mode, setMode] = React.useState('light');
@@ -44,10 +45,14 @@ export default function Dashboard() {
           <Container
             maxWidth="xl"
             sx={{
-              pt: { xs: 14, sm: 20 },
+              display: 'flex',
+              flexDirection: 'column',
+              pt: { xs: 12, sm: 16 },
               pb: { xs: 8, sm: 12 },
+              gap: { xs: 4, sm: 4 },
             }}
           >
+            <Header />
             <ChartUserByCountry />
             <Copyright sx={{ pt: 4 }} />
           </Container>
