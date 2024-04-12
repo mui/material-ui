@@ -55,16 +55,8 @@ export default function styledV6(file, api, options) {
     if (addtional) {
       paramKeys.add(getObjectKey(addtional.left).name);
     }
-    return j.arrowFunctionExpression(
-      [
-        j.objectPattern(
-          [...paramKeys].map((k) => {
-            const item = j.objectProperty(j.identifier(k), j.identifier(k));
-            item.shorthand = true;
-            return item;
-          }),
-        ),
-      ],
+    return buildArrowFunctionAST(
+      paramKeys,
       addtional ? j.logicalExpression('&&', left, addtional) : left,
     );
   }
@@ -112,6 +104,20 @@ export default function styledV6(file, api, options) {
       result.properties.push(j.objectProperty(j.identifier(key), value));
     });
     return result;
+  }
+
+  function buildArrowFunctionAST(params, body) {
+    return j.arrowFunctionExpression(
+      [
+        j.objectPattern(
+          [...params].map((k) => ({
+            ...j.objectProperty(j.identifier(k), j.identifier(k)),
+            shorthand: true,
+          })),
+        ),
+      ],
+      body,
+    );
   }
 
   /**
@@ -168,17 +174,7 @@ export default function styledV6(file, api, options) {
     }
 
     if (!isAllEqual) {
-      return j.arrowFunctionExpression(
-        [
-          j.objectPattern(
-            [...variables].map((k) => ({
-              ...j.objectProperty(j.identifier(k), j.identifier(k)),
-              shorthand: true,
-            })),
-          ),
-        ],
-        node,
-      );
+      return buildArrowFunctionAST(variables, node);
     }
     return j.objectExpression(properties);
   }
@@ -195,15 +191,8 @@ export default function styledV6(file, api, options) {
     [...parentArrow.params[0].properties, ...currentArrow.params[0].properties].forEach((param) => {
       variables.add(param.key.name);
     });
-    return j.arrowFunctionExpression(
-      [
-        j.objectPattern(
-          [...variables].map((k) => ({
-            ...j.objectProperty(j.identifier(k), j.identifier(k)),
-            shorthand: true,
-          })),
-        ),
-      ],
+    return buildArrowFunctionAST(
+      variables,
       j.logicalExpression('&&', parentArrow.body, currentArrow.body),
     );
   }
