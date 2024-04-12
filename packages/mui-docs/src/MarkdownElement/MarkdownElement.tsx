@@ -130,26 +130,33 @@ const Root = styled('div')(
         // Remove scroll on small screens.
         wordBreak: 'break-all',
       },
-      '& .anchor-link': {
+      '& .title-link-to-anchor': {
+        color: 'inherit',
+        textDecoration: 'none',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+      },
+      '& .anchor-icon': {
         // To prevent the link to get the focus.
         display: 'inline-flex',
         alignItems: 'center',
         visibility: 'hidden',
       },
-      '& a:not(.anchor-link):hover': {
+      '& a:not(.title-link-to-anchor):hover': {
         color: 'currentColor',
         border: 'none',
         boxShadow: '0 1px 0 0 currentColor',
         textDecoration: 'none',
       },
-      '& .anchor-link, & .comment-link': {
+      '& .anchor-icon, & .comment-link': {
         padding: 0,
         cursor: 'pointer',
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
         textAlign: 'center',
-        marginLeft: 4,
+        marginLeft: 8,
         height: 26,
         width: 26,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.grey[50]})`,
@@ -170,7 +177,7 @@ const Root = styled('div')(
           verticalAlign: 'middle',
         },
       },
-      '&:hover .anchor-link': {
+      '&:hover .anchor-icon': {
         visibility: 'visible',
       },
       '& .comment-link': {
@@ -411,7 +418,7 @@ const Root = styled('div')(
       // Remove link arrow for ads
       display: 'none',
     },
-    '& a, & a code': {
+    '& a:not(.title-link-to-anchor), & a:not(.title-link-to-anchor) code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
       fontWeight: theme.typography.fontWeightMedium,
@@ -421,7 +428,7 @@ const Root = styled('div')(
         textDecorationColor: 'inherit',
       },
     },
-    '& a code': {
+    '& a:not(.title-link-to-anchor) code': {
       color: darken(lightTheme.palette.primary.main, 0.2),
     },
     '& img, & video': {
@@ -666,7 +673,7 @@ const Root = styled('div')(
         color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
       },
       '& h1, & h2, & h3, & h4': {
-        '&:hover .anchor-link, & .comment-link': {
+        '&:hover .anchor-icon, & .comment-link': {
           color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
           backgroundColor: alpha(darkTheme.palette.primaryDark[700], 0.5),
@@ -769,10 +776,10 @@ const Root = styled('div')(
           },
         },
       },
-      '& a, & a code': {
+      '& a:not(.title-link-to-anchor), & a:not(.title-link-to-anchor) code': {
         color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
       },
-      '& a code': {
+      '& a:not(.title-link-to-anchor) code': {
         color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
       },
       '& kbd.key': {
