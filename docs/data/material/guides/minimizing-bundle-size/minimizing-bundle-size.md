@@ -226,7 +226,7 @@ For example, with [Webpack's `resolve.conditionNames`](https://webpack.js.org/co
 {
   // ...
   resolve: {
-    conditionNames: ['modern', 'import', 'default']
+    conditionNames: ['modern', 'import', 'default'];
   }
 }
 ```
