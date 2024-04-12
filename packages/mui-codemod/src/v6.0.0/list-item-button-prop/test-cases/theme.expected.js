@@ -1,4 +1,6 @@
 fn({
-    MuiListItemButton
+    MuiListItemButton: {
+      defaultProps: {}
+    }
   });
   

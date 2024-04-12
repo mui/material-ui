@@ -21,6 +21,21 @@ export default function transformer(file, api, options) {
       elementPath.node.openingElement.attributes.splice(index, 1);
     }
   });
+  
+  root.find(j.ObjectProperty).forEach((path) => {
+    if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiListItem') {
+      // Replace MuiListItem with MuiListItemButton
+      path.parent.parent.parent.parent.node.key = j.identifier('MuiListItemButton');
+  
+      // Remove the 'button' property inside defaultProps
+      const defaultPropsNode = path.parent.parent.parent.parent.node.value.properties.find(prop => prop.key.name === 'defaultProps');
+      if (defaultPropsNode && defaultPropsNode.value.type === 'ObjectExpression') {
+        defaultPropsNode.value.properties = defaultPropsNode.value.properties.filter(prop => prop.key.name !== 'button');
+      }
+    }
+  });
+  
+  
 
   
   let containsListItem = false;
