@@ -1,6 +1,7 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
+import type {} from '@mui/x-date-pickers/themeAugmentation';
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -267,29 +268,30 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
-              backgroundColor: alpha(brand[300], 0.1),
-              borderColor: brand[300],
-              color: brand[500],
+              color: theme.palette.grey[600],
+              border: `1.2px solid`,
+              borderColor: theme.palette.grey[200],
+              backgroundColor: theme.palette.grey[50],
               '&:hover': {
-                backgroundColor: alpha(brand[300], 0.3),
-                borderColor: brand[200],
+                backgroundColor: alpha(brand[100], 0.4),
+                borderColor: theme.palette.grey[400],
               },
             }),
             ...(ownerState.variant === 'text' && {
-              color: brand[500],
+              color: theme.palette.grey[600],
               '&:hover': {
-                backgroundColor: alpha(brand[300], 0.3),
-                borderColor: brand[200],
+                backgroundColor: alpha(brand[100], 0.4),
+                borderColor: theme.palette.grey[400],
               },
             }),
             ...(theme.palette.mode === 'dark' && {
               ...(ownerState.variant === 'outlined' && {
-                backgroundColor: alpha(brand[600], 0.1),
-                borderColor: brand[700],
-                color: brand[300],
+                backgroundColor: theme.palette.grey[900],
+                borderColor: theme.palette.grey[700],
+                color: theme.palette.grey[300],
                 '&:hover': {
                   backgroundColor: alpha(brand[600], 0.3),
-                  borderColor: brand[700],
+                  borderColor: theme.palette.grey[400],
                 },
               }),
               ...(ownerState.variant === 'text' && {
@@ -514,6 +516,58 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             ...(theme.palette.mode === 'dark' && {
               color: theme.palette.grey[400],
             }),
+          }),
+        },
+      },
+      MuiPickersArrowSwitcher: {
+        styleOverrides: {
+          button: ({ theme }) => ({
+            color: theme.palette.grey[500],
+            ...(theme.palette.mode === 'dark' && {
+              color: theme.palette.grey[400],
+            }),
+          }),
+        },
+      },
+
+      MuiPickersCalendarHeader: {
+        styleOverrides: {
+          switchViewButton: {
+            padding: 0,
+            border: 'none',
+          },
+        },
+      },
+      MuiPickersMonth: {
+        styleOverrides: {
+          monthButton: ({ theme }) => ({
+            fontSize: theme.typography.pxToRem(15),
+            fontWeight: 500,
+            color: theme.palette.grey[600],
+            padding: theme.spacing(0.5),
+            height: 'fit-content',
+            borderRadius: theme.shape.borderRadius,
+          }),
+        },
+      },
+      MuiPickersYear: {
+        styleOverrides: {
+          yearButton: ({ theme }) => ({
+            fontSize: theme.typography.pxToRem(15),
+            fontWeight: 500,
+            color: theme.palette.grey[600],
+            padding: theme.spacing(0.5),
+            height: 'fit-content',
+            borderRadius: theme.shape.borderRadius,
+          }),
+        },
+      },
+      MuiPickersDay: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            fontWeight: 500,
+            color: theme.palette.grey[600],
+            borderRadius: theme.shape.borderRadius,
           }),
         },
       },

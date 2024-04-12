@@ -3,6 +3,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import OptionsMenu from './OptionsMenu';
 import Search from './Search';
+import CustomDatePicker from './CustomDatePicker';
 
 export default function Header() {
   return (
@@ -15,6 +16,7 @@ export default function Header() {
       </Stack>
       <Stack direction="row" gap={1}>
         <Search />
+        <CustomDatePicker />
         <OptionsMenu />
       </Stack>
     </Stack>
