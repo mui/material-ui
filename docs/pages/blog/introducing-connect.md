@@ -9,7 +9,8 @@ card: true
 
 Ever since we released the [Material UI Design Kit for Figma](/store/items/figma-react/), designers continuously expressed how much faster and more efficient their experience collaborating with developers would be if they could hand over production-ready code generated directly from the design software that nicely integrates with a codebase using Material UI.
 
-That's why Connect, a Figma plugin, was created and it's [available now in beta](https://www.figma.com/community/plugin/1336346114713490235/connect)!
+That's why Connect was created!
+We're happy to share that the beta version is [available now, for free on Figma](https://www.figma.com/community/plugin/1336346114713490235/connect).
 Let's walkthough some of the available features.
 
 ## Theme customization
