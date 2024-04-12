@@ -4,7 +4,7 @@ description: Come join our community to engage in lively discussions, share your
 date: 2023-08-02T00:00:00.000Z
 authors: ['richbustos']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 <a href="https://mui.com/r/discord/"><img src="/static/blog/discord-announcement/discord.png" width="1280" height="640" style="margin-bottom: 16px;" alt="Discord banner with link" /></a>

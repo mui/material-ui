@@ -4,7 +4,7 @@ description: We are excited to share that Michał Dudak has joined MUI.
 date: 2021-06-14T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 We are excited to share that [Michał Dudak](https://twitter.com/michaldudak) has joined MUI!
