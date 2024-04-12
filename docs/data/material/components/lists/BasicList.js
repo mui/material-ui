@@ -10,12 +10,22 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 
 export default function BasicList() {
+
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const handleListItemClick = (index) => {
+    setSelectedIndex(index === selectedIndex ? -1 : index);
+  };
+
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <nav aria-label="main mailbox folders">
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              selected={selectedIndex === 0}
+              onClick={() => handleListItemClick(0)}
+            >
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
@@ -23,7 +33,10 @@ export default function BasicList() {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              selected={selectedIndex === 1}
+              onClick={() => handleListItemClick(1)}
+            >
               <ListItemIcon>
                 <DraftsIcon />
               </ListItemIcon>
@@ -36,12 +49,20 @@ export default function BasicList() {
       <nav aria-label="secondary mailbox folders">
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              selected={selectedIndex === 2}
+              onClick={() => handleListItemClick(2)}
+            >
               <ListItemText primary="Trash" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton
+              selected={selectedIndex === 3}
+              onClick={() => handleListItemClick(3)}
+              component="a"
+              href="#simple-list"
+            >
               <ListItemText primary="Spam" />
             </ListItemButton>
           </ListItem>
