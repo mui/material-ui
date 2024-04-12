@@ -105,171 +105,177 @@ const PaginationItemPage = styled(ButtonBase, {
   name: 'MuiPaginationItem',
   slot: 'Root',
   overridesResolver,
-})(
-  ({ theme }) => ({
-    ...theme.typography.body2,
-    borderRadius: 32 / 2,
-    textAlign: 'center',
-    boxSizing: 'border-box',
-    minWidth: 32,
-    height: 32,
-    padding: '0 6px',
-    margin: '0 3px',
-    color: (theme.vars || theme).palette.text.primary,
-    [`&.${paginationItemClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
+})(({ theme }) => ({
+  ...theme.typography.body2,
+  borderRadius: 32 / 2,
+  textAlign: 'center',
+  boxSizing: 'border-box',
+  minWidth: 32,
+  height: 32,
+  padding: '0 6px',
+  margin: '0 3px',
+  color: (theme.vars || theme).palette.text.primary,
+  [`&.${paginationItemClasses.focusVisible}`]: {
+    backgroundColor: (theme.vars || theme).palette.action.focus,
+  },
+  [`&.${paginationItemClasses.disabled}`]: {
+    opacity: (theme.vars || theme).palette.action.disabledOpacity,
+  },
+  transition: theme.transitions.create(['color', 'background-color'], {
+    duration: theme.transitions.duration.short,
+  }),
+  '&:hover': {
+    backgroundColor: (theme.vars || theme).palette.action.hover,
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      backgroundColor: 'transparent',
     },
-    [`&.${paginationItemClasses.disabled}`]: {
-      opacity: (theme.vars || theme).palette.action.disabledOpacity,
-    },
-    transition: theme.transitions.create(['color', 'background-color'], {
-      duration: theme.transitions.duration.short,
-    }),
+  },
+  [`&.${paginationItemClasses.selected}`]: {
+    backgroundColor: (theme.vars || theme).palette.action.selected,
     '&:hover': {
-      backgroundColor: (theme.vars || theme).palette.action.hover,
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+        : alpha(
+            theme.palette.action.selected,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-    [`&.${paginationItemClasses.selected}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.selected,
-      '&:hover': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-          : alpha(
-              theme.palette.action.selected,
-              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-            ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: (theme.vars || theme).palette.action.selected,
-        },
-      },
-      [`&.${paginationItemClasses.focusVisible}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.action.selected,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
-      },
-      [`&.${paginationItemClasses.disabled}`]: {
-        opacity: 1,
-        color: (theme.vars || theme).palette.action.disabled,
         backgroundColor: (theme.vars || theme).palette.action.selected,
       },
     },
-    variants: [
-      {
-        props: { size: 'small' },
-        style: {
-          minWidth: 26,
-          height: 26,
-          borderRadius: 26 / 2,
-          margin: '0 1px',
-          padding: '0 4px',
+    [`&.${paginationItemClasses.focusVisible}`]: {
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+        : alpha(
+            theme.palette.action.selected,
+            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+          ),
+    },
+    [`&.${paginationItemClasses.disabled}`]: {
+      opacity: 1,
+      color: (theme.vars || theme).palette.action.disabled,
+      backgroundColor: (theme.vars || theme).palette.action.selected,
+    },
+  },
+  variants: [
+    {
+      props: { size: 'small' },
+      style: {
+        minWidth: 26,
+        height: 26,
+        borderRadius: 26 / 2,
+        margin: '0 1px',
+        padding: '0 4px',
+      },
+    },
+    {
+      props: { size: 'large' },
+      style: {
+        minWidth: 40,
+        height: 40,
+        borderRadius: 40 / 2,
+        padding: '0 10px',
+        fontSize: theme.typography.pxToRem(15),
+      },
+    },
+    {
+      props: { shape: 'rounded' },
+      style: {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+      },
+    },
+    {
+      props: { variant: 'outlined' },
+      style: {
+        border: theme.vars
+          ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+          : `1px solid ${
+              theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+            }`,
+        [`&.${paginationItemClasses.selected}`]: {
+          [`&.${paginationItemClasses.disabled}`]: {
+            borderColor: (theme.vars || theme).palette.action.disabledBackground,
+            color: (theme.vars || theme).palette.action.disabled,
+          },
         },
       },
-      {
-        props: { size: 'large' },
-        style: {
-          minWidth: 40,
-          height: 40,
-          borderRadius: 40 / 2,
-          padding: '0 10px',
-          fontSize: theme.typography.pxToRem(15),
+    },
+    {
+      props: { variant: 'text' },
+      style: {
+        [`&.${paginationItemClasses.selected}`]: {
+          [`&.${paginationItemClasses.disabled}`]: {
+            color: (theme.vars || theme).palette.action.disabled,
+          },
         },
       },
-      {
-        props: { shape: 'rounded' },
+    },
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value.main && value.dark && value.contrastText)
+      .map(([color]) => ({
+        props: { variant: 'text', color },
         style: {
-          borderRadius: (theme.vars || theme).shape.borderRadius,
-        },
-      },
-    ],
-  }),
-  ({ theme }) => ({
-    variants: [
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.dark && value.contrastText)
-        .map(([color]) => ({
-          props: { variant: 'text', color },
-          style: {
-            [`&.${paginationItemClasses.selected}`]: {
-              color: (theme.vars || theme).palette[color].contrastText,
-              backgroundColor: (theme.vars || theme).palette[color].main,
-              '&:hover': {
-                backgroundColor: (theme.vars || theme).palette[color].dark,
-                // Reset on touch devices, it doesn't add specificity
-                '@media (hover: none)': {
-                  backgroundColor: (theme.vars || theme).palette[color].main,
-                },
-              },
-              [`&.${paginationItemClasses.focusVisible}`]: {
-                backgroundColor: (theme.vars || theme).palette[color].dark,
-              },
-              [`&.${paginationItemClasses.disabled}`]: {
-                color: (theme.vars || theme).palette.action.disabled,
+          [`&.${paginationItemClasses.selected}`]: {
+            color: (theme.vars || theme).palette[color].contrastText,
+            backgroundColor: (theme.vars || theme).palette[color].main,
+            '&:hover': {
+              backgroundColor: (theme.vars || theme).palette[color].dark,
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: (theme.vars || theme).palette[color].main,
               },
             },
+            [`&.${paginationItemClasses.focusVisible}`]: {
+              backgroundColor: (theme.vars || theme).palette[color].dark,
+            },
+            [`&.${paginationItemClasses.disabled}`]: {
+              color: (theme.vars || theme).palette.action.disabled,
+            },
           },
-        })),
-      {
-        props: { variant: 'outlined' },
-        style: {
-          border: theme.vars
-            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-            : `1px solid ${
-                theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-              }`,
         },
-      },
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.light)
-        .map(([color]) => ({
-          props: { variant: 'outlined', color },
-          style: {
-            [`&.${paginationItemClasses.selected}`]: {
-              color: (theme.vars || theme).palette[color].main,
-              border: `1px solid ${
-                theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
-                  : alpha(theme.palette[color].main, 0.5)
-              }`,
+      })),
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value.main && value.light)
+      .map(([color]) => ({
+        props: { variant: 'outlined', color },
+        style: {
+          [`&.${paginationItemClasses.selected}`]: {
+            color: (theme.vars || theme).palette[color].main,
+            border: `1px solid ${
+              theme.vars
+                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
+                : alpha(theme.palette[color].main, 0.5)
+            }`,
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.activatedOpacity})`
+              : alpha(theme.palette[color].main, theme.palette.action.activatedOpacity),
+            '&:hover': {
               backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.activatedOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.activatedOpacity),
-              '&:hover': {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-                  : alpha(
-                      theme.palette[color].main,
-                      theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-                    ),
-                // Reset on touch devices, it doesn't add specificity
-                '@media (hover: none)': {
-                  backgroundColor: 'transparent',
-                },
-              },
-              [`&.${paginationItemClasses.focusVisible}`]: {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-                  : alpha(
-                      theme.palette[color].main,
-                      theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-                    ),
-              },
-              [`&.${paginationItemClasses.disabled}`]: {
-                borderColor: (theme.vars || theme).palette.action.disabledBackground,
-                color: (theme.vars || theme).palette.action.disabled,
+                ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+                : alpha(
+                    theme.palette[color].main,
+                    theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+                  ),
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: 'transparent',
               },
             },
+            [`&.${paginationItemClasses.focusVisible}`]: {
+              backgroundColor: theme.vars
+                ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+                : alpha(
+                    theme.palette[color].main,
+                    theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+                  ),
+            },
           },
-        })),
-    ],
-  }),
-);
+        },
+      })),
+  ],
+}));
 
 const PaginationItemPageIcon = styled('div', {
   name: 'MuiPaginationItem',
