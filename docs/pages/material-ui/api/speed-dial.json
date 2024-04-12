@@ -30,11 +30,17 @@
     "open": { "type": { "name": "bool" } },
     "openIcon": { "type": { "name": "node" } },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ root?: elementType, transition?: elementType }"
+      },
       "default": "{}"
     },
     "sx": {
@@ -59,6 +65,20 @@
   "imports": [
     "import SpeedDial from '@mui/material/SpeedDial';",
     "import { SpeedDial } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiSpeedDial-root"
+    },
+    {
+      "name": "transition",
+      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/speedDial/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "{}",
+      "class": null
+    }
   ],
   "classes": [
     {
@@ -101,12 +121,6 @@
       "key": "fab",
       "className": "MuiSpeedDial-fab",
       "description": "Styles applied to the Fab component.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiSpeedDial-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     }
   ],

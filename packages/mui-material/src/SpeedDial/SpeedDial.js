@@ -366,13 +366,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     slotProps: backwardCompatibleSlotProps,
   };
 
-  const [RootSlot, rootProps] = useSlot('root', {
-    elementType: SpeedDialRoot,
-    externalForwardedProps,
-    className: clsx(classes.root, className),
-    ownerState,
-  });
-
   const [TransitionSlot, transitionProps] = useSlot('transition', {
     elementType: Zoom,
     externalForwardedProps,
@@ -380,8 +373,8 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   });
 
   return (
-    <RootSlot
-      {...rootProps}
+    <SpeedDialRoot
+      className={clsx(classes.root, className)}
       ref={ref}
       role="presentation"
       onKeyDown={handleKeyDown}
@@ -389,6 +382,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       onFocus={handleOpen}
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}
+      ownerState={ownerState}
       {...other}
     >
       <TransitionSlot in={!hidden} timeout={transitionDuration} unmountOnExit {...transitionProps}>
@@ -418,7 +412,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       >
         {children}
       </SpeedDialActions>
-    </RootSlot>
+    </SpeedDialRoot>
   );
 });
 
@@ -507,20 +501,19 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   openIcon: PropTypes.node,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
-   *
    * @default {}
    */
   slots: PropTypes.shape({
+    root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**

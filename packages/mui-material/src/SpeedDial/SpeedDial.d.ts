@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-// import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { FabProps } from '../Fab';
 import { TransitionProps } from '../transitions';
 import { SpeedDialClasses } from './speedDialClasses';
@@ -46,7 +46,12 @@ export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface SpeedDialProps extends SpeedDialSlotsAndSlotProps {
+export interface SpeedDialProps
+  extends Omit<
+      StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+      'slots' | 'slotProps'
+    >,
+    SpeedDialSlotsAndSlotProps {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
    */
