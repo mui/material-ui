@@ -227,6 +227,14 @@ Here's how to migrate:
  },
 ```
 
+## Autocomplete
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/autocomplete-props <path>
+```
+
 ## Avatar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:

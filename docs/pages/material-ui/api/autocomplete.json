@@ -16,7 +16,11 @@
       },
       "default": "false"
     },
-    "ChipProps": { "type": { "name": "object" } },
+    "ChipProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.chip</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+    },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "clearIcon": { "type": { "name": "node" }, "default": "<ClearIcon fontSize=\"small\" />" },
     "clearOnBlur": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
@@ -92,8 +96,17 @@
       }
     },
     "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
-    "ListboxComponent": { "type": { "name": "elementType" }, "default": "'ul'" },
-    "ListboxProps": { "type": { "name": "object" } },
+    "ListboxComponent": {
+      "type": { "name": "elementType" },
+      "default": "'ul'",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.listbox</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+    },
+    "ListboxProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.listbox</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+    },
     "loading": { "type": { "name": "bool" }, "default": "false" },
     "loadingText": { "type": { "name": "node" }, "default": "'Loading…'" },
     "multiple": { "type": { "name": "bool" }, "default": "false" },
@@ -136,8 +149,18 @@
     "open": { "type": { "name": "bool" } },
     "openOnFocus": { "type": { "name": "bool" }, "default": "false" },
     "openText": { "type": { "name": "string" }, "default": "'Open'" },
-    "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
-    "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
+    "PaperComponent": {
+      "type": { "name": "elementType" },
+      "default": "Paper",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.paper</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+    },
+    "PopperComponent": {
+      "type": { "name": "elementType" },
+      "default": "Popper",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.listbox</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+    },
     "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
     "readOnly": { "type": { "name": "bool" }, "default": "false" },
     "renderGroup": {
@@ -172,7 +195,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
+        "description": "{ chip?: func<br>&#124;&nbsp;{ avatar?: element, children?: any, classes?: any<br>&#124;&nbsp;object, className?: any<br>&#124;&nbsp;string, clickable?: any<br>&#124;&nbsp;bool, color?: 'default'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;any, component?: elementType, deleteIcon?: element, disabled?: any<br>&#124;&nbsp;bool, icon?: element, label?: any<br>&#124;&nbsp;node, onDelete?: any<br>&#124;&nbsp;func, size?: 'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;any, skipFocusWhenDisabled?: any<br>&#124;&nbsp;bool, style?: any<br>&#124;&nbsp;object, sx?: any, tabIndex?: any<br>&#124;&nbsp;number, variant?: 'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;any }<br>&#124;&nbsp;{ component?: elementType, key?: any, sx?: Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object }, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: elementType, paper?: elementType, popper?: elementType }"
       },
       "default": "{}"
     },
@@ -189,6 +219,26 @@
   "imports": [
     "import Autocomplete from '@mui/material/Autocomplete';",
     "import { Autocomplete } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "listbox",
+      "description": "The component used to render the listbox.",
+      "default": "'ul'",
+      "class": "MuiAutocomplete-listbox"
+    },
+    {
+      "name": "paper",
+      "description": "The component used to render the body of the popup.",
+      "default": "Paper",
+      "class": "MuiAutocomplete-paper"
+    },
+    {
+      "name": "popper",
+      "description": "The component used to position the popup.",
+      "default": "Popper",
+      "class": "MuiAutocomplete-popper"
+    }
   ],
   "classes": [
     {
@@ -270,12 +320,6 @@
       "isGlobal": false
     },
     {
-      "key": "listbox",
-      "className": "MuiAutocomplete-listbox",
-      "description": "Styles applied to the listbox component.",
-      "isGlobal": false
-    },
-    {
       "key": "loading",
       "className": "MuiAutocomplete-loading",
       "description": "Styles applied to the loading wrapper.",
@@ -291,18 +335,6 @@
       "key": "option",
       "className": "MuiAutocomplete-option",
       "description": "Styles applied to the option elements.",
-      "isGlobal": false
-    },
-    {
-      "key": "paper",
-      "className": "MuiAutocomplete-paper",
-      "description": "Styles applied to the Paper component.",
-      "isGlobal": false
-    },
-    {
-      "key": "popper",
-      "className": "MuiAutocomplete-popper",
-      "description": "Styles applied to the popper element.",
       "isGlobal": false
     },
     {
