@@ -248,19 +248,20 @@ export default function getDashboardTheme(mode) {
                 },
               }),
             ...(ownerState.variant === 'outlined' && {
-              backgroundColor: alpha(brand[300], 0.1),
-              borderColor: brand[300],
-              color: brand[500],
+              color: theme.palette.grey[600],
+              border: `1.2px solid`,
+              borderColor: theme.palette.grey[200],
+              backgroundColor: theme.palette.grey[50],
               '&:hover': {
-                backgroundColor: alpha(brand[300], 0.3),
-                borderColor: brand[200],
+                backgroundColor: alpha(brand[100], 0.4),
+                borderColor: theme.palette.grey[400],
               },
             }),
             ...(ownerState.variant === 'text' && {
-              color: brand[500],
+              color: theme.palette.grey[600],
               '&:hover': {
-                backgroundColor: alpha(brand[300], 0.3),
-                borderColor: brand[200],
+                backgroundColor: alpha(brand[100], 0.4),
+                borderColor: theme.palette.grey[400],
               },
             }),
             ...(ownerState.variant === 'outlined' &&
@@ -281,12 +282,12 @@ export default function getDashboardTheme(mode) {
               }),
             ...(theme.palette.mode === 'dark' && {
               ...(ownerState.variant === 'outlined' && {
-                backgroundColor: alpha(brand[600], 0.1),
-                borderColor: brand[700],
-                color: brand[300],
+                backgroundColor: theme.palette.grey[900],
+                borderColor: theme.palette.grey[700],
+                color: theme.palette.grey[300],
                 '&:hover': {
                   backgroundColor: alpha(brand[600], 0.3),
-                  borderColor: brand[700],
+                  borderColor: theme.palette.grey[400],
                 },
                 ...(ownerState.variant === 'outlined' &&
                   ownerState.color === 'secondary' && {
@@ -582,6 +583,93 @@ export default function getDashboardTheme(mode) {
                 color: '#fff',
               },
             }),
+          }),
+        },
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            borderRadius: '10px',
+            ...(ownerState.size === 'small' && {
+              height: '32px',
+              padding: '0 8px',
+            }),
+            ...(ownerState.size === 'medium' && {
+              height: '40px',
+            }),
+            color: theme.palette.grey[900],
+            ...(theme.palette.mode === 'dark' && {
+              color: theme.palette.grey[200],
+            }),
+          }),
+          notchedOutline: ({ theme }) => ({
+            border: `1.2px solid`,
+            borderColor: theme.palette.grey[200],
+            ...(theme.palette.mode === 'dark' && {
+              borderColor: theme.palette.grey[700],
+              color: theme.palette.grey[300],
+            }),
+          }),
+        },
+      },
+      MuiInputAdornment: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            color: theme.palette.grey[500],
+            ...(theme.palette.mode === 'dark' && {
+              color: theme.palette.grey[400],
+            }),
+          }),
+        },
+      },
+      MuiPickersArrowSwitcher: {
+        styleOverrides: {
+          button: ({ theme }) => ({
+            color: theme.palette.grey[500],
+            ...(theme.palette.mode === 'dark' && {
+              color: theme.palette.grey[400],
+            }),
+          }),
+        },
+      },
+      MuiPickersCalendarHeader: {
+        styleOverrides: {
+          switchViewButton: {
+            padding: 0,
+            border: 'none',
+          },
+        },
+      },
+      MuiPickersMonth: {
+        styleOverrides: {
+          monthButton: ({ theme }) => ({
+            fontSize: theme.typography.pxToRem(15),
+            fontWeight: 500,
+            color: theme.palette.grey[600],
+            padding: theme.spacing(0.5),
+            height: 'fit-content',
+            borderRadius: theme.shape.borderRadius,
+          }),
+        },
+      },
+      MuiPickersYear: {
+        styleOverrides: {
+          yearButton: ({ theme }) => ({
+            fontSize: theme.typography.pxToRem(15),
+            fontWeight: 500,
+            color: theme.palette.grey[600],
+            padding: theme.spacing(0.5),
+            height: 'fit-content',
+            borderRadius: theme.shape.borderRadius,
+          }),
+        },
+      },
+      MuiPickersDay: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            fontWeight: 500,
+            color: theme.palette.grey[600],
+            borderRadius: theme.shape.borderRadius,
           }),
         },
       },
