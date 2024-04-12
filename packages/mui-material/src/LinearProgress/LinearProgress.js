@@ -28,9 +28,12 @@ const indeterminate1Keyframe = keyframes`
     right: -90%;
   }
 `;
-const indeterminate1Animation = css`
-  animation: ${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-`;
+const indeterminate1Animation =
+  typeof indeterminate1Keyframe !== 'string'
+    ? css`
+        animation: ${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+      `
+    : null;
 
 const indeterminate2Keyframe = keyframes`
   0% {
@@ -48,9 +51,12 @@ const indeterminate2Keyframe = keyframes`
     right: -8%;
   }
 `;
-const indeterminate2Animation = css`
-  animation: ${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
-`;
+const indeterminate2Animation =
+  typeof indeterminate2Keyframe !== 'string'
+    ? css`
+        animation: ${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
+      `
+    : null;
 
 const bufferKeyframe = keyframes`
   0% {
@@ -67,9 +73,6 @@ const bufferKeyframe = keyframes`
     opacity: 1;
     background-position: -200px -23px;
   }
-`;
-const bufferAnimation = css`
-  animation: ${bufferKeyframe} 3s infinite linear;
 `;
 
 const useUtilityClasses = (ownerState) => {
@@ -201,7 +204,11 @@ const LinearProgressDashed = styled('span', {
         }),
     ],
   }),
-  typeof bufferAnimation !== 'string' && bufferAnimation,
+  typeof bufferKeyframe !== 'string'
+    ? css`
+        animation: ${bufferKeyframe} 3s infinite linear;
+      `
+    : null,
 );
 
 const LinearProgressBar1 = styled('span', {
@@ -273,11 +280,9 @@ const LinearProgressBar1 = styled('span', {
         ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
       style:
         // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-        typeof indeterminate1Animation !== 'string'
-          ? indeterminate1Animation
-          : {
-              animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
-            },
+        indeterminate1Animation || {
+          animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
+        },
     },
   ],
 }));
@@ -348,11 +353,9 @@ const LinearProgressBar2 = styled('span', {
         ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
       style:
         // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-        typeof indeterminate2Animation !== 'string'
-          ? indeterminate2Animation
-          : {
-              animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
-            },
+        indeterminate2Animation || {
+          animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
+        },
     },
   ],
 }));

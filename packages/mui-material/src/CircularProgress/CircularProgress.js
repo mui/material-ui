@@ -39,13 +39,19 @@ const circularDashKeyframe = keyframes`
   }
 `;
 
-const rotateAnimation = css`
-  animation: ${circularRotateKeyframe} 1.4s linear infinite;
-`;
+const rotateAnimation =
+  typeof circularRotateKeyframe !== 'string'
+    ? css`
+        animation: ${circularRotateKeyframe} 1.4s linear infinite;
+      `
+    : null;
 
-const dashAnimation = css`
-  animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-`;
+const dashAnimation =
+  typeof circularDashKeyframe !== 'string'
+    ? css`
+        animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
+      `
+    : null;
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, color, disableShrink } = ownerState;
@@ -88,11 +94,9 @@ const CircularProgressRoot = styled('span', {
       },
       style:
         // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-        typeof rotateAnimation !== 'string'
-          ? rotateAnimation
-          : {
-              animation: `${circularRotateKeyframe} 1.4s linear infinite`,
-            },
+        rotateAnimation || {
+          animation: `${circularRotateKeyframe} 1.4s linear infinite`,
+        },
     },
     ...Object.entries(theme.palette)
       .filter(([, palette]) => palette.main)
@@ -150,12 +154,9 @@ const CircularProgressCircle = styled('circle', {
       // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
       props: ({ ownerState }) =>
         ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
-      style:
-        typeof dashAnimation !== 'string'
-          ? dashAnimation
-          : {
-              animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
-            },
+      style: dashAnimation || {
+        animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
+      },
     },
   ],
 }));
