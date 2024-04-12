@@ -480,6 +480,43 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            borderRadius: '10px',
+
+            ...(ownerState.size === 'small' && {
+              height: '32px',
+              padding: '0 8px',
+            }),
+            ...(ownerState.size === 'medium' && {
+              height: '40px',
+            }),
+            color: theme.palette.grey[900],
+            ...(theme.palette.mode === 'dark' && {
+              color: theme.palette.grey[200],
+            }),
+          }),
+          notchedOutline: ({ theme }) => ({
+            border: `1.2px solid`,
+            borderColor: theme.palette.grey[200],
+            ...(theme.palette.mode === 'dark' && {
+              borderColor: theme.palette.grey[700],
+              color: theme.palette.grey[300],
+            }),
+          }),
+        },
+      },
+      MuiInputAdornment: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            color: theme.palette.grey[500],
+            ...(theme.palette.mode === 'dark' && {
+              color: theme.palette.grey[400],
+            }),
+          }),
+        },
+      },
     },
   };
 }

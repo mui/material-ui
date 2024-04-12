@@ -10,6 +10,7 @@ import Copyright from './internals/components/Copyright';
 import Navbar from './components/Navbar';
 import SecondaryNavbar from './components/SecondaryNavbar';
 import ChartUserByCountry from './components/ChartUserByCountry';
+import Header from './components/Header';
 
 export default function Dashboard() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
@@ -48,6 +49,7 @@ export default function Dashboard() {
               pb: { xs: 8, sm: 12 },
             }}
           >
+            <Header />
             <ChartUserByCountry />
             Main content
             <Copyright sx={{ pt: 4 }} />
