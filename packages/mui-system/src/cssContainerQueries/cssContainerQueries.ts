@@ -10,7 +10,7 @@ interface ContainerQueries {
 }
 
 export interface CssContainerQueries {
-  cq: ((name: string) => ContainerQueries) & ContainerQueries;
+  containerQueries: ((name: string) => ContainerQueries) & ContainerQueries;
 }
 
 /**
@@ -23,7 +23,7 @@ export function sortContainerQueries(
   theme: Partial<CssContainerQueries>,
   css: Record<string, any>,
 ) {
-  if (!theme.cq) {
+  if (!theme.containerQueries) {
     return css;
   }
   const sorted = Object.keys(css)
@@ -69,7 +69,7 @@ export function getContainerQuery(theme: CssContainerQueries, shorthand: string)
   const value = (Number.isNaN(+containerQuery) ? containerQuery : +containerQuery) as
     | Breakpoint
     | number;
-  return theme.cq(containerName).up(value);
+  return theme.containerQueries(containerName).up(value);
 }
 
 export default function cssContainerQueries<T extends { breakpoints: Breakpoints }>(
@@ -104,15 +104,15 @@ export default function cssContainerQueries<T extends { breakpoints: Breakpoints
     };
   }
   const node = {};
-  const cq = ((name: string) => {
+  const containerQueries = ((name: string) => {
     attachCq(node, name);
     return node;
-  }) as CssContainerQueries['cq'];
+  }) as CssContainerQueries['containerQueries'];
 
-  attachCq(cq);
+  attachCq(containerQueries);
 
   return {
     ...themeInput,
-    cq,
+    containerQueries,
   };
 }

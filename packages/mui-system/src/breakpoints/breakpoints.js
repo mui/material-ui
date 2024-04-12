@@ -21,7 +21,7 @@ const defaultBreakpoints = {
 };
 
 const defaultContainerQueries = {
-  cq: (containerName) => ({
+  containerQueries: (containerName) => ({
     up: (key) => {
       let result = typeof key === 'number' ? key : values[key] || key;
       if (typeof result === 'number') {
@@ -50,7 +50,7 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
     return Object.keys(propValue).reduce((acc, breakpoint) => {
       if (isCqShorthand(themeBreakpoints.keys, breakpoint)) {
         const containerKey = getContainerQuery(
-          theme.cq ? theme : defaultContainerQueries,
+          theme.containerQueries ? theme : defaultContainerQueries,
           breakpoint,
         );
         if (containerKey) {

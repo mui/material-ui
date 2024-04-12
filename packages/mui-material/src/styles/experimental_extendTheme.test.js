@@ -411,8 +411,10 @@ describe('experimental_extendTheme', () => {
   describe('container queries', () => {
     it('should generate container queries', () => {
       const theme = extendTheme();
-      expect(theme.cq('sidebar').up('sm')).to.equal('@container sidebar (min-width:600px)');
-      expect(theme.cq.up(300)).to.equal('@container (min-width:300px)');
+      expect(theme.containerQueries('sidebar').up('sm')).to.equal(
+        '@container sidebar (min-width:600px)',
+      );
+      expect(theme.containerQueries.up(300)).to.equal('@container (min-width:300px)');
     });
   });
 

@@ -9,7 +9,7 @@ describe('defaultTheme', () => {
         'colorSchemeSelector',
         'defaultColorScheme',
         'breakpoints',
-        'cq',
+        'containerQueries',
         'components',
         'colorSchemes',
         'focus',
@@ -48,8 +48,10 @@ describe('defaultTheme', () => {
     expect(defaultTheme.palette.colorScheme).to.equal('light');
   });
 
-  it('has `cq` in the theme', () => {
-    expect(defaultTheme.cq('sidebar').up('sm')).to.equal('@container sidebar (min-width:600px)');
-    expect(defaultTheme.cq.up(300)).to.equal('@container (min-width:300px)');
+  it('has `containerQueries` in the theme', () => {
+    expect(defaultTheme.containerQueries('sidebar').up('sm')).to.equal(
+      '@container sidebar (min-width:600px)',
+    );
+    expect(defaultTheme.containerQueries.up(300)).to.equal('@container (min-width:300px)');
   });
 });
