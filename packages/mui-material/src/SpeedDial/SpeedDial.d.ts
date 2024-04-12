@@ -1,19 +1,52 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+// import { InternalStandardProps as StandardProps } from '..';
 import { FabProps } from '../Fab';
 import { TransitionProps } from '../transitions';
 import { SpeedDialClasses } from './speedDialClasses';
-import { SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 
-export interface SpeedDialSlotPropsOverrides {}
+export interface SpeedDialSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the transition.
+   * [Follow this guide](/material-ui/speedDial/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default {}
+   */
+  transition?: React.JSXElementConstructor<
+    TransitionProps & { children: React.ReactElement<any, any> }
+  >;
+}
 
-export interface SpeedDialProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface SpeedDialComponentsPropsOverrides {}
+
+export interface SpeedDialTransitionSlotPropsOverrides {}
+
+export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SpeedDialSlots,
+  {
+    root: SlotProps<
+      React.ElementType<HTMLDivElement>,
+      SpeedDialComponentsPropsOverrides,
+      SpeedDialOwnerState
+    >;
+    transition: SlotProps<
+      React.JSXElementConstructor<TransitionProps>,
+      SpeedDialTransitionSlotPropsOverrides,
+      SpeedDialOwnerState
+    >;
+  }
+>;
+
+export interface SpeedDialProps extends SpeedDialSlotsAndSlotProps {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
    */
@@ -99,23 +132,8 @@ export interface SpeedDialProps
    * The components used for each slot inside.
    *
    * @default {}
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
-  slots?: {
-    transition?: React.ElementType;
-  };
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    transition?: SlotProps<
-      React.JSXElementConstructor<TransitionProps>,
-      SpeedDialSlotPropsOverrides,
-      SpeedDialOwnerState
-    >;
-  };
 }
 
 export interface SpeedDialOwnerState extends SpeedDialProps {}

@@ -361,19 +361,27 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
 
   const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
   const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
+  const externalForwardedProps = {
+    slots: backwardCompatibleSlots,
+    slotProps: backwardCompatibleSlotProps,
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: SpeedDialRoot,
+    externalForwardedProps,
+    className: clsx(classes.root, className),
+    ownerState,
+  });
 
   const [TransitionSlot, transitionProps] = useSlot('transition', {
     elementType: Zoom,
-    externalForwardedProps: {
-      slots: backwardCompatibleSlots,
-      slotProps: backwardCompatibleSlotProps,
-    },
+    externalForwardedProps,
     ownerState,
   });
 
   return (
-    <SpeedDialRoot
-      className={clsx(classes.root, className)}
+    <RootSlot
+      {...rootProps}
       ref={ref}
       role="presentation"
       onKeyDown={handleKeyDown}
@@ -381,7 +389,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       onFocus={handleOpen}
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}
-      ownerState={ownerState}
       {...other}
     >
       <TransitionSlot in={!hidden} timeout={transitionDuration} unmountOnExit {...transitionProps}>
@@ -411,7 +418,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       >
         {children}
       </SpeedDialActions>
-    </SpeedDialRoot>
+    </RootSlot>
   );
 });
 
