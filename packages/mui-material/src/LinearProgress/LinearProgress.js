@@ -147,7 +147,6 @@ const LinearProgressRoot = styled('span', {
       .map(([color]) => ({
         props: { color },
         style: {
-          // eslint-disable-next-line no-nested-ternary
           backgroundColor: getColorShade(theme, color),
         },
       })),
