@@ -1,6 +1,6 @@
 const FormHelperTextRoot = styled('p')(({
   theme
-}) => (({
+}) => ({
   color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.caption,
   textAlign: 'left',
@@ -85,11 +85,11 @@ const FormHelperTextRoot = styled('p')(({
       opacity: 0.5,
     }
   }]
-})));
+}));
 
 const Component = styled.div(({
   theme
-}) => (({
+}) => ({
   ...theme.typography.caption,
   variants: [{
     props: {
@@ -99,7 +99,7 @@ const Component = styled.div(({
       marginTop: (theme.vars || theme).spacing(1),
     }
   }]
-})));
+}));
 
 const ImageListRoot = styled('ul')({
   display: 'grid',

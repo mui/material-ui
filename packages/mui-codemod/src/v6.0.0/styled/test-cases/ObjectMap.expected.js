@@ -1,6 +1,6 @@
 const IconRoot = styled('span')(({
   theme
-}) => (({
+}) => ({
   userSelect: 'none',
   width: '1em',
   height: '1em',
@@ -104,4 +104,4 @@ const IconRoot = styled('span')(({
       color: undefined
     }
   }]
-})));
+}));

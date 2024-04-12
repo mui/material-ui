@@ -15,7 +15,7 @@ const LinearProgressBar1 = styled('span', {
   },
 })(({
   theme
-}) => (({
+}) => ({
   variants: [{
     props: (
       {
@@ -83,7 +83,7 @@ const LinearProgressBar1 = styled('span', {
       backgroundColor: (theme.vars || theme).palette[ownerState.color].main
     }
   }]
-})));
+}));
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -120,7 +120,7 @@ const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
 })(({
   theme
-}) => (({
+}) => ({
   minHeight: '100vh',
   display: 'grid',
   width: '100%',
@@ -150,7 +150,7 @@ const Main = styled('main', {
           },
         }
   }]
-})));
+}));
 
 const StyledAppContainer = styled(AppContainer, {
   shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'hasTabs' && prop !== 'disableToc',
