@@ -91,5 +91,5 @@ Here's the updated Webpack example that was previously documented:
 Documentation: [resolve.conditionNames](https://webpack.js.org/configuration/resolve/#resolveconditionnames)
 
 :::info
-For guidance on other bundlers, refer to the [How to use custom bundlers documentation](/material-ui/guides/minimizing-bundle-size/#how-to-use-custom-bundles).
+For guidance on other bundlers, refer to the [Modern bundle documentation](/material-ui/guides/minimizing-bundle-size/#modern-bundle).
 :::
