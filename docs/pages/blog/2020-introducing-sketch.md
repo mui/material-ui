@@ -4,7 +4,7 @@ description: Today, we're excited to announce the introduction of official Sketc
 date: 2020-03-30T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Material UI', 'Product']
-card: true
+manualCard: true
 ---
 
 Today, we're excited to introduce the Sketch symbols 💎 for Material UI.
