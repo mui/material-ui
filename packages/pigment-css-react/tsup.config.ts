@@ -26,9 +26,14 @@ export default defineConfig([
     ...baseConfig,
     entry: [
       './src/utils/index.ts',
-      './src/utils/pre-linaria-plugin.ts',
+      './src/utils/sx-plugin.ts',
       './src/utils/remove-prop-types-plugin.ts',
     ],
     outDir: 'utils',
+  },
+  {
+    ...baseConfig,
+    entry: ['./src/private-runtime/index.ts'],
+    outDir: 'private-runtime',
   },
 ]);
