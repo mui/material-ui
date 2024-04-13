@@ -26,6 +26,7 @@
       "deprecated": true,
       "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
     },
+    "onClick": { "type": { "name": "func" } },
     "onClose": {
       "type": { "name": "func" },
       "signature": {

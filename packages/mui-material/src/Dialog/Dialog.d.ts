@@ -53,6 +53,10 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
    */
   onBackdropClick?: ModalProps['onBackdropClick'];
   /**
+   * Callback fired when the dialog is clicked.
+   */
+  onClick?: ModalProps['onClick'];
+  /**
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
