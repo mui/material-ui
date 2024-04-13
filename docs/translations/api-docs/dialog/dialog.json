@@ -19,7 +19,6 @@
       "description": "Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to <code>false</code> to disable <code>maxWidth</code>."
     },
     "onBackdropClick": { "description": "Callback fired when the backdrop is clicked." },
-    "onClick": { "description": "Callback fired when the dialog is clicked." },
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
       "typeDescriptions": {

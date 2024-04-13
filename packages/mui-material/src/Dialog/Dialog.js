@@ -366,7 +366,7 @@ Dialog.propTypes /* remove-proptypes */ = {
    */
   onBackdropClick: PropTypes.func,
   /**
-   * Callback fired when the dialog is clicked.
+   * @ignore
    */
   onClick: PropTypes.func,
   /**
