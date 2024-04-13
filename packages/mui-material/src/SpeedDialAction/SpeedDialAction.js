@@ -39,17 +39,9 @@ const SpeedDialActionFab = styled(Fab, {
       ? theme.vars.palette.SpeedDialAction.fabHoverBg
       : emphasize(theme.palette.background.paper, 0.15),
   },
-  transition: `${theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shorter,
-  })}, opacity 0.8s`,
   opacity: 1,
   ...(!ownerState.open && {
     opacity: 0,
-    transform: 'scale(0)',
-  }),
-  ...((!ownerState.open && ownerState.tooltipOpen === true) && {
-    opacity: 0,
-    transform: 'scale(1)',
   }),
 }));
 
@@ -113,7 +105,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       placement={tooltipPlacement}
       onClose={handleTooltipClose}
       onOpen={handleTooltipOpen}
-      open={(open && tooltipOpen) || (open && tooltipOpenProp)}
+      open={open && (tooltipOpen || tooltipOpenProp)}
       classes={TooltipClasses}
       {...other}
     >
