@@ -41,7 +41,27 @@ export default function ButtonUsage() {
       ]}
       renderDemo={(props) => (
         <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button startDecorator={<FavoriteBorder />} {...props}>
+          <Button
+            startDecorator={<FavoriteBorder />}
+            sx={{
+              '&[aria-busy="true"]': {
+                // Hide text content when loading is true
+                color: 'transparent',
+                pointerEvents: 'none',
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: 'currentColor',
+                  opacity: 0.5,
+                },
+              },
+            }}
+            {...props}
+          >
             Hello world
           </Button>
           <IconButton {...props}>
