@@ -22,6 +22,28 @@ Steppers may display a transient feedback message after a step is saved.
 This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
+## Introduction
+
+Stepper displays progress through a sequence of logical and numbered steps. It support horizontal and vertical orientation for desktop and mobile viewports.
+
+Material UI Steppers are implemented using a collection of related components:
+
+- Stepper: a required container for steps. Renders as a `<ol>` by default.
+- Step: a step. Renders as a `<li>` by default.
+- Step Label: a label of a step.
+- Step Content: an optional content of a step.
+- Step Button: an optional button of a step.
+- Step Icon: an optional icon of a step.
+- Step Connector: an optional customized connector of a step.
+
+## Basics
+
+```jsx
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+```
+
 ## Horizontal stepper
 
 Horizontal steppers are ideal when the contents of one step depend on an earlier step.
