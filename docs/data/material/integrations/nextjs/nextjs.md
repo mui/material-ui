@@ -363,10 +363,9 @@ To learn more about theming, check out the [Theming guide](/material-ui/customiz
 
 If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` instead:
 
-````diff title="pages/_app.tsx"
+```diff title="pages/_app.tsx"
 -import { ThemeProvider, createTheme } from '@mui/material/styles';
 +import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 ```
 
 Learn more about [the advantages of CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/#advantages).
-````
