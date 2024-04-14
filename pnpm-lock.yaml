@@ -129,8 +129,8 @@ importers:
         specifier: workspace:^
         version: link:packages/pigment-css-react
       '@playwright/test':
-        specifier: 1.43.0
-        version: 1.43.0
+        specifier: 1.43.1
+        version: 1.43.1
       '@types/enzyme':
         specifier: ^3.10.18
         version: 3.10.18
@@ -394,7 +394,7 @@ importers:
         version: link:../local-ui-lib
       next:
         specifier: latest
-        version: 14.2.1(@babel/core@7.24.4)(@playwright/test@1.43.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 14.2.1(@babel/core@7.24.4)(@playwright/test@1.43.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -539,8 +539,8 @@ importers:
         specifier: ^10.10.0
         version: 10.10.0
       playwright:
-        specifier: ^1.43.0
-        version: 1.43.0
+        specifier: ^1.43.1
+        version: 1.43.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -924,8 +924,8 @@ importers:
         specifier: ^5.1.2
         version: 5.1.2
       playwright:
-        specifier: ^1.43.0
-        version: 1.43.0
+        specifier: ^1.43.1
+        version: 1.43.1
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -1730,8 +1730,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       playwright:
-        specifier: ^1.43.0
-        version: 1.43.0
+        specifier: ^1.43.1
+        version: 1.43.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2402,8 +2402,8 @@ importers:
         specifier: ^10.4.0
         version: 10.4.0
       playwright:
-        specifier: ^1.43.0
-        version: 1.43.0
+        specifier: ^1.43.1
+        version: 1.43.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -2489,8 +2489,8 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-utils/build
       '@playwright/test':
-        specifier: 1.43.0
-        version: 1.43.0
+        specifier: 1.43.1
+        version: 1.43.1
       '@testing-library/dom':
         specifier: ^9.3.4
         version: 9.3.4
@@ -2525,8 +2525,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       playwright:
-        specifier: ^1.43.0
-        version: 1.43.0
+        specifier: ^1.43.1
+        version: 1.43.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -6700,12 +6700,12 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@playwright/test@1.43.0:
-    resolution: {integrity: sha512-Ebw0+MCqoYflop7wVKj711ccbNlrwTBCtjY5rlbiY9kHL2bCYxq+qltK6uPsVBGGAOb033H2VO0YobcQVxoW7Q==}
+  /@playwright/test@1.43.1:
+    resolution: {integrity: sha512-HgtQzFgNEEo4TE22K/X7sYTYNqEMMTZmFS8kTq6m8hXj+m1D8TgwgIbumHddJa9h4yl4GkKb8/bgAl2+g7eDgA==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright: 1.43.0
+      playwright: 1.43.1
 
   /@polka/url@1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
@@ -16370,7 +16370,7 @@ packages:
       - '@babel/core'
       - babel-plugin-macros
 
-  /next@14.2.1(@babel/core@7.24.4)(@playwright/test@1.43.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0):
+  /next@14.2.1(@babel/core@7.24.4)(@playwright/test@1.43.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-SF3TJnKdH43PMkCcErLPv+x/DY1YCklslk3ZmwaVoyUfDgHKexuKlf9sEfBQ69w+ue8jQ3msLb+hSj1T19hGag==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -16389,7 +16389,7 @@ packages:
         optional: true
     dependencies:
       '@next/env': 14.2.1
-      '@playwright/test': 1.43.0
+      '@playwright/test': 1.43.1
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
       caniuse-lite: 1.0.30001599
@@ -17609,17 +17609,17 @@ packages:
     resolution: {integrity: sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==}
     dev: false
 
-  /playwright-core@1.43.0:
-    resolution: {integrity: sha512-iWFjyBUH97+pUFiyTqSLd8cDMMOS0r2ZYz2qEsPjH8/bX++sbIJT35MSwKnp1r/OQBAqC5XO99xFbJ9XClhf4w==}
+  /playwright-core@1.43.1:
+    resolution: {integrity: sha512-EI36Mto2Vrx6VF7rm708qSnesVQKbxEWvPrfA1IPY6HgczBplDx7ENtx+K2n4kJ41sLLkuGfmb0ZLSSXlDhqPg==}
     engines: {node: '>=16'}
     hasBin: true
 
-  /playwright@1.43.0:
-    resolution: {integrity: sha512-SiOKHbVjTSf6wHuGCbqrEyzlm6qvXcv7mENP+OZon1I07brfZLGdfWV0l/efAzVx7TF3Z45ov1gPEkku9q25YQ==}
+  /playwright@1.43.1:
+    resolution: {integrity: sha512-V7SoH0ai2kNt1Md9E3Gwas5B9m8KR2GVvwZnAI6Pg0m3sh7UvgiYhRrhsziCmqMJNouPckiOhk8T+9bSAK0VIA==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright-core: 1.43.0
+      playwright-core: 1.43.1
     optionalDependencies:
       fsevents: 2.3.2
 
