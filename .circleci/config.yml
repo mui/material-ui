@@ -243,7 +243,7 @@ jobs:
           name: Lint writing style
           command: |
             vale sync
-            pnpm run valelint
+            pnpm valelint
   test_static:
     <<: *default-job
     steps:
