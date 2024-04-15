@@ -15,11 +15,9 @@ That got us thinking:
 What if designers could generate production-ready code directly from their design software to hand off to developers working with a Material UI codebase?
 
 That's why we created Connect, a Figma plugin for generating styles that can be copied and pasted straight into your Material UI app's theme.
-We're happy to share that the beta version is [available now on Figma](https://www.figma.com/community/plugin/1336346114713490235/connect).
+We're happy to share that the beta version is [available now on Figma](https://www.figma.com/community/plugin/1336346114713490235/connect). 🚀
 
-<a href="https://www.figma.com/community/plugin/1336346114713490235/connect" target="_blank">
-  <img src="/static/blog/introducing-connect/card.png" alt="Connect is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit." width="1280" height="640" />
-</a>
+<img src="/static/blog/introducing-connect/card.png" alt="Connect is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit." width="1280" height="640" />
 
 Let's take a look at some of its key features:
 
