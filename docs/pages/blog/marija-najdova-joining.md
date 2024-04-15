@@ -4,7 +4,7 @@ description: We are excited to share that Marija Najdova has joined MUI. She has
 date: 2020-09-15T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 We are excited to share that [Marija Najdova](https://twitter.com/marijanajdova) has joined MUI. She has started this week full-time, and is now part of the community team.

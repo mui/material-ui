@@ -127,26 +127,8 @@
       "require": "./utils/index.js",
       "default": "./utils/index.js"
     },
-    "./exports/generateAtomics": {
-      "default": "./exports/generateAtomics.js"
-    },
-    "./exports/keyframes": {
-      "default": "./exports/keyframes.js"
-    },
-    "./exports/styled": {
-      "default": "./exports/styled.js"
-    },
-    "./exports/sx-plugin": {
-      "default": "./exports/sx-plugin.js"
-    },
-    "./exports/remove-prop-types-plugin": {
-      "default": "./exports/remove-prop-types-plugin.js"
-    },
-    "./exports/sx": {
-      "default": "./exports/sx.js"
-    },
-    "./exports/createUseThemeProps": {
-      "default": "./exports/createUseThemeProps.js"
+    "./exports/*": {
+      "default": "./exports/*.js"
     },
     "./Box": {
       "types": "./build/Box.d.ts",
@@ -165,6 +147,15 @@
       },
       "require": "./build/RtlProvider.js",
       "default": "./build/RtlProvider.js"
+    },
+    "./private-runtime": {
+      "types": "./private-runtime/index.d.ts",
+      "import": {
+        "types": "./private-runtime/index.d.mts",
+        "default": "./private-runtime/index.mjs"
+      },
+      "require": "./private-runtime/index.js",
+      "default": "./private-runtime/index.js"
     }
   },
   "nx": {
