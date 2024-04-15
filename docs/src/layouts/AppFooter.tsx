@@ -88,12 +88,6 @@ export default function AppFooter(props: AppFooterProps) {
             <Link prefetch={false} href={ROUTES.productConnect}>
               Connect
             </Link>
-            <Link prefetch={false} href={ROUTES.productTemplates}>
-              Templates
-            </Link>
-            <Link prefetch={false} href={ROUTES.productDesignKits}>
-              Design Kits
-            </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
@@ -113,6 +107,12 @@ export default function AppFooter(props: AppFooterProps) {
             </Link>
             <Link prefetch={false} href={ROUTES.theming}>
               Theming
+            </Link>
+            <Link prefetch={false} href={ROUTES.productTemplates}>
+              Templates
+            </Link>
+            <Link prefetch={false} href={ROUTES.productDesignKits}>
+              Design Kits
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>

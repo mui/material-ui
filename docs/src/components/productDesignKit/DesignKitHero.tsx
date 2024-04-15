@@ -37,8 +37,8 @@ export default function TemplateHero() {
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Material UI
-            <br /> in your favorite
-            <br /> <GradientText>design tool</GradientText>
+            <br />
+            for <GradientText>Figma</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>
             Pick your favorite design tool to enjoy and use Material UI components. Boost
