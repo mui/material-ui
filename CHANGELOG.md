@@ -15,7 +15,7 @@ This release was mostly about supporting CSS extraction and API standardization.
 - [Dialog] Prevent onClick on the root element from being overwritten (#41881) @ryanburr
 - [FloatingActionButton] Convert to support CSS extraction (#41851) @gijsbotje
 - Fix import statement in migration guide (#41852) @sai6855
-- Convert `CircularProgress` to support Pigment CSS (#41776) @siriwatknp
+- Convert `CircularProgress` to support Pigment CSS (#41776) @siriwatknp
 - [PaginationItem] Convert to support CSS extraction (#41848) @gijsbotje
 - [StepConnector] deprecate composed classes (#41740) @sai6855
 - [StepLabel] Deprecate `StepIconComponent`, `StepIconProps` (#41835) @sai6855
