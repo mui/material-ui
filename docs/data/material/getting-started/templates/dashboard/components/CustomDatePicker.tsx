@@ -44,6 +44,7 @@ function ButtonField(props: ButtonFieldProps) {
       size="small"
       onClick={() => setOpen?.((prev) => !prev)}
       startIcon={<CalendarTodayIcon fontSize="small" />}
+      sx={{ minWidth: 'fit-content' }}
     >
       {label ? `${label}` : 'Pick a date'}
     </Button>

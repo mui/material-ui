@@ -47,14 +47,13 @@ export default function Dashboard() {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              pt: { xs: 12, sm: 16 },
-              pb: { xs: 8, sm: 12 },
-              gap: { xs: 4, sm: 4 },
+              py: { xs: 8, sm: 18 },
+              gap: 4,
             }}
           >
             <Header />
             <ChartUserByCountry />
-            <Copyright sx={{ pt: 4 }} />
+            <Copyright sx={{ my: 4 }} />
           </Container>
         </Box>
         <ToggleCustomTheme

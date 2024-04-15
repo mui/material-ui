@@ -135,7 +135,12 @@ export default function ChartUserByCountry() {
           </PieChart>
         </Box>
         {countries.map((countries, index) => (
-          <Stack direction="row" alignItems="center" gap={2} sx={{ pb: 2 }}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            gap={2}
+            sx={{ '&:not(:last-of-type)': { pb: 2 } }}
+          >
             {countries.flag}
             <Stack gap={1} sx={{ flexGrow: 1 }}>
               <Stack
