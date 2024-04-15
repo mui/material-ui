@@ -289,7 +289,7 @@ export default function TopLayoutBlog(props) {
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card =
     headers.manualCard === 'true'
-      ? `https://mui.com/static/blog/${slug}/card.png`
+      ? `/static/blog/${slug}/card.png`
       : `/edge-functions/og-image/?title=${headers.cardTitle || finalTitle}&authors=${headers.authors
           .map((author) => {
             const { github, name } = authors[author];
