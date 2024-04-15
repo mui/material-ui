@@ -1,5 +1,45 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.16
+
+<!-- generated comparing v5.15.15..master -->
+
+_Apr 15, 2024_
+
+A big thanks to the 5 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes.
+
+### `@mui/material@5.15.16`
+
+- [Dialog] Prevent onClick on the root element from being overwritten (#41914) @ryanburr
+- Fix import statement in migration guide (#41864) @sai6855
+- [Select] Fix `muiName` property TypeScript error (#41786) @EyaOuenniche
+
+### `@mui/joy@5.0.0-beta.33`
+
+- [Button] Disable text highlighting (#41905) @mithun522
+
+### Docs
+
+- Fix small SEO issues @oliviertassinari
+- Fix 301 redirection @oliviertassinari
+- Fix format git diff regression (#41882) @oliviertassinari
+- Fix 301 links @oliviertassinari
+- [material-ui] Fix Material 3 message typo (#41822) @aarongarciah
+- [material-ui] Remove Data Grid v7 beta callout (#41842) @cherniavskii
+
+### Core
+
+- [base-ui][website] Page <title> should have no dots @oliviertassinari
+- Automate cherry-pick of PRs from `next` -> `master` (#41742) @aarongarciah
+- [docs-infra] Use edge function for card generation (#41188) @alexfauquette
+- [docs-infra] Fix drawer performances (#41807) (#41820) @alexfauquette
+- [docs-infra] Fix analytics about inline ads (#41474) @alexfauquette
+- [l10n] Fix typo in is-IS locale (#41815) @magnimarels
+- [website] Add Jose to About Us (#41759) @JCQuintas
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @JCQuintas, @oliviertassinari
+
 ## v5.15.15
 
 <!-- generated comparing v5.15.14..master -->
