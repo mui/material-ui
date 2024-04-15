@@ -930,8 +930,8 @@ The PaginationItems's `components` was deprecated in favor of `slots`:
 
 ```diff
  <PaginationItems
--  components={{ first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }}
-+  slots={{ first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }}
+-  components={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
++  slots={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
  />
 ```
 
