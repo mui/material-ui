@@ -27,7 +27,7 @@ Connect relies on these local variables to generate code corresponding to each e
   <source src="/static/blog/introducing-connect/theme-customization.mp4" type="video/mp4">
 </video>
 
-Visit the documentation to learn [how to insert the generated code into your theme file](/material-ui/design-resources/connect/#using-the-generated-theme/).
+Visit the documentation to learn [how to insert the generated code into your theme file](/material-ui/design-resources/connect/#using-the-generated-theme).
 
 ## Component customization
 
