@@ -10,7 +10,10 @@ interface ToggleColorModeProps {
   toggleColorMode: () => void;
 }
 
-function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
+export default function ToggleColorMode({
+  mode,
+  toggleColorMode,
+}: ToggleColorModeProps) {
   return (
     <Box sx={{ maxWidth: '32px' }}>
       <MenuButton
@@ -27,5 +30,3 @@ function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
     </Box>
   );
 }
-
-export default ToggleColorMode;
