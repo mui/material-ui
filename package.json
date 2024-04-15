@@ -114,9 +114,9 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@pigment-css/react": "workspace:^",
     "@next/eslint-plugin-next": "^14.1.4",
     "@octokit/rest": "^20.1.0",
+    "@pigment-css/react": "workspace:^",
     "@playwright/test": "1.43.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
@@ -227,5 +227,10 @@
     ],
     "sourceMap": false,
     "instrument": false
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@wyw-in-js/transform@0.5.0": "patches/@wyw-in-js__transform@0.5.0.patch"
+    }
   }
 }
