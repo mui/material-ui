@@ -27,6 +27,11 @@ overrides:
   '@types/react-dom': 18.2.19
   cross-fetch: ^4.0.0
 
+patchedDependencies:
+  '@wyw-in-js/transform@0.5.0':
+    hash: zicb4vap2prvslgwedcxhpcmvy
+    path: patches/@wyw-in-js__transform@0.5.0.patch
+
 importers:
 
   .:
@@ -2195,7 +2200,7 @@ importers:
         version: 0.5.0
       '@wyw-in-js/transform':
         specifier: ^0.5.0
-        version: 0.5.0
+        version: 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -2274,7 +2279,7 @@ importers:
         version: 0.5.0
       '@wyw-in-js/transform':
         specifier: ^0.5.0
-        version: 0.5.0
+        version: 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
       babel-plugin-define-var:
         specifier: ^0.1.0
         version: 0.1.0
@@ -2311,7 +2316,7 @@ importers:
         version: 0.5.0
       '@wyw-in-js/transform':
         specifier: ^0.5.0
-        version: 0.5.0
+        version: 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
       babel-plugin-define-var:
         specifier: ^0.1.0
         version: 0.1.0
@@ -8604,7 +8609,7 @@ packages:
       - supports-color
     dev: false
 
-  /@wyw-in-js/transform@0.5.0:
+  /@wyw-in-js/transform@0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy):
     resolution: {integrity: sha512-tpa2/FsB30fdXB1E+9MmfxQYbRgLv/+VMKzpBKNraDH39zwnA2eGGAEho5gpqK40cEV7NH6zhVbaBcEnV0HQyw==}
     engines: {node: '>=16.0.0'}
     dependencies:
@@ -8626,6 +8631,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+    patched: true
 
   /@xtuc/ieee754@1.2.0:
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -21955,7 +21961,7 @@ packages:
       '@mui/system': link:packages/mui-system/build
       '@wyw-in-js/processor-utils': 0.5.0
       '@wyw-in-js/shared': 0.5.0
-      '@wyw-in-js/transform': 0.5.0
+      '@wyw-in-js/transform': 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
       clsx: 2.1.0
       cssesc: 3.0.0
       csstype: 3.1.3
