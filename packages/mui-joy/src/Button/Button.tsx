@@ -165,6 +165,7 @@ export const getButtonStyles = ({
         // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
           color: 'transparent',
+          userSelect: 'none',
         },
       }),
     },
