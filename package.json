@@ -189,7 +189,7 @@
     "tsx": "^4.7.2",
     "typescript": "^5.4.4",
     "webpack": "^5.90.3",
-    "webpack-bundle-analyzer": "^4.10.1",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
   },
