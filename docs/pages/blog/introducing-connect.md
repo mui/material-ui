@@ -45,7 +45,7 @@ This is one of the most exciting features because it enables designers to use th
 :::warning
 While in beta, not all components are supported yet.
 We'll expand component coverage progressively in the coming months.
-For now you can experiment with the Button and Switch.
+For now you can experiment with the Button, Switch, and Typography.
 :::
 
 ## Quick Storybook preview
