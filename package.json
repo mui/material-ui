@@ -115,7 +115,7 @@
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
     "@pigment-css/react": "workspace:^",
-    "@next/eslint-plugin-next": "^14.1.4",
+    "@next/eslint-plugin-next": "^14.2.1",
     "@octokit/rest": "^20.1.0",
     "@playwright/test": "1.43.1",
     "@types/enzyme": "^3.10.18",
