@@ -15,10 +15,6 @@ This release was mostly about 🐛 bug fixes.
 - Fix import statement in migration guide (#41864) @sai6855
 - [Select] Fix `muiName` property TypeScript error (#41786) @EyaOuenniche
 
-### `@mui/joy@5.0.0-beta.33`
-
-- [Button] Disable text highlighting (#41905) @mithun522
-
 ### Docs
 
 - Fix small SEO issues @oliviertassinari
