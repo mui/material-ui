@@ -800,8 +800,8 @@ importers:
         specifier: ^6.5.9
         version: 6.5.9(final-form@4.20.10)(react@18.2.0)
       react-imask:
-        specifier: ^7.5.0
-        version: 7.5.0(react@18.2.0)
+        specifier: ^7.6.0
+        version: 7.6.0(react@18.2.0)
       react-intersection-observer:
         specifier: ^9.8.2
         version: 9.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -4175,8 +4175,8 @@ packages:
       regenerator-runtime: 0.14.0
     dev: false
 
-  /@babel/runtime-corejs3@7.24.0:
-    resolution: {integrity: sha512-HxiRMOncx3ly6f3fcZ1GVKf+/EROcI9qwPgmij8Czqy6Okm/0T37T4y2ZIlLUuEUFjtM7NRsfdCO8Y3tAiJZew==}
+  /@babel/runtime-corejs3@7.24.4:
+    resolution: {integrity: sha512-VOQOexSilscN24VEY810G/PqtpFvx/z6UqDIjIWbDe2368HhDLkYN5TYwaEz/+eRCUkhJ2WaNLLmQAlxzfWj4w==}
     engines: {node: '>=6.9.0'}
     dependencies:
       core-js-pure: 3.32.1
@@ -13660,11 +13660,11 @@ packages:
       queue: 6.0.2
     dev: false
 
-  /imask@7.5.0:
-    resolution: {integrity: sha512-eoTEnw67KAamB1zsiYtU35s0Fj1XYZ8mN2q3ZDGO4ot4FtPmBpw9S6kOTj0kaOILdsEA6ZhNtH2TAMXe/NChmQ==}
+  /imask@7.6.0:
+    resolution: {integrity: sha512-6EHsq1q7v5+M4Vas2MGrs2oRpxPRWPwPDiL0HmG1ikBI/0hOwvkxRhVRFQnWIlZcTG7R8iw0az5V+z868qnQ9A==}
     engines: {npm: '>=4.0.0'}
     dependencies:
-      '@babel/runtime-corejs3': 7.24.0
+      '@babel/runtime-corejs3': 7.24.4
     dev: false
 
   /immediate@3.0.6:
@@ -18282,13 +18282,13 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-imask@7.5.0(react@18.2.0):
-    resolution: {integrity: sha512-yWExhHphDmNaHvmOsYR+5QcludeBdYk6bXyo8kouIJFAub5sF+O0kLPVupg2yhd7EfTqjLswFZ/tqY1AhKnd9Q==}
+  /react-imask@7.6.0(react@18.2.0):
+    resolution: {integrity: sha512-SilPct67Xw4TN+dqn3SM4BVpy+FwNSeT0wblA/DXQ3El2KPBEWwrn4x3gQ39ZohFAphp7yG7w6gSKq5SeR/6Kg==}
     engines: {npm: '>=4.0.0'}
     peerDependencies:
       react: '>=0.14.0'
     dependencies:
-      imask: 7.5.0
+      imask: 7.6.0
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
