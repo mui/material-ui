@@ -6,7 +6,7 @@
 
 _Apr 15, 2024_
 
-A big thanks to the 5 contributors who made this release possible.
+A big thanks to the 10 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes.
 
 ### `@mui/material@5.15.16`
@@ -38,7 +38,7 @@ This release was mostly about 🐛 bug fixes.
 - [l10n] Fix typo in is-IS locale (#41815) @magnimarels
 - [website] Add Jose to About Us (#41759) @JCQuintas
 
-All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @JCQuintas, @oliviertassinari
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @cherniavskii, @EyaOuenniche, @JCQuintas, @magnimarels, @mithun522, @oliviertassinari, @ryanburr, @sai6855
 
 ## v5.15.15
 
