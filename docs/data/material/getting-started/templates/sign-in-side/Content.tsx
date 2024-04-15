@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
@@ -46,13 +47,9 @@ export default function Content() {
         maxWidth: 450,
       }}
     >
-      <SitemarkIcon
-        sx={{
-          fontSize: 150,
-          height: 'fit-content',
-          display: { xs: 'none', md: 'flex' },
-        }}
-      />
+      <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+        <SitemarkIcon />
+      </Box>
       {items.map((item) => (
         <Stack direction="row" gap={2}>
           {item.icon}

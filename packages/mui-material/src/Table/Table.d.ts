@@ -28,8 +28,6 @@ export interface TableOwnProps {
   size?: OverridableStringUnion<'small' | 'medium', TablePropsSizeOverrides>;
   /**
    * Set the header sticky.
-   *
-   * ⚠️ It doesn't work with IE11.
    * @default false
    */
   stickyHeader?: boolean;

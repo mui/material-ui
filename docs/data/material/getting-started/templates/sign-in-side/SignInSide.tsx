@@ -41,7 +41,7 @@ function ToggleCustomTheme({
         exclusive
         value={showCustomTheme}
         onChange={toggleCustomTheme}
-        aria-label="Platform"
+        aria-label="Toggle design language"
         sx={{
           backgroundColor: 'background.default',
           '& .Mui-selected': {
@@ -82,8 +82,8 @@ export default function SignInSide() {
         sx={(theme) => ({
           backgroundImage:
             theme.palette.mode === 'light'
-              ? 'radial-gradient(ellipse at 70% 51%, #f0f7ff, #fff)'
-              : 'radial-gradient(at 70% 51%, rgba(2,41,79,0.5), rgb(1, 6, 11))',
+              ? 'radial-gradient(ellipse at 70% 51%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))'
+              : 'radial-gradient(at 70% 51%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
           backgroundSize: 'cover',
           height: { xs: 'auto', md: '100dvh' },
           pb: { xs: 12, sm: 0 },

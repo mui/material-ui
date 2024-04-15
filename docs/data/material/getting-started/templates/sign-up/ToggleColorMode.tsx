@@ -11,7 +11,10 @@ interface ToggleColorModeProps {
   toggleColorMode: () => void;
 }
 
-function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
+export default function ToggleColorMode({
+  mode,
+  toggleColorMode,
+}: ToggleColorModeProps) {
   return (
     <IconButton
       onClick={toggleColorMode}
@@ -26,5 +29,3 @@ function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
     </IconButton>
   );
 }
-
-export default ToggleColorMode;

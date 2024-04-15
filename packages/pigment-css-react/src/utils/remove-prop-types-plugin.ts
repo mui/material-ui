@@ -11,11 +11,15 @@ export const removePropTypesPlugin = declare<{}>((api) => {
           return;
         }
         const property = left.get('property');
-        if (!property.isIdentifier({ name: 'propTypes' })) {
+        const isPropTypes = property.isIdentifier({ name: 'propTypes' });
+        const isMuiName = property.isIdentifier({ name: 'muiName' });
+
+        if (!isPropTypes && !isMuiName) {
           return;
         }
-        if (path.parentPath.isExpressionStatement()) {
-          path.parentPath.remove();
+        const parentExpression = path.findParent((p) => p.isExpressionStatement());
+        if (parentExpression) {
+          parentExpression.remove();
         }
       },
     },

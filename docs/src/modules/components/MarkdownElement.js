@@ -24,8 +24,8 @@ const Root = styled('div')(
       lineHeight: 1.5, // Developers like when the code is dense.
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
-      backgroundColor: '#0F1924', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
-      color: '#f8f8f2',
+      backgroundColor: 'hsl(210, 35%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
+      color: 'hsl(60, 30%, 96%)',
       colorScheme: 'dark',
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
@@ -134,26 +134,33 @@ const Root = styled('div')(
         // Remove scroll on small screens.
         wordBreak: 'break-all',
       },
-      '& .anchor-link': {
+      '& .title-link-to-anchor': {
+        color: 'inherit',
+        textDecoration: 'none',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+      },
+      '& .anchor-icon': {
         // To prevent the link to get the focus.
         display: 'inline-flex',
         alignItems: 'center',
         visibility: 'hidden',
       },
-      '& a:not(.anchor-link):hover': {
+      '& a:not(.title-link-to-anchor):hover': {
         color: 'currentColor',
         border: 'none',
         boxShadow: '0 1px 0 0 currentColor',
         textDecoration: 'none',
       },
-      '& .anchor-link, & .comment-link': {
+      '& .anchor-icon, & .comment-link': {
         padding: 0,
         cursor: 'pointer',
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
         textAlign: 'center',
-        marginLeft: 4,
+        marginLeft: 8,
         height: 26,
         width: 26,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.grey[50]})`,
@@ -174,7 +181,7 @@ const Root = styled('div')(
           verticalAlign: 'middle',
         },
       },
-      '&:hover .anchor-link': {
+      '&:hover .anchor-icon': {
         visibility: 'visible',
       },
       '& .comment-link': {
@@ -344,7 +351,7 @@ const Root = styled('div')(
         },
       },
       '&.MuiCallout-info': {
-        color: `var(--muidocs-palette-primary-900, ${lightTheme.palette.primary[900]})`,
+        color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
         backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
         borderColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
         '& strong': {
@@ -375,7 +382,7 @@ const Root = styled('div')(
       '&.MuiCallout-warning': {
         color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
         backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
-        borderColor: `var(--muidocs-palette-warning-200, ${lightTheme.palette.warning[200]})`,
+        borderColor: alpha(lightTheme.palette.warning[700], 0.15),
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
         },
@@ -415,7 +422,7 @@ const Root = styled('div')(
       // Remove link arrow for ads
       display: 'none',
     },
-    '& a, & a code': {
+    '& a:not(.title-link-to-anchor), & a:not(.title-link-to-anchor) code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
       fontWeight: theme.typography.fontWeightMedium,
@@ -425,7 +432,7 @@ const Root = styled('div')(
         textDecorationColor: 'inherit',
       },
     },
-    '& a code': {
+    '& a:not(.title-link-to-anchor) code': {
       color: darken(lightTheme.palette.primary.main, 0.2),
     },
     '& img, & video': {
@@ -540,7 +547,7 @@ const Root = styled('div')(
       fontWeight: 500,
       borderRadius: 6,
       border: 'none',
-      backgroundColor: '#0F1924', // using the code block one-off background color (defined in line 23)
+      backgroundColor: 'hsl(210, 35%, 9%)', // using the code block one-off background color (defined in line 23)
       color: '#FFF',
       transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
@@ -670,7 +677,7 @@ const Root = styled('div')(
         color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
       },
       '& h1, & h2, & h3, & h4': {
-        '&:hover .anchor-link, & .comment-link': {
+        '&:hover .anchor-icon, & .comment-link': {
           color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
           backgroundColor: alpha(darkTheme.palette.primaryDark[700], 0.5),
@@ -721,8 +728,8 @@ const Root = styled('div')(
         },
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
-          backgroundColor: alpha(darkTheme.palette.error[700], 0.2),
-          borderColor: alpha(darkTheme.palette.error[600], 0.3),
+          backgroundColor: alpha(darkTheme.palette.error[700], 0.15),
+          borderColor: alpha(darkTheme.palette.error[400], 0.1),
           '& strong': {
             color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
           },
@@ -734,9 +741,9 @@ const Root = styled('div')(
           },
         },
         '&.MuiCallout-info': {
-          color: `var(--muidocs-palette-primary-50, ${darkTheme.palette.primary[50]})`,
-          backgroundColor: alpha(darkTheme.palette.grey[700], 0.2),
-          borderColor: `var(--muidocs-palette-grey-800, ${darkTheme.palette.grey[800]})`,
+          color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
+          backgroundColor: alpha(darkTheme.palette.grey[700], 0.15),
+          borderColor: alpha(darkTheme.palette.grey[800], 0.5),
           '& strong': {
             color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },
@@ -746,8 +753,8 @@ const Root = styled('div')(
         },
         '&.MuiCallout-success': {
           color: `var(--muidocs-palette-success-50, ${darkTheme.palette.success[50]})`,
-          backgroundColor: alpha(darkTheme.palette.success[700], 0.15),
-          borderColor: alpha(lightTheme.palette.success[600], 0.3),
+          backgroundColor: alpha(darkTheme.palette.success[700], 0.12),
+          borderColor: alpha(lightTheme.palette.success[400], 0.1),
           '& strong': {
             color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
           },
@@ -760,8 +767,8 @@ const Root = styled('div')(
         },
         '&.MuiCallout-warning': {
           color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
-          backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
-          borderColor: alpha(darkTheme.palette.warning[600], 0.3),
+          backgroundColor: alpha(darkTheme.palette.warning[700], 0.12),
+          borderColor: alpha(darkTheme.palette.warning[400], 0.1),
           '& strong': {
             color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
           },
@@ -773,10 +780,10 @@ const Root = styled('div')(
           },
         },
       },
-      '& a, & a code': {
+      '& a:not(.title-link-to-anchor), & a:not(.title-link-to-anchor) code': {
         color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
       },
-      '& a code': {
+      '& a:not(.title-link-to-anchor) code': {
         color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
       },
       '& kbd.key': {
