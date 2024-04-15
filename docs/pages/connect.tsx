@@ -41,7 +41,7 @@ export default function Connect() {
     <BrandingCssVarsProvider>
       <Head
         title="Connect: A Figma plugin that exports complete Material UI themes"
-        description="Connect is a Figma plugin that exports complete Material UI themes."
+        description="Connect is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit."
         card="/static/social-previews/connect-preview.jpg"
       />
       <AppHeaderBanner />
@@ -71,7 +71,7 @@ export default function Connect() {
               primaryLabel="Use Connect now"
               primaryUrl="https://www.figma.com/community/plugin/1336346114713490235/connect"
               secondaryLabel="View docs"
-              secondaryUrl="/connect/" // I'll swap it later to /material-ui/design-resources/connect/ once that's merged
+              secondaryUrl="/material-ui/design-resources/connect/"
             />
           </Box>
         </Section>

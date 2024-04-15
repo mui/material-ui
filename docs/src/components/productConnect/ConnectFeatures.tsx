@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import FormatShapesRoundedIcon from '@mui/icons-material/FormatShapesRounded';
@@ -13,7 +14,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
-import MUIConnectSignUp from './MUIConnectSignUp';
+import { Link } from '@mui/docs/Link';
 
 const Image = styled('img')(({ theme }) => ({
   transition: '0.4s',
@@ -40,7 +41,7 @@ export default function ConnectFeatures() {
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
             overline="Available in Beta"
             title={
@@ -54,15 +55,15 @@ export default function ConnectFeatures() {
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
                 icon={<ImagesearchRollerRoundedIcon color="success" />}
-                title="Customize your design tokens"
-                description="Change your colors, typography styles, shadows, spacing values, and border-radius through Figma's variables panel. Then, quickly generate a theme with these changes."
+                title="Theme customization"
+                description="Generate theme code with custom colors, typography styles, shadows, spacing values, and border-radius."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
               <Item
                 icon={<FormatShapesRoundedIcon color="primary" />}
-                title="Redesign your components"
-                description="Want to make your primary button fully rounded and with lowercase text? Use Connect to generate code for custom component styles."
+                title="Component customization"
+                description="Fully customize a component's design across multiple states and then generate the corresponding theme code."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
@@ -74,7 +75,7 @@ export default function ConnectFeatures() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
@@ -359,12 +360,31 @@ export default function ConnectFeatures() {
             </Frame.Demo>
             <Frame.Info data-mui-color-scheme="dark">
               <Typography variant="body2" fontWeight="bold" gutterBottom>
-                Stay on the loop about the Connect progress!
+                Get the beta version of Connect now!
               </Typography>
-              <Typography variant="body2" color="text.secondary" mb={1}>
-                Add your email to stay up to date with the exciting lined-up updates for Connect.
+              <Typography variant="body2" color="text.secondary" mb={2}>
+                There's still a lot to do, and we're looking forward to hearing from all of you.
               </Typography>
-              <MUIConnectSignUp />
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5 }}>
+                <Button
+                  component={Link}
+                  variant="contained"
+                  size="small"
+                  noLinkStyle
+                  href="https://www.figma.com/community/plugin/1336346114713490235/connect"
+                >
+                  Use Connect now
+                </Button>
+                <Button
+                  component={Link}
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                  href="/material-ui/design-resources/connect/"
+                >
+                  View documentation
+                </Button>
+              </Box>
             </Frame.Info>
           </Frame>
         </Grid>
