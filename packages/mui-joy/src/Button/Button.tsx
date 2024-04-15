@@ -139,6 +139,7 @@ export const getButtonStyles = ({
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
+      userSelect: 'none',
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -165,7 +166,6 @@ export const getButtonStyles = ({
         // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
           color: 'transparent',
-          userSelect: 'none',
         },
       }),
     },
