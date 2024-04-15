@@ -7,6 +7,7 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { ChipTypeMap } from '@mui/material/Chip';
+import Paper, { PaperTypeMap, type PaperProps } from '@mui/material/Paper';
 
 interface MyAutocompleteProps<
   T,
@@ -171,3 +172,22 @@ function CustomListboxRef() {
     >(e);
   }}
 />;
+
+function AutocompleteCustomPaper() {
+  return (
+    <Autocomplete
+      options={['one', 'two', 'three']}
+      renderInput={(params) => <TextField {...params} />}
+      // eslint-disable-next-line react/no-unstable-nested-components
+      PaperComponent={({ elevation, variant, ...props }) => (
+        <Paper {...{ elevation, variant }} {...props} />
+      )}
+      componentsProps={{
+        paper: {
+          elevation: 2,
+          variant: 'outlined',
+        },
+      }}
+    />
+  );
+}
