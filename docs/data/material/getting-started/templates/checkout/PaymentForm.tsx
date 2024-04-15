@@ -36,7 +36,6 @@ const Card = styled(MuiCard)(({ theme }) => ({
         ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
         : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
   },
-
   [theme.breakpoints.up('md')]: {
     flexGrow: 1,
     maxWidth: `calc(50% - ${theme.spacing(1)})`,
