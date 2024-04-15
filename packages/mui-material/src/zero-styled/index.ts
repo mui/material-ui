@@ -1,6 +1,6 @@
 import useThemeProps from '../styles/useThemeProps';
 
-export { keyframes } from '@mui/system';
+export { css, keyframes } from '@mui/system';
 
 export { default as styled } from '../styles/styled';
 
