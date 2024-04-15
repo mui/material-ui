@@ -117,7 +117,7 @@
     "@pigment-css/react": "workspace:^",
     "@next/eslint-plugin-next": "^14.1.4",
     "@octokit/rest": "^20.1.0",
-    "@playwright/test": "1.43.0",
+    "@playwright/test": "1.43.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.0",

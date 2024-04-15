@@ -80,7 +80,7 @@
     "jss-rtl": "^0.3.0",
     "lodash": "^4.17.21",
     "lz-string": "^1.5.0",
-    "markdown-to-jsx": "^7.4.6",
+    "markdown-to-jsx": "^7.4.7",
     "material-ui-popup-state": "^5.1.0",
     "next": "^13.5.1",
     "notistack": "3.0.1",
@@ -135,7 +135,7 @@
     "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",
     "marked": "^5.1.2",
-    "playwright": "^1.43.0",
+    "playwright": "^1.43.1",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.3",
     "yargs": "^17.7.2"
