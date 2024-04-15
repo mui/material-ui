@@ -115,9 +115,9 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@pigment-css/react": "workspace:^",
-    "@next/eslint-plugin-next": "^14.1.4",
+    "@next/eslint-plugin-next": "^14.2.1",
     "@octokit/rest": "^20.1.0",
+    "@pigment-css/react": "workspace:^",
     "@playwright/test": "1.43.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
@@ -170,7 +170,7 @@
     "karma-webpack": "^5.0.0",
     "lerna": "^8.1.2",
     "lodash": "^4.17.21",
-    "markdownlint-cli2": "^0.12.1",
+    "markdownlint-cli2": "^0.13.0",
     "mocha": "^10.4.0",
     "nx": "^17.3.2",
     "nyc": "^15.1.0",
@@ -228,5 +228,10 @@
     ],
     "sourceMap": false,
     "instrument": false
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@wyw-in-js/transform@0.5.0": "patches/@wyw-in-js__transform@0.5.0.patch"
+    }
   }
 }
