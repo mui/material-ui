@@ -17,19 +17,19 @@ const NativeLink = styled('a')(({ theme }) => ({
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.divider,
   transition: theme.transitions.create(['color', 'border-color']),
-  boxShadow: `${alpha(theme.palette.grey[100], 0.3)} 0 -2px 0 inset`,
+  boxShadow: `${theme.vars ? `rgba(${theme.vars.palette.grey[100].mainChannel} / 0.3)` : alpha(theme.palette.grey[100], 0.3)} 0 -2px 0 inset`,
   '&:hover': {
     backgroundColor: (theme.vars || theme).palette.grey[50],
   },
   '&:focus-visible': {
-    outline: `3px solid ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
+    outline: `3px solid ${theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / 0.5)` : alpha(theme.palette.primary[500], 0.5)}`,
     outlineOffset: '2px',
   },
   '& img': {
     display: 'inline-block',
   },
   ...theme.applyDarkStyles({
-    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset`,
+    boxShadow: `${theme.vars ? `rgba(${theme.vars.palette.primaryDark.mainChannel} / 0.1)` : alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset`,
     '&:hover': {
       backgroundColor: (theme.vars || theme).palette.primaryDark[800],
       borderColor: (theme.vars || theme).palette.primary[900],

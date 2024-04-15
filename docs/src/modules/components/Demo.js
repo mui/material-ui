@@ -241,7 +241,9 @@ const DemoRootMaterial = styled('div', {
     borderLeftWidth: 0,
     borderRightWidth: 0,
     ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primaryDark[700]} / 0.1)`
+        : alpha(theme.palette.primaryDark[700], 0.1),
     }),
   }),
   /* Similar to the outlined one but without padding. Ideal for playground demos. */
@@ -253,10 +255,14 @@ const DemoRootMaterial = styled('div', {
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: alpha((theme.vars || theme).palette.grey[50], 0.5),
+    backgroundColor: theme.vars
+      ? `rgba(${theme.vars.palette.grey[50]} / 0.5)`
+      : alpha(theme.palette.grey[50], 0.5),
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
-      backgroundColor: alpha((theme.vars || theme).palette.primaryDark[700], 0.4),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primaryDark[700]} / 0.4)`
+        : alpha(theme.palette.primaryDark[700], 0.4),
     }),
   }),
   /* Mostly meant for introduction demos. */
@@ -267,11 +273,21 @@ const DemoRootMaterial = styled('div', {
     borderLeftWidth: 0,
     borderRightWidth: 0,
     backgroundClip: 'padding-box',
-    backgroundColor: alpha(theme.palette.primary[50], 0.2),
-    backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 40%, ${alpha((theme.vars || theme).palette.primary[100], 0.2)} 70%)`,
+    backgroundColor: theme.vars
+      ? `rgba(${theme.vars.palette.primary[50]} / 0.2)`
+      : alpha(theme.palette.primary[50], 0.2),
+    backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 40%, ${
+      theme.vars
+        ? `rgba(${theme.vars.palette.primary[100]} / 0.2)`
+        : alpha(theme.palette.primary[100], 0.2)
+    } 70%)`,
     ...theme.applyDarkStyles({
       backgroundColor: (theme.vars || theme).palette.primaryDark[900],
-      backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 30%, ${alpha((theme.vars || theme).palette.primary[900], 0.3)} 80%)`,
+      backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 30%, ${
+        theme.vars
+          ? `rgba(${theme.vars.palette.primary[900]} / 0.3)`
+          : alpha(theme.palette.primary[900], 0.3)
+      } 80%)`,
     }),
   }),
 }));
@@ -304,7 +320,9 @@ const DemoRootJoy = joyStyled('div', {
     backgroundColor: 'transparent',
     ...theme.applyDarkStyles({
       borderColor: alpha(blueDark[500], 0.3),
-      backgroundColor: alpha(theme.palette.neutral[900], 0.8),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.neutral[900]} / 0.8)`
+        : alpha(theme.palette.neutral[900], 0.8),
     }),
   }),
   /* Prepare the background to display an inner elevation. */

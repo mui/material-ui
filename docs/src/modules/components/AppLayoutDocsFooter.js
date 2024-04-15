@@ -40,7 +40,7 @@ const FooterLink = styled(Typography)(({ theme }) => {
     display: 'flex',
     alignItems: 'center',
     gap: 4,
-    fontWeight: (theme.vars || theme).typography.fontWeightSemiBold,
+    fontWeight: theme.typography.fontWeightSemiBold,
     color: (theme.vars || theme).palette.primary[600],
     '& > svg': { transition: '0.2s' },
     '&:hover > svg': { transform: 'translateX(2px)' },
