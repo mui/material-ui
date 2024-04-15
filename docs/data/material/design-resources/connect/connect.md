@@ -59,7 +59,7 @@ After you've added your custom tokens, click on **Regenerate theme** to include 
 Connect can also generate theme styles for customized components, enabling you to completely change their look and feel and create your custom design system from within Figma.
 
 :::info
-This feature is currently limited to the Button and Switch components.
+This feature is currently limited to the Button, Switch, and Typography components.
 Support for more components is coming soon.
 :::
 
