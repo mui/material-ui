@@ -22,7 +22,7 @@
     "react-docgen": "^5.4.3",
     "recast": "^0.23.6",
     "remark": "^13.0.0",
-    "typescript": "^5.4.4",
+    "typescript": "^5.4.5",
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
