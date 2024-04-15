@@ -43,11 +43,11 @@ const items = [
   },
 ];
 
-interface StyledChipProps {
+interface ChipProps {
   selected?: boolean;
 }
 
-const Chip = styled(MuiChip)<StyledChipProps>(({ theme, selected }) => ({
+const Chip = styled(MuiChip)<ChipProps>(({ theme, selected }) => ({
   ...(selected && {
     borderColor:
       theme.palette.mode === 'light'

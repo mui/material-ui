@@ -13,7 +13,8 @@ import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
-import { Stack as MuiStack, Card as MuiCard } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import { Card as MuiCard } from '@mui/material';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
@@ -83,7 +84,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
   },
 }));
 
-const Stack = styled(MuiStack)(({ theme }) => ({
+const SignInContainer = styled(Stack)(({ theme }) => ({
   height: 'auto',
   padingBottom: theme.spacing(12),
   backgroundImage:
@@ -163,8 +164,8 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
       <CssBaseline />
-      <Stack direction="column" justifyContent="space-between">
-        <MuiStack
+      <SignInContainer direction="column" justifyContent="space-between">
+        <Stack
           direction="row"
           justifyContent="space-between"
           sx={{
@@ -181,8 +182,8 @@ export default function SignIn() {
             Back
           </Button>
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-        </MuiStack>
-        <MuiStack
+        </Stack>
+        <Stack
           justifyContent="center"
           sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
         >
@@ -301,8 +302,8 @@ export default function SignIn() {
               </Button>
             </Box>
           </Card>
-        </MuiStack>
-      </Stack>
+        </Stack>
+      </SignInContainer>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}

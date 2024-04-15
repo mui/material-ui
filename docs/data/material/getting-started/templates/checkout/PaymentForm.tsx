@@ -43,7 +43,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
   },
 }));
 
-const StyledBox = styled('div')(({ theme }) => ({
+const PaymentContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -198,7 +198,7 @@ export default function PaymentForm() {
             gap: 2,
           }}
         >
-          <StyledBox>
+          <PaymentContainer>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="subtitle2">Credit card</Typography>
               <CreditCardRoundedIcon sx={{ color: 'text.secondary' }} />
@@ -271,7 +271,7 @@ export default function PaymentForm() {
                 />
               </FormGrid>
             </Box>
-          </StyledBox>
+          </PaymentContainer>
           <FormControlLabel
             control={<Checkbox name="saveCard" />}
             label="Remember credit card details for next time"
