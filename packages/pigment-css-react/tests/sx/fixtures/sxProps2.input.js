@@ -16,6 +16,10 @@ const SliderRail = styled('span', {
   font-size: ${({ theme }) => (theme.vars ?? theme).size.font.h1};
 `;
 
+const A = {
+  SliderRail,
+};
+
 function App(props) {
   return (
     <SliderRail
@@ -47,7 +51,7 @@ function App2() {
 
 function App3(props) {
   return (
-    <SliderRail
+    <A.SliderRail
       sx={({ theme }) => ({
         color: (theme.vars || theme).palette.primary.main,
         fontSize: props.isRed ? 'h1-fontSize' : 'h2-fontSize',

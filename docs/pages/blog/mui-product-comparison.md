@@ -3,7 +3,7 @@ title: An introduction to the MUI ecosystem
 description: MUI is more than just Material UI. Consider Joy UI, Base UI, MUI X, and Toolpad for your next project.
 date: 2022-11-01T00:00:00.000Z
 authors: ['samuelsycamore']
-card: true
+manualCard: true
 tags: ['Product']
 ---
 
