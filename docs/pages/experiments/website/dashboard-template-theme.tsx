@@ -1,30 +1,34 @@
 import * as React from 'react';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
-import Divider from '@mui/material/Divider';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import Head from 'docs/src/modules/components/Head';
-import CssBaseline from '@mui/material/CssBaseline';
-import { Link, OutlinedInput, PaletteMode } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import getDashboardTheme from 'docs/data/material/getting-started/templates/dashboard/getDashboardTheme';
-import Card from '@mui/material/Card/Card';
-import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
 import LinearProgress from '@mui/material/LinearProgress';
+import Link from '@mui/material/Link';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import PropTypes from 'prop-types';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import Typography from '@mui/material/Typography';
 
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { PaletteMode } from '@mui/material';
+
+import Head from 'docs/src/modules/components/Head';
+import getDashboardTheme from 'docs/data/material/getting-started/templates/dashboard/getDashboardTheme';
 
 interface ToggleColorModeProps {
   mode: PaletteMode;
