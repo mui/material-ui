@@ -40,12 +40,7 @@ export default function HighlightedCard() {
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <Button
-          size="small"
-          variant="text"
-          color="primary"
-          endIcon={<ChevronRightIcon />}
-        >
+        <Button size="small" color="secondary" endIcon={<ChevronRightIcon />}>
           Get insights
         </Button>
       </CardActions>
