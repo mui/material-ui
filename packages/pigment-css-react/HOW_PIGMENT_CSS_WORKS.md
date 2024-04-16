@@ -10,9 +10,9 @@ Pigment CSS is a zero-runtime CSS-in-JS library. This means it does not have ac
 
 ## Processor
 
-Pigment CSS uses the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/). It has a concept of `processors` which enables custom logic around what to do when users use an import from the library. What a `processor` does is looks through the source code for `styled()` (or other function) calls and extracts the arguments to be evaluatable. Then these evaluated values are handed back to Pigmen CSS to add our own customization on top.
+Pigment CSS uses the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/). It features a [processor](https://wyw-in-js.dev/how-to/custom-tagged-template#creating-a-processor) which makes it possible to create custom logic that's triggered by the presence of different imports from the library. The processor looks through the source code for `styled()`, `css()`, and other function calls and extracts the arguments to be evaluated. These values are then handed back to Pigment CSS for additional parsing and evaluation.
 
-For example, take a look at this usage of the `css` function:
+For example, here's a simple implementation of the `css()` function:
 
 ```js
 // app.js
@@ -77,7 +77,7 @@ The above code is then evaluated through the use of the `node:module` [module](h
 
 ### 2. Transformation and runtime replacement
 
-Once it has access to the actual values of the styles, Pigment CSS then does source code [transformation](https://github.com/mui/material-ui/blob/next/packages/pigment-css-react/src/processors/css.ts) in place to remove the `css` call from the source and replace it with a static class name string:
+Once it has access to the actual values of the styles, Pigment CSS then does source code [transformation](https://github.com/mui/material-ui/blob/next/packages/pigment-css-react/src/processors/css.ts) in place to remove the `css()` call from the source and replace it with a static class name string:
 
 ```js
 // app.js
@@ -88,7 +88,7 @@ const testClass = 'c1aiqtje';
 
 ### 3. Extraction
 
-At the same time as the transformation in step 2, Pigment CSS also generates the CSS string for the above styles at build time. This generation happens through the internal use of the `@mui/system` and `emotion` packages. In the [detection and evaluation](#1-detection-and-evaluation) step, Pigment gets access to the callback function defined as the first argument of the `css()` call. Since it's a function, it's called by Pigment CSS which also passes an object containing the `theme` as the first argument. This `theme` is the same object that was defined as part of the bundler config and passed to Pigment CSS. The returned object then goes through the same transforms it would go through when using Material UI components directly with `emotion`. This also makes it possible to write shorthand properties‚—for example, the snippet below uses `p` for `padding` and `mr` for `margin-right`:
+At the same time as the transformation in step 2, Pigment CSS also generates the CSS string for the above styles at build time. This generation happens through the internal use of the `@mui/system` and `emotion` packages. In the [detection and evaluation](#1-detection-and-evaluation) step, Pigment gets access to the callback function defined as the first argument of the `css()` call. Since it's a function, it's called by Pigment CSS which also passes an object containing the `theme` as the first argument. This `theme` is the same object that was defined as part of the bundler config and passed to Pigment CSS. The returned object then goes through the same transforms it would go through when using Material UI components directly with `emotion`. This also makes it possible to write shorthand properties—for example, the snippet below uses `p` for `padding` and `mr` for `margin-right`:
 
 ```js
 import { css } from '@pigment-css/react';
