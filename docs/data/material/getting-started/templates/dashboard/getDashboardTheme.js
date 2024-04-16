@@ -136,6 +136,7 @@ const getDesignTokens = (mode) => ({
     text: {
       primary: gray[800],
       secondary: gray[600],
+      warning: orange[400],
       ...(mode === 'dark' && { primary: 'hsl(0, 0%, 100%)', secondary: gray[400] }),
     },
     action: {
@@ -148,23 +149,23 @@ const getDesignTokens = (mode) => ({
   typography: {
     fontFamily: ['"Inter", "sans-serif"'].join(','),
     h1: {
-      fontSize: customTheme.typography.pxToRem(60),
+      fontSize: customTheme.typography.pxToRem(48),
       fontWeight: 600,
       lineHeight: 1.2,
       letterSpacing: -0.5,
     },
     h2: {
-      fontSize: customTheme.typography.pxToRem(48),
+      fontSize: customTheme.typography.pxToRem(36),
       fontWeight: 600,
       lineHeight: 1.2,
     },
     h3: {
-      fontSize: customTheme.typography.pxToRem(42),
+      fontSize: customTheme.typography.pxToRem(30),
       lineHeight: 1.2,
     },
     h4: {
-      fontSize: customTheme.typography.pxToRem(36),
-      fontWeight: 500,
+      fontSize: customTheme.typography.pxToRem(24),
+      fontWeight: 600,
       lineHeight: 1.5,
     },
     h5: {
@@ -173,6 +174,7 @@ const getDesignTokens = (mode) => ({
     },
     h6: {
       fontSize: customTheme.typography.pxToRem(18),
+      fontWeight: 600,
     },
     subtitle1: {
       fontSize: customTheme.typography.pxToRem(18),
@@ -320,30 +322,44 @@ export default function getDashboardTheme(mode) {
       },
       MuiCard: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            transition: 'all 100ms ease',
-            backgroundColor: gray[50],
-            borderRadius: theme.shape.borderRadius,
-            border: `1px solid ${alpha(gray[200], 0.5)}`,
-            boxShadow: 'none',
-            ...(ownerState.variant === 'outlined' && {
-              border: `1px solid ${gray[200]}`,
+          root: ({ theme, ownerState }) => {
+            return {
+              transition: 'all 100ms ease',
+              backgroundColor: gray[50],
+              borderRadius: theme.shape.borderRadius,
+              border: `1px solid ${alpha(gray[200], 0.5)}`,
               boxShadow: 'none',
-              background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
-            }),
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[800], 0.6),
-              border: `1px solid ${alpha(gray[700], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
-                border: `1px solid ${alpha(gray[700], 0.4)}`,
+                border: `1px solid ${gray[200]}`,
                 boxShadow: 'none',
-                background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
-                  gray[800],
-                  0.5,
-                )})`,
+                background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
               }),
-            }),
-          }),
+              ...(ownerState.variant === 'highlighted' && {
+                border: `1px solid ${brand[200]}`,
+                boxShadow: 'none',
+                background: brand[50],
+                color: gray[900],
+              }),
+              ...(theme.palette.mode === 'dark' && {
+                backgroundColor: alpha(gray[800], 0.6),
+                border: `1px solid ${alpha(gray[700], 0.3)}`,
+                ...(ownerState.variant === 'outlined' && {
+                  border: `1px solid ${alpha(gray[700], 0.4)}`,
+                  boxShadow: 'none',
+                  background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
+                    gray[800],
+                    0.5,
+                  )})`,
+                }),
+                ...(ownerState.variant === 'highlighted' && {
+                  border: `1px solid ${alpha(brand[600], 0.3)}`,
+                  boxShadow: 'none',
+                  background: alpha(brand[800], 0.4),
+                  color: gray[200],
+                }),
+              }),
+            };
+          },
         },
       },
       MuiIconButton: {
@@ -389,7 +405,7 @@ export default function getDashboardTheme(mode) {
       },
       MuiLinearProgress: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             height: 8,
             borderRadius: 8,
             backgroundColor: gray[200],
@@ -424,89 +440,61 @@ export default function getDashboardTheme(mode) {
               width: '100%',
               opacity: 1,
             },
+            '&:focus-visible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '4px',
+              borderRadius: '2px',
+            },
             ...(theme.palette.mode === 'dark' && {
               color: brand[200],
             }),
           }),
         },
       },
+      MuiMenu: {
+        styleOverrides: {
+          paper: ({ theme }) => ({
+            marginTop: 4,
+            borderRadius: theme.shape.borderRadius,
+            border: `1px solid ${theme.palette.divider}`,
+            backgroundImage: 'none',
+            boxShadow:
+              'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
+            '& .MuiMenuItem-root': { borderRadius: 6, margin: '0 6px' },
+            ...(theme.palette.mode === 'dark' && {
+              boxShadow:
+                'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
+            }),
+          }),
+        },
+      },
       MuiOutlinedInput: {
         styleOverrides: {
-          notchedOutline: {
-            border: 'none',
-          },
-          input: {
-            paddingLeft: 10,
-          },
           root: ({ theme, ownerState }) => ({
-            'input:-webkit-autofill': {
-              WebkitBoxShadow: `0 0 0 1000px ${brand[100]} inset, 0 0 0 1px ${brand[200]}`,
-              maxHeight: '4px',
-              borderRadius: '8px',
-            },
-            '& .MuiInputBase-input': {
-              fontSize: '1rem',
-              '&::placeholder': {
-                opacity: 0.7,
-                color: gray[500],
-              },
-            },
-            boxSizing: 'border-box',
-            flexGrow: 1,
-            height: '40px',
-            borderRadius: theme.shape.borderRadius,
-            border: '1px solid',
-            borderColor: alpha(gray[300], 0.8),
-            boxShadow: '0 0 0 1.5px hsla(210, 0%, 0%, 0.02) inset',
-            transition: 'border-color 120ms ease-in',
-            backgroundColor: alpha(gray[100], 0.4),
-            '&:hover': {
-              borderColor: brand[300],
-            },
+            borderRadius: '10px',
             '&.Mui-focused': {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
               outlineOffset: '2px',
               borderColor: brand[400],
             },
-            ...(ownerState.color === 'error' && {
-              borderColor: red[200],
-              color: red[500],
-              '& + .MuiFormHelperText-root': {
-                color: red[500],
-              },
+            ...(ownerState.size === 'small' && {
+              height: '32px',
+              padding: '0 8px',
             }),
+            ...(ownerState.size === 'medium' && {
+              height: '40px',
+            }),
+            color: theme.palette.grey[900],
             ...(theme.palette.mode === 'dark' && {
-              'input:-webkit-autofill': {
-                WebkitBoxShadow: `0 0 0 1000px ${brand[900]} inset, 0 0 0 1px ${brand[600]}`,
-                maxHeight: '6px',
-                borderRadius: '8px',
-              },
-              '& .MuiInputBase-input': {
-                fontSize: '1rem',
-                '&::placeholder': {
-                  opacity: 1,
-                  color: gray[500],
-                },
-              },
-              borderColor: alpha(gray[700], 0.5),
-              boxShadow: '0 0 0 1.5px hsl(210, 0%, 0%) inset',
-              backgroundColor: alpha(gray[900], 0.8),
-              transition: 'border-color 120ms ease-in',
-              '&:hover': {
-                borderColor: brand[300],
-              },
-              '&.Mui-focused': {
-                borderColor: brand[400],
-                outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                outlineOffset: '2px',
-              },
-              ...(ownerState.color === 'error' && {
-                borderColor: red[700],
-                color: red[300],
-                '& + .MuiFormHelperText-root': {
-                  color: red[300],
-                },
-              }),
+              color: theme.palette.grey[200],
+            }),
+          }),
+          notchedOutline: ({ theme }) => ({
+            border: `1.2px solid`,
+            borderColor: theme.palette.grey[200],
+            ...(theme.palette.mode === 'dark' && {
+              borderColor: theme.palette.grey[700],
+              color: theme.palette.grey[300],
             }),
           }),
         },
@@ -582,32 +570,6 @@ export default function getDashboardTheme(mode) {
               '&.Mui-selected': {
                 color: '#fff',
               },
-            }),
-          }),
-        },
-      },
-      MuiOutlinedInput: {
-        styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            borderRadius: '10px',
-            ...(ownerState.size === 'small' && {
-              height: '32px',
-              padding: '0 8px',
-            }),
-            ...(ownerState.size === 'medium' && {
-              height: '40px',
-            }),
-            color: theme.palette.grey[900],
-            ...(theme.palette.mode === 'dark' && {
-              color: theme.palette.grey[200],
-            }),
-          }),
-          notchedOutline: ({ theme }) => ({
-            border: `1.2px solid`,
-            borderColor: theme.palette.grey[200],
-            ...(theme.palette.mode === 'dark' && {
-              borderColor: theme.palette.grey[700],
-              color: theme.palette.grey[300],
             }),
           }),
         },

@@ -3,6 +3,11 @@ import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 
+declare module '@mui/material/Paper' {
+  interface PaperPropsVariantOverrides {
+    highlighted: true;
+  }
+}
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
     50: string;
@@ -156,6 +161,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     text: {
       primary: gray[800],
       secondary: gray[600],
+      warning: orange[400],
       ...(mode === 'dark' && { primary: 'hsl(0, 0%, 100%)', secondary: gray[400] }),
     },
     action: {
@@ -341,30 +347,44 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiCard: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
-            transition: 'all 100ms ease',
-            backgroundColor: gray[50],
-            borderRadius: theme.shape.borderRadius,
-            border: `1px solid ${alpha(gray[200], 0.5)}`,
-            boxShadow: 'none',
-            ...(ownerState.variant === 'outlined' && {
-              border: `1px solid ${gray[200]}`,
+          root: ({ theme, ownerState }) => {
+            return {
+              transition: 'all 100ms ease',
+              backgroundColor: gray[50],
+              borderRadius: theme.shape.borderRadius,
+              border: `1px solid ${alpha(gray[200], 0.5)}`,
               boxShadow: 'none',
-              background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
-            }),
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: alpha(gray[800], 0.6),
-              border: `1px solid ${alpha(gray[700], 0.3)}`,
               ...(ownerState.variant === 'outlined' && {
-                border: `1px solid ${alpha(gray[700], 0.4)}`,
+                border: `1px solid ${gray[200]}`,
                 boxShadow: 'none',
-                background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
-                  gray[800],
-                  0.5,
-                )})`,
+                background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
               }),
-            }),
-          }),
+              ...(ownerState.variant === 'highlighted' && {
+                border: `1px solid ${brand[200]}`,
+                boxShadow: 'none',
+                background: brand[50],
+                color: gray[900],
+              }),
+              ...(theme.palette.mode === 'dark' && {
+                backgroundColor: alpha(gray[800], 0.6),
+                border: `1px solid ${alpha(gray[700], 0.3)}`,
+                ...(ownerState.variant === 'outlined' && {
+                  border: `1px solid ${alpha(gray[700], 0.4)}`,
+                  boxShadow: 'none',
+                  background: `linear-gradient(to bottom, ${gray[900]}, ${alpha(
+                    gray[800],
+                    0.5,
+                  )})`,
+                }),
+                ...(ownerState.variant === 'highlighted' && {
+                  border: `1px solid ${alpha(brand[600], 0.3)}`,
+                  boxShadow: 'none',
+                  background: alpha(brand[800], 0.4),
+                  color: gray[200],
+                }),
+              }),
+            };
+          },
         },
       },
       MuiIconButton: {
@@ -411,7 +431,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiLinearProgress: {
         styleOverrides: {
-          root: ({ theme, ownerState }) => ({
+          root: ({ theme }) => ({
             height: 8,
             borderRadius: 8,
             backgroundColor: gray[200],

@@ -28,6 +28,7 @@ function ButtonField(props) {
       size="small"
       onClick={() => setOpen?.((prev) => !prev)}
       startIcon={<CalendarTodayIcon fontSize="small" />}
+      sx={{ minWidth: 'fit-content' }}
     >
       {label ? `${label}` : 'Pick a date'}
     </Button>
@@ -124,7 +125,7 @@ ButtonDatePicker.propTypes = {
         key: PropTypes.oneOfType([
           PropTypes.number,
           PropTypes.shape({
-            '__@toStringTag@2762': PropTypes.oneOf(['BigInt']).isRequired,
+            '__@toStringTag@10212': PropTypes.oneOf(['BigInt']).isRequired,
             toLocaleString: PropTypes.func.isRequired,
             toString: PropTypes.func.isRequired,
             valueOf: PropTypes.func.isRequired,
