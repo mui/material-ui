@@ -528,6 +528,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
+   * * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -537,7 +538,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    *   enter: theme.transitions.duration.enteringScreen,
    *   exit: theme.transitions.duration.leavingScreen,
    * }
-   * @deprecated
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
@@ -550,7 +550,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionProps: PropTypes.object,
 };
