@@ -36,7 +36,7 @@ export default function SecondaryNavbar() {
       position="absolute"
       sx={(theme) => ({
         boxShadow: 0,
-        bgcolor: theme.palette.mode === 'light' ? 'white' : 'rgba(0, 0, 0, 0.4)',
+        bgcolor: 'background.default',
         backgroundImage: 'none',
         top: 64,
         display: { xs: 'none', md: 'block' },

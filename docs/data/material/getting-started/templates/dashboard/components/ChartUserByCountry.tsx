@@ -104,7 +104,7 @@ const colors = [
 
 export default function ChartUserByCountry() {
   return (
-    <Card variant="outlined" sx={{ maxWidth: { sm: '100%', md: '35%', lg: '25%' } }}>
+    <Card variant="outlined">
       <CardContent>
         <Typography variant="subtitle2">Users by country</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>

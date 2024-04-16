@@ -8,17 +8,11 @@ import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import SettingsIcon from '@mui/icons-material/Settings';
 import ToggleColorMode from './ToggleColorMode';
 import SideNav from './SideNav';
 import MenuButton from './MenuButton';
 import NavbarBreadcrumbs from './NavbarBreadcrumbs';
-
-const logoStyle = {
-  width: '140px',
-  height: 'auto',
-  cursor: 'pointer',
-};
+import OptionsMenu from './OptionsMenu';
 
 const StyledToolbar = styled(Toolbar)({
   display: 'flex',
@@ -42,40 +36,31 @@ function Navbar({ mode, toggleColorMode }) {
         position="fixed"
         sx={(theme) => ({
           boxShadow: 0,
-          bgcolor: theme.palette.mode === 'light' ? 'white' : 'rgba(0, 0, 0, 0.4)',
+          bgcolor: 'background.default',
           backgroundImage: 'none',
+          borderBottom: '1px solid',
+          borderColor: theme.palette.divider,
         })}
       >
         <StyledToolbar variant="regular">
           <Stack
             maxWidth="xl"
             direction="row"
-            gap={2}
+            gap={1}
             alignItems="center"
-            justifyContent="space-between"
+            justifyContent={{ xs: 'flex-end', md: 'space-between' }}
             flexGrow={1}
           >
-            <Stack direction="row" gap={1} alignItems="center">
-              <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
-              <NavbarBreadcrumbs />
-            </Stack>
+            <NavbarBreadcrumbs />
             <Stack
               sx={{ display: { xs: 'none', md: 'flex' } }}
               direction="row"
-              gap={1.5}
+              gap={1}
             >
               <MenuButton showBadge>
                 <NotificationsIcon />
               </MenuButton>
-              <MenuButton>
-                <SettingsIcon />
-              </MenuButton>
+              <OptionsMenu />
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
             </Stack>
             <Box sx={{ display: { sm: 'flex', md: 'none' } }}>

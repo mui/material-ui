@@ -2,14 +2,17 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
+import SitemarkIcon from '../internals/components/CustomIcons';
 
 const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
   '& .MuiBreadcrumbs-separator': {
-    color: '#D4D4DA',
-    paddingRight: theme.spacing(1),
+    color: theme.palette.action.disabled,
   },
   '& .MuiTypography-root': {
-    color: theme.palette.grey[700],
+    color: theme.palette.text.secondary,
+  },
+  '& .MuiBreadcrumbs-ol': {
+    alignItems: 'normal',
   },
 }));
 
@@ -19,7 +22,7 @@ export default function NavbarBreadcrumbs() {
       aria-label="breadcrumb"
       sx={{ display: { xs: 'none', md: 'flex' } }}
     >
-      <div />
+      <SitemarkIcon />
       <Typography fontWeight={500}>Project 1 (Production)</Typography>
     </StyledBreadcrumbs>
   );
