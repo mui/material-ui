@@ -19,6 +19,7 @@ export default function EditPage(props) {
       component="a"
       size="small"
       variant="outlined"
+      color="secondary"
       startIcon={<GitHubIcon sx={{ mr: 0.5 }} />}
       href={
         userLanguage === 'en'

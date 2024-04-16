@@ -116,6 +116,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/16889233',
     github: 'DiegoAndai',
   },
+  DavidCnoops: {
+    name: 'David Cnoops',
+    avatar: 'https://avatars.githubusercontent.com/u/28001064',
+    github: 'DavidCnoops',
+  },
 };
 
 const classes = {
@@ -179,6 +184,19 @@ const Root = styled('div')(
         display: 'block',
         margin: 'auto',
         marginBottom: 16,
+      },
+      '& figure': {
+        margin: 0,
+        padding: 0,
+        marginBottom: 16,
+        '& img, & video': {
+          marginBottom: 8,
+        },
+      },
+      '& figcaption': {
+        color: (theme.vars || theme).palette.text.tertiary,
+        fontSize: theme.typography.pxToRem(14),
+        textAlign: 'center',
       },
       '& strong': {
         color: (theme.vars || theme).palette.grey[900],
@@ -271,7 +289,7 @@ export default function TopLayoutBlog(props) {
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card =
     headers.manualCard === 'true'
-      ? `https://mui.com/static/blog/${slug}/card.png`
+      ? `/static/blog/${slug}/card.png`
       : `/edge-functions/og-image/?title=${headers.cardTitle || finalTitle}&authors=${headers.authors
           .map((author) => {
             const { github, name } = authors[author];

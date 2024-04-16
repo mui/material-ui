@@ -2,13 +2,13 @@ import * as React from 'react';
 import SimpleCodeEditor from 'react-simple-code-editor';
 import Box from '@mui/material/Box';
 import { NoSsr } from '@mui/base/NoSsr';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled, alpha, useTheme } from '@mui/material/styles';
 import prism from '@mui/internal-markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
 import { useTranslate } from '@mui/docs/i18n';
 import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
-import { blueDark } from 'docs/src/modules/brandingTheme';
+import { blueDark } from '@mui/docs/branding';
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   {
@@ -16,14 +16,14 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       maxHeight: 'min(68vh, 1000px)',
       overflow: 'auto',
       marginTop: -1,
-      backgroundColor: '#0F1924', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
+      backgroundColor: 'hsl(210, 35%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
       border: `1px solid ${(theme.vars || theme).palette.divider}`,
       colorScheme: 'dark',
       '&:hover': {
-        boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary.light}`,
+        boxShadow: `0 0 0 3px ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
       },
       '&:focus-within': {
-        boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primary.main}`,
+        boxShadow: `0 0 0 2px ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
       },
       [theme.breakpoints.up('sm')]: {
         borderRadius: '0 0 12px 12px',
@@ -35,16 +35,13 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       maxWidth: 'initial',
       maxHeight: 'initial',
     },
+    '& .MuiCode-copy': {
+      display: 'none',
+    },
   },
   theme.applyDarkStyles({
     '& .scrollContainer': {
       borderColor: (theme.vars || theme).palette.divider,
-      '&:hover': {
-        boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[300]}`,
-      },
-      '&:focus-within': {
-        boxShadow: `0 0 0 2px ${(theme.vars || theme).palette.primaryDark[400]}`,
-      },
     },
   }),
 ]) as any;

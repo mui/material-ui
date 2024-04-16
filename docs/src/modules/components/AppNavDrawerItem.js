@@ -144,7 +144,7 @@ const Item = styled(
     theme.applyDarkStyles({
       ...color,
       '&::before': {
-        background: alpha(theme.palette.primaryDark[700], 0.6),
+        background: alpha(theme.palette.primaryDark[500], 0.3),
       },
       '&.app-drawer-active': {
         color: (theme.vars || theme).palette.primary[300],
