@@ -1,9 +1,7 @@
 fn({
   MuiSpeedDial: {
     defaultProps: {
-      slots: {
-        transition: CustomTransition
-      }
+      TransitionComponent: CustomTransition,
     },
   },
 });

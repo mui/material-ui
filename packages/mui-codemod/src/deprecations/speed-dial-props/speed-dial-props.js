@@ -16,5 +16,12 @@ export default function transformer(file, api, options) {
     slotName: 'transition',
   });
 
+  movePropIntoSlots(j, {
+    root,
+    componentName: 'SpeedDial',
+    propName: 'TransitionProps',
+    slotName: 'transition',
+  });
+
   return root.toSource(printOptions);
 }
