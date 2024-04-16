@@ -43,7 +43,6 @@ const CardMediaRoot = styled('div', {
     {
       props: { isImageComponent: true },
       style: {
-        // ⚠️ object-fit is not supported by IE11.
         objectFit: 'cover',
       },
     },

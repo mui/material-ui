@@ -79,9 +79,6 @@ importers:
       '@babel/plugin-proposal-private-property-in-object':
         specifier: ^7.21.11
         version: 7.21.11(@babel/core@7.24.4)
-      '@babel/plugin-transform-object-assign':
-        specifier: ^7.24.1
-        version: 7.24.1(@babel/core@7.24.4)
       '@babel/plugin-transform-react-constant-elements':
         specifier: ^7.24.1
         version: 7.24.1(@babel/core@7.24.4)
@@ -591,9 +588,6 @@ importers:
       '@babel/core':
         specifier: ^7.24.4
         version: 7.24.4
-      '@babel/plugin-transform-object-assign':
-        specifier: ^7.24.1
-        version: 7.24.1(@babel/core@7.24.4)
       '@babel/runtime':
         specifier: ^7.24.4
         version: 7.24.4
@@ -3722,15 +3716,6 @@ packages:
       '@babel/core': 7.24.4
       '@babel/helper-plugin-utils': 7.24.0
       '@babel/plugin-syntax-numeric-separator': 7.10.4(@babel/core@7.24.4)
-
-  /@babel/plugin-transform-object-assign@7.24.1(@babel/core@7.24.4):
-    resolution: {integrity: sha512-I1kctor9iKtupb7jv7FyjApHCuKLBKCblVAeHVK9PB6FW7GI0ac6RtobC3MwwJy8CZ1JxuhQmnbrsqI5G8hAIg==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.24.4
-    dependencies:
-      '@babel/core': 7.24.4
-      '@babel/helper-plugin-utils': 7.24.0
 
   /@babel/plugin-transform-object-rest-spread@7.24.1(@babel/core@7.24.4):
     resolution: {integrity: sha512-XjD5f0YqOtebto4HGISLNfiNMTTs6tbkFf2TOqJlYKYmbo+mN9Dnpl4SRoofiziuOWMIyq3sZEUqLo3hLITFEA==}
