@@ -75,25 +75,22 @@ interface PieCenterLabelProps {
   secondaryText: string;
 }
 
-const PieCenterLabel: React.FC<PieCenterLabelProps> = ({
-  primaryText,
-  secondaryText,
-}) => {
+function PieCenterLabel({ primaryText, secondaryText }: PieCenterLabelProps) {
   const { width, height, left, top } = useDrawingArea();
   const primaryY = top + height / 2 - 10;
   const secondaryY = primaryY + 24;
 
   return (
-    <>
+    <React.Fragment>
       <StyledText variant="primary" x={left + width / 2} y={primaryY}>
         {primaryText}
       </StyledText>
       <StyledText variant="secondary" x={left + width / 2} y={secondaryY}>
         {secondaryText}
       </StyledText>
-    </>
+    </React.Fragment>
   );
-};
+}
 
 const colors = [
   'hsl(220, 25%, 65%)',
@@ -118,7 +115,7 @@ export default function ChartUserByCountry() {
             }}
             series={[
               {
-                data: data,
+                data,
                 innerRadius: 75,
                 outerRadius: 100,
                 paddingAngle: 0,
@@ -134,14 +131,15 @@ export default function ChartUserByCountry() {
             <PieCenterLabel primaryText="98.5K" secondaryText="Total" />
           </PieChart>
         </Box>
-        {countries.map((countries, index) => (
+        {countries.map((country, index) => (
           <Stack
             direction="row"
             alignItems="center"
             gap={2}
             sx={{ '&:not(:last-of-type)': { pb: 2 } }}
+            key={index}
           >
-            {countries.flag}
+            {country.flag}
             <Stack gap={1} sx={{ flexGrow: 1 }}>
               <Stack
                 direction="row"
@@ -149,15 +147,15 @@ export default function ChartUserByCountry() {
                 alignItems="center"
                 gap={2}
               >
-                <Typography variant="body2">{countries.name}</Typography>
-                <Typography variant="body2">{countries.value}%</Typography>
+                <Typography variant="body2">{country.name}</Typography>
+                <Typography variant="body2">{country.value}%</Typography>
               </Stack>
               <LinearProgress
                 variant="determinate"
-                value={countries.value}
+                value={country.value}
                 sx={{
                   [`& .${linearProgressClasses.bar}`]: {
-                    backgroundColor: countries.color,
+                    backgroundColor: country.color,
                   },
                 }}
               />

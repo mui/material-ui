@@ -2,6 +2,7 @@ import type {} from '@mui/material/themeCssVarsAugmentation';
 import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
+import type {} from '@mui/x-charts/themeAugmentation';
 
 declare module '@mui/material/Paper' {
   interface PaperPropsVariantOverrides {
@@ -746,6 +747,22 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               },
             }),
           }),
+        },
+      },
+      MuiChartsAxis: {
+        styleOverrides: {
+          root: {
+            '& .MuiChartsAxis-line': {
+              stroke: gray[300],
+            },
+            '& .MuiChartsAxis-tick': {
+              stroke: gray[300],
+            },
+            '& .MuiChartsAxis-tickLabel': {
+              fill: gray[400],
+              fontWeight: 500,
+            },
+          },
         },
       },
     },

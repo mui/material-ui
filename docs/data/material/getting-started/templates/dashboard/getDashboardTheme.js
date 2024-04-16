@@ -722,6 +722,22 @@ export default function getDashboardTheme(mode) {
           }),
         },
       },
+      MuiChartsAxis: {
+        styleOverrides: {
+          root: {
+            '& .MuiChartsAxis-line': {
+              stroke: gray[300],
+            },
+            '& .MuiChartsAxis-tick': {
+              stroke: gray[300],
+            },
+            '& .MuiChartsAxis-tickLabel': {
+              fill: gray[400],
+              fontWeight: 500,
+            },
+          },
+        },
+      },
     },
   };
 }
