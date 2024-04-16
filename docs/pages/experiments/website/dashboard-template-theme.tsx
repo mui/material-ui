@@ -29,6 +29,7 @@ import { PaletteMode } from '@mui/material';
 
 import Head from 'docs/src/modules/components/Head';
 import getDashboardTheme from 'docs/data/material/getting-started/templates/dashboard/getDashboardTheme';
+import CustomDatePicker from 'docs/data/material/getting-started/templates/dashboard/components/CustomDatePicker';
 
 interface ToggleColorModeProps {
   mode: PaletteMode;
@@ -215,25 +216,28 @@ export default function DashboardTemplateTheme() {
         <Link href="#" sx={{ maxWidth: 'fit-content' }}>
           Link
         </Link>
-        <IconButton onClick={handleClick} sx={{ maxWidth: 'fit-content' }}>
-          <MoreVertIcon />
-        </IconButton>
-        <Menu
-          anchorEl={anchorEl}
-          id="menu"
-          open={open}
-          onClose={handleClose}
-          onClick={handleClose}
-          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
-          <Divider />
-          <MenuItem onClick={handleClose}>Add another account</MenuItem>
-          <MenuItem onClick={handleClose}>Settings</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu>
+        <Stack direction="row" gap={2} alignItems="center">
+          <IconButton size="small" onClick={handleClick} sx={{ maxWidth: 'fit-content' }}>
+            <MoreVertIcon />
+          </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            id="menu"
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          >
+            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <Divider />
+            <MenuItem onClick={handleClose}>Add another account</MenuItem>
+            <MenuItem onClick={handleClose}>Settings</MenuItem>
+            <MenuItem onClick={handleClose}>Logout</MenuItem>
+          </Menu>
+          <CustomDatePicker />
+        </Stack>
         <Stack direction="row" gap={2} alignItems="center">
           <OutlinedInput placeholder="Outlined input" />
           <OutlinedInput size="small" placeholder="Outlined input" />
