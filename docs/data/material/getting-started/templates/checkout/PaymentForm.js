@@ -21,7 +21,7 @@ import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
 import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 
-const Card = styled(MuiCard)(({ theme }) => ({
+const Card = styled(MuiCard)(({ theme, selected }) => ({
   border: '1px solid',
   borderColor: theme.palette.divider,
   width: '100%',
@@ -40,6 +40,13 @@ const Card = styled(MuiCard)(({ theme }) => ({
     flexGrow: 1,
     maxWidth: `calc(50% - ${theme.spacing(1)})`,
   },
+  ...(selected && {
+    backgroundColor: theme.palette.action.selected,
+    borderColor:
+      theme.palette.mode === 'light'
+        ? theme.palette.primary.light
+        : theme.palette.primary.dark,
+  }),
 }));
 
 const PaymentContainer = styled('div')(({ theme }) => ({
@@ -117,15 +124,7 @@ export default function PaymentForm() {
             gap: 2,
           }}
         >
-          <Card
-            sx={(theme) => ({
-              ...(paymentType === 'creditCard' && {
-                backgroundColor: 'action.selected',
-                borderColor:
-                  theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
-              }),
-            })}
-          >
+          <Card selected={paymentType === 'creditCard'}>
             <CardActionArea
               onClick={() => setPaymentType('creditCard')}
               sx={{
@@ -151,15 +150,7 @@ export default function PaymentForm() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card
-            sx={(theme) => ({
-              ...(paymentType === 'bankTransfer' && {
-                backgroundColor: 'action.selected',
-                borderColor:
-                  theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
-              }),
-            })}
-          >
+          <Card selected={paymentType === 'bankTransfer'}>
             <CardActionArea
               onClick={() => setPaymentType('bankTransfer')}
               sx={{
