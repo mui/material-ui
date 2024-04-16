@@ -7,7 +7,7 @@
 _Apr 15, 2024_
 
 A big thanks to the 19 contributors who made this release possible.
-This release was mostly about converting components to Pigment CSS and API standardization.
+This release was mostly about converting components to Pigment CSS and API standardization.
 
 ### `@mui/material@6.0.0-alpha.2`
 
