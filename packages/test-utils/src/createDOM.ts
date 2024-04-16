@@ -1,4 +1,4 @@
-const { JSDOM } = require('jsdom');
+import { JSDOM } from 'jsdom';
 
 // We can use jsdom-global at some point if maintaining these lists is a burden.
 const whitelist = [
@@ -25,11 +25,12 @@ function createDOM() {
     pretendToBeVisual: true,
     url: 'http://localhost',
   });
-  global.window = dom.window;
+  global.window = dom.window as any as Window & typeof globalThis;
   // Not yet supported: https://github.com/jsdom/jsdom/issues/2152
   class Touch {
-    constructor(instance) {
-      this.instance = instance;
+    instance: globalThis.Touch;
+    constructor(options: TouchInit) {
+      this.instance = options as any as Touch;
     }
 
     get identifier() {
@@ -51,10 +52,39 @@ function createDOM() {
     get clientY() {
       return this.instance.clientY;
     }
+
+    get force() {
+      return this.instance.force;
+    }
+
+    get radiusX() {
+      return this.instance.radiusX;
+    }
+
+    get radiusY() {
+      return this.instance.radiusY;
+    }
+
+    get rotationAngle() {
+      return this.instance.rotationAngle;
+    }
+
+    get screenX() {
+      return this.instance.screenX;
+    }
+
+    get screenY() {
+      return this.instance.screenY;
+    }
+
+    get target() {
+      return this.instance.target;
+    }
   }
   global.window.Touch = Touch;
 
   global.navigator = {
+    ...global.navigator,
     userAgent: 'node.js',
   };
 
@@ -62,10 +92,12 @@ function createDOM() {
     .filter((key) => !blacklist.includes(key))
     .concat(whitelist)
     .forEach((key) => {
+      // @ts-ignore
       if (typeof global[key] === 'undefined') {
+        // @ts-ignore
         global[key] = dom.window[key];
       }
     });
 }
 
-module.exports = createDOM;
+export default createDOM;

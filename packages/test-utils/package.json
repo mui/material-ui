@@ -14,7 +14,7 @@
     "./KarmaReporterReactProfiler": "./src/KarmaReporterReactProfiler.js",
     "./setupBabel": "./src/setupBabel.js",
     "./setupBabelPlaywright": "./src/setupBabelPlaywright.js",
-    "./setupJSDOM": "./src/setupJSDOM.js",
+    "./setupJSDOM": "./src/setupJSDOM.ts",
     "./setupKarma": "./src/setupKarma.js"
   },
   "dependencies": {
@@ -46,6 +46,7 @@
     "@types/chai-dom": "^1.11.3",
     "@types/enzyme": "^3.10.18",
     "@types/format-util": "^1.0.4",
+    "@types/jsdom": "^21.1.6",
     "@types/prop-types": "^15.7.12",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
