@@ -318,6 +318,21 @@ const pages: MuiPage[] = [
     ],
   },
   {
+    pathname: '/material-ui/design-resources',
+    title: 'Design resources',
+    children: [
+      {
+        pathname: '/material-ui/design-resources/material-ui-for-figma',
+        title: 'Material UI for Figma',
+      },
+      {
+        pathname: '/material-ui/design-resources/connect',
+        title: 'Connect plugin',
+        beta: true,
+      },
+    ],
+  },
+  {
     pathname: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav',
     title: 'Template store',
     icon: standardNavIcons.WebIcon,
