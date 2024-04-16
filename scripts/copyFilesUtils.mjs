@@ -32,8 +32,8 @@ export async function includeFileInBuild(file, target = path.basename(file)) {
  * @param {string} param0.from
  * @param {string} param0.to
  */
-export async function createModulePackages({ from, to }) {
-  const esmExtension = process.env.MUI_SKIP_CORE_EXPORTS_FORMAT ? 'js' : 'mjs';
+export async function createModulePackages({ from, to, exportFormat = 'legacy' }) {
+  const esmExtension = exportFormat === 'exports' ? 'mjs' : 'js';
   const directoryPackages = glob.sync('*/index.{js,ts,tsx}', { cwd: from }).map(path.dirname);
 
   await Promise.all(
@@ -129,8 +129,8 @@ function getCoreExportsField() {
  * @param {boolean} skipExportsField Whether to skip the exports field in the package.json. Only top level ESM packages are supported.
  * @returns {Promise<object>}
  */
-export async function createPackageFile() {
-  const esmExtension = process.env.MUI_SKIP_CORE_EXPORTS_FORMAT ? 'js' : 'mjs';
+export async function createPackageFile(exportFormat = 'legacy') {
+  const esmExtension = exportFormat === 'exports' ? 'mjs' : 'js';
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
@@ -155,7 +155,7 @@ export async function createPackageFile() {
     newPackageData.types = './index.d.ts';
   }
 
-  if (!process.env.MUI_SKIP_CORE_EXPORTS_FORMAT) {
+  if (exportFormat === 'exports') {
     newPackageData.exports = {
       ...packageDataOther.exports,
       ...getCoreExportsField(),
