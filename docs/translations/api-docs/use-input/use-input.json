@@ -5,13 +5,13 @@
       "description": "The default value. Use when the component is not controlled."
     },
     "disabled": {
-      "description": "If <code>true</code>, the component is disabled.\nThe prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
+      "description": "If <code>true</code>, the component is disabled. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
     },
     "error": {
-      "description": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute.\nThe prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
+      "description": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
     },
     "required": {
-      "description": "If <code>true</code>, the <code>input</code> element is required.\nThe prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
+      "description": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
     }
   },
   "returnValueDescriptions": {

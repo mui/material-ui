@@ -1,7 +1,7 @@
 {
   "name": "joy-ui-vite-ts",
   "private": true,
-  "version": "0.0.0",
+  "version": "5.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@mui/joy": "latest",
+    "@mui/joy": "next",
     "react": "latest",
     "react-dom": "latest"
   },

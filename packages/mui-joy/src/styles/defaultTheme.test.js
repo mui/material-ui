@@ -5,6 +5,9 @@ describe('defaultTheme', () => {
   it('the output contains required fields', () => {
     Object.keys(defaultTheme).forEach((field) => {
       expect([
+        'attribute',
+        'colorSchemeSelector',
+        'defaultColorScheme',
         'breakpoints',
         'components',
         'colorSchemes',
@@ -17,6 +20,7 @@ describe('defaultTheme', () => {
         'palette',
         'shadowRing',
         'shadowChannel',
+        'shadowOpacity',
         'getCssVar',
         'spacing',
         'radius',
@@ -24,15 +28,16 @@ describe('defaultTheme', () => {
         'zIndex',
         'typography',
         'variants',
-        'colorInversion',
-        'colorInversionConfig',
         'vars',
         'cssVarPrefix',
         'getColorSchemeSelector',
         'unstable_sxConfig',
         'unstable_sx',
         'shouldSkipGeneratingVar',
-        'generateCssVars',
+        'generateStyleSheets',
+        'generateThemeVars',
+        'generateSpacing',
+        'applyStyles',
       ]).to.includes(field);
     });
   });

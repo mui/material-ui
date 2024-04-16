@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
-import { extendTheme, useTheme, CssVarsProvider } from '@mui/joy/styles';
+import { createRenderer } from '@mui-internal/test-utils';
+import { extendTheme, useTheme, CssVarsProvider, styled } from '@mui/joy/styles';
 
 describe('extendTheme', () => {
   it('the output contains required fields', () => {
     const result = extendTheme();
     Object.keys(result).forEach((field) => {
       expect([
+        'attribute',
         'breakpoints',
+        'colorSchemeSelector',
         'components',
         'colorSchemes',
+        'defaultColorScheme',
         'focus',
         'fontSize',
         'fontFamily',
@@ -20,19 +23,23 @@ describe('extendTheme', () => {
         'spacing',
         'radius',
         'shadow',
+        'shadowRing',
+        'shadowChannel',
+        'shadowOpacity',
         'zIndex',
         'typography',
-        'colorInversionConfig',
         'variants',
         'cssVarPrefix',
         'palette',
         'vars',
         'getColorSchemeSelector',
-        'colorInversion',
         'unstable_sxConfig',
         'unstable_sx',
         'shouldSkipGeneratingVar',
-        'generateCssVars',
+        'generateStyleSheets',
+        'generateThemeVars',
+        'generateSpacing',
+        'applyStyles',
       ]).to.includes(field);
     });
   });
@@ -100,11 +107,57 @@ describe('extendTheme', () => {
     });
   });
 
+  describe('spacing', () => {
+    it('produce spacing token by default', () => {
+      const theme = extendTheme();
+      expect(theme.vars.spacing).to.equal('var(--joy-spacing, 8px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 8px))');
+    });
+
+    it('turn number to pixel', () => {
+      const theme = extendTheme({ spacing: 4 });
+      expect(theme.vars.spacing).to.equal('var(--joy-spacing, 4px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 4px))');
+    });
+
+    it('can be customized as a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.vars.spacing).to.equal('var(--joy-spacing, 0.5rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 0.5rem))');
+    });
+
+    it('uses the provided value if it is a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.spacing('1rem')).to.equal('1rem');
+    });
+
+    it('can be customized as an array', () => {
+      const theme = extendTheme({ spacing: [0, 1, 2, 4, 8, 16, 32] });
+      expect(theme.vars.spacing).to.deep.equal([
+        'var(--joy-spacing-0, 0px)',
+        'var(--joy-spacing-1, 1px)',
+        'var(--joy-spacing-2, 2px)',
+        'var(--joy-spacing-3, 4px)',
+        'var(--joy-spacing-4, 8px)',
+        'var(--joy-spacing-5, 16px)',
+        'var(--joy-spacing-6, 32px)',
+      ]);
+      expect(theme.spacing(2)).to.equal('var(--joy-spacing-2, 2px)');
+    });
+
+    it('can be customized as a function', () => {
+      const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
+      expect(theme.vars.spacing).to.deep.equal('var(--joy-spacing, 0.25rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 0.25rem))');
+    });
+  });
+
   describe('theme.unstable_sx', () => {
     const { render } = createRenderer();
 
     let originalMatchmedia;
     const storage = {};
+
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
       // Create mocks of localStorage getItem and setItem functions
@@ -122,6 +175,7 @@ describe('extendTheme', () => {
         removeListener: () => {},
       });
     });
+
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });
@@ -176,6 +230,29 @@ describe('extendTheme', () => {
       expect(styles).to.deep.equal({
         // No default value as the CssVarsProvider is used
         borderRadius: 'var(--joy-radius-md)',
+      });
+    });
+
+    it('applyStyles', () => {
+      const attribute = 'data-custom-color-scheme';
+      let darkStyles = {};
+      const Test = styled('div')(({ theme }) => {
+        darkStyles = theme.applyStyles('dark', {
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+        });
+        return null;
+      });
+
+      render(
+        <CssVarsProvider attribute={attribute}>
+          <Test />
+        </CssVarsProvider>,
+      );
+
+      expect(darkStyles).to.deep.equal({
+        [`*:where([${attribute}="dark"]) &`]: {
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+        },
       });
     });
   });

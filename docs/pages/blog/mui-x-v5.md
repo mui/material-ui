@@ -1,16 +1,16 @@
 ---
-title: Introducing MUI X v5.0
-description: We are excited to introduce MUI X v5.0.0!
+title: Introducing MUI X v5
+description: We are excited to introduce MUI X v5.0.0!
 date: 2021-11-22T00:00:00.000Z
 authors:
   ['oliviertassinari', 'm4theushw', 'flaviendelangle', 'DanailH', 'alexfauquette']
-card: true
-tags: ['News']
+manualCard: true
+tags: ['MUI X', 'Product']
 ---
 
-We are excited to introduce [MUI X v5.0.0](https://github.com/mui/mui-x/releases/tag/v5.0.0)!
+We are excited to introduce [MUI X v5.0.0](https://github.com/mui/mui-x/releases/tag/v5.0.0)!
 
-[MUI X](/x/) is our collection of advanced components (with both MIT and commercially licensed "Pro" features).
+[MUI X](/x/) is our collection of advanced components (with both MIT and commercially licensed "Pro" features).
 Currently, it only includes a data grid.
 Soon it will include more components like date picker and tree view.
 This release continues our focus on making the data grid the best in the industry.
@@ -34,13 +34,13 @@ This release features some major highlights:
 
 ## High-level goals for v5
 
-MUI develops different React components in two products: [MUI Core](/core/) and [MUI X](/x/).
+We develop different React components in two areas: [MUI Core](/core/) and [MUI X](/x/).
 This approach recognizes that the problems solved by the components in these two products are different.
 The paths to success require different strategies.
-Many of the developers using MUI X also use MUI Core, these users care a lot about consistency (design, docs, dependencies, etc.).
+Many of the developers using MUI X also use Material UI, Base UI, and MUI System, these users care a lot about consistency (design, docs, dependencies, etc.).
 
-With the [release of MUI Core v5](/blog/mui-core-v5/) two months ago MUI X had to work on providing a cohesive experience.
-The primary objective of this new major is to have MUI X provide a great **compatibility with MUI Core v5**.
+With the [release of MUI Core v5](/blog/mui-core-v5/) two months ago MUI X had to work on providing a cohesive experience.
+The primary objective of this new major is to have MUI X provide a great **compatibility with MUI Core v5**.
 
 ## A new virtualization engine
 
@@ -92,7 +92,7 @@ These changes improved the developer experience when using the `apiRef` methods:
 
 - We removed the `state` structure from the public API. Access to data in the state should always be done through `apiRef` methods (`apiRef.current.getSelectedRows`) or selectors (`selectedGridRowsSelector`).
 - We renamed most selectors to have a consistent naming convention, making it easier to deduce their name or infer purpose.
-- We restructured our state so that each feature has a single sub-state, and the feature hook is the only one to update it (e.g. `state.filter` is only managed by the `useGridFilter` hook, which exposes methods for both internal and 3rd party code to interact with this state).
+- We restructured our state so that each feature has a single sub-state, and the feature hook is the only one to update it (for example `state.filter` is only managed by the `useGridFilter` hook, which exposes methods for both internal and 3rd party code to interact with this state).
 
 The work on this topic isn't over. We have several developments in progress or under discussion to improve the developer experience when using the advanced features of the grid.
 Here are a few that should be release in the following months:
@@ -116,7 +116,7 @@ If you pass `props.pageSize`, we will apply it to the state in a `useEffect`, an
 In previous versions, most of the built-in CSS of the `DataGrid` and `DataGridPro` components had a [CSS specificity](https://web.dev/learn/css/specificity/) of 2.
 This means that the CSS you would normally add would have less priority than the built-in CSS of the data grid.
 This was requiring you to open your dev tools, look at the DOM/CSSOM tree in order to use the correct CSS selector.
-With MUI X v5 we have reduced the CSS specificity of most of the internal `DataGrid` and `DataGridPro` components to 1.
+With MUI X v5 we have reduced the CSS specificity of most of the internal `DataGrid` and `DataGridPro` components to 1.
 This enables developers to more easily change the look and feel of the grid's components.
 
 **Before**
@@ -189,16 +189,16 @@ export default function App() {
 ### Limitations
 
 Although this was a clear improvement, we still had to keep a CSS specificity of 2 for some parts of the `DataGrid` and `DataGridPro`, specifically the `GridColumnHeaderItem`, `GridRow` and `GridCell` along with all of the components that are nested in them.
-This is due to performance implications related to how [emotion](https://emotion.sh/) injects styles into the page,
+This is due to performance implications related to how [Emotion](https://emotion.sh/docs/introduction) injects styles into the page,
 and was necessary to keep the performance of our virtualization engine at its optimal.
 
 ## v4 migration
 
-We strongly recommend you migrate MUI X to v5.
-In MUI X v5 we have not only added additional features but also made significant internal improvements and performance optimizations that won't be included in v4.
-All-new `DataGrid` and `DataGridPro` features will be only available in MUI X v5.
+We strongly recommend you migrate MUI X to v5.
+In MUI X v5 we have not only added additional features but also made significant internal improvements and performance optimizations that won't be included in v4.
+All-new `DataGrid` and `DataGridPro` features will be only available in MUI X v5.
 
-Please check [the v4 migration guide](/x/react-data-grid/migration-v4/) to accelerate the transition.
+Please check [the v4 migration guide](/x/migration/migration-data-grid-v4/) to accelerate the transition.
 
 ## What's next?
 
@@ -216,6 +216,6 @@ You can view our [public roadmap](https://github.com/mui/mui-x/projects/1) on Gi
 
 ## Thank you
 
-Finally, one last thank you to everyone who's contributed to MUI X v5.
+Finally, one last thank you to everyone who's contributed to MUI X v5.
 We're very excited about this release, and we'll continue to push forward and deliver the next generation of Enterprise React UI components!
 It's just the beginning.

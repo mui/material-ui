@@ -1,5 +1,5 @@
 {
-  "name": "material-vite",
+  "name": "material-ui-vite",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@mui/material": "latest",
+    "@mui/material": "next",
     "react": "latest",
     "react-dom": "latest"
   },

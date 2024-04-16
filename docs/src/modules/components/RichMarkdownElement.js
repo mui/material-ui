@@ -1,7 +1,6 @@
-import path from 'path';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import HighlightedCodeWithTabs from 'docs/src/modules/components/HighlightedCodeWithTabs';
 import Demo from 'docs/src/modules/components/Demo';
@@ -19,7 +18,6 @@ export default function RichMarkdownElement(props) {
     demos = {},
     disableAd,
     localizedDoc,
-    location,
     renderedMarkdownOrDemo,
     srcComponents,
     theme,
@@ -42,7 +40,7 @@ export default function RichMarkdownElement(props) {
     const Component = srcComponents?.[name];
 
     if (Component === undefined) {
-      throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
+      throw new Error(`No component found at the path 'docs/src/${name}`);
     }
 
     const additionalProps = {};
@@ -99,7 +97,7 @@ export default function RichMarkdownElement(props) {
     );
   }
 
-  const splitLocationBySlash = location.split('/');
+  const splitLocationBySlash = localizedDoc.location.split('/');
   splitLocationBySlash.pop();
   const fileNameWithLocation = `${splitLocationBySlash.join('/')}/${name}`;
 
@@ -139,7 +137,6 @@ RichMarkdownElement.propTypes = {
   demos: PropTypes.any,
   disableAd: PropTypes.bool,
   localizedDoc: PropTypes.any,
-  location: PropTypes.string,
   renderedMarkdownOrDemo: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.shape({ component: PropTypes.any, demo: PropTypes.any }),

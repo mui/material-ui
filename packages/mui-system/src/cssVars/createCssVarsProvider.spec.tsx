@@ -26,10 +26,10 @@ const extendTheme = (themeInput: JoyThemeInput) =>
       dark: { palette: { primary: { main: '' } } },
     },
     fontSize: { md: '' },
-  } as {
+  }) as {
     colorSchemes: Record<JoyColorScheme, { palette: { primary: { main: string } } }>;
     fontSize: { md: string };
-  });
+  };
 
 const { CssVarsProvider, useColorScheme } = createCssVarsProvider<JoyColorScheme>({
   defaultColorScheme: 'light',

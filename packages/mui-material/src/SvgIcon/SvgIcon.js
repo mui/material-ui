@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
@@ -40,7 +40,7 @@ const SvgIconRoot = styled('svg', {
   height: '1em',
   display: 'inline-block',
   // the <svg> will define the property that has `currentColor`
-  // e.g. heroicons uses fill="none" and stroke="currentColor"
+  // for example heroicons uses fill="none" and stroke="currentColor"
   fill: ownerState.hasSvgAsChild ? undefined : 'currentColor',
   flexShrink: 0,
   transition: theme.transitions?.create?.('fill', {
@@ -119,10 +119,10 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
 });
 
 SvgIcon.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Node passed into the SVG element.
    */
@@ -138,7 +138,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */

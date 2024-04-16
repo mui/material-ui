@@ -5,12 +5,11 @@
   publish = "docs/export/"
 
   # Default build command.
-  command = "yarn docs:build && yarn docs:export"
+  command = "pnpm docs:build"
 
 [build.environment]
   NODE_VERSION = "18"
-  # Not using `playwright` when building docs.
-  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+  PNPM_FLAGS = "--shamefully-hoist"
 
 [[plugins]]
   package = "./packages/netlify-plugin-cache-docs"

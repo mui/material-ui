@@ -1,0 +1,1559 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "aggregationFunctions": {
+      "description": "Aggregation functions available on the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "aggregationModel": {
+      "description": "Set the aggregation model of the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "aggregationRowsScope": {
+      "description": "Rows used to generate the aggregated value. If <code>filtered</code>, the aggregated values are generated using only the rows currently passing the filtering process. If <code>all</code>, the aggregated values are generated using all the rows.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "apiRef": {
+      "description": "The ref object that allows grid manipulation. Can be instantiated with <code>useGridApiRef()</code>.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "aria-label": {
+      "description": "The label of the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "aria-labelledby": {
+      "description": "The id of the element containing a label for the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "autoHeight": {
+      "description": "If <code>true</code>, the grid height is dynamic and follow the number of rows in the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "autoPageSize": {
+      "description": "If <code>true</code>, the pageSize is calculated according to the container size and the max number of rows to avoid rendering a vertical scroll bar.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "cellModesModel": {
+      "description": "Controls the modes of the cells.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "checkboxSelection": {
+      "description": "If <code>true</code>, the grid get a first column with a checkbox that allows to select rows.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "checkboxSelectionVisibleOnly": {
+      "description": "If <code>true</code>, the &quot;Select All&quot; header checkbox selects only the rows on the current page. To be used in combination with <code>checkboxSelection</code>. It only works if the pagination is enabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "clipboardCopyCellDelimiter": {
+      "description": "The character used to separate cell values when copying to the clipboard.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "columnBuffer": {
+      "description": "Number of extra columns to be rendered before/after the visible slice.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "columnHeaderHeight": {
+      "description": "Sets the height in pixel of the column headers in the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "columns": {
+      "description": "Set of columns of type GridColDef[].",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "columnThreshold": {
+      "description": "Number of rows from the <code>columnBuffer</code> that can be visible before a new slice is rendered.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "columnVisibilityModel": {
+      "description": "Set the column visibility model of the grid. If defined, the grid will ignore the <code>hide</code> property in <a href=\"/x/api/data-grid/grid-col-def/\">GridColDef</a>.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "components": {
+      "description": "Overridable components.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "componentsProps": {
+      "description": "Overridable components props dynamically passed to the component at rendering.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "defaultGroupingExpansionDepth": {
+      "description": "If above 0, the row children will be expanded up to this depth. If equal to -1, all the row children will be expanded.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "density": {
+      "description": "Set the density of the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "detailPanelExpandedRowIds": {
+      "description": "The row ids to show the detail panel.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableAggregation": {
+      "description": "If <code>true</code>, aggregation is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableChildrenFiltering": {
+      "description": "If <code>true</code>, the filtering will only be applied to the top level rows when grouping rows with the <code>treeData</code> prop.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableChildrenSorting": {
+      "description": "If <code>true</code>, the sorting will only be applied to the top level rows when grouping rows with the <code>treeData</code> prop.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableClipboardPaste": {
+      "description": "If <code>true</code>, the clipboard paste is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableColumnFilter": {
+      "description": "If <code>true</code>, column filters are disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableColumnMenu": {
+      "description": "If <code>true</code>, the column menu is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableColumnPinning": {
+      "description": "If <code>true</code>, the column pinning is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableColumnReorder": {
+      "description": "If <code>true</code>, reordering columns is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableColumnResize": {
+      "description": "If <code>true</code>, resizing columns is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableColumnSelector": {
+      "description": "If <code>true</code>, hiding/showing columns is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableDensitySelector": {
+      "description": "If <code>true</code>, the density selector is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableMultipleColumnsFiltering": {
+      "description": "If <code>true</code>, filtering with multiple columns is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableMultipleColumnsSorting": {
+      "description": "If <code>true</code>, sorting with multiple columns is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableMultipleRowSelection": {
+      "description": "If <code>true</code>, multiple selection using the Ctrl or CMD key is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableRowGrouping": {
+      "description": "If <code>true</code>, the row grouping is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableRowSelectionOnClick": {
+      "description": "If <code>true</code>, the selection on click on a row or cell is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableVirtualization": {
+      "description": "If <code>true</code>, the virtualization is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "editMode": {
+      "description": "Controls whether to use the cell or row editing.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "experimentalFeatures": {
+      "description": "Unstable features, breaking changes might be introduced. For each feature, if the flag is not explicitly set to <code>true</code>, then the feature is fully disabled, and neither property nor method calls will have any effect.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "filterDebounceMs": {
+      "description": "The milliseconds delay to wait after a keystroke before triggering filtering.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "filterMode": {
+      "description": "Filtering can be processed on the server or client-side. Set it to &#39;server&#39; if you would like to handle filtering on the server-side.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "filterModel": {
+      "description": "Set the filter model of the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "getAggregationPosition": {
+      "description": "Determines the position of an aggregated value.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "groupNode": "The current group.",
+        "GridAggregationPosition | null": "Position of the aggregated value (if <code>null</code>, the group isn&#39;t aggregated)."
+      }
+    },
+    "getCellClassName": {
+      "description": "Function that applies CSS classes dynamically on cells.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-cell-params/\">GridCellParams</a>.",
+        "string": "The CSS class to apply to the cell."
+      }
+    },
+    "getDetailPanelContent": {
+      "description": "Function that returns the element to render in row detail.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-row-params/\">GridRowParams</a>.",
+        "React.JSX.Element": "The row detail element."
+      }
+    },
+    "getDetailPanelHeight": {
+      "description": "Function that returns the height of the row detail panel.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-row-params/\">GridRowParams</a>.",
+        "number | string": "The height in pixels or &quot;auto&quot; to use the content height."
+      }
+    },
+    "getEstimatedRowHeight": {
+      "description": "Function that returns the estimated height for a row. Only works if dynamic row height is used. Once the row height is measured this value is discarded.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridRowHeightParams.",
+        "number | null": "The estimated row height value. If <code>null</code> or <code>undefined</code> then the default row height, based on the density, is applied."
+      }
+    },
+    "getRowClassName": {
+      "description": "Function that applies CSS classes dynamically on rows.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-row-class-name-params/\">GridRowClassNameParams</a>.",
+        "string": "The CSS class to apply to the row."
+      }
+    },
+    "getRowHeight": {
+      "description": "Function that sets the row height per row.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridRowHeightParams.",
+        "GridRowHeightReturnValue": "The row height value. If <code>null</code> or <code>undefined</code> then the default row height is applied. If &quot;auto&quot; then the row height is calculated based on the content."
+      }
+    },
+    "getRowId": {
+      "description": "Return the id of a given GridRowModel.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "getRowSpacing": {
+      "description": "Function that allows to specify the spacing between rows.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-row-spacing-params/\">GridRowSpacingParams</a>.",
+        "GridRowSpacing": "The row spacing values."
+      }
+    },
+    "getTreeDataPath": {
+      "description": "Determines the path of a row in the tree data. For instance, a row with the path [&quot;A&quot;, &quot;B&quot;] is the child of the row with the path [&quot;A&quot;]. Note that all paths must contain at least one element.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "row": "The row from which we want the path.",
+        "Array<string>": "The path to the row."
+      }
+    },
+    "groupingColDef": {
+      "description": "The grouping column used by the tree data.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "hideFooter": {
+      "description": "If <code>true</code>, the footer component is hidden.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "hideFooterPagination": {
+      "description": "If <code>true</code>, the pagination component in the footer is hidden.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "hideFooterRowCount": {
+      "description": "If <code>true</code>, the row count in the footer is hidden. It has no effect if the pagination is enabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "hideFooterSelectedRowCount": {
+      "description": "If <code>true</code>, the selected row count in the footer is hidden.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "initialState": {
+      "description": "The initial state of the DataGridPremium. The data in it is set in the state on initialization but isn&#39;t controlled. If one of the data in <code>initialState</code> is also being controlled, then the control state wins.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "isCellEditable": {
+      "description": "Callback fired when a cell is rendered, returns true if the cell is editable.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-cell-params/\">GridCellParams</a>.",
+        "boolean": "A boolean indicating if the cell is editable."
+      }
+    },
+    "isGroupExpandedByDefault": {
+      "description": "Determines if a group should be expanded after its creation. This prop takes priority over the <code>defaultGroupingExpansionDepth</code> prop.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "node": "The node of the group to test.",
+        "boolean": "A boolean indicating if the group is expanded."
+      }
+    },
+    "isRowSelectable": {
+      "description": "Determines if a row can be selected.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-row-params/\">GridRowParams</a>.",
+        "boolean": "A boolean indicating if the cell is selectable."
+      }
+    },
+    "keepColumnPositionIfDraggedOutside": {
+      "description": "If <code>true</code>, moving the mouse pointer outside the grid before releasing the mouse button in a column re-order action will not cause the column to jump back to its original position.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "keepNonExistentRowsSelected": {
+      "description": "If <code>true</code>, the selection model will retain selected rows that do not exist. Useful when using server side pagination and row selections need to be retained when changing pages.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "loading": {
+      "description": "If <code>true</code>, a  loading overlay is displayed.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "localeText": {
+      "description": "Set the locale text of the grid. You can find all the translation keys supported in <a href=\"https://github.com/mui/mui-x/blob/HEAD/packages/grid/x-data-grid/src/constants/localeTextConstants.ts\">the source</a> in the GitHub repository.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "logger": {
+      "description": "Pass a custom logger in the components that implements the Logger interface.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "logLevel": {
+      "description": "Allows to pass the logging level or false to turn off logging.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "nonce": {
+      "description": "Nonce of the inline styles for <a href=\"https://www.w3.org/TR/2016/REC-CSP2-20161215/#script-src-the-nonce-attribute\">Content Security Policy</a>.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onAggregationModelChange": {
+      "description": "Callback fired when the row grouping model changes.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "model": "The aggregated columns.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onCellClick": {
+      "description": "Callback fired when any cell is clicked.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-cell-params/\">GridCellParams</a>.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onCellDoubleClick": {
+      "description": "Callback fired when a double click event comes from a cell element.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-cell-params/\">GridCellParams</a>.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onCellEditStart": {
+      "description": "Callback fired when the cell turns to edit mode.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-cell-params/\">GridCellParams</a>.",
+        "event": "The event that caused this prop to be called."
+      }
+    },
+    "onCellEditStop": {
+      "description": "Callback fired when the cell turns to view mode.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-cell-params/\">GridCellParams</a>.",
+        "event": "The event that caused this prop to be called."
+      }
+    },
+    "onCellKeyDown": {
+      "description": "Callback fired when a keydown event comes from a cell element.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-cell-params/\">GridCellParams</a>.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onCellModesModelChange": {
+      "description": "Callback fired when the <code>cellModesModel</code> prop changes.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "cellModesModel": "Object containing which cells are in &quot;edit&quot; mode.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onClipboardCopy": {
+      "description": "Callback called when the data is copied to the clipboard.",
+      "deprecated": "",
+      "typeDescriptions": { "data": "The data copied to the clipboard." }
+    },
+    "onClipboardPasteEnd": {
+      "description": "Callback fired when the clipboard paste operation ends.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onClipboardPasteStart": {
+      "description": "Callback fired when the clipboard paste operation starts.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onColumnHeaderClick": {
+      "description": "Callback fired when a click event comes from a column header element.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridColumnHeaderParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onColumnHeaderDoubleClick": {
+      "description": "Callback fired when a double click event comes from a column header element.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridColumnHeaderParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onColumnHeaderEnter": {
+      "description": "Callback fired when a mouse enter event comes from a column header element.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridColumnHeaderParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onColumnHeaderLeave": {
+      "description": "Callback fired when a mouse leave event comes from a column header element.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridColumnHeaderParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onColumnHeaderOut": {
+      "description": "Callback fired when a mouseout event comes from a column header element.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridColumnHeaderParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onColumnHeaderOver": {
+      "description": "Callback fired when a mouseover event comes from a column header element.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridColumnHeaderParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onColumnOrderChange": {
+      "description": "Callback fired when a column is reordered.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridColumnOrderChangeParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onColumnResize": {
+      "description": "Callback fired while a column is being resized.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridColumnResizeParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onColumnVisibilityModelChange": {
+      "description": "Callback fired when the column visibility model changes.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "model": "The new model.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onColumnWidthChange": {
+      "description": "Callback fired when the width of a column is changed.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridColumnResizeParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onDetailPanelExpandedRowIdsChange": {
+      "description": "Callback fired when the detail panel of a row is opened or closed.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "ids": "The ids of the rows which have the detail panel open.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onExcelExportStateChange": {
+      "description": "Callback fired when the state of the Excel export changes.",
+      "deprecated": "",
+      "typeDescriptions": { "inProgress": "Indicates if the task is in progress." }
+    },
+    "onFetchRows": {
+      "description": "Callback fired when rowCount is set and the next batch of virtualized rows is rendered.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridFetchRowsParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onFilterModelChange": {
+      "description": "Callback fired when the Filter model changes before the filters are applied.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "model": "With all properties from <a href=\"/x/api/data-grid/grid-filter-model/\">GridFilterModel</a>.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onMenuClose": {
+      "description": "Callback fired when the menu is closed.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridMenuParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onMenuOpen": {
+      "description": "Callback fired when the menu is opened.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridMenuParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onPaginationModelChange": {
+      "description": "Callback fired when the pagination model has changed.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "model": "Updated pagination model.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onPinnedColumnsChange": {
+      "description": "Callback fired when the pinned columns have changed.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "pinnedColumns": "The changed pinned columns.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onPreferencePanelClose": {
+      "description": "Callback fired when the preferences panel is closed.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridPreferencePanelParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onPreferencePanelOpen": {
+      "description": "Callback fired when the preferences panel is opened.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridPreferencePanelParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onProcessRowUpdateError": {
+      "description": "Callback called when <code>processRowUpdate</code> throws an error or rejects.",
+      "deprecated": "",
+      "typeDescriptions": { "error": "The error thrown." }
+    },
+    "onResize": {
+      "description": "Callback fired when the grid is resized.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "containerSize": "With all properties from ElementSize.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onRowClick": {
+      "description": "Callback fired when a row is clicked. Not called if the target clicked is an interactive element added by the built-in columns.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-row-params/\">GridRowParams</a>.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onRowDoubleClick": {
+      "description": "Callback fired when a double click event comes from a row container element.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from RowParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onRowEditCommit": {
+      "description": "Callback fired when the row changes are committed.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "id": "The row id.",
+        "event": "The event that caused this prop to be called."
+      }
+    },
+    "onRowEditStart": {
+      "description": "Callback fired when the row turns to edit mode.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-row-params/\">GridRowParams</a>.",
+        "event": "The event that caused this prop to be called."
+      }
+    },
+    "onRowEditStop": {
+      "description": "Callback fired when the row turns to view mode.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from <a href=\"/x/api/data-grid/grid-row-params/\">GridRowParams</a>.",
+        "event": "The event that caused this prop to be called."
+      }
+    },
+    "onRowGroupingModelChange": {
+      "description": "Callback fired when the row grouping model changes.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "model": "Columns used as grouping criteria.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onRowModesModelChange": {
+      "description": "Callback fired when the <code>rowModesModel</code> prop changes.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "rowModesModel": "Object containing which rows are in &quot;edit&quot; mode.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onRowOrderChange": {
+      "description": "Callback fired when a row is being reordered.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridRowOrderChangeParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onRowSelectionModelChange": {
+      "description": "Callback fired when the selection state of one or multiple rows changes.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "rowSelectionModel": "With all the row ids GridSelectionModel.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onRowsScrollEnd": {
+      "description": "Callback fired when scrolling to the bottom of the grid viewport.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "params": "With all properties from GridRowScrollEndParams.",
+        "event": "The event object.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "onSortModelChange": {
+      "description": "Callback fired when the sort model changes before a column is sorted.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "model": "With all properties from GridSortModel.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "pageSizeOptions": {
+      "description": "Select the pageSize dynamically using the component UI.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "pagination": {
+      "description": "If <code>true</code>, pagination is enabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "paginationMode": {
+      "description": "Pagination can be processed on the server or client-side. Set it to &#39;client&#39; if you would like to handle the pagination on the client-side. Set it to &#39;server&#39; if you would like to handle the pagination on the server-side.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "paginationModel": {
+      "description": "The pagination model of type GridPaginationModel which refers to current <code>page</code> and <code>pageSize</code>.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "pinnedColumns": {
+      "description": "The column fields to display pinned to left or right.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "pinnedRows": {
+      "description": "Rows data to pin on top or bottom.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "processRowUpdate": {
+      "description": "Callback called before updating a row with new values in the row and cell editing.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "newRow": "Row object with the new values.",
+        "oldRow": "Row object with the old values.",
+        "Promise<R> | R": "The final values to update the row."
+      }
+    },
+    "rowBuffer": {
+      "description": "Number of extra rows to be rendered before/after the visible slice.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowCount": {
+      "description": "Set the total number of rows, if it is different from the length of the value <code>rows</code> prop. If some rows have children (for instance in the tree data), this number represents the amount of top level rows.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowGroupingColumnMode": {
+      "description": "If <code>single</code>, all the columns that are grouped are represented in the same grid column. If <code>multiple</code>, each column that is grouped is represented in its own grid column.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowGroupingModel": {
+      "description": "Set the row grouping model of the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowHeight": {
+      "description": "Sets the height in pixel of a row in the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowModesModel": {
+      "description": "Controls the modes of the rows.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowReordering": {
+      "description": "If <code>true</code>, the reordering of rows is enabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rows": {
+      "description": "Set of rows of type GridRowsProp.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowSelection": {
+      "description": "If <code>false</code>, the row selection mode is disabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowSelectionModel": {
+      "description": "Sets the row selection model of the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowsLoadingMode": {
+      "description": "Loading rows can be processed on the server or client-side. Set it to &#39;client&#39; if you would like enable infnite loading. Set it to &#39;server&#39; if you would like to enable lazy loading. * @default &quot;client&quot;",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowSpacingType": {
+      "description": "Sets the type of space between rows added by <code>getRowSpacing</code>.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "rowThreshold": {
+      "description": "Number of rows from the <code>rowBuffer</code> that can be visible before a new slice is rendered.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "scrollbarSize": {
+      "description": "Override the height/width of the grid inner scrollbar.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "scrollEndThreshold": {
+      "description": "Set the area in <code>px</code> at the bottom of the grid viewport where onRowsScrollEnd is called.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "showCellVerticalBorder": {
+      "description": "If <code>true</code>, the vertical borders of the cells are displayed.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "showColumnVerticalBorder": {
+      "description": "If <code>true</code>, the right border of the column headers are displayed.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "Overridable components props dynamically passed to the component at rendering.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": { "description": "Overridable components.", "deprecated": "", "typeDescriptions": {} },
+    "sortingMode": {
+      "description": "Sorting can be processed on the server or client-side. Set it to &#39;client&#39; if you would like to handle sorting on the client-side. Set it to &#39;server&#39; if you would like to handle sorting on the server-side.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sortingOrder": {
+      "description": "The order of the sorting sequence.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sortModel": {
+      "description": "Set the sort model of the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "throttleRowsMs": {
+      "description": "If positive, the Grid will throttle updates coming from <code>apiRef.current.updateRows</code> and <code>apiRef.current.setRows</code>. It can be useful if you have a high update rate but do not want to do heavy work like filtering / sorting or rendering on each  individual update.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "treeData": {
+      "description": "If <code>true</code>, the rows will be gathered in a tree structure according to the <code>getTreeDataPath</code> prop.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "unstable_cellSelection": {
+      "description": "If <code>true</code>, the cell selection mode is enabled.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "unstable_cellSelectionModel": {
+      "description": "Set the cell selection model of the grid.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "unstable_headerFilters": {
+      "description": "If <code>true</code>, enables the data grid filtering on header feature.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "unstable_ignoreValueFormatterDuringExport": {
+      "description": "If <code>true</code>, the grid will not use <code>valueFormatter</code> when exporting to CSV or copying to clipboard. If an object is provided, you can choose to ignore the <code>valueFormatter</code> for CSV export or clipboard export.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "unstable_onCellSelectionModelChange": {
+      "description": "Callback fired when the selection state of one or multiple cells changes.",
+      "deprecated": "",
+      "typeDescriptions": {
+        "cellSelectionModel": "Object in the shape of GridCellSelectionModel containing the selected cells.",
+        "details": "Additional details for this callback."
+      }
+    },
+    "unstable_splitClipboardPastedText": {
+      "description": "The function is used to split the pasted text into rows and cells.",
+      "deprecated": "",
+      "typeDescriptions": { "text": "The text pasted from the clipboard." }
+    }
+  },
+  "classDescriptions": {
+    "actionsCell": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the root element of the cell with type=\"actions\""
+    },
+    "aggregationColumnHeader": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element of the column header",
+      "conditions": "aggregated"
+    },
+    "aggregationColumnHeader--alignLeft": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element of the header",
+      "conditions": "aggregation if <code>headerAlign=\"left\"</code>"
+    },
+    "aggregationColumnHeader--alignCenter": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element of the header",
+      "conditions": "aggregation if <code>headerAlign=\"center\"</code>"
+    },
+    "aggregationColumnHeader--alignRight": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element of the header",
+      "conditions": "aggregation if <code>headerAlign=\"right\"</code>"
+    },
+    "aggregationColumnHeaderLabel": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the aggregation label in the column header",
+      "conditions": "aggregated"
+    },
+    "autoHeight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>autoHeight={true}</code>"
+    },
+    "booleanCell": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the icon of the boolean cell"
+    },
+    "cell--editable": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the cell element",
+      "conditions": "the cell is editable"
+    },
+    "cell--editing": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the cell element",
+      "conditions": "the cell is in edit mode"
+    },
+    "cell--textCenter": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the cell element",
+      "conditions": "<code>align=\"center\"</code>"
+    },
+    "cell--textLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the cell element",
+      "conditions": "<code>align=\"left\"</code>"
+    },
+    "cell--textRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the cell element",
+      "conditions": "<code>align=\"right\"</code>"
+    },
+    "cell--withRenderer": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the cell element",
+      "conditions": "the cell has a custom renderer"
+    },
+    "cell--rangeTop": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the cell element",
+      "conditions": "it is at the top edge of a cell selection range"
+    },
+    "cell--rangeBottom": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the cell element",
+      "conditions": "it is at the bottom edge of a cell selection range"
+    },
+    "cell--rangeLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the cell element",
+      "conditions": "it is at the left edge of a cell selection range"
+    },
+    "cell--rangeRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the cell element",
+      "conditions": "it is at the right edge of a cell selection range"
+    },
+    "cell": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the cell element" },
+    "cellContent": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the element that wraps the cell content"
+    },
+    "cellCheckbox": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the cell checkbox element"
+    },
+    "cellSkeleton": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the skeleton cell element"
+    },
+    "checkboxInput": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the selection checkbox element"
+    },
+    "columnHeader--alignCenter": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header",
+      "conditions": "<code>headerAlign=\"center\"</code>"
+    },
+    "columnHeader--alignLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header",
+      "conditions": "<code>headerAlign=\"left\"</code>"
+    },
+    "columnHeader--alignRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header",
+      "conditions": "<code>headerAlign=\"right\"</code>"
+    },
+    "columnHeader--dragging": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the floating column header element",
+      "conditions": "it is dragged"
+    },
+    "columnHeader--moving": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header",
+      "conditions": "it is being dragged"
+    },
+    "columnHeader--numeric": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header",
+      "conditions": "the type of the column is <code>number</code>"
+    },
+    "columnHeader--sortable": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header",
+      "conditions": "the column is sortable"
+    },
+    "columnHeader--sorted": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header",
+      "conditions": "the column is sorted"
+    },
+    "columnHeader--filtered": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header",
+      "conditions": "the column has a filter applied to it"
+    },
+    "columnHeader": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column header element"
+    },
+    "columnGroupHeader": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column group header element"
+    },
+    "columnHeaderCheckbox": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the header checkbox cell element"
+    },
+    "columnHeaderDraggableContainer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column header's draggable container element"
+    },
+    "rowReorderCellPlaceholder": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the row's draggable placeholder element inside the special row reorder cell"
+    },
+    "columnHeaderDropZone": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column headers wrapper",
+      "conditions": "a column is being dragged"
+    },
+    "columnHeaderTitle": { "description": "Styles applied to the column header's title element;" },
+    "columnHeaderTitleContainer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column header's title container element"
+    },
+    "columnHeaderTitleContainerContent": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column header's title excepted buttons"
+    },
+    "columnHeader--filledGroup": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column group header cell",
+      "conditions": "not empty"
+    },
+    "columnHeader--emptyGroup": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the empty column group header cell"
+    },
+    "columnHeader--showColumnBorder": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the column group header cell",
+      "conditions": "show column border"
+    },
+    "columnHeaders": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column headers"
+    },
+    "columnHeadersInner": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column headers's inner element"
+    },
+    "columnHeadersInner--scrollable": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column headers's inner element",
+      "conditions": "there is a horizontal scrollbar"
+    },
+    "columnSeparator--resizable": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header separator",
+      "conditions": "the column is resizable"
+    },
+    "columnSeparator--resizing": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header separator",
+      "conditions": "the column is being resized"
+    },
+    "columnSeparator--sideLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header separator",
+      "conditions": "the side is \"left\""
+    },
+    "columnSeparator--sideRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the column header separator",
+      "conditions": "the side is \"right\""
+    },
+    "columnSeparator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column header separator element"
+    },
+    "columnsPanel": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the columns panel element"
+    },
+    "columnsPanelRow": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the columns panel row element"
+    },
+    "detailPanel": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the detail panel element"
+    },
+    "detailPanels": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the detail panels wrapper element"
+    },
+    "detailPanelToggleCell": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the detail panel toggle cell element"
+    },
+    "detailPanelToggleCell--expanded": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the detail panel toggle cell element",
+      "conditions": "expanded"
+    },
+    "footerCell": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the root element of the cell inside a footer row"
+    },
+    "panel": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the panel element" },
+    "panelHeader": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the panel header element"
+    },
+    "panelWrapper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the panel wrapper element"
+    },
+    "panelContent": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the panel content element"
+    },
+    "panelFooter": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the panel footer element"
+    },
+    "paper": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the paper element" },
+    "editBooleanCell": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "root of the boolean edit component"
+    },
+    "filterForm": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the root of the filter form component"
+    },
+    "filterFormDeleteIcon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the delete icon of the filter form component"
+    },
+    "filterFormLogicOperatorInput": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the link operator input of the filter form component"
+    },
+    "filterFormColumnInput": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column input of the filter form component"
+    },
+    "filterFormOperatorInput": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the operator input of the filter form component"
+    },
+    "filterFormValueInput": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the value input of the filter form component"
+    },
+    "editInputCell": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the root of the input component"
+    },
+    "filterIcon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the filter icon element"
+    },
+    "footerContainer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the footer container element"
+    },
+    "iconButtonContainer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column header icon's container"
+    },
+    "iconSeparator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column header separator icon element"
+    },
+    "headerFilterRow": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the column header filter row"
+    },
+    "main": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the main container element"
+    },
+    "menu": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the menu element" },
+    "menuIcon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the menu icon element"
+    },
+    "menuIconButton": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the menu icon button element"
+    },
+    "menuOpen": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the menu icon element",
+      "conditions": "the menu is open"
+    },
+    "menuList": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the menu list element"
+    },
+    "overlayWrapper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the overlay wrapper element"
+    },
+    "overlayWrapperInner": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the overlay wrapper inner element"
+    },
+    "overlay": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the overlay element"
+    },
+    "virtualScroller": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the virtualization container"
+    },
+    "virtualScrollerContent": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the virtualization content"
+    },
+    "virtualScrollerContent--overflowed": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the virtualization content",
+      "conditions": "its height is bigger than the virtualization container"
+    },
+    "virtualScrollerRenderZone": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the virtualization render zone"
+    },
+    "pinnedColumns": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the pinned columns"
+    },
+    "pinnedColumns--left": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the left pinned columns"
+    },
+    "pinnedColumns--right": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the right pinned columns"
+    },
+    "pinnedColumnHeaders": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the pinned column headers"
+    },
+    "pinnedColumnHeaders--left": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the left pinned column headers"
+    },
+    "pinnedColumnHeaders--right": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the right pinned column headers"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "root--densityStandard": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "density is \"standard\" (default)"
+    },
+    "root--densityComfortable": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "density is \"comfortable\""
+    },
+    "root--densityCompact": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "density is \"compact\""
+    },
+    "root--disableUserSelection": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "user selection is disabled"
+    },
+    "row--editable": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the row element",
+      "conditions": "the row is editable"
+    },
+    "row--editing": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the row element",
+      "conditions": "the row is in edit mode"
+    },
+    "row--dragging": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the floating special row reorder cell element",
+      "conditions": "it is dragged"
+    },
+    "row--lastVisible": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the last visible row element on every page of the grid"
+    },
+    "row--dynamicHeight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the row",
+      "conditions": "it has dynamic row height"
+    },
+    "row--detailPanelExpanded": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the row",
+      "conditions": "its detail panel is open"
+    },
+    "row": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the row element" },
+    "rowCount": {
+      "description": "Styles applied to {{nodeName}}.\nOnly works when pagination is disabled.",
+      "nodeName": "the footer row count element to show the total number of rows"
+    },
+    "rowReorderCellContainer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the row reorder cell container element"
+    },
+    "rowReorderCell": {
+      "description": "Styles applied to the root element of the row reorder cell"
+    },
+    "rowReorderCell--draggable": {
+      "description": "Styles applied to the root element of the row reorder cell when dragging is allowed"
+    },
+    "scrollArea": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "both scroll area elements"
+    },
+    "scrollArea--left": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the left scroll area element"
+    },
+    "scrollArea--right": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the right scroll area element"
+    },
+    "selectedRowCount": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the footer selected row count element"
+    },
+    "sortIcon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the sort icon element"
+    },
+    "toolbarContainer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the toolbar container element"
+    },
+    "toolbarFilterList": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the toolbar filter list element"
+    },
+    "withBorderColor": {
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.\nSets border color only.",
+      "nodeName": "cells",
+      "conditions": "column header and other elements that have border"
+    },
+    "cell--withRightBorder": {
+      "description": "Styles applied the cell if `showColumnVerticalBorder={true}`."
+    },
+    "columnHeader--withRightBorder": {
+      "description": "Styles applied the column header if `showColumnVerticalBorder={true}`."
+    },
+    "treeDataGroupingCell": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the root of the grouping column of the tree data"
+    },
+    "treeDataGroupingCellToggle": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the toggle of the grouping cell of the tree data"
+    },
+    "groupingCriteriaCell": {
+      "description": "Styles applied to the root element of the grouping criteria cell"
+    },
+    "groupingCriteriaCellToggle": {
+      "description": "Styles applied to the toggle of the grouping criteria cell"
+    },
+    "pinnedRows": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the pinned rows container"
+    },
+    "pinnedRows--top": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the top pinned rows container"
+    },
+    "pinnedRows--bottom": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the bottom pinned rows container"
+    },
+    "pinnedRowsRenderZone": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "pinned rows render zones"
+    }
+  },
+  "slotDescriptions": {
+    "baseButton": "The custom Button component used in the grid.",
+    "baseCheckbox": "The custom Checkbox component used in the grid for both header and cells.",
+    "baseChip": "The custom Chip component used in the grid.",
+    "baseFormControl": "The custom FormControl component used in the grid.",
+    "baseIconButton": "The custom IconButton component used in the grid.",
+    "baseInputAdornment": "The custom InputAdornment component used in the grid.",
+    "baseInputLabel": "The custom InputLabel component used in the grid.",
+    "basePopper": "The custom Popper component used in the grid.",
+    "baseSelect": "The custom Select component used in the grid.",
+    "baseSelectOption": "The custom SelectOption component used in the grid.",
+    "baseSwitch": "The custom Switch component used in the grid.",
+    "baseTextField": "The custom TextField component used in the grid.",
+    "baseTooltip": "The custom Tooltip component used in the grid.",
+    "booleanCellFalseIcon": "Icon displayed on the boolean cell to represent the false value.",
+    "booleanCellTrueIcon": "Icon displayed on the boolean cell to represent the true value.",
+    "cell": "Component rendered for each cell.",
+    "columnFilteredIcon": "Icon displayed on the column header menu to show that a filter has been applied to the column.",
+    "columnHeaderFilterIconButton": "Filter icon component rendered in each column header.",
+    "columnHeaders": "Component responsible for rendering the column headers.",
+    "columnMenu": "Column menu component rendered by clicking on the 3 dots &quot;kebab&quot; icon in column headers.",
+    "columnMenuAggregationIcon": "Icon displayed in column menu for aggregation",
+    "columnMenuClearIcon": "Icon displayed in column menu for clearing values",
+    "columnMenuFilterIcon": "Icon displayed in column menu for filter",
+    "columnMenuGroupIcon": "Icon displayed in column menu for grouping",
+    "columnMenuHideIcon": "Icon displayed in column menu for hiding column",
+    "columnMenuIcon": "Icon displayed on the side of the column header title to display the filter input component.",
+    "columnMenuManageColumnsIcon": "Icon displayed in column menu for showing all columns",
+    "columnMenuPinLeftIcon": "Icon displayed in column menu for left pinning",
+    "columnMenuPinRightIcon": "Icon displayed in column menu for right pinning",
+    "columnMenuSortAscendingIcon": "Icon displayed in column menu for ascending sort",
+    "columnMenuSortDescendingIcon": "Icon displayed in column menu for descending sort",
+    "columnMenuUngroupIcon": "Icon displayed in column menu for ungrouping",
+    "columnReorderIcon": "Icon displayed on the column reorder button.",
+    "columnResizeIcon": "Icon displayed in between two column headers that allows to resize the column header.",
+    "columnSelectorIcon": "Icon displayed on the column menu selector tab.",
+    "columnSortedAscendingIcon": "Icon displayed on the side of the column header title when sorted in ascending order.",
+    "columnSortedDescendingIcon": "Icon displayed on the side of the column header title when sorted in descending order.",
+    "columnUnsortedIcon": "Icon displayed on the side of the column header title when unsorted.",
+    "columnsPanel": "GridColumns panel component rendered when clicking the columns button.",
+    "densityComfortableIcon": "Icon displayed on the &quot;comfortable&quot; density option in the toolbar.",
+    "densityCompactIcon": "Icon displayed on the compact density option in the toolbar.",
+    "densityStandardIcon": "Icon displayed on the standard density option in the toolbar.",
+    "detailPanelCollapseIcon": "Icon displayed on the detail panel toggle column when expanded.",
+    "detailPanelExpandIcon": "Icon displayed on the detail panel toggle column when collapsed.",
+    "exportIcon": "Icon displayed on the open export button present in the toolbar by default.",
+    "filterPanel": "Filter panel component rendered when clicking the filter button.",
+    "filterPanelAddIcon": "Icon displayed for deleting the filter from filter panel.",
+    "filterPanelDeleteIcon": "Icon displayed for deleting the filter from filter panel.",
+    "filterPanelRemoveAllIcon": "Icon displayed for deleting all the active filters from filter panel.",
+    "footer": "Footer component rendered at the bottom of the grid viewport.",
+    "footerRowCount": "Row count component rendered in the footer",
+    "groupingCriteriaCollapseIcon": "Icon displayed on the grouping column when the children are expanded",
+    "groupingCriteriaExpandIcon": "Icon displayed on the grouping column when the children are collapsed",
+    "headerFilterCell": "Component responsible for showing menu adornment in Header filter row",
+    "headerFilterMenu": "Component responsible for showing menu in Header filter row",
+    "loadIcon": "Icon displayed on the input while processing.",
+    "loadingOverlay": "Loading overlay component rendered when the grid is in a loading state.",
+    "moreActionsIcon": "Icon displayed on the <code>actions</code> column type to open the menu.",
+    "noResultsOverlay": "No results overlay component rendered when the grid has no results after filtering.",
+    "noRowsOverlay": "No rows overlay component rendered when the grid has no rows.",
+    "openFilterButtonIcon": "Icon displayed on the open filter button present in the toolbar by default.",
+    "pagination": "Pagination component rendered in the grid footer by default.",
+    "panel": "Panel component wrapping the filters and columns panels.",
+    "preferencesPanel": "PreferencesPanel component rendered inside the Header component.",
+    "quickFilterClearIcon": "Icon displayed on the quick filter reset input.",
+    "quickFilterIcon": "Icon displayed on the quick filter input.",
+    "row": "Component rendered for each row.",
+    "rowReorderIcon": "Icon displayed on the <code>reorder</code> column type to reorder a row.",
+    "skeletonCell": "Component rendered for each skeleton cell.",
+    "toolbar": "Toolbar component rendered inside the Header component.",
+    "treeDataCollapseIcon": "Icon displayed on the tree data toggling column when the children are expanded",
+    "treeDataExpandIcon": "Icon displayed on the tree data toggling column when the children are collapsed"
+  }
+}

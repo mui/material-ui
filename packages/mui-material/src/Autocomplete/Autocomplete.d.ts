@@ -7,6 +7,7 @@ import {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteValue,
   createFilterOptions,
   UseAutocompleteProps,
   AutocompleteFreeSoloValueMapping,
@@ -22,6 +23,7 @@ export {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteValue,
   createFilterOptions,
 };
 
@@ -169,7 +171,7 @@ export interface AutocompleteProps<
   };
   /**
    * If `true`, the component is in a loading state.
-   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
    * @default false
    */
   loading?: boolean;
@@ -193,6 +195,9 @@ export interface AutocompleteProps<
    * @default 'No options'
    */
   noOptionsText?: React.ReactNode;
+  onKeyDown?: (
+    event: React.KeyboardEvent<HTMLDivElement> & { defaultMuiPrevented?: boolean },
+  ) => void;
   /**
    * Override the default text for the *open popup* icon button.
    *

@@ -10,7 +10,6 @@ import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { MenuButton } from '@mui/base/MenuButton';
 import { Modal, modalClasses } from '@mui/base/Modal';
 import { Option } from '@mui/base/Option';
-import { Popper } from '@mui/base/Popper';
 import { Select } from '@mui/base/Select';
 import { Slider, sliderClasses } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
@@ -43,7 +42,7 @@ import InterestsRoundedIcon from '@mui/icons-material/InterestsRounded';
 import RadioRoundedIcon from '@mui/icons-material/RadioRounded';
 
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import heroVariables from 'docs/src/components/productBaseUI/heroVariables';
 
 const Panel = styled('div')({
@@ -89,6 +88,8 @@ const StyledSwitchLabel = styled('label')({
 const StyledTabsList = styled('div')({
   display: 'flex',
   borderBottom: 'var(--border-width) solid var(--border-color)',
+  background: 'var(--TabsList-background)',
+  padding: '4px',
 });
 
 const StyledTab = styled('button')({
@@ -98,26 +99,28 @@ const StyledTab = styled('button')({
   justifyContent: 'center',
   gap: 6,
   position: 'relative',
-  minHeight: 42,
   flex: 1,
-  padding: '0.75rem',
-  background: 'var(--Tab-background)',
+  maxHeight: 42,
+  padding: '0.75rem 0.875rem',
+  background: 'transparent',
   border: 'none',
-  borderRadius: 12,
+  borderRadius: 'var(--Tab-radius)',
   fontSize: 14,
   fontWeight: 600,
   color: 'var(--muidocs-palette-text-secondary)',
+  userSelect: 'none',
+  transition: 'all 100ms ease',
 
-  '&:hover:not(.Mui-selected)': {
+  '&:hover:not(.base--selected)': {
     background: 'var(--Tab-hoverBackground)',
   },
 
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
-    outlineOffset: -6,
+    outlineOffset: -4,
   },
 
-  '&.Mui-selected': {
+  '&.base--selected': {
     color: 'var(--color-primary)',
 
     '&::after': {
@@ -126,7 +129,7 @@ const StyledTab = styled('button')({
       height: 'max(2px, var(--border-width, 0px))',
       left: 2,
       right: 2,
-      bottom: 'calc(-1 * min(2px, var(--border-width, 0px)))',
+      bottom: 'var(--Tab-activeSelector)',
       position: 'absolute',
       backgroundColor: 'var(--color-primary)',
     },
@@ -134,25 +137,27 @@ const StyledTab = styled('button')({
 });
 
 const StyledSelectButton = styled('button')({
-  width: '100%',
-  cursor: 'pointer',
-  maxWidth: '100%',
-  minHeight: 'calc(2 * var(--border-width, 0px) + 37px)',
-  border: 'var(--border-width, 1px) solid',
-  borderColor: 'var(--Select-ringColor, var(--border-color))',
-  borderRadius: 'var(--border-radius)',
-  padding: '8px 12px',
-  backgroundColor: 'var(--Select-background)',
   display: 'flex',
-  color: 'var(--muidocs-palette-text-secondary)',
-  alignItems: 'center',
-  fontSize: '0.875rem',
+  width: '100%',
+  padding: '8px 12px',
+  cursor: 'pointer',
+  backgroundColor: 'var(--Button-bg)',
+  border: 'var(--border-style)',
+  borderColor: 'var(--Button-border)',
+  borderRadius: 'var(--border-radius)',
+  boxShadow: 'var(--Button-shadow)',
   fontFamily: 'var(--muidocs-font-family)',
+  fontSize: '0.875rem',
+  fontWeight: 500,
+  color: 'var(--Button-color)',
   lineHeight: 21 / 14,
-  boxShadow: 'var(--formControl-shadow, 0px 2px 2px rgba(205, 210, 215, 0.3))',
+  userSelect: 'none',
+  transition: 'all 100ms ease',
 
   '&:hover': {
-    backgroundColor: 'var(--Tab-hoverBackground)',
+    backgroundColor: 'var(--Button-bg-hover)',
+    borderColor: 'var(--Button-border-hover)',
+    boxShadow: 'none',
   },
 
   '&:focus-visible': {
@@ -166,122 +171,69 @@ const StyledSelectButton = styled('button')({
   '& svg:first-child': {
     marginRight: 'var(--Select-spacing)',
   },
-
-  '&:not(:empty)': {
-    fontWeight: 500,
-  },
 });
 
-const StyledModalButton = styled('button')({
+const StyledLinkButton = styled(Link)({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
   padding: '8px 12px',
   cursor: 'pointer',
-  backgroundColor: 'var(--muidocs-palette-primary-50)',
-  border: '1px solid',
-  borderColor: 'var(--muidocs-palette-primary-100)',
+  backgroundColor: 'var(--LinkButton-bg)',
+  border: 'var(--border-style)',
+  borderColor: 'var(--LinkButton-border)',
   borderRadius: 'var(--border-radius)',
-  boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.3)',
+  boxShadow: 'var(--LinkButton-shadow)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   fontWeight: 600,
-  color: 'var(--muidocs-palette-primary-600)',
+  color: 'var(--LinkButton-color) !important',
   lineHeight: 21 / 14,
+  userSelect: 'none',
+  transition: 'all 100ms ease',
 
   '&:hover': {
-    backgroundColor: 'var(--muidocs-palette-primary-100)',
+    backgroundColor: 'var(--LinkButton-bg-hover)',
+    borderColor: 'var(--LinkButton-border-hover)',
+    boxShadow: 'none',
   },
 
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
   },
-
-  '[data-mui-color-scheme="dark"] &': {
-    borderColor: 'var(--muidocs-palette-primary-700)',
-    backgroundColor: 'var(--muidocs-palette-primary-900)',
-    color: 'var(--muidocs-palette-primary-200)',
-    boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.15)',
-    '&:hover': {
-      backgroundColor: 'var(--muidocs-palette-primary-800)',
-    },
-  },
 });
 
-const StyledSnackbarButton = styled('button')({
+const StyledButton = styled('button')({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
   padding: '8px 12px',
   cursor: 'pointer',
-  backgroundColor: 'var(--muidocs-palette-grey-50)',
-  border: '1px solid',
-  borderColor: 'var(--muidocs-palette-grey-200)',
+  backgroundColor: 'var(--Button-bg)',
+  border: 'var(--border-style)',
+  borderColor: 'var(--Button-border)',
   borderRadius: 'var(--border-radius)',
-  boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.3)',
+  boxShadow: 'var(--Button-shadow)',
   fontFamily: 'var(--muidocs-font-family)',
   fontSize: '0.875rem',
   fontWeight: 600,
-  color: 'var(--muidocs-palette-grey-900)',
+  color: 'var(--Button-color)',
   lineHeight: 21 / 14,
+  userSelect: 'none',
+  transition: 'all 100ms ease',
 
   '&:hover': {
-    backgroundColor: 'var(--muidocs-palette-grey-200)',
+    backgroundColor: 'var(--Button-bg-hover)',
+    borderColor: 'var(--Button-border-hover)',
+    boxShadow: 'none',
   },
 
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
   },
-
-  '[data-mui-color-scheme="dark"] &': {
-    borderColor: 'var(--muidocs-palette-grey-800)',
-    backgroundColor: 'var(--muidocs-palette-grey-900)',
-    color: 'var(--muidocs-palette-primary-100)',
-    boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.05)',
-    '&:hover': {
-      backgroundColor: 'var(--muidocs-palette-primaryDark-700)',
-    },
-  },
 });
 
-const StyledViewCode = styled(Link)({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'end',
-  width: '100%',
-  padding: '12px 16px',
-  cursor: 'pointer',
-  backgroundColor: 'var(--muidocs-palette-primaryDark-800)',
-  border: '1px solid',
-  borderColor: 'var(--muidocs-palette-grey-800)',
-  borderRadius: 'var(--border-radius)',
-  boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.3)',
-  fontFamily: 'var(--muidocs-font-family)',
-  fontSize: '0.875rem',
-  fontWeight: 600,
-  color: 'var(--muidocs-palette-grey-200)',
-  lineHeight: 21 / 14,
-
-  '&:hover': {
-    backgroundColor: 'var(--muidocs-palette-primaryDark-800)',
-    color: 'var(--muidocs-palette-primary-100)',
-  },
-
-  '&:focus-visible': {
-    outline: '3px solid var(--muidocs-palette-primary-300)',
-  },
-
-  '[data-mui-color-scheme="dark"] &': {
-    color: 'var(--muidocs-palette-primary-100)',
-    boxShadow: 'var(--formControl-shadow), inset 0px 4px 4px rgba(205, 210, 215, 0.05)',
-    '&:hover': {
-      color: 'var(--muidocs-palette-primary-100)',
-      backgroundColor: 'var(--muidocs-palette-primaryDark-700)',
-    },
-  },
-});
-
-const StyledPopper = styled(Popper)({
+const Popup = styled('div')({
   zIndex: 1,
 });
 
@@ -299,8 +251,8 @@ const StyledListbox = styled('ul')({
   border: 'var(--border-width) solid',
   borderColor: 'var(--Select-ringColor, var(--border-color))',
   borderRadius: 'var(--_listbox-radius)',
-  backgroundColor: 'var(--muidocs-palette-background-paper)',
-  boxShadow: '0px 4px 40px rgba(62, 80, 96, 0.1)',
+  backgroundColor: 'var(--muidocs-palette-background-default)',
+  boxShadow: 'var(--Panel-shadow)',
   padding: 'calc(var(--Select-spacing) * 0.5)',
   gap: 'calc(var(--Select-spacing) * 0.2)',
   fontFamily: 'var(--muidocs-font-family)',
@@ -338,12 +290,12 @@ const StyledListbox = styled('ul')({
       cursor: 'pointer',
       borderRadius: 'calc(var(--_listbox-radius) - var(--Select-spacing) * 0.05)',
 
-      '&:hover, &.MuiOption-highlighted': {
+      '&:hover, &.base-Option-highlighted': {
         backgroundColor: 'var(--Option-hoverBackground, var(--muidocs-palette-grey-50))',
         color: 'var(--muidocs-palette-text-primary)',
       },
 
-      '&.Mui-selected': {
+      '&.base--selected': {
         backgroundColor: 'var(--Option-selectedBackground, var(--muidocs-palette-grey-50))',
         borderColor: 'var(--border-color)',
         color: 'var(--muidocs-palette-text-primary)',
@@ -429,16 +381,21 @@ const StyledSlider = styled(Slider)(`
     box-sizing: border-box;
     border-radius: var(--border-radius);
     outline: 0;
-    border: 4px solid currentColor;
-    background-color: #fff;
+    background-color: var(--color-primary);
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease;
+    transition-duration: 120ms;
+    transform-origin: center;
 
     :hover,
     &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 0.25rem var(--Slider-thumb-focus);
+      box-shadow: 0 0 0 6px var(--Slider-thumb-focus);
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem var(--Slider-thumb-focus);
+      box-shadow: 0 0 0 8px var(--Slider-thumb-focus);
+      outline: none;
+      transform: scale(1.2);
     }
   }
 
@@ -480,18 +437,27 @@ const StyledSwitch = styled('span')(`
   height: 20px;
   cursor: pointer;
 
+
   &.${switchClasses.disabled} {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
   & .${switchClasses.track} {
-    background: var(--Switch-background, var(--muidocs-palette-grey-400));
+    background: var(--Switch-background, var(--muidocs-palette-grey-300));
     border-radius: max(2px, var(--border-radius) * 4);
     display: block;
     height: 100%;
     width: 100%;
     position: absolute;
+    transition: background-color ease 100ms;
+
+  }
+  
+  :hover {
+    .${switchClasses.track} {
+      background: var(--Switch-hoverBackground, var(--muidocs-palette-grey-400));
+    }
   }
 
   & .${switchClasses.thumb} {
@@ -503,7 +469,6 @@ const StyledSwitch = styled('span')(`
     border-radius: max(2px, var(--border-radius));
     background-color: #fff;
     position: relative;
-    
     transition-property: left;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 120ms;
@@ -524,6 +489,12 @@ const StyledSwitch = styled('span')(`
     .${switchClasses.track} {
       background: var(--muidocs-palette-primary-500);
     }
+
+    :hover {
+      .${switchClasses.track} {
+        background: var(--muidocs-palette-primary-700);
+      } 
+    }
   }
 
   & .${switchClasses.input} {
@@ -542,7 +513,7 @@ const StyledSwitch = styled('span')(`
 const Backdrop = React.forwardRef<HTMLDivElement, { open?: boolean; className: string }>(
   (props, ref) => {
     const { open, className, ...other } = props;
-    return <div className={clsx({ 'MuiBackdrop-open': open }, className)} ref={ref} {...other} />;
+    return <div className={clsx({ 'base-Backdrop-open': open }, className)} ref={ref} {...other} />;
   },
 );
 
@@ -596,7 +567,7 @@ const AnimatedElement = React.forwardRef(function AnimatedElement(
 });
 
 const Dialog = styled(AnimatedElement)({
-  backgroundColor: 'var(--muidocs-palette-background-paper)',
+  backgroundColor: 'var(--muidocs-palette-background-default)',
   borderRadius: 'min(var(--border-radius) * 2, 32px)',
   border: 'var(--border-width) solid',
   borderColor: 'var(--border-color)',
@@ -608,12 +579,12 @@ const Dialog = styled(AnimatedElement)({
   width: 'auto',
   transform: 'translateY(8px)',
   opacity: 0,
-  transition: 'all 0.2s ease-out',
+  transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
   '&[data-open="true"]': {
     transform: 'translateY(0)',
     opacity: 1,
     boxShadow: 'var(--Panel-shadow)',
-    transition: 'all 0.3s ease',
+    transition: 'opacity 0.3s ease, transform 0.3s ease',
   },
 });
 
@@ -621,9 +592,9 @@ const StyledBadge = styled(Badge)(
   ({ theme }) => `
   box-sizing: border-box;
   list-style: none;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   position: relative;
-  display: inline-block;  
+  display: inline-block;
 
   & .${badgeClasses.badge} {
     --_scale: 1.5em;
@@ -678,7 +649,7 @@ const StyledMenuItem = styled(MenuItem)(
   &:hover:not(.${menuItemClasses.disabled}) {
     background-color: ${
       theme.palette.mode === 'dark'
-        ? 'var(--muidocs-palette-grey-800)'
+        ? 'var(--muidocs-palette-primaryDark-700)'
         : 'var(--muidocs-palette-grey-50)'
     };
     color: ${
@@ -691,7 +662,7 @@ const StyledMenuItem = styled(MenuItem)(
 );
 
 const StyledMenuListbox = styled('ul')(`
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -700,7 +671,7 @@ const StyledMenuListbox = styled('ul')(`
   border-radius: 12px;
   overflow: auto;
   outline: 0px;
-  background-color: var(--muidocs-palette-background-paper);
+  background-color: var(--muidocs-palette-background-default);
   border-radius: min(var(--border-radius), 16px);
   border: var(--border-width) solid;
   border-color: var(--border-color);
@@ -713,6 +684,7 @@ const StyledMenuButton = styled(MenuButton)({
   border: 'none',
   background: 'transparent',
   borderRadius: 'var(--avatar-radius)',
+  transition: 'all 100ms ease',
 
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
@@ -730,7 +702,7 @@ const snackbarInRight = keyframes`
 `;
 
 const StyledSnackbar = styled(Snackbar)(css`
-  background-color: var(--muidocs-palette-background-paper);
+  background-color: var(--muidocs-palette-background-default);
   border-radius: min(var(--border-radius), 32px);
   border: var(--border-width) solid;
   border-color: var(--border-color);
@@ -813,7 +785,7 @@ export default function BaseUIThemesDemo() {
   // Snackbar
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
 
-  const handleCloseSnackbar = (_: any, reason: SnackbarCloseReason) => {
+  const handleCloseSnackbar = (_: any, reason?: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -912,11 +884,11 @@ export default function BaseUIThemesDemo() {
             defaultValue={10}
             slots={{
               root: StyledSelectButton,
-              popper: StyledPopper,
+              popup: Popup,
               listbox: StyledListbox,
             }}
             slotProps={{
-              popper: {
+              popup: {
                 disablePortal: true,
               },
             }}
@@ -1032,9 +1004,9 @@ export default function BaseUIThemesDemo() {
             '& > button': { flex: 1 },
           }}
         >
-          <StyledModalButton type="button" onClick={handleOpenModal}>
+          <StyledButton type="button" onClick={handleOpenModal}>
             View modal
-          </StyledModalButton>
+          </StyledButton>
           <StyledModal
             disablePortal
             aria-labelledby="unstyled-modal-title"
@@ -1061,12 +1033,12 @@ export default function BaseUIThemesDemo() {
                 Base UI modals manages modal stacking when more than one is needed, creates a
                 backdrop to disable interaction with the rest of the app, and a lot more.
               </Box>
-              <StyledSnackbarButton onClick={handleCloseModal}>Close</StyledSnackbarButton>
+              <StyledButton onClick={handleCloseModal}>Close</StyledButton>
             </Dialog>
           </StyledModal>
-          <StyledSnackbarButton type="button" onClick={handleClickSnackbar}>
+          <StyledButton type="button" onClick={handleClickSnackbar}>
             View snackbar
-          </StyledSnackbarButton>
+          </StyledButton>
           <StyledSnackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
             <CheckCircleRoundedIcon fontSize="small" />
             <div>
@@ -1077,9 +1049,9 @@ export default function BaseUIThemesDemo() {
         </Box>
         {/* Button "View all components" component */}
         <Box sx={{ display: 'flex', p: '1rem', gap: '0.5rem', '& > button': { flex: 1 } }}>
-          <StyledViewCode href={ROUTES.baseComponents}>
+          <StyledLinkButton href={ROUTES.baseComponents}>
             View all components <ChevronRightRoundedIcon fontSize="small" />
-          </StyledViewCode>
+          </StyledLinkButton>
         </Box>
       </Panel>
     </Fade>

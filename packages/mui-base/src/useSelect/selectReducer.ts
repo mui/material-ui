@@ -4,13 +4,17 @@ import {
   moveHighlight,
   listReducer,
   ListActionTypes,
+  handleItemSelection,
 } from '../useList';
 import { ActionWithContext } from '../utils/useControllableReducer.types';
 import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
 
 export function selectReducer<OptionValue>(
   state: SelectInternalState<OptionValue>,
-  action: ActionWithContext<ListAction<OptionValue> | SelectAction, ListActionContext<OptionValue>>,
+  action: ActionWithContext<
+    ListAction<OptionValue> | SelectAction<OptionValue>,
+    ListActionContext<OptionValue>
+  >,
 ) {
   const { open } = state;
   const {
@@ -28,6 +32,14 @@ export function selectReducer<OptionValue>(
     };
   }
 
+  if (action.type === SelectActionTypes.browserAutoFill) {
+    return handleItemSelection<OptionValue, SelectInternalState<OptionValue>>(
+      action.item,
+      state,
+      action.context,
+    );
+  }
+
   const newState: SelectInternalState<OptionValue> = listReducer(
     state,
     action as ActionWithContext<ListAction<OptionValue>, ListActionContext<OptionValue>>,
@@ -42,22 +54,8 @@ export function selectReducer<OptionValue>(
             open: false,
           };
         }
-
-        if (
-          selectionMode === 'single' &&
-          (action.event.key === 'Enter' || action.event.key === ' ')
-        ) {
-          return {
-            ...newState,
-            open: false,
-          };
-        }
       } else {
-        if (
-          action.event.key === 'Enter' ||
-          action.event.key === ' ' ||
-          action.event.key === 'ArrowDown'
-        ) {
+        if (action.event.key === 'ArrowDown') {
           return {
             ...state,
             open: true,

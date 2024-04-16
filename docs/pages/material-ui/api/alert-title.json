@@ -15,13 +15,20 @@
     "import AlertTitle from '@mui/material/AlertTitle';",
     "import { AlertTitle } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAlertTitle" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiAlertTitle-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiAlertTitle",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AlertTitle/AlertTitle.js",
-  "inheritance": null,
+  "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },
   "demos": "<ul><li><a href=\"/material-ui/react-alert/\">Alert</a></li></ul>",
   "cssComponent": false
 }

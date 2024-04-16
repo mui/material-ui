@@ -9,18 +9,22 @@ import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import Section from 'docs/src/layouts/Section';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 export default function PricingWhatToExpect() {
   return (
-    <Section>
-      <Typography
-        variant="h2"
-        sx={{ maxWidth: { xs: 280, sm: 320, md: 400 }, mb: { xs: 2, sm: 4 } }}
-      >
-        Key information about <GradientText>the paid plans</GradientText>
-      </Typography>
+    <Section cozy>
+      <SectionHeadline
+        overline="Paid plans"
+        title={
+          <Typography variant="h2" sx={{ mt: 1, mb: 4 }}>
+            Key information about
+            <br /> <GradientText>the paid plans</GradientText>
+          </Typography>
+        }
+      />
       <Box
         sx={{
           columnGap: 3,
@@ -83,7 +87,7 @@ export default function PricingWhatToExpect() {
             when you renew:
             <ul>
               <li>before the support expires: 50% discount</li>
-              <li>up to 60 days after the support has expired: 25% discount</li>
+              <li>up to 60 days after the support has expired: 35% discount</li>
               <li>more than 60 days after the support has expired: 15% discount</li>
             </ul>
           </Typography>

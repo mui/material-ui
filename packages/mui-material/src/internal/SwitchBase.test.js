@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer } from 'test/utils';
+import { act, createRenderer } from '@mui-internal/test-utils';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import ButtonBase from '../ButtonBase';
 import classes from './switchBaseClasses';
+import describeConformance from '../../test/describeConformance';
 
 describe('<SwitchBase />', () => {
   const { render } = createRenderer();

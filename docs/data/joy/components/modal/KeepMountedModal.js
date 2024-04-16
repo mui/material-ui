@@ -2,7 +2,8 @@ import * as React from 'react';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
-import Typography from '@mui/joy/Typography';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
 
 export default function KeepMountedModal() {
   const [open, setOpen] = React.useState(false);
@@ -12,16 +13,11 @@ export default function KeepMountedModal() {
         Open modal
       </Button>
       <Modal keepMounted open={open} onClose={() => setOpen(false)}>
-        <ModalDialog
-          aria-labelledby="keep-mounted-modal-title"
-          aria-describedby="keep-mounted-modal-description"
-        >
-          <Typography id="keep-mounted-modal-title" level="h2">
-            Keep mounted modal
-          </Typography>
-          <Typography id="keep-mounted-modal-description" textColor="text.tertiary">
+        <ModalDialog>
+          <DialogTitle>Keep mounted modal</DialogTitle>
+          <DialogContent>
             This modal is still in the DOM event though it is closed.
-          </Typography>
+          </DialogContent>
         </ModalDialog>
       </Modal>
     </React.Fragment>

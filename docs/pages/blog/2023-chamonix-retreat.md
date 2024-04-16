@@ -3,8 +3,8 @@ title: MUI's team retreat in Chamonix
 description: The MUI team spent five days in the French Alps team-building, problem-solving, and brainstorming. Read all about it!
 date: 2023-03-16T00:00:00.000Z
 authors: ['mikailaread']
-card: true
 tags: ['Company']
+manualCard: true
 ---
 
 ## Why the Chamonix gathering?

@@ -7,7 +7,7 @@ const styles = `
   body {
     padding: 0;
     margin: 0;
-    font-family: IBM Plex Sans, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
   }
 
   .list {
@@ -27,7 +27,7 @@ const styles = `
   .list:focus-visible {
     outline: none;
   }
-  
+
   .item {
     width: 50px;
     height: 50px;
@@ -90,10 +90,10 @@ const items = Array.from({ length: 200 }, (_, i) => i + 1);
 
 const Item = React.forwardRef(function Item(
   props: React.PropsWithChildren<{ value: number; id?: string }>,
-  ref: React.Ref<HTMLElement>,
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const { value: item, id } = props;
-  const { getRootProps, selected, highlighted } = useListItem({ item, rootRef: ref });
+  const { getRootProps, selected, highlighted } = useListItem({ item });
 
   const itemProps = getRootProps();
 
@@ -103,7 +103,7 @@ const Item = React.forwardRef(function Item(
   });
 
   return (
-    <div {...itemProps} className={classes} id={id}>
+    <div {...itemProps} className={classes} id={id} ref={ref}>
       {item}
     </div>
   );

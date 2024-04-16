@@ -1,4 +1,4 @@
-<CustomNumberInput
+<NumberInput
   aria-label="Demo number input"
   placeholder="Type a number…"
   value={value}

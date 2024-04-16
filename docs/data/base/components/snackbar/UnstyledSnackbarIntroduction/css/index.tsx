@@ -11,7 +11,7 @@ export default function UnstyledSnackbarIntroduction() {
   const [exited, setExited] = React.useState(true);
   const nodeRef = React.useRef(null);
 
-  const handleClose = (_: any, reason: SnackbarCloseReason) => {
+  const handleClose = (_: any, reason?: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -90,16 +90,16 @@ export default function UnstyledSnackbarIntroduction() {
 }
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 const cyan = {
@@ -138,33 +138,41 @@ function Styles() {
       from {
         transform: translateX(100%);
       }
-    
+
       to {
         transform: translateX(0);
       }
     }
 
     .TriggerButtonIntroduction {
-      font-family: IBM Plex Sans,sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-weight: 600;
       font-size: 0.875rem;
       line-height: 1.5;
-      background-color: ${cyan[500]};
       padding: 8px 16px;
       border-radius: 8px;
       color: white;
+      transition: all 150ms ease;
       cursor: pointer;
-      border: none;
+      background: ${isDarkMode ? grey[900] : '#fff'};
+      border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+      color: ${isDarkMode ? grey[200] : grey[900]};
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
       &:hover {
-        background-color: ${cyan[600]};
+        background: ${isDarkMode ? grey[800] : grey[50]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
+      }
+
+      &:active {
+        background: ${isDarkMode ? grey[700] : grey[100]};
       }
 
       &:focus-visible {
-        border-color: ${cyan[400]};
-        outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
-        }
+        box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
+        outline: none;
       }
+    }
 
     .CustomSnackbarIntroduction {
       position: fixed;
@@ -180,7 +188,7 @@ function Styles() {
       display: flex;
       gap: 8px;
       overflow: hidden;
-      background-color: ${isDarkMode ? grey[900] : grey[50]};
+      background-color: ${isDarkMode ? grey[900] : '#FFF'};
       border-radius: 8px;
       border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
       box-shadow: ${
@@ -188,7 +196,7 @@ function Styles() {
       };
       padding: 0.75rem;
       color: ${isDarkMode ? grey[50] : grey[900]};
-      font-family: IBM Plex Sans, sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-weight: 500;
       text-align: start;
       position: relative;

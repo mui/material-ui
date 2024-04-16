@@ -58,7 +58,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   });
 
   const { children, component, slots = {}, slotProps = {}, ...other } = props;
-  const rootRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(rootRef, ref);
   const formControl = React.useContext(FormControlContext);
   const setHelperText = formControl?.setHelperText;
@@ -89,10 +89,10 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
 }) as OverridableComponent<FormHelperTextTypeMap>;
 
 FormHelperText.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

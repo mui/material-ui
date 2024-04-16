@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
@@ -27,13 +27,23 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
+  'docs-getting-started-templates-sign-in-side/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-in/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-up/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png', // Theme file
+  'docs-getting-started-templates-sign-up/getSignUpTheme.png', // Theme file
+  'docs-getting-started-templates-checkout/getCheckoutTheme.png', // Theme file
+  'docs-getting-started-templates-landing-page/getLPTheme.png', // Theme file
   'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
   'docs-joy-core-features-automatic-adjustment/ListThemes.png', // No public components
   'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
   'docs-joy-tools/ShadowThemeViewer.png', // No need for theme tokens
   'docs-joy-customization-theme-typography/TypographyThemeViewer.png', // No need for theme tokens
+  'docs-joy-components-circular-progress/CircularProgressCountUp.png', // Flaky due to animation
   'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
+  'docs-joy-components-linear-progress/LinearProgressCountUp.png', // Flaky due to animation
   'docs-base-guides-working-with-tailwind-css/PlayerFinal.png', // No public components
+  'docs-base-getting-started-quickstart/BaseButtonTailwind.png', // CodeSandbox
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
   'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
@@ -129,10 +139,11 @@ const blacklist = [
   'docs-customization-density/DensityTool.png', // Redux isolation
   'docs-customization-transitions/TransitionHover.png', // Need interaction
   'docs-customization-typography/ResponsiveFontSizesChart.png',
+  'docs-customization-right-to-left/RtlDemo.png',
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
-  'docs-getting-started-templates-album/Album.png', // Flaky image loading
+  'docs-getting-started-templates-landing-page/LandingPage.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Flaky random images
   'docs-getting-started-templates-checkout/AddressForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
   'docs-getting-started-templates-checkout/PaymentForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
@@ -158,6 +169,13 @@ const unusedBlacklistPatterns = new Set(blacklist);
 
 function excludeDemoFixture(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
+    return true;
+  }
+
+  // Exclude files that are not images and are not PascalCase
+  // Tantamount to skipping JS/TS files that are not React components or "index.js" files
+  // PascalCase starts with a capital letter and has zero or more capital letters in the middle
+  if (!suite.endsWith('.png') && name !== 'index' && !/^[A-Z][A-Za-z0-9]*$/.test(name)) {
     return true;
   }
 
@@ -223,21 +241,31 @@ if (unusedBlacklistPatterns.size > 0) {
 const viewerRoot = document.getElementById('test-viewer');
 
 function FixtureRenderer({ component: FixtureComponent }) {
-  React.useLayoutEffect(() => {
-    const children = (
-      <TestViewer>
-        <FixtureComponent />
-      </TestViewer>
-    );
-
-    ReactDOM.render(children, viewerRoot);
-  }, [FixtureComponent]);
+  const viewerReactRoot = React.useRef(null);
 
   React.useLayoutEffect(() => {
+    const renderTimeout = setTimeout(() => {
+      const children = (
+        <TestViewer>
+          <FixtureComponent />
+        </TestViewer>
+      );
+
+      if (viewerReactRoot.current === null) {
+        viewerReactRoot.current = ReactDOMClient.createRoot(viewerRoot);
+      }
+
+      viewerReactRoot.current.render(children);
+    });
+
     return () => {
-      ReactDOM.unmountComponentAtNode(viewerRoot);
+      clearTimeout(renderTimeout);
+      setTimeout(() => {
+        viewerReactRoot.current.unmount();
+        viewerReactRoot.current = null;
+      });
     };
-  }, []);
+  }, [FixtureComponent]);
 
   return null;
 }
@@ -352,9 +380,5 @@ App.propTypes = {
 
 const container = document.getElementById('react-root');
 const children = <App fixtures={regressionFixtures.concat(demoFixtures)} />;
-if (typeof ReactDOM.unstable_createRoot === 'function') {
-  const root = ReactDOM.unstable_createRoot(container);
-  root.render(children);
-} else {
-  ReactDOM.render(children, container);
-}
+const reactRoot = ReactDOMClient.createRoot(container);
+reactRoot.render(children);

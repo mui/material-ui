@@ -7,8 +7,8 @@ import { CssVarsProvider as JoyCssVarsProvider, useColorScheme } from '@mui/joy/
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { useUserLanguage } from '@mui/docs/i18n';
+import { BrandingProvider } from '@mui/docs/branding';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 
@@ -32,7 +32,7 @@ export default function MarkdownDocs(props) {
     disableAd = false,
     disableToc = false,
     /**
-     * Some pages, e.g. Joy theme builder, should not be a nested CssVarsProvider to control its own state.
+     * Some pages, for example Joy theme builder, should not be a nested CssVarsProvider to control its own state.
      * This config will skip the CssVarsProvider at the root of the page.
      */
     disableCssVarsProvider = false,
@@ -43,9 +43,7 @@ export default function MarkdownDocs(props) {
   } = props;
 
   const userLanguage = useUserLanguage();
-
   const localizedDoc = docs[userLanguage] || docs.en;
-  const { description, location, rendered, title, toc } = localizedDoc;
 
   const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
   const CssVarsProvider = isJoy ? JoyCssVarsProvider : React.Fragment;
@@ -56,12 +54,16 @@ export default function MarkdownDocs(props) {
 
   return (
     <AppLayoutDocs
-      description={description}
+      cardOptions={{
+        description: localizedDoc.headers.cardDescription,
+        title: localizedDoc.headers.cardTitle,
+      }}
+      description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}
-      location={location}
-      title={title}
-      toc={toc}
+      location={localizedDoc.location}
+      title={localizedDoc.title}
+      toc={localizedDoc.toc}
     >
       {disableAd ? null : (
         <BrandingProvider>
@@ -72,14 +74,13 @@ export default function MarkdownDocs(props) {
       )}
       <CssVarsProvider>
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
-        {rendered.map((renderedMarkdownOrDemo, index) => (
+        {localizedDoc.rendered.map((renderedMarkdownOrDemo, index) => (
           <RichMarkdownElement
             key={`demos-section-${index}`}
             demoComponents={demoComponents}
             demos={demos}
             disableAd={disableAd}
             localizedDoc={localizedDoc}
-            location={location}
             renderedMarkdownOrDemo={renderedMarkdownOrDemo}
             srcComponents={srcComponents}
             theme={theme}

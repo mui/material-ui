@@ -10,10 +10,10 @@ export default function SvgMuiLogomark(props: RootSvgProps) {
       sx={[
         (theme) => ({
           flexShrink: 0,
-          color: '#0B0D0E',
-          [theme.getColorSchemeSelector('dark')]: {
-            color: '#fff',
-          },
+          color: 'common.black',
+          ...theme.applyDarkStyles({
+            color: '#FFF',
+          }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}

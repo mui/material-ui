@@ -25,7 +25,7 @@ const useUtilityClasses = (ownerState: AccordionGroupOwnerState) => {
       'root',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}}`,
+      size && `size${capitalize(size)}`,
     ],
   };
 
@@ -66,7 +66,6 @@ const AccordionGroupRoot = styled(StyledList as unknown as 'div', {
 });
 
 /**
- * ⚠️ AccordionGroup must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *
@@ -125,10 +124,10 @@ const AccordionGroup = React.forwardRef(function AccordionGroup(inProps, ref) {
 }) as OverridableComponent<AccordionGroupTypeMap>;
 
 AccordionGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the AccordionGroup if `src` is not set.
    * This can be an element, or just a string.
@@ -138,7 +137,10 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -153,7 +155,10 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
    * The size of the component (affect other nested list* components).
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The props used for each slot inside.
    * @default {}
@@ -191,7 +196,10 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default AccordionGroup;

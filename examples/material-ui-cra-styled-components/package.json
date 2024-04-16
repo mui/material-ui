@@ -1,11 +1,11 @@
 {
-  "name": "material-cra-styled-components",
+  "name": "material-ui-cra-styled-components",
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@mui/material": "latest",
-    "@mui/lab": "latest",
-    "@mui/styled-engine-sc": "latest",
+    "@mui/material": "next",
+    "@mui/lab": "next",
+    "@mui/styled-engine-sc": "next",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",

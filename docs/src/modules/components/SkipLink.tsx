@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MuiLink from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 const StyledLink = styled(MuiLink)(({ theme }) => ({
   position: 'fixed',
@@ -32,10 +32,10 @@ const StyledLink = styled(MuiLink)(({ theme }) => ({
     }),
   },
   '@media (prefers-reduced-motion: reduce)': {
-    top: theme.spacing(2),
     transition: theme.transitions.create('opacity'),
     opacity: 0,
     '&:focus': {
+      top: theme.spacing(2),
       opacity: 1,
       transition: theme.transitions.create('opacity'),
     },

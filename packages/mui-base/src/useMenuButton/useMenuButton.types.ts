@@ -1,5 +1,3 @@
-import { EventHandlers } from '../utils';
-
 export interface UseMenuButtonParameters {
   /**
    * If `true`, the component is disabled.
@@ -17,7 +15,9 @@ export interface UseMenuButtonParameters {
   rootRef?: React.Ref<HTMLElement>;
 }
 
-interface UseMenuButtonRootSlotProps {
+type UseMenuButtonRootSlotProps<ExternalProps = {}> = ExternalProps & UseMenuButtonRootSlotOwnProps;
+
+interface UseMenuButtonRootSlotOwnProps {
   'aria-haspopup': 'menu';
   'aria-expanded': boolean;
   'aria-controls': string;
@@ -38,8 +38,12 @@ export interface UseMenuButtonReturnValue {
   active: boolean;
   /**
    * Resolver for the root slot's props.
+   * @param externalProps props for the root slot
+   * @returns props that should be spread on the root slot
    */
-  getRootProps: (otherHandlers?: EventHandlers) => UseMenuButtonRootSlotProps;
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseMenuButtonRootSlotProps<ExternalProps>;
   /*
    * If `true`, the menu is open.
    */

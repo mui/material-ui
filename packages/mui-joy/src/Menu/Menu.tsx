@@ -12,11 +12,8 @@ import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
+import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
-import ColorInversion, {
-  ColorInversionProvider,
-  useColorInversion,
-} from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 import { ListOwnerState } from '../List';
@@ -55,15 +52,21 @@ const MenuRoot = styled(StyledList, {
       borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
       boxShadow: theme.shadow.md,
       overflow: 'auto',
-      // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+      // `unstable_popup-zIndex` is a private variable that lets other component, for example Modal, to override the z-index so that the listbox can be displayed above the Modal.
       zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.popup,
       }),
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
+      ...(ownerState.variant === 'soft' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     },
-    ownerState.color !== 'context' &&
-      ownerState.invertedColors &&
-      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
@@ -76,7 +79,7 @@ const MenuRoot = styled(StyledList, {
  * API:
  *
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
- * - inherits [Popper API](https://mui.com/base-ui/api/popper/)
+ * - inherits [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
  */
 const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTMLUListElement>) {
   const props = useThemeProps({
@@ -87,7 +90,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const {
     actions,
     children,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     component,
     disablePortal = false,
     keepMounted = false,
@@ -101,8 +104,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
@@ -163,22 +164,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     className: classes.root,
   });
 
-  let result = (
-    <MenuProvider value={contextValue}>
-      {/* If `invertedColors` is true, let the children use their default variant */}
-      <VariantColorProvider variant={invertedColors ? undefined : variant} color={colorProp}>
-        <GroupListContext.Provider value="menu">
-          <ListProvider nested>{children}</ListProvider>
-        </GroupListContext.Provider>
-      </VariantColorProvider>
-    </MenuProvider>
-  );
-
-  if (invertedColors) {
-    result = <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-
-  result = (
+  return (
     <MenuRoot
       {...rootProps}
       {...(!props.slots?.root && {
@@ -188,23 +174,23 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
         },
       })}
     >
-      {result}
+      <MenuProvider value={contextValue}>
+        {/* If `invertedColors` is true, let the children use their default variant */}
+        <VariantColorProvider variant={invertedColors ? undefined : variant} color={color}>
+          <GroupListContext.Provider value="menu">
+            <ListProvider nested>{children}</ListProvider>
+          </GroupListContext.Provider>
+        </VariantColorProvider>
+      </MenuProvider>
     </MenuRoot>
-  );
-
-  return disablePortal ? (
-    result
-  ) : (
-    // For portal popup, the children should not inherit color inversion from the upper parent.
-    <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
   );
 }) as OverridableComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref with imperative actions.
    * It allows to select the first or last menu item.

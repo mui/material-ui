@@ -32,11 +32,18 @@ export default function ButtonUsage() {
           knob: 'switch',
           defaultValue: false,
         },
+        {
+          propName: 'loading',
+          knob: 'switch',
+          defaultValue: false,
+        },
         { propName: 'onClick', defaultValue: () => {} },
       ]}
       renderDemo={(props) => (
         <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button {...props}>Hello world</Button>
+          <Button startDecorator={<FavoriteBorder />} {...props}>
+            Hello world
+          </Button>
           <IconButton {...props}>
             <FavoriteBorder />
           </IconButton>

@@ -7,7 +7,6 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import { AvatarProps, AvatarOwnerState, AvatarTypeMap } from './AvatarProps';
@@ -77,7 +76,7 @@ const AvatarImg = styled('img', {
   width: '100%',
   height: '100%',
   textAlign: 'center',
-  // Handle non-square image. The property isn't supported by IE11.
+  // Handle non-square image.
   objectFit: 'cover',
   // Hide alt text.
   color: 'transparent',
@@ -169,9 +168,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     ...other
   } = props;
   const variant = inProps.variant || groupContext?.variant || variantProp;
-  const { getColor } = useColorInversion(variant);
-  const colorFromContext = inProps.color || groupContext?.color;
-  const color = colorFromContext !== 'context' ? getColor(colorFromContext, colorProp) : colorProp;
+  const color = inProps.color || groupContext?.color || colorProp;
   const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;
@@ -238,10 +235,10 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 }) as OverridableComponent<AvatarTypeMap>;
 
 Avatar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.

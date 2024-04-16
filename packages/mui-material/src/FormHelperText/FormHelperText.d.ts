@@ -7,59 +7,61 @@ import { FormHelperTextClasses } from './formHelperTextClasses';
 
 export interface FormHelperTextPropsVariantOverrides {}
 
+export interface FormHelperTextOwnProps {
+  /**
+   * The content of the component.
+   *
+   * If `' '` is provided, the component reserves one line height for displaying a future message.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<FormHelperTextClasses>;
+  /**
+   * If `true`, the helper text should be displayed in a disabled state.
+   */
+  disabled?: boolean;
+  /**
+   * If `true`, helper text should be displayed in an error state.
+   */
+  error?: boolean;
+  /**
+   * If `true`, the helper text should use filled classes key.
+   */
+  filled?: boolean;
+  /**
+   * If `true`, the helper text should use focused classes key.
+   */
+  focused?: boolean;
+  /**
+   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+   * FormControl.
+   */
+  margin?: 'dense';
+  /**
+   * If `true`, the helper text should use required classes key.
+   */
+  required?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * The variant to use.
+   */
+  variant?: OverridableStringUnion<
+    'standard' | 'outlined' | 'filled',
+    FormHelperTextPropsVariantOverrides
+  >;
+}
+
 export interface FormHelperTextTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'p',
+  RootComponent extends React.ElementType = 'p',
 > {
-  props: AdditionalProps & {
-    /**
-     * The content of the component.
-     *
-     * If `' '` is provided, the component reserves one line height for displaying a future message.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<FormHelperTextClasses>;
-    /**
-     * If `true`, the helper text should be displayed in a disabled state.
-     */
-    disabled?: boolean;
-    /**
-     * If `true`, helper text should be displayed in an error state.
-     */
-    error?: boolean;
-    /**
-     * If `true`, the helper text should use filled classes key.
-     */
-    filled?: boolean;
-    /**
-     * If `true`, the helper text should use focused classes key.
-     */
-    focused?: boolean;
-    /**
-     * If `dense`, will adjust vertical spacing. This is normally obtained via context from
-     * FormControl.
-     */
-    margin?: 'dense';
-    /**
-     * If `true`, the helper text should use required classes key.
-     */
-    required?: boolean;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-    /**
-     * The variant to use.
-     */
-    variant?: OverridableStringUnion<
-      'standard' | 'outlined' | 'filled',
-      FormHelperTextPropsVariantOverrides
-    >;
-  };
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & FormHelperTextOwnProps;
+  defaultComponent: RootComponent;
 }
 /**
  *

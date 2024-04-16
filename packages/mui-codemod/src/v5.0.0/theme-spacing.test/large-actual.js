@@ -159,7 +159,7 @@ function DocSearchHit(props) {
 
   function displayTag(pathname) {
     // does not need to show product label for MUI X because they are grouped by the product name in the search
-    // ie. Data Grid, Date Picker
+    // i.e. Data Grid, Date Picker
     if (!pathname.match(/^\/(material-ui|joy-ui|base)\//)) {
       return null;
     }

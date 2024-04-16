@@ -1,5 +1,5 @@
 {
-  "name": "material-express-ssr",
+  "name": "material-ui-express-ssr",
   "version": "5.0.0",
   "private": true,
   "browserslist": [
@@ -15,7 +15,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@emotion/server": "latest",
-    "@mui/material": "latest",
+    "@mui/material": "next",
     "babel-loader": "latest",
     "cross-env": "latest",
     "express": "latest",
@@ -31,6 +31,6 @@
     "build": "webpack -w",
     "serve": "nodemon --ignore ./build --exec babel-node -- server.js",
     "production": "cross-env NODE_ENV=production npm start",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   }
 }

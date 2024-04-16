@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
@@ -6,26 +7,21 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import CelebrationOutlinedIcon from '@mui/icons-material/CelebrationOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FileIcon from './FileIcon';
+import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
 import { MessageProps } from '../types';
 
 type ChatBubbleProps = MessageProps & {
   variant: 'sent' | 'received';
 };
 
-export default function ChatBubble({
-  content,
-  variant,
-  timestamp,
-  attachment = undefined,
-  sender,
-}: ChatBubbleProps) {
+export default function ChatBubble(props: ChatBubbleProps) {
+  const { content, variant, timestamp, attachment = undefined, sender } = props;
   const isSent = variant === 'sent';
   const [isHovered, setIsHovered] = React.useState<boolean>(false);
   const [isLiked, setIsLiked] = React.useState<boolean>(false);
   const [isCelebrated, setIsCelebrated] = React.useState<boolean>(false);
   return (
-    <Box sx={{ maxWidth: '80%', minWidth: attachment ? '80%' : 'auto' }}>
+    <Box sx={{ maxWidth: '60%', minWidth: 'auto' }}>
       <Stack
         direction="row"
         justifyContent="space-between"
@@ -49,7 +45,9 @@ export default function ChatBubble({
           }}
         >
           <Stack direction="row" spacing={1.5} alignItems="center">
-            <FileIcon fileType={attachment.type} />
+            <Avatar color="primary" size="lg">
+              <InsertDriveFileRoundedIcon />
+            </Avatar>
             <div>
               <Typography fontSize="sm">{attachment.fileName}</Typography>
               <Typography level="body-sm">{attachment.size}</Typography>
@@ -66,14 +64,25 @@ export default function ChatBubble({
             color={isSent ? 'primary' : 'neutral'}
             variant={isSent ? 'solid' : 'soft'}
             sx={{
-              px: 1.25,
-              py: 1.25,
+              p: 1.25,
               borderRadius: 'lg',
               borderTopRightRadius: isSent ? 0 : 'lg',
               borderTopLeftRadius: isSent ? 'lg' : 0,
+              backgroundColor: isSent
+                ? 'var(--joy-palette-primary-solidBg)'
+                : 'background.body',
             }}
           >
-            {content}
+            <Typography
+              level="body-sm"
+              sx={{
+                color: isSent
+                  ? 'var(--joy-palette-common-white)'
+                  : 'var(--joy-palette-text-primary)',
+              }}
+            >
+              {content}
+            </Typography>
           </Sheet>
           {(isHovered || isLiked || isCelebrated) && (
             <Stack
@@ -103,7 +112,6 @@ export default function ChatBubble({
               >
                 {isLiked ? '❤️' : <FavoriteBorderIcon />}
               </IconButton>
-
               <IconButton
                 variant={isCelebrated ? 'soft' : 'plain'}
                 color={isCelebrated ? 'warning' : 'neutral'}

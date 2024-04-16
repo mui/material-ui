@@ -5,14 +5,14 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
   SelectListboxSlotProps,
   SelectOwnerState,
-  SelectPopperSlotProps,
+  SelectPopupSlotProps,
   SelectProps,
   SelectRootSlotProps,
   SelectType,
 } from './Select.types';
 import { useSelect, SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import { Popper } from '../Popper';
+import { Popup } from '../Unstable_Popup/Popup';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
 import { defaultOptionStringifier } from '../useSelect/defaultOptionStringifier';
@@ -27,40 +27,7 @@ function defaultRenderValue<OptionValue>(
     return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
   }
 
-  return selectedOptions?.label ?? '';
-}
-
-function defaultFormValueProvider<OptionValue>(
-  selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
-) {
-  if (Array.isArray(selectedOption)) {
-    if (selectedOption.length === 0) {
-      return '';
-    }
-
-    if (
-      selectedOption.every(
-        (o) =>
-          typeof o.value === 'string' ||
-          typeof o.value === 'number' ||
-          typeof o.value === 'boolean',
-      )
-    ) {
-      return selectedOption.map((o) => String(o.value));
-    }
-
-    return JSON.stringify(selectedOption.map((o) => o.value));
-  }
-
-  if (selectedOption?.value == null) {
-    return '';
-  }
-
-  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
-    return selectedOption.value;
-  }
-
-  return JSON.stringify(selectedOption.value);
+  return selectedOptions?.label ?? null;
 }
 
 function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
@@ -77,7 +44,7 @@ function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
       open && 'expanded',
     ],
     listbox: ['listbox', disabled && 'disabled'],
-    popper: ['popper'],
+    popup: ['popup'],
   };
 
   return composeClasses(slots, useClassNamesOverride(getSelectUtilityClass));
@@ -104,20 +71,23 @@ const Select = React.forwardRef(function Select<
 ) {
   const {
     areOptionsEqual,
+    autoComplete,
     autoFocus,
     children,
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
-    getSerializedValue = defaultFormValueProvider,
+    getSerializedValue,
     listboxId,
     listboxOpen: listboxOpenProp,
     multiple = false as Multiple,
     name,
+    required = false,
     onChange,
     onListboxOpenChange,
     getOptionAsString = defaultOptionStringifier,
     renderValue: renderValueProp,
+    placeholder,
     slotProps = {},
     slots = {},
     value: valueProp,
@@ -128,12 +98,12 @@ const Select = React.forwardRef(function Select<
     renderValueProp ?? defaultRenderValue;
 
   const [buttonDefined, setButtonDefined] = React.useState(false);
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
   const Button = slots.root ?? 'button';
   const ListboxRoot = slots.listbox ?? 'ul';
-  const PopperComponent = slots.popper ?? Popper;
+  const PopupComponent = slots.popup ?? 'div';
 
   const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
     setButtonDefined(element != null);
@@ -154,10 +124,14 @@ const Select = React.forwardRef(function Select<
     disabled,
     getButtonProps,
     getListboxProps,
+    getHiddenInputProps,
     getOptionMetadata,
     value,
     open,
   } = useSelect({
+    name,
+    required,
+    getSerializedValue,
     areOptionsEqual,
     buttonRef: handleButtonRef,
     defaultOpen: defaultListboxOpen,
@@ -170,6 +144,7 @@ const Select = React.forwardRef(function Select<
     onOpenChange: onListboxOpenChange,
     getOptionAsString,
     value: valueProp,
+    componentName: 'Select',
   });
 
   const ownerState: SelectOwnerState<OptionValue, Multiple> = {
@@ -208,19 +183,19 @@ const Select = React.forwardRef(function Select<
       className: classes.listbox,
     });
 
-  const popperProps: WithOptionalOwnerState<SelectPopperSlotProps<OptionValue, Multiple>> =
+  const popupProps: WithOptionalOwnerState<SelectPopupSlotProps<OptionValue, Multiple>> =
     useSlotProps({
-      elementType: PopperComponent,
-      externalSlotProps: slotProps.popper,
+      elementType: PopupComponent,
+      externalSlotProps: slotProps.popup,
       additionalProps: {
-        anchorEl: buttonRef.current,
+        anchor: buttonRef.current,
         keepMounted: true,
         open,
         placement: 'bottom-start' as const,
         role: undefined,
       },
       ownerState,
-      className: classes.popper,
+      className: classes.popup,
     });
 
   let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
@@ -237,27 +212,31 @@ const Select = React.forwardRef(function Select<
 
   return (
     <React.Fragment>
-      <Button {...buttonProps}>{renderValue(selectedOptionsMetadata)}</Button>
+      <Button {...buttonProps}>
+        {renderValue(selectedOptionsMetadata) ?? placeholder ?? (
+          // fall back to a zero-width space to prevent layout shift
+          // from https://github.com/mui/material-ui/pull/24563
+          <span className="notranslate">&#8203;</span>
+        )}
+      </Button>
       {buttonDefined && (
-        <PopperComponent {...popperProps}>
+        <Popup slots={{ root: PopupComponent }} {...popupProps}>
           <ListboxRoot {...listboxProps}>
             <SelectProvider value={contextValue}>{children}</SelectProvider>
           </ListboxRoot>
-        </PopperComponent>
+        </Popup>
       )}
 
-      {name && (
-        <input type="hidden" name={name} value={getSerializedValue(selectedOptionsMetadata)} />
-      )}
+      <input {...getHiddenInputProps()} autoComplete={autoComplete} />
     </React.Fragment>
   );
 }) as SelectType;
 
 Select.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A function used to determine if two options' values are equal.
    * By default, reference equality is used.
@@ -266,6 +245,12 @@ Select.propTypes /* remove-proptypes */ = {
    * Therefore, it's recommented to use the default reference equality comparison whenever possible.
    */
   areOptionsEqual: PropTypes.func,
+  /**
+   * This prop helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusing, as it's more like an autofill.
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   */
+  autoComplete: PropTypes.string,
   /**
    * If `true`, the select element is focused during the first mount
    * @default false
@@ -325,7 +310,6 @@ Select.propTypes /* remove-proptypes */ = {
   multiple: PropTypes.bool,
   /**
    * Name of the element. For example used by the server to identify the fields in form submits.
-   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
    */
   name: PropTypes.string,
   /**
@@ -338,16 +322,25 @@ Select.propTypes /* remove-proptypes */ = {
    */
   onListboxOpenChange: PropTypes.func,
   /**
+   * Text to show when there is no selected value.
+   */
+  placeholder: PropTypes.node,
+  /**
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
+  /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required: PropTypes.bool,
   /**
    * The props used for each slot inside the Input.
    * @default {}
    */
   slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -357,7 +350,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.elementType,
+    popup: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**

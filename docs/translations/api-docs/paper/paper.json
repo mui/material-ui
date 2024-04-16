@@ -16,21 +16,146 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "rounded": {
-      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+    "elevation": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>square={true}</code>"
+      "conditions": "<code>variant=\"elevation\"</code>"
+    },
+    "elevation0": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={0}</code>"
+    },
+    "elevation1": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={1}</code>"
+    },
+    "elevation10": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={10}</code>"
+    },
+    "elevation11": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={11}</code>"
+    },
+    "elevation12": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={12}</code>"
+    },
+    "elevation13": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={13}</code>"
+    },
+    "elevation14": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={14}</code>"
+    },
+    "elevation15": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={15}</code>"
+    },
+    "elevation16": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={16}</code>"
+    },
+    "elevation17": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={17}</code>"
+    },
+    "elevation18": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={18}</code>"
+    },
+    "elevation19": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={19}</code>"
+    },
+    "elevation2": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={2}</code>"
+    },
+    "elevation20": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={20}</code>"
+    },
+    "elevation21": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={21}</code>"
+    },
+    "elevation22": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={22}</code>"
+    },
+    "elevation23": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={23}</code>"
+    },
+    "elevation24": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={24}</code>"
+    },
+    "elevation3": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={3}</code>"
+    },
+    "elevation4": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={4}</code>"
+    },
+    "elevation5": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={5}</code>"
+    },
+    "elevation6": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={6}</code>"
+    },
+    "elevation7": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={7}</code>"
+    },
+    "elevation8": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={8}</code>"
+    },
+    "elevation9": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>elevation={9}</code>"
     },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
-    "elevation": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+    "root": { "description": "Styles applied to the root element." },
+    "rounded": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"elevation\"</code>"
+      "conditions": "<code>square={true}</code>"
     }
   }
 }

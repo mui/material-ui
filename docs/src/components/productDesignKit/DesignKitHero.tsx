@@ -7,7 +7,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import GradientText from 'docs/src/components/typography/GradientText';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import {
   DesignKitImagesSet1,
   DesignKitImagesSet2,
@@ -34,7 +34,8 @@ export default function TemplateHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-designkits" /> Design kits
+            <IconImage width={28} height={28} loading="eager" name="product-designkits" /> Design
+            kits
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Material UI
@@ -49,7 +50,6 @@ export default function TemplateHero() {
             component={Link}
             noLinkStyle
             href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta#design"
-            size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
             sx={{ width: { xs: '100%', sm: 'auto' } }}

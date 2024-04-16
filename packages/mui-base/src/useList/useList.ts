@@ -12,7 +12,7 @@ import {
 import { ListActionTypes, ListAction } from './listActions.types';
 import { ListContextValue } from './ListContext';
 import { listReducer as defaultReducer } from './listReducer';
-import { useListChangeNotifiers } from './useListChangeNotifiers';
+
 import { useControllableReducer } from '../utils/useControllableReducer';
 import {
   ControllableReducerAction,
@@ -20,10 +20,10 @@ import {
   StateComparers,
 } from '../utils/useControllableReducer.types';
 import { areArraysEqual } from '../utils/areArraysEqual';
-import { EventHandlers } from '../utils/types';
-import { useLatest } from '../utils/useLatest';
 import { useTextNavigation } from '../utils/useTextNavigation';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { EventHandlers } from '../utils/types';
 
 const EMPTY_OBJECT = {};
 const NOOP = () => {};
@@ -90,6 +90,7 @@ function useList<
     reducerActionContext = EMPTY_OBJECT as CustomActionContext,
     selectionMode = 'single',
     stateReducer: externalReducer,
+    componentName = 'useList',
   } = params;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -136,7 +137,7 @@ function useList<
         highlightedValue: itemComparer,
         selectedValues: (valuesArray1, valuesArray2) =>
           areArraysEqual(valuesArray1, valuesArray2, itemComparer),
-      } as StateComparers<State>),
+      }) as StateComparers<State>,
     [itemComparer],
   );
 
@@ -221,6 +222,7 @@ function useList<
     controlledProps,
     stateComparers,
     onStateChange: handleStateChange,
+    componentName,
   });
 
   const { highlightedValue, selectedValues } = state;
@@ -233,9 +235,6 @@ function useList<
     }),
   );
 
-  // introducing refs to avoid recreating the getItemState function on each change.
-  const latestSelectedValues = useLatest(selectedValues);
-  const latestHighlightedValue = useLatest(highlightedValue);
   const previousItems = React.useRef<ItemValue[]>([]);
 
   React.useEffect(() => {
@@ -256,29 +255,10 @@ function useList<
     onItemsChange?.(items);
   }, [items, itemComparer, dispatch, onItemsChange]);
 
-  // Subitems are notified of changes to the highlighted and selected values.
-  // This is not done via context because we don't want to trigger a re-render of all the subitems each time any of them changes state.
-  // Instead, we use a custom message bus to publish messages about changes.
-  // On the child component, we use a custom hook to subscribe to these messages and re-render only when the value they care about changes.
-  const {
-    notifySelectionChanged,
-    notifyHighlightChanged,
-    registerHighlightChangeHandler,
-    registerSelectionChangeHandler,
-  } = useListChangeNotifiers<ItemValue>();
-
-  React.useEffect(() => {
-    notifySelectionChanged(selectedValues);
-  }, [selectedValues, notifySelectionChanged]);
-
-  React.useEffect(() => {
-    notifyHighlightChanged(highlightedValue);
-  }, [highlightedValue, notifyHighlightChanged]);
-
   const createHandleKeyDown =
-    (other: Record<string, React.EventHandler<any>>) =>
+    (externalHandlers: EventHandlers) =>
     (event: React.KeyboardEvent<HTMLElement> & MuiCancellableEvent) => {
-      other.onKeyDown?.(event);
+      externalHandlers.onKeyDown?.(event);
 
       if (event.defaultMuiPrevented) {
         return;
@@ -314,9 +294,9 @@ function useList<
     };
 
   const createHandleBlur =
-    (other: Record<string, React.EventHandler<any>>) =>
+    (externalHandlers: EventHandlers) =>
     (event: React.FocusEvent<HTMLElement> & MuiCancellableEvent) => {
-      other.onBlur?.(event);
+      externalHandlers.onBlur?.(event);
 
       if (event.defaultMuiPrevented) {
         return;
@@ -333,61 +313,48 @@ function useList<
       });
     };
 
-  const getRootProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseListRootSlotProps<TOther> => {
+  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseListRootSlotProps<ExternalProps> => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
     return {
-      ...otherHandlers,
+      ...externalProps,
       'aria-activedescendant':
         focusManagement === 'activeDescendant' && highlightedValue != null
           ? getItemId!(highlightedValue)
           : undefined,
-      onBlur: createHandleBlur(otherHandlers),
-      onKeyDown: createHandleKeyDown(otherHandlers),
       tabIndex: focusManagement === 'DOM' ? -1 : 0,
       ref: handleRef,
+      ...externalEventHandlers,
+      onBlur: createHandleBlur(externalEventHandlers),
+      onKeyDown: createHandleKeyDown(externalEventHandlers),
     };
   };
 
   const getItemState = React.useCallback(
     (item: ItemValue): ListItemState => {
-      const index = items.findIndex((i) => itemComparer(i, item));
-      const selected = (latestSelectedValues.current ?? []).some(
+      const selected = (selectedValues ?? []).some(
         (value) => value != null && itemComparer(item, value),
       );
 
-      const disabled = isItemDisabled(item, index);
-      const highlighted =
-        latestHighlightedValue.current != null &&
-        itemComparer(item, latestHighlightedValue.current);
+      const highlighted = highlightedValue != null && itemComparer(item, highlightedValue);
       const focusable = focusManagement === 'DOM';
 
       return {
-        disabled,
         focusable,
         highlighted,
-        index,
         selected,
       };
     },
-    [
-      items,
-      isItemDisabled,
-      itemComparer,
-      latestSelectedValues,
-      latestHighlightedValue,
-      focusManagement,
-    ],
+    [itemComparer, selectedValues, highlightedValue, focusManagement],
   );
 
   const contextValue: ListContextValue<ItemValue> = React.useMemo(
     () => ({
       dispatch,
       getItemState,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
     }),
-    [dispatch, getItemState, registerHighlightChangeHandler, registerSelectionChangeHandler],
+    [dispatch, getItemState],
   );
 
   React.useDebugValue({

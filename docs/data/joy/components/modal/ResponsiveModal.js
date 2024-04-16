@@ -43,7 +43,7 @@ export default function ResponsiveModal() {
               flexDirection: { xs: 'column', sm: 'row-reverse' },
             }}
           >
-            <Button variant="solid" color="neutral" onClick={() => setOpen(false)}>
+            <Button variant="solid" color="primary" onClick={() => setOpen(false)}>
               Continue
             </Button>
             <Button

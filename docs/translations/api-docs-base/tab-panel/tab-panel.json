@@ -11,7 +11,6 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
     "hidden": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root <code>div</code> element",

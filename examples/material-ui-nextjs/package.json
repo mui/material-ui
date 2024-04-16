@@ -12,12 +12,13 @@
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@mui/icons-material": "latest",
-    "@mui/material": "latest",
+    "@mui/icons-material": "next",
+    "@mui/material": "next",
+    "@mui/material-nextjs": "next",
     "eslint": "latest",
     "eslint-config-next": "latest",
-    "next": "13.x",
-    "react": "18.x",
-    "react-dom": "18.x"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   }
 }

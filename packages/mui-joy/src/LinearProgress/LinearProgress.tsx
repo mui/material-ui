@@ -8,7 +8,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 import {
   LinearProgressOwnerState,
@@ -16,6 +15,7 @@ import {
   LinearProgressTypeMap,
 } from './LinearProgressProps';
 import useSlot from '../utils/useSlot';
+import { resolveSxValue } from '../styles/styleUtils';
 
 // TODO: replace `left` with `inset-inline-start` in the future to work with writing-mode. https://caniuse.com/?search=inset-inline-start
 //       replace `width` with `inline-size`, not sure why inline-size does not work with animation in Safari.
@@ -37,7 +37,7 @@ const progressKeyframe = keyframes`
   75% {
     width: var(--LinearProgress-progressMaxWidth);
   }
-  
+
   100% {
     left: var(--_LinearProgress-progressInset);
     width: var(--LinearProgress-progressMinWidth);
@@ -113,6 +113,14 @@ const LinearProgressRoot = styled('div', {
       color: 'inherit',
       position: 'absolute', // required to make `left` animation works.
     },
+    ...(ownerState.variant === 'soft' && {
+      backgroundColor: theme.variants.soft.neutral.backgroundColor,
+      color: theme.variants.solid?.[ownerState.color!].backgroundColor,
+    }),
+    ...(ownerState.variant === 'solid' && {
+      backgroundColor: theme.variants.softHover?.[ownerState.color!].backgroundColor,
+      color: theme.variants.solid?.[ownerState.color!].backgroundColor,
+    }),
   }),
   ({ ownerState }) =>
     ownerState.determinate
@@ -129,6 +137,16 @@ const LinearProgressRoot = styled('div', {
               var(--LinearProgress-circulation, 2.5s ease-in-out 0s infinite normal none running);
           }
         `,
+  ({ ownerState, theme }) => {
+    const { borderRadius, height } = resolveSxValue({ theme, ownerState }, [
+      'borderRadius',
+      'height',
+    ]);
+    return {
+      ...(borderRadius !== undefined && { '--LinearProgress-radius': borderRadius }),
+      ...(height !== undefined && { '--LinearProgress-thickness': height }),
+    };
+  },
 );
 
 /**
@@ -156,7 +174,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     children,
     className,
     component,
-    color: colorProp = 'primary',
+    color = 'primary',
     size = 'md',
     variant = 'soft',
     thickness,
@@ -167,8 +185,6 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -212,10 +228,10 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 }) as OverridableComponent<LinearProgressTypeMap>;
 
 LinearProgress.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

@@ -1,6 +1,6 @@
 const { promises: fs, readdirSync } = require('fs');
 const path = require('path');
-const { prepareMarkdown } = require('./parseMarkdown');
+const prepareMarkdown = require('./prepareMarkdown');
 const extractImports = require('./extractImports');
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
@@ -28,50 +28,33 @@ function moduleIDToJSIdentifier(moduleID) {
     .join('');
 }
 
-const componentPackageMapping = {
-  'material-ui': {},
-  'base-ui': {},
-  'joy-ui': {},
-};
+let componentPackageMapping = null;
 
-const packages = [
-  {
-    productId: 'material-ui',
-    paths: [
-      path.join(__dirname, '../../packages/mui-base/src'),
-      path.join(__dirname, '../../packages/mui-lab/src'),
-      path.join(__dirname, '../../packages/mui-material/src'),
-    ],
-  },
-  {
-    productId: 'base-ui',
-    paths: [path.join(__dirname, '../../packages/mui-base/src')],
-  },
-  {
-    productId: 'joy-ui',
-    paths: [path.join(__dirname, '../../packages/mui-joy/src')],
-  },
-];
+function findComponents(packages) {
+  const mapping = {};
 
-packages.forEach((pkg) => {
-  pkg.paths.forEach((pkgPath) => {
-    const match = pkgPath.match(/packages(?:\\|\/)([^/\\]+)(?:\\|\/)src/);
-    const packageName = match ? match[1] : null;
-    if (!packageName) {
-      throw new Error(`cannot find package name from path: ${pkgPath}`);
-    }
-    const filePaths = readdirSync(pkgPath);
-    filePaths.forEach((folder) => {
-      if (folder.match(/^[A-Z]/)) {
-        if (!componentPackageMapping[pkg.productId]) {
-          throw new Error(`componentPackageMapping must have "${pkg.productId}" as a key`);
-        }
-        // filename starts with Uppercase = component
-        componentPackageMapping[pkg.productId][folder] = packageName;
+  packages.forEach((pkg) => {
+    pkg.paths.forEach((pkgPath) => {
+      const match = pkgPath.match(/packages(?:\\|\/)([^/\\]+)(?:\\|\/)src/);
+      const packageName = match ? match[1] : null;
+      if (!packageName) {
+        throw new Error(`cannot find package name from path: ${pkgPath}`);
       }
+      const filePaths = readdirSync(pkgPath);
+      filePaths.forEach((folder) => {
+        if (folder.match(/^[A-Z]/)) {
+          if (!mapping[pkg.productId]) {
+            mapping[pkg.productId] = {};
+          }
+          // filename starts with Uppercase = component
+          mapping[pkg.productId][folder] = packageName;
+        }
+      });
     });
   });
-});
+
+  return mapping;
+}
 
 /**
  * @type {import('webpack').loader.Loader}
@@ -79,6 +62,10 @@ packages.forEach((pkg) => {
 module.exports = async function demoLoader() {
   const englishFilepath = this.resourcePath;
   const options = this.getOptions();
+
+  if (componentPackageMapping === null) {
+    componentPackageMapping = findComponents(options.packages ?? []);
+  }
 
   const englishFilename = path.basename(englishFilepath, '.md');
 
@@ -122,9 +109,8 @@ module.exports = async function demoLoader() {
   );
 
   // Use .. as the docs runs from the /docs folder
-  const repositoryRoot = path.join(this.rootContext, '..');
   const fileRelativeContext = path
-    .relative(repositoryRoot, this.context)
+    .relative(options.workspaceRoot, this.context)
     // win32 to posix
     .replace(/\\/g, '/');
 
@@ -140,6 +126,7 @@ module.exports = async function demoLoader() {
   const components = {};
   const demoModuleIDs = new Set();
   const componentModuleIDs = new Set();
+  const nonEditableDemos = new Set();
   const demoNames = Array.from(
     new Set(
       docs.en.rendered
@@ -147,6 +134,9 @@ module.exports = async function demoLoader() {
           return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
         })
         .map((demoConfig) => {
+          if (demoConfig.hideToolbar) {
+            nonEditableDemos.add(demoConfig.demo);
+          }
           return demoConfig.demo;
         }),
     ),
@@ -178,9 +168,12 @@ module.exports = async function demoLoader() {
         raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
       };
       demoModuleIDs.add(moduleID);
-      extractImports(demos[demoName].raw).forEach((importModuleID) =>
-        importedModuleIDs.add(importModuleID),
-      );
+      // Skip non-editable demos
+      if (!nonEditableDemos.has(demoName)) {
+        extractImports(demos[demoName].raw).forEach((importModuleID) =>
+          importedModuleIDs.add(importModuleID),
+        );
+      }
 
       if (multipleDemoVersionsUsed) {
         // Add Tailwind demo data

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
@@ -19,66 +18,61 @@ const code = `
 <Card
   variant="outlined"
   sx={{
-    p: 1,
+    p: 2,
+    width: { xs: '100%', sm: 'auto' },
     display: 'flex',
     flexDirection: { xs: 'column', sm: 'row' },
+    alignItems: 'center',
+    gap: 2,
   }}
 >
   <CardMedia
     component="img"
-    width="124"
-    height="124"
-    alt="Beside Myself album cover"
-    src="/static/images/cards/basement-beside-myself.jpeg"
+    width="100"
+    height="100"
+    alt="Contemplative Reptile album cover"
+    src="/images/contemplative-reptile.jpg"
     sx={{
-      borderRadius: 0.5,
-      width: 'clamp(124px, (304px - 100%) * 999 , 100%)',
+      width: { xs: '100%', sm: 100 },
     }}
   />
-  <Box sx={{ alignSelf: 'center', px: { xs: 0, sm: 2 } }}>
-    <Typography
-      variant="body1"
-      color="text.primary"
-      fontWeight={600}
-      sx={{
-        textAlign: { xs: 'center', sm: 'start' },
-        mt: { xs: 1.5, sm: 0 },
-      }}
-    >
-      Ultraviolet
-    </Typography>
-    <Typography
-      component="div"
-      variant="caption"
-      color="text.secondary"
-      fontWeight={500}
-      sx={{ textAlign: { xm: 'center', sm: 'start' } }}
-    >
-      Basement • Beside Myself
-    </Typography>
-    <Stack
-      direction="row"
-      spacing={1}
-      sx={{
-        mt: 2,
-        justifyContent: { xs: 'space-between', sm: 'flex-start' },
-      }}
-    >
-      <IconButton aria-label="fast rewind" disabled>
-        <FastRewindRounded />
+  <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
+    <div>
+      <Typography color="text.primary" fontWeight="semiBold">
+        Contemplative Reptile
+      </Typography>
+      <Typography
+        variant="caption"
+        color="text.secondary"
+        fontWeight="medium"
+        textAlign="center"
+        sx={{ width: '100%' }}
+      >
+        Sounds of Nature
+      </Typography>
+    </div>
+    <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
+      <IconButton aria-label="Shuffle" disabled size="small">
+        <ShuffleRoundedIcon fontSize="small" />
+      </IconButton>
+      <IconButton aria-label="Fast rewind" disabled size="small">
+        <FastRewindRounded fontSize="small" />
       </IconButton>
       <IconButton
-        aria-label={paused ? 'play' : 'pause'}
-        sx={{ mx: 1 }}
+        aria-label={paused ? 'Play music' : 'Pause music'}
         onClick={() => setPaused((val) => !val)}
+        sx={{ mx: 1 }}
       >
         {paused ? <PlayArrowRounded /> : <PauseRounded />}
       </IconButton>
-      <IconButton aria-label="fast forward" disabled>
-        <FastForwardRounded />
+      <IconButton aria-label="Fast forward" disabled size="small">
+        <FastForwardRounded fontSize="small" />
+      </IconButton>
+      <IconButton aria-label="Loop music" disabled size="small">
+        <LoopRoundedIcon fontSize="small" />
       </IconButton>
     </Stack>
-  </Box>
+  </Stack>
 </Card>`;
 
 export default function MaterialTheming() {
@@ -87,18 +81,16 @@ export default function MaterialTheming() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Theming"
-              title={
-                <Typography variant="h2">
-                  Build <GradientText>your design system</GradientText> just as you want it to be
-                </Typography>
-              }
-              description="Start quickly with Material Design or use the advanced theming feature to easily tailor the components to your needs."
-            />
-          </Box>
-          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <SectionHeadline
+            overline="Theming"
+            title={
+              <Typography variant="h2">
+                Build <GradientText>your design system</GradientText> just as you want it to be
+              </Typography>
+            }
+            description="Start quickly with Material Design or use the advanced theming feature to easily tailor the components to your needs."
+          />
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<AutoAwesomeRounded color="warning" />}
@@ -119,8 +111,7 @@ export default function MaterialTheming() {
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
-                py: 2,
-                px: 2,
+                p: 2,
                 flexGrow: 1,
                 display: 'flex',
                 justifyContent: 'center',

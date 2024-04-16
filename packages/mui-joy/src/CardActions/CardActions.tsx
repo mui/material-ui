@@ -7,10 +7,11 @@ import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardActionsUtilityClass } from './cardActionsClasses';
-import { CardActionsProps, CardActionsTypeMap } from './CardActionsProps';
+import { CardActionsProps, CardActionsOwnerState, CardActionsTypeMap } from './CardActionsProps';
 import useSlot from '../utils/useSlot';
 import buttonClasses from '../Button/buttonClasses';
 import iconButtonClasses from '../IconButton/iconButtonClasses';
+import cardClasses from '../Card/cardClasses';
 import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
 import dividerClasses from '../Divider/dividerClasses';
 
@@ -22,11 +23,9 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getCardActionsUtilityClass, {});
 };
 
-const CardActionsRoot = styled('div', {
-  name: 'JoyCardActions',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardActionsProps }>(({ ownerState }) => {
+export const StyledCardActionsRoot = styled('div')<{ ownerState: CardActionsOwnerState }>(({
+  ownerState,
+}) => {
   return {
     '--Button-radius': 'var(--Card-childRadius)',
     '--IconButton-radius': 'var(--Card-childRadius)',
@@ -45,7 +44,7 @@ const CardActionsRoot = styled('div', {
     [`.${cardOverflowClasses.root} > &`]: {
       '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 var(--Card-padding)',
     },
-    [`.${dividerClasses.root} + &`]: {
+    [`.${cardClasses.root} > .${dividerClasses.root} + &`]: {
       '--unstable_padding': '0',
     },
     ...(ownerState.buttonFlex
@@ -64,6 +63,12 @@ const CardActionsRoot = styled('div', {
         }),
   };
 });
+
+const CardActionsRoot = styled(StyledCardActionsRoot, {
+  name: 'JoyCardActions',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: CardActionsOwnerState }>({});
 /**
  *
  * Demos:
@@ -113,10 +118,10 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
 }) as OverridableComponent<CardActionsTypeMap>;
 
 CardActions.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The CSS `flex` for the Button and its wrapper.
    */

@@ -101,6 +101,10 @@ const nestedFolder = {
       return resolveNestedImport('mui-base', importee);
     }
 
+    if (importee.indexOf('@mui/utils/') === 0) {
+      return resolveNestedImport('mui-utils', importee);
+    }
+
     if (importee.indexOf('@mui/private-theming/') === 0) {
       return resolveNestedImport('mui-private-theming', importee);
     }
@@ -133,7 +137,7 @@ const commonjsOptions = {
   ignoreGlobal: true,
   include: /node_modules/,
   namedExports: {
-    '../../node_modules/prop-types/index.js': [
+    'node_modules/prop-types/index.js': [
       'elementType',
       'bool',
       'func',
@@ -141,8 +145,8 @@ const commonjsOptions = {
       'oneOfType',
       'element',
     ],
-    '../../node_modules/react/jsx-runtime.js': ['jsx', 'jsxs'],
-    '../../node_modules/react-is/index.js': [
+    'node_modules/react/jsx-runtime.js': ['jsx', 'jsxs'],
+    'node_modules/react-is/index.js': [
       'ForwardRef',
       'isFragment',
       'isLazy',

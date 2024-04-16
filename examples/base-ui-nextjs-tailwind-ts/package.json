@@ -1,5 +1,5 @@
 {
-  "name": "base-next-app-router-tailwind-ts",
+  "name": "base-ui-nextjs-tailwind-ts",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -7,14 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   },
   "dependencies": {
-    "@mui/base": "latest",
+    "@mui/base": "next",
     "clsx": "latest",
-    "next": "13.x",
-    "react": "18.x",
-    "react-dom": "18.x"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
@@ -24,6 +24,7 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
+    "postcss-nesting": "latest",
     "tailwindcss": "latest",
     "typescript": "latest"
   }

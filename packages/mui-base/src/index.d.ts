@@ -16,6 +16,7 @@ export * from './Unstable_NumberInput';
 export * from './OptionGroup';
 export * from './Option';
 export * from './Popper';
+export * from './Unstable_Popup';
 export * from './Portal';
 export * from './Select';
 export * from './Slider';
@@ -27,6 +28,7 @@ export * from './TabsList';
 export * from './Tabs';
 export * from './Tab';
 export * from './TextareaAutosize';
+export * from './Transitions';
 export * from './useAutocomplete';
 export * from './useBadge';
 export * from './useButton';
@@ -46,3 +48,8 @@ export * from './useTabPanel';
 export * from './useTabs';
 export * from './useTabsList';
 export * from './unstable_useModal';
+
+export {
+  generateUtilityClass as unstable_generateUtilityClass,
+  isGlobalState as unstable_isGlobalState,
+} from './generateUtilityClass';

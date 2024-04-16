@@ -51,20 +51,56 @@
     "import SpeedDial from '@mui/material/SpeedDial';",
     "import { SpeedDial } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "fab",
-      "directionUp",
-      "directionDown",
-      "directionLeft",
-      "directionRight",
-      "actions",
-      "actionsClosed"
-    ],
-    "globalClasses": {},
-    "name": "MuiSpeedDial"
-  },
+  "classes": [
+    {
+      "key": "actions",
+      "className": "MuiSpeedDial-actions",
+      "description": "Styles applied to the actions (`children` wrapper) element.",
+      "isGlobal": false
+    },
+    {
+      "key": "actionsClosed",
+      "className": "MuiSpeedDial-actionsClosed",
+      "description": "Styles applied to the actions (`children` wrapper) element if `open={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "directionDown",
+      "className": "MuiSpeedDial-directionDown",
+      "description": "Styles applied to the root element if direction=\"down\"",
+      "isGlobal": false
+    },
+    {
+      "key": "directionLeft",
+      "className": "MuiSpeedDial-directionLeft",
+      "description": "Styles applied to the root element if direction=\"left\"",
+      "isGlobal": false
+    },
+    {
+      "key": "directionRight",
+      "className": "MuiSpeedDial-directionRight",
+      "description": "Styles applied to the root element if direction=\"right\"",
+      "isGlobal": false
+    },
+    {
+      "key": "directionUp",
+      "className": "MuiSpeedDial-directionUp",
+      "description": "Styles applied to the root element if direction=\"up\"",
+      "isGlobal": false
+    },
+    {
+      "key": "fab",
+      "className": "MuiSpeedDial-fab",
+      "description": "Styles applied to the Fab component.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSpeedDial-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiSpeedDial",

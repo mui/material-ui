@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -63,17 +62,13 @@ export default function TransitionGroupExample() {
   return (
     <div>
       {addFruitButton}
-      <Box sx={{ mt: 1 }}>
-        <List>
-          <TransitionGroup>
-            {fruitsInBasket.map((item) => (
-              <Collapse key={item}>
-                {renderItem({ item, handleRemoveFruit })}
-              </Collapse>
-            ))}
-          </TransitionGroup>
-        </List>
-      </Box>
+      <List sx={{ mt: 1 }}>
+        <TransitionGroup>
+          {fruitsInBasket.map((item) => (
+            <Collapse key={item}>{renderItem({ item, handleRemoveFruit })}</Collapse>
+          ))}
+        </TransitionGroup>
+      </List>
     </div>
   );
 }

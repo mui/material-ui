@@ -1,14 +1,10 @@
 <Dropdown>
-  <TriggerButton>Dashboard</TriggerButton>
-  <Menu slots={{ listbox: StyledListbox }}>
-    <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
-      Profile
-    </StyledMenuItem>
-    <StyledMenuItem onClick={createHandleMenuClick('My account')}>
-      My account
-    </StyledMenuItem>
-    <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
-      Log out
-    </StyledMenuItem>
+  <MenuButton>My account</MenuButton>
+  <Menu slots={{ listbox: Listbox }}>
+    <MenuItem onClick={createHandleMenuClick('Profile')}>Profile</MenuItem>
+    <MenuItem onClick={createHandleMenuClick('Language settings')}>
+      Language settings
+    </MenuItem>
+    <MenuItem onClick={createHandleMenuClick('Log out')}>Log out</MenuItem>
   </Menu>
 </Dropdown>

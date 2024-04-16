@@ -1,5 +1,5 @@
 {
-  "name": "material-gatsby",
+  "name": "material-ui-gatsby",
   "version": "5.0.0",
   "private": true,
   "browserslist": [
@@ -10,7 +10,7 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
-    "@mui/material": "latest",
+    "@mui/material": "next",
     "gatsby": "latest",
     "gatsby-plugin-react-helmet": "latest",
     "react": "latest",
@@ -21,6 +21,6 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   }
 }

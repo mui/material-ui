@@ -38,54 +38,70 @@ const blue = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 const TriggerButton = styled('button')(
   ({ theme }) => `
-    font-family: IBM Plex Sans, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
-    box-sizing: border-box;
-    border-radius: 8px;
-    padding: 8px 16px;
-    line-height: 1.5;
-    background: transparent;
-    cursor: pointer;
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? blue[300] : blue[500]};
-  
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background-color: ${blue[500]};
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
+  cursor: pointer;
+  border: 1px solid ${blue[500]};
+  box-shadow: 0 2px 1px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
+  }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
+
+  &:hover {
+    background-color: ${blue[600]};
+  }
+
+  &:active {
+    background-color: ${blue[700]};
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+    outline: none;
+  }
+
+  &.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
     &:hover {
-      background: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
-      border-color: ${theme.palette.mode === 'dark' ? blue[200] : blue[400]};
+      background-color: ${blue[500]};
     }
-  
-    &:focus-visible {
-      border-color: ${blue[400]};
-      outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-    }
-    `,
+  }
+`,
 );
 
 const StyledPopperDiv = styled('div')(
   ({ theme }) => css`
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border-radius: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: ${theme.palette.mode === 'dark'
       ? `0px 4px 8px rgb(0 0 0 / 0.7)`
       : `0px 4px 8px rgb(0 0 0 / 0.1)`};
     padding: 0.75rem;
-    color: ${theme.palette.mode === 'dark' ? blue[200] : blue[800]};
+    color: ${theme.palette.mode === 'dark' ? grey[100] : grey[700]};
     font-size: 0.875rem;
     font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 500;

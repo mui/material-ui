@@ -1,2 +1,2 @@
-<StyledSlider defaultValue={50} />
-<StyledSlider defaultValue={10} disabled />
+<Slider defaultValue={50} />
+<Slider defaultValue={30} disabled />

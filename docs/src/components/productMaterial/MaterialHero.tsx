@@ -7,6 +7,7 @@ import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -32,6 +33,7 @@ import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
 import CakeRounded from '@mui/icons-material/CakeRounded';
 import CelebrationRounded from '@mui/icons-material/CelebrationRounded';
 import AttractionsRounded from '@mui/icons-material/AttractionsRounded';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import DownloadIcon from '@mui/icons-material/Download';
 import LocalFireDepartment from '@mui/icons-material/LocalFireDepartment';
 import AcUnitRounded from '@mui/icons-material/AcUnitRounded';
@@ -47,7 +49,6 @@ import Switch from '@mui/material/Switch';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
-import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Badge from '@mui/material/Badge';
@@ -58,34 +59,43 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { getDesignTokens } from 'docs/src/modules/brandingTheme';
-import Link from 'docs/src/modules/components/Link';
+import { getDesignTokens } from '@mui/docs/branding';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
+
+function Checkboxes() {
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+  return (
+    <React.Fragment>
+      <Checkbox {...label} defaultChecked />
+      <Checkbox {...label} />
+    </React.Fragment>
+  );
+}
 
 function ToggleButtons() {
   const [alignment, setAlignment] = React.useState('left');
   return (
-    <ToggleButtonGroup
-      value={alignment}
-      exclusive
-      onChange={(event, newAlignment) => {
-        setAlignment(newAlignment);
-      }}
-      aria-label="text alignment"
-    >
-      <ToggleButton value="left" aria-label="left aligned" size="small">
-        <FormatAlignLeftIcon fontSize="small" />
-      </ToggleButton>
-      <ToggleButton value="center" aria-label="centered" size="small">
-        <FormatAlignCenterIcon fontSize="small" />
-      </ToggleButton>
-      <ToggleButton value="right" aria-label="right aligned" size="small">
-        <FormatAlignRightIcon fontSize="small" />
-      </ToggleButton>
-      <ToggleButton value="justify" aria-label="justified" size="small" disabled>
-        <FormatAlignJustifyIcon fontSize="small" />
-      </ToggleButton>
-    </ToggleButtonGroup>
+    <Paper elevation={0} variant="outlined" sx={{ p: 2 }}>
+      <ToggleButtonGroup
+        value={alignment}
+        exclusive
+        onChange={(event, newAlignment) => {
+          setAlignment(newAlignment);
+        }}
+        aria-label="text alignment"
+      >
+        <ToggleButton value="left" aria-label="left aligned" size="small">
+          <FormatAlignLeftIcon fontSize="small" />
+        </ToggleButton>
+        <ToggleButton value="center" aria-label="centered" size="small">
+          <FormatAlignCenterIcon fontSize="small" />
+        </ToggleButton>
+        <ToggleButton value="right" aria-label="right aligned" size="small" disabled>
+          <FormatAlignRightIcon fontSize="small" />
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Paper>
   );
 }
 function TabsDemo() {
@@ -125,7 +135,7 @@ function BadgeVisibilityDemo() {
     >
       <div>
         <Badge color="primary" badgeContent={count}>
-          <DownloadIcon fontSize="small" />
+          <NotificationsIcon fontSize="small" />
         </Badge>
         <ButtonGroup>
           <Button
@@ -159,6 +169,7 @@ function SwitchToggleDemo() {
     >
       <Switch {...label} defaultChecked />
       <Switch {...label} />
+      <Checkboxes />
       <ToggleButtons />
     </Box>
   );
@@ -226,7 +237,7 @@ export default function MaterialHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-core" />{' '}
+            <IconImage loading="eager" width={28} height={28} name="product-core" />{' '}
             <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
             <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
               /
@@ -242,8 +253,8 @@ export default function MaterialHero() {
             components
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Material UI is beautiful by design and features a suite of customization options that
-            make it easy to implement your own custom design system.
+            Material UI is an open-source React component library that implements Google&apos;s
+            Material Design. It&apos;s comprehensive and can be used in production out of the box.
           </Typography>
           <GetStartedButtons
             primaryUrl={ROUTES.materialDocs}
@@ -283,7 +294,7 @@ export default function MaterialHero() {
               },
             }}
           >
-            <Stack spacing={4}>
+            <Stack spacing={4} useFlexGap>
               <div>
                 <Accordion
                   elevation={0}
@@ -331,9 +342,8 @@ export default function MaterialHero() {
                   </AccordionSummary>
                 </Accordion>
               </div>
-              {/* <DatePickerDemo /> */}
               <Alert variant="filled" color="info" icon={<CheckCircleRounded fontSize="small" />}>
-                Check out this library!
+                Check Material UI out now!
               </Alert>
               <SwitchToggleDemo />
               <TabsDemo />
@@ -385,8 +395,12 @@ export default function MaterialHero() {
                 </List>
               </Paper>
             </Stack>
-            <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
+            <Stack
+              spacing={4}
+              useFlexGap
+              sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}
+            >
+              <Box sx={{ display: 'flex', gap: 2, '& button': { textWrap: 'nowrap' } }}>
                 <Button variant="contained" startIcon={<DownloadIcon fontSize="small" />} fullWidth>
                   Install library
                 </Button>
@@ -456,8 +470,7 @@ export default function MaterialHero() {
                   <Typography variant="body2" color="text.secondary">
                     Not just a great valley, but a shrine to human foresight, the strength of
                     granite, the power of glaciers, the persistence of life, and the tranquility of
-                    the High Sierra. It&apos;s famed for its giant, ancient sequoia trees, and the
-                    granite cliffs of El Capitan and Half Dome.
+                    the High Sierra.
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>

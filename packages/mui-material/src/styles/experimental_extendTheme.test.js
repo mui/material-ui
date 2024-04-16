@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import Button from '@mui/material/Button';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,
+  styled,
 } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
@@ -12,6 +13,7 @@ describe('experimental_extendTheme', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
   const storage = {};
+
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
@@ -29,6 +31,7 @@ describe('experimental_extendTheme', () => {
       removeListener: () => {},
     });
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
@@ -55,6 +58,9 @@ describe('experimental_extendTheme', () => {
     const theme = extendTheme();
     expect(theme.colorSchemes.dark.palette.background.defaultChannel).to.equal('18 18 18');
     expect(theme.colorSchemes.light.palette.background.defaultChannel).to.equal('255 255 255');
+
+    expect(theme.colorSchemes.dark.palette.background.paperChannel).to.equal('18 18 18');
+    expect(theme.colorSchemes.light.palette.background.paperChannel).to.equal('255 255 255');
 
     expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('144 202 249');
     expect(theme.colorSchemes.dark.palette.primary.darkChannel).to.equal('66 165 245');
@@ -357,6 +363,51 @@ describe('experimental_extendTheme', () => {
     });
   });
 
+  describe('spacing', () => {
+    it('produce spacing token by default', () => {
+      const theme = extendTheme();
+      expect(theme.vars.spacing).to.equal('var(--mui-spacing, 8px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 8px))');
+    });
+
+    it('turn number to pixel', () => {
+      const theme = extendTheme({ spacing: 4 });
+      expect(theme.vars.spacing).to.equal('var(--mui-spacing, 4px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 4px))');
+    });
+
+    it('can be customized as a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.vars.spacing).to.equal('var(--mui-spacing, 0.5rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.5rem))');
+    });
+
+    it('uses the provided value if it is a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.spacing('1rem')).to.equal('1rem');
+    });
+
+    it('can be customized as an array', () => {
+      const theme = extendTheme({ spacing: [0, 1, 2, 4, 8, 16, 32] });
+      expect(theme.vars.spacing).to.deep.equal([
+        'var(--mui-spacing-0, 0px)',
+        'var(--mui-spacing-1, 1px)',
+        'var(--mui-spacing-2, 2px)',
+        'var(--mui-spacing-3, 4px)',
+        'var(--mui-spacing-4, 8px)',
+        'var(--mui-spacing-5, 16px)',
+        'var(--mui-spacing-6, 32px)',
+      ]);
+      expect(theme.spacing(2)).to.equal('var(--mui-spacing-2, 2px)');
+    });
+
+    it('can be customized as a function', () => {
+      const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
+      expect(theme.vars.spacing).to.deep.equal('var(--mui-spacing, 0.25rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.25rem))');
+    });
+  });
+
   it('shallow merges multiple arguments', () => {
     const theme = extendTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
     expect(theme.foo).to.equal('I am foo');
@@ -425,7 +476,7 @@ describe('experimental_extendTheme', () => {
       ).toWarnDev(
         "MUI: Can't create `palette.dividerChannel` because `palette.divider` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()." +
           '\n' +
-          'To suppress this warning, you need to explicitly provide the `palette.dividerChannel` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.',
+          'To suppress this warning, you need to explicitly provide the `palette.dividerChannel` as a string (in rgb format, for example "12 12 12") or undefined if you want to remove the channel token.',
       );
     });
 
@@ -502,5 +553,49 @@ describe('experimental_extendTheme', () => {
     Object.keys(keys).forEach((key) => {
       expect(theme[key]).to.deep.equal(theme.vars[key]);
     });
+  });
+
+  it('should use the right selector with applyStyles', function test() {
+    const attribute = 'data-custom-color-scheme';
+    let darkStyles = {};
+    const Test = styled('div')(({ theme }) => {
+      darkStyles = theme.applyStyles('dark', {
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      });
+      return null;
+    });
+
+    render(
+      <CssVarsProvider attribute={attribute}>
+        <Test />
+      </CssVarsProvider>,
+    );
+
+    expect(darkStyles).to.deep.equal({
+      [`*:where([${attribute}="dark"]) &`]: {
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      },
+    });
+  });
+
+  it("should `generateStyleSheets` based on the theme's attribute and colorSchemeSelector", () => {
+    const theme = extendTheme();
+
+    expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+      ':root',
+      ':root, [data-mui-color-scheme="light"]',
+      '[data-mui-color-scheme="dark"]',
+    ]);
+
+    theme.attribute = 'data-custom-color-scheme';
+    theme.colorSchemeSelector = '.root';
+    theme.defaultColorScheme = 'dark';
+
+    expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+      '.root',
+      '[data-custom-color-scheme="dark"]',
+      '.root',
+      '[data-custom-color-scheme="light"]',
+    ]);
   });
 });

@@ -21,7 +21,9 @@ export default function NumberBadge() {
       }}
     >
       <Badge badgeContent={count} showZero={showZero}>
-        <Typography level="h1">🛍</Typography>
+        <Typography level="h1" component="h2">
+          🛍
+        </Typography>
       </Badge>
       <Box
         sx={{

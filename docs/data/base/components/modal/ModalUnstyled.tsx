@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled, Box, Theme } from '@mui/system';
-import { Modal } from '@mui/base/Modal';
+import { styled, css } from '@mui/system';
+import { Modal as BaseModal } from '@mui/base/Modal';
 
 export default function ModalUnstyled() {
   const [open, setOpen] = React.useState(false);
@@ -13,18 +13,22 @@ export default function ModalUnstyled() {
       <TriggerButton type="button" onClick={handleOpen}>
         Open modal
       </TriggerButton>
-      <StyledModal
+      <Modal
         aria-labelledby="unstyled-modal-title"
         aria-describedby="unstyled-modal-description"
         open={open}
         onClose={handleClose}
         slots={{ backdrop: StyledBackdrop }}
       >
-        <Box sx={style}>
-          <h2 id="unstyled-modal-title">Text in a modal</h2>
-          <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
-        </Box>
-      </StyledModal>
+        <ModalContent sx={{ width: 400 }}>
+          <h2 id="unstyled-modal-title" className="modal-title">
+            Text in a modal
+          </h2>
+          <p id="unstyled-modal-description" className="modal-description">
+            Aliquid amet deserunt earum!
+          </p>
+        </ModalContent>
+      </Modal>
     </div>
   );
 }
@@ -36,7 +40,7 @@ const Backdrop = React.forwardRef<
   const { open, className, ...other } = props;
   return (
     <div
-      className={clsx({ 'MuiBackdrop-open': open }, className)}
+      className={clsx({ 'base-Backdrop-open': open }, className)}
       ref={ref}
       {...other}
     />
@@ -44,25 +48,28 @@ const Backdrop = React.forwardRef<
 });
 
 const blue = {
-  200: '#99CCF3',
+  200: '#99CCFF',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
+  600: '#0072E5',
+  700: '#0066CC',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const StyledModal = styled(Modal)`
+const Modal = styled(BaseModal)`
   position: fixed;
   z-index: 1300;
   inset: 0;
@@ -79,36 +86,67 @@ const StyledBackdrop = styled(Backdrop)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const style = (theme: Theme) => ({
-  width: 400,
-  borderRadius: '12px',
-  padding: '16px 32px 24px 32px',
-  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
-  boxShadow: `0px 2px 24px ${theme.palette.mode === 'dark' ? '#000' : '#383838'}`,
-});
+const ModalContent = styled('div')(
+  ({ theme }) => css`
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 500;
+    text-align: start;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+    border-radius: 8px;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    box-shadow: 0 4px 12px
+      ${theme.palette.mode === 'dark' ? 'rgb(0 0 0 / 0.5)' : 'rgb(0 0 0 / 0.2)'};
+    padding: 24px;
+    color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
+
+    & .modal-title {
+      margin: 0;
+      line-height: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    & .modal-description {
+      margin: 0;
+      line-height: 1.5rem;
+      font-weight: 400;
+      color: ${theme.palette.mode === 'dark' ? grey[400] : grey[800]};
+      margin-bottom: 4px;
+    }
+  `,
+);
 
 const TriggerButton = styled('button')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  font-weight: 600;
-  box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 6px 12px;
-  line-height: 1.5;
-  background: transparent;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
+  ({ theme }) => css`
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 150ms ease;
+    cursor: pointer;
+    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
-  &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
-  }
+    &:hover {
+      background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+      border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+    }
 
-  &:focus-visible {
-    border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
+    &:active {
+      background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+      outline: none;
+    }
   `,
 );

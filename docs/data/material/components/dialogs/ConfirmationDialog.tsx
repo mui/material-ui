@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -122,11 +122,10 @@ export default function ConfirmationDialog() {
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <List component="div" role="group">
-        <ListItem button divider disabled>
+        <ListItemButton divider disabled>
           <ListItemText primary="Interruptions" />
-        </ListItem>
-        <ListItem
-          button
+        </ListItemButton>
+        <ListItemButton
           divider
           aria-haspopup="true"
           aria-controls="ringtone-menu"
@@ -134,10 +133,10 @@ export default function ConfirmationDialog() {
           onClick={handleClickListItem}
         >
           <ListItemText primary="Phone ringtone" secondary={value} />
-        </ListItem>
-        <ListItem button divider disabled>
+        </ListItemButton>
+        <ListItemButton divider disabled>
           <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-        </ListItem>
+        </ListItemButton>
         <ConfirmationDialogRaw
           id="ringtone-menu"
           keepMounted

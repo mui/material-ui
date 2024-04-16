@@ -6,7 +6,6 @@ import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
@@ -56,21 +55,21 @@ const CheckboxRoot = styled('span', {
   '--Icon-fontSize': 'var(--Checkbox-size)',
   ...(ownerState.size === 'sm' && {
     '--Checkbox-size': '1rem',
-    '--Checkbox-gap': '0.5rem',
     '& ~ *': { '--FormHelperText-margin': '0 0 0 1.5rem' },
     fontSize: theme.vars.fontSize.sm,
+    gap: 'var(--Checkbox-gap, 0.5rem)',
   }),
   ...(ownerState.size === 'md' && {
     '--Checkbox-size': '1.25rem',
-    '--Checkbox-gap': '0.625rem',
     '& ~ *': { '--FormHelperText-margin': '0.25rem 0 0 1.875rem' },
     fontSize: theme.vars.fontSize.md,
+    gap: 'var(--Checkbox-gap, 0.625rem)',
   }),
   ...(ownerState.size === 'lg' && {
     '--Checkbox-size': '1.5rem',
-    '--Checkbox-gap': '0.75rem',
     '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.25rem' },
     fontSize: theme.vars.fontSize.lg,
+    gap: 'var(--Checkbox-gap, 0.75rem)',
   }),
   position: ownerState.overlay ? 'initial' : 'relative',
   display: 'inline-flex',
@@ -121,7 +120,12 @@ const CheckboxCheckbox = styled('span', {
             ...variantStyle,
             backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
           },
-          { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+          {
+            '&:hover': {
+              '@media (hover: hover)':
+                theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+            },
+          },
           { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
           {
             [`&.${checkboxClasses.disabled}`]:
@@ -183,14 +187,10 @@ const CheckboxLabel = styled('label', {
 })<{ ownerState: CheckboxOwnerState }>(({ ownerState }) => ({
   flex: 1,
   minWidth: 0,
-  ...(ownerState.disableIcon
-    ? {
-        zIndex: 1, // label should stay on top of the action.
-        pointerEvents: 'none', // makes hover ineffect.
-      }
-    : {
-        marginInlineStart: 'var(--Checkbox-gap)',
-      }),
+  ...(ownerState.disableIcon && {
+    zIndex: 1, // label should stay on top of the action.
+    pointerEvents: 'none', // makes hover ineffect.
+  }),
 }));
 
 const defaultCheckedIcon = <CheckIcon />;
@@ -274,11 +274,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const activeVariant = variantProp || 'solid';
   const inactiveVariant = variantProp || 'outlined';
   const variant = isCheckboxActive ? activeVariant : inactiveVariant;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(
-    inProps.color,
-    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
-  );
+  const color = inProps.color || (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
 
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';
@@ -326,6 +322,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       name,
       value,
       readOnly,
+      role: undefined,
       required: required ?? formControl?.required,
       'aria-describedby': formControl?.['aria-describedby'],
       ...(indeterminate && {
@@ -378,10 +375,10 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 }) as OverridableComponent<CheckboxTypeMap>;
 
 Checkbox.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */

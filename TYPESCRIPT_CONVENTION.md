@@ -8,7 +8,7 @@
 
 ### `Props Interface`
 
-- export interface `{ComponentName}classes` from `{component}Classes.ts` and add comment for generating api docs (for internal components, may or may not expose classes but don't need comment)
+- export interface `{ComponentName}classes` from `{component}Classes.ts` and add comment for generating API docs (for internal components, may or may not expose classes but don't need comment)
 - export interface `{ComponentName}Props`
 - always export props interface (use `interface` over `type`) from the component file
 

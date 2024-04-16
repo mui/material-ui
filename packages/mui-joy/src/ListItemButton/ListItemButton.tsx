@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/useButton';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import {
   ListItemButtonOwnerState,
   ExtendListItemButton,
@@ -56,6 +56,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
+    gap: 'var(--ListItem-gap)',
     ...(ownerState.orientation === 'vertical' && {
       flexDirection: 'column',
       justifyContent: 'center',
@@ -90,6 +91,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       zIndex: 1, // to be above of the next element. For example, the first Tab item should be above the second so that the outline is above the second Tab.
     },
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     [`.${listItemClasses.root} > &`]: {
       '--unstable_ListItem-flex': '1 0 0%', // grow to fill the available space of ListItem
     },
@@ -144,17 +146,14 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     orientation = 'horizontal',
     role,
     selected = false,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'plain',
     slots = {},
     slotProps = {},
     ...other
   } = props;
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
-
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
@@ -206,10 +205,10 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 }) as ExtendListItemButton<ListItemButtonTypeMap>;
 
 ListItemButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */

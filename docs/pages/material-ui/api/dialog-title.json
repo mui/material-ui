@@ -15,13 +15,20 @@
     "import DialogTitle from '@mui/material/DialogTitle';",
     "import { DialogTitle } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogTitle" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiDialogTitle-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiDialogTitle",
   "forwardsRefTo": "HTMLHeadingElement",
   "filename": "/packages/mui-material/src/DialogTitle/DialogTitle.js",
-  "inheritance": null,
+  "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },
   "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li></ul>",
   "cssComponent": false
 }

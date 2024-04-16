@@ -1,0 +1,75 @@
+{
+  "props": {
+    "anchor": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+      }
+    },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
+    "middleware": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;false<br>&#124;&nbsp;{ fn: func, name: string, options?: any }&gt;"
+      }
+    },
+    "offset": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;number<br>&#124;&nbsp;{ alignmentAxis?: number, crossAxis?: number, mainAxis?: number }"
+      },
+      "default": "0"
+    },
+    "open": { "type": { "name": "bool" }, "default": "false" },
+    "placement": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'bottom'"
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "strategy": {
+      "type": { "name": "enum", "description": "'absolute'<br>&#124;&nbsp;'fixed'" },
+      "default": "'absolute'"
+    }
+  },
+  "name": "Popup",
+  "imports": [
+    "import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';",
+    "import { Unstable_Popup as Popup } from '@mui/base';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-Popup-root"
+    }
+  ],
+  "classes": [
+    {
+      "key": "open",
+      "className": "base--open",
+      "description": "Class name applied to the root element when the popup is open.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "muiName": "Popup",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Unstable_Popup/Popup.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-popup/\">Popup</a></li></ul>",
+  "cssComponent": false
+}

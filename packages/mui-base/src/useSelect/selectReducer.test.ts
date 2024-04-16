@@ -26,7 +26,7 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: ActionWithContext<SelectAction, ListActionContext<unknown>> = {
+      const action: ActionWithContext<SelectAction<string>, ListActionContext<unknown>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: irrelevantConfig,
@@ -43,7 +43,7 @@ describe('selectReducer', () => {
         open: true,
       };
 
-      const action: ActionWithContext<SelectAction, ListActionContext<unknown>> = {
+      const action: ActionWithContext<SelectAction<string>, ListActionContext<unknown>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
@@ -62,7 +62,7 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: ActionWithContext<SelectAction, ListActionContext<string>> = {
+      const action: ActionWithContext<SelectAction<string>, ListActionContext<string>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
@@ -82,7 +82,7 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: ActionWithContext<SelectAction, ListActionContext<string>> = {
+      const action: ActionWithContext<SelectAction<string>, ListActionContext<string>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
@@ -93,6 +93,30 @@ describe('selectReducer', () => {
 
       const result = selectReducer(state, action);
       expect(result.highlightedValue).to.equal('1');
+    });
+  });
+
+  describe('action: browserAutoFill', () => {
+    it('selects the item and highlights it', () => {
+      const state: SelectInternalState<string> = {
+        highlightedValue: null,
+        selectedValues: [],
+        open: false,
+      };
+
+      const action: ActionWithContext<SelectAction<string>, ListActionContext<string>> = {
+        type: SelectActionTypes.browserAutoFill,
+        event: {} as any, // not relevant
+        item: '1',
+        context: {
+          ...irrelevantConfig,
+          items: ['1', '2', '3'],
+        },
+      };
+
+      const result = selectReducer(state, action);
+      expect(result.highlightedValue).to.equal('1');
+      expect(result.selectedValues).to.deep.equal(['1']);
     });
   });
 });

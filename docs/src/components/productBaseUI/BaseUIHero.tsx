@@ -1,16 +1,13 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
-// Local imports
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 const BaseUIThemesDemo = dynamic(() => import('./BaseUIThemesDemo'), {
   ssr: false,
@@ -55,7 +52,7 @@ export default function BaseUIHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-core" />{' '}
+            <IconImage width={28} height={28} loading="eager" name="product-core" />{' '}
             <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
             <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
               /

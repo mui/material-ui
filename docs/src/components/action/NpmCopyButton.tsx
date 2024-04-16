@@ -2,7 +2,7 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
 import { SxProps } from '@mui/system';
-import { styled, Theme } from '@mui/material/styles';
+import { styled, alpha, Theme } from '@mui/material/styles';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 
@@ -52,8 +52,12 @@ const Button = styled('button')(({ theme }) => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-  '&:focus svg': {
+  '&:focus, &:hover svg': {
     opacity: 1,
+  },
+  '&:focus-visible': {
+    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+    outlineOffset: '2px',
   },
 }));
 
@@ -76,8 +80,7 @@ export default function NpmCopyButton(
       }}
       {...other}
     >
-      <strong>$</strong>
-      {installation}
+      $ {installation}
       {copied ? (
         <CheckRounded color="inherit" sx={{ fontSize: 15 }} />
       ) : (

@@ -1,11 +1,11 @@
 {
-  "name": "material-cra-styled-components-ts",
+  "name": "material-ui-cra-styled-components-ts",
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@mui/lab": "latest",
-    "@mui/material": "latest",
-    "@mui/styled-engine-sc": "latest",
+    "@mui/lab": "next",
+    "@mui/material": "next",
+    "@mui/styled-engine-sc": "next",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
@@ -38,7 +38,6 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "@types/styled-components": "latest",
     "craco-alias": "^3.0.1",
     "typescript": "latest"
   }

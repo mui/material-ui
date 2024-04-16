@@ -1,7 +1,8 @@
 {
   "props": {
-    "defaultValue": { "type": { "name": "any" } },
+    "defaultValue": { "type": { "name": "number" } },
     "disabled": { "type": { "name": "bool" } },
+    "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
     "max": { "type": { "name": "number" } },
@@ -20,6 +21,7 @@
         "describedArgs": ["event"]
       }
     },
+    "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" }, "default": "false" },
     "required": { "type": { "name": "bool" } },
     "shiftMultiplier": { "type": { "name": "number" } },
@@ -38,52 +40,87 @@
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
     },
+    "startAdornment": { "type": { "name": "node" } },
     "step": { "type": { "name": "number" } },
-    "value": { "type": { "name": "any" } }
+    "value": { "type": { "name": "number" }, "default": "null" }
   },
   "name": "NumberInput",
   "imports": [
     "import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';",
     "import { Unstable_NumberInput as NumberInput } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiNumberInput-root"
+      "class": "base-NumberInput-root"
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": ".MuiNumberInput-input"
+      "class": "base-NumberInput-input"
     },
     {
       "name": "incrementButton",
       "description": "The component that renders the increment button.",
       "default": "'button'",
-      "class": ".MuiNumberInput-incrementButton"
+      "class": "base-NumberInput-incrementButton"
     },
     {
       "name": "decrementButton",
       "description": "The component that renders the decrement button.",
       "default": "'button'",
-      "class": ".MuiNumberInput-decrementButton"
+      "class": "base-NumberInput-decrementButton"
     }
   ],
-  "classes": {
-    "classes": ["disabled", "error", "focused", "formControl", "readOnly"],
-    "globalClasses": {
-      "focused": "Mui-focused",
-      "disabled": "Mui-disabled",
-      "readOnly": "Mui-readOnly",
-      "error": "Mui-error"
+  "classes": [
+    {
+      "key": "adornedEnd",
+      "className": "base-NumberInput-adornedEnd",
+      "description": "Class name applied to the root element if `endAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "adornedStart",
+      "className": "base-NumberInput-adornedStart",
+      "description": "Class name applied to the root element if `startAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "Class name applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "base--error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focused",
+      "className": "base--focused",
+      "description": "Class name applied to the root element if the component is focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "formControl",
+      "className": "base-NumberInput-formControl",
+      "description": "Class name applied to the root element if the component is a descendant of `FormControl`.",
+      "isGlobal": false
+    },
+    {
+      "key": "readOnly",
+      "className": "base--readOnly",
+      "description": "State class applied to the root element if `readOnly={true}`.",
+      "isGlobal": true
     }
-  },
+  ],
   "spread": true,
-  "muiName": "MuiNumberInput",
+  "muiName": "NumberInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Unstable_NumberInput/NumberInput.tsx",
   "inheritance": null,

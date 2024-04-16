@@ -13,7 +13,7 @@ export interface TabContextProps {
   /**
    * The value of the currently selected `Tab`.
    */
-  value: string;
+  value: string | number;
 }
 /**
  *

@@ -12,12 +12,12 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 ## Introduction
 
-Joy UI provides four accordion-related components:
+Joy UI provides four accordion-related components:
 
-- [`AccordionGroup`](#basic-usage): A container that groups multiple accordions. It **does not** control the state of each accordion.
-- [`Accordion`](#basic-usage): A component that contains the expansion logic and send to AccordionSummary and AccordionDetails.
-- [`AccordionSummary`](#basic-usage): A header of the accordion which contain a button that triggers the expansion.
-- [`AccordionDetails`](#basic-usage): A wrapper for the accordion details.
+- [Accordion Group](#basic-usage) - a container that groups multiple accordions. It **does not** control the state of each accordion.
+- [Accordion](#basic-usage) - a component that contains the expansion logic and send to AccordionSummary and AccordionDetails.
+- [Accordion Summary](#basic-usage) - a header of the accordion which contain a button that triggers the expansion.
+- [Accordion Details](#basic-usage) - a wrapper for the accordion details.
 
 {{"demo": "AccordionUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -67,7 +67,7 @@ Use `disableDivider` prop on the Accordion Group component to hide the divider b
 {{"demo": "AccordionNoDivider.js"}}
 
 :::info
-💡 **Good to know**: the reason that ListDivider can be used is because the accordion family reuses styles from the [List](/joy-ui/react-list/) family.
+**Good to know**: the reason that ListDivider can be used is because the accordion family reuses styles from the [List](/joy-ui/react-list/) family.
 :::
 
 ### Animating the expansion
@@ -97,7 +97,7 @@ Use `sx` prop on the AccordionGroup to style all the accordions at once.
 
 ### Depth panel
 
-This example shows how to customize the accordion to create lines and depth to make it looks more realistic.
+This example shows how to customize the accordion to create lines and depth to make it look more realistic.
 
 {{"demo": "AccordionDepthPanel.js"}}
 

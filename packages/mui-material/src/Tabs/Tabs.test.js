@@ -2,21 +2,23 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-} from 'test/utils';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+} from '@mui-internal/test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createSvgIcon } from '@mui/material/utils';
 import capitalize from '../utils/capitalize';
+import describeConformance from '../../test/describeConformance';
+
+const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
+const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');
 
 function findScrollButton(container, direction) {
   return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);
@@ -522,6 +524,37 @@ describe('<Tabs />', () => {
         variant: 'scrollable',
       });
       expect(tablistContainer.style.overflow).to.equal('');
+    });
+
+    it('should handle theme styleOverrides for scrollable tabs without crashing', () => {
+      const theme = createTheme({
+        components: {
+          MuiTabs: {
+            styleOverrides: {
+              root: ({ ownerState: { orientation } }) => ({
+                ...(orientation === 'vertical'
+                  ? {
+                      background: 'magenta',
+                    }
+                  : {
+                      background: 'lime',
+                    }),
+              }),
+            },
+          },
+        },
+      });
+
+      expect(() =>
+        render(
+          <ThemeProvider theme={theme}>
+            <Tabs sx={{ width: 200 }} value={0} variant="scrollable">
+              <Tab label="First" />
+              <Tab label="Second" />
+            </Tabs>
+          </ThemeProvider>,
+        ),
+      ).not.to.throw();
     });
   });
 

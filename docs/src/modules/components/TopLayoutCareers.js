@@ -8,7 +8,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 const StyledDiv = styled('div')({
   flex: '1 0 100%',
@@ -29,7 +29,11 @@ export default function TopLayoutCareers(props) {
   return (
     <BrandingCssVarsProvider>
       <AppHeader />
-      <Head title={`${title} - MUI`} description={description}>
+      <Head
+        title={`${title} - MUI`}
+        description={description}
+        card="/static/social-previews/careers-preview.jpg"
+      >
         <meta name="robots" content="noindex,nofollow" />
       </Head>
       <StyledDiv>

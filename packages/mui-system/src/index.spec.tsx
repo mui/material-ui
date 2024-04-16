@@ -1,14 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import {
-  breakpoints,
-  display,
-  compose,
-  createTheme,
-  spacing,
-  style,
-  styled as muiStyled,
-} from '@mui/system';
+import { breakpoints, display, compose, spacing, style, styled as muiStyled } from '@mui/system';
+
+import createTheme from '@mui/system/createTheme';
 
 function composeTest() {
   function first(props: { color: string }) {
@@ -36,7 +30,7 @@ function composeTest() {
 function interopTest() {
   const mixin = style({ prop: 'color' });
   // built-in style function
-  const SystemSpacingBox = styled.div`
+  const SystemSpacingBox = styled('div')<{ m: number }>`
     ${spacing}
     ${mixin}
   `;

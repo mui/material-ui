@@ -5,46 +5,48 @@ import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '..
 import { OverrideProps } from '../OverridableComponent';
 import { BottomNavigationActionClasses } from './bottomNavigationActionClasses';
 
+export interface BottomNavigationActionOwnProps {
+  /**
+   * This prop isn't supported.
+   * Use the `component` prop if you need to change the children structure.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<BottomNavigationActionClasses>;
+  /**
+   * The icon to display.
+   */
+  icon?: React.ReactNode;
+  /**
+   * The label element.
+   */
+  label?: React.ReactNode;
+  /**
+   * If `true`, the `BottomNavigationAction` will show its label.
+   * By default, only the selected `BottomNavigationAction`
+   * inside `BottomNavigation` will show its label.
+   *
+   * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
+   */
+  showLabel?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * You can provide your own value. Otherwise, we fallback to the child position index.
+   */
+  value?: any;
+}
+
 export type BottomNavigationActionTypeMap<
   AdditionalProps,
-  DefaultComponent extends React.ElementType,
+  RootComponent extends React.ElementType,
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & {
-    /**
-     * This prop isn't supported.
-     * Use the `component` prop if you need to change the children structure.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<BottomNavigationActionClasses>;
-    /**
-     * The icon to display.
-     */
-    icon?: React.ReactNode;
-    /**
-     * The label element.
-     */
-    label?: React.ReactNode;
-    /**
-     * If `true`, the `BottomNavigationAction` will show its label.
-     * By default, only the selected `BottomNavigationAction`
-     * inside `BottomNavigation` will show its label.
-     *
-     * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
-     */
-    showLabel?: boolean;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-    /**
-     * You can provide your own value. Otherwise, we fallback to the child position index.
-     */
-    value?: any;
-  };
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & BottomNavigationActionOwnProps;
+  defaultComponent: RootComponent;
 }>;
 
 /**

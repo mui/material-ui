@@ -30,15 +30,15 @@ const cyan = {
 
 const grey = {
   50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 function useIsDarkMode() {
@@ -55,7 +55,7 @@ function Styles() {
       {`
       .CustomInput {
         width: 320px;
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         font-weight: 400;
         line-height: 1.5;
@@ -65,16 +65,16 @@ function Styles() {
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         box-shadow: 0px 2px 2px ${isDarkMode ? grey[900] : grey[50]};
-      
+
         &:hover {
           border-color: ${cyan[400]};
         }
-      
+
         &:focus {
           border-color: ${cyan[400]};
-          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
+          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
         }
-      
+
         &:focus-visible {
           outline: 0;
         }

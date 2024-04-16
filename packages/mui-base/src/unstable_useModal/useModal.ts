@@ -54,8 +54,8 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   // @ts-ignore internal logic
   const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
-  const mountNodeRef = React.useRef<null | HTMLElement>(null);
-  const modalRef = React.useRef<null | HTMLDivElement>(null);
+  const mountNodeRef = React.useRef<HTMLElement | null>(null);
+  const modalRef = React.useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = React.useState(!open);
   const hasTransition = getHasTransition(children);
@@ -67,8 +67,8 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   const getDoc = () => ownerDocument(mountNodeRef.current);
   const getModal = () => {
-    modal.current.modalRef = modalRef.current as HTMLDivElement;
-    modal.current.mount = mountNodeRef.current as HTMLElement;
+    modal.current.modalRef = modalRef.current!;
+    modal.current.mount = mountNodeRef.current!;
     return modal.current;
   };
 
@@ -135,7 +135,11 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     // clicking a checkbox to check it, hitting a button to submit a form,
     // and hitting left arrow to move the cursor in a text input etc.
     // Only special HTML elements have these default behaviors.
-    if (event.key !== 'Escape' || !isTopModal()) {
+    if (
+      event.key !== 'Escape' ||
+      event.which === 229 || // Wait until IME is settled.
+      !isTopModal()
+    ) {
       return;
     }
 
@@ -218,8 +222,8 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     };
 
     return {
-      onEnter: createChainedFunction(handleEnter, children.props.onEnter),
-      onExited: createChainedFunction(handleExited, children.props.onExited),
+      onEnter: createChainedFunction(handleEnter, children?.props.onEnter),
+      onExited: createChainedFunction(handleExited, children?.props.onExited),
     };
   };
 

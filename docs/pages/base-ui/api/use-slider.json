@@ -1,12 +1,20 @@
 {
   "parameters": {
     "aria-labelledby": { "type": { "name": "string", "description": "string" } },
-    "defaultValue": { "type": { "name": "number | number[]", "description": "number | number[]" } },
+    "defaultValue": {
+      "type": {
+        "name": "number | ReadonlyArray&lt;number&gt;",
+        "description": "number | ReadonlyArray&lt;number&gt;"
+      }
+    },
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "disableSwap": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "isRtl": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "marks": {
-      "type": { "name": "boolean | Mark[]", "description": "boolean | Mark[]" },
+      "type": {
+        "name": "boolean | ReadonlyArray&lt;Mark&gt;",
+        "description": "boolean | ReadonlyArray&lt;Mark&gt;"
+      },
       "default": "false"
     },
     "max": { "type": { "name": "number", "description": "number" }, "default": "100" },
@@ -41,9 +49,15 @@
       },
       "default": "function Identity(x) {\nreturn x;\n}"
     },
+    "shiftStep": { "type": { "name": "number", "description": "number" }, "default": "10" },
     "step": { "type": { "name": "number | null", "description": "number | null" }, "default": "1" },
     "tabIndex": { "type": { "name": "number", "description": "number" } },
-    "value": { "type": { "name": "number | number[]", "description": "number | number[]" } }
+    "value": {
+      "type": {
+        "name": "number | ReadonlyArray&lt;number&gt;",
+        "description": "number | ReadonlyArray&lt;number&gt;"
+      }
+    }
   },
   "returnValue": {
     "active": { "type": { "name": "number", "description": "number" }, "required": true },
@@ -62,22 +76,22 @@
     },
     "getHiddenInputProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderHiddenInputProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderHiddenInputProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderHiddenInputProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderHiddenInputProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderRootSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderRootSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getThumbProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderThumbSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderThumbSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderThumbSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderThumbSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

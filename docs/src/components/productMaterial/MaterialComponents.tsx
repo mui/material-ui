@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider, styled } from '@mui/material/styles';
+import { Experimental_CssVarsProvider as CssVarsProvider, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
+import Button, { buttonClasses } from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
@@ -36,49 +36,22 @@ import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Button', 'Text field', 'Table', 'Alert', 'Tooltip'] as const;
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  borderRadius: 40,
-  padding: theme.spacing('2px', 1),
-  fontSize: theme.typography.pxToRem(12),
-  lineHeight: 18 / 12,
-  '&.MuiButton-text': {
-    color: theme.palette.grey[500],
-    border: '1px solid',
-    borderColor: theme.palette.primaryDark[700],
-    '&:hover': {
-      backgroundColor: theme.palette.primaryDark[700],
-    },
-  },
-  '&.MuiButton-outlined': {
-    color: '#fff',
-    backgroundColor: theme.palette.primary[800],
-    borderColor: theme.palette.primary[700],
-    '&:hover': {
-      backgroundColor: theme.palette.primary[700],
-    },
-  },
-}));
-
 const CODES = {
   Button: `
-<div>
   <Button variant="text" startIcon={<ShoppingCartRounded />}>
-    Add to Cart
-  </Button>
-  <Button variant="contained" startIcon={<ShoppingCartRounded />}>
-    Add to Cart
-  </Button>
-  <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
-    Add to Cart
-  </Button>
-</div>
+  Add item
+</Button>
+<Button variant="contained" startIcon={<ShoppingCartRounded />}>
+  Add item
+</Button>
+<Button variant="outlined" startIcon={<ShoppingCartRounded />}>
+  Add item
+</Button>
 `,
   'Text field': `
-<div>
   <TextField variant="standard" label="Username" />
-  <TextField variant="outlined" label="Email" type="email" />
-  <TextField variant="filled" label="Password" type="password" />
-</div>
+<TextField variant="outlined" label="Email" type="email" />
+<TextField variant="filled" label="Password" type="password" />
 `,
   Table: `
 <TableContainer
@@ -106,33 +79,29 @@ const CODES = {
 </TableContainer>
 `,
   Alert: `
-<div>
   <Alert variant="standard" color="info">
-    Check out this alert!
-  </Alert>
-  <Alert variant="outlined" color="info">
-    Check out this alert!
-  </Alert>
-  <Alert variant="filled" color="info">
-    Check out this alert!
-  </Alert>
-</div>
+  This is an alert!
+</Alert>
+<Alert variant="outlined" color="info">
+  This is an alert!
+</Alert>
+<Alert variant="filled" color="info">
+  This is an alert!
+</Alert>
 `,
   Tooltip: `
-<div>
   <Tooltip title="This is a tooltip" arrow placement="top">
-    <Typography>Top</Typography>
-  </Tooltip>
-  <Tooltip title="This is a tooltip" arrow placement="right">
-    <Typography>Right</Typography>
-  </Tooltip>
-  <Tooltip title="This is a tooltip" arrow placement="left">
-    <Typography>Left</Typography>
-  </Tooltip>
-  <Tooltip title="This is a tooltip" arrow placement="bottom">
-    <Typography>Bottom</Typography>
-  </Tooltip>
-</div>
+  <Typography>Top</Typography>
+</Tooltip>
+<Tooltip title="This is a tooltip" arrow placement="right">
+  <Typography>Right</Typography>
+</Tooltip>
+<Tooltip title="This is a tooltip" arrow placement="left">
+  <Typography>Left</Typography>
+</Tooltip>
+<Tooltip title="This is a tooltip" arrow placement="bottom">
+  <Typography>Bottom</Typography>
+</Tooltip>
 `,
 };
 
@@ -150,18 +119,16 @@ export default function MaterialComponents() {
     <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Component library"
-              title={
-                <Typography variant="h2">
-                  <GradientText>40+</GradientText> building block components
-                </Typography>
-              }
-              description="A meticulous implementation of Material Design; every Material UI component meets the highest standards of form and function."
-            />
-          </Box>
-          <Group desktopColumns={2} sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <SectionHeadline
+            overline="Component library"
+            title={
+              <Typography variant="h2">
+                <GradientText>40+</GradientText> building block components
+              </Typography>
+            }
+            description="A meticulous implementation of Material Design; every Material UI component meets the highest standards of form and function."
+          />
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
@@ -187,22 +154,21 @@ export default function MaterialComponents() {
                     }}
                   >
                     <Button variant="text" startIcon={<ShoppingCartRounded />}>
-                      Add to Cart
+                      Add item
                     </Button>
                     <Button variant="contained" startIcon={<ShoppingCartRounded />}>
-                      Add to Cart
+                      Add item
                     </Button>
                     <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
-                      Add to Cart
+                      Add item
                     </Button>
                   </Box>
                 )}
                 {demo === 'Text field' && (
                   <Stack
-                    alignItems="center"
                     justifyContent="center"
                     spacing={2}
-                    sx={{ height: '100%', py: 2 }}
+                    sx={{ p: 2, width: '50%', margin: 'auto' }}
                   >
                     <TextField variant="standard" label="Username" />
                     <TextField variant="outlined" label="Email" type="email" />
@@ -221,7 +187,7 @@ export default function MaterialComponents() {
                     sx={{
                       mx: 'auto',
                       my: 4,
-                      maxWidth: 320,
+                      maxWidth: '90%',
                       '& .MuiTableBody-root > .MuiTableRow-root:last-of-type > .MuiTableCell-root':
                         {
                           borderBottomWidth: 0,
@@ -257,17 +223,17 @@ export default function MaterialComponents() {
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
-                      gap: 1,
+                      gap: 2,
                     }}
                   >
                     <Alert variant="standard" color="info">
-                      Check out this alert!
+                      This is an alert!
                     </Alert>
                     <Alert variant="outlined" color="info">
-                      Check out this alert!
+                      This is an alert!
                     </Alert>
                     <Alert variant="filled" color="info">
-                      Check out this alert!
+                      This is an alert!
                     </Alert>
                   </Box>
                 )}
@@ -319,8 +285,9 @@ export default function MaterialComponents() {
               </CssVarsProvider>
             </Frame.Demo>
             <Frame.Info
+              data-mui-color-scheme="dark"
               sx={{
-                minHeight: 180,
+                minHeight: 220,
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
                 overflow: 'hidden',
@@ -328,6 +295,7 @@ export default function MaterialComponents() {
                 pt: 5,
               }}
             >
+              <StylingInfo appeared={customized} />
               <Box
                 sx={{
                   overflow: 'auto',
@@ -349,37 +317,47 @@ export default function MaterialComponents() {
                   pb: 3,
                   display: 'flex',
                   alignItems: 'center',
+                  gap: 1,
                   position: 'absolute',
-                  top: 12,
-                  left: 16,
+                  top: 16,
+                  left: 12,
                   right: 0,
                   zIndex: 10,
                   background: `linear-gradient(to bottom, ${
                     (theme.vars || theme).palette.common.black
                   } 30%, transparent)`,
+                  [`& .${buttonClasses.root}`]: {
+                    borderRadius: 40,
+                    padding: '2px 10px',
+                    fontSize: '0.75rem',
+                    lineHeight: 18 / 12,
+                  },
+                  '& .MuiButton-outlinedPrimary': {
+                    backgroundColor: alpha(theme.palette.primary[900], 0.5),
+                  },
                 })}
               >
-                <StyledButton
+                <Button
                   size="small"
-                  variant={customized ? 'text' : 'outlined'}
+                  variant="outlined"
+                  color={customized ? 'secondary' : 'primary'}
                   onClick={() => {
                     setCustomized(false);
                   }}
                 >
                   Material Design
-                </StyledButton>
-                <StyledButton
+                </Button>
+                <Button
                   size="small"
-                  variant={customized ? 'outlined' : 'text'}
+                  variant="outlined"
+                  color={customized ? 'primary' : 'secondary'}
                   onClick={() => {
                     setCustomized(true);
                   }}
-                  sx={{ ml: 1 }}
                 >
                   Custom theme
-                </StyledButton>
+                </Button>
               </Box>
-              <StylingInfo appeared={customized} />
             </Frame.Info>
           </Frame>
         </Grid>

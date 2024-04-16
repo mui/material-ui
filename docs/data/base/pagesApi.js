@@ -6,6 +6,14 @@ module.exports = [
       '/base-ui/react-click-away-listener/components-api/#click-away-listener',
     title: 'ClickAwayListener',
   },
+  {
+    pathname: '/base-ui/react-transitions/components-api/#css-animation',
+    title: 'CssAnimation',
+  },
+  {
+    pathname: '/base-ui/react-transitions/components-api/#css-transition',
+    title: 'CssTransition',
+  },
   { pathname: '/base-ui/react-menu/components-api/#dropdown', title: 'Dropdown' },
   {
     pathname: '/base-ui/react-focus-trap/components-api/#focus-trap',
@@ -34,6 +42,7 @@ module.exports = [
     title: 'OptionGroup',
   },
   { pathname: '/base-ui/react-popper/components-api/#popper', title: 'Popper' },
+  { pathname: '/base-ui/react-popup/components-api/#popup', title: 'Popup' },
   { pathname: '/base-ui/react-portal/components-api/#portal', title: 'Portal' },
   { pathname: '/base-ui/react-select/components-api/#select', title: 'Select' },
   { pathname: '/base-ui/react-slider/components-api/#slider', title: 'Slider' },
@@ -72,12 +81,20 @@ module.exports = [
     title: 'useMenuButton',
   },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu-item', title: 'useMenuItem' },
+  {
+    pathname: '/base-ui/react-menu/hooks-api/#use-menu-item-context-stabilizer',
+    title: 'useMenuItemContextStabilizer',
+  },
   { pathname: '/base-ui/react-modal/hooks-api/#use-modal', title: 'useModal' },
   {
     pathname: '/base-ui/react-number-input/hooks-api/#use-number-input',
     title: 'useNumberInput',
   },
   { pathname: '/base-ui/react-select/hooks-api/#use-option', title: 'useOption' },
+  {
+    pathname: '/base-ui/react-select/hooks-api/#use-option-context-stabilizer',
+    title: 'useOptionContextStabilizer',
+  },
   { pathname: '/base-ui/react-select/hooks-api/#use-select', title: 'useSelect' },
   { pathname: '/base-ui/react-slider/hooks-api/#use-slider', title: 'useSlider' },
   {
@@ -89,4 +106,12 @@ module.exports = [
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tab-panel', title: 'useTabPanel' },
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tabs', title: 'useTabs' },
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tabs-list', title: 'useTabsList' },
+  {
+    pathname: '/base-ui/react-transitions/hooks-api/#use-transition-state-manager',
+    title: 'useTransitionStateManager',
+  },
+  {
+    pathname: '/base-ui/react-transitions/hooks-api/#use-transition-trigger',
+    title: 'useTransitionTrigger',
+  },
 ];

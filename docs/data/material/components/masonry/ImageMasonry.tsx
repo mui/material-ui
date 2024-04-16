@@ -22,8 +22,8 @@ export default function ImageMasonry() {
           <div key={index}>
             <Label>{index + 1}</Label>
             <img
-              src={`${item.img}?w=162&auto=format`}
               srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
+              src={`${item.img}?w=162&auto=format`}
               alt={item.title}
               loading="lazy"
               style={{

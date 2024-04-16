@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-syntax */
-import { Octokit } from '@octokit/rest';
-import chalk from 'chalk';
 import childProcess from 'child_process';
 import { promisify } from 'util';
+import { Octokit } from '@octokit/rest';
+import chalk from 'chalk';
 import yargs from 'yargs';
 
 const exec = promisify(childProcess.exec);
@@ -64,6 +64,9 @@ async function main(argv) {
   }
   const octokit = new Octokit({
     auth: githubToken,
+    request: {
+      fetch,
+    },
   });
 
   const latestTaggedVersion = await findLatestTaggedVersion();
@@ -192,7 +195,7 @@ yargs(process.argv.slice(2))
         })
         .option('release', {
           // #default-branch-switch
-          default: 'master',
+          default: 'next',
           describe: 'Ref which we want to release',
           type: 'string',
         })

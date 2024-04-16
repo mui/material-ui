@@ -41,19 +41,26 @@
   },
   "name": "Modal",
   "imports": ["import Modal from '@mui/joy/Modal';", "import { Modal } from '@mui/joy';"],
-  "styles": { "classes": ["root", "backdrop"], "globalClasses": {}, "name": "MuiModal" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiModal-root"
+      "class": "MuiModal-root"
     },
     {
       "name": "backdrop",
       "description": "The component that renders the backdrop.",
       "default": "'div'",
-      "class": ".MuiModal-backdrop"
+      "class": "MuiModal-backdrop"
+    }
+  ],
+  "classes": [
+    {
+      "key": "hidden",
+      "className": "MuiModal-hidden",
+      "description": "Class name applied to the root element when open is false.",
+      "isGlobal": false
     }
   ],
   "spread": true,

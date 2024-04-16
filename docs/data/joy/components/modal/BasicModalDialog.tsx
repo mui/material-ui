@@ -5,9 +5,10 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
 import Stack from '@mui/joy/Stack';
 import Add from '@mui/icons-material/Add';
-import Typography from '@mui/joy/Typography';
 
 export default function BasicModalDialog() {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -22,17 +23,9 @@ export default function BasicModalDialog() {
         New project
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
-        <ModalDialog
-          aria-labelledby="basic-modal-dialog-title"
-          aria-describedby="basic-modal-dialog-description"
-          sx={{ maxWidth: 500 }}
-        >
-          <Typography id="basic-modal-dialog-title" level="h2">
-            Create new project
-          </Typography>
-          <Typography id="basic-modal-dialog-description">
-            Fill in the information of the project.
-          </Typography>
+        <ModalDialog>
+          <DialogTitle>Create new project</DialogTitle>
+          <DialogContent>Fill in the information of the project.</DialogContent>
           <form
             onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
               event.preventDefault();

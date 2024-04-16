@@ -22,6 +22,7 @@ export default function ZeroWidthStack() {
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
       <Item
+        variant="outlined"
         sx={{
           my: 1,
           mx: 'auto',
@@ -34,6 +35,7 @@ export default function ZeroWidthStack() {
         </Stack>
       </Item>
       <Item
+        variant="outlined"
         sx={{
           my: 1,
           mx: 'auto',

@@ -5,6 +5,10 @@
       "required": true
     },
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "disableFocusOnHover": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
     "id": { "type": { "name": "string", "description": "string" } },
     "label": { "type": { "name": "string", "description": "string" } },
     "onClick": {
@@ -19,8 +23,8 @@
     "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseMenuItemRootSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseMenuItemRootSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuItemRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuItemRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

@@ -8,7 +8,7 @@ import Switch from '@mui/joy/Switch';
 import Modal from '@mui/joy/Modal';
 import ModalDialog, { ModalDialogProps } from '@mui/joy/ModalDialog';
 import ModalClose from '@mui/joy/ModalClose';
-import Typography from '@mui/joy/Typography';
+import DialogTitle from '@mui/joy/DialogTitle';
 import Stack from '@mui/joy/Stack';
 
 export default function DialogVerticalScroll() {
@@ -44,11 +44,9 @@ export default function DialogVerticalScroll() {
           setLayout(undefined);
         }}
       >
-        <ModalDialog aria-labelledby="dialog-vertical-scroll-title" layout={layout}>
+        <ModalDialog layout={layout}>
           <ModalClose />
-          <Typography id="dialog-vertical-scroll-title" level="h2">
-            Vertical scroll example
-          </Typography>
+          <DialogTitle>Vertical scroll example</DialogTitle>
           <FormControl
             orientation="horizontal"
             sx={{ bgcolor: 'background.level2', p: 1, borderRadius: 'sm' }}
