@@ -11,6 +11,7 @@ export default function Header() {
       alignItems="flex-end"
       justifyContent="space-between"
       gap={2}
+      sx={{ my: 2 }}
     >
       <Stack sx={{ maxWidth: 500 }}>
         <Typography variant="h4" component="h1">

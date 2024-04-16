@@ -1,11 +1,31 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { Card as MuiCard } from '@mui/material';
+
+import { styled } from '@mui/material/styles';
+
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import InsightsIcon from '@mui/icons-material/Insights';
+
+const Card = styled(MuiCard)(({ theme }) => ({
+  border: '1px solid',
+  borderColor:
+    theme.palette.mode === 'light'
+      ? theme.palette.primary.light
+      : theme.palette.primary.dark,
+  boxShadow: 'none',
+  background:
+    theme.palette.mode === 'light'
+      ? 'hsl(210, 100%, 97%)'
+      : 'hsla(210, 100%, 16%, 0.4)',
+  color:
+    theme.palette.mode === 'light'
+      ? theme.palette.grey[900]
+      : theme.palette.grey[200],
+}));
 
 export default function HighlightedCard() {
   return (

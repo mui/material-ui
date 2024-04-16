@@ -360,12 +360,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                 boxShadow: 'none',
                 background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
               }),
-              ...(ownerState.variant === 'highlighted' && {
-                border: `1px solid ${brand[200]}`,
-                boxShadow: 'none',
-                background: brand[50],
-                color: gray[900],
-              }),
               ...(theme.palette.mode === 'dark' && {
                 backgroundColor: alpha(gray[800], 0.6),
                 border: `1px solid ${alpha(gray[700], 0.3)}`,
@@ -376,12 +370,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                     gray[800],
                     0.5,
                   )})`,
-                }),
-                ...(ownerState.variant === 'highlighted' && {
-                  border: `1px solid ${alpha(brand[600], 0.3)}`,
-                  boxShadow: 'none',
-                  background: alpha(brand[800], 0.4),
-                  color: gray[200],
                 }),
               }),
             };
