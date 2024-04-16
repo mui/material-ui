@@ -26,6 +26,7 @@ const Image = styled('img')(({ theme }) => ({
   filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.grey[500], 0.5)})`,
   ...theme.applyDarkStyles({
     filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.common.black, 0.2)})`,
+    borderColor: theme.palette.divider,
   }),
 }));
 
