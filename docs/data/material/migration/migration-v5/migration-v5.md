@@ -33,13 +33,13 @@ The `exports` field has been added to the `@mui/material/package.json` file to i
 "exports": {
     ".": {
         "types": "./index.d.ts",
-        "modern": "./modern/index.mjs",
+        "mui-modern": "./modern/index.mjs",
         "import": "./index.mjs",
         "default": "./node/index.js"
     },
     "./*": {
         "types": "./*/index.d.ts",
-        "modern": "./modern/index.mjs",
+        "mui-modern": "./modern/index.mjs",
         "import": "./*/index.mjs",
         "default": "./node/*/index.js"
     }
@@ -73,7 +73,7 @@ If you were importing from `/node` as a workaround, this is no longer necessary 
 
 The way the modern bundle should be imported has changed.
 Previously, you would alias `@mui/material` to `@mui/material/modern` in your bundler configuration.
-Now, you should configure your bundler's resolve conditions to use the `"modern"` condition name.
+Now, you should configure your bundler's resolve conditions to use the `"mui-modern"` condition name.
 Here's the updated Webpack example that was previously documented:
 
 ```diff title="webpack.config.js"
@@ -83,7 +83,7 @@ Here's the updated Webpack example that was previously documented:
 -    alias: {
 -      '@mui/material': '@mui/material/modern',
 -    }
-+    conditionNames: ['modern', 'import', 'default'],
++    conditionNames: ['mui-modern', 'import', 'default'],
    },
  };
 ```

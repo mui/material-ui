@@ -33,13 +33,13 @@ The `exports` field has been added to the `@mui/system/package.json` file to imp
 "exports": {
     ".": {
         "types": "./index.d.ts",
-        "modern": "./modern/index.mjs",
+        "mui-modern": "./modern/index.mjs",
         "import": "./index.mjs",
         "default": "./node/index.js"
     },
     "./*": {
         "types": "./*/index.d.ts",
-        "modern": "./modern/index.mjs",
+        "mui-modern": "./modern/index.mjs",
         "import": "./*/index.mjs",
         "default": "./node/*/index.js"
     }
