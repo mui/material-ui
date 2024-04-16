@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -38,7 +38,7 @@ export default function XPlans2() {
   return (
     <Section cozy>
       <Grid container spacing={2} alignItems="center">
-        <Grid item md={6}>
+        <Grid md={6}>
           <SectionHeadline
             overline="Plans"
             title={
@@ -55,7 +55,7 @@ export default function XPlans2() {
             secondaryUrl={ROUTES.xLicensing}
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Stack spacing={2} useFlexGap>
             {content.map(({ icon, title, description, link }) => (
               <InfoCard dense title={title} icon={icon} description={description} link={link} />
