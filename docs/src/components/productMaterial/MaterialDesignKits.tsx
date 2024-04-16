@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2';
 import Fade from '@mui/material/Fade';
-import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import ExtensionRoundedIcon from '@mui/icons-material/ExtensionRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
