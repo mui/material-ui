@@ -20,13 +20,12 @@ const Image = styled('img')(({ theme }) => ({
   transition: '0.4s',
   display: 'block',
   height: 'auto',
-  borderRadius: 6,
+  borderRadius: 4,
   border: '1px solid',
   borderColor: theme.palette.divider,
   filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.grey[500], 0.5)})`,
   ...theme.applyDarkStyles({
     filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.common.black, 0.2)})`,
-    borderColor: theme.palette.primaryDark[600],
   }),
 }));
 
@@ -113,7 +112,7 @@ export default function ConnectFeatures() {
                           '&:nth-of-type(2)': {
                             width: { xs: 240, sm: 560 },
                             top: { xs: 100, sm: 40 },
-                            left: { xs: '52%', sm: '40%' },
+                            left: { xs: '60%', sm: '40%' },
                             transform: {
                               xs: 'scale(1.8) translate(-20%)',
                               sm: 'scale(1) translate(0%)',
@@ -200,7 +199,7 @@ export default function ConnectFeatures() {
                           '&:nth-of-type(2)': {
                             width: { xs: 240, sm: 560 },
                             top: { xs: 100, sm: 40 },
-                            left: { xs: '52%', sm: '60%' },
+                            left: { xs: '60%', sm: '40%' },
                             transform: {
                               xs: 'scale(1.8) translate(-20%)',
                               sm: 'none',
@@ -287,7 +286,7 @@ export default function ConnectFeatures() {
                           '&:nth-of-type(2)': {
                             width: { xs: 240, sm: 560 },
                             top: { xs: 100, sm: 40 },
-                            left: { xs: '52%', sm: '45%' },
+                            left: { xs: '60%', sm: '40%' },
                             transform: {
                               xs: 'scale(1.8) translate(-20%)',
                               sm: 'none',
@@ -363,7 +362,8 @@ export default function ConnectFeatures() {
                 Get the beta version of Connect now!
               </Typography>
               <Typography variant="body2" color="text.secondary" mb={2}>
-                There's still a lot to do, and we're looking forward to hearing from all of you.
+                There&apos;s still a lot to do, and we&apos;re looking forward to hearing from all
+                of you.
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5 }}>
                 <Button

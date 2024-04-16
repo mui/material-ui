@@ -15,7 +15,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ConnectFeatures from 'docs/src/components/productConnect/ConnectFeatures';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
-const Image = styled('img')(({ theme }) => ({
+const Video = styled('video')(({ theme }) => ({
   width: '100%',
   transition: '0.4s',
   display: 'block',
@@ -85,8 +85,12 @@ export default function Connect() {
             pb: { xs: 4, sm: 8 },
           }}
         >
-          <Image src="/static/branding/design-kits/connect-plug-in-figma-light.jpg" />
-          {/* we'll likely replace this image with a video before merging */}
+          <Video preload="metadata" autoPlay controls loop width="1584" height="1080">
+            <source
+              src="/static/blog/introducing-connect/theme-customization.mp4"
+              type="video/mp4"
+            />
+          </Video>
         </Box>
         <ConnectFeatures />
         <Divider />
