@@ -3,6 +3,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import ChartUserByCountry from './ChartUserByCountry';
 import StatCard from './StatCard';
 import HighlightedCard from './HighlightedCard';
+import PageViewsChart from './PageViewsChart';
 
 const data = [
   {
@@ -51,7 +52,7 @@ export default function MainGrid() {
         columns={12}
       >
         <Grid xs={12} lg={9}>
-          chart
+          <PageViewsChart />
         </Grid>
         <Grid xs={12} lg={3}>
           <ChartUserByCountry />
