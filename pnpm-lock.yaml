@@ -656,8 +656,8 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-utils/build
       '@mui/x-charts':
-        specifier: 6.19.8
-        version: 6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.2.0
+        version: 7.2.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid':
         specifier: 7.1.1
         version: 7.1.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
@@ -5629,14 +5629,13 @@ packages:
       react-is: 18.2.0
     dev: false
 
-  /@mui/x-charts@6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-cjwsCJrUPDlMytJHBV+g3gDoSRURiphjclZs8sRnkZ+h4QbHn24K5QkK4bxEj7aCkO2HVJmDE0aqYEg4BnWCOA==}
+  /@mui/x-charts@7.2.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-aEVkdEY5j1dSYsYZxb1nsKNfFX1anQFGZF06HyumiPwYtUW+v1Bd5xlojwMVuFKGLgSq1nvMfXvbRmG+Imq68A==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
-      '@mui/material': ^5.4.1
-      '@mui/system': ^5.4.1
+      '@mui/material': ^5.15.14
       react: ^17.0.0 || ^18.0.0
       react-dom: ^17.0.0 || ^18.0.0
     peerDependenciesMeta:
@@ -5648,13 +5647,16 @@ packages:
       '@babel/runtime': 7.24.4
       '@emotion/react': 11.11.4(@types/react@18.2.55)(react@18.2.0)
       '@emotion/styled': 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
-      '@mui/base': 5.0.0-beta.30(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/base': 5.0.0-beta.40(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/material': link:packages/mui-material/build
-      '@mui/system': link:packages/mui-system/build
+      '@mui/system': 5.15.14(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.55)(react@18.2.0)
+      '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
       '@react-spring/rafz': 9.7.3
       '@react-spring/web': 9.7.3(react-dom@18.2.0)(react@18.2.0)
       clsx: 2.1.0
       d3-color: 3.1.0
+      d3-delaunay: 6.0.4
+      d3-interpolate: 3.0.1
       d3-scale: 4.0.2
       d3-shape: 3.2.0
       prop-types: 15.8.1
@@ -10851,6 +10853,13 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
+  /d3-delaunay@6.0.4:
+    resolution: {integrity: sha512-mdjtIZ1XLAM8bm/hx3WwjfHt6Sggek7qH043O8KEjDXN40xi3vx/6pYSVTwLjEgiXQTbvaouWKynLBiUZ6SK6A==}
+    engines: {node: '>=12'}
+    dependencies:
+      delaunator: 5.0.1
+    dev: false
+
   /d3-format@2.0.0:
     resolution: {integrity: sha512-Ab3S6XuE/Q+flY96HXT0jOXcM4EAClYFnRGY5zsjRGNy6qCYrQsMffs7cV5Q9xejb35zxW5hf/guKw34kvIKsA==}
     dev: false
@@ -11155,6 +11164,12 @@ packages:
       define-data-property: 1.1.4
       has-property-descriptors: 1.0.2
       object-keys: 1.1.1
+
+  /delaunator@5.0.1:
+    resolution: {integrity: sha512-8nvh+XBe96aCESrGOqMp/84b13H9cdKbG5P2ejQCh4d4sK9RL4371qou9drQjMhvnPmhWl5hnmqbEE0fXr9Xnw==}
+    dependencies:
+      robust-predicates: 3.0.2
+    dev: false
 
   /delay@5.0.0:
     resolution: {integrity: sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==}
@@ -19133,6 +19148,10 @@ packages:
     hasBin: true
     dependencies:
       glob: 10.3.10
+
+  /robust-predicates@3.0.2:
+    resolution: {integrity: sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==}
+    dev: false
 
   /rollup-plugin-babel@4.4.0(@babel/core@7.24.4)(rollup@3.29.4):
     resolution: {integrity: sha512-Lek/TYp1+7g7I+uMfJnnSJ7YWoD58ajo6Oarhlex7lvUce+RCKRuGRSgztDO3/MF/PuGKmUL5iTHKf208UNszw==}
