@@ -129,8 +129,8 @@ export default function AppLayoutDocs(props) {
     productName = 'MUI X';
   } else if (canonicalAs.startsWith('/system/')) {
     productName = 'MUI System';
-  } else if (canonicalAs.startsWith('/toolpad/')) {
-    productName = 'MUI Toolpad';
+  } else if (canonicalAs.startsWith('/toolpad/studio')) {
+    productName = 'Toolpad';
   } else if (canonicalAs.startsWith('/joy-ui/')) {
     productName = 'Joy UI';
   }
