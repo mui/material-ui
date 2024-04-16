@@ -25,7 +25,10 @@ export function useDropdown(parameters: UseDropdownParameters = {}) {
   const handleStateChange: StateChangeCallback<DropdownState> = React.useCallback(
     (event, field, value, reason) => {
       if (field === 'open') {
-        onOpenChange?.(event as React.MouseEvent | React.KeyboardEvent | React.FocusEvent, value);
+        onOpenChange?.(
+          event as React.MouseEvent | React.KeyboardEvent | React.FocusEvent,
+          value as boolean,
+        );
       }
 
       lastActionType.current = reason;
@@ -40,7 +43,9 @@ export function useDropdown(parameters: UseDropdownParameters = {}) {
 
   const [state, dispatch] = useControllableReducer({
     controlledProps,
-    initialState: defaultOpen ? { open: true } : { open: false },
+    initialState: defaultOpen
+      ? { open: true, changeReason: null }
+      : { open: false, changeReason: null },
     onStateChange: handleStateChange,
     reducer: dropdownReducer,
     componentName,

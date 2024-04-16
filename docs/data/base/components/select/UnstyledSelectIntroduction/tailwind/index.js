@@ -5,6 +5,8 @@ import { Option as BaseOption } from '@mui/base/Option';
 import { useTheme } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import clsx from 'clsx';
+import { PopupContext } from '@mui/base/Unstable_Popup';
+import { CssTransition } from '@mui/base/Transitions';
 
 function useIsDarkMode() {
   const theme = useTheme();
@@ -77,6 +79,33 @@ Button.propTypes = {
   ownerState: PropTypes.object.isRequired,
 };
 
+const AnimatedListbox = React.forwardRef(function AnimatedListbox(props, ref) {
+  const { ownerState, ...other } = props;
+  const popupContext = React.useContext(PopupContext);
+
+  if (popupContext == null) {
+    throw new Error(
+      'The `AnimatedListbox` component cannot be rendered outside a `Popup` component',
+    );
+  }
+
+  const verticalPlacement = popupContext.placement.split('-')[0];
+
+  return (
+    <CssTransition
+      className={`placement-${verticalPlacement}`}
+      enterClassName="open"
+      exitClassName="closed"
+    >
+      <ul {...other} ref={ref} />
+    </CssTransition>
+  );
+});
+
+AnimatedListbox.propTypes = {
+  ownerState: PropTypes.object.isRequired,
+};
+
 const resolveSlotProps = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
 
 const Select = React.forwardRef(function CustomSelect(props, ref) {
@@ -89,6 +118,7 @@ const Select = React.forwardRef(function CustomSelect(props, ref) {
       {...props}
       slots={{
         root: Button,
+        listbox: AnimatedListbox,
         ...props.slots,
       }}
       className={clsx('CustomSelect', props.className)}
@@ -119,14 +149,14 @@ const Select = React.forwardRef(function CustomSelect(props, ref) {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `text-sm font-sans p-1.5 my-3 w-80 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow shadow-slate-200 dark:shadow-slate-900`,
+              `text-sm font-sans p-1.5 my-3 w-80 rounded-xl overflow-auto outline-0 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 shadow shadow-slate-200 dark:shadow-slate-900 [.open_&]:opacity-100 [.open_&]:scale-100 transition-[opacity,transform] [.closed_&]:opacity-0 [.closed_&]:scale-90 [.placement-top_&]:origin-bottom [.placement-bottom_&]:origin-top`,
               resolvedSlotProps?.className,
             ),
           };
         },
-        popper: (ownerState) => {
+        popup: (ownerState) => {
           const resolvedSlotProps = resolveSlotProps(
-            props.slotProps?.popper,
+            props.slotProps?.popup,
             ownerState,
           );
           return {
@@ -150,7 +180,7 @@ Select.propTypes = {
    */
   slotProps: PropTypes.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -160,7 +190,7 @@ Select.propTypes = {
    */
   slots: PropTypes.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.func,
+    popup: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
 };

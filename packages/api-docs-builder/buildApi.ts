@@ -68,10 +68,13 @@ async function removeOutdatedApiDocsTranslations(
 export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp | null = null) {
   const allTypeScriptProjects = projectsSettings
     .flatMap((setting) => setting.typeScriptProjects)
-    .reduce((acc, project) => {
-      acc[project.name] = project;
-      return acc;
-    }, {} as Record<string, CreateTypeScriptProjectOptions>);
+    .reduce(
+      (acc, project) => {
+        acc[project.name] = project;
+        return acc;
+      },
+      {} as Record<string, CreateTypeScriptProjectOptions>,
+    );
 
   const buildTypeScriptProject = createTypeScriptProjectBuilder(allTypeScriptProjects);
 
@@ -189,8 +192,8 @@ async function buildSingleProject(
     source = projectSettings.onWritingManifestFile(builds, source);
   }
 
-  writePrettifiedFile(apiPagesManifestPath, source);
+  await writePrettifiedFile(apiPagesManifestPath, source);
 
-  projectSettings.onCompleted?.();
+  await projectSettings.onCompleted?.();
   return builds;
 }

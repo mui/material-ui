@@ -2,13 +2,15 @@ import * as React from 'react';
 import {
   Select as BaseSelect,
   selectClasses,
+  SelectListboxSlotProps,
   SelectProps,
   SelectRootSlotProps,
 } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import { CssTransition } from '@mui/base/Transitions';
+import { PopupContext } from '@mui/base/Unstable_Popup';
 
 export default function UnstyledSelectIntroduction() {
   return (
@@ -26,8 +28,8 @@ const Select = React.forwardRef(function CustomSelect<
 >(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
   const slots = {
     root: StyledButton,
-    listbox: Listbox,
-    popper: Popper,
+    listbox: AnimatedListbox,
+    popup: Popup,
     ...props.slots,
   };
 
@@ -133,8 +135,57 @@ const Listbox = styled('ul')(
   box-shadow: 0px 2px 4px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
+  
+  .closed & {
+    opacity: 0;
+    transform: scale(0.95, 0.8);
+    transition: opacity 200ms ease-in, transform 200ms ease-in;
+  }
+  
+  .open & {
+    opacity: 1;
+    transform: scale(1, 1);
+    transition: opacity 100ms ease-out, transform 100ms cubic-bezier(0.43, 0.29, 0.37, 1.48);
+  }
+
+  .placement-top & {
+    transform-origin: bottom;
+  }
+
+  .placement-bottom & {
+    transform-origin: top;
+  }
   `,
 );
+
+const AnimatedListbox = React.forwardRef(function AnimatedListbox<
+  Value extends {},
+  Multiple extends boolean,
+>(
+  props: SelectListboxSlotProps<Value, Multiple>,
+  ref: React.ForwardedRef<HTMLUListElement>,
+) {
+  const { ownerState, ...other } = props;
+  const popupContext = React.useContext(PopupContext);
+
+  if (popupContext == null) {
+    throw new Error(
+      'The `AnimatedListbox` component cannot be rendered outside a `Popup` component',
+    );
+  }
+
+  const verticalPlacement = popupContext.placement.split('-')[0];
+
+  return (
+    <CssTransition
+      className={`placement-${verticalPlacement}`}
+      enterClassName="open"
+      exitClassName="closed"
+    >
+      <Listbox {...other} ref={ref} />
+    </CssTransition>
+  );
+});
 
 const Option = styled(BaseOption)(
   ({ theme }) => `
@@ -177,6 +228,6 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;

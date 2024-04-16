@@ -2,18 +2,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
 import { useFormControl } from '../FormControl';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Stack from '../Stack';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
 import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
 import formControlState from '../FormControl/formControlState';
+
+const useThemeProps = createUseThemeProps('MuiFormControlLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, labelPlacement, error, required } = ownerState;
@@ -44,7 +45,7 @@ export const FormControlLabelRoot = styled('label', {
       styles[`labelPlacement${capitalize(ownerState.labelPlacement)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'inline-flex',
   alignItems: 'center',
   cursor: 'pointer',
@@ -56,24 +57,39 @@ export const FormControlLabelRoot = styled('label', {
   [`&.${formControlLabelClasses.disabled}`]: {
     cursor: 'default',
   },
-  ...(ownerState.labelPlacement === 'start' && {
-    flexDirection: 'row-reverse',
-    marginLeft: 16, // used for row presentation of radio/checkbox
-    marginRight: -11,
-  }),
-  ...(ownerState.labelPlacement === 'top' && {
-    flexDirection: 'column-reverse',
-    marginLeft: 16,
-  }),
-  ...(ownerState.labelPlacement === 'bottom' && {
-    flexDirection: 'column',
-    marginLeft: 16,
-  }),
   [`& .${formControlLabelClasses.label}`]: {
     [`&.${formControlLabelClasses.disabled}`]: {
       color: (theme.vars || theme).palette.text.disabled,
     },
   },
+  variants: [
+    {
+      props: { labelPlacement: 'start' },
+      style: {
+        flexDirection: 'row-reverse',
+        marginRight: -11,
+      },
+    },
+    {
+      props: { labelPlacement: 'top' },
+      style: {
+        flexDirection: 'column-reverse',
+      },
+    },
+    {
+      props: { labelPlacement: 'bottom' },
+      style: {
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: ({ labelPlacement }) =>
+        labelPlacement === 'start' || labelPlacement === 'top' || labelPlacement === 'bottom',
+      style: {
+        marginLeft: 16, // used for row presentation of radio/checkbox
+      },
+    },
+  ],
 }));
 
 const AsteriskComponent = styled('span', {

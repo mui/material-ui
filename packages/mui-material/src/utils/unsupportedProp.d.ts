@@ -1,3 +1,3 @@
-import { unstable_unsupportedProp as unsupportedProp } from '@mui/utils';
+import unsupportedProp from '@mui/utils/unsupportedProp';
 
 export default unsupportedProp;

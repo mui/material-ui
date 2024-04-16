@@ -1,6 +1,8 @@
 import { generateUtilityClass } from '../generateUtilityClass';
 import { generateUtilityClasses } from '../generateUtilityClasses';
 
+const COMPONENT_NAME = 'Input';
+
 export interface InputClasses {
   /** Class name applied to the root element. */
   root: string;
@@ -29,10 +31,10 @@ export interface InputClasses {
 export type InputClassKey = keyof InputClasses;
 
 export function getInputUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiInput', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const inputClasses: InputClasses = generateUtilityClasses('MuiInput', [
+export const inputClasses: InputClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'formControl',
   'focused',

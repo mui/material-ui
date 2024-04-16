@@ -65,6 +65,10 @@ declare global {
        */
       toBeVisible(): void;
       /**
+       * Check if an element's [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) is `hidden` or `collapsed`.
+       */
+      toBeHidden(): void;
+      /**
        * Checks if the element is inaccessible.
        *
        * Elements are considered inaccessible if they either:
@@ -163,7 +167,7 @@ chai.use((chaiAPI, utils) => {
     // `CSSStyleDeclaration` is not constructable
     // https://stackoverflow.com/a/52732909/3406963
     // this is not equivalent to the declaration from `getComputedStyle`
-    // e.g. `getComputedStyle` would return a readonly declaration
+    // for example `getComputedStyle` would return a readonly declaration
     // let's hope this doesn't get passed around until it's no longer clear where it comes from
     const declaration = document.createElement('span').style;
 
@@ -318,6 +322,14 @@ chai.use((chaiAPI, utils) => {
   chai.Assertion.addMethod('toBeVisible', function toBeVisible() {
     // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-unused-expressions
     new chai.Assertion(this._obj).to.be.visible;
+  });
+
+  /**
+   * Correct name for `not.to.be.visible`
+   */
+  chai.Assertion.addMethod('toBeHidden', function toBeHidden() {
+    // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-unused-expressions
+    new chai.Assertion(this._obj).not.to.be.visible;
   });
 
   function assertMatchingStyles(

@@ -41,16 +41,15 @@ describe('useSelect', () => {
         required: true,
         value: 'b',
         style: {
-          clip: 'rect(1px, 1px, 1px, 1px)',
-          clipPath: 'inset(50%)',
+          border: 0,
+          clip: 'rect(0 0 0 0)',
           height: '1px',
-          width: '1px',
           margin: '-1px',
           overflow: 'hidden',
           padding: 0,
           position: 'absolute',
-          left: '50%',
-          bottom: 0,
+          whiteSpace: 'nowrap',
+          width: '1px',
         },
       });
     });

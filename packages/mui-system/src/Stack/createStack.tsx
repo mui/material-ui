@@ -2,11 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import {
-  deepmerge,
-  unstable_composeClasses as composeClasses,
-  unstable_generateUtilityClass as generateUtilityClass,
-} from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import composeClasses from '@mui/utils/composeClasses';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import { extendSxProp } from '../styleFunctionSx';

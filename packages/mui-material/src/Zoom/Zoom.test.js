@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import { Transition } from 'react-transition-group';
 import Zoom from '@mui/material/Zoom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Zoom />', () => {
   const { clock, render } = createRenderer();

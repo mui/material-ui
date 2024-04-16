@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import TabPanel, { tabPanelClasses as classes } from '@mui/lab/TabPanel';
 import TabContext from '../TabContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('<TabPanel />', () => {
   const { render } = createRenderer();
@@ -23,14 +24,17 @@ describe('<TabPanel />', () => {
     ],
   }));
 
-  it('renders a [role="tabpanel"]', () => {
-    const { getByTestId } = render(
+  it('renders a [role="tabpanel"] and mounts children', () => {
+    const { getByTestId, queryByTestId } = render(
       <TabContext value="0">
-        <TabPanel data-testid="tabpanel" value="0" />
+        <TabPanel data-testid="tabpanel" value="0">
+          <div data-testid="child" />
+        </TabPanel>
       </TabContext>,
     );
 
     expect(getByTestId('tabpanel')).to.have.attribute('role', 'tabpanel');
+    expect(queryByTestId('child')).to.not.equal(null);
   });
 
   it('is [hidden] when TabPanel#value !== TabContext#value and does not mount children', () => {
@@ -44,6 +48,19 @@ describe('<TabPanel />', () => {
 
     expect(getByTestId('tabpanel')).to.have.property('hidden', true);
     expect(queryByTestId('child')).to.equal(null);
+  });
+
+  it('is [hidden] when TabPanel#value !== TabContext#value but does mount children when keepMounted', () => {
+    const { getByTestId, queryByTestId } = render(
+      <TabContext value="1">
+        <TabPanel data-testid="tabpanel" value="0" keepMounted>
+          <div data-testid="child" />
+        </TabPanel>
+      </TabContext>,
+    );
+
+    expect(getByTestId('tabpanel')).to.have.property('hidden', true);
+    expect(queryByTestId('child')).to.not.equal(null);
   });
 
   it('is accessible when TabPanel#value === TabContext#value', () => {

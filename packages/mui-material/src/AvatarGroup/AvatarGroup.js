@@ -3,17 +3,18 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 
 const SPACINGS = {
   small: -16,
-  medium: null,
+  medium: -8,
 };
+
+const useThemeProps = createUseThemeProps('MuiAlert');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -34,28 +35,15 @@ const AvatarGroupRoot = styled('div', {
     ...styles.root,
   }),
 })(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row-reverse',
   [`& .${avatarClasses.root}`]: {
     border: `2px solid ${(theme.vars || theme).palette.background.default}`,
     boxSizing: 'content-box',
-    marginLeft: -8,
+    marginLeft: 'var(--AvatarGroup-spacing, -8px)',
     '&:last-child': {
       marginLeft: 0,
     },
-  },
-  display: 'flex',
-  flexDirection: 'row-reverse',
-}));
-
-const AvatarGroupAvatar = styled(Avatar, {
-  name: 'MuiAvatarGroup',
-  slot: 'Avatar',
-  overridesResolver: (props, styles) => styles.avatar,
-})(({ theme }) => ({
-  border: `2px solid ${(theme.vars || theme).palette.background.default}`,
-  boxSizing: 'content-box',
-  marginLeft: -8,
-  '&:last-child': {
-    marginLeft: 0,
   },
 }));
 
@@ -117,9 +105,12 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
   const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
-  const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
-
   const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps.additionalAvatar;
+
+  const marginValue =
+    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
+      ? SPACINGS[ownerState.spacing]
+      : -ownerState.spacing || -8;
 
   return (
     <AvatarGroupRoot
@@ -130,28 +121,24 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       {...other}
     >
       {extraAvatars ? (
-        <AvatarGroupAvatar
-          ownerState={ownerState}
+        <Avatar
           variant={variant}
           {...additionalAvatarSlotProps}
           className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
-          style={{ marginLeft, ...additionalAvatarSlotProps?.style }}
+          style={{
+            '--AvatarRoot-spacing': marginValue ? `${marginValue}px` : undefined,
+            ...other.style,
+          }}
         >
           {extraAvatarsElement}
-        </AvatarGroupAvatar>
+        </Avatar>
       ) : null}
       {children
         .slice(0, maxAvatars)
         .reverse()
-        .map((child, index) => {
+        .map((child) => {
           return React.cloneElement(child, {
             className: clsx(child.props.className, classes.avatar),
-            style: {
-              // Consistent with "&:last-child" styling for the default spacing,
-              // we do not apply custom marginLeft spacing on the last child
-              marginLeft: index === maxAvatars - 1 ? undefined : marginLeft,
-              ...child.props.style,
-            },
             variant: child.props.variant || variant,
           });
         })}
@@ -231,6 +218,10 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

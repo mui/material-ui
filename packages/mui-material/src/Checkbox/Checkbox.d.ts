@@ -91,7 +91,7 @@ export interface CheckboxProps
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */
-  size?: OverridableStringUnion<'small' | 'medium', CheckboxPropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium' | 'large', CheckboxPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

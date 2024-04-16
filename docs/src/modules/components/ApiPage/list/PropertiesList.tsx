@@ -2,11 +2,11 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import kebabCase from 'lodash/kebabCase';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 import ExpandableApiItem, {
   ApiItemContaier,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
@@ -129,28 +129,30 @@ export function getHash({
   return `${kebabCase(componentName)}-${sectionName}-${propName}`;
 }
 
-export interface PropDescriptionParams {
+export interface Properties {
+  additionalInfo: string[];
   componentName: string;
-  propName: string;
-  seeMoreDescription?: string;
+  deprecationInfo?: string;
   description?: string;
-  requiresRef?: string;
-  isOptional?: boolean;
-  isRequired?: boolean;
-  isDeprecated?: boolean;
   hooksParameters?: boolean;
   hooksReturnValue?: boolean;
-  deprecationInfo?: string;
-  typeName: string;
+  isDeprecated?: boolean;
+  isOptional?: boolean;
+  isRequired?: boolean;
+  isProPlan?: boolean;
+  isPremiumPlan?: boolean;
   propDefault?: string;
-  additionalInfo: string[];
+  propName: string;
+  requiresRef?: string;
+  seeMoreDescription?: string;
   signature?: string;
   signatureArgs?: { argName: string; argDescription?: string }[];
   signatureReturnDescription?: string;
+  typeName: string;
 }
 
 interface PropertiesListProps {
-  properties: PropDescriptionParams[];
+  properties: Properties[];
   displayOption: 'collapsed' | 'expanded';
 }
 
@@ -169,6 +171,8 @@ export default function PropertiesList(props: PropertiesListProps) {
           isOptional,
           isRequired,
           isDeprecated,
+          isProPlan,
+          isPremiumPlan,
           hooksParameters,
           hooksReturnValue,
           deprecationInfo,
@@ -191,7 +195,21 @@ export default function PropertiesList(props: PropertiesListProps) {
           <StyledApiItem
             key={propName}
             id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
-            title={propName}
+            title={
+              <React.Fragment>
+                {propName}
+                {isProPlan && (
+                  <a href="/x/introduction/licensing/#pro-plan">
+                    <span className="plan-pro" />
+                  </a>
+                )}
+                {isPremiumPlan && (
+                  <a href="/x/introduction/licensing/#premium-plan">
+                    <span className="plan-premium" />
+                  </a>
+                )}
+              </React.Fragment>
+            }
             note={note}
             type="props"
             displayOption={displayOption}

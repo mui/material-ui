@@ -15,7 +15,7 @@ materialDesign: https://m2.material.io/components/cards
 ## Introduction
 
 Cards are surfaces that display content and actions on a single topic.
-The Material UI Card component includes several complementary utility components to handle various use cases:
+The Material UI Card component includes several complementary utility components to handle various use cases:
 
 - Card: a surface-level container for grouping related components.
 - Card Content: the wrapper for the Card content.
@@ -58,10 +58,6 @@ Example of a card using an image to reinforce the content.
 By default, we use the combination of a `<div>` element and a _background image_ to display the media. It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the `component` prop for these use cases:
 
 {{"demo": "ImgMediaCard.js", "bg": true}}
-
-:::warning
-When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
-:::
 
 ## Primary action
 

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import TableContext from './TableContext';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
@@ -122,8 +122,6 @@ Table.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Set the header sticky.
-   *
-   * ⚠️ It doesn't work with IE11.
    * @default false
    */
   stickyHeader: PropTypes.bool,

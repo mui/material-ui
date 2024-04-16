@@ -3,17 +3,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-ignore
 import * as React from 'react';
-import {
-  unstable_createCssVarsProvider as createCssVarsProvider,
-  SxProps,
-  unstable_styleFunctionSx as styleFunctionSx,
-} from '@mui/system';
+import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
+import styleFunctionSx from '@mui/system/styleFunctionSx';
 import experimental_extendTheme, {
   SupportedColorScheme,
   CssVarsTheme,
 } from './experimental_extendTheme';
 import createTypography from './createTypography';
-import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 import THEME_ID from './identifier';
 
 const defaultTheme = experimental_extendTheme();
@@ -38,15 +34,11 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     };
 
     newTheme.unstable_sx = function sx(props: SxProps<CssVarsTheme>) {
-      return styleFunctionSx({
-        sx: props,
-        theme: this,
-      });
+      return styleFunctionSx({ sx: props, theme: this });
     };
 
     return newTheme;
   },
-  excludeVariablesFromRoot,
 });
 
 export {

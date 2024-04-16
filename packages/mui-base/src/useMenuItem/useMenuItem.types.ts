@@ -26,6 +26,12 @@ export interface UseMenuItemParameters {
   label?: string;
   onClick?: React.MouseEventHandler<any>;
   rootRef: React.Ref<Element>;
+  /**
+   * If `true`, the menu item won't receive focus when the mouse moves over it.
+   *
+   * @default false
+   */
+  disableFocusOnHover?: boolean;
 }
 
 export interface UseMenuItemReturnValue {

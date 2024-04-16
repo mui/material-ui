@@ -4,6 +4,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useId as useId,
   unstable_useEnhancedEffect as useEnhancedEffect,
+  visuallyHidden as visuallyHiddenStyle,
 } from '@mui/utils';
 import { useButton } from '../useButton';
 import {
@@ -28,20 +29,6 @@ import { SelectOption } from '../useOption/useOption.types';
 import { selectReducer } from './selectReducer';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
-
-// visually hidden style based on https://webaim.org/techniques/css/invisiblecontent/
-const visuallyHiddenStyle: React.CSSProperties = {
-  clip: 'rect(1px, 1px, 1px, 1px)',
-  clipPath: 'inset(50%)',
-  height: '1px',
-  width: '1px',
-  margin: '-1px',
-  overflow: 'hidden',
-  padding: 0,
-  position: 'absolute',
-  left: '50%',
-  bottom: 0, // to display the native browser validation error at the bottom of the Select.
-};
 
 function defaultFormValueProvider<OptionValue>(
   selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
@@ -391,7 +378,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSelectButtonSlotProps<ExternalProps> => {
     const externalEventHandlers = extractEventHandlers(externalProps);
-    const combinedProps = combineHooksSlotProps(getButtonRootProps, getSelectTriggerProps);
+    const combinedProps = combineHooksSlotProps(getSelectTriggerProps, getButtonRootProps);
 
     return {
       ...externalProps,

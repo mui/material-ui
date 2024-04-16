@@ -11,9 +11,9 @@ import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 const Header = styled('header')(({ theme }) => [
   {
@@ -39,7 +39,6 @@ interface AppHeaderProps {
 
 export default function AppHeader(props: AppHeaderProps) {
   const { gitHubRepository = 'https://github.com/mui' } = props;
-
   const t = useTranslate();
 
   return (

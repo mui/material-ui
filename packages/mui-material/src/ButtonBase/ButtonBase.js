@@ -2,15 +2,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef, refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import refType from '@mui/utils/refType';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled, createUseThemeProps } from '../zero-styled';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
+
+const useThemeProps = createUseThemeProps('MuiButtonBase');
 
 const useUtilityClasses = (ownerState) => {
   const { disabled, focusVisible, focusVisibleClassName, classes } = ownerState;

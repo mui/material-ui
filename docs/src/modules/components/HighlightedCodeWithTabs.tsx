@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
-import { TabsList } from '@mui/base/TabsList';
-import { TabPanel } from '@mui/base/TabPanel';
-import { Tab } from '@mui/base/Tab';
+import { TabsList as TabsListBase } from '@mui/base/TabsList';
+import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
+import { Tab as TabBase } from '@mui/base/Tab';
+import useLocalStorageState from '@mui/utils/useLocalStorageState';
 import HighlightedCode from './HighlightedCode';
 
-const StyledTabList = styled(TabsList)(({ theme }) => ({
+const TabList = styled(TabsListBase)(({ theme }) => ({
   padding: 6,
   display: 'flex',
   border: '1px solid',
@@ -19,7 +20,7 @@ const StyledTabList = styled(TabsList)(({ theme }) => ({
   }),
 }));
 
-const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean } }>(({ ownerState }) => ({
+const TabPanel = styled(TabPanelBase)<{ ownerState: { mounted: boolean } }>(({ ownerState }) => ({
   '& pre': {
     marginTop: -1,
     borderTopLeftRadius: 0,
@@ -30,7 +31,7 @@ const StyledTabPanel = styled(TabPanel)<{ ownerState: { mounted: boolean } }>(({
   },
 }));
 
-const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ownerState }) =>
+const Tab = styled(TabBase)<{ ownerState: { mounted: boolean } }>(({ theme, ownerState }) =>
   theme.unstable_sx({
     p: 0.8,
     border: 'none',
@@ -48,7 +49,7 @@ const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ow
       marginLeft: 0.5,
     },
     ...(ownerState.mounted && {
-      '&.Mui-selected': {
+      '&.base--selected': {
         color: '#FFF',
         '&::after': {
           content: "''",
@@ -77,64 +78,47 @@ type TabsConfig = {
   language: string;
   tab: string;
 };
-export default function HighlightedCodeWithTabs({
-  tabs,
-  storageKey,
-}: {
-  tabs: Array<TabsConfig>;
-  storageKey?: string;
-} & Record<string, any>) {
+
+export default function HighlightedCodeWithTabs(
+  props: {
+    tabs: Array<TabsConfig>;
+    storageKey?: string;
+  } & Record<string, any>,
+) {
+  const { tabs, storageKey } = props;
   const availableTabs = React.useMemo(() => tabs.map(({ tab }) => tab), [tabs]);
-  const [activeTab, setActiveTab] = React.useState(availableTabs[0]);
+  const [activeTab, setActiveTab] = useLocalStorageState(storageKey ?? null, availableTabs[0]);
+  // During hydration, activeTab is null, default to first value.
+  const value = activeTab ?? availableTabs[0];
 
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
-    try {
-      setActiveTab((prev) => {
-        if (storageKey === undefined) {
-          return prev;
-        }
-        const storedValues = localStorage.getItem(storageKey);
-
-        return storedValues && availableTabs.includes(storedValues) ? storedValues : prev;
-      });
-    } catch (error) {
-      // ignore error
-    }
     setMounted(true);
-  }, [availableTabs, storageKey]);
+  }, []);
 
   const handleChange: TabsOwnProps['onChange'] = (event, newValue) => {
     setActiveTab(newValue as string);
-    if (storageKey === undefined) {
-      return;
-    }
-    try {
-      localStorage.setItem(storageKey, newValue as string);
-    } catch (error) {
-      // ignore error
-    }
   };
 
   const ownerState = { mounted };
   return (
-    <Tabs selectionFollowsFocus value={activeTab} onChange={handleChange}>
-      <StyledTabList>
+    <Tabs selectionFollowsFocus value={value} onChange={handleChange}>
+      <TabList>
         {tabs.map(({ tab }) => (
-          <StyledTab ownerState={ownerState} key={tab} value={tab}>
+          <Tab ownerState={ownerState} key={tab} value={tab}>
             {tab}
-          </StyledTab>
+          </Tab>
         ))}
-      </StyledTabList>
+      </TabList>
       {tabs.map(({ tab, language, code }) => (
-        <StyledTabPanel ownerState={ownerState} key={tab} value={tab}>
+        <TabPanel ownerState={ownerState} key={tab} value={tab}>
           <HighlightedCode
             // @ts-ignore
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
           />
-        </StyledTabPanel>
+        </TabPanel>
       ))}
     </Tabs>
   );

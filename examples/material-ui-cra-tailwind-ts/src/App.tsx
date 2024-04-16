@@ -23,7 +23,7 @@ export default function App() {
   return (
     <Container maxWidth="sm">
       <div className="my-4">
-        <Typography variant="h4" component="h1" gutterBottom>
+        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
           Material UI Create React App example with Tailwind CSS in TypeScript
         </Typography>
         <Slider

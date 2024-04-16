@@ -1,15 +1,12 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
-import {
-  PropDescriptionParams,
-  getHash,
-} from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+} from '@mui/docs/branding';
+import { Properties, getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
@@ -120,11 +117,14 @@ function PropDescription({ description }: { description: string }) {
 }
 
 interface PropertiesTableProps {
-  properties: PropDescriptionParams[];
+  properties: Properties[];
 }
 
 export default function PropertiesTable(props: PropertiesTableProps) {
   const { properties } = props;
+
+  const hasDefaultColumn = properties.some((item) => item.propDefault !== undefined);
+
   const t = useTranslate();
   return (
     <StyledTableContainer>
@@ -133,7 +133,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
           <tr>
             <th>Name</th>
             <th>Type</th>
-            <th>Default</th>
+            {hasDefaultColumn && <th>Default</th>}
             <th>Description</th>
           </tr>
         </thead>
@@ -147,6 +147,8 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               requiresRef,
               isOptional,
               isRequired,
+              isProPlan,
+              isPremiumPlan,
               isDeprecated,
               hooksParameters,
               hooksReturnValue,
@@ -164,10 +166,20 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 key={propName}
                 id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
               >
-                <td className="MuiApi-table-item-title">
+                <td className="MuiApi-table-item-title algolia-lvl3">
                   {propName}
                   {isRequired ? '*' : ''}
                   {isOptional ? '?' : ''}
+                  {isProPlan && (
+                    <a href="/x/introduction/licensing/#pro-plan">
+                      <span className="plan-pro" />
+                    </a>
+                  )}
+                  {isPremiumPlan && (
+                    <a href="/x/introduction/licensing/#premium-plan">
+                      <span className="plan-premium" />
+                    </a>
+                  )}
                 </td>
                 <td className="type-column">
                   {
@@ -179,10 +191,16 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                     />
                   }
                 </td>
-                <td className="default-column">
-                  <span className="MuiApi-table-item-default">{propDefault}</span>
-                </td>
-                <td className="MuiPropTable-description-column">
+                {hasDefaultColumn && (
+                  <td className="default-column">
+                    {propDefault ? (
+                      <span className="MuiApi-table-item-default">{propDefault}</span>
+                    ) : (
+                      '-'
+                    )}
+                  </td>
+                )}
+                <td className="MuiPropTable-description-column algolia-content">
                   {description && <PropDescription description={description} />}
                   {seeMoreDescription && (
                     <p

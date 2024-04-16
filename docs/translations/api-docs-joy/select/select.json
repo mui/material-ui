@@ -152,11 +152,11 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "button": "The component that renders the button.",
-    "startDecorator": "The component that renders the start decorator.",
     "endDecorator": "The component that renders the end decorator.",
     "indicator": "The component that renders the indicator.",
-    "listbox": "The component that renders the listbox."
+    "listbox": "The component that renders the listbox.",
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator."
   }
 }

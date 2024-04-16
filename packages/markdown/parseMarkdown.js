@@ -188,6 +188,7 @@ function getContents(markdown) {
     .replace(headerRegExp, '') // Remove header information
     .split(/^{{("(?:demo|component)":.*)}}$/gm) // Split markdown into an array, separating demos
     .flatMap((text) => text.split(/^(<codeblock.*?<\/codeblock>)$/gmsu))
+    .flatMap((text) => text.split(/^(<featureList.*?<\/featureList>)$/gmsu))
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
   return rep;
 }
@@ -212,23 +213,37 @@ function getDescription(markdown) {
 }
 
 function getCodeblock(content) {
-  if (content.startsWith('<codeblock')) {
-    const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
-    const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
-      ([, language, tab, code]) => ({ language, tab, code }),
-    );
-
-    const blocksData = blocks.filter(
-      (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
-    );
-
-    return {
-      type: 'codeblock',
-      data: blocksData,
-      storageKey,
-    };
+  if (!content.startsWith('<codeblock')) {
+    return undefined;
   }
-  return undefined;
+  const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+  const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
+    ([, language, tab, code]) => ({ language, tab, code }),
+  );
+
+  const blocksData = blocks.filter(
+    (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+  );
+
+  return {
+    type: 'codeblock',
+    data: blocksData,
+    storageKey,
+  };
+}
+
+function getFeatureList(content) {
+  if (!content.startsWith('<featureList')) {
+    return undefined;
+  }
+  const lines = content
+    .split('\n')
+    .filter((line) => line.startsWith('- '))
+    .map((line) => line.slice(2));
+
+  return ['<ul class="feature-list">', ...lines.map((line) => `<li>${line}</li>`), '</ul>'].join(
+    '',
+  );
 }
 
 /**
@@ -263,6 +278,8 @@ const noSEOadvantage = [
   'https://www.radix-ui.com/',
   'https://react-spectrum.adobe.com/',
   'https://headlessui.com/',
+  'https://refine.dev/',
+  'https://scaffoldhub.io/',
 ];
 
 /**
@@ -347,11 +364,7 @@ function createRender(context) {
       }
 
       return [
-        `<h${level} id="${hash}">`,
-        headingHtml,
-        `<a aria-labelledby="${hash}" class="anchor-link" href="#${hash}" tabindex="-1">`,
-        '<svg><use xlink:href="#anchor-link-icon" /></svg>',
-        '</a>',
+        `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}<div class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></div></a>`,
         `<button title="Post a comment" class="comment-link" data-feedback-hash="${hash}">`,
         '<svg><use xlink:href="#comment-link-icon" /></svg>',
         `</button>`,
@@ -393,6 +406,7 @@ function createRender(context) {
     renderer.code = (code, infostring, escaped) => {
       // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
       const lang = (infostring || '').match(/\S*/)[0];
+      const title = (infostring || '').match(/title="([^"]*)"/)?.[1];
       const out = prism(code, lang);
       if (out != null && out !== code) {
         escaped = true;
@@ -405,7 +419,7 @@ function createRender(context) {
         return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
       }
 
-      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
+      return `<div class="MuiCode-root">${title ? `<div class="MuiCode-title">${title}</div>` : ''}<pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
       }</code></pre>${[
         '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
@@ -473,6 +487,7 @@ module.exports = {
   getContents,
   getDescription,
   getCodeblock,
+  getFeatureList,
   getHeaders,
   getTitle,
   renderMarkdown,

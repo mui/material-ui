@@ -10,12 +10,13 @@ const testContext: DropdownContextValue = {
   popupId: 'menu-popup',
   registerPopup: () => {},
   registerTrigger: () => {},
-  state: { open: true },
+  state: { open: true, changeReason: null },
   triggerElement: null,
 };
 
 describe('useMenuButton', () => {
   const { render } = createRenderer();
+
   describe('getRootProps', () => {
     it('returns props for root slot', () => {
       function TestMenuButton() {

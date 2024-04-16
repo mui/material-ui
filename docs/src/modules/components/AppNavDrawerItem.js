@@ -6,7 +6,7 @@ import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import standardNavIcons from './AppNavIcons';
 
 const Item = styled(
@@ -24,7 +24,7 @@ const Item = styled(
       color: (theme.vars || theme).palette.text.primary,
     }),
     ...(subheader && {
-      color: (theme.vars || theme).palette.grey[600],
+      color: (theme.vars || theme).palette.text.tertiary,
     }),
   };
 
@@ -62,7 +62,7 @@ const Item = styled(
       ...(subheader && {
         marginTop: theme.spacing(1),
         textTransform: 'uppercase',
-        letterSpacing: '.08rem',
+        letterSpacing: '.1rem',
         fontWeight: theme.typography.fontWeightBold,
         fontSize: theme.typography.pxToRem(11),
         '&::before': {
@@ -101,25 +101,13 @@ const Item = styled(
         color: (theme.vars || theme).palette.primary[600],
         backgroundColor: (theme.vars || theme).palette.primary[50],
         '&:hover': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-              ),
+          backgroundColor: alpha(theme.palette.primary[100], 0.8),
+          color: (theme.vars || theme).palette.primary[700],
           '@media (hover: none)': {
             backgroundColor: theme.vars
               ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
               : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
           },
-        },
-        '&.Mui-focusVisible': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-              ),
         },
         '&::before': {
           background: (theme.vars || theme).palette.primary[400],
@@ -138,19 +126,16 @@ const Item = styled(
           },
         },
       }),
-      '&.Mui-focusVisible': {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-      },
       [theme.breakpoints.up('md')]: {
         paddingTop: 4,
         paddingBottom: 4,
       },
       '& .ItemButtonIcon': {
-        marginRight: '5px',
+        marginRight: '6px',
         color: (theme.vars || theme).palette.primary.main,
       },
       '&:hover .ItemButtonIcon': {
-        color: (theme.vars || theme).palette.text.primary,
+        color: (theme.vars || theme).palette.primary.light,
         '@media (hover: none)': {
           color: (theme.vars || theme).palette.primary.main,
         },
@@ -159,11 +144,15 @@ const Item = styled(
     theme.applyDarkStyles({
       ...color,
       '&::before': {
-        background: alpha(theme.palette.primaryDark[700], 0.6),
+        background: alpha(theme.palette.primaryDark[500], 0.3),
       },
       '&.app-drawer-active': {
         color: (theme.vars || theme).palette.primary[300],
         backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+        '&:hover': {
+          backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+          color: (theme.vars || theme).palette.primary[200],
+        },
         '&::before': {
           background: (theme.vars || theme).palette.primary[400],
         },
@@ -211,7 +200,7 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
 
 export const sxChip = (color) => [
   (theme) => ({
-    ml: 1.5,
+    ml: 1,
     fontSize: theme.typography.pxToRem(10),
     fontWeight: 'semiBold',
     textTransform: 'uppercase',
@@ -220,18 +209,18 @@ export const sxChip = (color) => [
     border: 1,
     borderColor: (theme.vars || theme).palette[color][300],
     bgcolor: alpha(theme.palette[color][100], 0.5),
-    color: (theme.vars || theme).palette[color][700],
+    color: (theme.vars || theme).palette[color][900],
     '&:hover': {
       bgcolor: alpha(theme.palette[color][100], 0.5),
     },
     '& .MuiChip-label': {
-      px: 0.6,
+      px: '4px',
     },
   }),
   (theme) =>
     theme.applyDarkStyles({
       borderColor: alpha(theme.palette[color][800], 0.5),
-      bgcolor: alpha(theme.palette[color][800], 0.5),
+      bgcolor: alpha(theme.palette[color][900], 0.5),
       color: (theme.vars || theme).palette[color][300],
       '&:hover': {
         bgcolor: alpha(theme.palette[color][900], 0.5),
@@ -253,6 +242,7 @@ DeadLink.propTypes = {
 
 export default function AppNavDrawerItem(props) {
   const {
+    beta,
     children,
     depth,
     href,
@@ -273,7 +263,7 @@ export default function AppNavDrawerItem(props) {
   } = props;
   const [open, setOpen] = React.useState(initiallyExpanded);
   const handleClick = (event) => {
-    // Ignore the action if opening the link in a new tab
+    // Ignore click events meant for native link handling, for example open in new tab
     if (samePageLinkNavigation(event)) {
       return;
     }
@@ -330,6 +320,7 @@ export default function AppNavDrawerItem(props) {
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
         {planned && <Chip label="Planned" sx={sxChip('grey')} />}
         {unstable && <Chip label="Preview" sx={sxChip('primary')} />}
+        {beta && <Chip label="Beta" sx={sxChip('primary')} />}
       </Item>
       {expandable ? (
         <Collapse in={open} timeout="auto" unmountOnExit>
@@ -343,6 +334,7 @@ export default function AppNavDrawerItem(props) {
 }
 
 AppNavDrawerItem.propTypes = {
+  beta: PropTypes.bool,
   children: PropTypes.node,
   depth: PropTypes.number.isRequired,
   expandable: PropTypes.bool,

@@ -155,8 +155,8 @@
     }
   },
   "slotDescriptions": {
+    "endDecorator": "The component that renders the end decorator.",
     "root": "The component that renders the root.",
-    "startDecorator": "The component that renders the start decorator.",
-    "endDecorator": "The component that renders the end decorator."
+    "startDecorator": "The component that renders the start decorator."
   }
 }

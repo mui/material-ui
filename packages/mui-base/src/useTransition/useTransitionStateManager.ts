@@ -8,18 +8,6 @@ export type UseTransitionStateManagerReturnValue = {
    */
   requestedEnter: boolean;
   /**
-   * Callback to be called when the element has started entering.
-   */
-  onEntering: () => void;
-  /**
-   * Callback to be called when the element has completely entered.
-   */
-  onEntered: () => void;
-  /**
-   * Callback to be called when the element has started exiting.
-   */
-  onExiting: () => void;
-  /**
    * Callback to be called when the element has completely exited.
    */
   onExited: () => void;
@@ -43,17 +31,13 @@ export function useTransitionStateManager(): UseTransitionStateManagerReturnValu
     throw new Error('Missing transition context');
   }
 
-  const { registerTransition, requestedEnter, onEntering, onEntered, onExiting, onExited } =
-    transitionContext;
+  const { registerTransition, requestedEnter, onExited } = transitionContext;
 
   React.useEffect(() => {
     return registerTransition();
   }, [registerTransition]);
 
   return {
-    onEntering,
-    onEntered,
-    onExiting,
     onExited,
     requestedEnter,
   };

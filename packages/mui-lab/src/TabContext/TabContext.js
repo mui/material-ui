@@ -41,7 +41,7 @@ TabContext.propTypes /* remove-proptypes */ = {
   /**
    * The value of the currently selected `Tab`.
    */
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
 /**

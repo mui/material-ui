@@ -7,8 +7,11 @@ const adBodyImageStyles = (theme) => ({
     overflow: 'hidden',
     border: '1px dashed',
     borderColor: theme.palette.divider,
-    padding: '12px 12px 12px calc(12px + 130px)',
     borderRadius: theme.shape.borderRadius,
+    padding: '8px 8px 8px calc(8px + 130px)',
+    [theme.breakpoints.up('sm')]: {
+      padding: '12px 12px 12px calc(12px + 130px)',
+    },
   },
   imgWrapper: {
     float: 'left',
@@ -24,7 +27,10 @@ const adBodyImageStyles = (theme) => ({
     textDecoration: 'none',
   },
   description: {
-    ...theme.typography.body1,
+    ...theme.typography.body2,
+    [theme.breakpoints.up('sm')]: {
+      ...theme.typography.body1,
+    },
     display: 'block',
     marginLeft: theme.spacing(1.5),
   },

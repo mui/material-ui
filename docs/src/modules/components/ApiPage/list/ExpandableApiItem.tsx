@@ -7,7 +7,7 @@ import { Divider, IconButton, SxProps } from '@mui/material';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 
 type DescriptionType = 'props' | 'classes' | 'CSS' | 'slots';
 
@@ -56,8 +56,8 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       p: { marginBottom: theme.spacing(1.5) },
     },
     '& .MuiApi-item-note': {
-      fontSize: 11,
-      marginLeft: 6,
+      fontSize: 12,
+      marginLeft: 2,
       letterSpacing: '1px',
       textTransform: 'uppercase',
       color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
@@ -155,7 +155,7 @@ type ExpandableApiItemProps = {
   isExtendable?: boolean;
   note?: string;
   sx?: SxProps;
-  title: string;
+  title: string | React.ReactNode;
   type?: DescriptionType;
 };
 

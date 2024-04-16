@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "references": [
     {
-      "path": "../../packages/zero-runtime"
+      "path": "../../packages/pigment-css-react"
     }
   ]
 }

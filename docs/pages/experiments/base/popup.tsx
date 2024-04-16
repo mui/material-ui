@@ -11,7 +11,9 @@ const StyledPopup = styled(BasePopup)`
 const PopupBody = styled('div')`
   padding: 16px;
   background-color: white;
-  box-shadow: 0 0 10px 0 rgb(0 0 0 / 0.05), 0 3px 2px -2px rgb(0 0 0 / 0.1);
+  box-shadow:
+    0 0 10px 0 rgb(0 0 0 / 0.05),
+    0 3px 2px -2px rgb(0 0 0 / 0.1);
   border-radius: 4px;
   font-family: var(--joy-fontFamily-body);
   font-size: var(--joy-fontSize-sm);

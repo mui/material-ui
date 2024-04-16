@@ -23,7 +23,7 @@ export default function IntroDivider() {
           just down the hall.
         </Typography>
       </Box>
-      <Divider light />
+      <Divider />
       <Box sx={{ p: 2 }}>
         <Typography gutterBottom variant="body2">
           Select type

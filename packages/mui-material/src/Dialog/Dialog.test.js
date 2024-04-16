@@ -1,16 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 /**
  * more comprehensive simulation of a user click (mousedown + click)
@@ -190,6 +185,28 @@ describe('<Dialog />', () => {
       clickBackdrop(screen);
       expect(onBackdropClick.callCount).to.equal(1);
       expect(onClose.callCount).to.equal(1);
+    });
+
+    it('calls onBackdropClick when onClick callback also exists', () => {
+      const onBackdropClick = spy();
+      const onClick = spy();
+      render(
+        <Dialog
+          onClick={onClick}
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+        >
+          foo
+        </Dialog>,
+      );
+
+      clickBackdrop(screen);
+      expect(onBackdropClick.callCount).to.equal(1);
+      expect(onClick.callCount).to.equal(1);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {

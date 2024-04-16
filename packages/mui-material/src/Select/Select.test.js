@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import {
-  describeConformance,
-  ErrorBoundary,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -19,6 +12,7 @@ import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -910,6 +904,24 @@ describe('<Select />', () => {
       );
 
       expect(getByRole('combobox')).to.have.text('Ten');
+    });
+
+    it('should notch the outline to accommodate the label when displayEmpty', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { container } = render(
+        <Select value="" label="Age" displayEmpty>
+          <MenuItem value="">None</MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+        </Select>,
+      );
+
+      expect(container.querySelector('legend')).toHaveComputedStyle({
+        maxWidth: '100%',
+      });
     });
   });
 

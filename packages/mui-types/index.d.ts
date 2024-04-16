@@ -67,11 +67,8 @@ type GenerateStringUnion<T> = Extract<
 >;
 
 // https://stackoverflow.com/questions/53807517/how-to-test-if-two-types-are-exactly-the-same
-export type IfEquals<T, U, Y = unknown, N = never> = (<G>() => G extends T ? 1 : 2) extends <
-  G,
->() => G extends U ? 1 : 2
-  ? Y
-  : N;
+export type IfEquals<T, U, Y = unknown, N = never> =
+  (<G>() => G extends T ? 1 : 2) extends <G>() => G extends U ? 1 : 2 ? Y : N;
 
 /**
  * Issues a type error if `Expected` is not identical to `Actual`.
@@ -95,7 +92,7 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
   // If you make any changes to this interface, please make sure to update the
   // `OverridableComponent` type in `mui-material/src/OverridableComponent.d.ts` as well.
   // Also, there are types in Base UI that have a similar shape to this interface
-  // (e.g. SelectType, OptionType, etc.).
+  // (for example SelectType, OptionType, etc.).
   <C extends React.ElementType>(
     props: {
       /**

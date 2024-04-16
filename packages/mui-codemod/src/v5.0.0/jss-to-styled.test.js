@@ -24,6 +24,7 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-styled.test/Anonymous.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       describe('first', () => {
         it('transforms as needed', () => {
           const actual = transform(
@@ -534,6 +535,7 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
     describe('bugs - #28317 export class declaration', () => {
       it('transforms as needed', () => {
         const actual = transform(
