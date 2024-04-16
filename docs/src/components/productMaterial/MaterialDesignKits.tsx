@@ -55,8 +55,8 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<DrawRoundedIcon color="primary" />}
-                title="Figma Design Kit"
-                description="Use with many of the Material UI components with states, variations, colors, typography, and icons directly on Figma. Frequently updated to stay up-to-date with the latest release."
+                title="Design Kit"
+                description="Get many of the Material UI components with states, variations, colors, typography, and icons on your preferred design tool. Frequently updated to stay up-to-date with the latest release."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
@@ -296,6 +296,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     component={Link}
                     variant="outlined"
                     size="small"
+                    color="secondary"
                     href="https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x"
                     startIcon={
                       <img
@@ -310,7 +311,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                       width: { xs: '100%', sm: 'fit-content' },
                     }}
                   >
-                    Preview
+                    Figma Preview
                   </Button>
                   <Button
                     component={Link}
@@ -325,49 +326,39 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                       color: '#FFF !important',
                     }}
                   >
-                    Buy them now
+                    Buy it now
                   </Button>
                 </Box>
               </Frame.Info>
             ) : (
-              <Frame.Info
-                data-mui-color-scheme="dark"
-                sx={{
-                  display: 'flex',
-                  flexDirection: { xs: 'column', sm: 'row' },
-                  alignItems: 'center',
-                  justifyContent: { xs: 'flex-strart', sm: 'space-between' },
-                  gap: { xs: 2, sm: 4 },
-                }}
-              >
-                <div>
-                  <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1 }}>
-                    <Typography variant="body2" fontWeight="bold" gutterBottom>
-                      Available on the Figma Community
-                    </Typography>
-                    <Chip label="Beta release" size="small" color="primary" variant="outlined" />
-                  </Box>
-                  <Typography variant="body2" color="text.secondary">
-                    We&apos;re gathering as many users as possible to try it out and get early
-                    feedback on the following features we can add.
-                  </Typography>
-                </div>
-                <Button
-                  component={Link}
-                  variant="contained"
-                  size="small"
-                  href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
-                  endIcon={<ChevronRightRoundedIcon />}
-                  sx={{
-                    flexShrink: 0,
-                    ml: { xs: 0, sm: 'auto' },
-                    height: 'fit-content',
-                    width: { xs: '100%', sm: 'fit-content' },
-                    color: '#FFF !important',
-                  }}
-                >
-                  Get it now
-                </Button>
+              <Frame.Info data-mui-color-scheme="dark">
+                <Typography variant="body2" fontWeight="bold" gutterBottom>
+                  Get the beta version of Connect now!
+                </Typography>
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  There&apos;s still a lot to do, and we&apos;re looking forward to hearing from all
+                  of you.
+                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5 }}>
+                  <Button
+                    component={Link}
+                    variant="contained"
+                    size="small"
+                    noLinkStyle
+                    href="https://www.figma.com/community/plugin/1336346114713490235/connect"
+                  >
+                    Use Connect now
+                  </Button>
+                  <Button
+                    component={Link}
+                    variant="outlined"
+                    color="secondary"
+                    size="small"
+                    href="/material-ui/design-resources/connect/"
+                  >
+                    View documentation
+                  </Button>
+                </Box>
               </Frame.Info>
             )}
           </Frame>
