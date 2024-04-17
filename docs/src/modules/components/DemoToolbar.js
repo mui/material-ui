@@ -8,7 +8,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import Fade from '@mui/material/Fade';
 import MDButton from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import MDToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
+import MDToggleButton from '@mui/material/ToggleButton';
 import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 import SvgIcon from '@mui/material/SvgIcon';
 import Snackbar from '@mui/material/Snackbar';
