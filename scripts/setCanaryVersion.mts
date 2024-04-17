@@ -8,7 +8,7 @@ import { hideBin } from 'yargs/helpers';
 import chalk from 'chalk';
 
 function formatDate(date: Date) {
-  // yyMMddHHMMSS
+  // yyMMddHHmmss
   return date
     .toISOString()
     .replace(/[-:TZ]/g, '')
