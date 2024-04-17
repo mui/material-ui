@@ -259,9 +259,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
             ? `radial-gradient(100% 100% at 100% 100%, transparent 0, ${alpha(blue[900], 0.3)} 300%)`
             : `radial-gradient(100% 90% at 50% 0, transparent 0, ${alpha(blue[100], 0.3)} 300%)`,
         linearSubtle:
-          mode === 'light'
-            ? `linear-gradient(to bottom right, ${alpha(blue[50], 0.3)} 25%, ${alpha(grey[50], 0.2)} 100%)`
-            : `linear-gradient(to bottom right, ${alpha(blue[900], 0.1)} 25%, ${alpha(blueDark[800], 0.2)} 100%)`,
+          mode === 'dark'
+            ? `linear-gradient(0deg, ${alpha(blue[900], 0.1)}, ${alpha(blueDark[900], 0.5)})`
+            : `linear-gradient(0deg, ${alpha(blue[50], 0.4)}, ${alpha(grey[50], 0.1)})`,
       },
     },
     shape: {

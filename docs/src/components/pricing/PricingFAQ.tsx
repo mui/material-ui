@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -272,19 +272,19 @@ export default function PricingFAQ() {
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
+        <Grid xs={12} md={4}>
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
           {renderItem(3)}
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid xs={12} md={4}>
           {renderItem(4)}
           {renderItem(5)}
           {renderItem(6)}
           {renderItem(7)}
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid xs={12} md={4}>
           <Paper
             variant="outlined"
             sx={(theme) => ({
