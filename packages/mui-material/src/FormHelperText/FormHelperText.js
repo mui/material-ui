@@ -41,7 +41,7 @@ const FormHelperTextRoot = styled('p', {
       ownerState.filled && styles.filled,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.caption,
   textAlign: 'left',
@@ -55,13 +55,23 @@ const FormHelperTextRoot = styled('p', {
   [`&.${formHelperTextClasses.error}`]: {
     color: (theme.vars || theme).palette.error.main,
   },
-  ...(ownerState.size === 'small' && {
-    marginTop: 4,
-  }),
-  ...(ownerState.contained && {
-    marginLeft: 14,
-    marginRight: 14,
-  }),
+  variants: [
+    {
+      props: {
+        size: 'small',
+      },
+      style: {
+        marginTop: 4,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.contained,
+      style: {
+        marginLeft: 14,
+        marginRight: 14,
+      },
+    },
+  ],
 }));
 
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
@@ -112,7 +122,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     >
       {children === ' ' ? (
         // notranslate needed while Google Translate will not fix zero-width space issue
-        <span className="notranslate">&#8203;</span>
+        <span className="notranslate">​</span>
       ) : (
         children
       )}
