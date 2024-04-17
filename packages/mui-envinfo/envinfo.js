@@ -7,6 +7,7 @@ envinfo
     {
       npmPackages: `{${[
         '@mui/*',
+        '@toolpad/*',
         // Peer dependencies
         'react',
         'react-dom',
