@@ -43,7 +43,7 @@ pnpm add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/re
 See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.
 
 :::info
-Google has introduced a new set of icons called [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols), which differs from Material Icons. `@mui/icons-material` only covers the latter, with no plans yet for supporting the former.
+Google has introduced an alternative set of icons called [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols), which differs from Material Icons. `@mui/icons-material` only covers the latter, with no plans yet for supporting the former.
 :::
 
 <hr/>

@@ -2,7 +2,7 @@
 
 This package contains Google's [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to the Material UI [`SvgIcon`](https://mui.com/material-ui/icons/#svgicon) component.
 
-> **Note:** Google has introduced a new set of icons called [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols), which differs from Material Icons. `@mui/icons-material` only covers the latter, with no plans yet for supporting the former.
+> **Note:** Google has introduced an alternative set of icons called [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols), which differs from Material Icons. `@mui/icons-material` only covers the latter, with no plans yet for supporting the former.
 
 ## Installation
 
