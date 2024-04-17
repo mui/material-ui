@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
 import * as fs from 'node:fs/promises';
@@ -29,7 +30,7 @@ async function updateVersion(packagePath: string) {
     newVersion = `${newVersion}-dev.${formatDate(new Date())}`;
     packageJson.version = newVersion;
 
-    await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
+    await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
     console.log(`${chalk.green(`✅ ${packageJson.name}`)}: ${version} → ${newVersion}`);
   } catch (error) {
     console.error(`${chalk.red(`❌ ${packageJsonPath}`)}: ${error.message}`);
