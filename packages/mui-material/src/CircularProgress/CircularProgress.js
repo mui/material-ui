@@ -39,13 +39,22 @@ const circularDashKeyframe = keyframes`
   }
 `;
 
-const rotateAnimation = css`
-  animation: ${circularRotateKeyframe} 1.4s linear infinite;
-`;
+// This implementation is for supporting both Styled-components v4+ and Pigment CSS.
+// A global animation has to be created here for Styled-components v4+ (https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12).
+// which can be done by checking typeof indeterminate1Keyframe !== 'string' (at runtime, Pigment CSS transform keyframes`` to a string).
+const rotateAnimation =
+  typeof circularRotateKeyframe !== 'string'
+    ? css`
+        animation: ${circularRotateKeyframe} 1.4s linear infinite;
+      `
+    : null;
 
-const dashAnimation = css`
-  animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-`;
+const dashAnimation =
+  typeof circularDashKeyframe !== 'string'
+    ? css`
+        animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
+      `
+    : null;
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, color, disableShrink } = ownerState;
@@ -86,13 +95,9 @@ const CircularProgressRoot = styled('span', {
       props: {
         variant: 'indeterminate',
       },
-      style:
-        // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
-        rotateAnimation !== 'string'
-          ? rotateAnimation
-          : {
-              animation: `${circularRotateKeyframe} 1.4s linear infinite`,
-            },
+      style: rotateAnimation || {
+        animation: `${circularRotateKeyframe} 1.4s linear infinite`,
+      },
     },
     ...Object.entries(theme.palette)
       .filter(([, palette]) => palette.main)
@@ -147,15 +152,12 @@ const CircularProgressCircle = styled('circle', {
       },
     },
     {
-      // For Styled-components v4+: https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#12
       props: ({ ownerState }) =>
         ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
-      style:
-        typeof dashAnimation !== 'string'
-          ? dashAnimation
-          : {
-              animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
-            },
+      style: dashAnimation || {
+        // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
+        animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
+      },
     },
   ],
 }));
