@@ -21,21 +21,41 @@ export default function transformer(file, api, options) {
       elementPath.node.openingElement.attributes.splice(index, 1);
     }
   });
-  
+
+  let hasButton = false;
   root.find(j.ObjectProperty).forEach((path) => {
     if (path.parent?.parent?.parent?.parent?.node.key?.name === 'MuiListItem') {
-      // Replace MuiListItem with MuiListItemButton
-      path.parent.parent.parent.parent.node.key = j.identifier('MuiListItemButton');
-  
+      const muiListItemNode = path.parent.parent.parent.parent.node;
+      
       // Remove the 'button' property inside defaultProps
-      const defaultPropsNode = path.parent.parent.parent.parent.node.value.properties.find(prop => prop.key.name === 'defaultProps');
+      const defaultPropsNode = muiListItemNode.value.properties.find(prop => prop.key.name === 'defaultProps');
+      hasButton = defaultPropsNode && defaultPropsNode.value.properties.some(prop => prop.key.name === 'button')
       if (defaultPropsNode && defaultPropsNode.value.type === 'ObjectExpression') {
         defaultPropsNode.value.properties = defaultPropsNode.value.properties.filter(prop => prop.key.name !== 'button');
       }
+  
+      // Check if the 'button' property was present and add a new entry for MuiListItemButton
+      if (hasButton) {  
+        // Copy properties from MuiListItem's defaultProps except 'button'
+        const newButtonProps = defaultPropsNode.value.properties.filter(prop => prop.key.name !== 'button');
+  
+        // Add autoFocus:true to newButtonProps
+        newButtonProps.push(j.property('init', j.identifier('autoFocus'), j.literal(true)));
+  
+        // Create a new ObjectProperty for MuiListItemButton
+        const muiListItemButtonNode = j.objectProperty(
+          j.identifier('MuiListItemButton'),
+          j.objectExpression([
+            j.property('init', j.identifier('defaultProps'), j.objectExpression(newButtonProps)),
+          ])
+        );
+  
+        // Add MuiListItemButton entry to the parent object
+        const parentObject = path.parent.parent.parent.node;
+        parentObject.properties.push(muiListItemButtonNode);
+      }
     }
   });
-  
-  
 
   
   let containsListItem = false;

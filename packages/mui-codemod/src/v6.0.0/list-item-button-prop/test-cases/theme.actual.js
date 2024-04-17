@@ -1,8 +1,8 @@
 fn({
-    MuiListItem: {
-      defaultProps: {
-        button
-      }
+  MuiListItem: {
+    defaultProps: {
+      anotherProp: 'value',
+      button,
     }
-  });
-  
+  }
+});
