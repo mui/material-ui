@@ -1,6 +1,7 @@
 import { OverridableStringUnion } from '@mui/types';
 import {
   Breakpoints,
+  CssContainerQueries,
   Spacing,
   SxProps as SystemSxProps,
   SystemProps as SystemSystemProps,
@@ -98,7 +99,7 @@ export type TextColor =
 
 export type ThemeCssVar = OverridableStringUnion<NormalizeVars<ThemeVars>, ThemeCssVarOverrides>;
 
-export interface Theme extends ThemeScales, RuntimeColorSystem {
+export interface Theme extends ThemeScales, RuntimeColorSystem, CssContainerQueries {
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
   defaultColorScheme: DefaultColorScheme | ExtendedColorScheme;
   focus: Focus;

@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0-alpha.1",
+  "version": "6.0.0-alpha.2",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -98,7 +98,6 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
     "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@babel/plugin-transform-object-assign": "^7.24.1",
     "@babel/plugin-transform-react-constant-elements": "^7.24.1",
     "@babel/plugin-transform-runtime": "^7.24.3",
     "@babel/preset-env": "^7.24.4",
@@ -114,15 +113,15 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
+    "@next/eslint-plugin-next": "^14.2.1",
+    "@octokit/rest": "^20.1.0",
     "@pigment-css/react": "workspace:^",
-    "@next/eslint-plugin-next": "^14.1.4",
-    "@octokit/rest": "^20.0.2",
-    "@playwright/test": "1.42.1",
+    "@playwright/test": "1.43.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.0",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.28",
+    "@types/node": "^18.19.31",
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.55",
     "@types/yargs": "^17.0.32",
@@ -153,7 +152,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-material-ui": "workspace:^",
-    "eslint-plugin-mocha": "^10.4.1",
+    "eslint-plugin-mocha": "^10.4.2",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "fast-glob": "^3.3.2",
@@ -169,7 +168,7 @@
     "karma-webpack": "^5.0.0",
     "lerna": "^8.1.2",
     "lodash": "^4.17.21",
-    "markdownlint-cli2": "^0.12.1",
+    "markdownlint-cli2": "^0.13.0",
     "mocha": "^10.4.0",
     "nx": "^17.3.2",
     "nyc": "^15.1.0",
@@ -186,14 +185,14 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.3.10",
     "tsup": "^8.0.2",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.3",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5",
     "webpack": "^5.90.3",
-    "webpack-bundle-analyzer": "^4.10.1",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@8.15.5",
+  "packageManager": "pnpm@8.15.7",
   "resolutions": {
     "@babel/core": "^7.24.4",
     "@babel/code-frame": "^7.24.2",
@@ -209,10 +208,10 @@
     "@babel/preset-typescript": "^7.24.1",
     "@babel/runtime": "^7.24.4",
     "@babel/types": "^7.24.0",
-    "@definitelytyped/header-parser": "^0.2.8",
+    "@definitelytyped/header-parser": "^0.2.9",
     "@definitelytyped/typescript-versions": "^0.1.1",
-    "@definitelytyped/utils": "^0.1.5",
-    "@types/node": "^18.19.28",
+    "@definitelytyped/utils": "^0.1.6",
+    "@types/node": "^18.19.31",
     "@types/react": "18.2.55",
     "@types/react-dom": "18.2.19",
     "cross-fetch": "^4.0.0"
@@ -227,5 +226,10 @@
     ],
     "sourceMap": false,
     "instrument": false
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@wyw-in-js/transform@0.5.0": "patches/@wyw-in-js__transform@0.5.0.patch"
+    }
   }
 }

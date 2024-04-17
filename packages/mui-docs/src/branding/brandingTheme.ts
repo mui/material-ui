@@ -821,7 +821,7 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme }) => ({
             borderColor: (theme.vars || theme).palette.grey[100],
             ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primaryDark[700], 0.8),
+              borderColor: alpha(theme.palette.primaryDark[500], 0.3),
             }),
           }),
         },
@@ -905,7 +905,7 @@ export function getThemedComponents(): ThemeOptions {
             ...(variant === 'outlined' &&
               color === 'primary' && {
                 borderColor: (theme.vars || theme).palette.primary[100],
-                backgroundColor: (theme.vars || theme).palette.primary[50],
+                backgroundColor: alpha(theme.palette.primary[100], 0.2),
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[300],
                   borderColor: alpha(theme.palette.primary[500], 0.2),

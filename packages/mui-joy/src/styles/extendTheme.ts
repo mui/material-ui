@@ -10,6 +10,7 @@ import {
   unstable_styleFunctionSx as styleFunctionSx,
   SxConfig,
 } from '@mui/system';
+import cssContainerQueries from '@mui/system/cssContainerQueries';
 import { unstable_applyStyles as applyStyles } from '@mui/system/createTheme';
 import { prepareTypographyVars } from '@mui/system/cssVars';
 import { createUnarySpacing } from '@mui/system/spacing';
@@ -560,7 +561,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ? deepmerge(defaultScales, scalesInput)
     : defaultScales;
 
-  const theme = {
+  let theme = {
     colorSchemes,
     defaultColorScheme: 'light',
     ...mergedScales,
@@ -607,6 +608,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     spacing: getSpacingVal(spacing),
     typography: prepareTypographyVars(mergedScales.typography),
   } as unknown as Theme & { attribute: string; colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
+  theme = cssContainerQueries(theme);
 
   /**
    Color channels generation

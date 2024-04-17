@@ -10,6 +10,7 @@ describe('extendTheme', () => {
       expect([
         'attribute',
         'breakpoints',
+        'containerQueries',
         'colorSchemeSelector',
         'components',
         'colorSchemes',
