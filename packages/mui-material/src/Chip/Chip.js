@@ -383,9 +383,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     if (event.currentTarget === event.target) {
       if (onDelete && isDeleteKeyboardEvent(event)) {
         onDelete(event);
-      } else if (event.key === 'Escape' && chipRef.current) {
-        // To let Chip have the focus back
-        // chipRef.current.blur();
       }
     }
 
