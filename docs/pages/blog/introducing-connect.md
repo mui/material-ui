@@ -1,7 +1,7 @@
 ---
 title: 'Introducing Connect: a Figma plugin that exports Material UI code'
 description: Connect is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit.
-date: 2024-04-16T00:00:00.000Z
+date: 2024-04-18T00:00:00.000Z
 authors: ['danilo-leal', 'DavidCnoops']
 tags: ['Connect', 'Material UI', 'Product']
 manualCard: true
