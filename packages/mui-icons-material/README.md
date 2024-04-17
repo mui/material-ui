@@ -35,4 +35,4 @@ To update the `@mui/icons-material` package with the Material Icons set, run the
 3. In the root of the Material UI repo, run `pnpm docs:mdicons:synonyms`
 4. If the number of icons changes significantly, edit the icons/icons.md and material-icons/material-icons.md under docs/data/material/components and update the numbers.
 
-We roughly run them quarterly to make sure the package is up-to-date with the source.
+We run them roughly quarterly to make sure the package is up-to-date with the source.
