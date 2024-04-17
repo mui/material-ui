@@ -1,24 +1,36 @@
+// @ts-check
 import formatUtil from 'format-util';
-import type { Func } from 'mocha';
 
-interface MochaHooks {
-  beforeAll: Func[];
-  afterAll: Func[];
-  beforeEach: Func[];
-  afterEach: Func[];
-}
-
-type CallsType = [stack: string, message: string];
+/**
+ * @typedef {(this: import('mocha').Context) => void} MochaHook
+ *
+ * @typedef {object} MochaHooks
+ * @property {MochaHook[]} beforeAll
+ * @property {MochaHook[]} afterAll
+ * @property {MochaHook[]} beforeEach
+ * @property {MochaHook[]} afterEach
+ *
+ * @typedef {object} Mocha -- custom definition for `const mocha = require('mocha')`
+ * @property {import('mocha').utils} utils
+ */
 
 const isKarma = Boolean(process.env.KARMA);
 
 /**
  * Polyfills for https://github.com/facebook/react/issues/19416.
+ * @param {[stack: string, message: string][]} consoleCalls
+ * @returns {[stack: string, message: string][]}
  */
-function dedupeActWarningsByComponent(consoleCalls: CallsType[]) {
-  const dedupedCalls: CallsType[] = [];
+function dedupeActWarningsByComponent(consoleCalls) {
+  /**
+   * @type {[stack: string, message: string][]}
+   */
+  const dedupedCalls = [];
 
-  let updatingComponentOutsideAct: string | undefined;
+  /**
+   * @type {string | undefined}
+   */
+  let updatingComponentOutsideAct;
 
   consoleCalls.forEach(([stack, message]) => {
     const componentName = message.match(
@@ -36,21 +48,34 @@ function dedupeActWarningsByComponent(consoleCalls: CallsType[]) {
   return dedupedCalls;
 }
 
-function createUnexpectedConsoleMessagesHooks(
-  mocha: typeof Mocha,
-  methodName: 'warn' | 'error',
-  expectedMatcher: string,
-) {
-  const mochaHooks: MochaHooks = {
+/**
+ * @param {Mocha} Mocha
+ * @param {'warn' | 'error'} methodName
+ * @param {string} expectedMatcher
+ * @returns MochaHooks
+ */
+function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher) {
+  /**
+   * @type {MochaHooks}
+   */
+  const mochaHooks = {
     beforeAll: [],
     afterAll: [],
     beforeEach: [],
     afterEach: [],
   };
-  const unexpectedCalls: CallsType[] = [];
-  const stackTraceFilter = mocha.utils.stackTraceFilter();
+  /**
+   * @type {[stack: string, message: string][]}
+   */
+  const unexpectedCalls = [];
+  const stackTraceFilter = Mocha.utils.stackTraceFilter();
 
-  function logUnexpectedConsoleCalls(format: string, ...args: unknown[]) {
+  /**
+   * @param {string} format
+   * @param  {...unknown} args
+   * @returns {void}
+   */
+  function logUnexpectedConsoleCalls(format, ...args) {
     const message = formatUtil(format, ...args);
 
     // Safe stack so that test dev can track where the unexpected console message was created.
@@ -103,13 +128,19 @@ function createUnexpectedConsoleMessagesHooks(
     ]);
   }
 
-  let originalConsoleMethod: Console['warn' | 'error'];
+  /**
+   * @type {Console['warn' | 'error']}
+   */
+  let originalConsoleMethod;
   mochaHooks.beforeAll.push(function registerConsoleStub() {
+    // eslint-disable-next-line no-console
     originalConsoleMethod = console[methodName];
+    // eslint-disable-next-line no-console
     console[methodName] = logUnexpectedConsoleCalls;
   });
 
   mochaHooks.afterAll.push(function registerConsoleStub() {
+    // eslint-disable-next-line no-console
     console[methodName] = originalConsoleMethod;
   });
 
@@ -122,6 +153,7 @@ function createUnexpectedConsoleMessagesHooks(
     );
     unexpectedCalls.length = 0;
 
+    // eslint-disable-next-line no-console
     if (console[methodName] !== logUnexpectedConsoleCalls) {
       throw new Error(`Did not tear down spy or stub of console.${methodName} in your test.`);
     }
@@ -158,9 +190,13 @@ function createUnexpectedConsoleMessagesHooks(
   return mochaHooks;
 }
 
-export function createMochaHooks(mocha: typeof Mocha): MochaHooks {
-  const warnHooks = createUnexpectedConsoleMessagesHooks(mocha, 'warn', 'toWarnDev');
-  const errorHooks = createUnexpectedConsoleMessagesHooks(mocha, 'error', 'toErrorDev');
+/**
+ * @param {Mocha} Mocha
+ * @returns MochaHooks
+ */
+function createMochaHooks(Mocha) {
+  const warnHooks = createUnexpectedConsoleMessagesHooks(Mocha, 'warn', 'toWarnDev');
+  const errorHooks = createUnexpectedConsoleMessagesHooks(Mocha, 'error', 'toErrorDev');
 
   return {
     beforeAll: [...warnHooks.beforeAll, ...errorHooks.beforeAll],
@@ -169,3 +205,6 @@ export function createMochaHooks(mocha: typeof Mocha): MochaHooks {
     afterEach: [...warnHooks.afterEach, ...errorHooks.afterEach],
   };
 }
+
+// eslint-disable-next-line import/prefer-default-export
+export { createMochaHooks };

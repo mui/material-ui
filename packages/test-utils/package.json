@@ -14,7 +14,7 @@
     "./KarmaReporterReactProfiler": "./src/KarmaReporterReactProfiler.js",
     "./setupBabel": "./src/setupBabel.js",
     "./setupBabelPlaywright": "./src/setupBabelPlaywright.js",
-    "./setupJSDOM": "./src/setupJSDOM.ts",
+    "./setupJSDOM": "./src/setupJSDOM.js",
     "./setupKarma": "./src/setupKarma.js"
   },
   "dependencies": {
