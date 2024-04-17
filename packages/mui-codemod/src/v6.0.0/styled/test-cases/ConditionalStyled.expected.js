@@ -22,14 +22,14 @@ const LinearProgressBar1 = styled('span', {
         variant,
         ownerState
       }
-    ) => variant === 'buffer' && ownerState.variant !== 'normal',
+    ) => variant === 'buffer' && ownerState.color !== 'normal',
     style: {
       backgroundColor: 'currentColor'
     }
   }, {
     props: {
       variant: 'buffer',
-      variant: 'normal'
+      color: 'normal'
     },
     style: {
       backgroundColor: (theme.vars || theme).palette[ownerState.color].light

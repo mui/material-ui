@@ -16,7 +16,7 @@ const LinearProgressBar1 = styled('span', {
 })(({ ownerState, theme }) => ({
   ...(ownerState.variant === 'buffer' && {
     backgroundColor:
-      ownerState.variant !== 'normal'
+      ownerState.color !== 'normal'
         ? 'currentColor'
         : (theme.vars || theme).palette[ownerState.color].light,
     '&:hover': {
