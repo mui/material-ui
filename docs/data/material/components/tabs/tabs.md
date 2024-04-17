@@ -34,7 +34,7 @@ import Tab from '@mui/material/Tab';
 
 ## Experimental API
 
-`@mui/lab` offers utility components that inject props to implement accessible tabs
+`@mui/tab` offers utility components that inject props to implement accessible tabs
 following [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/):
 
 - `<TabList />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
