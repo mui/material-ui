@@ -17,7 +17,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       overflow: 'auto',
       marginTop: -1,
       backgroundColor: 'hsl(210, 35%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
-      border: `1px solid ${(theme.vars || theme).palette.divider}`,
+      border: 0,
       colorScheme: 'dark',
       '&:hover': {
         boxShadow: `0 0 0 3px ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
@@ -29,7 +29,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
         borderRadius: '0 0 12px 12px',
       },
       ...theme.applyDarkStyles({
-        borderTop: 1,
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
       }),
     },
     '& pre': {
