@@ -109,6 +109,7 @@ const RatingRoot = styled('span', {
       },
     },
     {
+      // TODO v6: use the .Mui-readOnly global state class
       props: ({ ownerState }) => ownerState.readOnly,
       style: {
         pointerEvents: 'none',
