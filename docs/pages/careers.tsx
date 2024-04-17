@@ -467,7 +467,13 @@ export default function Careers() {
                     href={routeUrl}
                     noLinkStyle
                     variant="outlined"
-                    sx={{ p: 2, width: '100%', flexGrow: 1 }}
+                    sx={{
+                      p: 2,
+                      width: '100%',
+                      flexGrow: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
                   >
                     <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
                       {title}
@@ -475,7 +481,12 @@ export default function Careers() {
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                       {description}
                     </Typography>
-                    <Typography variant="body2" fontWeight="bold" color="primary">
+                    <Typography
+                      variant="body2"
+                      fontWeight="bold"
+                      color="primary"
+                      sx={{ mt: 'auto' }}
+                    >
                       Learn more{' '}
                       <KeyboardArrowRightRounded
                         fontSize="small"

@@ -44,6 +44,7 @@ const ALLOWED_TAGS = [
   'MUI X',
   'MUI System',
   'Toolpad',
+  'Connect',
 ];
 
 export const getAllBlogPosts = () => {
