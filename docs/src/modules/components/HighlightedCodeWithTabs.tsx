@@ -114,6 +114,8 @@ export default function HighlightedCodeWithTabs(
   const { tabs, storageKey } = props;
   const availableTabs = React.useMemo(() => tabs.map(({ tab }) => tab), [tabs]);
   const [activeTab, setActiveTab] = useLocalStorageState(storageKey ?? null, availableTabs[0]);
+  // During hydration, activeTab is null, default to first value.
+  const defaultizedActiveTab = activeTab ?? availableTabs[0];
 
   const [mounted, setMounted] = React.useState(false);
 
@@ -127,7 +129,7 @@ export default function HighlightedCodeWithTabs(
 
   const ownerState = { mounted };
   return (
-    <Tabs selectionFollowsFocus value={activeTab} onChange={handleChange}>
+    <Tabs selectionFollowsFocus value={defaultizedActiveTab} onChange={handleChange}>
       <CodeTabList ownerState={ownerState}>
         {tabs.map(({ tab }) => (
           <CodeTab ownerState={ownerState} key={tab} value={tab}>

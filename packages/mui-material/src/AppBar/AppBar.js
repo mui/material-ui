@@ -70,7 +70,6 @@ const AppBarRoot = styled(Paper, {
     {
       props: { position: 'sticky' },
       style: {
-        // ⚠️ sticky is not supported by IE11.
         position: 'sticky',
         zIndex: (theme.vars || theme).zIndex.appBar,
         top: 0,

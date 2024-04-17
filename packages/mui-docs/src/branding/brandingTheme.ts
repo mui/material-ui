@@ -905,7 +905,7 @@ export function getThemedComponents(): ThemeOptions {
             ...(variant === 'outlined' &&
               color === 'primary' && {
                 borderColor: (theme.vars || theme).palette.primary[100],
-                backgroundColor: (theme.vars || theme).palette.primary[50],
+                backgroundColor: alpha(theme.palette.primary[100], 0.2),
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[300],
                   borderColor: alpha(theme.palette.primary[500], 0.2),

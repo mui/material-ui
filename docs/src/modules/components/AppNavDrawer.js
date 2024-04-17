@@ -261,6 +261,7 @@ function reduceChildRoutes(context) {
         newFeature={page.newFeature}
         planned={page.planned}
         unstable={page.unstable}
+        beta={page.beta}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -294,6 +295,7 @@ function reduceChildRoutes(context) {
         newFeature={page.newFeature}
         planned={page.planned}
         unstable={page.unstable}
+        beta={page.beta}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
