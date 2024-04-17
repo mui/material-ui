@@ -69,15 +69,10 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
   theme.unstable_sx({
     [`& .${toggleButtonGroupClasses.grouped}`]: {
       '&:not(:first-of-type)': {
-        marginLeft: 0.8,
-        borderLeft: '1px solid',
-        borderLeftColor: 'divider',
-        borderTopLeftRadius: 999,
-        borderBottomLeftRadius: 999,
+        pr: '2px', // a nudge for optical alignment
       },
       '&:not(:last-of-type)': {
-        borderTopRightRadius: 999,
-        borderBottomRightRadius: 999,
+        pl: '2px', // a nudge for optical alignment
       },
     },
   }),
@@ -85,7 +80,7 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
 
 const Button = styled(MDButton)(({ theme }) => ({
   height: 26,
-  padding: '6px 8px',
+  padding: '6px 8px 8px 8px',
   flexShrink: 0,
   borderRadius: 999,
   border: '1px solid',
@@ -131,29 +126,14 @@ const MenuItem = styled(MDMenuItem)(({ theme }) => ({
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
     height: 26,
-    padding: theme.spacing(0, 1, 0.1, 1),
+    width: 38,
+    p: 0,
     fontSize: theme.typography.pxToRem(13),
-    borderColor: 'grey.200',
     borderRadius: '999px',
     '&.Mui-disabled': {
-      opacity: 0.5,
+      opacity: 0.8,
+      cursor: 'not-allowed',
     },
-    [`&.${toggleButtonClasses.selected}:hover`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
-      '@media (hover: none)': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      },
-    },
-  }),
-  theme.applyDarkStyles({
-    borderColor: theme.palette.primaryDark[700],
   }),
 ]);
 
@@ -526,7 +506,7 @@ export default function DemoToolbar(props) {
           </Button>
         )}
         <Fade in={codeOpen}>
-          <Box sx={{ display: 'flex', height: 40 }}>
+          <Box sx={{ display: 'flex' }}>
             {hasNonSystemDemos && (
               <Divider orientation="vertical" variant="middle" sx={{ mx: 1, height: '24px' }} />
             )}
