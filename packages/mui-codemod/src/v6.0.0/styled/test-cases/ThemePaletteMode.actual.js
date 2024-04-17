@@ -1,5 +1,6 @@
 const Test = styled('div')(({ theme }) => ({
   color: theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
+  background: `linear-gradient(45deg, ${theme.palette.mode === 'dark' ? theme.palette.primary[400] : theme.palette.primary[600]} 30%, ${theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500]} 90%})`,
 }));
 
 const StyledPopper = styled(Popper)(({ theme }) => ({
@@ -15,35 +16,43 @@ const StyledPopper = styled(Popper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#1c2128',
 }));
 
-const StyledInput = styled(InputBase)(({ theme }) => ({
-  padding: 10,
-  width: '100%',
-  borderBottom: `1px solid ${theme.palette.mode === 'light' ? '#eaecef' : '#30363d'}`,
-  '& input': {
-    borderRadius: 4,
-    backgroundColor: '#0d1117',
-    padding: 8,
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    border: `1px solid ${'#30363d'}`,
-    fontSize: 14,
-    '&:focus': {
-      boxShadow: `0px 0px 0px 3px ${'rgb(12, 45, 107)'}`,
-      borderColor: '#388bfd',
+const AntSwitch = styled(Switch)(({ theme }) => ({
+  width: 28,
+  height: 16,
+  padding: 0,
+  display: 'flex',
+  '&:active': {
+    '& .MuiSwitch-thumb': {
+      width: 15,
+    },
+    '& .MuiSwitch-switchBase.Mui-checked': {
+      transform: 'translateX(9px)',
     },
   },
-  variants: [
-    {
-      props: {},
-      style: theme.applyStyles('light', {
-        '& input': {
-          backgroundColor: '#fff',
-          border: `1px solid ${'#eaecef'}`,
-          '&:focus': {
-            boxShadow: `0px 0px 0px 3px ${'rgba(3, 102, 214, 0.3)'}`,
-            borderColor: '#0366d6',
-          },
-        },
-      }),
+  '& .MuiSwitch-switchBase': {
+    padding: 2,
+    '&.Mui-checked': {
+      transform: 'translateX(12px)',
+      color: '#fff',
+      '& + .MuiSwitch-track': {
+        opacity: 1,
+        backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#1890ff',
+      },
     },
-  ],
+  },
+  '& .MuiSwitch-thumb': {
+    boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    transition: theme.transitions.create(['width'], {
+      duration: 200,
+    }),
+  },
+  '& .MuiSwitch-track': {
+    borderRadius: 16 / 2,
+    opacity: 1,
+    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+    boxSizing: 'border-box',
+  },
 }));

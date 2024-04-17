@@ -317,7 +317,9 @@ export default function styledV6(file, api, options) {
 
       function recurseObjectExpression(data) {
         if (data.node.type === 'ObjectExpression') {
-          data.node.properties.forEach((prop) => {
+          const modeStyles = {}; // to collect styles from `theme.palette.mode === '...'`
+          const length = data.node.properties.length;
+          data.node.properties.forEach((prop, index) => {
             if (prop.type === 'ObjectProperty') {
               recurseObjectExpression({
                 ...data,
@@ -327,9 +329,22 @@ export default function styledV6(file, api, options) {
                 replaceValue: (newValue) => {
                   prop.value = newValue;
                 },
+                modeStyles,
               });
             } else {
               recurseObjectExpression({ ...data, node: prop, parentNode: data.node });
+            }
+            if (index === length - 1 && Object.keys(modeStyles).length) {
+              Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
+                data.node.properties.push(
+                  j.spreadElement(
+                    j.callExpression(
+                      j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')),
+                      [j.stringLiteral(mode), j.objectExpression(objectStyles)],
+                    ),
+                  ),
+                );
+              });
             }
           });
         }
@@ -439,19 +454,47 @@ export default function styledV6(file, api, options) {
                 data.node.consequent.type !== 'ObjectExpression' &&
                 data.node.alternate.type !== 'ObjectExpression'
               ) {
-                data.parentNode.properties.push(
-                  j.spreadElement(
-                    j.callExpression(
-                      j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')),
-                      [
-                        data.node.test.right,
-                        j.objectExpression([j.objectProperty(data.key, data.node.consequent)]),
-                      ],
-                    ),
-                  ),
-                );
-                data.replaceValue(data.node.alternate);
+                if (data.modeStyles) {
+                  if (!data.modeStyles[data.node.test.right.value]) {
+                    data.modeStyles[data.node.test.right.value] = [];
+                  }
+                  data.modeStyles[data.node.test.right.value].push(
+                    j.objectProperty(data.key, data.node.consequent),
+                  );
+                }
+                data.replaceValue?.(data.node.alternate);
               }
+            }
+          }
+        }
+        if (data.node.type === 'TemplateLiteral') {
+          if (data.parentNode?.type === 'ObjectExpression') {
+            const modeStyles = {};
+            data.node.expressions.forEach((expression, index) => {
+              recurseObjectExpression({
+                ...data,
+                node: expression,
+                parentNode: data.parentNode,
+                key: data.key,
+                replaceValue: (newValue) => {
+                  data.node.expressions[index] = newValue;
+                },
+                modeStyles,
+              });
+            });
+            if (data.modeStyles) {
+              Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
+                const clonedNode = {
+                  ...data.node,
+                  expressions: data.node.expressions.map((expression) => ({ ...expression })),
+                };
+                clonedNode.expressions = objectStyles.map((item) => item.value);
+
+                if (!data.modeStyles[mode]) {
+                  data.modeStyles[mode] = [];
+                }
+                data.modeStyles[mode].push(j.objectProperty(data.key, clonedNode));
+              });
             }
           }
         }
