@@ -122,6 +122,24 @@ export default function styledV6(file, api, options) {
 
   /**
    *
+   * @param {{ properties: any[] }} node
+   * @param {Record<string, any[]>} modeStyles
+   */
+  function appendPaletteModeStyles(node, modeStyles) {
+    Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
+      node.properties.push(
+        j.spreadElement(
+          j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')), [
+            j.stringLiteral(mode),
+            j.objectExpression(objectStyles),
+          ]),
+        ),
+      );
+    });
+  }
+
+  /**
+   *
    * @param {import('ast-types').namedTypes.LogicalExpression | import('ast-types').namedTypes.BinaryExpression | import('ast-types').namedTypes.UnaryExpression | import('ast-types').namedTypes.MemberExpression} node
    */
   function buildProps(node) {
@@ -318,8 +336,7 @@ export default function styledV6(file, api, options) {
       function recurseObjectExpression(data) {
         if (data.node.type === 'ObjectExpression') {
           const modeStyles = {}; // to collect styles from `theme.palette.mode === '...'`
-          const length = data.node.properties.length;
-          data.node.properties.forEach((prop, index) => {
+          data.node.properties.forEach((prop) => {
             if (prop.type === 'ObjectProperty') {
               recurseObjectExpression({
                 ...data,
@@ -334,19 +351,8 @@ export default function styledV6(file, api, options) {
             } else {
               recurseObjectExpression({ ...data, node: prop, parentNode: data.node });
             }
-            if (index === length - 1 && Object.keys(modeStyles).length) {
-              Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
-                data.node.properties.push(
-                  j.spreadElement(
-                    j.callExpression(
-                      j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')),
-                      [j.stringLiteral(mode), j.objectExpression(objectStyles)],
-                    ),
-                  ),
-                );
-              });
-            }
           });
+          appendPaletteModeStyles(data.node, modeStyles);
         }
         if (data.node.type === 'SpreadElement') {
           if (data.node.argument.type === 'LogicalExpression') {
@@ -361,6 +367,7 @@ export default function styledV6(file, api, options) {
               style: data.node.argument.right,
             };
 
+            const modeStyles = {}; // to collect styles from `theme.palette.mode === '...'`
             variant.style.properties.forEach((prop) => {
               if (prop.type === 'ObjectProperty') {
                 recurseObjectExpression({
@@ -372,6 +379,7 @@ export default function styledV6(file, api, options) {
                   replaceValue: (newValue) => {
                     prop.value = newValue;
                   },
+                  modeStyles,
                 });
               } else {
                 recurseObjectExpression({
@@ -382,6 +390,7 @@ export default function styledV6(file, api, options) {
                 });
               }
             });
+            appendPaletteModeStyles(variant.style, modeStyles);
             variants.push(buildObjectAST(variant));
             removeProperty(data.parentNode, data.node);
           }

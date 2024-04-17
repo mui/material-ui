@@ -153,5 +153,29 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    describe('theme palette mode and variants styled-v6', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/VariantAndModeStyled.actual.js') },
+          { jscodeshift },
+          { printOptions: { trailingComma: false } },
+        );
+
+        const expected = read('./test-cases/VariantAndModeStyled.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/VariantAndModeStyled.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/VariantAndModeStyled.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
   });
 });
