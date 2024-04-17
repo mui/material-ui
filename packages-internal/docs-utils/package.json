@@ -19,8 +19,8 @@
     "typescript": "tsc -b tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
-    "canary:set-version": "tsx ../../scripts/setDevVersion.mts packages-internal/docs-utils",
-    "canary:publish": "pnpm build && pnpm publish --tag canary --registry=\"https://registry.npmjs.org/:_authToken=${NPM_TOKEN}\""
+    "canary:set-version": "tsx ../../scripts/setCanaryVersion.mts packages-internal/docs-utils",
+    "canary:publish": "pnpm build && pnpm publish --tag canary --no-git-checks"
   },
   "dependencies": {
     "rimraf": "^5.0.5",

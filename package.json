@@ -81,7 +81,10 @@
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
     "watch:zero": "nx run-many -t watch --projects=\"@pigmentcss/*\" --parallel",
-    "canary:release": "pnpm --filter \"...[origin/next]\" run --recursive canary:set-version && pnpm --filter \"...[origin/next]\" run --recursive canary:publish"
+    "canary:release": "pnpm:canary:release:ensure-clean && canary:release:set-version && canary:release:publish",
+    "canary:release:ensure-clean": "(git diff --quiet && git diff --cached --quiet) || (echo 'There are uncommitted changes.' && exit 1)",
+    "canary:release:set-version": "pnpm --filter \"...[upstream/next]\" run --recursive canary:set-version",
+    "canary:release:publish": "pnpm --filter \"...[upstream/next]\" run --recursive canary:publish"
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
