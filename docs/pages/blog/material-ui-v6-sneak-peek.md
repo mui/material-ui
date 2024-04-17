@@ -119,9 +119,9 @@ or refer to the CSS variable directly:
 }
 ```
 
-## Revamping the templates
+## Revamping the free templates
 
-We are upgrading the [templates](https://mui.com/material-ui/getting-started/templates/) to make them look amazing for your next project. Here are some sneak peeks:
+We are upgrading the [free templates](https://mui.com/material-ui/getting-started/templates/) to make them look amazing for your next project. Here are some sneak peeks:
 
 <!-- Add images -->
 
