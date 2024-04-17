@@ -17,7 +17,9 @@
   },
   "scripts": {
     "release:publish": "pnpm publish --tag latest",
-    "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
+    "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
+    "canary:set-version": "tsx ../../scripts/setCanaryVersion.mts",
+    "canary:publish": "pnpm build && pnpm publish --tag canary --no-git-checks"
   },
   "dependencies": {
     "@babel/runtime": "^7.24.4",
@@ -27,7 +29,8 @@
   },
   "devDependencies": {
     "@types/chai": "^4.3.14",
-    "chai": "^4.4.1"
+    "chai": "^4.4.1",
+    "tsx": "^4.7.2"
   },
   "publishConfig": {
     "access": "public"
