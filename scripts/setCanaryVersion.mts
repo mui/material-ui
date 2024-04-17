@@ -3,9 +3,8 @@
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import yargs from 'yargs';
-import chalk from 'chalk';
 import { hideBin } from 'yargs/helpers';
-import { getWorkspaceRoot } from './utils.mjs';
+import chalk from 'chalk';
 
 function formatDate(date: Date) {
   // yyMMddHHMMSS
@@ -15,8 +14,8 @@ function formatDate(date: Date) {
     .slice(2, 14);
 }
 
-async function updateVersion(packageName: string) {
-  const packageJsonPath = path.join(getWorkspaceRoot(), packageName, 'package.json');
+async function updateVersion(packagePath: string) {
+  const packageJsonPath = path.join(packagePath, 'package.json');
   try {
     const packageJson = JSON.parse(await fs.readFile(packageJsonPath, { encoding: 'utf8' }));
 
@@ -39,22 +38,21 @@ async function updateVersion(packageName: string) {
 }
 
 interface HandlerArgv {
-  package: string;
+  packagePath: string;
 }
 
 yargs(hideBin(process.argv))
   .command<HandlerArgv>(
-    '$0 <package>',
+    '$0 [packagePath]',
     'Update package version to *-dev.<timestamp>',
     (command) => {
-      return command.positional('package', {
-        description:
-          'Path to the package relative to the workspace root. Example: "packages/mui-material"',
+      return command.positional('packagePath', {
+        description: 'Path to the package directory',
         type: 'string',
       });
     },
     (argv) => {
-      updateVersion(argv.package);
+      updateVersion(argv.packagePath ?? process.cwd());
     },
   )
   .help()
