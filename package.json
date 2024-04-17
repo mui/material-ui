@@ -83,8 +83,8 @@
     "watch:zero": "nx run-many -t watch --projects=\"@pigmentcss/*\" --parallel",
     "canary:release": "pnpm:canary:release:ensure-clean && canary:release:set-version && canary:release:publish && canary:release:cleanup",
     "canary:release:ensure-clean": "(git diff --quiet && git diff --cached --quiet) || (echo 'There are uncommitted changes.' && exit 1)",
-    "canary:release:set-version": "pnpm --filter \"...[upstream/next]\" run --recursive canary:set-version",
-    "canary:release:publish": "pnpm --filter \"...[upstream/next]\" run --recursive canary:publish",
+    "canary:release:set-version": "pnpm --filter \"...[HEAD~1]\" run --recursive canary:set-version",
+    "canary:release:publish": "pnpm --filter \"...[HEAD~1]\" run --recursive canary:publish",
     "canary:release:cleanup": "git restore ."
   },
   "dependencies": {
