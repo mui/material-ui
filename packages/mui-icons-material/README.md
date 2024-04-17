@@ -1,44 +1,38 @@
 # @mui/icons-material
 
-This package provides the Google [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](https://mui.com/material-ui/api/svg-icon/) components.
+This package contains Google's [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to the Material UI [`SvgIcon`](https://mui.com/material-ui/icons/#svgicon) component.
+
+> **Note:** Google has introduced a new set of icons called [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols), which differs from Material Icons. `@mui/icons-material` only covers the latter, with no plans yet for the former.
 
 ## Installation
 
-Install the package in your project directory with:
+The icons package depends on Material UI, so ensure you install both to use it.
+Use the following command to install it:
 
 <!-- #default-branch-switch -->
 
 ```bash
-npm install @mui/icons-material@next
+npm install @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
 ```
 
 <!-- #default-branch-switch -->
-
-These components use the Material UI's [SvgIcon](https://next.mui.com/material-ui/api/svg-icon) component to render the SVG path for each icon.
-
-If you are not already using Material UI in your project, you can add it with:
-
-<!-- #default-branch-switch -->
-
-```bash
-npm install @mui/material@next
-```
 
 ## Documentation
 
 <!-- #default-branch-switch -->
 
-- [The SvgIcon documentation](https://mui.com/material-ui/icons/#svgicon)
-- [The Material Design icons search](https://mui.com/material-ui/material-icons/)
+- Learn more about Material UI's [`SvgIcon` component](https://mui.com/material-ui/icons/#svgicon).
+- Quickly search through the available icons on the [Material Icons page](https://mui.com/material-ui/material-icons/).
 
 ## Contributing
 
-This icon set is meant to be in sync with Google's Material Icons.
-Therefore, we don't accept fixes, additions, or any other contributions that would make this package diverge from the source.
+The icons package is updated via a script that reads through the Material Icons set and extracts the SVG elements from there, as opposed to adding each icon individually. That said, we don't accept new icons that diverge from this source.
 
-To synchronize with Material Icons, do the following:
+To update the `@mui/icons-material` package with the Material Icons set, run the following commands:
 
-1. Inside this workspace run `pnpm src:download`
-2. Inside this workspace run `pnpm src:icons`
-3. Inside the root run `pnpm docs:mdicons:synonyms`
+1. In the "mui-icons-material" directory, run `pnpm src:download`
+2. In the "mui-icons-material" directory, run `pnpm src:icons`
+3. In the root of the Material UI repo, run `pnpm docs:mdicons:synonyms`
 4. If the number of icons changes significantly, edit the icons/icons.md and material-icons/material-icons.md under docs/data/material/components and update the numbers.
+
+We roughly run them quarterly to make sure the package is up-to-date with the source.
