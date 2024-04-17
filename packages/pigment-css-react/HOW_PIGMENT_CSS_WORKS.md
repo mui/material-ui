@@ -10,7 +10,7 @@ Pigment CSS is a zero-runtime CSS-in-JS library. This means it does not have ac
 
 ## Processor
 
-Pigment CSS uses the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/). It features a [processor](https://wyw-in-js.dev/how-to/custom-tagged-template#creating-a-processor) which makes it possible to create custom logic that's triggered by the presence of different imports from the library. The processor looks through the source code for `styled()`, `css()`, and other function calls and extracts the arguments to be evaluated. These values are then handed back to Pigment CSS for additional parsing and evaluation.
+Pigment CSS uses the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/). It features a [processor](https://wyw-in-js.dev/how-to/custom-tagged-template#creating-a-processor) which makes it possible to create custom logic that's triggered by the presence of different imports from the library. The processor looks through the source code for `styled()`, `css()`, and other function calls and extracts the arguments to be evaluated. These values are then handed back to Pigment CSS for additional parsing and evaluation.
 
 For example, here's a simple implementation of the `css()` function:
 
