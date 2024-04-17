@@ -6,8 +6,10 @@
 
 _Apr 17, 2024_
 
-A big thanks to the 24 contributors who made this release possible.
-This release was mostly about converting components to Pigment CSS and API standardization.
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔥 Converted 5 more Material UI components to use Pigment CSS.
+- 🚀 Added container queries utility to the `@mui/system` package (#41674) @siriwatknp.
 
 ### `@mui/material@6.0.0-alpha.3`
 
