@@ -18,7 +18,7 @@ A menu displays a list of choices on a temporary surface. It appears when the us
 
 ## Basic Menu
 
-A basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to ensure that all menu items are completely visible.
+A basic menu opens over the anchor element by default. This option can be [changed](#menu-positioning) via props. When close to a screen edge, a basic menu vertically realigns to ensure that all menu items are completely visible.
 
 Choosing an option should ideally commit the selection and close the menu.
 
@@ -28,7 +28,7 @@ Choosing an option should ideally commit the selection and close the menu.
 
 ## Icon Menu
 
-In desktop viewport, padding is increased to provide more space for the menu.
+In the desktop viewport, padding is increased to provide more space for the menu.
 
 {{"demo": "IconMenu.js", "bg": true}}
 
@@ -52,11 +52,9 @@ The `Menu` component uses the `Popover` component for positioning, allowing the 
 
 ## MenuList Composition
 
-While the `Menu` component internally uses the `Popover` component, you might require a different positioning strategy or not want to block the scroll. To address these needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
+While the `Menu` component internally uses the `Popover` component, you might require a different positioning strategy or not want to block the scroll. To address these needs, we expose a `MenuList` component that you can compose, with `Popper` in this example. The primary responsibility of the `MenuList` component is to handle focus.
 
-The primary responsibility of the `MenuList` component is to handle focus.
-
-{{"demo": "MenuListComposition.js", "bg": true}}
+{{"demo": "MenuListComposition.js"}}
 
 ## Account Menu
 
@@ -110,3 +108,4 @@ For more advanced use cases, you might be able to take advantage of:
 The package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) takes care of menu state for you in most cases.
 
 {{"demo": "MenuPopupState.js"}}
+
