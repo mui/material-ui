@@ -29,7 +29,8 @@ export const icons = {
 export const TEMPLATES = {
   [DEMOS[0]]: [
     {
-      name: 'Devias Kit Pro - Client & Admin Dashboard',
+      name: 'Client & Admin Dashboard',
+      author: 'Devias Kit Pro',
       src: {
         light: '/static/branding/store-templates/template-4light.jpg',
         dark: '/static/branding/store-templates/template-4dark.jpg',
@@ -37,7 +38,8 @@ export const TEMPLATES = {
       href: 'https://mui.com/store/items/devias-kit-pro/',
     },
     {
-      name: 'Minimal - Client & Admin Dashboard',
+      name: 'Client & Admin Dashboard',
+      author: 'Minimal',
       src: {
         light: '/static/branding/store-templates/template-1light.jpg',
         dark: '/static/branding/store-templates/template-1dark.jpg',
@@ -45,7 +47,8 @@ export const TEMPLATES = {
       href: 'https://mui.com/store/items/minimal-dashboard/',
     },
     {
-      name: 'Berry - React Material Admin Dashboard Template',
+      name: 'React Material Admin Dashboard Template',
+      author: 'Berry',
       src: {
         light: '/static/branding/store-templates/template-5light.jpg',
         dark: '/static/branding/store-templates/template-5dark.jpg',
@@ -53,7 +56,8 @@ export const TEMPLATES = {
       href: 'https://mui.com/store/items/berry-react-material-admin/',
     },
     {
-      name: 'Mira Pro - React Material Admin Dashboard',
+      name: 'React Material Admin Dashboard',
+      author: 'Mira Pro',
       src: {
         light: '/static/branding/store-templates/template-3light.jpg',
         dark: '/static/branding/store-templates/template-3dark.jpg',
@@ -63,7 +67,8 @@ export const TEMPLATES = {
   ],
   [DEMOS[1]]: [
     {
-      name: 'theFront - Multipurpose Template + UI Kit',
+      name: 'Multipurpose Template + UI Kit',
+      author: 'theFront',
       src: {
         light: '/static/branding/store-templates/template-2light.jpg',
         dark: '/static/branding/store-templates/template-2dark.jpg',
@@ -71,7 +76,8 @@ export const TEMPLATES = {
       href: 'https://mui.com/store/items/the-front-landing-page/',
     },
     {
-      name: 'Webbee - Multipurpose landing page UI Kit',
+      name: 'Multipurpose Landing Page UI Kit',
+      author: 'Webbe',
       src: {
         light: '/static/branding/store-templates/template-6light.jpg',
         dark: '/static/branding/store-templates/template-6dark.jpg',
@@ -81,7 +87,8 @@ export const TEMPLATES = {
   ],
   [DEMOS[2]]: [
     {
-      name: 'Bazar Pro - Multipurpose React Ecommerce Template',
+      name: 'Multipurpose React Ecommerce Template',
+      author: 'Bazar Pro',
       src: {
         light: '/static/branding/store-templates/template-bazar-light.jpg',
         dark: '/static/branding/store-templates/template-bazar-dark.jpg',
@@ -145,7 +152,7 @@ export default function MaterialTemplates() {
             <br /> <GradientText>specific use case</GradientText>
           </Typography>
         }
-        description="A carefully curated collection of gorgeous, fully functional templates, powered by Material UI."
+        description="A carefully curated collection of gorgeous, fully functional templates."
       />
       <Group rowLayout desktopColumns={2} sx={{ p: 2 }}>
         {DEMOS.map((name) => (
@@ -264,18 +271,19 @@ export default function MaterialTemplates() {
                   ]}
                 >
                   <Typography
+                    variant="body2"
+                    color="text.tertiary"
+                    fontWeight="semiBold"
+                    textAlign="center"
+                  >
+                    Developed by {templates[templateIndex].author}
+                  </Typography>
+                  <Typography
                     component="p"
                     variant="h6"
-                    fontWeight="bold"
+                    fontWeight="semiBold"
                     textAlign="center"
-                    sx={[
-                      (theme) => ({
-                        color: 'text.primary',
-                        ...theme.applyDarkStyles({
-                          color: '#FFF',
-                        }),
-                      }),
-                    ]}
+                    color="text.primary"
                   >
                     {templates[templateIndex].name}
                   </Typography>
@@ -287,7 +295,7 @@ export default function MaterialTemplates() {
                         gap: 0.5,
                         color: 'primary.500',
                         ...theme.applyDarkStyles({
-                          color: 'primary.100',
+                          color: 'primary.200',
                         }),
                       }),
                     ]}

@@ -67,8 +67,7 @@ export default function TemplateDemo() {
                 The right template for your <GradientText>specific use case</GradientText>
               </Typography>
             }
-            description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team.
-              "
+            description="The Material UI collection of templates offers an expanding list of use cases designed to support projects of various types."
           />
           <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
@@ -196,27 +195,24 @@ export default function TemplateDemo() {
             </Frame.Demo>
             <Frame.Info
               sx={{
+                width: '100%',
                 display: 'flex',
-                alignItems: 'center',
+                alignItems: 'start',
+                justifyContent: 'space-between',
                 '& .MuiIconButton-root': { display: { xs: 'none', md: 'inline-flex' } },
               }}
             >
-              <Box sx={{ minWidth: 0 }}>
-                <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
+              <div>
+                <Typography variant="body2" fontWeight="medium" noWrap sx={{ mb: 0.5 }}>
                   {templates[templateIndex].name}
                 </Typography>
-                <Box
-                  sx={{
-                    borderRadius: 20,
-                    lineHeight: 1,
-                    px: 0.5,
-                  }}
-                >
-                  <Typography color="grey.500" variant="caption">
-                    {templateIndex + 1} / {templates.length}
-                  </Typography>
-                </Box>
-              </Box>
+                <Typography variant="body2" color="grey.500" noWrap sx={{ fontSize: '0.75rem' }}>
+                  Developed by {templates[templateIndex].author}
+                </Typography>
+              </div>
+              <Typography color="grey.500" variant="caption">
+                {templateIndex + 1} / {templates.length}
+              </Typography>
             </Frame.Info>
           </Frame>
         </Grid>
