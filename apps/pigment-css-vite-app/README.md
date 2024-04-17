@@ -5,7 +5,7 @@ This project is not part of the workspace yet.
 
 ## How to run
 
-You can either run `pnpm build` to build all packages, or else build the two most important ones:
+You can either run `pnpm build` to build all packages or else build the two most important ones:
 
 1. `@pigment-css/react`
 2. `@pigment-css/vite-plugin`

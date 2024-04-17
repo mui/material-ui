@@ -1054,6 +1054,76 @@ npx @mui/codemod@next deprecations/step-connector-classes <path>
 
 ### v6.0.0
 
+#### `styled-v6`
+
+Updates the usage of `styled` from `@mui/system@v5` to be compatible with `@pigment-css/react`.
+
+This codemod transforms the styles based on props to `variants` by looking for `styled` calls:
+
+```diff
+ styled('div')(({ theme, disabled }) => ({
+   color: theme.palette.primary.main,
+-  ...(disabled && {
+-    opacity: 0.5,
+-  }),
++  variants: [
++    {
++      prop: 'disabled',
++      style: {
++        opacity: 0.5,
++      },
++    },
++  ],
+ }));
+```
+
+This codemod can handle complex styles with spread operators, ternary operators, and nested objects.
+
+However, it has some **limitations**:
+
+- It does not transform dynamic values as shown below:
+
+  ```js
+  const ResizableContainer = styled('div')(({ ownerState, theme }) => ({
+    width: ownerState.width ?? '100%',
+    height: ownerState.height ?? '100%',
+  }));
+  ```
+
+  You need to manually declare a CSS variable and set the values using inline styles:
+
+  ```js
+  // ✅ Recommended way
+  const ResizableContainer = styled('div')({
+    width: 'var(--ResizableContainer-width, 100%)',
+    height: 'var(--ResizableContainer-height, 100%)',
+  });
+  ```
+
+- It does not transform dynamic reference from the theme, for example color palette.
+
+  ```js
+  const Test = styled('div')(({ ownerState, theme }) => ({
+    backgroundColor: (theme.vars || theme).palette[ownerState.color]?.main,
+  }));
+  ```
+
+  You need to manually iterate the theme object and create `variants` for each color.
+
+  ```js
+  // ✅ Recommended way
+  const Test = styled('div')(({ theme }) => ({
+    variants: Object.entries(theme.palette)
+      .filter(([color, value]) => value.main)
+      .map(([color, value]) => ({
+        props: { color },
+        style: {
+          backgroundColor: value.main,
+        },
+      })),
+  }));
+  ```
+
 ### v5.0.0
 
 #### `base-use-named-exports`

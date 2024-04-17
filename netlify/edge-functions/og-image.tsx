@@ -78,6 +78,7 @@ export default async function handler(req: Request) {
                 fontSize: '24px',
                 fontWeight: 600,
                 lineHeight: '40px',
+                letterSpacing: 1,
                 color: '#007FFF',
               }}
             >
@@ -101,8 +102,8 @@ export default async function handler(req: Request) {
                     fontFamily: 'General Sans',
                     fontStyle: 'normal',
                     fontWeight: 600,
-                    fontSize: '48px',
-                    lineHeight: '57px',
+                    fontSize: '56px',
+                    lineHeight: '72px',
                     color: '#0B0D0E',
                   }}
                 >
@@ -130,10 +131,10 @@ export default async function handler(req: Request) {
                 style={{
                   fontFamily: 'IBM Plex Sans',
                   fontSize: '28px',
-                  fontWeight: 600,
-                  color: '#303740',
+                  fontWeight: 500,
+                  color: '#000',
                   lineHeight: '50px',
-                  marginTop: 12,
+                  marginTop: 8,
                   marginBottom: 0,
                   marginLeft: 0,
                   marginRight: 0,
@@ -163,25 +164,25 @@ export default async function handler(req: Request) {
                       display: 'flex',
                       flexDirection: 'row',
                       flexWrap: 'wrap',
-                      marginBottom: 20,
                       marginRight: 40,
                     }}
                   >
                     <div
                       style={{
                         display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         width: 70,
                         height: 70,
                         borderRadius: '50%',
-                        background:
-                          'linear-gradient(135deg, #007FFF 0%, #FFFFFF 50%, #007FFF 100%)',
+                        background: '#CCE5FF',
                       }}
                     >
                       <img
                         src={`https://github.com/${github}.png`}
-                        width={64}
-                        height={64}
-                        style={{ borderRadius: '50%', margin: 4 }}
+                        width={62}
+                        height={62}
+                        style={{ borderRadius: '50%' }}
                         alt=""
                       />
                     </div>
@@ -196,13 +197,12 @@ export default async function handler(req: Request) {
                         style={{
                           fontFamily: 'IBM Plex Sans',
                           fontSize: '26px',
-                          fontWeight: '600',
                           lineHeight: '40px',
                           textAlign: 'left',
                           color: '#101418',
                         }}
                       >
-                        {name}
+                        <b>{name}</b>
                       </span>
                       <span
                         style={{
@@ -231,10 +231,10 @@ export default async function handler(req: Request) {
       fonts: [
         {
           name: 'IBM Plex Sans',
-          data: await fetch('https://fonts.cdnfonts.com/s/15449/IBMPlexSans-SemiBold.woff').then(
+          data: await fetch('https://fonts.cdnfonts.com/s/15449/IBMPlexSans-Medium.woff').then(
             (a) => a.arrayBuffer(),
           ),
-          weight: 600,
+          weight: 500,
           style: 'normal',
         },
         {
