@@ -117,3 +117,25 @@ const ImageListRoot = styled('ul')({
     }
   }]
 });
+
+const ImageListItemRoot = styled('li')(({
+  display: 'block',
+  position: 'relative',
+  [`& .${imageListItemClasses.img}`]: {
+    objectFit: 'cover',
+    width: '100%',
+    height: '100%',
+    display: 'block'
+  },
+  variants: [{
+    props: {
+      variant: 'standard'
+    },
+    style: {
+      [`& .${imageListItemClasses.img}`]: {
+        height: 'auto',
+        flexGrow: 1,
+      }
+    }
+  }]
+}));

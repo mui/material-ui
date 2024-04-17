@@ -391,6 +391,14 @@ export default function styledV6(file, api, options) {
               }
             });
             appendPaletteModeStyles(variant.style, modeStyles);
+            if (data.key) {
+              variant.style = j.objectExpression([
+                {
+                  ...j.objectProperty(data.key, variant.style),
+                  computed: data.key.type === 'TemplateLiteral',
+                },
+              ]);
+            }
             variants.push(buildObjectAST(variant));
             removeProperty(data.parentNode, data.node);
           }
