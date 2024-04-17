@@ -11,11 +11,9 @@ This release was mostly about converting components to Pigment CSS and API stan
 
 ### `@mui/material@6.0.0-alpha.3`
 
-- Convert `LinearProgress` to support Pigment CSS (#41816) @siriwatknp
-- [Button] Add `onChange` event handler to file upload example (#41863) @aarongarciah
+- Convert `LinearProgress` to support Pigment CSS (#41816) @siriwatknp
 - [Dialog] Prevent onClick on the root element from being overwritten (#41881) @ryanburr
 - [FloatingActionButton] Convert to support CSS extraction (#41851) @gijsbotje
-- Fix import statement in migration guide (#41852) @sai6855
 - Convert `CircularProgress` to support Pigment CSS (#41776) @siriwatknp
 - [PaginationItem] Convert to support CSS extraction (#41848) @gijsbotje
 - [StepConnector] deprecate composed classes (#41740) @sai6855
@@ -48,6 +46,8 @@ This release was mostly about converting components to Pigment CSS and API stan
 - [material-ui] Remove Data Grid v7 beta callout (#41839) @cherniavskii
 - [material-ui] Add stray design tweaks to free templates (#41696) @zanivan
 - [material-ui] Simplify components styling on templates (#41845) @zanivan
+- [material-ui][Button] Add `onChange` event handler to file upload example (#41863) @aarongarciah
+- [material-ui] Fix import statement in migration guide (#41852) @sai6855
 - Fix 301 redirection @oliviertassinari
 - Fix format git diff regression (#41882) @oliviertassinari
 - Fix small SEO issues @oliviertassinari
