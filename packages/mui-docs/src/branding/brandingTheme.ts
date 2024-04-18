@@ -259,9 +259,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
             ? `radial-gradient(100% 100% at 100% 100%, transparent 0, ${alpha(blue[900], 0.3)} 300%)`
             : `radial-gradient(100% 90% at 50% 0, transparent 0, ${alpha(blue[100], 0.3)} 300%)`,
         linearSubtle:
-          mode === 'light'
-            ? `linear-gradient(to bottom right, ${alpha(blue[50], 0.3)} 25%, ${alpha(grey[50], 0.2)} 100%)`
-            : `linear-gradient(to bottom right, ${alpha(blue[900], 0.1)} 25%, ${alpha(blueDark[800], 0.2)} 100%)`,
+          mode === 'dark'
+            ? `linear-gradient(0deg, ${alpha(blue[900], 0.1)}, ${alpha(blueDark[900], 0.5)})`
+            : `linear-gradient(0deg, ${alpha(blue[50], 0.4)}, ${alpha(grey[50], 0.1)})`,
       },
     },
     shape: {
@@ -905,7 +905,7 @@ export function getThemedComponents(): ThemeOptions {
             ...(variant === 'outlined' &&
               color === 'primary' && {
                 borderColor: (theme.vars || theme).palette.primary[100],
-                backgroundColor: (theme.vars || theme).palette.primary[50],
+                backgroundColor: alpha(theme.palette.primary[100], 0.2),
                 ...theme.applyDarkStyles({
                   color: (theme.vars || theme).palette.primary[300],
                   borderColor: alpha(theme.palette.primary[500], 0.2),
@@ -1159,7 +1159,7 @@ export function getThemedComponents(): ThemeOptions {
               }),
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[700],
-                borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                borderColor: `${(theme.vars || theme).palette.primary[200]} !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
@@ -1173,7 +1173,7 @@ export function getThemedComponents(): ThemeOptions {
               },
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[200],
-                borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                borderColor: `${(theme.vars || theme).palette.primary[800]} !important`,
                 backgroundColor: alpha(theme.palette.primary[900], 0.4),
                 '&:hover': {
                   backgroundColor: alpha(theme.palette.primary[900], 0.8),

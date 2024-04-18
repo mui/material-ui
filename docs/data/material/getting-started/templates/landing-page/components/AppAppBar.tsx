@@ -135,24 +135,10 @@ export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
             }}
           >
             <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-            <Button
-              color="primary"
-              variant="text"
-              size="small"
-              component="a"
-              href="/material-ui/getting-started/templates/sign-in/"
-              target="_blank"
-            >
+            <Button color="primary" variant="text" size="small">
               Sign in
             </Button>
-            <Button
-              color="primary"
-              variant="contained"
-              size="small"
-              component="a"
-              href="/material-ui/getting-started/templates/sign-up/"
-              target="_blank"
-            >
+            <Button color="primary" variant="contained" size="small">
               Sign up
             </Button>
           </Box>
@@ -194,26 +180,12 @@ export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                 </MenuItem>
                 <MenuItem onClick={() => scrollToSection('faq')}>FAQ</MenuItem>
                 <MenuItem>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    component="a"
-                    href="/material-ui/getting-started/templates/sign-up/"
-                    target="_blank"
-                    fullWidth
-                  >
+                  <Button color="primary" variant="contained" fullWidth>
                     Sign up
                   </Button>
                 </MenuItem>
                 <MenuItem>
-                  <Button
-                    color="primary"
-                    variant="outlined"
-                    component="a"
-                    href="/material-ui/getting-started/templates/sign-in/"
-                    target="_blank"
-                    fullWidth
-                  >
+                  <Button color="primary" variant="outlined" fullWidth>
                     Sign in
                   </Button>
                 </MenuItem>
