@@ -1,4 +1,3 @@
-'use client';
 export { default } from './TextField';
 
 export { default as textFieldClasses } from './textFieldClasses';

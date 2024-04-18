@@ -1,4 +1,3 @@
-'use client';
 export { default } from './MenuItem';
 
 export * from './menuItemClasses';

@@ -1,4 +1,3 @@
-'use client';
 export { default } from './FormLabel';
 export * from './FormLabel';
 

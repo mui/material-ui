@@ -1,4 +1,3 @@
-'use client';
 /* eslint-disable no-underscore-dangle */
 import emStyled from '@emotion/styled';
 
