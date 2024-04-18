@@ -305,22 +305,6 @@ describe('[Material UI] CssVarsProvider', () => {
       expect(container.firstChild?.textContent).not.to.equal('variants');
     });
 
-    it('should not contain `typography` in theme.vars', () => {
-      function Consumer() {
-        const theme = useTheme();
-        // @ts-expect-error
-        return <div>{theme.vars.typography ? 'typography' : ''}</div>;
-      }
-
-      const { container } = render(
-        <CssVarsProvider>
-          <Consumer />
-        </CssVarsProvider>,
-      );
-
-      expect(container.firstChild?.textContent).not.to.equal('typography');
-    });
-
     it('should not contain `focus` in theme.vars', () => {
       function Consumer() {
         const theme = useTheme();

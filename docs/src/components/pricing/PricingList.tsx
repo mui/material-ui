@@ -117,7 +117,7 @@ export default function PricingList() {
             theme.applyDarkStyles({
               '& .MuiTab-root': {
                 '&.Mui-selected': {
-                  bgcolor: 'primaryDark.700',
+                  bgcolor: 'primaryDark.800',
                 },
               },
             }),

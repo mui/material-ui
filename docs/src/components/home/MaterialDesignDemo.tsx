@@ -24,7 +24,7 @@ export const componentCode = `
           label={active ? 'Active' : 'Inactive'}
           color={active ? 'success' : 'default'}
         />
-        <Rating defaultValue={1} size="small" />
+        <Rating defaultValue={4} size="small" />
       </Stack>
     </Stack>
     <Switch checked={active} />
@@ -69,7 +69,7 @@ export default function MaterialDesignDemo(props: CardProps) {
                 zIndex: 2,
               }}
             />
-            <Rating name="Rating component" defaultValue={1} size="small" />
+            <Rating name="Rating component" defaultValue={4} size="small" />
           </Stack3>
         </Stack2>
         <Switch
