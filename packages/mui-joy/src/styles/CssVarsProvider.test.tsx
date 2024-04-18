@@ -32,10 +32,6 @@ describe('[Joy] CssVarsProvider', () => {
   });
 
   describe('shouldSkipGeneratingVar', () => {
-    it('skip typography', () => {
-      expect(shouldSkipGeneratingVar(['typography'])).to.equal(true);
-    });
-
     it('skip variants', () => {
       expect(shouldSkipGeneratingVar(['variants'])).to.equal(true);
     });
@@ -562,22 +558,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
 
       expect(container.firstChild?.textContent).not.to.equal('variants');
-    });
-
-    it('should not contain `typography` in theme.vars', () => {
-      function Consumer() {
-        const theme = useTheme();
-        // @ts-expect-error
-        return <div>{theme.vars.typography ? 'typography' : ''}</div>;
-      }
-
-      const { container } = render(
-        <CssVarsProvider>
-          <Consumer />
-        </CssVarsProvider>,
-      );
-
-      expect(container.firstChild?.textContent).not.to.equal('typography');
     });
 
     it('should contain only `focus.thickness` in theme.vars', () => {

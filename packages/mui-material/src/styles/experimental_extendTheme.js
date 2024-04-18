@@ -1,7 +1,7 @@
 import deepmerge from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
-import { prepareCssVars } from '@mui/system/cssVars';
+import { prepareCssVars, prepareTypographyVars } from '@mui/system/cssVars';
 import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
 } from '@mui/system/styleFunctionSx';
@@ -139,6 +139,7 @@ export default function extendTheme(options = {}, ...args) {
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
       },
     },
+    typography: prepareTypographyVars(muiTheme.typography),
     spacing: getSpacingVal(input.spacing),
   };
 
@@ -436,6 +437,7 @@ export default function extendTheme(options = {}, ...args) {
   theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;
   theme.spacing = theme.generateSpacing();
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
+  theme.typography = muiTheme.typography;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...input?.unstable_sxConfig,
