@@ -1,6 +1,6 @@
 {
   "name": "@pigment-css/react",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
@@ -147,6 +147,15 @@
       },
       "require": "./build/RtlProvider.js",
       "default": "./build/RtlProvider.js"
+    },
+    "./private-runtime": {
+      "types": "./private-runtime/index.d.ts",
+      "import": {
+        "types": "./private-runtime/index.d.mts",
+        "default": "./private-runtime/index.mjs"
+      },
+      "require": "./private-runtime/index.js",
+      "default": "./private-runtime/index.js"
     }
   },
   "nx": {
