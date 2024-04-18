@@ -49,15 +49,6 @@ const RadioRoot = styled(SwitchBase, {
   },
   variants: [
     {
-      props: { disableRipple: false },
-      style: {
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
-    },
-    {
       props: { color: 'default', disableRipple: false },
       style: {
         '&:hover': {
@@ -67,13 +58,9 @@ const RadioRoot = styled(SwitchBase, {
         },
       },
     },
-    ...Object.keys((theme.vars || theme).palette)
-      .filter((key) =>
-        theme.vars
-          ? theme.vars.palette[key].main && theme.vars.palette[key].mainChannel
-          : theme.palette[key].main,
-      )
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette.main)
+      .map(([color]) => ({
         props: { color, disableRipple: false },
         style: {
           '&:hover': {
@@ -83,13 +70,9 @@ const RadioRoot = styled(SwitchBase, {
           },
         },
       })),
-    ...Object.keys((theme.vars || theme).palette)
-      .filter((key) =>
-        theme.vars
-          ? theme.vars.palette[key].main && theme.vars.palette[key].mainChannel
-          : theme.palette[key].main,
-      )
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette.main)
+      .map(([color]) => ({
         props: { color },
         style: {
           [`&.${radioClasses.checked}`]: {
@@ -97,6 +80,18 @@ const RadioRoot = styled(SwitchBase, {
           },
         },
       })),
+    {
+      // Should be last to override other colors
+      props: { disableRipple: false },
+      style: {
+        // Reset on touch devices, it doesn't add specificity
+        '&:hover': {
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
+        },
+      },
+    },
   ],
 }));
 
