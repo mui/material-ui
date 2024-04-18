@@ -48,7 +48,7 @@ export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contain
   ({ theme, ownerState }) =>
     theme.unstable_sx({
       height: 26,
-      p: '0 8px',
+      p: '0 8px 2px 8px',
       border: ownerState?.contained ? '1px solid transparent' : 'none',
       bgcolor: 'transparent',
       color: ownerState?.contained

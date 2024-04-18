@@ -239,7 +239,6 @@ const DemoRootMaterial = styled('div', {
     borderRightWidth: 0,
     ...theme.applyDarkStyles({
       backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
-      borderBottom: 0,
     }),
   }),
   /* Similar to the outlined one but without padding. Ideal for playground demos. */
