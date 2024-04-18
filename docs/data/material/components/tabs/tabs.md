@@ -67,7 +67,6 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 ### Full width
 
 The `variant="fullWidth"` prop should be used for smaller views.
-This demo also uses [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to animate the Tab transition, and allowing tabs to be swiped on touch devices.
 
 {{"demo": "FullWidthTabs.js", "bg": true}}
 
