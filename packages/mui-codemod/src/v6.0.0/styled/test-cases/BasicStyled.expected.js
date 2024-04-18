@@ -125,7 +125,12 @@ const ImageListItemRoot = styled('li')(({
     objectFit: 'cover',
     width: '100%',
     height: '100%',
-    display: 'block'
+    display: 'block',
+    '&:hover': {
+      '&[data-shape="circular"]': {
+        borderRadius: '50%'
+      },
+    }
   },
   variants: [{
     props: {
@@ -135,6 +140,20 @@ const ImageListItemRoot = styled('li')(({
       [`& .${imageListItemClasses.img}`]: {
         height: 'auto',
         flexGrow: 1,
+      }
+    }
+  }, {
+    props: {
+      variant: 'unique'
+    },
+    style: {
+      [`& .${imageListItemClasses.img}`]: {
+        '&:hover': {
+          '&[data-shape="circular"]': {
+            height: 'auto',
+            flexGrow: 1,
+          }
+        }
       }
     }
   }]

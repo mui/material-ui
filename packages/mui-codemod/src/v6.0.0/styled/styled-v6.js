@@ -9,6 +9,27 @@ export default function styledV6(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
+  function createBuildStyle(key, upperBuildStyle) {
+    return function buildStyle(styleExpression) {
+      if (key) {
+        if (key.type === 'Identifier' || key.type === 'StringLiteral') {
+          return upperBuildStyle(j.objectExpression([j.objectProperty(key, styleExpression)]));
+        }
+        if (key.type === 'TemplateLiteral') {
+          return upperBuildStyle(
+            j.objectExpression([
+              {
+                ...j.objectProperty(key, styleExpression),
+                computed: true,
+              },
+            ]),
+          );
+        }
+      }
+      return upperBuildStyle ? upperBuildStyle(styleExpression) : styleExpression;
+    };
+  }
+
   /**
    *
    * @param {import('ast-types').namedTypes.MemberExpression | import('ast-types').namedTypes.Identifier} node
@@ -309,7 +330,7 @@ export default function styledV6(file, api, options) {
           }
         }
 
-        recurseObjectExpression({ node: objectExpression });
+        recurseObjectExpression({ node: objectExpression, buildStyle: createBuildStyle() });
 
         if (variants.length) {
           objectExpression.properties.push(
@@ -343,13 +364,19 @@ export default function styledV6(file, api, options) {
                 node: prop.value,
                 parentNode: data.node,
                 key: prop.key,
+                buildStyle: createBuildStyle(prop.key, data.buildStyle),
                 replaceValue: (newValue) => {
                   prop.value = newValue;
                 },
                 modeStyles,
               });
             } else {
-              recurseObjectExpression({ ...data, node: prop, parentNode: data.node });
+              recurseObjectExpression({
+                ...data,
+                node: prop,
+                parentNode: data.node,
+                buildStyle: createBuildStyle(prop.key, data.buildStyle),
+              });
             }
           });
           appendPaletteModeStyles(data.node, modeStyles);
@@ -378,6 +405,7 @@ export default function styledV6(file, api, options) {
                   parentNode: variant.style,
                   props: variant.props,
                   key: prop.key,
+                  buildStyle: createBuildStyle(prop.key, data.buildStyle),
                   replaceValue: (newValue) => {
                     prop.value = newValue;
                   },
@@ -389,23 +417,21 @@ export default function styledV6(file, api, options) {
                   node: prop,
                   parentNode: variant.style,
                   props: variant.props,
+                  buildStyle: createBuildStyle(prop.key, data.buildStyle),
                 });
               }
             });
             appendPaletteModeStyles(variant.style, modeStyles);
-            if (data.key) {
-              variant.style = j.objectExpression([
-                {
-                  ...j.objectProperty(data.key, variant.style),
-                  computed: data.key.type === 'TemplateLiteral',
-                },
-              ]);
-            }
+            variant.style = data.buildStyle(variant.style);
             variants[lastLength - 1] = buildObjectAST(variant);
             removeProperty(data.parentNode, data.node);
           }
           if (data.node.argument.type === 'ConditionalExpression') {
-            recurseObjectExpression({ ...data, node: data.node.argument, parentNode: data.node });
+            recurseObjectExpression({
+              ...data,
+              node: data.node.argument,
+              parentNode: data.node,
+            });
             removeProperty(data.parentNode, data.node);
           }
         }
@@ -427,17 +453,10 @@ export default function styledV6(file, api, options) {
               if (data.props) {
                 props = mergeProps(data.props, props);
               }
-              const styleVal = data.node.consequent;
-              let newStyle = styleVal;
-              if (
-                data.key &&
-                (data.key.type === 'Identifier' || data.key.type === 'StringLiteral')
-              ) {
-                newStyle = j.objectExpression([j.objectProperty(data.key, styleVal)]);
-              }
+              const styleVal = data.buildStyle(data.node.consequent);
               const variant = {
                 props,
-                style: newStyle,
+                style: styleVal,
               };
               variants.push(buildObjectAST(variant));
 
@@ -446,17 +465,10 @@ export default function styledV6(file, api, options) {
               if (data.props) {
                 props2 = mergeProps(data.props, props2);
               }
-              const styleVal2 = data.node.alternate;
-              let newStyle2 = styleVal2;
-              if (
-                data.key &&
-                (data.key.type === 'Identifier' || data.key.type === 'StringLiteral')
-              ) {
-                newStyle2 = j.objectExpression([j.objectProperty(data.key, styleVal2)]);
-              }
+              const styleVal2 = data.buildStyle(data.node.alternate);
               const variant2 = {
                 props: props2,
-                style: newStyle2,
+                style: styleVal2,
               };
               variants.push(buildObjectAST(variant2));
               if (data.parentNode?.type === 'ObjectExpression') {
@@ -494,7 +506,7 @@ export default function styledV6(file, api, options) {
                 ...data,
                 node: expression,
                 parentNode: data.parentNode,
-                key: data.key,
+                buildStyle: createBuildStyle(data.key, data.buildStyle),
                 replaceValue: (newValue) => {
                   data.node.expressions[index] = newValue;
                 },
@@ -533,7 +545,7 @@ export default function styledV6(file, api, options) {
                     j.stringLiteral(prop.key.name),
                   ),
                 ]),
-                style: j.objectExpression([j.objectProperty(data.key, prop.value)]),
+                style: data.buildStyle(prop.value),
               }),
             );
           });

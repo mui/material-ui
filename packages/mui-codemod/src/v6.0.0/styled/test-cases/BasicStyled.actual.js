@@ -71,5 +71,14 @@ const ImageListItemRoot = styled('li')(({ ownerState }) => ({
       height: 'auto',
       flexGrow: 1,
     }),
+    '&:hover': {
+      '&[data-shape="circular"]': {
+        borderRadius: '50%',
+        ...(ownerState.variant === 'unique' && {
+          height: 'auto',
+          flexGrow: 1,
+        }),
+      },
+    },
   },
 }));
