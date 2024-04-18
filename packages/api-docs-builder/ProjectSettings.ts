@@ -60,7 +60,7 @@ export interface ProjectSettings {
    * Fuction called to detemine whether a filename is a component or not.
    * @default test regexp /^(Unstable_)?([A-Z][a-z]+)+2?\.(js|tsx)/;
    */
-  isComponent: (filename: string) => boolean;
+  isComponent?: (filename: string) => boolean;
   /**
    * Determine is the component definition should be updated.
    */
