@@ -120,19 +120,21 @@ async function buildSingleProject(
   }
 
   const apiBuilds = tsProjects.flatMap((project) => {
-    const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
-      (component) => {
-        if (projectSettings.skipComponent(component.filename)) {
-          return false;
-        }
+    const projectComponents = findComponents(
+      path.join(project.rootPath, 'src'),
+      [],
+      projectSettings.isComponent,
+    ).filter((component) => {
+      if (projectSettings.skipComponent(component.filename)) {
+        return false;
+      }
 
-        if (grep === null) {
-          return true;
-        }
+      if (grep === null) {
+        return true;
+      }
 
-        return grep.test(component.filename);
-      },
-    );
+      return grep.test(component.filename);
+    });
 
     const projectHooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
       if (grep === null) {
