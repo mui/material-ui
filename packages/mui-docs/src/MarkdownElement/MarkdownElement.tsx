@@ -428,6 +428,9 @@ const Root = styled('div')(
         textDecorationColor: 'inherit',
       },
     },
+    '& a code': {
+      color: darken(lightTheme.palette.primary.main, 0.04),
+    },
     '& a:not(.title-link-to-anchor) code': {
       color: darken(lightTheme.palette.primary.main, 0.2),
     },
