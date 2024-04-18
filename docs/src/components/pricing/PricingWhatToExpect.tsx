@@ -36,15 +36,9 @@ export default function PricingWhatToExpect() {
         }}
       >
         <Paper variant="outlined" sx={{ p: 2, height: 'fit-content', gridColumn: 'span 1' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <FunctionsIcon fontSize="small" color="primary" />
-            <Typography
-              fontWeight="bold"
-              component="h3"
-              color="text.primary"
-              variant="body2"
-              sx={{ ml: 1 }}
-            >
+            <Typography fontWeight="bold" component="h3" color="text.primary" variant="body2">
               Required quantity
             </Typography>
           </Box>
@@ -52,6 +46,7 @@ export default function PricingWhatToExpect() {
             The number of developers licensed must correspond to the maximum number of concurrent
             developers contributing changes to the front-end code of the projects that use the
             software.
+            <br />
             <br />
             You can learn more about this in{' '}
             <Link
@@ -65,15 +60,9 @@ export default function PricingWhatToExpect() {
           </Typography>
         </Paper>
         <Paper variant="outlined" sx={{ p: 2, height: 'fit-content' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <AcUnitIcon fontSize="small" color="primary" />
-            <Typography
-              fontWeight="bold"
-              component="h3"
-              color="text.primary"
-              variant="body2"
-              sx={{ ml: 1 }}
-            >
+            <Typography fontWeight="bold" component="h3" color="text.primary" variant="body2">
               Perpetual license model
             </Typography>
           </Box>
@@ -93,15 +82,9 @@ export default function PricingWhatToExpect() {
           </Typography>
         </Paper>
         <Paper variant="outlined" sx={{ p: 2, height: 'fit-content' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <AllInclusiveOutlinedIcon fontSize="small" color="primary" />
-            <Typography
-              fontWeight="bold"
-              component="h3"
-              color="text.primary"
-              variant="body2"
-              sx={{ ml: 1 }}
-            >
+            <Typography fontWeight="bold" component="h3" color="text.primary" variant="body2">
               Perpetual vs. Annual license model
             </Typography>
           </Box>
@@ -118,15 +101,9 @@ export default function PricingWhatToExpect() {
           </Typography>
         </Paper>
         <Paper variant="outlined" sx={{ p: 2, height: 'fit-content' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <ReplayRoundedIcon fontSize="small" color="primary" />
-            <Typography
-              fontWeight="bold"
-              component="h3"
-              color="text.primary"
-              variant="body2"
-              sx={{ ml: 1 }}
-            >
+            <Typography fontWeight="bold" component="h3" color="text.primary" variant="body2">
               Annual license model
             </Typography>
           </Box>
@@ -152,15 +129,9 @@ export default function PricingWhatToExpect() {
           </Typography>
         </Paper>
         <Paper variant="outlined" sx={{ p: 2, height: 'fit-content' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <HelpOutlineOutlinedIcon fontSize="small" color="primary" />
-            <Typography
-              fontWeight="bold"
-              component="h3"
-              color="text.primary"
-              variant="body2"
-              sx={{ ml: 1 }}
-            >
+            <Typography fontWeight="bold" component="h3" color="text.primary" variant="body2">
               Maintenance and support
             </Typography>
           </Box>
@@ -170,27 +141,24 @@ export default function PricingWhatToExpect() {
             <Link href="https://mui.com/x/introduction/support/#technical-support">
               learn more about support
             </Link>{' '}
-            in the docs. Note that, except for critical issues, such as security flaws, we release
-            bug fixes and other improvements on top of the latest version, instead of patching older
-            versions.
+            in the docs.
+            <br />
+            <br />
+            Note that, except for critical issues, such as security flaws, we release bug fixes and
+            other improvements on top of the latest version, instead of patching older versions.
           </Typography>
         </Paper>
         <Paper variant="outlined" sx={{ p: 2, height: 'fit-content' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <LocalOfferOutlinedIcon fontSize="small" color="primary" />
-            <Typography
-              fontWeight="bold"
-              component="h3"
-              color="text.primary"
-              variant="body2"
-              sx={{ ml: 1 }}
-            >
+            <Typography fontWeight="bold" component="h3" color="text.primary" variant="body2">
               Volume discounts
             </Typography>
           </Box>
           <Typography variant="body2" color="text.secondary">
             The Pro plan is capped at 10 developers licensed; you do not need to pay for additional
             licenses for more than 10 developers.
+            <br />
             <br />
             You can contact <Link href="mailto:sales@mui.com">sales</Link> for a volume discount
             when licensing over 25 developers under the Premium plan.

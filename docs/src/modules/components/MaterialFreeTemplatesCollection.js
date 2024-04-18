@@ -9,64 +9,66 @@ import Typography from '@mui/material/Typography';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import { useTranslate } from '@mui/docs/i18n';
+import { useTheme } from '@mui/material/styles';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
-function layouts(t) {
+function layouts(translatation, theme) {
+  const imageSuffix = theme.palette.mode === 'dark' ? '-dark' : '-light';
   return [
     {
-      title: t('dashboardTitle'),
-      description: t('dashboardDescr'),
-      src: '/static/images/templates/dashboard.png',
+      title: translatation('dashboardTitle'),
+      description: translatation('dashboardDescr'),
+      src: `/static/images/templates/dashboard${imageSuffix}.png`,
       href: '/material-ui/getting-started/templates/dashboard/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/dashboard`,
     },
     {
-      title: t('landingPageTitle'),
-      description: t('landingPageDescr'),
-      src: '/static/images/templates/landing-page.png',
+      title: translatation('landingPageTitle'),
+      description: translatation('landingPageDescr'),
+      src: `/static/images/templates/landing-page${imageSuffix}.png`,
       href: '/material-ui/getting-started/templates/landing-page/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/landing-page`,
     },
     {
-      title: t('checkoutTitle'),
-      description: t('checkoutDescr'),
-      src: '/static/images/templates/checkout.png',
+      title: translatation('checkoutTitle'),
+      description: translatation('checkoutDescr'),
+      src: `/static/images/templates/checkout${imageSuffix}.png`,
       href: '/material-ui/getting-started/templates/checkout/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
     },
     {
-      title: t('signInTitle'),
-      description: t('signInDescr'),
-      src: '/static/images/templates/sign-in.png',
+      title: translatation('signInTitle'),
+      description: translatation('signInDescr'),
+      src: `/static/images/templates/sign-in${imageSuffix}.png`,
       href: '/material-ui/getting-started/templates/sign-in/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in`,
     },
     {
-      title: t('signInSideTitle'),
-      description: t('signInSideDescr'),
-      src: '/static/images/templates/sign-in-side.png',
+      title: translatation('signInSideTitle'),
+      description: translatation('signInSideDescr'),
+      src: `/static/images/templates/sign-in-side${imageSuffix}.png`,
       href: '/material-ui/getting-started/templates/sign-in-side/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in-side`,
     },
     {
-      title: t('signUpTitle'),
-      description: t('signUpDescr'),
-      src: '/static/images/templates/sign-up.png',
+      title: translatation('signUpTitle'),
+      description: translatation('signUpDescr'),
+      src: `/static/images/templates/sign-up${imageSuffix}.png`,
       href: '/material-ui/getting-started/templates/sign-up/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-up`,
     },
     {
-      title: t('blogTitle'),
-      description: t('blogDescr'),
-      src: '/static/images/templates/blog.png',
+      title: translatation('blogTitle'),
+      description: translatation('blogDescr'),
+      src: `/static/images/templates/blog${imageSuffix}.png`,
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
     },
     {
-      title: t('stickyFooterTitle'),
-      description: t('stickyFooterDescr'),
-      src: '/static/images/templates/sticky-footer.png',
+      title: translatation('stickyFooterTitle'),
+      description: translatation('stickyFooterDescr'),
+      src: `/static/images/templates/sticky-footer${imageSuffix}.png`,
       href: '/material-ui/getting-started/templates/sticky-footer/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sticky-footer`,
     },
@@ -74,11 +76,12 @@ function layouts(t) {
 }
 
 export default function Templates() {
-  const t = useTranslate();
+  const translatation = useTranslate();
+  const theme = useTheme();
 
   return (
     <Grid container spacing={2} sx={{ py: 2 }}>
-      {layouts(t).map((layout) => (
+      {layouts(translatation, theme).map((layout) => (
         <Grid item xs={12} sm={6} key={layout.title}>
           <Card
             variant="outlined"

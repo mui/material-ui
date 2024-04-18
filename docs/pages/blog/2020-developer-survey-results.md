@@ -315,5 +315,5 @@ We will run a similar survey next year to keep track of our progress.
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
 
-<img src="/static/blog/2019-survey/vote.gif" style="width: 550px; margin-bottom: 8px;" alt="How to upvote on GitHub" />
+<img src="/static/blog/2019-developer-survey-results/vote.gif" style="width: 550px; margin-bottom: 8px;" alt="How to upvote on GitHub" />
 <p class="blog-description">Help us prioritize by upvoting.</p>

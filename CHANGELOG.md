@@ -1,5 +1,78 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.3
+
+<!-- generated comparing v6.0.0-alpha.2..next -->
+
+_Apr 17, 2024_
+
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔥 Converted 5 more Material UI components to use Pigment CSS.
+- 🚀 Added container queries utility to the `@mui/system` package (#41674) @siriwatknp.
+
+### `@mui/material@6.0.0-alpha.3`
+
+- Convert `LinearProgress` to support Pigment CSS (#41816) @siriwatknp
+- [Dialog] Prevent onClick on the root element from being overwritten (#41881) @ryanburr
+- [FloatingActionButton] Convert to support CSS extraction (#41851) @gijsbotje
+- Convert `CircularProgress` to support Pigment CSS (#41776) @siriwatknp
+- [PaginationItem] Convert to support CSS extraction (#41848) @gijsbotje
+- [StepConnector] deprecate composed classes (#41740) @sai6855
+- [StepLabel] Deprecate `StepIconComponent`, `StepIconProps` (#41835) @sai6855
+- [ToggleButton] Convert to support CSS extraction (#41782) @lhilgert9
+- [ToggleButtonGroup] Deprecate composed classes (#41288) @sai6855
+- [Typography] Fix Typography inherit variant styles (#41308) @kealjones-wk
+
+### `@mui/system@6.0.0-alpha.3`
+
+- Add container queries utility (#41674) @siriwatknp
+
+### `@mui/codemod@6.0.0-alpha.3`
+
+- Add styled v6 transformation (#41743) @siriwatknp
+
+### `@mui/joy@5.0.0-beta.36`
+
+- [Button] Disable text highlighting (#41902) @mithun522
+
+### `@pigment-css/react@0.0.7`
+
+- Patch WyW's WeakRef usage (#41909) @DiegoAndai
+- Implement sx transform for system components (#41861) @brijeshb42
+
+### Docs
+
+- [material-ui] Add Connect-related content (#40848) @danilo-leal
+- [material-ui] Fix credit comment typo (#41872) @aarongarciah
+- [material-ui] Remove Data Grid v7 beta callout (#41839) @cherniavskii
+- [material-ui] Add stray design tweaks to free templates (#41696) @zanivan
+- [material-ui] Simplify components styling on templates (#41845) @zanivan
+- [material-ui][Button] Add `onChange` event handler to file upload example (#41863) @aarongarciah
+- [material-ui] Fix import statement in migration guide (#41852) @sai6855
+- Fix 301 redirection @oliviertassinari
+- Fix format git diff regression (#41882) @oliviertassinari
+- Fix small SEO issues @oliviertassinari
+- [pigment-css] Fix README typos (#41870) @MohammadShehadeh
+
+### Core
+
+- Begin removing IE 11-related code (#41709) @iammminzzy
+- [blog] Add post to introduce the Connect plugin (#41763) @danilo-leal
+- [code-infra] Fix require.context with aliases (#41682) @Janpot
+- [code-infra] Allow customizing hooks imports in API docs generator (#41828) @michaldudak
+- [codemod] Add utils for `*Component` and `*Props` props deprecations (#41685) @DiegoAndai
+- Replace bundle size reporter filter (#38979) @Janpot
+- [docs-infra] Make the whole header clickable (#39603) @MoazMirza-13
+- [docs-infra] Improve demo container and related components design (#41827) @danilo-leal
+- [docs-infra] Use edge function for card generation (#41188) (#41836) @alexfauquette
+- [docs-infra] Fix code block layout shift (#41917) @oliviertassinari
+- [docs-infra] Fine-tune the OG card image design (#41862) @danilo-leal
+- [docs-infra] Fix markdown version for material (#41908) @alexfauquette
+- [docs-infra] Support multiple tabs in demos (#40901) @bharatkashyap
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @brijeshb42, @cherniavskii, @danilo-leal, @DiegoAndai, @EyaOuenniche, @gijsbotje, @iammminzzy, @Janpot, @kealjones-wk, @lhilgert9, @magnimarels, @michaldudak, @mithun522, @mnajdova, @MoazMirza-13, @MohammadShehadeh, @oliviertassinari, @ryanburr, @sai6855, @siriwatknp, @zanivan
+
 ## v6.0.0-alpha.2
 
 <!-- generated comparing v6.0.0-alpha.1..next -->

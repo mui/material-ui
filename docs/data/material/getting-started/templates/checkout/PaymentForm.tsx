@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
+import { Card as MuiCard } from '@mui/material';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import Checkbox from '@mui/material/Checkbox';
@@ -14,12 +14,63 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import { styled } from '@mui/material/styles';
+
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
 import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
 import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 
-import { styled } from '@mui/system';
+const Card = styled(MuiCard)<{ selected?: boolean }>(({ theme, selected }) => ({
+  border: '1px solid',
+  borderColor: theme.palette.divider,
+  width: '100%',
+  '&:hover': {
+    background:
+      theme.palette.mode === 'light'
+        ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
+        : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+    borderColor: theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
+    boxShadow:
+      theme.palette.mode === 'light'
+        ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
+        : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
+  },
+  [theme.breakpoints.up('md')]: {
+    flexGrow: 1,
+    maxWidth: `calc(50% - ${theme.spacing(1)})`,
+  },
+  ...(selected && {
+    backgroundColor: theme.palette.action.selected,
+    borderColor:
+      theme.palette.mode === 'light'
+        ? theme.palette.primary.light
+        : theme.palette.primary.dark,
+  }),
+}));
+
+const PaymentContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  width: '100%',
+  height: 375,
+  padding: theme.spacing(3),
+  borderRadius: '20px',
+  border: '1px solid ',
+  borderColor: theme.palette.divider,
+  background:
+    theme.palette.mode === 'light'
+      ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.3) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
+      : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+  boxShadow: '0px 4px 8px hsla(210, 0%, 0%, 0.05)',
+  [theme.breakpoints.up('xs')]: {
+    height: 300,
+  },
+  [theme.breakpoints.up('sm')]: {
+    height: 350,
+  },
+}));
 
 const FormGrid = styled('div')(() => ({
   display: 'flex',
@@ -70,35 +121,12 @@ export default function PaymentForm() {
           value={paymentType}
           onChange={handlePaymentTypeChange}
           sx={{
-            flexDirection: { sm: 'column', md: 'row' },
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
             gap: 2,
           }}
         >
-          <Card
-            sx={(theme) => ({
-              maxWidth: { sm: '100%', md: '50%' },
-              flexGrow: 1,
-              border: '1px solid',
-              borderColor: 'divider',
-              '&:hover': {
-                background:
-                  theme.palette.mode === 'light'
-                    ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
-                    : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
-                borderColor:
-                  theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
-                boxShadow:
-                  theme.palette.mode === 'light'
-                    ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
-                    : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
-              },
-              ...(paymentType === 'creditCard' && {
-                backgroundColor: 'action.selected',
-                borderColor:
-                  theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
-              }),
-            })}
-          >
+          <Card selected={paymentType === 'creditCard'}>
             <CardActionArea
               onClick={() => setPaymentType('creditCard')}
               sx={{
@@ -124,31 +152,7 @@ export default function PaymentForm() {
               </CardContent>
             </CardActionArea>
           </Card>
-          <Card
-            sx={(theme) => ({
-              maxWidth: { sm: '100%', md: '50%' },
-              flexGrow: 1,
-              border: '1px solid',
-              borderColor: 'divider',
-              '&:hover': {
-                background:
-                  theme.palette.mode === 'light'
-                    ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
-                    : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
-                borderColor:
-                  theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
-                boxShadow:
-                  theme.palette.mode === 'light'
-                    ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
-                    : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
-              },
-              ...(paymentType === 'bankTransfer' && {
-                backgroundColor: 'action.selected',
-                borderColor:
-                  theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
-              }),
-            })}
-          >
+          <Card selected={paymentType === 'bankTransfer'}>
             <CardActionArea
               onClick={() => setPaymentType('bankTransfer')}
               sx={{
@@ -184,21 +188,7 @@ export default function PaymentForm() {
             gap: 2,
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              p: 3,
-              height: { xs: 300, sm: 350, md: 375 },
-              width: '100%',
-              borderRadius: '20px',
-              border: '1px solid ',
-              borderColor: 'divider',
-              backgroundColor: 'background.paper',
-              boxShadow: '0px 4px 8px hsla(210, 0%, 0%, 0.05)',
-            }}
-          >
+          <PaymentContainer>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="subtitle2">Credit card</Typography>
               <CreditCardRoundedIcon sx={{ color: 'text.secondary' }} />
@@ -271,7 +261,7 @@ export default function PaymentForm() {
                 />
               </FormGrid>
             </Box>
-          </Box>
+          </PaymentContainer>
           <FormControlLabel
             control={<Checkbox name="saveCard" />}
             label="Remember credit card details for next time"

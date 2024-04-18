@@ -408,6 +408,38 @@ describe('experimental_extendTheme', () => {
     });
   });
 
+  describe('typography', () => {
+    it('produce typography token by default', () => {
+      const theme = extendTheme();
+      expect(Object.keys(theme.vars.typography)).to.deep.equal([
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'subtitle1',
+        'subtitle2',
+        'body1',
+        'body2',
+        'button',
+        'caption',
+        'overline',
+        'inherit',
+      ]);
+    });
+  });
+
+  describe('container queries', () => {
+    it('should generate container queries', () => {
+      const theme = extendTheme();
+      expect(theme.containerQueries('sidebar').up('sm')).to.equal(
+        '@container sidebar (min-width:600px)',
+      );
+      expect(theme.containerQueries.up(300)).to.equal('@container (min-width:300px)');
+    });
+  });
+
   it('shallow merges multiple arguments', () => {
     const theme = extendTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
     expect(theme.foo).to.equal('I am foo');
