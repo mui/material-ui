@@ -100,6 +100,13 @@ export const ListItemRoot = styled('div', {
   },
   variants: [
     {
+      props: ({ ownerState }) => !ownerState.disablePadding,
+      style: {
+        paddingTop: 8,
+        paddingBottom: 8,
+      },
+    },
+    {
       props: ({ ownerState }) => !ownerState.disablePadding && ownerState.dense,
       style: {
         paddingTop: 4,
@@ -119,13 +126,6 @@ export const ListItemRoot = styled('div', {
         // Add some space to avoid collision as `ListItemSecondaryAction`
         // is absolutely positioned.
         paddingRight: 48,
-      },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.disablePadding,
-      style: {
-        paddingTop: 8,
-        paddingBottom: 8,
       },
     },
     {
