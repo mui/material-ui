@@ -94,7 +94,6 @@ The current step and total number of steps are displayed as text.
 
 {{"demo": "TextMobileStepper.js", "bg": true}}
 
-
 ### Dots
 
 Use dots when the number of steps is small.
