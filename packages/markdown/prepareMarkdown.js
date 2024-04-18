@@ -110,7 +110,7 @@ This unstyled version of the component is the ideal choice for heavy customizati
         `);
       }
 
-      if (headers.components.length > 0) {
+      if (headers.components.length > 0 && headers.productId !== 'base-ui') {
         contents.push(`
 ## API
 
