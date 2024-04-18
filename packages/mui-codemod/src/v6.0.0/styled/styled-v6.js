@@ -367,6 +367,8 @@ export default function styledV6(file, api, options) {
               style: data.node.argument.right,
             };
 
+            const lastLength = variants.push({}); // preserve the order of the recursive calls
+
             const modeStyles = {}; // to collect styles from `theme.palette.mode === '...'`
             variant.style.properties.forEach((prop) => {
               if (prop.type === 'ObjectProperty') {
@@ -399,7 +401,7 @@ export default function styledV6(file, api, options) {
                 },
               ]);
             }
-            variants.push(buildObjectAST(variant));
+            variants[lastLength - 1] = buildObjectAST(variant);
             removeProperty(data.parentNode, data.node);
           }
           if (data.node.argument.type === 'ConditionalExpression') {
