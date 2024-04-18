@@ -11,6 +11,7 @@ type Project = {
   rootPath: string;
   additionalPaths?: string[];
   additionalFiles?: string[];
+  filesToSkip?: string[]; // relative to the src directory
 };
 
 const PROJECTS: Project[] = [
@@ -21,6 +22,7 @@ const PROJECTS: Project[] = [
   {
     name: 'material',
     rootPath: path.join(process.cwd(), 'packages/mui-material'),
+    filesToSkip: ['useAutocomplete/useAutocomplete.js'],
   },
   {
     name: 'joy',
@@ -75,12 +77,16 @@ async function processFile(
 
 async function findAll(
   directories: string[],
+  filesToSkip: string[],
   grep: RegExp | null,
   findFn: typeof findComponents | typeof findHooks,
 ) {
   const result = await Promise.all(
     directories.map((dir) => {
       return findFn(dir).filter((item) => {
+        if (filesToSkip.includes(item.filename)) {
+          return false;
+        }
         if (grep === null) {
           return true;
         }
@@ -99,6 +105,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
     await resolvedPromise;
 
     const projectSrc = path.join(project.rootPath, 'src');
+    const filesToSkip = (project.filesToSkip || []).map((file) => path.join(projectSrc, file));
 
     let directories = [projectSrc];
 
@@ -109,7 +116,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       ];
     }
 
-    const components = await findAll(directories, grep, findComponents);
+    const components = await findAll(directories, filesToSkip, grep, findComponents);
 
     components.forEach(async (component) => {
       try {
@@ -120,7 +127,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       }
     });
 
-    const hooks = await findAll(directories, grep, findHooks);
+    const hooks = await findAll(directories, filesToSkip, grep, findHooks);
 
     hooks.forEach(async (hook) => {
       try {
