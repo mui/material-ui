@@ -93,8 +93,10 @@ const CheckboxRoot = styled(SwitchBase, {
       props: { disableRipple: false },
       style: {
         // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
+        '&:hover': {
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
         },
       },
     },
