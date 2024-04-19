@@ -16,8 +16,10 @@ import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
+import { SvgIcon } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { useTheme } from '@mui/styles';
 
 const planInfo = {
   community: {
@@ -95,8 +97,38 @@ interface ComponentSelectorProps {
 }
 
 export function ComponentSelector(props: ComponentSelectorProps) {
+  const theme = useTheme();
   const { includedComponents, setIncludedComponents, premium } = props;
+
+  const getCustomIcon = (checked: boolean, disabled: boolean) => (
+    <SvgIcon sx={{ fontSize: 24 }}>
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="2"
+        strokeWidth="1"
+        //fill="none"
+        //stroke={disabled ? theme.palette.action.disabled : 'grey'}
+        fill={checked && !disabled ? theme.palette.primary.main : disabled ? theme.palette.action.disabled : "none"}
+        stroke={checked && !disabled ? theme.palette.primary.main : disabled ? theme.palette.action.disabled : "grey"}
+      />
+      {checked && (
+        <path
+          strokeWidth="3"
+          d="M7 12l3 3 7-7"
+          fill="none"
+          //stroke={disabled ? theme.palette.action.disabled : theme.palette.primary.main}
+          stroke={"#fff"}
+        />
+      )}
+    </SvgIcon>
+  );
   const handleCheckboxChange = (component: Components, isChecked: boolean) => {
+    if (!setIncludedComponents) {
+      return;
+    }
     if (isChecked) {
       // Add the component if it's checked and not already included
       setIncludedComponents((prev) => [...prev, component]);
@@ -122,7 +154,7 @@ export function ComponentSelector(props: ComponentSelectorProps) {
         const isLastOne = includedComponents.length === 1 && includedComponents.includes(component);
         return (
           <Tooltip
-            key={component + 'tt'}
+            key={'component selector tooltip'}
             title={isLastOne ? 'At least one component must be selected.' : ''}
             placement="top"
             disableHoverListener={!isLastOne} // Disable tooltip when not the last one
@@ -132,15 +164,26 @@ export function ComponentSelector(props: ComponentSelectorProps) {
               sx={{
                 height: '30px',
                 margin: 0,
+                color: theme.palette.secondary.main, // Use secondary color for label
               }}
               control={
                 <Checkbox
                   checked={includedComponents.includes(component)}
                   onChange={(e) => handleCheckboxChange(component, e.target.checked)}
                   disabled={premium}
+                  icon={getCustomIcon(false, premium || false)}
+                  checkedIcon={getCustomIcon(true, premium || false)}
                 />
               }
-              label={component}
+              label={
+                <Typography
+                  variant="body2"
+                  color={premium ? 'text.disabled' : 'text.secondary'}
+                  textAlign="center"
+                >
+                  {component}
+                </Typography>
+              }
             />
           </Tooltip>
         );
