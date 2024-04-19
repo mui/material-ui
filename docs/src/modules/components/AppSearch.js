@@ -199,7 +199,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI Toolpad',
+        name: 'Toolpad',
       },
       items: [
         {
