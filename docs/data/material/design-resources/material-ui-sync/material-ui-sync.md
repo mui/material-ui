@@ -11,7 +11,7 @@ Sync works in combination with the [Material UI for Figma Design Kit v5.16.0](h
 Other kits, such as the Joy UI Design Kit, are not supported yet.
 :::
 
-<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Sync plugin running." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/sync.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Sync plugin running." width="1628" height="400" />
 
 ## Running the plugin
 
@@ -19,7 +19,7 @@ If you don't have the [complete and latest version](/store/items/figma-react/) o
 
 After installing and opening it in Figma, head over to the [Material UI Sync plugin page](https://www.figma.com/community/plugin/1336346114713490235/) on the Community tab and click on **Open in...** and select the Material UI for Figma Design Kit.
 
-<img src="/static/material-ui/design-resources/connect-access.png" style="width: 814px;" alt="Accessing Material UI Sync via the Resources menu in Figma." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/sync-access.png" style="width: 814px;" alt="Accessing Material UI Sync via the Resources menu in Figma." width="1628" height="400" />
 
 ## Customizing design tokens
 
@@ -28,35 +28,35 @@ Typography and shadow-related tokens are found in the [local styles collection](
 
 ### Altering existing tokens
 
-The Material UI for Figma Design Kit comes fully loaded with design tokens that map out to the [default theme of the Material UI React library](/material-ui/customization/default-theme/).
+The Design Kit comes fully loaded with design tokens that map out to the [default theme of the Material UI React library](/material-ui/customization/default-theme/).
 
 To customize existing tokens, open the [local variable modal](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables) by clicking on the filter icon as shown below.
 Tweak any of the variables available in the collections (such as palettes, breakpoints, shapes, and spacing) as you see fit.
 
-<img src="/static/material-ui/design-resources/connect-variables.png" style="width: 814px; margin-bottom: 8px;" alt="The Local variables menu in Figma, where all design tokens are stored and new ones can be added." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/sync-variables.png" style="width: 814px; margin-bottom: 8px;" alt="The Local variables menu in Figma, where all design tokens are stored and new ones can be added." width="1628" height="400" />
 
 Then open the Material UI Sync plugin and click on **Generate theme**.
 
-<img src="/static/material-ui/design-resources/connect-generate.png" style="width: 814px; margin-bottom: 8px;" alt="The Generate theme button in the Material UI Sync plugin UI." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/sync-generate.png" style="width: 814px; margin-bottom: 8px;" alt="The Generate theme button in the Material UI Sync plugin UI." width="1628" height="400" />
 
 A theme containing the altered tokens is generated and displayed in the plugin's Theme tab.
 
-<img src="/static/material-ui/design-resources/connect-code-editor.png" style="width: 814px; margin-bottom: 8px;" alt="The generated theme displayed in the Material UI Sync plugin UI." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/sync-code-editor.png" style="width: 814px; margin-bottom: 8px;" alt="The generated theme displayed in the Material UI Sync plugin UI." width="1628" height="400" />
 
 You can also preview the generated theme and the customized tokens by navigating to the Storybook preview tab.
 
-<img src="/static/material-ui/design-resources/connect-storybook.png" style="width: 814px" alt="The generated theme previewed in Storybook in the Material UI Sync plugin UI." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/sync-storybook.png" style="width: 814px" alt="The generated theme previewed in Storybook in the Material UI Sync plugin UI." width="1628" height="400" />
 
 ### Adding new tokens
 
 You can extend the existing tokens set with your own either by adding new variables to the existing local variable collections, or by adding new elevation and typography styles to the local style collections.
 After you've added your custom tokens, click on **Regenerate theme** to include these tokens in your theme.
 
-<img src="/static/material-ui/design-resources/connect-regenerate.png" style="width: 814px" alt="The Regenerate button in the Connect plugin UI." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/sync-regenerate.png" style="width: 814px" alt="The Regenerate button in the Connect plugin UI." width="1628" height="400" />
 
 ## Customizing components
 
-Material UI Sync can also generate theme styles for customized components, enabling you to completely change their look and feel and create your custom design system from within Figma.
+The Sync plugin can also generate theme styles for customized components, enabling you to completely change their look and feel and create your custom design system from within Figma.
 
 :::info
 This feature is currently limited to the Button, Switch, and Typography components.
@@ -65,7 +65,7 @@ Support for more components is coming soon.
 
 As an example, here's how to customize the checked state, medium size, and primary color of a Switch component to replicate the iOS look and feel:
 
-<img src="/static/material-ui/design-resources/connect-component-variant.png" style="width: 814px; margin-bottom: 8px;" alt="A specific variant of the Switch component selected in the Design Kit." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/sync-component-variant.png" style="width: 814px; margin-bottom: 8px;" alt="A specific variant of the Switch component selected in the Design Kit." width="1628" height="400" />
 
 :::warning
 The Design Kit's component layer hierarchy and layer names must remain unaltered for Sync to correctly extract custom component styles and generate the theme.
@@ -122,7 +122,7 @@ To customize other states, you need to apply the desired design changes to each 
 Repeat this process for each variant you want to customize.
 Here's an example of what this might look like:
 
-<img src="/static/material-ui/design-resources/connect-switch-component-customized.png" style="width: 814px; margin-bottom: 8px;" alt="A fully customized Switch component in the Material UI Design Kit." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/sync-switch-component-customized.png" style="width: 814px; margin-bottom: 8px;" alt="A fully customized Switch component in the Material UI Design Kit." width="1628" height="400" />
 
 From here you can run Sync to generate a new theme—here's what would be generated from the example above:
 
@@ -232,7 +232,7 @@ It is now [supported by all modern browsers](https://caniuse.com/css-has).
 
 You can also check out the Storybook preview to test the Material UI version of your component.
 
-<img src="/static/material-ui/design-resources/connect-switch-component-customized-storybook.png" style="width: 814px" alt="A fully customized Switch component in Storybook." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/sync-switch-component-customized-storybook.png" style="width: 814px" alt="A fully customized Switch component in Storybook." width="1628" height="400" />
 
 ## Using the generated theme
 

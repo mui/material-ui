@@ -336,8 +336,8 @@ const pages: MuiPage[] = [
         title: 'Material UI for Figma',
       },
       {
-        pathname: '/material-ui/design-resources/connect',
-        title: 'Connect plugin',
+        pathname: '/material-ui/design-resources/material-ui-sync',
+        title: 'Material UI Sync plugin',
         beta: true,
       },
     ],
