@@ -10,13 +10,13 @@
     "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   },
   "dependencies": {
-    "@pigment-css/react": "^0.0.7",
+    "@pigment-css/react": "latest",
     "react": "latest",
     "react-dom": "latest",
     "next": "latest"
   },
   "devDependencies": {
-    "@pigment-css/nextjs-plugin": "^0.0.7",
+    "@pigment-css/nextjs-plugin": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
