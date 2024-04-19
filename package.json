@@ -222,10 +222,5 @@
     ],
     "sourceMap": false,
     "instrument": false
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@wyw-in-js/transform@0.5.0": "patches/@wyw-in-js__transform@0.5.0.patch"
-    }
   }
 }
