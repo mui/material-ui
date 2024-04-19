@@ -17,10 +17,11 @@ test('able to navigate between products', async ({ page }) => {
 
   await expect(page.locator('#mui-product-menu a[href^="/system/"]')).toHaveAttribute(
     'href',
-    '/system/getting-started/overview/',
+    '/system/getting-started/',
   );
 
-  await expect(page.locator('#mui-product-menu a[href^="/x/introduction/"]')).toBeVisible();
+  await expect(page.locator('#mui-product-menu a[href^="/x/react-data-grid/"]')).toBeVisible();
+  await expect(page.locator('#mui-product-menu a[href^="/x/react-date-pickers/"]')).toBeVisible();
 
   await expect(
     page.locator('#mui-product-menu a[href^="/base-ui/getting-started/"]'),

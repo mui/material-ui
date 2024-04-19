@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -26,7 +26,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -36,30 +37,90 @@
     }
   },
   "name": "InputLabel",
-  "styles": {
-    "classes": [
-      "root",
-      "focused",
-      "disabled",
-      "error",
-      "required",
-      "asterisk",
-      "formControl",
-      "sizeSmall",
-      "shrink",
-      "animated",
-      "filled",
-      "outlined",
-      "standard"
-    ],
-    "globalClasses": {
-      "focused": "Mui-focused",
-      "disabled": "Mui-disabled",
-      "error": "Mui-error",
-      "required": "Mui-required"
+  "imports": [
+    "import InputLabel from '@mui/material/InputLabel';",
+    "import { InputLabel } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "animated",
+      "className": "MuiInputLabel-animated",
+      "description": "Styles applied to the input element unless `disableAnimation={true}`.",
+      "isGlobal": false
     },
-    "name": "MuiInputLabel"
-  },
+    {
+      "key": "asterisk",
+      "className": "MuiInputLabel-asterisk",
+      "description": "State class applied to the asterisk element.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "filled",
+      "className": "MuiInputLabel-filled",
+      "description": "Styles applied to the root element if `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "State class applied to the root element if `focused={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "formControl",
+      "className": "MuiInputLabel-formControl",
+      "description": "Styles applied to the root element if the component is a descendant of `FormControl`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiInputLabel-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "required",
+      "className": "Mui-required",
+      "description": "State class applied to the root element if `required={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiInputLabel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "shrink",
+      "className": "MuiInputLabel-shrink",
+      "description": "Styles applied to the input element if `shrink={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiInputLabel-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiInputLabel-standard",
+      "description": "Styles applied to the root element if `variant=\"standard\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiInputLabel",

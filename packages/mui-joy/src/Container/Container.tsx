@@ -1,3 +1,4 @@
+'use client';
 import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
@@ -7,7 +8,6 @@ import { useThemeProps } from '../styles';
 import { ContainerTypeMap } from './ContainerProps';
 
 const Container = createContainer<Theme>({
-  componentName: 'JoyContainer',
   createStyledComponent: styled('div', {
     name: 'JoyContainer',
     slot: 'Root',
@@ -17,10 +17,10 @@ const Container = createContainer<Theme>({
 }) as OverridableComponent<ContainerTypeMap>;
 
 Container.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

@@ -1,6 +1,8 @@
 const straightQuotes = require('./packages/markdownlint-rule-mui/straight-quotes');
 const gitDiff = require('./packages/markdownlint-rule-mui/git-diff');
 const tableAlignment = require('./packages/markdownlint-rule-mui/table-alignment');
+const terminalLanguage = require('./packages/markdownlint-rule-mui/terminal-language');
+const duplicateH1 = require('./packages/markdownlint-rule-mui/duplicate-h1');
 
 // https://github.com/DavidAnson/markdownlint#rules--aliases
 module.exports = {
@@ -33,8 +35,10 @@ module.exports = {
     straightQuotes: true,
     gitDiff: true,
     tableAlignment: true,
+    terminalLanguage: true,
+    duplicateH1: true,
   },
-  customRules: [straightQuotes, gitDiff, tableAlignment],
+  customRules: [straightQuotes, gitDiff, tableAlignment, terminalLanguage, duplicateH1],
   ignores: [
     'CHANGELOG.old.md',
     '**/node_modules/**',

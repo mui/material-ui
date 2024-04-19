@@ -28,7 +28,7 @@ const finalTheme = createTheme({
   },
 });
 
-export default function GlobalThemeOverride() {
+export default function GlobalThemeOverrideSx() {
   return (
     <ThemeProvider theme={finalTheme}>
       <Chip

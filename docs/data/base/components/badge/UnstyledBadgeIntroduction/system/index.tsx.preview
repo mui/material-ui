@@ -1,0 +1,3 @@
+<Badge badgeContent={5}>
+  <BadgeContent />
+</Badge>

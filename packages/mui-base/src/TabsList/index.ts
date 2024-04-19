@@ -1,5 +1,5 @@
-export { default } from './TabsList';
+'use client';
+export { TabsList } from './TabsList';
 export * from './TabsList.types';
 
-export { default as tabsListClasses } from './tabsListClasses';
 export * from './tabsListClasses';

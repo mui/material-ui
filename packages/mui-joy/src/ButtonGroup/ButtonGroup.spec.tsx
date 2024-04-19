@@ -1,5 +1,5 @@
-import ButtonGroup from '@mui/joy/ButtonGroup';
 import * as React from 'react';
+import ButtonGroup from '@mui/joy/ButtonGroup';
 
 <ButtonGroup />;
 
@@ -14,7 +14,6 @@ import * as React from 'react';
 // `color`
 <ButtonGroup color="primary" />;
 <ButtonGroup color="danger" />;
-<ButtonGroup color="info" />;
 <ButtonGroup color="success" />;
 <ButtonGroup color="warning" />;
 <ButtonGroup color="neutral" />;

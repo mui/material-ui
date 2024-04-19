@@ -1,5 +1,7 @@
-import generateUtilityClasses from '../generateUtilityClasses';
-import generateUtilityClass from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+
+const COMPONENT_NAME = 'Modal';
 
 export interface ModalClasses {
   /** Class name applied to the root element. */
@@ -13,13 +15,11 @@ export interface ModalClasses {
 export type ModalClassKey = keyof ModalClasses;
 
 export function getModalUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiModal', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-const modalClasses: ModalClasses = generateUtilityClasses('MuiModal', [
+export const modalClasses: ModalClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'hidden',
   'backdrop',
 ]);
-
-export default modalClasses;

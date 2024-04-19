@@ -4,6 +4,7 @@ description: An update on our mission for Q1 2020.
 date: 2020-04-14T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
+manualCard: true
 ---
 
 Welcome to the new format of our mission update. We are moving from monthly to quarterly updates.
@@ -24,7 +25,7 @@ Here are the most significant improvements since the beginning of the year:
   If you wish to make your first contribution to open source, the component has a couple of ["good first issues"](https://github.com/mui/material-ui/labels/lab%3A%20Autocomplete) that can be taken.
   If you have TypeScript expertise, the component could [benefit from it](https://github.com/mui/material-ui/issues?q=is%3Aopen+label%3A%22lab%3A+Autocomplete%22+label%3Atypescript).
 
-- 📆 We have made a first [alpha release](https://next.material-ui-pickers.dev/demo/daterangepicker) of the date range picker. It's not ready to be used in production but you can start playing. We might release some of the new features of the date picker under the upcoming Enterprise offering.
+- 📆 We have made a first [alpha release](https://github.com/mui/material-ui-pickers/releases/tag/v4.0.0-alpha.4) of the date range picker. It's not ready to be used in production but you can start playing. We might release some of the new features of the date picker under the upcoming Enterprise offering.
 
   ![date picker](/static/blog/2020-q1-update/date-picker.png)
 
@@ -84,12 +85,12 @@ We are thrilled to welcome two new full-time developers on MUI:
 
 We'll do our best, no guarantee!
 
-- 📣 We will analyze and publish the results of the "MUI Developer Survey 2020". If you haven't contributed to it yet, you can follow this link to [fill it in](https://forms.gle/TYWRdvgyZs4AhZNv8), thanks!
+- 📣 We will analyze and publish the results of the "Material UI Developer Survey 2020". If you haven't contributed to it yet, you can follow this link to [fill it in](https://forms.gle/TYWRdvgyZs4AhZNv8), thanks!
 - 🎨 We will release Figma assets for MUI.
 
   <img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="max-width: 160px; margin-bottom: 24px;" />
 
-- 🇨🇳 We will translate 100% of the documentation to Chinese. We are collaborating with [Danica Shen](https://github.com/DDDDDanica), a native speaker, to complete the effort. So far, we have translated 73% of the documentation and peer-reviewed 39%. You can help us out on [Crowdin](https://translate.mui.com/).
+- 🇨🇳 We will translate 100% of the documentation to Chinese. We are collaborating with [Danica Shen](https://github.com/DDDDDanica), a native speaker, to complete the effort. So far, we have translated 73% of the documentation and peer-reviewed 39%. You can help us out on [Crowdin](https://crowdin.com/project/material-ui-docs).
 
   <img src="/static/blog/2020-q1-update/chinese.png" alt="chinese" style="max-width: 134px; margin-bottom: 24px;" />
 

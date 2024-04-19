@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, match } from 'sinon';
-import { act, createMount, createRenderer, describeConformance, screen } from 'test/utils';
+import { act, createMount, createRenderer, screen } from '@mui-internal/test-utils';
 import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';
@@ -11,6 +11,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
 import styled from '../styles/styled';
+import describeConformance from '../../test/describeConformance';
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
   const handleMocks = React.useCallback((paperInstance) => {
@@ -87,7 +88,17 @@ describe('<Popover />', () => {
         return <div data-testid="backdrop" data-invisible={invisible} />;
       }
       render(
-        <Popover open anchorEl={document.createElement('div')} BackdropComponent={TestBackdrop}>
+        <Popover
+          open
+          anchorEl={document.createElement('div')}
+          slotProps={{
+            root: {
+              slots: {
+                backdrop: TestBackdrop,
+              },
+            },
+          }}
+        >
           <div />
         </Popover>,
       );
@@ -834,8 +845,8 @@ describe('<Popover />', () => {
     });
   });
 
-  [0, 18, 16].forEach((marginThreshold) => {
-    describe(`positioning when \`marginThreshold=${marginThreshold}\``, () => {
+  describe('prop: marginThreshold', () => {
+    [0, 18, 16].forEach((marginThreshold) => {
       function getElementStyleOfOpenPopover(anchorEl = document.createElement('svg')) {
         let style;
         render(
@@ -848,7 +859,7 @@ describe('<Popover />', () => {
               },
             }}
             marginThreshold={marginThreshold}
-            PaperProps={{ component: FakePaper }}
+            slotProps={{ paper: { component: FakePaper } }}
           >
             <div />
           </Popover>,
@@ -856,98 +867,132 @@ describe('<Popover />', () => {
         return style;
       }
 
-      specify('when no movement is needed', () => {
-        const negative = marginThreshold === 0 ? '' : '-';
-        const positioningStyle = getElementStyleOfOpenPopover();
+      describe(`positioning when \`marginThreshold=${marginThreshold}\``, () => {
+        specify('when no movement is needed', () => {
+          const negative = marginThreshold === 0 ? '' : '-';
+          const positioningStyle = getElementStyleOfOpenPopover();
 
-        expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-        expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-        expect(positioningStyle.transformOrigin).to.match(
-          new RegExp(`${negative}${marginThreshold}px ${negative}${marginThreshold}px( 0px)?`),
-        );
-      });
-
-      specify('top < marginThreshold', () => {
-        const mockedAnchor = document.createElement('div');
-        stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-          left: marginThreshold,
-          top: marginThreshold - 1,
-        }));
-        const positioningStyle = getElementStyleOfOpenPopover(mockedAnchor);
-
-        expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-        expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-        expect(positioningStyle.transformOrigin).to.match(/0px -1px( 0ms)?/);
-      });
-
-      describe('bottom > heightThreshold', () => {
-        let windowInnerHeight;
-
-        before(() => {
-          windowInnerHeight = window.innerHeight;
-          window.innerHeight = marginThreshold * 2;
+          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
+          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
+          expect(positioningStyle.transformOrigin).to.match(
+            new RegExp(`${negative}${marginThreshold}px ${negative}${marginThreshold}px( 0px)?`),
+          );
         });
 
-        after(() => {
-          window.innerHeight = windowInnerHeight;
-        });
-
-        specify('test', () => {
+        specify('top < marginThreshold', () => {
           const mockedAnchor = document.createElement('div');
           stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
             left: marginThreshold,
-            top: marginThreshold + 1,
+            top: marginThreshold - 1,
           }));
-
           const positioningStyle = getElementStyleOfOpenPopover(mockedAnchor);
 
           expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
           expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-          expect(positioningStyle.transformOrigin).to.match(/0px 1px( 0px)?/);
-        });
-      });
-
-      specify('left < marginThreshold', () => {
-        const mockedAnchor = document.createElement('div');
-        stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-          left: marginThreshold - 1,
-          top: marginThreshold,
-        }));
-
-        const positioningStyle = getElementStyleOfOpenPopover(mockedAnchor);
-
-        expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-
-        expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-
-        expect(positioningStyle.transformOrigin).to.match(/-1px 0px( 0px)?/);
-      });
-
-      describe('right > widthThreshold', () => {
-        let innerWidthContainer;
-
-        before(() => {
-          innerWidthContainer = window.innerWidth;
-          window.innerWidth = marginThreshold * 2;
+          expect(positioningStyle.transformOrigin).to.match(/0px -1px( 0px)?/);
         });
 
-        after(() => {
-          window.innerWidth = innerWidthContainer;
+        describe('bottom > heightThreshold', () => {
+          let windowInnerHeight;
+
+          before(() => {
+            windowInnerHeight = window.innerHeight;
+            window.innerHeight = marginThreshold * 2;
+          });
+
+          after(() => {
+            window.innerHeight = windowInnerHeight;
+          });
+
+          specify('test', () => {
+            const mockedAnchor = document.createElement('div');
+            stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+              left: marginThreshold,
+              top: marginThreshold + 1,
+            }));
+
+            const positioningStyle = getElementStyleOfOpenPopover(mockedAnchor);
+
+            expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
+            expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
+            expect(positioningStyle.transformOrigin).to.match(/0px 1px( 0px)?/);
+          });
         });
 
-        specify('test', () => {
+        specify('left < marginThreshold', () => {
           const mockedAnchor = document.createElement('div');
           stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-            left: marginThreshold + 1,
+            left: marginThreshold - 1,
             top: marginThreshold,
           }));
 
           const positioningStyle = getElementStyleOfOpenPopover(mockedAnchor);
 
           expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
+
           expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-          expect(positioningStyle.transformOrigin).to.match(/1px 0px( 0px)?/);
+
+          expect(positioningStyle.transformOrigin).to.match(/-1px 0px( 0px)?/);
         });
+
+        describe('right > widthThreshold', () => {
+          let innerWidthContainer;
+
+          before(() => {
+            innerWidthContainer = window.innerWidth;
+            window.innerWidth = marginThreshold * 2;
+          });
+
+          after(() => {
+            window.innerWidth = innerWidthContainer;
+          });
+
+          specify('test', () => {
+            const mockedAnchor = document.createElement('div');
+            stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+              left: marginThreshold + 1,
+              top: marginThreshold,
+            }));
+
+            const positioningStyle = getElementStyleOfOpenPopover(mockedAnchor);
+
+            expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
+            expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
+            expect(positioningStyle.transformOrigin).to.match(/1px 0px( 0px)?/);
+          });
+        });
+      });
+    });
+
+    describe('positioning when `marginThreshold=null`', () => {
+      it('should not apply the marginThreshold when marginThreshold is null', () => {
+        const mockedAnchor = document.createElement('div');
+        const valueOutsideWindow = -100;
+        stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+          top: valueOutsideWindow,
+          left: valueOutsideWindow,
+        }));
+
+        let style;
+        render(
+          <Popover
+            anchorEl={mockedAnchor}
+            open
+            TransitionProps={{
+              onEntering: (node) => {
+                style = node.style;
+              },
+            }}
+            marginThreshold={null}
+            slotProps={{ paper: { component: FakePaper } }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(style.top).to.equal(`${valueOutsideWindow}px`);
+        expect(style.left).to.equal(`${valueOutsideWindow}px`);
+        expect(style.transformOrigin).to.match(/0px 0px( 0px)?/);
       });
     });
   });

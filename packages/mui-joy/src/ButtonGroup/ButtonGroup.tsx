@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -9,6 +10,7 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
+import { resolveSxValue } from '../styles/styleUtils';
 import styled from '../styles/styled';
 import { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import { ButtonGroupProps, ButtonGroupOwnerState, ButtonGroupTypeMap } from './ButtonGroupProps';
@@ -33,11 +35,11 @@ const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
   return composeClasses(slots, getButtonGroupUtilityClass, {});
 };
 
-const ButtonGroupRoot = styled('div', {
-  name: 'JoyButtonGroup',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => {
+export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerState }>(({
+  theme,
+  ownerState,
+}) => {
+  const { borderRadius: radius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
   const firstChildRadius =
     ownerState.orientation === 'vertical'
       ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) var(--unstable_childRadius) var(--unstable_childRadius)'
@@ -64,17 +66,15 @@ const ButtonGroupRoot = styled('div', {
       }
     },
   );
+  const outlinedStyle = theme.variants.outlined?.[ownerState.color!];
+  const outlinedDisabledStyle = theme.variants.outlinedDisabled?.[ownerState.color!];
+  const outlinedHoverStyle = theme.variants.outlinedHover?.[ownerState.color!];
 
   return [
     {
       '--ButtonGroup-separatorSize':
         ownerState.variant === 'outlined' ? '1px' : 'calc(var(--ButtonGroup-connected) * 1px)',
-      ...(ownerState.color !== 'context' && {
-        '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.outlinedBorder,
-        ...(ownerState.variant === 'solid' && {
-          '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[400],
-        }),
-      }),
+      '--ButtonGroup-separatorColor': outlinedStyle?.borderColor,
       '--ButtonGroup-radius': theme.vars.radius.sm,
       '--Divider-inset': '0.5rem',
       '--unstable_childRadius':
@@ -95,7 +95,7 @@ const ButtonGroupRoot = styled('div', {
         }),
       },
       // middle Buttons or IconButtons
-      [`& > :not([data-first-child]):not([data-last-child])`]: {
+      [`& > :not([data-first-child]):not([data-last-child]):not(:only-child)`]: {
         '--Button-radius': 'var(--unstable_childRadius)',
         '--IconButton-radius': 'var(--unstable_childRadius)',
         borderRadius: 'var(--unstable_childRadius)',
@@ -119,7 +119,12 @@ const ButtonGroupRoot = styled('div', {
           borderTop: 'var(--ButtonGroup-separatorSize) solid var(--ButtonGroup-separatorColor)',
         }),
       },
-      [`& > :not([data-first-child])`]: {
+      // single Button or IconButton
+      [`& > :only-child`]: {
+        '--Button-radius': 'var(--ButtonGroup-radius)',
+        '--IconButton-radius': 'var(--ButtonGroup-radius)',
+      },
+      [`& > :not([data-first-child]):not(:only-child)`]: {
         '--Button-margin': margin,
         '--IconButton-margin': margin,
       },
@@ -127,20 +132,17 @@ const ButtonGroupRoot = styled('div', {
         '&:not(:disabled)': {
           zIndex: 1, // to make borders appear above disabled buttons.
         },
+        '&:disabled': {
+          '--ButtonGroup-separatorColor': outlinedDisabledStyle?.borderColor,
+        },
+        ...(ownerState.variant === 'outlined' && {
+          '&:hover': {
+            '--ButtonGroup-separatorColor': outlinedHoverStyle?.borderColor,
+          },
+        }),
         [`&:hover, ${theme.focus.selector}`]: {
           zIndex: 2, // to make borders appear above sibling.
         },
-        ...(ownerState.color !== 'context' &&
-          ownerState.variant === 'outlined' && {
-            '&:hover': {
-              '--ButtonGroup-separatorColor':
-                theme.vars.palette[ownerState.color!]?.outlinedHoverBorder,
-            },
-            '&:disabled': {
-              '--ButtonGroup-separatorColor':
-                theme.vars.palette[ownerState.color!]?.outlinedDisabledBorder,
-            },
-          }),
       },
       ...(ownerState.buttonFlex && {
         [`& > *:not(.${iconButtonClasses.root})`]: {
@@ -150,18 +152,18 @@ const ButtonGroupRoot = styled('div', {
           width: '100%', // for button to fill its wrapper.
         },
       }),
-    },
-    {
-      [theme.getColorSchemeSelector('dark')]: {
-        ...(ownerState.color !== 'context' && {
-          ...(ownerState.variant !== 'outlined' && {
-            '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.[700],
-          }),
-        }),
-      },
+    } as const,
+    radius !== undefined && {
+      '--ButtonGroup-radius': radius,
     },
   ];
 });
+
+const ButtonGroupRoot = styled(StyledButtonGroup, {
+  name: 'JoyButtonGroup',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: ButtonGroupOwnerState }>({});
 
 /**
  *
@@ -242,11 +244,13 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
             extraProps.role = 'presentation';
             extraProps.component = 'span';
           }
-          if (index === 0) {
-            extraProps['data-first-child'] = '';
-          }
-          if (index === React.Children.count(children) - 1) {
-            extraProps['data-last-child'] = '';
+          if (React.Children.count(children) > 1) {
+            if (index === 0) {
+              extraProps['data-first-child'] = '';
+            }
+            if (index === React.Children.count(children) - 1) {
+              extraProps['data-last-child'] = '';
+            }
           }
           return React.cloneElement(child, extraProps);
         })}
@@ -256,10 +260,10 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 }) as OverridableComponent<ButtonGroupTypeMap>;
 
 ButtonGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The flex value of the button.
    * @example buttonFlex={1} will set flex: '1 1 auto' on each button (stretch the button to equally fill the available space).
@@ -279,7 +283,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

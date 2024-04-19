@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
@@ -12,8 +12,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
-2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
+1. The value for the textbox must be chosen from a predefined set of allowed values, for example a location field must contain a valid location name: [combo box](#combo-box).
+2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, for example a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
@@ -69,11 +69,38 @@ The component has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-:::warning
 These two states are isolated, and should be controlled independently.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
 {{"demo": "ControllableStates.js"}}
+
+:::warning
+
+If you control the `value`, make sure it's referentially stable between renders.
+In other words, the reference to the value shouldn't change if the value itself doesn't change.
+
+```tsx
+// ⚠️ BAD
+return <Autocomplete multiple value={allValues.filter((v) => v.selected)} />;
+
+// 👍 GOOD
+const selectedValues = React.useMemo(
+  () => allValues.filter((v) => v.selected),
+  [allValues],
+);
+return <Autocomplete multiple value={selectedValues} />;
+```
+
+In the first example, `allValues.filter` is called and returns **a new array** every render.
+The fix includes memoizing the value, so it changes only when needed.
+:::
 
 ## Free solo
 
@@ -81,7 +108,7 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value.
 
 ### Search input
 
-The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
+The prop is designed to cover the primary use case of a **search input** with suggestions, for example Google search or react-autowhatever.
 
 {{"demo": "FreeSolo.js"}}
 
@@ -136,7 +163,7 @@ related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
 ```tsx
-import useAutocomplete from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 ```
 
 The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
@@ -144,8 +171,6 @@ The `useAutocomplete` hook is also reexported from @mui/material for convenience
 ```tsx
 import useAutocomplete from '@mui/material/useAutocomplete';
 ```
-
-- 📦 [4.5 kB gzipped](/size-snapshot/).
 
 {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -227,7 +252,21 @@ The `renderInput` prop allows you to customize the rendered input.
 The first argument of this render prop contains props that you need to forward.
 Pay specific attention to the `ref` and `inputProps` keys.
 
+:::warning
+If you're using a custom input component inside the Autocomplete, make sure that you forward the ref to the underlying DOM element.
+:::
+
 {{"demo": "CustomInputAutocomplete.js"}}
+
+### Globally Customized Options
+
+To globally customize the Autocomplete options for all components in your app,
+you can use the [theme default props](/material-ui/customization/theme-components/#theme-default-props) and set the `renderOption` property in the `defaultProps` key.
+The `renderOption` property takes the `ownerState` as the fourth parameter, which includes props and internal component state.
+To display the label, you can use the `getOptionLabel` prop from the `ownerState`.
+This approach enables different options for each Autocomplete component while keeping the options styling consistent.
+
+{{"demo": "GloballyCustomizedOptions.js"}}
 
 ### GitHub's picker
 
@@ -236,6 +275,12 @@ This demo reproduces GitHub's label picker:
 {{"demo": "GitHubLabel.js"}}
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+
+### Hint
+
+The following demo shows how to add a hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+
+{{"demo": "AutocompleteHint.js"}}
 
 ## Highlights
 
@@ -330,7 +375,7 @@ A possible workaround is to remove the `id` to have the component generate a ran
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
 In the event you want the avoid autofill, you can try the following:
 
-- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Name the input without leaking any information the browser can use. For example `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx

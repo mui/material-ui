@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
+import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import Icon from '@mui/material/Icon';
 import ButtonBase from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 describe('<IconButton />', () => {
   const { render } = createRenderer();
@@ -69,11 +70,13 @@ describe('<IconButton />', () => {
 
       expect(container.firstChild).to.have.class(classes.edgeStart);
     });
+
     it('edge="end" should render the right class', () => {
       const { container } = render(<IconButton edge="end">book</IconButton>);
 
       expect(container.firstChild).to.have.class(classes.edgeEnd);
     });
+
     it('no edge should render the right class', () => {
       const { container } = render(<IconButton>book</IconButton>);
 

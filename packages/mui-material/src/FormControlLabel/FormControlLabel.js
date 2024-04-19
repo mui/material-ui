@@ -1,9 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
 import { useFormControl } from '../FormControl';
+import Stack from '../Stack';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
@@ -163,21 +165,25 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       {...other}
     >
       {React.cloneElement(control, controlProps)}
-      {label}
-      {required && (
-        <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
-          &thinsp;{'*'}
-        </AsteriskComponent>
+      {required ? (
+        <Stack display="block">
+          {label}
+          <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
+            &thinsp;{'*'}
+          </AsteriskComponent>
+        </Stack>
+      ) : (
+        label
       )}
     </FormControlLabelRoot>
   );
 });
 
 FormControlLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component appears selected.
    */

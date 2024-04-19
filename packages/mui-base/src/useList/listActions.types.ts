@@ -1,11 +1,14 @@
 export const ListActionTypes = {
   blur: 'list:blur',
   focus: 'list:focus',
-  keyDown: 'list:keyDown',
   itemClick: 'list:itemClick',
   itemHover: 'list:itemHover',
   itemsChange: 'list:itemsChange',
+  keyDown: 'list:keyDown',
+  resetHighlight: 'list:resetHighlight',
+  highlightLast: 'list:highlightLast',
   textNavigation: 'list:textNavigation',
+  clearSelection: 'list:clearSelection',
 } as const;
 
 interface ItemClickAction<ItemValue> {
@@ -49,6 +52,20 @@ interface ItemsChangeAction<ItemValue> {
   previousItems: ItemValue[];
 }
 
+interface ResetHighlightAction {
+  type: typeof ListActionTypes.resetHighlight;
+  event: React.SyntheticEvent | null;
+}
+
+interface HighlightLastAction {
+  type: typeof ListActionTypes.highlightLast;
+  event: React.SyntheticEvent | null;
+}
+
+interface ClearSelectionAction {
+  type: typeof ListActionTypes.clearSelection;
+}
+
 /**
  * A union of all standard actions that can be dispatched to the list reducer.
  */
@@ -59,4 +76,7 @@ export type ListAction<ItemValue> =
   | ItemHoverAction<ItemValue>
   | ItemsChangeAction<ItemValue>
   | KeyDownAction
-  | TextNavigationAction;
+  | ResetHighlightAction
+  | HighlightLastAction
+  | TextNavigationAction
+  | ClearSelectionAction;

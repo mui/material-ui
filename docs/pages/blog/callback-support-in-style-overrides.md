@@ -3,11 +3,11 @@ title: Introducing callback support in style overrides
 description: We're excited to introduce callback support for global theme overrides in this minor version update!
 date: 2022-01-31T00:00:00.000Z
 authors: ['siriwatknp']
-tags: ['MUI Core', 'News']
-card: false
+tags: ['Material UI', 'Product']
+manualCard: true
 ---
 
-<span class="x x-first x-last">[</span>MUI Core v5.3.0](https://github.com/mui/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (global theming), giving you full control of component customization at the theme level.
+<span class="x x-first x-last">[</span>Material UI v5.3.0](https://github.com/mui/material-ui/releases/tag/v5.3.0) introduces the ability to write a callback in style overrides (global theming), giving you full control of component customization at the theme level.
 
 Why is using a callback better than the existing plain object? Let me explain from the beginning<span class="x x-first x-last">…</span>
 
@@ -68,7 +68,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 The callback is type-safe.
 
-- `ownerState`: `ComponentProps` interface, eg. `ButtonProps`, `ChipProps`, etc.
+- `ownerState`: `ComponentProps` interface, for example `ButtonProps`, `ChipProps`, etc.
 - `theme`: `Theme` interface from `@mui/material/styles`.
 
 ```tsx
@@ -113,7 +113,9 @@ const Label = styled('span')({
 </Box>;
 ```
 
-> 💡 All MUI components are created with the `styled` API, so they accept `sx` prop by default.
+:::info
+All Material UI and Joy UI components are created with the `styled` API, so they accept `sx` prop by default.
+:::
 
 `sx` helps developers write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use an `sx`-like syntax in global theme overrides.
 

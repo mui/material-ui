@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { EventHandlers } from '../utils';
 
 export interface UseSliderParameters {
   /**
@@ -9,7 +8,7 @@ export interface UseSliderParameters {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: number | number[];
+  defaultValue?: number | ReadonlyArray<number>;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -31,7 +30,7 @@ export interface UseSliderParameters {
    * If an array, it should contain objects with `value` and an optional `label` keys.
    * @default false
    */
-  marks?: boolean | Mark[];
+  marks?: boolean | ReadonlyArray<Mark>;
   /**
    * The maximum allowed value of the slider.
    * Should not be equal to min.
@@ -84,6 +83,11 @@ export interface UseSliderParameters {
    */
   scale?: (value: number) => number;
   /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep?: number;
+  /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
    * We recommend (max - min) to be evenly divisible by the step.
@@ -100,7 +104,7 @@ export interface UseSliderParameters {
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value?: number | number[];
+  value?: number | ReadonlyArray<number>;
 }
 
 export interface Mark {
@@ -113,7 +117,10 @@ export type UseSliderRootSlotOwnProps = {
   ref: React.RefCallback<Element> | null;
 };
 
-export type UseSliderRootSlotProps<TOther = {}> = Omit<TOther, keyof UseSliderRootSlotOwnProps> &
+export type UseSliderRootSlotProps<ExternalProps = {}> = Omit<
+  ExternalProps,
+  keyof UseSliderRootSlotOwnProps
+> &
   UseSliderRootSlotOwnProps;
 
 export type UseSliderThumbSlotOwnProps = {
@@ -121,7 +128,10 @@ export type UseSliderThumbSlotOwnProps = {
   onMouseOver: React.MouseEventHandler;
 };
 
-export type UseSliderThumbSlotProps<TOther = {}> = Omit<TOther, keyof UseSliderThumbSlotOwnProps> &
+export type UseSliderThumbSlotProps<ExternalProps = {}> = Omit<
+  ExternalProps,
+  keyof UseSliderThumbSlotOwnProps
+> &
   UseSliderThumbSlotOwnProps;
 
 export type UseSliderHiddenInputOwnProps = {
@@ -140,8 +150,8 @@ export type UseSliderHiddenInputOwnProps = {
   type?: React.InputHTMLAttributes<HTMLInputElement>['type'];
 };
 
-export type UseSliderHiddenInputProps<TOther = {}> = Omit<
-  TOther,
+export type UseSliderHiddenInputProps<ExternalProps = {}> = Omit<
+  ExternalProps,
   keyof UseSliderHiddenInputOwnProps
 > &
   UseSliderHiddenInputOwnProps;
@@ -154,17 +164,17 @@ export interface AxisProps<T extends Axis> {
   ) => T extends 'horizontal'
     ? { left: string }
     : T extends 'vertical'
-    ? { bottom: string }
-    : T extends 'horizontal-reverse'
-    ? { right: string }
-    : never;
+      ? { bottom: string }
+      : T extends 'horizontal-reverse'
+        ? { right: string }
+        : never;
   leap: (
     percent: number,
   ) => T extends 'horizontal' | 'horizontal-reverse'
     ? { width: string }
     : T extends 'vertical'
-    ? { height: string }
-    : never;
+      ? { height: string }
+      : never;
 }
 
 export interface UseSliderReturnValue {
@@ -190,28 +200,34 @@ export interface UseSliderReturnValue {
   focusedThumbIndex: number;
   /**
    * Resolver for the hidden input slot's props.
-   * @param otherHandlers props for the hidden input slot
+   * @param externalProps props for the hidden input slot
    * @returns props that should be spread on the hidden input slot
    */
-  getHiddenInputProps: <TOther extends EventHandlers = {}>(
-    otherHandlers?: TOther,
-  ) => UseSliderHiddenInputProps<TOther>;
+  getHiddenInputProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSliderHiddenInputProps<ExternalProps>;
   /**
    * Resolver for the root slot's props.
-   * @param otherHandlers props for the root slot
+   * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <TOther extends EventHandlers = {}>(
-    otherHandlers?: TOther,
-  ) => UseSliderRootSlotProps<TOther>;
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSliderRootSlotProps<ExternalProps>;
   /**
    * Resolver for the thumb slot's props.
-   * @param otherHandlers props for the thumb slot
+   * @param externalProps props for the thumb slot
    * @returns props that should be spread on the thumb slot
    */
-  getThumbProps: <TOther extends EventHandlers = {}>(
-    otherHandlers?: TOther,
-  ) => UseSliderThumbSlotProps<TOther>;
+  getThumbProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSliderThumbSlotProps<ExternalProps>;
+  /**
+   * Resolver for the thumb slot's style prop.
+   * @param index of the currently moved thumb
+   * @returns props that should be spread on the style prop of thumb slot
+   */
+  getThumbStyle: (index: number) => object;
   /**
    * The marks of the slider. Marks indicate predetermined values to which the user can move the slider.
    */

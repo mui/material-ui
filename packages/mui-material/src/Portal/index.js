@@ -1,1 +1,1 @@
-export { default } from '@mui/base/Portal';
+export { Portal as default } from '@mui/base/Portal';

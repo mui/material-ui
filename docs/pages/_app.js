@@ -4,8 +4,15 @@ import * as React from 'react';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
-import generalPages from 'docs/src/pages';
+import { useRouter } from 'next/router';
+import { LicenseInfo } from '@mui/x-data-grid-pro';
+import materialPkgJson from 'packages/mui-material/package.json';
+import joyPkgJson from 'packages/mui-joy/package.json';
+import systemPkgJson from 'packages/mui-system/package.json';
+import basePkgJson from 'packages/mui-base/package.json';
+import generalDocsPages from 'docs/data/docs/pages';
 import basePages from 'docs/data/base/pages';
+import docsInfraPages from 'docs/data/docs-infra/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
@@ -14,18 +21,17 @@ import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
-import { UserLanguageProvider } from 'docs/src/modules/utils/i18n';
+import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
-import { useRouter } from 'next/router';
-import { LicenseInfo } from '@mui/x-data-grid-pro';
-import materialPkgJson from 'packages/mui-material/package.json';
-import joyPkgJson from 'packages/mui-joy/package.json';
-import systemPkgJson from 'packages/mui-system/package.json';
-import basePkgJson from 'packages/mui-base/package.json';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
+import { DocsProvider } from '@mui/docs/DocsProvider';
+import { mapTranslations } from '@mui/docs/i18n';
+import './global.css';
+import '../public/static/components-gallery/base-theme.css';
+import config from '../config';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -136,6 +142,9 @@ function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
   const router = useRouter();
+  // TODO move productId & productCategoryId resolution to page layout.
+  // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
+  // if not present
   const { productId, productCategoryId } = getProductInfoFromUrl(router.asPath);
 
   React.useEffect(() => {
@@ -154,9 +163,13 @@ function AppWrapper(props) {
 
     if (productId === 'material-ui') {
       return {
-        metadata: 'MUI Core',
-        name: 'Material UI',
+        metadata: 'MUI Core',
+        name: 'Material UI',
         versions: [
+          {
+            text: 'v6 (next)',
+            href: `https://next.mui.com${languagePrefix}/material-ui/getting-started/`,
+          },
           { text: `v${materialPkgJson.version}`, current: true },
           {
             text: 'v4',
@@ -172,17 +185,21 @@ function AppWrapper(props) {
 
     if (productId === 'joy-ui') {
       return {
-        metadata: 'MUI Core',
-        name: 'Joy UI',
+        metadata: 'MUI Core',
+        name: 'Joy UI',
         versions: [{ text: `v${joyPkgJson.version}`, current: true }],
       };
     }
 
     if (productId === 'system') {
       return {
-        metadata: 'MUI Core',
-        name: 'MUI System',
+        metadata: 'MUI Core',
+        name: 'MUI System',
         versions: [
+          {
+            text: 'v6 (next)',
+            href: `https://next.mui.com${languagePrefix}/system/getting-started/`,
+          },
           { text: `v${systemPkgJson.version}`, current: true },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
@@ -195,7 +212,7 @@ function AppWrapper(props) {
 
     if (productId === 'base-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: 'MUI Core',
         name: 'Base UI',
         versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };
@@ -204,7 +221,7 @@ function AppWrapper(props) {
     if (productId === 'core') {
       return {
         metadata: '',
-        name: 'MUI Core',
+        name: 'MUI Core',
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           {
@@ -215,20 +232,37 @@ function AppWrapper(props) {
       };
     }
 
-    return {
-      metadata: '',
-      name: 'Docs-infra',
-      versions: [
-        {
-          text: 'v0.0.0',
-          href: `https://mui.com${languagePrefix}/versions/`,
-        },
-      ],
-    };
+    if (productId === 'docs-infra') {
+      return {
+        metadata: '',
+        name: 'Docs-infra',
+        versions: [
+          {
+            text: 'v0.0.0',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    if (productId === 'docs') {
+      return {
+        metadata: '',
+        name: 'Home docs',
+        versions: [
+          {
+            text: 'v0.0.0',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    return null;
   }, [pageProps.userLanguage, productId]);
 
   const pageContextValue = React.useMemo(() => {
-    let pages = generalPages;
+    let pages = generalDocsPages;
     if (productId === 'base-ui') {
       pages = basePages;
     } else if (productId === 'material-ui') {
@@ -237,6 +271,8 @@ function AppWrapper(props) {
       pages = joyPages;
     } else if (productId === 'system') {
       pages = systemPages;
+    } else if (productId === 'docs-infra') {
+      pages = docsInfraPages;
     }
 
     const { activePage, activePageParents } = findActivePage(pages, router.pathname);
@@ -247,13 +283,14 @@ function AppWrapper(props) {
       pages,
       productIdentifier,
       productId,
+      productCategoryId,
     };
-  }, [productId, productIdentifier, router.pathname]);
+  }, [productId, productCategoryId, productIdentifier, router.pathname]);
 
   let fonts = [];
   if (pathnameToLanguage(router.asPath).canonicalAs.match(/onepirate/)) {
     fonts = [
-      'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
+      'https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Work+Sans:wght@300;400&display=swap',
     ];
   }
 
@@ -267,20 +304,26 @@ function AppWrapper(props) {
         <meta name="mui:productId" content={productId} />
         <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>
-      <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
+      <DocsProvider
+        config={config}
+        defaultUserLanguage={pageProps.userLanguage}
+        translations={pageProps.translations}
+      >
         <CodeCopyProvider>
-          <CodeVariantProvider>
-            <PageContext.Provider value={pageContextValue}>
-              <ThemeProvider>
-                <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                  {children}
-                  <GoogleAnalytics />
-                </DocsStyledEngineProvider>
-              </ThemeProvider>
-            </PageContext.Provider>
-          </CodeVariantProvider>
+          <CodeStylingProvider>
+            <CodeVariantProvider>
+              <PageContext.Provider value={pageContextValue}>
+                <ThemeProvider>
+                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                    {children}
+                    <GoogleAnalytics />
+                  </DocsStyledEngineProvider>
+                </ThemeProvider>
+              </PageContext.Provider>
+            </CodeVariantProvider>
+          </CodeStylingProvider>
         </CodeCopyProvider>
-      </UserLanguageProvider>
+      </DocsProvider>
     </React.Fragment>
   );
 }
@@ -310,6 +353,9 @@ MyApp.propTypes = {
 MyApp.getInitialProps = async ({ ctx, Component }) => {
   let pageProps = {};
 
+  const req = require.context('docs/translations', false, /translations.*\.json$/);
+  const translations = mapTranslations(req);
+
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
@@ -317,6 +363,7 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
   return {
     pageProps: {
       userLanguage: ctx.query.userLanguage || 'en',
+      translations,
       ...pageProps,
     },
   };
@@ -331,13 +378,6 @@ export function reportWebVitals({ id, name, label, delta, value }) {
     return;
   }
 
-  window.ga('send', 'event', {
-    eventCategory: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
-    eventAction: name,
-    eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
-    eventLabel: id, // id unique to current page load
-    nonInteraction: true, // avoids affecting bounce rate.
-  });
   window.gtag('event', name, {
     value: delta,
     metric_label: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',

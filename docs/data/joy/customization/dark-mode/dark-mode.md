@@ -1,6 +1,6 @@
 # Dark mode
 
-<p class="description">Learn about the different methods for applying dark mode to a Joy UI app.</p>
+<p class="description">Learn about the different methods for applying dark mode to a Joy UI app.</p>
 
 ## Set as default
 
@@ -123,9 +123,9 @@ If you try to render your UI based on the server, before mounting on the client,
 
 To [prevent the UI from flickering](/joy-ui/main-features/dark-mode-optimization/#the-problem-flickering-on-first-load), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
 
-### Next.js
+### Next.js Pages Router
 
-To use the Joy UI API with a Next.js project, add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document) file:
+To use the Joy UI API with a Next.js project, add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
@@ -134,7 +134,7 @@ import { getInitColorSchemeScript } from '@mui/joy/styles';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
           {getInitColorSchemeScript()}
@@ -144,18 +144,5 @@ export default class MyDocument extends Document {
       </Html>
     );
   }
-}
-```
-
-### Gatsby
-
-To use the Joy UI API with a Gatsby project, add the following code to the custom [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
-
-```jsx
-import React from 'react';
-import { getInitColorSchemeScript } from '@mui/joy/styles';
-
-export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([getInitColorSchemeScript()]);
 }
 ```

@@ -1,16 +1,19 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
+import useSlot from '../utils/useSlot';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
+
+const useThemeProps = createUseThemeProps('MuiAccordion');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, square, expanded, disabled, disableGutters } = ownerState;
@@ -52,7 +55,7 @@ const AccordionRoot = styled(Paper, {
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
       overflowAnchor: 'none', // Keep the same scrolling position
-      '&:before': {
+      '&::before': {
         position: 'absolute',
         left: 0,
         top: -1,
@@ -64,12 +67,12 @@ const AccordionRoot = styled(Paper, {
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
       '&:first-of-type': {
-        '&:before': {
+        '&::before': {
           display: 'none',
         },
       },
       [`&.${accordionClasses.expanded}`]: {
-        '&:before': {
+        '&::before': {
           opacity: 0,
         },
         '&:first-of-type': {
@@ -79,7 +82,7 @@ const AccordionRoot = styled(Paper, {
           marginBottom: 0,
         },
         '& + &': {
-          '&:before': {
+          '&::before': {
             display: 'none',
           },
         },
@@ -89,28 +92,36 @@ const AccordionRoot = styled(Paper, {
       },
     };
   },
-  ({ theme, ownerState }) => ({
-    ...(!ownerState.square && {
-      borderRadius: 0,
-      '&:first-of-type': {
-        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-        borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      },
-      '&:last-of-type': {
-        borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
-        borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
-        // Fix a rendering issue on Edge
-        '@supports (-ms-ime-align: auto)': {
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
+  ({ theme }) => ({
+    variants: [
+      {
+        props: (props) => !props.square,
+        style: {
+          borderRadius: 0,
+          '&:first-of-type': {
+            borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+            borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+          },
+          '&:last-of-type': {
+            borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+            borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
+            // Fix a rendering issue on Edge
+            '@supports (-ms-ime-align: auto)': {
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+          },
         },
       },
-    }),
-    ...(!ownerState.disableGutters && {
-      [`&.${accordionClasses.expanded}`]: {
-        margin: '16px 0',
+      {
+        props: (props) => !props.disableGutters,
+        style: {
+          [`&.${accordionClasses.expanded}`]: {
+            margin: '16px 0',
+          },
+        },
       },
-    }),
+    ],
   }),
 );
 
@@ -125,8 +136,10 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     expanded: expandedProp,
     onChange,
     square = false,
-    TransitionComponent = Collapse,
-    TransitionProps,
+    slots = {},
+    slotProps = {},
+    TransitionComponent: TransitionComponentProp,
+    TransitionProps: TransitionPropsProp,
     ...other
   } = props;
 
@@ -164,6 +177,18 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
+  const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Collapse,
+    externalForwardedProps: {
+      slots: backwardCompatibleSlots,
+      slotProps: backwardCompatibleSlotProps,
+    },
+    ownerState,
+  });
+
   return (
     <AccordionRoot
       className={clsx(classes.root, className)}
@@ -173,7 +198,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
       {...other}
     >
       <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
-      <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
+      <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
         <div
           aria-labelledby={summary.props.id}
           id={summary.props['aria-controls']}
@@ -182,16 +207,16 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
         >
           {children}
         </div>
-      </TransitionComponent>
+      </TransitionSlot>
     </AccordionRoot>
   );
 });
 
 Accordion.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -246,6 +271,20 @@ Accordion.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    transition: PropTypes.elementType,
+  }),
+  /**
    * If `true`, rounded corners are disabled.
    * @default false
    */
@@ -261,12 +300,13 @@ Accordion.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Collapse
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   TransitionProps: PropTypes.object,
 };

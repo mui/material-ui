@@ -108,7 +108,7 @@ export default function CustomizedList() {
                         opacity: 1,
                       },
                     },
-                    '&:after': {
+                    '&::after': {
                       content: '""',
                       position: 'absolute',
                       height: '80%',

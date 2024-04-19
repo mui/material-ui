@@ -130,7 +130,6 @@ export default function BootstrapVariantTokens() {
         <Button color="success">Success</Button>
         <Button color="danger">Danger</Button>
         <Button color="warning">Warning</Button>
-        <Button color="info">Info</Button>
         <Button variant="soft" color="neutral">
           Light
         </Button>

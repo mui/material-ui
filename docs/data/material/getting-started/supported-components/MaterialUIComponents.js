@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 const components = [
   {
@@ -194,7 +194,7 @@ const components = [
     materialDesign: 'https://m2.material.io/components/tooltips',
   },
   { name: 'Transfer List', materialUI: '/material-ui/react-transfer-list/' },
-  { name: 'Tree View', materialUI: '/material-ui/react-tree-view/' },
+  { name: 'Tree View', materialUI: '/x/react-tree-view/' },
   {
     name: 'Typography',
     materialUI: '/material-ui/react-typography/',

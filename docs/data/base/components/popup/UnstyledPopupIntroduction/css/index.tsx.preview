@@ -1,0 +1,14 @@
+<React.Fragment>
+  <button
+    type="button"
+    aria-describedby={id}
+    className="Button"
+    onClick={handleClick}
+  >
+    Toggle Popup
+  </button>
+  <BasePopup id={id} open={open} anchor={anchor}>
+    <div className="CustomPopup">The content of the Popup.</div>
+  </BasePopup>
+  <Styles />
+</React.Fragment>

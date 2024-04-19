@@ -33928,6 +33928,12 @@ Object.defineProperty(exports, "MicTwoTone", {
     return _MicTwoTone.default;
   }
 });
+Object.defineProperty(exports, "Microsoft", {
+  enumerable: true,
+  get: function () {
+    return _Microsoft.default;
+  }
+});
 Object.defineProperty(exports, "Microwave", {
   enumerable: true,
   get: function () {
@@ -63472,6 +63478,12 @@ Object.defineProperty(exports, "WysiwygTwoTone", {
     return _WysiwygTwoTone.default;
   }
 });
+Object.defineProperty(exports, "X", {
+  enumerable: true,
+  get: function () {
+    return _X.default;
+  }
+});
 Object.defineProperty(exports, "Yard", {
   enumerable: true,
   get: function () {
@@ -69312,6 +69324,7 @@ var _MicOutlined = _interopRequireDefault(require("./MicOutlined"));
 var _MicRounded = _interopRequireDefault(require("./MicRounded"));
 var _MicSharp = _interopRequireDefault(require("./MicSharp"));
 var _MicTwoTone = _interopRequireDefault(require("./MicTwoTone"));
+var _Microsoft = _interopRequireDefault(require("./Microsoft"));
 var _Microwave = _interopRequireDefault(require("./Microwave"));
 var _MicrowaveOutlined = _interopRequireDefault(require("./MicrowaveOutlined"));
 var _MicrowaveRounded = _interopRequireDefault(require("./MicrowaveRounded"));
@@ -74236,6 +74249,7 @@ var _WysiwygOutlined = _interopRequireDefault(require("./WysiwygOutlined"));
 var _WysiwygRounded = _interopRequireDefault(require("./WysiwygRounded"));
 var _WysiwygSharp = _interopRequireDefault(require("./WysiwygSharp"));
 var _WysiwygTwoTone = _interopRequireDefault(require("./WysiwygTwoTone"));
+var _X = _interopRequireDefault(require("./X"));
 var _Yard = _interopRequireDefault(require("./Yard"));
 var _YardOutlined = _interopRequireDefault(require("./YardOutlined"));
 var _YardRounded = _interopRequireDefault(require("./YardRounded"));

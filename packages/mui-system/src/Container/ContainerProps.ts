@@ -4,8 +4,11 @@ import { SxProps } from '../styleFunctionSx';
 import { Theme, Breakpoint } from '../createTheme';
 import { ContainerClasses } from './containerClasses';
 
-export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
+export interface ContainerTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & {
     children?: React.ReactNode;
     /**
      * Override or extend the styles applied to the component.
@@ -36,10 +39,10 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     sx?: SxProps<Theme>;
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 export type ContainerProps<
-  D extends React.ElementType = ContainerTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ContainerTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ContainerTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ContainerTypeMap<AdditionalProps, RootComponent>, RootComponent>;

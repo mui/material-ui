@@ -6,6 +6,7 @@ import {
   SystemProps as SystemSystemProps,
   CSSObject,
   SxConfig,
+  ApplyStyles,
 } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
@@ -17,15 +18,13 @@ import {
   FontSize,
   FontWeight,
   LineHeight,
-  LetterSpacing,
   TypographySystem,
   DefaultFontFamily,
   DefaultFontSize,
   DefaultFontWeight,
   DefaultLineHeight,
-  DefaultLetterSpacing,
 } from './typography';
-import { Variants, ColorInversion, ColorInversionConfig } from './variants';
+import { Variants } from './variants';
 import { DefaultZIndex, ZIndex } from './zIndex';
 import { MergeDefault } from './utils';
 
@@ -33,15 +32,16 @@ type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
   : never;
 
-type ConcatDeep<T, D extends string = '-'> = T extends Record<string | number, infer V>
-  ? keyof T extends string | number
-    ? V extends string | number
-      ? keyof T
-      : keyof V extends string | number
-      ? `${keyof T}${D}${ConcatDeep<Split<V>, D>}`
+type ConcatDeep<T, D extends string = '-'> =
+  T extends Record<string | number, infer V>
+    ? keyof T extends string | number
+      ? V extends string | number
+        ? keyof T
+        : keyof V extends string | number
+          ? `${keyof T}${D}${ConcatDeep<Split<V>, D>}`
+          : never
       : never
-    : never
-  : never;
+    : never;
 
 /**
  * Does not work for these cases:
@@ -64,7 +64,6 @@ export interface ThemeScales {
   fontSize: FontSize;
   fontWeight: FontWeight;
   lineHeight: LineHeight;
-  letterSpacing: LetterSpacing;
   zIndex: ZIndex;
 }
 export type ThemeScalesOptions = MergeDefault<
@@ -76,7 +75,6 @@ export type ThemeScalesOptions = MergeDefault<
     fontSize: DefaultFontSize;
     fontWeight: DefaultFontWeight;
     lineHeight: DefaultLineHeight;
-    letterSpacing: DefaultLetterSpacing;
     zIndex: DefaultZIndex;
   }
 >;
@@ -89,7 +87,7 @@ export interface ThemeVars extends ThemeScales, ColorSystemVars {}
 export interface ThemeCssVarOverrides {}
 
 /**
- * For providing `sx` autocomplete, e.g. `color`, `bgcolor`, `borderColor`.
+ * For providing `sx` autocomplete, for example `color`, `bgcolor`, `borderColor`.
  */
 export type TextColor =
   | NormalizeVars<Omit<ColorSystem['palette'], 'mode'>, '.'>
@@ -102,8 +100,6 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
-  colorInversion: ColorInversion;
-  colorInversionConfig: ColorInversionConfig;
   spacing: Spacing;
   breakpoints: Breakpoints;
   cssVarPrefix: string;
@@ -124,6 +120,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps) => CSSObject;
+  applyStyles: ApplyStyles<DefaultColorScheme | ExtendedColorScheme>;
 }
 
 export type SxProps = SystemSxProps<Theme>;

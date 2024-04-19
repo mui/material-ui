@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 const path = require('path');
 const fse = require('fs-extra');
-const { createRender } = require('@mui/markdown');
+const { createRender } = require('@mui/internal-markdown');
 const { marked } = require('marked');
 const { LANGUAGES_IGNORE_PAGES } = require('../config');
 
 // Use renderer to extract all links into a markdown document
-const getPageLinks = (markdown) => {
+function getPageLinks(markdown) {
   const hrefs = [];
 
   const renderer = new marked.Renderer();
@@ -15,12 +15,12 @@ const getPageLinks = (markdown) => {
       hrefs.push(href);
     }
   };
-  marked(markdown, { renderer });
+  marked(markdown, { mangle: false, headerIds: false, renderer });
   return hrefs;
-};
+}
 
 // List all .js files in a folder
-const getJsFilesInFolder = (folderPath) => {
+function getJsFilesInFolder(folderPath) {
   const files = fse.readdirSync(folderPath, { withFileTypes: true });
   return files.reduce((acc, file) => {
     if (file.isDirectory()) {
@@ -28,11 +28,11 @@ const getJsFilesInFolder = (folderPath) => {
       return [...acc, ...filesInFolder];
     }
     if (file.name.endsWith('.js') || file.name.endsWith('.tsx')) {
-      return [...acc, path.join(folderPath, file.name)];
+      return [...acc, path.join(folderPath, file.name).replace(/\\/g, '/')];
     }
     return acc;
   }, []);
-};
+}
 
 // Returns url assuming it's "./docs/pages/x/..." becomes  "mui.com/x/..."
 const jsFilePathToUrl = (jsFilePath) => {
@@ -41,10 +41,10 @@ const jsFilePathToUrl = (jsFilePath) => {
 
   const root = folder.slice(jsFilePath.indexOf('/pages') + '/pages'.length);
   const suffix = path.extname(file);
-  let page = `/${file.slice(0, file.length - suffix.length)}`;
+  let page = `/${file.slice(0, file.length - suffix.length)}/`;
 
-  if (page === '/index') {
-    page = '';
+  if (page === '/index/') {
+    page = '/';
   }
 
   return `${root}${page}`;
@@ -95,17 +95,17 @@ const getMdFilesImported = (jsPageFile) => {
   const fileContent = fse.readFileSync(jsPageFile, 'utf8');
   /**
    * Content files can be represented by either:
-   * - 'docsx/data/advanced-components/overview.md?@mui/markdown'; (for mui-x)
-   * - 'docs/data/advanced-components/overview.md?@mui/markdown';
-   * - './index.md?@mui/markdown';
+   * - 'docsx/data/advanced-components/overview.md?muiMarkdown'; (for mui-x)
+   * - 'docs/data/advanced-components/overview.md?muiMarkdown';
+   * - './index.md?muiMarkdown';
    */
-  const importPaths = fileContent.match(/'.*\?@mui\/markdown'/g);
+  const importPaths = fileContent.match(/'.*\?muiMarkdown'/g);
 
   if (importPaths === null) {
     return [];
   }
   return importPaths.map((importPath) => {
-    let cleanImportPath = importPath.slice(1, importPath.length - "?@mui/markdown'".length);
+    let cleanImportPath = importPath.slice(1, importPath.length - "?muiMarkdown'".length);
     if (cleanImportPath.startsWith('.')) {
       cleanImportPath = path.join(path.dirname(jsPageFile), cleanImportPath);
     } else if (cleanImportPath.startsWith('docs/')) {
@@ -146,18 +146,16 @@ const parseDocFolder = (folderPath, availableLinks = {}, usedLinks = {}) => {
   mdFiles.forEach(({ fileName, url }) => {
     const { hashes, links } = getLinksAndAnchors(fileName);
 
-    links
-      .map((link) => (link[link.length - 1] === '/' ? link.slice(0, link.length - 1) : link))
-      .forEach((link) => {
-        if (usedLinks[link] === undefined) {
-          usedLinks[link] = [fileName];
-        } else {
-          usedLinks[link].push(fileName);
-        }
-      });
+    links.forEach((link) => {
+      if (usedLinks[link] === undefined) {
+        usedLinks[link] = [fileName];
+      } else {
+        usedLinks[link].push(fileName);
+      }
+    });
 
     hashes.forEach((hash) => {
-      availableLinks[`${url}/#${hash}`] = true;
+      availableLinks[`${url}#${hash}`] = true;
     });
   });
 };
@@ -202,7 +200,7 @@ if (require.main === module) {
 
   parseDocFolder(path.join(docsSpaceRoot, './pages/'), availableLinks, usedLinks);
 
-  write('Broken links found by `yarn docs:link-check` that exist:\n');
+  write('Broken links found by `pnpm docs:link-check` that exist:\n');
   Object.keys(usedLinks)
     .filter((link) => link.startsWith('/'))
     .filter((link) => !availableLinks[link])

@@ -165,9 +165,7 @@ function getExplicitPropsDeclaration(
 const defaultPropsHandler: Handler = (documentation, componentDefinition, importer) => {
   const props = getExplicitPropsDeclaration(componentDefinition, importer);
 
-  if (props !== undefined) {
-    getDefaultValuesFromProps(props.get('properties'), documentation, importer);
-  }
+  getDefaultValuesFromProps(props?.get('properties') ?? [], documentation, importer);
 };
 
 export default defaultPropsHandler;

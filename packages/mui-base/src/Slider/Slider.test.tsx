@@ -1,18 +1,14 @@
-import Slider, {
+import { expect } from 'chai';
+import * as React from 'react';
+import { spy, stub } from 'sinon';
+import { act, createRenderer, createMount, fireEvent, screen } from '@mui-internal/test-utils';
+import {
+  Slider,
   sliderClasses as classes,
   SliderRootSlotProps,
   SliderValueLabelSlotProps,
 } from '@mui/base/Slider';
-import { expect } from 'chai';
-import * as React from 'react';
-import { spy, stub } from 'sinon';
-import {
-  createRenderer,
-  createMount,
-  describeConformanceUnstyled,
-  fireEvent,
-  screen,
-} from 'test/utils';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 type Touches = Array<Pick<Touch, 'identifier' | 'clientX' | 'clientY'>>;
 
@@ -45,7 +41,6 @@ describe('<Slider />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'div',
-    muiName: 'MuiSlider',
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -372,5 +367,251 @@ describe('<Slider />', () => {
 
       expect(screen.getByTestId('value-label')).to.have.text('20');
     });
+
+    it('should provide focused state to the slotProps.thumb', () => {
+      const { getByTestId } = render(
+        <Slider
+          defaultValue={[20, 40]}
+          slotProps={{
+            thumb: (_, { index, focused, active }) => ({
+              'data-testid': `thumb-${index}`,
+              'data-focused': focused,
+              'data-active': active,
+            }),
+          }}
+        />,
+      );
+
+      const firstThumb = getByTestId('thumb-0');
+      const secondThumb = getByTestId('thumb-1');
+
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+      act(() => {
+        (firstThumb.firstChild as HTMLInputElement).focus();
+      });
+      expect(firstThumb.getAttribute('data-focused')).to.equal('true');
+      expect(secondThumb.getAttribute('data-focused')).to.equal('false');
+
+      act(() => {
+        (secondThumb.firstChild as HTMLInputElement).focus();
+      });
+      expect(firstThumb.getAttribute('data-focused')).to.equal('false');
+      expect(secondThumb.getAttribute('data-focused')).to.equal('true');
+    });
+
+    it('should provide active state to the slotProps.thumb', function test() {
+      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getByTestId } = render(
+        <Slider
+          defaultValue={[20, 40]}
+          slotProps={{
+            thumb: (_, { index, focused, active }) => ({
+              'data-testid': `thumb-${index}`,
+              'data-focused': focused,
+              'data-active': active,
+            }),
+          }}
+          data-testid="slider-root"
+        />,
+      );
+
+      const sliderRoot = getByTestId('slider-root');
+
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+        x: 0,
+        y: 0,
+        top: 0,
+        right: 0,
+        toJSON() {},
+      }));
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]));
+
+      const firstThumb = getByTestId('thumb-0');
+      const secondThumb = getByTestId('thumb-1');
+
+      expect(firstThumb.getAttribute('data-active')).to.equal('true');
+      expect(secondThumb.getAttribute('data-active')).to.equal('false');
+    });
+  });
+
+  it('should support Shift + Left Arrow / Right Arrow keys', () => {
+    const hanleChange = spy();
+    const { getByTestId } = render(
+      <Slider
+        defaultValue={20}
+        onChange={hanleChange}
+        slotProps={{
+          thumb: (_, { index, focused, active }) => ({
+            'data-testid': `thumb-${index}`,
+            'data-focused': focused,
+            'data-active': active,
+          }),
+        }}
+      />,
+    );
+
+    const thumb = getByTestId('thumb-0');
+    const input = thumb.firstChild;
+
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+    act(() => {
+      (input as HTMLInputElement).focus();
+    });
+
+    fireEvent.keyDown(input!, { key: 'ArrowLeft', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(1);
+    expect(hanleChange.args[0][1]).to.deep.equal(10);
+
+    fireEvent.keyDown(input!, { key: 'ArrowRight', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(2);
+    expect(hanleChange.args[1][1]).to.deep.equal(20);
+  });
+
+  it('should support Shift + Up Arrow / Down Arrow keys', () => {
+    const hanleChange = spy();
+    const { getByTestId } = render(
+      <Slider
+        defaultValue={20}
+        onChange={hanleChange}
+        slotProps={{
+          thumb: (_, { index, focused, active }) => ({
+            'data-testid': `thumb-${index}`,
+            'data-focused': focused,
+            'data-active': active,
+          }),
+        }}
+      />,
+    );
+
+    const thumb = getByTestId('thumb-0');
+    const input = thumb.firstChild;
+
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+    act(() => {
+      (input as HTMLInputElement).focus();
+    });
+
+    fireEvent.keyDown(input!, { key: 'ArrowDown', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(1);
+    expect(hanleChange.args[0][1]).to.deep.equal(10);
+
+    fireEvent.keyDown(input!, { key: 'ArrowUp', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(2);
+    expect(hanleChange.args[1][1]).to.deep.equal(20);
+  });
+
+  it('should support PageUp / PageDown keys', () => {
+    const hanleChange = spy();
+    const { getByTestId } = render(
+      <Slider
+        defaultValue={20}
+        onChange={hanleChange}
+        slotProps={{
+          thumb: (_, { index, focused, active }) => ({
+            'data-testid': `thumb-${index}`,
+            'data-focused': focused,
+            'data-active': active,
+          }),
+        }}
+      />,
+    );
+
+    const thumb = getByTestId('thumb-0');
+    const input = thumb.firstChild;
+
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+    act(() => {
+      (input as HTMLInputElement).focus();
+    });
+
+    fireEvent.keyDown(input!, { key: 'PageDown' });
+    expect(hanleChange.callCount).to.equal(1);
+    expect(hanleChange.args[0][1]).to.deep.equal(10);
+
+    fireEvent.keyDown(input!, { key: 'PageUp' });
+    expect(hanleChange.callCount).to.equal(2);
+    expect(hanleChange.args[1][1]).to.deep.equal(20);
+  });
+
+  it('should support Shift + Left Arrow / Right Arrow keys by taking acount step and shiftStep', () => {
+    const hanleChange = spy();
+    const defaultValue = 20;
+    const shiftStep = 15;
+    const step = 5;
+    const { getByTestId } = render(
+      <Slider
+        defaultValue={defaultValue}
+        onChange={hanleChange}
+        shiftStep={shiftStep}
+        step={step}
+        slotProps={{
+          thumb: (_, { index, focused, active }) => ({
+            'data-testid': `thumb-${index}`,
+            'data-focused': focused,
+            'data-active': active,
+          }),
+        }}
+      />,
+    );
+
+    const thumb = getByTestId('thumb-0');
+    const input = thumb.firstChild;
+
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+    act(() => {
+      (input as HTMLInputElement).focus();
+    });
+
+    fireEvent.keyDown(input!, { key: 'ArrowLeft', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(1);
+    expect(hanleChange.args[0][1]).to.deep.equal(defaultValue - shiftStep);
+    expect(input).to.have.attribute('aria-valuenow', `${defaultValue - shiftStep}`);
+
+    fireEvent.keyDown(input!, { key: 'ArrowRight', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(2);
+    expect(hanleChange.args[1][1]).to.deep.equal(defaultValue);
+    expect(input).to.have.attribute('aria-valuenow', `${defaultValue}`);
+  });
+
+  it('should stop at max/min when using Shift + Left Arrow / Right Arrow keys', () => {
+    const hanleChange = spy();
+    const { getByTestId } = render(
+      <Slider
+        defaultValue={5}
+        onChange={hanleChange}
+        max={8}
+        slotProps={{
+          thumb: (_, { index, focused, active }) => ({
+            'data-testid': `thumb-${index}`,
+            'data-focused': focused,
+            'data-active': active,
+          }),
+        }}
+      />,
+    );
+
+    const thumb = getByTestId('thumb-0');
+    const input = thumb.firstChild;
+
+    fireEvent.keyDown(document.body, { key: 'TAB' });
+    act(() => {
+      (input as HTMLInputElement).focus();
+    });
+
+    fireEvent.keyDown(input!, { key: 'ArrowLeft', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(1);
+    expect(hanleChange.args[0][1]).to.deep.equal(0);
+
+    fireEvent.keyDown(input!, { key: 'ArrowRight', shiftKey: true });
+    expect(hanleChange.callCount).to.equal(2);
+    expect(hanleChange.args[1][1]).to.deep.equal(8);
   });
 });

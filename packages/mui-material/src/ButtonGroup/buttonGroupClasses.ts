@@ -1,5 +1,5 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface ButtonGroupClasses {
   /** Styles applied to the root element. */
@@ -14,6 +14,8 @@ export interface ButtonGroupClasses {
   disableElevation: string;
   /** State class applied to the child elements if `disabled={true}`. */
   disabled: string;
+  /** Styles applied to the first button in the button group. */
+  firstButton: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
@@ -54,6 +56,10 @@ export interface ButtonGroupClasses {
   groupedContainedPrimary: string;
   /** Styles applied to the children if `variant="contained"` and `color="secondary"`. */
   groupedContainedSecondary: string;
+  /** Styles applied to the last button in the button group. */
+  lastButton: string;
+  /** Styles applied to buttons in the middle of the button group. */
+  middleButton: string;
 }
 
 export type ButtonGroupClassKey = keyof ButtonGroupClasses;
@@ -69,6 +75,7 @@ const buttonGroupClasses: ButtonGroupClasses = generateUtilityClasses('MuiButton
   'text',
   'disableElevation',
   'disabled',
+  'firstButton',
   'fullWidth',
   'vertical',
   'grouped',
@@ -89,6 +96,8 @@ const buttonGroupClasses: ButtonGroupClasses = generateUtilityClasses('MuiButton
   'groupedContainedVertical',
   'groupedContainedPrimary',
   'groupedContainedSecondary',
+  'lastButton',
+  'middleButton',
 ]);
 
 export default buttonGroupClasses;

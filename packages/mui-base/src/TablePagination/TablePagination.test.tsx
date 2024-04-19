@@ -2,13 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformanceUnstyled, fireEvent, createRenderer, createMount } from 'test/utils';
-import TableFooter from '@mui/material/TableFooter';
-import TableRow from '@mui/material/TableRow';
-import TablePagination, {
+import { fireEvent, createRenderer, createMount } from '@mui-internal/test-utils';
+import {
+  TablePagination,
   tablePaginationClasses as classes,
   LabelDisplayedRowsArgs,
 } from '@mui/base/TablePagination';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 interface WithClassName {
   className: string;
@@ -54,7 +54,6 @@ describe('<TablePagination />', () => {
       },
       refInstanceof: window.HTMLTableCellElement,
       testComponentPropWith: 'th',
-      muiName: 'MuiTablePagination',
       slots: {
         root: {
           expectedClassName: classes.root,
@@ -80,8 +79,8 @@ describe('<TablePagination />', () => {
 
       const { container } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 count={42}
                 page={1}
@@ -90,8 +89,8 @@ describe('<TablePagination />', () => {
                 rowsPerPage={10}
                 labelDisplayedRows={labelDisplayedRows}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
       expect(labelDisplayedRowsCalled).to.equal(true);
@@ -103,8 +102,8 @@ describe('<TablePagination />', () => {
     it('labels the select for the current page', () => {
       const { container } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 count={1}
                 page={0}
@@ -113,8 +112,8 @@ describe('<TablePagination />', () => {
                 rowsPerPage={10}
                 labelRowsPerPage="lines per page:"
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -125,8 +124,8 @@ describe('<TablePagination />', () => {
     it('accepts React nodes', () => {
       const { container } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 count={1}
                 page={0}
@@ -139,8 +138,8 @@ describe('<TablePagination />', () => {
                   </React.Fragment>
                 }
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -154,8 +153,8 @@ describe('<TablePagination />', () => {
     it('should disable the back button on the first page', () => {
       const { getByRole } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 count={11}
                 page={0}
@@ -163,8 +162,8 @@ describe('<TablePagination />', () => {
                 onRowsPerPageChange={noop}
                 rowsPerPage={10}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -177,8 +176,8 @@ describe('<TablePagination />', () => {
     it('should disable the next button on the last page', () => {
       const { getByRole } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 count={11}
                 page={1}
@@ -186,8 +185,8 @@ describe('<TablePagination />', () => {
                 onRowsPerPageChange={noop}
                 rowsPerPage={10}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -203,8 +202,8 @@ describe('<TablePagination />', () => {
       let page = 1;
       const { getByRole } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 count={30}
                 page={page}
@@ -214,8 +213,8 @@ describe('<TablePagination />', () => {
                 onRowsPerPageChange={noop}
                 rowsPerPage={10}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -228,8 +227,8 @@ describe('<TablePagination />', () => {
       let page = 1;
       const { getByRole } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 count={30}
                 page={page}
@@ -239,8 +238,8 @@ describe('<TablePagination />', () => {
                 onRowsPerPageChange={noop}
                 rowsPerPage={10}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -254,8 +253,8 @@ describe('<TablePagination />', () => {
     it('should display 0 as start number if the table is empty ', () => {
       const { container } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 count={0}
                 page={0}
@@ -263,8 +262,8 @@ describe('<TablePagination />', () => {
                 onPageChange={noop}
                 onRowsPerPageChange={noop}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
       expect(container.querySelectorAll('p')[1]).to.have.text('0–0 of 0');
@@ -273,8 +272,8 @@ describe('<TablePagination />', () => {
     it('should hide the rows per page selector if there are less than two options', () => {
       const { container, queryByRole } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 page={0}
                 rowsPerPage={5}
@@ -283,8 +282,8 @@ describe('<TablePagination />', () => {
                 onRowsPerPageChange={noop}
                 count={10}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -299,8 +298,8 @@ describe('<TablePagination />', () => {
         const [page, setPage] = React.useState(0);
         return (
           <table>
-            <TableFooter>
-              <TableRow>
+            <tfoot>
+              <tr>
                 <TablePagination
                   page={page}
                   rowsPerPage={10}
@@ -314,8 +313,8 @@ describe('<TablePagination />', () => {
                     } as any,
                   }}
                 />
-              </TableRow>
-            </TableFooter>
+              </tr>
+            </tfoot>
           </table>
         );
       }
@@ -333,8 +332,8 @@ describe('<TablePagination />', () => {
       const handleChangePage = spy();
       const { getByRole } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 page={1}
                 rowsPerPage={10}
@@ -346,8 +345,8 @@ describe('<TablePagination />', () => {
                   } as any,
                 }}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -361,8 +360,8 @@ describe('<TablePagination />', () => {
       const handleChangePage = spy();
       const { getByRole } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 page={0}
                 rowsPerPage={10}
@@ -374,8 +373,8 @@ describe('<TablePagination />', () => {
                   } as any,
                 }}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -414,8 +413,8 @@ describe('<TablePagination />', () => {
     it('does allow manual label ids', () => {
       const { container } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 count={1}
                 page={0}
@@ -425,8 +424,8 @@ describe('<TablePagination />', () => {
                 selectId="foo"
                 labelId="bar"
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -440,8 +439,8 @@ describe('<TablePagination />', () => {
     it('should display max number of rows text when prop is -1', () => {
       const { container } = render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 count={25}
@@ -449,8 +448,8 @@ describe('<TablePagination />', () => {
                 rowsPerPage={-1}
                 onPageChange={noop}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
 
@@ -463,8 +462,8 @@ describe('<TablePagination />', () => {
     it('should not raise a warning due to duplicated keys', () => {
       render(
         <table>
-          <TableFooter>
-            <TableRow>
+          <tfoot>
+            <tr>
               <TablePagination
                 rowsPerPageOptions={[5, 10, { label: 'All', value: 10 }]}
                 count={10}
@@ -475,8 +474,8 @@ describe('<TablePagination />', () => {
                   select: { 'aria-label': 'rows per page' },
                 }}
               />
-            </TableRow>
-          </TableFooter>
+            </tr>
+          </tfoot>
         </table>,
       );
     });

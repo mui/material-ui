@@ -40,11 +40,6 @@ export default function TooltipColors() {
             Danger
           </Button>
         </Tooltip>
-        <Tooltip title="Delete" color="info" variant={variant}>
-          <Button variant="plain" color="info">
-            Info
-          </Button>
-        </Tooltip>
         <Tooltip title="Delete" color="success" variant={variant}>
           <Button variant="plain" color="success">
             Success
@@ -65,7 +60,7 @@ export default function TooltipColors() {
         }}
       >
         <Typography
-          level="body2"
+          level="body-sm"
           fontWeight="xl"
           id="variant-label"
           textColor="text.primary"

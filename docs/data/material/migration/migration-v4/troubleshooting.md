@@ -1,8 +1,8 @@
 # Troubleshooting
 
-<p class="description">This document covers known issues and common problems encountered when migrating from Material UI v4 to v5.</p>
+<p class="description">This document covers known issues and common problems encountered when migrating from Material UI v4 to v5.</p>
 
-## Material UI v5 migration
+## Material UI v5 migration
 
 1. [Getting started](/material-ui/migration/migration-v4/)
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
@@ -18,12 +18,12 @@ First, check if you have configured the `StyledEngineProvider` correctly, as sho
 
 If the `StyledEngineProvider` is already used at the top of your application and the styles are still broken, it may be the case that you still have `@material-ui/core` in your application.
 
-This could be caused by other dependencies in the app that still rely on Material UI v4.
+This could be caused by other dependencies in the app that still rely on Material UI v4.
 
 To check this, run `npm ls @material-ui/core` (or `yarn why @material-ui/core`).
 If your project contains such dependencies, you will see a list that looks something like this:
 
-```sh
+```bash
 $ npm ls @material-ui/core
 project@0.1.0 /path/to/project
 └─┬  @mui/x-data-grid@4.0.0
@@ -36,7 +36,7 @@ In this specific example, you would need to bump the version of `@mui/x-data-gri
 
 ## Storybook and Emotion
 
-If your project uses Storybook v6.x, you will need to update the `.storybook/main.js` webpack config to use the most recent version of Emotion:
+If your project uses Storybook v6.x, you will need to update the `.storybook/main.js` Webpack config to use the most recent version of Emotion:
 
 ```js
 // .storybook/main.js
@@ -106,6 +106,7 @@ For more details, checkout these GitHub issues:
 
 - https://github.com/storybookjs/storybook/issues/16099
 - https://github.com/mui/material-ui/issues/24282#issuecomment-796755133
+
   :::
 
 ## Cannot read property scrollTop of null
@@ -203,8 +204,8 @@ For more details, see [this GitHub issue](https://github.com/mui/material-ui/iss
 
 We recommend using this codemod to fix all imports in your project:
 
-```sh
-npx @mui/codemod v5.0.0/optimal-imports <path>
+```bash
+npx @mui/codemod@latest v5.0.0/optimal-imports <path>
 ```
 
 You can fix it manually like this:
@@ -289,4 +290,4 @@ For more details, see [this GitHub issue](https://github.com/mui/material-ui/iss
 
 ## Still having problems?
 
-If you're encountering a problem not covered here, please [create a GitHub issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: **[Migration] Summary of your issue**.
+If you're encountering a problem not covered here, please [create a GitHub issue](https://github.com/mui/material-ui/issues/new/choose) with this title format: **[Migration] Summary of your issue**.

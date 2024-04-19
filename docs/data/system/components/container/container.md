@@ -1,5 +1,5 @@
 ---
-product: system
+productId: system
 title: React Container component
 components: Container
 githubLabel: 'component: Container'

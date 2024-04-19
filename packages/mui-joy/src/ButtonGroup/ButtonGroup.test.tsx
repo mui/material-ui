@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ButtonGroup, {
   buttonGroupClasses as classes,
@@ -8,7 +9,7 @@ import ButtonGroup, {
 } from '@mui/joy/ButtonGroup';
 import Button, { buttonClasses, ButtonClassKey } from '@mui/joy/Button';
 import IconButton, { iconButtonClasses, IconButtonClassKey } from '@mui/joy/IconButton';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
@@ -95,7 +96,7 @@ describe('<ButtonGroup />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId, container } = render(
           <ButtonGroup data-testid="root" color={color}>
@@ -174,6 +175,16 @@ describe('<ButtonGroup />', () => {
     expect(container.querySelector('[data-last-child]')).to.have.text('Third');
   });
 
+  it('should not add data-attribute to single child', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <Button>Single</Button>
+      </ButtonGroup>,
+    );
+    expect(container.querySelector('[data-first-child]')).to.equal(null);
+    expect(container.querySelector('[data-last-child]')).to.equal(null);
+  });
+
   it('pass disabled to buttons', () => {
     const { getAllByRole } = render(
       <ButtonGroup disabled>
@@ -183,5 +194,16 @@ describe('<ButtonGroup />', () => {
     );
     expect(getAllByRole('button')[0]).to.have.property('disabled', true);
     expect(getAllByRole('button')[1]).to.have.property('disabled', true);
+  });
+
+  it('pass disabled to buttons unless it is overriden', () => {
+    const { getAllByRole } = render(
+      <ButtonGroup disabled>
+        <Button disabled={false} />
+        <IconButton disabled={false} />
+      </ButtonGroup>,
+    );
+    expect(getAllByRole('button')[0]).not.to.have.property('disabled', true);
+    expect(getAllByRole('button')[1]).not.to.have.property('disabled', true);
   });
 });

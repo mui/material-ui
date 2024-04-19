@@ -1,13 +1,21 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
       "default": "{}"
     },
     "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
+    "renderSurplus": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(surplus: number) => React.ReactNode",
+        "describedArgs": ["surplus"],
+        "returned": "React.ReactNode"
+      }
+    },
     "slotProps": {
       "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
       "default": "{}"
@@ -23,7 +31,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "total": { "type": { "name": "number" }, "default": "children.length" },
     "variant": {
@@ -35,7 +44,24 @@
     }
   },
   "name": "AvatarGroup",
-  "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
+  "imports": [
+    "import AvatarGroup from '@mui/material/AvatarGroup';",
+    "import { AvatarGroup } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "avatar",
+      "className": "MuiAvatarGroup-avatar",
+      "description": "Styles applied to the avatar elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAvatarGroup-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAvatarGroup",

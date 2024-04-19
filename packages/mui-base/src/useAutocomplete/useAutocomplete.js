@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable no-constant-condition */
 import * as React from 'react';
 import {
@@ -74,7 +75,7 @@ const pageSize = 5;
 const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && listboxRef.current.parentElement?.contains(document.activeElement);
 
-export default function useAutocomplete(props) {
+export function useAutocomplete(props) {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     unstable_isActiveElementInListbox = defaultIsActiveElementInListbox,
@@ -97,6 +98,7 @@ export default function useAutocomplete(props) {
     filterSelectedOptions = false,
     freeSolo = false,
     getOptionDisabled,
+    getOptionKey,
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -233,6 +235,7 @@ export default function useAutocomplete(props) {
   const previousProps = usePreviousProps({
     filteredOptions,
     value,
+    inputValue,
   });
 
   React.useEffect(() => {
@@ -291,21 +294,13 @@ export default function useAutocomplete(props) {
   }, [value, multiple, focusedTag, focusTag]);
 
   function validOptionIndex(index, direction) {
-    if (!listboxRef.current || index === -1) {
+    if (!listboxRef.current || index < 0 || index >= filteredOptions.length) {
       return -1;
     }
 
     let nextFocus = index;
 
     while (true) {
-      // Out of range
-      if (
-        (direction === 'next' && nextFocus === filteredOptions.length) ||
-        (direction === 'previous' && nextFocus === -1)
-      ) {
-        return -1;
-      }
-
       const option = listboxRef.current.querySelector(`[data-option-index="${nextFocus}"]`);
 
       // Same logic as MenuList.js
@@ -313,11 +308,23 @@ export default function useAutocomplete(props) {
         ? false
         : !option || option.disabled || option.getAttribute('aria-disabled') === 'true';
 
-      if ((option && !option.hasAttribute('tabindex')) || nextFocusDisabled) {
-        // Move to the next element.
-        nextFocus += direction === 'next' ? 1 : -1;
-      } else {
+      if (option && option.hasAttribute('tabindex') && !nextFocusDisabled) {
+        // The next option is available
         return nextFocus;
+      }
+
+      // The next option is disabled, move to the next element.
+      // with looped index
+      if (direction === 'next') {
+        nextFocus = (nextFocus + 1) % filteredOptions.length;
+      } else {
+        nextFocus = (nextFocus - 1 + filteredOptions.length) % filteredOptions.length;
+      }
+
+      // We end up with initial index, that means we don't have available options.
+      // All of them are disabled
+      if (nextFocus === index) {
+        return -1;
       }
     }
   }
@@ -376,10 +383,14 @@ export default function useAutocomplete(props) {
 
     // Scroll active descendant into view.
     // Logic copied from https://www.w3.org/WAI/content-assets/wai-aria-practices/patterns/combobox/examples/js/select-only.js
-    //
+    // In case of mouse clicks and touch (in mobile devices) we avoid scrolling the element and keep both behaviors same.
     // Consider this API instead once it has a better browser support:
     // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
-    if (listboxNode.scrollHeight > listboxNode.clientHeight && reason !== 'mouse') {
+    if (
+      listboxNode.scrollHeight > listboxNode.clientHeight &&
+      reason !== 'mouse' &&
+      reason !== 'touch'
+    ) {
       const element = option;
 
       const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
@@ -467,7 +478,7 @@ export default function useAutocomplete(props) {
     },
   );
 
-  const checkHighlightedOptionExists = () => {
+  const getPreviousHighlightedOptionIndex = () => {
     const isSameValue = (value1, value2) => {
       const label1 = value1 ? getOptionLabel(value1) : '';
       const label2 = value2 ? getOptionLabel(value2) : '';
@@ -478,6 +489,7 @@ export default function useAutocomplete(props) {
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
+      previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
           previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
@@ -486,16 +498,12 @@ export default function useAutocomplete(props) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
       if (previousHighlightedOption) {
-        const previousHighlightedOptionExists = filteredOptions.some((option) => {
+        return findIndex(filteredOptions, (option) => {
           return getOptionLabel(option) === getOptionLabel(previousHighlightedOption);
         });
-
-        if (previousHighlightedOptionExists) {
-          return true;
-        }
       }
     }
-    return false;
+    return -1;
   };
 
   const syncHighlightedIndex = React.useCallback(() => {
@@ -503,9 +511,11 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    // Check if the previously highlighted option still exists in the updated filtered options list and if the value hasn't changed
-    // If it exists and the value hasn't changed, return, otherwise continue execution
-    if (checkHighlightedOptionExists()) {
+    // Check if the previously highlighted option still exists in the updated filtered options list and if the value and inputValue haven't changed
+    // If it exists and the value and the inputValue haven't changed, just update its index, otherwise continue execution
+    const previousHighlightedOptionIndex = getPreviousHighlightedOptionIndex();
+    if (previousHighlightedOptionIndex !== -1) {
+      highlightedIndexRef.current = previousHighlightedOptionIndex;
       return;
     }
 
@@ -588,7 +598,7 @@ export default function useAutocomplete(props) {
             [
               `A textarea element was provided to ${componentName} where input was expected.`,
               `This is not a supported scenario but it may work under certain conditions.`,
-              `A textarea keyboard navigation may conflict with Autocomplete controls (e.g. enter and arrow keys).`,
+              `A textarea keyboard navigation may conflict with Autocomplete controls (for example enter and arrow keys).`,
               `Make sure to test keyboard navigation and add custom event handlers if necessary.`,
             ].join('\n'),
           );
@@ -893,6 +903,7 @@ export default function useAutocomplete(props) {
           }
           break;
         case 'Backspace':
+          // Remove the value on the left of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
@@ -903,6 +914,7 @@ export default function useAutocomplete(props) {
           }
           break;
         case 'Delete':
+          // Remove the value on the right of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0 && focusedTag !== -1) {
             const index = focusedTag;
             const newValue = value.slice();
@@ -1042,7 +1054,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    if (inputValue === '' || !open) {
+    if (!disabledProp && (inputValue === '' || !open)) {
       handlePopupIndicator(event);
     }
   };
@@ -1125,10 +1137,12 @@ export default function useAutocomplete(props) {
     }),
     getClearProps: () => ({
       tabIndex: -1,
+      type: 'button',
       onClick: handleClear,
     }),
     getPopupIndicatorProps: () => ({
       tabIndex: -1,
+      type: 'button',
       onClick: handlePopupIndicator,
     }),
     getTagProps: ({ index }) => ({
@@ -1154,7 +1168,7 @@ export default function useAutocomplete(props) {
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
-        key: getOptionLabel(option),
+        key: getOptionKey?.(option) ?? getOptionLabel(option),
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,

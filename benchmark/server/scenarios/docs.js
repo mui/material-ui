@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import Benchmark from 'benchmark';
 import fs from 'fs';
 import path from 'path';
+import Benchmark from 'benchmark';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';

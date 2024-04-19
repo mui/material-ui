@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { unstable_useId as useId } from '@mui/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import useId from '@mui/utils/useId';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
 import Fade from '../Fade';
@@ -76,7 +77,7 @@ const DialogContainer = styled('div', {
     overflowY: 'auto',
     overflowX: 'hidden',
     textAlign: 'center',
-    '&:after': {
+    '&::after': {
       content: '""',
       display: 'inline-block',
       verticalAlign: 'middle',
@@ -181,6 +182,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     fullWidth = false,
     maxWidth = 'sm',
     onBackdropClick,
+    onClick,
     onClose,
     open,
     PaperComponent = Paper,
@@ -210,6 +212,10 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     backdropClick.current = event.target === event.currentTarget;
   };
   const handleBackdropClick = (event) => {
+    if (onClick) {
+      onClick(event);
+    }
+
     // Ignore the events not coming from the "backdrop".
     if (!backdropClick.current) {
       return;
@@ -284,10 +290,10 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
 });
 
 Dialog.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The id(s) of the element(s) that describe the dialog.
    */
@@ -360,6 +366,10 @@ Dialog.propTypes /* remove-proptypes */ = {
    */
   onBackdropClick: PropTypes.func,
   /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
@@ -417,7 +427,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

@@ -7,7 +7,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import GradientText from 'docs/src/components/typography/GradientText';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import {
   DesignKitImagesSet1,
   DesignKitImagesSet2,
@@ -17,6 +17,7 @@ import {
 export default function TemplateHero() {
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
@@ -33,21 +34,22 @@ export default function TemplateHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-designkits" /> Design kits
+            <IconImage width={28} height={28} loading="eager" name="product-designkits" /> Design
+            kits
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            MUI in your favorite
+            Material UI
+            <br /> in your favorite
             <br /> <GradientText>design tool</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>
-            Pick your favorite design tool to enjoy and use MUI components. Boost consistency and
-            facilitate communication when working with developers.
+            Pick your favorite design tool to enjoy and use Material UI components. Boost
+            consistency and facilitate communication when working with developers.
           </Typography>
           <Button
             component={Link}
             noLinkStyle
             href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta#design"
-            size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
             sx={{ width: { xs: '100%', sm: 'auto' } }}

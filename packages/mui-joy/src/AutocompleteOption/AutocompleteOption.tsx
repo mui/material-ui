@@ -1,16 +1,15 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
-import autocompleteOptionClasses, {
-  getAutocompleteOptionUtilityClass,
-} from './autocompleteOptionClasses';
+import { useVariantColor } from '../styles/variantColorInheritance';
+import { getAutocompleteOptionUtilityClass } from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
@@ -32,16 +31,8 @@ export const StyledAutocompleteOption = styled(StyledListItemButton as unknown a
 }>(({ theme, ownerState }) => ({
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   '&[aria-selected="true"]': {
-    color: theme.variants.soft?.[ownerState.color === 'context' ? 'context' : 'primary']?.color,
-    backgroundColor:
-      theme.variants.soft?.[ownerState.color === 'context' ? 'context' : 'primary']
-        ?.backgroundColor,
+    ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     fontWeight: theme.vars.fontWeight.md,
-  },
-  [`&.${autocompleteOptionClasses.focused}:not([aria-selected="true"]):not(:hover)`]: {
-    // create the focused style similar to the hover state
-    backgroundColor:
-      theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!]?.backgroundColor,
   },
 }));
 
@@ -70,14 +61,16 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
     children,
     component = 'li',
     color: colorProp = 'neutral',
-    variant = 'plain',
+    variant: variantProp = 'plain',
     className,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const { variant = variantProp, color = colorProp } = useVariantColor(
+    inProps.variant,
+    inProps.color,
+  );
 
   const ownerState = {
     ...props,
@@ -105,10 +98,10 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
 }) as OverridableComponent<AutocompleteOptionTypeMap>;
 
 AutocompleteOption.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
@@ -122,7 +115,7 @@ AutocompleteOption.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

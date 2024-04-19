@@ -2,10 +2,10 @@ import * as React from 'react';
 import clsx, { ClassValue } from 'clsx';
 import { Simplify } from '@mui/types';
 import { EventHandlers } from './types';
-import extractEventHandlers from './extractEventHandlers';
-import omitEventHandlers from './omitEventHandlers';
+import { extractEventHandlers } from './extractEventHandlers';
+import { omitEventHandlers } from './omitEventHandlers';
 
-export type WithCommonProps<T> = T & {
+export type WithCommonProps<OtherProps> = OtherProps & {
   className?: string;
   style?: React.CSSProperties;
   ref?: React.Ref<any>;
@@ -70,7 +70,7 @@ export type MergeSlotPropsResult<
  * @param parameters
  * @returns
  */
-export default function mergeSlotProps<
+export function mergeSlotProps<
   SlotProps,
   ExternalForwardedProps extends Record<string, unknown>,
   ExternalSlotProps extends Record<string, unknown>,
@@ -90,10 +90,10 @@ export default function mergeSlotProps<
     // The simpler case - getSlotProps is not defined, so no internal event handlers are defined,
     // so we can simply merge all the props without having to worry about extracting event handlers.
     const joinedClasses = clsx(
+      additionalProps?.className,
+      className,
       externalForwardedProps?.className,
       externalSlotProps?.className,
-      className,
-      additionalProps?.className,
     );
 
     const mergedStyle = {

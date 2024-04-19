@@ -59,7 +59,7 @@ export default function JoyColorInversion() {
       {renderComponents(<Alert>This is an alert.</Alert>)}
       {renderComponents(
         <AspectRatio sx={{ minWidth: 120 }}>
-          <Box>Image</Box>
+          <div>Image</div>
         </AspectRatio>,
       )}
       {renderComponents(<Avatar>MA</Avatar>)}
@@ -71,7 +71,7 @@ export default function JoyColorInversion() {
       {renderComponents(<Button>Button</Button>)}
       <Card sx={{ minWidth: 256 }}>
         <AspectRatio>
-          <Box>Image</Box>
+          <div>Image</div>
         </AspectRatio>
         <CardContent>Content</CardContent>
         <Divider />

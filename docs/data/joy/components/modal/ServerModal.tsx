@@ -5,7 +5,7 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
 export default function ServerModal() {
-  const rootRef = React.useRef(null);
+  const rootRef = React.useRef<HTMLDivElement>(null);
 
   return (
     <Box
@@ -27,14 +27,14 @@ export default function ServerModal() {
         disableEnforceFocus
         disableAutoFocus
         open
-        container={() => rootRef.current}
+        container={() => rootRef.current!}
       >
         <ModalDialog
           aria-labelledby="server-modal-title"
           aria-describedby="server-modal-description"
           layout="center"
         >
-          <Typography id="server-modal-title" component="h2">
+          <Typography id="server-modal-title" level="h2">
             Server-side modal
           </Typography>
           <Typography id="server-modal-description" textColor="text.tertiary">

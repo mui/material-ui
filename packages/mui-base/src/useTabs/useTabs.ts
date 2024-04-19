@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import { unstable_useControlled as useControlled } from '@mui/utils';
 import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
-import { useCompoundParent } from '../utils/useCompound';
+import { useCompoundParent } from '../useCompound';
 import { TabPanelMetadata } from './TabsProvider';
 
 export interface TabMetadata {
@@ -27,9 +28,9 @@ function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
     value: valueProp,
     defaultValue,
     onChange,
-    orientation,
-    direction,
-    selectionFollowsFocus,
+    orientation = 'horizontal',
+    direction = 'ltr',
+    selectionFollowsFocus = false,
   } = parameters;
 
   const [value, setValue] = useControlled({
@@ -84,4 +85,4 @@ function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
   };
 }
 
-export default useTabs;
+export { useTabs };

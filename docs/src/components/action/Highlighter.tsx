@@ -1,10 +1,10 @@
 import * as React from 'react';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
+import { alpha } from '@mui/material/styles';
 
 export default function Highlighter({
   disableBorder = false,
   selected = false,
-  selectedBg = 'white',
   sx,
   ...props
 }: {
@@ -12,16 +12,13 @@ export default function Highlighter({
   selectedBg?: 'white' | 'comfort';
   selected?: boolean;
 } & ButtonBaseProps) {
-  const lightSelectedBg = {
-    white: '#fff',
-    comfort: 'grey.50',
-  };
-  const ref = React.useRef<null | HTMLButtonElement>(null);
+  const ref = React.useRef<HTMLButtonElement>(null);
   return (
     <ButtonBase
+      component="span"
       ref={ref}
       {...props}
-      onClick={(event) => {
+      onClick={(event: any) => {
         if (ref.current) {
           ref.current.scrollIntoView({ block: 'nearest' });
         }
@@ -46,41 +43,56 @@ export default function Highlighter({
           height: '100%',
           border: '1px solid transparent',
           transitionProperty: 'all',
-          transitionDuration: '150ms',
+          transitionDuration: '100ms',
           color: 'primary.300',
           ...((!disableBorder || selected) && {
-            borderColor: 'grey.200',
+            borderColor: 'grey.100',
           }),
           ...(selected && {
-            bgcolor: lightSelectedBg[selectedBg],
-            borderColor: 'grey.200',
+            bgcolor: `${alpha(theme.palette.primary[50], 0.5)}`,
+            borderColor: 'primary.300',
+            boxShadow: `${alpha(theme.palette.primary[100], 0.5)} 0 -3px 1px inset, ${alpha(
+              theme.palette.primary[100],
+              0.3,
+            )} 0 2px 4px 0`,
             color: 'primary.500',
           }),
           ...(!selected && {
-            '&:hover, &:focus': {
-              bgcolor: 'grey.100',
+            '&:hover': {
+              bgcolor: 'primary.50',
+              borderColor: 'primary.100',
               '@media (hover: none)': {
                 bgcolor: 'transparent',
               },
+            },
+            '&:focus': {
+              bgcolor: 'transparent',
             },
           }),
           ...theme.applyDarkStyles({
             color: 'primary.800',
             ...((!disableBorder || selected) && {
-              borderColor: 'primaryDark.500',
-            }),
-            ...(selected && {
-              bgcolor: 'primaryDark.700',
-              borderColor: 'primaryDark.300',
-              color: 'primary.300',
+              borderColor: alpha(theme.palette.primaryDark[600], 0.3),
             }),
             ...(!selected && {
-              '&:hover, &:focus': {
-                bgcolor: 'primaryDark.800',
+              '&:hover': {
+                bgcolor: alpha(theme.palette.primary[900], 0.1),
+                borderColor: alpha(theme.palette.primary[800], 0.4),
                 '@media (hover: none)': {
                   bgcolor: 'transparent',
                 },
               },
+              '&:focus': {
+                bgcolor: 'transparent',
+              },
+            }),
+            ...(selected && {
+              bgcolor: alpha(theme.palette.primary[800], 0.2),
+              borderColor: alpha(theme.palette.primary[700], 0.8),
+              color: 'primary.300',
+              boxShadow: `${alpha(theme.palette.common.black, 0.2)} 0 -3px 1px inset, ${
+                theme.palette.primaryDark[900]
+              } 0 2px 3px 0`,
             }),
           }),
           '&.Mui-disabled': {

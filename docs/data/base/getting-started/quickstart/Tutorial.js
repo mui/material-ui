@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button, { buttonClasses } from '@mui/base/Button';
+import { Button, buttonClasses } from '@mui/base/Button';
 import { styled, alpha } from '@mui/system';
 
 const CustomButton = styled(Button)(
@@ -76,7 +76,7 @@ const CustomButton = styled(Button)(
   `,
 );
 
-export default function App() {
+export default function Tutorial() {
   return (
     <div style={{ marginTop: 16, paddingTop: 16, paddingBottom: 16 }}>
       <CustomButton>Create Repository</CustomButton>

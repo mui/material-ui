@@ -1,6 +1,7 @@
 import * as React from 'react';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select, { SelectChangeEvent, SelectProps } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { createTheme } from '@mui/material/styles';
 
 function genericValueTest() {
   function handleChangeWithSameTypeAsSelect(event: SelectChangeEvent<number>) {}
@@ -44,4 +45,157 @@ function genericValueTest() {
 
   // disabledUnderline prop should be available (inherited from InputProps) and NOT throw typescript error
   <Select disableUnderline />;
+
+  // Tests presence of `root` class in SelectClasses
+  const theme = createTheme({
+    components: {
+      MuiSelect: {
+        styleOverrides: {
+          root: {
+            borderRadius: '8px',
+          },
+        },
+      },
+    },
+  });
+
+  // tests deep slot prop forwarding up to the modal backdrop
+  <Select
+    MenuProps={{
+      slotProps: {
+        root: {
+          slotProps: {
+            backdrop: {
+              style: {
+                backgroundColor: 'transparent',
+              },
+            },
+          },
+        },
+      },
+    }}
+  />;
+
+  <Select variant="filled" />;
+  <Select variant="standard" />;
+  <Select variant="outlined" />;
+  <Select />;
+
+  <Select variant="filled" hiddenLabel />;
+  // @ts-expect-error hiddenLabel is not present in standard variant
+  <Select variant="standard" hiddenLabel />;
+  // @ts-expect-error hiddenLabel is not present in outlined variant
+  <Select variant="outlined" hiddenLabel />;
+  // @ts-expect-error hiddenLabel is not present in outlined variant
+  <Select hiddenLabel />;
+
+  const defaultProps: SelectProps<number> = {};
+  const outlinedProps: SelectProps<number> = {
+    variant: 'outlined',
+  };
+  const filledProps: SelectProps<number> = {
+    variant: 'filled',
+  };
+  const standardProps: SelectProps<number> = {
+    variant: 'standard',
+  };
+
+  <Select {...defaultProps} />;
+  <Select {...outlinedProps} />;
+  <Select {...filledProps} />;
+  <Select {...standardProps} />;
+  <Select<number> {...outlinedProps} />;
+  <Select<number> {...defaultProps} />;
+  <Select<number> {...filledProps} />;
+
+  const rawDefaultProps: SelectProps = {};
+  const rawOutlinedProps: SelectProps = {
+    variant: 'outlined',
+  };
+  const rawFilledProps: SelectProps = {
+    variant: 'filled',
+  };
+
+  <Select {...rawDefaultProps} />;
+  <Select {...rawOutlinedProps} />;
+  <Select {...rawFilledProps} />;
+
+  // @ts-expect-error hiddenLabel is not present in outlined variant
+  <Select {...defaultProps} hiddenLabel />;
+  // @ts-expect-error hiddenLabel is not present in outlined variant
+  <Select {...outlinedProps} hiddenLabel />;
+  <Select {...filledProps} hiddenLabel />;
+  // @ts-expect-error hiddenLabel is not present in standard variant
+  <Select {...standardProps} hiddenLabel />;
+
+  interface OtherProps {
+    otherProp?: number;
+  }
+
+  const SelectWrapper1 = <Value,>(props: SelectProps<Value> & OtherProps) => {
+    const { otherProp, ...materialSelectProps } = props;
+
+    return <Select<Value> {...materialSelectProps} />;
+  };
+
+  <SelectWrapper1 />;
+  <SelectWrapper1<number> variant="filled" hiddenLabel />;
+  <SelectWrapper1 variant="filled" hiddenLabel />;
 }
+
+type Options<T> = { text: string; value: T } | T;
+
+type Props<T> = (
+  | {
+      value: T;
+      multiple?: false;
+      onChange: (value: T) => void;
+    }
+  | {
+      value: T[];
+      multiple: true;
+      onChange: (value: T[]) => void;
+    }
+) & {
+  options: Options<T>[];
+};
+
+// test for https://github.com/mui/material-ui/issues/41375
+const AppSelect = <T extends string>(props: Props<T>) => {
+  const getOptionText = (option: Options<T>) => {
+    if (typeof option === 'object') {
+      return option.text;
+    }
+    return option;
+  };
+
+  const getOptionValue = (option: Options<T>) => {
+    if (typeof option === 'object') {
+      return option.value;
+    }
+    return option;
+  };
+
+  return (
+    <Select
+      value={props.value}
+      multiple={props.multiple}
+      onChange={(event) => {
+        if (props.multiple) {
+          props.onChange(event.target.value as T[]);
+        } else {
+          props.onChange(event.target.value as T);
+        }
+      }}
+    >
+      {props.options.map((option, index) => (
+        <MenuItem key={index} value={getOptionValue(option)}>
+          {getOptionText(option)}
+        </MenuItem>
+      ))}
+    </Select>
+  );
+};
+
+// test for applying Select's static muiName property type to wrapper components
+AppSelect.muiName = Select.muiName;

@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { expectType } from '@mui/types';
 import Autocomplete, {
   AutocompleteOwnerState,
   AutocompleteProps,
   AutocompleteRenderGetTagProps,
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { expectType } from '@mui/types';
 import { ChipTypeMap } from '@mui/material/Chip';
 
 interface MyAutocompleteProps<
@@ -157,3 +157,17 @@ function CustomListboxRef() {
     />
   );
 }
+
+// Tests presence of defaultMuiPrevented in event
+<Autocomplete
+  renderInput={(params) => <TextField {...params} />}
+  options={['one', 'two', 'three']}
+  onKeyDown={(e) => {
+    expectType<
+      React.KeyboardEvent<HTMLDivElement> & {
+        defaultMuiPrevented?: boolean;
+      },
+      typeof e
+    >(e);
+  }}
+/>;

@@ -1,12 +1,14 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
   ThemeProvider as MuiThemeProvider,
   useTheme as usePrivateTheme,
 } from '@mui/private-theming';
-import { exactProp } from '@mui/utils';
+import exactProp from '@mui/utils/exactProp';
 import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import useThemeWithoutDefault from '../useThemeWithoutDefault';
+import RtlProvider from '../RtlProvider';
 
 const EMPTY_THEME = {};
 
@@ -60,21 +62,22 @@ function ThemeProvider(props) {
 
   const engineTheme = useThemeScoping(themeId, upperTheme, localTheme);
   const privateTheme = useThemeScoping(themeId, upperPrivateTheme, localTheme, true);
+  const rtlValue = engineTheme.direction === 'rtl';
 
   return (
     <MuiThemeProvider theme={privateTheme}>
       <StyledEngineThemeContext.Provider value={engineTheme}>
-        {children}
+        <RtlProvider value={rtlValue}>{children}</RtlProvider>
       </StyledEngineThemeContext.Provider>
     </MuiThemeProvider>
   );
 }
 
 ThemeProvider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Your component tree.
    */

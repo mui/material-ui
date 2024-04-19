@@ -1,17 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   act,
   createRenderer,
   screen,
   RenderCounter,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { ThemeProvider } from '@mui/material/styles';
 
 const usesUseSyncExternalStore = React.useSyncExternalStore !== undefined;
 
@@ -46,10 +46,12 @@ describe('useMediaQuery', () => {
 
   describe('without window.matchMedia', () => {
     let originalMatchmedia;
+
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
       delete window.matchMedia;
     });
+
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });

@@ -66,16 +66,6 @@ export interface LabComponents {
     styleOverrides?: ComponentsOverrides<Theme>['MuiTimelineSeparator'];
     variants?: ComponentsVariants['MuiTimelineSeparator'];
   };
-  MuiTreeItem?: {
-    defaultProps?: ComponentsProps['MuiTreeItem'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiTreeItem'];
-    variants?: ComponentsVariants['MuiTreeItem'];
-  };
-  MuiTreeView?: {
-    defaultProps?: ComponentsProps['MuiTreeView'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiTreeView'];
-    variants?: ComponentsVariants['MuiTreeView'];
-  };
 }
 
 declare module '@mui/material/styles' {

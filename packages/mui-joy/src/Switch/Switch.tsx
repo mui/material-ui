@@ -1,18 +1,19 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import useSwitch from '@mui/base/useSwitch';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps, Theme } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: SwitchOwnerState) => {
-  const { checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
+  const { checked, disabled, focusVisible, readOnly, color, variant, size } = ownerState;
 
   const slots = {
     root: [
@@ -23,6 +24,7 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
       readOnly && 'readOnly',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
     ],
     thumb: ['thumb', checked && 'checked'],
     track: ['track', checked && 'checked'],
@@ -41,12 +43,12 @@ const switchColorVariables =
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      '--Switch-trackBackground': styles.backgroundColor,
+      '--Switch-trackBackground': styles.backgroundColor ?? theme.vars.palette.background.surface,
       '--Switch-trackColor': styles.color,
       '--Switch-trackBorderColor':
         ownerState.variant === 'outlined' ? styles.borderColor : 'currentColor',
       '--Switch-thumbBackground': styles.color,
-      '--Switch-thumbColor': styles.backgroundColor,
+      '--Switch-thumbColor': styles.backgroundColor ?? theme.vars.palette.background.surface,
     };
   };
 
@@ -57,30 +59,31 @@ const SwitchRoot = styled('div', {
 })<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
   return {
+    '--Icon-color': 'currentColor',
     '--variant-borderWidth':
       theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
-    '--Switch-trackRadius': theme.vars.radius.lg,
+    '--Switch-trackRadius': theme.vars.radius.xl,
     '--Switch-thumbShadow':
       ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
     ...(ownerState.size === 'sm' && {
-      '--Switch-trackWidth': '40px',
-      '--Switch-trackHeight': '20px',
-      '--Switch-thumbSize': '12px',
-      '--Switch-gap': '6px',
+      '--Switch-trackWidth': '26px',
+      '--Switch-trackHeight': '16px',
+      '--Switch-thumbSize': '10px',
       fontSize: theme.vars.fontSize.sm,
+      gap: 'var(--Switch-gap, 6px)',
     }),
     ...(ownerState.size === 'md' && {
-      '--Switch-trackWidth': '48px',
-      '--Switch-trackHeight': '24px',
-      '--Switch-thumbSize': '16px',
-      '--Switch-gap': '8px',
+      '--Switch-trackWidth': '32px',
+      '--Switch-trackHeight': '20px',
+      '--Switch-thumbSize': '14px',
       fontSize: theme.vars.fontSize.md,
+      gap: 'var(--Switch-gap, 8px)',
     }),
     ...(ownerState.size === 'lg' && {
-      '--Switch-trackWidth': '64px',
-      '--Switch-trackHeight': '32px',
-      '--Switch-thumbSize': '24px',
-      '--Switch-gap': '12px',
+      '--Switch-trackWidth': '40px',
+      '--Switch-trackHeight': '24px',
+      '--Switch-thumbSize': '18px',
+      gap: 'var(--Switch-gap, 12px)',
     }),
     '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
     '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
@@ -88,12 +91,16 @@ const SwitchRoot = styled('div', {
     '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
     ...getColorVariables(),
     '&:hover': {
-      ...getColorVariables({ state: 'Hover' }),
+      '@media (hover: hover)': {
+        ...getColorVariables({ state: 'Hover' }),
+      },
     },
     [`&.${switchClasses.checked}`]: {
       ...getColorVariables(),
       '&:hover': {
-        ...getColorVariables({ state: 'Hover' }),
+        '@media (hover: hover)': {
+          ...getColorVariables({ state: 'Hover' }),
+        },
       },
     },
     [`&.${switchClasses.disabled}`]: {
@@ -201,7 +208,6 @@ const SwitchStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: SwitchOwnerState }>({
   display: 'inline-flex',
-  marginInlineEnd: 'var(--Switch-gap)',
 });
 
 const SwitchEndDecorator = styled('span', {
@@ -210,7 +216,6 @@ const SwitchEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: SwitchOwnerState }>({
   display: 'inline-flex',
-  marginInlineStart: 'var(--Switch-gap)',
 });
 /**
  *
@@ -264,23 +269,12 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     }, [registerEffect]);
   }
 
-  const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(
-    inProps.color,
-    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
-  );
+  const color = inProps.color ?? (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
 
   const useSwitchProps = {
-    checked: checkedProp,
-    defaultChecked,
-    disabled: disabledProp,
-    onBlur,
-    onChange,
-    onFocus,
-    onFocusVisible,
-    readOnly: readOnlyProp,
+    disabled: inProps.disabled ?? formControl?.disabled ?? disabledExternalProp,
+    ...props,
   };
 
   const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
@@ -387,10 +381,10 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 }) as OverridableComponent<SwitchTypeMap>;
 
 Switch.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */
@@ -404,7 +398,7 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

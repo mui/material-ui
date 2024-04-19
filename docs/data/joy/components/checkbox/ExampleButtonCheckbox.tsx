@@ -16,7 +16,6 @@ export default function ExampleButtonCheckbox() {
       role="group"
       orientation="horizontal"
       sx={{
-        bgcolor: 'background.body',
         flexGrow: 0,
         '--List-gap': '8px',
         '--List-padding': '8px',

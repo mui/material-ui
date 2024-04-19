@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Button component
 components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://m2.material.io/components/buttons
@@ -77,7 +77,7 @@ Note that the documentation [avoids](/material-ui/guides/api/#native-properties)
 
 {{"demo": "ColorButtons.js"}}
 
-In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
+In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/material-ui/customization/palette/#custom-colors) examples for more info.
 
 ## Sizes
 
@@ -112,6 +112,12 @@ Use `color` prop to apply theme color palette to component.
 
 {{"demo": "IconButtonColors.js"}}
 
+## File upload
+
+To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.
+
+{{"demo": "InputFileUpload.js"}}
+
 ## Customization
 
 Here are some examples of customizing the component.
@@ -119,20 +125,20 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 {{"demo": "CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/button-introduction--docs).
 
 ## Complex button
 
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
 You can take advantage of this lower-level component to build custom interactions.
 
-{{"demo": "ButtonBase.js"}}
+{{"demo": "ButtonBaseDemo.js"}}
 
 ## Third-party routing library
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `ButtonBase` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/material-ui/guides/routing/#button).
+Here is a [more detailed guide](/material-ui/integrations/routing/#button).
 
 ## Limitations
 
@@ -168,7 +174,7 @@ However:
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
 
-## Experimental API
+## Experimental APIs
 
 ### Loading button
 
@@ -190,16 +196,3 @@ To prevent this, ensure that the contents of the Loading Button are nested insid
   <span>Submit</span>
 </LoadingButton>
 ```
-
-:::
-
-### Material You version
-
-The default Button component follows the Material Design 2 specs.
-For the Material Design 3 ([Material You](https://m3.material.io/)) version, you can use the new experimental `@mui/material-next` package:
-
-```js
-import Button from '@mui/material-next/Button';
-```
-
-{{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true}}

@@ -46,7 +46,6 @@ function extendTheme({ cssVarPrefix = 'system-demo' } = {}) {
       prefix: cssVarPrefix,
     },
   );
-
   const theme = {
     colorSchemes: {
       light: lightColorScheme,
@@ -123,7 +122,7 @@ function App() {
   );
 }
 
-export default function Demo() {
+export default function CreateCssVarsProvider() {
   return (
     <CssVarsProvider>
       <App />

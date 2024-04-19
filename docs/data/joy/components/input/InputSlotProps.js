@@ -22,8 +22,8 @@ export default function InputSlotProps() {
         type="date"
         slotProps={{
           input: {
-            min: '2018-06-07T00:00',
-            max: '2018-06-14T00:00',
+            min: '2018-06-07',
+            max: '2018-06-14',
           },
         }}
       />

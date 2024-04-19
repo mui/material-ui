@@ -33,7 +33,7 @@ function CircularProgressWithLabel(
   );
 }
 
-export default function CircularStatic() {
+export default function CircularWithValueLabel() {
   const [progress, setProgress] = React.useState(10);
 
   React.useEffect(() => {

@@ -24,8 +24,6 @@ describe('defaultTheme', () => {
         'zIndex',
         'typography',
         'variants',
-        'colorInversion',
-        'colorInversionConfig',
         'vars',
         'cssVarPrefix',
         'getColorSchemeSelector',
@@ -33,6 +31,7 @@ describe('defaultTheme', () => {
         'unstable_sx',
         'shouldSkipGeneratingVar',
         'generateCssVars',
+        'applyStyles',
       ]).to.includes(field);
     });
   });

@@ -1,4 +1,4 @@
-# MUI Scripts
+# Scripts
 
 ## Release
 
@@ -13,7 +13,7 @@ A typical release goes like this:
    //registry.npmjs.org/:_authToken=npm_000000000000000000000000000000000000
    ```
 3. Make sure you have added the `material-ui-docs` remote to deploy the documentation:
-   ```sh
+   ```bash
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
 4. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`.
@@ -22,33 +22,28 @@ A typical release goes like this:
 
 The following steps must be proposed as a pull request.
 
-1. Generate the changelog with `yarn release:changelog`
+1. Generate the changelog with `pnpm release:changelog`
    The output must be prepended to the top level `CHANGELOG.md`
-   `yarn release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
+   `pnpm release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
 
 2. Clean the generated changelog:
    1. Match the format of https://github.com/mui/material-ui/releases.
-   2. Change the packages names casing to be lowercase if applicable, e.g. change `Material` to `material`
+   2. Change the packages names casing to be lowercase if applicable
 3. Update the root `/package.json`'s version
-4. `yarn release:version`, keep in mind:
-   1. Keep the package versions of stable public packages the same as the root `package.json` version.
-   2. Don't bump private packages unless necessary, these have `"private": true` in their `package.json`
-   3. Manually remove `^` from packages with prerelease version, e.g. `-alpha`
+4. Run `pnpm release:version`. Keep the package versions of stable public packages the same as the root `package.json` version.
 5. Open PR with changes and wait for review and green CI
 6. Merge PR once CI is green and it has been approved
 
 ### Release
 
-1. Checkout merge commit of the merged PR
-2. `yarn`
-3. `yarn release:build`
-4. `yarn release:publish`
-   You need your 2FA device.
-5. `yarn release:tag`
+1. Checkout the last version of the release branch
+2. `pnpm install && pnpm release:build` (make sure you have the latest dependencies installed, and build the packages)
+3. `pnpm release:publish` (release the versions on npm, you need your 2FA device)
+4. `pnpm release:tag` (push the newly created tag)
 
 ### Documentation
 
-`yarn docs:deploy` to deploy the documentation (it lives at https://material-ui.netlify.app/) with the latest changes.
+`pnpm docs:deploy` to deploy the documentation (it lives at https://material-ui.netlify.app/) with the latest changes.
 Force push if necessary.
 
 ### Announce
@@ -59,26 +54,26 @@ Follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447e
 
 Sometimes it is necessary to deploy the selected commit(s) without
 deploying all the changes that have been merged into the main branch
-since the previous release (e.g. publishing a blog post or releasing
+since the previous release (for example publishing a blog post or releasing
 urgent docs updates).
 
 To do so, follow these steps:
 
 1. Add the `material-ui-docs` remote if you haven't done this already:
 
-   ```sh
+   ```bash
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
 
 2. Switch to the `latest` branch from `material-ui-docs` remote:
 
-   ```sh
+   ```bash
    git switch --detach material-ui-docs/latest
    ```
 
 3. Cherry-pick the commit(s) that you want to include in the new deployment:
 
-   ```sh
+   ```bash
    git cherry-pick <commit>
    ```
 
@@ -88,12 +83,12 @@ To do so, follow these steps:
 
 4. Push the changes to the `material-ui-docs` remote:
 
-   ```sh
+   ```bash
    git push material-ui-docs HEAD:latest
    ```
 
 5. Switch from detached `HEAD` back to your last checked out branch:
 
-   ```sh
+   ```bash
    git checkout -
    ```

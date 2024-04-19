@@ -20,6 +20,7 @@ describe('breakpoints', () => {
     large: 900,
     extraLarge: 1200,
   };
+
   it('should work', () => {
     const palette = breakpoints(textColor);
 

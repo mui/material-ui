@@ -1,12 +1,14 @@
+'use client';
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import appendOwnerState, { AppendOwnerStateReturnType } from './appendOwnerState';
-import mergeSlotProps, {
+import { appendOwnerState, AppendOwnerStateReturnType } from './appendOwnerState';
+import {
+  mergeSlotProps,
   MergeSlotPropsParameters,
   MergeSlotPropsResult,
   WithCommonProps,
 } from './mergeSlotProps';
-import resolveComponentProps from './resolveComponentProps';
+import { resolveComponentProps } from './resolveComponentProps';
 
 export type UseSlotPropsParameters<
   ElementType extends React.ElementType,
@@ -34,6 +36,10 @@ export type UseSlotPropsParameters<
    * The ownerState of the Base UI component.
    */
   ownerState: OwnerState;
+  /**
+   * Set to true if the slotProps callback should receive more props.
+   */
+  skipResolvingSlotProps?: boolean;
 };
 
 export type UseSlotPropsResult<
@@ -57,7 +63,7 @@ export type UseSlotPropsResult<
  *
  * @param parameters.getSlotProps - A function that returns the props to be passed to the slot component.
  */
-export default function useSlotProps<
+export function useSlotProps<
   ElementType extends React.ElementType,
   SlotProps,
   AdditionalProps,
@@ -72,8 +78,16 @@ export default function useSlotProps<
     OwnerState
   >,
 ) {
-  const { elementType, externalSlotProps, ownerState, ...rest } = parameters;
-  const resolvedComponentsProps = resolveComponentProps(externalSlotProps, ownerState);
+  const {
+    elementType,
+    externalSlotProps,
+    ownerState,
+    skipResolvingSlotProps = false,
+    ...rest
+  } = parameters;
+  const resolvedComponentsProps = skipResolvingSlotProps
+    ? {}
+    : resolveComponentProps(externalSlotProps, ownerState);
   const { props: mergedProps, internalRef } = mergeSlotProps({
     ...rest,
     externalSlotProps: resolvedComponentsProps,

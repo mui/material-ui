@@ -13,6 +13,14 @@ function testOnChange() {
 
 <Slider track="inverted" />;
 
+// color types
+<Slider color="primary" />;
+<Slider color="secondary" />;
+<Slider color="error" />;
+<Slider color="success" />;
+<Slider color="info" />;
+<Slider color="warning" />;
+
 // slotProps and componentsProps as objects
 <Slider
   slotProps={{

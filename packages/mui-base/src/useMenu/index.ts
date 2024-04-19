@@ -1,5 +1,4 @@
-export { default } from './useMenu';
+'use client';
+export { useMenu } from './useMenu';
 export * from './useMenu.types';
-
-export { default as MenuProvider } from './MenuProvider';
 export * from './MenuProvider';

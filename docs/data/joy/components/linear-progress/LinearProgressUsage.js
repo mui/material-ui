@@ -1,7 +1,7 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import LinearProgress from '@mui/joy/LinearProgress';
 import Box from '@mui/joy/Box';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function LinearProgressUsage() {
   return (
@@ -10,7 +10,7 @@ export default function LinearProgressUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },

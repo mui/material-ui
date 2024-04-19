@@ -17,16 +17,15 @@ export type Variant =
   | 'button'
   | 'overline';
 
-export interface FontStyle
-  extends Required<{
-    fontFamily: React.CSSProperties['fontFamily'];
-    fontSize: number;
-    fontWeightLight: React.CSSProperties['fontWeight'];
-    fontWeightRegular: React.CSSProperties['fontWeight'];
-    fontWeightMedium: React.CSSProperties['fontWeight'];
-    fontWeightBold: React.CSSProperties['fontWeight'];
-    htmlFontSize: number;
-  }> {}
+export interface FontStyle {
+  fontFamily: React.CSSProperties['fontFamily'];
+  fontSize: number;
+  fontWeightLight: React.CSSProperties['fontWeight'];
+  fontWeightRegular: React.CSSProperties['fontWeight'];
+  fontWeightMedium: React.CSSProperties['fontWeight'];
+  fontWeightBold: React.CSSProperties['fontWeight'];
+  htmlFontSize: number;
+}
 
 export type NormalCssProperties = CSS.Properties<number | string>;
 export type Fontface = CSS.AtRule.FontFace & { fallbacks?: CSS.AtRule.FontFace[] };

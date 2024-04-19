@@ -1,9 +1,16 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import TreeView from '@mui/lab/TreeView';
-import TreeItem, { useTreeItem, TreeItemProps, TreeItemContentProps } from '@mui/lab/TreeItem';
+import { TreeView } from '@mui/x-tree-view/TreeView';
+import {
+  TreeItem,
+  useTreeItem,
+  TreeItemProps,
+  TreeItemContentProps,
+} from '@mui/x-tree-view/TreeItem';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
@@ -36,11 +43,11 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     preventSelection(event);
   };
 
-  const handleExpansionClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleExpansionClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     handleExpansion(event);
   };
 
@@ -49,16 +56,18 @@ const CustomContent = React.forwardRef(function CustomContent(
   };
 
   return (
-    /* @ts-ignore -- Key event is handled by the TreeView */
-    <Box
+    <div
       className={clsx(className, classes.root, {
         [classes.expanded]: expanded,
         [classes.selected]: selected,
         [classes.focused]: focused,
         [classes.disabled]: disabled,
       })}
+      // @ts-ignore
       onClick={handleExpansionClick}
+      // @ts-ignore
       onMouseDown={handleMouseDown}
+      // @ts-ignore
       ref={ref as React.Ref<HTMLButtonElement>}
     >
       {lastNestedChild ? (
@@ -95,7 +104,7 @@ const CustomContent = React.forwardRef(function CustomContent(
         {label}
       </Typography>
       {icon}
-    </Box>
+    </div>
   );
 });
 
@@ -115,48 +124,30 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => [
     },
     '& .MuiTreeItem-root': {
       position: 'relative',
-      '&:last-of-type': {
-        '&:before': {
-          height: 34 / 2,
-        },
-      },
-      '&:before': {
+      '&::before': {
         content: '""',
         display: 'block',
         position: 'absolute',
-        left: -18,
+        left: -14,
         height: '100%',
-        width: 2,
+        width: 1.5,
         backgroundColor: (theme.vars || theme).palette.grey[200],
       },
     },
     '& .MuiTreeItem-group': {
       marginLeft: 0,
       paddingLeft: theme.spacing(3),
-      '& .MuiTreeItem-content': {
-        '&:before': {
-          content: '""',
-          position: 'absolute',
-          display: 'block',
-          width: 24,
-          height: 2,
-          backgroundColor: (theme.vars || theme).palette.grey[200],
-          top: '50%',
-          left: 6,
-          transform: 'translate(-100%, -50%)',
-        },
-      },
     },
   },
   theme.applyDarkStyles({
     '& .MuiTreeItem-root': {
-      '&:before': {
+      '&::before': {
         backgroundColor: (theme.vars || theme).palette.primaryDark[600],
       },
     },
     '& .MuiTreeItem-group': {
       '& .MuiTreeItem-content': {
-        '&:before': {
+        '&::before': {
           backgroundColor: (theme.vars || theme).palette.primaryDark[600],
         },
       },
@@ -164,44 +155,54 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => [
   }),
 ]);
 
-function CustomTreeItem(
+const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   props: TreeItemProps & {
     ContentProps?: { lastNestedChild?: boolean };
   },
+  ref: React.Ref<HTMLLIElement>,
 ) {
-  return <StyledTreeItem ContentComponent={CustomContent} {...props} />;
-}
+  return <StyledTreeItem ContentComponent={CustomContent} {...props} ref={ref} />;
+});
 
 export default function FolderTreeView() {
   return (
     <TreeView
       aria-label="folder"
-      defaultExpanded={['1', '2', '5']}
+      defaultExpanded={['1', '2', '5', '7']}
       defaultCollapseIcon={<KeyboardArrowUpRounded sx={{ fontSize: 16, color: 'primary.main' }} />}
       defaultExpandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 16, color: 'grey.600' }} />}
       defaultEndIcon={<div style={{ width: 24 }} />}
       sx={{ p: 1, overflowY: 'auto' }}
     >
       <CustomTreeItem nodeId="1" label="src">
-        <CustomTreeItem nodeId="2" label="data">
+        <CustomTreeItem nodeId="2" label="components">
+          <CustomTreeItem nodeId="3" label="Button.tsx" ContentProps={{ lastNestedChild: true }} />
+          <CustomTreeItem nodeId="4" label="Drawer.tsx" ContentProps={{ lastNestedChild: true }} />
+          <CustomTreeItem nodeId="5" label="Navbar.tsx" ContentProps={{ lastNestedChild: true }} />
           <CustomTreeItem
-            nodeId="3"
-            label="read-and-write.js"
-            ContentProps={{ lastNestedChild: true }}
-          />
-          <CustomTreeItem
-            nodeId="4"
-            label="authentication-api.js"
+            nodeId="6"
+            label="TreeView.tsx"
             ContentProps={{ lastNestedChild: true }}
           />
         </CustomTreeItem>
-        <CustomTreeItem nodeId="5" label="work">
+        <CustomTreeItem nodeId="7" label="blocks">
           <CustomTreeItem
-            nodeId="6"
-            label="job-mapping.js"
+            nodeId="8"
+            label="SignUpPage.tsx"
             ContentProps={{ lastNestedChild: true }}
           />
-          <CustomTreeItem nodeId="7" label="articles.js" ContentProps={{ lastNestedChild: true }} />
+          <CustomTreeItem nodeId="9" label="PricingTable.tsx">
+            <CustomTreeItem
+              nodeId="10"
+              label="PaymentOptions.tsx"
+              ContentProps={{ lastNestedChild: true }}
+            />
+            <CustomTreeItem
+              nodeId="11"
+              label="EarlyBirdDiscount.tsx"
+              ContentProps={{ lastNestedChild: true }}
+            />
+          </CustomTreeItem>
         </CustomTreeItem>
       </CustomTreeItem>
     </TreeView>

@@ -9,7 +9,8 @@ async function main() {
   const declarationFiles = await glob('**/build/**/*.d.ts', {
     absolute: true,
     cwd: workspaceRoot,
-    ignore: 'node_modules',
+    ignore: ['node_modules'],
+    followSymbolicLinks: false,
   });
 
   await Promise.all(

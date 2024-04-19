@@ -1,22 +1,22 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Chip from '@mui/joy/Chip';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function ChipUsages() {
+export default function ChipUsage() {
   return (
     <JoyUsageDemo
       componentName="Chip"
       data={[
         {
           propName: 'variant',
-          knob: 'select',
-          defaultValue: 'solid',
+          knob: 'radio',
+          defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'size',

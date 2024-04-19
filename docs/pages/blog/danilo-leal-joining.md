@@ -3,8 +3,8 @@ title: Danilo Leal joins MUI
 description: We are excited to share that Danilo Leal has joined MUI.
 date: 2021-07-15T00:00:00.000Z
 authors: ['oliviertassinari']
-card: true
 tags: ['Company']
+manualCard: true
 ---
 
 We are excited to share that [Danilo Leal](https://daniloleal.co/) has joined MUI!

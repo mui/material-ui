@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener';
+import { ClickAwayListener, ClickAwayListenerProps } from '../ClickAwayListener';
 import { UseSnackbarParameters } from '../useSnackbar';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 

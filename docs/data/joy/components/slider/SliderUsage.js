@@ -10,7 +10,7 @@ export default function SliderUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'solid',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },

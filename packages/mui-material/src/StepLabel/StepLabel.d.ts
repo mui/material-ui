@@ -52,7 +52,7 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
   /**
    * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
    */
-  StepIconComponent?: React.ElementType;
+  StepIconComponent?: React.ElementType<StepIconProps>;
   /**
    * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
    */

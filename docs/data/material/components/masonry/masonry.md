@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Masonry component
 components: Masonry
 githubLabel: 'component: masonry'
@@ -55,6 +55,13 @@ It is important to note that the value provided to the `spacing` prop is multipl
 `spacing` accepts responsive values:
 
 {{"demo": "ResponsiveSpacing.js", "bg": true}}
+
+## Sequential
+
+This example demonstrates the use of the `sequential` to configure the sequential order.
+With `sequential` enabled, items are added in order from left to right rather than adding to the shortest column.
+
+{{"demo": "Sequential.js", "bg": true}}
 
 ## Server-side rendering
 

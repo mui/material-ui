@@ -8,7 +8,7 @@ export default function BasicList() {
     <div>
       <Typography
         id="basic-list-demo"
-        level="body3"
+        level="body-xs"
         textTransform="uppercase"
         fontWeight="lg"
       >

@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Drawer component
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
@@ -24,6 +24,14 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key.
 It closes when an item is selected, handled by controlling the `open` prop.
 
 {{"demo": "TemporaryDrawer.js"}}
+
+### Anchor
+
+Use the `anchor` prop to specify which side of the screen the Drawer should originate from.
+
+The default value is `left`.
+
+{{"demo": "AnchorTemporaryDrawer.js"}}
 
 ### Swipeable
 

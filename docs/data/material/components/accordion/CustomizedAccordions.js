@@ -13,7 +13,7 @@ const Accordion = styled((props) => (
   '&:not(:last-child)': {
     borderBottom: 0,
   },
-  '&:before': {
+  '&::before': {
     display: 'none',
   },
 }));

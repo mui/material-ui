@@ -12,4 +12,4 @@
 
 <!-- #default-branch-switch -->
 
-View the demo at https://mui.com/getting-started/templates/pricing/.
+View the demo at https://mui.com/material-ui/getting-started/templates/pricing/.

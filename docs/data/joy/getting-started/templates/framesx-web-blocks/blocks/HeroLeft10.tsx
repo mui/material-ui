@@ -47,7 +47,7 @@ export default function HeroLeft04() {
         </IconButton>
       </Box>
       <Typography
-        level="body3"
+        level="body-xs"
         sx={{
           position: 'absolute',
           top: '2rem',

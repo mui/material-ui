@@ -5,8 +5,9 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
+import { GA_ADS_DISPLAY_RATIO } from 'docs/src/modules/constants';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 function PleaseDisableAdblock(props) {
   const t = useTranslate();
@@ -39,9 +40,9 @@ const disableAd =
 const inHouseAds = [
   {
     name: 'scaffoldhub',
-    link: 'https://scaffoldhub.io/?partner=1',
+    link: 'https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1',
     img: '/static/ads-in-house/scaffoldhub.png',
-    description: '<b>ScaffoldHub</b>. Automate building your full-stack MUI web-app.',
+    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material UI web-app.',
   },
   {
     name: 'templates',
@@ -68,7 +69,8 @@ const inHouseAds = [
     name: 'figma',
     link: 'https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
-    description: '<b>For Figma</b>. A large UI kit with over 600 handcrafted MUI components 🎨.',
+    description:
+      '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material UI, MUI X, Joy UI components 🎨.',
   },
 ];
 
@@ -87,13 +89,8 @@ class AdErrorBoundary extends React.Component {
   componentDidCatch() {
     // send explicit `'null'`
     const eventLabel = String(this.props.eventLabel);
-    // TODO: Use proper error monitoring service (e.g. Sentry) instead
-    window.ga('send', {
-      hitType: 'event',
-      eventCategory: 'ad',
-      eventAction: 'crash',
-      eventLabel,
-    });
+    // TODO: Use proper error monitoring service (for example Sentry) instead
+
     window.gtag('event', 'ad', {
       eventAction: 'crash',
       eventLabel,
@@ -111,7 +108,18 @@ class AdErrorBoundary extends React.Component {
   }
 }
 
-function Ad() {
+export const AD_MARGIN_TOP = 3;
+export const AD_MARGIN_BOTTOM = 3;
+export const AD_HEIGHT = 126;
+// Add more height on mobile as the text tends to wrap beyond the image height.
+export const AD_HEIGHT_MOBILE = 126 + 16;
+
+// https://stackoverflow.com/a/20084661
+function isBot() {
+  return /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
+}
+
+export default function Ad() {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
@@ -121,7 +129,7 @@ function Ad() {
   let children;
   let label;
   // Hide the content to google bot to avoid its indexation.
-  if ((typeof window !== 'undefined' && /Googlebot/.test(navigator.userAgent)) || disableAd) {
+  if ((typeof window !== 'undefined' && isBot()) || disableAd) {
     children = <span />;
   } else if (adblock) {
     if (randomAdblock < 0.2) {
@@ -190,17 +198,11 @@ function Ad() {
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
-    if (Math.random() < 0.9 || !eventLabel) {
+    if (Math.random() > GA_ADS_DISPLAY_RATIO || !eventLabel) {
       return undefined;
     }
 
     const delay = setTimeout(() => {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'ad',
-        eventAction: 'display',
-        eventLabel,
-      });
       window.gtag('event', 'ad', {
         eventAction: 'display',
         eventLabel,
@@ -215,31 +217,31 @@ function Ad() {
   return (
     <Box
       component="span"
-      sx={{
+      sx={(theme) => ({
         position: 'relative',
         display: 'block',
-        m: (theme) => theme.spacing(4, 0, 3),
-        ...(adShape === 'image' && {
-          minHeight: 126,
-        }),
+        mt: AD_MARGIN_TOP,
+        mb: AD_MARGIN_BOTTOM,
+        minHeight: AD_HEIGHT_MOBILE,
+        [theme.breakpoints.up('sm')]: {
+          minHeight: AD_HEIGHT,
+        },
+        ...(adShape === 'image' && {}),
         ...(adShape === 'inline' && {
-          minHeight: 126,
           display: 'flex',
           alignItems: 'flex-end',
         }),
         ...(adShape === 'inline2' && {
-          minHeight: 126,
           display: 'flex',
           alignItems: 'flex-end',
         }),
-      }}
+      })}
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
+      className="Ad-root"
     >
       <AdErrorBoundary eventLabel={eventLabel}>{children}</AdErrorBoundary>
     </Box>
   );
 }
-
-export default Ad;

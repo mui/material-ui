@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Theme } from '@mui/material/styles';
+import { Theme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -13,10 +14,12 @@ import { visuallyHidden } from '@mui/utils';
 import Folder from '@mui/icons-material/Folder';
 
 const data = [
-  { name: 'Fonts', size: 125600 },
-  { name: 'Libs', size: 134000000 },
-  { name: 'Source', size: 200000000 },
+  { name: 'Typography', size: 125600 },
+  { name: 'Pictures & videos', size: 134000000 },
+  { name: 'Source files', size: 200000000 },
   { name: 'Dependencies', size: 44000000 },
+  { name: 'Assets & illustrations', size: 21000000 },
+  { name: 'Components', size: 11000 },
 ];
 
 type Data = typeof data extends Array<infer T> ? T : never;
@@ -61,7 +64,7 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 function formatSize(size: number) {
   const kb = size / 1000;
   if (kb < 1000) {
-    return `${kb.toFixed(1)} KB`;
+    return `${kb.toFixed(1)} kB`;
   }
   return `${(kb / 1000).toFixed(0)} MB`;
 }
@@ -78,7 +81,7 @@ export default function BasicTable() {
     handleRequestSort(event, property);
   };
   const headCells = [
-    { id: 'name', label: 'Folder Name', TableCellProps: {} },
+    { id: 'name', label: 'Name', TableCellProps: {} },
     { id: 'size', label: 'Size', TableCellProps: { align: 'right' } },
   ] as const;
   return (
@@ -88,6 +91,8 @@ export default function BasicTable() {
       sx={[
         {
           maxWidth: 260,
+          borderColor: 'grey.200',
+          boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           [`& .${tableCellClasses.root}`]: {
             borderColor: 'grey.200',
           },
@@ -97,9 +102,11 @@ export default function BasicTable() {
         },
         (theme) =>
           theme.applyDarkStyles({
-            bgcolor: 'primaryDark.800',
+            bgcolor: 'primaryDark.900',
+            borderColor: 'primaryDark.700',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
             [`& .${tableCellClasses.root}`]: {
-              borderColor: 'primaryDark.500',
+              borderColor: 'primaryDark.700',
             },
           }),
       ]}
@@ -117,7 +124,7 @@ export default function BasicTable() {
                   active={orderBy === headCell.id}
                   direction={orderBy === headCell.id ? order : 'asc'}
                   onClick={createSortHandler(headCell.id)}
-                  sx={{ fontSize: '0.75rem' }}
+                  sx={{ fontSize: '0.75rem', color: 'text.secondary' }}
                 >
                   {headCell.label}
                   {orderBy === headCell.id ? (
@@ -134,22 +141,27 @@ export default function BasicTable() {
           {stableSort(data, getComparator(order, orderBy)).map((row) => (
             <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Folder
-                    sx={(theme: Theme) => ({
-                      mr: 1,
-                      color: 'grey.300',
-                      ...theme.applyDarkStyles({
-                        color: 'primary.700',
-                      }),
-                    })}
-                    fontSize="small"
-                  />{' '}
-                  {row.name}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Folder fontSize="small" sx={{ color: 'primary.400' }} />
+                  <Typography fontSize={13} fontWeight={500} color="text.primary">
+                    {row.name}
+                  </Typography>
                 </Box>
               </TableCell>
-              <TableCell align="right" sx={{ color: 'success.main' }}>
-                {formatSize(row.size)}
+              <TableCell align="right">
+                <Typography
+                  fontSize={13}
+                  fontWeight="bold"
+                  sx={(theme: Theme) => ({
+                    mr: 1,
+                    color: 'success.800',
+                    ...theme.applyDarkStyles({
+                      color: 'success.500',
+                    }),
+                  })}
+                >
+                  {formatSize(row.size)}
+                </Typography>
               </TableCell>
             </TableRow>
           ))}

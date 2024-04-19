@@ -18,7 +18,6 @@ import {
   SvgIcon,
   Switch,
 } from '@mui/material';
-import TimelineDot from '@mui/lab/TimelineDot';
 
 function TestBaseColorPaletteProp() {
   const baseColorPalette = ['primary', 'secondary', 'error', 'info', 'success', 'warning'] as const;
@@ -39,7 +38,6 @@ function TestBaseColorPaletteProp() {
           <Input color={color} />
           <InputLabel color={color} />
           <LinearProgress color={color} />
-          <TimelineDot color={color} />
           <TextField color={color} />
           <Radio color={color} />
           <SvgIcon color={color} />

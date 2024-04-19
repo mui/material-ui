@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -10,6 +11,10 @@ import { AvatarGroupProps, AvatarGroupOwnerState, AvatarGroupTypeMap } from './A
 import useSlot from '../utils/useSlot';
 
 export const AvatarGroupContext = React.createContext<AvatarGroupOwnerState | undefined>(undefined);
+
+if (process.env.NODE_ENV !== 'production') {
+  AvatarGroupContext.displayName = 'AvatarGroupContext';
+}
 
 const useUtilityClasses = () => {
   const slots = {
@@ -99,10 +104,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 }) as OverridableComponent<AvatarGroupTypeMap>;
 
 AvatarGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the AvatarGroup if `src` is not set.
    * This can be an element, or just a string.
@@ -117,7 +122,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

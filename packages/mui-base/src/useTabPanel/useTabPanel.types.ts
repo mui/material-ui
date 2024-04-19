@@ -13,12 +13,15 @@ export interface UseTabPanelParameters {
   value?: number | string;
 }
 
-export interface UseTabPanelRootSlotProps {
+interface UseTabPanelRootSlotOwnProps {
   'aria-labelledby'?: string;
   hidden?: boolean;
   id?: string;
   ref: React.Ref<HTMLElement>;
 }
+
+export type UseTabPanelRootSlotProps<ExternalProps = {}> = ExternalProps &
+  UseTabPanelRootSlotOwnProps;
 
 export interface UseTabPanelReturnValue {
   /**
@@ -27,8 +30,11 @@ export interface UseTabPanelReturnValue {
   hidden: boolean;
   /**
    * Resolver for the root slot's props.
+   * @param externalProps additional props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: () => UseTabPanelRootSlotProps;
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseTabPanelRootSlotProps<ExternalProps>;
   rootRef: React.Ref<HTMLElement>;
 }

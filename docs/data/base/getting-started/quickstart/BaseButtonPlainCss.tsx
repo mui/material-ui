@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Button, { buttonClasses } from '@mui/base/Button';
-import useButton from '@mui/base/useButton';
+import { Button, buttonClasses } from '@mui/base/Button';
+import { useButton } from '@mui/base/useButton';
 import Stack from '@mui/material/Stack';
 
 // .mode-dark is provided by the MUI docs site
@@ -79,14 +79,13 @@ const css = `
   }
 `;
 
-export default function App() {
+export default function BaseButtonPlainCss() {
   const { getRootProps } = useButton({});
   return (
     <React.Fragment>
       <style type="text/css">{css}</style>
       <Stack spacing={2} direction="row" className="demo">
         <Button className="github-button">Create Repository</Button>
-
         <button type="button" {...getRootProps()} className="github-button">
           Create Repository
         </button>

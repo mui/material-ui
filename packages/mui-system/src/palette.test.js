@@ -13,6 +13,7 @@ describe('palette', () => {
       theme,
       backgroundColor: 'grey',
     });
+
     expect(output).to.deep.equal({
       backgroundColor: 'grey',
     });

@@ -1,12 +1,13 @@
 import * as React from 'react';
-import JoyUsageDemo, {
-  prependLinesSpace,
-} from 'docs/src/modules/components/JoyUsageDemo';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
-import Typography from '@mui/joy/Typography';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
+import JoyUsageDemo, {
+  prependLinesSpace,
+} from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function ModalUsage() {
   const [open, setOpen] = React.useState(false);
@@ -16,7 +17,7 @@ export default function ModalUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
@@ -51,19 +52,13 @@ ${prependLinesSpace(code, 2)}
             Open modal
           </Button>
           <Modal open={open} onClose={() => setOpen(false)}>
-            <ModalDialog
-              {...props}
-              aria-labelledby="modal-usage-title"
-              aria-describedby="modal-usage-description"
-            >
+            <ModalDialog {...props}>
               <ModalClose />
-              <Typography id="modal-usage-title" component="h2">
-                Modal title
-              </Typography>
-              <Typography id="modal-usage-description">
+              <DialogTitle>Modal title</DialogTitle>
+              <DialogContent>
                 A description of the dialog should give primary message or purpose of
                 the dialog.
-              </Typography>
+              </DialogContent>
             </ModalDialog>
           </Modal>
         </React.Fragment>

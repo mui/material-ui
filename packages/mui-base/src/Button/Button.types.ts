@@ -10,7 +10,7 @@ export interface ButtonActions {
 
 export interface ButtonRootSlotPropsOverrides {}
 
-export interface ButtonOwnProps extends Omit<UseButtonParameters, 'ref'> {
+export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -30,6 +30,11 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'ref'> {
    * @default {}
    */
   slots?: ButtonSlots;
+  /**
+   * The HTML element that is ultimately rendered, for example 'button' or 'a'
+   * @default 'button'
+   */
+  rootElementName?: keyof HTMLElementTagNameMap;
 }
 
 export interface ButtonSlots {

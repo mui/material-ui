@@ -9,8 +9,6 @@ export interface IconButtonClasses {
   colorNeutral: string;
   /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
@@ -35,6 +33,10 @@ export interface IconButtonClasses {
   sizeMd: string;
   /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Class name applied to the root element if `loading={true}`. */
+  loading: string;
+  /** Class name applied to the loading indicator slot element. */
+  loadingIndicator: string;
 }
 
 export type IconButtonClassKey = keyof IconButtonClasses;
@@ -48,7 +50,6 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButt
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',
@@ -61,6 +62,8 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButt
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'loading',
+  'loadingIndicator',
 ]);
 
 export default iconButtonClasses;

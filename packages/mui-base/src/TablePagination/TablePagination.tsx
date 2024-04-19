@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
-import isHostComponent from '../utils/isHostComponent';
-import TablePaginationActions from './TablePaginationActions';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { isHostComponent } from '../utils/isHostComponent';
+import { TablePaginationActions } from './TablePaginationActions';
 import { getTablePaginationUtilityClass } from './tablePaginationClasses';
 import {
   TablePaginationProps,
@@ -238,10 +239,10 @@ const TablePagination = React.forwardRef(function TablePagination<
 }) as PolymorphicComponent<TablePaginationTypeMap>;
 
 TablePagination.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */
@@ -373,4 +374,4 @@ TablePagination.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default TablePagination;
+export { TablePagination };

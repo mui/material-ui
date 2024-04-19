@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses } from '@mui/material/Button';
 import ButtonGroupContext from './ButtonGroupContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
@@ -136,7 +137,7 @@ describe('<ButtonGroup />', () => {
     const button = getByRole('button');
     const buttonGroup = container.firstChild;
     expect(buttonGroup).not.to.have.class(classes.fullWidth);
-    expect(button).not.to.have.class('MuiButton-fullWidth');
+    expect(button).not.to.have.class(buttonClasses.fullWidth);
   });
 
   it('can pass fullWidth to Button', () => {
@@ -148,7 +149,7 @@ describe('<ButtonGroup />', () => {
     const buttonGroup = container.firstChild;
     const button = getByRole('button');
     expect(buttonGroup).to.have.class(classes.fullWidth);
-    expect(button).to.have.class('MuiButton-fullWidth');
+    expect(button).to.have.class(buttonClasses.fullWidth);
   });
 
   it('classes.grouped should be merged with Button className', () => {
@@ -207,6 +208,48 @@ describe('<ButtonGroup />', () => {
       expect(screen.getByRole('button')).to.have.class(buttonClasses.outlined);
       expect(screen.getByRole('button')).to.have.class(buttonClasses.sizeSmall);
       expect(screen.getByRole('button')).to.have.class(buttonClasses.outlinedSecondary);
+    });
+  });
+
+  describe('position classes', () => {
+    it('correctly applies position classes to buttons', () => {
+      render(
+        <ButtonGroup>
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </ButtonGroup>,
+      );
+
+      const firstButton = screen.getAllByRole('button')[0];
+      const middleButton = screen.getAllByRole('button')[1];
+      const lastButton = screen.getAllByRole('button')[2];
+
+      expect(firstButton).to.have.class(classes.firstButton);
+      expect(firstButton).not.to.have.class(classes.middleButton);
+      expect(firstButton).not.to.have.class(classes.lastButton);
+
+      expect(middleButton).to.have.class(classes.middleButton);
+      expect(middleButton).not.to.have.class(classes.firstButton);
+      expect(middleButton).not.to.have.class(classes.lastButton);
+
+      expect(lastButton).to.have.class(classes.lastButton);
+      expect(lastButton).not.to.have.class(classes.middleButton);
+      expect(lastButton).not.to.have.class(classes.firstButton);
+    });
+
+    it('does not apply any position classes to a single button', () => {
+      render(
+        <ButtonGroup>
+          <Button>Single Button</Button>
+        </ButtonGroup>,
+      );
+
+      const button = screen.getByRole('button');
+
+      expect(button).not.to.have.class(classes.firstButton);
+      expect(button).not.to.have.class(classes.middleButton);
+      expect(button).not.to.have.class(classes.lastButton);
     });
   });
 });

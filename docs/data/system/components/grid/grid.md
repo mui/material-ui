@@ -1,5 +1,5 @@
 ---
-product: system
+productId: system
 title: React Grid component
 githubLabel: 'component: Grid'
 ---
@@ -80,7 +80,7 @@ Responsive values is supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all the [other props](#system-props) of the system
+- all the [other props](#system-props) of MUI System
 
 ## Auto-layout
 

@@ -1,3 +1,4 @@
+'use client';
 // reexports from system for module augmentation
 export type { BreakpointOverrides } from '@mui/system';
 
@@ -22,8 +23,6 @@ export type {
   PaletteNeutralOverrides,
   PaletteDanger,
   PaletteDangerOverrides,
-  PaletteInfo,
-  PaletteInfoOverrides,
   PaletteSuccess,
   PaletteSuccessOverrides,
   PaletteWarning,
@@ -34,6 +33,7 @@ export type {
 export type { Focus } from './types/focus';
 export type { Radius, RadiusOverrides } from './types/radius';
 export type { Shadow, ShadowOverrides } from './types/shadow';
+export type { ZIndex, ZIndexOverrides } from './types/zIndex';
 export type {
   FontFamily,
   FontFamilyOverrides,
@@ -41,14 +41,12 @@ export type {
   FontSizeOverrides,
   FontWeight,
   FontWeightOverrides,
-  LetterSpacing,
-  LetterSpacingOverrides,
   LineHeight,
   LineHeightOverrides,
   TypographySystem,
   TypographySystemOverrides,
 } from './types/typography';
-export type { Components } from './components';
+export type { Components, StyleOverrides } from './components';
 export type {
   VariantPlain,
   VariantPlainHover,
@@ -84,7 +82,6 @@ export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 export { default as useThemeProps } from './useThemeProps';
-export { ColorInversionProvider, useColorInversion } from './ColorInversion';
 export { default as extendTheme, createGetCssVar } from './extendTheme';
 export type { CssVarsThemeOptions } from './extendTheme';
 export { default as StyledEngineProvider } from './StyledEngineProvider';

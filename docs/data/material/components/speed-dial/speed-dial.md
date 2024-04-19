@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Speed Dial component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: speed dial'

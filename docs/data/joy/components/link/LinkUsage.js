@@ -10,8 +10,20 @@ export default function LinkUsage() {
         {
           propName: 'level',
           knob: 'select',
-          options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'],
-          defaultValue: 'body1',
+          options: [
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'title-lg',
+            'title-md',
+            'title-sm',
+            'body-lg',
+            'body-md',
+            'body-sm',
+            'body-xs',
+          ],
+          defaultValue: 'body-md',
         },
         {
           propName: 'underline',
@@ -21,12 +33,13 @@ export default function LinkUsage() {
         },
         {
           propName: 'variant',
-          knob: 'select',
+          knob: 'radio',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
+          defaultValue: 'primary',
         },
         { propName: 'disabled', knob: 'switch' },
       ]}

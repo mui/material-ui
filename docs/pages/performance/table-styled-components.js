@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import NoSsr from '@mui/base/NoSsr';
+import { NoSsr } from '@mui/base/NoSsr';
 
 const createComponent = (defaultComponent) => {
   const MyComponent = React.forwardRef(function MyComponent(props, ref) {

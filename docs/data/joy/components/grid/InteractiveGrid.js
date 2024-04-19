@@ -5,7 +5,8 @@ import FormLabel from '@mui/joy/FormLabel';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
-import BrandingProvider from 'docs/src/BrandingProvider';
+
+import { BrandingProvider } from '@mui/docs/branding';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 export default function InteractiveGrid() {

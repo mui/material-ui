@@ -1,3 +1,4 @@
+'use client';
 import PropTypes from 'prop-types';
 import { createGrid as createGrid2 } from '@mui/system/Unstable_Grid';
 import { OverridableComponent } from '@mui/types';
@@ -15,10 +16,10 @@ const Grid2 = createGrid2({
 }) as OverridableComponent<Grid2TypeMap>;
 
 Grid2.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

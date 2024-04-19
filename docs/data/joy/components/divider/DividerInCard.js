@@ -10,7 +10,7 @@ import ArrowForward from '@mui/icons-material/ArrowForward';
 export default function DividerInCard() {
   const [orientation, setOrientation] = React.useState('vertical');
   return (
-    <Box>
+    <div>
       <Checkbox
         label="horizontal"
         checked={orientation === 'horizontal'}
@@ -29,7 +29,7 @@ export default function DividerInCard() {
         </Typography>
         <Divider />
         <Box sx={{ display: orientation === 'horizontal' ? 'block' : 'contents' }}>
-          <Typography level="body2">
+          <Typography level="body-sm">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry standard dummy text ever
             since the 1500s
@@ -45,6 +45,6 @@ export default function DividerInCard() {
           </Button>
         </Box>
       </Card>
-    </Box>
+    </div>
   );
 }

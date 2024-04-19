@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -49,4 +50,4 @@ SliderValueLabel.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   value: PropTypes.node,
-};
+} as any;
