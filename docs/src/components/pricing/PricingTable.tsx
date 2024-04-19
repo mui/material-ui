@@ -30,13 +30,14 @@ const planInfo = {
   pro: {
     iconName: 'pricing/x-plan-pro',
     title: 'Pro',
-    description: 'Best for professional developers building enterprise or data-rich applications.',
+    description:
+      'Best for professionals, with the flexibility to select the essential components for your application.',
   },
   premium: {
     iconName: 'pricing/x-plan-premium',
     title: 'Premium',
     description:
-      'The most advanced features for data-rich applications, as well as the highest priority for support.',
+      'A complete enterprise bundle with the most advanced features and a higher priority support.',
   },
 } as const;
 
@@ -73,7 +74,7 @@ export function PlanName({
             justifyContent: 'center',
             alignItems: 'baseline',
             mt: 1,
-            minHeight: { md: 63 },
+            minHeight: 70,
           }}
         >
           {description}
@@ -111,8 +112,20 @@ export function ComponentSelector(props: ComponentSelectorProps) {
         strokeWidth="1"
         //fill="none"
         //stroke={disabled ? theme.palette.action.disabled : 'grey'}
-        fill={checked && !disabled ? theme.palette.primary.main : disabled ? theme.palette.action.disabled : "none"}
-        stroke={checked && !disabled ? theme.palette.primary.main : disabled ? theme.palette.action.disabled : "grey"}
+        fill={
+          checked && !disabled
+            ? theme.palette.primary.main
+            : disabled
+              ? theme.palette.action.disabled
+              : 'none'
+        }
+        stroke={
+          checked && !disabled
+            ? theme.palette.primary.main
+            : disabled
+              ? theme.palette.action.disabled
+              : 'grey'
+        }
       />
       {checked && (
         <path
@@ -120,7 +133,7 @@ export function ComponentSelector(props: ComponentSelectorProps) {
           d="M7 12l3 3 7-7"
           fill="none"
           //stroke={disabled ? theme.palette.action.disabled : theme.palette.primary.main}
-          stroke={"#fff"}
+          stroke={'#fff'}
         />
       )}
     </SvgIcon>
@@ -213,7 +226,7 @@ export function PlanPrice(props: PlanPriceProps) {
             component="div"
             fontWeight="bold"
             color="success.600"
-            sx={{ mt: 4.5 }}
+            sx={{ mt: 5.5 }}
           >
             $0
           </Typography>
