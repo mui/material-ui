@@ -1,6 +1,6 @@
 ---
-title: 'Introducing Material UI Sync: a Figma plugin that exports code'
-description: Sync is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit.
+title: 'Introducing Sync: a Figma plugin that exports Material UI theme code'
+description: Enable designers to generate production-ready code directly from the Figma Design Kit.
 date: 2024-04-23T00:00:00.000Z
 authors: ['danilo-leal', 'DavidCnoops']
 tags: ['Material UI', 'Product']

@@ -333,11 +333,11 @@ const pages: MuiPage[] = [
     children: [
       {
         pathname: '/material-ui/design-resources/material-ui-for-figma',
-        title: 'Material UI for Figma',
+        title: 'Figma Design Kit',
       },
       {
         pathname: '/material-ui/design-resources/material-ui-sync',
-        title: 'Material UI Sync plugin',
+        title: 'Figma Sync plugin',
         beta: true,
       },
     ],
