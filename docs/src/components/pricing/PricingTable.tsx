@@ -16,6 +16,8 @@ import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const planInfo = {
   community: {
@@ -79,16 +81,85 @@ export function PlanName({
   );
 }
 
+enum Components {
+  DataGrid = 'Data Grid',
+  DatePickers = 'Date and Time pickers',
+  Charts = 'Charts',
+  TreeView = 'Tree View',
+}
+
+interface ComponentSelectorProps {
+  includedComponents: Components[];
+  setIncludedComponents?: (components: Components[]) => void;
+  premium?: boolean;
+}
+
+export function ComponentSelector(props: ComponentSelectorProps) {
+  const { includedComponents, setIncludedComponents, premium } = props;
+  const handleCheckboxChange = (component: Components, isChecked: boolean) => {
+    if (isChecked) {
+      // Add the component if it's checked and not already included
+      setIncludedComponents((prev) => [...prev, component]);
+    } else {
+      // Remove the component if it's unchecked
+      if (includedComponents.length > 1) {
+        setIncludedComponents((prev) => prev.filter((c) => c !== component));
+      }
+    }
+  };
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: 'fit-content',
+        margin: 'auto',
+        marginBottom: '20px',
+      }}
+    >
+      {Object.values(Components).map((component) => {
+        const isLastOne = includedComponents.length === 1 && includedComponents.includes(component);
+        return (
+          <Tooltip
+            key={component + 'tt'}
+            title={isLastOne ? 'At least one component must be selected.' : ''}
+            placement="top"
+            disableHoverListener={!isLastOne} // Disable tooltip when not the last one
+          >
+            <FormControlLabel
+              key={component}
+              sx={{
+                height: '30px',
+                margin: 0,
+              }}
+              control={
+                <Checkbox
+                  checked={includedComponents.includes(component)}
+                  onChange={(e) => handleCheckboxChange(component, e.target.checked)}
+                  disabled={premium}
+                />
+              }
+              label={component}
+            />
+          </Tooltip>
+        );
+      })}
+    </div>
+  );
+}
+
 interface PlanPriceProps {
   plan: 'community' | 'pro' | 'premium';
+  includedComponents?: Components[];
 }
 
 export function PlanPrice(props: PlanPriceProps) {
-  const { plan } = props;
+  const { plan, includedComponents } = props;
 
   const { licensingModel } = useLicensingModel();
   const annual = licensingModel === 'annual';
-  const planPriceMinHeight = 64;
+  const planPriceMinHeight = 44;
 
   if (plan === 'community') {
     return (
@@ -124,7 +195,10 @@ export function PlanPrice(props: PlanPriceProps) {
   };
 
   if (plan === 'pro') {
-    const monthlyValue = annual ? 15 : 15 * 3;
+    const numberOfComponentsCovered = includedComponents?.length || 1;
+
+    const monthlyValue =
+      numberOfComponentsCovered * (annual ? 9 : 8 * 3) - 2 * (numberOfComponentsCovered - 1);
     const annualValue = monthlyValue * 12;
 
     const mainDisplayValue = monthlyDisplay ? monthlyValue : annualValue;
@@ -133,7 +207,7 @@ export function PlanPrice(props: PlanPriceProps) {
     return (
       <React.Fragment>
         <LicensingModelSwitch />
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 2 }}>
           <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
             {formatCurrency(mainDisplayValue)}
           </Typography>
@@ -144,24 +218,26 @@ export function PlanPrice(props: PlanPriceProps) {
         </Box>
         <Box sx={{ minHeight: planPriceMinHeight }}>
           {(annual || monthlyDisplay) && (
-            <Typography variant="body2" color="text.secondary" textAlign="center">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              textAlign="center"
+              sx={{ fontWeight: '500' }}
+            >
               {priceExplanation}
             </Typography>
           )}
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }} textAlign="center">
+          {/*<Typography variant="body2" color="text.secondary" sx={{ mb: 3 }} textAlign="center">
             {'No additional fee beyond 10 devs.'}
-          </Typography>
+          </Typography>*/}
         </Box>
       </React.Fragment>
     );
   }
   // else Premium
 
-  const originalPriceMultiplicator = monthlyDisplay ? 1 : 12;
-  const premiumOriginalValue = annual
-    ? 49 * originalPriceMultiplicator
-    : 49 * 3 * originalPriceMultiplicator;
-  const premiumMonthlyValue = annual ? 37 : 37 * 3;
+  const premiumOriginalValue = 49;
+  const premiumMonthlyValue = annual ? premiumOriginalValue : premiumOriginalValue * 3;
   const premiumAnnualValue = premiumMonthlyValue * 12;
 
   const premiumDisplayedValue = monthlyDisplay ? premiumMonthlyValue : premiumAnnualValue;
@@ -172,8 +248,8 @@ export function PlanPrice(props: PlanPriceProps) {
   return (
     <React.Fragment>
       <LicensingModelSwitch />
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-        <Typography
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 2 }}>
+        {/*<Typography
           variant="caption"
           fontWeight="medium"
           sx={(theme) => ({
@@ -196,7 +272,7 @@ export function PlanPrice(props: PlanPriceProps) {
           })}
         >
           {formatCurrency(premiumOriginalValue)}
-        </Typography>
+        </Typography>*/}
         <Box sx={{ width: 10 }} />
         <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
           {formatCurrency(premiumDisplayedValue)}
@@ -208,13 +284,18 @@ export function PlanPrice(props: PlanPriceProps) {
       </Box>
       <Box sx={{ minHeight: planPriceMinHeight }}>
         {(annual || monthlyDisplay) && (
-          <Typography variant="body2" color="text.secondary" textAlign="center">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            textAlign="center"
+            sx={{ fontWeight: '500' }}
+          >
             {priceExplanation}
           </Typography>
         )}
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }} textAlign="center">
+        {/*<Typography variant="body2" color="text.secondary" sx={{ mb: 2 }} textAlign="center">
           🐦 Early bird special (25% off).
-        </Typography>
+        </Typography>*/}
       </Box>
     </React.Fragment>
   );
@@ -1222,6 +1303,9 @@ export default function PricingTable({
   const router = useRouter();
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
   const [chartsCollapsed, setChartsCollapsed] = React.useState(false);
+  const [includedComponentsOnPro, setIncludedComponentsOnPro] = React.useState<Components[]>([
+    Components.DataGrid,
+  ]);
 
   React.useEffect(() => {
     if (router.query['expand-path'] === 'all') {
@@ -1290,13 +1374,26 @@ export default function PricingTable({
           <ColumnHeadHighlight>
             <div>
               <PlanName plan="pro" />
-              <PlanPrice plan="pro" />
+              <PlanPrice plan="pro" includedComponents={includedComponentsOnPro} />
+              <ComponentSelector
+                includedComponents={includedComponentsOnPro}
+                setIncludedComponents={setIncludedComponentsOnPro}
+              />
             </div>
             <PricingTableBuyPro />
           </ColumnHeadHighlight>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
             <PlanName plan="premium" />
             <PlanPrice plan="premium" />
+            <ComponentSelector
+              includedComponents={[
+                Components.DataGrid,
+                Components.Charts,
+                Components.DatePickers,
+                Components.TreeView,
+              ]}
+              premium={true}
+            />
             <PricingTableBuyPremium />
           </Box>
         </Box>
