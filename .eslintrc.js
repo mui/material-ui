@@ -65,7 +65,14 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: ['@mui/*/*/*'],
+        patterns: [
+          '@mui/*/*/*',
+          '@pigment-css/*/*/*',
+          '@base_ui/*/*/*',
+          // Allow any import depth with any internal packages
+          '!@mui/internal-*/**',
+          '!@mui/docs/**',
+        ],
       },
     ],
     'no-continue': 'off',
@@ -331,23 +338,6 @@ module.exports = {
         'import/export': 'off', // Not sure why it doesn't work
       },
     },
-    {
-      files: ['*.tsx'],
-      excludedFiles: '*.spec.tsx',
-      rules: {
-        // WARNING: If updated, make sure these rules are merged with `no-restricted-imports` (#ts-source-files)
-        'no-restricted-imports': [
-          'error',
-          {
-            patterns: [
-              // Allow deeper imports for TypeScript types. TODO remove
-              '@mui/*/*/*/*',
-            ],
-          },
-        ],
-      },
-    },
-    // Files used for generating TypeScript declaration files (#ts-source-files)
     {
       files: ['packages/*/src/**/*.tsx'],
       excludedFiles: '*.spec.tsx',
