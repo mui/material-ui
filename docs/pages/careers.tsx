@@ -208,7 +208,7 @@ const nextRolesData = [
       {
         title: 'Full-stack Engineer — Toolpad',
         description:
-          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
+          'You will join the Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
       },
       {
