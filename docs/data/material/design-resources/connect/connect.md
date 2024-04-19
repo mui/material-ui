@@ -1,25 +1,25 @@
-# Connect plugin
+# Material UI Sync plugin
 
-<p class="description">Connect is a Figma plugin that generates Material UI themes directly from design to code.</p>
+<p class="description">Sync is a Figma plugin that generates Material UI themes directly from design to code.</p>
 
 ## Introduction
 
-[Connect](https://www.figma.com/community/plugin/1336346114713490235/) is a Figma plugin that lets you generate a theme from the [Material UI for Figma Design Kit](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/).
+[Material UI Sync](https://www.figma.com/community/plugin/1336346114713490235/) is a Figma plugin that lets you generate a theme from the [Material UI for Figma Design Kit](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/).
 
 :::warning
-Connect works in combination with the [Material UI for Figma Design Kit v5.16.0](https://github.com/mui/mui-design-kits/releases) and later.
+Sync works in combination with the [Material UI for Figma Design Kit v5.16.0](https://github.com/mui/mui-design-kits/releases) and later.
 Other kits, such as the Joy UI Design Kit, are not supported yet.
 :::
 
-<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Connect plugin running." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Sync plugin running." width="1628" height="400" />
 
 ## Running the plugin
 
 If you don't have the [complete and latest version](/store/items/figma-react/) of the Material UI for Figma Design Kit installed, you can test the plugin by using the [Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/) instead.
 
-After installing and opening it in Figma, head over to the [Connect plugin page](https://www.figma.com/community/plugin/1336346114713490235/) on the Community tab and click on **Open in...** and select the Material UI for Figma Design Kit.
+After installing and opening it in Figma, head over to the [Material UI Sync plugin page](https://www.figma.com/community/plugin/1336346114713490235/) on the Community tab and click on **Open in...** and select the Material UI for Figma Design Kit.
 
-<img src="/static/material-ui/design-resources/connect-access.png" style="width: 814px;" alt="Accessing Connect via the Resources menu in Figma." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-access.png" style="width: 814px;" alt="Accessing Material UI Sync via the Resources menu in Figma." width="1628" height="400" />
 
 ## Customizing design tokens
 
@@ -35,17 +35,17 @@ Tweak any of the variables available in the collections (such as palettes, break
 
 <img src="/static/material-ui/design-resources/connect-variables.png" style="width: 814px; margin-bottom: 8px;" alt="The Local variables menu in Figma, where all design tokens are stored and new ones can be added." width="1628" height="400" />
 
-Then open the Connect plugin and click on **Generate theme**.
+Then open the Material UI Sync plugin and click on **Generate theme**.
 
-<img src="/static/material-ui/design-resources/connect-generate.png" style="width: 814px; margin-bottom: 8px;" alt="The Generate theme button in the Connect plugin UI." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-generate.png" style="width: 814px; margin-bottom: 8px;" alt="The Generate theme button in the Material UI Sync plugin UI." width="1628" height="400" />
 
 A theme containing the altered tokens is generated and displayed in the plugin's Theme tab.
 
-<img src="/static/material-ui/design-resources/connect-code-editor.png" style="width: 814px; margin-bottom: 8px;" alt="The generated theme displayed in the Connect plugin UI." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-code-editor.png" style="width: 814px; margin-bottom: 8px;" alt="The generated theme displayed in the Material UI Sync plugin UI." width="1628" height="400" />
 
 You can also preview the generated theme and the customized tokens by navigating to the Storybook preview tab.
 
-<img src="/static/material-ui/design-resources/connect-storybook.png" style="width: 814px" alt="The generated theme previewed in Storybook in the Connect plugin UI." width="1628" height="400" />
+<img src="/static/material-ui/design-resources/connect-storybook.png" style="width: 814px" alt="The generated theme previewed in Storybook in the Material UI Sync plugin UI." width="1628" height="400" />
 
 ### Adding new tokens
 
@@ -56,22 +56,22 @@ After you've added your custom tokens, click on **Regenerate theme** to include 
 
 ## Customizing components
 
-Connect can also generate theme styles for customized components, enabling you to completely change their look and feel and create your custom design system from within Figma.
+Material UI Sync can also generate theme styles for customized components, enabling you to completely change their look and feel and create your custom design system from within Figma.
 
 :::info
 This feature is currently limited to the Button, Switch, and Typography components.
 Support for more components is coming soon.
 :::
 
-As an example, here's how to customize the checked state, medium size, and primary color of a Switch component to replicate the iOS design system:
-
-:::warning
-The Design Kit's component layer hierarchy and layer names must remain unaltered for Connect to correctly extract custom component styles and generate the theme.
-:::
+As an example, here's how to customize the checked state, medium size, and primary color of a Switch component to replicate the iOS look and feel:
 
 <img src="/static/material-ui/design-resources/connect-component-variant.png" style="width: 814px; margin-bottom: 8px;" alt="A specific variant of the Switch component selected in the Design Kit." width="1628" height="400" />
 
-Connect generates the following theme code for the customized Switch:
+:::warning
+The Design Kit's component layer hierarchy and layer names must remain unaltered for Sync to correctly extract custom component styles and generate the theme.
+:::
+
+The Sync plugin generates the following theme code for the customized Switch:
 
 ```js
 {
@@ -124,8 +124,7 @@ Here's an example of what this might look like:
 
 <img src="/static/material-ui/design-resources/connect-switch-component-customized.png" style="width: 814px; margin-bottom: 8px;" alt="A fully customized Switch component in the Material UI Design Kit." width="1628" height="400" />
 
-You can run Connect to generate a new theme.
-From here you can run Connect to generate a new theme—here's what would be generated from the example above:
+From here you can run Sync to generate a new theme—here's what would be generated from the example above:
 
 ```js
 {
@@ -238,10 +237,10 @@ You can also check out the Storybook preview to test the Material UI version of
 ## Using the generated theme
 
 :::warning
-Themes generated by Connect must be used with Material UI's [`CssVarsProvider`](/material-ui/experimental-api/css-theme-variables/migration/)—the default [`ThemeProvider`](/material-ui/customization/theming/#theme-provider) is not supported.
+Themes generated by Sync must be used with Material UI's [`CssVarsProvider`](/material-ui/experimental-api/css-theme-variables/migration/)—the default [`ThemeProvider`](/material-ui/customization/theming/#theme-provider) is not supported.
 :::
 
-Here's an example of how to add a Connect theme to your codebase:
+Here's an example of how to add a Sync-generated theme to your codebase:
 
 ```tsx title="_app.tsx"
 import {
@@ -298,4 +297,4 @@ export default function MyApp({ Component, pageProps }) {
 
 ## Feedback and bug reports
 
-Use [the dedicated Connect feedback board](https://mui-connect.canny.io/feedback) to share feedback, report bugs, or drop feature requests.
+Use [the dedicated Material UI Sync feedback board](https://mui-connect.canny.io/feedback) to share feedback, report bugs, or drop feature requests.
