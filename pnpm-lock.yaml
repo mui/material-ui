@@ -128,8 +128,8 @@ importers:
         specifier: ^20.1.0
         version: 20.1.0
       '@pigment-css/react':
-        specifier: workspace:^
-        version: link:packages/pigment-css-react
+        specifier: ^0.0.7
+        version: 0.0.7(@types/react@18.2.55)(react@18.2.0)
       '@playwright/test':
         specifier: 1.43.1
         version: 1.43.1
@@ -359,8 +359,8 @@ importers:
   apps/local-ui-lib:
     dependencies:
       '@pigment-css/react':
-        specifier: file:../../packages/pigment-css-react
-        version: file:packages/pigment-css-react(@types/react@18.2.55)(react@18.2.0)
+        specifier: ^0.0.7
+        version: 0.0.7(@types/react@18.2.55)(react@18.2.0)
 
   apps/pigment-css-next-app:
     dependencies:
@@ -389,8 +389,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/mui-utils/build
       '@pigment-css/react':
-        specifier: workspace:^
-        version: link:../../packages/pigment-css-react
+        specifier: ^0.0.7
+        version: 0.0.7(@types/react@18.2.55)(react@18.2.0)
       local-ui-lib:
         specifier: workspace:^
         version: link:../local-ui-lib
@@ -405,8 +405,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@pigment-css/nextjs-plugin':
-        specifier: workspace:^
-        version: link:../../packages/pigment-css-nextjs-plugin
+        specifier: ^0.0.7
+        version: 0.0.7(@types/react@18.2.55)(next@14.2.1)(react@18.2.0)
       '@types/node':
         specifier: ^18.19.31
         version: 18.19.31
@@ -444,8 +444,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/mui-utils/build
       '@pigment-css/react':
-        specifier: workspace:^
-        version: link:../../packages/pigment-css-react
+        specifier: ^0.0.7
+        version: 0.0.7(@types/react@18.2.55)(react@18.2.0)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -475,8 +475,8 @@ importers:
         specifier: ^7.24.1
         version: 7.24.1(@babel/core@7.24.4)
       '@pigment-css/vite-plugin':
-        specifier: workspace:^
-        version: link:../../packages/pigment-css-vite-plugin
+        specifier: ^0.0.7
+        version: 0.0.7(@types/react@18.2.55)(react@18.2.0)(vite@5.2.8)
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -2140,187 +2140,6 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
-
-  packages/pigment-css-nextjs-plugin:
-    dependencies:
-      '@pigment-css/unplugin':
-        specifier: workspace:^
-        version: link:../pigment-css-unplugin
-    devDependencies:
-      next:
-        specifier: ^13.5.1
-        version: 13.5.1(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
-
-  packages/pigment-css-react:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.24.4
-        version: 7.24.4
-      '@babel/helper-module-imports':
-        specifier: ^7.24.3
-        version: 7.24.3
-      '@babel/helper-plugin-utils':
-        specifier: ^7.24.0
-        version: 7.24.0
-      '@babel/parser':
-        specifier: ^7.24.4
-        version: 7.24.4
-      '@babel/types':
-        specifier: ^7.24.0
-        version: 7.24.0
-      '@emotion/css':
-        specifier: ^11.11.2
-        version: 11.11.2
-      '@emotion/is-prop-valid':
-        specifier: ^1.2.2
-        version: 1.2.2
-      '@emotion/react':
-        specifier: ^11.11.4
-        version: 11.11.4(@types/react@18.2.55)(react@18.2.0)
-      '@emotion/serialize':
-        specifier: ^1.1.4
-        version: 1.1.4
-      '@emotion/styled':
-        specifier: ^11.11.5
-        version: 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
-      '@mui/system':
-        specifier: workspace:^
-        version: link:../mui-system/build
-      '@wyw-in-js/processor-utils':
-        specifier: ^0.5.0
-        version: 0.5.0
-      '@wyw-in-js/shared':
-        specifier: ^0.5.0
-        version: 0.5.0
-      '@wyw-in-js/transform':
-        specifier: ^0.5.0
-        version: 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
-      clsx:
-        specifier: ^2.1.0
-        version: 2.1.0
-      cssesc:
-        specifier: ^3.0.0
-        version: 3.0.0
-      csstype:
-        specifier: ^3.1.3
-        version: 3.1.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      stylis:
-        specifier: ^4.3.1
-        version: 4.3.1
-      stylis-plugin-rtl:
-        specifier: ^2.1.1
-        version: 2.1.1(stylis@4.3.1)
-    devDependencies:
-      '@babel/plugin-syntax-jsx':
-        specifier: ^7.24.1
-        version: 7.24.1(@babel/core@7.24.4)
-      '@types/babel__core':
-        specifier: ^7.20.5
-        version: 7.20.5
-      '@types/babel__helper-module-imports':
-        specifier: ^7.18.3
-        version: 7.18.3
-      '@types/babel__helper-plugin-utils':
-        specifier: ^7.10.3
-        version: 7.10.3
-      '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
-      '@types/cssesc':
-        specifier: ^3.0.2
-        version: 3.0.2
-      '@types/lodash':
-        specifier: ^4.17.0
-        version: 4.17.0
-      '@types/mocha':
-        specifier: ^10.0.6
-        version: 10.0.6
-      '@types/node':
-        specifier: ^18.19.31
-        version: 18.19.31
-      '@types/react':
-        specifier: 18.2.55
-        version: 18.2.55
-      '@types/stylis':
-        specifier: ^4.2.5
-        version: 4.2.5
-      chai:
-        specifier: ^4.4.1
-        version: 4.4.1
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/pigment-css-unplugin:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.24.4
-        version: 7.24.4
-      '@pigment-css/react':
-        specifier: workspace:^
-        version: link:../pigment-css-react
-      '@wyw-in-js/shared':
-        specifier: ^0.5.0
-        version: 0.5.0
-      '@wyw-in-js/transform':
-        specifier: ^0.5.0
-        version: 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
-      babel-plugin-define-var:
-        specifier: ^0.1.0
-        version: 0.1.0
-      unplugin:
-        specifier: ^1.7.1
-        version: 1.7.1
-    devDependencies:
-      '@types/babel__core':
-        specifier: ^7.20.5
-        version: 7.20.5
-      '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
-      '@types/mocha':
-        specifier: ^10.0.6
-        version: 10.0.6
-      chai:
-        specifier: ^4.4.1
-        version: 4.4.1
-
-  packages/pigment-css-vite-plugin:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.24.4
-        version: 7.24.4
-      '@babel/preset-typescript':
-        specifier: ^7.24.1
-        version: 7.24.1(@babel/core@7.24.4)
-      '@pigment-css/react':
-        specifier: workspace:^
-        version: link:../pigment-css-react
-      '@wyw-in-js/shared':
-        specifier: ^0.5.0
-        version: 0.5.0
-      '@wyw-in-js/transform':
-        specifier: ^0.5.0
-        version: 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
-      babel-plugin-define-var:
-        specifier: ^0.1.0
-        version: 0.1.0
-    devDependencies:
-      '@types/babel__core':
-        specifier: ^7.20.5
-        version: 7.20.5
-      vite:
-        specifier: ^5.2.8
-        version: 5.2.8(@types/node@18.19.31)
 
   packages/react-docgen-types:
     devDependencies:
@@ -4429,7 +4248,6 @@ packages:
       '@emotion/serialize': 1.1.4
       '@emotion/sheet': 1.2.2
       '@emotion/utils': 1.2.1
-    dev: false
 
   /@emotion/hash@0.9.1:
     resolution: {integrity: sha512-gJB6HLm5rYwSLI6PQa+X1t5CFGrv1J1TWG+sOyMCeKz2ojaj6Fnl/rZEspogG+cvqbt4AE/2eIyD2QfLKTBNlQ==}
@@ -5535,6 +5353,22 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@mui/private-theming@6.0.0-alpha.3(@types/react@18.2.55)(react@18.2.0):
+    resolution: {integrity: sha512-zRdwVf8RpuM0MEqMveoJ0sV48eMWvutkcY/pt9nX21jXD9kaxOCuQyT6oNrXF7ZlBDOi/NXfKRDgkQfj+kwxDQ==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@types/react': 18.2.55
+      react: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.24.4
+      '@mui/utils': 6.0.0-alpha.3(@types/react@18.2.55)(react@18.2.0)
+      '@types/react': 18.2.55
+      prop-types: 15.8.1
+      react: 18.2.0
+
   /@mui/styled-engine@5.15.14(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(react@18.2.0):
     resolution: {integrity: sha512-RILkuVD8gY6PvjZjqnWhz8fu68dVkqhM5+jYWfB5yhlSQKg+2rHkmEwm75XIeAqI3qwOndK6zELK5H6Zxn4NHw==}
     engines: {node: '>=12.0.0'}
@@ -5556,6 +5390,27 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
+
+  /@mui/styled-engine@6.0.0-alpha.3(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(react@18.2.0):
+    resolution: {integrity: sha512-tQ7xa3mJI6MZJnmm0O/Y+2z4LBSnnvMw0jfEawBSP6vRdN31kiCx8bj/J6asg9uWkCQ7FtNbzq9at7HQlWjGXA==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.4.1
+      '@emotion/styled': ^11.3.0
+      react: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.24.4
+      '@emotion/cache': 11.11.0
+      '@emotion/react': 11.11.4(@types/react@18.2.55)(react@18.2.0)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
+      csstype: 3.1.3
+      prop-types: 15.8.1
+      react: 18.2.0
 
   /@mui/system@5.15.14(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.55)(react@18.2.0):
     resolution: {integrity: sha512-auXLXzUaCSSOLqJXmsAaq7P96VPRXg2Rrz6OHNV7lr+kB8lobUF+/N84Vd9C4G/wvCXYPs5TYuuGBRhcGbiBGg==}
@@ -5587,6 +5442,35 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@mui/system@6.0.0-alpha.3(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.55)(react@18.2.0):
+    resolution: {integrity: sha512-/UktEPqLfer6OSBLE3TI5EoDvLDtoBidGels9Fe66Pqox14WV12xllWdSbp6lSBU2jvk3fqodOfcFkzDZKB5Ug==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.5.0
+      '@emotion/styled': ^11.3.0
+      '@types/react': 18.2.55
+      react: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.24.4
+      '@emotion/react': 11.11.4(@types/react@18.2.55)(react@18.2.0)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
+      '@mui/private-theming': 6.0.0-alpha.3(@types/react@18.2.55)(react@18.2.0)
+      '@mui/styled-engine': 6.0.0-alpha.3(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(react@18.2.0)
+      '@mui/types': 7.2.14(@types/react@18.2.55)
+      '@mui/utils': 6.0.0-alpha.3(@types/react@18.2.55)(react@18.2.0)
+      '@types/react': 18.2.55
+      clsx: 2.1.0
+      csstype: 3.1.3
+      prop-types: 15.8.1
+      react: 18.2.0
+
   /@mui/types@7.2.14(@types/react@18.2.55):
     resolution: {integrity: sha512-MZsBZ4q4HfzBsywtXgM1Ksj6HDThtiwmOKUXH1pKYISI9gAVXCNHNpo7TlGoGrBaYWZTdNoirIN7JsQcQUjmQQ==}
     peerDependencies:
@@ -5596,7 +5480,6 @@ packages:
         optional: true
     dependencies:
       '@types/react': 18.2.55
-    dev: false
 
   /@mui/utils@5.15.14(@types/react@18.2.55)(react@18.2.0):
     resolution: {integrity: sha512-0lF/7Hh/ezDv5X7Pry6enMsbYyGKjADzvHyo3Qrc/SSlTsQ1VkbDMbH0m2t3OR5iIVLwMoxwM7yGd+6FCMtTFA==}
@@ -5615,6 +5498,23 @@ packages:
       react: 18.2.0
       react-is: 18.2.0
     dev: false
+
+  /@mui/utils@6.0.0-alpha.3(@types/react@18.2.55)(react@18.2.0):
+    resolution: {integrity: sha512-DBuCy0LmpKFBX6KcZpNve8T3oZmbdZABN0ixJIvDRdoxTG86divvx1CcA71YJojZD3FhRWb0d/XxtMAzn4qIvg==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@types/react': 18.2.55
+      react: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.24.4
+      '@types/prop-types': 15.7.12
+      '@types/react': 18.2.55
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-is: 18.2.0
 
   /@mui/x-charts@6.19.8(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-cjwsCJrUPDlMytJHBV+g3gDoSRURiphjclZs8sRnkZ+h4QbHn24K5QkK4bxEj7aCkO2HVJmDE0aqYEg4BnWCOA==}
@@ -5944,7 +5844,6 @@ packages:
 
   /@next/env@14.2.1:
     resolution: {integrity: sha512-qsHJle3GU3CmVx7pUoXcghX4sRN+vINkbLdH611T8ZlsP//grzqVW87BSUgOZeSAD4q7ZdZicdwNe/20U2janA==}
-    dev: false
 
   /@next/eslint-plugin-next@14.2.1:
     resolution: {integrity: sha512-Fp+mthEBjkn8r9qd6o4JgxKp0IDEzW0VYHD8ZC05xS5/lFNwHKuOdr2kVhWG7BQCO9L6eeepshM1Wbs2T+LgSg==}
@@ -5966,7 +5865,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@next/swc-darwin-x64@13.5.1:
@@ -5983,7 +5881,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@next/swc-linux-arm64-gnu@13.5.1:
@@ -6000,7 +5897,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@next/swc-linux-arm64-musl@13.5.1:
@@ -6017,7 +5913,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@next/swc-linux-x64-gnu@13.5.1:
@@ -6034,7 +5929,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@next/swc-linux-x64-musl@13.5.1:
@@ -6051,7 +5945,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@next/swc-win32-arm64-msvc@13.5.1:
@@ -6068,7 +5961,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@next/swc-win32-ia32-msvc@13.5.1:
@@ -6085,7 +5977,6 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@next/swc-win32-x64-msvc@13.5.1:
@@ -6102,7 +5993,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3:
@@ -6682,6 +6572,82 @@ packages:
     resolution: {integrity: sha512-D4iHGTdAnEEVsB8fl95m1hiz7D5YiRdQ9b/OEb3BYRVwbLsGHcRVPz+u+BgRLNk0Q0/4iZCBqDN96j2XNxfXrA==}
     dependencies:
       '@octokit/openapi-types': 18.0.0
+    dev: true
+
+  /@pigment-css/nextjs-plugin@0.0.7(@types/react@18.2.55)(next@14.2.1)(react@18.2.0):
+    resolution: {integrity: sha512-RM2CvXk5v+rlmofxBnzguWeRivSxkhYIBZSa395if8LJ09fO/jrmSmb4mCEQuIbzH3/os+hx1MwcVrgY2Alqxg==}
+    peerDependencies:
+      next: ^12.0.0 || ^13.0.0 || ^14.0.0
+    dependencies:
+      '@pigment-css/unplugin': 0.0.7(@types/react@18.2.55)(react@18.2.0)
+      next: 14.2.1(@babel/core@7.24.4)(@playwright/test@1.43.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react
+      - supports-color
+    dev: true
+
+  /@pigment-css/react@0.0.7(@types/react@18.2.55)(react@18.2.0):
+    resolution: {integrity: sha512-ygr0j76EJto6IO7+6DTruDCrx3rB8KCwR99+kKcwyD2laE0iZK8SWwqdsgP8IkGSLBad/JE4+xscjcKaI5ruJg==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/core': 7.24.4
+      '@babel/helper-module-imports': 7.24.3
+      '@babel/helper-plugin-utils': 7.24.0
+      '@babel/parser': 7.24.4
+      '@babel/types': 7.24.0
+      '@emotion/css': 11.11.2
+      '@emotion/is-prop-valid': 1.2.2
+      '@emotion/react': 11.11.4(@types/react@18.2.55)(react@18.2.0)
+      '@emotion/serialize': 1.1.4
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
+      '@mui/system': 6.0.0-alpha.3(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.55)(react@18.2.0)
+      '@wyw-in-js/processor-utils': 0.5.0
+      '@wyw-in-js/shared': 0.5.0
+      '@wyw-in-js/transform': 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
+      clsx: 2.1.0
+      cssesc: 3.0.0
+      csstype: 3.1.3
+      lodash: 4.17.21
+      react: 18.2.0
+      stylis: 4.3.1
+      stylis-plugin-rtl: 2.1.1(stylis@4.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+
+  /@pigment-css/unplugin@0.0.7(@types/react@18.2.55)(react@18.2.0):
+    resolution: {integrity: sha512-yRDkSgkG5Whv3GydmriHfmMcrbi0kukSRT5rJDjpiyArmA2EoxqGwmbXl0V01pZHInKa2AUzbCNYRZ1fT9k0yA==}
+    dependencies:
+      '@babel/core': 7.24.4
+      '@pigment-css/react': 0.0.7(@types/react@18.2.55)(react@18.2.0)
+      '@wyw-in-js/shared': 0.5.0
+      '@wyw-in-js/transform': 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
+      babel-plugin-define-var: 0.1.0
+      unplugin: 1.7.1
+    transitivePeerDependencies:
+      - '@types/react'
+      - react
+      - supports-color
+    dev: true
+
+  /@pigment-css/vite-plugin@0.0.7(@types/react@18.2.55)(react@18.2.0)(vite@5.2.8):
+    resolution: {integrity: sha512-FNROlu/1vZvMYxEMk6RPk5H/JTTjcJGbmw7vizqWfLCcFjb573niW8lkjhnnqA0TRt/LqtRXtJ4d3emjEoq81g==}
+    peerDependencies:
+      vite: ^4.0.0 || ^5.0.0
+    dependencies:
+      '@babel/core': 7.24.4
+      '@babel/preset-typescript': 7.24.1(@babel/core@7.24.4)
+      '@pigment-css/react': 0.0.7(@types/react@18.2.55)(react@18.2.0)
+      '@wyw-in-js/shared': 0.5.0
+      '@wyw-in-js/transform': 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
+      babel-plugin-define-var: 0.1.0
+      vite: 5.2.8(@types/node@18.19.31)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react
+      - supports-color
     dev: true
 
   /@pkgjs/parseargs@0.11.0:
@@ -7633,7 +7599,6 @@ packages:
 
   /@swc/counter@0.1.3:
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
-    dev: false
 
   /@swc/helpers@0.5.2:
     resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
@@ -7645,7 +7610,6 @@ packages:
     dependencies:
       '@swc/counter': 0.1.3
       tslib: 2.6.2
-    dev: false
 
   /@szmarczak/http-timer@4.0.6:
     resolution: {integrity: sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==}
@@ -7831,19 +7795,6 @@ packages:
       '@babel/types': 7.24.0
     dev: true
 
-  /@types/babel__helper-module-imports@7.18.3:
-    resolution: {integrity: sha512-2pyr9Vlriessj2KI85SEF7qma8vA3vzquQMw3wn6kL5lsfjH/YxJ1Noytk4/FJElpYybUbyaC37CVfEgfyme9A==}
-    dependencies:
-      '@types/babel__core': 7.20.5
-      '@types/babel__traverse': 7.20.5
-    dev: true
-
-  /@types/babel__helper-plugin-utils@7.10.3:
-    resolution: {integrity: sha512-FcLBBPXInqKfULB2nvOBskQPcnSMZ0s1Y2q76u9H1NPPWaLcTeq38xBeKfF/RBUECK333qeaqRdYoPSwW7rTNQ==}
-    dependencies:
-      '@types/babel__core': 7.20.5
-    dev: true
-
   /@types/babel__template@7.4.1:
     resolution: {integrity: sha512-azBFKemX6kMg5Io+/rdGT0dkGreboUVR0Cdm3fz9QJWpaQGJRQXl7C+6hOTCZcMll7KFyEQpgbYI2lHdsS4U7g==}
     dependencies:
@@ -7905,10 +7856,6 @@ packages:
 
   /@types/css-mediaquery@0.1.4:
     resolution: {integrity: sha512-DZyHAz716ZUctpqkUU2COwUoZ4gI6mZK2Q1oIz/fvNS6XHVpKSJgDnE7vRxZUBn9vjJHDVelCVW0dkshKOLFsA==}
-    dev: true
-
-  /@types/cssesc@3.0.2:
-    resolution: {integrity: sha512-Qii6nTRktvtI380EloxH/V7MwgrYxkPgBI+NklUjQuhzgAd1AqT3QDJd+eD+0doRADgfwvtagLRo7JFa7aMHXg==}
     dev: true
 
   /@types/debug@4.1.12:
@@ -8581,7 +8528,6 @@ packages:
       '@wyw-in-js/shared': 0.5.0
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /@wyw-in-js/shared@0.5.0:
     resolution: {integrity: sha512-W6Uic3cqRs75XZfXGOYH/0fADbl3Wz/kqnNaowgyNTdTN7/9vdlqk/D/gMT5WGolj4t418+rYe2FHHs0LdlmvA==}
@@ -8592,7 +8538,6 @@ packages:
       minimatch: 9.0.3
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /@wyw-in-js/transform@0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy):
     resolution: {integrity: sha512-tpa2/FsB30fdXB1E+9MmfxQYbRgLv/+VMKzpBKNraDH39zwnA2eGGAEho5gpqK40cEV7NH6zhVbaBcEnV0HQyw==}
@@ -8615,7 +8560,6 @@ packages:
       ts-invariant: 0.10.3
     transitivePeerDependencies:
       - supports-color
-    dev: false
     patched: true
 
   /@xtuc/ieee754@1.2.0:
@@ -9352,12 +9296,11 @@ packages:
       '@babel/core': 7.24.4
       deepmerge: 2.2.1
       object.omit: 3.0.0
-    dev: false
 
   /babel-plugin-define-var@0.1.0:
     resolution: {integrity: sha512-WcK43U4uz+9G35Wvdnyri4Tcg8Ux9/hSbQC4ckpfrHFQp8Cuz1BIQK5NswuGxT3T8cc3d4e55wDeSO4dViOugg==}
     engines: {node: '>=10'}
-    dev: false
+    dev: true
 
   /babel-plugin-istanbul@6.1.1:
     resolution: {integrity: sha512-Y1IQok9821cC9onCx5otgFfRm7Lm+I+wwxOx738M/WLPZ9Q42m4IG5W0FNX8WLL2gYMZo3JkuXIH2DOpWM+qwA==}
@@ -10216,7 +10159,6 @@ packages:
   /clsx@2.1.0:
     resolution: {integrity: sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==}
     engines: {node: '>=6'}
-    dev: false
 
   /cmd-shim@6.0.1:
     resolution: {integrity: sha512-S9iI9y0nKR4hwEQsVWpyxld/6kRfGepGfzff83FcaiEBpmvlbA2nnGe7Cylgrx2f/p1P5S5wpRm9oL8z1PbS3Q==}
@@ -10786,7 +10728,6 @@ packages:
 
   /css.escape@1.5.1:
     resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
-    dev: false
 
   /cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -11104,7 +11045,6 @@ packages:
   /deepmerge@2.2.1:
     resolution: {integrity: sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==}
     engines: {node: '>=0.10.0'}
-    dev: false
 
   /deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
@@ -13259,7 +13199,6 @@ packages:
       webidl-conversions: 7.0.0
       whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
-    dev: false
 
   /hard-rejection@2.1.0:
     resolution: {integrity: sha512-VIZB+ibDhx7ObhAe7OVtoEbuP4h/MuOTHJ+J8h/eBXotJYl0fBgR72xDFCKgIh22OJZIOVNxBMWuhAr10r8HdA==}
@@ -13886,7 +13825,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       is-plain-object: 2.0.4
-    dev: false
 
   /is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
@@ -16390,7 +16328,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
-    dev: false
 
   /nice-napi@1.0.2:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}
@@ -16955,7 +16892,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       is-extendable: 1.0.1
-    dev: false
 
   /object.values@1.1.7:
     resolution: {integrity: sha512-aU6xnDFYT3x17e/f0IiiwlGPTy2jzMySGfUB4fq6z7CV8l85CWHDk5ErhyhpfDHhrOMwGFhSQkhMGHaIotA6Ng==}
@@ -19769,7 +19705,6 @@ packages:
   /source-map@0.7.4:
     resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
     engines: {node: '>= 8'}
-    dev: false
 
   /source-map@0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
@@ -20236,7 +20171,6 @@ packages:
     dependencies:
       cssjanus: 2.1.0
       stylis: 4.3.1
-    dev: false
 
   /stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
@@ -20683,7 +20617,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       tslib: 2.6.2
-    dev: false
 
   /tsconfig-paths@3.15.0:
     resolution: {integrity: sha512-2Ac2RgzDe/cn48GvOe3M+o82pEFewD3UPbyoUHHdKasHwJKjds4fLXWf/Ux5kATBKN20oaFGu+jbElp1pos0mg==}
@@ -21049,7 +20982,7 @@ packages:
       chokidar: 3.6.0
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.1
-    dev: false
+    dev: true
 
   /unzipper@0.10.11:
     resolution: {integrity: sha512-+BrAq2oFqWod5IESRjL3S8baohbevGcVA+teAIOYWM3pDVdseogqbzhhvvmiyQrUNKFUnDMtELW3X8ykbyDCJw==}
@@ -21347,7 +21280,6 @@ packages:
   /webidl-conversions@7.0.0:
     resolution: {integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==}
     engines: {node: '>=12'}
-    dev: false
 
   /webpack-bundle-analyzer@4.10.2:
     resolution: {integrity: sha512-vJptkMm9pk5si4Bv922ZbKLV8UTT4zib4FPgXMhgzUny0bfDDkLXAVQs3ly3fS4/TN9ROFtb0NFrm04UXFE/Vw==}
@@ -21422,7 +21354,7 @@ packages:
 
   /webpack-virtual-modules@0.6.1:
     resolution: {integrity: sha512-poXpCylU7ExuvZK8z+On3kX+S8o/2dQ/SVYueKA0D4WEMXROXgY8Ez50/bQEUmvoSMMrWcrJqCHuhAbsiwg7Dg==}
-    dev: false
+    dev: true
 
   /webpack@5.90.3(esbuild@0.19.11)(webpack-cli@5.1.4):
     resolution: {integrity: sha512-h6uDYlWCctQRuXBs1oYpVe6sFcWedl0dpcVaTf/YF67J9bKvwJajFulMVSYKHrksMB3I/pIagRzDxwxkebuzKA==}
@@ -21469,7 +21401,6 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       iconv-lite: 0.6.3
-    dev: false
 
   /whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
@@ -21485,7 +21416,6 @@ packages:
   /whatwg-mimetype@3.0.0:
     resolution: {integrity: sha512-nt+N2dzIutVRxARx1nghPKGv1xHikU7HKdfafKkLNLindmPU/ch3U31NOCGGA/dmPcmb1VlofO0vnKAcsm0o/Q==}
     engines: {node: '>=12'}
-    dev: false
 
   /whatwg-mimetype@4.0.0:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}
@@ -21924,37 +21854,4 @@ packages:
 
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
-    dev: false
-
-  file:packages/pigment-css-react(@types/react@18.2.55)(react@18.2.0):
-    resolution: {directory: packages/pigment-css-react, type: directory}
-    id: file:packages/pigment-css-react
-    name: '@pigment-css/react'
-    peerDependencies:
-      react: ^17.0.0 || ^18.0.0
-    dependencies:
-      '@babel/core': 7.24.4
-      '@babel/helper-module-imports': 7.24.3
-      '@babel/helper-plugin-utils': 7.24.0
-      '@babel/parser': 7.24.4
-      '@babel/types': 7.24.0
-      '@emotion/css': 11.11.2
-      '@emotion/is-prop-valid': 1.2.2
-      '@emotion/react': 11.11.4(@types/react@18.2.55)(react@18.2.0)
-      '@emotion/serialize': 1.1.4
-      '@emotion/styled': 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
-      '@mui/system': link:packages/mui-system/build
-      '@wyw-in-js/processor-utils': 0.5.0
-      '@wyw-in-js/shared': 0.5.0
-      '@wyw-in-js/transform': 0.5.0(patch_hash=zicb4vap2prvslgwedcxhpcmvy)
-      clsx: 2.1.0
-      cssesc: 3.0.0
-      csstype: 3.1.3
-      lodash: 4.17.21
-      react: 18.2.0
-      stylis: 4.3.1
-      stylis-plugin-rtl: 2.1.1(stylis@4.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-      - supports-color
     dev: false
