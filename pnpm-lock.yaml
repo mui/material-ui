@@ -1351,9 +1351,15 @@ importers:
       '@mui/base':
         specifier: '*'
         version: link:../mui-base/build
+      '@mui/internal-markdown':
+        specifier: workspace:^
+        version: link:../markdown
       '@mui/system':
         specifier: ^5.0.0
         version: 5.15.14(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.55)(react@18.2.0)
+      clipboard-copy:
+        specifier: ^4.0.1
+        version: 4.0.1
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -5844,6 +5850,7 @@ packages:
 
   /@next/env@14.2.2:
     resolution: {integrity: sha512-sk72qRfM1Q90XZWYRoJKu/UWlTgihrASiYw/scb15u+tyzcze3bOuJ/UV6TBOQEeUaxOkRqGeuGUdiiuxc5oqw==}
+    dev: false
 
   /@next/eslint-plugin-next@14.2.1:
     resolution: {integrity: sha512-Fp+mthEBjkn8r9qd6o4JgxKp0IDEzW0VYHD8ZC05xS5/lFNwHKuOdr2kVhWG7BQCO9L6eeepshM1Wbs2T+LgSg==}
