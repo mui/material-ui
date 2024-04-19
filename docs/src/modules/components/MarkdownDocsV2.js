@@ -81,7 +81,7 @@ export default function MarkdownDocsV2(props) {
 
   const localizedDoc = docs[userLanguage] || docs.en;
   // Generate the TOC based on the tab
-  const demosToc = localizedDoc.toc.filter((item) => item.text !== 'API');
+  const demosToc = localizedDoc.toc;
 
   function createHookTocEntry(hookName, sectionName, hookProps = {}) {
     const hookPropToc = [];
@@ -275,11 +275,7 @@ export default function MarkdownDocsV2(props) {
           {commonElements}
           {activeTab === '' &&
             localizedDoc.rendered
-              // for the "hook only" edge case, for example Base UI autocomplete
-              .slice(
-                i,
-                localizedDoc.rendered.length - (localizedDoc.headers.components.length > 0 ? 1 : 0),
-              )
+              .slice(i)
               .map((renderedMarkdownOrDemo, index) => (
                 <RichMarkdownElement
                   key={`demos-section-${index}`}
