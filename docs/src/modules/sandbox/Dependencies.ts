@@ -4,34 +4,6 @@ import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl'
 const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
 const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css'];
 
-interface PackageConfig {
-  repository: string;
-  npmTag: string;
-  getCSBPackageUrl: (commitRef: string, packageName: string) => string;
-}
-
-// packages that are in a different repository
-const externalPackages: Record<string, PackageConfig> = {
-  '@base_ui/react': {
-    repository: 'https://github.com/mui/base-ui',
-    npmTag: 'latest',
-    getCSBPackageUrl: (commitRef: string) =>
-      `https://pkg.csb.dev/mui/base-ui/commit/${commitRef}/@base_ui/react`,
-  },
-};
-
-const coreRepoPackages: PackageConfig = {
-  repository: 'https://github.com/mui/material-ui',
-  // #default-branch-switch
-  npmTag: 'next',
-  getCSBPackageUrl: (commitRef: string, packageName: string) =>
-    `https://pkg.csb.dev/mui/material-ui/commit/${commitRef}/@mui/${packageName}`,
-};
-
-function getPackageConfig(packageName: string): PackageConfig {
-  return externalPackages[packageName] ?? coreRepoPackages;
-}
-
 /**
  * WARNING: Always uses `latest` typings.
  *
@@ -73,13 +45,15 @@ export default function SandboxDependencies(
    * @return string - A valid version for a dependency entry in a package.json
    */
   function getMuiPackageVersion(packageName: string): string {
-    const packageConfig = getPackageConfig(packageName);
-    if (commitRef === undefined || process.env.SOURCE_CODE_REPO !== packageConfig.repository) {
-      return packageConfig.npmTag;
+    if (
+      commitRef === undefined ||
+      process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
+    ) {
+      // #default-branch-switch
+      return 'next';
     }
-
     const shortSha = commitRef.slice(0, 8);
-    return packageConfig.getCSBPackageUrl(shortSha, packageName);
+    return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
   }
 
   function extractDependencies(raw: string) {
@@ -106,7 +80,7 @@ export default function SandboxDependencies(
       }
 
       // TODO: consider if this configuration could be injected in a "cleaner" way.
-      if (muiDocConfig) {
+      if (muiDocConfig && muiDocConfig.csbIncludePeerDependencies) {
         newDeps = muiDocConfig.csbIncludePeerDependencies(newDeps, {
           versions,
         });
@@ -132,11 +106,10 @@ export default function SandboxDependencies(
       '@mui/utils': getMuiPackageVersion('utils'),
       '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
       '@mui/joy': getMuiPackageVersion('joy'),
-      '@base_ui/react': getMuiPackageVersion('@base_ui/react'),
     };
 
     // TODO: consider if this configuration could be injected in a "cleaner" way.
-    if (muiDocConfig) {
+    if (muiDocConfig && muiDocConfig.csbGetVersions) {
       versions = muiDocConfig.csbGetVersions(versions, { muiCommitRef: commitRef });
     }
 
@@ -153,8 +126,8 @@ export default function SandboxDependencies(
         deps[name] = versions[name] ?? 'latest';
       }
 
-      if (muiDocConfig) {
-        const resolvedDep = muiDocConfig?.postProcessImport(fullName);
+      if (muiDocConfig && muiDocConfig.postProcessImport) {
+        const resolvedDep = muiDocConfig.postProcessImport(fullName);
         if (resolvedDep) {
           deps = { ...deps, ...resolvedDep };
         }
