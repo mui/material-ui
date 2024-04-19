@@ -49,7 +49,7 @@ export default function ConnectFeatures() {
                 The way developers and designers <GradientText>ship faster</GradientText>
               </Typography>
             }
-            description="Connect is perfect for designing and developing using the Material UI React library and Design Kit."
+            description="The Sync plugin is perfect for designing and developing using the Material UI React library and Design Kit."
           />
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
@@ -70,7 +70,7 @@ export default function ConnectFeatures() {
               <Item
                 icon={<SvgStorybook />}
                 title="Preview your changes on Storybook"
-                description="Quickly visualize all the changes you run through Connect on a built-in Storybook preview instance."
+                description="Quickly visualize all the changes you run through Sync on a built-in Storybook preview instance."
               />
             </Highlighter>
           </Group>
@@ -360,7 +360,7 @@ export default function ConnectFeatures() {
             </Frame.Demo>
             <Frame.Info data-mui-color-scheme="dark">
               <Typography variant="body2" fontWeight="bold" gutterBottom>
-                Get the beta version of Connect now!
+                Get the beta version of Material UI Sync now!
               </Typography>
               <Typography variant="body2" color="text.secondary" mb={2}>
                 There&apos;s still a lot to do, and we&apos;re looking forward to hearing from all
@@ -374,7 +374,7 @@ export default function ConnectFeatures() {
                   noLinkStyle
                   href="https://www.figma.com/community/plugin/1336346114713490235/connect"
                 >
-                  Use Connect now
+                  Use Sync now
                 </Button>
                 <Button
                   component={Link}

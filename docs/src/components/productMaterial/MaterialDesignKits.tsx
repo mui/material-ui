@@ -61,7 +61,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
                 icon={<ExtensionRoundedIcon color="primary" />}
-                title="Connect plugin"
+                title="Sync plugin"
                 description="Quickly generate a theme file with token and component customizations done on Figma."
               />
             </Highlighter>
@@ -332,7 +332,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             ) : (
               <Frame.Info data-mui-color-scheme="dark">
                 <Typography variant="body2" fontWeight="bold" gutterBottom>
-                  Get the beta version of Connect now!
+                  Get the beta version of Material UI Sync now!
                 </Typography>
                 <Typography variant="body2" color="text.secondary" mb={2}>
                   There&apos;s still a lot to do, and we&apos;re looking forward to hearing from all
@@ -346,7 +346,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     noLinkStyle
                     href="https://www.figma.com/community/plugin/1336346114713490235/connect"
                   >
-                    Use Connect now
+                    Use Sync now
                   </Button>
                   <Button
                     component={Link}

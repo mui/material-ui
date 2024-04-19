@@ -36,12 +36,12 @@ const Video = styled('video')(({ theme }) => ({
   }),
 }));
 
-export default function Connect() {
+export default function MaterialSync() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="Connect: A Figma plugin that exports complete Material UI themes"
-        description="Connect is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit."
+        title="Sync: A Figma plugin that exports complete Material UI themes"
+        description="Sync is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit."
         card="/static/social-previews/connect-preview.jpg"
       />
       <AppHeaderBanner />
@@ -65,10 +65,10 @@ export default function Connect() {
                   <GradientText>Bridge the gap</GradientText> between design and code
                 </Typography>
               }
-              description="Connect is a Figma plugin that exports complete Material UI themes directly from design to code."
+              description="Sync is a Figma plugin that exports complete Material UI themes directly from design to code."
             />
             <GetStartedButtons
-              primaryLabel="Use Connect now"
+              primaryLabel="Use Sync now"
               primaryUrl="https://www.figma.com/community/plugin/1336346114713490235/connect"
               secondaryLabel="View docs"
               secondaryUrl="/material-ui/design-resources/connect/"
