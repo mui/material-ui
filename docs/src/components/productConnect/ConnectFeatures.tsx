@@ -360,7 +360,7 @@ export default function ConnectFeatures() {
             </Frame.Demo>
             <Frame.Info data-mui-color-scheme="dark">
               <Typography variant="body2" fontWeight="bold" gutterBottom>
-                Get the beta version of Material UI Sync now!
+                Get the beta version of Material UI Sync now!
               </Typography>
               <Typography variant="body2" color="text.secondary" mb={2}>
                 There&apos;s still a lot to do, and we&apos;re looking forward to hearing from all
