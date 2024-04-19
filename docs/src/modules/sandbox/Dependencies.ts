@@ -2,6 +2,35 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
 const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
+const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css'];
+
+interface PackageConfig {
+  repository: string;
+  npmTag: string;
+  getCSBPackageUrl: (commitRef: string, packageName: string) => string;
+}
+
+// packages that are in a different repository
+const externalPackages: Record<string, PackageConfig> = {
+  '@base_ui/react': {
+    repository: 'https://github.com/mui/base-ui',
+    npmTag: 'latest',
+    getCSBPackageUrl: (commitRef: string) =>
+      `https://pkg.csb.dev/mui/base-ui/commit/${commitRef}/@base_ui/react`,
+  },
+};
+
+const coreRepoPackages: PackageConfig = {
+  repository: 'https://github.com/mui/material-ui',
+  // #default-branch-switch
+  npmTag: 'next',
+  getCSBPackageUrl: (commitRef: string, packageName: string) =>
+    `https://pkg.csb.dev/mui/material-ui/commit/${commitRef}/@mui/${packageName}`,
+};
+
+function getPackageConfig(packageName: string): PackageConfig {
+  return externalPackages[packageName] ?? coreRepoPackages;
+}
 
 /**
  * WARNING: Always uses `latest` typings.
@@ -15,7 +44,7 @@ function addTypeDeps(deps: Record<string, string>): void {
   const packagesWithDTPackage = Object.keys(deps)
     .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
     // All the MUI packages come with bundled types
-    .filter((name) => name.indexOf('@mui/') !== 0);
+    .filter((name) => !muiNpmOrgs.some((org) => name.startsWith(org)));
 
   packagesWithDTPackage.forEach((name) => {
     let resolvedName = name;
@@ -44,15 +73,13 @@ export default function SandboxDependencies(
    * @return string - A valid version for a dependency entry in a package.json
    */
   function getMuiPackageVersion(packageName: string): string {
-    if (
-      commitRef === undefined ||
-      process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
-    ) {
-      // #default-branch-switch
-      return 'next';
+    const packageConfig = getPackageConfig(packageName);
+    if (commitRef === undefined || process.env.SOURCE_CODE_REPO !== packageConfig.repository) {
+      return packageConfig.npmTag;
     }
+
     const shortSha = commitRef.slice(0, 8);
-    return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
+    return packageConfig.getCSBPackageUrl(shortSha, packageName);
   }
 
   function extractDependencies(raw: string) {
@@ -105,6 +132,7 @@ export default function SandboxDependencies(
       '@mui/utils': getMuiPackageVersion('utils'),
       '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
       '@mui/joy': getMuiPackageVersion('joy'),
+      '@base_ui/react': getMuiPackageVersion('@base_ui/react'),
     };
 
     // TODO: consider if this configuration could be injected in a "cleaner" way.
