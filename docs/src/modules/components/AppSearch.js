@@ -204,17 +204,17 @@ function NewStartScreen() {
       items: [
         {
           name: 'Overview',
-          href: '/toolpad/getting-started/',
+          href: '/toolpad/studio/getting-started/',
           icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Why Toolpad?',
-          href: '/toolpad/getting-started/why-toolpad/',
+          href: '/toolpad/studio/getting-started/why-toolpad/',
           icon: <ChecklistRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Example applications',
-          href: '/toolpad/examples/',
+          href: '/toolpad/studio/examples/',
           icon: <LibraryBooksRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
