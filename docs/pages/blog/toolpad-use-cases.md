@@ -40,16 +40,16 @@ They share their issue through a Priority Support template in our repository whe
 Here's how we built an app for this:
 
 The [`updateMuiPaidSupport.ts`](https://github.com/mui/mui-public/blob/master/tools-public/toolpad/resources/updateMuiPaidSupport.ts) file hosts all functions that are called from Toolpad.
-It uses the [custom function](https://mui.com/toolpad/concepts/custom-functions/) feature and combines GitHub Actions, Google Sheets, and Octokit to read and verify user information.
+It uses the [custom function](https://mui.com/toolpad/studio/concepts/custom-functions/) feature and combines GitHub Actions, Google Sheets, and Octokit to read and verify user information.
 The fetched data is then bound to the UI components.
-It uses Toolpad's [page parameters](https://mui.com/toolpad/concepts/page-properties/#page-parameters), [secrets handling](https://mui.com/toolpad/concepts/custom-functions/#secrets-handling), [shell removal](https://mui.com/toolpad/concepts/page-properties/#display-mode), and custom styling features.
+It uses Toolpad's [page parameters](https://mui.com/toolpad/studio/concepts/page-properties/#page-parameters), [secrets handling](https://mui.com/toolpad/studio/concepts/custom-functions/#secrets-handling), [shell removal](https://mui.com/toolpad/studio/concepts/page-properties/#display-mode), and custom styling features.
 This app took one developer just a few hours to build which otherwise would have taken much longer.
 
 ## 2. Customer support KPI tracker
 
-The read-only page illustrated below uses [HTTP requests](https://mui.com/toolpad/concepts/http-requests/) for its data source.
+The read-only page illustrated below uses [HTTP requests](https://mui.com/toolpad/studio/concepts/http-requests/) for its data source.
 Through the query builder UI we fetch the 100 latest support tickets from Zendesk to calculate the average time it takes us to respond to and resolve customer requests.
-It uses a [custom component](https://mui.com/toolpad/concepts/custom-components/) which we call the "health badge."
+It uses a [custom component](https://mui.com/toolpad/studio/concepts/custom-components/) which we call the "health badge."
 Based on the metric value, the component shows three color-coded states: Problem (red), Warning (yellow), and OK (green).
 Other KPI pages also use this health badge and pre-built Chart components to compare stats, observe trends, and spot anomalies.
 
