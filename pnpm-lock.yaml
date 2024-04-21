@@ -239,8 +239,8 @@ importers:
         specifier: workspace:^
         version: link:packages/eslint-plugin-material-ui
       eslint-plugin-mocha:
-        specifier: ^10.4.2
-        version: 10.4.2(eslint@8.57.0)
+        specifier: ^10.4.3
+        version: 10.4.3(eslint@8.57.0)
       eslint-plugin-react:
         specifier: ^7.34.1
         version: 7.34.1(eslint@8.57.0)
@@ -12002,8 +12002,8 @@ packages:
       semver: 6.3.1
     dev: true
 
-  /eslint-plugin-mocha@10.4.2(eslint@8.57.0):
-    resolution: {integrity: sha512-cur4dVYnSEWTBwdqIBQFxa/9siAhesu0TX+lbJ4ClE9j0eNMNe6BSx3vkFFNz6tGoveyMyELFXa30f3fvuAVDg==}
+  /eslint-plugin-mocha@10.4.3(eslint@8.57.0):
+    resolution: {integrity: sha512-emc4TVjq5Ht0/upR+psftuz6IBG5q279p+1dSRDeHf+NS9aaerBi3lXKo1SEzwC29hFIW21gO89CEWSvRsi8IQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       eslint: '>=7.0.0'
