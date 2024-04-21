@@ -98,7 +98,10 @@ describe('<Typography />', () => {
     });
   });
 
-  it('combines system properties with the sx prop', () => {
+  it('combines system properties with the sx prop', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
     const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
 
     expect(container.firstChild).toHaveComputedStyle({

@@ -53,6 +53,7 @@ export function withPigment(nextConfig: NextConfig, pigmentConfig?: PigmentOptio
           isServer,
           outputCss: dev || hasAppDir || !isServer,
           placeholderCssFile: extractionFile,
+          projectPath: dir,
         },
         async asyncResolve(what: string, importer: string, stack: string[]) {
           // Using the same stub file as "next/font". Should be updated in future to
@@ -71,6 +72,9 @@ export function withPigment(nextConfig: NextConfig, pigmentConfig?: PigmentOptio
           }
           if (what.startsWith('next/font')) {
             return require.resolve('../next-font');
+          }
+          if (what.startsWith('@emotion/styled') || what.startsWith('styled-components')) {
+            return require.resolve('../third-party-styled');
           }
           if (asyncResolve) {
             return asyncResolve(what, importer, stack);

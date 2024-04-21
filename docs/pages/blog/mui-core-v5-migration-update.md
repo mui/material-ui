@@ -3,7 +3,7 @@ title: Why you should migrate to Material UI v5 today
 description: We have completely revamped our Migration guide to reduce friction when upgrading to v5. Get started now!
 date: 2022-06-20T00:00:00.000Z
 authors: ['samuelsycamore']
-card: true
+manualCard: true
 tags: ['Material UI']
 ---
 

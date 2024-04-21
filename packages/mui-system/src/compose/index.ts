@@ -1,2 +1,2 @@
-'use client'
-export { default } from './compose'
+'use client';
+export { default } from './compose';

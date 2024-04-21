@@ -3,7 +3,7 @@ import { Experimental_CssVarsProvider as CssVarsProvider, alpha } from '@mui/mat
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button, { buttonClasses } from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -29,8 +29,8 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import ROUTES from 'docs/src/route';
 
@@ -118,7 +118,7 @@ export default function MaterialComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
             overline="Component library"
             title={
@@ -137,7 +137,7 @@ export default function MaterialComponents() {
             <More href={ROUTES.components} />
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
               <CssVarsProvider theme={customized ? customTheme : undefined}>

@@ -7,7 +7,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import Box from '@mui/material/Box';
 import MailIcon from '@mui/icons-material/Mail';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 export default function BadgeAlignment() {
   const [horizontal, setHorizontal] = React.useState('right');
