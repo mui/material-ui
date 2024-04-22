@@ -8,10 +8,12 @@ import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
+import StylingInfo from 'docs/src/components/action/StylingInfo';
 import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
 import EditProgress from 'docs/src/components/x-grid/EditProgress';
 import Status from 'docs/src/components/x-grid/Status';
 import EditStatus from 'docs/src/components/x-grid/EditStatus';
+import ROUTES from 'docs/src/route';
 
 const columns: Array<GridColDef> = [
   {
@@ -1713,28 +1715,42 @@ export default function DataTable() {
         </Paper>
       }
       code={
-        <Box
-          sx={{
-            overflow: 'auto',
-            flexGrow: 1,
-            '&::-webkit-scrollbar': {
-              display: 'none',
-            },
-            '& pre': {
-              bgcolor: 'transparent !important',
+        <React.Fragment>
+          <Box
+            sx={{
+              maxHeight: 350,
+              position: 'relative',
+              overflow: 'clip',
+              overflowY: 'scroll',
+              flexGrow: 1,
+              pb: 16,
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
-            },
-          }}
-        >
-          <HighlightedCode
-            copyButtonHidden
-            component={MarkdownElement}
-            code={code}
-            language="jsx"
+              '& pre': {
+                bgcolor: 'transparent !important',
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                },
+              },
+            }}
+          >
+            <HighlightedCode
+              copyButtonHidden
+              component={MarkdownElement}
+              code={code}
+              language="jsx"
+            />
+          </Box>
+          <StylingInfo
+            title="Own the styling!"
+            description="You can also start by using Googles Material Design."
+            primaryBtnLabel="Start with Material UI"
+            primaryBtnHref={ROUTES.productAdvanced}
+            secondaryBtnLabel="Learn more about the Core libraries"
+            secondaryBtnHref={ROUTES.productAdvanced}
           />
-        </Box>
+        </React.Fragment>
       }
     />
   );

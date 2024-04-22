@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import StylingInfo from 'docs/src/components/action/StylingInfo';
+import ROUTES from 'docs/src/route';
 
 const code = `import { PrismaClient, Prisma } from '@prisma/client';
 
@@ -28,23 +31,20 @@ export async function deleteUser(id: number) {
 export default function DataTable() {
   return (
     <ShowcaseContainer
-      sx={{ mt: { md: 2 } }}
-      previewSx={{
-        py: 2,
-      }}
       preview={
         <Paper
           variant="outlined"
           sx={(theme) => ({
-            overflow: 'hidden',
             width: '100%',
-            boxShadow: '0px 4px 16px rgba(61, 71, 82, 0.15)',
+            overflow: 'clip',
+            boxShadow: `0 4px 12px ${alpha(theme.palette.primaryDark[300], 0.3)}`,
             bgcolor: '#fff',
             border: '1px solid',
             borderColor: 'grey.200',
+            borderRadius: '8px',
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.800',
-              boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.4)',
+              boxShadow: `0 4px 12px ${alpha(theme.palette.common.black, 0.3)}`,
             }),
           })}
         >
@@ -60,29 +60,42 @@ export default function DataTable() {
         </Paper>
       }
       code={
-        <Box
-          sx={{
-            p: 2,
-            overflow: 'auto',
-            flexGrow: 1,
-            '&::-webkit-scrollbar': {
-              display: 'none',
-            },
-            '& pre': {
-              bgcolor: 'transparent !important',
+        <React.Fragment>
+          <Box
+            sx={{
+              maxHeight: 320,
+              position: 'relative',
+              overflow: 'clip',
+              overflowY: 'scroll',
+              flexGrow: 1,
+              pb: 16,
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
-            },
-          }}
-        >
-          <HighlightedCode
-            copyButtonHidden
-            component={MarkdownElement}
-            code={code}
-            language="jsx"
+              '& pre': {
+                bgcolor: 'transparent !important',
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                },
+              },
+            }}
+          >
+            <HighlightedCode
+              copyButtonHidden
+              component={MarkdownElement}
+              code={code}
+              language="jsx"
+            />
+          </Box>
+          <StylingInfo
+            title="Own the styling!"
+            description="You can also start by using Googles Material Design."
+            primaryBtnLabel="Start with Material UI"
+            primaryBtnHref={ROUTES.productAdvanced}
+            secondaryBtnLabel="Learn more about the Core libraries"
+            secondaryBtnHref={ROUTES.productAdvanced}
           />
-        </Box>
+        </React.Fragment>
       }
     />
   );
