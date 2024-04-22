@@ -85,7 +85,48 @@ export default function ProductsSwitcher(props: {
     />,
     <ProductItem
       label="by going to the Toolpad page"
-      icon={<IconImage name="product-toolpad" />}
+      icon={
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 9C4 6.23858 6.23858 4 9 4H28V6C28 8.20914 26.2091 10 24 10H4V9Z"
+            fill="url(#paint0_linear_691_279)"
+          />
+          <path
+            d="M13 12H19V23C19 25.7614 16.7614 28 14 28H13V12Z"
+            fill="url(#paint1_linear_691_279)"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_691_279"
+              x1="28"
+              y1="10"
+              x2="25.1765"
+              y2="-1.29412"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0.0833333" stop-color="#007FFF" />
+              <stop offset="0.953125" stop-color="#3399FF" />
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear_691_279"
+              x1="19"
+              y1="28"
+              x2="8.47945"
+              y2="24.0548"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0.0833333" stop-color="#007FFF" />
+              <stop offset="0.953125" stop-color="#3399FF" />
+            </linearGradient>
+          </defs>
+        </svg>
+      }
       name="Toolpad"
       chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
       description="A low-code tool for building internal applications."
