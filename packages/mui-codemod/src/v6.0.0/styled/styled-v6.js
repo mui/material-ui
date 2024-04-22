@@ -384,7 +384,7 @@ export default function styledV6(file, api, options) {
         if (data.node.type === 'SpreadElement') {
           if (data.node.argument.type === 'LogicalExpression') {
             const paramName = getObjectKey(data.node.argument.left)?.name;
-            if (paramName && !parameters.has(paramName)) {
+            if (paramName && (paramName === 'theme' || !parameters.has(paramName))) {
               return;
             }
 

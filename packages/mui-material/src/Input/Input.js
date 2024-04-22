@@ -371,6 +371,8 @@ Input.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
-Input.muiName = 'Input';
+if (Input) {
+  Input.muiName = 'Input';
+}
 
 export default Input;
