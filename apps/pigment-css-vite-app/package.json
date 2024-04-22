@@ -9,7 +9,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@pigment-css/react": "https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react",
+    "@pigment-css/react": "^0.0.9",
     "@mui/utils": "workspace:^",
     "@mui/base": "workspace:^",
     "@mui/lab": "workspace:^",
@@ -27,7 +27,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.24.1",
-    "@pigment-css/vite-plugin": "https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/vite-plugin",
+    "@pigment-css/vite-plugin": "^0.0.9",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
