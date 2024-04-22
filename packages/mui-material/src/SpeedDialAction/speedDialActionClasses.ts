@@ -16,10 +16,7 @@ export function getSpeedDialActionUtilityClass(slot: string): string {
 
 const speedDialActionClasses: SpeedDialActionClasses = generateUtilityClasses(
   'MuiSpeedDialAction',
-  [
-    'fab',
-    'fabClosed',
-  ],
+  ['fab', 'fabClosed'],
 );
 
 export default speedDialActionClasses;
