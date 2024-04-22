@@ -182,17 +182,6 @@ const openRolesData = [
       },
     ],
   },
-  {
-    title: 'Support',
-    roles: [
-      {
-        title: 'Customer Support Agent',
-        description:
-          'You will help MUI provide timely and efficient support to our customers and continue to streamline our customer operations across the board.',
-        url: '/careers/support-agent/',
-      },
-    ],
-  },
 ];
 
 const nextRolesData = [
@@ -208,7 +197,7 @@ const nextRolesData = [
       {
         title: 'Full-stack Engineer — Toolpad',
         description:
-          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
+          'You will join the Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
       },
       {

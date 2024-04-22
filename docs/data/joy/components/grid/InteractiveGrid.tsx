@@ -7,7 +7,7 @@ import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
 import { GridDirection } from '@mui/system';
 import { BrandingProvider } from '@mui/docs/branding';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 type GridItemsAlignment =
   | 'flex-start'

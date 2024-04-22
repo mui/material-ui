@@ -38,7 +38,7 @@ const ListSubheaderRoot = styled('li', {
       !ownerState.disableSticky && styles.sticky,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   boxSizing: 'border-box',
   lineHeight: '48px',
   listStyle: 'none',
@@ -46,25 +46,46 @@ const ListSubheaderRoot = styled('li', {
   fontFamily: theme.typography.fontFamily,
   fontWeight: theme.typography.fontWeightMedium,
   fontSize: theme.typography.pxToRem(14),
-  ...(ownerState.color === 'primary' && {
-    color: (theme.vars || theme).palette.primary.main,
-  }),
-  ...(ownerState.color === 'inherit' && {
-    color: 'inherit',
-  }),
-  ...(!ownerState.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
-  }),
-  ...(ownerState.inset && {
-    paddingLeft: 72,
-  }),
-  ...(!ownerState.disableSticky && {
-    position: 'sticky',
-    top: 0,
-    zIndex: 1,
-    backgroundColor: (theme.vars || theme).palette.background.paper,
-  }),
+  variants: [
+    {
+      props: {
+        color: 'primary',
+      },
+      style: {
+        color: (theme.vars || theme).palette.primary.main,
+      },
+    },
+    {
+      props: {
+        color: 'inherit',
+      },
+      style: {
+        color: 'inherit',
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState.disableGutters,
+      style: {
+        paddingLeft: 16,
+        paddingRight: 16,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.inset,
+      style: {
+        paddingLeft: 72,
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState.disableSticky,
+      style: {
+        position: 'sticky',
+        top: 0,
+        zIndex: 1,
+        backgroundColor: (theme.vars || theme).palette.background.paper,
+      },
+    },
+  ],
 }));
 
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {

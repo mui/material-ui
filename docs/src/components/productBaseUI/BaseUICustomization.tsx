@@ -14,8 +14,8 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import Frame from 'docs/src/components/action/Frame';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 
 const code = `
 import clsx from 'clsx';
