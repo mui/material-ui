@@ -3,6 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@pigment-css/react": "^0.0.8"
+    "@pigment-css/react": "https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react"
   }
 }
