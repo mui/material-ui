@@ -123,8 +123,8 @@ importers:
         specifier: ^20.1.0
         version: 20.1.0
       '@pigment-css/react':
-        specifier: https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react
-        version: '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
+        specifier: https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react
+        version: '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
       '@playwright/test':
         specifier: 1.43.1
         version: 1.43.1
@@ -354,8 +354,8 @@ importers:
   apps/local-ui-lib:
     dependencies:
       '@pigment-css/react':
-        specifier: https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react
-        version: '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
+        specifier: https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react
+        version: '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
 
   apps/pigment-css-next-app:
     dependencies:
@@ -384,8 +384,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/mui-utils/build
       '@pigment-css/react':
-        specifier: https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react
-        version: '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
+        specifier: https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react
+        version: '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
       local-ui-lib:
         specifier: workspace:^
         version: link:../local-ui-lib
@@ -400,8 +400,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@pigment-css/nextjs-plugin':
-        specifier: https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/nextjs-plugin
-        version: '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/nextjs-plugin(@types/react@18.2.55)(next@14.2.2)(react@18.2.0)'
+        specifier: https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/nextjs-plugin
+        version: '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/nextjs-plugin(@types/react@18.2.55)(next@14.2.2)(react@18.2.0)'
       '@types/node':
         specifier: ^18.19.31
         version: 18.19.31
@@ -439,8 +439,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/mui-utils/build
       '@pigment-css/react':
-        specifier: https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react
-        version: '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
+        specifier: https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react
+        version: '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -470,8 +470,8 @@ importers:
         specifier: ^7.24.1
         version: 7.24.1(@babel/core@7.24.4)
       '@pigment-css/vite-plugin':
-        specifier: https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/vite-plugin
-        version: '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/vite-plugin(@types/react@18.2.55)(react@18.2.0)(vite@5.2.8)'
+        specifier: https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/vite-plugin
+        version: '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/vite-plugin(@types/react@18.2.55)(react@18.2.0)(vite@5.2.8)'
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -21781,15 +21781,15 @@ packages:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: false
 
-  '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/nextjs-plugin(@types/react@18.2.55)(next@14.2.2)(react@18.2.0)':
-    resolution: {registry: https://registry.npmjs.org/, tarball: https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/nextjs-plugin}
-    id: '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/nextjs-plugin'
+  '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/nextjs-plugin(@types/react@18.2.55)(next@14.2.2)(react@18.2.0)':
+    resolution: {tarball: https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/nextjs-plugin}
+    id: '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/nextjs-plugin'
     name: '@pigment-css/nextjs-plugin'
-    version: 0.0.9
+    version: 0.0.8
     peerDependencies:
       next: ^12.0.0 || ^13.0.0 || ^14.0.0
     dependencies:
-      '@pigment-css/unplugin': '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/unplugin(@types/react@18.2.55)(react@18.2.0)'
+      '@pigment-css/unplugin': '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/unplugin(@types/react@18.2.55)(react@18.2.0)'
       next: 14.2.2(@babel/core@7.24.4)(@playwright/test@1.43.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
@@ -21797,11 +21797,11 @@ packages:
       - supports-color
     dev: true
 
-  '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)':
-    resolution: {tarball: https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react}
-    id: '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react'
+  '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)':
+    resolution: {tarball: https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react}
+    id: '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react'
     name: '@pigment-css/react'
-    version: 0.0.9
+    version: 0.0.8
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
     dependencies:
@@ -21831,14 +21831,14 @@ packages:
       - '@types/react'
       - supports-color
 
-  '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/unplugin(@types/react@18.2.55)(react@18.2.0)':
-    resolution: {tarball: https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/unplugin}
-    id: '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/unplugin'
+  '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/unplugin(@types/react@18.2.55)(react@18.2.0)':
+    resolution: {tarball: https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/unplugin}
+    id: '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/unplugin'
     name: '@pigment-css/unplugin'
-    version: 0.0.9
+    version: 0.0.8
     dependencies:
       '@babel/core': 7.24.4
-      '@pigment-css/react': '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
+      '@pigment-css/react': '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
       '@wyw-in-js/shared': 0.5.1
       '@wyw-in-js/transform': 0.5.1
       babel-plugin-define-var: 0.1.0
@@ -21849,17 +21849,17 @@ packages:
       - supports-color
     dev: true
 
-  '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/vite-plugin(@types/react@18.2.55)(react@18.2.0)(vite@5.2.8)':
-    resolution: {registry: https://registry.npmjs.org/, tarball: https://pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/vite-plugin}
-    id: '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/vite-plugin'
+  '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/vite-plugin(@types/react@18.2.55)(react@18.2.0)(vite@5.2.8)':
+    resolution: {tarball: https://pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/vite-plugin}
+    id: '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/vite-plugin'
     name: '@pigment-css/vite-plugin'
-    version: 0.0.9
+    version: 0.0.8
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0
     dependencies:
       '@babel/core': 7.24.4
       '@babel/preset-typescript': 7.24.1(@babel/core@7.24.4)
-      '@pigment-css/react': '@pkg.csb.dev/mui/pigment-css/commit/1cae626b/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
+      '@pigment-css/react': '@pkg.csb.dev/mui/pigment-css/commit/04515790/@pigment-css/react(@types/react@18.2.55)(react@18.2.0)'
       '@wyw-in-js/shared': 0.5.1
       '@wyw-in-js/transform': 0.5.1
       babel-plugin-define-var: 0.1.0
