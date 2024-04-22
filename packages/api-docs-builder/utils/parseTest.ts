@@ -4,7 +4,7 @@ import { readFile } from 'fs-extra';
 import glob from 'fast-glob';
 
 const workspaceRoot = path.join(__dirname, '../../../');
-const babelConfigPath = path.join(workspaceRoot, 'babel.config.js');
+const defaultBabelConfigPath = path.join(workspaceRoot, 'babel.config.js');
 
 function getTestFilesNames(filepath: string) {
   return glob.sync(
@@ -128,7 +128,10 @@ export interface ParseResult {
   themeDefaultProps: boolean | undefined | null;
 }
 
-export default async function parseTest(componentFilename: string): Promise<ParseResult> {
+export default async function parseTest(
+  componentFilename: string,
+  babelConfigPath: string = defaultBabelConfigPath,
+): Promise<ParseResult> {
   const testFilenames = getTestFilesNames(componentFilename);
 
   if (testFilenames.length === 0) {
