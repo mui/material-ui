@@ -8,22 +8,15 @@ import { emphasize } from '@mui/system/colorManipulator';
 import { styled, createUseThemeProps } from '../zero-styled';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
-import capitalize from '../utils/capitalize';
-import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
+import { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
 
 const useThemeProps = createUseThemeProps('MuiSpeedDialAction');
 
 const useUtilityClasses = (ownerState) => {
-  const { open, tooltipPlacement, classes } = ownerState;
+  const { open, classes } = ownerState;
 
   const slots = {
     fab: ['fab', !open && 'fabClosed'],
-    staticTooltip: [
-      'staticTooltip',
-      `tooltipPlacement${capitalize(tooltipPlacement)}`,
-      !open && 'staticTooltipClosed',
-    ],
-    staticTooltipLabel: ['staticTooltipLabel'],
   };
 
   return composeClasses(slots, getSpeedDialActionUtilityClass, classes);
@@ -47,9 +40,6 @@ const SpeedDialActionFab = styled(Fab, {
       ? theme.vars.palette.SpeedDialAction.fabHoverBg
       : emphasize(theme.palette.background.paper, 0.15),
   },
-  transition: `${theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shorter,
-  })}, opacity 0.8s`,
   opacity: 1,
   variants: [
     {
@@ -184,30 +174,6 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     </SpeedDialActionFab>
   );
 
-  if (tooltipOpenProp) {
-    return (
-      <SpeedDialActionStaticTooltip
-        id={id}
-        ref={ref}
-        className={classes.staticTooltip}
-        ownerState={ownerState}
-        {...other}
-      >
-        <SpeedDialActionStaticTooltipLabel
-          style={transitionStyle}
-          id={`${id}-label`}
-          className={classes.staticTooltipLabel}
-          ownerState={ownerState}
-        >
-          {tooltipTitle}
-        </SpeedDialActionStaticTooltipLabel>
-        {React.cloneElement(fab, {
-          'aria-labelledby': `${id}-label`,
-        })}
-      </SpeedDialActionStaticTooltip>
-    );
-  }
-
   if (!open && tooltipOpen) {
     setTooltipOpen(false);
   }
@@ -220,7 +186,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       placement={tooltipPlacement}
       onClose={handleTooltipClose}
       onOpen={handleTooltipOpen}
-      open={open && tooltipOpen}
+      open={open && (tooltipOpen || tooltipOpenProp)}
       classes={TooltipClasses}
       {...other}
     >
