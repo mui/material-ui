@@ -9,9 +9,11 @@ import HTMLElementType from '@mui/utils/HTMLElementType';
 import { useRtl } from '@mui/system/RtlProvider';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getMenuUtilityClass } from './menuClasses';
+
+const useThemeProps = createUseThemeProps('MuiMenu');
 
 const RTL_ORIGIN = {
   vertical: 'top',
