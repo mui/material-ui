@@ -5,13 +5,14 @@ import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useSnackbar } from '@mui/base/useSnackbar';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 import { getSnackbarUtilityClass } from './snackbarClasses';
+
+const useThemeProps = createUseThemeProps('MuiSnackbar');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, anchorOrigin } = ownerState;
@@ -41,38 +42,87 @@ const SnackbarRoot = styled('div', {
       ],
     ];
   },
-})(({ theme, ownerState }) => {
-  const center = {
-    left: '50%',
-    right: 'auto',
-    transform: 'translateX(-50%)',
-  };
-
-  return {
-    zIndex: (theme.vars || theme).zIndex.snackbar,
-    position: 'fixed',
-    display: 'flex',
-    left: 8,
-    right: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
-    ...(ownerState.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start' }),
-    ...(ownerState.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end' }),
-    [theme.breakpoints.up('sm')]: {
-      ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
-      ...(ownerState.anchorOrigin.horizontal === 'center' && center),
-      ...(ownerState.anchorOrigin.horizontal === 'left' && {
-        left: 24,
-        right: 'auto',
-      }),
-      ...(ownerState.anchorOrigin.horizontal === 'right' && {
-        right: 24,
-        left: 'auto',
-      }),
+})(({ theme }) => ({
+  zIndex: (theme.vars || theme).zIndex.snackbar,
+  position: 'fixed',
+  display: 'flex',
+  left: 8,
+  right: 8,
+  justifyContent: 'center',
+  alignItems: 'center',
+  variants: [
+    {
+      props: {
+        vertical: 'top',
+      },
+      style: { top: 8 },
     },
-  };
-});
+    {
+      props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
+      style: { bottom: 8 },
+    },
+    {
+      props: {
+        horizontal: 'left',
+      },
+      style: { justifyContent: 'flex-start' },
+    },
+    {
+      props: {
+        horizontal: 'right',
+      },
+      style: { justifyContent: 'flex-end' },
+    },
+    {
+      props: {
+        vertical: 'top',
+      },
+      style: {
+        [theme.breakpoints.up('sm')]: { top: 24 },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
+      style: {
+        [theme.breakpoints.up('sm')]: { bottom: 24 },
+      },
+    },
+    {
+      props: {
+        horizontal: 'center',
+      },
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          left: '50%',
+          right: 'auto',
+          transform: 'translateX(-50%)',
+        },
+      },
+    },
+    {
+      props: {
+        horizontal: 'left',
+      },
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          left: 24,
+          right: 'auto',
+        },
+      },
+    },
+    {
+      props: {
+        horizontal: 'right',
+      },
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          right: 24,
+          left: 'auto',
+        },
+      },
+    },
+  ],
+}));
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
