@@ -101,7 +101,7 @@ const AutocompleteRoot = styled('div', {
     maxWidth: 'calc(100% - 6px)',
   },
   [`& .${autocompleteClasses.inputRoot}`]: {
-    flexWrap: 'wrap',
+    flexWrap: 'nowrap',
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 26 + 4,
     },
