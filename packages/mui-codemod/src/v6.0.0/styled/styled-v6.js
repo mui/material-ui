@@ -84,10 +84,10 @@ export default function styledV6(file, api, options) {
 
   /**
    *
-   * @param {import('ast-types').namedTypes.Identifier | import('ast-types').namedTypes.BinaryExpression | import('ast-types').namedTypes.UnaryExpression} node
+   * @param {import('ast-types').namedTypes.Identifier | import('ast-types').namedTypes.BinaryExpression | import('ast-types').namedTypes.UnaryExpression | import('ast-types').namedTypes.MemberExpression} node
    */
   function inverseBinaryExpression(node) {
-    if (node.type === 'Identifier') {
+    if (node.type === 'Identifier' || node.type === 'MemberExpression') {
       return j.unaryExpression('!', node);
     }
     if (node.operator === '===') {
@@ -439,7 +439,8 @@ export default function styledV6(file, api, options) {
           if (
             data.node.test.type === 'BinaryExpression' ||
             data.node.test.type === 'UnaryExpression' ||
-            data.node.test.type === 'Identifier'
+            data.node.test.type === 'Identifier' ||
+            data.node.test.type === 'MemberExpression'
           ) {
             let leftName = getObjectKey(data.node.test)?.name;
             if (data.node.test.left) {
