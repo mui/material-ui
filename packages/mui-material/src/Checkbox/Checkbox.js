@@ -10,7 +10,7 @@ import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import capitalize from '../utils/capitalize';
-import { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { createUseThemeProps, styled } from '../zero-styled';
 
