@@ -142,15 +142,19 @@ export default async function parseTest(
 
   let descriptor: ReturnType<typeof findConformanceDescriptor> = null;
 
-  // eslint-disable-next-line no-restricted-syntax
-  for await (const testFilename of testFilenames) {
-    if (descriptor === null) {
-      const babelParseResult = await parseWithConfig(testFilename, babelConfigPath);
-      if (babelParseResult === null) {
-        throw new Error(`Could not parse ${testFilename}.`);
+  try {
+    // eslint-disable-next-line no-restricted-syntax
+    for await (const testFilename of testFilenames) {
+      if (descriptor === null) {
+        const babelParseResult = await parseWithConfig(testFilename, babelConfigPath);
+        if (babelParseResult === null) {
+          throw new Error(`Could not parse ${testFilename}.`);
+        }
+        descriptor = findConformanceDescriptor(babelParseResult);
       }
-      descriptor = findConformanceDescriptor(babelParseResult);
     }
+  } catch (error) {
+    console.error(error);
   }
 
   const result: ParseResult = {
