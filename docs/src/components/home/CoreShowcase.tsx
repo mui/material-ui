@@ -5,7 +5,7 @@ import Button, { buttonClasses } from '@mui/material/Button';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
-import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
+import ShowcaseContainer, { CodeContainer } from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import FlashCode from 'docs/src/components/animation/FlashCode';
@@ -164,24 +164,7 @@ export default function CoreShowcase() {
               Custom Theme
             </Button>
           </Box>
-          <Box
-            sx={{
-              position: 'relative',
-              overflow: 'clip',
-              flexGrow: 1,
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-              '& pre': {
-                bgcolor: 'transparent !important',
-                position: 'relative',
-                zIndex: 1,
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
-              },
-            }}
-          >
+          <CodeContainer>
             <Box sx={{ position: 'relative' }}>
               {startLine !== undefined && <FlashCode startLine={startLine} endLine={endLine} />}
               <HighlightedCode
@@ -192,7 +175,7 @@ export default function CoreShowcase() {
               />
               <StylingInfo appeared={customized} sx={{ mx: -2 }} />
             </Box>
-          </Box>
+          </CodeContainer>
         </div>
       }
     />

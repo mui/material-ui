@@ -4,6 +4,36 @@ import Fade from '@mui/material/Fade';
 import NoSsr from '@mui/material/NoSsr';
 import Frame from 'docs/src/components/action/Frame';
 
+export function CodeContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <Box
+      sx={{
+        position: 'relative',
+        overflow: 'clip',
+        flexGrow: 1,
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
+        '& pre': {
+          p: 0,
+          m: 0,
+          maxHeight: '100%',
+          overflow: 'auto',
+          bgcolor: 'transparent !important',
+          border: 0,
+          fontSize: '0.75rem',
+          zIndex: 1,
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+        },
+      }}
+    >
+      {children}
+    </Box>
+  );
+}
+
 export default function ShowcaseContainer({
   preview,
   code,

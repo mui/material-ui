@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
+import ShowcaseContainer, { CodeContainer } from 'docs/src/components/home/ShowcaseContainer';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
@@ -1713,28 +1713,14 @@ export default function DataTable() {
         </Paper>
       }
       code={
-        <Box
-          sx={{
-            overflow: 'auto',
-            flexGrow: 1,
-            '&::-webkit-scrollbar': {
-              display: 'none',
-            },
-            '& pre': {
-              bgcolor: 'transparent !important',
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-            },
-          }}
-        >
+        <CodeContainer>
           <HighlightedCode
             copyButtonHidden
             component={MarkdownElement}
             code={code}
             language="jsx"
           />
-        </Box>
+        </CodeContainer>
       }
     />
   );
