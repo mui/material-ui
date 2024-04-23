@@ -96,7 +96,6 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     if (theme.shadows[elevation] === undefined) {
       console.error(
         [
