@@ -42,10 +42,8 @@ const IconRoot = styled('span', {
   // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
   // To remove at some point.
   overflow: 'hidden',
-  // allow overflow hidden to take action
-  display: 'inline-block',
-  // support non-square icon
-  textAlign: 'center',
+  display: 'inline-block', // allow overflow hidden to take action
+  textAlign: 'center', // support non-square icon
   flexShrink: 0,
   variants: [
     {
@@ -82,58 +80,10 @@ const IconRoot = styled('span', {
     },
     {
       props: {
-        color: 'primary',
-      },
-      style: {
-        color: (theme.vars || theme).palette.primary.main,
-      },
-    },
-    {
-      props: {
-        color: 'secondary',
-      },
-      style: {
-        color: (theme.vars || theme).palette.secondary.main,
-      },
-    },
-    {
-      props: {
-        color: 'info',
-      },
-      style: {
-        color: (theme.vars || theme).palette.info.main,
-      },
-    },
-    {
-      props: {
-        color: 'success',
-      },
-      style: {
-        color: (theme.vars || theme).palette.success.main,
-      },
-    },
-    {
-      props: {
-        color: 'warning',
-      },
-      style: {
-        color: (theme.vars || theme).palette.warning.main,
-      },
-    },
-    {
-      props: {
         color: 'action',
       },
       style: {
         color: (theme.vars || theme).palette.action.active,
-      },
-    },
-    {
-      props: {
-        color: 'error',
-      },
-      style: {
-        color: (theme.vars || theme).palette.error.main,
       },
     },
     {
@@ -152,6 +102,14 @@ const IconRoot = styled('span', {
         color: undefined,
       },
     },
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          color: (theme.vars || theme).palette[color].main,
+        },
+      })),
   ],
 }));
 
