@@ -94,13 +94,6 @@ The current step and total number of steps are displayed as text.
 
 {{"demo": "TextMobileStepper.js", "bg": true}}
 
-### Text with carousel effect
-
-This demo uses
-[react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to create a carousel.
-
-{{"demo": "SwipeableTextMobileStepper.js", "bg": true}}
-
 ### Dots
 
 Use dots when the number of steps is small.

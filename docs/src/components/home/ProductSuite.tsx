@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
@@ -49,7 +49,7 @@ export default function ProductSuite() {
   return (
     <Section bg="gradient" ref={ref}>
       <Grid container spacing={2}>
-        <Grid item md={6}>
+        <Grid md={6}>
           <SectionHeadline
             overline="Products"
             title={
@@ -66,7 +66,6 @@ export default function ProductSuite() {
           />
         </Grid>
         <Grid
-          item
           xs={12}
           md={6}
           sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}

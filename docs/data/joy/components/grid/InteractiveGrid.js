@@ -6,8 +6,8 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
 
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 export default function InteractiveGrid() {
   const [direction, setDirection] = React.useState('row');

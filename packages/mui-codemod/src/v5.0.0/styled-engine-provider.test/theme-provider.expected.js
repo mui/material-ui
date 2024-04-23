@@ -6,11 +6,11 @@ import Page from './pages';
 const App = () => {
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={createTheme()}>
+      (<ThemeProvider theme={createTheme()}>
         <OtherProvider>
           <Page />
         </OtherProvider>
-      </ThemeProvider>
+      </ThemeProvider>)
     </StyledEngineProvider>
   );
 };

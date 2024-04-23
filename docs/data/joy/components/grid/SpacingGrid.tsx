@@ -5,8 +5,8 @@ import FormControl from '@mui/joy/FormControl';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
 
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);

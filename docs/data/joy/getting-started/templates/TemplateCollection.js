@@ -88,7 +88,7 @@ const templates = [
     author: authors.MUI,
     design: {
       name: 'Frames X',
-      link: 'https://framesxdesign.com/',
+      link: 'https://framesxdesign.com/product',
     },
   },
 ];

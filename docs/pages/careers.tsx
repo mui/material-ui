@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -182,17 +182,6 @@ const openRolesData = [
       },
     ],
   },
-  {
-    title: 'Support',
-    roles: [
-      {
-        title: 'Customer Support Agent',
-        description:
-          'You will help MUI provide timely and efficient support to our customers and continue to streamline our customer operations across the board.',
-        url: '/careers/support-agent/',
-      },
-    ],
-  },
 ];
 
 const nextRolesData = [
@@ -208,7 +197,7 @@ const nextRolesData = [
       {
         title: 'Full-stack Engineer — Toolpad',
         description:
-          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
+          'You will join the Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
       },
       {
@@ -339,12 +328,13 @@ function RemoteAwardCard() {
     >
       <Box
         sx={{
-          aspectRatio: '1/1',
+          mb: 2,
+          maxWidth: { xs: 315, sm: 325 },
+          maxHeight: 315,
           border: '1px solid',
           borderColor: 'divider',
           borderRadius: '6px',
           overflow: 'clip',
-          mb: 2,
         }}
       >
         <Box
@@ -405,9 +395,9 @@ export default function Careers() {
         <OurValues />
         <Divider />
         {/* Perks & benefits */}
-        <Section bg="gradient">
+        <Section bg="gradient" cozy>
           <Grid container spacing={5} alignItems="center">
-            <Grid item md={6}>
+            <Grid md={6}>
               <SectionHeadline
                 overline="Working at MUI"
                 title={
@@ -447,40 +437,54 @@ export default function Careers() {
                 ))}
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={8}>
-                  <RemoteAwardCard />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                  <Stack spacing={2} useFlexGap sx={{ height: '100%', width: '100%' }}>
-                    {companyInfo.map(({ title, description, routeUrl }) => (
-                      <Paper
-                        component={Link}
-                        href={routeUrl}
-                        noLinkStyle
-                        variant="outlined"
-                        sx={{ p: 2, width: '100%', flexGrow: 1 }}
-                        key={title}
-                      >
-                        <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                          {title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                          {description}
-                        </Typography>
-                        <Typography variant="body2" fontWeight="bold" color="primary">
-                          Learn more{' '}
-                          <KeyboardArrowRightRounded
-                            fontSize="small"
-                            sx={{ verticalAlign: 'middle' }}
-                          />
-                        </Typography>
-                      </Paper>
-                    ))}
-                  </Stack>
-                </Grid>
-              </Grid>
+            <Grid
+              xs={12}
+              md={6}
+              sx={{
+                p: { xs: 2, sm: 0 },
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' },
+                gap: 2,
+              }}
+            >
+              <RemoteAwardCard />
+              <Stack spacing={2} useFlexGap>
+                {companyInfo.map(({ title, description, routeUrl }) => (
+                  <Paper
+                    key={title}
+                    component={Link}
+                    href={routeUrl}
+                    noLinkStyle
+                    variant="outlined"
+                    sx={{
+                      p: 2,
+                      width: '100%',
+                      flexGrow: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                      {title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      {description}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      fontWeight="bold"
+                      color="primary"
+                      sx={{ mt: 'auto' }}
+                    >
+                      Learn more{' '}
+                      <KeyboardArrowRightRounded
+                        fontSize="small"
+                        sx={{ verticalAlign: 'middle' }}
+                      />
+                    </Typography>
+                  </Paper>
+                ))}
+              </Stack>
             </Grid>
           </Grid>
         </Section>
@@ -584,11 +588,11 @@ export default function Careers() {
             Frequently asked questions
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               {renderFAQItem(0, true)}
               {renderFAQItem(1)}
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               {renderFAQItem(2)}
               <Paper
                 variant="outlined"

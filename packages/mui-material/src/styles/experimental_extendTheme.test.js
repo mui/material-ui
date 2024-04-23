@@ -363,6 +363,83 @@ describe('experimental_extendTheme', () => {
     });
   });
 
+  describe('spacing', () => {
+    it('produce spacing token by default', () => {
+      const theme = extendTheme();
+      expect(theme.vars.spacing).to.equal('var(--mui-spacing, 8px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 8px))');
+    });
+
+    it('turn number to pixel', () => {
+      const theme = extendTheme({ spacing: 4 });
+      expect(theme.vars.spacing).to.equal('var(--mui-spacing, 4px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 4px))');
+    });
+
+    it('can be customized as a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.vars.spacing).to.equal('var(--mui-spacing, 0.5rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.5rem))');
+    });
+
+    it('uses the provided value if it is a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.spacing('1rem')).to.equal('1rem');
+    });
+
+    it('can be customized as an array', () => {
+      const theme = extendTheme({ spacing: [0, 1, 2, 4, 8, 16, 32] });
+      expect(theme.vars.spacing).to.deep.equal([
+        'var(--mui-spacing-0, 0px)',
+        'var(--mui-spacing-1, 1px)',
+        'var(--mui-spacing-2, 2px)',
+        'var(--mui-spacing-3, 4px)',
+        'var(--mui-spacing-4, 8px)',
+        'var(--mui-spacing-5, 16px)',
+        'var(--mui-spacing-6, 32px)',
+      ]);
+      expect(theme.spacing(2)).to.equal('var(--mui-spacing-2, 2px)');
+    });
+
+    it('can be customized as a function', () => {
+      const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
+      expect(theme.vars.spacing).to.deep.equal('var(--mui-spacing, 0.25rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.25rem))');
+    });
+  });
+
+  describe('typography', () => {
+    it('produce typography token by default', () => {
+      const theme = extendTheme();
+      expect(Object.keys(theme.vars.typography)).to.deep.equal([
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'subtitle1',
+        'subtitle2',
+        'body1',
+        'body2',
+        'button',
+        'caption',
+        'overline',
+        'inherit',
+      ]);
+    });
+  });
+
+  describe('container queries', () => {
+    it('should generate container queries', () => {
+      const theme = extendTheme();
+      expect(theme.containerQueries('sidebar').up('sm')).to.equal(
+        '@container sidebar (min-width:600px)',
+      );
+      expect(theme.containerQueries.up(300)).to.equal('@container (min-width:300px)');
+    });
+  });
+
   it('shallow merges multiple arguments', () => {
     const theme = extendTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
     expect(theme.foo).to.equal('I am foo');

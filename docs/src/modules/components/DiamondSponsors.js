@@ -17,10 +17,7 @@ const NativeLink = styled('a')(({ theme }) => ({
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.divider,
   transition: theme.transitions.create(['color', 'border-color']),
-  boxShadow: `inset 0 1px 1px ${(theme.vars || theme).palette.grey[50]}, 0 1px 2px ${alpha(
-    theme.palette.grey[100],
-    0.6,
-  )}`,
+  boxShadow: `${alpha(theme.palette.grey[100], 0.3)} 0 -2px 0 inset`,
   '&:hover': {
     backgroundColor: (theme.vars || theme).palette.grey[50],
   },
@@ -32,12 +29,10 @@ const NativeLink = styled('a')(({ theme }) => ({
     display: 'inline-block',
   },
   ...theme.applyDarkStyles({
-    boxShadow: `inset 0 1px 1px ${(theme.vars || theme).palette.primaryDark[900]}, 0 1px 0.5px ${
-      (theme.vars || theme).palette.common.black
-    }`,
+    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset`,
     '&:hover': {
       backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-      borderColor: (theme.vars || theme).palette.primaryDark[600],
+      borderColor: (theme.vars || theme).palette.primary[900],
     },
   }),
 }));
@@ -127,24 +122,18 @@ export default function DiamondSponsors() {
           borderRadius: 1,
           border: '1px dashed',
           transition: theme.transitions.create(['color', 'border-color', 'background-color']),
-          backgroundColor: alpha(theme.palette.primary[50], 0.5),
-          borderColor: (theme.vars || theme).palette.grey[200],
-          boxShadow: `inset 0 1px 1px ${
-            (theme.vars || theme).palette.grey[50]
-          }, 0 1px 2px ${alpha(theme.palette.grey[100], 0.5)}`,
+          backgroundColor: alpha(theme.palette.grey[50], 0.5),
+          borderColor: (theme.vars || theme).palette.grey[300],
           '&:hover': {
             backgroundColor: alpha(theme.palette.primary[100], 0.5),
             borderColor: (theme.vars || theme).palette.primary[300],
           },
           ...theme.applyDarkStyles({
-            backgroundColor: alpha(theme.palette.primary[700], 0.1),
-            borderColor: alpha(theme.palette.primary[400], 0.2),
-            boxShadow: `inset 0 1px 1px ${
-              (theme.vars || theme).palette.primaryDark[800]
-            }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
+            backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+            borderColor: (theme.vars || theme).palette.primaryDark[700],
             '&:hover': {
               backgroundColor: alpha(theme.palette.primary[700], 0.2),
-              borderColor: (theme.vars || theme).palette.primary[400],
+              borderColor: (theme.vars || theme).palette.primary[800],
             },
           }),
         })}

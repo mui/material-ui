@@ -1,4 +1,4 @@
-# Contributing to Material UI, Base UI, MUI System, Joy UI
+# Contributing to Material UI, MUI System, Joy UI
 
 If you're reading this, you're awesome!
 Thank you for being a part of the community and helping us make these projects great.
@@ -25,7 +25,7 @@ Here are a few guidelines that will help you along the way.
 
 ## Code of conduct
 
-We has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as our code of conduct, and we expect project participants to adhere to it.
+We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as our code of conduct, and we expect project participants to adhere to it.
 Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_CONDUCT.md) to understand what actions will and will not be tolerated.
 
 ## A large spectrum of contributions

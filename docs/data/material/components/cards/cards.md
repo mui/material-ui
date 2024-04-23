@@ -59,10 +59,6 @@ By default, we use the combination of a `<div>` element and a _background image_
 
 {{"demo": "ImgMediaCard.js", "bg": true}}
 
-:::warning
-When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
-:::
-
 ## Primary action
 
 Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
