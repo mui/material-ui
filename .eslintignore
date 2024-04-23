@@ -19,12 +19,6 @@
 /packages/mui-icons-material/src/*.js
 /packages/mui-icons-material/templateSvgIcon.js
 /packages/mui-utils/macros/__fixtures__/
-/packages/pigment-css-react/utils/
-/packages/pigment-css-react/processors/
-/packages/pigment-css-react/exports/
-/packages/pigment-css-react/theme/
-/packages/pigment-css-react/tests/**/fixtures
-/packages/pigment-css-nextjs-plugin/loader.js
 # Ignore fixtures
 /packages-internal/scripts/typescript-to-proptypes/test/*/*
 /test/bundling/fixtures/**/*.fixture.js

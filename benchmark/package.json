@@ -36,6 +36,6 @@
     "styled-components": "^6.1.8",
     "styled-system": "^5.1.5",
     "theme-ui": "^0.16.2",
-    "webpack": "^5.90.3"
+    "webpack": "^5.91.0"
   }
 }
