@@ -111,7 +111,7 @@ importers:
         version: link:packages-internal/scripts
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:packages/test-utils
+        version: link:packages-internal/test-utils
       '@mui/joy':
         specifier: workspace:*
         version: link:packages/mui-joy/build
@@ -870,7 +870,7 @@ importers:
         version: link:../packages-internal/scripts
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../packages/test-utils
+        version: link:../packages-internal/test-utils
       '@types/autosuggest-highlight':
         specifier: ^3.2.3
         version: 3.2.3
@@ -1016,6 +1016,112 @@ importers:
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
+
+  packages-internal/test-utils:
+    dependencies:
+      '@babel/plugin-transform-modules-commonjs':
+        specifier: ^7.24.1
+        version: 7.24.1(@babel/core@7.24.4)
+      '@babel/preset-typescript':
+        specifier: ^7.24.1
+        version: 7.24.1(@babel/core@7.24.4)
+      '@babel/register':
+        specifier: ^7.23.7
+        version: 7.23.7(@babel/core@7.24.4)
+      '@babel/runtime':
+        specifier: ^7.24.4
+        version: 7.24.4
+      '@emotion/cache':
+        specifier: ^11.11.0
+        version: 11.11.0
+      '@emotion/react':
+        specifier: ^11.11.4
+        version: 11.11.4(@types/react@18.2.55)(react@18.2.0)
+      '@mnajdova/enzyme-adapter-react-18':
+        specifier: ^0.2.0
+        version: 0.2.0(enzyme@3.11.0)(react-dom@18.2.0)(react@18.2.0)
+      '@testing-library/dom':
+        specifier: ^9.3.4
+        version: 9.3.4
+      '@testing-library/react':
+        specifier: ^14.3.1
+        version: 14.3.1(react-dom@18.2.0)(react@18.2.0)
+      chai:
+        specifier: ^4.4.1
+        version: 4.4.1
+      chai-dom:
+        specifier: ^1.12.0
+        version: 1.12.0(chai@4.4.1)
+      dom-accessibility-api:
+        specifier: ^0.6.3
+        version: 0.6.3
+      enzyme:
+        specifier: ^3.11.0
+        version: 3.11.0
+      format-util:
+        specifier: ^1.0.5
+        version: 1.0.5
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.2.0
+      jsdom:
+        specifier: ^24.0.0
+        version: 24.0.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      mocha:
+        specifier: ^10.4.0
+        version: 10.4.0
+      playwright:
+        specifier: ^1.43.1
+        version: 1.43.1
+      prop-types:
+        specifier: ^15.8.1
+        version: 15.8.1
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-test-renderer:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      sinon:
+        specifier: ^15.2.0
+        version: 15.2.0
+    devDependencies:
+      '@types/chai':
+        specifier: ^4.3.14
+        version: 4.3.14
+      '@types/chai-dom':
+        specifier: ^1.11.3
+        version: 1.11.3
+      '@types/enzyme':
+        specifier: ^3.10.18
+        version: 3.10.18
+      '@types/format-util':
+        specifier: ^1.0.4
+        version: 1.0.4
+      '@types/prop-types':
+        specifier: ^15.7.12
+        version: 15.7.12
+      '@types/react':
+        specifier: 18.2.55
+        version: 18.2.55
+      '@types/react-dom':
+        specifier: 18.2.19
+        version: 18.2.19
+      '@types/react-test-renderer':
+        specifier: ^18.0.7
+        version: 18.0.7
+      '@types/sinon':
+        specifier: ^10.0.20
+        version: 10.0.20
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
 
   packages/api-docs-builder:
     dependencies:
@@ -1260,7 +1366,7 @@ importers:
         version: link:../mui-babel-macros
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@testing-library/react':
         specifier: ^14.3.1
         version: 14.3.1(react-dom@18.2.0)(react@18.2.0)
@@ -1531,7 +1637,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material/build
@@ -1605,7 +1711,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/material':
         specifier: workspace:*
         version: link:../mui-material/build
@@ -1688,7 +1794,7 @@ importers:
         version: link:../mui-babel-macros
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -1812,7 +1918,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -1853,7 +1959,7 @@ importers:
         version: 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/styled-engine':
         specifier: workspace:*
         version: link:build
@@ -1888,7 +1994,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/styled-engine-sc':
         specifier: workspace:*
         version: link:build
@@ -1968,7 +2074,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material/build
@@ -2036,7 +2142,7 @@ importers:
         version: link:../mui-babel-macros
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/system':
         specifier: workspace:*
         version: link:build
@@ -2102,7 +2208,7 @@ importers:
         version: link:../mui-babel-macros
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -2350,112 +2456,6 @@ importers:
         specifier: ^18.19.31
         version: 18.19.31
 
-  packages/test-utils:
-    dependencies:
-      '@babel/plugin-transform-modules-commonjs':
-        specifier: ^7.24.1
-        version: 7.24.1(@babel/core@7.24.4)
-      '@babel/preset-typescript':
-        specifier: ^7.24.1
-        version: 7.24.1(@babel/core@7.24.4)
-      '@babel/register':
-        specifier: ^7.23.7
-        version: 7.23.7(@babel/core@7.24.4)
-      '@babel/runtime':
-        specifier: ^7.24.4
-        version: 7.24.4
-      '@emotion/cache':
-        specifier: ^11.11.0
-        version: 11.11.0
-      '@emotion/react':
-        specifier: ^11.11.4
-        version: 11.11.4(@types/react@18.2.55)(react@18.2.0)
-      '@mnajdova/enzyme-adapter-react-18':
-        specifier: ^0.2.0
-        version: 0.2.0(enzyme@3.11.0)(react-dom@18.2.0)(react@18.2.0)
-      '@testing-library/dom':
-        specifier: ^9.3.4
-        version: 9.3.4
-      '@testing-library/react':
-        specifier: ^14.3.1
-        version: 14.3.1(react-dom@18.2.0)(react@18.2.0)
-      chai:
-        specifier: ^4.4.1
-        version: 4.4.1
-      chai-dom:
-        specifier: ^1.12.0
-        version: 1.12.0(chai@4.4.1)
-      dom-accessibility-api:
-        specifier: ^0.6.3
-        version: 0.6.3
-      enzyme:
-        specifier: ^3.11.0
-        version: 3.11.0
-      format-util:
-        specifier: ^1.0.5
-        version: 1.0.5
-      fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
-      jsdom:
-        specifier: ^24.0.0
-        version: 24.0.0
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      mocha:
-        specifier: ^10.4.0
-        version: 10.4.0
-      playwright:
-        specifier: ^1.43.1
-        version: 1.43.1
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-test-renderer:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
-    devDependencies:
-      '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
-      '@types/chai-dom':
-        specifier: ^1.11.3
-        version: 1.11.3
-      '@types/enzyme':
-        specifier: ^3.10.18
-        version: 3.10.18
-      '@types/format-util':
-        specifier: ^1.0.4
-        version: 1.0.4
-      '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
-      '@types/react':
-        specifier: 18.2.55
-        version: 18.2.55
-      '@types/react-dom':
-        specifier: 18.2.19
-        version: 18.2.19
-      '@types/react-test-renderer':
-        specifier: ^18.0.7
-        version: 18.0.7
-      '@types/sinon':
-        specifier: ^10.0.20
-        version: 10.0.20
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
-
   packages/waterfall: {}
 
   test:
@@ -2477,7 +2477,7 @@ importers:
         version: link:../packages/mui-icons-material/build
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../packages/test-utils
+        version: link:../packages-internal/test-utils
       '@mui/joy':
         specifier: workspace:*
         version: link:../packages/mui-joy/build
