@@ -8,8 +8,8 @@ _Apr 23, 2024_
 
 A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
-- 🔥 Converted 3 more Material UI components to use Pigment CSS
-- ℹ️ Pigment CSS now lives in its own [repository](https://github.com/mui/pigment-css), all future work will be happening in the new location
+- 🔥 Converted 3 more Material UI components to use Pigment CSS.
+- ℹ️ Pigment CSS now lives in [its own repository](https://github.com/mui/pigment-css)! From now on, all future development will happen there.
 
 ### `@mui/material@6.0.0-alpha.4`
 
