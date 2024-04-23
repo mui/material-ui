@@ -177,6 +177,10 @@ Paper.propTypes /* remove-proptypes */ = {
    */
   square: PropTypes.bool,
   /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

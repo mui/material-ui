@@ -242,6 +242,7 @@ Input.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the `input` will not have an underline.
+   * @default false
    */
   disableUnderline: PropTypes.bool,
   /**

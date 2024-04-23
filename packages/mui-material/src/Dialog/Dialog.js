@@ -473,4 +473,5 @@ Dialog.propTypes /* remove-proptypes */ = {
    */
   TransitionProps: PropTypes.object,
 };
+
 export default Dialog;
