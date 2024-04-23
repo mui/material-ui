@@ -266,6 +266,12 @@ export default function OrderTable() {
   const [order, setOrder] = React.useState<Order>('desc');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [open, setOpen] = React.useState(false);
+
+  const sortedRows = React.useMemo(
+    () => [...rows].sort(getComparator(order, 'id')),
+    [order],
+  );
+
   const renderFilters = () => (
     <React.Fragment>
       <FormControl size="sm">
@@ -435,7 +441,7 @@ export default function OrderTable() {
             </tr>
           </thead>
           <tbody>
-            {[...rows].sort(getComparator(order, 'id')).map((row) => (
+            {sortedRows.map((row) => (
               <tr key={row.id}>
                 <td style={{ textAlign: 'center', width: 120 }}>
                   <Checkbox

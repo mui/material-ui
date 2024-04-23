@@ -281,6 +281,14 @@ export default function TableSortAndSelection() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+  const visibleRows = React.useMemo(
+    () =>
+      [...rows]
+        .sort(getComparator(order, orderBy))
+        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
+    [order, orderBy, page, rowsPerPage],
+  );
+
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: keyof Data,
@@ -374,53 +382,50 @@ export default function TableSortAndSelection() {
           rowCount={rows.length}
         />
         <tbody>
-          {[...rows]
-            .sort(getComparator(order, orderBy))
-            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((row, index) => {
-              const isItemSelected = isSelected(row.name);
-              const labelId = `enhanced-table-checkbox-${index}`;
+          {visibleRows.map((row, index) => {
+            const isItemSelected = isSelected(row.name);
+            const labelId = `enhanced-table-checkbox-${index}`;
 
-              return (
-                <tr
-                  onClick={(event) => handleClick(event, row.name)}
-                  role="checkbox"
-                  aria-checked={isItemSelected}
-                  tabIndex={-1}
-                  key={row.name}
-                  // selected={isItemSelected}
-                  style={
-                    isItemSelected
-                      ? ({
-                          '--TableCell-dataBackground':
-                            'var(--TableCell-selectedBackground)',
-                          '--TableCell-headBackground':
-                            'var(--TableCell-selectedBackground)',
-                        } as React.CSSProperties)
-                      : {}
-                  }
-                >
-                  <th scope="row">
-                    <Checkbox
-                      checked={isItemSelected}
-                      slotProps={{
-                        input: {
-                          'aria-labelledby': labelId,
-                        },
-                      }}
-                      sx={{ verticalAlign: 'top' }}
-                    />
-                  </th>
-                  <th id={labelId} scope="row">
-                    {row.name}
-                  </th>
-                  <td>{row.calories}</td>
-                  <td>{row.fat}</td>
-                  <td>{row.carbs}</td>
-                  <td>{row.protein}</td>
-                </tr>
-              );
-            })}
+            return (
+              <tr
+                onClick={(event) => handleClick(event, row.name)}
+                role="checkbox"
+                aria-checked={isItemSelected}
+                tabIndex={-1}
+                key={row.name}
+                // selected={isItemSelected}
+                style={
+                  isItemSelected
+                    ? ({
+                        '--TableCell-dataBackground':
+                          'var(--TableCell-selectedBackground)',
+                        '--TableCell-headBackground':
+                          'var(--TableCell-selectedBackground)',
+                      } as React.CSSProperties)
+                    : {}
+                }
+              >
+                <th scope="row">
+                  <Checkbox
+                    checked={isItemSelected}
+                    slotProps={{
+                      input: {
+                        'aria-labelledby': labelId,
+                      },
+                    }}
+                    sx={{ verticalAlign: 'top' }}
+                  />
+                </th>
+                <th id={labelId} scope="row">
+                  {row.name}
+                </th>
+                <td>{row.calories}</td>
+                <td>{row.fat}</td>
+                <td>{row.carbs}</td>
+                <td>{row.protein}</td>
+              </tr>
+            );
+          })}
           {emptyRows > 0 && (
             <tr
               style={

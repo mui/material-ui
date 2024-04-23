@@ -56,6 +56,12 @@ function formatSize(size: number) {
 export default function BasicTable() {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('name');
+
+  const sortedRows = React.useMemo(
+    () => [...data].sort(getComparator(order, orderBy)),
+    [order, orderBy],
+  );
+
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -122,7 +128,7 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {[...data].sort(getComparator(order, orderBy)).map((row) => (
+          {sortedRows.map((row) => (
             <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
