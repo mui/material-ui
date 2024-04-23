@@ -6,6 +6,8 @@
   "main": "./build/index.js",
   "exports": {
     ".": "./build/index.js",
+    "./createDescribe": "./build/createDescribe.js",
+    "./createRenderer": "./build/createRenderer.js",
     "./init": "./build/init.js",
     "./initMatchers": "./build/initMatchers.js",
     "./initPlaywrightMatchers": "./build/initPlaywrightMatchers.js",
