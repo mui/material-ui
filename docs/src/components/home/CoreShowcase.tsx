@@ -169,12 +169,12 @@ export default function CoreShowcase() {
             </Box>
             <Box
               sx={{
-                maxHeight: 350,
+                pb: { xs: 2, sm: 16 },
+                maxHeight: { xs: 'auto', sm: 350 },
                 position: 'relative',
                 overflow: 'clip',
                 overflowY: 'scroll',
                 flexGrow: 1,
-                pb: 16,
                 '&::-webkit-scrollbar': {
                   display: 'none',
                 },

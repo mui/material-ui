@@ -28,17 +28,17 @@ export default function StylingInfo({
       data-mui-color-scheme="dark"
       {...props}
       sx={{
-        position: 'absolute',
+        p: 2,
+        m: { xs: '0 -16px -16px -16px', sm: 0 },
+        position: { xs: 'auto', sm: 'absolute' },
         bottom: 0,
-        transition: '0.3s',
         left: 0,
         right: 0,
-        p: 2,
         background: ({ palette }) => alpha(palette.primaryDark[800], 0.8),
         backdropFilter: 'blur(4px)',
-        zIndex: 1,
         borderTop: '1px solid',
         borderColor: 'primaryDark.700',
+        zIndex: 1,
         ...props.sx,
       }}
     >
@@ -48,7 +48,7 @@ export default function StylingInfo({
       <Typography color="text.secondary" variant="body2" sx={{ mb: 2 }}>
         {description}
       </Typography>
-      <Box sx={{ display: 'flex', gap: 1 }}>
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1 }}>
         <Button component={Link} noLinkStyle size="small" variant="contained" href={primaryBtnHref}>
           {primaryBtnLabel}
         </Button>

@@ -12,13 +12,11 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
 
 function ProductItem({
-  label,
   icon,
   name,
   description,
   chip,
 }: {
-  label: string;
   icon: React.ReactNode;
   name: React.ReactNode;
   description: React.ReactNode;
@@ -67,81 +65,30 @@ export default function ProductsSwitcher(props: {
   const isBelowMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const productElements = [
     <ProductItem
-      label="by going to the Core components page"
-      icon={<IconImage name="product-core" />}
       name="MUI Core"
       description="Foundational components for shipping features faster."
-      // href={ROUTES.productCore}
+      icon={<IconImage name="product-core" />}
     />,
     <ProductItem
-      label="by going to the Advanced components page"
-      icon={<IconImage name="product-advanced" />}
-      name={
-        <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
-          MUI X
-        </Box>
-      }
+      name="MUI X"
       description="Advanced components for complex use cases."
+      icon={<IconImage name="product-advanced" />}
     />,
     <ProductItem
-      label="by going to the Toolpad page"
-      icon={
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4 9C4 6.23858 6.23858 4 9 4H28V6C28 8.20914 26.2091 10 24 10H4V9Z"
-            fill="url(#paint0_linear_691_279)"
-          />
-          <path
-            d="M13 12H19V23C19 25.7614 16.7614 28 14 28H13V12Z"
-            fill="url(#paint1_linear_691_279)"
-          />
-          <defs>
-            <linearGradient
-              id="paint0_linear_691_279"
-              x1="28"
-              y1="10"
-              x2="25.1765"
-              y2="-1.29412"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop offset="0.0833333" stop-color="#007FFF" />
-              <stop offset="0.953125" stop-color="#3399FF" />
-            </linearGradient>
-            <linearGradient
-              id="paint1_linear_691_279"
-              x1="19"
-              y1="28"
-              x2="8.47945"
-              y2="24.0548"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop offset="0.0833333" stop-color="#007FFF" />
-              <stop offset="0.953125" stop-color="#3399FF" />
-            </linearGradient>
-          </defs>
-        </svg>
-      }
       name="Toolpad"
-      chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
       description="A low-code tool for building internal applications."
+      icon={<IconImage name="product-toolpad" />}
+      chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
     />,
     <ProductItem
-      label="by going to the templates page"
-      icon={<IconImage name="product-templates" />}
       name="Templates"
       description="Professionally built UIs to jumpstart your next project."
+      icon={<IconImage name="product-templates" />}
     />,
     <ProductItem
-      label="by going to the design-kits page"
-      icon={<IconImage name="product-designkits" />}
       name="Design kits"
       description="The core components available on your favorite design tool."
+      icon={<IconImage name="product-designkits" />}
     />,
   ];
   return (

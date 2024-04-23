@@ -31,14 +31,17 @@ function createLoading(sx: BoxProps['sx']) {
 }
 
 const CoreShowcase = dynamic(() => import('./CoreShowcase'), {
-  loading: createLoading({ height: 723, mt: { md: 2 } }),
+  loading: createLoading({ height: 651 }),
 });
+
 const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
-  loading: createLoading({ height: 750, mt: { md: 2 } }),
+  loading: createLoading({ height: 665 }),
 });
+
 const ToolpadShowcase = dynamic(() => import('./ToolpadShowcase'), {
-  loading: createLoading({ height: 750, mt: { md: 2 } }),
+  loading: createLoading({ height: 689 }),
 });
+
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
 const DesignKits = dynamic(() => import('./DesignKits'));
 
@@ -49,6 +52,7 @@ export default function ProductSuite() {
     threshold: 0,
     rootMargin: '200px',
   });
+
   return (
     <Section bg="gradient" ref={ref} cozy>
       <Grid container spacing={2}>
@@ -84,7 +88,7 @@ export default function ProductSuite() {
               {productIndex === 4 && <DesignKits />}
             </React.Fragment>
           ) : (
-            <Box sx={{ height: { xs: 0, md: 803 } }} />
+            <Box sx={{ height: { xs: 0, md: 690 } }} />
           )}
         </Grid>
       </Grid>
