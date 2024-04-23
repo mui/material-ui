@@ -36,20 +36,27 @@ const ListItemTextRoot = styled('div', {
       ownerState.dense && styles.dense,
     ];
   },
-})(({ ownerState }) => ({
+})({
   flex: '1 1 auto',
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
-  ...(ownerState.primary &&
-    ownerState.secondary && {
-      marginTop: 6,
-      marginBottom: 6,
-    }),
-  ...(ownerState.inset && {
-    paddingLeft: 56,
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.primary && ownerState.secondary,
+      style: {
+        marginTop: 6,
+        marginBottom: 6,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.inset,
+      style: {
+        paddingLeft: 56,
+      },
+    },
+  ],
+});
 
 const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItemText' });

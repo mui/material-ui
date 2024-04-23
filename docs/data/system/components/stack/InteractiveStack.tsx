@@ -8,7 +8,7 @@ import Radio from '@mui/material/Radio';
 import Grid from '@mui/system/Unstable_Grid';
 import Stack, { StackProps } from '@mui/system/Stack';
 import { styled } from '@mui/system';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 const Item = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#262B32' : '#fff',

@@ -26,15 +26,20 @@ const ListItemSecondaryActionRoot = styled('div', {
 
     return [styles.root, ownerState.disableGutters && styles.disableGutters];
   },
-})(({ ownerState }) => ({
+})({
   position: 'absolute',
   right: 16,
   top: '50%',
   transform: 'translateY(-50%)',
-  ...(ownerState.disableGutters && {
-    right: 0,
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.disableGutters,
+      style: {
+        right: 0,
+      },
+    },
+  ],
+});
 
 /**
  * Must be used as the last child of ListItem to function properly.

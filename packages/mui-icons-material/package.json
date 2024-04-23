@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "6.0.0-alpha.2",
+  "version": "6.0.0-alpha.3",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -31,7 +31,6 @@
     "build": "shx cp -r lib/ build/ && pnpm build:typings && pnpm build:copy-files",
     "build:lib": "pnpm build:node && pnpm build:stable",
     "build:lib:clean": "rimraf lib/ && pnpm build:lib",
-    "build:legacy": "echo 'Skip legacy build'",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
     "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib",

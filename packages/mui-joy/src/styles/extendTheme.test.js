@@ -10,6 +10,7 @@ describe('extendTheme', () => {
       expect([
         'attribute',
         'breakpoints',
+        'containerQueries',
         'colorSchemeSelector',
         'components',
         'colorSchemes',
@@ -149,6 +150,25 @@ describe('extendTheme', () => {
       const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
       expect(theme.vars.spacing).to.deep.equal('var(--joy-spacing, 0.25rem)');
       expect(theme.spacing(2)).to.equal('calc(2 * var(--joy-spacing, 0.25rem))');
+    });
+  });
+
+  describe('typography', () => {
+    it('produce typography token by default', () => {
+      const theme = extendTheme();
+      expect(Object.keys(theme.vars.typography)).to.deep.equal([
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'title-lg',
+        'title-md',
+        'title-sm',
+        'body-lg',
+        'body-md',
+        'body-sm',
+        'body-xs',
+      ]);
     });
   });
 

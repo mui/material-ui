@@ -18,5 +18,6 @@
   "17": "MUI: Expected valid input target. Did you use a custom `slots.input` and forget to forward refs? See https://mui.com/r/input-component-ref-interface for more info.",
   "18": "MUI: `vars` is a private field used for CSS variables support.\nPlease use another name.",
   "19": "MUI: `useColorScheme` must be called under <CssVarsProvider />",
-  "20": "MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.For more details, see https://github.com/mui/material-ui/pull/35150."
+  "20": "MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.For more details, see https://github.com/mui/material-ui/pull/35150.",
+  "21": "MUI: The provided shorthand %s is invalid. The format should be `@<breakpoint | number>` or `@<breakpoint | number>/<container>`.\nFor example, `@sm` or `@600` or `@40rem/sidebar`."
 }

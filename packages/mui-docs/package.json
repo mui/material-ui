@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "6.0.0-alpha.2",
+  "version": "6.0.0-alpha.3",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -23,8 +23,7 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
@@ -36,6 +35,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.4",
+    "@mui/internal-markdown": "workspace:^",
+    "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1"
