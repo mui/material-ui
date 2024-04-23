@@ -13,13 +13,13 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 ### `@mui/material@6.0.0-alpha.4`
 
-- &#8203;<!-- 25 -->[Checkbox] Convert to support CSS extraction (#41957) @lhilgert9
-- &#8203;<!-- 09 -->[IconButton] Convert to support CSS extraction (#41850) @gijsbotje
-- &#8203;<!-- 04 -->[Radio] Convert to support CSS extraction (#41840) @lhilgert9
-- &#8203;<!-- 03 -->[Typography] Fix ownerState prop placement (#41903) @sai6855
-- &#8203;<!-- 07 -->Generate typography tokens (#41703) @siriwatknp
-- &#8203;<!-- 06 -->Fix getOverlayAlpha type (#41995) @oliviertassinari
-- &#8203;<!-- 05 -->Support CSS Extraction using codemod (#41935) @siriwatknp
+- [Checkbox] Convert to support CSS extraction (#41957) @lhilgert9
+- [IconButton] Convert to support CSS extraction (#41850) @gijsbotje
+- [Radio] Convert to support CSS extraction (#41840) @lhilgert9
+- [Typography] Fix ownerState prop placement (#41903) @sai6855
+- Generate typography tokens (#41703) @siriwatknp
+- Fix getOverlayAlpha type (#41995) @oliviertassinari
+- Support CSS Extraction using codemod (#41935) @siriwatknp
 
 ### `@mui/icons-material@6.0.0-alpha.4`
 
@@ -27,27 +27,27 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 ### Docs
 
-- &#8203;<!-- 12 -->[material-ui] Remove react-swipeable-views from demos as it's no longer maintained (#41912) @soler1212
-- &#8203;<!-- 11 -->[material-ui] Add dark theme thumbnails for templates (#41947) @zanivan
-- &#8203;<!-- 10 -->[material-ui] Remove links and interdependencies from free templates (#41941) @zanivan
-- &#8203;<!-- 22 -->Fix 301 Toolpad links @oliviertassinari
-- &#8203;<!-- 20 -->Fix 301 image redirections @oliviertassinari
+- [material-ui] Remove react-swipeable-views from demos as it's no longer maintained (#41912) @soler1212
+- [material-ui] Add dark theme thumbnails for templates (#41947) @zanivan
+- [material-ui] Remove links and interdependencies from free templates (#41941) @zanivan
+- Fix 301 Toolpad links @oliviertassinari
+- Fix 301 image redirections @oliviertassinari
 
 ### Core
 
-- &#8203;<!-- 26 -->pnpm docs:zipRules && vale sync @oliviertassinari
-- &#8203;<!-- 23 -->Remove @pigment-css/\* packages (#41965) @mnajdova
-- &#8203;<!-- 24 -->[code-infra] Move the HighlightedCode component to @mui/docs (#41859) @Janpot
-- &#8203;<!-- 24 -->[code-infra] Move the HighlightedCode component to @mui/docs (#41859) @Janpot
-- &#8203;<!-- 19 -->[docs-infra] Fix flex-shrink pro-plan (#41990) @oliviertassinari
-- &#8203;<!-- 18 -->[docs-infra] Allow more value uses of MUI (#41706) @oliviertassinari
-- &#8203;<!-- 17 -->[docs-infra] Move CPU to shared config (#41901) @oliviertassinari
-- &#8203;<!-- 16 -->[docs-infra] Improve Twitter OG:image (#41860) @oliviertassinari
-- &#8203;<!-- 15 -->[docs-infra] Adapt docs infra to Base UI docs needs (#41963) @michaldudak
-- &#8203;<!-- 14 -->[docs-infra] Add demo container design refinements (#41948) @danilo-leal
-- &#8203;<!-- 13 -->[docs-infra] Use the `getLayout` on the material demo pages (#41936) @alexfauquette
-- &#8203;<!-- 02 -->[website] Remove customer support agent role from website (#41969) @rluzists1
-- &#8203;<!-- 01 -->[website] Fix grid usage and add stray improvements (#41930) @danilo-leal
+- pnpm docs:zipRules && vale sync @oliviertassinari
+- Remove @pigment-css/\* packages (#41965) @mnajdova
+- [code-infra] Move the HighlightedCode component to @mui/docs (#41859) @Janpot
+- [code-infra] Move the HighlightedCode component to @mui/docs (#41859) @Janpot
+- [docs-infra] Fix flex-shrink pro-plan (#41990) @oliviertassinari
+- [docs-infra] Allow more value uses of MUI (#41706) @oliviertassinari
+- [docs-infra] Move CPU to shared config (#41901) @oliviertassinari
+- [docs-infra] Improve Twitter OG:image (#41860) @oliviertassinari
+- [docs-infra] Adapt docs infra to Base UI docs needs (#41963) @michaldudak
+- [docs-infra] Add demo container design refinements (#41948) @danilo-leal
+- [docs-infra] Use the `getLayout` on the material demo pages (#41936) @alexfauquette
+- [website] Remove customer support agent role from website (#41969) @rluzists1
+- [website] Fix grid usage and add stray improvements (#41930) @danilo-leal
 
 All contributors of this release in alphabetical order: @alexfauquette, @danilo-leal, @gijsbotje, @Janpot, @lhilgert9, @michaldudak, @mnajdova, @oliviertassinari, @rluzists1, @sai6855, @siriwatknp, @soler1212, @zanivan
 
