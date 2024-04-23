@@ -314,7 +314,7 @@ export default function MaterialStyling() {
               }}
             >
               <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
-                <Box sx={{ position: 'relative', zIndex: 1 }}>
+                <Box sx={{ zIndex: 1 }}>
                   <HighlightedCode
                     copyButtonHidden
                     component={MarkdownElement}

@@ -287,47 +287,26 @@ export default function MaterialComponents() {
             <Frame.Info
               data-mui-color-scheme="dark"
               sx={{
-                minHeight: 220,
+                pt: 7,
+                minHeight: 180,
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
-                overflow: 'hidden',
-                p: 0,
-                pt: 5,
+                overflow: 'clip',
               }}
             >
-              <StylingInfo appeared={customized} />
-              <Box
-                sx={{
-                  overflow: 'auto',
-                  pt: 2,
-                  pb: 1,
-                  px: 2,
-                  height: '100%',
-                }}
-              >
-                <HighlightedCode
-                  copyButtonHidden
-                  component={MarkdownElement}
-                  code={CODES[demo]}
-                  language="jsx"
-                />
-              </Box>
               <Box
                 sx={(theme) => ({
                   pb: 3,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1,
                   position: 'absolute',
                   top: 16,
                   left: 12,
-                  right: 0,
                   zIndex: 10,
-                  background: `linear-gradient(to bottom, ${
-                    (theme.vars || theme).palette.common.black
-                  } 30%, transparent)`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1,
+                  background: `linear-gradient(to bottom, ${(theme.vars || theme).palette.common.black} 30%, transparent)`,
                   [`& .${buttonClasses.root}`]: {
-                    borderRadius: 40,
+                    borderRadius: 99,
                     padding: '2px 10px',
                     fontSize: '0.75rem',
                     lineHeight: 18 / 12,
@@ -357,6 +336,20 @@ export default function MaterialComponents() {
                 >
                   Custom theme
                 </Button>
+              </Box>
+              <StylingInfo appeared={customized} />
+              <Box
+                sx={{
+                  overflow: 'auto',
+                  height: '100%',
+                }}
+              >
+                <HighlightedCode
+                  copyButtonHidden
+                  component={MarkdownElement}
+                  code={CODES[demo]}
+                  language="jsx"
+                />
               </Box>
             </Frame.Info>
           </Frame>
