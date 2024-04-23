@@ -108,10 +108,8 @@ export const InputBaseRoot = styled('div', {
 })(({ theme }) => ({
   ...theme.typography.body1,
   color: (theme.vars || theme).palette.text.primary,
-  // 23px
-  lineHeight: '1.4375em',
-  // Prevent padding issue with fullWidth.
-  boxSizing: 'border-box',
+  lineHeight: '1.4375em', // 23px
+  boxSizing: 'border-box', // Prevent padding issue with fullWidth.
   position: 'relative',
   cursor: 'text',
   display: 'inline-flex',

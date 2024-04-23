@@ -45,8 +45,7 @@ const InputAdornmentRoot = styled('div', {
   overridesResolver,
 })(({ theme }) => ({
   display: 'flex',
-  // Fix IE11 flexbox alignment. To remove at some point.
-  height: '0.01em',
+  height: '0.01em', // Fix IE11 flexbox alignment. To remove at some point.
   maxHeight: '2em',
   alignItems: 'center',
   whiteSpace: 'nowrap',
