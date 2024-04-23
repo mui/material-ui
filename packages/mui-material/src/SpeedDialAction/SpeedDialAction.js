@@ -187,6 +187,15 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       onClose={handleTooltipClose}
       onOpen={handleTooltipOpen}
       open={open && (tooltipOpen || tooltipOpenProp)}
+      slotProps={{
+        tooltip: {
+          sx: (theme) => ({
+            backgroundColor:
+              tooltipOpenProp === true ? (theme.vars || theme).palette.background.paper : '',
+            color: tooltipOpenProp === true ? (theme.vars || theme).palette.text.secondary : '',
+          }),
+        },
+      }}
       classes={TooltipClasses}
       {...other}
     >
