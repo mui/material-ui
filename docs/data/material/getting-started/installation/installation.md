@@ -102,7 +102,7 @@ Fontsource can be configured to load specific subsets, weights and styles. Mater
 
 ### Google Web Fonts
 
-To install Roboto through the Google Web Fonts CDN, add the following code inside your project's <head /> tag:
+To install Roboto through the Google Web Fonts CDN, add the following code inside your project's `<head />` tag:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
