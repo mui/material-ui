@@ -83,10 +83,10 @@
     "@slack/bolt": "^3.17.1",
     "@netlify/functions": "^2.6.0",
     "execa": "^8.0.1",
-    "google-auth-library": "^9.7.0"
+    "google-auth-library": "^9.8.0"
   },
   "devDependencies": {
-    "@argos-ci/core": "^1.5.5",
+    "@argos-ci/core": "^2.1.0",
     "@babel/cli": "^7.24.1",
     "@babel/core": "^7.24.4",
     "@babel/node": "^7.23.9",
@@ -109,7 +109,7 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "^14.2.1",
+    "@next/eslint-plugin-next": "^14.2.2",
     "@octokit/rest": "^20.1.0",
     "@pigment-css/react": "^0.0.9",
     "@playwright/test": "1.43.1",
@@ -126,7 +126,7 @@
     "babel-loader": "^9.1.3",
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-macros": "^3.1.0",
-    "babel-plugin-module-resolver": "^5.0.0",
+    "babel-plugin-module-resolver": "^5.0.2",
     "babel-plugin-optimize-clsx": "^2.6.2",
     "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
@@ -148,7 +148,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-material-ui": "workspace:^",
-    "eslint-plugin-mocha": "^10.4.2",
+    "eslint-plugin-mocha": "^10.4.3",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "fast-glob": "^3.3.2",
@@ -183,7 +183,7 @@
     "tsup": "^8.0.2",
     "tsx": "^4.7.2",
     "typescript": "^5.4.5",
-    "webpack": "^5.90.3",
+    "webpack": "^5.91.0",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
