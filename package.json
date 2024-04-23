@@ -180,7 +180,6 @@
     "stylelint-config-standard": "^34.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.3.10",
-    "tsup": "^8.0.2",
     "tsx": "^4.7.2",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
