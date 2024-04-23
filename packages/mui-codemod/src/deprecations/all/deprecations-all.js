@@ -11,6 +11,7 @@ import transformAlertClasses from '../alert-classes';
 import transformToggleButtonGroupClasses from '../toggle-button-group-classes';
 import transformStepLabelProps from '../step-label-props';
 import transformBackdropProps from '../backdrop-props';
+import transformStepConnectorClasses from '../step-connector-classes';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -30,6 +31,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformToggleButtonGroupClasses(file, api, options);
   file.source = transformStepLabelProps(file, api, options);
   file.source = transformBackdropProps(file, api, options);
+  file.source = transformStepConnectorClasses(file, api, options);
 
   return file.source;
 }
