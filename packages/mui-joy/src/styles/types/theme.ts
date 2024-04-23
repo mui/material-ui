@@ -86,6 +86,7 @@ interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {
 }
 export interface ThemeVars extends ThemeScales, ColorSystemVars {
   typography: ExtractTypographyTokens<TypographySystem>;
+  font: ExtractTypographyTokens<TypographySystem>;
 }
 
 export interface ThemeCssVarOverrides {}
