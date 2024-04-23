@@ -89,8 +89,8 @@
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
-    "@slack/bolt": "^3.17.1",
     "@netlify/functions": "^2.6.0",
+    "@slack/bolt": "^3.17.1",
     "execa": "^8.0.1",
     "google-auth-library": "^9.8.0"
   },
@@ -110,10 +110,10 @@
     "@babel/preset-typescript": "^7.24.1",
     "@babel/register": "^7.23.7",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
-    "@mui/internal-docs-utils": "workspace:^",
-    "@mui/internal-scripts": "workspace:^",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
+    "@mui/internal-docs-utils": "workspace:^",
+    "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
