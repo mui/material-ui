@@ -5,7 +5,7 @@ import refType from '@mui/utils/refType';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import InputBase from '../InputBase';
-import { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled, createUseThemeProps } from '../zero-styled';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
@@ -70,6 +70,53 @@ const FilledInputRoot = styled(InputBaseRoot, {
     [`&.${filledInputClasses.disabled}`]: {
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground,
     },
+    '&::after': {
+      left: 0,
+      bottom: 0,
+      // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+      content: '""',
+      position: 'absolute',
+      right: 0,
+      transform: 'scaleX(0)',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
+      }),
+      pointerEvents: 'none', // Transparent to the hover style.
+    },
+    [`&.${filledInputClasses.focused}:after`]: {
+      // translateX(0) is a workaround for Safari transform scale bug
+      // See https://github.com/mui/material-ui/issues/31766
+      transform: 'scaleX(1) translateX(0)',
+    },
+    [`&.${filledInputClasses.error}`]: {
+      '&::before, &::after': {
+        borderBottomColor: (theme.vars || theme).palette.error.main,
+      },
+    },
+    '&::before': {
+      borderBottom: `1px solid ${
+        theme.vars
+          ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
+          : bottomLineColor
+      }`,
+      left: 0,
+      bottom: 0,
+      // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+      content: '"\\00a0"',
+      position: 'absolute',
+      right: 0,
+      transition: theme.transitions.create('border-bottom-color', {
+        duration: theme.transitions.duration.shorter,
+      }),
+      pointerEvents: 'none', // Transparent to the hover style.
+    },
+    [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
+      borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
+    },
+    [`&.${filledInputClasses.disabled}:before`]: {
+      borderBottomStyle: 'dotted',
+    },
     variants: [
       {
         props: { startAdornment: true },
@@ -111,62 +158,16 @@ const FilledInputRoot = styled(InputBaseRoot, {
         },
       },
     ],
-
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main && value.light) // check all the used fields in the style below
+      .filter(([, value]) => value.main) // check all the used fields in the style below
       .map(([color]) => ({
         props: {
-          disableUnderline: true,
+          disableUnderline: false,
           color,
         },
         style: {
           '&::after': {
             borderBottom: `2px solid ${(theme.vars || theme).palette[color]?.main}`,
-            left: 0,
-            bottom: 0,
-            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-            content: '""',
-            position: 'absolute',
-            right: 0,
-            transform: 'scaleX(0)',
-            transition: theme.transitions.create('transform', {
-              duration: theme.transitions.duration.shorter,
-              easing: theme.transitions.easing.easeOut,
-            }),
-            pointerEvents: 'none', // Transparent to the hover style.
-          },
-          [`&.${filledInputClasses.focused}:after`]: {
-            // translateX(0) is a workaround for Safari transform scale bug
-            // See https://github.com/mui/material-ui/issues/31766
-            transform: 'scaleX(1) translateX(0)',
-          },
-          [`&.${filledInputClasses.error}`]: {
-            '&::before, &::after': {
-              borderBottomColor: (theme.vars || theme).palette.error.main,
-            },
-          },
-          '&::before': {
-            borderBottom: `1px solid ${
-              theme.vars
-                ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
-                : bottomLineColor
-            }`,
-            left: 0,
-            bottom: 0,
-            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-            content: '"\\00a0"',
-            position: 'absolute',
-            right: 0,
-            transition: theme.transitions.create('border-bottom-color', {
-              duration: theme.transitions.duration.shorter,
-            }),
-            pointerEvents: 'none', // Transparent to the hover style.
-          },
-          [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
-            borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
-          },
-          [`&.${filledInputClasses.disabled}:before`]: {
-            borderBottomStyle: 'dotted',
           },
         },
       })),
