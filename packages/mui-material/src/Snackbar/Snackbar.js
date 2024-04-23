@@ -52,58 +52,17 @@ const SnackbarRoot = styled('div', {
   alignItems: 'center',
   variants: [
     {
-      props: {
-        vertical: 'top',
-      },
-      style: { top: 8 },
+      props: ({ ownerState }) => ownerState.anchorOrigin.vertical === 'top',
+      style: { top: 8, [theme.breakpoints.up('sm')]: { top: 24 } },
     },
     {
       props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
-      style: { bottom: 8 },
+      style: { bottom: 8, [theme.breakpoints.up('sm')]: { bottom: 24 } },
     },
     {
-      props: {
-        horizontal: 'left',
-      },
-      style: { justifyContent: 'flex-start' },
-    },
-    {
-      props: {
-        horizontal: 'right',
-      },
-      style: { justifyContent: 'flex-end' },
-    },
-    {
-      props: {
-        vertical: 'top',
-      },
+      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'left',
       style: {
-        [theme.breakpoints.up('sm')]: { top: 24 },
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
-      style: {
-        [theme.breakpoints.up('sm')]: { bottom: 24 },
-      },
-    },
-    {
-      props: {
-        horizontal: 'center',
-      },
-      style: {
-        [theme.breakpoints.up('sm')]: {
-          left: '50%',
-          right: 'auto',
-          transform: 'translateX(-50%)',
-        },
-      },
-    },
-    {
-      props: {
-        horizontal: 'left',
-      },
-      style: {
+        justifyContent: 'flex-start',
         [theme.breakpoints.up('sm')]: {
           left: 24,
           right: 'auto',
@@ -111,13 +70,22 @@ const SnackbarRoot = styled('div', {
       },
     },
     {
-      props: {
-        horizontal: 'right',
-      },
+      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'right',
       style: {
+        justifyContent: 'flex-end',
         [theme.breakpoints.up('sm')]: {
           right: 24,
           left: 'auto',
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'center',
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          left: '50%',
+          right: 'auto',
+          transform: 'translateX(-50%)',
         },
       },
     },
