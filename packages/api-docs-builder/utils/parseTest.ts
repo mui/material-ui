@@ -3,9 +3,6 @@ import * as babel from '@babel/core';
 import { readFile } from 'fs-extra';
 import glob from 'fast-glob';
 
-const workspaceRoot = path.join(__dirname, '../../../');
-const defaultBabelConfigPath = path.join(workspaceRoot, 'babel.config.js');
-
 function getTestFilesNames(filepath: string) {
   return glob.sync(
     path
@@ -18,15 +15,14 @@ function getTestFilesNames(filepath: string) {
   );
 }
 
-async function parseWithConfig(filename: string, configFilePath: string) {
+async function parseWithConfig(filename: string) {
   const source = await readFile(filename, { encoding: 'utf8' });
   const partialConfig = babel.loadPartialConfig({
-    configFile: configFilePath,
     filename,
   });
 
   if (partialConfig === null) {
-    throw new Error(`Could not load a babel config for ${filename} located at ${configFilePath}.`);
+    throw new Error(`Could not load a babel config for ${filename}.`);
   }
 
   return babel.parseAsync(source, partialConfig.options);
@@ -128,10 +124,7 @@ export interface ParseResult {
   themeDefaultProps: boolean | undefined | null;
 }
 
-export default async function parseTest(
-  componentFilename: string,
-  babelConfigPath: string = defaultBabelConfigPath,
-): Promise<ParseResult> {
+export default async function parseTest(componentFilename: string): Promise<ParseResult> {
   const testFilenames = getTestFilesNames(componentFilename);
 
   if (testFilenames.length === 0) {
@@ -146,7 +139,7 @@ export default async function parseTest(
     // eslint-disable-next-line no-restricted-syntax
     for await (const testFilename of testFilenames) {
       if (descriptor === null) {
-        const babelParseResult = await parseWithConfig(testFilename, babelConfigPath);
+        const babelParseResult = await parseWithConfig(testFilename);
         if (babelParseResult === null) {
           throw new Error(`Could not parse ${testFilename}.`);
         }
