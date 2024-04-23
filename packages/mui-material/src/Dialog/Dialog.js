@@ -117,8 +117,7 @@ const DialogPaper = styled(Paper, {
 })(({ theme }) => ({
   margin: 32,
   position: 'relative',
-  // Fix IE11 issue, to remove at some point.
-  overflowY: 'auto',
+  overflowY: 'auto', // Fix IE11 issue, to remove at some point.
   '@media print': {
     overflowY: 'visible',
     boxShadow: 'none',
@@ -166,17 +165,19 @@ const DialogPaper = styled(Paper, {
         },
       },
     },
-    ...Object.keys(theme.breakpoints.values).map((maxWidth) => ({
-      props: { maxWidth },
-      style: {
-        maxWidth: `${theme.breakpoints.values[maxWidth]}${theme.breakpoints.unit}`,
-        [`&.${dialogClasses.paperScrollBody}`]: {
-          [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
-            maxWidth: 'calc(100% - 64px)',
+    ...Object.keys(theme.breakpoints.values)
+      .filter((maxWidth) => maxWidth !== 'xs')
+      .map((maxWidth) => ({
+        props: { maxWidth },
+        style: {
+          maxWidth: `${theme.breakpoints.values[maxWidth]}${theme.breakpoints.unit}`,
+          [`&.${dialogClasses.paperScrollBody}`]: {
+            [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
+              maxWidth: 'calc(100% - 64px)',
+            },
           },
         },
-      },
-    })),
+      })),
     {
       props: ({ ownerState }) => ownerState.fullWidth,
       style: {
