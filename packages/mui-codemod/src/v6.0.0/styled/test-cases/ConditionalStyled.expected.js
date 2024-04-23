@@ -17,6 +17,13 @@ const LinearProgressBar1 = styled('span', {
   theme
 }) => ({
   variants: [{
+    props: {
+      variant: 'buffer'
+    },
+    style: {
+      '&:hover': {}
+    }
+  }, {
     props: (
       {
         variant,
@@ -55,13 +62,6 @@ const LinearProgressBar1 = styled('span', {
       '&:hover': {
             backgroundColor: 'currentColor',
           }
-    }
-  }, {
-    props: {
-      variant: 'buffer'
-    },
-    style: {
-      '&:hover': {}
     }
   }, {
     props: (

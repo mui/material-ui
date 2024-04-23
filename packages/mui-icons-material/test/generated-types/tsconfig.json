@@ -40,12 +40,6 @@
       "@mui/types": ["./mui-types"],
       "@mui/utils": ["./mui-utils/src"],
       "@mui/utils/*": ["./mui-utils/src/*"],
-      "@pigment-css/nextjs-plugin": ["./pigment-css-nextjs-plugin/src"],
-      "@pigment-css/nextjs-plugin/*": ["./pigment-css-nextjs-plugin/src/*"],
-      "@pigment-css/react": ["./pigment-css-react/src"],
-      "@pigment-css/react/*": ["./pigment-css-react/src/*"],
-      "@pigment-css/vite-plugin": ["./pigment-css-vite-plugin/src"],
-      "@pigment-css/vite-plugin/*": ["./pigment-css-vite-plugin/src/*"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "../packages-internal/scripts/typescript-to-proptypes/src"
       ]

@@ -7,7 +7,7 @@ import prism from '@mui/internal-markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
 import { useTranslate } from '@mui/docs/i18n';
-import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
+import { useCodeCopy } from '@mui/docs/CodeCopy';
 import { blueDark } from '@mui/docs/branding';
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
