@@ -3,7 +3,6 @@ import { styled } from '@mui/system';
 import clsx from 'clsx';
 import { Switch as SwitchUnstyled } from '@mui/base/Switch';
 import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';

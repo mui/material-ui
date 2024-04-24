@@ -320,7 +320,7 @@ export default function MaterialStyling() {
                 code={code}
                 language="jsx"
               />
-              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />
+              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 2 }} />
             </Frame.Info>
           </Frame>
         </Grid>
