@@ -1,19 +1,17 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import {
-  // alpha,
-  // darken,
-  styled,
-} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.caption,
   color: (theme.vars || theme).palette.text.primary,
   '& pre': {
-    backgroundColor: 'hsl(210, 35%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
-    color: '#f8f8f2', // fallback color until Prism's theme is loaded
-    overflow: 'auto',
+    padding: 0,
     margin: 0,
+    border: 0,
+    backgroundColor: 'transparent',
+    color: 'hsl(60deg 30% 96.08%)', // fallback color until Prism's theme is loaded
+    overflow: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     maxWidth: 'calc(100vw - 32px)',
     [theme.breakpoints.up('md')]: {
@@ -21,14 +19,13 @@ const Root = styled('div')(({ theme }) => ({
     },
   },
   '& code': {
-    // Avoid layout jump after hydration (style injected by prism)
+    // Avoid layout jump after hydration (style injected by Prism)
     ...theme.typography.caption,
     fontFamily: theme.typography.fontFamilyCode,
     fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
     // Reset for Safari
     // https://github.com/necolas/normalize.css/blob/master/normalize.css#L102
-    fontSize: '1em',
   },
 }));
 
@@ -36,7 +33,7 @@ type MarkdownElementProps = {
   renderedMarkdown: string;
 } & Omit<JSX.IntrinsicElements['div'], 'ref'>;
 
-const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
+const MarketingMarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
   function MarkdownElement(props, ref) {
     const { className, renderedMarkdown, ...other } = props;
     const more: Record<string, unknown> = {};
@@ -51,4 +48,4 @@ const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
   },
 );
 
-export default MarkdownElement;
+export default MarketingMarkdownElement;
