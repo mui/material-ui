@@ -21,7 +21,6 @@ import Frame from 'docs/src/components/action/Frame';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
-import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
@@ -202,12 +201,7 @@ export default function XDataGrid() {
               },
             }}
           >
-            <HighlightedCode
-              copyButtonHidden
-              component={MarketingMarkdownElement}
-              code={code}
-              language="jsx"
-            />
+            <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyles />
             {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: 2 }} />}
             <StylingInfo
               appeared={demo === DEMOS[3] || demo === DEMOS[4]}

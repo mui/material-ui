@@ -28,7 +28,6 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
-import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
@@ -344,12 +343,7 @@ export default function MaterialComponents() {
                   height: '100%',
                 }}
               >
-                <HighlightedCode
-                  copyButtonHidden
-                  component={MarketingMarkdownElement}
-                  code={CODES[demo]}
-                  language="jsx"
-                />
+                <HighlightedCode code={CODES[demo]} language="jsx" copyButtonHidden plainStyles />
               </Box>
             </Frame.Info>
           </Frame>

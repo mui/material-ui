@@ -13,7 +13,6 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
-import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
@@ -314,12 +313,7 @@ export default function MaterialStyling() {
                 position: 'relative',
               }}
             >
-              <HighlightedCode
-                copyButtonHidden
-                component={MarketingMarkdownElement}
-                code={code}
-                language="jsx"
-              />
+              <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyles />
               <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 2 }} />
             </Frame.Info>
           </Frame>

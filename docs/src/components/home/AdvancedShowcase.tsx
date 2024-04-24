@@ -5,7 +5,6 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ShowcaseContainer, { CodeContainer } from 'docs/src/components/home/ShowcaseContainer';
-import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
 import EditProgress from 'docs/src/components/x-grid/EditProgress';
@@ -1714,12 +1713,7 @@ export default function DataTable() {
       }
       code={
         <CodeContainer>
-          <HighlightedCode
-            copyButtonHidden
-            component={MarketingMarkdownElement}
-            code={code}
-            language="jsx"
-          />
+          <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyles />
         </CodeContainer>
       }
     />

@@ -3,7 +3,6 @@ import { alpha, ThemeProvider, createTheme, useTheme } from '@mui/material/style
 import Box from '@mui/material/Box';
 import Button, { buttonClasses } from '@mui/material/Button';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer, { CodeContainer } from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
@@ -167,12 +166,7 @@ export default function CoreShowcase() {
           <CodeContainer>
             <Box sx={{ position: 'relative' }}>
               {startLine !== undefined && <FlashCode startLine={startLine} endLine={endLine} />}
-              <HighlightedCode
-                copyButtonHidden
-                component={MarketingMarkdownElement}
-                code={componentCode}
-                language="jsx"
-              />
+              <HighlightedCode copyButtonHidden code={componentCode} language="jsx" plainStyles />
               <StylingInfo appeared={customized} sx={{ mx: -2 }} />
             </Box>
           </CodeContainer>

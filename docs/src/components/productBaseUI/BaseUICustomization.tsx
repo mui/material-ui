@@ -6,7 +6,6 @@ import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import SvgTwinkle from 'docs/src/icons/SvgTwinkle';
 import Section from 'docs/src/layouts/Section';
 import Highlighter from 'docs/src/components/action/Highlighter';
@@ -305,13 +304,8 @@ export default function BaseUICustomization() {
                 position: 'relative',
               }}
             >
-              <HighlightedCode
-                copyButtonHidden
-                component={MarketingMarkdownElement}
-                code={code}
-                language="jsx"
-              />
-              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
+              <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyles />
+              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 2 }} />
             </Frame.Info>
           </Frame>
         </Grid>

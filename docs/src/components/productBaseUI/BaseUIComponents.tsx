@@ -10,7 +10,6 @@ import InputRoundedIcon from '@mui/icons-material/InputRounded';
 import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
 import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
@@ -181,7 +180,8 @@ export default function BaseUIComponents() {
               >
                 <HighlightedCode
                   copyButtonHidden
-                  component={MarketingMarkdownElement}
+                  language="jsx"
+                  plainStyles
                   code={(() => {
                     const result = CODES[demo];
                     if (typeof result === 'function') {
@@ -189,7 +189,6 @@ export default function BaseUIComponents() {
                     }
                     return result;
                   })()}
-                  language="jsx"
                 />
               </Box>
               <Box
