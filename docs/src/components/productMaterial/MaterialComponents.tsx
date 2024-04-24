@@ -28,9 +28,9 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
+import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import ROUTES from 'docs/src/route';
 
@@ -346,7 +346,7 @@ export default function MaterialComponents() {
               >
                 <HighlightedCode
                   copyButtonHidden
-                  component={MarkdownElement}
+                  component={MarketingMarkdownElement}
                   code={CODES[demo]}
                   language="jsx"
                 />

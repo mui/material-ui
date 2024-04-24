@@ -13,8 +13,8 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
+import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
@@ -311,19 +311,16 @@ export default function MaterialStyling() {
               sx={{
                 maxHeight: index === 2 ? 282 : 400,
                 overflow: 'auto',
+                position: 'relative',
               }}
             >
-              <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
-                <Box sx={{ zIndex: 1 }}>
-                  <HighlightedCode
-                    copyButtonHidden
-                    component={MarkdownElement}
-                    code={code}
-                    language="jsx"
-                  />
-                </Box>
-                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
-              </Box>
+              <HighlightedCode
+                copyButtonHidden
+                component={MarketingMarkdownElement}
+                code={code}
+                language="jsx"
+              />
+              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />
             </Frame.Info>
           </Frame>
         </Grid>

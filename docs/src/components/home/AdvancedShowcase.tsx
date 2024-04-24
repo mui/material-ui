@@ -5,13 +5,13 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ShowcaseContainer, { CodeContainer } from 'docs/src/components/home/ShowcaseContainer';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
 import EditProgress from 'docs/src/components/x-grid/EditProgress';
 import Status from 'docs/src/components/x-grid/Status';
 import EditStatus from 'docs/src/components/x-grid/EditStatus';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 const columns: Array<GridColDef> = [
   {
@@ -1716,7 +1716,7 @@ export default function DataTable() {
         <CodeContainer>
           <HighlightedCode
             copyButtonHidden
-            component={MarkdownElement}
+            component={MarketingMarkdownElement}
             code={code}
             language="jsx"
           />

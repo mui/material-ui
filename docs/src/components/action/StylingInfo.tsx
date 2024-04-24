@@ -40,7 +40,7 @@ export default function StylingInfo({
         p: 2,
         background: ({ palette }) => alpha(palette.common.black, 0.5),
         backdropFilter: 'blur(8px)',
-        zIndex: 1,
+        zIndex: 3,
         borderTop: '1px solid',
         borderColor: 'divider',
         borderRadius: '0 0 10px 10px',

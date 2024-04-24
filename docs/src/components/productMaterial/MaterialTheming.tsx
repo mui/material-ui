@@ -11,8 +11,8 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import Frame from 'docs/src/components/action/Frame';
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
+import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
 
 const code = `
 <Card
@@ -130,7 +130,7 @@ export default function MaterialTheming() {
             <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
               <HighlightedCode
                 copyButtonHidden
-                component={MarkdownElement}
+                component={MarketingMarkdownElement}
                 code={code}
                 language="jsx"
               />

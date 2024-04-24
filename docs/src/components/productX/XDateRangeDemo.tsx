@@ -10,9 +10,9 @@ import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-d
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { startOfWeek, endOfWeek, subDays } from 'date-fns';
-import Frame from 'docs/src/components/action/Frame';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import Frame from 'docs/src/components/action/Frame';
+import MarketingMarkdownElement from 'docs/src/components/markdown/MarketingMarkdownElement';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -187,7 +187,12 @@ export default function XDateRangeDemo() {
         </Paper>
       </Frame.Demo>
       <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
-        <HighlightedCode copyButtonHidden component={MarkdownElement} code={code} language="jsx" />
+        <HighlightedCode
+          copyButtonHidden
+          component={MarketingMarkdownElement}
+          code={code}
+          language="jsx"
+        />
       </Frame.Info>
     </Frame>
   );
