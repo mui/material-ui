@@ -16,6 +16,22 @@ interface PackageInfo {
   private: boolean;
 }
 
+async function run({ dryRun, npmAccessToken, baseline, skipLastCommitComparison }: RunOptions) {
+  ensureCleanWorkingDirectory();
+  try {
+    const changedPackages = await getChangedPackages(baseline, skipLastCommitComparison);
+    if (changedPackages.length === 0) {
+      return;
+    }
+
+    setAccessToken(npmAccessToken);
+    await setVersion(changedPackages);
+    await publishPackages(changedPackages, dryRun);
+  } finally {
+    await cleanUp();
+  }
+}
+
 async function ensureCleanWorkingDirectory() {
   try {
     await $`git diff --quiet`;
@@ -42,7 +58,25 @@ async function setAccessToken(npmAccessToken) {
   );
 }
 
-async function getChangedPackages(baseline: string | undefined): Promise<PackageInfo[]> {
+async function listPublicChangedPackages(baseline: string) {
+  const { stdout: packagesJson } =
+    await $`pnpm list --recursive --filter ...[${baseline}] --depth -1 --only-projects --json`;
+  const packages = JSON.parse(packagesJson) as PackageInfo[];
+  return packages.filter((pkg) => !pkg.private);
+}
+
+async function getChangedPackages(
+  baseline: string | undefined,
+  skipLastCommitComparison: boolean,
+): Promise<PackageInfo[]> {
+  if (!skipLastCommitComparison) {
+    const publicPackagesUpdatedInLastCommit = await listPublicChangedPackages('HEAD~1');
+    if (publicPackagesUpdatedInLastCommit.length === 0) {
+      console.log('No public packages changed in the last commit.');
+      return [];
+    }
+  }
+
   if (!baseline) {
     const { stdout: latestTag } = await $`git describe --abbrev=0`;
     baseline = latestTag;
@@ -50,10 +84,7 @@ async function getChangedPackages(baseline: string | undefined): Promise<Package
 
   console.log(`Looking for changed public packages since ${baseline}`);
 
-  const { stdout } =
-    await $`pnpm list --recursive --filter ...[${baseline}] --depth -1 --only-projects --json`;
-
-  const packages = JSON.parse(stdout).filter((pkg) => pkg.private === false) as PackageInfo[];
+  const packages = await listPublicChangedPackages(baseline);
   if (packages.length === 0) {
     console.log('No public changed packages found');
     return packages;
@@ -67,7 +98,6 @@ async function getChangedPackages(baseline: string | undefined): Promise<Package
 }
 
 async function setVersion(packages: PackageInfo[]) {
-  console.log('\nSetting new versions');
   const { stdout: currentRevisionSha } = await $`git rev-parse --short HEAD`;
   const timestamp = formatDate(new Date());
   let hasError = false;
@@ -130,18 +160,7 @@ interface RunOptions {
   dryRun: boolean;
   npmAccessToken?: string;
   baseline?: string;
-}
-
-async function run({ dryRun, npmAccessToken, baseline }: RunOptions) {
-  ensureCleanWorkingDirectory();
-  try {
-    setAccessToken(npmAccessToken);
-    const changedPackages = await getChangedPackages(baseline);
-    await setVersion(changedPackages);
-    await publishPackages(changedPackages, dryRun);
-  } finally {
-    await cleanUp();
-  }
+  skipLastCommitComparison: boolean;
 }
 
 yargs(hideBin(process.argv))
@@ -162,6 +181,12 @@ yargs(hideBin(process.argv))
         .option('baseline', {
           describe: 'Baseline tag or commit to compare against (for example `master`).',
           type: 'string',
+        })
+        .option('skipLastCommitComparison', {
+          default: false,
+          describe:
+            'By default, the script exits when there are no changes in public packages in the latest commit. Setting this flag will skip this check and compare only against the baseline.',
+          type: 'boolean',
         });
     },
     run,
