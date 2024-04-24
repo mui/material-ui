@@ -935,10 +935,6 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
-    devDependencies:
-      tsx:
-        specifier: ^4.7.2
-        version: 4.7.2
 
   packages-internal/scripts:
     dependencies:
@@ -1012,9 +1008,6 @@ importers:
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
-      tsx:
-        specifier: ^4.7.2
-        version: 4.7.2
 
   packages/api-docs-builder:
     dependencies:
@@ -1192,9 +1185,6 @@ importers:
       chai:
         specifier: ^4.4.1
         version: 4.4.1
-      tsx:
-        specifier: ^4.7.2
-        version: 4.7.2
 
   packages/mui-babel-macros:
     dependencies:
@@ -1232,9 +1222,6 @@ importers:
       chai:
         specifier: ^4.4.1
         version: 4.4.1
-      tsx:
-        specifier: ^4.7.2
-        version: 4.7.2
 
   packages/mui-base:
     dependencies:
