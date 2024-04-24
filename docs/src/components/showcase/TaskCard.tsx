@@ -5,6 +5,7 @@ import Card from '@mui/material/Card';
 import Fade from '@mui/material/Fade';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
+import CodeRounded from '@mui/icons-material/CodeRounded';
 import ScheduleRounded from '@mui/icons-material/ScheduleRounded';
 
 export default function TaskCard() {
@@ -13,13 +14,12 @@ export default function TaskCard() {
       <Card
         data-mui-color-scheme="dark"
         sx={{
-          p: 2.5,
           minWidth: 280,
           maxWidth: 360,
-          minHeight: 240,
+          minHeight: 280,
           display: 'flex',
           flexDirection: 'column',
-          background:
+          p: 3,
             'linear-gradient(180deg, var(--muidocs-palette-primary-600) 0%, var(--muidocs-palette-primary-700) 100%)',
           boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.04)',
         }}
@@ -30,9 +30,12 @@ export default function TaskCard() {
             March 25th
           </Typography>
         </Box>
-        <Typography fontWeight="semiBold" sx={{ my: 'auto' }}>
-          Customize every button and chip instance primary color
-        </Typography>
+        <Box sx={{ my: 'auto' }}>
+          <CodeRounded />
+          <Typography fontSize={18} component="div" fontWeight="semiBold" sx={{ lineHeight: 1.4 }}>
+            Customize every button and chip instance primary color
+          </Typography>
+        </Box>
         <Box sx={{ display: 'flex', gap: 1, py: 1, alignItems: 'center' }}>
           <Box
             sx={{
