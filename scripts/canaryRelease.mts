@@ -16,7 +16,7 @@ interface PackageInfo {
   private: boolean;
 }
 
-async function run({ dryRun, npmAccessToken, baseline, skipLastCommitComparison }: RunOptions) {
+async function run({ dryRun, accessToken, baseline, skipLastCommitComparison }: RunOptions) {
   ensureCleanWorkingDirectory();
   try {
     const changedPackages = await getChangedPackages(baseline, skipLastCommitComparison);
@@ -24,7 +24,7 @@ async function run({ dryRun, npmAccessToken, baseline, skipLastCommitComparison 
       return;
     }
 
-    setAccessToken(npmAccessToken);
+    setAccessToken(accessToken);
     await setVersion(changedPackages);
     await publishPackages(changedPackages, dryRun);
   } finally {
@@ -158,7 +158,7 @@ async function cleanUp() {
 
 interface RunOptions {
   dryRun: boolean;
-  npmAccessToken?: string;
+  accessToken?: string;
   baseline?: string;
   skipLastCommitComparison: boolean;
 }
