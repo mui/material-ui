@@ -163,12 +163,12 @@ const openRolesData = [
   {
     title: 'Design',
     roles: [
-      {
-        title: 'Design Engineer — xGrid',
-        description:
-          'You will design and implement a great user and developer experience for the MUI X Data Grid.',
-        url: '/careers/design-engineer-x-grid/',
-      },
+      // {
+      //   title: 'Design Engineer — xGrid',
+      //   description:
+      //     'You will design and implement a great user and developer experience for the MUI X Data Grid.',
+      //   url: '/careers/design-engineer-x-grid/',
+      // },
     ],
   },
   {
