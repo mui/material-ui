@@ -4,6 +4,7 @@ import ChartUserByCountry from './ChartUserByCountry';
 import StatCard, { StatCardProps } from './StatCard';
 import HighlightedCard from './HighlightedCard';
 import PageViewsChart from './PageViewsChart';
+import CustomizedTreeView from './CustomizedTreeView';
 
 const data: StatCardProps[] = [
   {
@@ -27,6 +28,13 @@ const data: StatCardProps[] = [
     trend: 'neutral',
     data: [5, 4, 6, 3, 4, 3, 7, 6],
   },
+  {
+    title: 'Engagements',
+    value: '30k',
+    interval: 'last 30 days',
+    trend: 'up',
+    data: [2, 4, 3, 4, 5, 4, 7, 8],
+  },
 ];
 
 export default function MainGrid() {
@@ -36,7 +44,7 @@ export default function MainGrid() {
 
       <Grid container spacing={2} columns={12}>
         {data.map((card, index) => (
-          <Grid xs={12} md={6} lg={3} key={index}>
+          <Grid xs={12} md={6} lg={2.25} key={index}>
             <StatCard {...card} />
           </Grid>
         ))}
@@ -54,8 +62,13 @@ export default function MainGrid() {
         <Grid xs={12} lg={9}>
           <PageViewsChart />
         </Grid>
-        <Grid xs={12} lg={3}>
-          <ChartUserByCountry />
+        <Grid container xs={12} lg={3} spacing={2}>
+          <Grid xs={12}>
+            <CustomizedTreeView />
+          </Grid>
+          <Grid xs={12}>
+            <ChartUserByCountry />
+          </Grid>
         </Grid>
       </Grid>
     </React.Fragment>

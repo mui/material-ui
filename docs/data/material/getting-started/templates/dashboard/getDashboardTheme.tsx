@@ -3,6 +3,7 @@ import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 import type {} from '@mui/x-charts/themeAugmentation';
+import type {} from '@mui/x-tree-view/themeAugmentation';
 
 declare module '@mui/material/Paper' {
   interface PaperPropsVariantOverrides {
@@ -99,7 +100,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     primary: {
       light: brand[200],
       main: brand[500],
-      dark: brand[800],
+      dark: brand[700],
       contrastText: brand[50],
       ...(mode === 'dark' && {
         contrastText: brand[50],
@@ -579,9 +580,9 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               },
             }),
           }),
-          notchedOutline: ({ theme }) => ({
+          notchedOutline: {
             border: 'none',
-          }),
+          },
         },
       },
       MuiPaper: {
@@ -821,6 +822,75 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               fontWeight: 500,
             },
           },
+        },
+      },
+      MuiTreeItem2: {
+        styleOverrides: {
+          root: ({ theme }) => {
+            const borderColor =
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[300]
+                : theme.palette.grey[700];
+            return {
+              position: 'relative',
+              [`& .groupTransition`]: {
+                marginLeft: theme.spacing(2),
+                padding: theme.spacing(0.2, 2),
+                borderLeft: `1.5px solid ${borderColor}`,
+              },
+            };
+          },
+          content: ({ theme }) => ({
+            marginBottom: theme.spacing(0.5),
+            marginTop: theme.spacing(0.5),
+            padding: theme.spacing(0.4, 1),
+            '&:hover': {
+              backgroundColor:
+                theme.palette.mode === 'light'
+                  ? alpha(theme.palette.primary.light, 0.15)
+                  : alpha(theme.palette.primary.main, 0.2),
+            },
+            [`&.focused, &.selected, &.selected.focused`]: {
+              '& .labelText': { fontWeight: 500 },
+            },
+            '&.selected.focused': {
+              backgroundColor:
+                theme.palette.mode === 'light'
+                  ? alpha(theme.palette.primary.main, 0.4)
+                  : alpha(theme.palette.primary.main, 0.5),
+
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'light'
+                    ? alpha(theme.palette.primary.main, 0.5)
+                    : alpha(theme.palette.primary.main, 0.6),
+              },
+            },
+            '&.focused': {
+              backgroundColor:
+                theme.palette.mode === 'light'
+                  ? alpha(theme.palette.grey[200], 0.5)
+                  : alpha(theme.palette.grey[200], 0.1),
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'light'
+                    ? alpha(theme.palette.grey[200], 0.7)
+                    : alpha(theme.palette.grey[200], 0.2),
+              },
+            },
+            '&.selected': {
+              backgroundColor:
+                theme.palette.mode === 'light'
+                  ? alpha(theme.palette.primary.light, 0.4)
+                  : alpha(theme.palette.primary.main, 0.3),
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'light'
+                    ? alpha(theme.palette.primary.light, 0.6)
+                    : alpha(theme.palette.primary.main, 0.4),
+              },
+            },
+          }),
         },
       },
     },
