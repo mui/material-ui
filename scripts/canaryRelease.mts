@@ -1,6 +1,10 @@
+/* eslint-disable prefer-template */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-console */
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { promises as fs } from 'node:fs';
+import { readFile, writeFile, appendFile } from 'node:fs/promises';
+import * as readline from 'node:readline/promises';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { $ } from 'execa';
@@ -16,15 +20,26 @@ interface PackageInfo {
   private: boolean;
 }
 
-async function run({ dryRun, accessToken, baseline, skipLastCommitComparison }: RunOptions) {
-  ensureCleanWorkingDirectory();
-  try {
-    const changedPackages = await getChangedPackages(baseline, skipLastCommitComparison);
-    if (changedPackages.length === 0) {
-      return;
-    }
+interface RunOptions {
+  accessToken?: string;
+  baseline?: string;
+  dryRun: boolean;
+  skipLastCommitComparison: boolean;
+  yes: boolean;
+}
 
-    setAccessToken(accessToken);
+async function run({ dryRun, accessToken, baseline, skipLastCommitComparison, yes }: RunOptions) {
+  await ensureCleanWorkingDirectory();
+
+  const changedPackages = await getChangedPackages(baseline, skipLastCommitComparison);
+  if (changedPackages.length === 0) {
+    return;
+  }
+
+  await confirmPublishing(changedPackages, yes);
+
+  try {
+    await setAccessToken(accessToken);
     await setVersion(changedPackages);
     await publishPackages(changedPackages, dryRun);
   } finally {
@@ -40,22 +55,6 @@ async function ensureCleanWorkingDirectory() {
     console.error('❌ Working directory is not clean.');
     process.exit(1);
   }
-}
-
-async function setAccessToken(npmAccessToken) {
-  if (!npmAccessToken && !process.env.NPM_TOKEN) {
-    console.error(
-      '❌ NPM access token is required. Either pass it as an argument or set it as an NPM_TOKEN environment variable.',
-    );
-    process.exit(1);
-  }
-
-  const npmrcPath = resolve(workspaceRoot, '.npmrc');
-
-  await fs.appendFile(
-    npmrcPath,
-    `//registry.npmjs.org/:_authToken=${npmAccessToken ?? process.env.NPM_TOKEN}\n`,
-  );
 }
 
 async function listPublicChangedPackages(baseline: string) {
@@ -82,19 +81,54 @@ async function getChangedPackages(
     baseline = latestTag;
   }
 
-  console.log(`Looking for changed public packages since ${baseline}`);
+  console.log(`Looking for changed public packages since ${chalk.yellow(baseline)}...`);
 
-  const packages = await listPublicChangedPackages(baseline);
-  if (packages.length === 0) {
-    console.log('No public changed packages found');
-    return packages;
+  const changedPackages = await listPublicChangedPackages(baseline);
+  if (changedPackages.length === 0) {
+    console.log('Nothing found.');
   }
 
-  for (const pkg of packages) {
-    console.log(` - ${pkg.name}`);
+  return changedPackages;
+}
+
+async function confirmPublishing(changedPackages: PackageInfo[], yes: boolean) {
+  if (!yes) {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    console.log('\nFound changes in the following packages:');
+    for (const pkg of changedPackages) {
+      console.log(` - ${pkg.name}`);
+    }
+
+    console.log('\nThis will publish the above packages to the npm registry.');
+    const answer = await rl.question('Do you want to proceed? (y/n) ');
+
+    rl.close();
+
+    if (answer.toLowerCase() !== 'y') {
+      console.log('Aborted.');
+      process.exit(0);
+    }
+  }
+}
+
+async function setAccessToken(npmAccessToken: string | undefined) {
+  if (!npmAccessToken && !process.env.NPM_TOKEN) {
+    console.error(
+      '❌ NPM access token is required. Either pass it as an argument or set it as an NPM_TOKEN environment variable.',
+    );
+    process.exit(1);
   }
 
-  return packages;
+  const npmrcPath = resolve(workspaceRoot, '.npmrc');
+
+  await appendFile(
+    npmrcPath,
+    `//registry.npmjs.org/:_authToken=${npmAccessToken ?? process.env.NPM_TOKEN}\n`,
+  );
 }
 
 async function setVersion(packages: PackageInfo[]) {
@@ -105,7 +139,7 @@ async function setVersion(packages: PackageInfo[]) {
   const tasks = packages.map(async (pkg) => {
     const packageJsonPath = resolve(pkg.path, './package.json');
     try {
-      const packageJson = JSON.parse(await fs.readFile(packageJsonPath, { encoding: 'utf8' }));
+      const packageJson = JSON.parse(await readFile(packageJsonPath, { encoding: 'utf8' }));
       const version = packageJson.version;
       const dashIndex = version.indexOf('-');
       let newVersion = version;
@@ -116,7 +150,7 @@ async function setVersion(packages: PackageInfo[]) {
       newVersion = `${newVersion}-dev.${timestamp}-${currentRevisionSha}`;
       packageJson.version = newVersion;
 
-      await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
+      await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
     } catch (error) {
       console.error(`${chalk.red(`❌ ${packageJsonPath}`)}`, error);
       hasError = true;
@@ -156,13 +190,6 @@ async function cleanUp() {
   await $`git restore .`;
 }
 
-interface RunOptions {
-  dryRun: boolean;
-  accessToken?: string;
-  baseline?: string;
-  skipLastCommitComparison: boolean;
-}
-
 yargs(hideBin(process.argv))
   .command<RunOptions>(
     '$0',
@@ -186,6 +213,11 @@ yargs(hideBin(process.argv))
           default: false,
           describe:
             'By default, the script exits when there are no changes in public packages in the latest commit. Setting this flag will skip this check and compare only against the baseline.',
+          type: 'boolean',
+        })
+        .option('yes', {
+          default: false,
+          describe: "If set, the script doesn't ask for confirmation before publishing packages",
           type: 'boolean',
         });
     },
