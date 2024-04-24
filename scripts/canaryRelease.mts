@@ -175,11 +175,13 @@ async function publishPackages(packages: PackageInfo[], dryRun: boolean) {
   console.log(`\nPublishing packages${dryRun ? ' (dry run)' : ''}`);
   const tasks = packages.map(async (pkg) => {
     try {
-      await $({
-        stdio: 'inherit',
-      })`pnpm publish ${pkg.path} --tag canary --no-git-checks ${dryRun ? '--dry-run' : ''}`;
-    } catch (error) {
-      console.error(chalk.red(`❌ ${pkg.name}`), error);
+      const args = [pkg.path, '--tag', 'canary', '--no-git-checks'];
+      if (dryRun) {
+        args.push('--dry-run');
+      }
+      await $({ stdio: 'inherit' })`pnpm publish ${args}`;
+    } catch (error: any) {
+      console.error(chalk.red(`❌ ${pkg.name}`), error.shortMessage);
     }
   });
 
