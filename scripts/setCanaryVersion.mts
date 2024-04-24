@@ -6,6 +6,7 @@ import path from 'node:path';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import chalk from 'chalk';
+import { $ } from 'execa';
 
 function formatDate(date: Date) {
   // yyMMddHHmmss
@@ -27,13 +28,15 @@ async function updateVersion(packagePath: string) {
       newVersion = version.slice(0, dashIndex);
     }
 
-    newVersion = `${newVersion}-dev.${formatDate(new Date())}`;
+    const currentRevisionSha = (await $`git rev-parse --short HEAD`).stdout;
+
+    newVersion = `${newVersion}-dev.${formatDate(new Date())}-${currentRevisionSha}`;
     packageJson.version = newVersion;
 
     await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
     console.log(`${chalk.green(`✅ ${packageJson.name}`)}: ${version} → ${newVersion}`);
   } catch (error) {
-    console.error(`${chalk.red(`❌ ${packageJsonPath}`)}: ${error.message}`);
+    console.error(`${chalk.red(`❌ ${packageJsonPath}`)}`, error);
     process.exit(1);
   }
 }
