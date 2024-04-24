@@ -169,9 +169,9 @@ Here's how to migrate:
 ```
 
 ```diff
- import { alertClasses } from '@mui/material/PaginationItem';
+ import { alertClasses } from '@mui/material/Alert';
 
- MuiPaginationItem: {
+ MuiAlert: {
    styleOverrides: {
      root: {
 -      [`&.${alertClasses.standardSuccess}`]: {
@@ -1010,6 +1010,28 @@ The StepLabel's `componentsProps` was deprecated in favor of `slotProps`:
  <StepLabel
 -  componentsProps={{ label: labelProps }}
 +  slotProps={{ label: labelProps }}
+ />
+```
+
+### StepIconComponent
+
+The StepLabel's `StepIconComponent` was deprecated in favor of `slots.stepIcon`:
+
+```diff
+ <StepLabel
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+ />
+```
+
+### StepIconProps
+
+The StepLabel's `StepIconProps` was deprecated in favor of `slotProps.stepIcon`:
+
+```diff
+ <StepLabel
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
  />
 ```
 

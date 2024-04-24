@@ -26,13 +26,20 @@ const ListItemAvatarRoot = styled('div', {
 
     return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})(({ ownerState }) => ({
+})({
   minWidth: 56,
   flexShrink: 0,
-  ...(ownerState.alignItems === 'flex-start' && {
-    marginTop: 8,
-  }),
-}));
+  variants: [
+    {
+      props: {
+        alignItems: 'flex-start',
+      },
+      style: {
+        marginTop: 8,
+      },
+    },
+  ],
+});
 
 /**
  * A simple wrapper to apply `List` styles to an `Avatar`.
