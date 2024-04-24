@@ -5,7 +5,7 @@ import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
@@ -74,7 +74,9 @@ export default function HooksApiContent(props) {
           <Heading hash={hookNameKebabCase} text={`${hookName} API`} />
           <Heading text="import" hash={`${hookNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
-          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          {imports.length > 1 && (
+            <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          )}
           {Object.keys(parameters).length > 0 ? (
             <PropertiesSection
               properties={parameters}

@@ -162,6 +162,7 @@ export default class MyDocument extends Document {
                 marginBottom: '0.08em',
                 backgroundSize: 'contain',
                 backgroundRepeat: 'no-repeat',
+                flexShrink: 0,
               },
               '.plan-pro': {
                 backgroundImage: 'url(/static/x/pro.svg)',

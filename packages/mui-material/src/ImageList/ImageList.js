@@ -27,18 +27,23 @@ const ImageListRoot = styled('ul', {
 
     return [styles.root, styles[ownerState.variant]];
   },
-})(({ ownerState }) => {
-  return {
-    display: 'grid',
-    overflowY: 'auto',
-    listStyle: 'none',
-    padding: 0,
-    // Add iOS momentum scrolling for iOS < 13.0
-    WebkitOverflowScrolling: 'touch',
-    ...(ownerState.variant === 'masonry' && {
-      display: 'block',
-    }),
-  };
+})({
+  display: 'grid',
+  overflowY: 'auto',
+  listStyle: 'none',
+  padding: 0,
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
+  variants: [
+    {
+      props: {
+        variant: 'masonry',
+      },
+      style: {
+        display: 'block',
+      },
+    },
+  ],
 });
 
 const ImageList = React.forwardRef(function ImageList(inProps, ref) {

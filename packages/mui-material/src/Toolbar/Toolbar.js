@@ -26,23 +26,42 @@ const ToolbarRoot = styled('div', {
     return [styles.root, !ownerState.disableGutters && styles.gutters, styles[ownerState.variant]];
   },
 })(
-  ({ theme, ownerState }) => ({
+  ({ theme }) => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    ...(!ownerState.disableGutters && {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
-        paddingLeft: theme.spacing(3),
-        paddingRight: theme.spacing(3),
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.disableGutters,
+        style: {
+          paddingLeft: theme.spacing(2),
+          paddingRight: theme.spacing(2),
+          [theme.breakpoints.up('sm')]: {
+            paddingLeft: theme.spacing(3),
+            paddingRight: theme.spacing(3),
+          },
+        },
       },
-    }),
-    ...(ownerState.variant === 'dense' && {
-      minHeight: 48,
-    }),
+      {
+        props: {
+          variant: 'dense',
+        },
+        style: {
+          minHeight: 48,
+        },
+      },
+    ],
   }),
-  ({ theme, ownerState }) => ownerState.variant === 'regular' && theme.mixins.toolbar,
+  ({ theme }) => ({
+    variants: [
+      {
+        props: {
+          variant: 'regular',
+        },
+        style: theme.mixins.toolbar,
+      },
+    ],
+  }),
 );
 
 const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {

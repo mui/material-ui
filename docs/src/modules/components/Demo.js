@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
 import ReactRunner from 'docs/src/modules/components/ReactRunner';
 import DemoEditor from 'docs/src/modules/components/DemoEditor';
@@ -239,7 +239,6 @@ const DemoRootMaterial = styled('div', {
     borderRightWidth: 0,
     ...theme.applyDarkStyles({
       backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
-      borderBottom: 0,
     }),
   }),
   /* Similar to the outlined one but without padding. Ideal for playground demos. */

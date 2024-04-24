@@ -68,6 +68,16 @@ const Component = styled('div')(({
           ownerState
         }
       ) => ownerState.color !== 'inherit' &&
+        ownerState.color !== 'default',
+      style: {
+        color: palette?.main
+      }
+    }, {
+      props: (
+        {
+          ownerState
+        }
+      ) => ownerState.color !== 'inherit' &&
         ownerState.color !== 'default' && !ownerState.disableRipple,
       style: {
         '&:hover': {
@@ -83,16 +93,6 @@ const Component = styled('div')(({
             backgroundColor: 'transparent',
           },
         },
-      }
-    }, {
-      props: (
-        {
-          ownerState
-        }
-      ) => ownerState.color !== 'inherit' &&
-        ownerState.color !== 'default',
-      style: {
-        color: palette?.main
       }
     }]
   };
