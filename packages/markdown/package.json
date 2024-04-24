@@ -17,9 +17,7 @@
   },
   "scripts": {
     "release:publish": "pnpm publish --tag latest",
-    "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
-    "canary:set-version": "tsx ../../scripts/setCanaryVersion.mts",
-    "canary:publish": "pnpm build && pnpm publish --tag canary --no-git-checks"
+    "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
     "@babel/runtime": "^7.24.4",

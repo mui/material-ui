@@ -18,9 +18,7 @@
     "build": "tsc -b tsconfig.build.json",
     "typescript": "tsc -b tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
-    "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
-    "canary:set-version": "tsx ../../scripts/setCanaryVersion.mts",
-    "canary:publish": "pnpm build && pnpm publish --tag canary --no-git-checks"
+    "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
     "rimraf": "^5.0.5",

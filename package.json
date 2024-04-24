@@ -77,12 +77,7 @@
     "typescript:ci": "lerna run --concurrency 3 --no-bail --no-sort typescript",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
-    "canary:release": "pnpm:canary:release:ensure-clean && canary:release:set-version && canary:release:publish && canary:release:cleanup",
-    "canary:release:ensure-clean": "(git diff --quiet && git diff --cached --quiet) || (echo 'There are uncommitted changes.' && exit 1)",
-    "canary:release:set-token": "echo \"//registry.npmjs.org/:_authToken=\\${NPM_TOKEN}\" >> ./.npmrc",
-    "canary:release:set-version": "pnpm --filter \"...[$(git describe --abbrev=0)]\" run --recursive canary:set-version",
-    "canary:release:publish": "pnpm --filter \"...[$(git describe --abbrev=0)]\" run --recursive canary:publish",
-    "canary:release:cleanup": "git restore ."
+    "canary:release": "tsx ./scripts/canaryRelease.mts"
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
