@@ -10,6 +10,8 @@ import { hideBin } from 'yargs/helpers';
 import { $ } from 'execa';
 import chalk from 'chalk';
 
+const $$ = $({ stdio: 'inherit' });
+
 const currentDirectory = dirname(fileURLToPath(import.meta.url));
 const workspaceRoot = resolve(currentDirectory, '..');
 
@@ -41,6 +43,7 @@ async function run({ dryRun, accessToken, baseline, skipLastCommitComparison, ye
   try {
     await setAccessToken(accessToken);
     await setVersion(changedPackages);
+    await buildPackages();
     await publishPackages(changedPackages, dryRun);
   } finally {
     await cleanUp();
@@ -163,6 +166,14 @@ async function setVersion(packages: PackageInfo[]) {
   }
 }
 
+function buildPackages() {
+  if (process.env.CI) {
+    return $$`pnpm build:ci`;
+  }
+
+  return $$`pnpm build`;
+}
+
 function formatDate(date: Date) {
   // yyMMddHHmmss
   return date
@@ -179,7 +190,7 @@ async function publishPackages(packages: PackageInfo[], dryRun: boolean) {
       if (dryRun) {
         args.push('--dry-run');
       }
-      await $({ stdio: 'inherit' })`pnpm publish ${args}`;
+      await $$`pnpm publish ${args}`;
     } catch (error: any) {
       console.error(chalk.red(`❌ ${pkg.name}`), error.shortMessage);
     }
