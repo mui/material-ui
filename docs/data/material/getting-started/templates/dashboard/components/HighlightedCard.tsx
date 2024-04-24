@@ -29,13 +29,18 @@ const Card = styled(MuiCard)(({ theme }) => ({
 
 export default function HighlightedCard() {
   return (
-    <Card variant="highlighted" sx={{ height: '100%' }}>
+    <Card
+      variant="highlighted"
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+    >
       <CardContent>
         <InsightsIcon color="primary" />
-        <Typography
-          sx={{ fontSize: 14, flexGrow: 1, fontWeight: 'medium' }}
-          gutterBottom
-        >
+        <Typography gutterBottom>
           Uncover performance and visitor insights with our data wizardry!
         </Typography>
       </CardContent>

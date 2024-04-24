@@ -118,7 +118,7 @@ function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps
     >
       {iconColor && <DotIcon color={iconColor} />}
 
-      <Typography className="labelText" variant="body2">
+      <Typography className="labelText" variant="body2" color="text.primary">
         {children}
       </Typography>
     </TreeItem2Label>

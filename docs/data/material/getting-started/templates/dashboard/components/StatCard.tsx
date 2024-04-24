@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
-import { green, orange, red } from '../getDashboardTheme';
 
 export type StatCardProps = {
   title: string;
@@ -15,14 +16,11 @@ export type StatCardProps = {
   data: number[];
 };
 
-const trendColors = { up: green[400], down: red[300], neutral: orange[400] };
-const trendValues = { up: '+25%', down: '-25%', neutral: '+5%' };
-
 function AreaGradient({ color, id }: { color: string; id: string }) {
   return (
     <defs>
       <linearGradient id={id} x1="50%" y1="0%" x2="50%" y2="100%">
-        <stop offset="0%" stopColor={color} stopOpacity={0.5} />
+        <stop offset="0%" stopColor={color} stopOpacity={0.3} />
         <stop offset="100%" stopColor={color} stopOpacity={0} />
       </linearGradient>
     </defs>
@@ -36,49 +34,64 @@ export default function StatCard({
   trend,
   data,
 }: StatCardProps) {
-  const color = trendColors[trend];
+  const theme = useTheme();
+
+  const trendColors = {
+    up:
+      theme.palette.mode === 'light'
+        ? theme.palette.success.main
+        : theme.palette.success.dark,
+    down:
+      theme.palette.mode === 'light'
+        ? theme.palette.error.main
+        : theme.palette.error.dark,
+    neutral:
+      theme.palette.mode === 'light'
+        ? theme.palette.grey[400]
+        : theme.palette.grey[700],
+  };
+
+  const labelColors = {
+    up: 'success' as const,
+    down: 'error' as const,
+    neutral: 'default' as const,
+  };
+
+  const color = labelColors[trend];
+  const chartColor = trendColors[trend];
+  const trendValues = { up: '+25%', down: '-25%', neutral: '+5%' };
+
   return (
     <Card variant="outlined" sx={{ height: '100%' }}>
       <CardContent>
         <Stack>
-          <Box display="flex" alignItems="flex-end">
-            <Typography
-              sx={{ fontSize: 14, flexGrow: 1, fontWeight: 'medium' }}
-              color="text.secondary"
-              gutterBottom
-            >
-              {title}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: 12,
-                flexGrow: 1,
-                fontWeight: 600,
-                textAlign: 'right',
-              }}
-              color={trendColors[trend]}
-              gutterBottom
-            >
-              {trendValues[trend]}
-            </Typography>
-          </Box>
+          <Typography variant="subtitle2" gutterBottom>
+            {title}
+          </Typography>
           <Stack
-            direction="row"
+            direction="column"
             justifyContent="space-between"
-            alignItems="flex-end"
             flexGrow="1"
+            gap={1}
           >
-            <Stack justifyContent="space-between">
-              <Typography variant="h5" component="div">
-                {value}
-              </Typography>
-              <Typography sx={{ fontSize: 12 }} color="text.secondary">
-                {interval}
-              </Typography>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Stack justifyContent="space-between">
+                <Typography variant="h4" component="div">
+                  {value}
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  {interval}
+                </Typography>
+              </Stack>
+              <Chip size="small" color={color} label={trendValues[trend]} />
             </Stack>
-            <Box sx={{ width: 140, height: 80 }}>
+            <Box sx={{ width: '100%', height: 50 }}>
               <SparkLineChart
-                colors={[color]}
+                colors={[chartColor]}
                 data={data}
                 area
                 sx={{
@@ -87,7 +100,7 @@ export default function StatCard({
                   },
                 }}
               >
-                <AreaGradient color={color} id={`area-gradient-${value}`} />
+                <AreaGradient color={chartColor} id={`area-gradient-${value}`} />
               </SparkLineChart>
             </Box>
           </Stack>
