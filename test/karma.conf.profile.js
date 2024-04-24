@@ -144,10 +144,8 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'chrome',
-          // We support Chrome 90.x
-          // However, >=88 fails on seemingly all focus-related tests.
-          // TODO: Investigate why.
-          browser_version: '87.0',
+          // We support Chrome 109.x per .browserslistrc
+          browser_version: '109.0',
         },
         // No accurate performance timings (integer precision instead of double).
         firefox: {
@@ -155,24 +153,23 @@ module.exports = function setKarmaConfig(config) {
           os: 'Windows',
           os_version: '10',
           browser: 'firefox',
-          browser_version: '78.0',
+          // We support Firefox 115.x per .browserslistrc
+          browser_version: '115.0',
         },
         // No accurate performance timings (integer precision instead of double).
         safari: {
           base: 'BrowserStack',
           os: 'OS X',
-          os_version: 'Catalina',
+          os_version: 'Monterey',
           browser: 'safari',
-          // We support 12.5 on iOS.
-          // However, 12.x is very flaky on desktop (mobile is always flaky).
-          browser_version: '13.0',
+          browser_version: '15.6',
         },
         edge: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',
           browser: 'edge',
-          browser_version: '91.0',
+          browser_version: '120.0',
         },
       },
     };

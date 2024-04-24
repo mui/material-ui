@@ -1529,9 +1529,9 @@ describe('<Autocomplete />', () => {
       // <button> since it has "pointer-events: none"
       const popupIndicator = container.querySelector(`.${classes.endAdornment}`);
 
-      // TODO v6: refactor using userEvent.setup() which doesn't work until we drop
-      //  iOS Safari 12.x support, see: https://github.com/mui/material-ui/pull/38325
-      await userEvent.pointer([
+      const user = userEvent.setup();
+
+      await user.pointer([
         // this sequence does not work with fireEvent
         // 1. point the cursor somewhere in the textbox and hold down MouseLeft
         { keys: '[MouseLeft>]', target: textbox },
