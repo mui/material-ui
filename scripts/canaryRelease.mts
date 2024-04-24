@@ -168,10 +168,10 @@ async function setVersion(packages: PackageInfo[]) {
 
 function buildPackages() {
   if (process.env.CI) {
-    return $$`pnpm build:ci`;
+    return $$`pnpm build:public:ci`;
   }
 
-  return $$`pnpm build`;
+  return $$`pnpm build:public`;
 }
 
 function formatDate(date: Date) {
