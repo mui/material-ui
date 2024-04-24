@@ -20,6 +20,7 @@ export default function TaskCard() {
           display: 'flex',
           flexDirection: 'column',
           p: 3,
+          background:
             'linear-gradient(180deg, var(--muidocs-palette-primary-600) 0%, var(--muidocs-palette-primary-700) 100%)',
           boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.04)',
         }}
