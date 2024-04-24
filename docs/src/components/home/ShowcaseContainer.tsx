@@ -15,13 +15,7 @@ export function CodeContainer({ children }: { children: React.ReactNode }) {
           display: 'none',
         },
         '& pre': {
-          p: 0,
-          m: 0,
           maxHeight: '100%',
-          overflow: 'auto',
-          bgcolor: 'transparent !important',
-          border: 0,
-          fontSize: '0.75rem',
           zIndex: 1,
           '&::-webkit-scrollbar': {
             display: 'none',
