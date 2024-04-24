@@ -15,7 +15,7 @@
     "release:build": "lerna run --concurrency 8 --no-private build --skip-nx-cache",
     "release:changelog": "node scripts/releaseChangelog.mjs",
     "release:publish": "pnpm publish --recursive --tag next",
-    "release:publish:dry-run": "pnpm publish --recursive --tag next --registry=\"http://localhost:4873/\"",
+    "release:publish:dry-run": "pnpm publish --recursive --tag next --dry-run",
     "release:tag": "node scripts/releaseTag.mjs",
     "docs:api": "rimraf --glob ./docs/pages/**/api-docs ./docs/pages/**/api && pnpm docs:api:build",
     "docs:api:build": "tsx ./scripts/buidApiDocs/index.ts",
