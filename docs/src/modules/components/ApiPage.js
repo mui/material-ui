@@ -9,7 +9,7 @@ import Alert from '@mui/material/Alert';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
@@ -249,7 +249,9 @@ export default function ApiPage(props) {
 `)}
           language="jsx"
         />
-        <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        {pageContent.imports.length > 1 && (
+          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        )}
         {componentDescription ? (
           <React.Fragment>
             <br />

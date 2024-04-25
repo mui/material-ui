@@ -17,8 +17,8 @@ import PhotoOutlined from '@mui/icons-material/PhotoOutlined';
 import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Frame from 'docs/src/components/action/Frame';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const CustomContent = React.forwardRef(function CustomContent(
