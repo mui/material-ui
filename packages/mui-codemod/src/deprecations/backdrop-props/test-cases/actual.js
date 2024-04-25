@@ -1,26 +1,26 @@
 import Backdrop from '@mui/material/Backdrop';
 import { Backdrop as MyBackdrop } from '@mui/material';
 
-<Backdrop TransitionComponent={CustomTransition} />;
-<MyBackdrop TransitionComponent={CustomTransition} />;
+<Backdrop slots={{
+  transition: CustomTransition
+}} />;
+<MyBackdrop slots={{
+  transition: CustomTransition
+}} />;
 <Backdrop
-  TransitionComponent={CustomTransition}
   slots={{
     root: 'div',
-  }}
-/>;
+    transition: CustomTransition
+  }} />;
 <MyBackdrop
-  TransitionComponent={CustomTransition}
   slots={{
     ...outerSlots,
-  }}
-/>;
+    transition: CustomTransition
+  }} />;
 <Backdrop
-  TransitionComponent={ComponentTransition}
   slots={{
     root: 'div',
     transition: SlotTransition
-  }}
-/>;
+  }} />;
 // should skip non MUI components
 <NonMuiBackdrop TransitionComponent={CustomTransition} />;
