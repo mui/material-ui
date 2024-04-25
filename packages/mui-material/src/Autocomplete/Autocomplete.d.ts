@@ -95,7 +95,7 @@ export interface AutocompleteSlots {
    * The component used to render the body of the popup.
    * @default Paper
    */
-  paper: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  paper: React.JSXElementConstructor<PaperProps>;
   /**
    * The component used to position the popup.
    * @default Popper
@@ -117,7 +117,7 @@ export type AutocompleteSlotsAndSlotProps<
       sx?: SxProps<Theme>;
       ref?: React.Ref<Element>;
     };
-    paper: PaperProps;
+    paper: Partial<PaperProps>;
     popper: Partial<PopperProps>;
     popupIndicator: Partial<IconButtonProps>;
   }
