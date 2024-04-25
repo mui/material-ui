@@ -4,7 +4,7 @@ description: Check out all the newest additions to the next major of the advance
 date: 2024-03-22T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 <div style="max-width: 692px; width: 100%; height: 230px; overflow: hidden; margin-bottom: 16px;">
@@ -83,7 +83,7 @@ The goal is to further enhance this panel by incorporating additional column man
 
 <figure>
   <img width="310" alt="The new column management panel design" src="/static/blog/mui-x-v7/column-management-panel.png">
-  <figcaption>The new column managemeent panel design</figcaption>
+  <figcaption>The new column management panel design</figcaption>
 </figure>
 
 ### Date Object support in filter model

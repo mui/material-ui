@@ -11,7 +11,7 @@ const Select2 = () => <MuiSelect2 variant="standard" />;
 
 export default function TextFieldComponent(props) {
   return (
-    <div>
+    (<div>
       <TextField variant="standard" {...props} />
       <TextField variant="outlined" />
       <TextField variant="standard" />
@@ -33,10 +33,9 @@ export default function TextFieldComponent(props) {
       <SelectedRoute />
       <FromToSelect />
       <FromToSelectDrawer />
-
       <MuiTextField2 variant="standard" />
       <Select2 />
       <MuiFormControl2 variant="standard" />
-    </div>
+    </div>)
   );
 }

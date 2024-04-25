@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import DevicesOtherRoundedIcon from '@mui/icons-material/DevicesOtherRounded';
-import ContrastRoundedIcon from '@mui/icons-material/ContrastRounded';
 import SwitchAccessShortcutRoundedIcon from '@mui/icons-material/SwitchAccessShortcutRounded';
 import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
+import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -13,8 +13,8 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
@@ -161,7 +161,7 @@ export default function MaterialStyling() {
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
             overline="Styling"
             title={
@@ -174,7 +174,7 @@ export default function MaterialStyling() {
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
-                icon={<ContrastRoundedIcon color="primary" />}
+                icon={<StyleRoundedIcon color="primary" />}
                 title="Leverage the tokens from your theme"
                 description="Easily use the design tokens defined in your theme for any CSS property out there."
               />
@@ -195,7 +195,7 @@ export default function MaterialStyling() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{

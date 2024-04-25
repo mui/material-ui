@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
 import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
@@ -15,8 +14,8 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { alpha } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Card as MuiCard } from '@mui/material';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
@@ -42,7 +41,7 @@ function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
         exclusive
         value={showCustomTheme}
         onChange={toggleCustomTheme}
-        aria-placeholder="Platform"
+        aria-label="Toggle design language"
         sx={{
           backgroundColor: 'background.default',
           '& .Mui-selected': {
@@ -67,6 +66,37 @@ ToggleCustomTheme.propTypes = {
   toggleCustomTheme: PropTypes.func.isRequired,
 };
 
+const Card = styled(MuiCard)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignSelf: 'center',
+  gap: theme.spacing(4),
+  width: '100%',
+  padding: theme.spacing(2),
+  boxShadow:
+    theme.palette.mode === 'light'
+      ? 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px'
+      : 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(4),
+    width: '450px',
+  },
+}));
+
+const SignUpContainer = styled(Stack)(({ theme }) => ({
+  height: 'auto',
+  padingBottom: theme.spacing(12),
+  backgroundImage:
+    theme.palette.mode === 'light'
+      ? 'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))'
+      : 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.3), hsl(220, 30%, 5%))',
+  backgroundRepeat: 'no-repeat',
+  [theme.breakpoints.up('sm')]: {
+    paddingBottom: 0,
+    height: '100dvh',
+  },
+}));
+
 export default function SignUp() {
   const [mode, setMode] = React.useState('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
@@ -78,14 +108,11 @@ export default function SignUp() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
-  const [lastNameError, setLastNameError] = React.useState(false);
-  const [lastNameErrorMessage, setLastNameErrorMessage] = React.useState('');
 
   const validateInputs = () => {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
     const name = document.getElementById('name');
-    const lastName = document.getElementById('lastName');
 
     let isValid = true;
 
@@ -116,15 +143,6 @@ export default function SignUp() {
       setNameErrorMessage('');
     }
 
-    if (!lastName.value || lastName.value.length < 1) {
-      setLastNameError(true);
-      setLastNameErrorMessage('Name is required.');
-      isValid = false;
-    } else {
-      setLastNameError(false);
-      setLastNameErrorMessage('');
-    }
-
     return isValid;
   };
 
@@ -150,20 +168,7 @@ export default function SignUp() {
   return (
     <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
       <CssBaseline />
-      <Stack
-        direction="column"
-        justifyContent="space-between"
-        sx={(theme) => ({
-          backgroundImage:
-            theme.palette.mode === 'light'
-              ? `linear-gradient(180deg, ${alpha('#CEE5FD', 0.2)}, #FFF)`
-              : `linear-gradient(${alpha('#02294F', 0.2)}, ${alpha('#021F3B', 0.0)})`,
-          backgroundRepeat: 'no-repeat',
-          height: { xs: 'auto', sm: '100dvh' },
-          pb: { xs: 12, sm: 0 },
-        })}
-        component="main"
-      >
+      <SignUpContainer direction="column" justifyContent="space-between">
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -186,21 +191,8 @@ export default function SignUp() {
           justifyContent="center"
           sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
         >
-          <Card
-            sx={(theme) => ({
-              display: 'flex',
-              flexDirection: 'column',
-              alignSelf: 'center',
-              width: { xs: '100%', sm: '450px' },
-              p: { xs: 2, sm: 4 },
-              gap: 4,
-              boxShadow:
-                theme.palette.mode === 'light'
-                  ? 'rgba(0, 0, 0, 0.05) 0px 5px 15px 0px, rgba(25, 28, 33, 0.05) 0px 15px 35px -5px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'
-                  : 'rgba(0, 0, 0, 0.5) 0px 5px 15px 0px, rgba(25, 28, 33, 0.08) 0px 15px 35px -5px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px',
-            })}
-          >
-            <SitemarkIcon sx={{ width: 100 }} />
+          <Card>
+            <SitemarkIcon />
             <Typography
               component="h1"
               variant="h4"
@@ -214,31 +206,17 @@ export default function SignUp() {
               sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
             >
               <FormControl>
-                <FormLabel htmlFor="name">Name</FormLabel>
+                <FormLabel htmlFor="name">Full name</FormLabel>
                 <TextField
                   autoComplete="name"
                   name="name"
                   required
                   fullWidth
                   id="name"
-                  placeholder="John"
+                  placeholder="Jon Snow"
                   error={nameError}
                   helperText={nameErrorMessage}
                   color={nameError ? 'error' : 'primary'}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="lastName">Last name</FormLabel>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  placeholder="Snow"
-                  name="lastName"
-                  autoComplete="last-name"
-                  error={lastNameError}
-                  helperText={lastNameErrorMessage}
-                  color={lastNameError ? 'error' : 'primary'}
                 />
               </FormControl>
               <FormControl>
@@ -319,7 +297,7 @@ export default function SignUp() {
             </Box>
           </Card>
         </Stack>
-      </Stack>
+      </SignUpContainer>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
