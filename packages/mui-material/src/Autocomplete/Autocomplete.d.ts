@@ -287,7 +287,7 @@ export interface AutocompleteProps<
   /**
    * The component used to position the popup.
    * @default Popper
-   * @deprecated Use `slots.listbox` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated Use `slots.popper` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
