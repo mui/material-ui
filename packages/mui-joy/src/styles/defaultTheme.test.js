@@ -13,6 +13,7 @@ describe('defaultTheme', () => {
         'components',
         'colorSchemes',
         'focus',
+        'font',
         'fontSize',
         'fontFamily',
         'fontWeight',
