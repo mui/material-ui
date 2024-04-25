@@ -139,7 +139,7 @@ export default function extendTheme(options = {}, ...args) {
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
       },
     },
-    typography: prepareTypographyVars(muiTheme.typography),
+    font: { ...prepareTypographyVars(muiTheme.typography), ...muiTheme.font },
     spacing: getSpacingVal(input.spacing),
   };
 
@@ -437,7 +437,6 @@ export default function extendTheme(options = {}, ...args) {
   theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;
   theme.spacing = theme.generateSpacing();
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
-  theme.typography = muiTheme.typography;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...input?.unstable_sxConfig,

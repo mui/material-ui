@@ -10,7 +10,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@pigment-css/react": "next",
+    "@pigment-css/react": "latest",
     "@remix-run/node": "latest",
     "@remix-run/react": "latest",
     "@remix-run/serve": "latest",
@@ -19,7 +19,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@pigment-css/vite-plugin": "next",
+    "@pigment-css/vite-plugin": "latest",
     "@remix-run/dev": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

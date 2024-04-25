@@ -182,17 +182,6 @@ const openRolesData = [
       },
     ],
   },
-  {
-    title: 'Support',
-    roles: [
-      {
-        title: 'Customer Support Agent',
-        description:
-          'You will help MUI provide timely and efficient support to our customers and continue to streamline our customer operations across the board.',
-        url: '/careers/support-agent/',
-      },
-    ],
-  },
 ];
 
 const nextRolesData = [

@@ -4,7 +4,7 @@ type RecordPropertyNames<T> = {
 
 export type ExtractTypographyTokens<T> = { [K in RecordPropertyNames<T>]: string };
 
-export default function prepareTypographyTokens<T extends Record<string, any>>(typography: T) {
+export default function prepareTypographyVars<T extends Record<string, any>>(typography: T) {
   const vars: Record<string, string | number> = {};
   const entries = Object.entries(typography);
   entries.forEach((entry) => {
