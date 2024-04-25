@@ -16,6 +16,7 @@ describe('extendTheme', () => {
         'colorSchemes',
         'defaultColorScheme',
         'focus',
+        'font',
         'fontSize',
         'fontFamily',
         'fontWeight',
@@ -51,6 +52,7 @@ describe('extendTheme', () => {
       'radius',
       'shadow',
       'focus',
+      'font',
       'fontFamily',
       'fontSize',
       'fontWeight',
@@ -156,7 +158,7 @@ describe('extendTheme', () => {
   describe('typography', () => {
     it('produce typography token by default', () => {
       const theme = extendTheme();
-      expect(Object.keys(theme.vars.typography)).to.deep.equal([
+      expect(Object.keys(theme.vars.font)).to.deep.equal([
         'h1',
         'h2',
         'h3',
@@ -169,6 +171,28 @@ describe('extendTheme', () => {
         'body-sm',
         'body-xs',
       ]);
+    });
+
+    it('access font vars', () => {
+      const theme = extendTheme();
+      expect(
+        theme.unstable_sx({
+          font: 'h1',
+        }),
+      ).to.deep.equal({
+        font: 'var(--joy-font-h1, var(--joy-fontWeight-xl, 700) var(--joy-fontSize-xl4, 2.25rem)/var(--joy-lineHeight-xs, 1.33334) var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol")))',
+      });
+    });
+
+    it('use provided value if no font', () => {
+      const theme = extendTheme();
+      expect(
+        theme.unstable_sx({
+          font: 'var(--custom-font)',
+        }),
+      ).to.deep.equal({
+        font: 'var(--custom-font)',
+      });
     });
   });
 

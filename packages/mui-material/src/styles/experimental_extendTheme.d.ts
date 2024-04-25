@@ -322,6 +322,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
 
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
 export interface ThemeVars {
+  font: ExtractTypographyTokens<Theme['typography']>;
   palette: Omit<
     ColorSystem['palette'],
     | 'colorScheme'
@@ -337,7 +338,6 @@ export interface ThemeVars {
   shape: Theme['shape'];
   spacing: string;
   zIndex: ZIndex;
-  typography: ExtractTypographyTokens<Theme['typography']>;
 }
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number

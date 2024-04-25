@@ -2,9 +2,9 @@ import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { blueberryTwilightPaletteLight } from '@mui/x-charts';
-import Frame from 'docs/src/components/action/Frame';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import Frame from 'docs/src/components/action/Frame';
+import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const code = `
 <BarChart
