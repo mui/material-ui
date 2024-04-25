@@ -48,7 +48,7 @@ export default function Dashboard() {
               display: 'flex',
               flexDirection: 'column',
               py: { xs: 8, sm: 18 },
-              gap: 4,
+              gap: 2,
             }}
           >
             <Header />

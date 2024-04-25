@@ -1,17 +1,15 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { animated, useSpring } from '@react-spring/web';
-import { TransitionProps } from '@mui/material/transitions';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
-import {
-  unstable_useTreeItem2 as useTreeItem2,
-  UseTreeItem2Parameters,
-} from '@mui/x-tree-view/useTreeItem2';
+import { unstable_useTreeItem2 as useTreeItem2 } from '@mui/x-tree-view/useTreeItem2';
 import {
   TreeItem2Content,
   TreeItem2IconContainer,
@@ -20,18 +18,10 @@ import {
 } from '@mui/x-tree-view/TreeItem2';
 import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
 import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
-import { TreeViewBaseItem } from '@mui/x-tree-view/models';
+
 import { green, brand } from '../getDashboardTheme';
 
-type Color = 'blue' | 'green';
-
-type ExtendedTreeItemProps = {
-  color?: Color;
-  id: string;
-  label: string;
-};
-
-const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
+const ITEMS = [
   {
     id: '1',
     label: 'Pages',
@@ -62,7 +52,7 @@ const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
   { id: '4', label: 'Contact', color: 'blue' },
 ];
 
-function DotIcon({ color }: { color: string }) {
+function DotIcon({ color }) {
   return (
     <Box
       sx={{
@@ -78,16 +68,14 @@ function DotIcon({ color }: { color: string }) {
     />
   );
 }
-declare module 'react' {
-  interface CSSProperties {
-    '--tree-view-color'?: string;
-    '--tree-view-bg-color'?: string;
-  }
-}
+
+DotIcon.propTypes = {
+  color: PropTypes.string.isRequired,
+};
 
 const AnimatedCollapse = animated(Collapse);
 
-function TransitionComponent(props: TransitionProps) {
+function TransitionComponent(props) {
   const style = useSpring({
     to: {
       opacity: props.in ? 1 : 0,
@@ -98,15 +86,16 @@ function TransitionComponent(props: TransitionProps) {
   return <AnimatedCollapse style={style} {...props} />;
 }
 
-interface CustomLabelProps {
-  children: React.ReactNode;
-  color?: Color;
-  expandable?: boolean;
-}
+TransitionComponent.propTypes = {
+  /**
+   * Show the component; triggers the enter or exit states
+   */
+  in: PropTypes.bool,
+};
 
 const colors = { blue: brand[400], green: green[400] };
 
-function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps) {
+function CustomLabel({ color, expandable, children, ...other }) {
   const iconColor = color ? colors[color] : null;
   return (
     <TreeItem2Label
@@ -125,14 +114,13 @@ function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps
   );
 }
 
-interface CustomTreeItemProps
-  extends Omit<UseTreeItem2Parameters, 'rootRef'>,
-    Omit<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {}
+CustomLabel.propTypes = {
+  children: PropTypes.node,
+  color: PropTypes.oneOf(['blue', 'green']),
+  expandable: PropTypes.bool,
+};
 
-const CustomTreeItem = React.forwardRef(function CustomTreeItem(
-  props: CustomTreeItemProps,
-  ref: React.Ref<HTMLLIElement>,
-) {
+const CustomTreeItem = React.forwardRef(function CustomTreeItem(props, ref) {
   const { id, itemId, label, disabled, children, ...other } = props;
 
   const {
@@ -177,6 +165,31 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     </TreeItem2Provider>
   );
 });
+
+CustomTreeItem.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * If `true`, the item is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * The id attribute of the item. If not provided, it will be generated.
+   */
+  id: PropTypes.string,
+  /**
+   * The id of the item.
+   * Must be unique.
+   */
+  itemId: PropTypes.string.isRequired,
+  /**
+   * The label of the item.
+   */
+  label: PropTypes.node,
+};
 
 export default function CustomizedTreeView() {
   return (
