@@ -9,7 +9,6 @@ import SvgIconChildren from '../../../../../../docs/data/material/components/ico
 import SvgIconsColor from '../../../../../../docs/data/material/components/icons/SvgIconsColor';
 import SvgIconsSize from '../../../../../../docs/data/material/components/icons/SvgIconsSize';
 import SvgMaterialIcons from '../../../../../../docs/data/material/components/icons/SvgMaterialIcons';
-import TwoToneIcons from '../../../../../../docs/data/material/components/icons/TwoToneIcons';
 
 export default function IconsPage() {
   return (
@@ -66,12 +65,6 @@ export default function IconsPage() {
         <h2> Svg Material Icons</h2>
         <div className="demo-container">
           <SvgMaterialIcons />
-        </div>
-      </section>
-      <section>
-        <h2> Two Tone Icons</h2>
-        <div className="demo-container">
-          <TwoToneIcons />
         </div>
       </section>
     </React.Fragment>

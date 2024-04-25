@@ -9,7 +9,6 @@ import SvgIconChildren from '../../../../../docs/data/material/components/icons/
 import SvgIconsColor from '../../../../../docs/data/material/components/icons/SvgIconsColor.tsx';
 import SvgIconsSize from '../../../../../docs/data/material/components/icons/SvgIconsSize.tsx';
 import SvgMaterialIcons from '../../../../../docs/data/material/components/icons/SvgMaterialIcons.tsx';
-import TwoToneIcons from '../../../../../docs/data/material/components/icons/TwoToneIcons.tsx';
 
 export default function IconsPage() {
   return (
@@ -67,12 +66,6 @@ export default function IconsPage() {
         <h2> Svg Material Icons</h2>
         <div className="demo-container">
           <SvgMaterialIcons />
-        </div>
-      </section>
-      <section>
-        <h2> Two Tone Icons</h2>
-        <div className="demo-container">
-          <TwoToneIcons />
         </div>
       </section>
     </MaterialUILayout>
