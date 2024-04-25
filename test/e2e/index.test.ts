@@ -297,9 +297,7 @@ describe('e2e', () => {
       // Move the mouse to the bottom-right corner, adjusting slightly to grab the resize handle
       await page.mouse.move(bottomRightX - 5, bottomRightY - 5);
 
-      // Simulate a double click without releasing the mouse button (mouseup) to grab the resize handle
-      await page.mouse.down();
-      await page.mouse.up();
+      // Hold the mouse down without releasing the mouse button (mouseup) to grab the resize handle
       await page.mouse.down();
 
       // Move the mouse to resize the textarea
