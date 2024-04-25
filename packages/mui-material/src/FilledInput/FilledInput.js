@@ -70,107 +70,113 @@ const FilledInputRoot = styled(InputBaseRoot, {
     [`&.${filledInputClasses.disabled}`]: {
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground,
     },
-    '&::after': {
-      left: 0,
-      bottom: 0,
-      // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-      content: '""',
-      position: 'absolute',
-      right: 0,
-      transform: 'scaleX(0)',
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shorter,
-        easing: theme.transitions.easing.easeOut,
-      }),
-      pointerEvents: 'none', // Transparent to the hover style.
-    },
-    [`&.${filledInputClasses.focused}:after`]: {
-      // translateX(0) is a workaround for Safari transform scale bug
-      // See https://github.com/mui/material-ui/issues/31766
-      transform: 'scaleX(1) translateX(0)',
-    },
-    [`&.${filledInputClasses.error}`]: {
-      '&::before, &::after': {
-        borderBottomColor: (theme.vars || theme).palette.error.main,
-      },
-    },
-    '&::before': {
-      borderBottom: `1px solid ${
-        theme.vars
-          ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
-          : bottomLineColor
-      }`,
-      left: 0,
-      bottom: 0,
-      // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-      content: '"\\00a0"',
-      position: 'absolute',
-      right: 0,
-      transition: theme.transitions.create('border-bottom-color', {
-        duration: theme.transitions.duration.shorter,
-      }),
-      pointerEvents: 'none', // Transparent to the hover style.
-    },
-    [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
-      borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
-    },
-    [`&.${filledInputClasses.disabled}:before`]: {
-      borderBottomStyle: 'dotted',
-    },
     variants: [
       {
-        props: { startAdornment: true },
+        props: ({ ownerState }) => !ownerState.disableUnderline,
+        style: {
+          '&::after': {
+            left: 0,
+            bottom: 0,
+            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+            content: '""',
+            position: 'absolute',
+            right: 0,
+            transform: 'scaleX(0)',
+            transition: theme.transitions.create('transform', {
+              duration: theme.transitions.duration.shorter,
+              easing: theme.transitions.easing.easeOut,
+            }),
+            pointerEvents: 'none', // Transparent to the hover style.
+          },
+          [`&.${filledInputClasses.focused}:after`]: {
+            // translateX(0) is a workaround for Safari transform scale bug
+            // See https://github.com/mui/material-ui/issues/31766
+            transform: 'scaleX(1) translateX(0)',
+          },
+          [`&.${filledInputClasses.error}`]: {
+            '&::before, &::after': {
+              borderBottomColor: (theme.vars || theme).palette.error.main,
+            },
+          },
+          '&::before': {
+            borderBottom: `1px solid ${
+              theme.vars
+                ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
+                : bottomLineColor
+            }`,
+            left: 0,
+            bottom: 0,
+            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+            content: '"\\00a0"',
+            position: 'absolute',
+            right: 0,
+            transition: theme.transitions.create('border-bottom-color', {
+              duration: theme.transitions.duration.shorter,
+            }),
+            pointerEvents: 'none', // Transparent to the hover style.
+          },
+          [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
+            borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
+          },
+          [`&.${filledInputClasses.disabled}:before`]: {
+            borderBottomStyle: 'dotted',
+          },
+        },
+      },
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.main) // check all the used fields in the style below
+        .map(([color]) => ({
+          props: {
+            disableUnderline: false,
+            color,
+          },
+          style: {
+            '&::after': {
+              borderBottom: `2px solid ${(theme.vars || theme).palette[color]?.main}`,
+            },
+          },
+        })),
+      {
+        props: ({ ownerState }) => ownerState.startAdornment,
         style: {
           paddingLeft: 12,
         },
       },
       {
-        props: { endAdornment: true },
+        props: ({ ownerState }) => ownerState.endAdornment,
         style: {
           paddingRight: 12,
         },
       },
       {
-        props: { multiline: true },
+        props: ({ ownerState }) => ownerState.multiline,
         style: {
           padding: '25px 12px 8px',
         },
       },
       {
-        props: { multiline: true, size: 'small' },
+        props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
         style: {
           paddingTop: 21,
           paddingBottom: 4,
         },
       },
       {
-        props: { multiline: true, hiddenLabel: true },
+        props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel,
         style: {
           paddingTop: 16,
           paddingBottom: 17,
         },
       },
       {
-        props: { multiline: true, hiddenLabel: true, size: 'small' },
+        props: ({ ownerState }) =>
+          ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
         style: {
           paddingTop: 8,
           paddingBottom: 9,
         },
       },
     ],
-    ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main) // check all the used fields in the style below
-      .map(([color]) => ({
-        props: {
-          disableUnderline: false,
-          color,
-        },
-        style: {
-          '&::after': {
-            borderBottom: `2px solid ${(theme.vars || theme).palette[color]?.main}`,
-          },
-        },
-      })),
   };
 });
 
@@ -207,46 +213,42 @@ const FilledInputInput = styled(InputBaseInput, {
   }),
   variants: [
     {
-      props: { size: 'small' },
+      props: {
+        size: 'small',
+      },
       style: {
         paddingTop: 21,
         paddingBottom: 4,
       },
     },
     {
-      props: { hiddenLabel: true },
+      props: ({ ownerState }) => ownerState.hiddenLabel,
       style: {
         paddingTop: 16,
         paddingBottom: 17,
       },
     },
     {
-      props: { hiddenLabel: true, size: 'small' },
+      props: ({ ownerState }) => ownerState.startAdornment,
+      style: {
+        paddingLeft: 0,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.endAdornment,
+      style: {
+        paddingRight: 0,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.hiddenLabel && ownerState.size === 'small',
       style: {
         paddingTop: 8,
         paddingBottom: 9,
       },
     },
     {
-      props: { startAdornment: true },
-      style: {
-        paddingLeft: 0,
-      },
-    },
-    {
-      props: { startAdornment: true },
-      style: {
-        paddingLeft: 0,
-      },
-    },
-    {
-      props: { endAdornment: true },
-      style: {
-        paddingRight: 0,
-      },
-    },
-    {
-      props: { multiline: true },
+      props: ({ ownerState }) => ownerState.multiline,
       style: {
         paddingTop: 0,
         paddingBottom: 0,
@@ -263,11 +265,12 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiFilledInput' });
 
   const {
-    disableUnderline,
+    disableUnderline = false,
+    color = 'primary',
     components = {},
     componentsProps: componentsPropsProp,
     fullWidth = false,
-    hiddenLabel, // declare here to prevent spreading to DOM
+    hiddenLabel = false, // declare here to prevent spreading to DOM
     inputComponent = 'input',
     multiline = false,
     slotProps,
@@ -278,11 +281,13 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const ownerState = {
     ...props,
+    disableUnderline,
+    hiddenLabel,
     fullWidth,
     inputComponent,
     multiline,
     type,
-    color: props.color || 'primary',
+    color,
   };
 
   const classes = useUtilityClasses(props);
@@ -376,6 +381,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the input will not have an underline.
+   * @default false
    */
   disableUnderline: PropTypes.bool,
   /**
