@@ -100,7 +100,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     primary: {
       light: brand[200],
       main: brand[500],
-      dark: brand[700],
+      dark: brand[800],
       contrastText: brand[50],
       ...(mode === 'dark' && {
         contrastText: brand[50],
@@ -907,6 +907,26 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           },
         },
       },
+      MuiChartsLegend: {
+        styleOverrides: {
+          root: {
+            '& .MuiChartsLegend-mark': {
+              ry: 6,
+            },
+          },
+        },
+      },
+      MuiChartsGrid: {
+        styleOverrides: {
+          root: {
+            '& .MuiChartsGrid-line': {
+              stroke: gray[200],
+              strokeDasharray: '4 2',
+              strokeWidth: 0.8,
+            },
+          },
+        },
+      },
       MuiTreeItem2: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -931,9 +951,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
               outlineOffset: '2px',
             },
-            [`&.focused, &.selected, &.selected.focused`]: {
-              backgroundColor: gray[100],
-            },
+
             '&.selected.focused': {
               backgroundColor: gray[100],
               '&:hover': {
@@ -954,7 +972,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                 outline: '1px solid',
                 outlineColor: theme.palette.divider,
               },
-              [`&.focused, &.selected, &.selected.focused`]: {
+              '&.focused': {
                 backgroundColor: gray[800],
               },
               '&.selected.focused': {

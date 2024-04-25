@@ -57,7 +57,7 @@ export default function PageViewsChart() {
           series={[
             {
               id: 'page-views',
-              curve: 'linear',
+              label: 'Page views',
               showMark: false,
               data: [
                 5000, 10000, 7000, 10000, 13000, 12000, 9000, 7000, 5000, 10000,
@@ -68,30 +68,33 @@ export default function PageViewsChart() {
             },
             {
               id: 'downloads',
-              curve: 'linear',
+              label: 'Downloads',
               showMark: false,
               data: [
                 2000, 8000, 3000, 9000, 10000, 18000, 10000, 9000, 2000, 14000,
                 11000, 6000, 11000, 13000, 23000, 17000, 19000, 17000, 14000, 12000,
                 11000, 14000, 18000, 19000, 22000, 15000, 23000, 20000, 18000, 19000,
               ],
-              area: true,
             },
           ]}
-          height={400}
-          margin={{ left: 50, right: 0, top: 30, bottom: 30 }}
+          height={320}
+          margin={{ left: 50, right: 0, top: 60, bottom: 30 }}
           grid={{ horizontal: true }}
           sx={{
             '& .MuiAreaElement-series-page-views': {
               fill: "url('#page-views')",
             },
-            '& .MuiAreaElement-series-downloads': {
-              fill: "url('#downloads')",
+          }}
+          slotProps={{
+            legend: {
+              labelStyle: { fontSize: 14 },
+              itemMarkWidth: 12,
+              itemMarkHeight: 12,
+              position: { vertical: 'top', horizontal: 'right' },
             },
           }}
         >
           <AreaGradient color={color[0]} id="page-views" />
-          <AreaGradient color={color[1]} id="downloads" />
         </LineChart>
       </CardContent>
     </Card>
