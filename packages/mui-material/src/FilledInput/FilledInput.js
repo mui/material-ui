@@ -266,7 +266,6 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const {
     disableUnderline = false,
-    color = 'primary',
     components = {},
     componentsProps: componentsPropsProp,
     fullWidth = false,
@@ -287,7 +286,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     inputComponent,
     multiline,
     type,
-    color,
+    color: props.color || 'primary',
   };
 
   const classes = useUtilityClasses(props);
