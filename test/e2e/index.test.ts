@@ -290,7 +290,9 @@ describe('e2e', () => {
       const bottomRightY = y + height;
 
       // Get the initial height of textarea as a number
-      const initialHeight = await textarea.evaluate((event) => parseFloat(event.style.height));
+      const initialHeight = await textarea.evaluate((textareaElement) =>
+        parseFloat(textareaElement.style.height),
+      );
 
       // Move the mouse to the bottom-right corner, adjusting slightly to grab the resize handle
       await page.mouse.move(bottomRightX - 5, bottomRightY - 5);
@@ -304,9 +306,9 @@ describe('e2e', () => {
       await page.mouse.move(bottomRightX + 50, bottomRightY + 50);
 
       // Assert that the textarea height has increased after resizing
-      expect(await textarea.evaluate((event) => parseFloat(event.style.height))).to.be.greaterThan(
-        initialHeight,
-      );
+      expect(
+        await textarea.evaluate((textareaElement) => parseFloat(textareaElement.style.height)),
+      ).to.be.greaterThan(initialHeight);
     });
   });
 
