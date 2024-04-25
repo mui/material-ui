@@ -118,10 +118,12 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onChange: onChangeProp,
     size = 'medium',
     className,
+    disableRipple = false,
     ...other
   } = props;
   const ownerState = {
     ...props,
+    disableRipple,
     color,
     size,
   };
