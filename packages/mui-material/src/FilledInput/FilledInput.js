@@ -15,6 +15,8 @@ import {
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
 
+const useThemeProps = createUseThemeProps('MuiFilledInput');
+
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline } = ownerState;
 
@@ -260,8 +262,6 @@ const FilledInputInput = styled(InputBaseInput, {
 }));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
-  const useThemeProps = createUseThemeProps('MuiFilledInput');
-
   const props = useThemeProps({ props: inProps, name: 'MuiFilledInput' });
 
   const {
@@ -269,7 +269,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     components = {},
     componentsProps: componentsPropsProp,
     fullWidth = false,
-    hiddenLabel = false, // declare here to prevent spreading to DOM
+    hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
     multiline = false,
     slotProps,
@@ -281,12 +281,13 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const ownerState = {
     ...props,
     disableUnderline,
-    hiddenLabel,
     fullWidth,
     inputComponent,
     multiline,
     type,
-    color: props.color || 'primary',
+    ...(props.color && {
+      color: props.color,
+    }),
   };
 
   const classes = useUtilityClasses(props);
