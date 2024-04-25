@@ -258,7 +258,7 @@ describe('experimental_extendTheme', () => {
 
       expect(theme.colorSchemes.dark.overlays[0]).to.equal(undefined);
       expect(theme.colorSchemes.dark.overlays[24]).to.equal(
-        'linear-gradient(rgba(255 255 255 / 0.16), rgba(255 255 255 / 0.16))',
+        'linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165))',
       );
     });
 
@@ -405,6 +405,60 @@ describe('experimental_extendTheme', () => {
       const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
       expect(theme.vars.spacing).to.deep.equal('var(--mui-spacing, 0.25rem)');
       expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.25rem))');
+    });
+  });
+
+  describe('typography', () => {
+    it('produce typography token by default', () => {
+      const theme = extendTheme();
+      expect(Object.keys(theme.vars.font)).to.deep.equal([
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'subtitle1',
+        'subtitle2',
+        'body1',
+        'body2',
+        'button',
+        'caption',
+        'overline',
+        'inherit',
+      ]);
+    });
+
+    it('access font vars', () => {
+      const theme = extendTheme();
+      expect(
+        theme.unstable_sx({
+          font: 'h1',
+        }),
+      ).to.deep.equal({
+        font: 'var(--mui-font-h1, 300 6rem/1.167 "Roboto", "Helvetica", "Arial", sans-serif)',
+      });
+    });
+
+    it('use provided value if no font', () => {
+      const theme = extendTheme();
+      expect(
+        theme.unstable_sx({
+          font: 'var(--custom-font)',
+        }),
+      ).to.deep.equal({
+        font: 'var(--custom-font)',
+      });
+    });
+  });
+
+  describe('container queries', () => {
+    it('should generate container queries', () => {
+      const theme = extendTheme();
+      expect(theme.containerQueries('sidebar').up('sm')).to.equal(
+        '@container sidebar (min-width:600px)',
+      );
+      expect(theme.containerQueries.up(300)).to.equal('@container (min-width:300px)');
     });
   });
 

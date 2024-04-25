@@ -27,17 +27,12 @@ function Widget({
     <Paper
       variant="outlined"
       sx={(theme) => ({
-        p: 4,
+        p: 3,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        borderRadius: '12px',
-        border: '1px solid',
-        borderColor: 'grey.100',
         background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
         ...theme.applyDarkStyles({
-          bgcolor: 'primaryDark.900',
-          borderColor: 'primaryDark.700',
           background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
         }),
       })}
@@ -85,12 +80,12 @@ export default function HowToSupport() {
             </Typography>
             <Button
               component="a"
-              // @ts-expect-error
-              variant="link"
               size="small"
+              variant="outlined"
+              fullWidth
               href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ ml: -1, mt: 'auto', width: 'fit-content' }}
+              sx={{ mt: 'auto' }}
             >
               Leave your feedback{' '}
             </Button>
@@ -146,12 +141,12 @@ export default function HowToSupport() {
             </Box>
             <Button
               component="a"
-              // @ts-expect-error
-              variant="link"
               size="small"
+              variant="outlined"
+              fullWidth
               href="https://github.com/mui/material-ui"
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ ml: -1, mt: 'auto', width: 'fit-content' }}
+              sx={{ mt: 'auto' }}
             >
               See the repository
             </Button>
@@ -173,12 +168,12 @@ export default function HowToSupport() {
             </Typography>
             <Button
               component="a"
-              // @ts-expect-error
-              variant="link"
               size="small"
+              variant="outlined"
+              fullWidth
               href="https://opencollective.com/mui-org"
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ ml: -1, mt: 'auto', width: 'fit-content' }}
+              sx={{ mt: 'auto' }}
             >
               {'See Open Collective'}
             </Button>
