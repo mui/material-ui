@@ -23,7 +23,6 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
-
 import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
