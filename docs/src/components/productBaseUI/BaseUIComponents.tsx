@@ -9,6 +9,7 @@ import TabUnselectedRoundedIcon from '@mui/icons-material/TabUnselectedRounded';
 import InputRoundedIcon from '@mui/icons-material/InputRounded';
 import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
 import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
@@ -16,12 +17,10 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
+import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import ROUTES from 'docs/src/route';
 
-// switcher icons
-
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+// Switcher icons
 import BaseButtonDemo from './components/BaseButtonDemo';
 import BaseMenuDemo from './components/BaseMenuDemo';
 import BaseInputDemo from './components/BaseInputDemo';
