@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0-alpha.3",
+  "version": "6.0.0-alpha.4",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -10,8 +10,6 @@
     "build": "lerna run build --ignore docs",
     "build:public": "lerna run --no-private build",
     "build:ci": "lerna run build --ignore docs --concurrency 8 --skip-nx-cache",
-    "build:zero": "lerna run --scope \"@pigmentcss/*\" build",
-    "clean:zero": "pnpm --filter \"@pigmentcss/*\" clean",
     "build:codesandbox": "NODE_OPTIONS=\"--max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" --scope \"@mui-internal/*\" --no-private build",
     "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --no-private --force-publish=@mui/core-downloads-tracker",
     "release:build": "lerna run --concurrency 8 --no-private build --skip-nx-cache",
@@ -55,9 +53,8 @@
     "test": "node scripts/test.mjs",
     "tc": "node test/cli.js",
     "test:extended": "pnpm eslint && pnpm typescript && pnpm test:coverage",
-    "test:pigment-css-react:ci": "pnpm nx run @pigment-css/react:test:ci",
-    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react",
-    "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react:ci",
+    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "test:e2e": "cross-env NODE_ENV=production pnpm test:e2e:build && concurrently --success first --kill-others \"pnpm test:e2e:run\" \"pnpm test:e2e:server\"",
     "test:e2e:build": "webpack --config test/e2e/webpack.config.js",
@@ -74,13 +71,12 @@
     "test:regressions:run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
     "test:regressions:server": "serve test/regressions -p 5001",
     "test:umd": "node packages/mui-material/test/umd/run.js",
-    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' --exclude 'packages/pigment-css-react/**/*.test.{js,ts,tsx}' && pnpm test:pigment-css-react:ci",
+    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "test:argos": "node ./scripts/pushArgos.mjs",
     "typescript": "lerna run --no-bail --parallel typescript",
     "typescript:ci": "lerna run --concurrency 3 --no-bail --no-sort typescript",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
-    "generate-codeowners": "node scripts/generateCodeowners.mjs",
-    "watch:zero": "nx run-many -t watch --projects=\"@pigmentcss/*\" --parallel"
+    "generate-codeowners": "node scripts/generateCodeowners.mjs"
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
@@ -115,7 +111,7 @@
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "^14.2.2",
     "@octokit/rest": "^20.1.0",
-    "@pigment-css/react": "workspace:^",
+    "@pigment-css/react": "^0.0.9",
     "@playwright/test": "1.43.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
@@ -184,7 +180,6 @@
     "stylelint-config-standard": "^34.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.3.10",
-    "tsup": "^8.0.2",
     "tsx": "^4.7.2",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
@@ -226,10 +221,5 @@
     ],
     "sourceMap": false,
     "instrument": false
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@wyw-in-js/transform@0.5.0": "patches/@wyw-in-js__transform@0.5.0.patch"
-    }
   }
 }

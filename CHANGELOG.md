@@ -1,5 +1,60 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.4
+
+<!-- generated comparing v6.0.0-alpha.3..next -->
+
+_Apr 24, 2024_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔥 Converted 3 more Material UI components to use Pigment CSS.
+- ℹ️ Pigment CSS now lives in [its own repository](https://github.com/mui/pigment-css)! From now on, all future development will happen there.
+
+### `@mui/material@6.0.0-alpha.4`
+
+- [Checkbox] Convert to support CSS extraction (#41957) @lhilgert9
+- [IconButton] Convert to support CSS extraction (#41850) @gijsbotje
+- [Radio] Convert to support CSS extraction (#41840) @lhilgert9
+- [Typography] Fix ownerState prop placement (#41903) @sai6855
+- Generate typography tokens (#41703) @siriwatknp
+- Move typography CSS variables to `font` (#42003) @siriwatknp
+- Fix getOverlayAlpha type (#41995) @oliviertassinari
+- Support CSS Extraction using codemod (#41935) @siriwatknp
+
+### `@mui/icons-material@6.0.0-alpha.4`
+
+- &#8203;<!-- 08 -->[icons] Update the icons package (#41937) @danilo-leal
+
+### Docs
+
+- [material-ui] Remove react-swipeable-views from demos as it's no longer maintained (#41912) @soler1212
+- [material-ui] Add dark theme thumbnails for templates (#41947) @zanivan
+- [material-ui] Remove links and interdependencies from free templates (#41941) @zanivan
+- [material-ui] Add missing backticks to HTML tag in the installation page (#41972) @Miguelrom
+- Fix 301 Toolpad links @oliviertassinari
+- Fix 301 image redirections @oliviertassinari
+
+### Core
+
+- pnpm docs:zipRules && vale sync @oliviertassinari
+- Remove @pigment-css/\* packages (#41965) @mnajdova
+- [code-infra] Move the HighlightedCode component to @mui/docs (#41859) @Janpot
+- [code-infra] Move the HighlightedCode component to @mui/docs (#41859) @Janpot
+- [code-infra] Make Babel config path configurable in API docs builder (#41999) @michaldudak
+- [docs-infra] Fix flex-shrink pro-plan (#41990) @oliviertassinari
+- [docs-infra] Allow more value uses of MUI (#41706) @oliviertassinari
+- [docs-infra] Move CPU to shared config (#41901) @oliviertassinari
+- [docs-infra] Improve Twitter OG:image (#41860) @oliviertassinari
+- [docs-infra] Adapt docs infra to Base UI docs needs (#41963) @michaldudak
+- [docs-infra] Add demo container design refinements (#41948) @danilo-leal
+- [docs-infra] Use the `getLayout` on the material demo pages (#41936) @alexfauquette
+- [test] Update browser versions in karma config (#42008) @ZeeshanTamboli
+- [website] Remove customer support agent role from website (#41969) @rluzists1
+- [website] Fix grid usage and add stray improvements (#41930) @danilo-leal
+
+All contributors of this release in alphabetical order: @alexfauquette, @danilo-leal, @gijsbotje, @Janpot, @lhilgert9, @michaldudak, @Miguelrom, @mnajdova, @oliviertassinari, @rluzists1, @sai6855, @siriwatknp, @soler1212, @zanivan, @ZeeshanTamboli
+
 ## v6.0.0-alpha.3
 
 <!-- generated comparing v6.0.0-alpha.2..next -->

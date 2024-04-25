@@ -385,6 +385,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       light: lightColorSystem,
       dark: darkColorSystem,
     },
+    font: {},
     fontSize,
     fontFamily,
     fontWeight,
@@ -606,7 +607,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     cssVarPrefix,
     getCssVar,
     spacing: getSpacingVal(spacing),
-    typography: prepareTypographyVars(mergedScales.typography),
+    font: { ...prepareTypographyVars(mergedScales.typography), ...mergedScales.font },
   } as unknown as Theme & { attribute: string; colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
   theme = cssContainerQueries(theme);
 
