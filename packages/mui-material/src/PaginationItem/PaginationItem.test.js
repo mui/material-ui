@@ -137,7 +137,7 @@ describe('<PaginationItem />', () => {
       return <KeyboardDoubleArrowRightIcon data-testid={props['data-testid'] ?? 'custom-last'} />;
     }
 
-    it('components passed in slots prop should override defualt components', () => {
+    it('icons passed in slots prop should override defualt icons', () => {
       const slots = {
         previous: CustomPreviousIcon,
         next: CustomNextIcon,
@@ -152,7 +152,7 @@ describe('<PaginationItem />', () => {
       });
     });
 
-    it('slotProps should be passed to components passed in slots prop', () => {
+    it('slotProps should be applied to icons passed in slots prop', () => {
       const slots = {
         previous: CustomPreviousIcon,
         next: CustomNextIcon,
@@ -176,7 +176,7 @@ describe('<PaginationItem />', () => {
       });
     });
 
-    it('component passed in slots should ovveride component passed in components prop ', () => {
+    it('icons passed in slots should overide icons passed in components prop ', () => {
       const slots = {
         previous: CustomPreviousIcon,
         next: CustomNextIcon,
@@ -214,7 +214,7 @@ describe('<PaginationItem />', () => {
       });
     });
 
-    it('should apply slotProps to components when slots prop is not passed', () => {
+    it('should apply slotProps to icons passed in slots prop', () => {
       const slotProps = {
         previous: { 'data-testid': 'component-previous' },
         next: { 'data-testid': 'component-next' },
