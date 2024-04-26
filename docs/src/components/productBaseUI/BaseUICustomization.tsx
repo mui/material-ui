@@ -15,7 +15,6 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import Frame from 'docs/src/components/action/Frame';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const code = `
 import clsx from 'clsx';
@@ -307,12 +306,7 @@ export default function BaseUICustomization() {
             >
               <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
                 <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <HighlightedCode
-                    copyButtonHidden
-                    component={MarkdownElement}
-                    code={code}
-                    language="jsx"
-                  />
+                  <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
                 </Box>
                 <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
               </Box>

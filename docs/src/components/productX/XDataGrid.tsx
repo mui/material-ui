@@ -19,7 +19,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
@@ -211,12 +211,7 @@ export default function XDataGrid() {
           >
             <Box sx={{ position: 'relative' }}>
               <Box sx={{ position: 'relative', zIndex: 1 }}>
-                <HighlightedCode
-                  copyButtonHidden
-                  component={MarkdownElement}
-                  code={code}
-                  language="jsx"
-                />
+                <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
               </Box>
               {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
               <StylingInfo

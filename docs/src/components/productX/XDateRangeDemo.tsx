@@ -12,7 +12,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { startOfWeek, endOfWeek, subDays } from 'date-fns';
 import Frame from 'docs/src/components/action/Frame';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -187,7 +186,7 @@ export default function XDateRangeDemo() {
         </Paper>
       </Frame.Demo>
       <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
-        <HighlightedCode copyButtonHidden component={MarkdownElement} code={code} language="jsx" />
+        <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
       </Frame.Info>
     </Frame>
   );

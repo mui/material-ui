@@ -2,16 +2,37 @@ import * as React from 'react';
 import prism from '@mui/internal-markdown/prism';
 import { NoSsr } from '@mui/base/NoSsr';
 import { ButtonProps } from '@mui/material/Button';
-import { SxProps } from '@mui/material/styles';
+import { SxProps, styled } from '@mui/material/styles';
 import { useCodeCopy, CodeCopyButton } from '../CodeCopy';
 import { MarkdownElement } from '../MarkdownElement';
 
+const Pre = styled('pre')(({ theme }) => ({
+  margin: 0,
+  color: 'hsl(60deg 30% 96.08%)', // fallback color until Prism's theme is loaded
+  WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+  maxWidth: 'calc(100vw - 32px)',
+  [theme.breakpoints.up('md')]: {
+    maxWidth: 'calc(100vw - 32px - 16px)',
+  },
+  '& code': {
+    // Avoid layout jump after hydration (style injected by Prism)
+    ...theme.typography.caption,
+    fontFamily: theme.typography.fontFamilyCode,
+    fontWeight: 400,
+    WebkitFontSmoothing: 'subpixel-antialiased',
+    // Reset for Safari
+    // https://github.com/necolas/normalize.css/blob/master/normalize.css#L102
+  },
+}));
+
 export interface HighlightedCodeProps {
   code: string;
-  component?: React.ElementType;
   copyButtonHidden?: boolean;
   copyButtonProps?: ButtonProps;
   language: string;
+  parentComponent?: React.ElementType;
+  preComponent?: React.ElementType;
+  plainStyle?: boolean;
   sx?: SxProps;
 }
 
@@ -22,7 +43,9 @@ export const HighlightedCode = React.forwardRef<HTMLDivElement, HighlightedCodeP
       copyButtonProps,
       code,
       language,
-      component: Component = MarkdownElement,
+      plainStyle,
+      parentComponent: Component = plainStyle ? 'div' : MarkdownElement,
+      preComponent: PreComponent = plainStyle ? Pre : 'pre',
       ...other
     } = props;
     const renderedCode = React.useMemo(() => {
@@ -38,13 +61,13 @@ export const HighlightedCode = React.forwardRef<HTMLDivElement, HighlightedCodeP
               <CodeCopyButton code={code} {...copyButtonProps} />
             </NoSsr>
           )}
-          <pre>
+          <PreComponent>
             <code
               className={`language-${language}`}
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: renderedCode }}
             />
-          </pre>
+          </PreComponent>
         </div>
       </Component>
     );

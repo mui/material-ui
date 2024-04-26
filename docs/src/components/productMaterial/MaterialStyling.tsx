@@ -14,7 +14,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
@@ -315,12 +315,7 @@ export default function MaterialStyling() {
             >
               <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
                 <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <HighlightedCode
-                    copyButtonHidden
-                    component={MarkdownElement}
-                    code={code}
-                    language="jsx"
-                  />
+                  <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
                 </Box>
                 <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
               </Box>

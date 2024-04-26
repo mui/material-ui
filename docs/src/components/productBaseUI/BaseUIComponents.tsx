@@ -17,7 +17,7 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+
 import ROUTES from 'docs/src/route';
 
 // Switcher icons
@@ -181,7 +181,7 @@ export default function BaseUIComponents() {
               >
                 <HighlightedCode
                   copyButtonHidden
-                  component={MarkdownElement}
+                  plainStyle
                   code={(() => {
                     const result = CODES[demo];
                     if (typeof result === 'function') {
