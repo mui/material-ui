@@ -31,15 +31,15 @@ function createLoading(sx: BoxProps['sx']) {
 }
 
 const CoreShowcase = dynamic(() => import('./CoreShowcase'), {
-  loading: createLoading({ height: 651 }),
+  loading: createLoading({ height: 660 }),
 });
 
 const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
-  loading: createLoading({ height: 665 }),
+  loading: createLoading({ height: 660 }),
 });
 
 const ToolpadShowcase = dynamic(() => import('./ToolpadShowcase'), {
-  loading: createLoading({ height: 689 }),
+  loading: createLoading({ height: 674 }),
 });
 
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));

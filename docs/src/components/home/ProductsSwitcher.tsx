@@ -43,15 +43,17 @@ function ProductItem({
       >
         <span>{icon}</span>
         <span>
-          <Typography color="text.primary" variant="body2" fontWeight="bold">
-            {name}
-          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography color="text.primary" variant="body2" fontWeight="bold">
+              {name}
+            </Typography>
+            {chip}
+          </Box>
           <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
             {description}
           </Typography>
         </span>
       </Box>
-      <Box sx={{ p: 2 }}>{chip}</Box>
     </Box>
   );
 }
@@ -78,7 +80,24 @@ export default function ProductsSwitcher(props: {
       name="Toolpad"
       description="A low-code tool for building internal applications."
       icon={<IconImage name="product-toolpad" />}
-      chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
+      chip={
+        <Chip
+          size="small"
+          label="Beta"
+          color="primary"
+          variant="outlined"
+          sx={{
+            fontSize: (theme) => theme.typography.pxToRem(10),
+            fontWeight: 'semiBold',
+            textTransform: 'uppercase',
+            letterSpacing: '.04rem',
+            height: '16px',
+            '& .MuiChip-label': {
+              px: '5px',
+            },
+          }}
+        />
+      }
     />,
     <ProductItem
       name="Templates"

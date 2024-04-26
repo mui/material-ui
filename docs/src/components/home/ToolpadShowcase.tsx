@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-import StylingInfo from 'docs/src/components/action/StylingInfo';
+import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import ROUTES from 'docs/src/route';
 
 const code = `import { PrismaClient, Prisma } from '@prisma/client';
@@ -63,20 +63,13 @@ export default function DataTable() {
         <React.Fragment>
           <Box
             sx={{
-              maxHeight: 320,
+              maxHeight: { xs: 'auto', sm: 260 },
               position: 'relative',
-              overflow: 'clip',
-              overflowY: 'scroll',
+              display: 'flex',
+              overflow: 'auto',
               flexGrow: 1,
-              pb: 16,
               '&::-webkit-scrollbar': {
                 display: 'none',
-              },
-              '& pre': {
-                bgcolor: 'transparent !important',
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
               },
             }}
           >
@@ -87,13 +80,11 @@ export default function DataTable() {
               language="jsx"
             />
           </Box>
-          <StylingInfo
-            title="Own the styling!"
-            description="You can also start by using Googles Material Design."
-            primaryBtnLabel="Start with Material UI"
-            primaryBtnHref={ROUTES.productAdvanced}
-            secondaryBtnLabel="Learn more about the Core libraries"
-            secondaryBtnHref={ROUTES.productAdvanced}
+          <MoreInfoBox
+            primaryBtnLabel="Start with Toolpad"
+            primaryBtnHref={ROUTES.toolpadStudioDocs}
+            secondaryBtnLabel="Learn more about why Toolpad exists"
+            secondaryBtnHref={ROUTES.toolpadWhy}
           />
         </React.Fragment>
       }

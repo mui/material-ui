@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { alpha, ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button, { buttonClasses } from '@mui/material/Button';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
-import StylingInfo from 'docs/src/components/action/StylingInfo';
+import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
+import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import ROUTES from 'docs/src/route';
 
@@ -126,80 +126,31 @@ export default function CoreShowcase() {
       }
       code={
         <React.Fragment>
-          <div data-mui-color-scheme="dark">
-            <Box
-              sx={{
-                pb: 1.5,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 1,
-                right: 0,
-                zIndex: 10,
-                [`& .${buttonClasses.root}`]: {
-                  borderRadius: 40,
-                  padding: '2px 10px',
-                  fontSize: '0.75rem',
-                  lineHeight: 18 / 12,
-                },
-                '& .MuiButton-outlinedPrimary': {
-                  backgroundColor: alpha(globalTheme.palette.primary[900], 0.5),
-                },
-              }}
-            >
-              <Button
-                size="small"
-                variant="outlined"
-                color={customized ? 'secondary' : 'primary'}
-                onClick={() => {
-                  setCustomized(false);
-                }}
-              >
-                Material Design
-              </Button>
-              <Button
-                size="small"
-                variant="outlined"
-                color={customized ? 'primary' : 'secondary'}
-                onClick={() => {
-                  setCustomized(true);
-                }}
-              >
-                Custom Theme
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                pb: { xs: 2, sm: 16 },
-                maxHeight: { xs: 'auto', sm: 350 },
-                position: 'relative',
-                overflow: 'clip',
-                overflowY: 'scroll',
-                flexGrow: 1,
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
-                '& pre': {
-                  bgcolor: 'transparent !important',
-                  position: 'relative',
-                  zIndex: 1,
-                  '&::-webkit-scrollbar': {
-                    display: 'none',
-                  },
-                },
-              }}
-            >
-              {startLine !== undefined && <FlashCode startLine={startLine} endLine={endLine} />}
-              <HighlightedCode
-                copyButtonHidden
-                component={MarkdownElement}
-                code={componentCode}
-                language="jsx"
-              />
-            </Box>
-          </div>
-          <StylingInfo
-            title="Own the styling!"
-            description="You can also start by using Googles Material Design."
+          <MaterialVsCustomToggle customized={customized} setCustomized={setCustomized} />
+          <Box
+            sx={{
+              // pt: 5,
+              maxHeight: { xs: 'auto', sm: 350 },
+              position: 'relative',
+              display: 'flex',
+              overflow: 'auto',
+              flexGrow: 1,
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              },
+            }}
+          >
+            {startLine !== undefined && (
+              <FlashCode startLine={startLine} endLine={endLine} sx={{ m: 2 }} />
+            )}
+            <HighlightedCode
+              copyButtonHidden
+              component={MarkdownElement}
+              code={componentCode}
+              language="jsx"
+            />
+          </Box>
+          <MoreInfoBox
             primaryBtnLabel="Start with Material UI"
             primaryBtnHref={ROUTES.productCore}
             secondaryBtnLabel="Learn more about the Core libraries"

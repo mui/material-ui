@@ -43,10 +43,7 @@ export default function ShowcaseContainer({
         >
           {preview}
         </Frame.Demo>
-        <Frame.Info
-          data-mui-color-scheme="dark"
-          sx={{ p: 2, borderTop: 0, position: 'relative', overflow: 'clip' }}
-        >
+        <Frame.Info data-mui-color-scheme="dark">
           <NoSsr>{code}</NoSsr>
         </Frame.Info>
       </Box>

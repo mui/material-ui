@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider, alpha } from '@mui/material/styles';
+import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
-import Button, { buttonClasses } from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
@@ -31,10 +31,10 @@ import Frame from 'docs/src/components/action/Frame';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-import StylingInfo from 'docs/src/components/action/StylingInfo';
+import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
 import ROUTES from 'docs/src/route';
 
-const DEMOS = ['Button', 'Text field', 'Table', 'Alert', 'Tooltip'] as const;
+const DEMOS = ['Button', 'Text Field', 'Table', 'Alert', 'Tooltip'] as const;
 
 const CODES = {
   Button: `
@@ -48,7 +48,7 @@ const CODES = {
   Add item
 </Button>
 `,
-  'Text field': `
+  'Text Field': `
   <TextField variant="standard" label="Username" />
 <TextField variant="outlined" label="Email" type="email" />
 <TextField variant="filled" label="Password" type="password" />
@@ -164,7 +164,7 @@ export default function MaterialComponents() {
                     </Button>
                   </Box>
                 )}
-                {demo === 'Text field' && (
+                {demo === 'Text Field' && (
                   <Stack
                     justifyContent="center"
                     spacing={2}
@@ -284,25 +284,27 @@ export default function MaterialComponents() {
                 )}
               </CssVarsProvider>
             </Frame.Demo>
-            <Frame.Info
-              data-mui-color-scheme="dark"
-              sx={{
-                minHeight: 220,
-                maxHeight: demo === 'Table' ? 260 : 'none',
-                position: 'relative',
-                overflow: 'hidden',
-                p: 0,
-                pt: 5,
-              }}
-            >
-              <StylingInfo appeared={customized} />
+            <Frame.Info data-mui-color-scheme="dark">
+              {/* <MoreInfoBox
+                title="Own the styling!"
+                description="You can also start by using Googles Material Design."
+                primaryBtnLabel="Start with Material UI"
+                primaryBtnHref={ROUTES.productCore}
+                secondaryBtnLabel="Learn more about the Core libraries"
+                secondaryBtnHref={ROUTES.productCore}
+              /> */}
+              <MaterialVsCustomToggle customized={customized} setCustomized={setCustomized} />
               <Box
                 sx={{
+                  pt: 5,
+                  maxHeight: { xs: 'auto', sm: demo === 'Table' ? 220 : 350 },
+                  position: 'relative',
+                  display: 'flex',
                   overflow: 'auto',
-                  pt: 2,
-                  pb: 1,
-                  px: 2,
-                  height: '100%',
+                  flexGrow: 1,
+                  '&::-webkit-scrollbar': {
+                    display: 'none',
+                  },
                 }}
               >
                 <HighlightedCode
@@ -311,52 +313,6 @@ export default function MaterialComponents() {
                   code={CODES[demo]}
                   language="jsx"
                 />
-              </Box>
-              <Box
-                sx={(theme) => ({
-                  pb: 3,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1,
-                  position: 'absolute',
-                  top: 16,
-                  left: 12,
-                  right: 0,
-                  zIndex: 10,
-                  background: `linear-gradient(to bottom, ${
-                    (theme.vars || theme).palette.common.black
-                  } 30%, transparent)`,
-                  [`& .${buttonClasses.root}`]: {
-                    borderRadius: 40,
-                    padding: '2px 10px',
-                    fontSize: '0.75rem',
-                    lineHeight: 18 / 12,
-                  },
-                  '& .MuiButton-outlinedPrimary': {
-                    backgroundColor: alpha(theme.palette.primary[900], 0.5),
-                  },
-                })}
-              >
-                <Button
-                  size="small"
-                  variant="outlined"
-                  color={customized ? 'secondary' : 'primary'}
-                  onClick={() => {
-                    setCustomized(false);
-                  }}
-                >
-                  Material Design
-                </Button>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  color={customized ? 'primary' : 'secondary'}
-                  onClick={() => {
-                    setCustomized(true);
-                  }}
-                >
-                  Custom theme
-                </Button>
               </Box>
             </Frame.Info>
           </Frame>

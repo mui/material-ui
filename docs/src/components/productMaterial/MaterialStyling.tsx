@@ -65,9 +65,9 @@ const code = `
   </Box>
 </Card>`;
 
-const startLine = [32, 21, 17];
-const endLine = [42, 26, 17];
-const scrollTo = [540, 320, 200];
+const startLine = [33, 22, 18];
+const endLine = [43, 27, 18];
+const scrollTo = [541, 321, 201];
 
 export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
@@ -313,16 +313,14 @@ export default function MaterialStyling() {
                 overflow: 'auto',
               }}
             >
-              <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
-                <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <HighlightedCode
-                    copyButtonHidden
-                    component={MarkdownElement}
-                    code={code}
-                    language="jsx"
-                  />
-                </Box>
-                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
+              <Box sx={{ position: 'relative' }}>
+                <HighlightedCode
+                  copyButtonHidden
+                  component={MarkdownElement}
+                  code={code}
+                  language="jsx"
+                />
+                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />
               </Box>
             </Frame.Info>
           </Frame>

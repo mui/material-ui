@@ -49,8 +49,8 @@ const ROUTES = {
   // Tree View doc pages
   treeViewOverview: '/x/react-tree-view/',
   // Toolpad pages
-  toolpadDocs: '/toolpad/studio/getting-started/',
-  toolpadStudioDocs: '/toolpad/studio/getting-started',
+  toolpadStudioDocs: '/toolpad/studio/getting-started/',
+  toolpadWhy: '/toolpad/studio/getting-started/why-toolpad/',
   // External pages
   rssFeed: '/feed/blog/rss.xml',
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',

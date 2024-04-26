@@ -9,7 +9,7 @@ import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
-import StylingInfo from 'docs/src/components/action/StylingInfo';
+import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
 import EditProgress from 'docs/src/components/x-grid/EditProgress';
 import Status from 'docs/src/components/x-grid/Status';
@@ -1719,20 +1719,13 @@ export default function DataTable() {
         <React.Fragment>
           <Box
             sx={{
-              maxHeight: 350,
+              maxHeight: { xs: 'auto', sm: 300 },
               position: 'relative',
-              overflow: 'clip',
-              overflowY: 'scroll',
+              display: 'flex',
+              overflow: 'auto',
               flexGrow: 1,
-              pb: 16,
               '&::-webkit-scrollbar': {
                 display: 'none',
-              },
-              '& pre': {
-                bgcolor: 'transparent !important',
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
               },
             }}
           >
@@ -1743,9 +1736,7 @@ export default function DataTable() {
               language="jsx"
             />
           </Box>
-          <StylingInfo
-            title="Own the styling!"
-            description="A growing list of components, such as the Data Grid, Date Pickers, Charts, and more!"
+          <MoreInfoBox
             primaryBtnLabel="Start with the Data Grid"
             primaryBtnHref={ROUTES.productAdvanced}
             secondaryBtnLabel="Learn more about the advanced components"
