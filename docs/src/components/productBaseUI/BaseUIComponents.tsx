@@ -162,11 +162,10 @@ export default function BaseUIComponents() {
             <Frame.Info
               data-mui-color-scheme="dark"
               sx={{
-                height: 360,
-                position: 'relative',
-                overflow: 'hidden',
                 p: 0,
                 pt: 5,
+                height: 360,
+                position: 'relative',
               }}
             >
               <Box

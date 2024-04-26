@@ -311,14 +311,11 @@ export default function MaterialStyling() {
               sx={{
                 maxHeight: index === 2 ? 282 : 400,
                 overflow: 'auto',
+                position: 'relative',
               }}
             >
-              <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
-                <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
-                </Box>
-                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
-              </Box>
+              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />
             </Frame.Info>
           </Frame>
         </Grid>

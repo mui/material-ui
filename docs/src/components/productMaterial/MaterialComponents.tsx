@@ -290,7 +290,6 @@ export default function MaterialComponents() {
                 minHeight: 220,
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
-                overflow: 'hidden',
                 p: 0,
                 pt: 5,
               }}
