@@ -438,18 +438,6 @@ const appList = [
   },
 ];
 
-function stableSort(array, cmp) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = cmp(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 // Returns a function that sorts reverse numerically by value of `key`
 function sortFactory(key) {
   return function sortNumeric(a, b) {
@@ -498,96 +486,100 @@ export default function Showcase() {
         </ToggleButtonGroup>
       </Box>
       <Grid container spacing={3}>
-        {stableSort(
-          appList.filter((item) => item[sortFunctionName] !== undefined),
-          sortFunction,
-        ).map((app) => (
-          <Grid key={app.title} item xs={12} sm={6}>
-            {app.image ? (
-              <Card
-                variant="outlined"
-                sx={(theme) => ({
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  p: 2,
-                  gap: 2,
-                  borderRadius: 1,
-                  backgroundColor: `${alpha(theme.palette.grey[50], 0.3)}`,
-                  borderColor: 'divider',
-                  ...theme.applyDarkStyles({
-                    backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.2)}`,
+        {appList
+          .filter((item) => item[sortFunctionName] !== undefined)
+          .sort(sortFunction)
+          .map((app) => (
+            <Grid key={app.title} item xs={12} sm={6}>
+              {app.image ? (
+                <Card
+                  variant="outlined"
+                  sx={(theme) => ({
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    p: 2,
+                    gap: 2,
+                    borderRadius: 1,
+                    backgroundColor: `${alpha(theme.palette.grey[50], 0.3)}`,
                     borderColor: 'divider',
-                  }),
-                })}
-              >
-                <a href={app.link} rel="noopener nofollow" target="_blank">
-                  <CardMedia
-                    component="img"
-                    loading="lazy"
-                    width="600"
-                    height="450"
-                    src={`/static/images/showcase/${app.image}`}
-                    title={app.title}
-                    sx={(theme) => ({
-                      height: 'auto',
-                      borderRadius: '6px',
-                      bgcolor: 'currentColor',
-                      border: '1px solid',
+                    ...theme.applyDarkStyles({
+                      backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.2)}`,
                       borderColor: 'divider',
-                      color: 'grey.100',
-                      ...theme.applyDarkStyles({
-                        color: 'primaryDark.900',
-                      }),
-                    })}
-                  />
-                </a>
-                <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                  <Typography
-                    component="h2"
-                    variant="body1"
-                    fontWeight="semiBold"
-                    sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-                  >
-                    <span>{app.title}</span>
-                    {app.source ? (
-                      <IconButton
-                        href={app.source}
-                        target="_blank"
-                        aria-label={`${app.title} ${t('sourceCode')}`}
-                      >
-                        <GitHubIcon fontSize="small" />
-                      </IconButton>
-                    ) : null}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" flexGrow={1}>
-                    {app.description}
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    fontWeight="semiBold"
-                    color="text.secondary"
-                    mt={1}
-                    sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
-                  >
-                    <CalendarMonthRoundedIcon sx={{ fontSize: 17, opacity: 0.8 }} />
-                    {app.dateAdded}
-                  </Typography>
-                </Box>
-              </Card>
-            ) : (
-              <Link
-                variant="body2"
-                target="_blank"
-                rel="noopener nofollow"
-                href={app.link}
-                gutterBottom
-              >
-                {t('visit')}
-              </Link>
-            )}
-          </Grid>
-        ))}
+                    }),
+                  })}
+                >
+                  <a href={app.link} rel="noopener nofollow" target="_blank">
+                    <CardMedia
+                      component="img"
+                      loading="lazy"
+                      width="600"
+                      height="450"
+                      src={`/static/images/showcase/${app.image}`}
+                      title={app.title}
+                      sx={(theme) => ({
+                        height: 'auto',
+                        borderRadius: '6px',
+                        bgcolor: 'currentColor',
+                        border: '1px solid',
+                        borderColor: 'divider',
+                        color: 'grey.100',
+                        ...theme.applyDarkStyles({
+                          color: 'primaryDark.900',
+                        }),
+                      })}
+                    />
+                  </a>
+                  <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                    <Typography
+                      component="h2"
+                      variant="body1"
+                      fontWeight="semiBold"
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <span>{app.title}</span>
+                      {app.source ? (
+                        <IconButton
+                          href={app.source}
+                          target="_blank"
+                          aria-label={`${app.title} ${t('sourceCode')}`}
+                        >
+                          <GitHubIcon fontSize="small" />
+                        </IconButton>
+                      ) : null}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" flexGrow={1}>
+                      {app.description}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      fontWeight="semiBold"
+                      color="text.secondary"
+                      mt={1}
+                      sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+                    >
+                      <CalendarMonthRoundedIcon sx={{ fontSize: 17, opacity: 0.8 }} />
+                      {app.dateAdded}
+                    </Typography>
+                  </Box>
+                </Card>
+              ) : (
+                <Link
+                  variant="body2"
+                  target="_blank"
+                  rel="noopener nofollow"
+                  href={app.link}
+                  gutterBottom
+                >
+                  {t('visit')}
+                </Link>
+              )}
+            </Grid>
+          ))}
       </Grid>
     </React.Fragment>
   );

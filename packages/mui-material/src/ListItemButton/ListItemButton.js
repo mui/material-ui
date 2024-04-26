@@ -52,7 +52,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
   name: 'MuiListItemButton',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   flexGrow: 1,
   justifyContent: 'flex-start',
@@ -108,21 +108,37 @@ const ListItemButtonRoot = styled(ButtonBase, {
   [`&.${listItemButtonClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
   },
-  ...(ownerState.divider && {
-    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-    backgroundClip: 'padding-box',
-  }),
-  ...(ownerState.alignItems === 'flex-start' && {
-    alignItems: 'flex-start',
-  }),
-  ...(!ownerState.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
-  }),
-  ...(ownerState.dense && {
-    paddingTop: 4,
-    paddingBottom: 4,
-  }),
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.divider,
+      style: {
+        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+        backgroundClip: 'padding-box',
+      },
+    },
+    {
+      props: {
+        alignItems: 'flex-start',
+      },
+      style: {
+        alignItems: 'flex-start',
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState.disableGutters,
+      style: {
+        paddingLeft: 16,
+        paddingRight: 16,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.dense,
+      style: {
+        paddingTop: 4,
+        paddingBottom: 4,
+      },
+    },
+  ],
 }));
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {

@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "6.0.0-alpha.20",
+  "version": "6.0.0-alpha.21",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -26,8 +26,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:copy-files",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",

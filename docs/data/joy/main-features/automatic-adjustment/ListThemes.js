@@ -9,7 +9,7 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
 
 export default function ListThemes() {
