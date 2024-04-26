@@ -1,5 +1,5 @@
-import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 
 export interface AutocompleteClasses {
   /** Styles applied to the root element. */
@@ -19,7 +19,7 @@ export interface AutocompleteClasses {
   /** Styles applied to the tag elements, for example the chips if `size="medium"`. */
   tagSizeMedium: string;
   /** Styles applied when the autocomplete supports multiple selections. */
-  hasMultiple: string;
+  multiple: string;
   /** Styles applied when the popup icon is rendered. */
   hasPopupIcon: string;
   /** Styles applied when the clear icon is rendered. */
@@ -73,7 +73,7 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('MuiAuto
   'tag',
   'tagSizeSmall',
   'tagSizeMedium',
-  'hasMultiple',
+  'multiple',
   'hasPopupIcon',
   'hasClearIcon',
   'inputRoot',

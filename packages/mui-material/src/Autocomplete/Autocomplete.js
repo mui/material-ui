@@ -1,27 +1,27 @@
 'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import integerPropType from '@mui/utils/integerPropType';
-import chainPropTypes from '@mui/utils/chainPropTypes';
-import { useAutocomplete, createFilterOptions } from '@mui/base';
-import composeClasses from '@mui/utils/composeClasses';
+import { createFilterOptions, useAutocomplete } from '@mui/base';
 import { alpha } from '@mui/system/colorManipulator';
-import Popper from '../Popper';
-import ListSubheader from '../ListSubheader';
-import Paper from '../Paper';
-import IconButton from '../IconButton';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import integerPropType from '@mui/utils/integerPropType';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import Chip from '../Chip';
+import filledInputClasses from '../FilledInput/filledInputClasses';
+import IconButton from '../IconButton';
 import inputClasses from '../Input/inputClasses';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
+import ListSubheader from '../ListSubheader';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
-import filledInputClasses from '../FilledInput/filledInputClasses';
-import ClearIcon from '../internal/svg-icons/Close';
+import Paper from '../Paper';
+import Popper from '../Popper';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import { styled, createUseThemeProps } from '../zero-styled';
-import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
+import ClearIcon from '../internal/svg-icons/Close';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
+import { createUseThemeProps, styled } from '../zero-styled';
+import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 
 const useThemeProps = createUseThemeProps('MuiAutocomplete');
 
@@ -32,7 +32,7 @@ const useUtilityClasses = (ownerState) => {
     expanded,
     focused,
     fullWidth,
-    hasMultiple,
+    multiple,
     hasClearIcon,
     hasPopupIcon,
     inputFocused,
@@ -46,12 +46,12 @@ const useUtilityClasses = (ownerState) => {
       expanded && 'expanded',
       focused && 'focused',
       fullWidth && 'fullWidth',
-      hasMultiple && 'hasMultiple',
+      multiple && 'multiple',
       hasClearIcon && 'hasClearIcon',
       hasPopupIcon && 'hasPopupIcon',
     ],
-    inputRoot: ['inputRoot', hasMultiple && 'hasMultiple'],
-    input: ['input', inputFocused && 'inputFocused', hasMultiple && 'hasMultiple'],
+    inputRoot: ['inputRoot', multiple && 'multiple'],
+    input: ['input', inputFocused && 'inputFocused', multiple && 'multiple'],
     tag: ['tag', `tagSize${capitalize(size)}`],
     endAdornment: ['endAdornment'],
     clearIndicator: ['clearIndicator'],
@@ -74,7 +74,7 @@ const AutocompleteRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { fullWidth, hasMultiple, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
+    const { fullWidth, multiple, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
 
     return [
       { [`& .${autocompleteClasses.tag}`]: styles.tag },
@@ -84,7 +84,7 @@ const AutocompleteRoot = styled('div', {
       { [`& .${autocompleteClasses.input}`]: inputFocused && styles.inputFocused },
       styles.root,
       fullWidth && styles.fullWidth,
-      hasMultiple && styles.hasMultiple,
+      multiple && styles.multiple,
       hasPopupIcon && styles.hasPopupIcon,
       hasClearIcon && styles.hasClearIcon,
     ];
@@ -95,7 +95,7 @@ const AutocompleteRoot = styled('div', {
     maxWidth: 'calc(100% - 6px)',
   },
   [`& .${autocompleteClasses.inputRoot}`]: {
-    [`&.${autocompleteClasses.hasMultiple}`]: {
+    [`&.${autocompleteClasses.multiple}`]: {
       flexWrap: 'wrap',
     },
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
@@ -114,10 +114,7 @@ const AutocompleteRoot = styled('div', {
       visibility: 'visible',
     },
     [`& .${autocompleteClasses.input}`]: {
-      minWidth: 4,
-    },
-    [`& .${autocompleteClasses.input}.${autocompleteClasses.hasMultiple}`]: {
-      minWidth: 30,
+      minWidth: 0,
     },
   },
   /* Avoid double tap issue on iOS */
@@ -126,10 +123,7 @@ const AutocompleteRoot = styled('div', {
       visibility: 'visible',
     },
     [`&:hover .${autocompleteClasses.input}`]: {
-      minWidth: 4,
-    },
-    [`&:hover .${autocompleteClasses.input}.${autocompleteClasses.hasMultiple}`]: {
-      minWidth: 30,
+      minWidth: 0,
     },
   },
   [`& .${inputClasses.root}`]: {
@@ -535,7 +529,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     focused,
     fullWidth,
     getOptionLabel,
-    hasMultiple: multiple,
     hasClearIcon,
     hasPopupIcon,
     inputFocused: focusedTag === -1,
