@@ -159,7 +159,7 @@
       "type": { "name": "elementType" },
       "default": "Popper",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.listbox</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "Use <code>slots.popper</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
     "readOnly": { "type": { "name": "bool" }, "default": "false" },
@@ -195,7 +195,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ chip?: func<br>&#124;&nbsp;{ avatar?: element, children?: any, classes?: any<br>&#124;&nbsp;object, className?: any<br>&#124;&nbsp;string, clickable?: any<br>&#124;&nbsp;bool, color?: 'default'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;any, component?: elementType, deleteIcon?: element, disabled?: any<br>&#124;&nbsp;bool, icon?: element, label?: any<br>&#124;&nbsp;node, onDelete?: any<br>&#124;&nbsp;func, size?: 'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;any, skipFocusWhenDisabled?: any<br>&#124;&nbsp;bool, style?: any<br>&#124;&nbsp;object, sx?: any, tabIndex?: any<br>&#124;&nbsp;number, variant?: 'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;any }<br>&#124;&nbsp;{ component?: elementType, key?: any, sx?: Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object }, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object }"
+        "description": "{ chip?: { avatar?: element, children?: any, classes?: any, className?: any, clickable?: any, color?: any, component?: elementType, deleteIcon?: element, disabled?: any, icon?: element, label?: any, onDelete?: any, size?: any, skipFocusWhenDisabled?: any, style?: any, sx?: any, tabIndex?: any, variant?: any }, clearIndicator?: object, listbox?: object, paper?: object, popper?: object, popupIndicator?: object }"
       },
       "default": "{}"
     },
