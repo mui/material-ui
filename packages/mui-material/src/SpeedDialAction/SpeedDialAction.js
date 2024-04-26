@@ -7,7 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
 import { styled, createUseThemeProps } from '../zero-styled';
 import Fab from '../Fab';
-import Tooltip from '../Tooltip';
+import Tooltip, { tooltipClasses } from '../Tooltip';
 import { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
 
 const useThemeProps = createUseThemeProps('MuiSpeedDialAction');
@@ -40,6 +40,9 @@ const SpeedDialActionFab = styled(Fab, {
       ? theme.vars.palette.SpeedDialAction.fabHoverBg
       : emphasize(theme.palette.background.paper, 0.15),
   },
+  transition: `${theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shorter,
+  })}, opacity 0.8s`,
   opacity: 1,
   variants: [
     {
@@ -174,6 +177,24 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     </SpeedDialActionFab>
   );
 
+  if (tooltipOpenProp) {
+    return (
+      <PersistentTooltip
+        id={id}
+        ref={ref}
+        title={tooltipTitle}
+        placement={tooltipPlacement}
+        onClose={handleTooltipClose}
+        onOpen={handleTooltipOpen}
+        open={open && tooltipOpenProp}
+        classes={TooltipClasses}
+        {...other}
+      >
+        {fab}
+      </PersistentTooltip>
+    );
+  }
+
   if (!open && tooltipOpen) {
     setTooltipOpen(false);
   }
@@ -186,16 +207,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       placement={tooltipPlacement}
       onClose={handleTooltipClose}
       onOpen={handleTooltipOpen}
-      open={open && (tooltipOpen || tooltipOpenProp)}
-      slotProps={{
-        tooltip: {
-          sx: (theme) => ({
-            backgroundColor:
-              tooltipOpenProp === true ? (theme.vars || theme).palette.background.paper : '',
-            color: tooltipOpenProp === true ? (theme.vars || theme).palette.text.secondary : '',
-          }),
-        },
-      }}
+      open={open && tooltipOpen}
       classes={TooltipClasses}
       {...other}
     >
