@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui-internal/test-utils';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import PaginationItem, { paginationItemClasses as classes } from '@mui/material/PaginationItem';
 import describeConformance from '../../test/describeConformance';
 
@@ -113,5 +117,143 @@ describe('<PaginationItem />', () => {
     );
 
     expect(getByRole('button')).to.have.class(classes.previousNext);
+  });
+
+  // describeConformance in it's current form is not able to test slots prop when slots are rendered conditionally. Hence below tests are added in this file.
+  describe('prop: slots, slotProps, components', () => {
+    function CustomPreviousIcon(props) {
+      return <ArrowBackIcon data-testid={props['data-testid'] ?? 'custom-previous'} />;
+    }
+
+    function CustomNextIcon(props) {
+      return <ArrowForwardIcon data-testid={props['data-testid'] ?? 'custom-next'} />;
+    }
+
+    function CustomFirstIcon(props) {
+      return <KeyboardDoubleArrowLeftIcon data-testid={props['data-testid'] ?? 'custom-first'} />;
+    }
+
+    function CustomLastIcon(props) {
+      return <KeyboardDoubleArrowRightIcon data-testid={props['data-testid'] ?? 'custom-last'} />;
+    }
+
+    it('components passed in slots prop should override defualt components', () => {
+      const slots = {
+        previous: CustomPreviousIcon,
+        next: CustomNextIcon,
+        first: CustomFirstIcon,
+        last: CustomLastIcon,
+      };
+
+      ['first', 'previous', 'next', 'last'].forEach((slot) => {
+        const { getByTestId } = render(<PaginationItem page={1} slots={slots} type={slot} />);
+
+        expect(getByTestId(`custom-${slot}`)).not.to.equal(null);
+      });
+    });
+
+    it('slotProps should be passed to components passed in slots prop', () => {
+      const slots = {
+        previous: CustomPreviousIcon,
+        next: CustomNextIcon,
+        first: CustomFirstIcon,
+        last: CustomLastIcon,
+      };
+
+      const slotProps = {
+        previous: { 'data-testid': 'slot-previous' },
+        next: { 'data-testid': 'slot-next' },
+        first: { 'data-testid': 'slot-first' },
+        last: { 'data-testid': 'slot-last' },
+      };
+
+      ['first', 'previous', 'next', 'last'].forEach((slot) => {
+        const { getByTestId } = render(
+          <PaginationItem page={1} slotProps={slotProps} slots={slots} type={slot} />,
+        );
+
+        expect(getByTestId(`slot-${slot}`)).not.to.equal(null);
+      });
+    });
+
+    it('component passed in slots should ovveride component passed in components prop ', () => {
+      const slots = {
+        previous: CustomPreviousIcon,
+        next: CustomNextIcon,
+        first: CustomFirstIcon,
+        last: CustomLastIcon,
+      };
+
+      const slotProps = {
+        previous: { 'data-testid': 'slot-previous' },
+        next: { 'data-testid': 'slot-next' },
+        first: { 'data-testid': 'slot-first' },
+        last: { 'data-testid': 'slot-last' },
+      };
+
+      const components = {
+        previous: CustomPreviousIcon,
+        next: CustomNextIcon,
+        first: CustomFirstIcon,
+        last: CustomLastIcon,
+      };
+
+      ['first', 'previous', 'next', 'last'].forEach((slot) => {
+        const { getByTestId, queryByTestId } = render(
+          <PaginationItem
+            page={1}
+            slotProps={slotProps}
+            components={components}
+            slots={slots}
+            type={slot}
+          />,
+        );
+
+        expect(getByTestId(`slot-${slot}`)).not.to.equal(null);
+        expect(queryByTestId(`custom-${slot}`)).to.equal(null);
+      });
+    });
+
+    it('should apply slotProps to components when slots prop is not passed', () => {
+      const slotProps = {
+        previous: { 'data-testid': 'component-previous' },
+        next: { 'data-testid': 'component-next' },
+        first: { 'data-testid': 'component-first' },
+        last: { 'data-testid': 'component-last' },
+      };
+
+      const components = {
+        previous: CustomPreviousIcon,
+        next: CustomNextIcon,
+        first: CustomFirstIcon,
+        last: CustomLastIcon,
+      };
+
+      ['first', 'previous', 'next', 'last'].forEach((slot) => {
+        const { getByTestId, queryByTestId } = render(
+          <PaginationItem page={1} slotProps={slotProps} components={components} type={slot} />,
+        );
+
+        expect(getByTestId(`component-${slot}`)).not.to.equal(null);
+        expect(queryByTestId(`custom-${slot}`)).to.equal(null);
+      });
+    });
+
+    it('slotProps should override internal props', () => {
+      const slotProps = {
+        previous: { 'data-testid': 'component-previous' },
+        next: { 'data-testid': 'component-next' },
+        first: { 'data-testid': 'component-first' },
+        last: { 'data-testid': 'component-last' },
+      };
+
+      ['first', 'previous', 'next', 'last'].forEach((slot) => {
+        const { getByTestId } = render(
+          <PaginationItem page={1} slotProps={slotProps} type={slot} />,
+        );
+
+        expect(getByTestId(`component-${slot}`)).not.to.equal(null);
+      });
+    });
   });
 });
