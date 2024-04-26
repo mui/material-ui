@@ -28,7 +28,7 @@ Sync relies on these local variables to generate code corresponding to each elem
 (As such, it requires [v5.16.0 or later](https://github.com/mui/mui-design-kits/releases/tag/v5.16.0) of the Material UI Design Kit; earlier versions do not support local variables.)
 
 <video preload="metadata" controls muted loop playsinline width="1584" height="1080">
-  <source src="/static/blog/introducing-sync-plugin/theme-customization.mp4" type="video/mp4">
+  <source src="/static/blog/introducing-sync-plugin/sync-theme.mp4" type="video/mp4">
 </video>
 
 Visit the documentation to learn [how to insert the generated code into your theme file](/material-ui/design-resources/material-ui-sync/#using-the-generated-theme).
@@ -39,7 +39,7 @@ You can fully customize a component's appearance across multiple states in the D
 This is one of the most exciting features because it enables designers to use the visual design tools they're already comfortable with to make changes to the code itself.
 
 <video preload="metadata" controls muted loop playsinline width="1584" height="1080">
-  <source src="/static/blog/introducing-sync-plugin/custom-component.mp4" type="video/mp4">
+  <source src="/static/blog/introducing-sync-plugin/sync-component.mp4" type="video/mp4">
 </video>
 
 :::warning
@@ -53,7 +53,7 @@ For now you can experiment with the Button, Switch, and Typography.
 The Material UI Sync plugin also bakes in an embedded Storybook preview panel so that you can conveniently play around with your changes and see how they interact with other props and states available in the component API.
 
 <video preload="metadata" autoplay muted loop playsinline width="1584" height="1080">
-  <source src="/static/blog/introducing-sync-plugin/storybook.mp4" type="video/mp4">
+  <source src="/static/blog/introducing-sync-plugin/sync-storybook.mp4" type="video/mp4">
 </video>
 
 ## Try Sync now
