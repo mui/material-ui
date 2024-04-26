@@ -15,7 +15,7 @@ That got us thinking:
 What if designers could generate production-ready code directly from their design software to hand off to developers working with a Material UI codebase?
 
 That's why we created Sync, a Figma plugin for generating styles that can be copied and pasted straight into your Material UI app's theme.
-We're happy to share that the beta version is [available now on Figma](https://www.figma.com/community/plugin/1336346114713490235/connect). 🚀
+We're happy to share that the beta version is [available now on Figma](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync). 🚀
 
 <img src="/static/blog/introducing-sync-plugin/card.png" alt="Material UI Sync is a Figma plugin that lets you generate a theme from the Material UI for Figma Design Kit." width="1280" height="640" />
 
@@ -58,7 +58,7 @@ The Material UI Sync plugin also bakes in an embedded Storybook preview panel s
 
 ## Try Sync now
 
-Get the beta version of Material UI Sync now, available for free in the [Figma Community](https://www.figma.com/community/plugin/1336346114713490235/connect)!
+Get the beta version of Material UI Sync now, available for free in the [Figma Community](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync)!
 
 There's still a lot to do, and we're looking forward to hearing from all of you [who requested this plugin years ago](https://github.com/mui/mui-design-kits/issues/10).
 
