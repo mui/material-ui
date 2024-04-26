@@ -63,6 +63,6 @@ Get the beta version of Material UI Sync now, available for free in the [Figma 
 There's still a lot to do, and we're looking forward to hearing from all of you [who requested this plugin years ago](https://github.com/mui/mui-design-kits/issues/10).
 
 - Check out documentation for [the Sync plugin](/material-ui/design-resources/material-ui-sync/) and [the Material UI Design Kit](/material-ui/design-resources/material-ui-for-figma/).
-- If you've got any feedback, we'd love to [hear from you](https://mui-connect.canny.io/feedback).
+- If you've got any feedback, we'd love to [hear from you](https://material-ui-sync.canny.io/).
 
 Happy designing! 👨‍🎨
