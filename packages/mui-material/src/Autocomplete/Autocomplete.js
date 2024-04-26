@@ -1117,7 +1117,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The component used to position the popup.
    * @default Popper
-   * @deprecated Use `slots.listbox` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated Use `slots.popper` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   PopperComponent: PropTypes.elementType,
   /**
@@ -1182,56 +1182,31 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    chip: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        avatar: PropTypes.element,
-        children: PropTypes.any,
-        classes: PropTypes.oneOfType([PropTypes.any, PropTypes.object]),
-        className: PropTypes.oneOfType([PropTypes.any, PropTypes.string]),
-        clickable: PropTypes.oneOfType([PropTypes.any, PropTypes.bool]),
-        color: PropTypes.oneOfType([
-          PropTypes.oneOf([
-            'default',
-            'error',
-            'info',
-            'primary',
-            'secondary',
-            'success',
-            'warning',
-          ]),
-          PropTypes.any,
-        ]),
-        component: PropTypes.elementType,
-        deleteIcon: PropTypes.element,
-        disabled: PropTypes.oneOfType([PropTypes.any, PropTypes.bool]),
-        icon: PropTypes.element,
-        label: PropTypes.oneOfType([PropTypes.any, PropTypes.node]),
-        onDelete: PropTypes.oneOfType([PropTypes.any, PropTypes.func]),
-        size: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.any]),
-        skipFocusWhenDisabled: PropTypes.oneOfType([PropTypes.any, PropTypes.bool]),
-        style: PropTypes.oneOfType([PropTypes.any, PropTypes.object]),
-        sx: PropTypes.any,
-        tabIndex: PropTypes.oneOfType([PropTypes.any, PropTypes.number]),
-        variant: PropTypes.oneOfType([PropTypes.oneOf(['filled', 'outlined']), PropTypes.any]),
-      }),
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        key: PropTypes.any,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
-    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    chip: PropTypes.shape({
+      avatar: PropTypes.element,
+      children: PropTypes.any,
+      classes: PropTypes.any,
+      className: PropTypes.any,
+      clickable: PropTypes.any,
+      color: PropTypes.any,
+      component: PropTypes.elementType,
+      deleteIcon: PropTypes.element,
+      disabled: PropTypes.any,
+      icon: PropTypes.element,
+      label: PropTypes.any,
+      onDelete: PropTypes.any,
+      size: PropTypes.any,
+      skipFocusWhenDisabled: PropTypes.any,
+      style: PropTypes.any,
+      sx: PropTypes.any,
+      tabIndex: PropTypes.any,
+      variant: PropTypes.any,
+    }),
+    clearIndicator: PropTypes.object,
+    listbox: PropTypes.object,
+    paper: PropTypes.object,
+    popper: PropTypes.object,
+    popupIndicator: PropTypes.object,
   }),
   /**
    * The components used for each slot inside.

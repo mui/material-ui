@@ -108,7 +108,7 @@ export type AutocompleteSlotsAndSlotProps<
 > = CreateSlotsAndSlotProps<
   AutocompleteSlots,
   {
-    chip: ChipProps<ChipComponent>;
+    chip: Partial<ChipProps<ChipComponent>>;
     clearIndicator: Partial<IconButtonProps>;
     /**
      * Props applied to the Listbox element.
