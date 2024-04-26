@@ -13,7 +13,7 @@ const productionPlugins = [
 ];
 
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['regressions', 'legacy', 'modern', 'stable', 'rollup']);
+  const useESModules = api.env(['regressions', 'modern', 'stable', 'rollup']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
@@ -31,7 +31,6 @@ module.exports = function getBabelConfig(api) {
     '@mui/base': resolveAliasPath('./packages/mui-base/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
-    '@pigment-css/react': resolveAliasPath('./packages/pigment-css-react/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),
@@ -151,12 +150,6 @@ module.exports = function getBabelConfig(api) {
               alias: defaultAlias,
             },
           ],
-        ],
-      },
-      legacy: {
-        plugins: [
-          // IE11 support
-          '@babel/plugin-transform-object-assign',
         ],
       },
       test: {

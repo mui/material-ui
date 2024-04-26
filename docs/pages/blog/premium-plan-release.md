@@ -4,7 +4,7 @@ description: Introducing the MUI X Premium plan, and a new licensing model.
 date: 2022-05-12T00:00:00.000Z
 authors: ['josefreitas', 'alexfauquette']
 tags: ['MUI X', 'Product']
-card: true
+manualCard: true
 ---
 
 We're happy to announce that the Premium plan is [finally out](https://mui.com/pricing/)!

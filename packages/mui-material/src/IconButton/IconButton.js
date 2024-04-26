@@ -5,11 +5,12 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
+
+const useThemeProps = createUseThemeProps('MuiIconButton');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, color, edge, size } = ownerState;
@@ -41,7 +42,7 @@ const IconButtonRoot = styled(ButtonBase, {
     ];
   },
 })(
-  ({ theme, ownerState }) => ({
+  ({ theme }) => ({
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
@@ -52,55 +53,98 @@ const IconButtonRoot = styled(ButtonBase, {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
-    ...(!ownerState.disableRipple && {
-      '&:hover': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-          : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
+    variants: [
+      {
+        props: { disableRipple: false },
+        style: {
+          '&:hover': {
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
         },
       },
-    }),
-    ...(ownerState.edge === 'start' && {
-      marginLeft: ownerState.size === 'small' ? -3 : -12,
-    }),
-    ...(ownerState.edge === 'end' && {
-      marginRight: ownerState.size === 'small' ? -3 : -12,
-    }),
+      {
+        props: { edge: 'start' },
+        style: {
+          marginLeft: -12,
+        },
+      },
+      {
+        props: { edge: 'start', size: 'small' },
+        style: {
+          marginLeft: -3,
+        },
+      },
+      {
+        props: { edge: 'end' },
+        style: {
+          marginRight: -12,
+        },
+      },
+      {
+        props: { edge: 'end', size: 'small' },
+        style: {
+          marginRight: -3,
+        },
+      },
+    ],
   }),
-  ({ theme, ownerState }) => {
-    const palette = (theme.vars || theme).palette?.[ownerState.color];
+  ({ theme }) => {
     return {
-      ...(ownerState.color === 'inherit' && {
-        color: 'inherit',
-      }),
-      ...(ownerState.color !== 'inherit' &&
-        ownerState.color !== 'default' && {
-          color: palette?.main,
-          ...(!ownerState.disableRipple && {
-            '&:hover': {
-              ...(palette && {
+      variants: [
+        {
+          props: { color: 'inherit' },
+          style: {
+            color: 'inherit',
+          },
+        },
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value.main) // check all the used fields in the style below
+          .map(([color]) => ({
+            props: { color },
+            style: {
+              color: (theme.vars || theme).palette[color].main,
+            },
+          })),
+        ...Object.entries(theme.palette)
+          .filter(([, value]) => value.main) // check all the used fields in the style below
+          .map(([color]) => ({
+            props: { color, disableRipple: false },
+            style: {
+              '&:hover': {
                 backgroundColor: theme.vars
-                  ? `rgba(${palette.mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(palette.main, theme.palette.action.hoverOpacity),
-              }),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: 'transparent',
+                  ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                  : alpha(
+                      (theme.vars || theme).palette[color].main,
+                      theme.palette.action.hoverOpacity,
+                    ),
+                // Reset on touch devices, it doesn't add specificity
+                '@media (hover: none)': {
+                  backgroundColor: 'transparent',
+                },
               },
             },
-          }),
-        }),
-      ...(ownerState.size === 'small' && {
-        padding: 5,
-        fontSize: theme.typography.pxToRem(18),
-      }),
-      ...(ownerState.size === 'large' && {
-        padding: 12,
-        fontSize: theme.typography.pxToRem(28),
-      }),
+          })),
+        {
+          props: { size: 'small' },
+          style: {
+            padding: 5,
+            fontSize: theme.typography.pxToRem(18),
+          },
+        },
+        {
+          props: { size: 'large' },
+          style: {
+            padding: 12,
+            fontSize: theme.typography.pxToRem(28),
+          },
+        },
+      ],
       [`&.${iconButtonClasses.disabled}`]: {
         backgroundColor: 'transparent',
         color: (theme.vars || theme).palette.action.disabled,

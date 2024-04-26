@@ -3,7 +3,7 @@ title: The road to Material UI v6 and beyond
 description: We're tightening up the Material UI release schedule and shipping two major versions in 2024. Here's what to expect.
 date: 2023-12-23T00:00:00.000Z
 authors: ['mnajdova']
-card: true
+manualCard: true
 tags: ['Material UI', 'Product']
 ---
 

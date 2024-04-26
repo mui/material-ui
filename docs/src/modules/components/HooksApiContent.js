@@ -5,7 +5,7 @@ import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
@@ -27,11 +27,13 @@ function Heading(props) {
 
   return (
     <Level id={hash}>
-      {getTranslatedHeader(t, hash, text)}
-      <a aria-labelledby={hash} className="anchor-link" href={`#${hash}`} tabIndex={-1}>
-        <svg>
-          <use xlinkHref="#anchor-link-icon" />
-        </svg>
+      <a aria-labelledby={hash} className="title-link-to-anchor" href={`#${hash}`} tabIndex={-1}>
+        {getTranslatedHeader(t, hash, text)}
+        <div className="anchor-icon">
+          <svg>
+            <use xlinkHref="#anchor-link-icon" />
+          </svg>
+        </div>
       </a>
     </Level>
   );
@@ -72,7 +74,9 @@ export default function HooksApiContent(props) {
           <Heading hash={hookNameKebabCase} text={`${hookName} API`} />
           <Heading text="import" hash={`${hookNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
-          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          {imports.length > 1 && (
+            <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          )}
           {Object.keys(parameters).length > 0 ? (
             <PropertiesSection
               properties={parameters}

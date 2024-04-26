@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "6.0.0-alpha.1",
+  "version": "6.0.0-alpha.4",
   "bin": "./codemod.js",
   "private": false,
   "author": "MUI Team",
@@ -33,7 +33,7 @@
     "@babel/core": "^7.24.4",
     "@babel/runtime": "^7.24.4",
     "@babel/traverse": "^7.24.1",
-    "jscodeshift": "^0.13.1",
+    "jscodeshift": "^0.15.2",
     "jscodeshift-add-imports": "^1.0.10",
     "postcss": "^8.4.38",
     "postcss-cli": "^8.3.1",
@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.3.14",
-    "@types/jscodeshift": "0.11.5",
+    "@types/jscodeshift": "0.11.11",
     "chai": "^4.4.1"
   },
   "sideEffects": false,

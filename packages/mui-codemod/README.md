@@ -948,20 +948,65 @@ npx @mui/codemod@next deprecations/pagination-item-classes <path>
 npx @mui/codemod@next deprecations/slider-props <path>
 ```
 
+#### `toggle-button-group-classes`
+
+JS transforms:
+
+```diff
+ import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
+
+ MuiToggleButtonGroup: {
+   styleOverrides: {
+     root: {
+-      [`& .${toggleButtonGroupClasses.groupedHorizontal}`]: {
++      [`&.${toggleButtonGroupClasses.horizontal} > .${toggleButtonGroupClasses.grouped}`]: {
+         color: 'red',
+        },
+-      [`& .${toggleButtonGroupClasses.groupedVertical}`]: {
++      [`&.${toggleButtonGroupClasses.vertical} > .${toggleButtonGroupClasses.grouped}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedHorizontal
++.MuiToggleButtonGroup-root.MuiToggleButtonGroup-horizontal > .MuiToggleButtonGroup-grouped
+-.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedVertical
++.MuiToggleButtonGroup-root.MuiToggleButtonGroup-vertical > .MuiToggleButtonGroup-grouped
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
+```
+
 #### `step-label-props`
 
 ```diff
  <StepLabel
 -  componentsProps={{ label: labelProps }}
 +  slotProps={{ label: labelProps }}
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
  />
 ```
 
 ```diff
  MuiStepLabel: {
    defaultProps: {
--  componentsProps={{ label: labelProps }}
-+  slotProps={{ label: labelProps }}
+-  componentsProps:{ label: labelProps }
++  slotProps:{ label: labelProps }
+-  StepIconComponent:StepIconComponent
++  slots:{ stepIcon: StepIconComponent }
+-  StepIconProps:StepIconProps
++  slotProps:{ stepIcon: StepIconProps }
   },
  },
 ```
@@ -971,7 +1016,113 @@ npx @mui/codemod@latest deprecations/step-label-props <path>
 
 ```
 
+#### `step-connector-classes`
+
+JS transforms:
+
+```diff
+ import { stepConnectorClasses } from '@mui/material/StepConnector';
+
+ MuiStepConnector: {
+   styleOverrides: {
+     root: {
+-      [`& .${stepConnectorClasses.lineHorizontal}`]: {
++      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+-      [`& .${stepConnectorClasses.lineVertical}`]: {
++      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiStepConnector-lineHorizontal
++.MuiStepConnector-horizontal > .MuiStepConnector-line
+- .MuiStepConnector-lineVertical
++.MuiStepConnector-vertical > .MuiStepConnector-line
+```
+
+```bash
+npx @mui/codemod@next deprecations/step-connector-classes <path>
+```
+
 ### v6.0.0
+
+#### `styled-v6`
+
+Updates the usage of `styled` from `@mui/system@v5` to be compatible with `@pigment-css/react`.
+
+This codemod transforms the styles based on props to `variants` by looking for `styled` calls:
+
+```diff
+ styled('div')(({ theme, disabled }) => ({
+   color: theme.palette.primary.main,
+-  ...(disabled && {
+-    opacity: 0.5,
+-  }),
++  variants: [
++    {
++      prop: 'disabled',
++      style: {
++        opacity: 0.5,
++      },
++    },
++  ],
+ }));
+```
+
+This codemod can handle complex styles with spread operators, ternary operators, and nested objects.
+
+However, it has some **limitations**:
+
+- It does not transform dynamic values as shown below:
+
+  ```js
+  const ResizableContainer = styled('div')(({ ownerState, theme }) => ({
+    width: ownerState.width ?? '100%',
+    height: ownerState.height ?? '100%',
+  }));
+  ```
+
+  You need to manually declare a CSS variable and set the values using inline styles:
+
+  ```js
+  // ✅ Recommended way
+  const ResizableContainer = styled('div')({
+    width: 'var(--ResizableContainer-width, 100%)',
+    height: 'var(--ResizableContainer-height, 100%)',
+  });
+  ```
+
+- It does not transform dynamic reference from the theme, for example color palette.
+
+  ```js
+  const Test = styled('div')(({ ownerState, theme }) => ({
+    backgroundColor: (theme.vars || theme).palette[ownerState.color]?.main,
+  }));
+  ```
+
+  You need to manually iterate the theme object and create `variants` for each color.
+
+  ```js
+  // ✅ Recommended way
+  const Test = styled('div')(({ theme }) => ({
+    variants: Object.entries(theme.palette)
+      .filter(([color, value]) => value.main)
+      .map(([color, value]) => ({
+        props: { color },
+        style: {
+          backgroundColor: value.main,
+        },
+      })),
+  }));
+  ```
 
 ### v5.0.0
 
