@@ -18,7 +18,7 @@ It generates a theme file that you can add to your codebase with all the design 
 You can quickly preview all of the changes through an embedded Storybook panel directly in the plugin interface.
 
 Sync is currently in beta and [available for free](https://www.figma.com/community/plugin/1336346114713490235/) in the Figma Community.
-Head over to [the Sync page](/material-ui/design-resources/material-ui-sync/) to learn more.
+You can also head over to [the Sync documentation page](/material-ui/design-resources/material-ui-sync/) to learn more.
 
 <img src="/static/material-ui/design-resources/sync.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Sync plugin running." width="1628" height="400" />
 
