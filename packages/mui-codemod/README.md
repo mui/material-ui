@@ -904,6 +904,29 @@ npx @mui/codemod@next deprecations/chip-classes <path>
 npx @mui/codemod@next deprecations/divider-props <path>
 ```
 
+#### `form-control-label-props`
+
+```diff
+ <FormControlLabel
+-  componentsProps={{ typography: typographyProps }}
++  slotProps={{ typography: typographyProps }}
+ />
+```
+
+```diff
+ MuiFormControlLabel: {
+   defaultProps: {
+-  componentsProps={{ typography: typographyProps }}
++  slotProps={{ typography: typographyProps }}
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/form-control-label-props <path>
+
+```
+
 #### `pagination-item-classes`
 
 JS transforms:
