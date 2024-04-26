@@ -234,9 +234,6 @@
       "nodeName": "the group&#39;s ul elements"
     },
     "hasClearIcon": { "description": "Styles applied when the clear icon is rendered." },
-    "hasMultiple": {
-      "description": "Styles applied when the autocomplete supports multiple selections."
-    },
     "hasPopupIcon": { "description": "Styles applied when the popup icon is rendered." },
     "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
     "inputFocused": {
@@ -255,6 +252,9 @@
     "loading": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the loading wrapper"
+    },
+    "multiple": {
+      "description": "Styles applied when the autocomplete supports multiple selections."
     },
     "noOptions": {
       "description": "Styles applied to {{nodeName}}.",
