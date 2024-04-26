@@ -5,7 +5,6 @@ import Button, { buttonClasses } from '@mui/material/Button';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
-
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import FlashCode from 'docs/src/components/animation/FlashCode';
