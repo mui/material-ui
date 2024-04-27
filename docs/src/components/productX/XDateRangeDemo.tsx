@@ -9,10 +9,10 @@ import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePi
 import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { startOfWeek, endOfWeek, subDays } from 'date-fns';
 import Frame from 'docs/src/components/action/Frame';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const startDate = new Date();
 startDate.setDate(10);
