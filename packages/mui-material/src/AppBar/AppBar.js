@@ -42,6 +42,7 @@ const AppBarRoot = styled(Paper, {
   width: '100%',
   boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
   flexShrink: 0,
+  backgroundImage: 'none',
   variants: [
     {
       props: { position: 'fixed' },
