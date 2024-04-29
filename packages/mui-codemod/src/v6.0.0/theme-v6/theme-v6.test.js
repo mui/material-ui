@@ -1,7 +1,7 @@
 import path from 'path';
 import { expect } from 'chai';
 import { jscodeshift } from '../../../testUtils';
-import transform from './theme-style-overrides';
+import transform from './theme-v6';
 import readFile from '../../util/readFile';
 
 function read(fileName) {
@@ -10,7 +10,7 @@ function read(fileName) {
 
 describe('@mui/codemod', () => {
   describe('v6.0.0', () => {
-    describe('basic theme-style-overrides', () => {
+    describe('theme-v6', () => {
       it('transforms props as needed', () => {
         const actual = transform(
           { source: read('./test-cases/basicTheme.actual.js') },
