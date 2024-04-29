@@ -3,8 +3,7 @@ import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import ROUTES from 'docs/src/route';
 
@@ -73,12 +72,7 @@ export default function DataTable() {
               },
             }}
           >
-            <HighlightedCode
-              copyButtonHidden
-              component={MarkdownElement}
-              code={code}
-              language="jsx"
-            />
+            <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyle />
           </Box>
           <MoreInfoBox
             primaryBtnLabel="Start with Toolpad"
