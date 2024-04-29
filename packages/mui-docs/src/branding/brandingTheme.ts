@@ -778,7 +778,8 @@ export function getThemedComponents(): ThemeOptions {
                 fontSize: theme.typography.pxToRem(14),
                 fontWeight: 500,
                 '&:hover, &:focus': {
-                  backgroundColor: (theme.vars || theme).palette.grey[50],
+                  backgroundColor: (theme.vars || theme).palette.grey[100],
+                  color: (theme.vars || theme).palette.text.primary,
                 },
                 '&:focus-visible': {
                   outline: 'none',
