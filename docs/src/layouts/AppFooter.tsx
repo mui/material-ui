@@ -105,9 +105,6 @@ export default function AppFooter(props: AppFooterProps) {
             <Link prefetch={false} href={ROUTES.productDesignKits}>
               Design Kits
             </Link>
-            <Link prefetch={false} href={ROUTES.productSync}>
-              Sync plugin
-            </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
