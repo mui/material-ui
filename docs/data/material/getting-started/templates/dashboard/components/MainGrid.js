@@ -64,7 +64,7 @@ export default function MainGrid() {
           <PageViewsChart />
         </Grid>
         <Grid xs={12} md={4} lg={3}>
-          <Stack spacing={2}>
+          <Stack spacing={2} direction={{ xs: 'column', sm: 'row', md: 'column' }}>
             <CustomizedTreeView />
             <ChartUserByCountry />
           </Stack>
