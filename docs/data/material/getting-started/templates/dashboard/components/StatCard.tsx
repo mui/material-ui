@@ -62,7 +62,7 @@ export default function StatCard({
   const trendValues = { up: '+25%', down: '-25%', neutral: '+5%' };
 
   return (
-    <Card variant="outlined" sx={{ height: '100%' }}>
+    <Card variant="outlined" sx={{ height: '100%', flexGrow: 1 }}>
       <CardContent>
         <Stack>
           <Typography variant="subtitle2" gutterBottom>
@@ -74,22 +74,23 @@ export default function StatCard({
             flexGrow="1"
             gap={1}
           >
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              <Stack justifyContent="space-between">
+            <Stack justifyContent="space-between">
+              <Stack
+                direction="row"
+                justifyContent={'space-between'}
+                alignItems="center"
+              >
                 <Typography variant="h4" component="div">
                   {value}
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  {interval}
-                </Typography>
+                <Chip size="small" color={color} label={trendValues[trend]} />
               </Stack>
-              <Chip size="small" color={color} label={trendValues[trend]} />
+              <Typography variant="caption" color="text.secondary">
+                {interval}
+              </Typography>
             </Stack>
-            <Box sx={{ width: '100%', height: 60 }}>
+
+            <Box sx={{ width: '100%', height: 50 }}>
               <SparkLineChart
                 colors={[chartColor]}
                 data={data}

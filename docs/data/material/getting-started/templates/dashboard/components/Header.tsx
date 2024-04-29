@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <Stack
       direction={{ xs: 'column', md: 'row' }}
-      alignItems="flex-end"
+      alignItems={{ xs: 'flex-start', md: 'flex-end' }}
       justifyContent="space-between"
       gap={2}
       sx={{ my: 2 }}

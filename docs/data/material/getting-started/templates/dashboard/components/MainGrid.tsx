@@ -45,11 +45,11 @@ export default function MainGrid() {
 
       <Grid container spacing={2} columns={12}>
         {data.map((card, index) => (
-          <Grid xs={6} md={2.25} key={index}>
-            <StatCard {...card} />
+          <Grid xs={6} sm={3} md={2} lg={2.25}>
+            <StatCard key={index} {...card} />
           </Grid>
         ))}
-        <Grid xs={12} md={3}>
+        <Grid xs={12} md={4} lg={3}>
           <HighlightedCard />
         </Grid>
       </Grid>
@@ -60,10 +60,10 @@ export default function MainGrid() {
         direction={{ xs: 'row-reverse', md: 'row' }}
         columns={12}
       >
-        <Grid xs={12} md={9}>
+        <Grid xs={12} md={8} lg={9}>
           <PageViewsChart />
         </Grid>
-        <Grid xs={12} md={3}>
+        <Grid xs={12} md={4} lg={3}>
           <Stack spacing={2}>
             <CustomizedTreeView />
             <ChartUserByCountry />
