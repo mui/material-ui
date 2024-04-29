@@ -513,7 +513,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
-    root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
