@@ -96,10 +96,10 @@ export default function ClassesList(props: ClassesListProps) {
             {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
             {isDeprecated && (
               <ApiWarning className="MuiApi-collapsible classes-list-alert">
-                {t('api-docs.deprecated')}
+                <b>{t('api-docs.deprecated')}</b>
                 {deprecationInfo && (
                   <React.Fragment>
-                    {' - '}
+                    {'－'}
                     <span
                       dangerouslySetInnerHTML={{
                         __html: deprecationInfo,

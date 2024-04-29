@@ -237,10 +237,10 @@ export default function PropertiesList(props: PropertiesListProps) {
             ))}
             {isDeprecated && (
               <ApiWarning className="MuiApi-collapsible prop-list-alert">
-                {t('api-docs.deprecated')}
+                <b>{t('api-docs.deprecated')}</b>
                 {deprecationInfo && (
                   <React.Fragment>
-                    {' - '}
+                    {'－'}
                     <span
                       dangerouslySetInnerHTML={{
                         __html: deprecationInfo,
