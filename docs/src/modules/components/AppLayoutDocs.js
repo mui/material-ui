@@ -130,7 +130,7 @@ export default function AppLayoutDocs(props) {
   } else if (canonicalAs.startsWith('/system/')) {
     productName = 'MUI System';
   } else if (canonicalAs.startsWith('/toolpad/')) {
-    productName = 'MUI Toolpad';
+    productName = 'Toolpad';
   } else if (canonicalAs.startsWith('/joy-ui/')) {
     productName = 'Joy UI';
   }
@@ -149,12 +149,7 @@ export default function AppLayoutDocs(props) {
         }}
       />
       <AdManager {...(hasTabs && { classSelector: '.component-tabs' })}>
-        <Head
-          title={`${title} - ${productName}`}
-          description={description}
-          largeCard={false}
-          card={card}
-        />
+        <Head title={`${title} - ${productName}`} description={description} card={card} />
         <Main disableToc={disableToc}>
           {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.

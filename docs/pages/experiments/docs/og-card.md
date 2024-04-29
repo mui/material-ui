@@ -1,11 +1,6 @@
----
-title: OG card generation
-cardDescription: A quick overview of available options.
----
+# OG Image
 
-# OG card
-
-<p class="description">How the docs platform generate Open Graph card images</p>
+<p class="description">How the docs platform generate Open Graph card images.</p>
 
 ## The edge function
 

@@ -31,7 +31,6 @@ module.exports = function getBabelConfig(api) {
     '@mui/base': resolveAliasPath('./packages/mui-base/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
-    '@pigment-css/react': resolveAliasPath('./packages/pigment-css-react/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),

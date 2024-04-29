@@ -32,6 +32,7 @@ function ComponentItem({
     <Box
       component="span"
       sx={{
+        flexGrow: 1,
         display: 'flex',
         p: 2,
         flexDirection: { xs: 'column', md: 'row' },
@@ -39,7 +40,7 @@ function ComponentItem({
         gap: 2.5,
       }}
     >
-      <div>{icon}</div>
+      {icon}
       <div>
         <Typography
           component="span"
@@ -110,8 +111,8 @@ export default function XComponentsSwitcher(props: {
     />,
     <ComponentItem
       name="Charts"
-      description="A collection of data visualization graphs, including bar, line, pie, scatter, and more."
-      label="A collection of data visualization graphs, including bar, line, pie, scatter, and more."
+      description="Data visualization graphs, including bar, line, pie, scatter, and more."
+      label="Data visualization graphs, including bar, line, pie, scatter, and more."
       icon={<BarChartRoundedIcon />}
       href={ROUTES.chartsOverview}
     />,
@@ -129,7 +130,6 @@ export default function XComponentsSwitcher(props: {
         sx={{
           display: { md: 'none' },
           maxWidth: 'calc(100vw - 40px)',
-          minHeight: { xs: 200, sm: 166 },
           '& > div': { pr: '32%' },
         }}
       >
@@ -156,7 +156,7 @@ export default function XComponentsSwitcher(props: {
           ))}
         </SwipeableViews>
       </Box>
-      <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
+      <Stack spacing={1} useFlexGap sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
         {componentElement.map((element, index) => (
           <Highlighter
             key={index}
