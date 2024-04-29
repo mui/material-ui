@@ -512,7 +512,7 @@ describe('<Autocomplete />', () => {
           multiple
         />,
       );
-      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.multiple);
+      expect(container.querySelector(`.${classes.inputRoot}`)).to.have.class(classes.multiple);
     });
 
     it('should remove the last option', () => {

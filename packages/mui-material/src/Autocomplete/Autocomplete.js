@@ -1,27 +1,27 @@
 'use client';
-import { createFilterOptions, useAutocomplete } from '@mui/base';
-import { alpha } from '@mui/system/colorManipulator';
-import chainPropTypes from '@mui/utils/chainPropTypes';
-import composeClasses from '@mui/utils/composeClasses';
-import integerPropType from '@mui/utils/integerPropType';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import * as React from 'react';
-import Chip from '../Chip';
-import filledInputClasses from '../FilledInput/filledInputClasses';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { useAutocomplete, createFilterOptions } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
+import Popper from '../Popper';
+import ListSubheader from '../ListSubheader';
+import Paper from '../Paper';
 import IconButton from '../IconButton';
+import Chip from '../Chip';
 import inputClasses from '../Input/inputClasses';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
-import ListSubheader from '../ListSubheader';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
-import Paper from '../Paper';
-import Popper from '../Popper';
-import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
+import filledInputClasses from '../FilledInput/filledInputClasses';
 import ClearIcon from '../internal/svg-icons/Close';
+import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
+import { styled, createUseThemeProps } from '../zero-styled';
+import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
-import { createUseThemeProps, styled } from '../zero-styled';
-import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 
 const useThemeProps = createUseThemeProps('MuiAutocomplete');
 
@@ -46,12 +46,11 @@ const useUtilityClasses = (ownerState) => {
       expanded && 'expanded',
       focused && 'focused',
       fullWidth && 'fullWidth',
-      multiple && 'multiple',
       hasClearIcon && 'hasClearIcon',
       hasPopupIcon && 'hasPopupIcon',
     ],
     inputRoot: ['inputRoot', multiple && 'multiple'],
-    input: ['input', inputFocused && 'inputFocused', multiple && 'multiple'],
+    input: ['input', inputFocused && 'inputFocused'],
     tag: ['tag', `tagSize${capitalize(size)}`],
     endAdornment: ['endAdornment'],
     clearIndicator: ['clearIndicator'],
