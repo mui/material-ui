@@ -2114,8 +2114,8 @@ importers:
         specifier: 18.3.0
         version: 18.3.0
       '@types/react-is':
-        specifier: ^18.2.4
-        version: 18.2.4
+        specifier: ^18.3.0
+        version: 18.3.0
       '@types/sinon':
         specifier: ^10.0.20
         version: 10.0.20
@@ -2317,8 +2317,8 @@ importers:
         specifier: 18.2.55
         version: 18.2.55
       '@types/react-is':
-        specifier: ^18.2.4
-        version: 18.2.4
+        specifier: ^18.3.0
+        version: 18.3.0
       '@types/sinon':
         specifier: ^10.0.20
         version: 10.0.20
@@ -8297,8 +8297,8 @@ packages:
     dependencies:
       '@types/react': 18.2.55
 
-  /@types/react-is@18.2.4:
-    resolution: {integrity: sha512-wBc7HgmbCcrvw0fZjxbgz/xrrlZKzEqmABBMeSvpTvdm25u6KI6xdIi9pRE2G0C1Lw5ETFdcn4UbYZ4/rpqUYw==}
+  /@types/react-is@18.3.0:
+    resolution: {integrity: sha512-KZJpHUkAdzyKj/kUHJDc6N7KyidftICufJfOFpiG6haL/BDQNQt5i4n1XDUL/nDZAtGLHDSWRYpLzKTAKSvX6w==}
     dependencies:
       '@types/react': 18.2.55
     dev: true
