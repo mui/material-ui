@@ -13,23 +13,23 @@ describe('@mui/codemod', () => {
     describe('basic theme-style-overrides', () => {
       it('transforms props as needed', () => {
         const actual = transform(
-          { source: read('./test-cases/BasicStyled.actual.js') },
+          { source: read('./test-cases/basicTheme.actual.js') },
           { jscodeshift },
           {},
         );
 
-        const expected = read('./test-cases/BasicStyled.expected.js');
+        const expected = read('./test-cases/basicTheme.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
         const actual = transform(
-          { source: read('./test-cases/BasicStyled.expected.js') },
+          { source: read('./test-cases/basicTheme.expected.js') },
           { jscodeshift },
           {},
         );
 
-        const expected = read('./test-cases/BasicStyled.expected.js');
+        const expected = read('./test-cases/basicTheme.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
