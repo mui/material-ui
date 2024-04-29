@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
+import Stack from '@mui/material/Stack';
 import ChartUserByCountry from './ChartUserByCountry';
 import StatCard, { StatCardProps } from './StatCard';
 import HighlightedCard from './HighlightedCard';
@@ -63,14 +64,10 @@ export default function MainGrid() {
           <PageViewsChart />
         </Grid>
         <Grid xs={12} md={3}>
-          <Grid container spacing={2}>
-            <Grid xs={12}>
-              <CustomizedTreeView />
-            </Grid>
-            <Grid xs={12}>
-              <ChartUserByCountry />
-            </Grid>
-          </Grid>
+          <Stack spacing={2}>
+            <CustomizedTreeView />
+            <ChartUserByCountry />
+          </Stack>
         </Grid>
       </Grid>
     </React.Fragment>

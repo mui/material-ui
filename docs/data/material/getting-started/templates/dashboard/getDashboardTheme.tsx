@@ -927,14 +927,16 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           },
         },
       },
+      MuiRichTreeView: { styleOverrides: { root: { paddingBottom: 5 } } },
       MuiTreeItem2: {
         styleOverrides: {
           root: ({ theme }) => ({
             position: 'relative',
             boxSizing: 'border-box',
+            padding: theme.spacing(0, 1),
             '& .groupTransition': {
               marginLeft: theme.spacing(2),
-              padding: theme.spacing(0, 2),
+              padding: theme.spacing(0),
               borderLeft: '1px solid',
               borderColor: theme.palette.divider,
             },
@@ -942,51 +944,63 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           content: ({ theme }) => ({
             marginTop: theme.spacing(1),
             padding: theme.spacing(0.5, 1),
+            overflow: 'hidden',
+
             '&:hover': {
-              backgroundColor: gray[100],
-              outline: '1px solid',
-              outlineColor: theme.palette.divider,
+              backgroundColor: alpha(gray[300], 0.2),
             },
             '&.focused': {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
               outlineOffset: '2px',
-            },
-
-            '&.selected.focused': {
-              backgroundColor: gray[100],
               '&:hover': {
-                backgroundColor: gray[100],
+                backgroundColor: alpha(gray[300], 0.2),
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
             },
             '&.selected': {
-              backgroundColor: gray[100],
+              backgroundColor: alpha(gray[300], 0.4),
               '&:hover': {
-                backgroundColor: gray[100],
-                outline: '1px solid',
-                outlineColor: theme.palette.divider,
+                backgroundColor: alpha(gray[300], 0.6),
+              },
+            },
+            '&.selected.focused': {
+              backgroundColor: alpha(gray[300], 0.4),
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
+              '&:hover': {
+                backgroundColor: alpha(gray[300], 0.6),
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
               },
             },
             ...(theme.palette.mode === 'dark' && {
               '&:hover': {
-                backgroundColor: gray[800],
-                outline: '1px solid',
-                outlineColor: theme.palette.divider,
+                backgroundColor: alpha(gray[500], 0.2),
               },
               '&.focused': {
-                backgroundColor: gray[800],
-              },
-              '&.selected.focused': {
-                backgroundColor: gray[800],
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
                 '&:hover': {
-                  backgroundColor: gray[800],
+                  backgroundColor: alpha(gray[500], 0.2),
+                  outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                  outlineOffset: '2px',
                 },
               },
               '&.selected': {
-                backgroundColor: gray[800],
+                backgroundColor: alpha(gray[500], 0.4),
                 '&:hover': {
-                  backgroundColor: gray[800],
-                  outline: '1px solid',
-                  outlineColor: theme.palette.divider,
+                  backgroundColor: alpha(gray[500], 0.6),
+                },
+              },
+              '&.selected.focused': {
+                backgroundColor: alpha(gray[500], 0.4),
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
+                '&:hover': {
+                  backgroundColor: alpha(gray[500], 0.6),
+                  outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                  outlineOffset: '2px',
                 },
               },
             }),

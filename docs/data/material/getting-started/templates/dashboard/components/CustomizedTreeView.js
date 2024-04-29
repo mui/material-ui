@@ -54,18 +54,11 @@ const ITEMS = [
 
 function DotIcon({ color }) {
   return (
-    <Box
-      sx={{
-        width: 6,
-        height: 6,
-        borderRadius: '70%',
-        bgcolor: color,
-        display: 'inline-block',
-        verticalAlign: 'middle',
-        zIndex: 1,
-        mx: 1,
-      }}
-    />
+    <Box sx={{ marginRight: 1, display: 'flex', alignItems: 'center' }}>
+      <svg width={6} height={6}>
+        <circle cx={3} cy={3} r={3} fill={color} />
+      </svg>
+    </Box>
   );
 }
 
@@ -203,8 +196,8 @@ export default function CustomizedTreeView() {
           defaultSelectedItems={['1.1', '1.1.1']}
           sx={{
             height: 'fit-content',
+            width: '100%',
             flexGrow: 1,
-            maxWidth: 400,
             overflowY: 'auto',
           }}
           slots={{ item: CustomTreeItem }}
