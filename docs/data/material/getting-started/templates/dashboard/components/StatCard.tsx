@@ -89,7 +89,7 @@ export default function StatCard({
               </Stack>
               <Chip size="small" color={color} label={trendValues[trend]} />
             </Stack>
-            <Box sx={{ width: '100%', height: 50 }}>
+            <Box sx={{ width: '100%', height: 60 }}>
               <SparkLineChart
                 colors={[chartColor]}
                 data={data}
