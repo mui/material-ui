@@ -516,15 +516,6 @@ export default function getCheckoutTheme(mode) {
         },
       },
       MuiStepIcon: {
-        variants: [
-          {
-            props: { completed: true },
-            style: () => ({
-              width: 12,
-              height: 12,
-            }),
-          },
-        ],
         styleOverrides: {
           root: ({ theme }) => ({
             color: 'transparent',
@@ -554,8 +545,17 @@ export default function getCheckoutTheme(mode) {
                 color: theme.palette.success.light,
               },
             }),
+            variants: [
+              {
+                props: { completed: true },
+                style: ({
+                  width: 12,
+                  height: 12
+                }),
+              },
+            ]
           }),
-        },
+        }
       },
       MuiStepLabel: {
         styleOverrides: {

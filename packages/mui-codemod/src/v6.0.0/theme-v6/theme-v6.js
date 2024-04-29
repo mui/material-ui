@@ -1,3 +1,4 @@
+import getReturnExpression from '../../util/getReturnExpression';
 import migrateToVariants from '../../util/migrateToVariants';
 
 /**
@@ -35,6 +36,44 @@ export default function styledV6(file, api, options) {
     }
 
     migrateToVariants(j, styles);
+
+    if (path.parent.get('key', 'name').value === 'root') {
+      const componentTheme = path.parent.parent.parent.parent.get('properties');
+      if (componentTheme.node.type === 'ObjectExpression') {
+        componentTheme.node.properties.forEach((prop) => {
+          if (prop.key.name === 'variants') {
+            prop.value.elements = prop.value.elements.map((element) => {
+              const styleIndex = element.properties.findIndex(
+                (styleProp) =>
+                  styleProp.type === 'ObjectProperty' && styleProp.key.name === 'style',
+              );
+              if (
+                styleIndex !== -1 &&
+                element.properties[styleIndex].value.type !== 'ObjectExpression'
+              ) {
+                element.properties[styleIndex].value = getReturnExpression(
+                  element.properties[styleIndex].value,
+                );
+              }
+              return element;
+            });
+            const stylesNode = getReturnExpression(path.node);
+            const variantsNode = stylesNode?.properties.find(
+              (styleProp) =>
+                styleProp.type === 'ObjectProperty' && styleProp.key.name === 'variants',
+            );
+            if (variantsNode) {
+              variantsNode.value.elements.push(...prop.value.elements);
+            } else {
+              stylesNode.properties.push(j.property('init', j.identifier('variants'), prop.value));
+            }
+          }
+        });
+        componentTheme.node.properties = componentTheme.node.properties.filter(
+          (prop) => prop.key.name !== 'variants',
+        );
+      }
+    }
   });
 
   const transformed = root.toSource(printOptions);
