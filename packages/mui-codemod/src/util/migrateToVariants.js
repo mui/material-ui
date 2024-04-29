@@ -1,7 +1,22 @@
 const MAX_DEPTH = 20;
-
+/**
+ *
+ * @param {import('jscodeshift').API['j']} j
+ * @param {any[]} styles
+ */
 export default function migrateToVariants(j, styles) {
-  function createBuildStyle(key, upperBuildStyle) {
+  function createBuildStyle(key, upperBuildStyle, applyStylesMode) {
+    if (applyStylesMode) {
+      upperBuildStyle = (styleExpression) =>
+        j.objectExpression([
+          j.spreadElement(
+            j.callExpression(
+              j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')),
+              [j.stringLiteral(applyStylesMode), styleExpression],
+            ),
+          ),
+        ]);
+    }
     return function buildStyle(styleExpression) {
       if (key) {
         if (key.type === 'Identifier' || key.type === 'StringLiteral') {
@@ -136,7 +151,7 @@ export default function migrateToVariants(j, styles) {
   /**
    *
    * @param {{ properties: any[] }} node
-   * @param {Record<string, any[]>} modeStyles
+   * @param {Record<string, any[] | import('ast-types').namedTypes.ObjectExpression>} modeStyles
    */
   function appendPaletteModeStyles(node, modeStyles) {
     Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
@@ -144,7 +159,7 @@ export default function migrateToVariants(j, styles) {
         j.spreadElement(
           j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')), [
             j.stringLiteral(mode),
-            j.objectExpression(objectStyles),
+            Array.isArray(objectStyles) ? j.objectExpression(objectStyles) : objectStyles,
           ]),
         ),
       );
@@ -336,8 +351,42 @@ export default function migrateToVariants(j, styles) {
       }
       if (data.node.type === 'SpreadElement') {
         if (data.node.argument.type === 'LogicalExpression') {
-          const paramName = getObjectKey(data.node.argument.left)?.name;
-          if (paramName && (paramName === 'theme' || !parameters.has(paramName))) {
+          const paramName =
+            data.node.argument.left.type === 'BinaryExpression'
+              ? getObjectKey(data.node.argument.left.left)?.name
+              : getObjectKey(data.node.argument.left)?.name;
+          if (paramName === 'theme' && data.node.argument.left.right.type === 'StringLiteral') {
+            if (data.node.argument.right.type === 'ObjectExpression') {
+              const mode = data.node.argument.left.right.value;
+              data.node.argument.right.properties.forEach((prop) => {
+                if (prop.type === 'ObjectProperty') {
+                  recurseObjectExpression({
+                    ...data,
+                    node: prop.value,
+                    parentNode: data.node.argument.right,
+                    key: prop.key,
+                    buildStyle: createBuildStyle(prop.key, data.buildStyle, mode),
+                    replaceValue: (newValue) => {
+                      prop.value = newValue;
+                    },
+                  });
+                } else {
+                  recurseObjectExpression({
+                    ...data,
+                    node: prop,
+                    parentNode: data.node.argument.right,
+                    buildStyle: createBuildStyle(prop.key, data.buildStyle, mode),
+                  });
+                }
+              });
+              appendPaletteModeStyles(data.parentNode, {
+                [mode]: data.node.argument.right,
+              });
+            }
+            removeProperty(data.parentNode, data.node);
+            return;
+          }
+          if (paramName && !parameters.has(paramName)) {
             return;
           }
 
@@ -514,5 +563,19 @@ export default function migrateToVariants(j, styles) {
         param.properties = param.properties.filter((prop) => prop.key.name === 'theme');
       }
     });
+
+    if (style.body.type === 'ObjectExpression') {
+      // Remove empty `...theme.applyStyles('...', {})`
+      style.body.properties = style.body.properties.filter((prop) => {
+        if (
+          prop.argument?.callee?.object?.name === 'theme' &&
+          typeof prop.argument?.arguments[0]?.value === 'string' &&
+          !prop.argument?.arguments?.[1]?.properties?.length
+        ) {
+          return false;
+        }
+        return true;
+      });
+    }
   });
 }
