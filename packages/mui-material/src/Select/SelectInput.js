@@ -10,17 +10,15 @@ import refType from '@mui/utils/refType';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
-import {
-  nativeSelectSelectStyles,
-  nativeSelectIconStyles,
-} from '../NativeSelect/NativeSelectInput';
+import { StyledSelectSelect, StyledSelectIcon } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
-import styled, { slotShouldForwardProp } from '../styles/styled';
+import { styled } from '../zero-styled';
+import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
-const SelectSelect = styled('div', {
+const SelectSelect = styled(StyledSelectSelect, {
   name: 'MuiSelect',
   slot: 'Select',
   overridesResolver: (props, styles) => {
@@ -33,18 +31,9 @@ const SelectSelect = styled('div', {
       { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
-})(nativeSelectSelectStyles, {
-  // Win specificity over the input base
-  [`&.${selectClasses.select}`]: {
-    height: 'auto', // Resets for multiple select with chips
-    minHeight: '1.4375em', // Required for select\text-field height consistency
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-  },
-});
+})({});
 
-const SelectIcon = styled('svg', {
+const SelectIcon = styled(StyledSelectIcon, {
   name: 'MuiSelect',
   slot: 'Icon',
   overridesResolver: (props, styles) => {
@@ -55,7 +44,7 @@ const SelectIcon = styled('svg', {
       ownerState.open && styles.iconOpen,
     ];
   },
-})(nativeSelectIconStyles);
+})({});
 
 const SelectNativeInput = styled('input', {
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
@@ -493,6 +482,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   return (
     <React.Fragment>
       <SelectSelect
+        as="div"
         ref={handleDisplayRef}
         tabIndex={tabIndex}
         role="combobox"

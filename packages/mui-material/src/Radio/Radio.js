@@ -11,7 +11,7 @@ import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
-import { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled, createUseThemeProps } from '../zero-styled';
 
 const useThemeProps = createUseThemeProps('MuiRadio');

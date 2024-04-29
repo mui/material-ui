@@ -140,7 +140,7 @@ export const InputBaseRoot = styled('div', {
   ],
 }));
 
-export const InputBaseComponent = styled('input', {
+export const InputBaseInput = styled('input', {
   name: 'MuiInputBase',
   slot: 'Input',
   overridesResolver: inputOverridesResolver,
@@ -530,7 +530,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const Root = slots.root || components.Root || InputBaseRoot;
   const rootProps = slotProps.root || componentsProps.root || {};
 
-  const Input = slots.input || components.Input || InputBaseComponent;
+  const Input = slots.input || components.Input || InputBaseInput;
   inputProps = { ...inputProps, ...(slotProps.input ?? componentsProps.input) };
 
   return (
