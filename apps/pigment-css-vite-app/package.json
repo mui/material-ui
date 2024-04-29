@@ -16,7 +16,7 @@
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/icons-material": "workspace:^",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "local-ui-lib": "workspace:^",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
