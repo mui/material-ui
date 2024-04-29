@@ -12,7 +12,7 @@ import describeConformance from '../../test/describeConformance';
 describe('<TextField />', () => {
   const { render } = createRenderer();
 
-  function TestInput(props) {
+  function TestComponent(props) {
     const { children, className, 'data-testid': testId } = props;
     return (
       <div className={className} data-testid={testId ?? 'custom'}>
@@ -32,7 +32,7 @@ describe('<TextField />', () => {
       testVariantProps: { variant: 'outlined' },
       slots: {
         input: {
-          testWithComponent: TestInput,
+          testWithComponent: TestComponent,
         },
         inputLabel: {},
         htmlInput: {
@@ -54,7 +54,9 @@ describe('<TextField />', () => {
       render,
       muiName: 'MuiTextField',
       slots: {
-        select: {},
+        select: {
+          testWithComponent: TestComponent,
+        },
       },
       only: ['slotsProp', 'slotPropsProp', 'slotPropsCallback'],
     }),
