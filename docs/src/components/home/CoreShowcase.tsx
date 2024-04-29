@@ -5,7 +5,6 @@ import Button, { buttonClasses } from '@mui/material/Button';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import FlashCode from 'docs/src/components/animation/FlashCode';
@@ -184,12 +183,7 @@ export default function CoreShowcase() {
           >
             <Box sx={{ position: 'relative' }}>
               {startLine !== undefined && <FlashCode startLine={startLine} endLine={endLine} />}
-              <HighlightedCode
-                copyButtonHidden
-                component={MarkdownElement}
-                code={componentCode}
-                language="jsx"
-              />
+              <HighlightedCode copyButtonHidden plainStyle code={componentCode} language="jsx" />
               <StylingInfo appeared={customized} sx={{ mx: -2 }} />
             </Box>
           </Box>
