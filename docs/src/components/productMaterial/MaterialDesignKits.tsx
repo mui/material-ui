@@ -20,7 +20,7 @@ const Image = styled('img')(({ theme }) => ({
   transition: '0.4s',
   display: 'block',
   height: 'auto',
-  borderRadius: 6,
+  borderRadius: 4,
   border: '1px solid',
   borderColor: theme.palette.divider,
   filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.grey[500], 0.5)})`,
@@ -38,7 +38,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
   const [customized, setCustomized] = React.useState(true);
 
   return (
-    <Section bg={gradient ? 'gradient' : 'white'} cozy>
+    <Section cozy bg={gradient ? 'gradient' : 'white'}>
       <Grid container spacing={2} alignItems="center">
         <Grid md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
@@ -48,7 +48,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                 Enhance your <GradientText>design workflow</GradientText>
               </Typography>
             }
-            description="Reach out for the Figma Design Kit and the Connect plugin to bridge the gap between development and design when using Material UI."
+            description="Reach out for the Figma Design Kit and the Sync plugin to bridge the gap between development and design when using Material UI."
           />
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
@@ -62,7 +62,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
               <Item
                 icon={<ExtensionRoundedIcon color="primary" />}
                 title="Sync plugin"
-                description="Quickly generate a theme file with token and component customizations done on Figma."
+                description="Quickly generate a Material UI theme file with token and component customizations done on Figma."
               />
             </Highlighter>
           </Group>
@@ -134,8 +134,8 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                   ]}
                 >
                   <Image
-                    src={`/static/branding/design-kits/Button-light.jpeg`}
-                    alt=""
+                    src="/static/branding/design-kits/Button-light.jpeg"
+                    alt="Material UI Button component variations in the Figma Design Kit."
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
@@ -144,8 +144,8 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     }
                   />
                   <Image
-                    src={`/static/branding/design-kits/Alert-light.jpeg`}
-                    alt=""
+                    src="/static/branding/design-kits/Alert-light.jpeg"
+                    alt="Material UI Alert component variations in the Figma Design Kit."
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
@@ -154,8 +154,8 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     }
                   />
                   <Image
-                    src={`/static/branding/design-kits/Slider-light.jpeg`}
-                    alt=""
+                    src="/static/branding/design-kits/Slider-light.jpeg"
+                    alt="Material UI Slider component variations in the Figma Design Kit."
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
@@ -182,7 +182,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                       '&:nth-of-type(2)': {
                         width: { xs: 240, sm: 560 },
                         top: { xs: 100, sm: 40 },
-                        left: { xs: '52%', sm: '60%' },
+                        left: { xs: '60%', sm: '60%' },
                         transform: {
                           xs: 'scale(1.8) translate(-20%)',
                           sm: 'none',
@@ -229,22 +229,22 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                   })}
                 >
                   <Image
-                    src={`/static/branding/design-kits/connect-page-base2-light.png`}
-                    alt="Screenshot of Figma displaying the Material UI Design kit"
+                    src="/static/branding/design-kits/material-sync-base2-light.png"
+                    alt="A bunch of customized Material UI buttons in the Figma Design Kit."
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/connect-page-base2-dark.png)`,
+                        content: `url(/static/branding/design-kits/material-sync-base2-dark.png)`,
                       })
                     }
                   />
                   <Image
-                    src={`/static/branding/design-kits/connect-shot2-light.png`}
-                    alt=""
+                    src="/static/branding/design-kits/material-sync-light.png"
+                    alt="The Material UI Sync plugin running and showing code for customized buttons."
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/connect-shot2-dark.png)`,
+                        content: `url(/static/branding/design-kits/material-sync-dark.png)`,
                       })
                     }
                   />
@@ -344,7 +344,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     variant="contained"
                     size="small"
                     noLinkStyle
-                    href="https://www.figma.com/community/plugin/1336346114713490235/connect"
+                    href="https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync"
                   >
                     Use Sync now
                   </Button>
@@ -353,7 +353,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     variant="outlined"
                     color="secondary"
                     size="small"
-                    href="/material-ui/design-resources/connect/"
+                    href="/material-ui/design-resources/material-ui-sync/"
                   >
                     View documentation
                   </Button>
