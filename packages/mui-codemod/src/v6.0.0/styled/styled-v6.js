@@ -15,7 +15,7 @@ export default function styledV6(file, api, options) {
         if (key.type === 'Identifier' || key.type === 'StringLiteral') {
           return upperBuildStyle(j.objectExpression([j.objectProperty(key, styleExpression)]));
         }
-        if (key.type === 'TemplateLiteral') {
+        if (key.type === 'TemplateLiteral' || key.type === 'CallExpression') {
           return upperBuildStyle(
             j.objectExpression([
               {
@@ -343,7 +343,7 @@ export default function styledV6(file, api, options) {
                   return (
                     props &&
                     styleVal &&
-                    styleVal.value.properties.length > 0 &&
+                    (!styleVal.value.properties || styleVal.value.properties.length > 0) &&
                     (props.value.type === 'ArrowFunctionExpression' ||
                       props.value.properties.length > 0)
                   );
@@ -384,7 +384,7 @@ export default function styledV6(file, api, options) {
         if (data.node.type === 'SpreadElement') {
           if (data.node.argument.type === 'LogicalExpression') {
             const paramName = getObjectKey(data.node.argument.left)?.name;
-            if (paramName && !parameters.has(paramName)) {
+            if (paramName && (paramName === 'theme' || !parameters.has(paramName))) {
               return;
             }
 
@@ -397,30 +397,32 @@ export default function styledV6(file, api, options) {
             const lastLength = variants.push({}); // preserve the order of the recursive calls
 
             const modeStyles = {}; // to collect styles from `theme.palette.mode === '...'`
-            variant.style.properties.forEach((prop) => {
-              if (prop.type === 'ObjectProperty') {
-                recurseObjectExpression({
-                  ...data,
-                  node: prop.value,
-                  parentNode: variant.style,
-                  props: variant.props,
-                  key: prop.key,
-                  buildStyle: createBuildStyle(prop.key, data.buildStyle),
-                  replaceValue: (newValue) => {
-                    prop.value = newValue;
-                  },
-                  modeStyles,
-                });
-              } else {
-                recurseObjectExpression({
-                  ...data,
-                  node: prop,
-                  parentNode: variant.style,
-                  props: variant.props,
-                  buildStyle: createBuildStyle(prop.key, data.buildStyle),
-                });
-              }
-            });
+            if (variant.style.type === 'ObjectExpression') {
+              variant.style.properties.forEach((prop) => {
+                if (prop.type === 'ObjectProperty') {
+                  recurseObjectExpression({
+                    ...data,
+                    node: prop.value,
+                    parentNode: variant.style,
+                    props: variant.props,
+                    key: prop.key,
+                    buildStyle: createBuildStyle(prop.key, data.buildStyle),
+                    replaceValue: (newValue) => {
+                      prop.value = newValue;
+                    },
+                    modeStyles,
+                  });
+                } else {
+                  recurseObjectExpression({
+                    ...data,
+                    node: prop,
+                    parentNode: variant.style,
+                    props: variant.props,
+                    buildStyle: createBuildStyle(prop.key, data.buildStyle),
+                  });
+                }
+              });
+            }
             appendPaletteModeStyles(variant.style, modeStyles);
             variant.style = data.buildStyle(variant.style);
             variants[lastLength - 1] = buildObjectAST(variant);
