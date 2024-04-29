@@ -1349,6 +1349,9 @@ importers:
       '@mui/system':
         specifier: ^5.0.0
         version: 5.15.14(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.55)(react@18.2.0)
+      chai:
+        specifier: ^4.4.1
+        version: 4.4.1
       clipboard-copy:
         specifier: ^4.0.1
         version: 4.0.1
