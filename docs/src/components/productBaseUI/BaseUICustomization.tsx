@@ -6,6 +6,7 @@ import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import SvgTwinkle from 'docs/src/icons/SvgTwinkle';
 import Section from 'docs/src/layouts/Section';
 import Highlighter from 'docs/src/components/action/Highlighter';
@@ -14,8 +15,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import Frame from 'docs/src/components/action/Frame';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const code = `
 import clsx from 'clsx';

@@ -6,6 +6,7 @@ import DevicesOtherRoundedIcon from '@mui/icons-material/DevicesOtherRounded';
 import SwitchAccessShortcutRoundedIcon from '@mui/icons-material/SwitchAccessShortcutRounded';
 import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -13,8 +14,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `

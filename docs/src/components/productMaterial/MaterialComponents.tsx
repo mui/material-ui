@@ -30,7 +30,7 @@ import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import ROUTES from 'docs/src/route';
 
