@@ -12,11 +12,6 @@ export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 
 export interface SpeedDialSlots {
   /**
-   * The component that renders the root.
-   * @default 'div'
-   */
-  root?: React.ElementType;
-  /**
    * The component that renders the transition.
    * [Follow this guide](/material-ui/speedDial/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default {}
@@ -38,11 +33,7 @@ export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
       SpeedDialComponentsPropsOverrides,
       SpeedDialOwnerState
     >;
-    transition: SlotProps<
-      React.JSXElementConstructor<TransitionProps>,
-      SpeedDialTransitionSlotPropsOverrides,
-      SpeedDialOwnerState
-    >;
+    transition: SlotProps<React.JSXElementConstructor<TransitionProps>, {}, SpeedDialOwnerState>;
   }
 >;
 
