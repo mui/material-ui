@@ -249,7 +249,9 @@ export default function ApiPage(props) {
 `)}
           language="jsx"
         />
-        <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        {pageContent.imports.length > 1 && (
+          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        )}
         {componentDescription ? (
           <React.Fragment>
             <br />

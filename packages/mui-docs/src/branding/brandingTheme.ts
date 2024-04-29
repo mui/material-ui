@@ -335,18 +335,18 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontWeight: 500,
       },
       body1: {
-        fontSize: defaultTheme.typography.pxToRem(16), // 16px
+        fontSize: defaultTheme.typography.pxToRem(16),
         lineHeight: 24 / 16,
         letterSpacing: 0,
       },
       body2: {
-        fontSize: defaultTheme.typography.pxToRem(14), // 14px
+        fontSize: defaultTheme.typography.pxToRem(14),
         lineHeight: 21 / 14,
         letterSpacing: 0,
       },
       caption: {
         display: 'inline-block',
-        fontSize: defaultTheme.typography.pxToRem(12), // 12px
+        fontSize: defaultTheme.typography.pxToRem(12),
         lineHeight: 18 / 12,
         letterSpacing: 0,
         fontWeight: 700,

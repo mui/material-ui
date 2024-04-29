@@ -146,30 +146,17 @@ const openRolesData = [
   {
     title: 'Engineering',
     roles: [
-      // {
-      //   title: 'React Engineer — xCharts',
-      //   description:
-      //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-      //   url: '/careers/react-engineer-x-charts/',
-      // },
-      // {
-      //   title: 'React Engineer — X',
-      //   description:
-      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-      //   url: '/careers/react-engineer-x/',
-      // },
+      {
+        title: 'React Engineer — X',
+        description:
+          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x/',
+      },
     ],
   },
   {
     title: 'Design',
-    roles: [
-      {
-        title: 'Design Engineer — xGrid',
-        description:
-          'You will design and implement a great user and developer experience for the MUI X Data Grid.',
-        url: '/careers/design-engineer-x-grid/',
-      },
-    ],
+    roles: [],
   },
   {
     title: 'Developer Experience',
@@ -179,17 +166,6 @@ const openRolesData = [
         description:
           'You will strategize and implement educational initiatives from end to end to help developers build better UIs, faster.',
         url: '/careers/developer-advocate/',
-      },
-    ],
-  },
-  {
-    title: 'Support',
-    roles: [
-      {
-        title: 'Customer Support Agent',
-        description:
-          'You will help MUI provide timely and efficient support to our customers and continue to streamline our customer operations across the board.',
-        url: '/careers/support-agent/',
       },
     ],
   },
@@ -208,14 +184,8 @@ const nextRolesData = [
       {
         title: 'Full-stack Engineer — Toolpad',
         description:
-          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
+          'You will join the Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
-      },
-      {
-        title: 'React Engineer — X',
-        description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
       },
       {
         title: 'React Engineer — xCharts',
@@ -230,26 +200,10 @@ const nextRolesData = [
         url: '/careers/react-tech-lead-core/',
       },
       {
-        title: 'React Engineer — Core',
-        description:
-          'You will strengthen the core components team by collaborating with the community to land contributions.',
-        url: '/careers/react-engineer-core/',
-      },
-      {
         title: 'React Community Engineer — X',
         description:
           'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
         url: '/careers/react-community-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Design',
-    roles: [
-      {
-        title: 'Design Engineer',
-        description: 'You will focus on design to implement great product experiences.',
-        url: '/careers/design-engineer/',
       },
     ],
   },
@@ -275,13 +229,7 @@ const nextRolesData = [
   },
   {
     title: 'Marketing',
-    roles: [
-      {
-        title: 'Product Marketing Manager',
-        description: 'You will own the marketing efforts at MUI.',
-        url: '/careers/product-marketing-manager/',
-      },
-    ],
+    roles: [],
   },
 ] as typeof openRolesData;
 
@@ -518,28 +466,25 @@ export default function Careers() {
           />
           <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
           <Stack spacing={2} divider={<Divider />}>
-            {openRolesData.map((category) => {
-              const roles = category.roles;
-              return (
-                <React.Fragment key={category.title}>
-                  <Typography component="h3" variant="h5" fontWeight="semiBold">
-                    {category.title}
-                  </Typography>
-                  {roles.length > 0 ? (
-                    roles.map((role) => (
+            {openRolesData
+              .filter((category) => category.roles.length > 0)
+              .map((category) => {
+                return (
+                  <React.Fragment key={category.title}>
+                    <Typography component="h3" variant="h5" fontWeight="semiBold">
+                      {category.title}
+                    </Typography>
+                    {category.roles.map((role) => (
                       <Role
                         key={role.title}
                         title={role.title}
                         description={role.description}
                         url={role.url}
                       />
-                    ))
-                  ) : (
-                    <Typography color="text.secondary">No open roles.</Typography>
-                  )}
-                </React.Fragment>
-              );
-            })}
+                    ))}
+                  </React.Fragment>
+                );
+              })}
           </Stack>
         </Section>
         <Divider />
@@ -566,28 +511,25 @@ export default function Careers() {
               />
               <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
               <Stack spacing={2} divider={<Divider />}>
-                {nextRolesData.map((category) => {
-                  const roles = category.roles;
-                  return (
-                    <React.Fragment key={category.title}>
-                      <Typography component="h3" variant="h5" fontWeight="extraBold">
-                        {category.title}
-                      </Typography>
-                      {roles.length > 0 ? (
-                        roles.map((role) => (
+                {nextRolesData
+                  .filter((category) => category.roles.length > 0)
+                  .map((category) => {
+                    return (
+                      <React.Fragment key={category.title}>
+                        <Typography component="h3" variant="h5" fontWeight="extraBold">
+                          {category.title}
+                        </Typography>
+                        {category.roles.map((role) => (
                           <Role
                             key={role.title}
                             title={role.title}
                             description={role.description}
                             url={role.url}
                           />
-                        ))
-                      ) : (
-                        <Typography color="text.secondary">No plans yet.</Typography>
-                      )}
-                    </React.Fragment>
-                  );
-                })}
+                        ))}
+                      </React.Fragment>
+                    );
+                  })}
               </Stack>
             </Section>
           </Box>

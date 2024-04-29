@@ -150,7 +150,9 @@ export default function ComponentsApiContent(props) {
           <Heading hash={componentNameKebabCase} text={`${componentName} API`} />
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
-          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          {imports.length > 1 && (
+            <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          )}
           <PropertiesSection
             properties={componentProps}
             propertiesDescriptions={propDescriptions}

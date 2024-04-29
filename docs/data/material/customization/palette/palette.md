@@ -303,7 +303,7 @@ const theme = createTheme({
 
 :::warning
 The `contrastThreshold` parameter can produce counterproductive results.\
-Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/u/DanHollick/t/sle13GMW2Brp) this new algorithm).
+Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/sle13GMW2Brp) this new algorithm).
 :::
 
 ## Picking colors

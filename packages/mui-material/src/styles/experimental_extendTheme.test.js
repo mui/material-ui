@@ -258,7 +258,7 @@ describe('experimental_extendTheme', () => {
 
       expect(theme.colorSchemes.dark.overlays[0]).to.equal(undefined);
       expect(theme.colorSchemes.dark.overlays[24]).to.equal(
-        'linear-gradient(rgba(255 255 255 / 0.16), rgba(255 255 255 / 0.16))',
+        'linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165))',
       );
     });
 
@@ -411,7 +411,7 @@ describe('experimental_extendTheme', () => {
   describe('typography', () => {
     it('produce typography token by default', () => {
       const theme = extendTheme();
-      expect(Object.keys(theme.vars.typography)).to.deep.equal([
+      expect(Object.keys(theme.vars.font)).to.deep.equal([
         'h1',
         'h2',
         'h3',
@@ -427,6 +427,28 @@ describe('experimental_extendTheme', () => {
         'overline',
         'inherit',
       ]);
+    });
+
+    it('access font vars', () => {
+      const theme = extendTheme();
+      expect(
+        theme.unstable_sx({
+          font: 'h1',
+        }),
+      ).to.deep.equal({
+        font: 'var(--mui-font-h1, 300 6rem/1.167 "Roboto", "Helvetica", "Arial", sans-serif)',
+      });
+    });
+
+    it('use provided value if no font', () => {
+      const theme = extendTheme();
+      expect(
+        theme.unstable_sx({
+          font: 'var(--custom-font)',
+        }),
+      ).to.deep.equal({
+        font: 'var(--custom-font)',
+      });
     });
   });
 

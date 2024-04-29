@@ -6,6 +6,7 @@ import DevicesOtherRoundedIcon from '@mui/icons-material/DevicesOtherRounded';
 import SwitchAccessShortcutRoundedIcon from '@mui/icons-material/SwitchAccessShortcutRounded';
 import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -13,8 +14,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
@@ -311,19 +311,11 @@ export default function MaterialStyling() {
               sx={{
                 maxHeight: index === 2 ? 282 : 400,
                 overflow: 'auto',
+                position: 'relative',
               }}
             >
-              <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
-                <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <HighlightedCode
-                    copyButtonHidden
-                    component={MarkdownElement}
-                    code={code}
-                    language="jsx"
-                  />
-                </Box>
-                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
-              </Box>
+              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />
             </Frame.Info>
           </Frame>
         </Grid>
