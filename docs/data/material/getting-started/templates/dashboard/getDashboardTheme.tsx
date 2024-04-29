@@ -167,8 +167,10 @@ const getDesignTokens = (mode: PaletteMode) => ({
       ...(mode === 'dark' && { primary: 'hsl(0, 0%, 100%)', secondary: gray[400] }),
     },
     action: {
+      hover: alpha(gray[300], 0.2),
       selected: `${alpha(brand[200], 0.2)}`,
       ...(mode === 'dark' && {
+        hover: alpha(gray[500], 0.2),
         selected: alpha(brand[800], 0.2),
       }),
     },
@@ -795,28 +797,32 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             color: theme.palette.grey[600],
             padding: theme.spacing(0.5),
             borderRadius: theme.shape.borderRadius,
+            '&:hover': {
+              backgroundColor: theme.palette.action.hover,
+            },
             '&.Mui-selected': {
               backgroundColor: gray[700],
             },
             '&:focus': {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
               outlineOffset: '2px',
+              backgroundColor: 'transparent',
               '&.Mui-selected': { backgroundColor: gray[700] },
             },
             ...(theme.palette.mode === 'dark' && {
               color: theme.palette.grey[500],
-              '&:focus': {
-                outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                outlineOffset: '2px',
-                '&.Mui-selected': { backgroundColor: gray[300] },
-              },
               '&:hover': {
                 backgroundColor: theme.palette.action.hover,
-                '&.Mui-selected': { backgroundColor: gray[100] },
               },
               '&.Mui-selected': {
                 color: theme.palette.common.black,
                 backgroundColor: gray[300],
+              },
+              '&:focus': {
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
+                backgroundColor: 'transparent',
+                '&.Mui-selected': { backgroundColor: gray[300] },
               },
             }),
           }),
@@ -830,28 +836,32 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             padding: theme.spacing(0.5),
             borderRadius: theme.shape.borderRadius,
             height: 'fit-content',
+            '&:hover': {
+              backgroundColor: theme.palette.action.hover,
+            },
             '&.Mui-selected': {
               backgroundColor: gray[700],
             },
             '&:focus': {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
               outlineOffset: '2px',
+              backgroundColor: 'transparent',
               '&.Mui-selected': { backgroundColor: gray[700] },
             },
             ...(theme.palette.mode === 'dark' && {
               color: theme.palette.grey[500],
-              '&:focus': {
-                outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                outlineOffset: '2px',
-                '&.Mui-selected': { backgroundColor: gray[300] },
-              },
               '&:hover': {
                 backgroundColor: theme.palette.action.hover,
-                '&.Mui-selected': { backgroundColor: gray[100] },
               },
               '&.Mui-selected': {
                 color: theme.palette.common.black,
                 backgroundColor: gray[300],
+              },
+              '&:focus': {
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
+                backgroundColor: 'transparent',
+                '&.Mui-selected': { backgroundColor: gray[300] },
               },
             }),
           }),
@@ -864,28 +874,32 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             color: theme.palette.grey[600],
             padding: theme.spacing(0.5),
             borderRadius: theme.shape.borderRadius,
+            '&:hover': {
+              backgroundColor: theme.palette.action.hover,
+            },
             '&.Mui-selected': {
               backgroundColor: gray[700],
             },
             '&:focus': {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
               outlineOffset: '2px',
+              backgroundColor: 'transparent',
               '&.Mui-selected': { backgroundColor: gray[700] },
             },
             ...(theme.palette.mode === 'dark' && {
               color: theme.palette.grey[500],
-              '&:focus': {
-                outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                outlineOffset: '2px',
-                '&.Mui-selected': { backgroundColor: gray[300] },
-              },
               '&:hover': {
                 backgroundColor: theme.palette.action.hover,
-                '&.Mui-selected': { backgroundColor: gray[100] },
               },
               '&.Mui-selected': {
                 color: theme.palette.common.black,
                 backgroundColor: gray[300],
+              },
+              '&:focus': {
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
+                backgroundColor: 'transparent',
+                '&.Mui-selected': { backgroundColor: gray[300] },
               },
             }),
           }),
