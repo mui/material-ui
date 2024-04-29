@@ -30,7 +30,6 @@ import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
 import ROUTES from 'docs/src/route';
 
@@ -307,12 +306,7 @@ export default function MaterialComponents() {
                   },
                 }}
               >
-                <HighlightedCode
-                  copyButtonHidden
-                  component={MarkdownElement}
-                  code={CODES[demo]}
-                  language="jsx"
-                />
+                <HighlightedCode copyButtonHidden plainStyle code={CODES[demo]} language="jsx" />
               </Box>
             </Frame.Info>
           </Frame>

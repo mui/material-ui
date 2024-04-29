@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
@@ -1729,12 +1728,7 @@ export default function DataTable() {
               },
             }}
           >
-            <HighlightedCode
-              copyButtonHidden
-              component={MarkdownElement}
-              code={code}
-              language="jsx"
-            />
+            <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyle />
           </Box>
           <MoreInfoBox
             primaryBtnLabel="Start with the Data Grid"

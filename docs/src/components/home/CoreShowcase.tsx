@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
 import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
@@ -143,12 +142,7 @@ export default function CoreShowcase() {
             {startLine !== undefined && (
               <FlashCode startLine={startLine} endLine={endLine} sx={{ m: 2 }} />
             )}
-            <HighlightedCode
-              copyButtonHidden
-              component={MarkdownElement}
-              code={componentCode}
-              language="jsx"
-            />
+            <HighlightedCode copyButtonHidden code={componentCode} language="jsx" plainStyle />
           </Box>
           <MoreInfoBox
             primaryBtnLabel="Start with Material UI"

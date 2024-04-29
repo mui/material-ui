@@ -19,7 +19,6 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 // import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
@@ -209,12 +208,7 @@ export default function XDataGrid() {
               // overflow: 'hidden',
             }}
           >
-            <HighlightedCode
-              copyButtonHidden
-              component={MarkdownElement}
-              code={code}
-              language="jsx"
-            />
+            <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyle />
             {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: 1 }} />}
             {/* <MoreInfoBox
               appeared={demo === DEMOS[3] || demo === DEMOS[4]}
