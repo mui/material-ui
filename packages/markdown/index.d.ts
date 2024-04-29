@@ -12,7 +12,15 @@ export function createRender(context: {
   ignoreLanguagePages: (path: string) => boolean;
 }): (markdown: string) => string;
 
-export function getHeaders(markdown: string): Record<string, string | string[]>;
+export interface MarkdownHeaders {
+  packageName?: string;
+  productId: string;
+  githubLabel?: string;
+  waiAria?: string;
+  materialDesign?: string;
+}
+
+export function getHeaders(markdown: string): MarkdownHeaders;
 
 export function getTitle(markdown: string): string;
 
