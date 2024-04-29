@@ -1002,7 +1002,7 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 npx @mui/codemod@next deprecations/text-field-props <path>
 ```
 
-### *Props props
+### \*Props props
 
 All of the TextField's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
 
