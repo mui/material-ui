@@ -30,12 +30,12 @@ const Card = styled(MuiCard)(({ theme }) => ({
 export default function HighlightedCard() {
   return (
     <Card
-      variant="highlighted"
       sx={{
         height: '100%',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: { xs: 'column', sm: 'row', md: 'column' },
         justifyContent: 'space-between',
+        alignItems: { xs: 'space-between', sm: 'flex-end', md: 'space-between' },
       }}
     >
       <CardContent>
