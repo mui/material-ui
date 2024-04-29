@@ -20,13 +20,13 @@ const Image = styled('img')(({ theme }) => ({
   transition: '0.4s',
   display: 'block',
   height: 'auto',
-  borderRadius: 4,
+  borderRadius: 6,
   border: '1px solid',
   borderColor: theme.palette.divider,
   filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.grey[500], 0.5)})`,
   ...theme.applyDarkStyles({
     filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.common.black, 0.2)})`,
-    borderColor: theme.palette.divider,
+    borderColor: theme.palette.primaryDark[600],
   }),
 }));
 
@@ -79,7 +79,7 @@ export default function ConnectFeatures() {
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
-                overflow: 'hidden',
+                overflow: 'clip',
                 height: { xs: 240, sm: '100%' },
                 perspective: '1000px',
               }}
@@ -160,22 +160,22 @@ export default function ConnectFeatures() {
                       })}
                     >
                       <Image
-                        src={`/static/branding/design-kits/connect-page-base1-light.png`}
-                        alt="Screenshot of Figma displaying the Material UI Design kit"
+                        src="/static/branding/design-kits/sync-base1-light.png"
+                        alt="The Material UI Design Kit for Figma."
                         loading="lazy"
                         sx={(theme) =>
                           theme.applyDarkStyles({
-                            content: `url(/static/branding/design-kits/connect-page-base1-dark.png)`,
+                            content: `url(/static/branding/design-kits/sync-base1-dark.png)`,
                           })
                         }
                       />
                       <Image
-                        src={`/static/branding/design-kits/connect-shot1-light.png`}
-                        alt="Screenshot of the Connect plugin"
+                        src="/static/branding/design-kits/sync-shot1-light.png"
+                        alt="The Material UI Sync plugin displaying theme code."
                         loading="lazy"
                         sx={(theme) =>
                           theme.applyDarkStyles({
-                            content: `url(/static/branding/design-kits/connect-shot1-dark.png)`,
+                            content: `url(/static/branding/design-kits/sync-shot1-dark.png)`,
                           })
                         }
                       />
@@ -200,7 +200,7 @@ export default function ConnectFeatures() {
                           '&:nth-of-type(2)': {
                             width: { xs: 240, sm: 560 },
                             top: { xs: 100, sm: 40 },
-                            left: { xs: '60%', sm: '40%' },
+                            left: { xs: '60%', sm: '50%' },
                             transform: {
                               xs: 'scale(1.8) translate(-20%)',
                               sm: 'none',
@@ -247,22 +247,22 @@ export default function ConnectFeatures() {
                       })}
                     >
                       <Image
-                        src={`/static/branding/design-kits/connect-page-base2-light.png`}
-                        alt="Screenshot of Figma displaying the Material UI Design kit"
+                        src="/static/branding/design-kits/sync-base2-light.png"
+                        alt="The Material UI Design Kit for Figma."
                         loading="lazy"
                         sx={(theme) =>
                           theme.applyDarkStyles({
-                            content: `url(/static/branding/design-kits/connect-page-base2-dark.png)`,
+                            content: `url(/static/branding/design-kits/sync-base2-dark.png)`,
                           })
                         }
                       />
                       <Image
-                        src={`/static/branding/design-kits/connect-shot2-light.png`}
-                        alt="Screenshot of the Connect plugin"
+                        src="/static/branding/design-kits/material-sync-light.png"
+                        alt="The Material UI Sync plugin displaying theme code."
                         loading="lazy"
                         sx={(theme) =>
                           theme.applyDarkStyles({
-                            content: `url(/static/branding/design-kits/connect-shot2-dark.png)`,
+                            content: `url(/static/branding/design-kits/material-sync-dark.png)`,
                           })
                         }
                       />
@@ -334,22 +334,22 @@ export default function ConnectFeatures() {
                       })}
                     >
                       <Image
-                        src={`/static/branding/design-kits/connect-page-base2-light.png`}
-                        alt="Screenshot of Figma displaying the Material UI Design kit"
+                        src="/static/branding/design-kits/sync-base2-light.png"
+                        alt="The Material UI Design Kit for Figma."
                         loading="lazy"
                         sx={(theme) =>
                           theme.applyDarkStyles({
-                            content: `url(/static/branding/design-kits/connect-page-base2-dark.png)`,
+                            content: `url(/static/branding/design-kits/sync-base2-dark.png)`,
                           })
                         }
                       />
                       <Image
-                        src={`/static/branding/design-kits/connect-shot3-light.png`}
-                        alt="Screenshot of the Connect plugin"
+                        src="/static/branding/design-kits/sync-shot3-light.png"
+                        alt="The Material UI Sync plugin displaying theme code."
                         loading="lazy"
                         sx={(theme) =>
                           theme.applyDarkStyles({
-                            content: `url(/static/branding/design-kits/connect-shot3-dark.png)`,
+                            content: `url(/static/branding/design-kits/sync-shot3-dark.png)`,
                           })
                         }
                       />

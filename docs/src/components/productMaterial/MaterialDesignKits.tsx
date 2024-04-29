@@ -20,7 +20,7 @@ const Image = styled('img')(({ theme }) => ({
   transition: '0.4s',
   display: 'block',
   height: 'auto',
-  borderRadius: 4,
+  borderRadius: 6,
   border: '1px solid',
   borderColor: theme.palette.divider,
   filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.grey[500], 0.5)})`,
@@ -229,12 +229,12 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                   })}
                 >
                   <Image
-                    src="/static/branding/design-kits/material-sync-base2-light.png"
+                    src="/static/branding/design-kits/sync-base2-light.png"
                     alt="A bunch of customized Material UI buttons in the Figma Design Kit."
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/material-sync-base2-dark.png)`,
+                        content: `url(/static/branding/design-kits/sync-base2-dark.png)`,
                       })
                     }
                   />

@@ -32,7 +32,7 @@ const content = [
 
 export default function DesignKitValues() {
   return (
-    <Section>
+    <Section cozy>
       <SectionHeadline
         overline="Collaboration"
         title={

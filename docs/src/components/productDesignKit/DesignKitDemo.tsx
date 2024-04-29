@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import LaunchRounded from '@mui/icons-material/LaunchRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import TextFieldsRounded from '@mui/icons-material/TextFieldsRounded';
 import WidgetsRounded from '@mui/icons-material/WidgetsRounded';
 import ToggleOnRounded from '@mui/icons-material/ToggleOnRounded';
@@ -21,13 +21,16 @@ import { Link } from '@mui/docs/Link';
 const DEMOS = ['Components', 'Branding', 'Iconography'];
 
 const Image = styled('img')(({ theme }) => ({
-  filter: 'drop-shadow(-8px 4px 20px rgba(61, 71, 82, 0.2))',
   transition: '0.4s',
   display: 'block',
   height: 'auto',
-  borderRadius: '10px',
+  borderRadius: 6,
+  border: '1px solid',
+  borderColor: theme.palette.divider,
+  filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.grey[500], 0.5)})`,
   ...theme.applyDarkStyles({
-    filter: 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))',
+    filter: `drop-shadow(-2px 4px 6px ${alpha(theme.palette.common.black, 0.2)})`,
+    borderColor: theme.palette.primaryDark[600],
   }),
 }));
 
@@ -43,13 +46,13 @@ export default function TemplateDemo() {
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
-            overline="Design kits"
+            overline="Design Kits"
             title={
               <Typography variant="h2">
                 Upgrade your <GradientText>design workflow</GradientText>
               </Typography>
             }
-            description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
+            description="The Design Kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
           />
           <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
@@ -202,6 +205,7 @@ export default function TemplateDemo() {
                 display: 'flex',
                 alignItems: { xs: 'start', sm: 'center' },
                 flexDirection: { xs: 'column', sm: 'row' },
+                justifyContent: 'space-between',
                 minWidth: 0,
                 gap: { xs: 3, sm: 0 },
               }}
@@ -209,13 +213,12 @@ export default function TemplateDemo() {
               <Box
                 sx={{
                   display: 'flex',
-                  flexDirection: { xs: 'column', sm: 'row' },
-                  alignItems: { xs: 'start', sm: 'center' },
+                  alignItems: 'center',
                   gap: 1,
                 }}
               >
                 <Typography variant="body2" fontWeight="semiBold">
-                  Available for:
+                  Available in:
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 26, height: 26 } }}>
                   <img src="/static/branding/design-kits/figma-logo.svg" alt="" loading="lazy" />
@@ -223,19 +226,51 @@ export default function TemplateDemo() {
                   <img src="/static/branding/design-kits/adobexd-logo.svg" alt="" loading="lazy" />
                 </Box>
               </Box>
-              <Button
-                component={Link}
-                variant="outlined"
-                href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
-                endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
+              <Box
                 sx={{
-                  ml: { xs: 0, sm: 'auto' },
-                  color: 'primary.300',
+                  display: 'flex',
+                  flexDirection: { xs: 'column-reverse', sm: 'row' },
+                  gap: 1.5,
                   width: { xs: '100%', sm: 'fit-content' },
                 }}
               >
-                Buy now
-              </Button>
+                <Button
+                  component={Link}
+                  variant="outlined"
+                  size="small"
+                  color="secondary"
+                  href="https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x"
+                  startIcon={
+                    <img
+                      src="/static/branding/design-kits/figma-logo.svg"
+                      alt=""
+                      loading="lazy"
+                      style={{ width: 16, height: 16 }}
+                    />
+                  }
+                  sx={{
+                    height: 'fit-content',
+                    width: { xs: '100%', sm: 'fit-content' },
+                  }}
+                >
+                  Figma Preview
+                </Button>
+                <Button
+                  component={Link}
+                  variant="contained"
+                  size="small"
+                  href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
+                  endIcon={<ChevronRightRoundedIcon />}
+                  sx={{
+                    ml: { xs: 0, sm: 'auto' },
+                    height: 'fit-content',
+                    width: { xs: '100%', sm: 'fit-content' },
+                    color: '#FFF !important',
+                  }}
+                >
+                  Buy it now
+                </Button>
+              </Box>
             </Frame.Info>
           </Frame>
         </Grid>
