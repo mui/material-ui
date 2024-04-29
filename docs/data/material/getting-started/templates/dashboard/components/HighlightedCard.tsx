@@ -43,7 +43,7 @@ export default function HighlightedCard() {
         <Typography variant="subtitle2" gutterBottom>
           Explore your data
         </Typography>
-        <Typography gutterBottom>
+        <Typography>
           Uncover performance and visitor insights with our data wizardry!
         </Typography>
       </CardContent>

@@ -218,7 +218,6 @@ const getDesignTokens = (mode: PaletteMode) => ({
     body2: {
       fontSize: customTheme.typography.pxToRem(14),
       fontWeight: 400,
-      color: customTheme.palette.text.secondary,
     },
     caption: {
       fontSize: customTheme.typography.pxToRem(12),
