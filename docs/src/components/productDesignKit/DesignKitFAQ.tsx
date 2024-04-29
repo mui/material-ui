@@ -30,18 +30,27 @@ const faqData = [
       <React.Fragment>
         The number of licenses purchased must correspond to the maximum number of editors working
         concurrently in a 24 hour period. An editor is somebody contributing changes to the designed
-        screens that use the Design kits. No licenses are required for viewing the designs.
+        screens that use the Design Kits. No licenses are required for viewing the designs.
       </React.Fragment>
     ),
   },
   {
-    summary: 'The Design kit got an update. How do I get it?',
+    summary: 'The Design Kit got an update. How do I get it?',
     detail: (
       <React.Fragment>
         We&apos;ll send you an email when a new release is available. You can access the item on the{' '}
         <InternalLink href="https://mui.com/store/account/downloads/">download</InternalLink> page
         of your store account and find a detailed description of the changes under
-        the&quot;Changelog&quot; tab on this page..
+        the&quot;Changelog&quot; tab on this page.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'Is the Material UI Sync plugin paid?',
+    detail: (
+      <React.Fragment>
+        No. We&apos;re still in alpha mode and rolling out more features progressively, as per your
+        feedback. We might introduce paid tiers in the future, though.
       </React.Fragment>
     ),
   },

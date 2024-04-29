@@ -55,7 +55,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
               <Item
                 icon={<DrawRoundedIcon color="primary" />}
                 title="Design Kit"
-                description="Get many of the Material UI components with states, variations, colors, typography, and icons on your preferred design tool. Frequently updated to stay up-to-date with the latest release."
+                description="Get many of the Material UI components with states, variations, colors, typography, and icons on your preferred design tool."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
@@ -252,17 +252,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
               </Fade>
             </Frame.Demo>
             {customized ? (
-              <Frame.Info
-                data-mui-color-scheme="dark"
-                sx={{
-                  display: 'flex',
-                  alignItems: { xs: 'start', sm: 'center' },
-                  flexDirection: { xs: 'column', sm: 'row' },
-                  justifyContent: 'space-between',
-                  minWidth: 0,
-                  gap: { xs: 3, sm: 0 },
-                }}
-              >
+              <Frame.Info data-mui-color-scheme="dark">
                 <Box
                   sx={{
                     display: 'flex',
@@ -273,7 +263,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                   <Typography variant="body2" fontWeight="semiBold">
                     Available in:
                   </Typography>
-                  <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 26, height: 26 } }}>
+                  <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 22, height: 22 } }}>
                     <img src="/static/branding/design-kits/figma-logo.svg" alt="" loading="lazy" />
                     <img src="/static/branding/design-kits/sketch-logo.svg" alt="" loading="lazy" />
                     <img
@@ -283,14 +273,20 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     />
                   </Box>
                 </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: { xs: 'column-reverse', sm: 'row' },
-                    gap: 1.5,
-                    width: { xs: '100%', sm: 'fit-content' },
-                  }}
-                >
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  We frequently update them to stay up-to-date with the latest release.
+                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5 }}>
+                  <Button
+                    component={Link}
+                    variant="contained"
+                    size="small"
+                    noLinkStyle
+                    href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
+                    endIcon={<ChevronRightRoundedIcon />}
+                  >
+                    Buy it now
+                  </Button>
                   <Button
                     component={Link}
                     variant="outlined"
@@ -305,27 +301,8 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                         style={{ width: 16, height: 16 }}
                       />
                     }
-                    sx={{
-                      height: 'fit-content',
-                      width: { xs: '100%', sm: 'fit-content' },
-                    }}
                   >
                     Figma Preview
-                  </Button>
-                  <Button
-                    component={Link}
-                    variant="contained"
-                    size="small"
-                    href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
-                    endIcon={<ChevronRightRoundedIcon />}
-                    sx={{
-                      ml: { xs: 0, sm: 'auto' },
-                      height: 'fit-content',
-                      width: { xs: '100%', sm: 'fit-content' },
-                      color: '#FFF !important',
-                    }}
-                  >
-                    Buy it now
                   </Button>
                 </Box>
               </Frame.Info>
