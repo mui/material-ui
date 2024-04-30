@@ -155,7 +155,7 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
             />
           </li>
           {packageName === '@mui/joy' ? null : (
-            <>
+            <React.Fragment>
               <li>
                 <Chip
                   clickable
@@ -190,7 +190,7 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
                   label="Sketch"
                 />
               </li>
-            </>
+            </React.Fragment>
           )}
         </React.Fragment>
       )}
