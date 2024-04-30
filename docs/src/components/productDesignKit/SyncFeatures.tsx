@@ -54,7 +54,7 @@ export default function ConnectFeatures() {
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
-                icon={<ImagesearchRollerRoundedIcon color="success" />}
+                icon={<ImagesearchRollerRoundedIcon color="primary" />}
                 title="Theme customization"
                 description="Generate theme code with custom colors, typography styles, shadows, spacing values, and border-radius."
               />
