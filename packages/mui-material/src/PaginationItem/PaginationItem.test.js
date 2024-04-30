@@ -6,6 +6,7 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import PaginationItem, { paginationItemClasses as classes } from '@mui/material/PaginationItem';
+import RtlProvider from '@mui/system/RtlProvider';
 import describeConformance from '../../test/describeConformance';
 
 describe('<PaginationItem />', () => {
@@ -254,6 +255,34 @@ describe('<PaginationItem />', () => {
 
         expect(getByTestId(`component-${slot}`)).not.to.equal(null);
       });
+    });
+
+    it('should take RtlProvider into account when provided and apply slotProps to slots accordingly', () => {
+      const slots = {
+        previous: CustomPreviousIcon,
+        next: CustomNextIcon,
+        first: CustomFirstIcon,
+        last: CustomLastIcon,
+      };
+
+      const slotProps = {
+        previous: { 'data-testid': 'slot-previous' },
+        next: { 'data-testid': 'slot-next' },
+        first: { 'data-testid': 'slot-first' },
+        last: { 'data-testid': 'slot-last' },
+      };
+
+      const { queryByTestId } = render(
+        <RtlProvider>
+          <PaginationItem page={1} slotProps={slotProps} slots={slots} type={'previous'} />
+          <PaginationItem page={1} slotProps={slotProps} slots={slots} type={'first'} />
+        </RtlProvider>,
+      );
+
+      expect(queryByTestId('slot-next')).not.to.equal(null);
+      expect(queryByTestId('slot-previous')).to.equal(null);
+      expect(queryByTestId('slot-last')).not.to.equal(null);
+      expect(queryByTestId('slot-first')).to.equal(null);
     });
   });
 });
