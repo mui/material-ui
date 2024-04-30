@@ -58,9 +58,8 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
     '& .MuiApi-item-note': {
       marginLeft: 2,
       color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
-      fontSize: theme.typography.pxToRem(10),
-      fontWeight: theme.typography.fontWeightBold,
-      lineHeight: '24px',
+      fontSize: theme.typography.pxToRem(11),
+      fontWeight: theme.typography.fontWeightSemiBold,
       letterSpacing: '.1rem',
       textTransform: 'uppercase',
     },
