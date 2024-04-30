@@ -945,6 +945,28 @@ CSS transforms:
 npx @mui/codemod@next deprecations/pagination-item-classes <path>
 ```
 
+#### `pagination-item-props`
+
+```diff
+ <PaginationItem
+-  components={{ first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }}
++  slots={{ first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }}
+ />
+```
+
+```diff
+ MuiPaginationItem: {
+   defaultProps: {
+-    components: { first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }
++    slots: { first: FirstIcon, last: LastIcon, next: NextIcon, previous: PreviousIcons }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/pagination-item-props <path>
+```
+
 #### `slider-props`
 
 ```diff
