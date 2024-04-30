@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/system';
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
+import { useTransitionStateManager } from '@mui/base/useTransition';
 
 export default function AnimatedPopup() {
   const [anchor, setAnchor] = React.useState(null);
@@ -12,36 +13,29 @@ export default function AnimatedPopup() {
       <Button ref={setAnchor} onClick={() => setOpen((o) => !o)} type="button">
         Toggle Popup
       </Button>
-      <BasePopup anchor={anchor} open={open} withTransition>
-        {(props) => (
-          <PopAnimation {...props}>
-            <PopupBody>This is an animated popup.</PopupBody>
-          </PopAnimation>
-        )}
+      <BasePopup anchor={anchor} open={open}>
+        <PopAnimation>
+          <PopupBody>This is an animated popup.</PopupBody>
+        </PopAnimation>
       </BasePopup>
     </div>
   );
 }
 
 function Animated(props) {
-  const { requestOpen, onEnter, onExited, children, className } = props;
-
-  React.useEffect(() => {
-    if (requestOpen) {
-      onEnter();
-    }
-  }, [onEnter, requestOpen]);
+  const { children, className } = props;
+  const { requestedEnter, onExited } = useTransitionStateManager();
 
   const handleAnimationEnd = React.useCallback(() => {
-    if (!requestOpen) {
+    if (!requestedEnter) {
       onExited();
     }
-  }, [onExited, requestOpen]);
+  }, [onExited, requestedEnter]);
 
   return (
     <div
       onAnimationEnd={handleAnimationEnd}
-      className={className + (requestOpen ? ' open' : ' close')}
+      className={className + (requestedEnter ? ' open' : ' close')}
     >
       {children}
     </div>
@@ -51,9 +45,6 @@ function Animated(props) {
 Animated.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  onEnter: PropTypes.func.isRequired,
-  onExited: PropTypes.func.isRequired,
-  requestOpen: PropTypes.bool.isRequired,
 };
 
 const PopAnimation = styled(Animated)`
@@ -114,7 +105,7 @@ const PopupBody = styled('div')(
     padding: 0.5rem 1rem;
     margin: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border-radius: 8px;
     box-shadow: ${
       theme.palette.mode === 'dark'
@@ -138,7 +129,7 @@ const blue = {
 
 const Button = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;

@@ -1,9 +1,10 @@
 'use client';
-import {
-  unstable_createCssVarsProvider as createCssVarsProvider,
-  SxProps,
-  unstable_styleFunctionSx as styleFunctionSx,
-} from '@mui/system';
+// do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// @ts-ignore
+import * as React from 'react';
+import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
+import styleFunctionSx from '@mui/system/styleFunctionSx';
 import experimental_extendTheme, {
   SupportedColorScheme,
   CssVarsTheme,
@@ -34,10 +35,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     };
 
     newTheme.unstable_sx = function sx(props: SxProps<CssVarsTheme>) {
-      return styleFunctionSx({
-        sx: props,
-        theme: this,
-      });
+      return styleFunctionSx({ sx: props, theme: this });
     };
 
     return newTheme;

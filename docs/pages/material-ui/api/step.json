@@ -19,11 +19,38 @@
   },
   "name": "Step",
   "imports": ["import Step from '@mui/material/Step';", "import { Step } from '@mui/material';"],
-  "styles": {
-    "classes": ["root", "horizontal", "vertical", "alternativeLabel", "completed"],
-    "globalClasses": { "completed": "Mui-completed" },
-    "name": "MuiStep"
-  },
+  "classes": [
+    {
+      "key": "alternativeLabel",
+      "className": "MuiStep-alternativeLabel",
+      "description": "Styles applied to the root element if `alternativeLabel={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "completed",
+      "className": "Mui-completed",
+      "description": "State class applied to the root element if `completed={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiStep-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiStep-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiStep-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStep",

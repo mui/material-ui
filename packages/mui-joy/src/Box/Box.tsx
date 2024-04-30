@@ -5,6 +5,7 @@ import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className'
 import { Theme } from '../styles/types';
 import defaultTheme from '../styles/defaultTheme';
 import THEME_ID from '../styles/identifier';
+import boxClasses from './boxClasses';
 /**
  *
  * Demos:
@@ -18,15 +19,15 @@ import THEME_ID from '../styles/identifier';
 const Box = createBox<Theme>({
   themeId: THEME_ID,
   defaultTheme,
-  defaultClassName: 'MuiBox-root',
+  defaultClassName: boxClasses.root,
   generateClassName: ClassNameGenerator.generate,
 });
 
 Box.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

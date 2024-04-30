@@ -45,22 +45,21 @@ const StatUnit = styled('div', {
   color: theme.vars.palette.text.tertiary,
 }));
 
-const Stat = React.forwardRef<HTMLDivElement, StatProps>(function Stat(
-  inProps,
-  ref,
-) {
-  const props = useThemeProps({ props: inProps, name: 'JoyStat' });
-  const { value, unit, variant, ...other } = props;
+const Stat = React.forwardRef<HTMLDivElement, StatProps>(
+  function Stat(inProps, ref) {
+    const props = useThemeProps({ props: inProps, name: 'JoyStat' });
+    const { value, unit, variant, ...other } = props;
 
-  const ownerState = { ...props, variant };
+    const ownerState = { ...props, variant };
 
-  return (
-    <StatRoot ref={ref} ownerState={ownerState} {...other}>
-      <StatValue ownerState={ownerState}>{value}</StatValue>
-      <StatUnit ownerState={ownerState}>{unit}</StatUnit>
-    </StatRoot>
-  );
-});
+    return (
+      <StatRoot ref={ref} ownerState={ownerState} {...other}>
+        <StatValue ownerState={ownerState}>{value}</StatValue>
+        <StatUnit ownerState={ownerState}>{unit}</StatUnit>
+      </StatRoot>
+    );
+  },
+);
 
 export default function StatFullTemplate() {
   return (

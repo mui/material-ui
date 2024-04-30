@@ -26,7 +26,14 @@
   },
   "name": "Stack",
   "imports": ["import Stack from '@mui/system/Stack';", "import { Stack } from '@mui/system';"],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiStack" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiStack-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStack",

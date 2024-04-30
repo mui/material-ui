@@ -2,6 +2,10 @@ import path from 'path';
 import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
+import {
+  unstable_generateUtilityClass as generateUtilityClass,
+  unstable_isGlobalState as isGlobalState,
+} from '@mui/utils';
 import { getSystemComponentInfo } from './getSystemComponentInfo';
 
 export const projectSettings: ProjectSettings = {
@@ -21,4 +25,7 @@ export const projectSettings: ProjectSettings = {
   skipComponent(filename) {
     return filename.match(/(ThemeProvider|CssVarsProvider|GlobalStyles)/) !== null;
   },
+  translationPagesDirectory: 'docs/translations/api-docs',
+  generateClassName: generateUtilityClass,
+  isGlobalClassName: isGlobalState,
 };

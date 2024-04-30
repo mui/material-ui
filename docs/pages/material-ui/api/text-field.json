@@ -70,7 +70,14 @@
     "import TextField from '@mui/material/TextField';",
     "import { TextField } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTextField" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTextField-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTextField",

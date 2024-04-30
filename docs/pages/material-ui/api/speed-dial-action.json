@@ -29,19 +29,50 @@
     "import SpeedDialAction from '@mui/material/SpeedDialAction';",
     "import { SpeedDialAction } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "fab",
-      "fabClosed",
-      "staticTooltip",
-      "staticTooltipClosed",
-      "staticTooltipLabel",
-      "tooltipPlacementLeft",
-      "tooltipPlacementRight"
-    ],
-    "globalClasses": {},
-    "name": "MuiSpeedDialAction"
-  },
+  "classes": [
+    {
+      "key": "fab",
+      "className": "MuiSpeedDialAction-fab",
+      "description": "Styles applied to the Fab component.",
+      "isGlobal": false
+    },
+    {
+      "key": "fabClosed",
+      "className": "MuiSpeedDialAction-fabClosed",
+      "description": "Styles applied to the Fab component if `open={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "staticTooltip",
+      "className": "MuiSpeedDialAction-staticTooltip",
+      "description": "Styles applied to the root element if `tooltipOpen={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "staticTooltipClosed",
+      "className": "MuiSpeedDialAction-staticTooltipClosed",
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `open={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "staticTooltipLabel",
+      "className": "MuiSpeedDialAction-staticTooltipLabel",
+      "description": "Styles applied to the static tooltip label if `tooltipOpen={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipPlacementLeft",
+      "className": "MuiSpeedDialAction-tooltipPlacementLeft",
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"left\"``",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipPlacementRight",
+      "className": "MuiSpeedDialAction-tooltipPlacementRight",
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"right\"``",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiSpeedDialAction",

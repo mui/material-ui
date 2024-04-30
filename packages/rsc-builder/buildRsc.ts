@@ -23,10 +23,6 @@ const PROJECTS: Project[] = [
     rootPath: path.join(process.cwd(), 'packages/mui-material'),
   },
   {
-    name: 'material-next',
-    rootPath: path.join(process.cwd(), 'packages/mui-material-next'),
-  },
-  {
     name: 'joy',
     rootPath: path.join(process.cwd(), 'packages/mui-joy'),
   },
@@ -47,6 +43,10 @@ const PROJECTS: Project[] = [
     rootPath: path.join(process.cwd(), 'packages/mui-icons-material'),
     additionalPaths: ['custom'],
     additionalFiles: ['src/utils/createSvgIcon.js'],
+  },
+  {
+    name: 'lab',
+    rootPath: path.join(process.cwd(), 'packages/mui-lab'),
   },
 ];
 

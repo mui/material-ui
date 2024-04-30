@@ -45,25 +45,86 @@
     "import TableCell from '@mui/material/TableCell';",
     "import { TableCell } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "head",
-      "body",
-      "footer",
-      "sizeSmall",
-      "sizeMedium",
-      "paddingCheckbox",
-      "paddingNone",
-      "alignLeft",
-      "alignCenter",
-      "alignRight",
-      "alignJustify",
-      "stickyHeader"
-    ],
-    "globalClasses": {},
-    "name": "MuiTableCell"
-  },
+  "classes": [
+    {
+      "key": "alignCenter",
+      "className": "MuiTableCell-alignCenter",
+      "description": "Styles applied to the root element if `align=\"center\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "alignJustify",
+      "className": "MuiTableCell-alignJustify",
+      "description": "Styles applied to the root element if `align=\"justify\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "alignLeft",
+      "className": "MuiTableCell-alignLeft",
+      "description": "Styles applied to the root element if `align=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "alignRight",
+      "className": "MuiTableCell-alignRight",
+      "description": "Styles applied to the root element if `align=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body",
+      "className": "MuiTableCell-body",
+      "description": "Styles applied to the root element if `variant=\"body\"` or `context.table.body`.",
+      "isGlobal": false
+    },
+    {
+      "key": "footer",
+      "className": "MuiTableCell-footer",
+      "description": "Styles applied to the root element if `variant=\"footer\"` or `context.table.footer`.",
+      "isGlobal": false
+    },
+    {
+      "key": "head",
+      "className": "MuiTableCell-head",
+      "description": "Styles applied to the root element if `variant=\"head\"` or `context.table.head`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paddingCheckbox",
+      "className": "MuiTableCell-paddingCheckbox",
+      "description": "Styles applied to the root element if `padding=\"checkbox\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paddingNone",
+      "className": "MuiTableCell-paddingNone",
+      "description": "Styles applied to the root element if `padding=\"none\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTableCell-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMedium",
+      "className": "MuiTableCell-sizeMedium",
+      "description": "Styles applied to the root element if `size=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiTableCell-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "stickyHeader",
+      "className": "MuiTableCell-stickyHeader",
+      "description": "Styles applied to the root element if `context.table.stickyHeader={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTableCell",

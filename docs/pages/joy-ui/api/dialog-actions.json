@@ -32,15 +32,15 @@
     "import DialogActions from '@mui/joy/DialogActions';",
     "import { DialogActions } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogActions" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiDialogActions-root"
+      "class": "MuiDialogActions-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyDialogActions",

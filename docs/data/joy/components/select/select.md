@@ -9,9 +9,9 @@ unstyled: /base-ui/react-select/
 
 # Select
 
-<p class="description">Select components are used for collecting user provided information from a list of options.</p>
+<p class="description">Select components are used for collecting user-provided information from a list of options.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 

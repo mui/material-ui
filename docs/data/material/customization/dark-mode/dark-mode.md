@@ -1,6 +1,6 @@
 # Dark mode
 
-<p class="description">Material UI comes with two palette modes: light (the default) and dark.</p>
+<p class="description">Material UI comes with two palette modes: light (the default) and dark.</p>
 
 ## Dark mode by default
 

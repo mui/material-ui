@@ -28,28 +28,74 @@
     "import StepLabel from '@mui/material/StepLabel';",
     "import { StepLabel } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "horizontal",
-      "vertical",
-      "label",
-      "active",
-      "completed",
-      "error",
-      "disabled",
-      "iconContainer",
-      "alternativeLabel",
-      "labelContainer"
-    ],
-    "globalClasses": {
-      "active": "Mui-active",
-      "completed": "Mui-completed",
-      "error": "Mui-error",
-      "disabled": "Mui-disabled"
+  "classes": [
+    {
+      "key": "active",
+      "className": "Mui-active",
+      "description": "State class applied to the label element if `active={true}`.",
+      "isGlobal": true
     },
-    "name": "MuiStepLabel"
-  },
+    {
+      "key": "alternativeLabel",
+      "className": "MuiStepLabel-alternativeLabel",
+      "description": "State class applied to the root and icon container and label if `alternativeLabel={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "completed",
+      "className": "Mui-completed",
+      "description": "State class applied to the label element if `completed={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root and label elements if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root and label elements if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiStepLabel-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconContainer",
+      "className": "MuiStepLabel-iconContainer",
+      "description": "Styles applied to the `icon` container element.",
+      "isGlobal": false
+    },
+    {
+      "key": "label",
+      "className": "MuiStepLabel-label",
+      "description": "Styles applied to the label element that wraps `children`.",
+      "isGlobal": false
+    },
+    {
+      "key": "labelContainer",
+      "className": "MuiStepLabel-labelContainer",
+      "description": "Styles applied to the container element which wraps label and `optional`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiStepLabel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiStepLabel-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStepLabel",

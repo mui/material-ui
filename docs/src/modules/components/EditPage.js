@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 
@@ -19,6 +19,7 @@ export default function EditPage(props) {
       component="a"
       size="small"
       variant="outlined"
+      color="secondary"
       startIcon={<GitHubIcon sx={{ mr: 0.5 }} />}
       href={
         userLanguage === 'en'

@@ -3,7 +3,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import InstallDesktopRoundedIcon from '@mui/icons-material/InstallDesktopRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
 import DrawRoundedIcon from '@mui/icons-material/DrawRounded';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 
 const content = [
   {
@@ -46,7 +46,14 @@ export default function JoyStartingLinksCollection() {
     <Grid container spacing={2}>
       {content.map(({ icon, title, description, link }) => (
         <Grid key={title} xs={12} sm={6}>
-          <InfoCard link={link} title={title} icon={icon} description={description} />
+          <InfoCard
+            classNameTitle="algolia-lvl3"
+            classNameDescription="algolia-content"
+            link={link}
+            title={title}
+            icon={icon}
+            description={description}
+          />
         </Grid>
       ))}
     </Grid>

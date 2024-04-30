@@ -88,46 +88,30 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "formControl": {
+    "colorSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the component is a descendant of <code>FormControl</code>"
-    },
-    "focused": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "the component is focused"
+      "conditions": "color secondary"
     },
     "disabled": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
-    "colorSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color secondary"
-    },
-    "underline": {
-      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disableUnderline={true}</code>"
-    },
     "error": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     },
-    "sizeSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "multiline": {
+    "focused": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>multiline={true}</code>"
+      "conditions": "the component is focused"
+    },
+    "formControl": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is a descendant of <code>FormControl</code>"
     },
     "fullWidth": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -135,30 +119,46 @@
       "conditions": "<code>fullWidth={true}</code>"
     },
     "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
-    "inputSizeSmall": {
+    "inputAdornedEnd": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "inputMultiline": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>multiline={true}</code>"
+      "conditions": "<code>endAdornment</code> is provided"
     },
     "inputAdornedStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "<code>startAdornment</code> is provided"
     },
-    "inputAdornedEnd": {
+    "inputMultiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
-      "conditions": "<code>endAdornment</code> is provided"
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "inputSizeSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "<code>size=\"small\"</code>"
     },
     "inputTypeSearch": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "<code>type=\"search\"</code>"
+    },
+    "multiline": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "sizeSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "underline": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disableUnderline={true}</code>"
     }
   }
 }

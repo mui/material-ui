@@ -4,6 +4,7 @@ description: Here are the most significant improvements in July.
 date: 2019-08-04T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
+manualCard: true
 ---
 
 Here are the most significant improvements in July:

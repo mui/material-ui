@@ -35,21 +35,21 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "marginNormal": {
+    "fullWidth": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>margin=\"normal\"</code>"
+      "conditions": "<code>fullWidth={true}</code>"
     },
     "marginDense": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>margin=\"dense\"</code>"
     },
-    "fullWidth": {
+    "marginNormal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>fullWidth={true}</code>"
-    }
+      "conditions": "<code>margin=\"normal\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

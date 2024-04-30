@@ -162,7 +162,7 @@ function Styles() {
     <style>
       {`
       .Autocomplete__root {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 400;
         border-radius: 8px;
         background: ${isDarkMode ? grey[900] : '#fff'};
@@ -244,7 +244,7 @@ function Styles() {
       }
 
       .Autocomplete__listbox {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         padding: 6px;

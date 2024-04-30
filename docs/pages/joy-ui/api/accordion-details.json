@@ -43,22 +43,28 @@
     "import AccordionDetails from '@mui/joy/AccordionDetails';",
     "import { AccordionDetails } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAccordionDetails" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiAccordionDetails-root"
+      "class": "MuiAccordionDetails-root"
     },
     {
       "name": "content",
       "description": "The component that renders the content.",
       "default": "'div'",
-      "class": ".MuiAccordionDetails-content"
+      "class": "MuiAccordionDetails-content"
     }
   ],
-  "classes": { "classes": ["expanded"], "globalClasses": { "expanded": "Mui-expanded" } },
+  "classes": [
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "Class name applied to the root element when expanded.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAccordionDetails",

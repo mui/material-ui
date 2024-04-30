@@ -40,7 +40,7 @@ export default function XTheming() {
     const columns: Array<GridColDef> = [
       {
         field: 'desk',
-        headerName: 'desk',
+        headerName: 'Desk',
         width: customized ? 72 : 100,
         sortable: false,
         editable: true,
@@ -65,6 +65,7 @@ export default function XTheming() {
         sortable: false,
         editable: true,
         ...(customized && {
+          display: 'flex',
           renderCell: (params: GridCellParams) => {
             return <ProgressBar value={Number(params.value)!} />;
           },
@@ -81,6 +82,7 @@ export default function XTheming() {
         sortable: false,
         editable: true,
         ...(customized && {
+          display: 'flex',
           renderCell: (params: GridCellParams) => {
             return <Status status={(params.value || '').toString()} />;
           },
@@ -103,7 +105,7 @@ export default function XTheming() {
                 Advanced and <GradientText>beautiful</GradientText>
               </Typography>
             }
-            description="Use the sophisticated theming features to make the MUI X components look exactly as you want."
+            description="Use sophisticated theming features to make the MUI X components look exactly how you want. Take this Data Grid as an example."
           />
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
@@ -117,7 +119,7 @@ export default function XTheming() {
               <Item
                 icon={<SvgMaterialDesign />}
                 title="Material Design"
-                description="Every component comes with Google's tried and tested design system ready for use."
+                description="Every component comes with Google's tried-and-tested design system, built-in and ready for use."
               />
             </Highlighter>
           </Group>
@@ -127,13 +129,7 @@ export default function XTheming() {
             <Paper
               id="data-grid-theming"
               variant="outlined"
-              sx={(theme) => ({
-                height: 418,
-                borderColor: 'grey.200',
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
-                }),
-              })}
+              sx={{ height: 418, borderColor: 'divider' }}
             >
               {dataGridStyleOverrides}
               <DataGridPro

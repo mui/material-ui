@@ -128,11 +128,11 @@ export const DESIGNKITS_CUSTOMERS: Array<IconImageProps> = [
     height: 52,
   },
   {
-    alt: 'Twitter logo',
-    name: 'companies/twitter',
+    alt: 'X logo',
+    name: 'companies/x',
     mode: '',
-    width: 31,
-    height: 52,
+    width: 30,
+    height: 30,
   },
   {
     alt: 'Salesforce logo',

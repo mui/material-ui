@@ -11,6 +11,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/system/getting-started/usage' },
       { pathname: '/system/getting-started/the-sx-prop' },
       { pathname: '/system/getting-started/custom-components' },
+      { pathname: '/system/getting-started/support' },
     ],
   },
   {

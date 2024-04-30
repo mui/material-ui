@@ -109,7 +109,7 @@ describe('e2e', () => {
     const isServerRunning = await attemptGoto(page, `${baseUrl}#no-dev`);
     if (!isServerRunning) {
       throw new Error(
-        `Unable to navigate to ${baseUrl} after multiple attempts. Did you forget to run \`yarn test:e2e:server\` and \`yarn test:e2e:build\`?`,
+        `Unable to navigate to ${baseUrl} after multiple attempts. Did you forget to run \`pnpm test:e2e:server\` and \`pnpm test:e2e:build\`?`,
       );
     }
   });
@@ -275,6 +275,38 @@ describe('e2e', () => {
       await page.waitForTimeout(200); // Wait for debounce to fire (166)
 
       expect(pageErrors.length).to.equal(0);
+    });
+
+    it('should not glitch when resizing', async () => {
+      await renderFixture('TextareaAutosize/BasicTextareaAutosize');
+
+      const textarea = await screen.getByTestId('textarea')!;
+
+      // Get the element's dimensions
+      const { x, y, width, height } = (await textarea.boundingBox())!;
+
+      // Calculate coordinates of bottom-right corner
+      const bottomRightX = x + width;
+      const bottomRightY = y + height;
+
+      // Get the initial height of textarea as a number
+      const initialHeight = await textarea.evaluate((textareaElement) =>
+        parseFloat(textareaElement.style.height),
+      );
+
+      // Move the mouse to the bottom-right corner, adjusting slightly to grab the resize handle
+      await page.mouse.move(bottomRightX - 5, bottomRightY - 5);
+
+      // Hold the mouse down without releasing the mouse button (mouseup) to grab the resize handle
+      await page.mouse.down();
+
+      // Move the mouse to resize the textarea
+      await page.mouse.move(bottomRightX + 50, bottomRightY + 50);
+
+      // Assert that the textarea height has increased after resizing
+      expect(
+        await textarea.evaluate((textareaElement) => parseFloat(textareaElement.style.height)),
+      ).to.be.greaterThan(initialHeight);
     });
   });
 

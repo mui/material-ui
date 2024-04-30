@@ -4,7 +4,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 
 export default function BasicButtonGroup() {
   return (
-    <ButtonGroup variant="contained" aria-label="outlined primary button group">
+    <ButtonGroup variant="contained" aria-label="Basic button group">
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>

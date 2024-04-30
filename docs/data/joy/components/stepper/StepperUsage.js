@@ -39,15 +39,15 @@ export default function StepperUsage() {
         props.orientation === 'vertical' ? ' orientation="vertical"' : ''
       }>
   <Step${props.stepOrientation === 'vertical' ? ` orientation="vertical"` : ''}${
-        props.indicator
-          ? `
+    props.indicator
+      ? `
     indicator={
       <StepIndicator variant="solid" color="primary">
         <Check />
       </StepIndicator>
     }\n  `
-          : ''
-      }>First</Step>
+      : ''
+  }>First</Step>
   ...
 </Stepper>`}
       renderDemo={({ stepperOrientation, stepOrientation, size, indicator }) => (

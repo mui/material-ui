@@ -21,18 +21,44 @@
     "import TimelineItem from '@mui/lab/TimelineItem';",
     "import { TimelineItem } from '@mui/lab';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "positionLeft",
-      "positionRight",
-      "positionAlternate",
-      "positionAlternateReverse",
-      "missingOppositeContent"
-    ],
-    "globalClasses": {},
-    "name": "MuiTimelineItem"
-  },
+  "classes": [
+    {
+      "key": "missingOppositeContent",
+      "className": "MuiTimelineItem-missingOppositeContent",
+      "description": "Styles applied to the root element if TimelineOppositeContent isn't provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionAlternate",
+      "className": "MuiTimelineItem-positionAlternate",
+      "description": "Styles applied to the root element if `position=\"alternate\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionAlternateReverse",
+      "className": "MuiTimelineItem-positionAlternateReverse",
+      "description": "Styles applied to the root element if `position=\"alternate-reverse\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionLeft",
+      "className": "MuiTimelineItem-positionLeft",
+      "description": "Styles applied to the root element if `position=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionRight",
+      "className": "MuiTimelineItem-positionRight",
+      "description": "Styles applied to the root element if `position=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTimelineItem-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTimelineItem",

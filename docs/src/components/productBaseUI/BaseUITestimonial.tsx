@@ -7,7 +7,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import Section from 'docs/src/layouts/Section';
 
 export default function BaseUITestimonial() {
@@ -37,7 +37,8 @@ export default function BaseUITestimonial() {
             </Typography>
             <Box
               component="img"
-              srcSet="/static/branding/base-ui/nhost.jpg, /static/branding/base-ui/nhost-2x.jpg 2x "
+              src="/static/branding/base-ui/nhost-screenshot.png"
+              srcSet="/static/branding/base-ui/nhost-screenshot-2x.png 2x"
               alt="Screenshot displaying part of the Nhost dashboard that used Base UI to be built."
               loading="lazy"
               sx={{
@@ -49,7 +50,7 @@ export default function BaseUITestimonial() {
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>
             Nhost&apos;s new dashboard, powered by Base UI &nbsp;&nbsp;
-            <Typography component="span" variant="inherit" color="divider">
+            <Typography component="span" variant="inherit" color="grey.500" sx={{ opacity: '50%' }}>
               /
             </Typography>
             &nbsp;&nbsp;
@@ -84,7 +85,8 @@ export default function BaseUITestimonial() {
             >
               <Avatar
                 alt="Szilárd Dóró's profile picture"
-                src="https://media.licdn.com/dms/image/C4D03AQHm6cbz2UDXpw/profile-displayphoto-shrink_800_800/0/1642674447256?e=2147483647&v=beta&t=L8g2vW_8mG8AvB3lwui0CT8969_Cx9QQ0iJXIS47i0o"
+                src="https://avatars.githubusercontent.com/u/310881?s=40"
+                srcSet="https://avatars.githubusercontent.com/u/310881?s=80 2x, https://avatars.githubusercontent.com/u/310881?s=120 3x"
               />
             </Box>
             <Box sx={{ flex: 1 }}>
@@ -95,15 +97,16 @@ export default function BaseUITestimonial() {
                 Senior Software Engineer
               </Typography>
             </Box>
+            {/** icons from https://docs.nhost.io/introduction */}
             <Box
               component="img"
-              src="https://docs.nhost.io/img/logo.svg"
+              src="/static/branding/base-ui/nhost-light.svg"
               alt=""
               sx={(theme) => ({
                 width: '80px',
                 alignSelf: 'center',
                 ...theme.applyDarkStyles({
-                  content: `url(https://nhost.io/common/logo.svg)`,
+                  content: 'url(/static/branding/base-ui/nhost-dark.svg)',
                 }),
               })}
             />

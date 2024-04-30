@@ -47,31 +47,40 @@
     "import AccordionSummary from '@mui/joy/AccordionSummary';",
     "import { AccordionSummary } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAccordionSummary" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiAccordionSummary-root"
+      "class": "MuiAccordionSummary-root"
     },
     {
       "name": "button",
       "description": "The component that renders the button.",
       "default": "'button'",
-      "class": ".MuiAccordionSummary-button"
+      "class": "MuiAccordionSummary-button"
     },
     {
       "name": "indicator",
       "description": "The component that renders the indicator.",
       "default": "'span'",
-      "class": ".MuiAccordionSummary-indicator"
+      "class": "MuiAccordionSummary-indicator"
     }
   ],
-  "classes": {
-    "classes": ["disabled", "expanded"],
-    "globalClasses": { "disabled": "Mui-disabled", "expanded": "Mui-expanded" }
-  },
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "Class name applied when the accordion is disabled.",
+      "isGlobal": true
+    },
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "Class name applied when the accordion is expanded.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAccordionSummary",

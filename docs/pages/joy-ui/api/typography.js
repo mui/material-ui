@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs-joy/typography',
     false,
-    /typography.*.json$/,
+    /\.\/typography.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

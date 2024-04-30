@@ -1,3 +1,3 @@
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 
 export default useEnhancedEffect;

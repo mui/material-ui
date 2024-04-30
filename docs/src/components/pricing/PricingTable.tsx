@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
@@ -339,7 +339,7 @@ function ColumnHeadHighlight(props: BoxProps) {
         (theme) =>
           theme.applyDarkStyles({
             borderColor: 'primaryDark.700',
-            background: alpha(theme.palette.primaryDark[900], 0.5),
+            background: alpha(theme.palette.primaryDark[700], 0.3),
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
@@ -373,7 +373,7 @@ function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
           theme.applyDarkStyles({
             ...(highlighted && {
               borderColor: 'primaryDark.700',
-              bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
+              bgcolor: alpha(theme.palette.primaryDark[700], 0.3),
             }),
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
@@ -402,7 +402,7 @@ function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: Rea
         },
         (theme) =>
           theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
+            bgcolor: 'primaryDark.800',
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
@@ -448,6 +448,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'data-grid/column-resizing': (
     <ColumnHead label="Column resizing" href="/x/react-data-grid/column-dimensions/#resizing" />
+  ),
+  'data-grid/column-autosizing': (
+    <ColumnHead label="Column autosizing" href="/x/react-data-grid/column-dimensions/#autosizing" />
   ),
   'data-grid/column-reorder': (
     <ColumnHead label="Column reorder" href="/x/react-data-grid/column-ordering/" />
@@ -561,8 +564,15 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/localization': (
     <ColumnHead label="Localization" href="/x/react-data-grid/localization/" />
   ),
-  'date-picker/simple': <ColumnHead label="Date Picker" />,
-  'date-picker/range': <ColumnHead label="Date Range Picker" />,
+  'date-picker/simple': (
+    <ColumnHead label="Date and Time Pickers" href="/x/react-date-pickers/date-picker/" />
+  ),
+  'date-picker/range': (
+    <ColumnHead
+      label="Date and Time Range Pickers"
+      href="/x/react-date-pickers/date-range-picker/"
+    />
+  ),
 
   // -- charts - components --
   'charts/line': <ColumnHead label="Line chart" href="/x/react-charts/lines/" />,
@@ -571,8 +581,8 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/pie': <ColumnHead label="Pie chart" href="/x/react-charts/pie/" />,
   'charts/sparkline': <ColumnHead label="Sparkline" href="/x/react-charts/sparkline/" />,
   'charts/gauge': <ColumnHead label="Gauge" href="/x/react-charts/gauge/" />,
-  'charts/treemap': <ColumnHead label="Tree map" href="/x/react-charts/tree-map/" />,
-  'charts/heatmap': <ColumnHead label="Heat map" href="/x/react-charts/heat-map/" />,
+  'charts/treemap': <ColumnHead label="Treemap" href="/x/react-charts/tree-map/" />,
+  'charts/heatmap': <ColumnHead label="Heatmap" href="/x/react-charts/heat-map/" />,
   'charts/radar': <ColumnHead label="Radar" href="/x/react-charts/radar/" />,
   'charts/funnel': <ColumnHead label="Funnel" href="/x/react-charts/funnel/" />,
   'charts/sankey': <ColumnHead label="Sankey" href="/x/react-charts/sankey/" />,
@@ -586,9 +596,18 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': <ColumnHead label="Zoom on mouse" />,
   'charts/export': <ColumnHead label="Export" />,
   // -- charts - datagrid --
-  'charts/cell-with-charts': <ColumnHead label="Cell with chart" />,
+  'charts/cell-with-charts': (
+    <ColumnHead label="Cell with chart" href="/x/react-data-grid/custom-columns/#sparkline" />
+  ),
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
+
+  'tree-view/simple-tree-view': (
+    <ColumnHead label="Simple Tree View" href="/x/react-tree-view/#simple-tree-view" />
+  ),
+  'tree-view/rich-tree-view': (
+    <ColumnHead label="Rich Tree View" href="/x/react-tree-view/#rich-tree-view" />
+  ),
 
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
@@ -602,7 +621,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
       {...{
         label: 'Technical support for MUI Core',
         tooltip:
-          'Support for MUI Core (e.g. Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
+          'Support for MUI Core (for example Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
       }}
     />
   ),
@@ -696,7 +715,8 @@ const communityData: Record<string, React.ReactNode> = {
   // -- data grid - columns --
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
-  'data-grid/column-resizing': no,
+  'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
   // -- data grid - rows --
@@ -747,9 +767,9 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
+  'charts/heatmap': no,
   'charts/radar': pending,
   'charts/funnel': no,
   'charts/sankey': no,
@@ -763,9 +783,12 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': no,
   'charts/export': no,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
+
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
 
   // -- general --
   'mui-x-production': yes,
@@ -794,6 +817,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
   // -- data grid - rows --
@@ -842,7 +866,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
   'charts/heatmap': pending,
   'charts/radar': pending,
@@ -858,9 +882,12 @@ const proData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': pending,
   'charts/export': pending,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
+
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
 
   // -- general --
   'mui-x-production': yes,
@@ -894,6 +921,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
   // -- data grid - rows --
@@ -942,7 +970,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
   'charts/heatmap': pending,
   'charts/radar': pending,
@@ -958,9 +986,12 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': pending,
   'charts/export': pending,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
+
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
 
   // -- general --
   'mui-x-production': yes,
@@ -1000,16 +1031,16 @@ function RowCategory(props: BoxProps) {
           pl: 1.5,
           display: 'block',
           textTransform: 'uppercase',
-          letterSpacing: '.08rem',
+          letterSpacing: '.1rem',
           fontWeight: theme.typography.fontWeightBold,
           fontSize: theme.typography.pxToRem(11),
-          color: 'text.secondary',
+          color: (theme.vars || theme).palette.text.tertiary,
           borderBottom: '1px solid',
-          bgcolor: 'grey.50',
-          borderColor: 'grey.200',
+          bgcolor: (theme.vars || theme).palette.grey[50],
+          borderColor: (theme.vars || theme).palette.grey[200],
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
-            borderColor: 'primaryDark.600',
+            bgcolor: (theme.vars || theme).palette.primaryDark[900],
+            borderColor: (theme.vars || theme).palette.primaryDark[600],
           }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
@@ -1110,7 +1141,7 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
           },
           ...theme.applyDarkStyles({
             '&:hover > div': {
-              bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
+              bgcolor: theme.palette.primaryDark[800],
             },
           }),
         }),
@@ -1329,12 +1360,11 @@ export default function PricingTable({
           }
           sx={[
             (theme) => ({
-              p: 1,
-              py: 1.5,
+              px: 1,
               justifyContent: 'flex-start',
-              fontWeight: 400,
+              fontSize: '0.875rem',
+              fontWeight: 'medium',
               borderRadius: '0px',
-              color: 'text.primary',
               position: 'absolute',
               left: 0,
               top: 0,
@@ -1365,6 +1395,8 @@ export default function PricingTable({
         {renderNestedRow('data-grid/column-spanning')}
         {divider}
         {renderNestedRow('data-grid/column-resizing')}
+        {divider}
+        {renderNestedRow('data-grid/column-autosizing')}
         {divider}
         {renderNestedRow('data-grid/column-reorder')}
         {divider}
@@ -1479,12 +1511,11 @@ export default function PricingTable({
           }
           sx={[
             (theme) => ({
-              p: 1,
-              py: 1.5,
+              px: 1,
               justifyContent: 'flex-start',
-              fontWeight: 400,
+              fontSize: '0.875rem',
+              fontWeight: 'medium',
               borderRadius: '0px',
-              color: 'text.primary',
               position: 'absolute',
               left: 0,
               top: 0,
@@ -1524,9 +1555,9 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/treemap')}
         {divider}
-        {renderNestedRow('charts/heatmap')}
-        {divider}
         {renderNestedRow('charts/radar')}
+        {divider}
+        {renderNestedRow('charts/heatmap')}
         {divider}
         {renderNestedRow('charts/funnel')}
         {divider}
@@ -1556,6 +1587,10 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/selection-interaction')}
       </StyledCollapse>
+      {divider}
+      {renderRow('tree-view/simple-tree-view')}
+      {divider}
+      {renderRow('tree-view/rich-tree-view')}
       {divider}
       {renderRow('mui-x-production')}
       {divider}

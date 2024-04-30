@@ -69,55 +69,136 @@
   },
   "name": "Button",
   "imports": ["import Button from '@mui/joy/Button';", "import { Button } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiButton" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'button'",
-      "class": ".MuiButton-root"
+      "class": "MuiButton-root"
     },
     {
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
       "default": "'span'",
-      "class": ".MuiButton-startDecorator"
+      "class": "MuiButton-startDecorator"
     },
     {
       "name": "endDecorator",
       "description": "The component that renders the end decorator.",
       "default": "'span'",
-      "class": ".MuiButton-endDecorator"
+      "class": "MuiButton-endDecorator"
     },
     {
       "name": "loadingIndicatorCenter",
       "description": "The component that renders the loading indicator center.",
       "default": "'span'",
-      "class": ".MuiButton-loadingIndicatorCenter"
+      "class": "MuiButton-loadingIndicatorCenter"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "disabled",
-      "focusVisible",
-      "fullWidth",
-      "loading",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" }
-  },
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiButton-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiButton-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiButton-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiButton-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiButton-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiButton-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the ButtonBase root element if the button is keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "fullWidth",
+      "className": "MuiButton-fullWidth",
+      "description": "Class name applied to the root element if `fullWidth={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loading",
+      "className": "MuiButton-loading",
+      "description": "Class name applied to the root element if `loading={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiButton-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiButton-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiButton-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiButton-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiButton-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiButton-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiButton-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyButton",

@@ -12,7 +12,8 @@ type MessagesPaneProps = {
   chat: ChatProps;
 };
 
-export default function MessagesPane({ chat }: MessagesPaneProps) {
+export default function MessagesPane(props: MessagesPaneProps) {
+  const { chat } = props;
   const [chatMessages, setChatMessages] = React.useState(chat.messages);
   const [textAreaValue, setTextAreaValue] = React.useState('');
 
@@ -30,7 +31,6 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
       }}
     >
       <MessagesPaneHeader sender={chat.sender} />
-
       <Box
         sx={{
           display: 'flex',
@@ -64,7 +64,6 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
           })}
         </Stack>
       </Box>
-
       <MessageInput
         textAreaValue={textAreaValue}
         setTextAreaValue={setTextAreaValue}

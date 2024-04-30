@@ -1,4 +1,6 @@
 import { expectType } from '@mui/types';
+import { ColorFormat, ColorObject } from '@mui/system';
+
 import {
   hexToRgb,
   rgbToHex,
@@ -12,9 +14,7 @@ import {
   alpha,
   lighten,
   darken,
-  ColorFormat,
-  ColorObject,
-} from '@mui/system';
+} from '@mui/system/colorManipulator';
 
 expectType<(color: string) => string, typeof hexToRgb>(hexToRgb);
 

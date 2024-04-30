@@ -153,7 +153,8 @@
     "title": "Business Administrator",
     "location": "London, UK",
     "locationCountry": "gb",
-    "about": "Empathic art-lover, incurable optimist keen on biking, gardening"
+    "about": "Empathic art-lover, incurable optimist keen on biking, gardening",
+    "github": "TinaDein"
   },
   {
     "name": "Lukas Tyla",
@@ -186,7 +187,8 @@
     "title": "Senior People & Culture Partner",
     "location": "Newcastle Upon Tyne, UK",
     "locationCountry": "gb",
-    "about": "🧗‍♂️ Amateur indoor climber & ex-philosophy geek"
+    "about": "🧗‍♂️ Amateur indoor climber & ex-philosophy geek",
+    "github": "mikailaread"
   },
   {
     "name": "Romain Grégoire",
@@ -263,5 +265,37 @@
     "about": "Product experience geek \uD83D\uDECB, Mediterranean vibes \uD83C\uDF4A",
     "twitter": "vadym_raksha",
     "github": "hasdfa"
+  },
+  {
+    "name": "Nadja Kovacev",
+    "title": "Talent & Culture Partner",
+    "location": "Novi Sad, Serbia",
+    "locationCountry": "rs",
+    "about": "🧠 Psychology geek, 🏂 amateur snowboarder, and 𐃡 pottery enthusiast."
+  },
+  {
+    "name": "James Nelson",
+    "title": "Software Engineer - Base UI",
+    "location": "Gold Coast, Australia",
+    "locationCountry": "au",
+    "about": "Enjoy creating open source libraries and reading about AI 🤖",
+    "github": "atomiks"
+  },
+  {
+    "name": "Aarón García",
+    "title": "Design Engineer - Core",
+    "location": "Alicante, Spain",
+    "locationCountry": "es",
+    "about": "Minimalism, web development, user experience, football, cycling",
+    "twitter": "aarongarciah",
+    "github": "aarongarciah"
+  },
+  {
+    "name": "Jose Quintas",
+    "title": "React Engineer - X",
+    "location": "Amsterdam, Netherlands",
+    "locationCountry": "nl",
+    "about": "A general knowledge gatherer. Gamer and programmer in the off hours.",
+    "github": "JCQuintas"
   }
 ]

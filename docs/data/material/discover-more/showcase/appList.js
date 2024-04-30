@@ -120,17 +120,6 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'VMware CloudHealth',
-    description:
-      'The most trusted cloud management platform that enables users to analyze and manage cloud ' +
-      'cost, usage and performance in one place. ' +
-      '(Used for the business application, but not the marketing website.)',
-    image: 'cloudhealth.jpg',
-    link: 'https://cloudhealth.vmware.com/',
-    similarWebVisits: 132,
-    dateAdded: '2018-01-37',
-  },
-  {
     title: 'CityAds',
     description:
       'CityAds Media: global technology platform for online performance marketing ' +
@@ -204,7 +193,7 @@ const appList = [
       'Comet lets you track code, experiments, and results on ML projects. ' +
       "It's fast, simple, and free for open source projects.",
     image: 'comet.jpg',
-    link: 'https://www.comet.com/',
+    link: 'https://www.comet.com/site/',
     similarWebVisits: 180,
     dateAdded: '2019-01-01',
   },
@@ -404,16 +393,6 @@ const appList = [
     source: 'https://github.com/marmelab/react-admin/tree/master/examples/crm',
     stars: 18500,
     dateAdded: '2021-05-06',
-  },
-  {
-    title: 'Saleor Store Dashboard',
-    description: 'Dashboard application for Saleor headless e-commerce platform',
-    image: 'saleor.jpg',
-    link: 'https://demo.saleor.io/dashboard/',
-    source: 'https://github.com/saleor/saleor-dashboard',
-    stars: 15079,
-    similarWebVisits: 62,
-    dateAdded: '2022-02-05',
   },
   {
     title: 'MQTT Explorer',

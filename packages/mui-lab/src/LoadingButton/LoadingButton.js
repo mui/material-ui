@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@mui/utils';
@@ -5,7 +6,9 @@ import { capitalize, unstable_useId as useId } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import { ButtonGroupContext } from '@mui/material/ButtonGroup';
 import CircularProgress from '@mui/material/CircularProgress';
+import resolveProps from '@mui/utils/resolveProps';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -135,7 +138,9 @@ const LoadingButtonLoadingIndicator = styled('span', {
 }));
 
 const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiLoadingButton' });
+  const contextProps = React.useContext(ButtonGroupContext);
+  const resolvedProps = resolveProps(contextProps, inProps);
+  const props = useThemeProps({ props: resolvedProps, name: 'MuiLoadingButton' });
   const {
     children,
     disabled = false,
@@ -186,10 +191,10 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
 });
 
 LoadingButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

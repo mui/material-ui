@@ -7,8 +7,8 @@ export default function UnstyledButtonsIntroduction() {
   return (
     <React.Fragment>
       <Stack spacing={2} direction="row">
-        <Button className="CustomButton">Button</Button>
-        <Button className="CustomButton" disabled>
+        <Button className="IntroductionButton">Button</Button>
+        <Button className="IntroductionButton" disabled>
           Disabled
         </Button>
       </Stack>
@@ -54,8 +54,8 @@ function Styles() {
 
   return (
     <style>{`
-  .CustomButton {
-    font-family: IBM Plex Sans, sans-serif;
+  .IntroductionButton {
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 600;
     font-size: 0.875rem;
     line-height: 1.5;
@@ -66,29 +66,29 @@ function Styles() {
     transition: all 150ms ease;
     cursor: pointer;
     border: 1px solid ${cyan[500]};
-    box-shadow: 0 2px 4px ${
-      isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(13, 84, 99, 0.5)'
+    box-shadow: 0 2px 1px ${
+      isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
     }, inset 0 1.5px 1px ${cyan[400]}, inset 0 -2px 1px ${cyan[600]};
   }
-  .CustomButton:hover {
+  .IntroductionButton:hover {
     background-color: ${cyan[600]};
   }
-  .CustomButton:active {
+  .IntroductionButton.base--active {
     background-color: ${cyan[700]};
+    box-shadow: none;
+    transform: scale(0.99);
   }
-  .CustomButton:focus-visible {
+  .IntroductionButton.base--focusVisible {
     box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
     outline: none;
   }
-  .CustomButton:disabled {
+  .IntroductionButton.base--disabled {
     background-color: ${isDarkMode ? grey[700] : grey[200]};
     color: ${isDarkMode ? grey[200] : grey[700]};
     border: 0;
-    cursor: not-allowed;
+    cursor: default;
     box-shadow: none;
-  }
-  .CustomButton:disabled:hover {
-    background-color: ${isDarkMode ? grey[700] : grey[200]};
+    transform: scale(1);
   }
   `}</style>
   );

@@ -152,19 +152,18 @@ describe('<FocusTrap />', () => {
 
   it('undesired: lazy root does not get autofocus', () => {
     let mountDeferredComponent: React.DispatchWithoutAction;
-    const DeferredComponent = React.forwardRef<HTMLDivElement>(function DeferredComponent(
-      props,
-      ref,
-    ) {
-      const [mounted, setMounted] = React.useReducer(() => true, false);
+    const DeferredComponent = React.forwardRef<HTMLDivElement>(
+      function DeferredComponent(props, ref) {
+        const [mounted, setMounted] = React.useReducer(() => true, false);
 
-      mountDeferredComponent = setMounted;
+        mountDeferredComponent = setMounted;
 
-      if (mounted) {
-        return <div ref={ref} {...props} />;
-      }
-      return null;
-    });
+        if (mounted) {
+          return <div ref={ref} {...props} />;
+        }
+        return null;
+      },
+    );
     render(
       <FocusTrap open>
         <DeferredComponent data-testid="deferred-component" />

@@ -19,13 +19,8 @@ type ChatListItemProps = ListItemButtonProps & {
   setSelectedChat: (chat: ChatProps) => void;
 };
 
-export default function ChatListItem({
-  id,
-  sender,
-  messages,
-  selectedChatId,
-  setSelectedChat,
-}: ChatListItemProps) {
+export default function ChatListItem(props: ChatListItemProps) {
+  const { id, sender, messages, selectedChatId, setSelectedChat } = props;
   const selected = selectedChatId === id;
   return (
     <React.Fragment>

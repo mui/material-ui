@@ -22,11 +22,44 @@
     "import CardHeader from '@mui/material/CardHeader';",
     "import { CardHeader } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "avatar", "action", "content", "title", "subheader"],
-    "globalClasses": {},
-    "name": "MuiCardHeader"
-  },
+  "classes": [
+    {
+      "key": "action",
+      "className": "MuiCardHeader-action",
+      "description": "Styles applied to the action element.",
+      "isGlobal": false
+    },
+    {
+      "key": "avatar",
+      "className": "MuiCardHeader-avatar",
+      "description": "Styles applied to the avatar element.",
+      "isGlobal": false
+    },
+    {
+      "key": "content",
+      "className": "MuiCardHeader-content",
+      "description": "Styles applied to the content wrapper element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiCardHeader-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "subheader",
+      "className": "MuiCardHeader-subheader",
+      "description": "Styles applied to the subheader Typography element.",
+      "isGlobal": false
+    },
+    {
+      "key": "title",
+      "className": "MuiCardHeader-title",
+      "description": "Styles applied to the title Typography element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiCardHeader",

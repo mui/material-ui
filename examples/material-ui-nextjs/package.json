@@ -14,6 +14,7 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@mui/material-nextjs": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "next": "latest",

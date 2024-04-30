@@ -41,7 +41,20 @@
     "import Backdrop from '@mui/material/Backdrop';",
     "import { Backdrop } from '@mui/material';"
   ],
-  "styles": { "classes": ["root", "invisible"], "globalClasses": {}, "name": "MuiBackdrop" },
+  "classes": [
+    {
+      "key": "invisible",
+      "className": "MuiBackdrop-invisible",
+      "description": "Styles applied to the root element if `invisible={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiBackdrop-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiBackdrop",

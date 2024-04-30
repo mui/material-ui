@@ -3,10 +3,11 @@ title: Date and Time Pickers revamped
 description: Check out the new features coming in v6 beta.
 date: 2023-01-22T00:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
-There's a lot of exciting news in [MUI X v6.0.0-beta.0](https://github.com/mui/mui-x/releases/v6.0.0-beta.0), but there's hardly anything comparable to the revamp we're delivering for the Date and Time Pickers.
+There's a lot of exciting news in [MUI X v6.0.0-beta.0](https://github.com/mui/mui-x/releases/v6.0.0-beta.0), but there's hardly anything comparable to the revamp we're delivering for the Date and Time Pickers.
 
 This is the result of our ongoing efforts to improve the usability and customizability of these components.
 We kept the best aspects of the previous versions, and we're fleshing out the package with a [new documentation](https://next.mui.com/x/react-date-pickers/getting-started/), major new features and one fundamental change: a new input type to replace the masked text fields.
@@ -111,7 +112,7 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
   You don't need to provide the usual `TextField` on `renderInput` anymore unless you need it customized.
   In which case you can do it by:
 
-  1. Customizing through props via `field` and `input` slots ([codebox example](https://codesandbox.io/s/customizing-fields-with-props-o66r1c?file=/demo.tsx)).
+  1. Customizing through props via `field` and `input` slots ([codebox example](https://codesandbox.io/p/sandbox/customizing-fields-with-props-o66r1c?file=/demo.tsx)).
   2. Build a new field component using the Field's headless API (documentation coming soon).
   3. Use an entirely [custom text field](https://next.mui.com/x/react-date-pickers/date-picker/#custom-input-component) to suit your use case.
 

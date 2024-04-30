@@ -48,7 +48,20 @@
     "import AvatarGroup from '@mui/material/AvatarGroup';",
     "import { AvatarGroup } from '@mui/material';"
   ],
-  "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
+  "classes": [
+    {
+      "key": "avatar",
+      "className": "MuiAvatarGroup-avatar",
+      "description": "Styles applied to the avatar elements.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAvatarGroup-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAvatarGroup",

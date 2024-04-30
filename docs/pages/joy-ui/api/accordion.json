@@ -51,19 +51,28 @@
     "import Accordion from '@mui/joy/Accordion';",
     "import { Accordion } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAccordion" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiAccordion-root"
+      "class": "MuiAccordion-root"
     }
   ],
-  "classes": {
-    "classes": ["disabled", "expanded"],
-    "globalClasses": { "expanded": "Mui-expanded", "disabled": "Mui-disabled" }
-  },
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "Class name applied to the root element if `disabled` is true.",
+      "isGlobal": true
+    },
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "Class name applied to the root element if `expanded` is true.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAccordion",

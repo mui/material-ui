@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 export default function About() {
   return (
     <React.Fragment>
-      <Typography variant="h4" component="h1" gutterBottom>
+      <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
         Material UI Remix in TypeScript example
       </Typography>
       <Button variant="contained" component={Link} to="/">

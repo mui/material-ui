@@ -22,13 +22,21 @@ import { TypographySystem } from '../styles/types';
  */
 export const TypographyNestedContext = React.createContext(false);
 
+if (process.env.NODE_ENV !== 'production') {
+  TypographyNestedContext.displayName = 'TypographyNestedContext';
+}
+
 /**
  * @internal
  * Typography's level will be inherit within this context unless an explicit `level` prop is provided.
  *
- * This is used in components, e.g. Table, to inherit the parent's size by default.
+ * This is used in components, for example Table, to inherit the parent's size by default.
  */
 export const TypographyInheritContext = React.createContext(false);
+
+if (process.env.NODE_ENV !== 'production') {
+  TypographyInheritContext.displayName = 'TypographyInheritContext';
+}
 
 const useUtilityClasses = (ownerState: TypographyOwnerState) => {
   const { gutterBottom, noWrap, level, color, variant } = ownerState;
@@ -253,10 +261,10 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
 }) as OverridableComponent<TypographyTypeMap>;
 
 Typography.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

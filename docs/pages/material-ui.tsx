@@ -9,18 +9,18 @@ import MaterialTheming from 'docs/src/components/productMaterial/MaterialTheming
 import MaterialStyling from 'docs/src/components/productMaterial/MaterialStyling';
 import MaterialTemplates from 'docs/src/components/productMaterial/MaterialTemplates';
 import MaterialDesignKits from 'docs/src/components/productMaterial/MaterialDesignKits';
-import CoreHeroEnd from 'docs/src/components/productCore/CoreHeroEnd';
+import MaterialEnd from 'docs/src/components/productMaterial/MaterialEnd';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
-export default function Core() {
+export default function MaterialUI() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="Material UI: React components based on Material Design"
+        title="Material UI: React components that implement Material Design"
         description="Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box."
-        card="/static/social-previews/core-preview.jpg"
+        card="/static/social-previews/materialui-preview.jpg"
       />
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
@@ -38,7 +38,7 @@ export default function Core() {
         <Divider />
         <MaterialDesignKits />
         <Divider />
-        <CoreHeroEnd />
+        <MaterialEnd />
         <Divider />
       </main>
       <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />

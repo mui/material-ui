@@ -153,6 +153,9 @@ export * from './useTheme';
 export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
 export * from './useThemeWithoutDefault';
 
+export { default as useMediaQuery } from './useMediaQuery';
+export * from './useMediaQuery';
+
 export * from './colorManipulator';
 
 export { default as ThemeProvider } from './ThemeProvider';
