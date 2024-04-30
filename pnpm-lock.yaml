@@ -38,8 +38,8 @@ importers:
         specifier: ^2.6.0
         version: 2.6.0
       '@slack/bolt':
-        specifier: ^3.17.1
-        version: 3.17.1
+        specifier: ^3.18.0
+        version: 3.18.0
       execa:
         specifier: ^8.0.1
         version: 8.0.1
@@ -7633,8 +7633,8 @@ packages:
   /@sinonjs/text-encoding@0.7.2:
     resolution: {integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==}
 
-  /@slack/bolt@3.17.1:
-    resolution: {integrity: sha512-N+4WxpkM59RXi7BL3IXUtENnn9cF7TOBn7ttaHpgvlnjUaro+yQyY60arXTlP4ytVDFJ1w0mSdfftcM17h+i2w==}
+  /@slack/bolt@3.18.0:
+    resolution: {integrity: sha512-A7bDi5kY50fS6/nsmURkQdO3iMxD8aX/rA+m1UXEM2ue2z4KijeQtx2sOZ4YkJQ/h7BsgTQM0CYh3qqmo+m5sQ==}
     engines: {node: '>=12.13.0', npm: '>=6.12.0'}
     dependencies:
       '@slack/logger': 4.0.0
