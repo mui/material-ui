@@ -6,7 +6,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import ExtensionRoundedIcon from '@mui/icons-material/ExtensionRounded';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DrawRoundedIcon from '@mui/icons-material/DrawRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -14,6 +13,10 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
+import {
+  MaterialDesignKitInfo,
+  MaterialFigmaComponents,
+} from 'docs/src/components/productDesignKit/DesignKitDemo';
 import { Link } from '@mui/docs/Link';
 
 const Image = styled('img')(({ theme }) => ({
@@ -67,107 +70,19 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             </Highlighter>
           </Group>
         </Grid>
-        <Grid
-          xs={12}
-          md={6}
-          sx={{
-            minHeight: { lg: '590px' },
-          }}
-        >
-          <Frame sx={{ height: '100%' }}>
+        <Grid xs={12} md={6}>
+          <Frame>
             <Frame.Demo
               sx={{
                 overflow: 'clip',
                 height: { xs: 240, sm: 420 },
-                perspective: '1000px',
               }}
             >
-              <Fade in={customized} timeout={500}>
-                <Box
-                  sx={[
-                    {
-                      width: '100%',
-                      height: '100%',
-                      '& img': {
-                        position: 'absolute',
-                        left: '50%',
-                        width: { xs: 240, sm: 300 },
-                        '&:nth-of-type(1)': {
-                          top: 120,
-                          transform: 'translate(-70%)',
-                        },
-                        '&:nth-of-type(2)': {
-                          top: 80,
-                          transform: 'translate(-50%)',
-                        },
-                        '&:nth-of-type(3)': {
-                          top: 40,
-                          transform: 'translate(-30%)',
-                        },
-                      },
-                      '&:hover': {
-                        '& img': {
-                          filter: 'drop-shadow(-16px 12px 20px rgba(61, 71, 82, 0.2))',
-                          '&:nth-of-type(1)': {
-                            top: 0,
-                            transform: 'scale(0.8) translate(-108%) rotateY(30deg)',
-                          },
-                          '&:nth-of-type(2)': {
-                            top: 40,
-                            transform: 'scale(0.8) translate(-54%) rotateY(30deg)',
-                          },
-                          '&:nth-of-type(3)': {
-                            top: 40,
-                            transform: 'scale(0.8) translate(-0%) rotateY(30deg)',
-                          },
-                        },
-                      },
-                    },
-                    (theme) =>
-                      theme.applyDarkStyles({
-                        '&:hover': {
-                          '& img': {
-                            filter: 'drop-shadow(-16px 12px 20px rgba(0, 0, 0, 0.4))',
-                          },
-                        },
-                      }),
-                  ]}
-                >
-                  <Image
-                    src="/static/branding/design-kits/Button-light.jpeg"
-                    alt="Material UI Button component variations in the Figma Design Kit."
-                    loading="lazy"
-                    sx={(theme) =>
-                      theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/Button-dark.jpeg)`,
-                      })
-                    }
-                  />
-                  <Image
-                    src="/static/branding/design-kits/Alert-light.jpeg"
-                    alt="Material UI Alert component variations in the Figma Design Kit."
-                    loading="lazy"
-                    sx={(theme) =>
-                      theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/Alert-dark.jpeg)`,
-                      })
-                    }
-                  />
-                  <Image
-                    src="/static/branding/design-kits/Slider-light.jpeg"
-                    alt="Material UI Slider component variations in the Figma Design Kit."
-                    loading="lazy"
-                    sx={(theme) =>
-                      theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/Slider-dark.jpeg)`,
-                      })
-                    }
-                  />
-                </Box>
-              </Fade>
+              <MaterialFigmaComponents fadeIn={customized} />
               <Fade in={!customized} timeout={500}>
                 <Box
                   sx={(theme) => ({
+                    display: !customized ? 'auto' : 'none',
                     width: '100%',
                     height: '100%',
                     '& img': {
@@ -252,60 +167,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
               </Fade>
             </Frame.Demo>
             {customized ? (
-              <Frame.Info data-mui-color-scheme="dark">
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
-                  }}
-                >
-                  <Typography variant="body2" fontWeight="semiBold" gutterBottom>
-                    Available in:
-                  </Typography>
-                  <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 22, height: 22 } }}>
-                    <img src="/static/branding/design-kits/figma-logo.svg" alt="" loading="lazy" />
-                    <img src="/static/branding/design-kits/sketch-logo.svg" alt="" loading="lazy" />
-                    <img
-                      src="/static/branding/design-kits/adobexd-logo.svg"
-                      alt=""
-                      loading="lazy"
-                    />
-                  </Box>
-                </Box>
-                <Typography variant="body2" color="text.secondary" mb={2}>
-                  We frequently update them to stay up-to-date with the latest release.
-                </Typography>
-                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5 }}>
-                  <Button
-                    component={Link}
-                    variant="contained"
-                    size="small"
-                    noLinkStyle
-                    href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
-                    endIcon={<ChevronRightRoundedIcon />}
-                  >
-                    Buy it now
-                  </Button>
-                  <Button
-                    component={Link}
-                    variant="outlined"
-                    size="small"
-                    color="secondary"
-                    href="https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x"
-                    startIcon={
-                      <img
-                        src="/static/branding/design-kits/figma-logo.svg"
-                        alt=""
-                        loading="lazy"
-                        style={{ width: 16, height: 16 }}
-                      />
-                    }
-                  >
-                    Figma Preview
-                  </Button>
-                </Box>
-              </Frame.Info>
+              <MaterialDesignKitInfo />
             ) : (
               <Frame.Info data-mui-color-scheme="dark">
                 <Typography variant="body2" fontWeight="bold" gutterBottom>
