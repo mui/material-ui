@@ -1,12 +1,12 @@
 fn({
   MuiPaginationItem: {
     defaultProps: {
-      slots: {
+      components: {
         first: componentFirst,
         last: componentLast,
         next: componentNext,
-        previous: componentPrevious
-      }
+        previous: componentPrevious,
+      },
     },
   },
 });
@@ -14,12 +14,14 @@ fn({
 fn({
   MuiPaginationItem: {
     defaultProps: {
+      components: {
+        first: componentFirst,
+        last: componentLast,
+      },
       slots: {
-        first: slotFirst,
-        last: slotLast,
         next: slotNext,
-        previous: slotPrevious
-      }
+        previous: slotPrevious,
+      },
     },
   },
 });

@@ -15,8 +15,8 @@ fn({
   MuiPaginationItem: {
     defaultProps: {
       slots: {
-        first: slotFirst,
-        last: slotLast,
+        first: componentFirst,
+        last: componentLast,
         next: slotNext,
         previous: slotPrevious
       }
