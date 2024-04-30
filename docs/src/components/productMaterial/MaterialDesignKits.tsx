@@ -77,7 +77,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
-                overflow: 'hidden',
+                overflow: 'clip',
                 height: { xs: 240, sm: 420 },
                 perspective: '1000px',
               }}

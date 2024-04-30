@@ -80,7 +80,7 @@ export default function ConnectFeatures() {
             <Frame.Demo
               sx={{
                 overflow: 'clip',
-                height: { xs: 240, sm: '100%' },
+                height: { xs: 240, sm: 420 },
                 perspective: '1000px',
               }}
             >
