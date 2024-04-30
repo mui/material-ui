@@ -50,12 +50,12 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
             }
             description="Reach out for the Figma Design Kit and the Sync plugin to bridge the gap between development and design when using Material UI."
           />
-          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<DrawRoundedIcon color="primary" />}
                 title="Design Kit"
-                description="Get many of the Material UI components with states, variations, colors, typography, and icons on your preferred design tool."
+                description="Get many Material UI components with states, variations, colors, typography, and icons on your preferred design tool."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
