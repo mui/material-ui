@@ -175,7 +175,7 @@
     "process": "^0.11.10",
     "raw-loader": "4.0.2",
     "rimraf": "^5.0.5",
-    "serve": "^14.2.1",
+    "serve": "^14.2.3",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
