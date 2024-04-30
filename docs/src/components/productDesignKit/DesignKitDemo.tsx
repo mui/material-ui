@@ -199,17 +199,7 @@ export default function TemplateDemo() {
                 />
               </Fade>
             </Frame.Demo>
-            <Frame.Info
-              data-mui-color-scheme="dark"
-              sx={{
-                display: 'flex',
-                alignItems: { xs: 'start', sm: 'center' },
-                flexDirection: { xs: 'column', sm: 'row' },
-                justifyContent: 'space-between',
-                minWidth: 0,
-                gap: { xs: 3, sm: 0 },
-              }}
-            >
+            <Frame.Info data-mui-color-scheme="dark">
               <Box
                 sx={{
                   display: 'flex',
@@ -220,20 +210,26 @@ export default function TemplateDemo() {
                 <Typography variant="body2" fontWeight="semiBold">
                   Available in:
                 </Typography>
-                <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 26, height: 26 } }}>
+                <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 22, height: 22 } }}>
                   <img src="/static/branding/design-kits/figma-logo.svg" alt="" loading="lazy" />
                   <img src="/static/branding/design-kits/sketch-logo.svg" alt="" loading="lazy" />
                   <img src="/static/branding/design-kits/adobexd-logo.svg" alt="" loading="lazy" />
                 </Box>
               </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: { xs: 'column-reverse', sm: 'row' },
-                  gap: 1.5,
-                  width: { xs: '100%', sm: 'fit-content' },
-                }}
-              >
+              <Typography variant="body2" color="text.secondary" mb={2}>
+                We frequently update them to stay up-to-date with the latest release.
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5 }}>
+                <Button
+                  component={Link}
+                  variant="contained"
+                  size="small"
+                  noLinkStyle
+                  href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
+                  endIcon={<ChevronRightRoundedIcon />}
+                >
+                  Buy it now
+                </Button>
                 <Button
                   component={Link}
                   variant="outlined"
@@ -248,27 +244,8 @@ export default function TemplateDemo() {
                       style={{ width: 16, height: 16 }}
                     />
                   }
-                  sx={{
-                    height: 'fit-content',
-                    width: { xs: '100%', sm: 'fit-content' },
-                  }}
                 >
                   Figma Preview
-                </Button>
-                <Button
-                  component={Link}
-                  variant="contained"
-                  size="small"
-                  href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
-                  endIcon={<ChevronRightRoundedIcon />}
-                  sx={{
-                    ml: { xs: 0, sm: 'auto' },
-                    height: 'fit-content',
-                    width: { xs: '100%', sm: 'fit-content' },
-                    color: '#FFF !important',
-                  }}
-                >
-                  Buy it now
                 </Button>
               </Box>
             </Frame.Info>
