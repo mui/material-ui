@@ -514,12 +514,12 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       {!disableInjectingGlobalStyles && inputGlobalStyles}
       <Root
         {...rootProps}
-        {...(!isHostComponent(Root) && {
-          ownerState: { ...ownerState, ...rootProps.ownerState },
-        })}
         ref={ref}
         onClick={handleClick}
         {...other}
+        {...(!isHostComponent(Root) && {
+          ownerState: { ...ownerState, ...rootProps.ownerState },
+        })}
         className={clsx(
           classes.root,
           {
@@ -533,7 +533,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         {startAdornment}
         <FormControlContext.Provider value={null}>
           <Input
-            ownerState={ownerState}
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}
             autoComplete={autoComplete}

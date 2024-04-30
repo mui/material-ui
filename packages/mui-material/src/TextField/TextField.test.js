@@ -33,6 +33,7 @@ describe('<TextField />', () => {
       slots: {
         input: {
           testWithComponent: TestComponent,
+          testWithElement: null,
         },
         inputLabel: {},
         htmlInput: {
@@ -56,6 +57,7 @@ describe('<TextField />', () => {
       slots: {
         select: {
           testWithComponent: TestComponent,
+          testWithElement: null,
         },
       },
       only: ['slotsProp', 'slotPropsProp', 'slotPropsCallback'],
