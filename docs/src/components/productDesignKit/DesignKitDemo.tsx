@@ -52,7 +52,7 @@ export default function TemplateDemo() {
                 Upgrade your <GradientText>design workflow</GradientText>
               </Typography>
             }
-            description="The Design Kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
+            description="The Design Kits contain many of the Material UI components with states, variations, colors, typography, and icons."
           />
           <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
