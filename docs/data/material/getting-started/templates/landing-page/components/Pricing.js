@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
@@ -94,19 +95,21 @@ export default function Pricing() {
             md={4}
           >
             <Card
-              sx={{
+              sx={(theme) => ({
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 4,
-                border: tier.title === 'Professional' ? '1px solid' : undefined,
-                borderColor:
-                  tier.title === 'Professional' ? 'primary.main' : undefined,
-                background:
-                  tier.title === 'Professional'
-                    ? 'linear-gradient(#033363, #021F3B)'
-                    : undefined,
-              }}
+                ...(tier.title === 'Professional' && {
+                  border: 'none',
+                  boxShadow:
+                    theme.palette.mode === 'light'
+                      ? `0 8px 12px hsla(210, 98%, 42%, 0.2)`
+                      : `0 8px 12px hsla(0, 0%, 0%, 0.8)`,
+                  background:
+                    'radial-gradient(circle at 50% 0%, hsl(210, 98%, 35%), hsl(210, 100%, 16%))',
+                }),
+              })}
             >
               <CardContent>
                 <Box
@@ -115,6 +118,7 @@ export default function Pricing() {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
+                    gap: 2,
                     color: tier.title === 'Professional' ? 'grey.100' : '',
                   }}
                 >
@@ -127,14 +131,13 @@ export default function Pricing() {
                       label={tier.subheader}
                       size="small"
                       sx={{
-                        background: (theme) =>
-                          theme.palette.mode === 'light' ? '' : 'none',
-                        backgroundColor: 'primary.contrastText',
+                        borderColor: 'hsla(220, 60%, 99%, 0.3)',
+                        backgroundColor: 'hsla(220, 60%, 99%, 0.1)',
                         '& .MuiChip-label': {
-                          color: 'primary.dark',
+                          color: 'hsl(0, 0%, 100%)',
                         },
                         '& .MuiChip-icon': {
-                          color: 'primary.dark',
+                          color: 'primary.light',
                         },
                       }}
                     />
@@ -157,8 +160,8 @@ export default function Pricing() {
                 <Divider
                   sx={{
                     my: 2,
-                    opacity: 0.2,
-                    borderColor: 'grey.500',
+                    opacity: 0.8,
+                    borderColor: 'divider',
                   }}
                 />
                 {tier.description.map((line) => (
@@ -181,11 +184,10 @@ export default function Pricing() {
                       }}
                     />
                     <Typography
-                      component="text"
                       variant="subtitle2"
+                      component={'span'}
                       sx={{
-                        color:
-                          tier.title === 'Professional' ? 'grey.200' : undefined,
+                        color: tier.title === 'Professional' ? 'grey.50' : undefined,
                       }}
                     >
                       {line}
@@ -194,13 +196,7 @@ export default function Pricing() {
                 ))}
               </CardContent>
               <CardActions>
-                <Button
-                  fullWidth
-                  variant={tier.buttonVariant}
-                  component="a"
-                  href="/material-ui/getting-started/templates/checkout/"
-                  target="_blank"
-                >
+                <Button fullWidth variant={tier.buttonVariant}>
                   {tier.buttonText}
                 </Button>
               </CardActions>

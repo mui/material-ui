@@ -130,14 +130,11 @@ describe('createTransitions', () => {
 
     it('should return NaN when passed a negative number', () => {
       const zeroHeightDurationNegativeOne = getAutoHeightDuration(-1);
-      // eslint-disable-next-line no-restricted-globals
-      expect(isNaN(zeroHeightDurationNegativeOne)).to.equal(true);
+      expect(Number.isNaN(zeroHeightDurationNegativeOne)).to.equal(true);
       const zeroHeightDurationSmallNegative = getAutoHeightDuration(-0.000001);
-      // eslint-disable-next-line no-restricted-globals
-      expect(isNaN(zeroHeightDurationSmallNegative)).to.equal(true);
+      expect(Number.isNaN(zeroHeightDurationSmallNegative)).to.equal(true);
       const zeroHeightDurationBigNegative = getAutoHeightDuration(-100000);
-      // eslint-disable-next-line no-restricted-globals
-      expect(isNaN(zeroHeightDurationBigNegative)).to.equal(true);
+      expect(Number.isNaN(zeroHeightDurationBigNegative)).to.equal(true);
     });
 
     it('should return values for pre-calculated positive examples', () => {

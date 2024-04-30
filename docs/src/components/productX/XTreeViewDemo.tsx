@@ -17,9 +17,8 @@ import PhotoOutlined from '@mui/icons-material/PhotoOutlined';
 import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Frame from 'docs/src/components/action/Frame';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },
@@ -330,7 +329,7 @@ export default function XDateRangeDemo() {
         </Paper>
       </Frame.Demo>
       <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
-        <HighlightedCode copyButtonHidden component={MarkdownElement} code={code} language="jsx" />
+        <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
       </Frame.Info>
     </Frame>
   );

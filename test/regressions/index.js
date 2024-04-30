@@ -27,6 +27,11 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
+  'docs-getting-started-templates-sign-in-side/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-in/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-up/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png', // Theme file
+  'docs-getting-started-templates-sign-up/getSignUpTheme.png', // Theme file
   'docs-getting-started-templates-checkout/getCheckoutTheme.png', // Theme file
   'docs-getting-started-templates-landing-page/getLPTheme.png', // Theme file
   'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
@@ -164,6 +169,13 @@ const unusedBlacklistPatterns = new Set(blacklist);
 
 function excludeDemoFixture(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
+    return true;
+  }
+
+  // Exclude files that are not images and are not PascalCase
+  // Tantamount to skipping JS/TS files that are not React components or "index.js" files
+  // PascalCase starts with a capital letter and has zero or more capital letters in the middle
+  if (!suite.endsWith('.png') && name !== 'index' && !/^[A-Z][A-Za-z0-9]*$/.test(name)) {
     return true;
   }
 

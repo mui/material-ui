@@ -26,7 +26,7 @@ const TableRoot = styled('table', {
 
     return [styles.root, ownerState.stickyHeader && styles.stickyHeader];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'table',
   width: '100%',
   borderCollapse: 'collapse',
@@ -38,9 +38,14 @@ const TableRoot = styled('table', {
     textAlign: 'left',
     captionSide: 'bottom',
   },
-  ...(ownerState.stickyHeader && {
-    borderCollapse: 'separate',
-  }),
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.stickyHeader,
+      style: {
+        borderCollapse: 'separate',
+      },
+    },
+  ],
 }));
 
 const defaultComponent = 'table';
@@ -122,8 +127,6 @@ Table.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Set the header sticky.
-   *
-   * ⚠️ It doesn't work with IE11.
    * @default false
    */
   stickyHeader: PropTypes.bool,

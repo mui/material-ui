@@ -18,7 +18,7 @@ import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
-import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
+import { CodeCopyProvider } from '@mui/docs/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
@@ -167,6 +167,7 @@ function AppWrapper(props) {
         name: 'Material UI',
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
+          { text: `v5`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
           {
             text: 'v4',
             href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
@@ -193,6 +194,7 @@ function AppWrapper(props) {
         name: 'MUI System',
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
+          { text: 'v5', href: `https://mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
             text: 'View all versions',
@@ -345,7 +347,7 @@ MyApp.propTypes = {
 MyApp.getInitialProps = async ({ ctx, Component }) => {
   let pageProps = {};
 
-  const req = require.context('docs/translations', false, /translations.*\.json$/);
+  const req = require.context('docs/translations', false, /\.\/translations.*\.json$/);
   const translations = mapTranslations(req);
 
   if (Component.getInitialProps) {

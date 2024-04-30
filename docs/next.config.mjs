@@ -30,10 +30,6 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
-  experimental: {
-    workerThreads: true,
-    cpus: 3,
-  },
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -189,7 +185,7 @@ export default withDocsInfra({
     // docs-infra
     LIB_VERSION: pkg.version,
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
+    SOURCE_GITHUB_BRANCH: 'next', // #default-branch-switch
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related
@@ -256,7 +252,7 @@ export default withDocsInfra({
 
     return map;
   },
-  // Used to signal we run yarn build
+  // Used to signal we run pnpm build
   ...(process.env.NODE_ENV === 'production'
     ? {
         output: 'export',

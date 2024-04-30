@@ -163,7 +163,7 @@ Runtime performance takes a hit.
 
 <!-- #default-branch-switch -->
 
-Visit the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of the metrics above.
+Visit the [benchmark folder](https://github.com/mui/material-ui/tree/next/benchmark/browser) for a reproduction of the metrics above.
 
 We believe that for most use cases it's fast enough, but there are simple workarounds when performance becomes critical.
 For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
@@ -290,6 +290,19 @@ For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`.
 The following demo shows how to define a set of breakpoints using the object syntax:
 
 {{"demo": "BreakpointsAsObject.js"}}
+
+:::info
+📣 Starting from v6, the object structure supports [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) shorthand with `@`.
+
+We recommend you to check the [browser support](https://caniuse.com/?search=container%20que) before using CSS container queries.
+:::
+
+The shorthand syntax is `@{breakpoint}/{container}`:
+
+- **breakpoint**: a number for `px` unit or a breakpoint key (e.g. `sm`, `md`, `lg`, `xl` for default breakpoints) or a valid CSS value (e.g. `40em`).
+- **container** (optional): the name of the [containment context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries#naming_containment_contexts).
+
+{{"demo": "ContainerQueries.js"}}
 
 #### Breakpoints as an array
 

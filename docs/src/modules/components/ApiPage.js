@@ -9,11 +9,11 @@ import Alert from '@mui/material/Alert';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 import PropertiesSection, {
   getPropsToC,
 } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
@@ -53,11 +53,13 @@ function Heading(props) {
 
   return (
     <Level id={hash}>
-      {getTranslatedHeader(t, hash)}
-      <a aria-labelledby={hash} className="anchor-link" href={`#${hash}`} tabIndex={-1}>
-        <svg>
-          <use xlinkHref="#anchor-link-icon" />
-        </svg>
+      <a aria-labelledby={hash} className="title-link-to-anchor" href={`#${hash}`} tabIndex={-1}>
+        {getTranslatedHeader(t, hash)}
+        <div className="anchor-icon">
+          <svg>
+            <use xlinkHref="#anchor-link-icon" />
+          </svg>
+        </div>
       </a>
     </Level>
   );
@@ -247,7 +249,9 @@ export default function ApiPage(props) {
 `)}
           language="jsx"
         />
-        <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        {pageContent.imports.length > 1 && (
+          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        )}
         {componentDescription ? (
           <React.Fragment>
             <br />

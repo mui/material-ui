@@ -145,6 +145,23 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
     });
+
+    it('should show supplied options to the "options" prop even when loading', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two']}
+          loading
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      expect(document.querySelector(`.${classes.paper}`).textContent).not.to.equal('Loading…');
+
+      const listbox = screen.getByRole('listbox');
+      const htmlOptions = listbox.querySelectorAll('li');
+      expect(htmlOptions[0].innerHTML).to.equal('one');
+    });
   });
 
   describe('prop: autoHighlight', () => {
@@ -1512,9 +1529,9 @@ describe('<Autocomplete />', () => {
       // <button> since it has "pointer-events: none"
       const popupIndicator = container.querySelector(`.${classes.endAdornment}`);
 
-      // TODO v6: refactor using userEvent.setup() which doesn't work until we drop
-      //  iOS Safari 12.x support, see: https://github.com/mui/material-ui/pull/38325
-      await userEvent.pointer([
+      const user = userEvent.setup();
+
+      await user.pointer([
         // this sequence does not work with fireEvent
         // 1. point the cursor somewhere in the textbox and hold down MouseLeft
         { keys: '[MouseLeft>]', target: textbox },

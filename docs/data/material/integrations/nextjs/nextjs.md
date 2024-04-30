@@ -11,18 +11,24 @@ This section walks through the Material UI integration with the Next.js [App Ro
 Start by ensuring that you already have `@mui/material` and `next` installed.
 Then, run one of the following commands to install the dependencies:
 
+:::info
+The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
+:::
+
+<!-- #default-branch-switch -->
+
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-nextjs @emotion/cache
+npm install @mui/material-nextjs@next @emotion/cache
 ```
 
 ```bash yarn
-yarn add @mui/material-nextjs @emotion/cache
+yarn add @mui/material-nextjs@next @emotion/cache
 ```
 
 ```bash pnpm
-pnpm add @mui/material-nextjs @emotion/cache
+pnpm add @mui/material-nextjs@next @emotion/cache
 ```
 
 </codeblock>
@@ -363,10 +369,9 @@ To learn more about theming, check out the [Theming guide](/material-ui/customiz
 
 If you want to use [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/), use the `extendTheme` and `CssVarsProvider` instead:
 
-````diff title="pages/_app.tsx"
+```diff title="pages/_app.tsx"
 -import { ThemeProvider, createTheme } from '@mui/material/styles';
 +import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 ```
 
 Learn more about [the advantages of CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/#advantages).
-````
