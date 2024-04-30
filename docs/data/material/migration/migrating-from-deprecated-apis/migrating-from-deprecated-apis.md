@@ -951,6 +951,17 @@ Here's how to migrate:
  },
 ```
 
+### components
+
+The PaginationItems's `components` was deprecated in favor of `slots`:
+
+```diff
+ <PaginationItems
+-  components={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
++  slots={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
+ />
+```
+
 ## Slider
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following sections:

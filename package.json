@@ -83,7 +83,7 @@
     "@slack/bolt": "^3.17.1",
     "@netlify/functions": "^2.6.0",
     "execa": "^8.0.1",
-    "google-auth-library": "^9.8.0"
+    "google-auth-library": "^9.9.0"
   },
   "devDependencies": {
     "@argos-ci/core": "^2.1.0",
@@ -109,7 +109,7 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "^14.2.2",
+    "@next/eslint-plugin-next": "^14.2.3",
     "@octokit/rest": "^20.1.0",
     "@pigment-css/react": "^0.0.9",
     "@playwright/test": "1.43.1",
@@ -150,7 +150,7 @@
     "eslint-plugin-material-ui": "workspace:^",
     "eslint-plugin-mocha": "^10.4.3",
     "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "globby": "^14.0.1",
@@ -175,12 +175,12 @@
     "process": "^0.11.10",
     "raw-loader": "4.0.2",
     "rimraf": "^5.0.5",
-    "serve": "^14.2.1",
+    "serve": "^14.2.3",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.3.10",
-    "tsx": "^4.7.2",
+    "tsx": "^4.7.3",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-bundle-analyzer": "^4.10.2",
@@ -208,7 +208,7 @@
     "@definitelytyped/utils": "^0.1.6",
     "@types/node": "^18.19.31",
     "@types/react": "18.2.55",
-    "@types/react-dom": "18.2.19",
+    "@types/react-dom": "18.3.0",
     "cross-fetch": "^4.0.0"
   },
   "nyc": {
