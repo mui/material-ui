@@ -71,7 +71,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ formHelperText?: object, htmlInput?: object, input?: object, inputLabel?: object, select?: object }"
+        "description": "{ formHelperText?: func<br>&#124;&nbsp;object, htmlInput?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, inputLabel?: func<br>&#124;&nbsp;object, select?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },

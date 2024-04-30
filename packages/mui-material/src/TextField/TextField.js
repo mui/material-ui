@@ -439,12 +439,12 @@ TextField.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes.shape({
-    formHelperText: PropTypes.object,
-    htmlInput: PropTypes.object,
-    input: PropTypes.object,
-    inputLabel: PropTypes.object,
-    select: PropTypes.object,
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    formHelperText: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    htmlInput: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    inputLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    select: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.

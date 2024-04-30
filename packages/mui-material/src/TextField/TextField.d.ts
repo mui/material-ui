@@ -12,7 +12,7 @@ import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
 import { Theme } from '../styles';
 import { TextFieldClasses } from './textFieldClasses';
-import { CreateSlotsAndSlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface TextFieldPropsColorOverrides {}
 export interface TextFieldPropsSizeOverrides {}
@@ -48,11 +48,11 @@ export interface TextFieldSlots {
 export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps<
   TextFieldSlots,
   {
-    input: Partial<InputPropsType>;
-    inputLabel: Partial<InputLabelProps>;
-    htmlInput: InputBaseProps['inputProps'];
-    formHelperText: Partial<FormHelperTextProps>;
-    select: Partial<SelectProps>;
+    input: SlotProps<React.ElementType<InputPropsType>, {}, TextFieldOwnerState>;
+    inputLabel: SlotProps<React.ElementType<InputLabelProps>, {}, TextFieldOwnerState>;
+    htmlInput: SlotProps<React.ElementType<InputBaseProps['inputProps']>, {}, TextFieldOwnerState>;
+    formHelperText: SlotProps<React.ElementType<FormHelperTextProps>, {}, TextFieldOwnerState>;
+    select: SlotProps<React.ElementType<SelectProps>, {}, TextFieldOwnerState>;
   }
 >;
 
@@ -287,6 +287,8 @@ export type TextFieldProps<Variant extends TextFieldVariants = TextFieldVariants
     : Variant extends 'standard'
       ? StandardTextFieldProps
       : OutlinedTextFieldProps;
+
+export type TextFieldOwnerState = BaseTextFieldProps;
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
