@@ -31,7 +31,16 @@ const SelectSelect = styled(StyledSelectSelect, {
       { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
-})({});
+})({
+  // Win specificity over the input base
+  [`&.${selectClasses.select}`]: {
+    height: 'auto', // Resets for multiple select with chips
+    minHeight: '1.4375em', // Required for select\text-field height consistency
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  },
+});
 
 const SelectIcon = styled(StyledSelectIcon, {
   name: 'MuiSelect',

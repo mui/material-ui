@@ -27,14 +27,21 @@ const ListItemIconRoot = styled('div', {
 
     return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   minWidth: 56,
   color: (theme.vars || theme).palette.action.active,
   flexShrink: 0,
   display: 'inline-flex',
-  ...(ownerState.alignItems === 'flex-start' && {
-    marginTop: 8,
-  }),
+  variants: [
+    {
+      props: {
+        alignItems: 'flex-start',
+      },
+      style: {
+        marginTop: 8,
+      },
+    },
+  ],
 }));
 
 /**
