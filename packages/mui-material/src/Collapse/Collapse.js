@@ -453,6 +453,8 @@ Collapse.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-Collapse.muiSupportAuto = true;
+if (Collapse) {
+  Collapse.muiSupportAuto = true;
+}
 
 export default Collapse;
