@@ -49,7 +49,7 @@ export default function TemplateDemo() {
             overline="Design Kits"
             title={
               <Typography variant="h2">
-                Upgrade your <GradientText>design workflow</GradientText>
+                Enhance your <GradientText>design workflow</GradientText>
               </Typography>
             }
             description="The Design Kits contain many of the Material UI components with states, variations, colors, typography, and icons."
