@@ -2,7 +2,7 @@ fn({
   MuiSpeedDial: {
     defaultProps: {
       TransitionComponent: CustomTransition,
-      TransitionComponentProps: CustomTransitionProps,
+      TransitionProps: CustomTransitionProps,
     },
   },
 });
@@ -11,7 +11,7 @@ fn({
   MuiSpeedDial: {
     defaultProps: {
       TransitionComponent: CustomTransition,
-      TransitionComponentProps: CustomTransitionProps,
+      TransitionProps: CustomTransitionProps,
       slots: {
         root: 'div',
       },
@@ -23,7 +23,7 @@ fn({
   MuiSpeedDial: {
     defaultProps: {
       TransitionComponent: ComponentTransition,
-      TransitionComponentProps: CustomTransitionProps,
+      TransitionProps: CustomTransitionProps,
       slots: {
         root: 'div',
         transition: SlotTransition,

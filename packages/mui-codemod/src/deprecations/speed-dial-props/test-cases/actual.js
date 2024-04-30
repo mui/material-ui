@@ -1,39 +1,29 @@
 import SpeedDial from '@mui/material/SpeedDial';
 import { SpeedDial as MySpeedDial } from '@mui/material';
 
-<SpeedDial slots={{
-  transition: CustomTransition
-}} slotProps={{
-  transition: CustomTransitionProps
-}} />;
-<MySpeedDial slots={{
-  transition: CustomTransition
-}} slotProps={{
-  transition: CustomTransitionProps
-}} />;
+<SpeedDial TransitionComponent={CustomTransition} TransitionProps={CustomTransitionProps} />;
+<MySpeedDial TransitionComponent={CustomTransition} TransitionProps={CustomTransitionProps} />;
 <SpeedDial
+  TransitionComponent={CustomTransition}
+  TransitionProps={CustomTransitionProps}
   slots={{
     root: 'div',
-    transition: CustomTransition
   }}
-  slotProps={{
-    transition: CustomTransitionProps
-  }} />;
+/>;
 <MySpeedDial
+  TransitionComponent={CustomTransition}
+  TransitionProps={CustomTransitionProps}
   slots={{
     ...outerSlots,
-    transition: CustomTransition
   }}
-  slotProps={{
-    transition: CustomTransitionProps
-  }} />;
+/>;
 <SpeedDial
+  TransitionComponent={ComponentTransition}
+  TransitionProps={CustomTransitionProps}
   slots={{
     root: 'div',
     transition: SlotTransition,
   }}
-  slotProps={{
-    transition: CustomTransitionProps
-  }} />;
+/>;
 // should skip non MUI components
 <NonMuiSpeedDial TransitionComponent={CustomTransition} TransitionProps={CustomTransitionProps} />;

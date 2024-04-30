@@ -30,10 +30,7 @@
     "open": { "type": { "name": "bool" } },
     "openIcon": { "type": { "name": "node" } },
     "slotProps": {
-      "type": {
-        "name": "shape",
-        "description": "{ root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
-      },
+      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
     },
     "slots": {

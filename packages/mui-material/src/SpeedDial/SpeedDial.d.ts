@@ -28,11 +28,6 @@ export interface SpeedDialTransitionSlotPropsOverrides {}
 export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
   SpeedDialSlots,
   {
-    root: SlotProps<
-      React.ElementType<HTMLDivElement>,
-      SpeedDialComponentsPropsOverrides,
-      SpeedDialOwnerState
-    >;
     transition: SlotProps<React.JSXElementConstructor<TransitionProps>, {}, SpeedDialOwnerState>;
   }
 >;
