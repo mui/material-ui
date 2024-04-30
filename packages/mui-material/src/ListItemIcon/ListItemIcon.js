@@ -3,10 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getListItemIconUtilityClass } from './listItemIconClasses';
 import ListContext from '../List/ListContext';
+
+const useThemeProps = createUseThemeProps('MuiListItemIcon');
 
 const useUtilityClasses = (ownerState) => {
   const { alignItems, classes } = ownerState;
