@@ -260,7 +260,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
                     gap: 1,
                   }}
                 >
-                  <Typography variant="body2" fontWeight="semiBold">
+                  <Typography variant="body2" fontWeight="semiBold" gutterBottom>
                     Available in:
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 22, height: 22 } }}>
