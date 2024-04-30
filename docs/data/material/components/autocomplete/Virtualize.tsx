@@ -141,8 +141,6 @@ export default function Virtualize() {
       id="virtualize-demo"
       sx={{ width: 300 }}
       disableListWrap
-      PopperComponent={StyledPopper}
-      ListboxComponent={ListboxComponent}
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
@@ -150,6 +148,10 @@ export default function Virtualize() {
         [props, option, state.index] as React.ReactNode
       }
       renderGroup={(params) => params as any}
+      slots={{
+        popper: StyledPopper,
+        listbox: ListboxComponent,
+      }}
     />
   );
 }
