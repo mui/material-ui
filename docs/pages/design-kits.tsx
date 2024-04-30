@@ -8,7 +8,7 @@ import DesignKitValues from 'docs/src/components/productDesignKit/DesignKitValue
 import DesignKitDemo from 'docs/src/components/productDesignKit/DesignKitDemo';
 import DesignKitFAQ from 'docs/src/components/productDesignKit/DesignKitFAQ';
 import SyncFeatures from 'docs/src/components/productDesignKit/SyncFeatures';
-import HeroEnd from 'docs/src/components/home/HeroEnd';
+import MaterialEnd from 'docs/src/components/productMaterial/MaterialEnd';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import References, { DESIGNKITS_CUSTOMERS } from 'docs/src/components/home/References';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
@@ -35,7 +35,7 @@ export default function DesignKits() {
         <Divider />
         <DesignKitFAQ />
         <Divider />
-        <HeroEnd />
+        <MaterialEnd noFaq />
       </main>
       <Divider />
       <AppFooter />
