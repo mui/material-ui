@@ -88,7 +88,7 @@ export default function TemplateDemo() {
                       '& img': {
                         position: 'absolute',
                         left: '50%',
-                        width: { xs: 240, sm: 300 },
+                        width: { xs: 220, sm: 300 },
                         '&:nth-of-type(1)': {
                           top: 120,
                           transform: 'translate(-70%)',
