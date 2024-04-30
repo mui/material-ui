@@ -313,75 +313,6 @@ export default function getCheckoutTheme(mode) {
                     boxShadow: `inset 0 2.5px 0 ${alpha(gray[400], 0.2)}`,
                     backgroundImage: 'none',
                   },
-                },
-              },
-              {
-                props: {
-                  color: 'primary',
-                  variant: 'text',
-                },
-                style: {
-                  color: brand[700],
-                  '&:hover': {
-                    backgroundColor: alpha(brand[300], 0.3),
-                  },
-                },
-              },
-              {
-                props: {
-                  color: 'info',
-                  variant: 'text',
-                },
-                style: {
-                  color: gray[700],
-                  '&:hover': {
-                    backgroundColor: alpha(gray[300], 0.3),
-                  },
-                },
-              },
-              {
-                props: {
-                  variant: 'outlined',
-                },
-                style: {
-                  ...theme.applyStyles('dark', {
-                    color: brand[200],
-                    backgroundColor: alpha(brand[600], 0.1),
-                    borderColor: alpha(brand[600], 0.6),
-                    boxShadow: `inset 0 2.5px ${alpha(brand[400], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
-                    '&:hover': {
-                      backgroundColor: alpha(brand[700], 0.2),
-                      borderColor: alpha(brand[700], 0.5),
-                      boxShadow: 'none',
-                    },
-                    '&:active': {
-                      backgroundColor: alpha(brand[800], 0.2),
-                      boxShadow: `inset 0 2.5px 0 ${alpha(brand[900], 0.4)}`,
-                      backgroundImage: 'none',
-                    },
-                  }),
-                },
-              },
-              {
-                props: {
-                  color: 'info',
-                  variant: 'text',
-                },
-                style: {
-                  ...theme.applyStyles('dark', {
-                    color: gray[200],
-                    '&:hover': {
-                      backgroundColor: alpha(gray[700], 0.3),
-                    },
-                  }),
-                },
-              },
-              {
-                props: {
-                  color: 'secondary',
-                  variant: 'outlined',
-                },
-                style: {
                   ...theme.applyStyles('dark', {
                     color: gray[300],
                     backgroundColor: alpha(gray[600], 0.1),
@@ -406,10 +337,55 @@ export default function getCheckoutTheme(mode) {
                   variant: 'text',
                 },
                 style: {
+                  color: brand[700],
+                  '&:hover': {
+                    backgroundColor: alpha(brand[300], 0.3),
+                  },
                   ...theme.applyStyles('dark', {
                     color: brand[200],
                     '&:hover': {
                       backgroundColor: alpha(brand[700], 0.3),
+                    },
+                  }),
+                },
+              },
+              {
+                props: {
+                  color: 'info',
+                  variant: 'text',
+                },
+                style: {
+                  color: gray[700],
+                  '&:hover': {
+                    backgroundColor: alpha(gray[300], 0.3),
+                  },
+                  ...theme.applyStyles('dark', {
+                    color: gray[200],
+                    '&:hover': {
+                      backgroundColor: alpha(gray[700], 0.3),
+                    },
+                  }),
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                },
+                style: {
+                  ...theme.applyStyles('dark', {
+                    color: brand[200],
+                    backgroundColor: alpha(brand[600], 0.1),
+                    borderColor: alpha(brand[600], 0.6),
+                    boxShadow: `inset 0 2.5px ${alpha(brand[400], 0.1)}, inset 0 -2px ${alpha(gray[900], 0.5)}`,
+                    '&:hover': {
+                      backgroundColor: alpha(brand[700], 0.2),
+                      borderColor: alpha(brand[700], 0.5),
+                      boxShadow: 'none',
+                    },
+                    '&:active': {
+                      backgroundColor: alpha(brand[800], 0.2),
+                      boxShadow: `inset 0 2.5px 0 ${alpha(brand[900], 0.4)}`,
+                      backgroundImage: 'none',
                     },
                   }),
                 },
@@ -439,13 +415,6 @@ export default function getCheckoutTheme(mode) {
                   border: `1px solid ${gray[200]}`,
                   boxShadow: 'none',
                   background: `linear-gradient(to bottom, hsl(0, 0%, 100%), ${gray[50]})`,
-                },
-              },
-              {
-                props: {
-                  variant: 'outlined',
-                },
-                style: {
                   ...theme.applyStyles('dark', {
                     border: `1px solid ${alpha(gray[700], 0.4)}`,
                     boxShadow: 'none',
@@ -688,13 +657,6 @@ export default function getCheckoutTheme(mode) {
                   '& + .MuiFormHelperText-root': {
                     color: red[500],
                   },
-                },
-              },
-              {
-                props: {
-                  color: 'error',
-                },
-                style: {
                   ...theme.applyStyles('dark', {
                     borderColor: red[700],
                     color: red[300],
