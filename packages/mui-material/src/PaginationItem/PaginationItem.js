@@ -334,88 +334,62 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const isRtl = useRtl();
   const classes = useUtilityClasses(ownerState);
 
-  const normalizedIcons = isRtl
-    ? {
-        previous: slots.next ?? components.next,
-        next: slots.previous ?? components.previous,
-        last: slots.first ?? components.first,
-        first: slots.last ?? components.last,
-      }
-    : {
-        previous: slots.previous ?? components.previous,
-        next: slots.next ?? components.next,
-        first: slots.first ?? components.first,
-        last: slots.last ?? components.last,
-      };
-
   const externalForwardedProps = {
-    slots: { ...normalizedIcons, ...slots },
-    slotProps: isRtl
-      ? {
-          previous: slotProps.next,
-          next: slotProps.previous,
-          first: slotProps.last,
-          last: slotProps.first,
-        }
-      : {
-          previous: slotProps.previous,
-          next: slotProps.next,
-          first: slotProps.first,
-          last: slotProps.last,
-        },
+    slots: {
+      previous: slots.previous ?? components.previous,
+      next: slots.next ?? components.next,
+      first: slots.first ?? components.first,
+      last: slots.last ?? components.last,
+    },
+    slotProps,
   };
 
-  const slotElementType = isRtl
-    ? {
-        previous: NavigateNextIcon,
-        next: NavigateBeforeIcon,
-        first: LastPageIcon,
-        last: FirstPageIcon,
-      }
-    : {
-        previous: NavigateBeforeIcon,
-        next: NavigateNextIcon,
-        first: FirstPageIcon,
-        last: LastPageIcon,
-      };
-
   const [PreviousSlot, previousSlotProps] = useSlot('previous', {
-    elementType: slotElementType.previous,
+    elementType: NavigateBeforeIcon,
     externalForwardedProps,
     ownerState,
   });
 
   const [NextSlot, nextSlotProps] = useSlot('next', {
-    elementType: slotElementType.next,
+    elementType: NavigateNextIcon,
     externalForwardedProps,
     ownerState,
   });
 
   const [FirstSlot, firstSlotProps] = useSlot('first', {
-    elementType: slotElementType.first,
+    elementType: FirstPageIcon,
     externalForwardedProps,
     ownerState,
   });
 
   const [LastSlot, lastSlotProps] = useSlot('last', {
-    elementType: slotElementType.last,
+    elementType: LastPageIcon,
     externalForwardedProps,
     ownerState,
   });
+
+  const rtlAwareType = isRtl
+    ? {
+        previous: 'next',
+        next: 'previous',
+        first: 'last',
+        last: 'first',
+      }[type]
+    : type;
 
   const IconSlot = {
     previous: PreviousSlot,
     next: NextSlot,
     first: FirstSlot,
     last: LastSlot,
-  }[type];
+  }[rtlAwareType];
 
   const iconSlotProps = {
     previous: previousSlotProps,
     next: nextSlotProps,
     first: firstSlotProps,
     last: lastSlotProps,
-  }[type];
+  }[rtlAwareType];
 
   return type === 'start-ellipsis' || type === 'end-ellipsis' ? (
     <PaginationItemEllipsis
