@@ -69,9 +69,9 @@ const Navigation = styled('nav')(({ theme }) => [
 const PRODUCT_IDS = [
   'product-core',
   'product-advanced',
+  'product-toolpad',
   'product-templates',
   'product-design',
-  'product-toolpad',
 ];
 
 type ProductSubMenuProps = {
@@ -281,7 +281,7 @@ export default function HeaderNavBar() {
                     </li>
                     <li>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[4]}
+                        id={PRODUCT_IDS[2]}
                         href={ROUTES.productToolpad}
                         icon={<IconImage name="product-toolpad" />}
                         name="Toolpad"
@@ -291,7 +291,7 @@ export default function HeaderNavBar() {
                     </li>
                     <li>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[2]}
+                        id={PRODUCT_IDS[3]}
                         href={ROUTES.productTemplates}
                         icon={<IconImage name="product-templates" />}
                         name="Templates"
@@ -300,7 +300,7 @@ export default function HeaderNavBar() {
                     </li>
                     <li>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[3]}
+                        id={PRODUCT_IDS[4]}
                         href={ROUTES.productDesignKits}
                         icon={<IconImage name="product-designkits" />}
                         name="Design Kits"
