@@ -11,7 +11,7 @@ import SortByAlphaRounded from '@mui/icons-material/SortByAlphaRounded';
 import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
 import FilterAltRounded from '@mui/icons-material/FilterAltRounded';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-// import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/docs/Link';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -21,7 +21,8 @@ import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
-// import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
+import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
+import { AppearingInfoBox } from 'docs/src/components/action/MoreInfoBox';
 import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
@@ -190,27 +191,12 @@ export default function XDataGrid() {
               pagination
             />
           </Paper>
-          <Frame.Info
-            sx={{
-              // borderBottomLeftRadius: 10,
-              // borderBottomRightRadius: 10,
-              // mt: -1,
-              // pb: 1,
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-              // '&& pre': {
-              //   bgcolor: 'transparent',
-              //   '&::-webkit-scrollbar': {
-              //     display: 'none',
-              //   },
-              // },
-              // overflow: 'hidden',
-            }}
-          >
-            <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyle />
-            {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: 1 }} />}
-            {/* <MoreInfoBox
+          <Frame.Info sx={{ p: 0 }}>
+            <ShowcaseCodeWrapper maxHeight={380}>
+              <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyle />
+              {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: 1 }} />}
+            </ShowcaseCodeWrapper>
+            <AppearingInfoBox
               appeared={demo === DEMOS[3] || demo === DEMOS[4]}
               stylingContent={
                 <React.Fragment>
@@ -225,8 +211,7 @@ export default function XDataGrid() {
                   </Typography>
                 </React.Fragment>
               }
-              sx={{ mx: -2, mb: -1 }}
-            /> */}
+            />
           </Frame.Info>
         </Grid>
       </Grid>
