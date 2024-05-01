@@ -51,16 +51,18 @@ export const FormLabelRoot = styled('label', {
   [`&.${formLabelClasses.error}`]: {
     color: (theme.vars || theme).palette.error.main,
   },
-  ...Object.entries(theme.palette)
-    .filter(([, value]) => value.main)
-    .map(([color]) => ({
-      props: { color },
-      style: {
-        [`&.${formLabelClasses.focused}`]: {
-          color: (theme.vars || theme).palette[color].main,
+  variants: [
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          [`&.${formLabelClasses.focused}`]: {
+            color: (theme.vars || theme).palette[color].main,
+          },
         },
-      },
-    })),
+      })),
+  ],
 }));
 
 const AsteriskComponent = styled('span', {
