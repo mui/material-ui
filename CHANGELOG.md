@@ -10,13 +10,13 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 ### `@mui/material@6.0.0-alpha.5`
 
-- [material-ui][FormControlLabel] deprecate `componentsProps` (#41767) @sai6855
-- [material-ui][PaginationItem] Deprecate components prop (#41777) @sai6855
-- [material-ui][SvgIcon] Convert to support CSS extraction (#41779) @aarongarciah
+- [FormControlLabel] Deprecate `componentsProps` (#41767) @sai6855
+- [PaginationItem] Deprecate components prop (#41777) @sai6855
+- [SvgIcon] Convert to support CSS extraction (#41779) @aarongarciah
 
 ### `@mui/base@5.0.0-beta.43`
 
-- [base-ui][TextareaAutosize] Fix resizing instability (#41638) @ZeeshanTamboli
+- [TextareaAutosize] Fix resizing instability (#41638) @ZeeshanTamboli
 
 ### Docs
 
