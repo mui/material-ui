@@ -29,6 +29,7 @@ const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(
       ref={ref}
       {...props}
       sx={{
+        p: 2,
         overflow: 'clip',
         position: 'relative',
         colorScheme: 'dark',

@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
+import ShowcaseContainer, { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
@@ -1689,13 +1689,13 @@ export default function DataTable() {
           sx={(theme) => ({
             overflow: 'hidden',
             width: '100%',
-            boxShadow: `0 4px 12px ${alpha(theme.palette.primaryDark[300], 0.3)}`,
+            boxShadow: `0 4px 8px ${alpha(theme.palette.primaryDark[300], 0.3)}`,
             bgcolor: '#fff',
             border: '1px solid',
             borderColor: 'grey.200',
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.800',
-              boxShadow: `0 4px 12px ${alpha(theme.palette.common.black, 0.3)}`,
+              boxShadow: `0 4px 8px ${alpha(theme.palette.common.black, 0.3)}`,
             }),
           })}
         >
@@ -1716,20 +1716,9 @@ export default function DataTable() {
       }
       code={
         <React.Fragment>
-          <Box
-            sx={{
-              maxHeight: { xs: 'auto', sm: 300 },
-              position: 'relative',
-              display: 'flex',
-              overflow: 'auto',
-              flexGrow: 1,
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-            }}
-          >
+          <ShowcaseCodeWrapper maxHeight={300}>
             <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyle />
-          </Box>
+          </ShowcaseCodeWrapper>
           <MoreInfoBox
             primaryBtnLabel="Start with the Data Grid"
             primaryBtnHref={ROUTES.productAdvanced}

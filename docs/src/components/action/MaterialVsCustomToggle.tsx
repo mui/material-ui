@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import Button, { buttonClasses } from '@mui/material/Button';
 
 interface MaterialVsCustomToggleProps {
   customized: boolean;
@@ -12,36 +12,50 @@ export default function MaterialVsCustomToggle({
   customized,
   setCustomized,
 }: MaterialVsCustomToggleProps) {
-  const handleToggle = () => {
-    setCustomized(!customized);
-  };
-
   return (
     <Box
       sx={(theme) => ({
         position: 'absolute',
         top: 0,
+        left: 0,
         right: 0,
         p: 1.5,
+        display: 'flex',
+        gap: 1,
         zIndex: 3,
-        background: `linear-gradient(to bottom, ${(theme.vars || theme).palette.common.black} 70%, transparent)`,
+        background: `linear-gradient(to bottom, ${
+          (theme.vars || theme).palette.common.black
+        } 70%, transparent)`,
+        [`& .${buttonClasses.root}`]: {
+          borderRadius: 99,
+          padding: '1px 8px',
+          fontSize: theme.typography.pxToRem(12),
+        },
+        '& .MuiButton-outlinedPrimary': {
+          backgroundColor: alpha(theme.palette.primary[900], 0.5),
+        },
       })}
     >
-      <FormControlLabel
-        control={<Switch checked={customized} onChange={handleToggle} />}
-        label={customized ? 'Custom theme on' : 'Custom theme off'}
-        labelPlacement="start"
-        sx={{
-          m: 0,
-          '.MuiFormControlLabel-label': {
-            mr: 1,
-            fontSize: '0.75rem',
-            color: customized ? 'primary.200' : 'text.secondary',
-            opacity: customized ? 1 : 0.5,
-            fontWeight: 'medium',
-          },
+      <Button
+        size="small"
+        variant="outlined"
+        color={customized ? 'secondary' : 'primary'}
+        onClick={() => {
+          setCustomized(false);
         }}
-      />
+      >
+        Material Design
+      </Button>
+      <Button
+        size="small"
+        variant="outlined"
+        color={customized ? 'primary' : 'secondary'}
+        onClick={() => {
+          setCustomized(true);
+        }}
+      >
+        Custom theme
+      </Button>
     </Box>
   );
 }

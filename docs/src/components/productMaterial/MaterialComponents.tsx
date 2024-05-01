@@ -28,6 +28,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
+import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
@@ -283,7 +284,7 @@ export default function MaterialComponents() {
                 )}
               </CssVarsProvider>
             </Frame.Demo>
-            <Frame.Info data-mui-color-scheme="dark">
+            <Frame.Info data-mui-color-scheme="dark" sx={{ p: 0 }}>
               {/* <MoreInfoBox
                 title="Own the styling!"
                 description="You can also start by using Googles Material Design."
@@ -293,21 +294,9 @@ export default function MaterialComponents() {
                 secondaryBtnHref={ROUTES.productCore}
               /> */}
               <MaterialVsCustomToggle customized={customized} setCustomized={setCustomized} />
-              <Box
-                sx={{
-                  pt: 5,
-                  maxHeight: { xs: 'auto', sm: demo === 'Table' ? 220 : 350 },
-                  position: 'relative',
-                  display: 'flex',
-                  overflow: 'auto',
-                  flexGrow: 1,
-                  '&::-webkit-scrollbar': {
-                    display: 'none',
-                  },
-                }}
-              >
+              <ShowcaseCodeWrapper maxHeight={demo === 'Table' ? 220 : 350} hasDesignToggle>
                 <HighlightedCode copyButtonHidden plainStyle code={CODES[demo]} language="jsx" />
-              </Box>
+              </ShowcaseCodeWrapper>
             </Frame.Info>
           </Frame>
         </Grid>

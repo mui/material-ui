@@ -4,6 +4,38 @@ import Fade from '@mui/material/Fade';
 import NoSsr from '@mui/material/NoSsr';
 import Frame from 'docs/src/components/action/Frame';
 
+export function ShowcaseCodeWrapper({
+  hasDesignToggle,
+  children,
+  maxHeight,
+  sx,
+}: {
+  hasDesignToggle?: boolean;
+  children: React.ReactNode;
+  maxHeight: number;
+  sx?: BoxProps['sx'];
+}) {
+  return (
+    <Box
+      sx={{
+        p: 2,
+        pt: hasDesignToggle ? 7 : 2,
+        maxHeight: { xs: 'auto', sm: maxHeight },
+        position: 'relative',
+        display: 'flex',
+        overflow: 'auto',
+        flexGrow: 1,
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
+        ...sx,
+      }}
+    >
+      {children}
+    </Box>
+  );
+}
+
 export default function ShowcaseContainer({
   preview,
   code,
@@ -43,7 +75,7 @@ export default function ShowcaseContainer({
         >
           {preview}
         </Frame.Demo>
-        <Frame.Info data-mui-color-scheme="dark">
+        <Frame.Info data-mui-color-scheme="dark" sx={{ p: 0 }}>
           <NoSsr>{code}</NoSsr>
         </Frame.Info>
       </Box>

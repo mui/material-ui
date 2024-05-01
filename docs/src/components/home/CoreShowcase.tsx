@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { ThemeProvider, createTheme, useTheme, alpha } from '@mui/material/styles';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
-import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
+import ShowcaseContainer, { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
 import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
@@ -49,8 +48,8 @@ export default function CoreShowcase() {
                   root: {
                     boxShadow:
                       mode === 'dark'
-                        ? '0px 4px 12px rgba(0, 0, 0, 0.4)'
-                        : '0px 4px 12px rgba(61, 71, 82, 0.1)',
+                        ? `0 4px 8px ${alpha(globalTheme.palette.common.black, 0.3)}`
+                        : `0 4px 8px ${alpha(globalTheme.palette.primaryDark[300], 0.3)}`,
                     backgroundColor:
                       mode === 'dark' ? globalTheme.palette.primaryDark[800] : '#fff',
                     border: '1px solid',
@@ -126,24 +125,12 @@ export default function CoreShowcase() {
       code={
         <React.Fragment>
           <MaterialVsCustomToggle customized={customized} setCustomized={setCustomized} />
-          <Box
-            sx={{
-              // pt: 5,
-              maxHeight: { xs: 'auto', sm: 350 },
-              position: 'relative',
-              display: 'flex',
-              overflow: 'auto',
-              flexGrow: 1,
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-            }}
-          >
+          <ShowcaseCodeWrapper maxHeight={320} hasDesignToggle>
             {startLine !== undefined && (
-              <FlashCode startLine={startLine} endLine={endLine} sx={{ m: 2 }} />
+              <FlashCode startLine={startLine} endLine={endLine} sx={{ m: 1, mt: 7 }} />
             )}
             <HighlightedCode copyButtonHidden code={componentCode} language="jsx" plainStyle />
-          </Box>
+          </ShowcaseCodeWrapper>
           <MoreInfoBox
             primaryBtnLabel="Start with Material UI"
             primaryBtnHref={ROUTES.productCore}
