@@ -863,7 +863,7 @@ npx @mui/codemod@next deprecations/circular-progress-classes <path>
 
 ### Composed CSS classes
 
-The CSS classes that composed the `circle` CSS class and `determinate` prop values were removed.
+The CSS classes that composed the `circle` CSS class and `variant` prop values were removed.
 
 Here's how to migrate:
 
