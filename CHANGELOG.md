@@ -30,7 +30,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 - [docs-infra] Clean up branding theme file and improve font-face readibility (#42023) @danilo-leal
 - [docs-infra] Simplify docs demo (#42016) @oliviertassinari
-- [website] Add content about the Sync plugin in the Material UI page (#40515) @danilo-leal
+- [website] Add content about the Sync plugin in the Material UI page (#40515) @danilo-leal
 - [website] Sync career roles (#42058) @oliviertassinari
 - [website] Add Nadja on the about page (#42021) @mnajdova
 - [website] Fix code block design by changing the `MarkdownElement` import (#42022) @danilo-leal
