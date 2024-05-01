@@ -79,11 +79,15 @@ const AutocompleteRoot = styled('div', {
       { [`& .${autocompleteClasses.tag}`]: styles.tag },
       { [`& .${autocompleteClasses.tag}`]: styles[`tagSize${capitalize(size)}`] },
       { [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot },
+      {
+        [`& .${autocompleteClasses.inputRoot}`]: {
+          [`&.${autocompleteClasses.multiple}`]: multiple && styles.multiple,
+        },
+      },
       { [`& .${autocompleteClasses.input}`]: styles.input },
       { [`& .${autocompleteClasses.input}`]: inputFocused && styles.inputFocused },
       styles.root,
       fullWidth && styles.fullWidth,
-      multiple && styles.multiple,
       hasPopupIcon && styles.hasPopupIcon,
       hasClearIcon && styles.hasClearIcon,
     ];

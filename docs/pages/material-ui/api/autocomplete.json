@@ -284,7 +284,7 @@
     {
       "key": "multiple",
       "className": "MuiAutocomplete-multiple",
-      "description": "Styles applied when the autocomplete supports multiple selections.",
+      "description": "Styles applied to the Input when the autocomplete supports multiple selections.",
       "isGlobal": false
     },
     {

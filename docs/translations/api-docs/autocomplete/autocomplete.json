@@ -254,7 +254,9 @@
       "nodeName": "the loading wrapper"
     },
     "multiple": {
-      "description": "Styles applied when the autocomplete supports multiple selections."
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the Input",
+      "conditions": "the autocomplete supports multiple selections"
     },
     "noOptions": {
       "description": "Styles applied to {{nodeName}}.",

@@ -1,3 +1,6 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { expect } from 'chai';
 import {
   act,
   createRenderer,
@@ -5,23 +8,20 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
 } from '@mui-internal/test-utils';
+import { spy } from 'sinon';
+import userEvent from '@testing-library/user-event';
+import Box from '@mui/system/Box';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Chip, { chipClasses } from '@mui/material/Chip';
 import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
 } from '@mui/material/Autocomplete';
-import Chip, { chipClasses } from '@mui/material/Chip';
+import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
-import { paperClasses } from '@mui/material/Paper';
-import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Box from '@mui/system/Box';
-import userEvent from '@testing-library/user-event';
-import { expect } from 'chai';
-import PropTypes from 'prop-types';
-import * as React from 'react';
-import { spy } from 'sinon';
 import describeConformance from '../../test/describeConformance';
 
 function checkHighlightIs(listbox, expected) {
@@ -513,6 +513,31 @@ describe('<Autocomplete />', () => {
         />,
       );
       expect(container.querySelector(`.${classes.inputRoot}`)).to.have.class(classes.multiple);
+    });
+
+    it('should allow to override the style for the multiple class', () => {
+      const theme = createTheme({
+        components: {
+          MuiAutocomplete: {
+            styleOverrides: {
+              root: {
+                [`& .${classes.inputRoot}.${classes.multiple}`]: {
+                  mixBlendMode: 'darken',
+                },
+              },
+            },
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} multiple />
+        </ThemeProvider>,
+      );
+      expect(document.querySelector(`.${classes.multiple}`)).to.toHaveComputedStyle({
+        mixBlendMode: 'darken',
+      });
     });
 
     it('should remove the last option', () => {

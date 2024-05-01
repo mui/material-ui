@@ -18,7 +18,7 @@ export interface AutocompleteClasses {
   tagSizeSmall: string;
   /** Styles applied to the tag elements, for example the chips if `size="medium"`. */
   tagSizeMedium: string;
-  /** Styles applied when the autocomplete supports multiple selections. */
+  /** Styles applied to the Input when the autocomplete supports multiple selections. */
   multiple: string;
   /** Styles applied when the popup icon is rendered. */
   hasPopupIcon: string;
