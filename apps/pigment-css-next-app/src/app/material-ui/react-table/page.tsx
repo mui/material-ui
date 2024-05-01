@@ -8,7 +8,6 @@ import CustomPaginationActionsTable from '../../../../../../docs/data/material/c
 import CustomizedTables from '../../../../../../docs/data/material/components/table/CustomizedTables';
 import DataTable from '../../../../../../docs/data/material/components/table/DataTable';
 import DenseTable from '../../../../../../docs/data/material/components/table/DenseTable';
-import EnhancedTable from '../../../../../../docs/data/material/components/table/EnhancedTable';
 import ReactVirtualizedTable from '../../../../../../docs/data/material/components/table/ReactVirtualizedTable';
 import SpanningTable from '../../../../../../docs/data/material/components/table/SpanningTable';
 import StickyHeadTable from '../../../../../../docs/data/material/components/table/StickyHeadTable';
@@ -62,12 +61,6 @@ export default function Table() {
         <h2> Dense Table</h2>
         <div className="demo-container">
           <DenseTable />
-        </div>
-      </section>
-      <section>
-        <h2> Enhanced Table</h2>
-        <div className="demo-container">
-          <EnhancedTable />
         </div>
       </section>
       <section>

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import AnchorTemporaryDrawer from '../../../../../docs/data/material/components/drawers/AnchorTemporaryDrawer.tsx';
 import ClippedDrawer from '../../../../../docs/data/material/components/drawers/ClippedDrawer.tsx';
 import MiniDrawer from '../../../../../docs/data/material/components/drawers/MiniDrawer.tsx';
 import PermanentDrawerLeft from '../../../../../docs/data/material/components/drawers/PermanentDrawerLeft.tsx';
@@ -9,19 +8,12 @@ import PersistentDrawerLeft from '../../../../../docs/data/material/components/d
 import PersistentDrawerRight from '../../../../../docs/data/material/components/drawers/PersistentDrawerRight.tsx';
 import ResponsiveDrawer from '../../../../../docs/data/material/components/drawers/ResponsiveDrawer.tsx';
 import SwipeableEdgeDrawer from '../../../../../docs/data/material/components/drawers/SwipeableEdgeDrawer.tsx';
-import SwipeableTemporaryDrawer from '../../../../../docs/data/material/components/drawers/SwipeableTemporaryDrawer.tsx';
 import TemporaryDrawer from '../../../../../docs/data/material/components/drawers/TemporaryDrawer.tsx';
 
 export default function Drawers() {
   return (
     <MaterialUILayout>
       <h1>Drawers</h1>
-      <section>
-        <h2> Anchor Temporary Drawer</h2>
-        <div className="demo-container">
-          <AnchorTemporaryDrawer />
-        </div>
-      </section>
       <section>
         <h2> Clipped Drawer</h2>
         <div className="demo-container">
@@ -68,12 +60,6 @@ export default function Drawers() {
         <h2> Swipeable Edge Drawer</h2>
         <div className="demo-container">
           <SwipeableEdgeDrawer />
-        </div>
-      </section>
-      <section>
-        <h2> Swipeable Temporary Drawer</h2>
-        <div className="demo-container">
-          <SwipeableTemporaryDrawer />
         </div>
       </section>
       <section>
