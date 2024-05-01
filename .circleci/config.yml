@@ -45,7 +45,7 @@ default-job: &default-job
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:18.19
+    - image: cimg/node:18.20
 
 default-context: &default-context
   context:
