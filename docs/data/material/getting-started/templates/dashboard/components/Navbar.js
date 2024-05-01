@@ -67,7 +67,12 @@ function Navbar({ mode, toggleColorMode }) {
               <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
                 <MenuIcon />
               </MenuButton>
-              <SideNav open={open} toggleDrawer={toggleDrawer} />
+              <SideNav
+                open={open}
+                toggleDrawer={toggleDrawer}
+                mode={mode}
+                toggleColorMode={toggleColorMode}
+              />
             </Box>
           </Stack>
         </StyledToolbar>

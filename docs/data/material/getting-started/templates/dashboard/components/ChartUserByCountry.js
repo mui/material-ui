@@ -145,7 +145,9 @@ export default function ChartUserByCountry() {
                 gap={2}
               >
                 <Typography variant="body2">{country.name}</Typography>
-                <Typography variant="body2">{country.value}%</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {country.value}%
+                </Typography>
               </Stack>
               <LinearProgress
                 variant="determinate"

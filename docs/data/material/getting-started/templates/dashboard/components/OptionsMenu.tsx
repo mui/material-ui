@@ -1,7 +1,9 @@
 import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MenuButton from './MenuButton';
 
@@ -29,6 +31,21 @@ export default function OptionsMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         {/* TODO: Include more realistic menu items */}
+        <MenuItem>
+          <Avatar
+            sx={(theme) => ({
+              bgcolor: theme.palette.primary.main,
+              width: '24px',
+              height: '24px',
+              fontSize: '0.75rem',
+              marginRight: 1,
+            })}
+          >
+            R
+          </Avatar>
+          <Typography fontWeight={600}>Riley Carter</Typography>
+        </MenuItem>
+        <Divider />
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <Divider />

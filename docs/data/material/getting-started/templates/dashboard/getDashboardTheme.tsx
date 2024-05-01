@@ -617,6 +617,51 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           }),
         },
       },
+      MuiList: {
+        styleOverrides: {
+          root: { display: 'flex', flexDirection: 'column', gap: 4 },
+        },
+      },
+      MuiListItem: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            padding: 0,
+            '&.Mui-selected': { borderRadius: theme.shape.borderRadius },
+          }),
+        },
+      },
+      MuiListItemIcon: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            minWidth: 0,
+            marginRight: '8px',
+            color: theme.palette.grey[500],
+            ...(theme.palette.mode === 'dark' && { color: theme.palette.grey[100] }),
+          }),
+        },
+      },
+      MuiListItemText: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            color: theme.palette.grey[700],
+
+            ...(theme.palette.mode === 'dark' && { color: theme.palette.grey[50] }),
+          }),
+          primary: { fontWeight: 600 },
+        },
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            padding: '4px 16px',
+            borderRadius: theme.shape.borderRadius,
+            background: alpha(theme.palette.grey[200], 0.2),
+            ...(theme.palette.mode === 'dark' && {
+              background: alpha(theme.palette.grey[700], 0.2),
+            }),
+          }),
+        },
+      },
       MuiMenu: {
         styleOverrides: {
           paper: ({ theme }) => ({

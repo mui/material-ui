@@ -140,8 +140,10 @@ const getDesignTokens = (mode) => ({
       ...(mode === 'dark' && { primary: 'hsl(0, 0%, 100%)', secondary: gray[400] }),
     },
     action: {
+      hover: alpha(gray[300], 0.2),
       selected: `${alpha(brand[200], 0.2)}`,
       ...(mode === 'dark' && {
+        hover: alpha(gray[500], 0.2),
         selected: alpha(brand[800], 0.2),
       }),
     },
@@ -189,7 +191,6 @@ const getDesignTokens = (mode) => ({
     body2: {
       fontSize: customTheme.typography.pxToRem(14),
       fontWeight: 400,
-      color: customTheme.palette.text.secondary,
     },
     caption: {
       fontSize: customTheme.typography.pxToRem(12),
@@ -589,6 +590,50 @@ export default function getDashboardTheme(mode) {
           }),
         },
       },
+      MuiList: {
+        styleOverrides: {
+          root: { display: 'flex', flexDirection: 'column', gap: 4 },
+        },
+      },
+      MuiListItem: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            padding: 0,
+            '&.Mui-selected': { borderRadius: theme.shape.borderRadius },
+          }),
+        },
+      },
+      MuiListItemIcon: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            minWidth: 0,
+            marginRight: '8px',
+            color: theme.palette.grey[500],
+            ...(theme.palette.mode === 'dark' && { color: theme.palette.grey[100] }),
+          }),
+        },
+      },
+      MuiListItemText: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            color: theme.palette.grey[700],
+            ...(theme.palette.mode === 'dark' && { color: theme.palette.grey[50] }),
+          }),
+          primary: { fontWeight: 600 },
+        },
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            padding: '4px 16px',
+            borderRadius: theme.shape.borderRadius,
+            background: alpha(theme.palette.grey[200], 0.2),
+            ...(theme.palette.mode === 'dark' && {
+              background: alpha(theme.palette.grey[700], 0.2),
+            }),
+          }),
+        },
+      },
       MuiMenu: {
         styleOverrides: {
           paper: ({ theme }) => ({
@@ -768,28 +813,32 @@ export default function getDashboardTheme(mode) {
             color: theme.palette.grey[600],
             padding: theme.spacing(0.5),
             borderRadius: theme.shape.borderRadius,
+            '&:hover': {
+              backgroundColor: theme.palette.action.hover,
+            },
             '&.Mui-selected': {
               backgroundColor: gray[700],
             },
             '&:focus': {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
               outlineOffset: '2px',
+              backgroundColor: 'transparent',
               '&.Mui-selected': { backgroundColor: gray[700] },
             },
             ...(theme.palette.mode === 'dark' && {
               color: theme.palette.grey[500],
-              '&:focus': {
-                outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                outlineOffset: '2px',
-                '&.Mui-selected': { backgroundColor: gray[300] },
-              },
               '&:hover': {
                 backgroundColor: theme.palette.action.hover,
-                '&.Mui-selected': { backgroundColor: gray[100] },
               },
               '&.Mui-selected': {
                 color: theme.palette.common.black,
                 backgroundColor: gray[300],
+              },
+              '&:focus': {
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
+                backgroundColor: 'transparent',
+                '&.Mui-selected': { backgroundColor: gray[300] },
               },
             }),
           }),
@@ -803,28 +852,32 @@ export default function getDashboardTheme(mode) {
             padding: theme.spacing(0.5),
             borderRadius: theme.shape.borderRadius,
             height: 'fit-content',
+            '&:hover': {
+              backgroundColor: theme.palette.action.hover,
+            },
             '&.Mui-selected': {
               backgroundColor: gray[700],
             },
             '&:focus': {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
               outlineOffset: '2px',
+              backgroundColor: 'transparent',
               '&.Mui-selected': { backgroundColor: gray[700] },
             },
             ...(theme.palette.mode === 'dark' && {
               color: theme.palette.grey[500],
-              '&:focus': {
-                outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                outlineOffset: '2px',
-                '&.Mui-selected': { backgroundColor: gray[300] },
-              },
               '&:hover': {
                 backgroundColor: theme.palette.action.hover,
-                '&.Mui-selected': { backgroundColor: gray[100] },
               },
               '&.Mui-selected': {
                 color: theme.palette.common.black,
                 backgroundColor: gray[300],
+              },
+              '&:focus': {
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
+                backgroundColor: 'transparent',
+                '&.Mui-selected': { backgroundColor: gray[300] },
               },
             }),
           }),
@@ -837,28 +890,32 @@ export default function getDashboardTheme(mode) {
             color: theme.palette.grey[600],
             padding: theme.spacing(0.5),
             borderRadius: theme.shape.borderRadius,
+            '&:hover': {
+              backgroundColor: theme.palette.action.hover,
+            },
             '&.Mui-selected': {
               backgroundColor: gray[700],
             },
             '&:focus': {
               outline: `3px solid ${alpha(brand[500], 0.5)}`,
               outlineOffset: '2px',
+              backgroundColor: 'transparent',
               '&.Mui-selected': { backgroundColor: gray[700] },
             },
             ...(theme.palette.mode === 'dark' && {
               color: theme.palette.grey[500],
-              '&:focus': {
-                outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                outlineOffset: '2px',
-                '&.Mui-selected': { backgroundColor: gray[300] },
-              },
               '&:hover': {
                 backgroundColor: theme.palette.action.hover,
-                '&.Mui-selected': { backgroundColor: gray[100] },
               },
               '&.Mui-selected': {
                 color: theme.palette.common.black,
                 backgroundColor: gray[300],
+              },
+              '&:focus': {
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
+                backgroundColor: 'transparent',
+                '&.Mui-selected': { backgroundColor: gray[300] },
               },
             }),
           }),

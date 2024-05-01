@@ -40,7 +40,10 @@ export default function HighlightedCard() {
     >
       <CardContent>
         <InsightsIcon color="primary" />
-        <Typography gutterBottom>
+        <Typography variant="subtitle2" gutterBottom>
+          Explore your data
+        </Typography>
+        <Typography>
           Uncover performance and visitor insights with our data wizardry!
         </Typography>
       </CardContent>
