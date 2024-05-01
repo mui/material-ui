@@ -1,5 +1,43 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.5
+
+<!-- generated comparing v6.0.0-alpha.4..next -->
+
+_May 1, 2024_
+
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+
+### `@mui/material@6.0.0-alpha.5`
+
+- [material-ui][FormControlLabel] deprecate `componentsProps` (#41767) @sai6855
+- [material-ui][PaginationItem] Deprecate components prop (#41777) @sai6855
+- [material-ui][SvgIcon] Convert to support CSS extraction (#41779) @aarongarciah
+
+### `@mui/base@5.0.0-beta.43`
+
+- [base-ui][TextareaAutosize] Fix resizing instability (#41638) @ZeeshanTamboli
+
+### Docs
+
+- Fix small SEO issues @oliviertassinari
+- [material-ui] Fix minor spelling error in the "About the lab" page (#42073) @ryanhartwig
+- [material-ui] Update Figma plugin name (#41967) @danilo-leal
+- [material-ui][templates] Fix input props attributes in Landing Page template (#42013) @5-tom
+- [system] Update typo on the sx prop page (#42035) @bricker
+
+### Core
+
+- [docs-infra] Clean up branding theme file and improve font-face readibility (#42023) @danilo-leal
+- [docs-infra] Simplify docs demo (#42016) @oliviertassinari
+- [website] Add content about the Sync plugin in the Material UI page (#40515) @danilo-leal
+- [website] Sync career roles (#42058) @oliviertassinari
+- [website] Add Nadja on the about page (#42021) @mnajdova
+- [website] Fix code block design by changing the `MarkdownElement` import (#42022) @danilo-leal
+- [wesbite] Remove duplicate MarkdownElement component (#42028) @danilo-leal
+
+All contributors of this release in alphabetical order: @5-tom, @aarongarciah, @bricker, @danilo-leal, @mnajdova, @oliviertassinari, @ryanhartwig, @sai6855, @ZeeshanTamboli
+
 ## v6.0.0-alpha.4
 
 <!-- generated comparing v6.0.0-alpha.3..next -->
