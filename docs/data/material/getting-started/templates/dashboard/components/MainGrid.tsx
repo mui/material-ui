@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import ChartUserByCountry from './ChartUserByCountry';
 import StatCard, { StatCardProps } from './StatCard';
 import HighlightedCard from './HighlightedCard';
-import PageViewsChart from './PageViewsChart';
+import PageViewsBarChart from './PageViewsBarChart';
 import CustomizedTreeView from './CustomizedTreeView';
 
 const data: StatCardProps[] = [
@@ -61,7 +61,7 @@ export default function MainGrid() {
         columns={12}
       >
         <Grid xs={12} md={8} lg={9}>
-          <PageViewsChart />
+          <PageViewsBarChart />
         </Grid>
         <Grid xs={12} md={4} lg={3}>
           <Stack spacing={2} direction={{ xs: 'column', sm: 'row', md: 'column' }}>
