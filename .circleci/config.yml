@@ -215,6 +215,9 @@ jobs:
             #!/bin/bash
             VALE_STR_CLI_VERSION=3.3.0
 
+            # set smart sudo
+            if [[ $EUID -eq 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+
             mkdir /tmp/vale-extract
             cd /tmp/vale-extract
             GZIPPED_OUTPUT="vale.tar.gz"
