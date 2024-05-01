@@ -195,7 +195,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ chip?: { avatar?: element, children?: any, classes?: any, className?: any, clickable?: any, color?: any, component?: elementType, deleteIcon?: element, disabled?: any, icon?: element, label?: any, onDelete?: any, size?: any, skipFocusWhenDisabled?: any, style?: any, sx?: any, tabIndex?: any, variant?: any }, clearIndicator?: object, listbox?: object, paper?: object, popper?: object, popupIndicator?: object }"
+        "description": "{ chip?: object, clearIndicator?: object, listbox?: object, paper?: object, popper?: object, popupIndicator?: object }"
       },
       "default": "{}"
     },

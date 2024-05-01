@@ -1181,27 +1181,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes.shape({
-    chip: PropTypes.shape({
-      avatar: PropTypes.element,
-      children: PropTypes.any,
-      classes: PropTypes.any,
-      className: PropTypes.any,
-      clickable: PropTypes.any,
-      color: PropTypes.any,
-      component: PropTypes.elementType,
-      deleteIcon: PropTypes.element,
-      disabled: PropTypes.any,
-      icon: PropTypes.element,
-      label: PropTypes.any,
-      onDelete: PropTypes.any,
-      size: PropTypes.any,
-      skipFocusWhenDisabled: PropTypes.any,
-      style: PropTypes.any,
-      sx: PropTypes.any,
-      tabIndex: PropTypes.any,
-      variant: PropTypes.any,
-    }),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    chip: PropTypes.object,
     clearIndicator: PropTypes.object,
     listbox: PropTypes.object,
     paper: PropTypes.object,
