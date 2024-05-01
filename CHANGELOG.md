@@ -12,7 +12,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 ### `@mui/material@5.15.16`
 
 - [material-ui][Dialog] Prevent onClick on the root element from being overwritten (@ryanburr) (#41914) @github-actions[bot]
-- [material-ui] Fix import statement in migration guide (@sai6855) (#41864) @github-actions[bot]
 - [material-ui][Select] Fix `muiName` property TypeScript error (@EyaOuenniche) (#41786) @github-actions[bot]
 - —>[material-ui][l10n] Fix typo in is-IS locale (@magnimarels) (#41815) @github-actions[bot]
 
@@ -26,7 +25,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - Fix 301 redirection @oliviertassinari
 - Fix format git diff regression (#41882) @oliviertassinari
 - Fix 301 links @oliviertassinari
-- [docs-infra] Fix analytics about inline ads (#41474) @alexfauquette
+- [material-ui] Fix import statement in migration guide (@sai6855) (#41864) @github-actions[bot]
 - [material-ui] Update Figma plugin name (@danilo-leal) (#42057) @github-actions[bot]
 - [material-ui] Fix minor spelling error in the "About the lab" page (@ryanhartwig) (#42075) @github-actions[bot]
 - [material-ui] Add missing backticks to HTML tag in the installation page (@Miguelrom) (#42009) @github-actions[bot]
@@ -43,6 +42,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs-infra] Improve Twitter OG:image (#41860) @oliviertassinari
 - [docs-infra] Use edge function for card generation (#41188) @alexfauquette
 - [docs-infra] Fix drawer performances (#41807) (#41820) @alexfauquette
+- [docs-infra] Fix analytics about inline ads (#41474) @alexfauquette
 - [website] Sync career roles (@oliviertassinari) (#42059) @github-actions[bot]
 - [website] Add content about the Sync plugin in the Material UI page (@danilo-leal) (#42074) @github-actions[bot]
 - [website] Add Nadja on the about page (#42054) @mnajdova
