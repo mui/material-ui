@@ -3,7 +3,6 @@ import { styled } from '@mui/system';
 import clsx from 'clsx';
 import { Switch as SwitchUnstyled } from '@mui/base/Switch';
 import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
@@ -15,7 +14,6 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import Frame from 'docs/src/components/action/Frame';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const code = `
 import clsx from 'clsx';
@@ -302,20 +300,12 @@ export default function BaseUICustomization() {
               ref={infoRef}
               sx={{
                 maxHeight: 450,
+                position: 'relative',
                 overflow: 'auto',
               }}
             >
-              <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
-                <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <HighlightedCode
-                    copyButtonHidden
-                    component={MarkdownElement}
-                    code={code}
-                    language="jsx"
-                  />
-                </Box>
-                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
-              </Box>
+              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />
             </Frame.Info>
           </Frame>
         </Grid>

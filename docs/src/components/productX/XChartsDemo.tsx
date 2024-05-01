@@ -4,7 +4,6 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { blueberryTwilightPaletteLight } from '@mui/x-charts';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Frame from 'docs/src/components/action/Frame';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const code = `
 <BarChart
@@ -54,7 +53,7 @@ export default function XChartsDemo() {
         </Paper>
       </Frame.Demo>
       <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
-        <HighlightedCode copyButtonHidden component={MarkdownElement} code={code} language="jsx" />
+        <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
       </Frame.Info>
     </Frame>
   );
