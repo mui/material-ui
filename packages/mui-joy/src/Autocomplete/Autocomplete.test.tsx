@@ -483,7 +483,7 @@ describe('Joy <Autocomplete />', () => {
               .map((option, index) => {
                 const { key, ...tagProps } = getTagProps({ index });
                 return (
-                  <Chip key={index} endDecorator={<ChipDelete {...tagProps} />}>
+                  <Chip key={key} endDecorator={<ChipDelete {...tagProps} />}>
                     {option.title}
                   </Chip>
                 );
