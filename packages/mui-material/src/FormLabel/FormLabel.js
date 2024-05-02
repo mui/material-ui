@@ -45,12 +45,6 @@ export const FormLabelRoot = styled('label', {
   lineHeight: '1.4375em',
   padding: 0,
   position: 'relative',
-  [`&.${formLabelClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.text.disabled,
-  },
-  [`&.${formLabelClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
   variants: [
     ...Object.entries(theme.palette)
       .filter(([, value]) => value.main)
@@ -62,6 +56,17 @@ export const FormLabelRoot = styled('label', {
           },
         },
       })),
+    {
+      props: {},
+      style: {
+        [`&.${formLabelClasses.disabled}`]: {
+          color: (theme.vars || theme).palette.text.disabled,
+        },
+        [`&.${formLabelClasses.error}`]: {
+          color: (theme.vars || theme).palette.error.main,
+        },
+      },
+    },
   ],
 }));
 
