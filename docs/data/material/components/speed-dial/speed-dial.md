@@ -13,7 +13,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 If more than six actions are needed, something other than a FAB should be used to present them.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic speed dial
 

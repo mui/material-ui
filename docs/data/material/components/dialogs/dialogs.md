@@ -15,7 +15,7 @@ A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in 
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
