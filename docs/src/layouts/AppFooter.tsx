@@ -85,12 +85,6 @@ export default function AppFooter(props: AppFooterProps) {
             <Link prefetch={false} href={ROUTES.productToolpad}>
               Toolpad
             </Link>
-            <Link prefetch={false} href={ROUTES.productTemplates}>
-              Templates
-            </Link>
-            <Link prefetch={false} href={ROUTES.productDesignKits}>
-              Design kits
-            </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
@@ -100,7 +94,7 @@ export default function AppFooter(props: AppFooterProps) {
               Material Icons
             </Link>
             <Link prefetch={false} href={ROUTES.freeTemplates}>
-              Free templates
+              Templates
             </Link>
             <Link prefetch={false} href={ROUTES.components}>
               Components
@@ -108,8 +102,8 @@ export default function AppFooter(props: AppFooterProps) {
             <Link prefetch={false} href={ROUTES.customization}>
               Customization
             </Link>
-            <Link prefetch={false} href={ROUTES.theming}>
-              Theming
+            <Link prefetch={false} href={ROUTES.productDesignKits}>
+              Design Kits
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>

@@ -17,7 +17,7 @@ Progress indicators inform users about the status of ongoing processes, such as 
 
 The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Circular
 
