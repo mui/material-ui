@@ -230,3 +230,44 @@ const StyledAppContainer = styled(AppContainer, {
     }]
   };
 });
+
+const DialogContentRoot = styled('div', {
+  name: 'MuiDialogContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.root, ownerState.dividers && styles.dividers];
+  },
+})(({
+  theme
+}) => ({
+  flex: '1 1 auto',
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
+  overflowY: 'auto',
+  padding: '20px 24px',
+  variants: [{
+    props: (
+      {
+        ownerState
+      }
+    ) => ownerState.dividers,
+    style: {
+          padding: '16px 24px',
+          borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+        }
+  }, {
+    props: (
+      {
+        ownerState
+      }
+    ) => !ownerState.dividers,
+    style: {
+          [`.${dialogTitleClasses.root} + &`]: {
+            paddingTop: 0,
+          },
+        }
+  }]
+}));
