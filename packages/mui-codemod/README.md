@@ -3049,3 +3049,107 @@ The diff should look like this:
 ```bash
 npx @mui/codemod@next v0.15.0/import-path <path>
 ```
+
+#### `input-base-props`
+
+```diff
+ <InputBase
+-  components={{ Input: CustomInput, Root: CustomRoot }}
++  slots={{ input: CustomInput, root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiInputBase: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
++    slots: { input: CustomInput, root: CustomRoot },
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/input-base-props <path>
+```
+
+#### `input-props`
+
+```diff
+ <Input
+-  components={{ Input: CustomInput, Root: CustomRoot }}
++  slots={{ input: CustomInput, root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiInput: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
++    slots: { input: CustomInput, root: CustomRoot },
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/input-props <path>
+```
+
+#### `filled-input-props`
+
+```diff
+ <FilledInput
+-  components={{ Input: CustomInput, Root: CustomRoot }}
++  slots={{ input: CustomInput, root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiFilledInput: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
++    slots: { input: CustomInput, root: CustomRoot },
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/filled-input-props <path>
+```
+
+#### `outlined-input-props`
+
+```diff
+ <OutlinedInput
+-  components={{ Input: CustomInput, Root: CustomRoot }}
++  slots={{ input: CustomInput, root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiOutlinedInput: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
++    slots: { input: CustomInput, root: CustomRoot },
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/outlined-input-props <path>
+```
