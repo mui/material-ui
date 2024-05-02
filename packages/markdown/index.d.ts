@@ -18,6 +18,15 @@ export interface MarkdownHeaders {
   githubLabel?: string;
   waiAria?: string;
   materialDesign?: string;
+  components: string[];
+  hooks?: string[];
+  slug?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  tags?: string[];
+  authors?: string[];
+  date?: string;
 }
 
 export function getHeaders(markdown: string): MarkdownHeaders;
