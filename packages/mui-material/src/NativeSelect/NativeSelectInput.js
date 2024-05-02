@@ -48,12 +48,18 @@ export const StyledSelectSelect = styled('select')(({ theme }) => ({
   '&:not([multiple]) option, &:not([multiple]) optgroup': {
     backgroundColor: (theme.vars || theme).palette.background.paper,
   },
-  // Bump specificity to allow extending custom inputs
-  '&&&': {
-    paddingRight: 24,
-    minWidth: 16, // So it doesn't collapse.
-  },
   variants: [
+    {
+      props: ({ ownerState }) =>
+        ownerState.variant !== 'filled' && ownerState.variant !== 'outlined',
+      style: {
+        // Bump specificity to allow extending custom inputs
+        '&&&': {
+          paddingRight: 24,
+          minWidth: 16, // So it doesn't collapse.
+        },
+      },
+    },
     {
       props: {
         variant: 'filled',
