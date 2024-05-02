@@ -538,7 +538,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
       startAdornment = value.map((option, index) => {
-        const { key, ...customTagProps }= getCustomizedTagProps({index})
+        const { key, ...customTagProps } = getCustomizedTagProps({ index });
         return (
           <Chip
             key={key}
