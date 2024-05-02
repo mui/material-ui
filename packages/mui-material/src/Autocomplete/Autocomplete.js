@@ -1182,12 +1182,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    chip: PropTypes.object,
-    clearIndicator: PropTypes.object,
-    listbox: PropTypes.object,
-    paper: PropTypes.object,
-    popper: PropTypes.object,
-    popupIndicator: PropTypes.object,
+    chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.

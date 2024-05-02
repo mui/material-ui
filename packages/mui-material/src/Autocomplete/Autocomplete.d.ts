@@ -17,7 +17,7 @@ import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
 import { PaperProps } from '@mui/material/Paper';
 import { PopperProps } from '@mui/material/Popper';
 import { AutocompleteClasses } from './autocompleteClasses';
-import { CreateSlotsAndSlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export {
   AutocompleteChangeDetails,
@@ -104,22 +104,53 @@ export interface AutocompleteSlots {
 }
 
 export type AutocompleteSlotsAndSlotProps<
+  Value,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > = CreateSlotsAndSlotProps<
   AutocompleteSlots,
   {
-    chip: Partial<ChipProps<ChipComponent>>;
-    clearIndicator: Partial<IconButtonProps>;
+    chip: SlotProps<
+      React.ElementType<Partial<ChipProps<ChipComponent>>>,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+    clearIndicator: SlotProps<
+      React.ElementType<Partial<IconButtonProps>>,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
     /**
      * Props applied to the Listbox element.
      */
-    listbox: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
-      sx?: SxProps<Theme>;
-      ref?: React.Ref<Element>;
-    };
-    paper: Partial<PaperProps>;
-    popper: Partial<PopperProps>;
-    popupIndicator: Partial<IconButtonProps>;
+    listbox: SlotProps<
+      React.ElementType<
+        ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
+          sx?: SxProps<Theme>;
+          ref?: React.Ref<Element>;
+        }
+      >,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+
+    paper: SlotProps<
+      React.ElementType<Partial<PaperProps>>,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+    popper: SlotProps<
+      React.ElementType<Partial<PopperProps>>,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+    popupIndicator: SlotProps<
+      React.ElementType<Partial<IconButtonProps>>,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
   }
 >;
 
@@ -131,7 +162,7 @@ export interface AutocompleteProps<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'>,
-    AutocompleteSlotsAndSlotProps<ChipComponent> {
+    AutocompleteSlotsAndSlotProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   /**
    * Props applied to the [`Chip`](/material-ui/api/chip/) element.
    * @deprecated Use `slotProps.chip` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
