@@ -31,7 +31,13 @@ const planInfo = {
     iconName: 'pricing/x-plan-pro',
     title: 'Pro',
     description:
-      'Best for professionals, with the flexibility to select the essential components for your application.',
+      'For professionals with specifics requirements',
+  },
+  proplus: {
+    iconName: 'pricing/x-plan-proplus',
+    title: 'Pro+',
+    description:
+      'For professionals looking for a broader portfolio of supported use cases.',
   },
   premium: {
     iconName: 'pricing/x-plan-premium',
@@ -51,7 +57,7 @@ export function PlanName({
   plan,
   disableDescription = false,
 }: {
-  plan: 'community' | 'pro' | 'premium';
+  plan: 'community' | 'pro' | 'proplus' | 'premium';
   disableDescription?: boolean;
 }) {
   const { title, iconName, description } = planInfo[plan];
@@ -206,7 +212,7 @@ export function ComponentSelector(props: ComponentSelectorProps) {
 }
 
 interface PlanPriceProps {
-  plan: 'community' | 'pro' | 'premium';
+  plan: 'community' | 'pro' | 'proplus' | 'premium';
   includedComponents?: Components[];
 }
 
@@ -290,6 +296,48 @@ export function PlanPrice(props: PlanPriceProps) {
       </React.Fragment>
     );
   }
+
+  if (plan === 'proplus') {
+    const numberOfComponentsCovered = 4
+
+    const monthlyValue =
+      numberOfComponentsCovered * (annual ? 9 : 8 * 3) - 2 * (numberOfComponentsCovered - 1);
+    const annualValue = monthlyValue * 12;
+
+    const mainDisplayValue = monthlyDisplay ? monthlyValue : annualValue;
+    const priceExplanation = getPriceExplanation(monthlyDisplay ? annualValue : monthlyValue);
+
+    return (
+      <React.Fragment>
+        <LicensingModelSwitch />
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 2 }}>
+          <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
+            {formatCurrency(mainDisplayValue)}
+          </Typography>
+          <Box sx={{ width: 5 }} />
+          <Typography variant="body2" color="text.secondary" sx={{ mt: '3px' }}>
+            {priceUnit}
+          </Typography>
+        </Box>
+        <Box sx={{ minHeight: planPriceMinHeight }}>
+          {(annual || monthlyDisplay) && (
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              textAlign="center"
+              sx={{ fontWeight: '500' }}
+            >
+              {priceExplanation}
+            </Typography>
+          )}
+          {/*<Typography variant="body2" color="text.secondary" sx={{ mb: 3 }} textAlign="center">
+            {'No additional fee beyond 10 devs.'}
+          </Typography>*/}
+        </Box>
+      </React.Fragment>
+    );
+  }
+
   // else Premium
 
   const premiumOriginalValue = 49;
@@ -1350,11 +1398,11 @@ const StyledCollapse = styled(Collapse, {
 
 export default function PricingTable({
   columnHeaderHidden,
-  plans = ['community', 'pro', 'premium'],
+  plans = ['community', 'pro', 'proplus', 'premium'],
   ...props
 }: BoxProps & {
   columnHeaderHidden?: boolean;
-  plans?: Array<'community' | 'pro' | 'premium'>;
+  plans?: Array<'community' | 'pro' | 'proplus' | 'premium'>;
 }) {
   const router = useRouter();
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
@@ -1427,12 +1475,48 @@ export default function PricingTable({
               Get started
             </Button>
           </Box>
-          <ColumnHeadHighlight>
+          <ColumnHeadHighlight sx={[
+            () => ({
+              p: 2,
+              pt: 1.5,
+              display: 'flex',
+              flexDirection: 'column',
+              position: 'relative',
+              borderRadius: '10px 10px 0 0',
+              borderWidth: '1px 1px 0 1px',
+              borderStyle: 'solid',
+              borderColor: '#f6f6f6',
+              background: 'rgba(255,255,255,0) 100%',
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                borderColor: 'primaryDark.700',
+                background: '#0000',
+              }),
+            ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+          ]}>
             <div>
               <PlanName plan="pro" />
               <PlanPrice plan="pro" includedComponents={includedComponentsOnPro} />
               <ComponentSelector
                 includedComponents={includedComponentsOnPro}
+                setIncludedComponents={setIncludedComponentsOnPro}
+              />
+            </div>
+            <PricingTableBuyPro />
+          </ColumnHeadHighlight>
+          <ColumnHeadHighlight>
+            <div>
+              <PlanName plan="proplus" />
+              <PlanPrice plan="proplus" includedComponents={includedComponentsOnPro} />
+              <ComponentSelector
+                includedComponents={[
+                  Components.DataGrid,
+                  Components.Charts,
+                  Components.DatePickers,
+                  Components.TreeView,
+                ]}
+                premium={true}
                 setIncludedComponents={setIncludedComponentsOnPro}
               />
             </div>
