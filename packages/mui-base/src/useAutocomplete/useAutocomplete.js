@@ -104,6 +104,7 @@ export function useAutocomplete(props) {
     readOnly = false,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
+    suppressTextareaWarning = false,
   } = props;
 
   const id = useId(idProp);
@@ -579,7 +580,7 @@ export function useAutocomplete(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
-        if (inputRef.current && inputRef.current.nodeName === 'TEXTAREA') {
+        if (inputRef.current && inputRef.current.nodeName === 'TEXTAREA' && !suppressTextareaWarning) {
           console.warn(
             [
               `A textarea element was provided to ${componentName} where input was expected.`,
