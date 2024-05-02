@@ -285,9 +285,6 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     inputComponent,
     multiline,
     type,
-    ...(props.color && {
-      color: props.color,
-    }),
   };
 
   const classes = useUtilityClasses(props);
