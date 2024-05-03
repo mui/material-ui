@@ -7,6 +7,7 @@ import HighlightedCard from './HighlightedCard';
 import PageViewsChart from './PageViewsChart';
 import CustomizedTreeView from './CustomizedTreeView';
 import CustomizedDataGrid from './CustomizedDataGrid';
+import PageViewsBarChart from './PageViewsBarChart';
 
 const data = [
   {
@@ -64,6 +65,7 @@ export default function MainGrid() {
         <Grid xs={12} md={8} lg={9}>
           <Stack spacing={2}>
             <PageViewsChart />
+            <PageViewsBarChart />
             <CustomizedDataGrid />
           </Stack>
         </Grid>

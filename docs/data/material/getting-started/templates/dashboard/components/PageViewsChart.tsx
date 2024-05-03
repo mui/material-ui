@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useTheme } from '@mui/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { LineChart } from '@mui/x-charts/LineChart';
+import { gray } from '../getDashboardTheme';
 
-const colorPaletteLight = ['#3399FF', '#516b9f'];
+const colorPaletteLight = [gray[400], gray[500], gray[800]];
 const colorPalette = (mode: 'light' | 'dark') =>
   mode === 'dark' ? colorPaletteLight : colorPaletteLight;
 
@@ -36,9 +36,7 @@ function getDaysInMonth(month: number, year: number) {
 }
 
 export default function PageViewsChart() {
-  const theme = useTheme();
   const data = getDaysInMonth(4, 2024);
-  const color = colorPalette(theme.palette.mode);
   return (
     <Card variant="outlined" sx={{ width: '100%' }}>
       <CardContent>
@@ -59,10 +57,13 @@ export default function PageViewsChart() {
               id: 'page-views',
               label: 'Page views',
               showMark: false,
+              curve: 'linear',
+              stack: 'total',
+              stackOrder: 'ascending',
               data: [
-                5000, 10000, 7000, 10000, 13000, 12000, 9000, 7000, 5000, 10000,
-                7000, 8000, 13000, 16000, 19000, 13000, 17000, 15000, 18000, 14500,
-                10000, 12000, 15000, 18000, 19000, 12000, 21000, 17000, 22000, 20000,
+                6234, 6087, 6421, 6312, 6190, 6400, 6357, 6029, 6173, 6482, 6215,
+                6051, 6338, 6142, 6018, 6247, 6463, 6371, 6060, 6100, 6389, 6203,
+                6497, 6036, 6156, 6470, 6269, 6091, 6445, 6121,
               ],
               area: true,
             },
@@ -70,10 +71,29 @@ export default function PageViewsChart() {
               id: 'downloads',
               label: 'Downloads',
               showMark: false,
+              curve: 'linear',
+              stack: 'total',
+              area: true,
+              stackOrder: 'ascending',
+
               data: [
-                2000, 8000, 3000, 9000, 10000, 18000, 10000, 9000, 2000, 14000,
-                11000, 6000, 11000, 13000, 23000, 17000, 19000, 17000, 14000, 12000,
-                11000, 14000, 18000, 19000, 22000, 15000, 23000, 20000, 18000, 19000,
+                4486, 4255, 4046, 4316, 4418, 4498, 4421, 4474, 4036, 4049, 4206,
+                4458, 4259, 4353, 4496, 4178, 4265, 4424, 4186, 4003, 4204, 4467,
+                4120, 4410, 4292, 4143, 4403, 4373, 4079, 4291,
+              ],
+            },
+            {
+              id: 'conversions',
+              label: 'Conversions',
+              showMark: false,
+              curve: 'linear',
+              stack: 'total',
+              area: true,
+              stackOrder: 'ascending',
+              data: [
+                2238, 2172, 2305, 2140, 2135, 2100, 2465, 2053, 2342, 2494, 2497,
+                2277, 2356, 2012, 2309, 2301, 2029, 2028, 2129, 2324, 2152, 2235,
+                2430, 2027, 2168, 2111, 2235, 2166, 2309, 2268,
               ],
             },
           ]}
@@ -83,6 +103,12 @@ export default function PageViewsChart() {
           sx={{
             '& .MuiAreaElement-series-page-views': {
               fill: "url('#page-views')",
+            },
+            '& .MuiAreaElement-series-downloads': {
+              fill: "url('#conversions')",
+            },
+            '& .MuiAreaElement-series-conversions': {
+              fill: "url('#conversions')",
             },
           }}
           slotProps={{
@@ -94,7 +120,9 @@ export default function PageViewsChart() {
             },
           }}
         >
-          <AreaGradient color={color[0]} id="page-views" />
+          <AreaGradient color={gray[200]} id="page-views" />
+          <AreaGradient color={gray[300]} id="downloads" />
+          <AreaGradient color={gray[400]} id="conversions" />
         </LineChart>
       </CardContent>
     </Card>
