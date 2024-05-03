@@ -73,7 +73,7 @@ You will also play a fundamental role in defining the Docs Infra roadmap and pri
 - Enable to store different parts of our documentation in different repositories
 - Improve the blog experience by introducing new elements like a CMS
 - Standardize the documentation design and layout across all of MUI's products
-- Enhance our code blocks with ref
+- Enhance code blocks with hoverable props that quickly show API descriptions
 - Introduce a more scalable solution for hosting videos
 - Introduce a CDN for managing images
 
