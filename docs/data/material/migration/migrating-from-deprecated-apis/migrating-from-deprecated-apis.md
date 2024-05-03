@@ -1134,7 +1134,7 @@ The SpeedDial's `TransitionProps` was deprecated in favor of `slotProps.transiti
  />
 ```
 
-## Slider
+## Tooltip
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following sections:
 
