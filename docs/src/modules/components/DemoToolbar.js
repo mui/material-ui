@@ -90,7 +90,7 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
 
 const Button = styled(MDButton)(({ theme }) => ({
   height: 26,
-  padding: '6px 8px 8px 8px',
+  padding: '7px 8px 8px 8px', // 7px for optical alignment
   flexShrink: 0,
   borderRadius: 999,
   border: '1px solid',
