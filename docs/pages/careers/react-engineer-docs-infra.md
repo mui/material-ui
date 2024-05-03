@@ -58,7 +58,7 @@ You will also play a fundamental role in defining the Docs Infra roadmap and pri
 
 ### Key responsibilities
 
-- Ensure the documentation feels fast and snappy for readers.
+- Ensure the documentation feels fast and snappy for readers
   You'll be closely keeping tabs on Lighthouse scores and bundle size
 - Develop new features that will enhance the way the libraries are showcased
 - Improve content findability by refining the documentation search quality
