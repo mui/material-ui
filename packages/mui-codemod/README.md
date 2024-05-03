@@ -967,6 +967,32 @@ npx @mui/codemod@next deprecations/pagination-item-classes <path>
 npx @mui/codemod@next deprecations/pagination-item-props <path>
 ```
 
+#### `popper-props`
+
+```diff
+ <Popper
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiPopper: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'test-id' }}
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/popper-props <path>
+```
+
 #### `slider-props`
 
 ```diff

@@ -943,6 +943,8 @@ Here's how to migrate:
  },
 ```
 
+<<<<<<< HEAD
+
 ### components
 
 The PaginationItems's `components` was deprecated in favor of `slots`:
@@ -951,6 +953,36 @@ The PaginationItems's `components` was deprecated in favor of `slots`:
  <PaginationItems
 -  components={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
 +  slots={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
+ />
+```
+
+## Popper
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/popper-props <path>
+```
+
+### components
+
+The Popper's `components` was deprecated in favor of `slots`:
+
+```diff
+ <Popper
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+ />
+```
+
+### componentsProps
+
+The Popper's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Popper
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
  />
 ```
 
