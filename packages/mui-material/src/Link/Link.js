@@ -11,7 +11,7 @@ import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-import getTextDecoration from './getTextDecoration';
+import getTextDecoration, { colorTransformations } from './getTextDecoration';
 import useTheme from '../styles/useTheme';
 
 const useThemeProps = createUseThemeProps('MuiLink');
@@ -140,8 +140,10 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     TypographyClasses,
     underline = 'always',
     variant = 'inherit',
+    sx,
     ...other
   } = props;
+  console.log('color', color);
 
   const {
     isFocusVisibleRef,
@@ -193,6 +195,10 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       ownerState={ownerState}
       variant={variant}
       {...other}
+      sx={[
+        ...(colorTransformations[color] === undefined ? [{ color }] : []),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       style={{
         ...other.style,
         ...(underline === 'always' &&
