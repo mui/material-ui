@@ -262,14 +262,18 @@ export default function migrateToVariants(j, styles) {
           parameters.add(prop.key.name);
         });
       }
+      if (param.type === 'Identifier') {
+        parameters.add(param.name);
+      }
     });
     const variants = [];
 
     if (style.body.type === 'LogicalExpression') {
       if (
         style.params[0] &&
-        style.params[0].type === 'ObjectPattern' &&
-        style.params[0].properties.some((prop) => prop.key.name !== 'theme')
+        (style.params[0].type === 'Identifier' ||
+          (style.params[0].type === 'ObjectPattern' &&
+            style.params[0].properties.some((prop) => prop.key.name !== 'theme')))
       ) {
         // case: ({ theme, ownerState }) => ownerState.variant === 'regular' && theme.mixins.toolbar
         style.body = j.objectExpression([
