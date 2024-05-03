@@ -129,11 +129,11 @@ export default function PropertiesSection(props) {
             tabIndex={-1}
           >
             {t(title)}
-            <div className="anchor-icon">
+            <span className="anchor-icon">
               <svg>
                 <use xlinkHref="#anchor-link-icon" />
               </svg>
-            </div>
+            </span>
           </a>
         </Level>
         <ToggleDisplayOption

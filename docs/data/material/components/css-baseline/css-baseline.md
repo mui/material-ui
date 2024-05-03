@@ -8,7 +8,7 @@ githubLabel: 'component: CssBaseline'
 
 <p class="description">The CssBaseline component helps to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Global reset
 

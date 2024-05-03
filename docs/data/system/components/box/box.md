@@ -11,7 +11,7 @@ githubLabel: 'component: Box'
 
 <p class="description">The Box component is a generic, theme-aware container with access to CSS utilities from MUI System.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Introduction
 
