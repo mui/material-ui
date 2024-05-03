@@ -515,16 +515,14 @@ describe('<Autocomplete />', () => {
       expect(container.querySelector(`.${classes.inputRoot}`)).to.have.class(classes.multiple);
     });
 
-    it('should allow to override the style for the multiple class', () => {
+    it('should allow to override the style for the multiple class via theme', () => {
       const theme = createTheme({
         components: {
           MuiAutocomplete: {
             styleOverrides: {
-              root: {
-                [`& .${classes.inputRoot}.${classes.multiple}`]: {
-                  mixBlendMode: 'darken',
-                },
-              },
+              multiple: {
+                mixBlendMode: 'darken',
+            },
             },
           },
         },
@@ -535,7 +533,7 @@ describe('<Autocomplete />', () => {
           <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} multiple />
         </ThemeProvider>,
       );
-      expect(document.querySelector(`.${classes.multiple}`)).to.toHaveComputedStyle({
+      expect(document.querySelector(`.${classes.multiple}`)).toHaveComputedStyle({
         mixBlendMode: 'darken',
       });
     });
