@@ -3,8 +3,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { BarChart } from '@mui/x-charts/BarChart';
+import { gray } from '../getDashboardTheme';
 
-const colorPaletteLight = ['#8f9ebc', '#394660'];
+const colorPaletteLight = [gray[700], gray[500], gray[300]];
 const colorPalette = (mode: 'light' | 'dark') =>
   mode === 'dark' ? colorPaletteLight : colorPaletteLight;
 
@@ -20,19 +21,49 @@ export default function PageViewsBarChart() {
           xAxis={[
             {
               scaleType: 'band',
-              data: Array.from({ length: 5 }, (_, i) => ` week ${i + 1}`),
+              data: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec',
+              ],
             },
           ]}
           series={[
             {
               id: 'page-views',
               label: 'Page views',
-              data: [7000, 10000, 8000, 11000, 13000],
+              data: [
+                2234, 3872, 2998, 4125, 3357, 2789, 4412, 2005, 4829, 3147, 4361,
+                2526,
+              ],
+              stack: 'A',
             },
             {
               id: 'downloads',
               label: 'Downloads',
-              data: [2000, 8000, 5000, 9000, 11000],
+              data: [
+                3098, 4215, 2384, 2101, 4752, 3593, 2837, 4914, 2468, 3279, 4530,
+                3782,
+              ],
+              stack: 'A',
+            },
+            {
+              id: 'conversions',
+              label: 'Conversions',
+              data: [
+                4051, 2275, 3129, 4693, 3904, 2038, 4315, 2641, 3482, 4976, 2803,
+                3620,
+              ],
+              stack: 'A',
             },
           ]}
           height={320}
@@ -46,7 +77,9 @@ export default function PageViewsBarChart() {
               position: { vertical: 'top', horizontal: 'right' },
             },
             bar: {
-              clipPath: `inset(0px round 8px 8px 0px 0px)`,
+              // round corners for stacked bars is an upcoming feature
+              // clipPath: `inset(0px round 8px 8px 0px 0px)`,
+              style: { width: '50px' },
             },
           }}
         />
