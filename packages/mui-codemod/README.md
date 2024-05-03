@@ -993,6 +993,32 @@ npx @mui/codemod@next deprecations/pagination-item-props <path>
 npx @mui/codemod@next deprecations/slider-props <path>
 ```
 
+#### `tooltip-props`
+
+```diff
+ <Toolip
+-  components={{ Arrow: CustomArrow }}
++  slots={{ arrow: CustomArrow }}
+-  componentsProps={{ arrow: { testid: 'test-id' } }}
++  slotProps={{ arrow: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiTooltip: {
+   defaultProps: {
+-    components: { Arrow: CustomArrow }
++    slots: { arrow: CustomArrow },
+-    componentsProps: { arrow: { testid: 'test-id' }}
++    slotProps: { arrow: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/tooltip-props <path>
+```
+
 #### `toggle-button-group-classes`
 
 JS transforms:

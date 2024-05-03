@@ -1133,3 +1133,33 @@ The SpeedDial's `TransitionProps` was deprecated in favor of `slotProps.transiti
 +  slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```
+
+## Slider
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/tooltip-props <path>
+```
+
+### components
+
+The Tooltip's `components` was deprecated in favor of `slots`:
+
+```diff
+ <Tooltip
+-  components={{ Arrow: CustomArrow }}
++  slots={{ arrow: CustomArrow }}
+ />
+```
+
+### componentsProps
+
+The Tooltip's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Tooltip
+-  componentsProps={{ arrow: { testid: 'test-id' } }}
++  slotProps={{ arrow: { testid: 'test-id' } }}
+ />
+```
