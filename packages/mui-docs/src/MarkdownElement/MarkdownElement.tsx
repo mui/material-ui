@@ -62,11 +62,12 @@ const Root = styled('div')(
     },
     '& h1': {
       ...lightTheme.typography.h3,
-      fontSize: lightTheme.typography.pxToRem(36),
+      fontSize: lightTheme.typography.pxToRem(32),
       fontFamily: `"Graphik", ${lightTheme.typography.fontFamilySystem}`,
       margin: '10px 0',
       color: `var(--muidocs-palette-primaryDark-900, ${lightTheme.palette.primaryDark[900]})`,
       fontWeight: 600,
+      letterSpacing: '-0.02rem',
     },
     '& .description': {
       ...lightTheme.typography.subtitle1,
@@ -79,10 +80,11 @@ const Root = styled('div')(
     '& h2': {
       ...lightTheme.typography.h5,
       fontFamily: `"Graphik", ${lightTheme.typography.fontFamilySystem}`,
-      fontSize: theme.typography.pxToRem(26),
+      fontSize: theme.typography.pxToRem(24),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '40px 0 4px',
+      letterSpacing: '-0.02rem',
     },
     '& h3': {
       ...lightTheme.typography.h6,
@@ -91,6 +93,7 @@ const Root = styled('div')(
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '24px 0 4px',
+      letterSpacing: '-0.02rem',
     },
     '& h4': {
       ...lightTheme.typography.subtitle1,
@@ -98,6 +101,7 @@ const Root = styled('div')(
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '20px 0 6px',
+      letterSpacing: '-0.02rem',
     },
     '& h5': {
       ...lightTheme.typography.subtitle2,
@@ -105,6 +109,7 @@ const Root = styled('div')(
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '20px 0 8px',
+      letterSpacing: '-0.02rem',
     },
     '& p': {
       marginTop: 0,

@@ -61,10 +61,8 @@ const Item = styled(
       ...color,
       ...(subheader && {
         marginTop: theme.spacing(1),
-        textTransform: 'uppercase',
-        letterSpacing: '.1rem',
-        fontWeight: theme.typography.fontWeightBold,
-        fontSize: theme.typography.pxToRem(11),
+        letterSpacing: '.01rem',
+        fontSize: theme.typography.pxToRem(12),
         '&::before': {
           content: '""',
           display: 'block',

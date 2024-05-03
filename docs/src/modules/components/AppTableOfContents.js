@@ -31,10 +31,9 @@ const Nav = styled('nav')(({ theme }) => ({
 
 const NavLabel = styled(Typography)(({ theme }) => ({
   padding: theme.spacing(1, 0, 1, 1.4),
-  fontSize: theme.typography.pxToRem(11),
-  fontWeight: theme.typography.fontWeightBold,
-  textTransform: 'uppercase',
-  letterSpacing: '.1rem',
+  letterSpacing: '.01rem',
+  fontSize: theme.typography.pxToRem(12),
+  fontWeight: theme.typography.fontWeightMedium,
   color: (theme.vars || theme).palette.text.tertiary,
 }));
 

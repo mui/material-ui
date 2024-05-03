@@ -335,8 +335,8 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontWeight: 500,
       },
       body1: {
-        fontSize: defaultTheme.typography.pxToRem(16),
-        lineHeight: 24 / 16,
+        fontSize: defaultTheme.typography.pxToRem(15),
+        lineHeight: 1.4,
         letterSpacing: 0,
       },
       body2: {
