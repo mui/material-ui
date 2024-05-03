@@ -522,7 +522,7 @@ describe('<Autocomplete />', () => {
             styleOverrides: {
               multiple: {
                 mixBlendMode: 'darken',
-            },
+              },
             },
           },
         },
