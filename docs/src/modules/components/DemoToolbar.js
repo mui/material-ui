@@ -19,7 +19,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
-import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { useRouter } from 'next/router';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
@@ -339,16 +338,6 @@ export default function DemoToolbar(props) {
     setSnackbarOpen(false);
   };
 
-  const handleCopyClick = async () => {
-    try {
-      await copyWithRelativeModules(demoData.raw, demoData.relativeModules);
-      setSnackbarMessage(t('copiedSource'));
-      setSnackbarOpen(true);
-    } finally {
-      handleMoreClose();
-    }
-  };
-
   const createHandleCodeSourceLink = (anchor, codeVariantParam, stylingSolution) => async () => {
     try {
       await copy(
@@ -586,25 +575,13 @@ export default function DemoToolbar(props) {
               </DemoTooltip>
             </React.Fragment>
           )}
-          <DemoTooltip title={t('copySource')} placement="bottom">
-            <IconButton
-              data-ga-event-category="demo"
-              data-ga-event-label={demo.gaLabel}
-              data-ga-event-action="copy"
-              onClick={handleCopyClick}
-              {...getControlProps(6)}
-              sx={{ borderRadius: 1 }}
-            >
-              <ContentCopyRoundedIcon />
-            </IconButton>
-          </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
             <IconButton
               data-ga-event-category="demo"
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset-focus"
               onClick={handleResetFocusClick}
-              {...getControlProps(7)}
+              {...getControlProps(6)}
               sx={{ borderRadius: 1 }}
             >
               <ResetFocusIcon />
@@ -617,7 +594,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset"
               onClick={onResetDemoClick}
-              {...getControlProps(8)}
+              {...getControlProps(7)}
               sx={{ borderRadius: 1 }}
             >
               <RefreshRoundedIcon />
@@ -628,7 +605,7 @@ export default function DemoToolbar(props) {
             aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
-            {...getControlProps(9)}
+            {...getControlProps(8)}
             sx={{ borderRadius: 1 }}
           >
             <MoreVertIcon />

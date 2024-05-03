@@ -350,9 +350,6 @@ const DemoCodeViewer = styled(HighlightedCode)(() => ({
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
   },
-  '& .MuiCode-copy': {
-    display: 'none',
-  },
 }));
 
 const AnchorLink = styled('div')({
