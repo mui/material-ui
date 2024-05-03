@@ -943,8 +943,6 @@ Here's how to migrate:
  },
 ```
 
-<<<<<<< HEAD
-
 ### components
 
 The PaginationItems's `components` was deprecated in favor of `slots`:
