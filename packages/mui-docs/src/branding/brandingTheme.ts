@@ -288,7 +288,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontSize: 'clamp(2.5rem, 1.125rem + 3.5vw, 3.5em)',
         fontWeight: 600,
         lineHeight: 78 / 70,
-        letterSpacing: -0.2,
+        // letterSpacing: -0.2,
         ...(mode === 'light' && {
           color: blueDark[900],
         }),
@@ -298,25 +298,25 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 600,
         lineHeight: 44 / 36,
-        letterSpacing: -0.2,
+        // letterSpacing: -0.2,
         color: mode === 'dark' ? grey[100] : blueDark[700],
       },
       h3: {
         fontFamily: ['"Graphik"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(36),
         lineHeight: 44 / 36,
-        letterSpacing: 0.2,
+        // letterSpacing: 0.2,
       },
       h4: {
         fontFamily: ['"Graphik"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(30),
         lineHeight: 42 / 28,
-        letterSpacing: 0.2,
+        // letterSpacing: 0.2,
       },
       h5: {
         fontSize: defaultTheme.typography.pxToRem(24),
         lineHeight: 36 / 24,
-        letterSpacing: 0.1,
+        // letterSpacing: 0.1,
         color: mode === 'dark' ? blue[300] : blue.main,
       },
       h6: {
