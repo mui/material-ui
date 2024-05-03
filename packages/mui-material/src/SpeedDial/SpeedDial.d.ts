@@ -21,10 +21,6 @@ export interface SpeedDialSlots {
   >;
 }
 
-export interface SpeedDialComponentsPropsOverrides {}
-
-export interface SpeedDialTransitionSlotPropsOverrides {}
-
 export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
   SpeedDialSlots,
   {
@@ -119,11 +115,6 @@ export interface SpeedDialProps
    * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionProps?: TransitionProps;
-  /**
-   * The components used for each slot inside.
-   *
-   * @default {}
-   */
 }
 
 export interface SpeedDialOwnerState extends SpeedDialProps {}
