@@ -1,1 +1,1 @@
-export { default } from './sx-v6';
+export { default } from './styled-v6';
