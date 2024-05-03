@@ -8,7 +8,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import Fade from '@mui/material/Fade';
 import MDButton from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import MDToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
+import MDToggleButton from '@mui/material/ToggleButton';
 import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 import SvgIcon from '@mui/material/SvgIcon';
 import Snackbar from '@mui/material/Snackbar';
@@ -69,23 +69,18 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
   theme.unstable_sx({
     [`& .${toggleButtonGroupClasses.grouped}`]: {
       '&:not(:first-of-type)': {
-        marginLeft: 0.8,
-        borderLeft: '1px solid',
-        borderLeftColor: 'divider',
-        borderTopLeftRadius: 999,
-        borderBottomLeftRadius: 999,
+        pr: '2px', // a nudge for optical alignment
       },
       '&:not(:last-of-type)': {
-        borderTopRightRadius: 999,
-        borderBottomRightRadius: 999,
+        pl: '2px', // a nudge for optical alignment
       },
     },
   }),
 ]);
 
 const Button = styled(MDButton)(({ theme }) => ({
-  height: 24,
-  padding: '5px 8px 6px 8px', // the one-off 5px is for visually centering the text on the button's container
+  height: 26,
+  padding: '6px 8px 8px 8px',
   flexShrink: 0,
   borderRadius: 999,
   border: '1px solid',
@@ -130,29 +125,15 @@ const MenuItem = styled(MDMenuItem)(({ theme }) => ({
 
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
-    padding: theme.spacing(0, 1, 0.1, 1),
+    height: 26,
+    width: 38,
+    p: 0,
     fontSize: theme.typography.pxToRem(13),
-    borderColor: 'grey.200',
     borderRadius: '999px',
     '&.Mui-disabled': {
-      opacity: 0.5,
+      opacity: 0.8,
+      cursor: 'not-allowed',
     },
-    [`&.${toggleButtonClasses.selected}:hover`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
-      '@media (hover: none)': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      },
-    },
-  }),
-  theme.applyDarkStyles({
-    borderColor: theme.palette.primaryDark[700],
   }),
 ]);
 
@@ -281,6 +262,31 @@ function useToolbar(controlRefs, options = {}) {
   };
 }
 
+function copyWithRelativeModules(raw, relativeModules) {
+  if (relativeModules) {
+    relativeModules.forEach(({ module, raw: content }) => {
+      // remove exports from relative module
+      content = content.replace(/export( )*(default)*( )*\w+;|export default|export/gm, '');
+      // replace import statement with relative module content
+      // the module might be imported with or without extension, so we need to cover all cases
+      // E.g.: /import .* from '(.\/top100Films.js|.\/top100Films)';/
+      const extensions = ['', '.js', '.jsx', '.ts', '.tsx', '.css', '.json'];
+      const patterns = extensions
+        .map((ext) => {
+          if (module.endsWith(ext)) {
+            return module.replace(ext, '');
+          }
+          return '';
+        })
+        .filter(Boolean)
+        .join('|');
+      const importPattern = new RegExp(`import .* from '(${patterns})';`);
+      raw = raw.replace(importPattern, content);
+    });
+  }
+  return copy(raw);
+}
+
 export default function DemoToolbar(props) {
   const {
     codeOpen,
@@ -332,9 +338,10 @@ export default function DemoToolbar(props) {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
+
   const handleCopyClick = async () => {
     try {
-      await copy(demoData.raw);
+      await copyWithRelativeModules(demoData.raw, demoData.relativeModules);
       setSnackbarMessage(t('copiedSource'));
       setSnackbarOpen(true);
     } finally {
@@ -499,7 +506,7 @@ export default function DemoToolbar(props) {
           </Button>
         )}
         <Fade in={codeOpen}>
-          <Box sx={{ display: 'flex', height: 40 }}>
+          <Box sx={{ display: 'flex' }}>
             {hasNonSystemDemos && (
               <Divider orientation="vertical" variant="middle" sx={{ mx: 1, height: '24px' }} />
             )}

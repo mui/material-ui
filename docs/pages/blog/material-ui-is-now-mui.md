@@ -4,7 +4,7 @@ description: Starting today, we are evolving our brand identity. We are clarifyi
 date: 2021-09-16T00:00:00.000Z
 authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
 tags: ['Material UI']
-card: true
+manualCard: true
 ---
 
 <img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new Material UI logo" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />

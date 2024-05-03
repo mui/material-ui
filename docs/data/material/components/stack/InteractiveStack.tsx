@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import Stack, { StackProps } from '@mui/material/Stack';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 export default function InteractiveStack() {
   const [direction, setDirection] = React.useState<StackProps['direction']>('row');

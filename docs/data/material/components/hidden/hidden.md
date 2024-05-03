@@ -15,4 +15,4 @@ To learn more, see [the Hidden section](/material-ui/migration/v5-component-chan
 
 <p class="description"></p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}

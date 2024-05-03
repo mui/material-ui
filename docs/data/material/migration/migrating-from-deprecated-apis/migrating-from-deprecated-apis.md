@@ -169,9 +169,9 @@ Here's how to migrate:
 ```
 
 ```diff
- import { alertClasses } from '@mui/material/PaginationItem';
+ import { alertClasses } from '@mui/material/Alert';
 
- MuiPaginationItem: {
+ MuiAlert: {
    styleOverrides: {
      root: {
 -      [`&.${alertClasses.standardSuccess}`]: {
@@ -872,6 +872,25 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
  />
 ```
 
+## FormControlLabel
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#form-control-label-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/form-control-label-props <path>
+```
+
+### componentsProps
+
+The FormControlLabel's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <FormControlLabel
+-  componentsProps={{ typography: typographyProps }}
++  slotProps={{ typography: typographyProps }}
+ />
+```
+
 ## PaginationItem
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-classes) below to migrate the code as described in the following sections:
@@ -922,6 +941,17 @@ Here's how to migrate:
      },
    },
  },
+```
+
+### components
+
+The PaginationItems's `components` was deprecated in favor of `slots`:
+
+```diff
+ <PaginationItems
+-  components={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
++  slots={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
+ />
 ```
 
 ## Slider
@@ -1011,4 +1041,66 @@ The StepLabel's `componentsProps` was deprecated in favor of `slotProps`:
 -  componentsProps={{ label: labelProps }}
 +  slotProps={{ label: labelProps }}
  />
+```
+
+### StepIconComponent
+
+The StepLabel's `StepIconComponent` was deprecated in favor of `slots.stepIcon`:
+
+```diff
+ <StepLabel
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+ />
+```
+
+### StepIconProps
+
+The StepLabel's `StepIconProps` was deprecated in favor of `slotProps.stepIcon`:
+
+```diff
+ <StepLabel
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
+ />
+```
+
+## StepConnector
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-connector-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/step-connector-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `line` CSS class and `orientation` prop values were removed.
+
+Here's how to migrate:
+
+```diff
+- .MuiStepConnector-lineHorizontal
++.MuiStepConnector-horizontal > .MuiStepConnector-line
+- .MuiStepConnector-lineVertical
++.MuiStepConnector-vertical > .MuiStepConnector-line
+```
+
+```diff
+ import { stepConnectorClasses } from '@mui/material/StepConnector';
+
+ MuiStepConnector: {
+   styleOverrides: {
+     root: {
+-      [`& .${stepConnectorClasses.lineHorizontal}`]: {
++      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+-      [`& .${stepConnectorClasses.lineVertical}`]: {
++      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
 ```

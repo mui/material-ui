@@ -14,7 +14,7 @@ Some of the key features:
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
 - 🤖 It supports server-side rendering.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Basic media query
 

@@ -2,12 +2,15 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import Chip from '@mui/material/Chip';
+import { Chip as MuiChip } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+
+import { styled } from '@mui/material/styles';
+
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
@@ -39,6 +42,21 @@ const items = [
     imageDark: 'url("/static/images/templates/templates-images/devices-dark.png")',
   },
 ];
+
+const Chip = styled(MuiChip)(({ theme, selected }) => ({
+  ...(selected && {
+    borderColor:
+      theme.palette.mode === 'light'
+        ? theme.palette.primary.light
+        : theme.palette.primary.dark,
+    background:
+      'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
+    color: 'hsl(0, 0%, 100%)',
+    '& .MuiChip-label': {
+      color: 'hsl(0, 0%, 100%)',
+    },
+  }),
+}));
 
 export default function Features() {
   const [selectedItemIndex, setSelectedItemIndex] = React.useState(0);
@@ -73,20 +91,7 @@ export default function Features() {
                 key={index}
                 label={title}
                 onClick={() => handleItemClick(index)}
-                sx={(theme) => ({
-                  ...(selectedItemIndex === index && {
-                    borderColor:
-                      theme.palette.mode === 'light'
-                        ? 'primary.light'
-                        : 'primary.dark',
-                    background:
-                      'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
-                    color: 'hsl(0, 0%, 100%)',
-                    '& .MuiChip-label': {
-                      color: 'hsl(0, 0%, 100%)',
-                    },
-                  }),
-                })}
+                selected={selectedItemIndex === index}
               />
             ))}
           </Grid>

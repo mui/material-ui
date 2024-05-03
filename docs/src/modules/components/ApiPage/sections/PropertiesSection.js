@@ -122,16 +122,18 @@ export default function PropertiesSection(props) {
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 1 }}>
         <Level id={titleHash} style={{ flexGrow: 1 }}>
-          {t(title)}
           <a
             aria-labelledby={titleHash}
-            className="anchor-link"
+            className="title-link-to-anchor"
             href={`#${titleHash}`}
             tabIndex={-1}
           >
-            <svg>
-              <use xlinkHref="#anchor-link-icon" />
-            </svg>
+            {t(title)}
+            <span className="anchor-icon">
+              <svg>
+                <use xlinkHref="#anchor-link-icon" />
+              </svg>
+            </span>
           </a>
         </Level>
         <ToggleDisplayOption
