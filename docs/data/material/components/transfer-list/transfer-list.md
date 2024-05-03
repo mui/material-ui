@@ -9,7 +9,7 @@ githubLabel: 'component: transfer list'
 
 <p class="description">A Transfer List (or "shuttle") enables the user to move one or more list items between lists.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic transfer list
 

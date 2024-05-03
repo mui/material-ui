@@ -9,7 +9,7 @@ githubLabel: 'component: FocusTrap'
 
 <p class="description">The Focus Trap component prevents the user's focus from escaping its children components.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
