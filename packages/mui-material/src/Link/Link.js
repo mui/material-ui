@@ -143,7 +143,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     sx,
     ...other
   } = props;
-  console.log('color', color);
 
   const {
     isFocusVisibleRef,

@@ -61,12 +61,12 @@ export default function SlotsSection(props: SlotsSectionProps) {
             href={`#${titleHash}`}
             tabIndex={-1}
           >
-            <div className="anchor-icon">
+            <span className="anchor-icon">
               {t(title)}
               <svg>
                 <use xlinkHref="#anchor-link-icon" />
               </svg>
-            </div>
+            </span>
           </a>
         </Level>
         <ToggleDisplayOption

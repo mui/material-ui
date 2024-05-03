@@ -19,7 +19,7 @@ Buttons communicate actions that users can take. They are typically placed throu
 - Cards
 - Toolbars
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic button
 

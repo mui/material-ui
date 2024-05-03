@@ -65,7 +65,6 @@ function MovieSelect() {
 function CountrySelect() {
   return (
     <Autocomplete
-      id="country-customized-option-demo"
       options={countries}
       disableCloseOnSelect
       getOptionLabel={(option) =>

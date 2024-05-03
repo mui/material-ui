@@ -79,6 +79,11 @@
       "conditions": "<code>onClick</code> and <code>color=\"secondary\"</code> is defined or <code>clickable={true}</code>",
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/chip/#chip-classes-clickable\">.MuiChip-clickable</a> and <a href=\"/material-ui/api/chip/#chip-classes-colorSecondary\">.MuiChip-colorSecondary</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
+    "colorDefault": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"default\"</code>"
+    },
     "colorError": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
