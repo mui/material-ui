@@ -18,25 +18,28 @@ export default function PageViewsBarChart() {
         </Typography>
         <BarChart
           colors={colorPalette}
-          xAxis={[
-            {
-              scaleType: 'band',
-              data: [
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec',
-              ],
-            },
-          ]}
+          xAxis={
+            [
+              {
+                scaleType: 'band',
+                categoryGapRatio: 0.5,
+                data: [
+                  'Jan',
+                  'Feb',
+                  'Mar',
+                  'Apr',
+                  'May',
+                  'Jun',
+                  'Jul',
+                  'Aug',
+                  'Sep',
+                  'Oct',
+                  'Nov',
+                  'Dec',
+                ],
+              },
+            ] as any
+          }
           series={[
             {
               id: 'page-views',
@@ -79,7 +82,6 @@ export default function PageViewsBarChart() {
             bar: {
               // round corners for stacked bars is an upcoming feature
               // clipPath: `inset(0px round 8px 8px 0px 0px)`,
-              style: { width: '50px' },
             },
           }}
         />

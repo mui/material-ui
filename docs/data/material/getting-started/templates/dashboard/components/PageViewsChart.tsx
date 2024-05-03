@@ -1,13 +1,15 @@
 import * as React from 'react';
+import { useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { gray } from '../getDashboardTheme';
 
-const colorPaletteLight = [gray[400], gray[500], gray[800]];
+const colorPaletteLight = [gray[300], gray[400], gray[500]];
+const colorPaletteDark = [gray[100], gray[500], gray[600]];
 const colorPalette = (mode: 'light' | 'dark') =>
-  mode === 'dark' ? colorPaletteLight : colorPaletteLight;
+  mode === 'dark' ? colorPaletteDark : colorPaletteLight;
 
 function AreaGradient({ color, id }: { color: string; id: string }) {
   return (
@@ -36,7 +38,9 @@ function getDaysInMonth(month: number, year: number) {
 }
 
 export default function PageViewsChart() {
+  const theme = useTheme();
   const data = getDaysInMonth(4, 2024);
+  const mode = theme.palette.mode;
   return (
     <Card variant="outlined" sx={{ width: '100%' }}>
       <CardContent>
@@ -120,9 +124,18 @@ export default function PageViewsChart() {
             },
           }}
         >
-          <AreaGradient color={gray[200]} id="page-views" />
-          <AreaGradient color={gray[300]} id="downloads" />
-          <AreaGradient color={gray[400]} id="conversions" />
+          <AreaGradient
+            color={mode === 'light' ? gray[200] : gray[600]}
+            id="page-views"
+          />
+          <AreaGradient
+            color={mode === 'light' ? gray[300] : gray[600]}
+            id="downloads"
+          />
+          <AreaGradient
+            color={mode === 'light' ? gray[400] : gray[600]}
+            id="conversions"
+          />
         </LineChart>
       </CardContent>
     </Card>

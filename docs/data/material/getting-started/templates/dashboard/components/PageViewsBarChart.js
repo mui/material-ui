@@ -21,6 +21,7 @@ export default function PageViewsBarChart() {
           xAxis={[
             {
               scaleType: 'band',
+              categoryGapRatio: 0.5,
               data: [
                 'Jan',
                 'Feb',
@@ -79,7 +80,6 @@ export default function PageViewsBarChart() {
             bar: {
               // round corners for stacked bars is an upcoming feature
               // clipPath: `inset(0px round 8px 8px 0px 0px)`,
-              style: { width: '50px' },
             },
           }}
         />
