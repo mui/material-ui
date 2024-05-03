@@ -261,31 +261,6 @@ function useToolbar(controlRefs, options = {}) {
   };
 }
 
-function copyWithRelativeModules(raw, relativeModules) {
-  if (relativeModules) {
-    relativeModules.forEach(({ module, raw: content }) => {
-      // remove exports from relative module
-      content = content.replace(/export( )*(default)*( )*\w+;|export default|export/gm, '');
-      // replace import statement with relative module content
-      // the module might be imported with or without extension, so we need to cover all cases
-      // E.g.: /import .* from '(.\/top100Films.js|.\/top100Films)';/
-      const extensions = ['', '.js', '.jsx', '.ts', '.tsx', '.css', '.json'];
-      const patterns = extensions
-        .map((ext) => {
-          if (module.endsWith(ext)) {
-            return module.replace(ext, '');
-          }
-          return '';
-        })
-        .filter(Boolean)
-        .join('|');
-      const importPattern = new RegExp(`import .* from '(${patterns})';`);
-      raw = raw.replace(importPattern, content);
-    });
-  }
-  return copy(raw);
-}
-
 export default function DemoToolbar(props) {
   const {
     codeOpen,
