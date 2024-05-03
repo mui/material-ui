@@ -237,7 +237,9 @@ function ColorTool() {
             onChange={handleChangeShade(intent)}
             aria-labelledby={`${intent}ShadeSliderLabel`}
           />
+          <div style={{width: '156px'}}>
           <Typography>{shades[intentShade]}</Typography>
+          </div>
         </Box>
         <Box sx={{ width: 192 }}>
           {hues.map((hue) => {
