@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0-alpha.4",
+  "version": "6.0.0-alpha.5",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -80,7 +80,7 @@
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
-    "@slack/bolt": "^3.17.1",
+    "@slack/bolt": "^3.18.0",
     "@netlify/functions": "^2.6.0",
     "execa": "^8.0.1",
     "google-auth-library": "^9.9.0"
@@ -175,12 +175,12 @@
     "process": "^0.11.10",
     "raw-loader": "4.0.2",
     "rimraf": "^5.0.5",
-    "serve": "^14.2.1",
+    "serve": "^14.2.3",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.3.10",
-    "tsx": "^4.7.2",
+    "tsx": "^4.7.3",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-bundle-analyzer": "^4.10.2",

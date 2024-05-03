@@ -71,8 +71,8 @@ const PRODUCTS = [
     href: ROUTES.productTemplates,
   },
   {
-    name: 'Design kits',
-    description: 'Our components available in your favorite design tool.',
+    name: 'Design Kits',
+    description: 'Material UI components in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
   {

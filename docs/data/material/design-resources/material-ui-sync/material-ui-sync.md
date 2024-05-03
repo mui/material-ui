@@ -297,4 +297,4 @@ export default function MyApp({ Component, pageProps }) {
 
 ## Feedback and bug reports
 
-Use [the dedicated Material UI Sync feedback board](https://mui-connect.canny.io/feedback) to share feedback, report bugs, or drop feature requests.
+Use [the dedicated Material UI Sync feedback board](https://material-ui-sync.canny.io/) to share feedback, report bugs, or drop feature requests.
