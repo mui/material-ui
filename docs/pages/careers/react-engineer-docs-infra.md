@@ -1,6 +1,6 @@
 # React Engineer — Docs Infra
 
-<p class="description">You will drive the development of the documentation platform that powers all of MUI's products, enabling it to grow and establish itself as a mature product.</p>
+<p class="description">You will drive the development of the documentation platform that powers all MUI products, enabling it to grow and establish itself as a mature product.</p>
 
 ## Details of the role
 

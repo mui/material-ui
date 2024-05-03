@@ -28,6 +28,12 @@ const openRolesData = [
           'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
         url: '/careers/react-engineer-x/',
       },
+      {
+        title: 'React Engineer — Docs Infra',
+        description:
+          'You will drive the development of the documentation platform that powers all MUI products, enabling it to grow and establish itself as a mature product.',
+        url: '/careers/react-engineer-docs-infra/',
+      },
     ],
   },
   {
