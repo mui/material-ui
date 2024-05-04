@@ -636,7 +636,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     elementType: TooltipPopper,
     externalForwardedProps,
     ownerState,
-    className: classes.popper,
+    className: [classes.popper, PopperProps?.className],
     additionalProps: {
       as: PopperComponentProp ?? Popper,
       placement,
