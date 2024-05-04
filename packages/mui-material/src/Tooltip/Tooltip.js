@@ -596,7 +596,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ];
 
     if (slotProps.popper?.popperOptions?.modifiers || PopperProps?.popperOptions?.modifiers) {
-      tooltipModifiers = tooltipModifiers.concat(slotProps.popper?.popperOptions?.modifiers ?? PopperProps?.popperOptions.modifiers);
+      tooltipModifiers = tooltipModifiers.concat(
+        slotProps.popper?.popperOptions?.modifiers ?? PopperProps?.popperOptions.modifiers,
+      );
     }
 
     return {
