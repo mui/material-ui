@@ -271,7 +271,9 @@ describe('<Tooltip />', () => {
       }
 
       render(
-        <Tooltip title="Hello World" PopperComponent={PopperSpy} placement="top">
+        <Tooltip title="Hello World" placement="top" slots={{
+          popper: PopperSpy
+        }}>
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -288,7 +290,9 @@ describe('<Tooltip />', () => {
       <Tooltip
         enterDelay={enterDelay}
         title="Hello World"
-        TransitionProps={{ timeout: transitionTimeout }}
+        slotProps={{
+          transition: { timeout: transitionTimeout }
+        }}
       >
         <button id="testChild" type="submit">
           Hello World
@@ -384,8 +388,10 @@ describe('<Tooltip />', () => {
         enterDelay={0}
         onClose={handleClose}
         open
-        TransitionProps={{ timeout: transitionTimeout }}
         title="Movie quote"
+        slotProps={{
+          transition: { timeout: transitionTimeout }
+        }}
       >
         <button />
       </Tooltip>,
@@ -427,7 +433,9 @@ describe('<Tooltip />', () => {
           enterDelay={enterDelay}
           leaveTouchDelay={leaveTouchDelay}
           title="Hello World"
-          TransitionProps={{ timeout: transitionTimeout }}
+          slotProps={{
+            transition: { timeout: transitionTimeout }
+          }}
         >
           <button type="submit">Hello World</button>
         </Tooltip>,
@@ -527,7 +535,9 @@ describe('<Tooltip />', () => {
           enterDelay={111}
           enterNextDelay={30}
           leaveDelay={5}
-          TransitionProps={{ timeout: 6 }}
+          slotProps={{
+            transition: { timeout: 6 }
+          }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -571,7 +581,9 @@ describe('<Tooltip />', () => {
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
           title="tooltip"
-          TransitionProps={{ timeout: transitionTimeout }}
+          slotProps={{
+            transition: { timeout: transitionTimeout }
+          }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -710,7 +722,9 @@ describe('<Tooltip />', () => {
           title="Hello World"
           enterDelay={100}
           leaveDelay={111}
-          TransitionProps={{ timeout: 10 }}
+          slotProps={{
+            transition: { timeout: 10 }
+          }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -739,7 +753,9 @@ describe('<Tooltip />', () => {
           title="Hello World"
           enterDelay={100}
           leaveDelay={111}
-          TransitionProps={{ timeout: 10 }}
+          slotProps={{
+            transition: { timeout: 10 }
+          }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -766,7 +782,9 @@ describe('<Tooltip />', () => {
   describe('prop: PopperProps', () => {
     it('should pass PopperProps to Popper Component', () => {
       render(
-        <Tooltip title="Hello World" open PopperProps={{ 'data-testid': 'popper' }}>
+        <Tooltip title="Hello World" open slotProps={{
+          popper: { 'data-testid': 'popper' }
+        }}>
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -782,18 +800,20 @@ describe('<Tooltip />', () => {
           title="Hello World"
           open
           arrow
-          PopperProps={{
-            popperRef,
-            popperOptions: {
-              modifiers: [
-                {
-                  name: 'arrow',
-                  options: {
-                    padding: 8,
+          slotProps={{
+            popper: {
+              popperRef,
+              popperOptions: {
+                modifiers: [
+                  {
+                    name: 'arrow',
+                    options: {
+                      padding: 8,
+                    },
                   },
-                },
-              ],
-            },
+                ],
+              },
+            }
           }}
         >
           <button id="testChild" type="submit">
@@ -818,18 +838,20 @@ describe('<Tooltip />', () => {
           title="Hello World"
           open
           arrow
-          PopperProps={{
-            popperRef,
-            popperOptions: {
-              modifiers: [
-                {
-                  name: 'foo',
-                  enabled: true,
-                  phase: 'main',
-                  fn: () => {},
-                },
-              ],
-            },
+          slotProps={{
+            popper: {
+              popperRef,
+              popperOptions: {
+                modifiers: [
+                  {
+                    name: 'foo',
+                    enabled: true,
+                    phase: 'main',
+                    fn: () => {},
+                  },
+                ],
+              },
+            }
           }}
         >
           <button id="testChild" type="submit">
@@ -916,7 +938,9 @@ describe('<Tooltip />', () => {
           onClose={() => eventLog.push('close')}
           open
           title="Some information"
-          TransitionProps={{ timeout: transitionTimeout }}
+          slotProps={{
+            transition: { timeout: transitionTimeout }
+          }}
         >
           <button onBlur={() => eventLog.push('blur')} />
         </Tooltip>,
@@ -1045,13 +1069,7 @@ describe('<Tooltip />', () => {
   it('should use the same Popper.js instance between two renders', () => {
     const popperRef = React.createRef();
     const { forceUpdate } = render(
-      <Tooltip
-        title="Hello World"
-        open
-        PopperProps={{
-          popperRef,
-        }}
-      >
+      <Tooltip title="Hello World" open slotProps={{ popper: { popperRef } }}>
         <button id="testChild" type="submit">
           Hello World
         </button>
@@ -1068,7 +1086,9 @@ describe('<Tooltip />', () => {
         return <div data-testid="CustomPopper" />;
       }
       render(
-        <Tooltip title="Hello World" open PopperComponent={CustomPopper}>
+        <Tooltip title="Hello World" open slots={{
+          popper: CustomPopper
+        }}>
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -1089,7 +1109,9 @@ describe('<Tooltip />', () => {
           placement="bottom-end"
           open
           followCursor
-          PopperProps={{ 'data-testid': 'popper' }}
+          slotProps={{
+            popper: { 'data-testid': 'popper' }
+          }}
         >
           <button data-testid="target" type="submit">
             Hello World
@@ -1241,7 +1263,9 @@ describe('<Tooltip />', () => {
           enterDelay={enterDelay}
           leaveTouchDelay={leaveTouchDelay}
           title="Hello World"
-          TransitionProps={{ timeout: transitionTimeout }}
+          slotProps={{
+            transition: { timeout: transitionTimeout }
+          }}
         >
           <button type="submit">Hello World</button>
         </Tooltip>,
@@ -1282,7 +1306,9 @@ describe('<Tooltip />', () => {
           enterDelay={enterDelay}
           leaveTouchDelay={leaveTouchDelay}
           title="Hello World"
-          TransitionProps={{ timeout: transitionTimeout }}
+          slotProps={{
+            transition: { timeout: transitionTimeout }
+          }}
         >
           <button type="submit">Hello World</button>
         </Tooltip>,
