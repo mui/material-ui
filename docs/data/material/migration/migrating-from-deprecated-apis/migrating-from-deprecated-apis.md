@@ -1104,3 +1104,41 @@ Here's how to migrate:
    },
  },
 ```
+
+## Tooltip
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/tooltip-props <path>
+```
+
+### \*Component props
+
+All of the Tooltip's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
+
+```diff
+ <Tooltip
+-    PopperComponent={CustomPopperComponent}
+-    TransitionComponent={CustomTransitionComponent}
++    slots={{
++        popper: CustomPopperComponent,
++        transition: CustomTransitionComponent,
++    }}
+ />
+```
+
+### \*Props props
+
+All of the Tooltip's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <Tooltip
+-    PopperProps={CustomPopperProps}
+-    TransitionProps={CustomTransitionProps}
++    slotProps={{
++        popper: CustomPopperProps,
++        transition: CustomTransitionProps,
++    }}
+ />
+```

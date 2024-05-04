@@ -1030,6 +1030,48 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
 ```
 
+#### `tooltip-props`
+
+```diff
+ <Tooltip
+-    PopperComponent={CustomPopperComponent}
+-    TransitionComponent={CustomTransitionComponent}
+-    PopperProps={CustomPopperProps}
+-    TransitionProps={CustomTransitionProps}
++    slots={{
++        popper: CustomPopperComponent,
++        transition: CustomTransitionComponent,
++    }}
++    slotProps={{
++        popper: CustomPopperProps,
++        transition: CustomTransitionProps,
++    }}
+ />
+```
+
+```diff
+ MuiTooltip: {
+   defaultProps: {
+-    PopperComponent: CustomPopperComponent,
+-    TransitionComponent: CustomTransitionComponent,
+-    PopperProps: CustomPopperProps,
+-    TransitionProps: CustomTransitionProps,
++    slots: {
++       popper: CustomPopperComponent,
++       transition: CustomTransitionComponent,
++    },
++    slotProps: {
++       popper: CustomPopperProps,
++       transition: CustomTransitionProps,
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/tooltip-props <path>
+```
+
 #### `step-label-props`
 
 ```diff
