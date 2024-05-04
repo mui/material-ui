@@ -259,6 +259,18 @@ npx @mui/codemod@next deprecations/alert-classes <path>
 npx @mui/codemod@next deprecations/alert-props <path>
 ```
 
+#### `avatar-group-props`
+
+```diff
+ <AvatarGroup
+-  componentsProps={{
+-    additionalAvatar: {color: "red"}
++  slotProps={{
++    additionalAvatar: {color: "red"}
+   }}
+ />;
+```
+
 #### `avatar-props`
 
 ```diff

@@ -253,6 +253,28 @@ The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
  />;
 ```
 
+## AvatarGroup
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-group-props <path>
+```
+
+### componentsProps
+
+The AvatarGroup's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <AvatarGroup
+-  componentsProps={{
+-    additionalAvatar: {color: "red"}
++  slotProps={{
++    additionalAvatar: {color: "red"}
+   }}
+ />;
+```
+
 ## Backdrop
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following sections:
