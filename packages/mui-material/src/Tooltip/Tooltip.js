@@ -595,15 +595,15 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       },
     ];
 
-    if (PopperProps.popperOptions?.modifiers) {
-      tooltipModifiers = tooltipModifiers.concat(PopperProps.popperOptions.modifiers);
+    if (slotProps.popper?.popperOptions?.modifiers || PopperProps?.popperOptions?.modifiers) {
+      tooltipModifiers = tooltipModifiers.concat(slotProps.popper?.popperOptions?.modifiers ?? PopperProps?.popperOptions.modifiers);
     }
 
     return {
-      ...PopperProps.popperOptions,
+      ...(slotProps.popper?.popperProps ?? PopperProps?.popperOptions),
       modifiers: tooltipModifiers,
     };
-  }, [arrowRef, PopperProps]);
+  }, [arrowRef, PopperProps, slotProps]);
 
   const ownerState = {
     ...props,
