@@ -621,9 +621,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const externalForwardedProps = {
     slots: {
-      popper: PopperComponentProp,
-      tranistion: TransitionComponentProp,
-      ...components,
+      popper: components.Popper ?? PopperComponentProp,
+      tranistion: components.Transition ?? TransitionComponentProp,
+      tooltip: components.Tooltip,
+      arrow: components.Arrow,
       ...slots,
     },
     slotProps: {
