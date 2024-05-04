@@ -37,15 +37,17 @@ export default function TriggersTooltips() {
           <ClickAwayListener onClickAway={handleTooltipClose}>
             <div>
               <Tooltip
-                PopperProps={{
-                  disablePortal: true,
-                }}
                 onClose={handleTooltipClose}
                 open={open}
                 disableFocusListener
                 disableHoverListener
                 disableTouchListener
                 title="Add"
+                slotProps={{
+                  popper: {
+                    disablePortal: true,
+                  },
+                }}
               >
                 <Button onClick={handleTooltipOpen}>Click</Button>
               </Tooltip>
