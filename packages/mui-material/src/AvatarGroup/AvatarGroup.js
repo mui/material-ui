@@ -105,7 +105,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
   const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
-  const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps.additionalAvatar;
+  const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps?.additionalAvatar;
 
   const marginValue =
     ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
