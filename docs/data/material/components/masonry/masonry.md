@@ -13,7 +13,7 @@ Masonry maintains a list of content blocks with a consistent width but different
 The contents are ordered by row.
 If a row is already filled with the specified number of columns, the next item starts another row, and it is added to the shortest column in order to optimize the use of space.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Basic masonry
 

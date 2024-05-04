@@ -1,8 +1,8 @@
 const path = require('path');
 const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
 
-const forbidTopLevelMessage = [
-  'Prefer one level nested imports to avoid bundling everything in dev mode',
+const OneLevelImportMessage = [
+  'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
   'See https://github.com/mui/material-ui/pull/24147 for the kind of win it can unlock.',
 ].join('\n');
 // This only applies to packages published from this monorepo.
@@ -65,7 +65,20 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: ['@mui/*/*/*'],
+        patterns: [
+          {
+            group: [
+              '@mui/*/*/*',
+              '@pigment-css/*/*/*',
+              '@base_ui/*/*/*',
+              // Allow any import depth with any internal packages
+              '!@mui/internal-*/**',
+              // TODO delete, @mui/docs should be @mui/internal-docs
+              '!@mui/docs/**',
+            ],
+            message: OneLevelImportMessage,
+          },
+        ],
       },
     ],
     'no-continue': 'off',
@@ -332,23 +345,6 @@ module.exports = {
       },
     },
     {
-      files: ['*.tsx'],
-      excludedFiles: '*.spec.tsx',
-      rules: {
-        // WARNING: If updated, make sure these rules are merged with `no-restricted-imports` (#ts-source-files)
-        'no-restricted-imports': [
-          'error',
-          {
-            patterns: [
-              // Allow deeper imports for TypeScript types. TODO remove
-              '@mui/*/*/*/*',
-            ],
-          },
-        ],
-      },
-    },
-    // Files used for generating TypeScript declaration files (#ts-source-files)
-    {
       files: ['packages/*/src/**/*.tsx'],
       excludedFiles: '*.spec.tsx',
       rules: {
@@ -429,11 +425,11 @@ module.exports = {
             paths: [
               {
                 name: '@mui/material',
-                message: forbidTopLevelMessage,
+                message: OneLevelImportMessage,
               },
               {
                 name: '@mui/lab',
-                message: forbidTopLevelMessage,
+                message: OneLevelImportMessage,
               },
             ],
           },
