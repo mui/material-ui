@@ -57,7 +57,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     children: childrenProp,
     className,
     component = 'div',
-    componentsProps = {},
+    componentsProps,
     max = 5,
     renderSurplus,
     slotProps = {},
@@ -173,9 +173,8 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * You can override the existing props or add new ones.
    *
    * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
    *
-   * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   componentsProps: PropTypes.shape({
     additionalAvatar: PropTypes.object,
