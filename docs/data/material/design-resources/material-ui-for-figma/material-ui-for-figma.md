@@ -24,7 +24,7 @@ The Material UI design kit is available in the [community (free) version](https
 ### Installing the full version
 
 Start by extracting the `.zip` archive which contains the `.fig` files.
-Then you can either follow [Figma's import guide](https://help.figma.com/hc/en-us/articles/360041003114-Import-files-into-Figma) or [add it to your team library](https://help.figma.com/hc/en-us/articles/360041051154-Getting-Started-with-Team-Library).
+Then you can either follow [Figma's import guide](https://help.figma.com/hc/en-us/articles/360041003114-Import-files-to-the-file-browser) or [add it to your team library](https://help.figma.com/hc/en-us/articles/360041051154-Guide-to-libraries-in-Figma).
 
 ## Theme
 
@@ -91,4 +91,4 @@ If you need to replace a single component that's been updated, there are a coupl
 
 1. Add the new version of the design kit as a library and use [the new Figma library swap feature](https://www.youtube.com/watch?v=GQ2jztKpxLk). The components must have the same names in both libraries.
 2. Observe the new component and re-apply the changes to the existing projects. This is the recommended approach when you need to update multiple projects.
-3. Copy and paste the new component into your existing project, give it a different temporary name, then re-link tokens to the new component. When using [Select Similar plugins](https://www.figma.com/community/plugin/792767780551514994/Select-Similar) this shouldn't take more than five minutes. Then you can remove the old component and update the new component name.
+3. Copy and paste the new component into your existing project, give it a different temporary name, then re-link tokens to the new component. When using [Select Similar plugins](www.figma.com/community/plugin/792767780551514994/select-similar) this shouldn't take more than five minutes. Then you can remove the old component and update the new component name.
