@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
+import Box from '@mui/material/Box';
 import clsx from 'clsx';
 import { Switch as SwitchUnstyled } from '@mui/base/Switch';
 import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
@@ -300,12 +301,13 @@ export default function BaseUICustomization() {
               ref={infoRef}
               sx={{
                 maxHeight: 450,
-                position: 'relative',
                 overflow: 'auto',
               }}
             >
-              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
-              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />
+              <Box sx={{ position: 'relative' }}>
+                <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+                <FlashCode startLine={startLine[index]} endLine={endLine[index]} />
+              </Box>
             </Frame.Info>
           </Frame>
         </Grid>
