@@ -372,7 +372,7 @@ export default function ConnectFeatures() {
                   variant="contained"
                   size="small"
                   noLinkStyle
-                  href="https://www.figma.com/community/plugin/1336346114713490235/connect"
+                  href="https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync"
                 >
                   Use Sync now
                 </Button>
@@ -381,7 +381,7 @@ export default function ConnectFeatures() {
                   variant="outlined"
                   color="secondary"
                   size="small"
-                  href="/material-ui/design-resources/connect/"
+                  href="/material-ui/design-resources/material-ui-sync/"
                 >
                   View documentation
                 </Button>
