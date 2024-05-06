@@ -159,7 +159,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     },
   };
 
-  const [RootSlot, rootProps] = useSlot('previous', {
+  const [RootSlot, rootProps] = useSlot('root', {
     elementType: ModalRoot,
     externalForwardedProps,
     getSlotProps: getRootProps,
