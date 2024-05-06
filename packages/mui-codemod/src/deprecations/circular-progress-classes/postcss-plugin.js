@@ -11,7 +11,7 @@ const classes = [
 
 const plugin = () => {
   return {
-    postcssPlugin: `Replace deperecated CircularProgress classes with new classes`,
+    postcssPlugin: `Replace deprecated CircularProgress classes with new classes`,
     Rule(rule) {
       const { selector } = rule;
 
