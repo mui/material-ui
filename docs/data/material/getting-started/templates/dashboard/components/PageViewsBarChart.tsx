@@ -84,6 +84,13 @@ export default function PageViewsBarChart() {
               // clipPath: `inset(0px round 8px 8px 0px 0px)`,
             },
           }}
+          sx={{
+            '& .MuiChartsGrid-line': {
+              stroke: gray[200],
+              strokeDasharray: '4 2',
+              strokeWidth: 0.8,
+            },
+          }}
         />
       </CardContent>
     </Card>

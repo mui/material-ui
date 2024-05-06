@@ -1036,17 +1036,19 @@ export default function getDashboardTheme(mode) {
           },
         },
       },
-      MuiChartsGrid: {
-        styleOverrides: {
-          root: {
-            '& .MuiChartsGrid-line': {
-              stroke: gray[200],
-              strokeDasharray: '4 2',
-              strokeWidth: 0.8,
-            },
-          },
-        },
-      },
+      // not added to themeAugmentation yet, waiting for the next release of X
+
+      // MuiChartsGrid: {
+      //   styleOverrides: {
+      //     root: {
+      //       '& .MuiChartsGrid-line': {
+      //         stroke: gray[200],
+      //         strokeDasharray: '4 2',
+      //         strokeWidth: 0.8,
+      //       },
+      //     },
+      //   },
+      // },
       MuiRichTreeView: { styleOverrides: { root: { paddingBottom: 5 } } },
       MuiTreeItem2: {
         styleOverrides: {
