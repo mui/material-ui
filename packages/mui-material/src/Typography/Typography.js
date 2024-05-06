@@ -117,7 +117,7 @@ const defaultVariantMapping = {
 const colorTransformations = {
   textPrimary: 'text.primary',
   textSecondary: 'text.secondary',
-  // For main palette, the color will be applied by the styles above.
+  // For the main palette, the color will be applied by the `...Object.entries(theme.palette)` clause in the TypographyRoot's styles
   primary: null,
   secondary: null,
   error: null,
