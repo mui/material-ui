@@ -38,7 +38,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.4",
+    "@babel/runtime": "^7.24.5",
     "@types/prop-types": "^15.7.12",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0"
