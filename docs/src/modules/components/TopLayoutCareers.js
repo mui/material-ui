@@ -10,6 +10,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { Link } from '@mui/docs/Link';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const StyledDiv = styled('div')(({ theme }) => ({
   flex: '1 0 100%',
@@ -34,6 +35,7 @@ const StyledAppContainer = styled(AppContainer)(({ theme }) => ({
 export default function TopLayoutCareers(props) {
   const { docs } = props;
   const { description, rendered, title } = docs.en;
+  const t = useTranslate();
 
   return (
     <BrandingCssVarsProvider>
@@ -51,11 +53,10 @@ export default function TopLayoutCareers(props) {
             href="/careers/#open-roles"
             rel="nofollow"
             variant="body2"
-            sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 2 }}
+            sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 4 }}
           >
             <KeyboardArrowLeftIcon fontSize="small" />
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            {'Back to open roles'}
+            {t('backToOpenRoles')}
           </Link>
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
