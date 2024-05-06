@@ -959,12 +959,12 @@ The PaginationItems's `components` was deprecated in favor of `slots`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/popper-props <path>
+npx @mui/codemod@next deprecations/popper-props <path>
 ```
 
 ### components
 
-The Popper's `components` was deprecated in favor of `slots`:
+The Popper's prop `components` was deprecated in favor of `slots`:
 
 ```diff
  <Popper
@@ -975,7 +975,7 @@ The Popper's `components` was deprecated in favor of `slots`:
 
 ### componentsProps
 
-The Popper's `componentsProps` was deprecated in favor of `slotProps`:
+The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <Popper
