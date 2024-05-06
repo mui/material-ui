@@ -387,7 +387,7 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * The props used for each slot inside the Modal.
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -395,8 +395,7 @@ Modal.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Modal.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({

@@ -55,10 +55,8 @@
     "onTransitionEnter": { "description": "A function called when a transition enters." },
     "onTransitionExited": { "description": "A function called when a transition has exited." },
     "open": { "description": "If <code>true</code>, the component is shown." },
-    "slotProps": { "description": "The props used for each slot inside the Modal." },
-    "slots": {
-      "description": "The components used for each slot inside the Modal. Either a string to use a HTML element or a component."
-    },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
