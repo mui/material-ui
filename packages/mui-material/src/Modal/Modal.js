@@ -163,10 +163,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     elementType: ModalRoot,
     externalForwardedProps,
     getSlotProps: getRootProps,
-    additionalProps: {
-      ref,
-      as: component,
-    },
     ownerState,
     className: clsx(
       className,
@@ -178,7 +174,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const [BackdropSlot, backdropProps] = useSlot('backdrop', {
     elementType: BackdropComponent,
-    additionalProps: BackdropProps,
+    externalForwardedProps,
     getSlotProps: (otherHandlers) => {
       return getBackdropProps({
         ...otherHandlers,

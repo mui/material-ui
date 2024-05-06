@@ -33,7 +33,6 @@ describe('<Modal />', () => {
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
-      testLegacyComponentsProp: true,
       slots: {
         root: { expectedClassName: classes.root },
         backdrop: {},
@@ -44,7 +43,6 @@ describe('<Modal />', () => {
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
         'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
-        'slotPropsCallback', // not supported yet
       ],
     }),
   );
