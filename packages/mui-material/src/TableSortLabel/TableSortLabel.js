@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
+
+const useThemeProps = createUseThemeProps('MuiTableSortLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, direction, active } = ownerState;

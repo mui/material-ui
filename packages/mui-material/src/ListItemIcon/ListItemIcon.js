@@ -3,10 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getListItemIconUtilityClass } from './listItemIconClasses';
 import ListContext from '../List/ListContext';
+
+const useThemeProps = createUseThemeProps('MuiListItemIcon');
 
 const useUtilityClasses = (ownerState) => {
   const { alignItems, classes } = ownerState;
@@ -26,14 +27,21 @@ const ListItemIconRoot = styled('div', {
 
     return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   minWidth: 56,
   color: (theme.vars || theme).palette.action.active,
   flexShrink: 0,
   display: 'inline-flex',
-  ...(ownerState.alignItems === 'flex-start' && {
-    marginTop: 8,
-  }),
+  variants: [
+    {
+      props: {
+        alignItems: 'flex-start',
+      },
+      style: {
+        marginTop: 8,
+      },
+    },
+  ],
 }));
 
 /**

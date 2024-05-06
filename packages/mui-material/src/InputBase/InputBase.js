@@ -11,14 +11,15 @@ import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
+
+const useThemeProps = createUseThemeProps('MuiInputBase');
 
 export const rootOverridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -104,7 +105,7 @@ export const InputBaseRoot = styled('div', {
   name: 'MuiInputBase',
   slot: 'Root',
   overridesResolver: rootOverridesResolver,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   ...theme.typography.body1,
   color: (theme.vars || theme).palette.text.primary,
   lineHeight: '1.4375em', // 23px
@@ -117,22 +118,33 @@ export const InputBaseRoot = styled('div', {
     color: (theme.vars || theme).palette.text.disabled,
     cursor: 'default',
   },
-  ...(ownerState.multiline && {
-    padding: '4px 0 5px',
-    ...(ownerState.size === 'small' && {
-      paddingTop: 1,
-    }),
-  }),
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.multiline,
+      style: {
+        padding: '4px 0 5px',
+      },
+    },
+    {
+      props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
+      style: {
+        paddingTop: 1,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.fullWidth,
+      style: {
+        width: '100%',
+      },
+    },
+  ],
 }));
 
-export const InputBaseComponent = styled('input', {
+export const InputBaseInput = styled('input', {
   name: 'MuiInputBase',
   slot: 'Input',
   overridesResolver: inputOverridesResolver,
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const light = theme.palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',
@@ -147,11 +159,9 @@ export const InputBaseComponent = styled('input', {
       duration: theme.transitions.duration.shorter,
     }),
   };
-
   const placeholderHidden = {
     opacity: '0 !important',
   };
-
   const placeholderVisible = theme.vars
     ? {
         opacity: theme.vars.opacity.inputPlaceholder,
@@ -211,19 +221,33 @@ export const InputBaseComponent = styled('input', {
       animationDuration: '5000s',
       animationName: 'mui-auto-fill',
     },
-    ...(ownerState.size === 'small' && {
-      paddingTop: 1,
-    }),
-    ...(ownerState.multiline && {
-      height: 'auto',
-      resize: 'none',
-      padding: 0,
-      paddingTop: 0,
-    }),
-    ...(ownerState.type === 'search' && {
-      // Improve type search style.
-      MozAppearance: 'textfield',
-    }),
+    variants: [
+      {
+        props: {
+          size: 'small',
+        },
+        style: {
+          paddingTop: 1,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.multiline,
+        style: {
+          height: 'auto',
+          resize: 'none',
+          padding: 0,
+          paddingTop: 0,
+        },
+      },
+      {
+        props: {
+          type: 'search',
+        },
+        style: {
+          MozAppearance: 'textfield', // Improve type search style.
+        },
+      },
+    ],
   };
 });
 
@@ -506,7 +530,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const Root = slots.root || components.Root || InputBaseRoot;
   const rootProps = slotProps.root || componentsProps.root || {};
 
-  const Input = slots.input || components.Input || InputBaseComponent;
+  const Input = slots.input || components.Input || InputBaseInput;
   inputProps = { ...inputProps, ...(slotProps.input ?? componentsProps.input) };
 
   return (

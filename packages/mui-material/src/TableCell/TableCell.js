@@ -7,9 +7,10 @@ import { darken, alpha, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
+
+const useThemeProps = createUseThemeProps('MuiTableCell');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, align, padding, size, stickyHeader } = ownerState;

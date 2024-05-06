@@ -8,6 +8,8 @@ export interface ChipClasses {
   sizeSmall: string;
   /** Styles applied to the root element if `size="medium"`. */
   sizeMedium: string;
+  /** Styles applied to the root element if `color="default"`. */
+  colorDefault: string;
   /** Styles applied to the root element if `color="error"`. */
   colorError: string;
   /** Styles applied to the root element if `color="info"`. */
@@ -156,6 +158,7 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'root',
   'sizeSmall',
   'sizeMedium',
+  'colorDefault',
   'colorError',
   'colorInfo',
   'colorPrimary',
