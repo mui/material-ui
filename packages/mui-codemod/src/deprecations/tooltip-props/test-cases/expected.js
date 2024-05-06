@@ -2,9 +2,17 @@ import Tooltip from '@mui/material/Tooltip';
 
 <Tooltip
   slots={{
-    arrow: ComponentsArrow
+    arrow: ComponentsArrow,
+    popper: ComponentsPopper,
+    tooltip: ComponentsTooltip,
+    transition: ComponentsTransition
   }}
-  slotProps={{ arrow: componentsArrowProps }}
+  slotProps={{
+    arrow: componentsArrowProps,
+    popper: componentsPopperProps,
+    tooltip: componentsTooltipProps,
+    transition: componentsTransitionProps
+  }}
 />;
 <Tooltip
   slots={{
@@ -30,3 +38,28 @@ import Tooltip from '@mui/material/Tooltip';
     ...componentsTooltipProps,
     ...slotsTooltipProps
   } }} />;
+<Tooltip
+  slots={{
+    arrow: SlotsArrow,
+    popper: SlotsPopper,
+    tooltip: SlotsTooltip,
+    transition: SlotsTransition
+  }}
+  slotProps={{
+    arrow: {
+      ...componentsArrowProps,
+      ...slotsArrowProps
+    },
+    popper: {
+      ...componentsPopperProps,
+      ...slotsPopperProps
+    },
+    tooltip: {
+      ...componentsTooltipProps,
+      ...slotsTooltipProps
+    },
+    transition: {
+      ...componentsTransitionProps,
+      ...slotsTransitionProps
+    }
+  }} />;
