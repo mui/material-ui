@@ -1,6 +1,6 @@
 import { circularProgressClasses } from '@mui/material/CircularProgress';
 
-('& .CircularProgress-circleDeterminate');
-('& .CircularProgress-circleIndeterminate');
+('& .MuiCircularProgress-circleDeterminate');
+('& .MuiCircularProgress-circleIndeterminate');
 `& .${circularProgressClasses.circleDeterminate}`;
 `& .${circularProgressClasses.circleIndeterminate}`;
