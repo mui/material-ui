@@ -4,10 +4,10 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { TreeView } from '@mui/x-tree-view/TreeView';
+import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import {
   TreeItem,
-  useTreeItem,
+  useTreeItemState,
   TreeItemProps,
   TreeItemContentProps,
 } from '@mui/x-tree-view/TreeItem';
@@ -25,7 +25,7 @@ const CustomContent = React.forwardRef(function CustomContent(
     classes,
     className,
     label,
-    nodeId,
+    itemId,
     icon: iconProp,
     expansionIcon,
     displayIcon,
@@ -39,7 +39,7 @@ const CustomContent = React.forwardRef(function CustomContent(
     handleExpansion,
     handleSelection,
     preventSelection,
-  } = useTreeItem(nodeId);
+  } = useTreeItemState(itemId);
 
   const icon = iconProp || expansionIcon || displayIcon;
 
@@ -86,7 +86,7 @@ const CustomContent = React.forwardRef(function CustomContent(
         <FolderRounded
           sx={{
             fontSize: 16,
-            color: nodeId === '1' ? 'primary.main' : 'grey.600',
+            color: itemId === '1' ? 'primary.main' : 'grey.600',
           }}
         />
       )}
@@ -128,7 +128,7 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => [
         content: '""',
         display: 'block',
         position: 'absolute',
-        left: -14,
+        left: -5,
         height: '100%',
         width: 1.5,
         backgroundColor: (theme.vars || theme).palette.grey[200],
@@ -163,48 +163,61 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 ) {
   return <StyledTreeItem ContentComponent={CustomContent} {...props} ref={ref} />;
 });
+function CustomEndIcon() {
+  return <div style={{ width: 24 }} />;
+}
+
+function CustomExpandIcon() {
+  return <KeyboardArrowDownRounded sx={{ fontSize: 16, color: 'primary.main' }} />;
+}
+
+function CustomCollapseIcon() {
+  return <KeyboardArrowUpRounded sx={{ fontSize: 16, color: 'primary.main' }} />;
+}
 
 export default function FolderTreeView() {
   return (
-    <TreeView
+    <SimpleTreeView
       aria-label="folder"
-      defaultExpanded={['1', '2', '5', '7']}
-      defaultCollapseIcon={<KeyboardArrowUpRounded sx={{ fontSize: 16, color: 'primary.main' }} />}
-      defaultExpandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 16, color: 'grey.600' }} />}
-      defaultEndIcon={<div style={{ width: 24 }} />}
+      defaultExpandedItems={['1', '2', '5', '7']}
+      slots={{
+        endIcon: CustomEndIcon,
+        expandIcon: CustomExpandIcon,
+        collapseIcon: CustomCollapseIcon,
+      }}
       sx={{ p: 1, overflowY: 'auto' }}
     >
-      <CustomTreeItem nodeId="1" label="src">
-        <CustomTreeItem nodeId="2" label="components">
-          <CustomTreeItem nodeId="3" label="Button.tsx" ContentProps={{ lastNestedChild: true }} />
-          <CustomTreeItem nodeId="4" label="Drawer.tsx" ContentProps={{ lastNestedChild: true }} />
-          <CustomTreeItem nodeId="5" label="Navbar.tsx" ContentProps={{ lastNestedChild: true }} />
+      <CustomTreeItem itemId="1" label="src">
+        <CustomTreeItem itemId="2" label="components">
+          <CustomTreeItem itemId="3" label="Button.tsx" ContentProps={{ lastNestedChild: true }} />
+          <CustomTreeItem itemId="4" label="Drawer.tsx" ContentProps={{ lastNestedChild: true }} />
+          <CustomTreeItem itemId="5" label="Navbar.tsx" ContentProps={{ lastNestedChild: true }} />
           <CustomTreeItem
-            nodeId="6"
+            itemId="6"
             label="TreeView.tsx"
             ContentProps={{ lastNestedChild: true }}
           />
         </CustomTreeItem>
-        <CustomTreeItem nodeId="7" label="blocks">
+        <CustomTreeItem itemId="7" label="blocks">
           <CustomTreeItem
-            nodeId="8"
+            itemId="8"
             label="SignUpPage.tsx"
             ContentProps={{ lastNestedChild: true }}
           />
-          <CustomTreeItem nodeId="9" label="PricingTable.tsx">
+          <CustomTreeItem itemId="9" label="PricingTable.tsx">
             <CustomTreeItem
-              nodeId="10"
+              itemId="10"
               label="PaymentOptions.tsx"
               ContentProps={{ lastNestedChild: true }}
             />
             <CustomTreeItem
-              nodeId="11"
+              itemId="11"
               label="EarlyBirdDiscount.tsx"
               ContentProps={{ lastNestedChild: true }}
             />
           </CustomTreeItem>
         </CustomTreeItem>
       </CustomTreeItem>
-    </TreeView>
+    </SimpleTreeView>
   );
 }

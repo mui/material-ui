@@ -3,10 +3,10 @@ import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { TreeView } from '@mui/x-tree-view/TreeView';
+import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import {
   TreeItem as MuiTreeItem,
-  useTreeItem,
+  useTreeItemState,
   TreeItemProps,
   TreeItemContentProps,
 } from '@mui/x-tree-view/TreeItem';
@@ -19,6 +19,7 @@ import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Frame from 'docs/src/components/action/Frame';
+import TreeViewDemo from './TreeViewDemo';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },
@@ -29,7 +30,7 @@ const CustomContent = React.forwardRef(function CustomContent(
     classes,
     className,
     label,
-    nodeId,
+    itemId,
     icon: iconProp,
     expansionIcon,
     displayIcon,
@@ -43,7 +44,7 @@ const CustomContent = React.forwardRef(function CustomContent(
     handleExpansion,
     handleSelection,
     preventSelection,
-  } = useTreeItem(nodeId);
+  } = useTreeItemState(itemId);
 
   const icon = iconProp || expansionIcon || displayIcon;
 
@@ -113,7 +114,7 @@ const CustomContent = React.forwardRef(function CustomContent(
         zIndex: 1,
         '& svg': {
           fontSize: 18,
-          color: nodeId.startsWith('root') ? 'primary.main' : 'grey.600',
+          color: itemId.startsWith('root') ? 'primary.main' : 'grey.600',
         },
         '&:not(.CustomContent-last)': {
           '& svg': {
@@ -203,51 +204,51 @@ const code = `
   defaultExpanded={['1', '1.1', '1.2', '2', '2.3']}
   sx={{ height: { xs: 260, sm: 460 }, overflowY: 'auto', p: 1 }}
 >
-  <TreeItem nodeId="1" label="Drive">
-    <TreeItem nodeId="1.1" label="Backup">
+  <TreeItem itemId="1" label="Drive">
+    <TreeItem itemId="1.1" label="Backup">
       <TreeItem
-        nodeId="1.1.1"
+        itemId="1.1.1"
         label="Jan 2021.pdf"
         ContentProps={{ lastNestedChild: true }}
       />
       <TreeItem
-        nodeId="1.1.2"
+        itemId="1.1.2"
         label="Feb 2021.pdf"
         ContentProps={{ lastNestedChild: true }}
       />
       <TreeItem
-        nodeId="1.1.3"
+        itemId="1.1.3"
         label="Mar 2021.pdf"
         ContentProps={{ lastNestedChild: true }}
       />
     </TreeItem>
-    <TreeItem nodeId="1.2" label="Photos">
+    <TreeItem itemId="1.2" label="Photos">
       <TreeItem
-        nodeId="1.2.1"
+        itemId="1.2.1"
         label="family.jpeg"
         ContentProps={{ lastNestedChild: true }}
       />
       <TreeItem
-        nodeId="1.2.2"
+        itemId="1.2.2"
         label="my_dogpng"
         ContentProps={{ lastNestedChild: true }}
       />
     </TreeItem>
   </TreeItem>
-  <TreeItem nodeId="2" label="Favorite">
+  <TreeItem itemId="2" label="Favorite">
     <TreeItem
-      nodeId="2.1"
+      itemId="2.1"
       label="MUI_retreat_photo.jpg"
       ContentProps={{ lastNestedChild: true }}
     />
     <TreeItem
-      nodeId="2.2"
+      itemId="2.2"
       label="v6_secrets.mkv"
       ContentProps={{ lastNestedChild: true }}
     />
-    <TreeItem nodeId="2.3" label="Other pictures">
+    <TreeItem itemId="2.3" label="Other pictures">
       <TreeItem
-        nodeId="2.3.1"
+        itemId="2.3.1"
         label="my_avatar.jpg"
         ContentProps={{ lastNestedChild: true }}
       />
@@ -255,7 +256,7 @@ const code = `
   </TreeItem>
 </TreeView>`;
 
-export default function XDateRangeDemo() {
+export default function XTreeViewDemo() {
   return (
     <Frame>
       <Frame.Demo sx={{ p: 2 }}>
@@ -265,67 +266,69 @@ export default function XDateRangeDemo() {
             maxWidth: '100%',
             bgcolor: '#FFF',
             borderRadius: '8px',
+            padding: 2,
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.900',
             }),
           })}
         >
-          <TreeView
+          {/* <SimpleTreeView
             aria-label="file system navigator"
-            defaultExpanded={['1', '1.1', '1.2']}
+            defaultExpandedItems={['1', '1.1', '1.2']}
             sx={{ height: { xs: 260, sm: '100%' }, overflowY: 'auto', p: 1 }}
           >
-            <TreeItem nodeId="1" label="Drive">
-              <TreeItem nodeId="1.1" label="Backup">
+            <TreeItem itemId="1" label="Drive">
+              <TreeItem itemId="1.1" label="Backup">
                 <TreeItem
-                  nodeId="1.1.1"
+                  itemId="1.1.1"
                   label="Jan 2021.pdf"
                   ContentProps={{ lastNestedChild: true }}
                 />
                 <TreeItem
-                  nodeId="1.1.2"
+                  itemId="1.1.2"
                   label="Feb 2021.pdf"
                   ContentProps={{ lastNestedChild: true }}
                 />
                 <TreeItem
-                  nodeId="1.1.3"
+                  itemId="1.1.3"
                   label="Mar 2021.pdf"
                   ContentProps={{ lastNestedChild: true }}
                 />
               </TreeItem>
-              <TreeItem nodeId="1.2" label="Photos">
+              <TreeItem itemId="1.2" label="Photos">
                 <TreeItem
-                  nodeId="1.2.1"
+                  itemId="1.2.1"
                   label="family.jpeg"
                   ContentProps={{ lastNestedChild: true }}
                 />
                 <TreeItem
-                  nodeId="1.2.2"
+                  itemId="1.2.2"
                   label="my_dogpng"
                   ContentProps={{ lastNestedChild: true }}
                 />
               </TreeItem>
             </TreeItem>
-            <TreeItem nodeId="2" label="Favorites">
+            <TreeItem itemId="2" label="Favorites">
               <TreeItem
-                nodeId="2.1"
+                itemId="2.1"
                 label="MUI_retreat_photo.jpg"
                 ContentProps={{ lastNestedChild: true }}
               />
               <TreeItem
-                nodeId="2.2"
+                itemId="2.2"
                 label="v6_secrets.mkv"
                 ContentProps={{ lastNestedChild: true }}
               />
-              <TreeItem nodeId="2.3" label="Other pictures">
+              <TreeItem itemId="2.3" label="Other pictures">
                 <TreeItem
-                  nodeId="2.3.1"
+                  itemId="2.3.1"
                   label="my_avatar.jpg"
                   ContentProps={{ lastNestedChild: true }}
                 />
               </TreeItem>
             </TreeItem>
-          </TreeView>
+          </SimpleTreeView> */}
+          <TreeViewDemo />
         </Paper>
       </Frame.Demo>
       <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
