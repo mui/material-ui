@@ -150,8 +150,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const externalForwardedProps = {
     slots: {
-      root: slots.root ?? components.root,
-      backdrop: slots.backdrop ?? components.backdrop,
+      root: slots.root ?? components.Root,
+      backdrop: slots.backdrop ?? components.Backdrop,
     },
     slotProps: {
       root: slotProps.root ?? componentsProps.root,
