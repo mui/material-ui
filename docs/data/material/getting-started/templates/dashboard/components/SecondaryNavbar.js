@@ -34,13 +34,13 @@ export default function SecondaryNavbar() {
   return (
     <AppBar
       position="absolute"
-      sx={(theme) => ({
+      sx={{
         boxShadow: 0,
         bgcolor: 'background.default',
         backgroundImage: 'none',
         top: 64,
         display: { xs: 'none', md: 'block' },
-      })}
+      }}
     >
       <StyledToolbar variant="dense">
         <Stack

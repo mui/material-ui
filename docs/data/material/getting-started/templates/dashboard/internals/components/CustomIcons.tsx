@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SvgIcon from '@mui/material/SvgIcon';
 
-export default function SitemarkIcon() {
+export function SitemarkIcon() {
   return (
     <SvgIcon sx={{ height: 21, width: 100 }}>
       <svg
@@ -286,8 +286,8 @@ export function BrazilFlag() {
             y2="0.5"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#FFC600" />
-            <stop offset="1" stop-color="#FFDE42" />
+            <stop stopColor="#FFC600" />
+            <stop offset="1" stopColor="#FFDE42" />
           </linearGradient>
           <clipPath id="clip0_983_1741">
             <rect y="0.5" width="24" height="24" rx="12" fill="white" />

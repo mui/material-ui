@@ -213,7 +213,7 @@ export default function DashboardTemplateTheme() {
           </Card>
         </Stack>
         <LinearProgress variant="determinate" value={50} sx={{ width: 250 }} />
-        <Link href="#" sx={{ maxWidth: 'fit-content' }}>
+        <Link href="/" sx={{ maxWidth: 'fit-content' }}>
           Link
         </Link>
         <Stack direction="row" gap={2} alignItems="center">
