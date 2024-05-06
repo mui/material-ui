@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import TableContext from './TableContext';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getTableUtilityClass } from './tableClasses';
+
+const useThemeProps = createUseThemeProps('MuiTable');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, stickyHeader } = ownerState;
