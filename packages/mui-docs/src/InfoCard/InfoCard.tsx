@@ -13,8 +13,8 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
   return (
     <Box
       sx={(theme) => ({
-        width: 40,
-        height: 40,
+        width: 36,
+        height: 36,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -24,9 +24,12 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
         borderColor: 'primary.200',
         bgcolor: 'primary.50',
         boxShadow: `0px 0 0 2px ${alpha(theme.palette.primary[500], 0.1)}, 0px 2px 12px 0px rgba(234, 237, 241, 0.3) inset`,
+        '& .MuiSvgIcon-root': {
+          fontSize: theme.typography.pxToRem(18),
+        },
         ...theme.applyDarkStyles({
           borderColor: alpha(theme.palette.primary[400], 0.25),
-          bgcolor: alpha(theme.palette.primary[900], 0.4),
+          bgcolor: alpha(theme.palette.primary[900], 0.2),
           boxShadow: `0 0 0 2px ${alpha(theme.palette.primary[600], 0.1)}, 0px 2px 12px 0px rgba(0, 0, 0, 0.25) inset`,
         }),
       })}
@@ -39,7 +42,6 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
 interface InfoCardProps {
   classNameDescription?: string;
   classNameTitle?: string;
-  dense?: boolean;
   description?: string;
   icon?: React.ReactNode;
   link?: string;
@@ -53,7 +55,6 @@ export function InfoCard(props: InfoCardProps) {
   const {
     classNameDescription,
     classNameTitle,
-    dense,
     description,
     icon,
     link,
@@ -75,7 +76,7 @@ export function InfoCard(props: InfoCardProps) {
           }
         : {})}
       sx={(theme) => ({
-        p: dense ? 2.5 : 3.5,
+        p: 2.5,
         height: '100%',
         background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
         ...theme.applyDarkStyles({
@@ -89,7 +90,7 @@ export function InfoCard(props: InfoCardProps) {
       {svg && svg}
       {icon && <GlowingIconContainer icon={icon} />}
       <Typography
-        fontWeight="bold"
+        fontWeight="semiBold"
         component="h3"
         color="text.primary"
         variant="body2"
