@@ -977,12 +977,12 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#filled-input-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/filled-input-props <path>
+npx @mui/codemod@next deprecations/filled-input-props <path>
 ```
 
 ### components
 
-The Input's `components` was deprecated in favor of `slots`:
+The Input's prop `components` was deprecated in favor of `slots`:
 
 ```diff
  <FilledInput
@@ -993,7 +993,7 @@ The Input's `components` was deprecated in favor of `slots`:
 
 ### componentsProps
 
-The Input's `componentsProps` was deprecated in favor of `slotProps`:
+The Input's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <FilledInput
@@ -1026,12 +1026,12 @@ The FormControlLabel's `componentsProps` prop was deprecated in favor of `slotPr
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/input-props <path>
+npx @mui/codemod@next deprecations/input-props <path>
 ```
 
 ### components
 
-The Input's `components` was deprecated in favor of `slots`:
+The Input's prop `components` was deprecated in favor of `slots`:
 
 ```diff
  <Input
@@ -1042,7 +1042,7 @@ The Input's `components` was deprecated in favor of `slots`:
 
 ### componentsProps
 
-The Input's `componentsProps` was deprecated in favor of `slotProps`:
+The Input's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <Input
@@ -1056,12 +1056,12 @@ The Input's `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/input-base-props <path>
+npx @mui/codemod@next deprecations/input-base-props <path>
 ```
 
 ### components
 
-The InputBase's `components` was deprecated in favor of `slots`:
+The InputBase's prop `components` was deprecated in favor of `slots`:
 
 ```diff
  <InputBase
@@ -1072,7 +1072,7 @@ The InputBase's `components` was deprecated in favor of `slots`:
 
 ### componentsProps
 
-The InputBase's `componentsProps` was deprecated in favor of `slotProps`:
+The InputBase's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <Input
@@ -1167,12 +1167,12 @@ The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#outlined-input-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/outlined-input-props <path>
+npx @mui/codemod@next deprecations/outlined-input-props <path>
 ```
 
 ### components
 
-The Input's `components` was deprecated in favor of `slots`:
+The Input's prop `components` was deprecated in favor of `slots`:
 
 ```diff
  <OutlinedInput
@@ -1183,7 +1183,7 @@ The Input's `components` was deprecated in favor of `slots`:
 
 ### componentsProps
 
-The Input's `componentsProps` was deprecated in favor of `slotProps`:
+The Input's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <OutlinedInput
@@ -1197,7 +1197,7 @@ The Input's `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-classes) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/pagination-item-classes <path>
+npx @mui/codemod@next deprecations/pagination-item-classes <path>
 ```
 
 ### Composed CSS classes
