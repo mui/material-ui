@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
-import { useSlotProps } from '@mui/base/utils';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import composeClasses from '@mui/utils/composeClasses';
 import FocusTrap from '../Unstable_TrapFocus';
@@ -12,6 +11,7 @@ import Portal from '../Portal';
 import { styled, createUseThemeProps } from '../zero-styled';
 import Backdrop from '../Backdrop';
 import { getModalUtilityClass } from './modalClasses';
+import useSlot from '../utils/useSlot';
 
 const useThemeProps = createUseThemeProps('MuiModal');
 
@@ -96,15 +96,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     hideBackdrop = false,
     keepMounted = false,
     onBackdropClick,
-    onClose,
-    onTransitionEnter,
-    onTransitionExited,
     open,
-    slotProps,
-    slots,
-    // eslint-disable-next-line react/prop-types
-    theme,
-    ...other
+    slotProps = {},
+    slots = {},
   } = props;
 
   const propsWithDefaults = {
@@ -152,16 +146,23 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     childProps.onExited = onExited;
   }
 
-  const RootSlot = slots?.root ?? components.Root ?? ModalRoot;
-  const BackdropSlot = slots?.backdrop ?? components.Backdrop ?? BackdropComponent;
-
   const rootSlotProps = slotProps?.root ?? componentsProps.root;
   const backdropSlotProps = slotProps?.backdrop ?? componentsProps.backdrop;
 
-  const rootProps = useSlotProps({
-    elementType: RootSlot,
-    externalSlotProps: rootSlotProps,
-    externalForwardedProps: other,
+  const externalForwardedProps = {
+    slots: {
+      root: slots.root ?? components.root,
+      backdrop: slots.backdrop ?? components.backdrop,
+    },
+    slotProps: {
+      root: slotProps.root ?? componentsProps.root,
+      backdrop: slotProps.backdrop ?? componentsProps.backdrop,
+    },
+  };
+
+  const [RootSlot, rootProps] = useSlot('previous', {
+    elementType: ModalRoot,
+    externalForwardedProps,
     getSlotProps: getRootProps,
     additionalProps: {
       ref,
@@ -176,9 +177,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     ),
   });
 
-  const backdropProps = useSlotProps({
-    elementType: BackdropSlot,
-    externalSlotProps: backdropSlotProps,
+  const [BackdropSlot, backdropProps] = useSlot('backdrop', {
+    elementType: BackdropComponent,
     additionalProps: BackdropProps,
     getSlotProps: (otherHandlers) => {
       return getBackdropProps({
