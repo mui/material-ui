@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import ListContext from '../List/ListContext';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
+
+const useThemeProps = createUseThemeProps('MuiListItemAvatar');
 
 const useUtilityClasses = (ownerState) => {
   const { alignItems, classes } = ownerState;

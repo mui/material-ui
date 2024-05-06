@@ -96,6 +96,13 @@ theme.getColorSchemeSelector = (colorScheme) => {
   return `@media (prefers-color-scheme: ${colorScheme})`;
 };
 
+function innerNoop() {
+  return null;
+}
+function outerNoop() {
+  return innerNoop;
+}
+
 /**
  * @type {PigmentOptions}
  */
@@ -104,6 +111,26 @@ const pigmentOptions = {
   transformLibraries: ['local-ui-lib'],
   sourceMap: true,
   displayName: true,
+  overrideContext: (context) => {
+    if (!context.$RefreshSig$) {
+      context.$RefreshSig$ = outerNoop;
+    }
+    return {
+      ...context,
+      require: (id) => {
+        if (id === '@mui/styled-engine' || id === '@mui/styled-engine-sc') {
+          return {
+            __esModule: true,
+            default: () => () => () => null,
+            internal_processStyles: () => {},
+            keyframes: () => '',
+            css: () => '',
+          };
+        }
+        return context.require(id);
+      },
+    };
+  },
 };
 
 /** @type {import('next').NextConfig} */

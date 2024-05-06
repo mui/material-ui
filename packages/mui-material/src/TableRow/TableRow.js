@@ -5,9 +5,10 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
+
+const useThemeProps = createUseThemeProps('MuiTableRow');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, selected, hover, head, footer } = ownerState;
