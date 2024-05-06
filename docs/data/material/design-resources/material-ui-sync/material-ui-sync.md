@@ -4,7 +4,7 @@
 
 ## Introduction
 
-[Material UI Sync](https://www.figma.com/community/plugin/1336346114713490235/) is a Figma plugin that lets you generate a theme from the [Material UI for Figma Design Kit](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/).
+[Material UI Sync](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync) is a Figma plugin that lets you generate a theme from the [Material UI for Figma Design Kit](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x).
 
 :::warning
 Sync works in combination with the [Material UI for Figma Design Kit v5.16.0](https://github.com/mui/mui-design-kits/releases) and later.
@@ -15,9 +15,9 @@ Other kits, such as the Joy UI Design Kit, are not supported yet.
 
 ## Running the plugin
 
-If you don't have the [complete and latest version](/store/items/figma-react/) of the Material UI for Figma Design Kit installed, you can test the plugin by using the [Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x/) instead.
+If you don't have the [complete and latest version](/store/items/figma-react/) of the Material UI for Figma Design Kit installed, you can test the plugin by using the [Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x) instead.
 
-After installing and opening it in Figma, head over to the [Material UI Sync plugin page](https://www.figma.com/community/plugin/1336346114713490235/) on the Community tab and click on **Open in...** and select the Material UI for Figma Design Kit.
+After installing and opening it in Figma, head over to the [Material UI Sync plugin page](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync) on the Community tab and click on **Open in...** and select the Material UI for Figma Design Kit.
 
 <img src="/static/material-ui/design-resources/sync-access.png" style="width: 814px;" alt="Accessing Material UI Sync via the Resources menu in Figma." width="1628" height="400" />
 
@@ -297,4 +297,4 @@ export default function MyApp({ Component, pageProps }) {
 
 ## Feedback and bug reports
 
-Use [the dedicated Material UI Sync feedback board](https://mui-connect.canny.io/feedback) to share feedback, report bugs, or drop feature requests.
+Use [the dedicated Material UI Sync feedback board](https://material-ui-sync.canny.io/) to share feedback, report bugs, or drop feature requests.

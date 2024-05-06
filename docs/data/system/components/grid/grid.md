@@ -8,7 +8,7 @@ githubLabel: 'component: Grid'
 
 <p class="description">The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 The `Grid` component works well for a layout with known columns. The columns can be configured in multiple breakpoints which you have to specify the column span of each child.
 

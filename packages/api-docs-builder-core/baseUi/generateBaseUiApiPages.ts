@@ -9,7 +9,7 @@ export async function generateBaseUIApiPages() {
   await Promise.all(
     findPagesMarkdown().map(async (markdown) => {
       const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-      const markdownHeaders = getHeaders(markdownContent) as any;
+      const markdownHeaders = getHeaders(markdownContent);
       const pathnameTokens = markdown.pathname.split('/');
       const productName = pathnameTokens[1];
       const componentName = pathnameTokens[3];
