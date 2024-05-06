@@ -79,7 +79,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const {
     BackdropComponent = ModalBackdrop,
     BackdropProps,
-    classes: classesProp,
     className,
     closeAfterTransition = false,
     children,
