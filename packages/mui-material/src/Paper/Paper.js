@@ -114,7 +114,6 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
       ref={ref}
       {...other}
       style={{
-        ...other.style,
         ...(variant === 'elevation' && {
           '--Paper-shadow': (theme.vars || theme).shadows[elevation],
           ...(theme.vars && {
@@ -128,6 +127,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
               )}, ${alpha('#fff', getOverlayAlpha(elevation))})`,
             }),
         }),
+        ...other.style,
       }}
     />
   );

@@ -176,8 +176,8 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
       {...other}
       ownerState={ownerState}
       style={{
-        ...other.style,
         ...(align !== 'inherit' && { '--Typography-textAlign': align }),
+        ...other.style,
       }}
     />
   );
