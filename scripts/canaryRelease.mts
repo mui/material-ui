@@ -136,8 +136,8 @@ async function setAccessToken(npmAccessToken: string | undefined) {
 
 async function setVersion(packages: PackageInfo[]) {
   const { stdout: currentRevisionSha } = await $`git rev-parse --short HEAD`;
-  const { stdout: commitDate } = await $`git show --no-patch --format=%cI HEAD`;
-  const timestamp = formatDate(new Date(Date.parse(commitDate)));
+  const { stdout: commitTimestamp } = await $`git show --no-patch --format=%ct HEAD`;
+  const timestamp = formatDate(new Date(+commitTimestamp * 1000));
   let hasError = false;
 
   const tasks = packages.map(async (pkg) => {
@@ -171,8 +171,8 @@ function formatDate(date: Date) {
   // yyyyMMdd-HHmmss
   return date
     .toISOString()
-    .replace(/[-:TZ.]/g, '')
-    .replace(' ', '-')
+    .replace(/[-:Z.]/g, '')
+    .replace('T', '-')
     .slice(0, 15);
 }
 
