@@ -19,7 +19,7 @@ function upperCaseFirst(string) {
  * @example moduleIDToJSIdentifier('../Box-new.js') === '$$$BoxNewJs'
  */
 function moduleIDToJSIdentifier(moduleID) {
-  const delimiter = /(\.|-|\/|:)/;
+  const delimiter = /(@|\.|-|\/|:)/;
   return moduleID
     .split(delimiter)
     .filter((part) => !delimiter.test(part))
@@ -485,7 +485,9 @@ module.exports = async function demoLoader() {
   );
 
   componentNames.forEach((componentName) => {
-    const moduleID = path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
+    const moduleID = componentName.startsWith('@mui/docs/')
+      ? componentName
+      : path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
 
     components[moduleID] = componentName;
     componentModuleIDs.add(moduleID);

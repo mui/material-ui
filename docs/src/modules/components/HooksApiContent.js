@@ -29,11 +29,11 @@ function Heading(props) {
     <Level id={hash}>
       <a aria-labelledby={hash} className="title-link-to-anchor" href={`#${hash}`} tabIndex={-1}>
         {getTranslatedHeader(t, hash, text)}
-        <div className="anchor-icon">
+        <span className="anchor-icon">
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
-        </div>
+        </span>
       </a>
     </Level>
   );

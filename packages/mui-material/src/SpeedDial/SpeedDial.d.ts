@@ -5,12 +5,35 @@ import { InternalStandardProps as StandardProps } from '..';
 import { FabProps } from '../Fab';
 import { TransitionProps } from '../transitions';
 import { SpeedDialClasses } from './speedDialClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 
+export interface SpeedDialSlots {
+  /**
+   * The component that renders the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default {}
+   */
+  transition?: React.JSXElementConstructor<
+    TransitionProps & { children: React.ReactElement<any, any> }
+  >;
+}
+
+export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SpeedDialSlots,
+  {
+    transition: SlotProps<React.JSXElementConstructor<TransitionProps>, {}, SpeedDialOwnerState>;
+  }
+>;
+
 export interface SpeedDialProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  extends Omit<
+      StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+      'slots' | 'slotProps'
+    >,
+    SpeedDialSlotsAndSlotProps {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
    */
@@ -74,6 +97,7 @@ export interface SpeedDialProps
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
+   * * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
   /**
@@ -88,9 +112,12 @@ export interface SpeedDialProps
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionProps?: TransitionProps;
 }
+
+export interface SpeedDialOwnerState extends SpeedDialProps {}
 
 /**
  *

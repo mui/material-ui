@@ -14,7 +14,7 @@ The top App bar provides content and actions related to the current screen. It's
 
 It can transform into a contextual action bar or be used as a navbar.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic App bar
 

@@ -10,7 +10,7 @@ unstyled: /base-ui/react-badge/
 
 <p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic badge
 

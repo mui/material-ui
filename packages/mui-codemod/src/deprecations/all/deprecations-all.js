@@ -1,4 +1,5 @@
 import transformAccordionProps from '../accordion-props';
+import transformFormControlLabelProps from '../form-control-label-props';
 import transformAvatarProps from '../avatar-props';
 import transformDividerProps from '../divider-props';
 import transformAccordionClasses from '../accordion-summary-classes';
@@ -11,6 +12,7 @@ import transformToggleButtonGroupClasses from '../toggle-button-group-classes';
 import transformStepLabelProps from '../step-label-props';
 import transformBackdropProps from '../backdrop-props';
 import transformStepConnectorClasses from '../step-connector-classes';
+import transformSpeedDialProps from '../speed-dial-props';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -18,6 +20,7 @@ import transformStepConnectorClasses from '../step-connector-classes';
  */
 export default function deprecationsAll(file, api, options) {
   file.source = transformAccordionProps(file, api, options);
+  file.source = transformFormControlLabelProps(file, api, options);
   file.source = transformAvatarProps(file, api, options);
   file.source = transformDividerProps(file, api, options);
   file.source = transformAccordionClasses(file, api, options);
@@ -30,6 +33,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformStepLabelProps(file, api, options);
   file.source = transformBackdropProps(file, api, options);
   file.source = transformStepConnectorClasses(file, api, options);
+  file.source = transformSpeedDialProps(file, api, options);
 
   return file.source;
 }

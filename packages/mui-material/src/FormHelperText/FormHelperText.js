@@ -5,10 +5,11 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
-import useThemeProps from '../styles/useThemeProps';
+
+const useThemeProps = createUseThemeProps('MuiFormHelperText');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, contained, size, disabled, error, filled, focused, required } = ownerState;

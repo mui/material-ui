@@ -3,10 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
+
+const useThemeProps = createUseThemeProps('MuiList');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disablePadding, dense, subheader } = ownerState;
@@ -31,19 +32,27 @@ const ListRoot = styled('ul', {
       ownerState.subheader && styles.subheader,
     ];
   },
-})(({ ownerState }) => ({
+})({
   listStyle: 'none',
   margin: 0,
   padding: 0,
   position: 'relative',
-  ...(!ownerState.disablePadding && {
-    paddingTop: 8,
-    paddingBottom: 8,
-  }),
-  ...(ownerState.subheader && {
-    paddingTop: 0,
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.disablePadding,
+      style: {
+        paddingTop: 8,
+        paddingBottom: 8,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.subheader,
+      style: {
+        paddingTop: 0,
+      },
+    },
+  ],
+});
 
 const List = React.forwardRef(function List(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiList' });
