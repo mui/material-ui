@@ -39,7 +39,7 @@ export default function migrateToVariants(j, styles) {
 
   /**
    *
-   * @param {import('ast-types').namedTypes.MemberExpression | import('ast-types').namedTypes.Identifier} node
+   * @param {import('jscodeshift').MemberExpression | import('jscodeshift').Identifier} node
    */
   function getIdentifierKey(node) {
     if (node.type === 'MemberExpression') {
@@ -50,7 +50,7 @@ export default function migrateToVariants(j, styles) {
 
   /**
    *
-   * @param {import('ast-types').namedTypes.UnaryExpression | import('ast-types').namedTypes.MemberExpression | import('ast-types').namedTypes.Identifier} node
+   * @param {import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression | import('jscodeshift').Identifier} node
    */
   function getObjectKey(node) {
     let tempNode = { ...node };
@@ -65,8 +65,8 @@ export default function migrateToVariants(j, styles) {
 
   /**
    *
-   * @param {import('ast-types').namedTypes.ObjectExpression} objectExpression
-   * @param {import('ast-types').namedTypes.BinaryExpression} addtional
+   * @param {import('jscodeshift').ObjectExpression} objectExpression
+   * @param {import('jscodeshift').BinaryExpression} addtional
    */
   function objectToArrowFunction(objectExpression, addtional) {
     const paramKeys = new Set();
@@ -91,7 +91,7 @@ export default function migrateToVariants(j, styles) {
 
   /**
    *
-   * @param {import('ast-types').namedTypes.Identifier | import('ast-types').namedTypes.BinaryExpression | import('ast-types').namedTypes.UnaryExpression | import('ast-types').namedTypes.MemberExpression} node
+   * @param {import('jscodeshift').Identifier | import('jscodeshift').BinaryExpression | import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression} node
    */
   function inverseBinaryExpression(node) {
     if (node.type === 'Identifier' || node.type === 'MemberExpression') {
@@ -114,7 +114,7 @@ export default function migrateToVariants(j, styles) {
 
   /**
    *
-   * @param {import('ast-types').namedTypes.ObjectExpression} node
+   * @param {import('jscodeshift').ObjectExpression} node
    */
   function removeProperty(parentNode, child) {
     if (parentNode) {
@@ -151,7 +151,7 @@ export default function migrateToVariants(j, styles) {
   /**
    *
    * @param {{ properties: any[] }} node
-   * @param {Record<string, any[] | import('ast-types').namedTypes.ObjectExpression>} modeStyles
+   * @param {Record<string, any[] | import('jscodeshift').ObjectExpression>} modeStyles
    */
   function appendPaletteModeStyles(node, modeStyles) {
     Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
@@ -168,7 +168,7 @@ export default function migrateToVariants(j, styles) {
 
   /**
    *
-   * @param {import('ast-types').namedTypes.LogicalExpression | import('ast-types').namedTypes.BinaryExpression | import('ast-types').namedTypes.UnaryExpression | import('ast-types').namedTypes.MemberExpression} node
+   * @param {import('jscodeshift').LogicalExpression | import('jscodeshift').BinaryExpression | import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression} node
    */
   function buildProps(node) {
     const properties = [];
