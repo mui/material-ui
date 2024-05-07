@@ -1099,6 +1099,14 @@ npx @mui/codemod@next deprecations/step-connector-classes <path>
 
 ### v6.0.0
 
+#### `sx-prop`
+
+```bash
+npx @mui/codemod@next v6.0.0/sx-prop <path>
+```
+
+Update the usage of the `sx` prop to be compatible with `@pigment-css/react`.
+
 #### `theme-v6`
 
 ```bash
