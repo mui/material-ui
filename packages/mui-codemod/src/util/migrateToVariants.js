@@ -1,10 +1,10 @@
 const MAX_DEPTH = 20;
+
 /**
- *
  * @param {import('jscodeshift').API['j']} j
- * @param {any[]} styles
+ * @returns
  */
-export default function migrateToVariants(j, styles) {
+export const getCreateBuildStyle = (j) =>
   function createBuildStyle(key, upperBuildStyle, applyStylesMode) {
     if (applyStylesMode) {
       upperBuildStyle = (styleExpression) =>
@@ -35,59 +35,151 @@ export default function migrateToVariants(j, styles) {
       }
       return upperBuildStyle ? upperBuildStyle(styleExpression) : styleExpression;
     };
-  }
+  };
 
+/**
+ * @param {import('jscodeshift').API['j']} j
+ */
+export const getAppendPaletteModeStyles = (j) =>
   /**
    *
-   * @param {import('jscodeshift').MemberExpression | import('jscodeshift').Identifier} node
+   * @param {{ properties: any[] }} node
+   * @param {Record<string, any[] | import('jscodeshift').ObjectExpression>} modeStyles
    */
-  function getIdentifierKey(node) {
-    if (node.type === 'MemberExpression') {
-      return node.property;
-    }
-    return node;
-  }
-
-  /**
-   *
-   * @param {import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression | import('jscodeshift').Identifier} node
-   */
-  function getObjectKey(node) {
-    let tempNode = { ...node };
-    while (tempNode.type === 'UnaryExpression') {
-      tempNode = tempNode.argument;
-    }
-    while (tempNode.type === 'MemberExpression') {
-      tempNode = tempNode.object;
-    }
-    return tempNode;
-  }
-
-  /**
-   *
-   * @param {import('jscodeshift').ObjectExpression} objectExpression
-   * @param {import('jscodeshift').BinaryExpression} addtional
-   */
-  function objectToArrowFunction(objectExpression, addtional) {
-    const paramKeys = new Set();
-    let left;
-    objectExpression.properties.forEach((prop, index) => {
-      paramKeys.add(prop.key.name);
-      const result = j.binaryExpression('===', prop.key, prop.value);
-      if (index === 0) {
-        left = result;
-      } else {
-        left = j.logicalExpression('&&', left, result);
-      }
+  function appendPaletteModeStyles(node, modeStyles) {
+    Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
+      node.properties.push(
+        j.spreadElement(
+          j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')), [
+            j.stringLiteral(mode),
+            Array.isArray(objectStyles) ? j.objectExpression(objectStyles) : objectStyles,
+          ]),
+        ),
+      );
     });
-    if (addtional) {
-      paramKeys.add(getObjectKey(addtional.left).name);
-    }
-    return buildArrowFunctionAST(
-      paramKeys,
-      addtional ? j.logicalExpression('&&', left, addtional) : left,
-    );
+  };
+
+/**
+ *
+ * @param {import('jscodeshift').MemberExpression | import('jscodeshift').Identifier} node
+ */
+export function getIdentifierKey(node) {
+  if (node.type === 'MemberExpression') {
+    return node.property;
   }
+  return node;
+}
+
+/**
+ *
+ * @param {import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression | import('jscodeshift').Identifier} node
+ */
+export function getObjectKey(node) {
+  let tempNode = { ...node };
+  while (tempNode.type === 'UnaryExpression') {
+    tempNode = tempNode.argument;
+  }
+  while (tempNode.type === 'MemberExpression') {
+    tempNode = tempNode.object;
+  }
+  return tempNode;
+}
+
+/**
+ *
+ * @param {import('jscodeshift').ObjectExpression} node
+ */
+export function removeProperty(parentNode, child) {
+  if (parentNode) {
+    if (parentNode.type === 'ObjectExpression') {
+      parentNode.properties = parentNode.properties.filter(
+        (prop) => prop !== child && prop.value !== child,
+      );
+    }
+  }
+}
+
+/**
+ * @param {import('jscodeshift').API['j']} j
+ */
+export const getBuildArrowFunctionAST = (j) =>
+  /**
+   *
+   * @param {Set<string> | import('jscodeshift').Expression[]} params
+   * @param {import('jscodeshift').BlockStatement} body
+   * @returns
+   */
+  function buildArrowFunctionAST(params, body) {
+    const destructured = [...params].every((param) => typeof param === 'string');
+    return j.arrowFunctionExpression(
+      destructured
+        ? [
+            j.objectPattern(
+              [...params].map((k) => ({
+                ...j.objectProperty(j.identifier(k), j.identifier(k)),
+                shorthand: true,
+              })),
+            ),
+          ]
+        : params,
+      body,
+    );
+  };
+
+/**
+ * @param {import('jscodeshift').API['j']} j
+ */
+export const getObjectToArrowFunction = (j) => {
+  const buildArrowFunctionAST = getBuildArrowFunctionAST(j);
+  return (
+    /**
+     *
+     * @param {import('jscodeshift').ObjectExpression} objectExpression
+     * @param {import('jscodeshift').BinaryExpression} addtional
+     */
+    function objectToArrowFunction(objectExpression, addtional) {
+      const paramKeys = new Set();
+      let left;
+      objectExpression.properties.forEach((prop, index) => {
+        paramKeys.add(prop.key.name);
+        const result = j.binaryExpression('===', prop.key, prop.value);
+        if (index === 0) {
+          left = result;
+        } else {
+          left = j.logicalExpression('&&', left, result);
+        }
+      });
+      if (addtional) {
+        paramKeys.add(getObjectKey(addtional.left).name);
+      }
+      return buildArrowFunctionAST(
+        paramKeys,
+        addtional ? j.logicalExpression('&&', left, addtional) : left,
+      );
+    }
+  );
+};
+
+export function isThemePaletteMode(node) {
+  return (
+    node.type === 'MemberExpression' &&
+    node.object.type === 'MemberExpression' &&
+    node.object.object.name === 'theme' &&
+    node.object.property.name === 'palette' &&
+    node.property.name === 'mode'
+  );
+}
+
+/**
+ *
+ * @param {import('jscodeshift').API['j']} j
+ * @param {any[]} styles
+ */
+export default function migrateToVariants(j, styles) {
+  const createBuildStyle = getCreateBuildStyle(j);
+  const appendPaletteModeStyles = getAppendPaletteModeStyles(j);
+  const buildArrowFunctionAST = getBuildArrowFunctionAST(j);
+  const objectToArrowFunction = getObjectToArrowFunction(j);
 
   /**
    *
@@ -112,58 +204,12 @@ export default function migrateToVariants(j, styles) {
     return node;
   }
 
-  /**
-   *
-   * @param {import('jscodeshift').ObjectExpression} node
-   */
-  function removeProperty(parentNode, child) {
-    if (parentNode) {
-      if (parentNode.type === 'ObjectExpression') {
-        parentNode.properties = parentNode.properties.filter(
-          (prop) => prop !== child && prop.value !== child,
-        );
-      }
-    }
-  }
-
   function buildObjectAST(jsObject) {
     const result = j.objectExpression([]);
     Object.entries(jsObject).forEach(([key, value]) => {
       result.properties.push(j.objectProperty(j.identifier(key), value));
     });
     return result;
-  }
-
-  function buildArrowFunctionAST(params, body) {
-    return j.arrowFunctionExpression(
-      [
-        j.objectPattern(
-          [...params].map((k) => ({
-            ...j.objectProperty(j.identifier(k), j.identifier(k)),
-            shorthand: true,
-          })),
-        ),
-      ],
-      body,
-    );
-  }
-
-  /**
-   *
-   * @param {{ properties: any[] }} node
-   * @param {Record<string, any[] | import('jscodeshift').ObjectExpression>} modeStyles
-   */
-  function appendPaletteModeStyles(node, modeStyles) {
-    Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
-      node.properties.push(
-        j.spreadElement(
-          j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')), [
-            j.stringLiteral(mode),
-            Array.isArray(objectStyles) ? j.objectExpression(objectStyles) : objectStyles,
-          ]),
-        ),
-      );
-    });
   }
 
   /**
@@ -240,16 +286,6 @@ export default function migrateToVariants(j, styles) {
     return buildArrowFunctionAST(
       variables,
       j.logicalExpression('&&', parentArrow.body, currentArrow.body),
-    );
-  }
-
-  function isThemePaletteMode(node) {
-    return (
-      node.type === 'MemberExpression' &&
-      node.object.type === 'MemberExpression' &&
-      node.object.object.name === 'theme' &&
-      node.object.property.name === 'palette' &&
-      node.property.name === 'mode'
     );
   }
 
