@@ -383,7 +383,6 @@
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAutocomplete",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li></ul>",
