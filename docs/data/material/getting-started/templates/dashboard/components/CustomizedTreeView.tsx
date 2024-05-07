@@ -21,7 +21,7 @@ import {
 import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
 import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
 import { TreeViewBaseItem } from '@mui/x-tree-view/models';
-import { green, brand } from '../getDashboardTheme';
+import { useTheme } from '@mui/material/styles';
 
 type Color = 'blue' | 'green';
 
@@ -71,12 +71,6 @@ function DotIcon({ color }: { color: string }) {
     </Box>
   );
 }
-declare module 'react' {
-  interface CSSProperties {
-    '--tree-view-color'?: string;
-    '--tree-view-bg-color'?: string;
-  }
-}
 
 const AnimatedCollapse = animated(Collapse);
 
@@ -97,9 +91,13 @@ interface CustomLabelProps {
   expandable?: boolean;
 }
 
-const colors = { blue: brand[400], green: green[400] };
-
 function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps) {
+  const theme = useTheme();
+  const colors = {
+    blue: theme.palette.primary.main,
+    green: theme.palette.success.main,
+  };
+
   const iconColor = color ? colors[color] : null;
   return (
     <TreeItem2Label
@@ -175,6 +173,7 @@ export default function CustomizedTreeView() {
   return (
     <Card variant="outlined">
       <CardContent>
+        <Typography variant="subtitle2">Product tree</Typography>
         <RichTreeView
           items={ITEMS}
           aria-label="pages"
