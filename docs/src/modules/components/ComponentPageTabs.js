@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Tabs, { tabsClasses } from '@mui/material/Tabs';
-import Tab, { tabClasses } from '@mui/material/Tab';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { Link } from '@mui/docs/Link';
 
@@ -62,7 +60,7 @@ export default function ComponentPageTabs(props) {
   const width = widthMap[activeTab];
 
   const positionMap = {
-    '': '1px', // Default width when no value is specified
+    '': '1px',
     'components-api': '67px',
     'hooks-api': '198px',
   };
@@ -95,7 +93,6 @@ export default function ComponentPageTabs(props) {
   return (
     <Box className="component-tabs" sx={{ display: 'inline' }}>
       <Box
-        role="toolbar"
         className="component-tabs"
         sx={{
           position: 'sticky',
