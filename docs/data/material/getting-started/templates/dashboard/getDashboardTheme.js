@@ -1,5 +1,9 @@
 import { createTheme, alpha } from '@mui/material/styles';
 
+import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
+
 const customTheme = createTheme();
 
 export const brand = {
@@ -130,7 +134,7 @@ const getDesignTokens = (mode) => ({
     divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
       default: 'hsl(0, 0%, 100%)',
-      paper: gray[50],
+      paper: 'hsl(220, 60%, 97%)',
       ...(mode === 'dark' && { default: 'hsl(220, 30%, 3%)', paper: gray[900] }),
     },
     text: {
@@ -198,7 +202,7 @@ const getDesignTokens = (mode) => ({
     },
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 10,
   },
 });
 
@@ -459,6 +463,61 @@ export default function getDashboardTheme(mode) {
               ],
             };
           },
+        },
+      },
+      MuiCheckbox: {
+        defaultProps: {
+          disableRipple: true,
+          icon: (
+            <CheckBoxOutlineBlankRoundedIcon
+              sx={{ color: 'hsla(210, 0%, 0%, 0.0)' }}
+            />
+          ),
+          checkedIcon: <CheckRoundedIcon sx={{ height: 14, width: 14 }} />,
+          indeterminateIcon: <RemoveRoundedIcon sx={{ height: 14, width: 14 }} />,
+        },
+        styleOverrides: {
+          root: ({ theme }) => ({
+            margin: 10,
+            height: 16,
+            width: 16,
+            borderRadius: 5,
+            border: '1px solid ',
+            borderColor: alpha(gray[300], 0.8),
+            boxShadow: '0 0 0 1.5px hsla(210, 0%, 0%, 0.04) inset',
+            backgroundColor: alpha(gray[100], 0.4),
+            transition: 'border-color, background-color, 120ms ease-in',
+            '&:hover': {
+              borderColor: brand[300],
+            },
+            '&.Mui-focusVisible': {
+              outline: `3px solid ${alpha(brand[500], 0.5)}`,
+              outlineOffset: '2px',
+              borderColor: brand[400],
+            },
+            '&.Mui-checked': {
+              color: 'white',
+              backgroundColor: brand[500],
+              borderColor: brand[500],
+              boxShadow: `none`,
+              '&:hover': {
+                backgroundColor: brand[600],
+              },
+            },
+            ...theme.applyStyles('dark', {
+              borderColor: alpha(gray[700], 0.5),
+              boxShadow: '0 0 0 1.5px hsl(210, 0%, 0%) inset',
+              backgroundColor: alpha(gray[900], 0.8),
+              '&:hover': {
+                borderColor: brand[300],
+              },
+              '&.Mui-focusVisible': {
+                borderColor: brand[400],
+                outline: `3px solid ${alpha(brand[500], 0.5)}`,
+                outlineOffset: '2px',
+              },
+            }),
+          }),
         },
       },
       MuiCardContent: {
@@ -1139,44 +1198,63 @@ export default function getDashboardTheme(mode) {
       },
       MuiDataGrid: {
         styleOverrides: {
+          root: ({ theme }) => ({
+            border: 'none',
+          }),
           menu: ({ theme }) => ({
-            marginTop: 4,
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${theme.palette.divider}`,
             backgroundImage: 'none',
             boxShadow:
               'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
-            '& .MuiMenuItem-root': { borderRadius: 6, margin: '0 6px' },
+            '& .MuiMenuItem-root': {
+              borderRadius: theme.shape.borderRadius,
+              margin: '0 6px',
+            },
             ...theme.applyStyles('dark', {
               boxShadow:
                 'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
             }),
           }),
           row: ({ theme }) => ({
-            '&.even': {
-              background: alpha(theme.palette.grey[200], 0.5),
+            '&:hover': {
+              background: alpha(theme.palette.primary.main, 0.1),
+            },
+            '&.Mui-selected': {
+              background: theme.palette.grey[100],
               '&:hover': {
-                background: alpha(theme.palette.grey[200], 0.7),
+                background: alpha(theme.palette.primary.main, 0.2),
+              },
+            },
+            '&.even': {
+              background: theme.palette.background.paper,
+              '&:hover': {
+                background: alpha(theme.palette.primary.main, 0.1),
               },
               '&.Mui-selected': {
-                background: alpha(theme.palette.primary.main, 0.2),
+                background: theme.palette.grey[100],
                 '&:hover': {
-                  background: alpha(theme.palette.primary.main, 0.3),
+                  background: alpha(theme.palette.primary.main, 0.2),
                 },
               },
-              ...theme.applyStyles('dark', {
-                background: alpha(theme.palette.grey[700], 0.3),
+            },
+            ...theme.applyStyles('dark', {
+              '&.Mui-selected': {
+                background: theme.palette.grey[800],
+              },
+              '&.even': {
+                background: theme.palette.background.paper,
                 '&:hover': {
-                  background: alpha(theme.palette.grey[700], 0.7),
+                  background: alpha(theme.palette.primary.main, 0.1),
                 },
                 '&.Mui-selected': {
-                  background: alpha(theme.palette.primary.main, 0.2),
+                  background: theme.palette.grey[800],
                   '&:hover': {
-                    background: alpha(theme.palette.primary.main, 0.3),
+                    background: alpha(theme.palette.primary.main, 0.2),
                   },
                 },
-              }),
-            },
+              },
+            }),
           }),
         },
       },

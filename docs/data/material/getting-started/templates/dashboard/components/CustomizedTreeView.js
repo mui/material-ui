@@ -19,15 +19,18 @@ import {
 import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
 import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
 
-import { green, brand } from '../getDashboardTheme';
+import { useTheme } from '@mui/material/styles';
 
 const ITEMS = [
   {
     id: '1',
-    label: 'Pages',
+    label: 'Website',
     children: [
+      { id: '1.1', label: 'Home', color: 'green' },
+      { id: '1.2', label: 'Pricing', color: 'green' },
+      { id: '1.3', label: 'About us', color: 'green' },
       {
-        id: '1.1',
+        id: '1.4',
         label: 'Blog',
         children: [
           { id: '1.1.1', label: 'Announcements', color: 'blue' },
@@ -36,20 +39,28 @@ const ITEMS = [
           { id: '1.1.4', label: 'Meet the team', color: 'blue' },
         ],
       },
-      { id: '1.2', label: 'About us', color: 'green' },
-      { id: '1.3', label: 'Home', color: 'green' },
     ],
   },
   {
     id: '2',
-    label: 'Shop',
+    label: 'Store',
     children: [
       { id: '2.1', label: 'All products', color: 'green' },
-      { id: '2.2', label: 'Bestsellers', color: 'green' },
-      { id: '2.3', label: 'Sales', color: 'green' },
+      {
+        id: '2.2',
+        label: 'Categories',
+        children: [
+          { id: '2.2.1', label: 'Gadgets', color: 'blue' },
+          { id: '2.2.2', label: 'Phones', color: 'blue' },
+          { id: '2.2.3', label: 'Wearables', color: 'blue' },
+        ],
+      },
+      { id: '2.3', label: 'Bestsellers', color: 'green' },
+      { id: '2.4', label: 'Sales', color: 'green' },
     ],
   },
   { id: '4', label: 'Contact', color: 'blue' },
+  { id: '5', label: 'Help', color: 'blue' },
 ];
 
 function DotIcon({ color }) {
@@ -86,9 +97,13 @@ TransitionComponent.propTypes = {
   in: PropTypes.bool,
 };
 
-const colors = { blue: brand[400], green: green[400] };
-
 function CustomLabel({ color, expandable, children, ...other }) {
+  const theme = useTheme();
+  const colors = {
+    blue: theme.palette.primary.main,
+    green: theme.palette.success.main,
+  };
+
   const iconColor = color ? colors[color] : null;
   return (
     <TreeItem2Label
@@ -188,6 +203,7 @@ export default function CustomizedTreeView() {
   return (
     <Card variant="outlined">
       <CardContent>
+        <Typography variant="subtitle2">Product tree</Typography>
         <RichTreeView
           items={ITEMS}
           aria-label="pages"
