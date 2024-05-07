@@ -233,7 +233,7 @@ export default function sxV6(file, api, options) {
           ) {
             if (
               data.parentNode?.type === 'ObjectExpression' &&
-              data.node.test?.type === 'BinaryExpression'
+              (data.node.test?.type === 'BinaryExpression' || data.node.test?.type === 'Identifier')
             ) {
               if (
                 data.node.consequent.type !== 'ObjectExpression' &&
@@ -279,8 +279,8 @@ export default function sxV6(file, api, options) {
                   wrapSxInArray(
                     j.conditionalExpression(
                       data.node.test,
-                      j.objectExpression([j.objectProperty(data.key, data.node.consequent)]),
-                      j.objectExpression([j.objectProperty(data.key, data.node.alternate)]),
+                      data.buildStyle?.(data.node.consequent),
+                      data.buildStyle?.(data.node.alternate),
                     ),
                   );
                   removeProperty(data.parentNode, data.node);

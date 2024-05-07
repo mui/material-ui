@@ -160,9 +160,13 @@ export const getObjectToArrowFunction = (j) => {
   );
 };
 
+/**
+ *
+ * @param {undefined | null | import('jscodeshift').Expression} node
+ */
 export function isThemePaletteMode(node) {
   return (
-    node.type === 'MemberExpression' &&
+    node?.type === 'MemberExpression' &&
     node.object.type === 'MemberExpression' &&
     node.object.object.name === 'theme' &&
     node.object.property.name === 'palette' &&

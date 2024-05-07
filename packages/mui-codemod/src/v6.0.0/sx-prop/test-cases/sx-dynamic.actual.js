@@ -56,3 +56,26 @@
     },
   })}
 ></Card>;
+
+<CreditCardRoundedIcon
+  fontSize="small"
+  sx={(theme) => ({
+    color: theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
+    ...(paymentType === 'creditCard' && {
+      color: 'primary.main',
+    }),
+  })}
+/>;
+
+<IconButton
+  edge="start"
+  color="inherit"
+  aria-label="open drawer"
+  onClick={toggleDrawer}
+  sx={{
+    marginRight: '36px',
+    ...(open && { display: 'none' }),
+  }}
+>
+  <MenuIcon />
+</IconButton>;

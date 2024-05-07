@@ -58,7 +58,7 @@ describe('@mui/codemod', () => {
       });
     });
 
-    describe('dynamic sx-v6', () => {
+    describe('dynamic spread sx-v6', () => {
       it('transforms props as needed', () => {
         const actual = transform(
           { source: read('./test-cases/sx-dynamic.actual.js') },
@@ -78,6 +78,30 @@ describe('@mui/codemod', () => {
         );
 
         const expected = read('./test-cases/sx-dynamic.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
+
+    describe('dynamic conditional sx-v6', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-dynamic2.actual.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-dynamic2.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-dynamic2.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-dynamic2.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
