@@ -52,3 +52,18 @@
     "--items-imageLight": items[selectedItemIndex].imageLight,
     "--items-imageDark": items[selectedItemIndex].imageDark
   }} />;
+
+<Paper
+  sx={{
+    position: 'relative',
+    backgroundColor: 'grey.800',
+    color: '#fff',
+    mb: 4,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundImage: `url(${"var(--post-image)"})`,
+  }}
+  style={{
+    "--post-image": post.image
+  }}></Paper>;

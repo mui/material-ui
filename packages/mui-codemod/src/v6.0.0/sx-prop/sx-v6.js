@@ -293,16 +293,25 @@ export default function sxV6(file, api, options) {
           if (data.parentNode?.type === 'ObjectExpression') {
             const modeStyles = {};
             data.node.expressions.forEach((expression, index) => {
-              recurseObjectExpression({
-                ...data,
-                node: expression,
-                parentNode: data.parentNode,
-                buildStyle: createBuildStyle(data.key, data.buildStyle),
-                replaceValue: (newValue) => {
-                  data.node.expressions[index] = newValue;
-                },
-                modeStyles,
-              });
+              if (expression.type === 'MemberExpression') {
+                const memberKey = getObjectKey(expression);
+                if (memberKey.type === 'Identifier' && memberKey.name !== 'theme') {
+                  const varName = getCssVarName(expression);
+                  cssVars.push([j.stringLiteral(varName), expression]);
+                  data.node.expressions[index] = j.stringLiteral(`var(${varName})`);
+                }
+              } else {
+                recurseObjectExpression({
+                  ...data,
+                  node: expression,
+                  parentNode: data.parentNode,
+                  buildStyle: createBuildStyle(data.key, data.buildStyle),
+                  replaceValue: (newValue) => {
+                    data.node.expressions[index] = newValue;
+                  },
+                  modeStyles,
+                });
+              }
             });
             if (data.modeStyles) {
               Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
