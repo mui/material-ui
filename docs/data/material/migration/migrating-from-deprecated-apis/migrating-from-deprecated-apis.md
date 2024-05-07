@@ -1104,3 +1104,32 @@ Here's how to migrate:
    },
  },
 ```
+
+## SpeedDial
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/speed-dial-props <path>
+```
+
+### TransitionComponent
+
+The SpeedDial's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <SpeedDial
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+```
+
+### TransitionProps
+
+The SpeedDial's `TransitionProps` was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <SpeedDial
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```

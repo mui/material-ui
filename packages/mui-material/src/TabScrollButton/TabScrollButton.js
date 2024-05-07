@@ -9,9 +9,10 @@ import { useRtl } from '@mui/system/RtlProvider';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import ButtonBase from '../ButtonBase';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import tabScrollButtonClasses, { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
+
+const useThemeProps = createUseThemeProps('MuiTabScrollButton');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, disabled } = ownerState;
@@ -31,21 +32,28 @@ const TabScrollButtonRoot = styled(ButtonBase, {
 
     return [styles.root, ownerState.orientation && styles[ownerState.orientation]];
   },
-})(({ ownerState }) => ({
+})({
   width: 40,
   flexShrink: 0,
   opacity: 0.8,
   [`&.${tabScrollButtonClasses.disabled}`]: {
     opacity: 0,
   },
-  ...(ownerState.orientation === 'vertical' && {
-    width: '100%',
-    height: 40,
-    '& svg': {
-      transform: `rotate(${ownerState.isRtl ? -90 : 90}deg)`,
+  variants: [
+    {
+      props: {
+        orientation: 'vertical',
+      },
+      style: {
+        width: '100%',
+        height: 40,
+        '& svg': {
+          transform: 'var(--TabScrollButton-svgRotate)',
+        },
+      },
     },
-  }),
-}));
+  ],
+});
 
 const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTabScrollButton' });
@@ -95,6 +103,12 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
       ownerState={ownerState}
       tabIndex={null}
       {...other}
+      style={{
+        ...other.style,
+        ...(orientation === 'vertical' && {
+          '--TabScrollButton-svgRotate': `rotate(${isRtl ? -90 : 90}deg)`,
+        }),
+      }}
     >
       {direction === 'left' ? (
         <StartButtonIcon {...startButtonIconProps} />
@@ -152,6 +166,10 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
     EndScrollButtonIcon: PropTypes.elementType,
     StartScrollButtonIcon: PropTypes.elementType,
   }),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
