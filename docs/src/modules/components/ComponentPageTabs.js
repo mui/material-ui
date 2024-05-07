@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { Link } from '@mui/docs/Link';
+import NextLink from 'next/link';
 
 export const HEIGHT = 50;
 
@@ -80,11 +80,11 @@ export default function ComponentPageTabs(props) {
           },
         }}
       >
-        <StyledTab component={Link} href={demosHref} label={t('api-docs.demos')} value="" />
+        <StyledTab component={NextLink} href={demosHref} label={t('api-docs.demos')} value="" />
         {headers.components?.length > 0 && (
           <StyledTab
             className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
-            component={Link}
+            component={NextLink}
             href={componentsHref}
             label={t('api-docs.componentsApi')}
             value="components-api"
@@ -93,7 +93,7 @@ export default function ComponentPageTabs(props) {
         {headers.hooks && headers.hooks.length > 0 && (
           <StyledTab
             className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
-            component={Link}
+            component={NextLink}
             href={hooksHref}
             label={t('api-docs.hooksApi')}
             value="hooks-api"
