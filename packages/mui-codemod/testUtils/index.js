@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-env mocha */
 import j from 'jscodeshift';
 import path from 'path';
