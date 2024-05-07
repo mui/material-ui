@@ -192,29 +192,7 @@ TableSortLabel.propTypes /* remove-proptypes */ = {
     icon: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
-        className: PropTypes.string,
         component: PropTypes.elementType,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-      PropTypes.shape({
-        className: PropTypes.string,
-        component: PropTypes.elementType,
-        key: PropTypes.oneOfType([
-          PropTypes.number,
-          PropTypes.shape({
-            '__@toStringTag@33361': PropTypes.oneOf(['BigInt']).isRequired,
-            toLocaleString: PropTypes.func.isRequired,
-            toString: PropTypes.func.isRequired,
-            valueOf: PropTypes.func.isRequired,
-          }),
-          PropTypes.string,
-        ]),
         sx: PropTypes.oneOfType([
           PropTypes.arrayOf(
             PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),

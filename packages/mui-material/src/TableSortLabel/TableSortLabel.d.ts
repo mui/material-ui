@@ -11,21 +11,13 @@ export interface TableSortLabelSlots {
    * Sort icon to use.
    * @default ArrowDownwardIcon
    */
-  icon?: React.JSXElementConstructor<{
-    className: string;
-  }>;
+  icon?: React.ElementType;
 }
 
 export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   TableSortLabelSlots,
   {
-    icon: SlotProps<
-      React.JSXElementConstructor<{
-        className: string;
-      }>,
-      {},
-      TableSortLabelOwnerState
-    >;
+    icon: SlotProps<React.ElementType, {}, TableSortLabelOwnerState>;
   }
 >;
 
