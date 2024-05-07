@@ -136,7 +136,8 @@ async function setAccessToken(npmAccessToken: string | undefined) {
 
 async function setVersion(packages: PackageInfo[]) {
   const { stdout: currentRevisionSha } = await $`git rev-parse --short HEAD`;
-  const timestamp = formatDate(new Date());
+  const { stdout: commitDate } = await $`git show --no-patch --format=%cI HEAD`;
+  const timestamp = formatDate(new Date(Date.parse(commitDate)));
   let hasError = false;
 
   const tasks = packages.map(async (pkg) => {
@@ -166,20 +167,21 @@ async function setVersion(packages: PackageInfo[]) {
   }
 }
 
+function formatDate(date: Date) {
+  // yyyyMMdd-HHmmss
+  return date
+    .toISOString()
+    .replace(/[-:TZ.]/g, '')
+    .replace(' ', '-')
+    .slice(0, 15);
+}
+
 function buildPackages() {
   if (process.env.CI) {
     return $$`pnpm build:public:ci`;
   }
 
   return $$`pnpm build:public`;
-}
-
-function formatDate(date: Date) {
-  // yyMMddHHmmss
-  return date
-    .toISOString()
-    .replace(/[-:TZ]/g, '')
-    .slice(2, 14);
 }
 
 async function publishPackages(packages: PackageInfo[], dryRun: boolean) {
