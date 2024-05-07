@@ -121,7 +121,7 @@ async function confirmPublishing(changedPackages: PackageInfo[], yes: boolean) {
 async function setAccessToken(npmAccessToken: string | undefined) {
   if (!npmAccessToken && !process.env.NPM_TOKEN) {
     console.error(
-      '❌ NPM access token is required. Either pass it as an argument or set it as an NPM_TOKEN environment variable.',
+      '❌ NPM access token is required. Either pass it as an --access-token argument or set it as an NPM_TOKEN environment variable.',
     );
     process.exit(1);
   }
