@@ -2,10 +2,10 @@ import getReturnExpression from '../../util/getReturnExpression';
 import {
   getCreateBuildStyle,
   getAppendPaletteModeStyles,
-  getIdentifierKey,
   getObjectKey,
-  isThemePaletteMode,
   getBuildArrowFunctionAST,
+  isThemePaletteMode,
+  removeProperty,
 } from '../../util/migrateToVariants';
 
 /**
@@ -44,12 +44,12 @@ export default function sxV6(file, api, options) {
        * @type {[import('jscodeshift').StringLiteral, import('jscodeshift').Expression][]}
        */
       const cssVars = [];
+      const sxContainer = path.node.value;
 
-      if (
-        ['ArrowFunctionExpression', 'ObjectExpression'].includes(path.node.value.expression.type)
-      ) {
+      if (['ArrowFunctionExpression', 'ObjectExpression'].includes(sxContainer.expression.type)) {
         shouldTransform = true;
         recurseObjectExpression({
+          root: path.node.value.expression,
           node: path.node.value.expression,
           buildStyle: createBuildStyle(),
         });
@@ -150,50 +150,67 @@ export default function sxV6(file, api, options) {
             data.node.test.type === 'Identifier' ||
             data.node.test.type === 'MemberExpression'
           ) {
-            let leftName = getObjectKey(data.node.test)?.name;
-            if (data.node.test.left) {
-              leftName = getObjectKey(data.node.test.left)?.name;
-            }
-            if (data.node.test.argument) {
-              leftName = getObjectKey(data.node.test.argument)?.name;
-            }
             if (
-              leftName === 'theme' &&
               data.parentNode?.type === 'ObjectExpression' &&
-              data.node.test?.type === 'BinaryExpression' &&
-              isThemePaletteMode(data.node.test.left)
+              data.node.test?.type === 'BinaryExpression'
             ) {
               if (
                 data.node.consequent.type !== 'ObjectExpression' &&
                 data.node.alternate.type !== 'ObjectExpression'
               ) {
-                const consequentKey = getObjectKey(data.node.consequent);
-                if (consequentKey.type === 'Identifier' && consequentKey.name !== 'theme') {
-                  const varName = getCssVarName(data.node.consequent);
-                  cssVars.push([j.stringLiteral(varName), data.node.consequent]);
-                  data.node.consequent = j.stringLiteral(`var(${varName})`);
-                }
-                const alternateKey = getObjectKey(data.node.alternate);
-                if (alternateKey.type === 'Identifier' && alternateKey.name !== 'theme') {
-                  const varName = getCssVarName(data.node.alternate);
-                  cssVars.push([j.stringLiteral(varName), data.node.alternate]);
-                  data.node.alternate = j.stringLiteral(`var(${varName})`);
-                }
-
-                if (data.modeStyles) {
-                  if (!data.modeStyles[data.node.test.right.value]) {
-                    data.modeStyles[data.node.test.right.value] = [];
+                if (isThemePaletteMode(data.node.test.left)) {
+                  const consequentKey = getObjectKey(data.node.consequent);
+                  if (consequentKey.type === 'Identifier' && consequentKey.name !== 'theme') {
+                    const varName = getCssVarName(data.node.consequent);
+                    cssVars.push([j.stringLiteral(varName), data.node.consequent]);
+                    data.node.consequent = j.stringLiteral(`var(${varName})`);
                   }
-                  data.modeStyles[data.node.test.right.value].push(
-                    j.objectProperty(data.key, data.node.consequent),
-                  );
-                }
-                data.replaceValue?.(data.node.alternate);
-                if (path.node.value.expression.type === 'ObjectExpression') {
-                  path.node.value.expression = buildArrowFunctionAST(
-                    [j.identifier('theme')],
-                    path.node.value.expression,
-                  );
+                  const alternateKey = getObjectKey(data.node.alternate);
+                  if (alternateKey.type === 'Identifier' && alternateKey.name !== 'theme') {
+                    const varName = getCssVarName(data.node.alternate);
+                    cssVars.push([j.stringLiteral(varName), data.node.alternate]);
+                    data.node.alternate = j.stringLiteral(`var(${varName})`);
+                  }
+
+                  if (data.modeStyles) {
+                    if (!data.modeStyles[data.node.test.right.value]) {
+                      data.modeStyles[data.node.test.right.value] = [];
+                    }
+                    data.modeStyles[data.node.test.right.value].push(
+                      j.objectProperty(data.key, data.node.consequent),
+                    );
+                  }
+                  data.replaceValue?.(data.node.alternate);
+
+                  if (sxContainer.expression.type === 'ObjectExpression') {
+                    sxContainer.expression = buildArrowFunctionAST(
+                      [j.identifier('theme')],
+                      data.root,
+                    );
+                  } else if (sxContainer.expression.type === 'ArrayExpression') {
+                    sxContainer.expression.elements.forEach((item, index) => {
+                      if (item === data.root) {
+                        sxContainer.expression.elements[index] = buildArrowFunctionAST(
+                          [j.identifier('theme')],
+                          data.root,
+                        );
+                      }
+                    });
+                  }
+                } else {
+                  if (sxContainer.expression.type === 'ObjectExpression') {
+                    sxContainer.expression = j.arrayExpression([sxContainer.expression]);
+                  }
+                  if (sxContainer.expression.type === 'ArrayExpression') {
+                    sxContainer.expression.elements.push(
+                      j.conditionalExpression(
+                        data.node.test,
+                        j.objectExpression([j.objectProperty(data.key, data.node.consequent)]),
+                        j.objectExpression([j.objectProperty(data.key, data.node.alternate)]),
+                      ),
+                    );
+                  }
+                  removeProperty(data.parentNode, data.node);
                 }
               }
             }
