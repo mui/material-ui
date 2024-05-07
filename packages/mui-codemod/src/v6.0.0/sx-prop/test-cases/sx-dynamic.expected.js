@@ -30,3 +30,33 @@
     })
   }))]}
 ></Card>;
+
+<Card
+  key={index}
+  component={Button}
+  onClick={() => handleItemClick(index)}
+  sx={[(theme) => ({
+    p: 3,
+    height: 'fit-content',
+    width: '100%',
+    background: 'none',
+    '&:hover': {
+      background:
+        'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+      borderColor: 'primary.dark',
+      boxShadow:
+        '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
+      ...theme.applyStyles("light", {
+        background: 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
+        borderColor: 'primary.light',
+        boxShadow: '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
+      })
+    }
+  }), selectedItemIndex === index && (theme => ({
+    backgroundColor: 'action.selected',
+    borderColor: 'primary.dark',
+    ...theme.applyStyles("light", {
+      borderColor: 'primary.light'
+    })
+  }))]}
+></Card>;
