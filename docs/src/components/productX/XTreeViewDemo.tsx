@@ -104,13 +104,14 @@ const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
   borderRadius: theme.spacing(0.5),
   marginBottom: theme.spacing(0.2),
   marginTop: theme.spacing(0.2),
+  padding: `${theme.spacing(0.3)} ${theme.spacing(0.5)}`,
   '&.Mui-expanded&::before': {
     content: '""',
     display: 'block',
     position: 'absolute',
     left: '16px',
-    top: '40px',
-    height: 'calc(100% - 50px)',
+    top: '30px',
+    height: 'calc(100% - 32px)',
     width: '1.5px',
     backgroundColor:
       theme.palette.mode === 'light'
@@ -126,6 +127,7 @@ function TransitionComponent(props: TransitionProps) {
     to: {
       opacity: props.in ? 1 : 0,
       transform: `translate3d(0,${props.in ? 0 : 20}px,0)`,
+      paddingLeft: 24,
     },
   });
 
@@ -262,7 +264,7 @@ const code = `
   aria-label="File explorer"
   defaultExpandedItems={['1', '1.1', '1.2', '2']}
   defaultSelectedItems="1.1"
-  sx={{ height: 'fit-content', flexGrow: 1, overflowY: 'auto' }}
+  sx={{ height: 'fit-content', flexGrow: 1 }}
   slots={{ item: CustomTreeItem }}
 />`;
 
@@ -287,7 +289,7 @@ export default function XTreeViewDemo() {
             aria-label="File explorer"
             defaultExpandedItems={['1', '1.1', '1.2', '2']}
             defaultSelectedItems="1.1"
-            sx={{ height: 'fit-content', flexGrow: 1, overflowY: 'auto' }}
+            sx={{ height: 'fit-content', flexGrow: 1 }}
             slots={{ item: CustomTreeItem }}
           />
         </Paper>
