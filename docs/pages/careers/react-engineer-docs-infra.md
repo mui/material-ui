@@ -44,8 +44,8 @@ It also plays as an illustration of the principles we hold true to the product. 
 
 Over the last two years, we have established an internal docs-infra team responsible for pushing the documentation platform forward, developing features such as automatically-generated OG images, multi-tab component demos, speed performance improvements, and many others.
 
-However, given how many great documentation projects have recently appeared ([Nextra](https://nextra.site/) as a great example), these features represent just the start.
-There are so many ambitious projects we want to breathe life into!
+These features represent just the start, though.
+There are a lot of great projects to get inspired by ([Nextra](https://nextra.site/) as a great example), as well as many ambitious projects we want to breathe life into!
 For example, offering visitors the ability to toggle the design language they want to view the docs on, adding offline support, custom component demo customization supported by AI, and so much more.
 
 With all of that in mind, we're looking for someone to own this scope as a first-class product within the organization, concretely becoming the first full-time dedicated engineer to it.
