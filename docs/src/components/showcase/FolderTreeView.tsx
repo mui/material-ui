@@ -77,7 +77,7 @@ function DotIcon() {
         borderRadius: '50%',
         bgcolor: 'warning.main',
         zIndex: 1,
-        mx: 1,
+        mr: 1,
       }}
     />
   );
@@ -100,17 +100,14 @@ const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
 
 const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
   borderRadius: theme.spacing(0.5),
-  [`& .${treeItemClasses.iconContainer}`]: {
-    marginRight: theme.spacing(1),
-  },
 
   '&.Mui-expanded&::before': {
     content: '""',
     display: 'block',
     position: 'absolute',
     left: '15px',
-    top: '40px',
-    height: 'calc(100% - 50px)',
+    top: '28px',
+    height: 'calc(100% - 28px)',
     width: '1.5px',
     backgroundColor:
       theme.palette.mode === 'light'
@@ -228,7 +225,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
               expandable,
               color: item?.color === 'primary' ? 'primary.main' : 'grey.600',
             })}
-          />{' '}
+          />
           {expandable && (
             <TreeItem2IconContainer {...getIconContainerProps()}>
               <TreeItem2Icon status={status} />
@@ -259,7 +256,7 @@ export default function TreeViewDemo() {
       aria-label="file explorer"
       defaultExpandedItems={['1', '1.1', '1.2', '1.2.2']}
       defaultSelectedItems="1.1"
-      sx={{ height: 'fit-content', flexGrow: 1, overflowY: 'auto', p: 1 }}
+      sx={{ height: 'fit-content', flexGrow: 1, p: 1 }}
       slots={{
         item: CustomTreeItem,
         endIcon: CustomEndIcon,
