@@ -73,21 +73,24 @@ export default function ComponentPageTabs(props) {
       label: t('api-docs.demos'),
       href: demosHref,
     },
-    ...(headers.components?.length > 0 && [
-      {
-        key: 'components-api',
-        label: t('api-docs.componentsApi'),
-        href: componentsHref,
-      },
-    ]),
-    ...(headers.hooks &&
-      headers.hooks.length > 0 && [
-        {
-          key: 'hooks-api',
-          label: t('api-docs.hooksApi'),
-          href: hooksHref,
-        },
-      ]),
+    ...(headers.components?.length > 0
+      ? [
+          {
+            key: 'components-api',
+            label: t('api-docs.componentsApi'),
+            href: componentsHref,
+          },
+        ]
+      : []),
+    ...(headers.hooks && headers.hooks.length > 0
+      ? [
+          {
+            key: 'hooks-api',
+            label: t('api-docs.hooksApi'),
+            href: hooksHref,
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -110,8 +113,8 @@ export default function ComponentPageTabs(props) {
             content: "''",
             position: 'absolute',
             bottom: 0,
-            width: width,
             left: position,
+            width: width,
             height: '2px',
             backgroundColor: 'primary.light',
           },
