@@ -48,7 +48,7 @@ export interface TableSortLabelOwnProps extends TableSortLabelSlotsAndSlotProps 
   /**
    * Sort icon to use.
    * @default ArrowDownwardIcon
-   * @deprecated Use `slots.icon` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated Use `slots.icon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   IconComponent?: React.JSXElementConstructor<{
     className: string;
