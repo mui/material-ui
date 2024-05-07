@@ -74,10 +74,8 @@ function DotIcon() {
       sx={{
         width: 6,
         height: 6,
-        borderRadius: '70%',
+        borderRadius: '50%',
         bgcolor: 'warning.main',
-        display: 'inline-block',
-        verticalAlign: 'middle',
         zIndex: 1,
         mx: 1,
       }}
@@ -101,10 +99,7 @@ const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
 })) as unknown as typeof TreeItem2Root;
 
 const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
-  borderRadius: theme.spacing(0.7),
-  marginBottom: theme.spacing(0.5),
-  marginTop: theme.spacing(0.5),
-  padding: theme.spacing(0.5),
+  borderRadius: theme.spacing(0.5),
   [`& .${treeItemClasses.iconContainer}`]: {
     marginRight: theme.spacing(1),
   },
@@ -113,9 +108,9 @@ const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
     content: '""',
     display: 'block',
     position: 'absolute',
-    left: '16px',
-    top: '44px',
-    height: 'calc(100% - 48px)',
+    left: '15px',
+    top: '40px',
+    height: 'calc(100% - 50px)',
     width: '1.5px',
     backgroundColor:
       theme.palette.mode === 'light'

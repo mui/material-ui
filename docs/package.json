@@ -50,7 +50,6 @@
     "@mui/x-data-grid-pro": "7.3.1",
     "@mui/x-date-pickers": "7.3.2",
     "@mui/x-date-pickers-pro": "7.3.2",
-    "@mui/x-license-pro": "6.10.2",
     "@mui/x-tree-view": "7.3.1",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^9.7.3",

@@ -101,20 +101,16 @@ const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
 })) as unknown as typeof TreeItem2Root;
 
 const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
-  borderRadius: theme.spacing(0.7),
-  marginBottom: theme.spacing(0.5),
-  marginTop: theme.spacing(0.5),
-  padding: theme.spacing(0.5),
-  [`& .${treeItemClasses.iconContainer}`]: {
-    marginRight: theme.spacing(1),
-  },
+  borderRadius: theme.spacing(0.5),
+  marginBottom: theme.spacing(0.2),
+  marginTop: theme.spacing(0.2),
   '&.Mui-expanded&::before': {
     content: '""',
     display: 'block',
     position: 'absolute',
     left: '16px',
-    top: '44px',
-    height: 'calc(100% - 48px)',
+    top: '40px',
+    height: 'calc(100% - 50px)',
     width: '1.5px',
     backgroundColor:
       theme.palette.mode === 'light'
@@ -168,7 +164,7 @@ function CustomLabel({ icon: Icon, expandable, children, ...other }: CustomLabel
           fontWeight: expandable
             ? theme.typography.fontWeightMedium
             : theme.typography.fontWeightRegular,
-          color: expandable ? theme.palette.text.primary : theme.palette.grey[600],
+          color: expandable ? theme.palette.text.primary : theme.palette.text.secondary,
         })}
         variant="body2"
       >
@@ -263,8 +259,8 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 const code = `
 <RichTreeView
   items={ITEMS}
-  aria-label="file explorer"
-  defaultExpandedItems={['1', '1.1']}
+  aria-label="File explorer"
+  defaultExpandedItems={['1', '1.1', '1.2', '2']}
   defaultSelectedItems="1.1"
   sx={{ height: 'fit-content', flexGrow: 1, overflowY: 'auto' }}
   slots={{ item: CustomTreeItem }}
@@ -288,8 +284,8 @@ export default function XTreeViewDemo() {
         >
           <RichTreeView
             items={ITEMS}
-            aria-label="file explorer"
-            defaultExpandedItems={['1', '1.1', '2']}
+            aria-label="File explorer"
+            defaultExpandedItems={['1', '1.1', '1.2', '2']}
             defaultSelectedItems="1.1"
             sx={{ height: 'fit-content', flexGrow: 1, overflowY: 'auto' }}
             slots={{ item: CustomTreeItem }}
