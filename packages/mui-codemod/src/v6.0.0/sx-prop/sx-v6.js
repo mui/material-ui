@@ -50,6 +50,9 @@ export default function sxV6(file, api, options) {
         shouldTransform = true;
         recurseObjectExpression({
           root: path.node.value.expression,
+          replaceRoot: (newRoot) => {
+            sxContainer.expression = newRoot;
+          },
           node: path.node.value.expression,
           buildStyle: createBuildStyle(),
         });
@@ -103,6 +106,18 @@ export default function sxV6(file, api, options) {
         }
       }
 
+      function wrapSxInArray(newElement) {
+        if (
+          sxContainer.expression.type === 'ObjectExpression' ||
+          sxContainer.expression.type === 'ArrowFunctionExpression'
+        ) {
+          sxContainer.expression = j.arrayExpression([sxContainer.expression]);
+        }
+        if (sxContainer.expression.type === 'ArrayExpression') {
+          sxContainer.expression.elements.push(newElement);
+        }
+      }
+
       /**
        *
        * @param {{ node: import('jscodeshift').Expression }} data
@@ -143,6 +158,72 @@ export default function sxV6(file, api, options) {
           });
           appendPaletteModeStyles(data.node, modeStyles);
         }
+        if (data.node.type === 'SpreadElement') {
+          if (data.node.argument.type === 'LogicalExpression') {
+            const paramName =
+              data.node.argument.left.type === 'BinaryExpression'
+                ? getObjectKey(data.node.argument.left.left)?.name
+                : getObjectKey(data.node.argument.left)?.name;
+            if (paramName === 'theme' && data.node.argument.left.right.type === 'StringLiteral') {
+              if (data.node.argument.right.type === 'ObjectExpression') {
+                const mode = data.node.argument.left.right.value;
+                data.node.argument.right.properties.forEach((prop) => {
+                  if (prop.type === 'ObjectProperty') {
+                    recurseObjectExpression({
+                      ...data,
+                      node: prop.value,
+                      parentNode: data.node.argument.right,
+                      key: prop.key,
+                      buildStyle: createBuildStyle(prop.key, data.buildStyle, mode),
+                      replaceValue: (newValue) => {
+                        prop.value = newValue;
+                      },
+                    });
+                  } else {
+                    recurseObjectExpression({
+                      ...data,
+                      node: prop,
+                      parentNode: data.node.argument.right,
+                      buildStyle: createBuildStyle(prop.key, data.buildStyle, mode),
+                    });
+                  }
+                });
+                appendPaletteModeStyles(data.parentNode, {
+                  [mode]: data.node.argument.right,
+                });
+              }
+              removeProperty(data.parentNode, data.node);
+              return;
+            }
+
+            if (data.node.argument.right.type === 'ObjectExpression') {
+              recurseObjectExpression({
+                ...data,
+                node: data.node.argument.right,
+                root: data.node.argument.right,
+                replaceRoot: (newRoot) => {
+                  data.node.argument.right = newRoot;
+                },
+              });
+            }
+            wrapSxInArray(
+              j.logicalExpression(
+                data.node.argument.operator,
+                data.node.argument.left,
+                data.node.argument.right,
+              ),
+            );
+            removeProperty(data.parentNode, data.node);
+          }
+          if (data.node.argument.type === 'ConditionalExpression') {
+            recurseObjectExpression({
+              ...data,
+              node: data.node.argument,
+              parentNode: data.node,
+            });
+            removeProperty(data.parentNode, data.node);
+          }
+        }
         if (data.node.type === 'ConditionalExpression') {
           if (
             data.node.test.type === 'BinaryExpression' ||
@@ -182,15 +263,12 @@ export default function sxV6(file, api, options) {
                   }
                   data.replaceValue?.(data.node.alternate);
 
-                  if (sxContainer.expression.type === 'ObjectExpression') {
-                    sxContainer.expression = buildArrowFunctionAST(
-                      [j.identifier('theme')],
-                      data.root,
-                    );
-                  } else if (sxContainer.expression.type === 'ArrayExpression') {
-                    sxContainer.expression.elements.forEach((item, index) => {
-                      if (item === data.root) {
-                        sxContainer.expression.elements[index] = buildArrowFunctionAST(
+                  if (data.root.type === 'ObjectExpression') {
+                    data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
+                  } else if (data.root.type === 'ArrayExpression') {
+                    data.root.elements.forEach((item, index) => {
+                      if (item === data.node) {
+                        data.root.elements[index] = buildArrowFunctionAST(
                           [j.identifier('theme')],
                           data.root,
                         );
@@ -198,18 +276,13 @@ export default function sxV6(file, api, options) {
                     });
                   }
                 } else {
-                  if (sxContainer.expression.type === 'ObjectExpression') {
-                    sxContainer.expression = j.arrayExpression([sxContainer.expression]);
-                  }
-                  if (sxContainer.expression.type === 'ArrayExpression') {
-                    sxContainer.expression.elements.push(
-                      j.conditionalExpression(
-                        data.node.test,
-                        j.objectExpression([j.objectProperty(data.key, data.node.consequent)]),
-                        j.objectExpression([j.objectProperty(data.key, data.node.alternate)]),
-                      ),
-                    );
-                  }
+                  wrapSxInArray(
+                    j.conditionalExpression(
+                      data.node.test,
+                      j.objectExpression([j.objectProperty(data.key, data.node.consequent)]),
+                      j.objectExpression([j.objectProperty(data.key, data.node.alternate)]),
+                    ),
+                  );
                   removeProperty(data.parentNode, data.node);
                 }
               }
@@ -265,7 +338,7 @@ export default function sxV6(file, api, options) {
       if (!isInStyled) {
         lines.push(line);
       } else if (line !== '') {
-        if (spaceMatch && line.match(/^\s+/)?.[0] === spaceMatch?.[0]) {
+        if (spaceMatch && line.match(/^\s+/)?.[0] === spaceMatch?.[0] && line.endsWith('}')) {
           isInStyled = false;
           spaceMatch = null;
         }
