@@ -247,14 +247,10 @@ describe('<Autocomplete />', () => {
           open
           options={['one', 'two', 'three', 'four', 'five']}
           renderInput={(params) => <TextField {...params} />}
-          slots={{
-            popper: (props) => {
-              const { disablePortal, anchorEl, open, ...other } = props;
-              return <Box {...other} />;
-            },
-          }}
-          slotProps={{
-            listbox: { style: { padding: 0, maxHeight: '100px' } },
+          ListboxProps={{ style: { padding: 0, maxHeight: '100px' } }}
+          PopperComponent={(props) => {
+            const { disablePortal, anchorEl, open, ...other } = props;
+            return <Box {...other} />;
           }}
         />,
       );
@@ -2743,11 +2739,9 @@ describe('<Autocomplete />', () => {
         defaultValue={options[0]}
         onHighlightChange={handleHighlightChange}
         options={options}
+        ListboxProps={{ ref }}
         open
         renderInput={(params) => <TextField {...params} autoFocus />}
-        slotProps={{
-          listbox: { ref },
-        }}
       />,
     );
     expect(handleHighlightChange.callCount).to.equal(
@@ -3291,9 +3285,7 @@ describe('<Autocomplete />', () => {
         open
         options={getOptions(5)}
         renderInput={(params) => <TextField {...params} />}
-        slotProps={{
-          listbox: { style: { maxHeight: '100px' } },
-        }}
+        ListboxProps={{ style: { maxHeight: '100px' } }}
       />,
     );
     const listbox = getByRole('listbox');
