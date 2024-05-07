@@ -44,8 +44,8 @@ It also plays as an illustration of the principles we hold true to the product. 
 
 Over the last two years, we have established an internal docs-infra team responsible for pushing the documentation platform forward, developing features such as automatically-generated OG images, multi-tab component demos, speed performance improvements, and many others.
 
-With that in mind, we're looking for someone to own the documentation as a product and become the first full-time dedicated person to it.
-We want to make it significantly more mature so that many other features (including those with revenue generation capacity) can come to life.
+With that in mind, we're looking for someone to own this scope as a first-class product, becoming the first full-time dedicated person to it.
+There are so many ambitious projects we want to breathe life into, for example, giving visitors the ability to toggle the design language they want to view the docs on, adding offline support, custom component demo customization supported by AI, and so much more.
 
 ## The role
 
