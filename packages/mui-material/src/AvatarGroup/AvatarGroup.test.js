@@ -72,11 +72,11 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('%2');
   });
 
-  it('should pass props from slotProps.additionalAvatar to the slot component', () => {
-    const slotProps = { additionalAvatar: { className: 'additional-avatar-test' } };
+  it('should pass props from componentsProps.additionalAvatar to the slot component', () => {
+    const componentsProps = { additionalAvatar: { className: 'additional-avatar-test' } };
 
     const { container } = render(
-      <AvatarGroup max={3} slotProps={slotProps}>
+      <AvatarGroup max={3} componentsProps={componentsProps}>
         <Avatar src="/fake.png" />
         <Avatar src="/fake.png" />
         <Avatar src="/fake.png" />
