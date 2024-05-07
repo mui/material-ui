@@ -69,7 +69,7 @@ export default function ComponentPageTabs(props) {
 
   const position = positionMap[activeTab];
 
-  const tabData = [
+  const linkTabData = [
     {
       key: '',
       label: t('api-docs.demos'),
@@ -120,16 +120,16 @@ export default function ComponentPageTabs(props) {
           },
         }}
       >
-        {tabData.map((tab) => (
+        {linkTabData.map((linkTab) => (
           <LinkTab
-            key={tab.key}
-            href={tab.href}
-            aria-current={activeTab === tab.key ? 'page' : undefined}
+            key={linkTab.key}
+            href={linkTab.href}
+            aria-current={activeTab === linkTab.key ? 'page' : undefined}
             sx={{
-              color: activeTab === tab.key ? 'primary.main' : 'inherit',
+              color: activeTab === linkTab.key ? 'primary.main' : 'inherit',
             }}
           >
-            {tab.label}
+            {linkTab.label}
           </LinkTab>
         ))}
       </Box>
