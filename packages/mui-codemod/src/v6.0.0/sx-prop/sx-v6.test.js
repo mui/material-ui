@@ -33,5 +33,29 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    describe('css vars sx-v6', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-css-vars.actual.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-css-vars.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-css-vars.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-css-vars.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
   });
 });

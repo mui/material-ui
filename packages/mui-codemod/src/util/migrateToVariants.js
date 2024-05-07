@@ -79,7 +79,7 @@ export function getObjectKey(node) {
   while (tempNode.type === 'UnaryExpression') {
     tempNode = tempNode.argument;
   }
-  while (tempNode.type === 'MemberExpression') {
+  while (tempNode.type === 'MemberExpression' || tempNode.type === 'OptionMemberExpression') {
     tempNode = tempNode.object;
   }
   return tempNode;
@@ -571,6 +571,11 @@ export default function migrateToVariants(j, styles) {
               }
               data.modeStyles[mode].push(j.objectProperty(data.key, clonedNode));
             });
+            if (data.key) {
+              // to remove the arrow function
+              // { ...: theme => `1px solid...` } to { ...: `1px solid...` }
+              data.replaceValue?.(data.node);
+            }
           }
         }
       }

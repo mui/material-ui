@@ -17,3 +17,24 @@
         : '0 1px 2px hsla(210, 0%, 0%, 0.5), 0 2px 12px hsla(210, 100%, 25%, 0.3)',
   })}
 ></Toolbar>;
+
+<Box
+  component="main"
+  sx={{
+    backgroundColor: (theme) =>
+      theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+  }}
+></Box>;
+
+<Box
+  sx={{
+    borderBottom: (theme) =>
+      `1px solid ${theme.palette.mode === 'light' ? 'grey.200' : 'grey.800'}`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    minHeight: 280,
+  }}
+/>;

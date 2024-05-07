@@ -19,3 +19,28 @@
     })
   })}
 ></Toolbar>;
+
+<Box
+  component="main"
+  sx={theme => ({
+    backgroundColor: theme.palette.grey[900],
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+    ...theme.applyStyles("light", {
+      backgroundColor: theme.palette.grey[100]
+    })
+  })}
+></Box>;
+
+<Box
+  sx={theme => ({
+    borderBottom: `1px solid ${'grey.800'}`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    minHeight: 280,
+    ...theme.applyStyles("light", {
+      borderBottom: `1px solid ${'grey.200'}`
+    })
+  })}
+/>;
