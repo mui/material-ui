@@ -1061,6 +1061,29 @@ npx @mui/codemod@latest deprecations/step-label-props <path>
 
 ```
 
+#### `table-sort-label-props`
+
+```diff
+ <TableSortLabel
+-  IconComponent={IconComponent}
++  slots={{ icon: IconComponent }}
+ />
+```
+
+```diff
+ MuiTableSortLabel: {
+   defaultProps: {
+-  IconComponent:IconComponent
++  slots:{ icon: IconComponent }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/table-sort-label-props <path>
+
+```
+
 #### `step-connector-classes`
 
 JS transforms:

@@ -1024,6 +1024,25 @@ Here's how to migrate:
   },
 ```
 
+## TableSortLabel
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#table-sort-label-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/table-sort-label-props <path>
+```
+
+### IconComponent
+
+The TableSortLabel's `IconComponent` was deprecated in favor of `slots.icon`:
+
+```diff
+ <TableSortLabel
+-  IconComponent={IconComponent}
++  slots={{ icon: IconComponent }}
+ />
+```
+
 ## StepLabel
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-label-props) below to migrate the code as described in the following sections:

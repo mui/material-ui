@@ -1,4 +1,5 @@
 import transformAccordionProps from '../accordion-props';
+import transformTableSortLabelProps from '../table-sort-label-props';
 import transformFormControlLabelProps from '../form-control-label-props';
 import transformAvatarProps from '../avatar-props';
 import transformDividerProps from '../divider-props';
@@ -20,6 +21,7 @@ import transformSpeedDialProps from '../speed-dial-props';
  */
 export default function deprecationsAll(file, api, options) {
   file.source = transformAccordionProps(file, api, options);
+  file.source = transformTableSortLabelProps(file, api, options);
   file.source = transformFormControlLabelProps(file, api, options);
   file.source = transformAvatarProps(file, api, options);
   file.source = transformDividerProps(file, api, options);
