@@ -9,6 +9,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, direction, active } = ownerState;
@@ -102,6 +103,8 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
     direction = 'asc',
     hideSortIcon = false,
     IconComponent = ArrowDownwardIcon,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -115,6 +118,17 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [IconSlot, iconProps] = useSlot('icon', {
+    elementType: TableSortLabelIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
     <TableSortLabelRoot
       className={clsx(classes.root, className)}
@@ -126,11 +140,7 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
     >
       {children}
       {hideSortIcon && !active ? null : (
-        <TableSortLabelIcon
-          as={IconComponent}
-          className={clsx(classes.icon)}
-          ownerState={ownerState}
-        />
+        <IconSlot as={IconComponent} className={clsx(classes.icon)} {...iconProps} />
       )}
     </TableSortLabelRoot>
   );
@@ -171,8 +181,57 @@ TableSortLabel.propTypes /* remove-proptypes */ = {
   /**
    * Sort icon to use.
    * @default ArrowDownwardIcon
+   * @deprecated Use `slots.icon` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    */
   IconComponent: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    icon: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        className: PropTypes.string,
+        component: PropTypes.elementType,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+      PropTypes.shape({
+        className: PropTypes.string,
+        component: PropTypes.elementType,
+        key: PropTypes.oneOfType([
+          PropTypes.number,
+          PropTypes.shape({
+            '__@toStringTag@33361': PropTypes.oneOf(['BigInt']).isRequired,
+            toLocaleString: PropTypes.func.isRequired,
+            toString: PropTypes.func.isRequired,
+            valueOf: PropTypes.func.isRequired,
+          }),
+          PropTypes.string,
+        ]),
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    icon: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

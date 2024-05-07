@@ -8,7 +8,23 @@
       "default": "'asc'"
     },
     "hideSortIcon": { "type": { "name": "bool" }, "default": "false" },
-    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDownwardIcon" },
+    "IconComponent": {
+      "type": { "name": "elementType" },
+      "default": "ArrowDownwardIcon",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.icon</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ icon?: func<br>&#124;&nbsp;{ className?: string, component?: elementType, sx?: Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object }<br>&#124;&nbsp;{ className?: string, component?: elementType, key?: number<br>&#124;&nbsp;{ __@toStringTag@33361: 'BigInt', toLocaleString: func, toString: func, valueOf: func }<br>&#124;&nbsp;string, sx?: Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object } }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ icon?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -22,18 +38,20 @@
     "import TableSortLabel from '@mui/material/TableSortLabel';",
     "import { TableSortLabel } from '@mui/material';"
   ],
+  "slots": [
+    {
+      "name": "icon",
+      "description": "Sort icon to use.",
+      "default": "ArrowDownwardIcon",
+      "class": "MuiTableSortLabel-icon"
+    }
+  ],
   "classes": [
     {
       "key": "active",
       "className": "Mui-active",
       "description": "State class applied to the root element if `active={true}`.",
       "isGlobal": true
-    },
-    {
-      "key": "icon",
-      "className": "MuiTableSortLabel-icon",
-      "description": "Styles applied to the icon component.",
-      "isGlobal": false
     },
     {
       "key": "iconDirectionAsc",

@@ -9,6 +9,8 @@
     "direction": { "description": "The current sort direction." },
     "hideSortIcon": { "description": "Hide sort icon when active is false." },
     "IconComponent": { "description": "Sort icon to use." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
@@ -19,7 +21,6 @@
       "nodeName": "the root element",
       "conditions": "<code>active={true}</code>"
     },
-    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
     "iconDirectionAsc": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
@@ -31,5 +32,6 @@
       "conditions": "<code>direction=\"desc\"</code>"
     },
     "root": { "description": "Styles applied to the root element." }
-  }
+  },
+  "slotDescriptions": { "icon": "Sort icon to use." }
 }
