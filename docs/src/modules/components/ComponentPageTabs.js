@@ -59,13 +59,13 @@ export default function ComponentPageTabs(props) {
 
   const width = widthMap[activeTab];
 
-  const positionMap = {
+  const leftMap = {
     '': '1px',
     'components-api': '67px',
     'hooks-api': '198px',
   };
 
-  const position = positionMap[activeTab];
+  const left = leftMap[activeTab];
 
   const linkTabData = [
     {
@@ -113,8 +113,8 @@ export default function ComponentPageTabs(props) {
             content: "''",
             position: 'absolute',
             bottom: 0,
-            left: position,
-            width: width,
+            left,
+            width,
             height: '2px',
             backgroundColor: 'primary.light',
           },
