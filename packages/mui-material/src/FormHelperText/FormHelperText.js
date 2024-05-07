@@ -110,15 +110,17 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     required: fcs.required,
   };
 
+  delete ownerState.ownerState;
+
   const classes = useUtilityClasses(ownerState);
 
   return (
     <FormHelperTextRoot
       as={component}
-      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      ownerState={ownerState}
     >
       {children === ' ' ? (
         // notranslate needed while Google Translate will not fix zero-width space issue
