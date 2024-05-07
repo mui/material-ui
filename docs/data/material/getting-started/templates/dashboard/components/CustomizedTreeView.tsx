@@ -34,10 +34,13 @@ type ExtendedTreeItemProps = {
 const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
   {
     id: '1',
-    label: 'Pages',
+    label: 'Website',
     children: [
+      { id: '1.1', label: 'Home', color: 'green' },
+      { id: '1.2', label: 'Pricing', color: 'green' },
+      { id: '1.3', label: 'About us', color: 'green' },
       {
-        id: '1.1',
+        id: '1.4',
         label: 'Blog',
         children: [
           { id: '1.1.1', label: 'Announcements', color: 'blue' },
@@ -46,20 +49,28 @@ const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
           { id: '1.1.4', label: 'Meet the team', color: 'blue' },
         ],
       },
-      { id: '1.2', label: 'About us', color: 'green' },
-      { id: '1.3', label: 'Home', color: 'green' },
     ],
   },
   {
     id: '2',
-    label: 'Shop',
+    label: 'Store',
     children: [
       { id: '2.1', label: 'All products', color: 'green' },
-      { id: '2.2', label: 'Bestsellers', color: 'green' },
-      { id: '2.3', label: 'Sales', color: 'green' },
+      {
+        id: '2.2',
+        label: 'Categories',
+        children: [
+          { id: '2.2.1', label: 'Gadgets', color: 'blue' },
+          { id: '2.2.2', label: 'Phones', color: 'blue' },
+          { id: '2.2.3', label: 'Wearables', color: 'blue' },
+        ],
+      },
+      { id: '2.3', label: 'Bestsellers', color: 'green' },
+      { id: '2.4', label: 'Sales', color: 'green' },
     ],
   },
   { id: '4', label: 'Contact', color: 'blue' },
+  { id: '5', label: 'Help', color: 'blue' },
 ];
 
 function DotIcon({ color }: { color: string }) {
