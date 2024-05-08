@@ -774,7 +774,7 @@ jobs:
           name: run danger on PRs
           command: pnpm danger ci --fail-on-errors
           environment:
-            DANGER_COMMAND: 'reportBundleSize'
+            DANGER_COMMAND: reportBundleSize
   test_benchmark:
     <<: *default-job
     docker:
