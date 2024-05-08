@@ -288,6 +288,8 @@ Grow.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-Grow.muiSupportAuto = true;
+if (Grow) {
+  Grow.muiSupportAuto = true;
+}
 
 export default Grow;

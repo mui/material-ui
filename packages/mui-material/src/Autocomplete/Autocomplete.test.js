@@ -59,20 +59,50 @@ describe('<Autocomplete />', () => {
       testStateOverrides: { prop: 'fullWidth', value: true, styleKey: 'fullWidth' },
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
-      testLegacyComponentsProp: true,
+      slots: {
+        listbox: { expectedClassName: classes.listbox },
+        paper: { expectedClassName: classes.paper },
+        popper: { expectedClassName: classes.popper, testWithElement: null },
+      },
+      skip: ['componentProp', 'componentsProp', 'reactTestRenderer'],
+    }),
+  );
+
+  describeConformance(
+    <Autocomplete
+      options={['one', 'two']}
+      defaultValue="one"
+      open
+      renderInput={(params) => <TextField {...params} />}
+    />,
+    () => ({
+      classes,
+      render,
+      muiName: 'MuiAutocomplete',
       slots: {
         clearIndicator: { expectedClassName: classes.clearIndicator },
-        paper: { expectedClassName: classes.paper },
-        popper: { expectedClassName: classes.popper },
         popupIndicator: { expectedClassName: classes.popupIndicator },
       },
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'slotsProp',
-        'reactTestRenderer',
-        'slotPropsCallback', // not supported yet
-      ],
+      only: ['slotPropsProp'],
+    }),
+  );
+
+  describeConformance(
+    <Autocomplete
+      options={['one', 'two']}
+      defaultValue={['one']}
+      multiple
+      open
+      renderInput={(params) => <TextField {...params} />}
+    />,
+    () => ({
+      classes,
+      render,
+      muiName: 'MuiAutocomplete',
+      slots: {
+        chip: {},
+      },
+      only: ['slotPropsProp'],
     }),
   );
 

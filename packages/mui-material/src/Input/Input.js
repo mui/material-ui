@@ -5,15 +5,17 @@ import composeClasses from '@mui/utils/composeClasses';
 import deepmerge from '@mui/utils/deepmerge';
 import refType from '@mui/utils/refType';
 import InputBase from '../InputBase';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled, createUseThemeProps } from '../zero-styled';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
   InputBaseRoot,
-  InputBaseComponent as InputBaseInput,
+  InputBaseInput,
 } from '../InputBase/InputBase';
+
+const useThemeProps = createUseThemeProps('MuiInput');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline } = ownerState;
@@ -43,7 +45,7 @@ const InputRoot = styled(InputBaseRoot, {
       !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const light = theme.palette.mode === 'light';
   let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   if (theme.vars) {
@@ -51,61 +53,78 @@ const InputRoot = styled(InputBaseRoot, {
   }
   return {
     position: 'relative',
-    ...(ownerState.formControl && {
-      'label + &': {
-        marginTop: 16,
-      },
-    }),
-    ...(!ownerState.disableUnderline && {
-      '&::after': {
-        borderBottom: `2px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
-        left: 0,
-        bottom: 0,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '""',
-        position: 'absolute',
-        right: 0,
-        transform: 'scaleX(0)',
-        transition: theme.transitions.create('transform', {
-          duration: theme.transitions.duration.shorter,
-          easing: theme.transitions.easing.easeOut,
-        }),
-        pointerEvents: 'none', // Transparent to the hover style.
-      },
-      [`&.${inputClasses.focused}:after`]: {
-        // translateX(0) is a workaround for Safari transform scale bug
-        // See https://github.com/mui/material-ui/issues/31766
-        transform: 'scaleX(1) translateX(0)',
-      },
-      [`&.${inputClasses.error}`]: {
-        '&::before, &::after': {
-          borderBottomColor: (theme.vars || theme).palette.error.main,
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.formControl,
+        style: {
+          'label + &': {
+            marginTop: 16,
+          },
         },
       },
-      '&::before': {
-        borderBottom: `1px solid ${bottomLineColor}`,
-        left: 0,
-        bottom: 0,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '"\\00a0"',
-        position: 'absolute',
-        right: 0,
-        transition: theme.transitions.create('border-bottom-color', {
-          duration: theme.transitions.duration.shorter,
-        }),
-        pointerEvents: 'none', // Transparent to the hover style.
-      },
-      [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
-        borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          borderBottom: `1px solid ${bottomLineColor}`,
+      {
+        props: ({ ownerState }) => !ownerState.disableUnderline,
+        style: {
+          '&::after': {
+            left: 0,
+            bottom: 0,
+            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+            content: '""',
+            position: 'absolute',
+            right: 0,
+            transform: 'scaleX(0)',
+            transition: theme.transitions.create('transform', {
+              duration: theme.transitions.duration.shorter,
+              easing: theme.transitions.easing.easeOut,
+            }),
+            pointerEvents: 'none', // Transparent to the hover style.
+          },
+          [`&.${inputClasses.focused}:after`]: {
+            // translateX(0) is a workaround for Safari transform scale bug
+            // See https://github.com/mui/material-ui/issues/31766
+            transform: 'scaleX(1) translateX(0)',
+          },
+          [`&.${inputClasses.error}`]: {
+            '&::before, &::after': {
+              borderBottomColor: (theme.vars || theme).palette.error.main,
+            },
+          },
+          '&::before': {
+            borderBottom: `1px solid ${bottomLineColor}`,
+            left: 0,
+            bottom: 0,
+            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+            content: '"\\00a0"',
+            position: 'absolute',
+            right: 0,
+            transition: theme.transitions.create('border-bottom-color', {
+              duration: theme.transitions.duration.shorter,
+            }),
+            pointerEvents: 'none', // Transparent to the hover style.
+          },
+          [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
+            borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              borderBottom: `1px solid ${bottomLineColor}`,
+            },
+          },
+          [`&.${inputClasses.disabled}:before`]: {
+            borderBottomStyle: 'dotted',
+          },
         },
       },
-      [`&.${inputClasses.disabled}:before`]: {
-        borderBottomStyle: 'dotted',
-      },
-    }),
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value.main)
+        .map(([color]) => ({
+          props: { color, disableUnderline: false },
+          style: {
+            '&::after': {
+              borderBottom: `2px solid ${(theme.vars || theme).palette[color].main}`,
+            },
+          },
+        })),
+    ],
   };
 });
 
@@ -118,7 +137,7 @@ const InputInput = styled(InputBaseInput, {
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiInput' });
   const {
-    disableUnderline,
+    disableUnderline = false,
     components = {},
     componentsProps: componentsPropsProp,
     fullWidth = false,
@@ -223,6 +242,7 @@ Input.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the `input` will not have an underline.
+   * @default false
    */
   disableUnderline: PropTypes.bool,
   /**
@@ -352,6 +372,8 @@ Input.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
-Input.muiName = 'Input';
+if (Input) {
+  Input.muiName = 'Input';
+}
 
 export default Input;

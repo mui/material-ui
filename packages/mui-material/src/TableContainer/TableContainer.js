@@ -3,9 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getTableContainerUtilityClass } from './tableContainerClasses';
+
+const useThemeProps = createUseThemeProps('MuiTableContainer');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
