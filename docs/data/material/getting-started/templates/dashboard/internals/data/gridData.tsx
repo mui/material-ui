@@ -49,16 +49,15 @@ export function renderAvatar(
 export const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 90 },
   { field: 'pageTitle', headerName: 'Page Title', width: 200 },
-  { field: 'eventCount', headerName: 'Event Count', type: 'number', width: 130 },
-  { field: 'users', headerName: 'Users', type: 'number', width: 100 },
+  { field: 'eventCount', headerName: 'Event Count', width: 130 },
+  { field: 'users', headerName: 'Users', width: 100 },
   {
     field: 'viewsPerUser',
     headerName: 'Views per User',
-    type: 'number',
     width: 130,
   },
   { field: 'averageTime', headerName: 'Average Time', width: 130 },
-  { field: 'conversions', headerName: 'Conversions', type: 'number', width: 120 },
+  { field: 'conversions', headerName: 'Conversions', width: 120 },
 ];
 
 export const rows: GridRowsProp = [

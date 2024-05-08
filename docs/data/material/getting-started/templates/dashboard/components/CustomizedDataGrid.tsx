@@ -19,6 +19,7 @@ export default function CustomizedDataGrid() {
             pagination: { paginationModel: { pageSize: 10 } },
           }}
           pageSizeOptions={[10, 25, 50]}
+          disableColumnResize
         />
       </CardContent>
     </Card>

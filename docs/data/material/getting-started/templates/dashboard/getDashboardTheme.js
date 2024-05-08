@@ -1256,6 +1256,51 @@ export default function getDashboardTheme(mode) {
               },
             }),
           }),
+          iconButtonContainer: ({ theme }) => ({
+            '& .MuiIconButton-root': {
+              border: 'none',
+              backgroundColor: 'transparent',
+              '&:hover': {
+                backgroundColor: gray[100],
+              },
+              '&:active': {
+                backgroundColor: gray[200],
+              },
+              ...theme.applyStyles('dark', {
+                color: gray[50],
+                '&:hover': {
+                  backgroundColor: gray[800],
+                },
+                '&:active': {
+                  backgroundColor: gray[900],
+                },
+              }),
+            },
+          }),
+          menuIconButton: ({ theme }) => ({
+            border: 'none',
+            backgroundColor: 'transparent',
+            '&:hover': {
+              backgroundColor: gray[100],
+            },
+            '&:active': {
+              backgroundColor: gray[200],
+            },
+            ...theme.applyStyles('dark', {
+              color: gray[50],
+              '&:hover': {
+                backgroundColor: gray[800],
+              },
+              '&:active': {
+                backgroundColor: gray[900],
+              },
+            }),
+          }),
+          columnHeaderTitleContainer: {
+            flexGrow: 1,
+            justifyContent: 'space-between',
+          },
+          columnHeaderDraggableContainer: { paddingRight: 2 },
         },
       },
     },
