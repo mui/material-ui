@@ -580,14 +580,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     if (renderTags) {
       startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
-      startAdornment = value.map((option, index) => (
-        <Chip
-          label={getOptionLabel(option)}
-          size={size}
-          {...getCustomizedTagProps({ index })}
-          {...externalForwardedProps.slotProps.chip}
-        />
-      ));
+      startAdornment = value.map((option, index) => {
+        const { key, ...customTagProps } = getCustomizedTagProps({ index });
+        return (
+          <Chip
+            key={key}
+            label={getOptionLabel(option)}
+            size={size}
+            {...customTagProps}
+            {...externalForwardedProps.slotProps.chip}
+          />
+        );
+      });
     }
   }
 
