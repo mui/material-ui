@@ -6,10 +6,11 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import ImageListContext from '../ImageList/ImageListContext';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import isMuiElement from '../utils/isMuiElement';
 import imageListItemClasses, { getImageListItemUtilityClass } from './imageListItemClasses';
+
+const useThemeProps = createUseThemeProps('MuiImageListItem');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant } = ownerState;

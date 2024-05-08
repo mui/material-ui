@@ -95,10 +95,10 @@ export default function ClassesTable(props: ClassesTableProps) {
                   />
                   {isDeprecated && (
                     <ApiWarning className="classes-table-alert">
-                      {t('api-docs.deprecated')}
+                      <b>{t('api-docs.deprecated')}</b>
                       {deprecationInfo && (
                         <React.Fragment>
-                          {' - '}
+                          {'－'}
                           <span
                             dangerouslySetInnerHTML={{
                               __html: deprecationInfo,
