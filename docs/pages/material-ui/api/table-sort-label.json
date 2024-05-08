@@ -15,10 +15,7 @@
       "deprecationInfo": "Use <code>slots.icon</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "slotProps": {
-      "type": {
-        "name": "shape",
-        "description": "{ icon?: func<br>&#124;&nbsp;{ component?: elementType, sx?: Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object } }"
-      },
+      "type": { "name": "shape", "description": "{ icon?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
     },
     "slots": {

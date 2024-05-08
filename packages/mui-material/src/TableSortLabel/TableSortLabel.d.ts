@@ -17,7 +17,11 @@ export interface TableSortLabelSlots {
 export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   TableSortLabelSlots,
   {
-    icon: SlotProps<React.ElementType, {}, TableSortLabelOwnerState>;
+    icon: SlotProps<
+      React.ElementType<React.SVGAttributes<SVGSVGElement>>,
+      {},
+      TableSortLabelOwnerState
+    >;
   }
 >;
 

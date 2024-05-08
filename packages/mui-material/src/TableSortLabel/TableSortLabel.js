@@ -189,19 +189,7 @@ TableSortLabel.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    icon: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
