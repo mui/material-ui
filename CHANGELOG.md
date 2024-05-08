@@ -1,5 +1,33 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.17
+
+<!-- generated comparing v5.15.16..master -->
+
+_May 8, 2024_
+
+A big thanks to the 4 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### Docs
+
+- &#8203;<!-- 08 -->Fix SEO redirection issues @oliviertassinari
+- &#8203;<!-- 06 -->[material-ui] Fix broken link (@aarongarciah) (#42143) @github-actions[bot]
+- &#8203;<!-- 05 -->[material-ui] Fix link on the Sync page (@danilo-leal) (#42089) @github-actions[bot]
+- &#8203;<!-- 04 -->[material-ui][slider] Move palette styles to the bottom (#41676) @siriwatknp
+
+### Core
+
+- &#8203;<!-- 11 -->[blog] Shorten title to fit @oliviertassinari
+- &#8203;<!-- 10 -->[blog] Update Sync post OG image (@danilo-leal) (#42117) @github-actions[bot]
+- &#8203;<!-- 09 -->[blog] A few tweaks in introducing-sync-plugin (@oliviertassinari) (#42094) @github-actions[bot]
+- &#8203;<!-- 07 -->[docs-infra] Fix code block layout shift (#41917) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Fix home page slider's track position (@aarongarciah) (#42144) @github-actions[bot]
+- &#8203;<!-- 02 -->[website] Closing the survey @oliviertassinari
+- &#8203;<!-- 01 -->[website] Remove Survey banner from website and Core docs (#42104) @joserodolfofreitas
+
+All contributors of this release in alphabetical order: @github-actions[bot], @joserodolfofreitas, @oliviertassinari, @siriwatknp
+
 ## v5.15.16
 
 <!-- generated comparing v5.15.15..master -->
