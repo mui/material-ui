@@ -570,7 +570,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset-focus"
               onClick={handleResetFocusClick}
-              {...getControlProps(6)}
+              {...getControlProps(7)}
               sx={{ borderRadius: 1 }}
             >
               <ResetFocusIcon />
@@ -583,7 +583,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset"
               onClick={onResetDemoClick}
-              {...getControlProps(7)}
+              {...getControlProps(8)}
               sx={{ borderRadius: 1 }}
             >
               <RefreshRoundedIcon />
@@ -594,7 +594,7 @@ export default function DemoToolbar(props) {
             aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
-            {...getControlProps(8)}
+            {...getControlProps(9)}
             sx={{ borderRadius: 1 }}
           >
             <MoreVertIcon />
