@@ -38,6 +38,9 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       maxWidth: 'initial',
       maxHeight: 'initial',
     },
+    '& .MuiCode-copy': {
+      display: 'none',
+    },
   },
 ]) as any;
 

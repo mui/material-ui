@@ -265,6 +265,8 @@ export default function DemoToolbar(props) {
   const {
     codeOpen,
     codeVariant,
+    copyIcon,
+    copyButtonOnClick,
     hasNonSystemDemos,
     demo,
     demoData,
@@ -550,6 +552,18 @@ export default function DemoToolbar(props) {
               </DemoTooltip>
             </React.Fragment>
           )}
+          <DemoTooltip title={t('copySource')} placement="bottom">
+            <IconButton
+              data-ga-event-category="demo"
+              data-ga-event-label={demo.gaLabel}
+              data-ga-event-action="copy"
+              onClick={copyButtonOnClick}
+              {...getControlProps(6)}
+              sx={{ borderRadius: 1 }}
+            >
+              {copyIcon}
+            </IconButton>
+          </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
             <IconButton
               data-ga-event-category="demo"
@@ -693,6 +707,8 @@ export default function DemoToolbar(props) {
 DemoToolbar.propTypes = {
   codeOpen: PropTypes.bool.isRequired,
   codeVariant: PropTypes.string.isRequired,
+  copyIcon: PropTypes.object.isRequired,
+  copyButtonOnClick: PropTypes.object.isRequired,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
   demoId: PropTypes.string,

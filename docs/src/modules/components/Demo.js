@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import copy from 'clipboard-copy';
 import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
@@ -12,6 +13,8 @@ import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
 import ReactRunner from 'docs/src/modules/components/ReactRunner';
 import DemoEditor from 'docs/src/modules/components/DemoEditor';
@@ -554,6 +557,21 @@ export default function Demo(props) {
     demoData.relativeModules,
   ]);
 
+  const [copiedContent, setCopiedContent] = React.useState(false);
+
+  const handleCopyClick = async () => {
+    try {
+      const activeTabData = tabs[activeTab];
+      await copy(activeTabData.raw);
+      setCopiedContent(true);
+      setTimeout(() => {
+        setCopiedContent(false);
+      }, 1000);
+    } catch (error) {
+      console.error('Code content not copied', error);
+    }
+  };
+
   return (
     <Root>
       <AnchorLink id={demoName} />
@@ -593,6 +611,10 @@ export default function Demo(props) {
                 <DemoToolbar
                   codeOpen={codeOpen}
                   codeVariant={codeVariant}
+                  copyIcon={
+                    copiedContent ? <LibraryAddCheckRoundedIcon /> : <ContentCopyRoundedIcon />
+                  }
+                  copyButtonOnClick={handleCopyClick}
                   hasNonSystemDemos={hasNonSystemDemos}
                   demo={demo}
                   demoData={demoData}
@@ -642,6 +664,11 @@ export default function Demo(props) {
                         'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
                         'data-ga-event-label': demo.gaLabel,
                         'data-ga-event-action': 'copy-click',
+                      }}
+                      sx={{
+                        '& .MuiCode-copy': {
+                          display: 'none',
+                        },
                       }}
                     />
                   ) : (
