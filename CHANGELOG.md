@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## v6.0.0-alpha.6
+
 <!-- generated comparing v6.0.0-alpha.5..next -->
+
 _May 8, 2024_
 
 A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
