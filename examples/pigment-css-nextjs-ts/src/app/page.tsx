@@ -177,7 +177,7 @@ export default function Home() {
         <Link
           href="https://github.com/mui/material-ui/blob/master/packages/pigment-css-react/README.md"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
         >
           Documentation
         </Link>
@@ -185,7 +185,7 @@ export default function Home() {
           outlined
           href="https://github.com/orgs/mui/projects/27/views/3"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
         >
           Roadmap
         </Link>
