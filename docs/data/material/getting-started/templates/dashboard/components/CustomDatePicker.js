@@ -125,7 +125,7 @@ ButtonDatePicker.propTypes = {
         key: PropTypes.oneOfType([
           PropTypes.number,
           PropTypes.shape({
-            '__@toStringTag@2766': PropTypes.oneOf(['BigInt']).isRequired,
+            '__@toStringTag@2764': PropTypes.oneOf(['BigInt']).isRequired,
             toLocaleString: PropTypes.func.isRequired,
             toString: PropTypes.func.isRequired,
             valueOf: PropTypes.func.isRequired,

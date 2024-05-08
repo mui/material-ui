@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import { createTheme, alpha } from '@mui/material/styles';
 
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
@@ -1198,9 +1200,9 @@ export default function getDashboardTheme(mode) {
       },
       MuiDataGrid: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: {
             border: 'none',
-          }),
+          },
           menu: ({ theme }) => ({
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${theme.palette.divider}`,

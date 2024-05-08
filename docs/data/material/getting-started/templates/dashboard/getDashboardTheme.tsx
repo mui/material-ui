@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
@@ -1226,9 +1227,9 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiDataGrid: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: {
             border: 'none',
-          }),
+          },
           menu: ({ theme }) => ({
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${theme.palette.divider}`,
