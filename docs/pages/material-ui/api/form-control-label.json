@@ -5,7 +5,9 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ typography?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "disabled": { "type": { "name": "bool" } },
     "disableTypography": { "type": { "name": "bool" } },
@@ -27,7 +29,11 @@
     },
     "required": { "type": { "name": "bool" } },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ typography?: object }" },
+      "type": { "name": "shape", "description": "{ typography?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ typography?: elementType }" },
       "default": "{}"
     },
     "sx": {
@@ -43,6 +49,14 @@
   "imports": [
     "import FormControlLabel from '@mui/material/FormControlLabel';",
     "import { FormControlLabel } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "typography",
+      "description": "The component that renders the label.\nThis is unused if `disableTypography` is true.",
+      "default": "Typography",
+      "class": null
+    }
   ],
   "classes": [
     {

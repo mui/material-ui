@@ -6,13 +6,14 @@ import { Transition } from 'react-transition-group';
 import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
 import { getCollapseUtilityClass } from './collapseClasses';
+
+const useThemeProps = createUseThemeProps('MuiCollapse');
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, classes } = ownerState;
@@ -44,54 +45,88 @@ const CollapseRoot = styled('div', {
         styles.hidden,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   height: 0,
   overflow: 'hidden',
   transition: theme.transitions.create('height'),
-  ...(ownerState.orientation === 'horizontal' && {
-    height: 'auto',
-    width: 0,
-    transition: theme.transitions.create('width'),
-  }),
-  ...(ownerState.state === 'entered' && {
-    height: 'auto',
-    overflow: 'visible',
-    ...(ownerState.orientation === 'horizontal' && {
-      width: 'auto',
-    }),
-  }),
-  ...(ownerState.state === 'exited' &&
-    !ownerState.in &&
-    ownerState.collapsedSize === '0px' && {
-      visibility: 'hidden',
-    }),
+  variants: [
+    {
+      props: {
+        orientation: 'horizontal',
+      },
+      style: {
+        height: 'auto',
+        width: 0,
+        transition: theme.transitions.create('width'),
+      },
+    },
+    {
+      props: {
+        state: 'entered',
+      },
+      style: {
+        height: 'auto',
+        overflow: 'visible',
+      },
+    },
+    {
+      props: {
+        state: 'entered',
+        orientation: 'horizontal',
+      },
+      style: {
+        width: 'auto',
+      },
+    },
+    {
+      props: ({ ownerState }) =>
+        ownerState.state === 'exited' && !ownerState.in && ownerState.collapsedSize === '0px',
+      style: {
+        visibility: 'hidden',
+      },
+    },
+  ],
 }));
 
 const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',
   slot: 'Wrapper',
   overridesResolver: (props, styles) => styles.wrapper,
-})(({ ownerState }) => ({
+})({
   // Hack to get children with a negative margin to not falsify the height computation.
   display: 'flex',
   width: '100%',
-  ...(ownerState.orientation === 'horizontal' && {
-    width: 'auto',
-    height: '100%',
-  }),
-}));
+  variants: [
+    {
+      props: {
+        orientation: 'horizontal',
+      },
+      style: {
+        width: 'auto',
+        height: '100%',
+      },
+    },
+  ],
+});
 
 const CollapseWrapperInner = styled('div', {
   name: 'MuiCollapse',
   slot: 'WrapperInner',
   overridesResolver: (props, styles) => styles.wrapperInner,
-})(({ ownerState }) => ({
+})({
   width: '100%',
-  ...(ownerState.orientation === 'horizontal' && {
-    width: 'auto',
-    height: '100%',
-  }),
-}));
+  variants: [
+    {
+      props: {
+        orientation: 'horizontal',
+      },
+      style: {
+        width: 'auto',
+        height: '100%',
+      },
+    },
+  ],
+});
 
 /**
  * The Collapse transition is used by the
@@ -418,6 +453,8 @@ Collapse.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-Collapse.muiSupportAuto = true;
+if (Collapse) {
+  Collapse.muiSupportAuto = true;
+}
 
 export default Collapse;

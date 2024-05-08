@@ -75,6 +75,7 @@
     "toggleSettings": "Toggle settings drawer"
   },
   "backToTop": "Scroll back to top",
+  "backToOpenRoles": "Back to open roles",
   "blogDescr": "A polished blog page layout. Markdown support is courtesy of markdown-to-jsx.",
   "blogTitle": "Blog",
   "bundleSize": "Bundle size",

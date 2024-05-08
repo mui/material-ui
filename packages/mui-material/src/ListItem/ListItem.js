@@ -7,8 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import { alpha } from '@mui/system/colorManipulator';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -17,6 +16,8 @@ import ListContext from '../List/ListContext';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
+
+const useThemeProps = createUseThemeProps('MuiListItem');
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -70,7 +71,7 @@ export const ListItemRoot = styled('div', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -79,28 +80,6 @@ export const ListItemRoot = styled('div', {
   width: '100%',
   boxSizing: 'border-box',
   textAlign: 'left',
-  ...(!ownerState.disablePadding && {
-    paddingTop: 8,
-    paddingBottom: 8,
-    ...(ownerState.dense && {
-      paddingTop: 4,
-      paddingBottom: 4,
-    }),
-    ...(!ownerState.disableGutters && {
-      paddingLeft: 16,
-      paddingRight: 16,
-    }),
-    ...(!!ownerState.secondaryAction && {
-      // Add some space to avoid collision as `ListItemSecondaryAction`
-      // is absolutely positioned.
-      paddingRight: 48,
-    }),
-  }),
-  ...(!!ownerState.secondaryAction && {
-    [`& > .${listItemButtonClasses.root}`]: {
-      paddingRight: 48,
-    },
-  }),
   [`&.${listItemClasses.focusVisible}`]: {
     backgroundColor: (theme.vars || theme).palette.action.focus,
   },
@@ -120,45 +99,98 @@ export const ListItemRoot = styled('div', {
   [`&.${listItemClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
   },
-  ...(ownerState.alignItems === 'flex-start' && {
-    alignItems: 'flex-start',
-  }),
-  ...(ownerState.divider && {
-    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-    backgroundClip: 'padding-box',
-  }),
-  ...(ownerState.button && {
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      textDecoration: 'none',
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.disablePadding,
+      style: {
+        paddingTop: 8,
+        paddingBottom: 8,
       },
     },
-    [`&.${listItemClasses.selected}:hover`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    {
+      props: ({ ownerState }) => !ownerState.disablePadding && ownerState.dense,
+      style: {
+        paddingTop: 4,
+        paddingBottom: 4,
       },
     },
-  }),
-  ...(ownerState.hasSecondaryAction && {
-    // Add some space to avoid collision as `ListItemSecondaryAction`
-    // is absolutely positioned.
-    paddingRight: 48,
-  }),
+    {
+      props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.disableGutters,
+      style: {
+        paddingLeft: 16,
+        paddingRight: 16,
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState.disablePadding && !!ownerState.secondaryAction,
+      style: {
+        // Add some space to avoid collision as `ListItemSecondaryAction`
+        // is absolutely positioned.
+        paddingRight: 48,
+      },
+    },
+    {
+      props: ({ ownerState }) => !!ownerState.secondaryAction,
+      style: {
+        [`& > .${listItemButtonClasses.root}`]: {
+          paddingRight: 48,
+        },
+      },
+    },
+    {
+      props: {
+        alignItems: 'flex-start',
+      },
+      style: {
+        alignItems: 'flex-start',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.divider,
+      style: {
+        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+        backgroundClip: 'padding-box',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.button,
+      style: {
+        transition: theme.transitions.create('background-color', {
+          duration: theme.transitions.duration.shortest,
+        }),
+        '&:hover': {
+          textDecoration: 'none',
+          backgroundColor: (theme.vars || theme).palette.action.hover,
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
+        },
+        [`&.${listItemClasses.selected}:hover`]: {
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+            : alpha(
+                theme.palette.primary.main,
+                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+              ),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+              : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+          },
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.hasSecondaryAction,
+      style: {
+        // Add some space to avoid collision as `ListItemSecondaryAction`
+        // is absolutely positioned.
+        paddingRight: 48,
+      },
+    },
+  ],
 }));
 
 const ListItemContainer = styled('li', {

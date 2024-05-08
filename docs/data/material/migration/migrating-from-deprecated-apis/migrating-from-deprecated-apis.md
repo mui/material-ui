@@ -872,6 +872,25 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
  />
 ```
 
+## FormControlLabel
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#form-control-label-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/form-control-label-props <path>
+```
+
+### componentsProps
+
+The FormControlLabel's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <FormControlLabel
+-  componentsProps={{ typography: typographyProps }}
++  slotProps={{ typography: typographyProps }}
+ />
+```
+
 ## PaginationItem
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-classes) below to migrate the code as described in the following sections:
@@ -922,6 +941,17 @@ Here's how to migrate:
      },
    },
  },
+```
+
+### components
+
+The PaginationItems's `components` was deprecated in favor of `slots`:
+
+```diff
+ <PaginationItems
+-  components={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
++  slots={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
+ />
 ```
 
 ## Slider
@@ -1073,4 +1103,33 @@ Here's how to migrate:
      },
    },
  },
+```
+
+## SpeedDial
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/speed-dial-props <path>
+```
+
+### TransitionComponent
+
+The SpeedDial's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <SpeedDial
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+```
+
+### TransitionProps
+
+The SpeedDial's `TransitionProps` was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <SpeedDial
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
 ```

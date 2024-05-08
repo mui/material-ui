@@ -259,9 +259,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
             ? `radial-gradient(100% 100% at 100% 100%, transparent 0, ${alpha(blue[900], 0.3)} 300%)`
             : `radial-gradient(100% 90% at 50% 0, transparent 0, ${alpha(blue[100], 0.3)} 300%)`,
         linearSubtle:
-          mode === 'light'
-            ? `linear-gradient(to bottom right, ${alpha(blue[50], 0.3)} 25%, ${alpha(grey[50], 0.2)} 100%)`
-            : `linear-gradient(to bottom right, ${alpha(blue[900], 0.1)} 25%, ${alpha(blueDark[800], 0.2)} 100%)`,
+          mode === 'dark'
+            ? `linear-gradient(0deg, ${alpha(blue[900], 0.1)}, ${alpha(blueDark[900], 0.5)})`
+            : `linear-gradient(0deg, ${alpha(blue[50], 0.4)}, ${alpha(grey[50], 0.1)})`,
       },
     },
     shape: {
@@ -335,18 +335,18 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontWeight: 500,
       },
       body1: {
-        fontSize: defaultTheme.typography.pxToRem(16), // 16px
+        fontSize: defaultTheme.typography.pxToRem(16),
         lineHeight: 24 / 16,
         letterSpacing: 0,
       },
       body2: {
-        fontSize: defaultTheme.typography.pxToRem(14), // 14px
+        fontSize: defaultTheme.typography.pxToRem(14),
         lineHeight: 21 / 14,
         letterSpacing: 0,
       },
       caption: {
         display: 'inline-block',
-        fontSize: defaultTheme.typography.pxToRem(12), // 12px
+        fontSize: defaultTheme.typography.pxToRem(12),
         lineHeight: 18 / 12,
         letterSpacing: 0,
         fontWeight: 700,
@@ -485,7 +485,7 @@ export function getThemedComponents(): ThemeOptions {
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'small' && {
-              padding: theme.spacing('6px', 1),
+              padding: theme.spacing('6px', 1.5),
               fontFamily: theme.typography.fontFamily,
               fontSize: defaultTheme.typography.pxToRem(13),
               fontWeight: theme.typography.fontWeightSemiBold,
@@ -778,7 +778,8 @@ export function getThemedComponents(): ThemeOptions {
                 fontSize: theme.typography.pxToRem(14),
                 fontWeight: 500,
                 '&:hover, &:focus': {
-                  backgroundColor: (theme.vars || theme).palette.grey[50],
+                  backgroundColor: (theme.vars || theme).palette.grey[100],
+                  color: (theme.vars || theme).palette.text.primary,
                 },
                 '&:focus-visible': {
                   outline: 'none',
@@ -1159,7 +1160,7 @@ export function getThemedComponents(): ThemeOptions {
               }),
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[700],
-                borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                borderColor: `${(theme.vars || theme).palette.primary[200]} !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primary[100],
@@ -1173,7 +1174,7 @@ export function getThemedComponents(): ThemeOptions {
               },
               '&.Mui-selected': {
                 color: (theme.vars || theme).palette.primary[200],
-                borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                borderColor: `${(theme.vars || theme).palette.primary[800]} !important`,
                 backgroundColor: alpha(theme.palette.primary[900], 0.4),
                 '&:hover': {
                   backgroundColor: alpha(theme.palette.primary[900], 0.8),

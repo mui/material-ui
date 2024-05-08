@@ -12,6 +12,7 @@ const DemoToolbarRoot = styled('div', {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       top: 0,
+      maxHeight: 50,
       display: 'block',
       marginTop: demoOptions.bg === 'inline' ? theme.spacing(1) : -1,
       padding: theme.spacing(0.5, 1),

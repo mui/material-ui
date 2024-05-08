@@ -120,17 +120,6 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'VMware CloudHealth',
-    description:
-      'The most trusted cloud management platform that enables users to analyze and manage cloud ' +
-      'cost, usage and performance in one place. ' +
-      '(Used for the business application, but not the marketing website.)',
-    image: 'cloudhealth.jpg',
-    link: 'https://cloudhealth.vmware.com/',
-    similarWebVisits: 132,
-    dateAdded: '2018-01-37',
-  },
-  {
     title: 'CityAds',
     description:
       'CityAds Media: global technology platform for online performance marketing ' +

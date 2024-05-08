@@ -11,7 +11,7 @@ githubLabel: 'component: transitions'
 
 Material UI provides transitions that can be used to introduce some basic [motion](https://m2.material.io/design/motion/) to your applications.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Collapse
 

@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@4.1
+  aws-cli: circleci/aws-cli@4.1.3
   aws-s3: circleci/aws-s3@4.0
 
 parameters:
@@ -45,7 +45,7 @@ default-job: &default-job
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:18.19
+    - image: cimg/node:18.20
 
 default-context: &default-context
   context:
@@ -214,6 +214,9 @@ jobs:
           command: |
             #!/bin/bash
             VALE_STR_CLI_VERSION=3.3.0
+
+            # set smart sudo
+            if [[ $EUID -eq 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
 
             mkdir /tmp/vale-extract
             cd /tmp/vale-extract
