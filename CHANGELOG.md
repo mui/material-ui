@@ -6,46 +6,47 @@
 
 _May 8, 2024_
 
-A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
 
 ### `@mui/material@6.0.0-alpha.6`
 
-- &#8203;<!-- 18 -->[material-ui][Chip] Add colorDefault class to chipClasses (#42067) @sai6855
-- &#8203;<!-- 07 -->[material-ui] Migrate components to support CSS extraction (#42001) @siriwatknp
-- &#8203;<!-- 06 -->[material-ui][SpeedDial] Deprecate TransitionComponent (#40698) @harry-whorlow
+- [Chip] Add colorDefault class to chipClasses (#42067) @sai6855
+- Migrate components to support CSS extraction (#42001) @siriwatknp
+- [SpeedDial] Deprecate TransitionComponent (#40698) @harry-whorlow
 
 ### `@mui/codemod@6.0.0-alpha.6`
 
-- &#8203;<!-- 15 -->[codemod] Add `theme-v6` migration (#42056) @siriwatknp
+- Add `theme-v6` migration (#42056) @siriwatknp
 
 ### `@mui/icons-material@6.0.0-alpha.6`
 
-- &#8203;<!-- 08 -->[icons] Add the Emergency icon (#42080) @danilo-leal
+- Add the Emergency icon (#42080) @danilo-leal
 
 ### Docs
 
-- &#8203;<!-- 22 -->[docs][autocomplete] Fix duplicate autocomplete id (#42086) @oliviertassinari
-- &#8203;<!-- 13 -->[docs] Fix SEO redirection issues @oliviertassinari
-- &#8203;<!-- 10 -->[docs][material-ui] Fix broken link (#42142) @aarongarciah
-- &#8203;<!-- 09 -->[material-ui][docs] Fix link on the Sync page (#42088) @danilo-leal
+- [autocomplete] Fix duplicate autocomplete id (#42086) @oliviertassinari
+- Fix SEO redirection issues @oliviertassinari
+- [material-ui] Fix broken link (#42142) @aarongarciah
+- [material-ui][docs] Fix link on the Sync page (#42088) @danilo-leal
 
 ### Core
 
-- &#8203;<!-- 21 -->[blog] Shorten title to fit @oliviertassinari
-- &#8203;<!-- 20 -->[blog] Update Sync post OG image (#42114) @danilo-leal
-- &#8203;<!-- 19 -->[blog] A few tweaks in introducing-sync-plugin (#42092) @oliviertassinari
-- &#8203;<!-- 17 -->[code-infra] Move ComponentLinkHeader to @mui/docs (#42061) @Janpot
-- &#8203;<!-- 16 -->[code-infra] Bump node image used by CI in docker (#42079) @LukasTy
-- &#8203;<!-- 14 -->[core] Restrict import path with ESLint (#41970) @oliviertassinari
-- &#8203;<!-- 12 -->[docs-infra] Add design and formatting improvements (#42063) @danilo-leal
-- &#8203;<!-- 11 -->[docs-infra] Fix HTML structure violations (#42085) @oliviertassinari
-- &#8203;<!-- 05 -->[website] Componentize a few Careers page sections (#42102) @danilo-leal
-- &#8203;<!-- 04 -->[website] Refine the InfoCard design (#42116) @danilo-leal
-- &#8203;<!-- 03 -->[website] Fix home page slider's track position (#42141) @aarongarciah
-- &#8203;<!-- 02 -->[website] Closing the survey @oliviertassinari
-- &#8203;<!-- 01 -->[website] Remove Survey banner from website and Core docs (#42104) @joserodolfofreitas
+- [blog] Shorten title to fit @oliviertassinari
+- [blog] Update Sync post OG image (#42114) @danilo-leal
+- [blog] A few tweaks in introducing-sync-plugin (#42092) @oliviertassinari
+- [code-infra] Add canary release scripts (#41949) @michaldudak
+- [code-infra] Move ComponentLinkHeader to @mui/docs (#42061) @Janpot
+- [code-infra] Bump node image used by CI in docker (#42079) @LukasTy
+- [core] Restrict import path with ESLint (#41970) @oliviertassinari
+- [docs-infra] Add design and formatting improvements (#42063) @danilo-leal
+- [docs-infra] Fix HTML structure violations (#42085) @oliviertassinari
+- [website] Componentize a few Careers page sections (#42102) @danilo-leal
+- [website] Refine the InfoCard design (#42116) @danilo-leal
+- [website] Fix home page slider's track position (#42141) @aarongarciah
+- [website] Closing the survey @oliviertassinari
+- [website] Remove Survey banner from website and Core docs (#42104) @joserodolfofreitas
 
-All contributors of this release in alphabetical order: @aarongarciah, @danilo-leal, @harry-whorlow, @Janpot, @joserodolfofreitas, @LukasTy, @oliviertassinari, @sai6855, @siriwatknp
+All contributors of this release in alphabetical order: @aarongarciah, @danilo-leal, @harry-whorlow, @Janpot, @joserodolfofreitas, @LukasTy, @michaldudak, @oliviertassinari, @sai6855, @siriwatknp
 
 ## v6.0.0-alpha.5
 
