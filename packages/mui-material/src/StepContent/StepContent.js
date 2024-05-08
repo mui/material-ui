@@ -8,6 +8,7 @@ import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepContentUtilityClass } from './stepContentClasses';
+import useSlot from '../utils/useSlot';
 
 const useThemeProps = createUseThemeProps('MuiStepContent');
 
@@ -60,6 +61,8 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
     TransitionComponent = Collapse,
     transitionDuration: transitionDurationProp = 'auto',
     TransitionProps,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -81,6 +84,17 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
     transitionDuration = undefined;
   }
 
+  const externalForwardedProps = {
+    slots: { transition: TransitionComponent, ...slots },
+    slotProps: { transition: TransitionProps, ...slotProps },
+  };
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Collapse,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
     <StepContentRoot
       className={clsx(classes.root, className)}
@@ -89,13 +103,12 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
       {...other}
     >
       <StepContentTransition
-        as={TransitionComponent}
+        as={TransitionSlot}
         in={active || expanded}
         className={classes.transition}
-        ownerState={ownerState}
         timeout={transitionDuration}
         unmountOnExit
-        {...TransitionProps}
+        {...transitionProps}
       >
         {children}
       </StepContentTransition>
@@ -132,6 +145,7 @@ StepContent.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -153,6 +167,7 @@ StepContent.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps: PropTypes.object,
 };
