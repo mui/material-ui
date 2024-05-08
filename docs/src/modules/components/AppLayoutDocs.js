@@ -18,7 +18,7 @@ import {
   AD_HEIGHT_MOBILE,
   AD_MARGIN_BOTTOM,
 } from 'docs/src/modules/components/Ad';
-import { convertProductIdToName } from './AppSearch';
+import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 const TOC_WIDTH = 242;
 
@@ -120,8 +120,10 @@ export default function AppLayoutDocs(props) {
     throw new Error('Missing description in the page');
   }
 
-  let productName = 'MUI';
-  productName = convertProductIdToName(getProductInfoFromUrl(router.asPath));
+  let productName = convertProductIdToName(getProductInfoFromUrl(router.asPath));
+  if (!productName) {
+    productName = 'MUI';
+  }
 
   const Layout = disableLayout ? React.Fragment : AppFrame;
   const layoutProps = disableLayout ? {} : { BannerComponent };
