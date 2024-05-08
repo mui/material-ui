@@ -40,3 +40,14 @@
     justifyContent: 'flex-end'
   }]}
 ></Box>;
+
+<Box
+  sx={[{
+    display: 'flex',
+    alignItems: 'baseline'
+  }, tier.title === 'Professional' ? {
+    color: 'grey.50'
+  } : {
+    color: null
+  }]}
+></Box>;

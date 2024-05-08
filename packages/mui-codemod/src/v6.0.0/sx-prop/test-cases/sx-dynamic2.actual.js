@@ -21,3 +21,11 @@
     mb: '60px',
   }}
 ></Box>;
+
+<Box
+  sx={{
+    display: 'flex',
+    alignItems: 'baseline',
+    color: tier.title === 'Professional' ? 'grey.50' : undefined,
+  }}
+></Box>;

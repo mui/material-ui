@@ -35,6 +35,17 @@ export default function sxV6(file, api, options) {
   const appendPaletteModeStyles = getAppendPaletteModeStyles(j);
   const buildArrowFunctionAST = getBuildArrowFunctionAST(j);
 
+  /**
+   *
+   * @param {import('jscodeshift').Identifier} node
+   */
+  function replaceUndefined(node, replacement = j.nullLiteral()) {
+    if (node?.type === 'Identifier' && node.name === 'undefined') {
+      return replacement;
+    }
+    return node;
+  }
+
   let shouldTransform = false;
 
   root
@@ -258,10 +269,10 @@ export default function sxV6(file, api, options) {
                       data.modeStyles[data.node.test.right.value] = [];
                     }
                     data.modeStyles[data.node.test.right.value].push(
-                      j.objectProperty(data.key, data.node.consequent),
+                      j.objectProperty(data.key, replaceUndefined(data.node.consequent)),
                     );
                   }
-                  data.replaceValue?.(data.node.alternate);
+                  data.replaceValue?.(replaceUndefined(data.node.alternate));
 
                   if (data.root.type === 'ObjectExpression') {
                     data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
@@ -279,8 +290,8 @@ export default function sxV6(file, api, options) {
                   wrapSxInArray(
                     j.conditionalExpression(
                       data.node.test,
-                      data.buildStyle?.(data.node.consequent),
-                      data.buildStyle?.(data.node.alternate),
+                      data.buildStyle?.(replaceUndefined(data.node.consequent)),
+                      data.buildStyle?.(replaceUndefined(data.node.alternate)),
                     ),
                   );
                   removeProperty(data.parentNode, data.node);
