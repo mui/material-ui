@@ -28,12 +28,20 @@ interface RunOptions {
   dryRun: boolean;
   skipLastCommitComparison: boolean;
   yes: boolean;
+  ignore: string[];
 }
 
-async function run({ dryRun, accessToken, baseline, skipLastCommitComparison, yes }: RunOptions) {
+async function run({
+  dryRun,
+  accessToken,
+  baseline,
+  skipLastCommitComparison,
+  yes,
+  ignore,
+}: RunOptions) {
   await ensureCleanWorkingDirectory();
 
-  const changedPackages = await getChangedPackages(baseline, skipLastCommitComparison);
+  const changedPackages = await getChangedPackages(baseline, skipLastCommitComparison, ignore);
   if (changedPackages.length === 0) {
     return;
   }
@@ -70,6 +78,7 @@ async function listPublicChangedPackages(baseline: string) {
 async function getChangedPackages(
   baseline: string | undefined,
   skipLastCommitComparison: boolean,
+  ignore: string[],
 ): Promise<PackageInfo[]> {
   if (!skipLastCommitComparison) {
     const publicPackagesUpdatedInLastCommit = await listPublicChangedPackages('HEAD~1');
@@ -86,7 +95,10 @@ async function getChangedPackages(
 
   console.log(`Looking for changed public packages since ${chalk.yellow(baseline)}...`);
 
-  const changedPackages = await listPublicChangedPackages(baseline);
+  const changedPackages = (await listPublicChangedPackages(baseline)).filter(
+    (p) => !ignore.includes(p.name),
+  );
+
   if (changedPackages.length === 0) {
     console.log('Nothing found.');
   }
@@ -234,6 +246,12 @@ yargs(hideBin(process.argv))
           default: false,
           describe: "If set, the script doesn't ask for confirmation before publishing packages",
           type: 'boolean',
+        })
+        .option('ignore', {
+          describe: 'List of packages to ignore',
+          type: 'string',
+          array: true,
+          default: [],
         });
     },
     run,
