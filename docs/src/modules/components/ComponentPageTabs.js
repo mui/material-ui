@@ -96,6 +96,7 @@ export default function ComponentPageTabs(props) {
   return (
     <Box className="component-tabs" sx={{ display: 'inline' }}>
       <Box
+        component="nav"
         className="component-tabs"
         sx={{
           position: 'sticky',
