@@ -24,7 +24,7 @@
     "next": "latest"
   },
   "devDependencies": {
-    "@pigment-css/nextjs-plugin": "^0.0.10",
+    "@pigment-css/nextjs-plugin": "^0.0.11",
     "@types/node": "^20.5.7",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.3.0",
