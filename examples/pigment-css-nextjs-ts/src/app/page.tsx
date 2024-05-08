@@ -183,7 +183,7 @@ export default function Home() {
         </Link>
         <Link
           outlined
-          href="https://github.com/orgs/mui/projects/27/views/1"
+          href="https://github.com/orgs/mui/projects/27/views/3"
           target="_blank"
           rel="noopener noreferrer"
         >

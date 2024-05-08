@@ -183,7 +183,7 @@ export default function Index() {
         <Link
           href="https://github.com/mui/material-ui/blob/master/packages/pigment-css-react/README.md"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
         >
           Documentation
         </Link>
@@ -191,7 +191,7 @@ export default function Index() {
           outlined
           href="https://github.com/orgs/mui/projects/27/views/1"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
         >
           Roadmap
         </Link>
