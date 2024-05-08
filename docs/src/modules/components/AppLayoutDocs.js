@@ -120,9 +120,9 @@ export default function AppLayoutDocs(props) {
     throw new Error('Missing description in the page');
   }
 
-  let productName = convertProductIdToName(getProductInfoFromUrl(router.asPath));
+  const productName = convertProductIdToName(getProductInfoFromUrl(router.asPath));
   if (!productName) {
-    productName = 'MUI';
+    console.error('productName mapping missing for', router.asPath);
   }
 
   const Layout = disableLayout ? React.Fragment : AppFrame;
