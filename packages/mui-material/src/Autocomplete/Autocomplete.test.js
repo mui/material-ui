@@ -503,48 +503,6 @@ describe('<Autocomplete />', () => {
       });
     });
 
-    it('should apply the multiple class', () => {
-      const { container } = render(
-        <Autocomplete
-          openOnFocus
-          options={[]}
-          renderInput={(params) => <TextField {...params} />}
-          multiple
-        />,
-      );
-      expect(container.querySelector(`.${classes.inputRoot}`)).to.have.class(classes.multiple);
-    });
-
-    it('should override styles for the multiple class using theme style overrides', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
-      const theme = createTheme({
-        components: {
-          MuiAutocomplete: {
-            styleOverrides: {
-              multiple: {
-                padding: '15px',
-              },
-            },
-          },
-        },
-      });
-
-      render(
-        <ThemeProvider theme={theme}>
-          <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} multiple />
-        </ThemeProvider>,
-      );
-      expect(document.querySelector(`.${classes.multiple}`)).toHaveComputedStyle({
-        paddingTop: '15px',
-        paddingRight: '15px',
-        paddingBottom: '15px',
-        paddingLeft: '15px',
-      });
-    });
-
     it('should remove the last option', () => {
       const handleChange = spy();
       const options = ['one', 'two'];

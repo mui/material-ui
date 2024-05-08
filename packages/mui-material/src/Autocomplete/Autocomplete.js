@@ -32,7 +32,6 @@ const useUtilityClasses = (ownerState) => {
     expanded,
     focused,
     fullWidth,
-    multiple,
     hasClearIcon,
     hasPopupIcon,
     inputFocused,
@@ -49,7 +48,7 @@ const useUtilityClasses = (ownerState) => {
       hasClearIcon && 'hasClearIcon',
       hasPopupIcon && 'hasPopupIcon',
     ],
-    inputRoot: ['inputRoot', multiple && 'multiple'],
+    inputRoot: ['inputRoot'],
     input: ['input', inputFocused && 'inputFocused'],
     tag: ['tag', `tagSize${capitalize(size)}`],
     endAdornment: ['endAdornment'],
@@ -73,17 +72,12 @@ const AutocompleteRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { fullWidth, multiple, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
+    const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
 
     return [
       { [`& .${autocompleteClasses.tag}`]: styles.tag },
       { [`& .${autocompleteClasses.tag}`]: styles[`tagSize${capitalize(size)}`] },
       { [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot },
-      {
-        [`& .${autocompleteClasses.inputRoot}`]: {
-          [`&.${autocompleteClasses.multiple}`]: multiple && styles.multiple,
-        },
-      },
       { [`& .${autocompleteClasses.input}`]: styles.input },
       { [`& .${autocompleteClasses.input}`]: inputFocused && styles.inputFocused },
       styles.root,
@@ -98,9 +92,6 @@ const AutocompleteRoot = styled('div', {
     maxWidth: 'calc(100% - 6px)',
   },
   [`& .${autocompleteClasses.inputRoot}`]: {
-    [`&.${autocompleteClasses.multiple}`]: {
-      flexWrap: 'wrap',
-    },
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 26 + 4,
     },
@@ -228,6 +219,14 @@ const AutocompleteRoot = styled('div', {
       style: {
         [`& .${autocompleteClasses.input}`]: {
           opacity: 1,
+        },
+      },
+    },
+    {
+      props: { multiple: true },
+      style: {
+        [`& .${autocompleteClasses.inputRoot}`]: {
+          flexWrap: 'wrap',
         },
       },
     },
