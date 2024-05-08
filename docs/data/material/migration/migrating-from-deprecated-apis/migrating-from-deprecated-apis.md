@@ -258,7 +258,7 @@ The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/avatar-group-props <path>
+npx @mui/codemod@next deprecations/avatar-group-props <path>
 ```
 
 ### componentsProps
