@@ -265,8 +265,8 @@ export default function DemoToolbar(props) {
   const {
     codeOpen,
     codeVariant,
-    copyIcon,
     copyButtonOnClick,
+    copyIcon,
     hasNonSystemDemos,
     demo,
     demoData,
@@ -707,8 +707,8 @@ export default function DemoToolbar(props) {
 DemoToolbar.propTypes = {
   codeOpen: PropTypes.bool.isRequired,
   codeVariant: PropTypes.string.isRequired,
-  copyIcon: PropTypes.object.isRequired,
   copyButtonOnClick: PropTypes.object.isRequired,
+  copyIcon: PropTypes.object.isRequired,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
   demoId: PropTypes.string,
