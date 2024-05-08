@@ -1,5 +1,36 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.17
+
+<!-- generated comparing v5.15.16..master -->
+
+_May 8, 2024_
+
+A big thanks to the 4 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.17`
+
+- [Slider] Move palette styles to the bottom (#41676) @siriwatknp
+
+### Docs
+
+- Fix SEO redirection issues @oliviertassinari
+- [material-ui] Fix broken link (@aarongarciah) (#42143) @github-actions[bot]
+- [material-ui] Fix link on the Sync page (@danilo-leal) (#42089) @github-actions[bot]
+
+### Core
+
+- [blog] Shorten title to fit @oliviertassinari
+- [blog] Update Sync post OG image (@danilo-leal) (#42117) @github-actions[bot]
+- [blog] A few tweaks in introducing-sync-plugin (@oliviertassinari) (#42094) @github-actions[bot]
+- [docs-infra] Fix code block layout shift (#41917) @oliviertassinari
+- [website] Fix home page slider's track position (@aarongarciah) (#42144) @github-actions[bot]
+- [website] Closing the survey @oliviertassinari
+- [website] Remove Survey banner from website and Core docs (#42104) @joserodolfofreitas
+
+All contributors of this release in alphabetical order: @github-actions[bot], @joserodolfofreitas, @oliviertassinari, @siriwatknp
+
 ## v5.15.16
 
 <!-- generated comparing v5.15.15..master -->
