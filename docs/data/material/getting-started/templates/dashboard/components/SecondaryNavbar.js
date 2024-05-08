@@ -38,8 +38,7 @@ export default function SecondaryNavbar() {
         boxShadow: 0,
         bgcolor: 'background.default',
         backgroundImage: 'none',
-        top: 64,
-        display: { xs: 'none', md: 'block' },
+        top: { xs: 56, md: 64 },
       }}
     >
       <StyledToolbar variant="dense">

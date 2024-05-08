@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import ToggleColorMode from './ToggleColorMode';
 import SideNav from './SideNav';
 import MenuButton from './MenuButton';
@@ -50,30 +49,35 @@ function Navbar({ mode, toggleColorMode }) {
             alignItems="center"
             justifyContent={{ xs: 'flex-end', md: 'space-between' }}
             flexGrow={1}
+            sx={{ display: { xs: 'none', md: 'flex' } }}
           >
             <NavbarBreadcrumbs />
-            <Stack
-              sx={{ display: { xs: 'none', md: 'flex' } }}
-              direction="row"
-              gap={1}
-            >
+            <Stack direction="row" gap={1}>
               <MenuButton showBadge>
-                <NotificationsIcon />
+                <NotificationsRoundedIcon />
               </MenuButton>
               <OptionsMenu />
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
             </Stack>
-            <Box sx={{ display: { sm: 'flex', md: 'none' } }}>
-              <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
-                <MenuIcon />
-              </MenuButton>
-              <SideNav
-                open={open}
-                toggleDrawer={toggleDrawer}
-                mode={mode}
-                toggleColorMode={toggleColorMode}
-              />
-            </Box>
+          </Stack>
+          <Stack
+            maxWidth="xl"
+            direction="row"
+            justifyContent="space-between"
+            flexGrow={1}
+            alignItems="center"
+            sx={{ display: { sm: 'flex', md: 'none' } }}
+          >
+            <NavbarBreadcrumbs />
+            <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
+              <MenuIcon />
+            </MenuButton>
+            <SideNav
+              open={open}
+              toggleDrawer={toggleDrawer}
+              mode={mode}
+              toggleColorMode={toggleColorMode}
+            />
           </Stack>
         </StyledToolbar>
       </AppBar>
