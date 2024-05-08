@@ -79,3 +79,24 @@
 >
   <MenuIcon />
 </IconButton>;
+
+<div
+  sx={[
+    {
+      ...(selectedItemIndex === index && {
+        backgroundColor: 'action.selected',
+        borderColor: theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
+      }),
+    },
+    (theme) => ({
+      color: theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
+      ...(paymentType === 'creditCard' && {
+        color: 'primary.main',
+      }),
+    }),
+    {
+      marginRight: '36px',
+      ...(open && { display: 'none' }),
+    },
+  ]}
+/>;

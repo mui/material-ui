@@ -55,17 +55,29 @@ export default function sxV6(file, api, options) {
        * @type {[import('jscodeshift').StringLiteral, import('jscodeshift').Expression][]}
        */
       const cssVars = [];
+      const conditionalExpressions = []; // for ensuring the sequence of styles
+      let currentIndex = 0;
       const sxContainer = path.node.value;
 
-      if (['ArrowFunctionExpression', 'ObjectExpression'].includes(sxContainer.expression.type)) {
+      if (
+        ['ArrowFunctionExpression', 'ObjectExpression', 'ArrayExpression'].includes(
+          sxContainer.expression.type,
+        )
+      ) {
         shouldTransform = true;
-        recurseObjectExpression({
-          root: path.node.value.expression,
-          replaceRoot: (newRoot) => {
-            sxContainer.expression = newRoot;
-          },
-          node: path.node.value.expression,
-          buildStyle: createBuildStyle(),
+        (sxContainer.expression.type === 'ArrayExpression'
+          ? sxContainer.expression.elements
+          : [sxContainer.expression]
+        ).forEach((item, index) => {
+          currentIndex = index;
+          recurseObjectExpression({
+            root: item,
+            replaceRoot: (newRoot) => {
+              sxContainer.expression = newRoot;
+            },
+            node: item,
+            buildStyle: createBuildStyle(),
+          });
         });
 
         if (cssVars.length) {
@@ -115,6 +127,21 @@ export default function sxV6(file, api, options) {
             }
           }
         }
+
+        if (conditionalExpressions.length && sxContainer.expression.type === 'ArrayExpression') {
+          // insert the conditional expressions in the correct order
+          let cumulativeIndex = 0;
+          conditionalExpressions.forEach(([index, newElement]) => {
+            sxContainer.expression.elements.splice(index + 1 + cumulativeIndex, 0, newElement);
+            cumulativeIndex += 1;
+          });
+        }
+
+        if (sxContainer.expression.type === 'ArrayExpression') {
+          sxContainer.expression.elements = sxContainer.expression.elements.filter(
+            (item) => item.type !== 'ObjectExpression' || item.properties.length > 0,
+          );
+        }
       }
 
       function wrapSxInArray(newElement) {
@@ -125,7 +152,8 @@ export default function sxV6(file, api, options) {
           sxContainer.expression = j.arrayExpression([sxContainer.expression]);
         }
         if (sxContainer.expression.type === 'ArrayExpression') {
-          sxContainer.expression.elements.push(newElement);
+          // store in a list to be added later to ensure the sequence of styles
+          conditionalExpressions.push([currentIndex, newElement]);
         }
       }
 

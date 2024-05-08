@@ -84,3 +84,22 @@
 >
   <MenuIcon />
 </IconButton>;
+
+<div
+  sx={[selectedItemIndex === index && (theme => ({
+    backgroundColor: 'action.selected',
+    borderColor: 'primary.dark',
+    ...theme.applyStyles("light", {
+      borderColor: 'primary.light'
+    })
+  })), (theme) => ({
+    color: 'grey.600',
+    ...theme.applyStyles("light", {
+      color: 'grey.400'
+    }),
+  }), paymentType === 'creditCard' && {
+    color: 'primary.main',
+  }, {
+    marginRight: '36px'
+  }, open && { display: 'none' }]}
+/>;
