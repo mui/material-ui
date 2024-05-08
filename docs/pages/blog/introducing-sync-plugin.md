@@ -1,5 +1,5 @@
 ---
-title: 'Introducing Sync: a Figma plugin that exports Material UI theme code'
+title: 'Material UI Sync: a Figma plugin that exports theme code'
 description: Enable designers to generate production-ready code directly from the Material UI Figma Design Kit.
 date: 2024-04-30T00:00:00.000Z
 authors: ['danilo-leal', 'DavidCnoops']

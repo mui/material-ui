@@ -7,8 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import { alpha } from '@mui/system/colorManipulator';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -17,6 +16,8 @@ import ListContext from '../List/ListContext';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
+
+const useThemeProps = createUseThemeProps('MuiListItem');
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;

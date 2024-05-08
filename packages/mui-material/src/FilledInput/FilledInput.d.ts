@@ -17,6 +17,7 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
   hiddenLabel?: boolean;
   /**
    * If `true`, the input will not have an underline.
+   * @default false
    */
   disableUnderline?: boolean;
   /**
