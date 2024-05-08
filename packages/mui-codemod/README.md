@@ -259,6 +259,52 @@ npx @mui/codemod@next deprecations/alert-classes <path>
 npx @mui/codemod@next deprecations/alert-props <path>
 ```
 
+#### `autocomplete-props`
+
+```diff
+ <Autocomplete
+-  ChipProps={{ height: 10 }}
+-  PaperComponent={CustomPaper}
+-  PopperComponent={CustomPopper}
+-  ListboxComponent={CustomListbox}
+-  ListboxProps={{ height: 12 }}
++  slots={{
++    paper: CustomPaper,
++    popper: CustomPopper,
++    listbox: CustomListbox,
++  }}
++  slotProps={{
++    chip: { height: 10 },
++    listbox: { height: 12 },
++  }}
+ />
+```
+
+```diff
+ MuiAutocomplete: {
+   defaultProps: {
+-    ChipProps: { height: 10 },
+-    PaperComponent: CustomPaper,
+-    PopperComponent: CustomPopper,
+-    ListboxComponent: CustomListbox,
+-    ListboxProps: { height: 12 },
++    slots: {
++      paper: CustomPaper,
++      popper: CustomPopper,
++      listbox: CustomListbox,
++    },
++    slotProps: {
++      chip: { height: 10 },
++      listbox: { height: 12 },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/autocomplete-props <path>
+```
+
 #### `avatar-props`
 
 ```diff

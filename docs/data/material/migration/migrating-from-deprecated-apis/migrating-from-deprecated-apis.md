@@ -227,6 +227,46 @@ Here's how to migrate:
  },
 ```
 
+## Autocomplete
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/autocomplete-props <path>
+```
+
+### \*Component props
+
+All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
+
+```diff
+ <Autocomplete
+-    ListboxComponent={CustomListboxComponent}
+-    PaperComponent={CustomPaperComponent}
+-    PopperComponent={CustomPopperComponent}
++    slots={{
++        listbox: CustomListboxComponent,
++        paper: CustomPaperComponent,
++        popper: CustomPopperComponent,
++    }}
+ />
+```
+
+### \*Props props
+
+All of the Autocomplete's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <Autocomplete
+-    ChipProps={CustomChipProps}
+-    ListboxProps={CustomListboxProps}
++    slotProps={{
++        chip: CustomChipProps,
++        listbox: CustomListboxProps,
++    }}
+ />
+```
+
 ## Avatar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
