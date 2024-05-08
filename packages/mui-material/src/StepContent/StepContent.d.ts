@@ -17,14 +17,16 @@ export interface StepContentSlots {
   >;
 }
 
-export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
+export type StepContentSlotsAndSlotProps = CreateSlotsAndSlotProps<
   StepContentSlots,
   {
     transition: SlotProps<React.ElementType<TransitionProps>, {}, StepContentOwnerState>;
   }
 >;
 
-export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface StepContentProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
+    StepContentSlotsAndSlotProps {
   /**
    * The content of the component.
    */
