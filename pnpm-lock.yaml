@@ -667,6 +667,9 @@ importers:
       '@mui/x-date-pickers-pro':
         specifier: 7.3.2
         version: 7.3.2(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-license':
+        specifier: 7.2.0
+        version: 7.2.0(@types/react@18.2.55)(react@18.2.0)
       '@mui/x-tree-view':
         specifier: 7.3.1
         version: 7.3.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
