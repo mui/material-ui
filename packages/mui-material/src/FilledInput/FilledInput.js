@@ -14,12 +14,22 @@ import {
   InputBaseRoot,
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
+import { capitalize } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disableUnderline } = ownerState;
+  const { classes, disableUnderline, startAdornment, endAdornment, size, hiddenLabel, multiline } =
+    ownerState;
 
   const slots = {
-    root: ['root', !disableUnderline && 'underline'],
+    root: [
+      'root',
+      !disableUnderline && 'underline',
+      startAdornment && 'adornedStart',
+      endAdornment && 'adornedEnd',
+      size === 'small' && `size${capitalize(size)}`,
+      hiddenLabel && 'hiddenLabel',
+      multiline && 'multiline',
+    ],
     input: ['input'],
   };
 

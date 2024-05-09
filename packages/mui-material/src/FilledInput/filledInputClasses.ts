@@ -13,8 +13,16 @@ export interface FilledInputClasses {
   focused: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
+  /** Styles applied to the root element if `startAdornment` is provided. */
+  adornedStart: string;
+  /** Styles applied to the root element if `endAdornment` is provided. */
+  adornedEnd: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
+  /** Styles applied to the root element if `size="small"`. */
+  sizeSmall: string;
+  /** Styles applied to the root element if `multiline={true}`. */
+  multiline: string;
   /** Styles applied to the root element if `hiddenLabel={true}`. */
   hiddenLabel: string;
   /** Styles applied to the input element. */
@@ -29,7 +37,16 @@ export function getFilledInputUtilityClass(slot: string): string {
 
 const filledInputClasses: FilledInputClasses = {
   ...inputBaseClasses,
-  ...generateUtilityClasses('MuiFilledInput', ['root', 'underline', 'input']),
+  ...generateUtilityClasses('MuiFilledInput', [
+    'root',
+    'underline',
+    'input',
+    'adornedStart',
+    'adornedEnd',
+    'sizeSmall',
+    'multiline',
+    'hiddenLabel',
+  ]),
 };
 
 export default filledInputClasses;

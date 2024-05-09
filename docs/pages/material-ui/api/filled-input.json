@@ -70,6 +70,18 @@
   ],
   "classes": [
     {
+      "key": "adornedEnd",
+      "className": "MuiFilledInput-adornedEnd",
+      "description": "Styles applied to the root element if `endAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "adornedStart",
+      "className": "MuiFilledInput-adornedStart",
+      "description": "Styles applied to the root element if `startAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
       "key": "colorSecondary",
       "className": "MuiFilledInput-colorSecondary",
       "description": "Styles applied to the root element if color secondary.",
@@ -106,9 +118,21 @@
       "isGlobal": false
     },
     {
+      "key": "multiline",
+      "className": "MuiFilledInput-multiline",
+      "description": "Styles applied to the root element if `multiline={true}`.",
+      "isGlobal": false
+    },
+    {
       "key": "root",
       "className": "MuiFilledInput-root",
       "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiFilledInput-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
       "isGlobal": false
     },
     {
