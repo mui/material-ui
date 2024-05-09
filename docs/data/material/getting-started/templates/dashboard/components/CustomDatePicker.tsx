@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import Button from '@mui/material/Button';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { UseDateFieldProps } from '@mui/x-date-pickers/DateField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -43,7 +43,7 @@ function ButtonField(props: ButtonFieldProps) {
       aria-label={ariaLabel}
       size="small"
       onClick={() => setOpen?.((prev) => !prev)}
-      startIcon={<CalendarTodayIcon fontSize="small" />}
+      startIcon={<CalendarTodayRoundedIcon fontSize="small" />}
       sx={{ minWidth: 'fit-content' }}
     >
       {label ? `${label}` : 'Pick a date'}
