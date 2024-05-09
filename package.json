@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0-alpha.5",
+  "version": "6.0.0-alpha.6",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -8,8 +8,9 @@
     "deduplicate": "pnpm dedupe",
     "benchmark:browser": "pnpm --filter benchmark browser",
     "build": "lerna run build --ignore docs",
-    "build:public": "lerna run --no-private build",
     "build:ci": "lerna run build --ignore docs --concurrency 8 --skip-nx-cache",
+    "build:public": "lerna run --no-private build",
+    "build:public:ci": "lerna run --no-private build --concurrency 8 --skip-nx-cache",
     "build:codesandbox": "NODE_OPTIONS=\"--max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" --scope \"@mui-internal/*\" --no-private build",
     "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --no-private --force-publish=@mui/core-downloads-tracker",
     "release:build": "lerna run --concurrency 8 --no-private build --skip-nx-cache",
@@ -76,7 +77,8 @@
     "typescript": "lerna run --no-bail --parallel typescript",
     "typescript:ci": "lerna run --concurrency 3 --no-bail --no-sort typescript",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
-    "generate-codeowners": "node scripts/generateCodeowners.mjs"
+    "generate-codeowners": "node scripts/generateCodeowners.mjs",
+    "canary:release": "tsx ./scripts/canaryRelease.mts"
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
@@ -86,7 +88,7 @@
     "google-auth-library": "^9.9.0"
   },
   "devDependencies": {
-    "@argos-ci/core": "^2.1.0",
+    "@argos-ci/core": "^2.2.0",
     "@babel/cli": "^7.24.5",
     "@babel/core": "^7.24.5",
     "@babel/node": "^7.23.9",
@@ -187,7 +189,7 @@
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@8.15.7",
+  "packageManager": "pnpm@8.15.8",
   "resolutions": {
     "@babel/core": "^7.24.5",
     "@babel/code-frame": "^7.24.2",
