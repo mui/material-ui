@@ -18,7 +18,11 @@
       }
     },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
+      "type": { "name": "shape", "description": "{ additionalAvatar?: object, surplus?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ surplus?: elementType }" },
       "default": "{}"
     },
     "spacing": {
@@ -49,6 +53,7 @@
     "import AvatarGroup from '@mui/material/AvatarGroup';",
     "import { AvatarGroup } from '@mui/material';"
   ],
+  "slots": [{ "name": "surplus", "description": "", "class": null }],
   "classes": [
     {
       "key": "avatar",

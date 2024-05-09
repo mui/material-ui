@@ -8,6 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { styled, createUseThemeProps } from '../zero-styled';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
+import useSlot from '../utils/useSlot';
 
 const SPACINGS = {
   small: -16,
@@ -61,6 +62,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     max = 5,
     renderSurplus,
     slotProps = {},
+    slots = {},
     spacing = 'medium',
     total,
     variant = 'circular',
@@ -105,12 +107,33 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
   const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
-  const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps?.additionalAvatar;
-
   const marginValue =
     ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
       ? SPACINGS[ownerState.spacing]
       : -ownerState.spacing || -8;
+
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      surplus: slotProps.additionalAvatar ?? componentsProps?.additionalAvatar,
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
+
+  const [SurplusSlot, surplusProps] = useSlot('surplus', {
+    elementType: Avatar,
+    externalForwardedProps,
+    className: classes.avatar,
+    ownerState,
+    additionalProps: {
+      variant,
+      style: {
+        '--AvatarRoot-spacing': marginValue ? `${marginValue}px` : undefined,
+        ...other.style,
+      },
+    },
+  });
 
   return (
     <AvatarGroupRoot
@@ -120,19 +143,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       ref={ref}
       {...other}
     >
-      {extraAvatars ? (
-        <Avatar
-          variant={variant}
-          {...additionalAvatarSlotProps}
-          className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
-          style={{
-            '--AvatarRoot-spacing': marginValue ? `${marginValue}px` : undefined,
-            ...other.style,
-          }}
-        >
-          {extraAvatarsElement}
-        </Avatar>
-      ) : null}
+      {extraAvatars ? <SurplusSlot {...surplusProps}>{extraAvatarsElement}</SurplusSlot> : null}
       {children
         .slice(0, maxAvatars)
         .reverse()
@@ -202,15 +213,19 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   renderSurplus: PropTypes.func,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
     additionalAvatar: PropTypes.object,
+    surplus: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    surplus: PropTypes.elementType,
   }),
   /**
    * Spacing between avatars.
