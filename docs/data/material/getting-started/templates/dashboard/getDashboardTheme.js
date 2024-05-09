@@ -5,6 +5,7 @@ import { createTheme, alpha } from '@mui/material/styles';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
+import theme from 'docs/data/joy/getting-started/templates/framesx-web-blocks/theme';
 
 const customTheme = createTheme();
 
@@ -136,7 +137,7 @@ const getDesignTokens = (mode) => ({
     divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
       default: 'hsl(0, 0%, 100%)',
-      paper: 'hsl(220, 60%, 97%)',
+      paper: gray[50],
       ...(mode === 'dark' && { default: 'hsl(220, 30%, 3%)', paper: gray[900] }),
     },
     text: {
@@ -731,7 +732,7 @@ export default function getDashboardTheme(mode) {
       },
       MuiList: {
         styleOverrides: {
-          root: { display: 'flex', flexDirection: 'column', gap: 4 },
+          root: { display: 'flex', flexDirection: 'column', gap: 8 },
         },
       },
       MuiListItem: {
@@ -764,12 +765,9 @@ export default function getDashboardTheme(mode) {
       MuiListItemButton: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: '4px 16px',
+            padding: '4px 0',
             borderRadius: theme.shape.borderRadius,
-            background: alpha(theme.palette.grey[200], 0.2),
-            ...theme.applyStyles('dark', {
-              background: alpha(theme.palette.grey[700], 0.2),
-            }),
+            background: 'transparent',
           }),
         },
       },
@@ -1194,6 +1192,7 @@ export default function getDashboardTheme(mode) {
           actions: {
             display: 'flex',
             gap: 8,
+            marginRight: 6,
             '& .MuiIconButton-root': { minWidth: 0, width: 36, height: 36 },
           },
         },
@@ -1201,7 +1200,7 @@ export default function getDashboardTheme(mode) {
       MuiDataGrid: {
         styleOverrides: {
           root: {
-            border: 'none',
+            borderColor: theme.palette.divider,
           },
           menu: ({ theme }) => ({
             borderRadius: theme.shape.borderRadius,
@@ -1229,7 +1228,7 @@ export default function getDashboardTheme(mode) {
               },
             },
             '&.even': {
-              background: theme.palette.background.paper,
+              background: alpha(theme.palette.grey[100], 0.4),
               '&:hover': {
                 background: alpha(theme.palette.primary.main, 0.1),
               },
@@ -1245,7 +1244,7 @@ export default function getDashboardTheme(mode) {
                 background: theme.palette.grey[800],
               },
               '&.even': {
-                background: theme.palette.background.paper,
+                background: alpha(theme.palette.grey[800], 0.4),
                 '&:hover': {
                   background: alpha(theme.palette.primary.main, 0.1),
                 },

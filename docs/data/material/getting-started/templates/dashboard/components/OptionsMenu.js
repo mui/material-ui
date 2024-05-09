@@ -30,20 +30,20 @@ export default function OptionsMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        {/* TODO: Include more realistic menu items */}
         <MenuItem>
           <Avatar
-            sx={(theme) => ({
-              bgcolor: theme.palette.primary.main,
-              width: '24px',
-              height: '24px',
-              fontSize: '0.75rem',
-              marginRight: 1,
-            })}
-          >
-            R
-          </Avatar>
-          <Typography fontWeight={600}>Riley Carter</Typography>
+            sizes="small"
+            alt="Riley Carter"
+            src="/static/images/avatar/7.jpg"
+            sx={{
+              width: 24,
+              height: 24,
+              mr: 1,
+            }}
+          />
+          <Typography component="p" variant="subtitle2">
+            Riley Carter
+          </Typography>
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>Profile</MenuItem>
