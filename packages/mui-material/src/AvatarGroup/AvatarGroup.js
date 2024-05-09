@@ -174,7 +174,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    *
    * This prop is an alias for the `slotProps` prop.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     additionalAvatar: PropTypes.object,
