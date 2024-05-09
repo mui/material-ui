@@ -867,8 +867,8 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/css-mediaquery':
         specifier: ^0.1.4
         version: 0.1.4
@@ -976,8 +976,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -1067,8 +1067,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -1110,8 +1110,8 @@ importers:
         version: 4.17.21
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/mocha':
         specifier: ^10.0.6
         version: 10.0.6
@@ -1180,8 +1180,8 @@ importers:
         version: 1.29.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       chai:
         specifier: ^4.4.1
         version: 4.4.1
@@ -1208,8 +1208,8 @@ importers:
         specifier: ^3.1.3
         version: 3.1.3
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/mocha':
         specifier: ^10.0.6
         version: 10.0.6
@@ -1260,8 +1260,8 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@9.3.4)
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -1322,8 +1322,8 @@ importers:
         version: 17.7.2
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/jscodeshift':
         specifier: 0.11.11
         version: 0.11.11
@@ -1392,8 +1392,8 @@ importers:
         version: 7.12.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       chai:
         specifier: ^4.4.1
         version: 4.4.1
@@ -1445,8 +1445,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1528,8 +1528,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -1602,8 +1602,8 @@ importers:
         specifier: workspace:*
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -1694,8 +1694,8 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@9.3.4)
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -1809,8 +1809,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1850,8 +1850,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1885,8 +1885,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/hoist-non-react-statics':
         specifier: ^3.3.5
         version: 3.3.5
@@ -1965,8 +1965,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -2033,8 +2033,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -2099,8 +2099,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/mocha':
         specifier: ^10.0.6
         version: 10.0.6
@@ -2237,8 +2237,8 @@ importers:
         version: 15.2.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/chai-dom':
         specifier: ^1.11.3
         version: 1.11.3
@@ -2311,8 +2311,8 @@ importers:
         specifier: ^9.3.4
         version: 9.3.4
       '@types/chai':
-        specifier: ^4.3.14
-        version: 4.3.14
+        specifier: ^4.3.16
+        version: 4.3.16
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -8073,11 +8073,11 @@ packages:
   /@types/chai-dom@1.11.3:
     resolution: {integrity: sha512-EUEZI7uID4ewzxnU7DJXtyvykhQuwe+etJ1wwOiJyQRTH/ifMWKX+ghiXkxCUvNJ6IQDodf0JXhuP6zZcy2qXQ==}
     dependencies:
-      '@types/chai': 4.3.14
+      '@types/chai': 4.3.16
     dev: true
 
-  /@types/chai@4.3.14:
-    resolution: {integrity: sha512-Wj71sXE4Q4AkGdG9Tvq1u/fquNz9EdG4LIJMwVVII7ashjD/8cf8fyIfJAjRr6YcsXnSE8cOGQPq1gqeR8z+3w==}
+  /@types/chai@4.3.16:
+    resolution: {integrity: sha512-PatH4iOdyh3MyWtmHVFXLWCCIhUbopaltqddG9BzB+gMIzee2MJrvd+jouii9Z3wzQJruGWAm7WOMjgfG8hQlQ==}
     dev: true
 
   /@types/cheerio@0.22.31:
