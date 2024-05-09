@@ -87,21 +87,11 @@ const AutocompleteRoot = styled('div', {
     ];
   },
 })({
-  [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
-    visibility: 'visible',
-  },
-  /* Avoid double tap issue on iOS */
-  '@media (pointer: fine)': {
-    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
-      visibility: 'visible',
-    },
-  },
   [`& .${autocompleteClasses.tag}`]: {
     margin: 3,
     maxWidth: 'calc(100% - 6px)',
   },
   [`& .${autocompleteClasses.inputRoot}`]: {
-    flexWrap: 'wrap',
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 26 + 4,
     },
@@ -111,6 +101,23 @@ const AutocompleteRoot = styled('div', {
     [`& .${autocompleteClasses.input}`]: {
       width: 0,
       minWidth: 30,
+    },
+  },
+  [`&.${autocompleteClasses.focused}`]: {
+    [`& .${autocompleteClasses.clearIndicator}`]: {
+      visibility: 'visible',
+    },
+    [`& .${autocompleteClasses.input}`]: {
+      minWidth: 0,
+    },
+  },
+  /* Avoid double tap issue on iOS */
+  '@media (pointer: fine)': {
+    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+      visibility: 'visible',
+    },
+    [`&:hover .${autocompleteClasses.input}`]: {
+      minWidth: 0,
     },
   },
   [`& .${inputClasses.root}`]: {
@@ -212,6 +219,14 @@ const AutocompleteRoot = styled('div', {
       style: {
         [`& .${autocompleteClasses.input}`]: {
           opacity: 1,
+        },
+      },
+    },
+    {
+      props: { multiple: true },
+      style: {
+        [`& .${autocompleteClasses.inputRoot}`]: {
+          flexWrap: 'wrap',
         },
       },
     },
