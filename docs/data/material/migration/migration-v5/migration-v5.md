@@ -23,3 +23,5 @@ The steps you need to take to migrate from Material UI v5 to v6 are described 
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
+
+Material UI no longer supports UMD bundle.
