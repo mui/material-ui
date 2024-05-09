@@ -267,6 +267,26 @@ All of the Autocomplete's slot props (`*Props`) props were deprecated in favor o
  />
 ```
 
+### componentsProps
+
+The Alert's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Autocomplete
+-  componentsProps={{
+-    clearIndicator: { width: 10 },
+-    paper: { width: 12 },
+-    popper: { width: 14 },
+-    popupIndicator: { width: 16 },
++  slotProps={{
++    clearIndicator: { width: 10 },
++    paper: { width: 12 },
++    popper: { width: 14 },
++    popupIndicator: { width: 16 },
+    }}
+ />
+```
+
 ## Avatar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
