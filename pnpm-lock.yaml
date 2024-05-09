@@ -48,8 +48,8 @@ importers:
         version: 9.9.0
     devDependencies:
       '@argos-ci/core':
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.2.0
+        version: 2.2.0
       '@babel/cli':
         specifier: ^7.24.1
         version: 7.24.1(@babel/core@7.24.4)
@@ -2571,8 +2571,8 @@ packages:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  /@argos-ci/core@2.1.0:
-    resolution: {integrity: sha512-Av6eOaE0DZ3GstHn69GY++12ISUppkVhHwMxbYp0rUPqh2r+IZtSVAmo8U2D3K8eJK6+u1qUD75ROWmuQakCAQ==}
+  /@argos-ci/core@2.2.0:
+    resolution: {integrity: sha512-T5W37CZ6HZjRcVAXuPj0wUB/Fm4VdwLvKpQL9yqSwiJganeNz7u8AFYJ30ujSUJS1jdUViW5TNnmsgDjuvGyTQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@argos-ci/util': 2.0.0

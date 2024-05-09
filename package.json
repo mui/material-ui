@@ -88,7 +88,7 @@
     "google-auth-library": "^9.9.0"
   },
   "devDependencies": {
-    "@argos-ci/core": "^2.1.0",
+    "@argos-ci/core": "^2.2.0",
     "@babel/cli": "^7.24.1",
     "@babel/core": "^7.24.4",
     "@babel/node": "^7.23.9",
