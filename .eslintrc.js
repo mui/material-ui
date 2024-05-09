@@ -473,5 +473,30 @@ module.exports = {
         'import/prefer-default-export': 'off',
       },
     },
+    {
+      files: ['examples/**'],
+      rules: {
+        'no-console': 'off',
+        'no-underscore-dangle': 'off',
+        'import/no-unresolved': 'off',
+        'import/namespace': 'off',
+        'import/extensions': 'off',
+        'import/named': 'off',
+        'import/no-duplicates': 'off',
+        'import/no-named-as-default': 'off',
+        'import/default': 'off',
+        'import/no-named-as-default-member': 'off',
+        'import/order': 'off',
+        // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
+        'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
+      },
+    },
+    {
+      // TODO, to propagate: https://github.com/mui/material-ui/issues/42169
+      files: ['examples/pigment-css-remix-ts/**'],
+      rules: {
+        'react/react-in-jsx-scope': 'off',
+      },
+    },
   ],
 };
