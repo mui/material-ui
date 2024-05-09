@@ -13,8 +13,6 @@ const movies = [
 export default function SmallAutocompleteWithStartAdornment() {
   return (
     <Autocomplete
-      disablePortal
-      id="combo-box-demo"
       options={movies}
       value={movies[0]}
       sx={{ width: 120, mt: 2 }}
