@@ -2,11 +2,11 @@ import * as React from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import Stack from '@mui/material/Stack';
 import ChartUserByCountry from './ChartUserByCountry';
-import StatCard, { StatCardProps } from './StatCard';
-import HighlightedCard from './HighlightedCard';
-import PageViewsChart from './PageViewsChart';
 import CustomizedTreeView from './CustomizedTreeView';
 import CustomizedDataGrid from './CustomizedDataGrid';
+import HighlightedCard from './HighlightedCard';
+import PageViewsBarChart from './PageViewsBarChart';
+import StatCard, { StatCardProps } from './StatCard';
 
 const data: StatCardProps[] = [
   {
@@ -63,7 +63,7 @@ export default function MainGrid() {
       >
         <Grid xs={12} md={8} lg={9}>
           <Stack spacing={2}>
-            <PageViewsChart />
+            <PageViewsBarChart />
             <CustomizedDataGrid />
           </Stack>
         </Grid>

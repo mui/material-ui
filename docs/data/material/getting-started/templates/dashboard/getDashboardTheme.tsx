@@ -236,7 +236,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               border: `1px solid ${alpha(gray[200], 0.5)}`,
               boxShadow: 'none',
               ...theme.applyStyles('dark', {
-                backgroundColor: alpha(gray[800], 0.6),
+                backgroundColor: gray[800],
                 border: `1px solid ${alpha(gray[700], 0.3)}`,
               }),
               variants: [

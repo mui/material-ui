@@ -36,7 +36,7 @@ export default function SecondaryNavbar() {
       position="absolute"
       sx={{
         boxShadow: 0,
-        bgcolor: 'background.default',
+        bgcolor: 'background.paper',
         backgroundImage: 'none',
         top: { xs: 56, md: 64 },
       }}

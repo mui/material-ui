@@ -39,7 +39,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
         position="fixed"
         sx={(theme) => ({
           boxShadow: 0,
-          bgcolor: 'background.default',
+          bgcolor: 'background.paper',
           backgroundImage: 'none',
           borderBottom: '1px solid',
           borderColor: theme.palette.divider,

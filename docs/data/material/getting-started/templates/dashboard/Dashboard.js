@@ -35,7 +35,7 @@ export default function Dashboard() {
         <Box
           component="main"
           sx={{
-            backgroundColor: 'background.paper',
+            backgroundColor: 'background.default',
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',

@@ -152,9 +152,9 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     },
     divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
-      default: 'hsl(0, 0%, 100%)',
-      paper: gray[50],
-      ...(mode === 'dark' && { default: 'hsl(220, 30%, 3%)', paper: gray[900] }),
+      default: gray[50],
+      paper: 'hsl(0, 0%, 100%)',
+      ...(mode === 'dark' && { default: gray[900], paper: gray[800] }),
     },
     text: {
       primary: gray[800],
