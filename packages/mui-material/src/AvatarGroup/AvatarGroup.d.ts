@@ -28,7 +28,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    *
    * This prop is an alias for the `slotProps` prop.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     additionalAvatar?: React.ComponentPropsWithRef<typeof Avatar> &
