@@ -765,10 +765,10 @@ jobs:
                 from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
       - run:
-          name: run danger on PRs
+          name: Run danger on PRs
           command: pnpm danger ci --fail-on-errors
           environment:
-            DANGER_COMMAND: 'reportBundleSize'
+            DANGER_COMMAND: reportBundleSize
   test_benchmark:
     <<: *default-job
     docker:

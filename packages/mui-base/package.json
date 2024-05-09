@@ -40,7 +40,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.4",
+    "@babel/runtime": "^7.24.5",
     "@floating-ui/react-dom": "^2.0.8",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -54,7 +54,7 @@
     "@mui/types": "workspace:^",
     "@testing-library/react": "^14.3.1",
     "@testing-library/user-event": "^14.5.2",
-    "@types/chai": "^4.3.14",
+    "@types/chai": "^4.3.16",
     "@types/prop-types": "^15.7.12",
     "@types/react": "18.2.55",
     "@types/react-dom": "18.3.0",
