@@ -165,14 +165,3 @@ Follow [this CDN example](https://github.com/mui/material-ui/tree/master/example
 We do _not_ recommend using this approach in production.
 It requires the client to download the entire library—regardless of which components are actually used—which negatively impacts performance and bandwidth utilization.
 :::
-
-Two Universal Module Definition (UMD) files are provided:
-
-- one for development: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
-- one for production: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
-
-:::warning
-The UMD links use the `latest` tag to point to the latest version of the library.
-This pointer is _unstable_ and subject to change as we release new versions.
-You should consider pointing to a specific version, such as [v5.0.0](https://unpkg.com/@mui/material@5.0.0/umd/material-ui.development.js).
-:::
