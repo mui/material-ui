@@ -745,8 +745,6 @@ export function getThemedComponents(): ThemeOptions {
             props: { color: 'info' },
             style: ({ theme }) => [
               {
-                height: 34,
-                width: 34,
                 color: (theme.vars || theme).palette.text.tertiary,
                 borderRadius: theme.shape.borderRadius,
                 border: `1px solid`,
