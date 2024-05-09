@@ -5,7 +5,6 @@ import { createTheme, alpha } from '@mui/material/styles';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
-import theme from 'docs/data/joy/getting-started/templates/framesx-web-blocks/theme';
 
 const customTheme = createTheme();
 
@@ -1199,9 +1198,9 @@ export default function getDashboardTheme(mode) {
       },
       MuiDataGrid: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             borderColor: theme.palette.divider,
-          },
+          }),
           menu: ({ theme }) => ({
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${theme.palette.divider}`,
