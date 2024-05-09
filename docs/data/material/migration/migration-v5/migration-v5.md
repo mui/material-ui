@@ -24,4 +24,4 @@ This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
-Material UI no longer supports UMD bundle.
+Material UI no longer supports UMD bundle.
