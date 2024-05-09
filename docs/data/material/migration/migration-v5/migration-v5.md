@@ -24,4 +24,6 @@ This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
-- Material UI no longer provides UMD bundle.
+<!-- #default-branch-switch -->
+
+- Material UI no longer provides UMD bundle. Please refer to the [docs](https://next.mui.com/material-ui/getting-started/installation/#cdn) for alternatives.
