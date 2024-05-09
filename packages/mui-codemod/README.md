@@ -317,6 +317,10 @@ npx @mui/codemod@next deprecations/autocomplete-props <path>
  />;
 ```
 
+```bash
+npx @mui/codemod@next deprecations/avatar-group-props <path>
+```
+
 #### `avatar-props`
 
 ```diff
