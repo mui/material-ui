@@ -225,12 +225,7 @@ export default function AppFrame(props) {
             </Tooltip>
             <Notifications />
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton
-                color="primary"
-                size="small"
-                onClick={() => setSettingsOpen(true)}
-                sx={{ px: '8px' }}
-              >
+              <IconButton color="primary" size="small" onClick={() => setSettingsOpen(true)}>
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
