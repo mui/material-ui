@@ -47,8 +47,8 @@ const content = [
         src={`/static/branding/design-kits/figma-logo.svg`}
         alt="Figma logo"
         loading="lazy"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
       />
     ),
   },

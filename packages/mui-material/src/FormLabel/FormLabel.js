@@ -6,9 +6,10 @@ import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
+
+const useThemeProps = createUseThemeProps('MuiFormLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, color, focused, disabled, error, filled, required } = ownerState;
@@ -38,21 +39,35 @@ export const FormLabelRoot = styled('label', {
       ...(ownerState.filled && styles.filled),
     };
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.body1,
   lineHeight: '1.4375em',
   padding: 0,
   position: 'relative',
-  [`&.${formLabelClasses.focused}`]: {
-    color: (theme.vars || theme).palette[ownerState.color].main,
-  },
-  [`&.${formLabelClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.text.disabled,
-  },
-  [`&.${formLabelClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
+  variants: [
+    ...Object.entries(theme.palette)
+      .filter(([, value]) => value.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          [`&.${formLabelClasses.focused}`]: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        },
+      })),
+    {
+      props: {},
+      style: {
+        [`&.${formLabelClasses.disabled}`]: {
+          color: (theme.vars || theme).palette.text.disabled,
+        },
+        [`&.${formLabelClasses.error}`]: {
+          color: (theme.vars || theme).palette.error.main,
+        },
+      },
+    },
+  ],
 }));
 
 const AsteriskComponent = styled('span', {

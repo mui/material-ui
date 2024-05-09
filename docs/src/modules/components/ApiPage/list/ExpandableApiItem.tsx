@@ -56,13 +56,12 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       p: { marginBottom: theme.spacing(1.5) },
     },
     '& .MuiApi-item-note': {
-      fontSize: 12,
       marginLeft: 2,
-      letterSpacing: '1px',
-      textTransform: 'uppercase',
       color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
-      fontWeight: theme.typography.fontWeightBold,
-      lineHeight: '24px',
+      fontSize: theme.typography.pxToRem(11),
+      fontWeight: theme.typography.fontWeightSemiBold,
+      letterSpacing: '.1rem',
+      textTransform: 'uppercase',
     },
     '& .MuiApi-expend-button': {},
     '& hr': {

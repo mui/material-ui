@@ -227,6 +227,46 @@ Here's how to migrate:
  },
 ```
 
+## Autocomplete
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/autocomplete-props <path>
+```
+
+### \*Component props
+
+All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
+
+```diff
+ <Autocomplete
+-    ListboxComponent={CustomListboxComponent}
+-    PaperComponent={CustomPaperComponent}
+-    PopperComponent={CustomPopperComponent}
++    slots={{
++        listbox: CustomListboxComponent,
++        paper: CustomPaperComponent,
++        popper: CustomPopperComponent,
++    }}
+ />
+```
+
+### \*Props props
+
+All of the Autocomplete's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <Autocomplete
+-    ChipProps={CustomChipProps}
+-    ListboxProps={CustomListboxProps}
++    slotProps={{
++        chip: CustomChipProps,
++        listbox: CustomListboxProps,
++    }}
+ />
+```
+
 ## Avatar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
@@ -851,6 +891,46 @@ Here's how to migrate:
    },
   },
 
+```
+
+## CircularProgress
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#circular-progress-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/circular-progress-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `circle` CSS class and `variant` prop values were removed.
+
+Here's how to migrate:
+
+```diff
+- .MuiCircularProgress-circleDeterminate
++.MuiCircularProgress-determinate > .MuiCircularProgress-circle
+- .MuiCircularProgress-circleIndeterminate
++.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle
+```
+
+```diff
+ import { circularProgressClasses } from '@mui/material/CircularProgress';
+
+ MuiCircularProgress: {
+   styleOverrides: {
+     root: {
+-      [`& .${circularProgressClasses.circleDeterminate}`]: {
++      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
+         color: 'red',
+        },
+-      [`& .${circularProgressClasses.circleIndeterminate}`]: {
++      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
 ```
 
 ## Divider

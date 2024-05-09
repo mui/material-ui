@@ -5,8 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useId from '@mui/utils/useId';
 import refType from '@mui/utils/refType';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -15,6 +14,8 @@ import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
 import { getTextFieldUtilityClass } from './textFieldClasses';
+
+const useThemeProps = createUseThemeProps('MuiTextField');
 
 const variantComponent = {
   standard: Input,
