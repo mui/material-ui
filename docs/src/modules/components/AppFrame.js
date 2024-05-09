@@ -102,7 +102,7 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
   return {
-    padding: theme.spacing(1, 2),
+    padding: theme.spacing(1.5),
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -114,11 +114,9 @@ const StyledAppBar = styled(AppBar, {
     }),
     boxShadow: 'none',
     backdropFilter: 'blur(8px)',
-    borderStyle: 'solid',
+    borderBottom: '1px solid',
     borderColor: (theme.vars || theme).palette.divider,
-    borderWidth: 0,
-    borderBottomWidth: 'thin',
-    backgroundColor: 'rgba(255,255,255,0.8)',
+    backgroundColor: '#FFF',
     color: (theme.vars || theme).palette.grey[800],
     ...theme.applyDarkStyles({
       backgroundColor: alpha(theme.palette.primaryDark[900], 0.8),
@@ -156,7 +154,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   };
 });
 
-export const HEIGHT = 64;
+export const HEIGHT = 59;
 
 export default function AppFrame(props) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
@@ -178,7 +176,10 @@ export default function AppFrame(props) {
       <CssBaseline />
       <SkipLink />
       <MarkdownLinks />
-      <StyledAppBar disablePermanent={disablePermanent}>
+      <StyledAppBar
+        disablePermanent={disablePermanent}
+        sx={{ minHeight: 'var(--MuiDocs-header-height)' }}
+      >
         <GlobalStyles
           styles={{
             ':root': {
@@ -186,10 +187,11 @@ export default function AppFrame(props) {
             },
           }}
         />
-        <Toolbar variant="dense" disableGutters>
+        <Stack direction="row" alignItems="center" sx={{ position: 'relative' }}>
           <NavIconButton
             edge="start"
             color="primary"
+            size="small"
             aria-label={t('appFrame.openDrawer')}
             disablePermanent={disablePermanent}
             onClick={() => setMobileOpen(true)}
@@ -214,6 +216,7 @@ export default function AppFrame(props) {
               <IconButton
                 component="a"
                 color="primary"
+                size="small"
                 href={process.env.SOURCE_CODE_REPO}
                 data-ga-event-category="header"
                 data-ga-event-action="github"
@@ -223,12 +226,17 @@ export default function AppFrame(props) {
             </Tooltip>
             <Notifications />
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="primary" onClick={() => setSettingsOpen(true)} sx={{ px: '8px' }}>
+              <IconButton
+                color="primary"
+                size="small"
+                onClick={() => setSettingsOpen(true)}
+                sx={{ px: '8px' }}
+              >
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
           </Stack>
-        </Toolbar>
+        </Stack>
       </StyledAppBar>
       <StyledAppNavDrawer
         disablePermanent={disablePermanent}

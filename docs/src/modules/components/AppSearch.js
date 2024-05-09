@@ -30,8 +30,8 @@ import PageContext from 'docs/src/modules/components/PageContext';
 
 const SearchButton = styled('button')(({ theme }) => [
   {
-    minHeight: 34,
-    minWidth: 34,
+    minHeight: 32,
+    minWidth: 32,
     display: 'flex',
     alignItems: 'center',
     margin: 0,
@@ -46,7 +46,7 @@ const SearchButton = styled('button')(({ theme }) => [
     },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    backgroundColor: (theme.vars || theme).palette.grey[50],
+    backgroundColor: alpha(theme.palette.grey[50], 0.8),
     color: (theme.vars || theme).palette.text.secondary,
     fontSize: theme.typography.pxToRem(14),
     border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
@@ -54,7 +54,7 @@ const SearchButton = styled('button')(({ theme }) => [
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
-    boxShadow: `hsl(200, 0%, 100%) 0 2px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+    boxShadow: `hsl(200, 0%, 100%) 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
     '&:hover': {
       background: (theme.vars || theme).palette.grey[100],
       borderColor: (theme.vars || theme).palette.grey[300],
@@ -66,8 +66,8 @@ const SearchButton = styled('button')(({ theme }) => [
   },
   theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-    borderColor: (theme.vars || theme).palette.primaryDark[700],
-    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+    borderColor: alpha(theme.palette.primaryDark[600], 0.4),
+    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
     '&:hover': {
       background: (theme.vars || theme).palette.primaryDark[700],
       borderColor: (theme.vars || theme).palette.primaryDark[600],
@@ -84,7 +84,7 @@ const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(12),
     fontWeight: 'bold',
-    lineHeight: '20px',
+    lineHeight: '19px',
     marginLeft: theme.spacing(0.5),
     border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
     backgroundColor: '#FFF',

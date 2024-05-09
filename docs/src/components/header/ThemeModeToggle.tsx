@@ -14,6 +14,7 @@ function CssVarsModeToggle(props: { onChange: (newMode: string) => void }) {
     <Tooltip title={calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light'}>
       <IconButton
         color="primary"
+        size="small"
         disableTouchRipple
         disabled={!calculatedMode}
         onClick={() => {
@@ -51,6 +52,7 @@ export default function ThemeModeToggle() {
       <Tooltip title={calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light'}>
         <IconButton
           color="primary"
+          size="small"
           disableTouchRipple
           onClick={() => {
             setMode(calculatedMode === 'dark' ? 'light' : 'dark');
