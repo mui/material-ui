@@ -1,5 +1,5 @@
 ---
-title: 'Introducing Pigment CSS'
+title: 'Introducing Pigment CSS: the next generaton of CSS-in-JS'
 description: 'TK'
 date: 2024-05-14T00:00:00.000Z
 authors: ['samuelsycamore']
