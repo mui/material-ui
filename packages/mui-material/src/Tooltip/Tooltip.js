@@ -607,6 +607,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         },
       },
     ];
+
     const resolvedSlotProps = resolveComponentProps(slotProps.popper, ownerState);
     if (resolvedSlotProps?.popperOptions?.modifiers || PopperProps?.popperOptions?.modifiers) {
       tooltipModifiers = tooltipModifiers.concat(
