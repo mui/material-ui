@@ -32,10 +32,11 @@ const SearchButton = styled('button')(({ theme }) => [
   {
     minHeight: 32,
     minWidth: 32,
+    margin: 0,
+    paddingLeft: theme.spacing(1),
     display: 'flex',
     alignItems: 'center',
-    margin: 0,
-    paddingLeft: theme.spacing(0.6),
+    gap: '6px',
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
       padding: 0,
@@ -56,7 +57,7 @@ const SearchButton = styled('button')(({ theme }) => [
     transitionDuration: '150ms',
     boxShadow: `hsl(200, 0%, 100%) 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
     '&:hover': {
-      background: (theme.vars || theme).palette.grey[100],
+      background: alpha(theme.palette.grey[100], 0.5),
       borderColor: (theme.vars || theme).palette.grey[300],
     },
     '&:focus-visible': {
@@ -76,12 +77,14 @@ const SearchButton = styled('button')(({ theme }) => [
 ]);
 
 const SearchLabel = styled('span')(({ theme }) => ({
-  marginLeft: theme.spacing(1),
   marginRight: 'auto',
+  marginBottom: '1px', // optical alignment
+  color: (theme.vars || theme).palette.text.tertiary,
 }));
 
-const Shortcut = styled('div')(({ theme }) => {
+const Shortcut = styled('kbd')(({ theme }) => {
   return {
+    all: 'unset',
     fontSize: theme.typography.pxToRem(12),
     fontWeight: 'bold',
     lineHeight: '19px',
@@ -426,15 +429,7 @@ export default function AppSearch(props) {
         aria-labelledby="app-search-label"
         {...props}
       >
-        <SearchIcon
-          fontSize="small"
-          sx={(theme) => ({
-            color: 'primary.500',
-            ...theme.applyDarkStyles({
-              color: 'primary.300',
-            }),
-          })}
-        />
+        <SearchIcon color="primary" sx={{ fontSize: '1.125rem' }} />
         <SearchLabel id="app-search-label">{t('searchButton')}</SearchLabel>
         <Shortcut aria-hidden="true">
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}

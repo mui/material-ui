@@ -45,7 +45,8 @@ function transitionTheme(theme) {
 const savedScrollTop = {};
 
 const customButtonStyles = (theme) => ({
-  px: 1,
+  pl: 1,
+  pr: '6px',
   height: 26,
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
@@ -75,7 +76,6 @@ function ProductDrawerButton(props) {
   return (
     <React.Fragment>
       <Button
-        color="primary"
         size="small"
         id="mui-product-selector"
         aria-haspopup="true"
@@ -331,7 +331,8 @@ export default function AppNavDrawer(props) {
       return (
         <React.Fragment>
           <Button
-            color="primary"
+            variant="text"
+            color="secondary"
             size="small"
             id="mui-version-selector"
             onClick={(event) => {
@@ -355,7 +356,7 @@ export default function AppNavDrawer(props) {
             {versions.map((item) => {
               if (item.text === 'View all versions') {
                 return [
-                  <Divider key="divider" />,
+                  <Divider key="divider" sx={{ mx: -1 }} />,
                   <MenuItem key="all-versions" component="a" href={item.href} onClick={onClose}>
                     {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                     {`View all versions`}

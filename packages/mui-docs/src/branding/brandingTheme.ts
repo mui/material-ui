@@ -559,12 +559,31 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
               }),
-            ...(ownerState.variant === 'text' && {
-              color: (theme.vars || theme).palette.primary[600],
-              ...theme.applyDarkStyles({
-                color: (theme.vars || theme).palette.primary[300],
+            ...(ownerState.variant === 'text' &&
+              ownerState.color === 'secondary' && {
+                color: (theme.vars || theme).palette.text.secondary,
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.grey[50],
+                },
+                '&:active': {
+                  backgroundColor: (theme.vars || theme).palette.grey[200],
+                },
+                ...theme.applyDarkStyles({
+                  '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                  },
+                  '&:active': {
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  },
+                }),
               }),
-            }),
+            ...(ownerState.variant === 'text' &&
+              ownerState.color === 'primary' && {
+                color: (theme.vars || theme).palette.primary[600],
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[300],
+                }),
+              }),
           }),
         },
         variants: [
@@ -775,6 +794,7 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           paper: ({ theme }) => [
             {
+              padding: '6px',
               minWidth: 160,
               color: (theme.vars || theme).palette.text.secondary,
               backgroundImage: 'none',
@@ -782,8 +802,10 @@ export function getThemedComponents(): ThemeOptions {
               backgroundColor: (theme.vars || theme).palette.background.paper,
               borderColor: (theme.vars || theme).palette.grey[200],
               '& .MuiMenuItem-root': {
+                padding: '6px 12px',
+                borderRadius: '6px',
                 fontSize: theme.typography.pxToRem(14),
-                fontWeight: 500,
+                fontWeight: theme.typography.fontWeightMedium,
                 '&:hover, &:focus': {
                   backgroundColor: (theme.vars || theme).palette.grey[100],
                   color: (theme.vars || theme).palette.text.primary,

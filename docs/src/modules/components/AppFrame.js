@@ -111,6 +111,7 @@ const StyledAppBar = styled(AppBar, {
         width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
       },
     }),
+    justifyContent: 'center',
     boxShadow: 'none',
     backdropFilter: 'blur(8px)',
     borderBottom: '1px solid',
@@ -122,10 +123,6 @@ const StyledAppBar = styled(AppBar, {
       color: (theme.vars || theme).palette.grey[500],
     }),
   };
-});
-
-const GrowingDiv = styled('div')({
-  flex: '1 1 auto',
 });
 
 const NavIconButton = styled(IconButton, {
@@ -153,7 +150,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   };
 });
 
-export const HEIGHT = 59;
+export const HEIGHT = 57;
 
 export default function AppFrame(props) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
@@ -186,7 +183,7 @@ export default function AppFrame(props) {
             },
           }}
         />
-        <Stack direction="row" alignItems="center" sx={{ position: 'relative' }}>
+        <Stack direction="row" alignItems="center" sx={{ position: 'relative', width: '100%' }}>
           <NavIconButton
             edge="start"
             color="primary"
@@ -207,8 +204,7 @@ export default function AppFrame(props) {
               <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
-          <GrowingDiv />
-          <Stack direction="row" spacing={1} useFlexGap>
+          <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
             <BannerComponent />
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>

@@ -56,7 +56,7 @@ export default function ComponentPageTabs(props) {
         value={activeTab}
         sx={{
           position: 'sticky',
-          top: 59, // to be positioned below the app bar
+          top: 57, // to be positioned below the app bar
           mt: 2,
           mx: { xs: -2, sm: -1 },
           backgroundColor: 'background.default',
