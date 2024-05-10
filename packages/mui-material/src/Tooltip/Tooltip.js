@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useTimeout, { Timeout } from '@mui/utils/useTimeout';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
-import { appendOwnerState } from '@mui/base/utils';
+import { appendOwnerState, resolveComponentProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
@@ -583,6 +583,16 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   }
 
+  const ownerState = React.useMemo(()=>({
+    ...props,
+    isRtl,
+    arrow,
+    disableInteractive,
+    placement,
+    PopperComponentProp,
+    touch: ignoreNonTouchEvents.current,
+  }), [PopperComponentProp, arrow, disableInteractive, isRtl, placement, props]);
+
   const popperOptions = React.useMemo(() => {
     let tooltipModifiers = [
       {
@@ -594,28 +604,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         },
       },
     ];
-
-    if (slotProps.popper?.popperOptions?.modifiers || PopperProps?.popperOptions?.modifiers) {
+    const resolvedSlotProps = resolveComponentProps(slotProps.popper, ownerState)
+    if (resolvedSlotProps?.popperOptions?.modifiers || PopperProps?.popperOptions?.modifiers) {
       tooltipModifiers = tooltipModifiers.concat(
-        slotProps.popper?.popperOptions?.modifiers ?? PopperProps?.popperOptions.modifiers,
+        resolvedSlotProps?.popperOptions?.modifiers ?? PopperProps?.popperOptions.modifiers,
       );
     }
 
     return {
-      ...(slotProps.popper?.popperProps ?? PopperProps?.popperOptions),
+      ...(resolvedSlotProps?.popperProps ?? PopperProps?.popperOptions),
       modifiers: tooltipModifiers,
     };
-  }, [arrowRef, PopperProps, slotProps]);
-
-  const ownerState = {
-    ...props,
-    isRtl,
-    arrow,
-    disableInteractive,
-    placement,
-    PopperComponentProp,
-    touch: ignoreNonTouchEvents.current,
-  };
+  }, [arrowRef, PopperProps, slotProps, ownerState]);
 
   const classes = useUtilityClasses(ownerState);
 
