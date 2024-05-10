@@ -24,6 +24,8 @@ This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
+### UMD bundle was removed
+
 <!-- #default-branch-switch -->
 
-- Material UI no longer provides UMD bundle. Please refer to the [docs](https://next.mui.com/material-ui/getting-started/installation/#cdn) for alternatives.
+The UMD bundle is no longer provided. This was replaced in favor of [ESM CDNs](https://esm.sh/). Please refer to the [CDN docs](https://next.mui.com/material-ui/getting-started/installation/#cdn) for alternatives.
