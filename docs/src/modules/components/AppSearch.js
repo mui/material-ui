@@ -54,10 +54,7 @@ const SearchButton = styled('button')(({ theme }) => [
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
-    boxShadow: `inset 0 -1px 1px ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
-      theme.palette.grey[100],
-      0.6,
-    )}`,
+    boxShadow: `hsl(200, 0%, 100%) 0 2px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
     '&:hover': {
       background: (theme.vars || theme).palette.grey[100],
       borderColor: (theme.vars || theme).palette.grey[300],
@@ -70,9 +67,7 @@ const SearchButton = styled('button')(({ theme }) => [
   theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
     borderColor: (theme.vars || theme).palette.primaryDark[700],
-    boxShadow: `inset 0 -1px 1px ${(theme.vars || theme).palette.primaryDark[900]}, 0 1px 0.5px ${
-      (theme.vars || theme).palette.common.black
-    }`,
+    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
     '&:hover': {
       background: (theme.vars || theme).palette.primaryDark[700],
       borderColor: (theme.vars || theme).palette.primaryDark[600],
@@ -209,17 +204,17 @@ function NewStartScreen() {
       items: [
         {
           name: 'Overview',
-          href: '/toolpad/getting-started/',
+          href: '/toolpad/studio/getting-started/',
           icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Why Toolpad?',
-          href: '/toolpad/getting-started/why-toolpad/',
+          href: '/toolpad/studio/getting-started/why-toolpad/',
           icon: <ChecklistRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Example applications',
-          href: '/toolpad/examples/',
+          href: '/toolpad/studio/examples/',
           icon: <LibraryBooksRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],

@@ -101,6 +101,7 @@ export default function AppLayoutDocs(props) {
   const router = useRouter();
   const {
     BannerComponent,
+    cardOptions,
     children,
     description,
     disableAd = false,
@@ -137,6 +138,7 @@ export default function AppLayoutDocs(props) {
   const Layout = disableLayout ? React.Fragment : AppFrame;
   const layoutProps = disableLayout ? {} : { BannerComponent };
 
+  const card = `/edge-functions/og-image?product=${productName}&title=${cardOptions?.title ?? title}&description=${cardOptions?.description ?? description}`;
   return (
     <Layout {...layoutProps}>
       <GlobalStyles
@@ -147,12 +149,7 @@ export default function AppLayoutDocs(props) {
         }}
       />
       <AdManager {...(hasTabs && { classSelector: '.component-tabs' })}>
-        <Head
-          title={`${title} - ${productName}`}
-          description={description}
-          largeCard={false}
-          card="https://mui.com/static/logo.png"
-        />
+        <Head title={`${title} - ${productName}`} description={description} card={card} />
         <Main disableToc={disableToc}>
           {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.
@@ -172,6 +169,10 @@ export default function AppLayoutDocs(props) {
 
 AppLayoutDocs.propTypes = {
   BannerComponent: PropTypes.elementType,
+  cardOptions: PropTypes.shape({
+    description: PropTypes.string,
+    title: PropTypes.string,
+  }),
   children: PropTypes.node.isRequired,
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,

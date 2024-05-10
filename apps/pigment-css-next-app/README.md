@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting started
 
-First, build all the packages in the workspace atleast once. Run
+First, build all the packages in the workspace at least once. Run
 
 ```bash
 pnpm build:zero

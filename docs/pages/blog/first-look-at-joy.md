@@ -4,7 +4,7 @@ description: A sneak peek at MUI's new starting point for your design system.
 date: 2022-06-08T00:00:00.000Z
 authors: ['danilo-leal', 'siriwatknp']
 tags: ['Joy UI', 'Product']
-card: true
+manualCard: true
 ---
 
 <a href="/joy-ui/getting-started/"><img src="/static/blog/first-look-at-joy/card.png" style="width: 692px; aspect-ratio: 2/1; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." /></a>

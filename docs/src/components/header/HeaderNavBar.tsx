@@ -69,9 +69,9 @@ const Navigation = styled('nav')(({ theme }) => [
 const PRODUCT_IDS = [
   'product-core',
   'product-advanced',
+  'product-toolpad',
   'product-templates',
   'product-design',
-  'product-toolpad',
 ];
 
 type ProductSubMenuProps = {
@@ -282,6 +282,16 @@ export default function HeaderNavBar() {
                     <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[2]}
+                        href={ROUTES.productToolpad}
+                        icon={<IconImage name="product-toolpad" />}
+                        name="Toolpad"
+                        chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
+                        description="Low-code admin builder."
+                      />
+                    </li>
+                    <li>
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[3]}
                         href={ROUTES.productTemplates}
                         icon={<IconImage name="product-templates" />}
                         name="Templates"
@@ -290,21 +300,11 @@ export default function HeaderNavBar() {
                     </li>
                     <li>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[3]}
+                        id={PRODUCT_IDS[4]}
                         href={ROUTES.productDesignKits}
                         icon={<IconImage name="product-designkits" />}
-                        name="Design kits"
-                        description="Our components available in your favorite design tool."
-                      />
-                    </li>
-                    <li>
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[4]}
-                        href={ROUTES.productToolpad}
-                        icon={<IconImage name="product-toolpad" />}
-                        name="Toolpad"
-                        chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
-                        description="Low-code admin builder."
+                        name="Design Kits"
+                        description="Material UI components in your favorite design tool."
                       />
                     </li>
                   </ul>

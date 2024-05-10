@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -146,30 +146,17 @@ const openRolesData = [
   {
     title: 'Engineering',
     roles: [
-      // {
-      //   title: 'React Engineer — xCharts',
-      //   description:
-      //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-      //   url: '/careers/react-engineer-x-charts/',
-      // },
-      // {
-      //   title: 'React Engineer — X',
-      //   description:
-      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-      //   url: '/careers/react-engineer-x/',
-      // },
+      {
+        title: 'React Engineer — X',
+        description:
+          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x/',
+      },
     ],
   },
   {
     title: 'Design',
-    roles: [
-      {
-        title: 'Design Engineer — xGrid',
-        description:
-          'You will design and implement a great user and developer experience for the MUI X Data Grid.',
-        url: '/careers/design-engineer-x-grid/',
-      },
-    ],
+    roles: [],
   },
   {
     title: 'Developer Experience',
@@ -179,17 +166,6 @@ const openRolesData = [
         description:
           'You will strategize and implement educational initiatives from end to end to help developers build better UIs, faster.',
         url: '/careers/developer-advocate/',
-      },
-    ],
-  },
-  {
-    title: 'Support',
-    roles: [
-      {
-        title: 'Customer Support Agent',
-        description:
-          'You will help MUI provide timely and efficient support to our customers and continue to streamline our customer operations across the board.',
-        url: '/careers/support-agent/',
       },
     ],
   },
@@ -212,12 +188,6 @@ const nextRolesData = [
         url: '/careers/fullstack-engineer/',
       },
       {
-        title: 'React Engineer — X',
-        description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
-      },
-      {
         title: 'React Engineer — xCharts',
         description:
           'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
@@ -230,26 +200,10 @@ const nextRolesData = [
         url: '/careers/react-tech-lead-core/',
       },
       {
-        title: 'React Engineer — Core',
-        description:
-          'You will strengthen the core components team by collaborating with the community to land contributions.',
-        url: '/careers/react-engineer-core/',
-      },
-      {
         title: 'React Community Engineer — X',
         description:
           'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
         url: '/careers/react-community-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Design',
-    roles: [
-      {
-        title: 'Design Engineer',
-        description: 'You will focus on design to implement great product experiences.',
-        url: '/careers/design-engineer/',
       },
     ],
   },
@@ -275,13 +229,7 @@ const nextRolesData = [
   },
   {
     title: 'Marketing',
-    roles: [
-      {
-        title: 'Product Marketing Manager',
-        description: 'You will own the marketing efforts at MUI.',
-        url: '/careers/product-marketing-manager/',
-      },
-    ],
+    roles: [],
   },
 ] as typeof openRolesData;
 
@@ -339,12 +287,13 @@ function RemoteAwardCard() {
     >
       <Box
         sx={{
-          aspectRatio: '1/1',
+          mb: 2,
+          maxWidth: { xs: 315, sm: 325 },
+          maxHeight: 315,
           border: '1px solid',
           borderColor: 'divider',
           borderRadius: '6px',
           overflow: 'clip',
-          mb: 2,
         }}
       >
         <Box
@@ -405,9 +354,9 @@ export default function Careers() {
         <OurValues />
         <Divider />
         {/* Perks & benefits */}
-        <Section bg="gradient">
+        <Section bg="gradient" cozy>
           <Grid container spacing={5} alignItems="center">
-            <Grid item md={6}>
+            <Grid md={6}>
               <SectionHeadline
                 overline="Working at MUI"
                 title={
@@ -447,40 +396,54 @@ export default function Careers() {
                 ))}
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={8}>
-                  <RemoteAwardCard />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                  <Stack spacing={2} useFlexGap sx={{ height: '100%', width: '100%' }}>
-                    {companyInfo.map(({ title, description, routeUrl }) => (
-                      <Paper
-                        component={Link}
-                        href={routeUrl}
-                        noLinkStyle
-                        variant="outlined"
-                        sx={{ p: 2, width: '100%', flexGrow: 1 }}
-                        key={title}
-                      >
-                        <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                          {title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                          {description}
-                        </Typography>
-                        <Typography variant="body2" fontWeight="bold" color="primary">
-                          Learn more{' '}
-                          <KeyboardArrowRightRounded
-                            fontSize="small"
-                            sx={{ verticalAlign: 'middle' }}
-                          />
-                        </Typography>
-                      </Paper>
-                    ))}
-                  </Stack>
-                </Grid>
-              </Grid>
+            <Grid
+              xs={12}
+              md={6}
+              sx={{
+                p: { xs: 2, sm: 0 },
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' },
+                gap: 2,
+              }}
+            >
+              <RemoteAwardCard />
+              <Stack spacing={2} useFlexGap>
+                {companyInfo.map(({ title, description, routeUrl }) => (
+                  <Paper
+                    key={title}
+                    component={Link}
+                    href={routeUrl}
+                    noLinkStyle
+                    variant="outlined"
+                    sx={{
+                      p: 2,
+                      width: '100%',
+                      flexGrow: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                      {title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      {description}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      fontWeight="bold"
+                      color="primary"
+                      sx={{ mt: 'auto' }}
+                    >
+                      Learn more{' '}
+                      <KeyboardArrowRightRounded
+                        fontSize="small"
+                        sx={{ verticalAlign: 'middle' }}
+                      />
+                    </Typography>
+                  </Paper>
+                ))}
+              </Stack>
             </Grid>
           </Grid>
         </Section>
@@ -503,28 +466,25 @@ export default function Careers() {
           />
           <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
           <Stack spacing={2} divider={<Divider />}>
-            {openRolesData.map((category) => {
-              const roles = category.roles;
-              return (
-                <React.Fragment key={category.title}>
-                  <Typography component="h3" variant="h5" fontWeight="semiBold">
-                    {category.title}
-                  </Typography>
-                  {roles.length > 0 ? (
-                    roles.map((role) => (
+            {openRolesData
+              .filter((category) => category.roles.length > 0)
+              .map((category) => {
+                return (
+                  <React.Fragment key={category.title}>
+                    <Typography component="h3" variant="h5" fontWeight="semiBold">
+                      {category.title}
+                    </Typography>
+                    {category.roles.map((role) => (
                       <Role
                         key={role.title}
                         title={role.title}
                         description={role.description}
                         url={role.url}
                       />
-                    ))
-                  ) : (
-                    <Typography color="text.secondary">No open roles.</Typography>
-                  )}
-                </React.Fragment>
-              );
-            })}
+                    ))}
+                  </React.Fragment>
+                );
+              })}
           </Stack>
         </Section>
         <Divider />
@@ -551,28 +511,25 @@ export default function Careers() {
               />
               <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
               <Stack spacing={2} divider={<Divider />}>
-                {nextRolesData.map((category) => {
-                  const roles = category.roles;
-                  return (
-                    <React.Fragment key={category.title}>
-                      <Typography component="h3" variant="h5" fontWeight="extraBold">
-                        {category.title}
-                      </Typography>
-                      {roles.length > 0 ? (
-                        roles.map((role) => (
+                {nextRolesData
+                  .filter((category) => category.roles.length > 0)
+                  .map((category) => {
+                    return (
+                      <React.Fragment key={category.title}>
+                        <Typography component="h3" variant="h5" fontWeight="extraBold">
+                          {category.title}
+                        </Typography>
+                        {category.roles.map((role) => (
                           <Role
                             key={role.title}
                             title={role.title}
                             description={role.description}
                             url={role.url}
                           />
-                        ))
-                      ) : (
-                        <Typography color="text.secondary">No plans yet.</Typography>
-                      )}
-                    </React.Fragment>
-                  );
-                })}
+                        ))}
+                      </React.Fragment>
+                    );
+                  })}
               </Stack>
             </Section>
           </Box>
@@ -584,11 +541,11 @@ export default function Careers() {
             Frequently asked questions
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               {renderFAQItem(0, true)}
               {renderFAQItem(1)}
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               {renderFAQItem(2)}
               <Paper
                 variant="outlined"

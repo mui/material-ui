@@ -1207,14 +1207,11 @@ importers:
         specifier: ^7.23.9
         version: 7.23.9
       '@mui/base':
-        specifier: workspace:*
+        specifier: '*'
         version: link:../mui-base/build
-      '@mui/material':
-        specifier: workspace:^
-        version: link:../mui-material/build
-      '@mui/utils':
-        specifier: workspace:^
-        version: link:../mui-utils/build
+      '@mui/system':
+        specifier: ^5.0.0
+        version: link:../mui-system/build
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -1225,6 +1222,12 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
+      '@mui/icons-material':
+        specifier: workspace:*
+        version: link:../mui-icons-material/build
+      '@mui/material':
+        specifier: workspace:*
+        version: link:../mui-material/build
       '@types/node':
         specifier: ^18.19.25
         version: 18.19.25

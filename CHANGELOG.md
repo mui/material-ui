@@ -1,5 +1,128 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.17
+
+<!-- generated comparing v5.15.16..master -->
+
+_May 8, 2024_
+
+A big thanks to the 4 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.17`
+
+- [Slider] Move palette styles to the bottom (#41676) @siriwatknp
+
+### Docs
+
+- Fix SEO redirection issues @oliviertassinari
+- [material-ui] Fix broken link (@aarongarciah) (#42143) @github-actions[bot]
+- [material-ui] Fix link on the Sync page (@danilo-leal) (#42089) @github-actions[bot]
+
+### Core
+
+- [blog] Shorten title to fit @oliviertassinari
+- [blog] Update Sync post OG image (@danilo-leal) (#42117) @github-actions[bot]
+- [blog] A few tweaks in introducing-sync-plugin (@oliviertassinari) (#42094) @github-actions[bot]
+- [docs-infra] Fix code block layout shift (#41917) @oliviertassinari
+- [website] Fix home page slider's track position (@aarongarciah) (#42144) @github-actions[bot]
+- [website] Closing the survey @oliviertassinari
+- [website] Remove Survey banner from website and Core docs (#42104) @joserodolfofreitas
+
+All contributors of this release in alphabetical order: @github-actions[bot], @joserodolfofreitas, @oliviertassinari, @siriwatknp
+
+## v5.15.16
+
+<!-- generated comparing v5.15.15..master -->
+
+_May 1, 2024_
+
+A big thanks to the 8 contributors who made this release possible. Here are some highlights ✨:
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.16`
+
+- [material-ui][Dialog] Prevent onClick on the root element from being overwritten (@ryanburr) (#41914) @github-actions[bot]
+- [material-ui][Select] Fix `muiName` property TypeScript error (@EyaOuenniche) (#41786) @github-actions[bot]
+- —>[material-ui][l10n] Fix typo in is-IS locale (@magnimarels) (#41815) @github-actions[bot]
+
+### Docs
+
+- Fix small SEO issues @oliviertassinari
+- Fix 301 Toolpad links @oliviertassinari
+- Fix 301 Toolpad links @oliviertassinari
+- Fix 301 image redirections @oliviertassinari
+- Fix small SEO issues @oliviertassinari
+- Fix 301 redirection @oliviertassinari
+- Fix format git diff regression (#41882) @oliviertassinari
+- Fix 301 links @oliviertassinari
+- [material-ui] Fix import statement in migration guide (@sai6855) (#41864) @github-actions[bot]
+- [material-ui] Update Figma plugin name (@danilo-leal) (#42057) @github-actions[bot]
+- [material-ui] Fix minor spelling error in the "About the lab" page (@ryanhartwig) (#42075) @github-actions[bot]
+- [material-ui] Add missing backticks to HTML tag in the installation page (@Miguelrom) (#42009) @github-actions[bot]
+- [material-ui] Add Connect-related content (@danilo-leal) (#41924) @DiegoAndai
+- [material-ui] Fix Material 3 message typo (@aarongarciah) (#41822) @github-actions[bot]
+- [material-ui] Remove Data Grid v7 beta callout (@cherniavskii) (#41842) @github-actions[bot]
+- [material-ui][templates] Fix input props attributes in Landing Page template (@5-tom) (#42034) @github-actions[bot]
+- [system] Update typo on the sx prop page (@bricker) (#42078) @github-actions[bot]
+
+### Core
+
+- [blog] Add post to introduce the Connect plugin (@danilo-leal) (#41929) @DiegoAndai
+- [core] Automate cherry-pick of PRs from `next` -> `master` (#41742) @aarongarciah
+- [docs-infra] Improve Twitter OG:image (#41860) @oliviertassinari
+- [docs-infra] Use edge function for card generation (#41188) @alexfauquette
+- [docs-infra] Fix drawer performances (#41807) (#41820) @alexfauquette
+- [docs-infra] Fix analytics about inline ads (#41474) @alexfauquette
+- [website] Sync career roles (@oliviertassinari) (#42059) @github-actions[bot]
+- [website] Add content about the Sync plugin in the Material UI page (@danilo-leal) (#42074) @github-actions[bot]
+- [website] Add Nadja on the about page (#42054) @mnajdova
+- [website] Close the `Design Engineer - X` role (#42014) @DanailH
+- [website] Remove customer support agent role from website (@rluzists1) (#41996) @github-actions[bot]
+- [website] Add Jose to About Us (#41759) @JCQuintas
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @DanailH, @DiegoAndai, @github-actions[bot], @JCQuintas, @mnajdova, @oliviertassinari
+
+## v5.15.15
+
+<!-- generated comparing v5.15.14..master -->
+
+_Apr 4, 2024_
+
+A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.15`
+
+- [Autocomplete] Display options provided to the `options` prop even if loading is true (#41677) @ZeeshanTamboli
+- [RadioGroup] Apply classnames (#41681) @ZeeshanTamboli
+
+### `@mui/system@5.15.15`
+
+- Fix typo to avoid infinite recursion in function call (#41678) @ZeeshanTamboli
+
+### Docs
+
+- [material-ui][Slider] Remove `valueLabelFormat` from restricted values demo so that the tooltip thumb label displays the same as the value text (#41679) @ZeeshanTamboli
+- [material-ui] Remove deleted page from the sidenav (#41594) @danilo-leal
+- [material-ui] Fix typo in CSS theme variables customization (#41680) @ZeeshanTamboli
+- Continue migration of Base UI to sperate repository @oliviertassinari
+- Add notification for MUI X v7 blog post (#41587) (#41605) @cherniavskii
+- Update the versions dropdown to show v6 (#41557) @mnajdova
+
+### Core
+
+- [blog] Link to Romain's blog post in MUI X v7 announcement post (#41641) @cherniavskii
+- [blog] Blog post with MUI X v7.0.0 annoucement (#41563) (#41604) @cherniavskii
+- [blog] Add post about remote (#41565) @danilo-leal
+- [core] Continue rename of Toolpad @oliviertassinari
+- [docs-infra] Add Toolpad product/category IDs to types (#41551) @bharatkashyap
+- [website] Add Aarón to About Us (#41747) @aarongarciah
+- [website] Add stray design adjustments throughout the site (#41642) @mnajdova
+- [website] Update pricing table (#41606) @cherniavskii
+
+All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @cherniavskii, @danilo-leal, @mnajdova, @oliviertassinari, @ZeeshanTamboli
+
 ## v5.15.14
 
 <!-- generated comparing v5.15.13..master -->
@@ -7922,7 +8045,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 
   <a href="https://mui.com/components/tables/#unstyled-table"><img width="800" alt="unstyled table" src="https://user-images.githubusercontent.com/4512430/144862194-584356ef-7d9d-462c-a631-186a7e716193.png"></a>
 
-  You can follow our progress with unstyled components at https://github.com/mui/material-ui/issues/27170.
+  You can follow our progress with unstyled components at https://github.com/mui/base-ui/issues/10.
 
 - 🎉 We have added an example of how to use MUI with [Remix](https://remix.run/) (#29952) @mnajdova
 
@@ -9392,7 +9515,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
   <a href="https://mui.com/components/switches/#unstyled"><img width="832" alt="switch" src="https://user-images.githubusercontent.com/3165635/125192249-236f8a80-e247-11eb-9df9-17d476379a32.png"></a>
 
-  You can follow our progress at https://github.com/mui/material-ui/issues/27170.
+  You can follow our progress at https://github.com/mui/base-ui/issues/10.
 
 - 💄 We have updated the default `info` `success` `warning` color to be more accessible (#26817) @siriwatknp.
   You can find the new [default values](https://mui.com/material-ui/customization/palette/#default-values) in the documentation.

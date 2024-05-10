@@ -6,7 +6,7 @@ import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 
 const StyledAlert = styled(Alert)(
   ({ theme }) => ({

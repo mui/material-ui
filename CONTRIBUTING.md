@@ -1,4 +1,4 @@
-# Contributing to Material UI, Base UI, MUI System, Joy UI
+# Contributing to Material UI, MUI System, Joy UI
 
 If you're reading this, you're awesome!
 Thank you for being a part of the community and helping us make these projects great.
