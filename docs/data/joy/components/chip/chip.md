@@ -9,7 +9,7 @@ githubLabel: 'component: chip'
 
 <p class="description">Chip generates a compact element that can represent an input, attribute, or action.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

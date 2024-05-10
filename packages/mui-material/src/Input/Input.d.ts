@@ -10,6 +10,7 @@ export interface InputProps extends StandardProps<InputBaseProps> {
   classes?: Partial<InputClasses>;
   /**
    * If `true`, the `input` will not have an underline.
+   * @default false
    */
   disableUnderline?: boolean;
   /**

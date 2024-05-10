@@ -16,9 +16,11 @@ import {
 } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
-import useThemeProps from '../styles/useThemeProps';
-import styled, { slotShouldForwardProp } from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
+import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
+
+const useThemeProps = createUseThemeProps('MuiRating');
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
@@ -73,7 +75,7 @@ const RatingRoot = styled('span', {
       ownerState.readOnly && styles.readOnly,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'inline-flex',
   // Required to position the pristine input absolutely
   position: 'relative',
@@ -91,16 +93,31 @@ const RatingRoot = styled('span', {
     outline: '1px solid #999',
   },
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
-  ...(ownerState.size === 'small' && {
-    fontSize: theme.typography.pxToRem(18),
-  }),
-  ...(ownerState.size === 'large' && {
-    fontSize: theme.typography.pxToRem(30),
-  }),
-  // TODO v6: use the .Mui-readOnly global state class
-  ...(ownerState.readOnly && {
-    pointerEvents: 'none',
-  }),
+  variants: [
+    {
+      props: {
+        size: 'small',
+      },
+      style: {
+        fontSize: theme.typography.pxToRem(18),
+      },
+    },
+    {
+      props: {
+        size: 'large',
+      },
+      style: {
+        fontSize: theme.typography.pxToRem(30),
+      },
+    },
+    {
+      // TODO v6: use the .Mui-readOnly global state class
+      props: ({ ownerState }) => ownerState.readOnly,
+      style: {
+        pointerEvents: 'none',
+      },
+    },
+  ],
 }));
 
 const RatingLabel = styled('label', {
@@ -110,16 +127,21 @@ const RatingLabel = styled('label', {
     styles.label,
     ownerState.emptyValueFocused && styles.labelEmptyValueActive,
   ],
-})(({ ownerState }) => ({
+})({
   cursor: 'inherit',
-  ...(ownerState.emptyValueFocused && {
-    top: 0,
-    bottom: 0,
-    position: 'absolute',
-    outline: '1px solid #999',
-    width: '100%',
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.emptyValueFocused,
+      style: {
+        top: 0,
+        bottom: 0,
+        position: 'absolute',
+        outline: '1px solid #999',
+        width: '100%',
+      },
+    },
+  ],
+});
 
 const RatingIcon = styled('span', {
   name: 'MuiRating',
@@ -136,7 +158,7 @@ const RatingIcon = styled('span', {
       ownerState.iconActive && styles.iconActive,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   // Fit wrapper to actual icon size.
   display: 'flex',
   transition: theme.transitions.create('transform', {
@@ -145,12 +167,20 @@ const RatingIcon = styled('span', {
   // Fix mouseLeave issue.
   // https://github.com/facebook/react/issues/4492
   pointerEvents: 'none',
-  ...(ownerState.iconActive && {
-    transform: 'scale(1.2)',
-  }),
-  ...(ownerState.iconEmpty && {
-    color: (theme.vars || theme).palette.action.disabled,
-  }),
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.iconActive,
+      style: {
+        transform: 'scale(1.2)',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.iconEmpty,
+      style: {
+        color: (theme.vars || theme).palette.action.disabled,
+      },
+    },
+  ],
 }));
 
 const RatingDecimal = styled('span', {
@@ -162,12 +192,17 @@ const RatingDecimal = styled('span', {
 
     return [styles.decimal, iconActive && styles.iconActive];
   },
-})(({ iconActive }) => ({
+})({
   position: 'relative',
-  ...(iconActive && {
-    transform: 'scale(1.2)',
-  }),
-}));
+  variants: [
+    {
+      props: ({ iconActive }) => iconActive,
+      style: {
+        transform: 'scale(1.2)',
+      },
+    },
+  ],
+});
 
 function IconContainer(props) {
   const { value, ...other } = props;

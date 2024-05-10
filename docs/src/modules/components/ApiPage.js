@@ -3,13 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import Alert from '@mui/material/Alert';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
@@ -53,11 +52,13 @@ function Heading(props) {
 
   return (
     <Level id={hash}>
-      {getTranslatedHeader(t, hash)}
-      <a aria-labelledby={hash} className="anchor-link" href={`#${hash}`} tabIndex={-1}>
-        <svg>
-          <use xlinkHref="#anchor-link-icon" />
-        </svg>
+      <a aria-labelledby={hash} className="title-link-to-anchor" href={`#${hash}`} tabIndex={-1}>
+        {getTranslatedHeader(t, hash)}
+        <span className="anchor-icon">
+          <svg>
+            <use xlinkHref="#anchor-link-icon" />
+          </svg>
+        </span>
       </a>
     </Level>
   );
@@ -214,21 +215,29 @@ export default function ApiPage(props) {
               fontSize: theme.typography.pxToRem(16),
               backgroundColor: (theme.vars || theme).palette.success[50],
               borderColor: (theme.vars || theme).palette.success[100],
-              '& * p': {
-                mb: 1,
-              },
-              '& * a': {
-                fontWeight: theme.typography.fontWeightMedium,
-                color: (theme.vars || theme).palette.success[900],
-                textDecorationColor: alpha(theme.palette.success[600], 0.3),
+              '& .MuiAlert-message': {
+                '& * p': {
+                  color: (theme.vars || theme).palette.text.primary,
+                  mb: 1,
+                },
+                '& * a': {
+                  fontWeight: theme.typography.fontWeightMedium,
+                  color: (theme.vars || theme).palette.success[900],
+                  textDecorationColor: alpha(theme.palette.success[600], 0.3),
+                },
               },
               ...theme.applyDarkStyles({
-                '& * a': {
-                  color: (theme.vars || theme).palette.success[100],
-                  textDecorationColor: alpha(theme.palette.success[100], 0.3),
+                backgroundColor: alpha(theme.palette.success[700], 0.12),
+                borderColor: alpha(theme.palette.success[400], 0.1),
+                '& .MuiAlert-message': {
+                  ul: {
+                    pl: 3,
+                  },
+                  '& * a': {
+                    color: (theme.vars || theme).palette.success[100],
+                    textDecorationColor: alpha(theme.palette.success[100], 0.3),
+                  },
                 },
-                backgroundColor: alpha(theme.palette.success[700], 0.15),
-                borderColor: alpha(theme.palette.success[600], 0.3),
               }),
             }),
           ]}
@@ -247,7 +256,9 @@ export default function ApiPage(props) {
 `)}
           language="jsx"
         />
-        <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        {pageContent.imports.length > 1 && (
+          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        )}
         {componentDescription ? (
           <React.Fragment>
             <br />
@@ -299,7 +310,6 @@ export default function ApiPage(props) {
                   .replace(/{{name}}/, pageContent.name),
               }}
             />
-            <Divider />
           </React.Fragment>
         )}
         {pageContent.themeDefaultProps && (
@@ -312,7 +322,6 @@ export default function ApiPage(props) {
                   .replace(/{{defaultPropsLink}}/, defaultPropsLink),
               }}
             />
-            <Divider sx={{ 'hr&&': { mb: 0 } }} />
           </React.Fragment>
         )}
         <SlotsSection

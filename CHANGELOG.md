@@ -1,5 +1,219 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.6
+
+<!-- generated comparing v6.0.0-alpha.5..next -->
+
+_May 8, 2024_
+
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+
+### `@mui/material@6.0.0-alpha.6`
+
+- [Chip] Add colorDefault class to chipClasses (#42067) @sai6855
+- Migrate components to support CSS extraction (#42001) @siriwatknp
+- [SpeedDial] Deprecate TransitionComponent (#40698) @harry-whorlow
+
+### `@mui/codemod@6.0.0-alpha.6`
+
+- Add `theme-v6` migration (#42056) @siriwatknp
+
+### `@mui/icons-material@6.0.0-alpha.6`
+
+- Add the Emergency icon (#42080) @danilo-leal
+
+### Docs
+
+- [autocomplete] Fix duplicate autocomplete id (#42086) @oliviertassinari
+- Fix SEO redirection issues @oliviertassinari
+- [material-ui] Fix broken link (#42142) @aarongarciah
+- [material-ui][docs] Fix link on the Sync page (#42088) @danilo-leal
+
+### Core
+
+- [blog] Shorten title to fit @oliviertassinari
+- [blog] Update Sync post OG image (#42114) @danilo-leal
+- [blog] A few tweaks in introducing-sync-plugin (#42092) @oliviertassinari
+- [code-infra] Add canary release scripts (#41949) @michaldudak
+- [code-infra] Move ComponentLinkHeader to @mui/docs (#42061) @Janpot
+- [code-infra] Bump node image used by CI in docker (#42079) @LukasTy
+- [core] Restrict import path with ESLint (#41970) @oliviertassinari
+- [docs-infra] Add design and formatting improvements (#42063) @danilo-leal
+- [docs-infra] Fix HTML structure violations (#42085) @oliviertassinari
+- [website] Componentize a few Careers page sections (#42102) @danilo-leal
+- [website] Refine the InfoCard design (#42116) @danilo-leal
+- [website] Fix home page slider's track position (#42141) @aarongarciah
+- [website] Closing the survey @oliviertassinari
+- [website] Remove Survey banner from website and Core docs (#42104) @joserodolfofreitas
+
+All contributors of this release in alphabetical order: @aarongarciah, @danilo-leal, @harry-whorlow, @Janpot, @joserodolfofreitas, @LukasTy, @michaldudak, @oliviertassinari, @sai6855, @siriwatknp
+
+## v6.0.0-alpha.5
+
+<!-- generated comparing v6.0.0-alpha.4..next -->
+
+_May 1, 2024_
+
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+
+### `@mui/material@6.0.0-alpha.5`
+
+- [FormControlLabel] Deprecate `componentsProps` (#41767) @sai6855
+- [PaginationItem] Deprecate components prop (#41777) @sai6855
+- [SvgIcon] Convert to support CSS extraction (#41779) @aarongarciah
+
+### `@mui/base@5.0.0-beta.43`
+
+- [TextareaAutosize] Fix resizing instability (#41638) @ZeeshanTamboli
+
+### Docs
+
+- Fix small SEO issues @oliviertassinari
+- [material-ui] Fix minor spelling error in the "About the lab" page (#42073) @ryanhartwig
+- [material-ui] Update Figma plugin name (#41967) @danilo-leal
+- [material-ui][templates] Fix input props attributes in Landing Page template (#42013) @5-tom
+- [system] Update typo on the sx prop page (#42035) @bricker
+
+### Core
+
+- [docs-infra] Clean up branding theme file and improve font-face readibility (#42023) @danilo-leal
+- [docs-infra] Simplify docs demo (#42016) @oliviertassinari
+- [website] Add content about the Sync plugin in the Material UI page (#40515) @danilo-leal
+- [website] Sync career roles (#42058) @oliviertassinari
+- [website] Add Nadja on the about page (#42021) @mnajdova
+- [website] Fix code block design by changing the `MarkdownElement` import (#42022) @danilo-leal
+- [wesbite] Remove duplicate MarkdownElement component (#42028) @danilo-leal
+
+All contributors of this release in alphabetical order: @5-tom, @aarongarciah, @bricker, @danilo-leal, @mnajdova, @oliviertassinari, @ryanhartwig, @sai6855, @ZeeshanTamboli
+
+## v6.0.0-alpha.4
+
+<!-- generated comparing v6.0.0-alpha.3..next -->
+
+_Apr 24, 2024_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔥 Converted 3 more Material UI components to use Pigment CSS.
+- ℹ️ Pigment CSS now lives in [its own repository](https://github.com/mui/pigment-css)! From now on, all future development will happen there.
+
+### `@mui/material@6.0.0-alpha.4`
+
+- [Checkbox] Convert to support CSS extraction (#41957) @lhilgert9
+- [IconButton] Convert to support CSS extraction (#41850) @gijsbotje
+- [Radio] Convert to support CSS extraction (#41840) @lhilgert9
+- [Typography] Fix ownerState prop placement (#41903) @sai6855
+- Generate typography tokens (#41703) @siriwatknp
+- Move typography CSS variables to `font` (#42003) @siriwatknp
+- Fix getOverlayAlpha type (#41995) @oliviertassinari
+- Support CSS Extraction using codemod (#41935) @siriwatknp
+
+### `@mui/icons-material@6.0.0-alpha.4`
+
+- &#8203;<!-- 08 -->[icons] Update the icons package (#41937) @danilo-leal
+
+### Docs
+
+- [material-ui] Remove react-swipeable-views from demos as it's no longer maintained (#41912) @soler1212
+- [material-ui] Add dark theme thumbnails for templates (#41947) @zanivan
+- [material-ui] Remove links and interdependencies from free templates (#41941) @zanivan
+- [material-ui] Add missing backticks to HTML tag in the installation page (#41972) @Miguelrom
+- Fix 301 Toolpad links @oliviertassinari
+- Fix 301 image redirections @oliviertassinari
+
+### Core
+
+- pnpm docs:zipRules && vale sync @oliviertassinari
+- Remove @pigment-css/\* packages (#41965) @mnajdova
+- [code-infra] Move the HighlightedCode component to @mui/docs (#41859) @Janpot
+- [code-infra] Move the HighlightedCode component to @mui/docs (#41859) @Janpot
+- [code-infra] Make Babel config path configurable in API docs builder (#41999) @michaldudak
+- [docs-infra] Fix flex-shrink pro-plan (#41990) @oliviertassinari
+- [docs-infra] Allow more value uses of MUI (#41706) @oliviertassinari
+- [docs-infra] Move CPU to shared config (#41901) @oliviertassinari
+- [docs-infra] Improve Twitter OG:image (#41860) @oliviertassinari
+- [docs-infra] Adapt docs infra to Base UI docs needs (#41963) @michaldudak
+- [docs-infra] Add demo container design refinements (#41948) @danilo-leal
+- [docs-infra] Use the `getLayout` on the material demo pages (#41936) @alexfauquette
+- [test] Update browser versions in karma config (#42008) @ZeeshanTamboli
+- [website] Remove customer support agent role from website (#41969) @rluzists1
+- [website] Fix grid usage and add stray improvements (#41930) @danilo-leal
+
+All contributors of this release in alphabetical order: @alexfauquette, @danilo-leal, @gijsbotje, @Janpot, @lhilgert9, @michaldudak, @Miguelrom, @mnajdova, @oliviertassinari, @rluzists1, @sai6855, @siriwatknp, @soler1212, @zanivan, @ZeeshanTamboli
+
+## v6.0.0-alpha.3
+
+<!-- generated comparing v6.0.0-alpha.2..next -->
+
+_Apr 17, 2024_
+
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔥 Converted 5 more Material UI components to use Pigment CSS.
+- 🚀 Added container queries utility to the `@mui/system` package (#41674) @siriwatknp.
+
+### `@mui/material@6.0.0-alpha.3`
+
+- Convert `LinearProgress` to support Pigment CSS (#41816) @siriwatknp
+- [Dialog] Prevent onClick on the root element from being overwritten (#41881) @ryanburr
+- [FloatingActionButton] Convert to support CSS extraction (#41851) @gijsbotje
+- Convert `CircularProgress` to support Pigment CSS (#41776) @siriwatknp
+- [PaginationItem] Convert to support CSS extraction (#41848) @gijsbotje
+- [StepConnector] deprecate composed classes (#41740) @sai6855
+- [StepLabel] Deprecate `StepIconComponent`, `StepIconProps` (#41835) @sai6855
+- [ToggleButton] Convert to support CSS extraction (#41782) @lhilgert9
+- [ToggleButtonGroup] Deprecate composed classes (#41288) @sai6855
+- [Typography] Fix Typography inherit variant styles (#41308) @kealjones-wk
+
+### `@mui/system@6.0.0-alpha.3`
+
+- Add container queries utility (#41674) @siriwatknp
+
+### `@mui/codemod@6.0.0-alpha.3`
+
+- Add styled v6 transformation (#41743) @siriwatknp
+
+### `@mui/joy@5.0.0-beta.36`
+
+- [Button] Disable text highlighting (#41902) @mithun522
+
+### `@pigment-css/react@0.0.7`
+
+- Patch WyW's WeakRef usage (#41909) @DiegoAndai
+- Implement sx transform for system components (#41861) @brijeshb42
+
+### Docs
+
+- [material-ui] Add Connect-related content (#40848) @danilo-leal
+- [material-ui] Fix credit comment typo (#41872) @aarongarciah
+- [material-ui] Remove Data Grid v7 beta callout (#41839) @cherniavskii
+- [material-ui] Add stray design tweaks to free templates (#41696) @zanivan
+- [material-ui] Simplify components styling on templates (#41845) @zanivan
+- [material-ui][Button] Add `onChange` event handler to file upload example (#41863) @aarongarciah
+- [material-ui] Fix import statement in migration guide (#41852) @sai6855
+- Fix 301 redirection @oliviertassinari
+- Fix format git diff regression (#41882) @oliviertassinari
+- Fix small SEO issues @oliviertassinari
+- [pigment-css] Fix README typos (#41870) @MohammadShehadeh
+
+### Core
+
+- Begin removing IE 11-related code (#41709) @iammminzzy
+- [blog] Add post to introduce the Connect plugin (#41763) @danilo-leal
+- [code-infra] Fix require.context with aliases (#41682) @Janpot
+- [code-infra] Allow customizing hooks imports in API docs generator (#41828) @michaldudak
+- [codemod] Add utils for `*Component` and `*Props` props deprecations (#41685) @DiegoAndai
+- Replace bundle size reporter filter (#38979) @Janpot
+- [docs-infra] Make the whole header clickable (#39603) @MoazMirza-13
+- [docs-infra] Improve demo container and related components design (#41827) @danilo-leal
+- [docs-infra] Use edge function for card generation (#41188) (#41836) @alexfauquette
+- [docs-infra] Fix code block layout shift (#41917) @oliviertassinari
+- [docs-infra] Fine-tune the OG card image design (#41862) @danilo-leal
+- [docs-infra] Fix markdown version for material (#41908) @alexfauquette
+- [docs-infra] Support multiple tabs in demos (#40901) @bharatkashyap
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @brijeshb42, @cherniavskii, @danilo-leal, @DiegoAndai, @EyaOuenniche, @gijsbotje, @iammminzzy, @Janpot, @kealjones-wk, @lhilgert9, @magnimarels, @michaldudak, @mithun522, @mnajdova, @MoazMirza-13, @MohammadShehadeh, @oliviertassinari, @ryanburr, @sai6855, @siriwatknp, @zanivan
+
 ## v6.0.0-alpha.2
 
 <!-- generated comparing v6.0.0-alpha.1..next -->

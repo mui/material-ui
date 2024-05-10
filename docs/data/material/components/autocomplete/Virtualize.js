@@ -138,16 +138,17 @@ const OPTIONS = Array.from(new Array(10000))
 export default function Virtualize() {
   return (
     <Autocomplete
-      id="virtualize-demo"
       sx={{ width: 300 }}
       disableListWrap
-      PopperComponent={StyledPopper}
-      ListboxComponent={ListboxComponent}
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
       renderOption={(props, option, state) => [props, option, state.index]}
       renderGroup={(params) => params}
+      slots={{
+        popper: StyledPopper,
+        listbox: ListboxComponent,
+      }}
     />
   );
 }

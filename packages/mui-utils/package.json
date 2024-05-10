@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "6.0.0-alpha.1",
+  "version": "6.0.0-alpha.5",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -26,8 +26,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
@@ -39,7 +38,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.4",
+    "@babel/runtime": "^7.24.5",
     "@types/prop-types": "^15.7.12",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0"
@@ -48,12 +47,12 @@
     "@mui-internal/test-utils": "workspace:^",
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.14",
+    "@types/chai": "^4.3.16",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.31",
     "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
-    "@types/react-is": "^18.2.4",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-is": "^18.3.0",
     "@types/sinon": "^10.0.20",
     "chai": "^4.4.1",
     "react": "^18.2.0",

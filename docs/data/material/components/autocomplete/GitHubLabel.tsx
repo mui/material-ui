@@ -198,7 +198,6 @@ export default function GitHubLabel() {
                 setPendingValue(newValue);
               }}
               disableCloseOnSelect
-              PopperComponent={PopperComponent}
               renderTags={() => null}
               noOptionsText="No labels"
               renderOption={(props, option, { selected }) => (
@@ -261,6 +260,9 @@ export default function GitHubLabel() {
                   placeholder="Filter labels"
                 />
               )}
+              slots={{
+                popper: PopperComponent,
+              }}
             />
           </div>
         </ClickAwayListener>

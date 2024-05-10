@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled, createUseThemeProps } from '../zero-styled';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';

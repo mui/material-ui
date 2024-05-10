@@ -3,10 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ListContext from '../List/ListContext';
 import { getListItemSecondaryActionClassesUtilityClass } from './listItemSecondaryActionClasses';
+
+const useThemeProps = createUseThemeProps('MuiListItemSecondaryAction');
 
 const useUtilityClasses = (ownerState) => {
   const { disableGutters, classes } = ownerState;
@@ -26,15 +27,20 @@ const ListItemSecondaryActionRoot = styled('div', {
 
     return [styles.root, ownerState.disableGutters && styles.disableGutters];
   },
-})(({ ownerState }) => ({
+})({
   position: 'absolute',
   right: 16,
   top: '50%',
   transform: 'translateY(-50%)',
-  ...(ownerState.disableGutters && {
-    right: 0,
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.disableGutters,
+      style: {
+        right: 0,
+      },
+    },
+  ],
+});
 
 /**
  * Must be used as the last child of ListItem to function properly.

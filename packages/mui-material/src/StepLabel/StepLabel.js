@@ -165,6 +165,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   const externalForwardedProps = {
     slots,
     slotProps: {
+      stepIcon: StepIconProps,
       ...componentsProps,
       ...slotProps,
     },
@@ -176,6 +177,12 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     ownerState,
   });
 
+  const [StepIconSlot, stepIconProps] = useSlot('stepIcon', {
+    elementType: StepIconComponent,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
     <StepLabelRoot
       className={clsx(classes.root, className)}
@@ -183,14 +190,14 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {icon || StepIconComponent ? (
+      {icon || StepIconSlot ? (
         <StepLabelIconContainer className={classes.iconContainer} ownerState={ownerState}>
-          <StepIconComponent
+          <StepIconSlot
             completed={completed}
             active={active}
             error={error}
             icon={icon}
-            {...StepIconProps}
+            {...stepIconProps}
           />
         </StepLabelIconContainer>
       ) : null}
@@ -226,7 +233,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     label: PropTypes.object,
@@ -250,6 +257,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    stepIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -257,13 +265,16 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     label: PropTypes.elementType,
+    stepIcon: PropTypes.elementType,
   }),
   /**
    * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
+   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   StepIconComponent: PropTypes.elementType,
   /**
    * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
+   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   StepIconProps: PropTypes.object,
   /**
