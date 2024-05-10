@@ -3,9 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getToolbarUtilityClass } from './toolbarClasses';
+
+const useThemeProps = createUseThemeProps('MuiToolbar');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableGutters, variant } = ownerState;
@@ -25,44 +26,38 @@ const ToolbarRoot = styled('div', {
 
     return [styles.root, !ownerState.disableGutters && styles.gutters, styles[ownerState.variant]];
   },
-})(
-  ({ theme }) => ({
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    variants: [
-      {
-        props: ({ ownerState }) => !ownerState.disableGutters,
-        style: {
-          paddingLeft: theme.spacing(2),
-          paddingRight: theme.spacing(2),
-          [theme.breakpoints.up('sm')]: {
-            paddingLeft: theme.spacing(3),
-            paddingRight: theme.spacing(3),
-          },
+})(({ theme }) => ({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.disableGutters,
+      style: {
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
+        [theme.breakpoints.up('sm')]: {
+          paddingLeft: theme.spacing(3),
+          paddingRight: theme.spacing(3),
         },
       },
-      {
-        props: {
-          variant: 'dense',
-        },
-        style: {
-          minHeight: 48,
-        },
+    },
+    {
+      props: {
+        variant: 'dense',
       },
-    ],
-  }),
-  ({ theme }) => ({
-    variants: [
-      {
-        props: {
-          variant: 'regular',
-        },
-        style: theme.mixins.toolbar,
+      style: {
+        minHeight: 48,
       },
-    ],
-  }),
-);
+    },
+    {
+      props: {
+        variant: 'regular',
+      },
+      style: theme.mixins.toolbar,
+    },
+  ],
+}));
 
 const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiToolbar' });

@@ -94,12 +94,18 @@ export default function ClassesList(props: ClassesListProps) {
             className={isDeprecated ? 'classes-list-deprecated-item' : ''}
           >
             {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
+            {displayClassKeys && !isGlobal && (
+              <p className="prop-list-class">
+                <span className="prop-list-title">{'Rule name'}:</span>
+                <code className="Api-code">{key}</code>
+              </p>
+            )}
             {isDeprecated && (
               <ApiWarning className="MuiApi-collapsible classes-list-alert">
-                {t('api-docs.deprecated')}
+                <b>{t('api-docs.deprecated')}</b>
                 {deprecationInfo && (
                   <React.Fragment>
-                    {' - '}
+                    {'－'}
                     <span
                       dangerouslySetInnerHTML={{
                         __html: deprecationInfo,
@@ -108,12 +114,6 @@ export default function ClassesList(props: ClassesListProps) {
                   </React.Fragment>
                 )}
               </ApiWarning>
-            )}
-            {displayClassKeys && !isGlobal && (
-              <p className="prop-list-class">
-                <span className="prop-list-title">{'Rule name'}:</span>
-                <code className="Api-code">{key}</code>
-              </p>
             )}
           </StyledApiItem>
         );

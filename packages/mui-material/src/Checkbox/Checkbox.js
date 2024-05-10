@@ -117,6 +117,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
     inputProps,
     size = 'medium',
+    disableRipple = false,
     className,
     ...other
   } = props;
@@ -126,6 +127,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const ownerState = {
     ...props,
+    disableRipple,
     color,
     indeterminate,
     size,
