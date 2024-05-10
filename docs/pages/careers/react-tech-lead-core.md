@@ -1,6 +1,6 @@
-# React Tech Lead — Core (future role)
+# React Tech Lead — Core
 
-<p class="description">You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.</p>
+<p class="description">You will oversight the development of the MUI Core products, positioning the libraries as the industry standard for design teams while doubling its adoption.</p>
 
 ## Details of the role
 
@@ -18,7 +18,7 @@ We're a company of 31+ people as of late 2023, and we're growing.
 ## The products
 
 MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS in JS library, that will be used as a replacement of the current styling engine that uses emotion/styled-components under the hood.
 We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
@@ -39,7 +39,7 @@ For additional details about the culture, you can check our [careers](https://mu
 ## Why we're hiring
 
 The core components team (MUI Core) needs help.
-They are working on 4 products (Material UI, Base UI, Joy UI, and MUI System) with a tiny team.
+They are working on 4 products (Material UI, Base UI, MUI System and Pigment CSS) with a tiny team.
 
 We also need help to continue to improve the health of the open-source product: make the core components easier to use, increase the contributions by engaging and collaborating with the community, polish all the details, make the components more accessible, guide developers to answers, and just generally be a positive presence in the open-source community.
 
@@ -71,6 +71,7 @@ You will extend the [React Engineer](https://mui-org.notion.site/Software-Engine
   - Push for consistency, follow what's going on in the other teams.
 - **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace, align the team on "one way" of doing things and make sure engineers follow the conventions.
 - **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
+- **Improve the engineers' DX**. You will make sure that the code infrastructure the engineers used is solid and allows for a great developer experience.
 
 ### The best parts of this job
 
