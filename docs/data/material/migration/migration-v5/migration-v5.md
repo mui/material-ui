@@ -34,7 +34,7 @@ The stable bundle supports the following minimum versions:
 
 Support for IE 11 is completely removed, by dropping the legacy bundle and all IE 11 related code.
 This allows us to decrease bundle size and keep the scope manageable.
-If you need to support IE 11, you can use Material UI v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle), but it won't get updates or bug fixes.
+If you need to support IE 11, you can use Material UI v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle), but it won't get updates or bug fixes.
 
 ## Breaking changes
 
