@@ -7,11 +7,11 @@ tags: ['Pigment CSS']
 card: false
 ---
 
-Introduction - start by stating the problem as clearly as possible: last gen’s CSS-in-JS solutions are incompatible with the new paradigm of React Server Components and the Next.js App Router. That’s why we created Pigment CSS.
+Introduction - start by stating the problem as clearly as possible: last gen's CSS-in-JS solutions are incompatible with the new paradigm of React Server Components and the Next.js App Router. That's why we created Pigment CSS.
 
 ## What are React Server Components?
 
-Briefly explain what RSCs are and why old CSS-in-JS solutions don’t work with them.
+Briefly explain what RSCs are and why old CSS-in-JS solutions don't work with them.
 
 ## Why Pigment CSS?
 
