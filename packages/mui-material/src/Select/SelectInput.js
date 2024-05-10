@@ -566,6 +566,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
               ...(paperProps != null ? paperProps.style : null),
             },
           },
+          list: { mt: 1 },
         }}
       >
         {items}
