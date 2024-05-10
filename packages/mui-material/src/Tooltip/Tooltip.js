@@ -583,15 +583,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   }
 
-  const ownerState = React.useMemo(()=>({
-    ...props,
-    isRtl,
-    arrow,
-    disableInteractive,
-    placement,
-    PopperComponentProp,
-    touch: ignoreNonTouchEvents.current,
-  }), [PopperComponentProp, arrow, disableInteractive, isRtl, placement, props]);
+  const ownerState = React.useMemo(
+    () => ({
+      ...props,
+      isRtl,
+      arrow,
+      disableInteractive,
+      placement,
+      PopperComponentProp,
+      touch: ignoreNonTouchEvents.current,
+    }),
+    [PopperComponentProp, arrow, disableInteractive, isRtl, placement, props],
+  );
 
   const popperOptions = React.useMemo(() => {
     let tooltipModifiers = [
@@ -604,7 +607,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         },
       },
     ];
-    const resolvedSlotProps = resolveComponentProps(slotProps.popper, ownerState)
+    const resolvedSlotProps = resolveComponentProps(slotProps.popper, ownerState);
     if (resolvedSlotProps?.popperOptions?.modifiers || PopperProps?.popperOptions?.modifiers) {
       tooltipModifiers = tooltipModifiers.concat(
         resolvedSlotProps?.popperOptions?.modifiers ?? PopperProps?.popperOptions.modifiers,
