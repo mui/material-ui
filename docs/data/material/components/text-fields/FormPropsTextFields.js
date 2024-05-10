@@ -85,23 +85,23 @@ export default function FormPropsTextFields() {
           id="filled-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
+          variant="filled"
           slotProps={{
             input: {
               readOnly: true,
             },
           }}
-          variant="filled"
         />
         <TextField
           id="filled-number"
           label="Number"
           type="number"
+          variant="filled"
           slotProps={{
             inputLabel: {
               shrink: true,
             },
           }}
-          variant="filled"
         />
         <TextField
           id="filled-search"
@@ -143,23 +143,23 @@ export default function FormPropsTextFields() {
           id="standard-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
+          variant="standard"
           slotProps={{
             input: {
               readOnly: true,
             },
           }}
-          variant="standard"
         />
         <TextField
           id="standard-number"
           label="Number"
           type="number"
+          variant="standard"
           slotProps={{
             inputLabel: {
               shrink: true,
             },
           }}
-          variant="standard"
         />
         <TextField
           id="standard-search"
