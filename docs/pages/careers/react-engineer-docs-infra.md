@@ -93,8 +93,7 @@ You will also play a fundamental role in defining the Docs Infra roadmap and pri
 
 ## Benefits and compensation
 
-We offer competitive compensation commensurate with your experience level and location.
-We're prepared to pay top market rates for someone who can clearly exceed the role's expectations.
+We offer competitive compensation commensurate with your experience level and location and are prepared to pay top market rates for someone who can clearly exceed the role's expectations.
 You can find the other perks and benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
