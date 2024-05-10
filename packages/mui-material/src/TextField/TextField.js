@@ -134,22 +134,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     }
   }
 
-  const inputAdditionalProps = {};
-
-  if (variant === 'outlined') {
-    if (InputLabelPropsProp && typeof InputLabelPropsProp.shrink !== 'undefined') {
-      inputAdditionalProps.notched = InputLabelPropsProp.shrink;
-    }
-    inputAdditionalProps.label = label;
-  }
-  if (select) {
-    // unset defaults from textbox inputs
-    if (!SelectPropsProp || !SelectPropsProp.native) {
-      inputAdditionalProps.id = undefined;
-    }
-    inputAdditionalProps['aria-describedby'] = undefined;
-  }
-
   const id = useId(idOverride);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;
@@ -166,6 +150,23 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       ...slotProps,
     },
   };
+
+  const inputAdditionalProps = {};
+  const inputLabelSlotProps = externalForwardedProps.slotProps.inputLabel;
+
+  if (variant === 'outlined') {
+    if (inputLabelSlotProps && typeof inputLabelSlotProps.shrink !== 'undefined') {
+      inputAdditionalProps.notched = inputLabelSlotProps.shrink;
+    }
+    inputAdditionalProps.label = label;
+  }
+  if (select) {
+    // unset defaults from textbox inputs
+    if (!SelectPropsProp || !SelectPropsProp.native) {
+      inputAdditionalProps.id = undefined;
+    }
+    inputAdditionalProps['aria-describedby'] = undefined;
+  }
 
   const [InputSlot, inputProps] = useSlot('input', {
     elementType: InputComponent,
