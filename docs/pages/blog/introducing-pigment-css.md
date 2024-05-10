@@ -33,7 +33,7 @@ Use code snippets to show how similar it is to Emotion in terms of DX
 
 ### Future-proof solution
 
-Elaborate on the idea that Material UI is keeping up with the latest and greatest React features, AND that Pigment is not exclusively for use with Material UI. 
+Elaborate on the idea that Material UI is keeping up with the latest and greatest React features, AND that Pigment is not exclusively for use with Material UI.
 
 ## Get started with Pigment CSS
 
