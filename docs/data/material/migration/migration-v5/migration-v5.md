@@ -24,14 +24,14 @@ This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
-# Chip Component Changes
+## Chip Component Changes
 
 The chip component's behavior has been updated to match the standard behavior of other components like buttons.
 Previously, the chip component would lose focus when the escape button was pressed. This issue has been resolved, and the chip component retains focus as expected.
 
 You can provide a custom `onKeyUp` handler to implement the previous behavior.
 
-```
+```js
 import * as React from 'react';
 import Chip from '@mui/material/Chip';
 
