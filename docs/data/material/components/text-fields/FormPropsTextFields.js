@@ -35,16 +35,20 @@ export default function FormPropsTextFields() {
           id="outlined-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
-          InputProps={{
-            readOnly: true,
+          slotProps={{
+            input: {
+              readOnly: true,
+            },
           }}
         />
         <TextField
           id="outlined-number"
           label="Number"
           type="number"
-          InputLabelProps={{
-            shrink: true,
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
           }}
         />
         <TextField id="outlined-search" label="Search field" type="search" />
@@ -81,8 +85,10 @@ export default function FormPropsTextFields() {
           id="filled-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
-          InputProps={{
-            readOnly: true,
+          slotProps={{
+            input: {
+              readOnly: true,
+            },
           }}
           variant="filled"
         />
@@ -90,8 +96,10 @@ export default function FormPropsTextFields() {
           id="filled-number"
           label="Number"
           type="number"
-          InputLabelProps={{
-            shrink: true,
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
           }}
           variant="filled"
         />
@@ -135,8 +143,10 @@ export default function FormPropsTextFields() {
           id="standard-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
-          InputProps={{
-            readOnly: true,
+          slotProps={{
+            input: {
+              readOnly: true,
+            },
           }}
           variant="standard"
         />
@@ -144,8 +154,10 @@ export default function FormPropsTextFields() {
           id="standard-number"
           label="Number"
           type="number"
-          InputLabelProps={{
-            shrink: true,
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
           }}
           variant="standard"
         />
