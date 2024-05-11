@@ -45,7 +45,7 @@ default-job: &default-job
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:18.19
+    - image: cimg/node:18.20
 
 default-context: &default-context
   context:
@@ -214,6 +214,9 @@ jobs:
           command: |
             #!/bin/bash
             VALE_STR_CLI_VERSION=3.3.0
+
+            # set smart sudo
+            if [[ $EUID -eq 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
 
             mkdir /tmp/vale-extract
             cd /tmp/vale-extract
@@ -768,10 +771,10 @@ jobs:
                 from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
       - run:
-          name: run danger on PRs
+          name: Run danger on PRs
           command: pnpm danger ci --fail-on-errors
           environment:
-            DANGER_COMMAND: 'reportBundleSize'
+            DANGER_COMMAND: reportBundleSize
   test_benchmark:
     <<: *default-job
     docker:

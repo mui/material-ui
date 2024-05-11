@@ -12,6 +12,7 @@ import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import LastPageIcon from '../internal/svg-icons/LastPage';
 import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
 import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
+import useSlot from '../utils/useSlot';
 import { styled, createUseThemeProps } from '../zero-styled';
 
 const useThemeProps = createUseThemeProps('MuiPaginationItem');
@@ -313,6 +314,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     shape = 'circular',
     size = 'medium',
     slots = {},
+    slotProps = {},
     type = 'page',
     variant = 'text',
     ...other
@@ -332,21 +334,62 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const isRtl = useRtl();
   const classes = useUtilityClasses(ownerState);
 
-  const normalizedIcons = isRtl
-    ? {
-        previous: slots.next || components.next || NavigateNextIcon,
-        next: slots.previous || components.previous || NavigateBeforeIcon,
-        last: slots.first || components.first || FirstPageIcon,
-        first: slots.last || components.last || LastPageIcon,
-      }
-    : {
-        previous: slots.previous || components.previous || NavigateBeforeIcon,
-        next: slots.next || components.next || NavigateNextIcon,
-        first: slots.first || components.first || FirstPageIcon,
-        last: slots.last || components.last || LastPageIcon,
-      };
+  const externalForwardedProps = {
+    slots: {
+      previous: slots.previous ?? components.previous,
+      next: slots.next ?? components.next,
+      first: slots.first ?? components.first,
+      last: slots.last ?? components.last,
+    },
+    slotProps,
+  };
 
-  const Icon = normalizedIcons[type];
+  const [PreviousSlot, previousSlotProps] = useSlot('previous', {
+    elementType: NavigateBeforeIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [NextSlot, nextSlotProps] = useSlot('next', {
+    elementType: NavigateNextIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [FirstSlot, firstSlotProps] = useSlot('first', {
+    elementType: FirstPageIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [LastSlot, lastSlotProps] = useSlot('last', {
+    elementType: LastPageIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const rtlAwareType = isRtl
+    ? {
+        previous: 'next',
+        next: 'previous',
+        first: 'last',
+        last: 'first',
+      }[type]
+    : type;
+
+  const IconSlot = {
+    previous: PreviousSlot,
+    next: NextSlot,
+    first: FirstSlot,
+    last: LastSlot,
+  }[rtlAwareType];
+
+  const iconSlotProps = {
+    previous: previousSlotProps,
+    next: nextSlotProps,
+    first: firstSlotProps,
+    last: lastSlotProps,
+  }[rtlAwareType];
 
   return type === 'start-ellipsis' || type === 'end-ellipsis' ? (
     <PaginationItemEllipsis
@@ -366,8 +409,8 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       {...other}
     >
       {type === 'page' && page}
-      {Icon ? (
-        <PaginationItemPageIcon as={Icon} ownerState={ownerState} className={classes.icon} />
+      {IconSlot ? (
+        <PaginationItemPageIcon {...iconSlotProps} className={classes.icon} as={IconSlot} />
       ) : null}
     </PaginationItemPage>
   );
@@ -412,6 +455,7 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * It's recommended to use the `slots` prop instead.
    *
    * @default {}
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   components: PropTypes.shape({
     first: PropTypes.elementType,
@@ -447,10 +491,17 @@ PaginationItem.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    first: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    last: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    next: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    previous: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slots: PropTypes.shape({

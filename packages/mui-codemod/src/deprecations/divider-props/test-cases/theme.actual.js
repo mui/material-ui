@@ -45,3 +45,11 @@ fn({
     },
   },
 });
+
+fn({
+  MuiDivider: {
+    defaultProps: {
+      className: 'my-class',
+    },
+  },
+});

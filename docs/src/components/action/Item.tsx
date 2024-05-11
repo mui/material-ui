@@ -91,7 +91,9 @@ export default function Item({
         p: 2,
         pr: smallerIconDistance ? 3 : 2,
         display: 'flex',
-        alignItems: 'center',
+        flexDirection: { xs: 'column', sm: 'row' },
+        alignItems: { xs: 'start', sm: 'center' },
+        gap: { xs: 2, sm: 0.5 },
         ...props.sx,
       }}
     >

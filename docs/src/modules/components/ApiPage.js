@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import Alert from '@mui/material/Alert';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
@@ -55,11 +54,11 @@ function Heading(props) {
     <Level id={hash}>
       <a aria-labelledby={hash} className="title-link-to-anchor" href={`#${hash}`} tabIndex={-1}>
         {getTranslatedHeader(t, hash)}
-        <div className="anchor-icon">
+        <span className="anchor-icon">
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
-        </div>
+        </span>
       </a>
     </Level>
   );
@@ -216,21 +215,29 @@ export default function ApiPage(props) {
               fontSize: theme.typography.pxToRem(16),
               backgroundColor: (theme.vars || theme).palette.success[50],
               borderColor: (theme.vars || theme).palette.success[100],
-              '& * p': {
-                mb: 1,
-              },
-              '& * a': {
-                fontWeight: theme.typography.fontWeightMedium,
-                color: (theme.vars || theme).palette.success[900],
-                textDecorationColor: alpha(theme.palette.success[600], 0.3),
+              '& .MuiAlert-message': {
+                '& * p': {
+                  color: (theme.vars || theme).palette.text.primary,
+                  mb: 1,
+                },
+                '& * a': {
+                  fontWeight: theme.typography.fontWeightMedium,
+                  color: (theme.vars || theme).palette.success[900],
+                  textDecorationColor: alpha(theme.palette.success[600], 0.3),
+                },
               },
               ...theme.applyDarkStyles({
-                '& * a': {
-                  color: (theme.vars || theme).palette.success[100],
-                  textDecorationColor: alpha(theme.palette.success[100], 0.3),
+                backgroundColor: alpha(theme.palette.success[700], 0.12),
+                borderColor: alpha(theme.palette.success[400], 0.1),
+                '& .MuiAlert-message': {
+                  ul: {
+                    pl: 3,
+                  },
+                  '& * a': {
+                    color: (theme.vars || theme).palette.success[100],
+                    textDecorationColor: alpha(theme.palette.success[100], 0.3),
+                  },
                 },
-                backgroundColor: alpha(theme.palette.success[700], 0.15),
-                borderColor: alpha(theme.palette.success[600], 0.3),
               }),
             }),
           ]}
@@ -303,7 +310,6 @@ export default function ApiPage(props) {
                   .replace(/{{name}}/, pageContent.name),
               }}
             />
-            <Divider />
           </React.Fragment>
         )}
         {pageContent.themeDefaultProps && (
@@ -316,7 +322,6 @@ export default function ApiPage(props) {
                   .replace(/{{defaultPropsLink}}/, defaultPropsLink),
               }}
             />
-            <Divider sx={{ 'hr&&': { mb: 0 } }} />
           </React.Fragment>
         )}
         <SlotsSection
