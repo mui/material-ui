@@ -269,7 +269,7 @@ All of the Autocomplete's slot props (`*Props`) props were deprecated in favor o
 
 ### componentsProps
 
-The Alert's `componentsProps` was deprecated in favor of `slotProps`:
+The Autocomplete's `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <Autocomplete
