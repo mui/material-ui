@@ -17,6 +17,9 @@ export interface AvatarGroupSlots {
 export type AvatarGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AvatarGroupSlots,
   {
+    /**
+     * @deprecated use `slotProps.surplus` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+     *  */
     additionalAvatar: React.ComponentPropsWithRef<typeof Avatar> &
       AvatarGroupComponentsPropsOverrides;
     surplus: React.ComponentPropsWithRef<typeof Avatar> & AvatarGroupComponentsPropsOverrides;

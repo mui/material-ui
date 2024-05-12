@@ -2,7 +2,7 @@ fn({
   MuiAvatarGroup: {
     defaultProps: {
       slotProps: {
-        additionalAvatar: {color: "red"}
+        surplus: {color: "red"}
       }
     },
   },
@@ -12,9 +12,26 @@ fn({
   MuiAvatarGroup: {
     defaultProps: {
       slotProps: {
-        additionalAvatar: {
+        surplus: {
           ...{color: "red"},
           ...{color: "blue"}
+        }
+      }
+    },
+  },
+});
+
+fn({
+  MuiAvatarGroup: {
+    defaultProps: {
+      slotProps: {
+        surplus: {
+          ...{
+            ...{color: "red"},
+            ...{color: "blue"}
+          },
+
+          ...{color: "yellow"}
         }
       }
     },

@@ -3,25 +3,36 @@ import { AvatarGroup as MyAvatarGroup } from '@mui/material';
 
 <AvatarGroup
   slotProps={{
-    additionalAvatar: {color: "red"}
+    surplus: {color: "red"},
   }}
 />;
 <MyAvatarGroup
 slotProps={{
-  additionalAvatar: {color: "red"}
+  surplus: {color: "red"},
 }}
 />;
 <MyAvatarGroup
   slotProps={{
-    additionalAvatar: {
+    surplus: {
       ...{color: "red"},
       ...{color: "blue"}
+    },
+  }} />;
+<MyAvatarGroup
+  slotProps={{
+    surplus: {
+      ...{
+        ...{color: "red"},
+        ...{color: "blue"}
+      },
+
+      ...{color: "yellow"}
     }
   }} />;
 
 // should skip non MUI components
 <NonMuiAvatarGroup
   componentsProps={{
-    additionalAvatar: {color: "red"}
+    additionalAvatar: {color: "red"},
   }}
 />;
