@@ -312,8 +312,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2(webpack@5.91.0)
       rimraf:
-        specifier: ^5.0.5
-        version: 5.0.5
+        specifier: ^5.0.7
+        version: 5.0.7
       serve:
         specifier: ^14.2.3
         version: 14.2.3
@@ -830,8 +830,8 @@ importers:
         specifier: ^1.8.10
         version: 1.8.10(react-dom@18.2.0)(react@18.2.0)
       rimraf:
-        specifier: ^5.0.5
-        version: 5.0.5
+        specifier: ^5.0.7
+        version: 5.0.7
       styled-components:
         specifier: ^6.1.10
         version: 6.1.10(react-dom@18.2.0)(react@18.2.0)
@@ -930,8 +930,8 @@ importers:
   packages-internal/docs-utils:
     dependencies:
       rimraf:
-        specifier: ^5.0.5
-        version: 5.0.5
+        specifier: ^5.0.7
+        version: 5.0.7
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -1006,8 +1006,8 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       rimraf:
-        specifier: ^5.0.5
-        version: 5.0.5
+        specifier: ^5.0.7
+        version: 5.0.7
 
   packages/api-docs-builder:
     dependencies:
@@ -1475,8 +1475,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       rimraf:
-        specifier: ^5.0.5
-        version: 5.0.5
+        specifier: ^5.0.7
+        version: 5.0.7
       shx:
         specifier: ^0.3.4
         version: 0.3.4
@@ -19202,9 +19202,9 @@ packages:
       glob: 9.3.5
     dev: true
 
-  /rimraf@5.0.5:
-    resolution: {integrity: sha512-CqDakW+hMe/Bz202FPEymy68P+G50RfMQK+Qo5YUqc9SPipvbGjCGKd0RSKEelbsfQuw3g5NZDSrlZZAJurH1A==}
-    engines: {node: '>=14'}
+  /rimraf@5.0.7:
+    resolution: {integrity: sha512-nV6YcJo5wbLW77m+8KjH8aB/7/rxQy9SZ0HY5shnwULfS+9nmTtVXAJET5NdZmCzA4fPI/Hm1wo/Po/4mopOdg==}
+    engines: {node: '>=14.18'}
     hasBin: true
     dependencies:
       glob: 10.3.10
