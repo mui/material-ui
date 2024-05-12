@@ -301,6 +301,30 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 npx @mui/codemod@next deprecations/avatar-group-props <path>
 ```
 
+### slotProps.additionalAvatar
+
+The AvatarGroup's `slotProps.additionalAvatar` was deprecated in favor of `slotProps.surplus`:
+
+```diff
+ <AvatarGroup
+   slotProps={{
+-    additionalAvatar: {color: "red"}
++    surplus: {color: "red"}
+   }}
+ />;
+```
+
+```diff
+ MuiAvatarGroup: {
+   defaultProps: {
+     slotProps: {
+-      additionalAvatar: {color: "red"}
++      surplus: {color: "red"}
+     },
+   },
+ },
+```
+
 ### componentsProps
 
 The AvatarGroup's `componentsProps` was deprecated in favor of `slotProps`:
@@ -310,9 +334,21 @@ The AvatarGroup's `componentsProps` was deprecated in favor of `slotProps`:
 -  componentsProps={{
 -    additionalAvatar: {color: "red"}
 +  slotProps={{
-+    additionalAvatar: {color: "red"}
++    surplus: {color: "red"}
    }}
  />;
+```
+
+```diff
+ MuiAvatarGroup: {
+   defaultProps: {
+-    componentsProps: {
+-      additionalAvatar: {color: "red"}
++    slotProps: {
++      surplus: {color: "red"}
+     },
+   },
+ },
 ```
 
 ## Backdrop

@@ -312,9 +312,41 @@ npx @mui/codemod@next deprecations/autocomplete-props <path>
 -  componentsProps={{
 -    additionalAvatar: {color: "red"}
 +  slotProps={{
-+    additionalAvatar: {color: "red"}
++    surplus: {color: "red"}
    }}
  />;
+```
+
+```diff
+ <AvatarGroup
+   slotProps={{
+-    additionalAvatar: {color: "red"}
++    surplus: {color: "red"}
+   }}
+ />;
+```
+
+```diff
+ MuiAvatarGroup: {
+   defaultProps: {
+-    componentsProps: {
+-      additionalAvatar: {color: "red"}
++    slotProps: {
++      surplus: {color: "red"}
+     },
+   },
+ },
+```
+
+```diff
+ MuiAvatarGroup: {
+   defaultProps: {
+     slotProps: {
+-      additionalAvatar: {color: "red"}
++      surplus: {color: "red"}
+     },
+   },
+ },
 ```
 
 ```bash
