@@ -114,7 +114,7 @@
     "@next/eslint-plugin-next": "^14.2.3",
     "@octokit/rest": "^20.1.1",
     "@pigment-css/react": "^0.0.10",
-    "@playwright/test": "1.43.1",
+    "@playwright/test": "1.44.0",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.1",
