@@ -1157,8 +1157,8 @@ importers:
         version: 9.0.1
     optionalDependencies:
       aws-sdk:
-        specifier: ^2.1616.0
-        version: 2.1616.0
+        specifier: ^2.1618.0
+        version: 2.1618.0
     devDependencies:
       claudia:
         specifier: ^5.14.1
@@ -9443,8 +9443,8 @@ packages:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  /aws-sdk@2.1616.0:
-    resolution: {integrity: sha512-Wes2FOJn/5Bo35ku+KYvn/H+xnuPuI97mQKxhU+d3TczAY56rFH/qw7Bff8HI0Gi6m6lDEhhq76qvG4gfdPexg==}
+  /aws-sdk@2.1618.0:
+    resolution: {integrity: sha512-yfDi9cOpT+dnKMHaR8aFhRyISMItQrRW0v5usaNh7WvXl/YVN1YI0tMSdF1riqaOpbwKgk7162YBj+RoALimHg==}
     engines: {node: '>= 10.0.0'}
     requiresBuild: true
     dependencies:
@@ -10233,7 +10233,7 @@ packages:
     hasBin: true
     dependencies:
       archiver: 3.1.1
-      aws-sdk: 2.1616.0
+      aws-sdk: 2.1618.0
       fs-extra: 6.0.1
       glob: 7.2.3
       gunzip-maybe: 1.4.2
