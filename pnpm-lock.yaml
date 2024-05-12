@@ -560,8 +560,8 @@ importers:
         specifier: ^6.1.5
         version: 6.1.5
       styled-components:
-        specifier: ^6.1.10
-        version: 6.1.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^6.1.11
+        version: 6.1.11(react-dom@18.2.0)(react@18.2.0)
       styled-system:
         specifier: ^5.1.5
         version: 5.1.5
@@ -833,8 +833,8 @@ importers:
         specifier: ^5.0.7
         version: 5.0.7
       styled-components:
-        specifier: ^6.1.10
-        version: 6.1.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^6.1.11
+        version: 6.1.11(react-dom@18.2.0)(react@18.2.0)
       stylis:
         specifier: 4.2.0
         version: 4.2.0
@@ -1900,8 +1900,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       styled-components:
-        specifier: ^6.1.10
-        version: 6.1.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^6.1.11
+        version: 6.1.11(react-dom@18.2.0)(react@18.2.0)
     publishDirectory: build
 
   packages/mui-styles:
@@ -2060,8 +2060,8 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       styled-components:
-        specifier: ^6.1.10
-        version: 6.1.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^6.1.11
+        version: 6.1.11(react-dom@18.2.0)(react@18.2.0)
     publishDirectory: build
 
   packages/mui-types:
@@ -2362,8 +2362,8 @@ importers:
         specifier: ^15.2.0
         version: 15.2.0
       styled-components:
-        specifier: ^6.1.10
-        version: 6.1.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^6.1.11
+        version: 6.1.11(react-dom@18.2.0)(react@18.2.0)
       stylis:
         specifier: 4.2.0
         version: 4.2.0
@@ -20155,8 +20155,8 @@ packages:
     resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
     dev: true
 
-  /styled-components@6.1.10(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-4K8IKcn7iOt76riGLjvBhRyNPTkUKTvmnwoRFBOtJLswVvzy2VsoE2KOrfl9FJLQUYbITLJY2wfIZ3tjbkA/Zw==}
+  /styled-components@6.1.11(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Ui0jXPzbp1phYij90h12ksljKGqF8ncGx+pjrNPsSPhbUUjWT2tD1FwGo2LF6USCnbrsIhNngDfodhxbegfEOA==}
     engines: {node: '>= 16'}
     peerDependencies:
       react: '>= 16.8.0'
