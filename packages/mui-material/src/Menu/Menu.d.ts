@@ -7,8 +7,18 @@ import { MenuListProps } from '../MenuList';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export interface MenuProps extends StandardProps<PopoverProps> {
+export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  {},
+  {
+    transition: SlotProps<React.JSXElementConstructor<TransitionProps>, {}, MenuOwnerState>;
+  }
+>;
+
+export interface MenuProps
+  extends Omit<StandardProps<PopoverProps>, 'slots' | 'slotProps'>,
+    SpeedDialSlotsAndSlotProps {
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.
@@ -71,6 +81,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionProps?: TransitionProps;
   /**
@@ -79,6 +90,8 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    */
   variant?: 'menu' | 'selectedMenu';
 }
+
+export interface MenuOwnerState extends MenuProps {}
 
 export declare const MenuPaper: React.FC<PaperProps>;
 
