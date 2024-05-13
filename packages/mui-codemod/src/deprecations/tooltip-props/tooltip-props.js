@@ -1,5 +1,3 @@
-import { EOL } from 'os';
-
 import replaceComponentsWithSlots from '../utils/replaceComponentsWithSlots';
 
 /**
@@ -14,11 +12,5 @@ export default function transformer(file, api, options) {
   replaceComponentsWithSlots(j, { root, componentName: 'Tooltip' });
 
   // I've tried { lineTerminator } option here, but still get wrong line endings on my Windows machine
-  const result = root.toSource(printOptions);
-
-  if (EOL !== '\n') {
-    return result.replace(/\n/g, EOL);
-  }
-
-  return result;
+  return root.toSource(printOptions);
 }
