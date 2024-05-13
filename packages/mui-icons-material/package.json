@@ -63,7 +63,7 @@
     "react": "^18.2.0",
     "rimraf": "^5.0.7",
     "shx": "^0.3.4",
-    "svgo": "^3.2.0",
+    "svgo": "^3.3.2",
     "yargs": "^17.7.2"
   },
   "peerDependencies": {
