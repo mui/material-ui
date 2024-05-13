@@ -8,7 +8,9 @@ card: false
 ---
 
 In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to the way they operate to support the latest patterns and reap the potential gains in performance.
-Trouble is, the "traditional" CSS-in-JS solutions we rely on, like Emotion and styled-components—collectively favored by nearly half of the React ecosystem—aren't able to come along with us.
+
+Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us.
+And with nearly 50% of respondents indicating they use styled-components in [State of CSS 2023](https://2023.stateofcss.com/en-US/css-in-js/), we're looking at a whole lot of developers who have no clear path forward from here.
 
 For a library as widely used as Material UI, the biggest challenge to keeping up with the times is to do so while introducing as few breaking changes as humanly possible, to maintain a consistent and reliable developer experience without asking users to completely change the way they build UI components.
 
