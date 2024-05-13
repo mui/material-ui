@@ -1,16 +1,16 @@
 ---
 title: 'Introducing Pigment CSS: the next generation of CSS-in-JS for Material UI'
-description: 'TK'
+description: 'Pigment CSS offers significant performance gains along with RSC and App Router support.'
 date: 2024-05-14T00:00:00.000Z
 authors: ['samuelsycamore']
 tags: ['Pigment CSS']
 card: false
 ---
 
-In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering the UI from run time to build time.
+In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering UIs from run time to build time.
 
 Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because so much of what they do happens at run time.
-And with nearly 50% of respondents indicating they use styled-components in [State of CSS 2023](https://2023.stateofcss.com/en-US/css-in-js/), we're looking at a whole lot of React developers who have no clear path forward from here.
+And with nearly 50% of respondents in the [State of CSS 2023 survey](https://2023.stateofcss.com/en-US/css-in-js/) indicating they use styled-components, we're looking at a whole lot of React developers with no clear path forward from here.
 
 For a library as widely used as Material UI, the biggest challenge is to stay up-to-date while introducing as few breaking changes as humanly possible, to maintain a consistent and reliable developer experience without asking users to completely change the way they build UI components.
 
@@ -37,7 +37,7 @@ To learn more about RSCs, we highly recommend reading [Making Sense of React Ser
 ### Material UI is a unique use case
 
 Material UI is downloaded millions of times per month and is one of the most rigorously battle-tested UI libraries on the internet, with a GitHub history spanning all the way back to 2014.
-It's had to make some massive changes along the way to keep up with the times; most recently, migrating from JSS to Emotion from v4 to v5.
+It's had to make some massive changes along the way to keep up with the times; most recently, moving from JSS to Emotion from v4 to v5.
 While those breaking changes did bring many benefits overall, they unfortunately came with a notoriously painful migration experience.
 
 We learned our lesson!
@@ -47,7 +47,7 @@ So when it came time to seek out a new way to generate styles, we knew we needed
 
 ### Other options don't meet our needs
 
-For those of us who are perfectly happy with the patterns we know and love in CSS-in-JS, it feels frustrating to consider abandoning all that muscle memory just to reinvent the wheel yet again.
+For those of us who are perfectly happy with the patterns we know and love from CSS-in-JS, it feels frustrating to consider abandoning all that muscle memory just to reinvent the wheel yet again.
 We like the DX of colocated styles, and we'd rather not bloat the DOM with atomic class names—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have cropped up in recent months just don't match up with our preferences.
 
 ## How Pigment CSS works
@@ -82,16 +82,33 @@ When comparing the same Material UI app built with Next.js and either Emotion o
 
 ### Familiar developer experience
 
-Use code snippets to show how similar it is to Emotion in terms of DX
+For developers migrating from Emotion or styled-components, you're probably already familiar with the most common patterns employed by Pigment CSS.
+`styled()` and `css()` are the two main functions used to define styles, and they mostly work the same as you'd expect them to (with some notable differences due to the nature of build-time CSS-in-JS—see [Coming from Emotion or styled-components](https://github.com/mui/pigment-css/tree/master?tab=readme-ov-file#coming-from-emotion-or-styled-components) for details).
+
+We've also ported over the `sx` prop from MUI System, so you can still define styles directly in a given component, but now it's much more performant than before.
+And in Pigment CSS we've extended support for `sx` to include _all_ DOM nodes—not just Material UI components—so you don't need to wrap a simple `<div>` or `<span>` with a Box component to apply theme styles to it.
 
 ### Future-proof solution
 
-Though we're still quite early in the era of RSCs, it seems inevitable that the ecosystem as a whole will converge on this new paradigm for React.
-Next.js gave us our first glimpse with the App Router; RedwoodJS [recently released their own implementation](https://redwoodjs.com/blog/rsc-now-in-redwoodjs), and many other frameworks and meta-frameworks are currently working out POCs and RFCs to catch up.
-Regardless of how quickly RSCs catch on among developers, it's clear that library maintainers need to support [the two Reacts](https://overreacted.io/the-two-reacts/) (client-side and server-side) to stay relevant in the future.
+Though we're still quite early in RSC era, it seems inevitable that the ecosystem as a whole will converge on this new paradigm for React over time.
+Next.js gave us our first glimpse with the App Router; RedwoodJS [recently released their own implementation](https://redwoodjs.com/blog/rsc-now-in-redwoodjs); and many other frameworks and meta-frameworks are currently working out POCs and RFCs to catch up.
+Regardless of how quickly Server Components catch on among developers, it's clear that library maintainers now must support [the two Reacts](https://overreacted.io/the-two-reacts/) (client-side and server-side) to stay relevant into the future.
 
 Pigment CSS, then, is yet another bet from MUI on the longevity and sustainability of the React ecosystem—and a promise that we'll continue to innovate in this space for years to come.
 
-## Get started with Pigment CSS
+And perhaps most importantly: because Pigment CSS is maintained by the same folks behind Material UI, we'll have a lot more control over how the tool evolves over time to continue to meet our users' needs.
+In a perfect world, this would be the last time you'd ever have to migrate your Material UI app to a new style engine.
+We'll do our best to make that a reality. 🤞
 
-Conclude by telling users where to go and what to do to get started. Link to Next.js and Vite starters. Invite users to star the repo and open issues.
+## What's next
+
+Pigment CSS is currently in the early alpha stage of development—the plan is to have a stable version ready to release alongside Material UI v6 later this year.
+When that happens, you'll have the choice to opt in to Pigment CSS incrementally after migrating to v6, giving you all the time you need to migrate on your own terms.
+
+That said, Pigment CSS is available now for experimentation, and we'd love for you to give it a try and let us know what you think—your feedback at this stage could have a major impact on the final product.
+
+## Get started with Pigment CSS
+
+Head to the [Pigment CSS repo](https://github.com/mui/pigment-css/) to learn how to set it up and start tinkering.
+Please feel free to [open a new issue](https://github.com/mui/pigment-css/issues) if you encounter any bugs or frustrations along the way.
+And while you're there, why not ⭐️ star the repo ⭐️ to let us know you're excited and help spread the word to others? 😁
