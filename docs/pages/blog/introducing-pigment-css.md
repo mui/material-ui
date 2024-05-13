@@ -28,6 +28,10 @@ In early 2023 React introduced Server Components, and Next.js offered the first 
 RSCs unlock a whole new realm of possibilities for React; for us as UI developers, it means we can create components that are fully rendered at build time so we don't have to pass that burden on to the client at runtime.
 But working with RSCs requires us to let go of familiar APIs like `useContext`, which in turn becomes a major blocker for using the last generation's style engines like Emotion that rely heavily on this hook for theming.
 
+:::info
+To learn more about RSCs, we highly recommend reading [Making Sense of React Server Components](https://www.joshwcomeau.com/react/server-components/) by Josh Comeau.
+:::
+
 ### Other options don't meet our needs
 
 For those of us who are perfectly happy with the patterns we know and love in CSS-in-JS, it feels frustrating to consider abandoning all that muscle memory just to reinvent the wheel yet again.
@@ -46,7 +50,18 @@ So when it came time to seek out a new way to generate styles, we knew we needed
 
 ## How Pigment CSS works
 
-Show how Pigment CSS solves the problem outlined above. Explain how it works in 2-3 paragraphs with a few code snippets. Can derive this text from the doc on this topic.
+Pigment CSS is a zero-runtime CSS-in-JS library.
+This means it does not have access to the end user's browser runtime which would be necessary to generate and insert authored CSS at runtime.
+Instead, it does all its processing at build time to pre-generate the CSS which then becomes part of the output bundle.
+
+Pigment CSS is built on top of the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/).
+It features a [processor](https://wyw-in-js.dev/how-to/custom-tagged-template#creating-a-processor) which makes it possible to create custom logic that's triggered by the presence of different imports from the library.
+The processor looks through the source code for `styled()`, `css()`, and other function calls and extracts the arguments to be evaluated.
+These values are then handed back to Pigment CSS for additional parsing and evaluation.
+
+:::info
+Check out [How Pigment CSS works](https://github.com/mui/pigment-css/blob/master/HOW_PIGMENT_CSS_WORKS.md) for complete details.
+:::
 
 ## Benefits of using Pigment CSS
 
