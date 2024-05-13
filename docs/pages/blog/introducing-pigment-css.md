@@ -35,7 +35,7 @@ To learn more about RSCs, we highly recommend reading [Making Sense of React Ser
 ### Other options don't meet our needs
 
 For those of us who are perfectly happy with the patterns we know and love in CSS-in-JS, it feels frustrating to consider abandoning all that muscle memory just to reinvent the wheel yet again.
-We like the DX of colocated styles, and we'd rather not bloat the DOM with atomic class names—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have cropped up in recent months just don't match up with our preferences.
+We like the DX of colocated styles, and we'd rather not bloat the DOM with atomic class names—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have cropped up in recent months just don't match up with our preferences.
 
 ### Material UI is a unique use case
 
