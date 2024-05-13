@@ -6,8 +6,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import useTheme from '../styles/useTheme';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
@@ -17,6 +16,8 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import speedDialClasses, { getSpeedDialUtilityClass } from './speedDialClasses';
 import useSlot from '../utils/useSlot';
+
+const useThemeProps = createUseThemeProps('MuiSpeedDial');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, open, direction } = ownerState;
@@ -51,43 +52,65 @@ const SpeedDialRoot = styled('div', {
 
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   zIndex: (theme.vars || theme).zIndex.speedDial,
   display: 'flex',
   alignItems: 'center',
   pointerEvents: 'none',
-  ...(ownerState.direction === 'up' && {
-    flexDirection: 'column-reverse',
-    [`& .${speedDialClasses.actions}`]: {
-      flexDirection: 'column-reverse',
-      marginBottom: -dialRadius,
-      paddingBottom: spacingActions + dialRadius,
+  variants: [
+    {
+      props: {
+        direction: 'up',
+      },
+      style: {
+        flexDirection: 'column-reverse',
+        [`& .${speedDialClasses.actions}`]: {
+          flexDirection: 'column-reverse',
+          marginBottom: -dialRadius,
+          paddingBottom: spacingActions + dialRadius,
+        },
+      },
     },
-  }),
-  ...(ownerState.direction === 'down' && {
-    flexDirection: 'column',
-    [`& .${speedDialClasses.actions}`]: {
-      flexDirection: 'column',
-      marginTop: -dialRadius,
-      paddingTop: spacingActions + dialRadius,
+    {
+      props: {
+        direction: 'down',
+      },
+      style: {
+        flexDirection: 'column',
+        [`& .${speedDialClasses.actions}`]: {
+          flexDirection: 'column',
+          marginTop: -dialRadius,
+          paddingTop: spacingActions + dialRadius,
+        },
+      },
     },
-  }),
-  ...(ownerState.direction === 'left' && {
-    flexDirection: 'row-reverse',
-    [`& .${speedDialClasses.actions}`]: {
-      flexDirection: 'row-reverse',
-      marginRight: -dialRadius,
-      paddingRight: spacingActions + dialRadius,
+    {
+      props: {
+        direction: 'left',
+      },
+      style: {
+        flexDirection: 'row-reverse',
+        [`& .${speedDialClasses.actions}`]: {
+          flexDirection: 'row-reverse',
+          marginRight: -dialRadius,
+          paddingRight: spacingActions + dialRadius,
+        },
+      },
     },
-  }),
-  ...(ownerState.direction === 'right' && {
-    flexDirection: 'row',
-    [`& .${speedDialClasses.actions}`]: {
-      flexDirection: 'row',
-      marginLeft: -dialRadius,
-      paddingLeft: spacingActions + dialRadius,
+    {
+      props: {
+        direction: 'right',
+      },
+      style: {
+        flexDirection: 'row',
+        [`& .${speedDialClasses.actions}`]: {
+          flexDirection: 'row',
+          marginLeft: -dialRadius,
+          paddingLeft: spacingActions + dialRadius,
+        },
+      },
     },
-  }),
+  ],
 }));
 
 const SpeedDialFab = styled(Fab, {
@@ -106,14 +129,19 @@ const SpeedDialActions = styled('div', {
 
     return [styles.actions, !ownerState.open && styles.actionsClosed];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
   pointerEvents: 'auto',
-  ...(!ownerState.open && {
-    transition: 'top 0s linear 0.2s',
-    pointerEvents: 'none',
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.open,
+      style: {
+        transition: 'top 0s linear 0.2s',
+        pointerEvents: 'none',
+      },
+    },
+  ],
+});
 
 const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSpeedDial' });

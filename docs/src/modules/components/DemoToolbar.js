@@ -32,16 +32,26 @@ import stackBlitz from '../sandbox/StackBlitz';
 const Root = styled('div')(({ theme }) => [
   {
     [theme.breakpoints.up('sm')]: {
-      justifyContent: 'space-between',
-      alignItems: 'center',
       display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    '& .MuiIconButton-root': {
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.grey[100],
+      },
     },
     '& .MuiSvgIcon-root': {
       fontSize: 16,
-      color: (theme.vars || theme).palette.grey[800],
+      color: (theme.vars || theme).palette.grey[900],
     },
   },
   theme.applyDarkStyles({
+    '& .MuiIconButton-root': {
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+      },
+    },
     '& .MuiSvgIcon-root': {
       color: (theme.vars || theme).palette.grey[400],
     },
@@ -80,7 +90,7 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
 
 const Button = styled(MDButton)(({ theme }) => ({
   height: 26,
-  padding: '6px 8px 8px 8px',
+  padding: '7px 8px 8px 8px', // 7px for optical alignment
   flexShrink: 0,
   borderRadius: 999,
   border: '1px solid',

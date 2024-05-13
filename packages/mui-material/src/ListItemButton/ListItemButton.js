@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
+
+const useThemeProps = createUseThemeProps('MuiListItemButton');
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
