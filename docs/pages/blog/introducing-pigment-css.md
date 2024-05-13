@@ -75,7 +75,7 @@ _We intend for Pigment CSS to be a viable solution for the React ecosystem as a
 
 When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, the latter led to:
 
-- 20% reduction in first load JS (104 kB vs. 131 kB)
+- 20% reduction in first load JavaScript (104 kB vs. 131 kB)
 - 9% decrease in First Contentful Paint (455 ms vs. 503 ms)
 - 15% reduction in Time To First Byte
 - 7.5% reduction in page HTML (14.7 kB vs. 15.9 kB)
@@ -85,7 +85,7 @@ When comparing the same Material UI app built with Next.js and either Emotion o
 For developers migrating from Emotion or styled-components, you're probably already familiar with the most common patterns employed by Pigment CSS.
 `styled()` and `css()` are the two main functions used to define styles, and they mostly work the same as you'd expect them to (with some notable differences due to the nature of build-time CSS-in-JS—see [Coming from Emotion or styled-components](https://github.com/mui/pigment-css/tree/master?tab=readme-ov-file#coming-from-emotion-or-styled-components) for details).
 
-We've also ported over the `sx` prop from MUI System, so you can still define styles directly in a given component, but now it's much more performant than before.
+We've also ported over the `sx` prop from MUI System, so you can still define styles directly in a given component, but now it's much more performant than before.
 And in Pigment CSS we've extended support for `sx` to include _all_ DOM nodes—not just Material UI components—so you don't need to wrap a simple `<div>` or `<span>` with a Box component to apply theme styles to it.
 
 ### Future-proof solution
