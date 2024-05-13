@@ -7,7 +7,7 @@ tags: ['Pigment CSS']
 card: false
 ---
 
-In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes for better performance by moving more of the work of rendering the UI from run time to build time.
+In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering the UI from run time to build time.
 
 Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because so much of what they do happens at run time.
 And with nearly 50% of respondents indicating they use styled-components in [State of CSS 2023](https://2023.stateofcss.com/en-US/css-in-js/), we're looking at a whole lot of developers who have no clear path forward from here.
