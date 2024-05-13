@@ -212,12 +212,12 @@ function ColorTool() {
 
   const COLOR_WIDTH = 156;
   const SLIDER_WIDTH_CALC = 'calc(100% - 80px)';
-  
+
   const colorPicker = (intent) => {
     const intentInput = state[`${intent}Input`];
     const intentShade = state[`${intent}Shade`];
     const color = state[`${intent}`];
-  
+
     return (
       <Grid item xs={12} sm={6} md={4}>
         <Typography component="label" gutterBottom htmlFor={intent} variant="h6">
@@ -251,7 +251,7 @@ function ColorTool() {
                 ? shades[state.primaryShade]
                 : shades[state.secondaryShade];
             const backgroundColor = colors[hue][shade];
-  
+
             return (
               <Tooltip placement="right" title={hue} key={hue}>
                 <TooltipRadio
