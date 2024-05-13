@@ -1,5 +1,5 @@
 ---
-title: 'Introducing Pigment CSS: the next generaton of CSS-in-JS'
+title: 'Introducing Pigment CSS: the next generaton of CSS-in-JS for Material UI'
 description: 'TK'
 date: 2024-05-14T00:00:00.000Z
 authors: ['samuelsycamore']
