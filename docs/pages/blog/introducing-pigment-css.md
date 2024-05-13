@@ -32,11 +32,6 @@ But working with RSCs requires us to let go of familiar APIs like `useContext`, 
 To learn more about RSCs, we highly recommend reading [Making Sense of React Server Components](https://www.joshwcomeau.com/react/server-components/) by Josh Comeau.
 :::
 
-### Other options don't meet our needs
-
-For those of us who are perfectly happy with the patterns we know and love in CSS-in-JS, it feels frustrating to consider abandoning all that muscle memory just to reinvent the wheel yet again.
-We like the DX of colocated styles, and we'd rather not bloat the DOM with atomic class names—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have cropped up in recent months just don't match up with our preferences.
-
 ### Material UI is a unique use case
 
 Material UI is downloaded millions of times per month and is one of the most rigorously battle-tested UI libraries on the internet, with a GitHub history spanning all the way back to 2014.
@@ -48,10 +43,14 @@ We can't do that to our users again.
 
 So when it came time to seek out a new way to generate styles, we knew we needed to keep the composition and syntax as similar as possible to Emotion and styled-components, to minimize friction when migrating.
 
+### Other options don't meet our needs
+
+For those of us who are perfectly happy with the patterns we know and love in CSS-in-JS, it feels frustrating to consider abandoning all that muscle memory just to reinvent the wheel yet again.
+We like the DX of colocated styles, and we'd rather not bloat the DOM with atomic class names—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have cropped up in recent months just don't match up with our preferences.
+
 ## How Pigment CSS works
 
-Pigment CSS is a zero-runtime CSS-in-JS library.
-This means it does not have access to the end user's browser runtime which would be necessary to generate and insert authored CSS at runtime.
+Pigment CSS is a zero-runtime CSS-in-JS library: This means it doesn't have access to the end user's browser runtime, which would be necessary to generate and insert authored CSS at runtime.
 Instead, it does all its processing at build time to pre-generate the CSS which then becomes part of the output bundle.
 
 Pigment CSS is built on top of the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/).
@@ -64,6 +63,11 @@ Check out [How Pigment CSS works](https://github.com/mui/pigment-css/blob/maste
 :::
 
 ## Benefits of using Pigment CSS
+
+For Material UI users, the benefits of adopting Pigment CSS\* are clear: your users get better performance, and you get RSC and App Router compatibility without having to significantly change how you author component styles.
+
+_\*These benefits extend to other component libraries beyond Material UI as well, but that's our focus for the sections that follow._
+_We intend for Pigment CSS to be a viable solution for the React ecosystem as a whole, but you can understand why we're prioritizing Material UI during early development._
 
 ### Better performance
 
