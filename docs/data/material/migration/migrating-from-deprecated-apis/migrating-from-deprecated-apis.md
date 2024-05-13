@@ -991,6 +991,36 @@ The FormControlLabel's `componentsProps` prop was deprecated in favor of `slotPr
  />
 ```
 
+## ListItem
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-props <path>
+```
+
+### components
+
+The ListItem's `components` prop was deprecated in favor of `slots`:
+
+```diff
+ <ListItem
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+ />
+```
+
+### componentsProps
+
+The ListItem's `componentsProps` prop was deprecated in favor of `slotProps`:
+
+```diff
+ <ListItem
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
 ## ListItemSecondaryAction
 
 ### Deprecated component
@@ -1013,7 +1043,7 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
 -    </IconButton>
 -  </ListItemSecondaryAction>
  </ListItem>
-```
+ ```
 
 ## PaginationItem
 

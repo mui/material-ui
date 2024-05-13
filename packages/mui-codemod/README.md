@@ -1222,6 +1222,32 @@ CSS transforms:
 npx @mui/codemod@next deprecations/step-connector-classes <path>
 ```
 
+#### `list-item-props`
+
+```diff
+ <ListItem
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiListItem: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'test-id' }}
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/list-item-props <path>
+```
+
 ### v6.0.0
 
 #### `theme-v6`
