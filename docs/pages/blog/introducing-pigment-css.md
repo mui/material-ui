@@ -7,16 +7,16 @@ tags: ['Pigment CSS']
 card: false
 ---
 
-In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering UIs from run time to build time.
+In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering UIs from run-time to build-time.
 
-Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because so much of what they do happens at run time.
+Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because so much of what they do happens at run-time.
 And with nearly 50% of respondents in the [State of CSS 2023 survey](https://2023.stateofcss.com/en-US/css-in-js/) indicating they use styled-components, we're looking at a whole lot of React developers with no clear path forward from here.
 
 For a library as widely used as Material UI, the biggest challenge is to stay up-to-date while introducing as few breaking changes as humanly possible, to maintain a consistent and reliable developer experience without asking users to completely change the way they build UI components.
 
 That's where Pigment CSS comes in.
 
-Pigment CSS is MUI's new in-house styling solution: a zero-runtime CSS-in-JS package that generates colocated styles to their own CSS files at build time.
+Pigment CSS is MUI's new in-house styling solution: a zero-runtime CSS-in-JS package that generates colocated styles to their own CSS files at build-time.
 With Pigment CSS you get the latest and greatest advancements in CSS along with RSC compatibility, _plus_ significant performance improvements when compared with Emotion in Material UI v5.
 And though it's specially tailored to meet the needs of Material UI users, Pigment CSS can be used with _any_ React component library you prefer.
 
@@ -27,7 +27,7 @@ And though it's specially tailored to meet the needs of Material UI users, Pigm
 Emotion made a lot of sense for Material UI v5 in late 2021, but so much has changed in the React ecosystem since then.
 In early 2023 React introduced Server Components, and Next.js offered the first implementation of the new spec with the App Router shortly thereafter.
 
-RSCs unlock a whole new realm of possibilities for React; for us as UI developers, it means we can create components that are fully rendered at build time so we don't have to pass that burden on to the client at run time.
+RSCs unlock a whole new realm of possibilities for React; for us as UI developers, it means we can create components that are fully rendered at build-time so we don't have to pass that burden on to the client at run-time.
 But working with RSCs requires us to let go of familiar APIs like `useContext`, which in turn becomes a major blocker for using the last generation's style engines like Emotion that rely heavily on this hook for theming.
 
 :::info
@@ -52,8 +52,8 @@ We like the DX of colocated styles, and we'd rather not bloat the DOM with atomi
 
 ## How Pigment CSS works
 
-Pigment CSS is a zero-runtime CSS-in-JS library: This means it doesn't have access to the end user's browser runtime, which would be necessary to generate and insert authored CSS at run time.
-Instead, it does all its processing at build time to pre-generate the CSS which then becomes part of the output bundle.
+Pigment CSS is a zero-runtime CSS-in-JS library: This means it doesn't have access to the end user's browser runtime, which would be necessary to generate and insert authored CSS at run-time.
+Instead, it does all its processing at build-time to pre-generate the CSS which then becomes part of the output bundle.
 
 Pigment CSS is built on top of the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/).
 It features a [processor](https://wyw-in-js.dev/how-to/custom-tagged-template#creating-a-processor) which makes it possible to create custom logic that's triggered by the presence of different imports from the library.
@@ -90,9 +90,9 @@ And in Pigment CSS we've extended support for `sx` to include _all_ DOM nodes�
 
 ### Future-proof solution
 
-Though we're still quite early in RSC era, it seems inevitable that the ecosystem as a whole will converge on this new paradigm for React over time.
+Though we're still quite early in the RSC era, it seems inevitable that the React ecosystem as a whole will converge on this new paradigm over time.
 Next.js gave us our first glimpse with the App Router; RedwoodJS [recently released their own implementation](https://redwoodjs.com/blog/rsc-now-in-redwoodjs); and many other frameworks and meta-frameworks are currently working out POCs and RFCs to catch up.
-Regardless of how quickly Server Components catch on among developers, it's clear that library maintainers now must support [the two Reacts](https://overreacted.io/the-two-reacts/) (client-side and server-side) to stay relevant into the future.
+Regardless of how quickly Server Components catch on among developers, it's clear that library maintainers must now support [the two Reacts](https://overreacted.io/the-two-reacts/) (client-side and server-side) to stay relevant into the future.
 
 Pigment CSS, then, is yet another bet from MUI on the longevity and sustainability of the React ecosystem—and a promise that we'll continue to innovate in this space for years to come.
 
