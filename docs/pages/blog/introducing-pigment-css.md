@@ -1,5 +1,5 @@
 ---
-title: 'Introducing Pigment CSS: the next generation of CSS-in-JS for Material UI'
+title: 'Introducing Pigment CSS: the next generation of CSS-in-JS for Material UI'
 description: 'Pigment CSS offers significant performance gains along with RSC and App Router support.'
 date: 2024-05-14T00:00:00.000Z
 authors: ['samuelsycamore']
@@ -86,7 +86,7 @@ For developers migrating from Emotion or styled-components, you're probably alre
 `styled()` and `css()` are the two main functions used to define styles, and they mostly work the same as you'd expect them to (with some notable differences due to the nature of build-time CSS-in-JS—see [Coming from Emotion or styled-components](https://github.com/mui/pigment-css/tree/master?tab=readme-ov-file#coming-from-emotion-or-styled-components) for details).
 
 We've also ported over the `sx` prop from MUI System, so you can still define styles directly in a given component, but now it's much more performant than before.
-And in Pigment CSS we've extended support for `sx` to include _all_ DOM nodes—not just Material UI components—so you don't need to wrap a simple `<div>` or `<span>` with a Box component to apply theme styles to it.
+And in Pigment CSS we've extended support for `sx` to include _all_ DOM nodes—not just Material UI components—so you don't need to wrap a simple `<div>` or `<span>` with a Box component to apply theme styles to it.
 
 ### Future-proof solution
 
@@ -97,7 +97,7 @@ Regardless of how quickly Server Components catch on among developers, it's clea
 Pigment CSS, then, is yet another bet from MUI on the longevity and sustainability of the React ecosystem—and a promise that we'll continue to innovate in this space for years to come.
 
 And perhaps most importantly: because Pigment CSS is maintained by the same folks behind Material UI, we'll have a lot more control over how the tool evolves over time to continue to meet our users' needs.
-In a perfect world, this would be the last time you'd ever have to migrate your Material UI app to a new style engine.
+In a perfect world, this would be the last time you'd ever have to migrate your Material UI app to a new style engine.
 We'll do our best to make that a reality. 🤞
 
 ## What's next
@@ -107,8 +107,8 @@ When that happens, you'll have the choice to opt in to Pigment CSS incrementall
 
 That said, Pigment CSS is available now for experimentation, and we'd love for you to give it a try and let us know what you think—your feedback at this stage could have a major impact on the final product.
 
-## Get started with Pigment CSS
+## Get started with Pigment CSS
 
-Head to the [Pigment CSS repo](https://github.com/mui/pigment-css/) to learn how to set it up and start tinkering.
+Head to the [Pigment CSS repo](https://github.com/mui/pigment-css/) to learn how to set it up and start tinkering.
 Please feel free to [open a new issue](https://github.com/mui/pigment-css/issues) if you encounter any bugs or frustrations along the way.
 And while you're there, why not ⭐️ star the repo ⭐️ to let us know you're excited and help spread the word to others? 😁
