@@ -1,5 +1,7 @@
 import path from 'path';
 import { expect } from 'chai';
+import { EOL } from 'os';
+
 import { jscodeshift } from '../../../testUtils';
 import transform from './popper-props';
 import readFile from '../../util/readFile';
@@ -12,14 +14,30 @@ describe('@mui/codemod', () => {
   describe('deprecations', () => {
     describe('popper-props', () => {
       it('transforms props as needed', () => {
-        const actual = transform({ source: read('./test-cases/actual.js') }, { jscodeshift }, {});
+        const actual = transform(
+          { source: read('./test-cases/actual.js') },
+          { jscodeshift },
+          {
+            printOptions: {
+              lineTerminator: EOL,
+            },
+          },
+        );
 
         const expected = read('./test-cases/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
-        const actual = transform({ source: read('./test-cases/expected.js') }, { jscodeshift }, {});
+        const actual = transform(
+          { source: read('./test-cases/expected.js') },
+          { jscodeshift },
+          {
+            printOptions: {
+              lineTerminator: EOL,
+            },
+          },
+        );
 
         const expected = read('./test-cases/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
@@ -31,7 +49,12 @@ describe('@mui/codemod', () => {
         const actual = transform(
           { source: read('./test-cases/theme.actual.js') },
           { jscodeshift },
-          { printOptions: { trailingComma: false } },
+          {
+            printOptions: {
+              trailingComma: false,
+              lineTerminator: EOL,
+            },
+          },
         );
 
         const expected = read('./test-cases/theme.expected.js');
@@ -42,7 +65,11 @@ describe('@mui/codemod', () => {
         const actual = transform(
           { source: read('./test-cases/theme.expected.js') },
           { jscodeshift },
-          {},
+          {
+            printOptions: {
+              lineTerminator: EOL,
+            },
+          },
         );
 
         const expected = read('./test-cases/theme.expected.js');
