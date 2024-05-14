@@ -1,5 +1,91 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.6
+
+<!-- generated comparing v6.0.0-alpha.5..next -->
+
+_May 8, 2024_
+
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+
+### `@mui/material@6.0.0-alpha.6`
+
+- [Chip] Add colorDefault class to chipClasses (#42067) @sai6855
+- Migrate components to support CSS extraction (#42001) @siriwatknp
+- [SpeedDial] Deprecate TransitionComponent (#40698) @harry-whorlow
+
+### `@mui/codemod@6.0.0-alpha.6`
+
+- Add `theme-v6` migration (#42056) @siriwatknp
+
+### `@mui/icons-material@6.0.0-alpha.6`
+
+- Add the Emergency icon (#42080) @danilo-leal
+
+### Docs
+
+- [autocomplete] Fix duplicate autocomplete id (#42086) @oliviertassinari
+- Fix SEO redirection issues @oliviertassinari
+- [material-ui] Fix broken link (#42142) @aarongarciah
+- [material-ui][docs] Fix link on the Sync page (#42088) @danilo-leal
+
+### Core
+
+- [blog] Shorten title to fit @oliviertassinari
+- [blog] Update Sync post OG image (#42114) @danilo-leal
+- [blog] A few tweaks in introducing-sync-plugin (#42092) @oliviertassinari
+- [code-infra] Add canary release scripts (#41949) @michaldudak
+- [code-infra] Move ComponentLinkHeader to @mui/docs (#42061) @Janpot
+- [code-infra] Bump node image used by CI in docker (#42079) @LukasTy
+- [core] Restrict import path with ESLint (#41970) @oliviertassinari
+- [docs-infra] Add design and formatting improvements (#42063) @danilo-leal
+- [docs-infra] Fix HTML structure violations (#42085) @oliviertassinari
+- [website] Componentize a few Careers page sections (#42102) @danilo-leal
+- [website] Refine the InfoCard design (#42116) @danilo-leal
+- [website] Fix home page slider's track position (#42141) @aarongarciah
+- [website] Closing the survey @oliviertassinari
+- [website] Remove Survey banner from website and Core docs (#42104) @joserodolfofreitas
+
+All contributors of this release in alphabetical order: @aarongarciah, @danilo-leal, @harry-whorlow, @Janpot, @joserodolfofreitas, @LukasTy, @michaldudak, @oliviertassinari, @sai6855, @siriwatknp
+
+## v6.0.0-alpha.5
+
+<!-- generated comparing v6.0.0-alpha.4..next -->
+
+_May 1, 2024_
+
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+
+### `@mui/material@6.0.0-alpha.5`
+
+- [FormControlLabel] Deprecate `componentsProps` (#41767) @sai6855
+- [PaginationItem] Deprecate components prop (#41777) @sai6855
+- [SvgIcon] Convert to support CSS extraction (#41779) @aarongarciah
+
+### `@mui/base@5.0.0-beta.43`
+
+- [TextareaAutosize] Fix resizing instability (#41638) @ZeeshanTamboli
+
+### Docs
+
+- Fix small SEO issues @oliviertassinari
+- [material-ui] Fix minor spelling error in the "About the lab" page (#42073) @ryanhartwig
+- [material-ui] Update Figma plugin name (#41967) @danilo-leal
+- [material-ui][templates] Fix input props attributes in Landing Page template (#42013) @5-tom
+- [system] Update typo on the sx prop page (#42035) @bricker
+
+### Core
+
+- [docs-infra] Clean up branding theme file and improve font-face readibility (#42023) @danilo-leal
+- [docs-infra] Simplify docs demo (#42016) @oliviertassinari
+- [website] Add content about the Sync plugin in the Material UI page (#40515) @danilo-leal
+- [website] Sync career roles (#42058) @oliviertassinari
+- [website] Add Nadja on the about page (#42021) @mnajdova
+- [website] Fix code block design by changing the `MarkdownElement` import (#42022) @danilo-leal
+- [wesbite] Remove duplicate MarkdownElement component (#42028) @danilo-leal
+
+All contributors of this release in alphabetical order: @5-tom, @aarongarciah, @bricker, @danilo-leal, @mnajdova, @oliviertassinari, @ryanhartwig, @sai6855, @ZeeshanTamboli
+
 ## v6.0.0-alpha.4
 
 <!-- generated comparing v6.0.0-alpha.3..next -->

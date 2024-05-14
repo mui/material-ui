@@ -11,7 +11,7 @@ import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
-import { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled, createUseThemeProps } from '../zero-styled';
 
 const useThemeProps = createUseThemeProps('MuiRadio');
@@ -118,10 +118,12 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onChange: onChangeProp,
     size = 'medium',
     className,
+    disableRipple = false,
     ...other
   } = props;
   const ownerState = {
     ...props,
+    disableRipple,
     color,
     size,
   };

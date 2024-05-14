@@ -485,7 +485,7 @@ export function getThemedComponents(): ThemeOptions {
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'small' && {
-              padding: theme.spacing('6px', 1),
+              padding: theme.spacing('6px', 1.5),
               fontFamily: theme.typography.fontFamily,
               fontSize: defaultTheme.typography.pxToRem(13),
               fontWeight: theme.typography.fontWeightSemiBold,
@@ -778,7 +778,8 @@ export function getThemedComponents(): ThemeOptions {
                 fontSize: theme.typography.pxToRem(14),
                 fontWeight: 500,
                 '&:hover, &:focus': {
-                  backgroundColor: (theme.vars || theme).palette.grey[50],
+                  backgroundColor: (theme.vars || theme).palette.grey[100],
+                  color: (theme.vars || theme).palette.text.primary,
                 },
                 '&:focus-visible': {
                   outline: 'none',

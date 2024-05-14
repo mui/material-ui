@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ListContext from '../List/ListContext';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -14,6 +14,8 @@ import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
+
+const useThemeProps = createUseThemeProps('MuiMenuItem');
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -52,7 +54,7 @@ const MenuItemRoot = styled(ButtonBase, {
   name: 'MuiMenuItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   ...theme.typography.body1,
   display: 'flex',
   justifyContent: 'flex-start',
@@ -64,14 +66,6 @@ const MenuItemRoot = styled(ButtonBase, {
   paddingBottom: 6,
   boxSizing: 'border-box',
   whiteSpace: 'nowrap',
-  ...(!ownerState.disableGutters && {
-    paddingLeft: 16,
-    paddingRight: 16,
-  }),
-  ...(ownerState.divider && {
-    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-    backgroundClip: 'padding-box',
-  }),
   '&:hover': {
     textDecoration: 'none',
     backgroundColor: (theme.vars || theme).palette.action.hover,
@@ -130,20 +124,42 @@ const MenuItemRoot = styled(ButtonBase, {
   [`& .${listItemIconClasses.root}`]: {
     minWidth: 36,
   },
-  ...(!ownerState.dense && {
-    [theme.breakpoints.up('sm')]: {
-      minHeight: 'auto',
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.disableGutters,
+      style: {
+        paddingLeft: 16,
+        paddingRight: 16,
+      },
     },
-  }),
-  ...(ownerState.dense && {
-    minHeight: 32, // https://m2.material.io/components/menus#specs > Dense
-    paddingTop: 4,
-    paddingBottom: 4,
-    ...theme.typography.body2,
-    [`& .${listItemIconClasses.root} svg`]: {
-      fontSize: '1.25rem',
+    {
+      props: ({ ownerState }) => ownerState.divider,
+      style: {
+        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+        backgroundClip: 'padding-box',
+      },
     },
-  }),
+    {
+      props: ({ ownerState }) => !ownerState.dense,
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          minHeight: 'auto',
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.dense,
+      style: {
+        minHeight: 32, // https://m2.material.io/components/menus#specs > Dense
+        paddingTop: 4,
+        paddingBottom: 4,
+        ...theme.typography.body2,
+        [`& .${listItemIconClasses.root} svg`]: {
+          fontSize: '1.25rem',
+        },
+      },
+    },
+  ],
 }));
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
