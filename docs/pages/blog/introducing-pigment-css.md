@@ -7,17 +7,17 @@ tags: ['Pigment CSS']
 card: false
 ---
 
-In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering UIs from run-time to build-time.
+In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering UIs from client to server.
 
-Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because so much of what they do happens at run-time.
-And with nearly 50% of respondents in the [State of CSS 2023 survey](https://2023.stateofcss.com/en-US/css-in-js/) indicating they use styled-components, we're looking at a whole lot of React developers with no clear path forward from here.
+Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because so much of what they do happens on the client.
+And with nearly 70% of respondents in the [State of CSS 2023 survey](https://2023.stateofcss.com/en-US/css-in-js/) indicating they use styled-components and Emotion, we're looking at a whole lot of React developers with no clear path forward from here.
 
 For a library as widely used as Material UI, the biggest challenge is to stay up-to-date while introducing as few breaking changes as humanly possible, to maintain a consistent and reliable developer experience without asking users to completely change the way they build UI components.
 
 That's where Pigment CSS comes in.
 
 Pigment CSS is MUI's new in-house styling solution: a zero-runtime CSS-in-JS package that generates colocated styles to their own CSS files at build-time.
-With Pigment CSS you get the latest and greatest advancements in CSS along with RSC compatibility, _plus_ significant performance improvements when compared with Emotion in Material UI v5.
+With Pigment CSS you get the latest and greatest advancements in CSS along with RSC compatibility, _plus_ significant performance improvements when compared with Emotion, the styling engine used in Material UI v5.
 And though it's specially tailored to meet the needs of Material UI users, Pigment CSS can be used with _any_ React component library you prefer.
 
 ## Why Pigment CSS?
@@ -27,7 +27,7 @@ And though it's specially tailored to meet the needs of Material UI users, Pigm
 Emotion made a lot of sense for Material UI v5 in late 2021, but so much has changed in the React ecosystem since then.
 In early 2023 React introduced Server Components, and Next.js offered the first implementation of the new spec with the App Router shortly thereafter.
 
-RSCs unlock a whole new realm of possibilities for React; for us as UI developers, it means we can create components that are fully rendered at build-time so we don't have to pass that burden on to the client at run-time.
+RSCs unlock a whole new realm of possibilities for React; for us as UI developers, it means we can create components that are fully renderable at build-time so we don't have to pass that burden on to the client at run-time.
 But working with RSCs requires us to let go of familiar APIs like `useContext`, which in turn becomes a major blocker for using the last generation's style engines like Emotion that rely heavily on this hook for theming.
 
 :::info
@@ -43,7 +43,7 @@ While those breaking changes did bring many benefits overall, they unfortunately
 We learned our lesson!
 We can't do that to our users again.
 
-So when it came time to seek out a new way to generate styles, we knew we needed to keep the syntax and authoring experience as similar as possible to Emotion and styled-components, to minimize friction when migrating.
+So when it came time to seek out a new way to generate styles, we knew we needed to keep the syntax and authoring experience as similar as possible to Emotion and styled-components, and provide codemods for most of the breaking changes, in order to minimize friction when migrating.
 
 ### Other options don't meet our needs
 
@@ -85,7 +85,7 @@ When comparing the same Material UI app built with Next.js and either Emotion o
 For developers migrating from Emotion or styled-components, you're probably already familiar with the most common patterns employed by Pigment CSS.
 `styled()` and `css()` are the two main functions used to define styles, and they mostly work the same as you'd expect them to (with some notable differences due to the nature of build-time CSS-in-JS—see [Coming from Emotion or styled-components](https://github.com/mui/pigment-css/tree/master?tab=readme-ov-file#coming-from-emotion-or-styled-components) for details).
 
-We've also ported over the `sx` prop from MUI System, so you can still define styles directly in a given component, but now it's much more performant than before.
+We've also ported over [the `sx` prop](/system/getting-started/the-sx-prop/) from MUI System, so you can still define styles directly in a given component, but now it's much more performant than before.
 And in Pigment CSS we've extended support for `sx` to include _all_ DOM nodes—not just Material UI components—so you don't need to wrap a simple `<div>` or `<span>` with a Box component to apply theme styles to it.
 
 ### Future-proof solution
@@ -102,7 +102,7 @@ We'll do our best to make that a reality. 🤞
 
 ## What's next
 
-Pigment CSS is currently in the early alpha stage of development—the plan is to have a stable version ready to release alongside Material UI v6 later this year.
+Pigment CSS is currently in the early alpha stage of development—the plan is to have a fully featured version ready to release alongside Material UI v6 later this year.
 When that happens, you'll have the choice to opt in to Pigment CSS incrementally after migrating to v6, giving you all the time you need to migrate on your own terms.
 
 That said, Pigment CSS is available now for experimentation, and we'd love for you to give it a try and let us know what you think—your feedback at this stage could have a major impact on the final product.
