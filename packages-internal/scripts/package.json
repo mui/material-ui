@@ -42,14 +42,14 @@
     "@types/chai": "^4.3.16",
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.1",
-    "@types/node": "^18.19.31",
+    "@types/node": "^18.19.33",
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.55",
     "@types/uuid": "^9.0.8",
     "chai": "^4.4.1",
     "fast-glob": "^3.3.2",
     "prettier": "^3.2.5",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.7"
   },
   "publishConfig": {
     "access": "public"

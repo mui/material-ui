@@ -423,10 +423,8 @@ function createRender(context) {
         escaped ? code : escape(code, true)
       }</code></pre>${[
         '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
-        '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
-        '<use class="MuiCode-copy-icon" xlink:href="#copy-icon" />',
-        '<use class="MuiCode-copied-icon" xlink:href="#copied-icon" />',
-        '</svg>',
+        '<span class="MuiCode-copy-label">Copy</span>',
+        '<span class="MuiCode-copied-label">Copied</span>',
         '<span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
       ].join('')}\n`;
     };
