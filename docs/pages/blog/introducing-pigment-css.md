@@ -77,6 +77,11 @@ When comparing the same Material UI app built with Next.js and either Emotion o
 - 15% reduction in Time To First Byte (381.5 ms vs 447.5 ms)
 - 7.5% reduction in page HTML (14.7 kB vs. 15.9 kB)
 
+:::info
+Curious about where those performance numbers came from?
+[Check out this app](https://pigment-css-demo.vercel.app/perf) that compares Pigment CSS, Emotion, and styled-components across a variety of tests.
+:::
+
 ### Familiar developer experience
 
 For developers migrating from Emotion or styled-components, you're probably already familiar with the most common patterns employed by Pigment CSS.
