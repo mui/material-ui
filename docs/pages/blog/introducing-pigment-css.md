@@ -79,7 +79,7 @@ When comparing the same Material UI app built with Next.js and either Emotion o
 
 :::info
 Curious about where those performance numbers came from?
-[Check out this app](https://pigment-css-demo.vercel.app/perf) that compares Pigment CSS, Emotion, and styled-components across a variety of tests.
+[Check out this app](https://pigment-css-demo.vercel.app/perf) that compares Pigment CSS, Emotion, and styled-components across a variety of tests.
 :::
 
 ### Familiar developer experience
