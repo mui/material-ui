@@ -5,7 +5,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { LicenseInfo } from '@mui/x-data-grid-pro';
+import { LicenseInfo } from '@mui/x-license';
 import materialPkgJson from 'packages/mui-material/package.json';
 import joyPkgJson from 'packages/mui-joy/package.json';
 import systemPkgJson from 'packages/mui-system/package.json';

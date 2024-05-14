@@ -999,7 +999,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  'core-support': <Info value={pending} metadata="priority add-on only" />,
+  'core-support': <Info value={pending} metadata="Priority add-on only" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
@@ -1017,7 +1017,7 @@ const premiumData: Record<string, React.ReactNode> = {
     />
   ),
   'pre-screening': <Info value={pending} metadata="4 hours (priority add-on only)" />,
-  'issue-escalation': <Info value={pending} metadata="priority add-on only" />,
+  'issue-escalation': <Info value={pending} metadata="Priority add-on only" />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
 };
 
