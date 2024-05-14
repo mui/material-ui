@@ -4,7 +4,7 @@ import { PaletteMode } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import ToggleColorMode from './ToggleColorMode';
 import SideNav from './SideNav';
@@ -74,7 +74,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
           >
             <NavbarBreadcrumbs />
             <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
-              <MenuIcon />
+              <MenuRoundedIcon />
             </MenuButton>
             <SideNav
               open={open}
