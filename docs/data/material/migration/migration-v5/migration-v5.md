@@ -46,24 +46,6 @@ The exact versions will be pinned on release from the browserslist query `"> 0.5
 
 ## New features and improvements
 
-### CSS theme variables
-
-Material UI v6 introduces stable CSS theme variables. This feature lets you decouple the styles into tokens using CSS variables.
-
-It opens up more customization possibilities and offers a better debugging experience.
-
-```diff
-- import { createTheme } from '@mui/material/styles';
-+ import { extendTheme } from '@mui/material/styles';
-
-- const theme = createTheme({...});
-+ const theme = extendTheme({...});
-```
-
-<!-- Link to CSS theme variables page -->
-
-To learn more about using CSS theme variables, check out the CSS theme variables page.
-
 ### Container queries
 
 CSS Container Quries lets you apply styles based on the size of the container, rather than the viewport.
@@ -94,6 +76,31 @@ or using the `sx` prop:
 <!-- TODO: add link to the docs -->
 
 To learn more about using container queries, check out the [Container Queries documentation](/system/container-queries/).
+
+## Stabilized APIs
+
+### CssVarsProvider and extendTheme
+
+CSS theme variables become a recommended way to customize the theme. The `CssVarsProvider` and `extendTheme` APIs are now stable.
+
+```diff
+- import { createTheme, ThemeProvider } from '@mui/material/styles';
++ import { extendTheme, CssVarsProvider } from '@mui/material/styles';
+
+- const theme = createTheme({...});
++ const theme = extendTheme({...});
+
+- <ThemeProvider theme={theme}>
++ <CssVarsProvider theme={theme}>
+```
+
+<!-- Link to CSS theme variables page -->
+
+To learn more about using CSS theme variables, check out the CSS theme variables page.
+
+### Grid
+
+The Grid v2 is now becoming the default Grid component. Check out the [migration guide](/material-ui/migration/migration-grid-v2/) to see the differences and improvements.
 
 ## Deprecations
 
