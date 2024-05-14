@@ -465,7 +465,7 @@ export interface CssVarsTheme extends ColorSystem {
  * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready-to-use theme object.
  */
-export default function experimental_extendTheme(
+export default function extendTheme(
   options?: CssVarsThemeOptions,
   ...args: object[]
 ): Omit<Theme, 'applyStyles'> & CssVarsTheme;
