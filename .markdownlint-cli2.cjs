@@ -5,6 +5,20 @@ const terminalLanguage = require('./packages/markdownlint-rule-mui/terminal-lang
 const duplicateH1 = require('./packages/markdownlint-rule-mui/duplicate-h1');
 const searchReplace = require('markdownlint-rule-search-replace');
 
+const brandNames = [
+  { search: 'Material UI', replace: 'Material UI' },
+  { search: 'MUI X', replace: 'MUI X' },
+  { search: 'Base UI', replace: 'Base UI' },
+  { search: 'MUI System', replace: 'MUI System' },
+  { search: 'MUI Store', replace: 'MUI Store' },
+  { search: 'MUI Core', replace: 'MUI Core' },
+  { search: 'MUI Toolpad', replace: 'Toolpad' },
+  { search: 'MUI Toolpad', replace: 'Toolpad' },
+  { search: 'MUI Connect', replace: 'MUI Connect' },
+  { search: 'Stack Overflow', replace: 'Stack Overflow' },
+  { search: 'Pigment CSS', replace: 'Pigment CSS' },
+];
+
 // https://github.com/DavidAnson/markdownlint#rules--aliases
 module.exports = {
   config: {
@@ -43,32 +57,8 @@ module.exports = {
         {
           name: 'non-breaking-space-in-brand-names',
           message: 'Use non-breaking space in brand names.',
-          search: [
-            'Material UI',
-            'MUI X',
-            'Base UI',
-            'MUI System',
-            'MUI Store',
-            'MUI Core',
-            'MUI Toolpad',
-            'MUI Toolpad',
-            'MUI Connect',
-            'Stack Overflow',
-            'Pigment CSS',
-          ],
-          replace: [
-            'Material UI',
-            'MUI X',
-            'Base UI',
-            'MUI System',
-            'MUI Store',
-            'MUI Core',
-            'Toolpad',
-            'Toolpad',
-            'MUI Connect',
-            'Stack Overflow',
-            'Pigment CSS',
-          ],
+          search: brandNames.map((item) => item.search),
+          replace: brandNames.map((item) => item.replace),
         },
       ],
     },
