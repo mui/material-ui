@@ -12,7 +12,7 @@ This migration offers a solution to a longstanding issue in which a user who pre
 If you aren't using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), then all you need to do is wrap your application with the `CssVarsProvider`:
 
 ```js
-import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+import { CssVarsProvider } from '@mui/material/styles';
 
 function App() {
   return <CssVarsProvider>...your existing application</CssVarsProvider>;
@@ -30,7 +30,7 @@ Other properties can be copied and pasted.
 
 ```diff
 -import { createTheme } from '@mui/material/styles';
-+import { experimental_extendTheme as extendTheme} from '@mui/material/styles';
++import { extendTheme } from '@mui/material/styles';
 
 -const lightTheme = createTheme({
 -  palette: {
@@ -79,7 +79,7 @@ Then, replace the `ThemeProvider` with the `CssVarsProvider`:
 
 ```diff
 -import { ThemeProvider } from '@mui/material/styles';
-+import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
++import { CssVarsProvider } from '@mui/material/styles';
 
  const theme = extendTheme(...);
 
@@ -141,11 +141,7 @@ function App() {
 **After**:
 
 ```js
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme,
-  useColorScheme,
-} from '@mui/material/styles';
+import { CssVarsProvider, extendTheme, useColorScheme } from '@mui/material/styles';
 
 function ModeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -249,7 +245,7 @@ const Button = styled('button')(({ theme }) => ({
 
 This is because the `theme.palette.mode` is always `light` on the server.
 
-To fix this problem, replace conditional expressions with the attribute selector instead:
+To fix this problem, replace conditional expressions with `theme.applyStyles()` instead:
 
 ```js
 // theming example
@@ -259,9 +255,9 @@ extendTheme({
       styleOverrides: {
         root: ({ theme }) => ({
           backgroundColor: 'rgba(0 0 0 / 0.2)',
-          [theme.getColorSchemeSelector('dark')]: {
+          ...theme.applyStyles('dark', {
             backgroundColor: 'rgba(255 255 255 / 0.2)',
-          },
+          }),
         }),
       },
     },
@@ -271,16 +267,14 @@ extendTheme({
 // or a custom component example
 const Button = styled('button')(({ theme }) => ({
   backgroundColor: 'rgba(0 0 0 / 0.2)',
-  [theme.getColorSchemeSelector('dark')]: {
+  ...theme.applyStyles('dark', {
     backgroundColor: 'rgba(255 255 255 / 0.2)',
-  },
+  }),
 }));
 ```
 
-:::warning
-The `theme.getColorSchemeSelector()` is a utility function that returns an attribute selector `'[data-mui-color-scheme="dark"] &'`.
-
-Note that the attribute selector creates higher CSS specificity which could be cumbersome for theming.
+:::info
+The `theme.applyStyles()` is a new utility function in v6 that applies the provided styles to the specified mode.
 :::
 
 ## 5. Test dark-mode flickering

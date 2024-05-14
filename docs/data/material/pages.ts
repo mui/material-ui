@@ -174,6 +174,10 @@ const pages: MuiPage[] = [
             title: 'Creating themed components',
           },
           { pathname: '/material-ui/customization/theme-components', title: 'Components' },
+          {
+            pathname: '/material-ui/customization/css-theme-variables',
+            title: 'CSS theme variables',
+          },
         ],
       },
       {
@@ -245,10 +249,6 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/experimental-api/css-theme-variables/overview' },
           { pathname: '/material-ui/experimental-api/css-theme-variables/usage' },
           { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
-          {
-            pathname: '/material-ui/experimental-api/css-theme-variables/migration',
-            title: 'Migrating to CSS variables',
-          },
         ],
       },
     ],
@@ -276,6 +276,10 @@ const pages: MuiPage[] = [
           {
             pathname: '/material-ui/migration/migration-v5',
             title: 'Migrating to v6',
+          },
+          {
+            pathname: '/material-ui/migration/migration-css-theme-variables',
+            title: 'Migrating to CSS variables',
           },
         ],
       },
