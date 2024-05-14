@@ -7,8 +7,8 @@ import { Card as MuiCard } from '@mui/material';
 
 import { styled } from '@mui/material/styles';
 
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import InsightsIcon from '@mui/icons-material/Insights';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import InsightsRoundedIcon from '@mui/icons-material/InsightsRounded';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   border: '1px solid',
@@ -39,7 +39,7 @@ export default function HighlightedCard() {
       }}
     >
       <CardContent>
-        <InsightsIcon color="primary" />
+        <InsightsRoundedIcon color="primary" />
         <Typography variant="subtitle2" gutterBottom>
           Explore your data
         </Typography>
@@ -48,7 +48,7 @@ export default function HighlightedCard() {
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <Button size="small" color="secondary" endIcon={<ChevronRightIcon />}>
+        <Button size="small" color="secondary" endIcon={<ChevronRightRoundedIcon />}>
           Get insights
         </Button>
       </CardActions>

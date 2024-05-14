@@ -2,7 +2,7 @@ import * as React from 'react';
 import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import SearchIcon from '@mui/icons-material/Search';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
 export default function Search() {
   return (
@@ -14,7 +14,7 @@ export default function Search() {
         sx={{ flexGrow: 1 }}
         startAdornment={
           <InputAdornment position="start">
-            <SearchIcon fontSize="small" />
+            <SearchRoundedIcon fontSize="small" />
           </InputAdornment>
         }
         inputProps={{

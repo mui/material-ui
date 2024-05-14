@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import Button from '@mui/material/Button';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -27,7 +27,7 @@ function ButtonField(props) {
       aria-label={ariaLabel}
       size="small"
       onClick={() => setOpen?.((prev) => !prev)}
-      startIcon={<CalendarTodayIcon fontSize="small" />}
+      startIcon={<CalendarTodayRoundedIcon fontSize="small" />}
       sx={{ minWidth: 'fit-content' }}
     >
       {label ? `${label}` : 'Pick a date'}
@@ -125,7 +125,7 @@ ButtonDatePicker.propTypes = {
         key: PropTypes.oneOfType([
           PropTypes.number,
           PropTypes.shape({
-            '__@toStringTag@2766': PropTypes.oneOf(['BigInt']).isRequired,
+            '__@toStringTag@2759': PropTypes.oneOf(['BigInt']).isRequired,
             toLocaleString: PropTypes.func.isRequired,
             toString: PropTypes.func.isRequired,
             valueOf: PropTypes.func.isRequired,

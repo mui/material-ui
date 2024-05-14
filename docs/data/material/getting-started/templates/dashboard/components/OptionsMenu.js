@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import MenuButton from './MenuButton';
 
 export default function OptionsMenu() {
@@ -19,7 +19,7 @@ export default function OptionsMenu() {
   return (
     <React.Fragment>
       <MenuButton onClick={handleClick}>
-        <MoreVertIcon />
+        <MoreVertRoundedIcon />
       </MenuButton>
       <Menu
         anchorEl={anchorEl}

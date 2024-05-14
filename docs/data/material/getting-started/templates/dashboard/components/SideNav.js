@@ -16,7 +16,7 @@ import Typography from '@mui/material/Typography';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import ContactPageRoundedIcon from '@mui/icons-material/ContactPageRounded';
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
@@ -88,7 +88,7 @@ function SideNav({ open, toggleDrawer, mode, toggleColorMode }) {
           </List>
         </Stack>
         <Stack>
-          <Button variant="outlined" fullWidth startIcon={<LogoutIcon />}>
+          <Button variant="outlined" fullWidth startIcon={<LogoutRoundedIcon />}>
             Logout
           </Button>
         </Stack>
