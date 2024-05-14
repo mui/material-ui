@@ -284,6 +284,9 @@ importers:
       markdownlint-cli2:
         specifier: ^0.13.0
         version: 0.13.0
+      markdownlint-rule-search-replace:
+        specifier: ^1.2.0
+        version: 1.2.0
       mocha:
         specifier: ^10.4.0
         version: 10.4.0
@@ -15629,9 +15632,28 @@ packages:
       micromatch: 4.0.5
     dev: true
 
+  /markdownlint-micromark@0.1.2:
+    resolution: {integrity: sha512-jRxlQg8KpOfM2IbCL9RXM8ZiYWz2rv6DlZAnGv8ASJQpUh6byTBnEsbuMZ6T2/uIgntyf7SKg/mEaEBo1164fQ==}
+    engines: {node: '>=14.18.0'}
+    dev: true
+
   /markdownlint-micromark@0.1.9:
     resolution: {integrity: sha512-5hVs/DzAFa8XqYosbEAEg6ok6MF2smDj89ztn9pKkCtdKHVdPQuGMH7frFfYL9mLkvfFe4pTyAMffLbjf3/EyA==}
     engines: {node: '>=18'}
+    dev: true
+
+  /markdownlint-rule-helpers@0.21.0:
+    resolution: {integrity: sha512-27WM6H76t79EZjEl3jSabV0ZzXsC5QaSslI/5N1XuXV0mJRA6i3BPMGFrtZUbhlCNgtY6oC9h5JhtpDMv95tKg==}
+    engines: {node: '>=16'}
+    dependencies:
+      markdownlint-micromark: 0.1.2
+    dev: true
+
+  /markdownlint-rule-search-replace@1.2.0:
+    resolution: {integrity: sha512-l2eeVjb0ijxO+dO1ZrODcht+qnJ0VuiAAdBx1J8oa2kAugXl3NhxAGjfNuTfEJae5OQbdSGT+NjMczyzBXvWMA==}
+    engines: {node: '>=16'}
+    dependencies:
+      markdownlint-rule-helpers: 0.21.0
     dev: true
 
   /markdownlint@0.34.0:

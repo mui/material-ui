@@ -3,6 +3,7 @@ const gitDiff = require('./packages/markdownlint-rule-mui/git-diff');
 const tableAlignment = require('./packages/markdownlint-rule-mui/table-alignment');
 const terminalLanguage = require('./packages/markdownlint-rule-mui/terminal-language');
 const duplicateH1 = require('./packages/markdownlint-rule-mui/duplicate-h1');
+const searchReplace = require('markdownlint-rule-search-replace');
 
 // https://github.com/DavidAnson/markdownlint#rules--aliases
 module.exports = {
@@ -37,8 +38,49 @@ module.exports = {
     tableAlignment: true,
     terminalLanguage: true,
     duplicateH1: true,
+    'search-replace': {
+      rules: [
+        {
+          name: 'non-breaking-space-in-brand-names',
+          message: 'Use non-breaking space in brand names.',
+          search: [
+            'Material UI',
+            'MUI X',
+            'Base UI',
+            'MUI System',
+            'MUI Store',
+            'MUI Core',
+            'MUI Toolpad',
+            'MUI Toolpad',
+            'MUI Connect',
+            'Stack Overflow',
+            'Pigment CSS',
+          ],
+          replace: [
+            'Material UI',
+            'MUI X',
+            'Base UI',
+            'MUI System',
+            'MUI Store',
+            'MUI Core',
+            'Toolpad',
+            'Toolpad',
+            'MUI Connect',
+            'Stack Overflow',
+            'Pigment CSS',
+          ],
+        },
+      ],
+    },
   },
-  customRules: [straightQuotes, gitDiff, tableAlignment, terminalLanguage, duplicateH1],
+  customRules: [
+    straightQuotes,
+    gitDiff,
+    tableAlignment,
+    terminalLanguage,
+    duplicateH1,
+    searchReplace,
+  ],
   ignores: [
     'CHANGELOG.old.md',
     '**/node_modules/**',
