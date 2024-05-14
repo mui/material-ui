@@ -1,3 +1,4 @@
+import { EOL } from 'os';
 import path from 'path';
 import { expect } from 'chai';
 import { jscodeshift } from '../../../testUtils';
@@ -12,14 +13,30 @@ describe('@mui/codemod', () => {
   describe('deprecations', () => {
     describe('input-props', () => {
       it('transforms props as needed', () => {
-        const actual = transform({ source: read('./test-cases/actual.js') }, { jscodeshift }, {});
+        const actual = transform(
+          { source: read('./test-cases/actual.js') },
+          { jscodeshift },
+          {
+            printOptions: {
+              lineTerminator: EOL,
+            },
+          },
+        );
 
         const expected = read('./test-cases/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
-        const actual = transform({ source: read('./test-cases/expected.js') }, { jscodeshift }, {});
+        const actual = transform(
+          { source: read('./test-cases/expected.js') },
+          { jscodeshift },
+          {
+            printOptions: {
+              lineTerminator: EOL,
+            },
+          },
+        );
 
         const expected = read('./test-cases/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
@@ -31,7 +48,7 @@ describe('@mui/codemod', () => {
         const actual = transform(
           { source: read('./test-cases/theme.actual.js') },
           { jscodeshift },
-          { printOptions: { trailingComma: false } },
+          { printOptions: { trailingComma: false, lineTerminator: EOL } },
         );
 
         const expected = read('./test-cases/theme.expected.js');
@@ -42,7 +59,11 @@ describe('@mui/codemod', () => {
         const actual = transform(
           { source: read('./test-cases/theme.expected.js') },
           { jscodeshift },
-          {},
+          {
+            printOptions: {
+              lineTerminator: EOL,
+            },
+          },
         );
 
         const expected = read('./test-cases/theme.expected.js');
