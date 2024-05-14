@@ -60,7 +60,7 @@ const darkTheme = createTheme({
 **CSS theme variables**: Light and dark colors are consolidated into a theme.
 
 ```js
-import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
+import { extendTheme } from '@mui/material/styles';
 
 // `extendTheme` is a new API
 const theme = extendTheme({

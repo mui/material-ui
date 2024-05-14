@@ -4,7 +4,7 @@
 
 ## Getting started
 
-The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
+The CSS variables API relies on a new experimental provider for the theme called `CssVarsProvider` to inject styles into Material UI components.
 In addition to providing the theme in the inner React context, this new provider also generates CSS variables out of all tokens in the theme that are not functions, and makes them available in the context as well.
 
 Once the `App` renders on the screen, you will see the CSS theme variables in the HTML `:root` stylesheet.
@@ -34,10 +34,7 @@ The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/cust
 The `useColorScheme` hook lets you read and update the user-selected mode:
 
 ```jsx
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  useColorScheme,
-} from '@mui/material/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/material/styles';
 
 // ModeSwitcher is an example interface for toggling between modes.
 // Material UI does not provide the toggle interface—you have to build it yourself.

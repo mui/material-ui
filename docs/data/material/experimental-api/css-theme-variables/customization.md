@@ -4,13 +4,10 @@
 
 ## Theming
 
-`experimental_extendTheme` is an API that extends the default theme. It returns a theme that can only be used by the `Experimental_CssVarsProvider`.
+`extendTheme` is an API that extends the default theme. It returns a theme that can only be used by the `CssVarsProvider`.
 
 ```js
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme,
-} from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 
 const theme = extendTheme();
 // ...custom theme

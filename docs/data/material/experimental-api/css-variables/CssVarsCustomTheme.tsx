@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  useColorScheme,
-  experimental_extendTheme,
-} from '@mui/material/styles';
+import { CssVarsProvider, useColorScheme, extendTheme } from '@mui/material/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Button from '@mui/material/Button';
@@ -36,7 +32,7 @@ function ColorSchemePicker() {
   );
 }
 
-const theme = experimental_extendTheme({
+const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {

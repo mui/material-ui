@@ -1,10 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { colorChannel } from '@mui/system';
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  styled,
-} from '@mui/material/styles';
+import { CssVarsProvider, styled } from '@mui/material/styles';
 
 // Custom button using custom styles with CSS variables
 const CustomButton = styled(Button)(({ theme }) => ({
