@@ -108,7 +108,7 @@ The structure of this object is nearly identical to the theme structure, the onl
   ```
 
   :::warning
-  If you have set up a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
+  If you have set up a [custom prefix](/material-ui/customization/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
   :::
 
 ## Server-side rendering

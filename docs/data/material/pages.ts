@@ -174,10 +174,15 @@ const pages: MuiPage[] = [
             title: 'Creating themed components',
           },
           { pathname: '/material-ui/customization/theme-components', title: 'Components' },
-          {
-            pathname: '/material-ui/customization/css-theme-variables',
-            title: 'CSS theme variables',
-          },
+        ],
+      },
+      {
+        pathname: '/material-ui/customization/css-variables',
+        subheader: '/material-ui/customization/css-variables',
+        children: [
+          { pathname: '/material-ui/customization/css-theme-variables/overview' },
+          { pathname: '/material-ui/customization/css-theme-variables/usage' },
+          { pathname: '/material-ui/customization/css-theme-variables/customization' },
         ],
       },
       {
@@ -241,15 +246,6 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/experimental-api/classname-generator',
         title: 'ClassName generator',
-      },
-      {
-        pathname: '/material-ui/experimental-api/css-theme-variables',
-        subheader: 'CSS theme variables',
-        children: [
-          { pathname: '/material-ui/experimental-api/css-theme-variables/overview' },
-          { pathname: '/material-ui/experimental-api/css-theme-variables/usage' },
-          { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
-        ],
       },
     ],
   },

@@ -178,7 +178,7 @@ Or use `var()` to refer to the CSS variable directly:
 ```
 
 :::warning
-If you're using a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
+If you're using a [custom prefix](/material-ui/customization/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
 :::
 
 ### TypeScript
@@ -286,7 +286,7 @@ function App() {
 }
 ```
 
-For a server-side application, provide the same value to [`getInitColorSchemeScript()`](/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering):
+For a server-side application, provide the same value to [`getInitColorSchemeScript()`](/material-ui/customization/css-theme-variables/usage/#server-side-rendering):
 
 ```js
 getInitColorSchemeScript({
