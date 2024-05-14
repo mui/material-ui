@@ -17,6 +17,7 @@ export default function PageViewsBarChart() {
           Page views and downloads
         </Typography>
         <BarChart
+          borderRadius={6}
           colors={colorPalette}
           xAxis={
             [
@@ -78,17 +79,6 @@ export default function PageViewsBarChart() {
               itemMarkWidth: 12,
               itemMarkHeight: 12,
               position: { vertical: 'top', horizontal: 'right' },
-            },
-            bar: {
-              // round corners for stacked bars is an upcoming feature
-              // clipPath: `inset(0px round 8px 8px 0px 0px)`,
-            },
-          }}
-          sx={{
-            '& .MuiChartsGrid-line': {
-              stroke: gray[200],
-              strokeDasharray: '4 2',
-              strokeWidth: 0.8,
             },
           }}
         />

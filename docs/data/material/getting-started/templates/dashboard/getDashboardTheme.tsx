@@ -4,8 +4,8 @@ import { ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 import type {} from '@mui/x-charts/themeAugmentation';
-import type {} from '@mui/x-tree-view/themeAugmentation';
 import type {} from '@mui/x-data-grid/themeAugmentation';
+import type {} from '@mui/x-tree-view/themeAugmentation';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
@@ -897,19 +897,17 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           },
         },
       },
-      // not added to themeAugmentation yet, waiting for the next release of X
-
-      // MuiChartsGrid: {
-      //   styleOverrides: {
-      //     root: {
-      //       '& .MuiChartsGrid-line': {
-      //         stroke: gray[200],
-      //         strokeDasharray: '4 2',
-      //         strokeWidth: 0.8,
-      //       },
-      //     },
-      //   },
-      // },
+      MuiChartsGrid: {
+        styleOverrides: {
+          root: {
+            '& .MuiChartsGrid-line': {
+              stroke: gray[200],
+              strokeDasharray: '4 2',
+              strokeWidth: 0.8,
+            },
+          },
+        },
+      },
       MuiRichTreeView: { styleOverrides: { root: { paddingBottom: 5 } } },
       MuiTreeItem2: {
         styleOverrides: {

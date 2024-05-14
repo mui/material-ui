@@ -122,11 +122,6 @@ export default function PageViewsChart() {
               '& .MuiAreaElement-series-conversions': {
                 fill: "url('#conversions')",
               },
-              '& .MuiChartsGrid-line': {
-                stroke: theme.palette.grey[200],
-                strokeDasharray: '4 2',
-                strokeWidth: 0.8,
-              },
             }}
             slotProps={{
               legend: {
