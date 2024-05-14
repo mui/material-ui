@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { OverridableComponent, OverridableStringUnion, OverrideProps, PartiallyRequired } from '@mui/types';
+import {
+  OverridableComponent,
+  OverridableStringUnion,
+  OverrideProps,
+  PartiallyRequired,
+} from '@mui/types';
 import { SxProps } from '@mui/system';
 import { Theme } from '@mui/material';
 import { AvatarGroupClasses } from './avatarGroupClasses';
