@@ -12,9 +12,9 @@
 
 <Box
   style={{
-    ...props.style,
     "--items-imageLight": items[selectedItemIndex].imageLight,
-    "--items-imageDark": items[selectedItemIndex].imageDark
+    "--items-imageDark": items[selectedItemIndex].imageDark,
+    ...props.style
   }}
   sx={theme => ({
     backgroundImage: "var(--items-imageDark)",
@@ -26,10 +26,10 @@
 
 <Box
   style={{
-    color: 'red',
-    ...props.style,
     "--items-imageLight": items[selectedItemIndex].imageLight,
-    "--items-imageDark": items[selectedItemIndex].imageDark
+    "--items-imageDark": items[selectedItemIndex].imageDark,
+    color: 'red',
+    ...props.style
   }}
   sx={theme => ({
     backgroundImage: "var(--items-imageDark)",
@@ -48,9 +48,9 @@
     })
   })}
   style={{
-    ...props.style,
     "--items-imageLight": items[selectedItemIndex].imageLight,
-    "--items-imageDark": items[selectedItemIndex].imageDark
+    "--items-imageDark": items[selectedItemIndex].imageDark,
+    ...props.style
   }} />;
 
 <Paper

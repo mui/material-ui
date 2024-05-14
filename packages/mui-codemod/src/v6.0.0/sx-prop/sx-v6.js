@@ -94,16 +94,16 @@ export default function sxV6(file, api, options) {
             if (styleAttribute) {
               if (styleAttribute.value.expression.type === 'ObjectExpression') {
                 styleAttribute.value.expression.properties = [
-                  ...styleAttribute.value.expression.properties,
                   ...cssVarsObject.properties,
+                  ...styleAttribute.value.expression.properties,
                 ];
               } else if (
                 styleAttribute.value.expression.type === 'Identifier' ||
                 styleAttribute.value.expression.type === 'MemberExpression'
               ) {
                 styleAttribute.value.expression = j.objectExpression([
-                  j.spreadElement(styleAttribute.value.expression),
                   ...cssVarsObject.properties,
+                  j.spreadElement(styleAttribute.value.expression),
                 ]);
               }
             } else if (spreadAttribute) {
@@ -112,10 +112,10 @@ export default function sxV6(file, api, options) {
                   j.jsxIdentifier('style'),
                   j.jsxExpressionContainer(
                     j.objectExpression([
+                      ...cssVarsObject.properties,
                       j.spreadElement(
                         j.memberExpression(spreadAttribute.argument, j.identifier('style')),
                       ),
-                      ...cssVarsObject.properties,
                     ]),
                   ),
                 ),
