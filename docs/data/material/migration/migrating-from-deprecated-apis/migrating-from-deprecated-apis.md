@@ -996,7 +996,7 @@ The FormControlLabel's `componentsProps` prop was deprecated in favor of `slotPr
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/list-item-props <path>
+npx @mui/codemod@next deprecations/list-item-props <path>
 ```
 
 ### components
