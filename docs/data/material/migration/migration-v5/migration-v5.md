@@ -24,10 +24,11 @@ This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
-## Chip Component Changes
+### Chip
 
-The chip component's behavior has been updated to match the standard behavior of other components like buttons.
-Previously, the chip component would lose focus when the escape button was pressed. This issue has been resolved, and the chip component retains focus as expected.
+The Chip component's behavior has been updated to match the standard behavior of other components like buttons.
+Previously, the Chip component lost focus when the escape button was pressed, which differed from how other button-like components work.
+This issue has been resolved, and the chip component retains focus as expected.
 
 You can provide a custom `onKeyUp` handler to implement the previous behavior.
 
