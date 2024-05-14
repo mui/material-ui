@@ -14,7 +14,11 @@ export default function DynamicValues() {
         sx={{ display: 'inline-flex', alignItems: 'center', gap: 1 }}
       >
         Pick a color to see a live preview
-        <input type="color" onChange={(event) => setColor(event.target.value)} />
+        <input
+          type="color"
+          value={color}
+          onChange={(event) => setColor(event.target.value)}
+        />
       </Typography>
       <Box
         component="div"
