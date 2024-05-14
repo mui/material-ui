@@ -85,7 +85,8 @@
     "@netlify/functions": "^2.6.3",
     "@slack/bolt": "^3.18.0",
     "execa": "^8.0.1",
-    "google-auth-library": "^9.9.0"
+    "google-auth-library": "^9.9.0",
+    "markdownlint-rule-search-replace": "^1.2.0"
   },
   "devDependencies": {
     "@argos-ci/core": "^2.2.0",
@@ -167,7 +168,6 @@
     "lerna": "^8.1.2",
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.13.0",
-    "markdownlint-rule-search-replace": "^1.2.0",
     "mocha": "^10.4.0",
     "nx": "^17.3.2",
     "nyc": "^15.1.0",
