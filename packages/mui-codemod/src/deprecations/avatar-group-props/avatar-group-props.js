@@ -12,6 +12,8 @@ export default function transformer(file, api, options) {
   const printOptions = options.printOptions;
 
   replaceComponentsWithSlots(j, { root, componentName: 'AvatarGroup' });
+
+  // replace `slotProps.additionalAvatar` with `slotProps.surplus` in JSX
   findComponentJSX(j, { root, componentName: 'AvatarGroup' }, (elementPath) => {
     const slotPropsIndex = elementPath.node.openingElement.attributes.findIndex(
       (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'slotProps',
@@ -47,6 +49,7 @@ export default function transformer(file, api, options) {
     }
   });
 
+  // replace `slotProps.additionalAvatar` with `slotProps.surplus` in theme
   root.find(j.ObjectProperty, { key: { name: 'MuiAvatarGroup' } }).forEach((path) => {
     const defaultPropsIndex = path.value.value.properties.findIndex(
       (key) => key.key.name === 'defaultProps',
