@@ -221,7 +221,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     additionalAvatar: PropTypes.object,
-    surplus: PropTypes.object,
+    surplus: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.

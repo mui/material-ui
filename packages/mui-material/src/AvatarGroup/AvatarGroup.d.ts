@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
+import { OverridableComponent, OverridableStringUnion, OverrideProps, PartiallyRequired } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { Theme } from '@mui/material';
 import { AvatarGroupClasses } from './avatarGroupClasses';
 import Avatar from '../Avatar';
-import { CreateSlotsAndSlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface AvatarGroupPropsVariantOverrides {}
 
@@ -22,12 +22,14 @@ export type AvatarGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
      *  */
     additionalAvatar: React.ComponentPropsWithRef<typeof Avatar> &
       AvatarGroupComponentsPropsOverrides;
-    surplus: React.ComponentPropsWithRef<typeof Avatar> & AvatarGroupComponentsPropsOverrides;
+    surplus: SlotProps<
+      React.ElementType<React.ComponentPropsWithRef<typeof Avatar>>,
+      AvatarGroupComponentsPropsOverrides,
+      AvatarGroupOwnerState
+    >;
   }
 >;
-export interface AvatarGroupProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
-    AvatarGroupSlotsAndSlotProps {
+export interface AvatarGroupOwnProps extends AvatarGroupSlotsAndSlotProps {
   /**
    * The avatars to stack.
    */
@@ -88,6 +90,14 @@ export interface AvatarGroupProps
   >;
 }
 
+export interface AvatarGroupTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & AvatarGroupOwnProps;
+  defaultComponent: RootComponent;
+}
+
 /**
  *
  * Demos:
@@ -98,4 +108,16 @@ export interface AvatarGroupProps
  *
  * - [AvatarGroup API](https://mui.com/material-ui/api/avatar-group/)
  */
-export default function AvatarGroup(props: AvatarGroupProps): JSX.Element;
+declare const AvatarGroup: OverridableComponent<AvatarGroupTypeMap>;
+
+export type AvatarGroupProps<
+  RootComponent extends React.ElementType = AvatarGroupTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<AvatarGroupTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
+
+export interface AvatarGroupOwnerState
+  extends PartiallyRequired<AvatarGroupProps, 'max' | 'spacing' | 'component' | 'variant'> {}
+
+export default AvatarGroup;

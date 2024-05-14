@@ -18,7 +18,10 @@
       }
     },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ additionalAvatar?: object, surplus?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ additionalAvatar?: object, surplus?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
@@ -71,7 +74,6 @@
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAvatarGroup",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-avatar/\">Avatar</a></li></ul>",
