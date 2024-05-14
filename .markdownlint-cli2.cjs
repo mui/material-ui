@@ -6,17 +6,17 @@ const duplicateH1 = require('./packages/markdownlint-rule-mui/duplicate-h1');
 const searchReplace = require('markdownlint-rule-search-replace');
 
 const brandNames = [
-  { search: 'Material UI', replace: 'Material UI' },
-  { search: 'MUI X', replace: 'MUI X' },
-  { search: 'Base UI', replace: 'Base UI' },
-  { search: 'MUI System', replace: 'MUI System' },
-  { search: 'MUI Store', replace: 'MUI Store' },
-  { search: 'MUI Core', replace: 'MUI Core' },
+  { search: 'Material UI', replace: 'Material&nbsp;UI' },
+  { search: 'MUI X', replace: 'MUI&nbsp;X' },
+  { search: 'Base UI', replace: 'Base&nbsp;UI' },
+  { search: 'MUI System', replace: 'MUI&nbsp;System' },
+  { search: 'MUI Store', replace: 'MUI&nbsp;Store' },
+  { search: 'MUI Core', replace: 'MUI&nbsp;Core' },
   { search: 'MUI Toolpad', replace: 'Toolpad' },
   { search: 'MUI Toolpad', replace: 'Toolpad' },
-  { search: 'MUI Connect', replace: 'MUI Connect' },
-  { search: 'Stack Overflow', replace: 'Stack Overflow' },
-  { search: 'Pigment CSS', replace: 'Pigment CSS' },
+  { search: 'MUI Connect', replace: 'MUI&nbsp;Connect' },
+  { search: 'Stack Overflow', replace: 'Stack&nbsp;Overflow' },
+  { search: 'Pigment CSS', replace: 'Pigment&nbsp;CSS' },
 ];
 
 // https://github.com/DavidAnson/markdownlint#rules--aliases
