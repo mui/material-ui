@@ -297,5 +297,13 @@
     "locationCountry": "nl",
     "about": "A general knowledge gatherer. Gamer and programmer in the off hours.",
     "github": "JCQuintas"
+  },
+  {
+    "name": "Arthur Balduini",
+    "title": "React Engineer - X",
+    "location": "Paris, France",
+    "locationCountry": "fr",
+    "about": "Cooking 🍳, plant caring 🪴 and literature 📖",
+    "github": "arthurbalduini"
   }
 ]
