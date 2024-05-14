@@ -17,6 +17,12 @@ const brandNames = [
   { search: 'MUI Connect', replace: 'MUI&nbsp;Connect' },
   { search: 'Stack Overflow', replace: 'Stack&nbsp;Overflow' },
   { search: 'Pigment CSS', replace: 'Pigment&nbsp;CSS' },
+
+  { search: 'NPM', replace: 'npm' }, // https://css-tricks.com/start-sentence-npm/
+  { search: 'Github', replace: 'GitHub' },
+  { search: 'StackOverflow', replace: 'Stack Overflow' },
+  { search: 'CSS modules', replace: 'CSS Modules' },
+  { search: 'Tailwind CSS', replace: 'Tailwind CSS' },
 ];
 
 // https://github.com/DavidAnson/markdownlint#rules--aliases
