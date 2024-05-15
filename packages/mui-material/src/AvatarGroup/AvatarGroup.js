@@ -133,9 +133,6 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
         ...other.style,
       },
     },
-    getSlotOwnerState: ({ src, srcSet }) => ({
-      colorDefault: !(src || srcSet),
-    }),
   });
 
   return (
