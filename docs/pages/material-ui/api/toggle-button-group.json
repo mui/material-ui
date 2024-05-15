@@ -82,6 +82,12 @@
       "isGlobal": false
     },
     {
+      "key": "horizontal",
+      "className": "MuiToggleButtonGroup-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "lastButton",
       "className": "MuiToggleButtonGroup-lastButton",
       "description": "Styles applied to the last button in the toggle button group.",

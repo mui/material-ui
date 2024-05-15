@@ -39,6 +39,7 @@ const toggleButtonGroupClasses: ToggleButtonGroupClasses = generateUtilityClasse
   [
     'root',
     'selected',
+    'horizontal',
     'vertical',
     'disabled',
     'grouped',
