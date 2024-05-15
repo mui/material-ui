@@ -172,7 +172,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     component,
     variant,
   };
-// This issue explains why this is required: https://github.com/mui/material-ui/issues/42184
+  // This issue explains why this is required: https://github.com/mui/material-ui/issues/42184
   delete ownerState.ownerState;
 
   const classes = useUtilityClasses(ownerState);
