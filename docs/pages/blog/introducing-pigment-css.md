@@ -72,12 +72,14 @@ For users of Emotion and styled-components, the benefits of adopting Pigment CS
 
 ### Better performance
 
-When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, the latter led to:
+When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following results:
 
-- 20% reduction in first load JavaScript (104 kB vs. 131 kB)
-- 9% decrease in First Contentful Paint (455 ms vs. 503 ms)
-- 15% reduction in Time To First Byte (381.5 ms vs 447.5 ms)
-- 7.5% reduction in page HTML (14.7 kB vs. 15.9 kB)
+| Metrics                | Emotion | Pigment CSS | Reduction |
+| :--------------------- | ------: | ----------: | --------: |
+| First load JavaScript  |   131kB |       104kB |       20% |
+| First Contentful Paint |   503ms |       455ms |        9% |
+| Time To First Byte     | 447.5ms |     381.5ms |       15% |
+| Total Page HTML        |  15.9kB |      14.7kB |      7.5% |
 
 :::info
 Curious about where those performance numbers came from?
