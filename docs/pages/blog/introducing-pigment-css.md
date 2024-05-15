@@ -122,8 +122,8 @@ We've also ported over [the `sx` prop](/system/getting-started/the-sx-prop/) fro
 And in Pigment CSS we've extended support for `sx` to include _all_ DOM nodes—not just Material UI components—so you don't need to wrap a simple `<div>` or `<span>` with a Box component to apply theme styles to it.
 
 ```jsx
-<section sx={{ padding: '1rem', border: '1px solid red' }}>
-  <h1 sx={{ fontSize: '2rem', fontWeight: 700, marginBottom: '.5rem' }}>
+<section sx={{ p: '1rem', border: '1px solid red' }}>
+  <h1 sx={{ fontSize: '2rem', fontWeight: 700, mb: '.5rem' }}>
     Introducing Pigment CSS: the next generation of CSS-in-JS
   </h1>
   <p sx={{ color: 'blue', fontWeight: 500 }}>
