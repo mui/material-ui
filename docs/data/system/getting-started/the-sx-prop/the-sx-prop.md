@@ -288,16 +288,19 @@ Each index can be an object or a callback.
 
 ## Passing the sx prop
 
-If you want to receive the `sx` prop from a custom component and pass it down to another MUI System, we recommend this approach:
+If you want to receive the `sx` prop from a custom component and pass it down to another MUI System, we recommend this approach:\*\*\*\*
 
 {{"demo": "PassingSxProp.js", "bg": true, "defaultCodeOpen": true}}
 
 ## Dynamic values
 
-For highly dynamic CSS values, we recommend using inline CSS variables instead of passing an object with varying values to the `sx` prop on each render. This approach avoids inserting unnecessary `style` tags into the DOM, preventing potential performance issues when dealing with CSS properties that can hold a wide range of values that change frequently. For example, a color picker with live preview.
+For highly dynamic CSS values, we recommend using inline CSS variables instead of passing an object with varying values to the `sx` prop on each render.
+This approach avoids inserting unnecessary `style` tags into the DOM, preventing potential performance issues when dealing with CSS properties that can hold a wide range of values that change frequently.
+For example, a color picker with live preview.
 
 :::info
-If you're having problems with your CSP policy while using inline styles with the `style` attribute, make sure you've enabled the [`style-src-attr`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src-attr) directive. Check [our guide](/material-ui/guides/content-security-policy/) on how to configure CSP.
+If you're having problems with your CSP policy while using inline styles with the `style` attribute, make sure you've enabled the [`style-src-attr`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src-attr) directive.
+Check [our guide](/material-ui/guides/content-security-policy/) on how to configure CSP.
 :::
 
 {{"demo": "DynamicValues.js", "bg": true}}
