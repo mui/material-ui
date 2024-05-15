@@ -11,8 +11,14 @@ If this is your first time encountering CSS variables, you should check out [the
 
 ## Introduction
 
-CSS theme variable support is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0) (but not enabled by default). It tells Material UI components to use the generated CSS theme variables instead of raw values. This provides significant improvements in developer experience related to theming and customization.
+CSS theme variable tells Material UI components to use the generated CSS theme variables instead of raw values. This provides significant improvements in developer experience related to theming and customization.
 With these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
+
+:::info
+The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
+
+If you have an existing theme, you can easily migrate to CSS theme variables by following the [migration guide](/material-ui/migration/migration-css-theme-variables/).
+:::
 
 ## Advantages
 

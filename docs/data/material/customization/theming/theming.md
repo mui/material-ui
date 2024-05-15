@@ -10,7 +10,7 @@ To promote greater consistency between apps, light and dark theme types are avai
 
 ## Theme provider
 
-If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application.
+If you wish to customize the theme, you need to use the `ThemeProvider` or [`CssVarsProvider`](#css-variables-provider) component in order to inject a theme into your application.
 However, this is optional; Material UI components come with a default theme.
 
 `ThemeProvider` relies on the [context feature of React](https://react.dev/learn/passing-data-deeply-with-context) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
@@ -113,6 +113,12 @@ The inner theme will **override** the outer theme.
 You can extend the outer theme by providing a function:
 
 {{"demo": "ThemeNestingExtend.js"}}
+
+## CSS variables provider
+
+The `CssVarsProvider` is built on top of the `ThemeProvider` with extra features like theme CSS variables generation, built-in color scheme synchronization, user's system preference, and more.
+
+To start using the `CssVarsProvider`, check out the [basic usage guide](/material-ui/customization/css-theme-variables/usage/). If you are using the `ThemeProvider`, read the [migration guide](/material-ui/migration/migration-css-theme-variables/).
 
 ## API
 
