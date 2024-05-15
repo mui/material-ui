@@ -93,6 +93,9 @@ export interface CreateCssVarsProviderResult<
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
+  InitColorSchemeScript: (
+    props: Parameters<typeof getInitColorSchemeScript>[0],
+  ) => React.ReactElement;
 }
 
 export default function createCssVarsProvider<
