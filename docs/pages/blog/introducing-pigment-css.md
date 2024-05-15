@@ -4,7 +4,7 @@ description: 'Pigment CSS offers significant performance gains along with RSC a
 date: 2024-05-15T00:00:00.000Z
 authors: ['samuelsycamore']
 tags: ['Pigment CSS']
-card: false
+manualCard: true
 ---
 
 In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering UIs from client to server.
@@ -15,6 +15,8 @@ And with nearly 70% of respondents in the [State of CSS 2023 survey](https://202
 For a library as widely used as Material UI, the biggest challenge is to stay up-to-date while introducing as few breaking changes as humanly possible, to maintain a consistent and reliable developer experience without asking users to completely change the way they build UI components.
 
 That's where Pigment CSS comes in.
+
+<img src="/static/blog/introducing-pigment-css/card.png" alt="Introducing Pigment CSS: the next generation of CSS-in-JS" width="1280" height="640" />
 
 Pigment CSS is MUI's new in-house styling solution: a zero-runtime CSS-in-JS package that generates colocated styles to their own CSS files at build-time.
 With Pigment CSS you get the latest and greatest advancements in CSS along with RSC compatibility, _plus_ significant performance improvements when compared with Emotion, the styling engine used in Material UI v5.
