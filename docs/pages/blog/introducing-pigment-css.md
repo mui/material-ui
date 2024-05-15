@@ -119,14 +119,14 @@ export default function Modal() {
 ```
 
 We've also ported over [the `sx` prop](/system/getting-started/the-sx-prop/) from MUI System, so you can still define styles directly in a given component, but now it's much more performant than before.
-And in Pigment CSS we've extended support for `sx` to include _all_ DOM nodes—not just Material UI components—so you don't need to wrap a simple `<div>` or `<span>` with a Box component to apply theme styles to it.
+And in Pigment CSS, we've extended support for `sx` to include _all_ DOM nodes—not just Material UI components—so you don't need to wrap a simple `<div>` or `<span>` with a Box component to apply theme styles to it.
 
 ```jsx
-<section sx={{ p: '1rem', border: '1px solid red' }}>
-  <h1 sx={{ fontSize: '2rem', fontWeight: 700, mb: '.5rem' }}>
+<section sx={{ p: 2, border: '1px solid', borderColor: 'divider' }}>
+  <h1 sx={{ fontSize: '2rem', fontWeight: 700, mb: 1 }}>
     Introducing Pigment CSS: the next generation of CSS-in-JS
   </h1>
-  <p sx={{ color: 'blue', fontWeight: 500 }}>
+  <p sx={{ color: 'text.primary', fontWeight: 500 }}>
     Pigment CSS offers significant performance gains along with RSC
   </p>
 </section>
