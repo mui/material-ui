@@ -28,7 +28,7 @@
         "page": "The page selected."
       }
     },
-    "page": { "description": "The non zero-based index of the current page." },
+    "page": { "description": "The current page. The page starts at 1 unlike TablePagination which starts at 0" },
     "renderItem": {
       "description": "Render the item.",
       "typeDescriptions": { "params": "The props to spread on a PaginationItem." }
