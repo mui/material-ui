@@ -1,5 +1,30 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.18
+
+<!-- generated comparing v5.15.17..master -->
+
+_May 14, 2024_
+
+A big thanks to the 5 contributors who made this release possible. Here are some highlights ✨:
+
+### `@mui/material@5.15.18`
+
+- &#8203;<!-- 6 -->[Autocomplete] Improve design when there's a start adornment for small autocomplete (@TahaRhidouani) (#42176) @github-actions[bot]
+- &#8203;<!-- 3 -->[ToggleButtonGroup] Add missing `selected` class in ToggleButtonGroupClasses type (@tarunrajput) (#42250) @github-actions[bot]
+
+### Docs
+
+- &#8203;<!-- 4 -->[docs] Fix 301 to Figma @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 5 -->[blog] Introducing Pigment CSS blog post (#42198) (#42255) @samuelsycamore
+- &#8203;<!-- 2 -->[website] Add redirection for talk @oliviertassinari
+- &#8203;<!-- 1 -->[website] Adds Arthur Balduini team info (@arthurbalduini) (#42226) @github-actions[bot]
+
+All contributors of this release in alphabetical order: @arthurbalduini, @oliviertassinari, @samuelsycamore, @TahaRhidouani, @tarunrajput
+
 ## v5.15.17
 
 <!-- generated comparing v5.15.16..master -->
