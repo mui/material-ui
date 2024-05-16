@@ -1,8 +1,9 @@
 ---
 title: 'Introducing Pigment CSS: the next generation of CSS-in-JS'
 description: 'Pigment CSS offers significant performance gains along with RSC and App Router support.'
-date: 2024-05-15T00:00:00.000Z
-authors: ['samuelsycamore']
+date: 2024-05-16T00:00:00.000Z
+authors:
+  ['samuelsycamore', 'brijeshb42', 'siriwatknp', 'mnajdova', 'oliviertassinari']
 tags: ['Pigment CSS']
 manualCard: true
 ---
@@ -30,7 +31,7 @@ Emotion made a lot of sense for Material UI v5 in late 2021, but so much has ch
 After Next.js offered the first implementation of the React Server Components spec with [the App Router](https://nextjs.org/blog/next-13) towards the end of 2022, it became clear that there was a monumental shift on the horizon.
 
 RSCs unlock a whole new realm of possibilities for React; for us as UI developers, it means we can create components that are fully renderable at build-time so we don't have to pass that burden on to the client at run-time.
-But working with RSCs requires us to let go of familiar APIs like `useContext`, which in turn becomes a major blocker for using the last generation's style engines like Emotion that rely heavily on this hook for theming.
+But working with RSCs requires us to let go of familiar APIs like `React.useContext`, which in turn becomes a major blocker for using the last generation's style engines like Emotion that rely heavily on this hook for theming.
 
 :::info
 To learn more about RSCs, we highly recommend reading [Making Sense of React Server Components](https://www.joshwcomeau.com/react/server-components/) by Josh Comeau.
@@ -113,8 +114,8 @@ const Container = styled.div`
 export default function Modal() {
   return (
     <Container>
-        <Title>Hello</title>
-        <p className={css({ color: 'pink' })}>World</p>
+      <Title>Hello</Title>
+      <p className={css({ color: 'pink' })}>World</p>
     </Container>
   );
 }
@@ -155,6 +156,6 @@ That said, Pigment CSS is available now for experimentation, and we'd love for 
 
 ## Get started with Pigment CSS
 
-Head to the [Pigment CSS repo](https://github.com/mui/pigment-css/) to learn how to set it up and start tinkering.
+Head to the [Pigment CSS repository](https://github.com/mui/pigment-css/) to learn how to set it up and start tinkering.
 Please feel free to [open a new issue](https://github.com/mui/pigment-css/issues) if you encounter any bugs or frustrations along the way.
-And while you're there, why not ⭐️ star the repo ⭐️ to let us know you're excited and help spread the word to others? 😁
+And while you're there, why not ⭐️ star the repository ⭐️ to let us know you're excited and help spread the word to others? 😁
