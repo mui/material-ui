@@ -29,7 +29,7 @@
       }
     },
     "page": {
-      "description": "The current page. The page starts at 1 unlike TablePagination which starts at 0."
+      "description": "The current page. Unlike <code>TablePagination</code>, which starts numbering from <code>0</code>, this pagination starts from <code>1</code>."
     },
     "renderItem": {
       "description": "Render the item.",
