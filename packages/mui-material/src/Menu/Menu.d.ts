@@ -9,7 +9,18 @@ import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
+export interface MenuSlots {
+  /**
+   * The component that renders the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default {}
+   */
+  transition?: React.JSXElementConstructor<
+    TransitionProps & { children: React.ReactElement<any, any> }
+  >;
+}
+
+export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {},
   {
     transition: SlotProps<React.JSXElementConstructor<TransitionProps>, {}, MenuOwnerState>;
@@ -18,7 +29,7 @@ export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface MenuProps
   extends Omit<StandardProps<PopoverProps>, 'slots' | 'slotProps'>,
-    SpeedDialSlotsAndSlotProps {
+    MenuSlotsAndSlotProps {
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.

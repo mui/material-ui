@@ -12,6 +12,7 @@ import Popover, { PopoverPaper } from '../Popover';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled, createUseThemeProps } from '../zero-styled';
 import { getMenuUtilityClass } from './menuClasses';
+import useSlot from '../utils/useSlot';
 
 const useThemeProps = createUseThemeProps('MuiMenu');
 
@@ -80,7 +81,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
-    TransitionProps: { onEntering, ...TransitionProps } = {},
+    TransitionProps: TransitionPropsProp,
     variant = 'selectedMenu',
     slots = {},
     slotProps = {},
@@ -89,6 +90,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const isRtl = useRtl();
 
+  const { onEntering, ...TransitionProps } = TransitionPropsProp ?? {};
   const ownerState = {
     ...props,
     autoFocus,
@@ -180,8 +182,26 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     className: classes.paper,
   });
 
+  // as transitionComponent doesn't exists is this required? or should i be passing it something else,
+  // I can see its used in the popover component of the popover paper. so perhaps the component isn't needed
+  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
+  const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
+
+  const externalForwardedProps = {
+    slots: backwardCompatibleSlots,
+    slotProps: backwardCompatibleSlotProps,
+  };
+
+  // am I correct in thinking that this replaces menu as you need to provide it the transitionProps
+  // or should this wrap the menu component? Because in all other examples there was a pre existing transition component
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: MenuRoot,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
-    <MenuRoot
+    <TransitionSlot
       onClose={onClose}
       anchorOrigin={{
         vertical: 'bottom',
@@ -215,7 +235,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       >
         {children}
       </MenuMenuList>
-    </MenuRoot>
+    </TransitionSlot>
   );
 });
 
