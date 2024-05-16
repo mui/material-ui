@@ -7,7 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
 import { styled, createUseThemeProps } from '../zero-styled';
 import Fab from '../Fab';
-import Tooltip, { tooltipClasses } from '../Tooltip';
+import Tooltip from '../Tooltip';
 import { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
 
 const useThemeProps = createUseThemeProps('MuiSpeedDialAction');
@@ -52,81 +52,14 @@ const SpeedDialActionFab = styled(Fab, {
         transform: 'scale(0)',
       },
     },
-  ],
-}));
-
-const SpeedDialActionStaticTooltip = styled('span', {
-  name: 'MuiSpeedDialAction',
-  slot: 'StaticTooltip',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.staticTooltip,
-      !ownerState.open && styles.staticTooltipClosed,
-      styles[`tooltipPlacement${capitalize(ownerState.tooltipPlacement)}`],
-    ];
-  },
-})(({ theme }) => ({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
-    transition: theme.transitions.create(['transform', 'opacity'], {
-      duration: theme.transitions.duration.shorter,
-    }),
-    opacity: 1,
-  },
-  variants: [
     {
-      props: ({ ownerState }) => !ownerState.open,
+      props: ({ ownerState }) => !ownerState.open && ownerState.tooltipOpen,
       style: {
-        [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
-          opacity: 0,
-          transform: 'scale(0.5)',
-        },
-      },
-    },
-    {
-      props: {
-        tooltipPlacement: 'left',
-      },
-      style: {
-        [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
-          transformOrigin: '100% 50%',
-          right: '100%',
-          marginRight: 8,
-        },
-      },
-    },
-    {
-      props: {
-        tooltipPlacement: 'right',
-      },
-      style: {
-        [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
-          transformOrigin: '0% 50%',
-          left: '100%',
-          marginLeft: 8,
-        },
+        opacity: 0,
+        transform: 'scale(1)',
       },
     },
   ],
-}));
-
-const SpeedDialActionStaticTooltipLabel = styled('span', {
-  name: 'MuiSpeedDialAction',
-  slot: 'StaticTooltipLabel',
-  overridesResolver: (props, styles) => styles.staticTooltipLabel,
-})(({ theme }) => ({
-  position: 'absolute',
-  ...theme.typography.body1,
-  backgroundColor: (theme.vars || theme).palette.background.paper,
-  borderRadius: (theme.vars || theme).shape.borderRadius,
-  boxShadow: (theme.vars || theme).shadows[1],
-  color: (theme.vars || theme).palette.text.secondary,
-  padding: '4px 16px',
-  wordBreak: 'keep-all',
 }));
 
 const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) {
@@ -177,27 +110,25 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     </SpeedDialActionFab>
   );
 
-  if (tooltipOpenProp) {
-    return (
-      <PersistentTooltip
-        id={id}
-        ref={ref}
-        title={tooltipTitle}
-        placement={tooltipPlacement}
-        onClose={handleTooltipClose}
-        onOpen={handleTooltipOpen}
-        open={open && tooltipOpenProp}
-        classes={TooltipClasses}
-        {...other}
-      >
-        {fab}
-      </PersistentTooltip>
-    );
-  }
-
   if (!open && tooltipOpen) {
     setTooltipOpen(false);
   }
+
+  const tooltipStyle = tooltipOpenProp
+    ? {
+        sx: (theme) => {
+          return {
+            ...theme.typography.body1,
+            ...classes.staticTooltipLabel,
+            backgroundColor: (theme.vars || theme).palette.background.paper,
+            boxShadow: (theme.vars || theme).shadows[1],
+            color: (theme.vars || theme).palette.text.secondary,
+            padding: '4px 16px',
+            wordBreak: 'keep-all',
+          };
+        },
+      }
+    : null;
 
   return (
     <Tooltip
@@ -207,8 +138,9 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       placement={tooltipPlacement}
       onClose={handleTooltipClose}
       onOpen={handleTooltipOpen}
-      open={open && tooltipOpen}
+      open={open && (tooltipOpen || tooltipOpenProp)}
       classes={TooltipClasses}
+      slotProps={{ tooltip: tooltipStyle }}
       {...other}
     >
       {fab}
