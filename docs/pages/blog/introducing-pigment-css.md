@@ -3,14 +3,21 @@ title: 'Introducing Pigment CSS: the next generation of CSS-in-JS'
 description: 'Pigment CSS offers significant performance gains along with RSC and App Router support.'
 date: 2024-05-16T00:00:00.000Z
 authors:
-  ['samuelsycamore', 'brijeshb42', 'siriwatknp', 'mnajdova', 'oliviertassinari']
+  [
+    'samuelsycamore',
+    'brijeshb42',
+    'siriwatknp',
+    'mnajdova',
+    'danilo-leal',
+    'oliviertassinari',
+  ]
 tags: ['Pigment CSS']
 manualCard: true
 ---
 
 In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering UIs from client to server.
 
-Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because so much of what they do happens on the client.
+The trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because the [React context API](https://react.dev/learn/passing-data-deeply-with-context) only works on the client.
 And with nearly 70% of respondents in the [State of CSS 2023 survey](https://2023.stateofcss.com/en-US/css-in-js/) indicating they use styled-components and Emotion, we're looking at a whole lot of React developers with no clear path forward from here.
 
 For a library as widely used as Material UI, the biggest challenge is to stay up-to-date while introducing as few breaking changes as humanly possible, to maintain a consistent and reliable developer experience without asking users to completely change the way they build UI components.
@@ -20,8 +27,8 @@ That's where Pigment CSS comes in.
 <img src="/static/blog/introducing-pigment-css/card.png" alt="Introducing Pigment CSS: the next generation of CSS-in-JS" width="1280" height="640" />
 
 Pigment CSS is MUI's new in-house styling solution: a zero-runtime CSS-in-JS package that generates colocated styles to their own CSS files at build-time.
-With Pigment CSS you get the latest and greatest advancements in CSS along with RSC compatibility, _plus_ significant performance improvements when compared with Emotion, the styling engine used in Material UI v5.
-And though we're prioritizing the needs of Material UI users in early development, Pigment CSS can be used with _any_ React component library you prefer.
+With Pigment CSS you get RSC compatibility, _plus_ significant performance improvements when compared with Emotion, the styling engine used in Material UI v5.
+And though we're prioritizing the needs of Material UI users in early development and focused on a smooth migration, Pigment CSS can be used with _any_ React component library you prefer.
 
 ## Why Pigment CSS?
 
@@ -52,14 +59,15 @@ So when it came time to seek out a new way to generate styles, we knew we needed
 
 For those of us who are perfectly happy with the patterns we know and love from CSS-in-JS, it feels frustrating to consider abandoning all that muscle memory just to reinvent the wheel yet again.
 We like the DX of colocated styles, and we'd rather not bloat the DOM with atomic class names—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have cropped up in recent months just don't match up with our preferences.
+We also wanted a solution that would enable us to move incredibly fast while allowing a smooth migration experience to our current set of products that depend on Emotion.
 
 ## How Pigment CSS works
 
 Pigment CSS is a zero-runtime CSS-in-JS library: This means it doesn't have access to the end user's browser runtime, which would be necessary to generate and insert authored CSS at run-time.
 Instead, it does all its processing at build-time to pre-generate the CSS which then becomes part of the output bundle.
 
-Pigment CSS is built on top of the [WyW-in-JS](https://wyw-in-js.dev/) library that also powers [Linaria](https://linaria.dev/).
-It features a [processor](https://wyw-in-js.dev/how-to/custom-tagged-template#creating-a-processor) which makes it possible to create custom logic that's triggered by the presence of different imports from the library.
+It started as a [Linaria](https://linaria.dev/) fork, the library that offered most of what we were looking for.
+However, we went down to a lower level and picked [WyW-in-JS](https://wyw-in-js.dev/) (that also powers Linaria), which features a processor that makes it possible to create custom logic that's triggered by the presence of different imports from the library.
 The processor looks through the source code for `styled()`, `css()`, and other function calls and extracts the arguments to be evaluated.
 These values are then handed back to Pigment CSS for additional parsing and evaluation.
 
