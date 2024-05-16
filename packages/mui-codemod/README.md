@@ -259,6 +259,72 @@ npx @mui/codemod@next deprecations/alert-classes <path>
 npx @mui/codemod@next deprecations/alert-props <path>
 ```
 
+#### `autocomplete-props`
+
+```diff
+ <Autocomplete
+-  ChipProps={{ height: 10 }}
+-  PaperComponent={CustomPaper}
+-  PopperComponent={CustomPopper}
+-  ListboxComponent={CustomListbox}
+-  ListboxProps={{ height: 12 }}
+-  componentsProps={{
+-    clearIndicator: { width: 10 },
+-    paper: { width: 12 },
+-    popper: { width: 14 },
+-    popupIndicator: { width: 16 },
+-  }}
++  slots={{
++    paper: CustomPaper,
++    popper: CustomPopper,
++    listbox: CustomListbox,
++  }}
++  slotProps={{
++    chip: { height: 10 },
++    listbox: { height: 12 },
++    clearIndicator: { width: 10 },
++    paper: { width: 12 },
++    popper: { width: 14 },
++    popupIndicator: { width: 16 },
++  }}
+ />
+```
+
+```diff
+ MuiAutocomplete: {
+   defaultProps: {
+-    ChipProps: { height: 10 },
+-    PaperComponent: CustomPaper,
+-    PopperComponent: CustomPopper,
+-    ListboxComponent: CustomListbox,
+-    ListboxProps: { height: 12 },
+-    componentsProps: {
+-       clearIndicator: { width: 10 },
+-       paper: { width: 12 },
+-       popper: { width: 14 },
+-       popupIndicator: { width: 16 },
+-     }
++    slots: {
++      paper: CustomPaper,
++      popper: CustomPopper,
++      listbox: CustomListbox,
++    },
++    slotProps: {
++      chip: { height: 10 },
++      listbox: { height: 12 },
++      clearIndicator: { width: 10 },
++      paper: { width: 12 },
++      popper: { width: 14 },
++      popupIndicator: { width: 16 },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/autocomplete-props <path>
+```
+
 #### `avatar-props`
 
 ```diff
@@ -843,6 +909,42 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@next deprecations/chip-classes <path>
+```
+
+#### `circular-progress-classes`
+
+JS transforms:
+
+```diff
+ import { circularProgressClasses } from '@mui/material/CircularProgress';
+
+ MuiCircularProgress: {
+   styleOverrides: {
+     root: {
+-      [`& .${circularProgressClasses.circleDeterminate}`]: {
++      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
+         color: 'red',
+        },
+-      [`& .${circularProgressClasses.circleIndeterminate}`]: {
++      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiCircularProgress-circleDeterminate
++.MuiCircularProgress-determinate > .MuiCircularProgress-circle
+- .MuiCircularProgress-circleIndeterminate
++.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle
+```
+
+```bash
+npx @mui/codemod@next deprecations/circular-progress-classes <path>
 ```
 
 #### `divider-props`
