@@ -17,7 +17,7 @@ manualCard: true
 
 In the era of React Server Components and the Next.js App Router, component libraries like Material UI must make some paradigm-shifting changes to reap the potential performance gains by moving more of the work of rendering UIs from client to server.
 
-The trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because the [React context API](https://react.dev/learn/passing-data-deeply-with-context) only works on the client.
+Trouble is, the "traditional" CSS-in-JS solutions we rely on aren't able to come along with us because the [React context API](https://react.dev/learn/passing-data-deeply-with-context) only works on the client.
 And with nearly 70% of respondents in the [State of CSS 2023 survey](https://2023.stateofcss.com/en-US/css-in-js/) indicating they use styled-components and Emotion, we're looking at a whole lot of React developers with no clear path forward from here.
 
 For a library as widely used as Material UI, the biggest challenge is to stay up-to-date while introducing as few breaking changes as humanly possible, to maintain a consistent and reliable developer experience without asking users to completely change the way they build UI components.
@@ -28,7 +28,7 @@ That's where Pigment CSS comes in.
 
 Pigment CSS is MUI's new in-house styling solution: a zero-runtime CSS-in-JS package that generates colocated styles to their own CSS files at build-time.
 With Pigment CSS you get RSC compatibility, _plus_ significant performance improvements when compared with Emotion, the styling engine used in Material UI v5.
-And though we're prioritizing the needs of Material UI users in early development and focused on a smooth migration, Pigment CSS can be used with _any_ React component library you prefer.
+And though we're prioritizing the needs of Material UI users in early development and focusing on a smooth migration, Pigment CSS can be used with _any_ React component library you prefer.
 
 ## Why Pigment CSS?
 
@@ -59,15 +59,14 @@ So when it came time to seek out a new way to generate styles, we knew we needed
 
 For those of us who are perfectly happy with the patterns we know and love from CSS-in-JS, it feels frustrating to consider abandoning all that muscle memory just to reinvent the wheel yet again.
 We like the DX of colocated styles, and we'd rather not bloat the DOM with atomic class names—so Tailwind CSS, StyleX, Panda CSS, and other solutions that have cropped up in recent months just don't match up with our preferences.
-We also wanted a solution that would enable us to move incredibly fast while allowing a smooth migration experience to our current set of products that depend on Emotion.
+Pigment CSS started as a [Linaria](https://linaria.dev/) fork, but we found more of the tools we needed to achieve our goals with [WyW-in-JS](https://wyw-in-js.dev/), the open-source library that also powers Linaria.
 
 ## How Pigment CSS works
 
 Pigment CSS is a zero-runtime CSS-in-JS library: This means it doesn't have access to the end user's browser runtime, which would be necessary to generate and insert authored CSS at run-time.
 Instead, it does all its processing at build-time to pre-generate the CSS which then becomes part of the output bundle.
 
-It started as a [Linaria](https://linaria.dev/) fork, the library that offered most of what we were looking for.
-However, we went down to a lower level and picked [WyW-in-JS](https://wyw-in-js.dev/) (that also powers Linaria), which features a processor that makes it possible to create custom logic that's triggered by the presence of different imports from the library.
+It uses WyW-in-JS processor feature which makes it possible to create custom logic that's triggered by the presence of different imports from the library.
 The processor looks through the source code for `styled()`, `css()`, and other function calls and extracts the arguments to be evaluated.
 These values are then handed back to Pigment CSS for additional parsing and evaluation.
 
@@ -81,7 +80,7 @@ For users of Emotion and styled-components, the benefits of adopting Pigment CS
 
 ### Better performance
 
-When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following results:
+When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following page load performance gains:
 
 | Metrics                | Emotion | Pigment CSS | Reduction |
 | :--------------------- | ------: | ----------: | --------: |
