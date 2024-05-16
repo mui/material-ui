@@ -114,6 +114,10 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     setTooltipOpen(false);
   }
 
+  function round(value) {
+    return Math.round(value * 1e5) / 1e5;
+  }
+
   const tooltipStyle = tooltipOpenProp
     ? {
         sx: (theme) => {
@@ -125,6 +129,8 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
             color: (theme.vars || theme).palette.text.secondary,
             padding: '4px 16px',
             wordBreak: 'keep-all',
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            letterSpacing: `${round(0.15 / 16)}em`,
           };
         },
       }
