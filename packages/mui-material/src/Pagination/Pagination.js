@@ -198,7 +198,7 @@ Pagination.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
-   * The current page.
+   * The current page. Unlike `TablePagination`, which starts numbering from `0`, this pagination starts from `1`.
    */
   page: integerPropType,
   /**
