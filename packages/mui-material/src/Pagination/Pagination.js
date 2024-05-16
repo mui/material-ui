@@ -199,7 +199,7 @@ Pagination.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
-   * The current page.
+   * The current page. The page starts at 1 unlike TablePagination which starts at 0.
    */
   page: integerPropType,
   /**
