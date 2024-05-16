@@ -27,10 +27,10 @@ export default function DataTable() {
           <Box sx={{ height: 600 }}>
             <Box
               component="img"
-              src="/static/branding/toolpad/landing-page.gif"
+              src="/static/branding/toolpad/hero.gif"
               alt="Toolpad user management app"
               loading="lazy"
-              height={600}
+              height={620}
               sx={{ width: { xs: 'auto', sm: '100%' } }}
             />
           </Box>
