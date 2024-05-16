@@ -1,9 +1,14 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InternalStandardProps as StandardProps, Theme, TypographyProps } from '..';
 import { AlertTitleClasses } from './alertTitleClasses';
 
-export interface AlertTitleProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface AlertTitleProps
+  extends Pick<
+      TypographyProps,
+      'align' | 'component' | 'gutterBottom' | 'noWrap' | 'paragraph' | 'variant' | 'variantMapping'
+    >,
+    StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.
    */
