@@ -58,7 +58,7 @@ The design kit uses Figma's local variables to let you toggle the variable mode 
 
 ### Editing the main components
 
-You can use the [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer) plugin to select multiple components at once that share some property.
+You can use the [Similayer](https://www.figma.com/community/plugin/735733267883397781/similayer) plugin to select multiple components at once that share some property.
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/eHBk0FbS0P8?si=QbOiMU2F1yvGB6s8" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
