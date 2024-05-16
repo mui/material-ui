@@ -137,7 +137,7 @@ const Root = styled('div')(
         display: 'flex',
         alignItems: 'center',
         userSelect: 'text',
-        WebkitUserDrag: 'none',
+        // WebkitUserDrag: 'none',
       },
       '& .anchor-icon': {
         // To prevent the link to get the focus.
@@ -829,6 +829,7 @@ export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementP
       const elements = document.getElementsByClassName('title-link-to-anchor');
 
       for (var i = 0; i < elements.length; i++) {
+        elements[i].setAttribute('draggable', 'false');
         elements[i].addEventListener('click', handleClick, false);
       }
 
