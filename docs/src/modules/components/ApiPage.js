@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import Alert from '@mui/material/Alert';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
+import DangerousIcon from '@mui/icons-material/Dangerous';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
@@ -79,6 +80,8 @@ export default function ApiPage(props) {
     spread,
     slots: componentSlots,
     classes,
+    deprecated,
+    deprecationInfo,
   } = pageContent;
 
   const componentClasses = Array.isArray(classes)
@@ -180,6 +183,50 @@ export default function ApiPage(props) {
     >
       <MarkdownElement>
         <h1>{pageContent.name} API</h1>
+        {deprecated ? (
+          <Alert
+            severity="error"
+            variant="outlined"
+            icon={<DangerousIcon sx={{ fontSize: 20 }} />}
+            sx={(theme) => ({
+              mt: 1.5,
+              mb: 1.5,
+              fontSize: theme.typography.pxToRem(16),
+              backgroundColor: (theme.vars || theme).palette.error[50],
+              borderColor: (theme.vars || theme).palette.error[100],
+              '& .MuiAlert-message': {
+                '& * p': {
+                  color: (theme.vars || theme).palette.text.primary,
+                  mb: 1,
+                },
+                '& * a': {
+                  fontWeight: theme.typography.fontWeightMedium,
+                  color: (theme.vars || theme).palette.error[900],
+                  textDecorationColor: alpha(theme.palette.error[600], 0.3),
+                },
+              },
+              ...theme.applyDarkStyles({
+                backgroundColor: alpha(theme.palette.error[700], 0.12),
+                borderColor: alpha(theme.palette.error[400], 0.1),
+                '& .MuiAlert-message': {
+                  ul: {
+                    pl: 3,
+                  },
+                  '& * a': {
+                    color: (theme.vars || theme).palette.error[100],
+                    textDecorationColor: alpha(theme.palette.error[100], 0.3),
+                  },
+                },
+              }),
+            })}
+          >
+            <span
+              dangerouslySetInnerHTML={{
+                __html: deprecationInfo,
+              }}
+            />
+          </Alert>
+        ) : null}
         <Typography variant="h5" component="p" className="description" gutterBottom>
           {description}
           {disableAd ? null : (
@@ -195,41 +242,37 @@ export default function ApiPage(props) {
           severity="success"
           variant="outlined"
           icon={<VerifiedRoundedIcon sx={{ fontSize: 20 }} />}
-          sx={[
-            (theme) => ({
-              mt: 1.5,
-              pt: 1,
-              px: 2,
-              pb: 0,
-              fontSize: theme.typography.pxToRem(16),
-              backgroundColor: (theme.vars || theme).palette.success[50],
-              borderColor: (theme.vars || theme).palette.success[100],
+          sx={(theme) => ({
+            mt: 1.5,
+            pb: 0,
+            fontSize: theme.typography.pxToRem(16),
+            backgroundColor: (theme.vars || theme).palette.success[50],
+            borderColor: (theme.vars || theme).palette.success[100],
+            '& .MuiAlert-message': {
+              '& * p': {
+                color: (theme.vars || theme).palette.text.primary,
+                mb: 1,
+              },
+              '& * a': {
+                fontWeight: theme.typography.fontWeightMedium,
+                color: (theme.vars || theme).palette.success[900],
+                textDecorationColor: alpha(theme.palette.success[600], 0.3),
+              },
+            },
+            ...theme.applyDarkStyles({
+              backgroundColor: alpha(theme.palette.success[700], 0.12),
+              borderColor: alpha(theme.palette.success[400], 0.1),
               '& .MuiAlert-message': {
-                '& * p': {
-                  color: (theme.vars || theme).palette.text.primary,
-                  mb: 1,
+                ul: {
+                  pl: 3,
                 },
                 '& * a': {
-                  fontWeight: theme.typography.fontWeightMedium,
-                  color: (theme.vars || theme).palette.success[900],
-                  textDecorationColor: alpha(theme.palette.success[600], 0.3),
+                  color: (theme.vars || theme).palette.success[100],
+                  textDecorationColor: alpha(theme.palette.success[100], 0.3),
                 },
               },
-              ...theme.applyDarkStyles({
-                backgroundColor: alpha(theme.palette.success[700], 0.12),
-                borderColor: alpha(theme.palette.success[400], 0.1),
-                '& .MuiAlert-message': {
-                  ul: {
-                    pl: 3,
-                  },
-                  '& * a': {
-                    color: (theme.vars || theme).palette.success[100],
-                    textDecorationColor: alpha(theme.palette.success[100], 0.3),
-                  },
-                },
-              }),
             }),
-          ]}
+          })}
         >
           <span
             dangerouslySetInnerHTML={{

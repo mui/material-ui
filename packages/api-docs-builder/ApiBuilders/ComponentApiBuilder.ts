@@ -11,6 +11,7 @@ import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { renderMarkdown } from '@mui/internal-markdown';
 import { ComponentClassDefinition } from '@mui/internal-docs-utils';
+import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
@@ -52,6 +53,8 @@ export interface ReactApi extends ReactDocgenApi {
   muiName: string;
   description: string;
   spread: boolean | undefined;
+  deprecated: true | undefined;
+  deprecationInfo: string | undefined;
   /**
    * If `true`, the component supports theme default props customization.
    * If `null`, we couldn't infer this information.
@@ -147,7 +150,7 @@ export async function computeApiDescription(
  *  *
  *  * - [Icon API](https://mui.com/api/icon/)
  */
-async function annotateComponentDefinition(api: ReactApi) {
+async function annotateComponentDefinition(api: ReactApi, componentJsdoc: Annotation) {
   const HOST = 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
@@ -318,6 +321,10 @@ async function annotateComponentDefinition(api: ReactApi) {
     markdownLines.push(`- inherits ${inheritanceAPILink}`);
   }
 
+  componentJsdoc.tags.forEach((tag) => {
+    markdownLines.push('', `@${tag.title} ${tag.description}`);
+  });
+
   const jsdoc = `/**\n${markdownLines
     .map((line) => (line.length > 0 ? ` * ${line}` : ` *`))
     .join('\n')}\n */`;
@@ -400,6 +407,8 @@ const generateApiPage = async (
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
+    deprecated: reactApi.deprecated,
+    deprecationInfo: reactApi.deprecationInfo,
   };
 
   const { classesSort = sortAlphabetical('key'), slotsSort = null } = {
@@ -738,13 +747,24 @@ export default async function generateComponentApi(
     reactApi.props = {};
   }
 
+  const { getComponentImports = defaultGetComponentImports } = projectSettings;
+  const componentJsdoc = parseDoctrine(reactApi.description);
+
+  // We override `reactApi.description` with `componentJsdoc.description` because
+  // the former includes JSDoc tags that we don't want to render in the API page.
+  reactApi.description = componentJsdoc.description;
+
   // Ignore what we might have generated in `annotateComponentDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
 
-  const { getComponentImports = defaultGetComponentImports } = projectSettings;
+  const deprecation = componentJsdoc.tags.find((tag) => tag.title === 'deprecated');
+
+  reactApi.deprecated = !!deprecation || undefined;
+  reactApi.deprecationInfo = renderMarkdown(deprecation?.description || '') || undefined;
+
   reactApi.filename = filename;
   reactApi.name = componentInfo.name;
   reactApi.imports = getComponentImports(componentInfo.name, filename);
@@ -825,7 +845,7 @@ export default async function generateComponentApi(
         : !skipAnnotatingComponentDefinition
     ) {
       // Add comment about demo & api links (including inherited component) to the component file
-      await annotateComponentDefinition(reactApi);
+      await annotateComponentDefinition(reactApi, componentJsdoc);
     }
   }
 
