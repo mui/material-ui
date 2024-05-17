@@ -19,7 +19,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
-import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { useRouter } from 'next/router';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
@@ -272,35 +271,12 @@ function useToolbar(controlRefs, options = {}) {
   };
 }
 
-function copyWithRelativeModules(raw, relativeModules) {
-  if (relativeModules) {
-    relativeModules.forEach(({ module, raw: content }) => {
-      // remove exports from relative module
-      content = content.replace(/export( )*(default)*( )*\w+;|export default|export/gm, '');
-      // replace import statement with relative module content
-      // the module might be imported with or without extension, so we need to cover all cases
-      // E.g.: /import .* from '(.\/top100Films.js|.\/top100Films)';/
-      const extensions = ['', '.js', '.jsx', '.ts', '.tsx', '.css', '.json'];
-      const patterns = extensions
-        .map((ext) => {
-          if (module.endsWith(ext)) {
-            return module.replace(ext, '');
-          }
-          return '';
-        })
-        .filter(Boolean)
-        .join('|');
-      const importPattern = new RegExp(`import .* from '(${patterns})';`);
-      raw = raw.replace(importPattern, content);
-    });
-  }
-  return copy(raw);
-}
-
 export default function DemoToolbar(props) {
   const {
     codeOpen,
     codeVariant,
+    copyButtonOnClick,
+    copyIcon,
     hasNonSystemDemos,
     demo,
     demoData,
@@ -347,16 +323,6 @@ export default function DemoToolbar(props) {
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
-  };
-
-  const handleCopyClick = async () => {
-    try {
-      await copyWithRelativeModules(demoData.raw, demoData.relativeModules);
-      setSnackbarMessage(t('copiedSource'));
-      setSnackbarOpen(true);
-    } finally {
-      handleMoreClose();
-    }
   };
 
   const createHandleCodeSourceLink = (anchor, codeVariantParam, stylingSolution) => async () => {
@@ -601,11 +567,11 @@ export default function DemoToolbar(props) {
               data-ga-event-category="demo"
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="copy"
-              onClick={handleCopyClick}
+              onClick={copyButtonOnClick}
               {...getControlProps(6)}
               sx={{ borderRadius: 1 }}
             >
-              <ContentCopyRoundedIcon />
+              {copyIcon}
             </IconButton>
           </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
@@ -751,6 +717,8 @@ export default function DemoToolbar(props) {
 DemoToolbar.propTypes = {
   codeOpen: PropTypes.bool.isRequired,
   codeVariant: PropTypes.string.isRequired,
+  copyButtonOnClick: PropTypes.object.isRequired,
+  copyIcon: PropTypes.object.isRequired,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
   demoId: PropTypes.string,
