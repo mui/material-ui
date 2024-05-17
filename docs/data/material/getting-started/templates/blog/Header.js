@@ -17,10 +17,12 @@ function Header(props) {
         <Typography
           component="h2"
           variant="h5"
-          color="inherit"
+          sx={{
+            color: 'inherit',
+            flex: 1,
+          }}
           align="center"
           noWrap
-          sx={{ flex: 1 }}
         >
           {title}
         </Typography>
@@ -38,12 +40,15 @@ function Header(props) {
       >
         {sections.map((section) => (
           <Link
-            color="inherit"
+            sx={{
+              color: 'inherit',
+              p: 1,
+              flexShrink: 0,
+            }}
             noWrap
             key={section.title}
             variant="body2"
             href={section.url}
-            sx={{ p: 1, flexShrink: 0 }}
           >
             {section.title}
           </Link>

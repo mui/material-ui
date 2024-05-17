@@ -30,16 +30,31 @@ export default function BreadcrumbsWithMenu() {
         <MenuItem onClick={handleClose}>Breadcrumb 4</MenuItem>
       </Menu>
       <Breadcrumbs aria-label="breadcrumbs">
-        <Link color="primary" href="#condensed-with-menu">
+        <Link
+          sx={{
+            color: 'primary',
+          }}
+          href="#condensed-with-menu"
+        >
           Breadcrumb 1
         </Link>
         <Button size="sm" onClick={handleClick} variant="plain" color="primary">
           •••
         </Button>
-        <Link color="primary" href="#condensed-with-menu">
+        <Link
+          sx={{
+            color: 'primary',
+          }}
+          href="#condensed-with-menu"
+        >
           Breadcrumb 5
         </Link>
-        <Link color="primary" href="#condensed-with-menu">
+        <Link
+          sx={{
+            color: 'primary',
+          }}
+          href="#condensed-with-menu"
+        >
           Breadcrumb 6
         </Link>
       </Breadcrumbs>

@@ -29,7 +29,13 @@ export default function CondensedBreadcrumbs() {
         </Button>
       ) : null}
       {navigationItems.map((item) => (
-        <Link key={item} color="primary" href="#condensed-breadcrumbs">
+        <Link
+          key={item}
+          sx={{
+            color: 'primary',
+          }}
+          href="#condensed-breadcrumbs"
+        >
           <FolderIcon sx={{ mr: 0.5 }} color="inherit" />
           {item}
         </Link>

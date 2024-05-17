@@ -39,7 +39,12 @@ export default function ComplexGrid() {
               <Typography variant="body2" gutterBottom>
                 Full resolution 1920x1080 • JPEG
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                variant="body2"
+                sx={{
+                  color: 'text.secondary',
+                }}
+              >
                 ID: 1030114
               </Typography>
             </Grid>

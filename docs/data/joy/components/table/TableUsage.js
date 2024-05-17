@@ -56,9 +56,11 @@ export default function TableUsage() {
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Typography
             level="body-xs"
-            justifyContent="center"
-            textAlign="center"
-            sx={{ mb: 2 }}
+            sx={{
+              justifyContent: 'center',
+              textAlign: 'center',
+              mb: 2,
+            }}
           >
             The table is scrollable.
           </Typography>

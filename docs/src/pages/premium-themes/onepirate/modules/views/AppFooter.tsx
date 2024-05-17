@@ -10,7 +10,12 @@ function Copyright() {
   return (
     <React.Fragment>
       {'© '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link
+        sx={{
+          color: 'inherit',
+        }}
+        href="https://mui.com/"
+      >
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -54,9 +59,11 @@ export default function AppFooter() {
             <Grid
               container
               direction="column"
-              justifyContent="flex-end"
+              sx={{
+                justifyContent: 'flex-end',
+                height: 120,
+              }}
               spacing={2}
-              sx={{ height: 120 }}
             >
               <Grid item sx={{ display: 'flex' }}>
                 <Box component="a" href="https://mui.com/" sx={iconStyle}>

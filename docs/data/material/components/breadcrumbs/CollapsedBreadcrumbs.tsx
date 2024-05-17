@@ -13,19 +13,49 @@ export default function CollapsedBreadcrumbs() {
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs maxItems={2} aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="#">
+        <Link
+          underline="hover"
+          sx={{
+            color: 'inherit',
+          }}
+          href="#"
+        >
           Home
         </Link>
-        <Link underline="hover" color="inherit" href="#">
+        <Link
+          underline="hover"
+          sx={{
+            color: 'inherit',
+          }}
+          href="#"
+        >
           Catalog
         </Link>
-        <Link underline="hover" color="inherit" href="#">
+        <Link
+          underline="hover"
+          sx={{
+            color: 'inherit',
+          }}
+          href="#"
+        >
           Accessories
         </Link>
-        <Link underline="hover" color="inherit" href="#">
+        <Link
+          underline="hover"
+          sx={{
+            color: 'inherit',
+          }}
+          href="#"
+        >
           New Collection
         </Link>
-        <Typography color="text.primary">Belts</Typography>
+        <Typography
+          sx={{
+            color: 'text.primary',
+          }}
+        >
+          Belts
+        </Typography>
       </Breadcrumbs>
     </div>
   );

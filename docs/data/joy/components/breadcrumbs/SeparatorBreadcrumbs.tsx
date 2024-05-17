@@ -9,7 +9,13 @@ export default function SeparatorBreadcrumbs() {
     <Breadcrumbs separator={<KeyboardArrowLeft />} aria-label="breadcrumbs">
       <Typography>Amy</Typography>
       {['Characters', 'Futurama', 'TV Shows', 'Home'].map((item: string) => (
-        <Link key={item} color="neutral" href="#separators">
+        <Link
+          key={item}
+          sx={{
+            color: 'neutral',
+          }}
+          href="#separators"
+        >
           {item}
         </Link>
       ))}

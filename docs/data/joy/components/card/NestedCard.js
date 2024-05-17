@@ -51,7 +51,16 @@ export default function NestedCard() {
           borderColor: 'divider',
         }}
       >
-        <Typography startDecorator={<BallotIcon color="danger" />} level="title-sm">
+        <Typography
+          startDecorator={
+            <BallotIcon
+              sx={{
+                color: 'danger',
+              }}
+            />
+          }
+          level="title-sm"
+        >
           13
         </Typography>
         <Divider orientation="vertical" />

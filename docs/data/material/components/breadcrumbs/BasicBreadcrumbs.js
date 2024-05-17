@@ -12,17 +12,31 @@ export default function BasicBreadcrumbs() {
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
+        <Link
+          underline="hover"
+          sx={{
+            color: 'inherit',
+          }}
+          href="/"
+        >
           MUI
         </Link>
         <Link
           underline="hover"
-          color="inherit"
+          sx={{
+            color: 'inherit',
+          }}
           href="/material-ui/getting-started/installation/"
         >
           Core
         </Link>
-        <Typography color="text.primary">Breadcrumbs</Typography>
+        <Typography
+          sx={{
+            color: 'text.primary',
+          }}
+        >
+          Breadcrumbs
+        </Typography>
       </Breadcrumbs>
     </div>
   );

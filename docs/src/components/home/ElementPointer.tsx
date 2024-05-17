@@ -103,10 +103,12 @@ export default function PointerContainer({
               }}
             >
               <Typography
-                color="#fff"
-                fontSize="0.625rem"
-                fontWeight={500}
-                sx={{ display: 'block' }}
+                sx={{
+                  color: '#fff',
+                  fontSize: '0.625rem',
+                  fontWeight: 500,
+                  display: 'block',
+                }}
               >
                 {data.name}
               </Typography>

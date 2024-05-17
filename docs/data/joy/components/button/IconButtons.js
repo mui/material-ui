@@ -10,7 +10,12 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 export default function IconButtons() {
   const [disabled, setDisabled] = React.useState(false);
   return (
-    <Stack spacing={3} alignItems="center">
+    <Stack
+      spacing={3}
+      sx={{
+        alignItems: 'center',
+      }}
+    >
       <FormControl orientation="horizontal">
         <FormLabel>Disabled</FormLabel>
         <Switch

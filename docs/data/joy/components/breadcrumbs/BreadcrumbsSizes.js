@@ -9,7 +9,13 @@ export default function BreadcrumbsSizes() {
     <Stack sx={{ display: 'flex', alignItems: 'center' }}>
       <Breadcrumbs separator="—" aria-label="breadcrumbs" size="sm">
         {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item) => (
-          <Link key={item} color="neutral" href="#sizes">
+          <Link
+            key={item}
+            sx={{
+              color: 'neutral',
+            }}
+            href="#sizes"
+          >
             {item}
           </Link>
         ))}
@@ -18,7 +24,13 @@ export default function BreadcrumbsSizes() {
       </Breadcrumbs>
       <Breadcrumbs separator="—" aria-label="breadcrumbs" size="md">
         {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item) => (
-          <Link key={item} color="neutral" href="#sizes">
+          <Link
+            key={item}
+            sx={{
+              color: 'neutral',
+            }}
+            href="#sizes"
+          >
             {item}
           </Link>
         ))}
@@ -27,7 +39,13 @@ export default function BreadcrumbsSizes() {
       </Breadcrumbs>
       <Breadcrumbs separator="—" aria-label="breadcrumbs" size="lg">
         {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item) => (
-          <Link key={item} color="neutral" href="#sizes">
+          <Link
+            key={item}
+            sx={{
+              color: 'neutral',
+            }}
+            href="#sizes"
+          >
             {item}
           </Link>
         ))}

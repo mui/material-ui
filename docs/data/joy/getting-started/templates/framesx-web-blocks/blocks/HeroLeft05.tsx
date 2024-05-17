@@ -12,12 +12,20 @@ export default function HeroLeft05() {
     <TwoSidedLayout>
       <Typography
         level="h1"
-        fontWeight="xl"
-        fontSize="clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)"
+        sx={{
+          fontWeight: 'xl',
+          fontSize: 'clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)',
+        }}
       >
         A large headlinerer about our product features & services
       </Typography>
-      <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
+      <Typography
+        textColor="text.secondary"
+        sx={{
+          fontSize: 'lg',
+          lineHeight: 'lg',
+        }}
+      >
         A descriptive secondary text placeholder. Use it to explain your business
         offer better.
       </Typography>
@@ -35,7 +43,11 @@ export default function HeroLeft05() {
       </Button>
       <Typography textColor="text.secondary">
         By continuing you agree to our{' '}
-        <Link color="neutral">
+        <Link
+          sx={{
+            color: 'neutral',
+          }}
+        >
           <b>Privacy Policy</b>
         </Link>
       </Typography>

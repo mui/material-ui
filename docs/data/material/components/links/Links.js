@@ -17,7 +17,12 @@ export default function Links() {
       onClick={preventDefault}
     >
       <Link href="#">Link</Link>
-      <Link href="#" color="inherit">
+      <Link
+        href="#"
+        sx={{
+          color: 'inherit',
+        }}
+      >
         {'color="inherit"'}
       </Link>
       <Link href="#" variant="body2">

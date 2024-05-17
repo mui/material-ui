@@ -19,19 +19,25 @@ function AppAppBar() {
           <Link
             variant="h6"
             underline="none"
-            color="inherit"
+            sx={{
+              color: 'inherit',
+              fontSize: 24,
+            }}
             href="/premium-themes/onepirate/"
-            sx={{ fontSize: 24 }}
           >
             {'onepirate'}
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
             <Link
-              color="inherit"
+              sx={[
+                {
+                  color: 'inherit',
+                },
+                ...(Array.isArray(rightLink) ? rightLink : [rightLink]),
+              ]}
               variant="h6"
               underline="none"
               href="/premium-themes/onepirate/sign-in/"
-              sx={rightLink}
             >
               {'Sign In'}
             </Link>

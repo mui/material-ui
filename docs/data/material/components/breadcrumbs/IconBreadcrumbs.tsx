@@ -17,8 +17,11 @@ export default function IconBreadcrumbs() {
       <Breadcrumbs aria-label="breadcrumb">
         <Link
           underline="hover"
-          sx={{ display: 'flex', alignItems: 'center' }}
-          color="inherit"
+          sx={{
+            color: 'inherit',
+            display: 'flex',
+            alignItems: 'center',
+          }}
           href="/"
         >
           <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
@@ -26,16 +29,22 @@ export default function IconBreadcrumbs() {
         </Link>
         <Link
           underline="hover"
-          sx={{ display: 'flex', alignItems: 'center' }}
-          color="inherit"
+          sx={{
+            color: 'inherit',
+            display: 'flex',
+            alignItems: 'center',
+          }}
           href="/material-ui/getting-started/installation/"
         >
           <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
           Core
         </Link>
         <Typography
-          sx={{ display: 'flex', alignItems: 'center' }}
-          color="text.primary"
+          sx={{
+            color: 'text.primary',
+            display: 'flex',
+            alignItems: 'center',
+          }}
         >
           <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
           Breadcrumb

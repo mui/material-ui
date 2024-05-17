@@ -7,7 +7,13 @@ export default function BasicBreadcrumbs() {
   return (
     <Breadcrumbs aria-label="breadcrumbs">
       {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item: string) => (
-        <Link key={item} color="neutral" href="#basics">
+        <Link
+          key={item}
+          sx={{
+            color: 'neutral',
+          }}
+          href="#basics"
+        >
           {item}
         </Link>
       ))}

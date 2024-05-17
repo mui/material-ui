@@ -24,7 +24,13 @@ function Header(props) {
     <React.Fragment>
       <AppBar color="primary" position="sticky" elevation={0}>
         <Toolbar>
-          <Grid container spacing={1} alignItems="center">
+          <Grid
+            container
+            spacing={1}
+            sx={{
+              alignItems: 'center',
+            }}
+          >
             <Grid sx={{ display: { sm: 'none', xs: 'block' } }} item>
               <IconButton
                 color="inherit"
@@ -76,9 +82,21 @@ function Header(props) {
         sx={{ zIndex: 0 }}
       >
         <Toolbar>
-          <Grid container alignItems="center" spacing={1}>
+          <Grid
+            container
+            sx={{
+              alignItems: 'center',
+            }}
+            spacing={1}
+          >
             <Grid item xs>
-              <Typography color="inherit" variant="h5" component="h1">
+              <Typography
+                sx={{
+                  color: 'inherit',
+                }}
+                variant="h5"
+                component="h1"
+              >
                 Authentication
               </Typography>
             </Grid>

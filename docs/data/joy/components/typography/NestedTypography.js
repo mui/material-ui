@@ -3,14 +3,29 @@ import Typography from '@mui/joy/Typography';
 
 export default function NestedTypography() {
   return (
-    <Typography maxWidth={400}>
-      Typography lets you create <Typography variant="soft">nested</Typography>{' '}
+    <Typography
+      sx={{
+        maxWidth: 400,
+      }}
+    >
+      Typography lets you create<Typography variant="soft">nested</Typography>{' '}
       typography. Use your{' '}
-      <Typography variant="outlined" color="success">
+      <Typography
+        variant="outlined"
+        sx={{
+          color: 'success',
+        }}
+      >
         imagination
       </Typography>{' '}
       to build wonderful{' '}
-      <Typography variant="solid" color="primary" noWrap>
+      <Typography
+        variant="solid"
+        sx={{
+          color: 'primary',
+        }}
+        noWrap
+      >
         user interface
       </Typography>
       .

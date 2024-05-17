@@ -98,7 +98,13 @@ export default function NotFoundHero() {
       <SectionHeadline
         alwaysCenter
         title={
-          <Typography component="h1" variant="h4" fontWeight="semiBold">
+          <Typography
+            component="h1"
+            variant="h4"
+            sx={{
+              fontWeight: 'semiBold',
+            }}
+          >
             Page not found
           </Typography>
         }

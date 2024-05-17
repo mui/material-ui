@@ -11,12 +11,20 @@ export default function HeroLeft08() {
     <TwoSidedLayout>
       <Typography
         level="h1"
-        fontWeight="xl"
-        fontSize="clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)"
+        sx={{
+          fontWeight: 'xl',
+          fontSize: 'clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)',
+        }}
       >
         A large headlinerer about our product features & services
       </Typography>
-      <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
+      <Typography
+        textColor="text.secondary"
+        sx={{
+          fontSize: 'lg',
+          lineHeight: 'lg',
+        }}
+      >
         A descriptive secondary text placeholder. Use it to explain your business
         offer better.
       </Typography>
@@ -60,9 +68,16 @@ export default function HeroLeft08() {
       >
         <div>
           <Typography
-            fontSize="xl4"
-            fontWeight="lg"
-            endDecorator={<Star fontSize="xl4" sx={{ color: 'warning.300' }} />}
+            endDecorator={
+              <Star
+                sx={{
+                  fontSize: 'xl4',
+                  fontWeight: 'lg',
+                  fontSize: 'xl4',
+                  color: 'warning.300',
+                }}
+              />
+            }
           >
             4.9
           </Typography>
@@ -71,7 +86,12 @@ export default function HeroLeft08() {
           </Typography>
         </div>
         <div>
-          <Typography fontSize="xl4" fontWeight="lg">
+          <Typography
+            sx={{
+              fontSize: 'xl4',
+              fontWeight: 'lg',
+            }}
+          >
             9.5k+
           </Typography>
           <Typography textColor="text.secondary">

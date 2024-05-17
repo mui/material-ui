@@ -67,8 +67,10 @@ export default function CookiesBanner() {
           >
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
-              justifyContent="space-between"
-              gap={2}
+              sx={{
+                justifyContent: 'space-between',
+                gap: 2,
+              }}
             >
               <Box
                 sx={{
@@ -76,20 +78,26 @@ export default function CookiesBanner() {
                   alignSelf: { xs: 'flex-start', sm: 'center' },
                 }}
               >
-                <Typography fontWeight="bold">This website uses cookies</Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  This website uses cookies
+                </Typography>
                 <Typography variant="body2">
                   example.com relies on cookies to improve your experience.
                 </Typography>
               </Box>
               <Stack
-                gap={2}
+                sx={{
+                  gap: 2,
+                  flexShrink: 0,
+                  alignSelf: { xs: 'flex-end', sm: 'center' },
+                }}
                 direction={{
                   xs: 'row-reverse',
                   sm: 'row',
-                }}
-                sx={{
-                  flexShrink: 0,
-                  alignSelf: { xs: 'flex-end', sm: 'center' },
                 }}
               >
                 <Button size="small" onClick={closeBanner} variant="contained">

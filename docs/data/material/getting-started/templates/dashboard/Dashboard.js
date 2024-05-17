@@ -24,9 +24,21 @@ import Orders from './Orders';
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant="body2"
+      sx={{
+        color: 'text.secondary',
+      }}
+      align="center"
+      {...props}
+    >
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link
+        sx={{
+          color: 'inherit',
+        }}
+        href="https://mui.com/"
+      >
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -115,9 +127,11 @@ export default function Dashboard() {
             <Typography
               component="h1"
               variant="h6"
-              color="inherit"
+              sx={{
+                color: 'inherit',
+                flexGrow: 1,
+              }}
               noWrap
-              sx={{ flexGrow: 1 }}
             >
               Dashboard
             </Typography>

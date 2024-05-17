@@ -133,29 +133,16 @@ function EnhancedTableHead(props) {
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 underline="none"
-                color="neutral"
                 textColor={active ? 'primary.plainColor' : undefined}
                 component="button"
                 onClick={createSortHandler(headCell.id)}
-                fontWeight="lg"
-                startDecorator={
-                  headCell.numeric ? (
-                    <ArrowDownwardIcon sx={{ opacity: active ? 1 : 0 }} />
-                  ) : null
-                }
-                endDecorator={
-                  !headCell.numeric ? (
-                    <ArrowDownwardIcon sx={{ opacity: active ? 1 : 0 }} />
-                  ) : null
-                }
                 sx={{
-                  '& svg': {
-                    transition: '0.2s',
-                    transform:
-                      active && order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
-                  },
-                  '&:hover': { '& svg': { opacity: 1 } },
+                  color: 'neutral',
+                  fontWeight: 'lg',
+                  opacity: active ? 1 : 0,
                 }}
+                startDecorator={headCell.numeric ? <ArrowDownwardIcon /> : null}
+                endDecorator={!headCell.numeric ? <ArrowDownwardIcon /> : null}
               >
                 {headCell.label}
                 {active ? (
@@ -409,7 +396,12 @@ export default function TableSortAndSelection() {
                     <Option value={25}>25</Option>
                   </Select>
                 </FormControl>
-                <Typography textAlign="center" sx={{ minWidth: 80 }}>
+                <Typography
+                  sx={{
+                    textAlign: 'center',
+                    minWidth: 80,
+                  }}
+                >
                   {labelDisplayedRows({
                     from: rows.length === 0 ? 0 : page * rowsPerPage + 1,
                     to: getLabelDisplayedRowsTo(),

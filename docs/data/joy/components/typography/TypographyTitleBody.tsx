@@ -17,8 +17,10 @@ export default function TypographyTitleBody() {
           <Typography
             level="title-lg"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{
+              fontFamily: 'monospace',
+              opacity: '50%',
+            }}
           >
             title-lg
           </Typography>
@@ -29,8 +31,10 @@ export default function TypographyTitleBody() {
           <Typography
             level="body-md"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{
+              fontFamily: 'monospace',
+              opacity: '50%',
+            }}
           >
             body-md
           </Typography>
@@ -42,8 +46,10 @@ export default function TypographyTitleBody() {
           <Typography
             level="title-md"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{
+              fontFamily: 'monospace',
+              opacity: '50%',
+            }}
           >
             title-md
           </Typography>
@@ -54,8 +60,10 @@ export default function TypographyTitleBody() {
           <Typography
             level="body-md"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{
+              fontFamily: 'monospace',
+              opacity: '50%',
+            }}
           >
             body-md
           </Typography>
@@ -65,8 +73,10 @@ export default function TypographyTitleBody() {
           <Typography
             level="body-sm"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{
+              fontFamily: 'monospace',
+              opacity: '50%',
+            }}
           >
             body-sm
           </Typography>
@@ -78,8 +88,10 @@ export default function TypographyTitleBody() {
           <Typography
             level="title-sm"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{
+              fontFamily: 'monospace',
+              opacity: '50%',
+            }}
           >
             title-sm
           </Typography>
@@ -90,8 +102,10 @@ export default function TypographyTitleBody() {
           <Typography
             level="body-sm"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{
+              fontFamily: 'monospace',
+              opacity: '50%',
+            }}
           >
             body-sm
           </Typography>
@@ -101,8 +115,10 @@ export default function TypographyTitleBody() {
           <Typography
             level="body-xs"
             textColor="var(--joy-palette-success-plainColor)"
-            fontFamily="monospace"
-            sx={{ opacity: '50%' }}
+            sx={{
+              fontFamily: 'monospace',
+              opacity: '50%',
+            }}
           >
             body-xs
           </Typography>

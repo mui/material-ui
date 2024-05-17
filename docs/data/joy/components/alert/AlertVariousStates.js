@@ -34,7 +34,12 @@ export default function AlertVariousStates() {
         >
           <div>
             <div>{title}</div>
-            <Typography level="body-sm" color={color}>
+            <Typography
+              level="body-sm"
+              sx={{
+                color: color,
+              }}
+            >
               This is a time-sensitive {title} Alert.
             </Typography>
           </div>

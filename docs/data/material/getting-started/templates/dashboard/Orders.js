@@ -78,7 +78,14 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
-      <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+      <Link
+        sx={{
+          color: 'primary',
+          mt: 3,
+        }}
+        href="#"
+        onClick={preventDefault}
+      >
         See more orders
       </Link>
     </React.Fragment>

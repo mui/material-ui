@@ -12,19 +12,34 @@ function handleClick(event) {
 
 export default function CustomSeparator() {
   const breadcrumbs = [
-    <Link underline="hover" key="1" color="inherit" href="/" onClick={handleClick}>
+    <Link
+      underline="hover"
+      key="1"
+      sx={{
+        color: 'inherit',
+      }}
+      href="/"
+      onClick={handleClick}
+    >
       MUI
     </Link>,
     <Link
       underline="hover"
       key="2"
-      color="inherit"
+      sx={{
+        color: 'inherit',
+      }}
       href="/material-ui/getting-started/installation/"
       onClick={handleClick}
     >
       Core
     </Link>,
-    <Typography key="3" color="text.primary">
+    <Typography
+      key="3"
+      sx={{
+        color: 'text.primary',
+      }}
+    >
       Breadcrumb
     </Typography>,
   ];
