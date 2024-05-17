@@ -136,7 +136,7 @@ const components = ['Box', 'Stack', 'Typography', 'Link', 'Grid'];
  * @param {import('jscodeshift').API} api
  */
 export default function removeSystemProps(file, api, options) {
-  if (file.path.endsWith('.json') || file.path.endsWith('.d.ts')) {
+  if (file.path?.endsWith('.json') || file.path?.endsWith('.d.ts')) {
     return file.source;
   }
   const j = api.jscodeshift;
