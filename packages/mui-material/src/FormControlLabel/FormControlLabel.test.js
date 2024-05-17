@@ -331,4 +331,30 @@ describe('<FormControlLabel />', () => {
 
     expect(getByTestId('control')).to.have.attribute('value', 'test');
   });
+
+  it('label should have noWrap styles', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { getByTestId } = render(
+      <FormControlLabel
+        slotProps={{
+          typography: {
+            noWrap: true,
+            'data-testid': 'typography',
+          },
+        }}
+        value="test"
+        label="Pizza"
+        control={<div data-testid="control" />}
+      />,
+    );
+
+    expect(getByTestId('typography')).toHaveComputedStyle({
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    });
+  });
 });
