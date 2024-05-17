@@ -16,6 +16,20 @@
       "deprecated": true,
       "deprecationInfo": "Use <code>slotProps.secondary</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ primary?: func<br>&#124;&nbsp;object<br>&#124;&nbsp;{ component?: elementType, key?: any, sx?: Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object }, secondary?: func<br>&#124;&nbsp;object<br>&#124;&nbsp;{ component?: elementType, key?: any, sx?: Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object } }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ primary?: elementType, secondary?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
