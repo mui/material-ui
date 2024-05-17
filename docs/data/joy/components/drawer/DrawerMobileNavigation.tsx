@@ -32,9 +32,11 @@ export default function DrawerMobileNavigation() {
           <Typography
             component="label"
             htmlFor="close-icon"
-            fontSize="sm"
-            fontWeight="lg"
-            sx={{ cursor: 'pointer' }}
+            sx={{
+              fontSize: 'sm',
+              fontWeight: 'lg',
+              cursor: 'pointer',
+            }}
           >
             Close
           </Typography>

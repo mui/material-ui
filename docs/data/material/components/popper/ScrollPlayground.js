@@ -180,15 +180,15 @@ export default function ScrollPlayground() {
     <Box sx={{ flexGrow: 1 }}>
       <Box sx={{ height: 400, overflow: 'auto', mb: 3 }}>
         <Grid
+          container
           sx={{
+            alignItems: 'center',
+            justifyContent: 'center',
             position: 'relative',
             width: '230%',
             bgcolor: 'background.paper',
             height: '230%',
           }}
-          container
-          alignItems="center"
-          justifyContent="center"
           ref={centerScroll}
         >
           <div>
@@ -317,7 +317,13 @@ export default function ScrollPlayground() {
               }
               label="Disable portal"
             />
-            <Typography display="block" variant="caption" color="text.secondary">
+            <Typography
+              variant="caption"
+              sx={{
+                display: 'block',
+                color: 'text.secondary',
+              }}
+            >
               (the children stay within their parent DOM hierarchy)
             </Typography>
           </Grid>

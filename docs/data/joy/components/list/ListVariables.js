@@ -57,7 +57,9 @@ export default function ListVariables() {
             <ListItem>
               <Typography
                 level="body-sm"
-                fontWeight="md"
+                sx={{
+                  fontWeight: 'md',
+                }}
                 startDecorator={
                   <Sheet
                     component="span"

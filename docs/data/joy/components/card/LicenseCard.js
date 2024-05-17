@@ -33,7 +33,12 @@ export default function LicenseCard() {
       <div>
         <Typography level="h2">
           $58{' '}
-          <Typography fontSize="sm" textColor="text.tertiary">
+          <Typography
+            sx={{
+              fontSize: 'sm',
+            }}
+            textColor="text.tertiary"
+          >
             /month
           </Typography>
         </Typography>

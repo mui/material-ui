@@ -7,13 +7,31 @@ export default function BadgeSizes() {
   return (
     <Box sx={{ display: 'flex', gap: 4 }}>
       <Badge badgeContent={10} size="sm">
-        <Typography fontSize="xl">💌</Typography>
+        <Typography
+          sx={{
+            fontSize: 'xl',
+          }}
+        >
+          💌
+        </Typography>
       </Badge>
       <Badge badgeContent={20} size="md">
-        <Typography fontSize="xl">💌</Typography>
+        <Typography
+          sx={{
+            fontSize: 'xl',
+          }}
+        >
+          💌
+        </Typography>
       </Badge>
       <Badge badgeContent={30} size="lg">
-        <Typography fontSize="xl">💌</Typography>
+        <Typography
+          sx={{
+            fontSize: 'xl',
+          }}
+        >
+          💌
+        </Typography>
       </Badge>
     </Box>
   );

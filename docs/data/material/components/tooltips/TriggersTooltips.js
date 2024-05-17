@@ -17,7 +17,12 @@ export default function TriggersTooltips() {
 
   return (
     <div>
-      <Grid container justifyContent="center">
+      <Grid
+        container
+        sx={{
+          justifyContent: 'center',
+        }}
+      >
         <Grid item>
           <Tooltip disableFocusListener title="Add">
             <Button>Hover or touch</Button>

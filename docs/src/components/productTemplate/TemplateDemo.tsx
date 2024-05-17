@@ -163,7 +163,13 @@ export default function TemplateDemo() {
                           },
                         }}
                       >
-                        <Typography fontWeight="bold">Go to store</Typography>
+                        <Typography
+                          sx={{
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          Go to store
+                        </Typography>
                         <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
                       </Link>
                     </Box>
@@ -203,14 +209,33 @@ export default function TemplateDemo() {
               }}
             >
               <div>
-                <Typography variant="body2" fontWeight="medium" noWrap sx={{ mb: 0.5 }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontWeight: 'medium',
+                    mb: 0.5,
+                  }}
+                  noWrap
+                >
                   {templates[templateIndex].name}
                 </Typography>
-                <Typography variant="body2" color="grey.500" noWrap sx={{ fontSize: '0.75rem' }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: 'grey.500',
+                    fontSize: '0.75rem',
+                  }}
+                  noWrap
+                >
                   Developed by {templates[templateIndex].author}
                 </Typography>
               </div>
-              <Typography color="grey.500" variant="caption">
+              <Typography
+                sx={{
+                  color: 'grey.500',
+                }}
+                variant="caption"
+              >
                 {templateIndex + 1} / {templates.length}
               </Typography>
             </Frame.Info>

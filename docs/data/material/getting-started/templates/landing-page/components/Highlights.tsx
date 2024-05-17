@@ -91,11 +91,8 @@ export default function Highlights() {
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Stack
                 direction="column"
-                color="inherit"
-                component={Card}
-                spacing={1}
-                useFlexGap
                 sx={{
+                  color: 'inherit',
                   p: 3,
                   height: '100%',
                   border: '1px solid',
@@ -104,10 +101,18 @@ export default function Highlights() {
                   backgroundColor: 'grey.900',
                   boxShadow: 'none',
                 }}
+                component={Card}
+                spacing={1}
+                useFlexGap
               >
                 <Box sx={{ opacity: '50%' }}>{item.icon}</Box>
                 <div>
-                  <Typography fontWeight="medium" gutterBottom>
+                  <Typography
+                    sx={{
+                      fontWeight: 'medium',
+                    }}
+                    gutterBottom
+                  >
                     {item.title}
                   </Typography>
                   <Typography variant="body2" sx={{ color: 'grey.400' }}>

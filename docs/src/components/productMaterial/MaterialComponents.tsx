@@ -166,9 +166,13 @@ export default function MaterialComponents() {
                 )}
                 {demo === 'Text field' && (
                   <Stack
-                    justifyContent="center"
+                    sx={{
+                      justifyContent: 'center',
+                      p: 2,
+                      width: '50%',
+                      margin: 'auto',
+                    }}
                     spacing={2}
-                    sx={{ p: 2, width: '50%', margin: 'auto' }}
                   >
                     <TextField variant="standard" label="Username" />
                     <TextField variant="outlined" label="Email" type="email" />
@@ -239,10 +243,13 @@ export default function MaterialComponents() {
                 )}
                 {demo === 'Tooltip' && (
                   <Stack
-                    alignItems="center"
-                    justifyContent="center"
+                    sx={{
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      minHeight: 100,
+                      py: 2,
+                    }}
                     spacing={1}
-                    sx={{ minHeight: 100, py: 2 }}
                   >
                     <Tooltip
                       title="Appears on hover"
@@ -250,7 +257,13 @@ export default function MaterialComponents() {
                       placement="top"
                       slotProps={{ popper: { disablePortal: true } }}
                     >
-                      <Typography color="text.secondary">Top</Typography>
+                      <Typography
+                        sx={{
+                          color: 'text.secondary',
+                        }}
+                      >
+                        Top
+                      </Typography>
                     </Tooltip>
                     <Box sx={{ '& > *': { display: 'inline-block' } }}>
                       <Tooltip
@@ -260,7 +273,13 @@ export default function MaterialComponents() {
                         open
                         slotProps={{ popper: { disablePortal: true } }}
                       >
-                        <Typography color="text.secondary">Left</Typography>
+                        <Typography
+                          sx={{
+                            color: 'text.secondary',
+                          }}
+                        >
+                          Left
+                        </Typography>
                       </Tooltip>
                       <Box sx={{ display: 'inline-block', width: 80 }} />
                       <Tooltip
@@ -269,7 +288,13 @@ export default function MaterialComponents() {
                         placement="right"
                         slotProps={{ popper: { disablePortal: true } }}
                       >
-                        <Typography color="text.secondary">Right</Typography>
+                        <Typography
+                          sx={{
+                            color: 'text.secondary',
+                          }}
+                        >
+                          Right
+                        </Typography>
                       </Tooltip>
                     </Box>
                     <Tooltip
@@ -278,7 +303,13 @@ export default function MaterialComponents() {
                       placement="bottom"
                       slotProps={{ popper: { disablePortal: true } }}
                     >
-                      <Typography color="text.secondary">Bottom</Typography>
+                      <Typography
+                        sx={{
+                          color: 'text.secondary',
+                        }}
+                      >
+                        Bottom
+                      </Typography>
                     </Tooltip>
                   </Stack>
                 )}

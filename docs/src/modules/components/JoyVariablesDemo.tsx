@@ -48,19 +48,19 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
         aria-controls={`section-${slot}`}
         component="button"
         underline="none"
-        fontSize="sm"
-        fontWeight="lg"
+        sx={{
+          fontSize: 'sm',
+          fontWeight: 'lg',
+          pb: 1,
+          justifyContent: 'space-between',
+          color: open ? 'text.primary' : 'text.tertiary',
+        }}
         endDecorator={
           <KeyboardArrowDown
             sx={{ transition: '0.2s', transform: open ? 'rotate(-180deg)' : undefined }}
           />
         }
         onClick={() => setOpen(!open)}
-        sx={{
-          pb: 1,
-          justifyContent: 'space-between',
-          color: open ? 'text.primary' : 'text.tertiary',
-        }}
       >
         {slot}
       </Link>
@@ -164,7 +164,12 @@ export default function JoyVariablesDemo(props: {
               alignItems: 'center',
             }}
           >
-            <Typography fontWeight="lg" sx={{ fontFamily: 'General Sans' }}>
+            <Typography
+              sx={{
+                fontWeight: 'lg',
+                fontFamily: 'General Sans',
+              }}
+            >
               CSS variables
             </Typography>
             <IconButton
@@ -211,7 +216,12 @@ export default function JoyVariablesDemo(props: {
                       endDecorator={
                         <React.Fragment>
                           {typeof resolvedValue === 'string' && (
-                            <Typography level="body-xs" mr={0.5}>
+                            <Typography
+                              level="body-xs"
+                              sx={{
+                                mr: 0.5,
+                              }}
+                            >
                               px
                             </Typography>
                           )}

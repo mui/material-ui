@@ -180,7 +180,12 @@ function Demo({
           })}
         </CssVarsProvider>
       </Box>
-      <Typography fontWeight="semiBold" variant="body2">
+      <Typography
+        sx={{
+          fontWeight: 'semiBold',
+        }}
+        variant="body2"
+      >
         {name}
       </Typography>
     </Box>
@@ -665,13 +670,23 @@ export default function MaterialDesignComponents() {
             alignItems: 'center',
           }}
         >
-          <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 'bold',
+              mb: 0.5,
+            }}
+          >
             Want to see more?
           </Typography>
           <Typography
             variant="body2"
-            color="text.secondary"
-            sx={{ mb: 0.5, maxWidth: 250, mx: 'auto' }}
+            sx={{
+              color: 'text.secondary',
+              mb: 0.5,
+              maxWidth: 250,
+              mx: 'auto',
+            }}
           >
             Check out the docs for details of the complete library.
           </Typography>

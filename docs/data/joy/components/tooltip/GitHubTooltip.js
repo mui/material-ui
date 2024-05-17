@@ -23,14 +23,18 @@ export default function GitHubTooltip() {
           }}
         >
           <Typography
-            fontSize="sm"
+            sx={{
+              fontSize: 'sm',
+            }}
             textColor="grey"
             startDecorator={
               <Link
                 underline="always"
                 href="#common-examples"
                 color="neutral"
-                fontSize="sm"
+                sx={{
+                  fontSize: 'sm',
+                }}
               >
                 mui/material-ui
               </Link>
@@ -41,10 +45,21 @@ export default function GitHubTooltip() {
           <Box sx={{ display: 'flex', gap: 1, width: '100%', mt: 1 }}>
             <AdjustIcon color="success" />
             <div>
-              <Typography fontWeight="lg" fontSize="sm">
+              <Typography
+                sx={{
+                  fontWeight: 'lg',
+                  fontSize: 'sm',
+                }}
+              >
                 [system] grey is no more recognized as color with the sx prop
               </Typography>
-              <Typography textColor="text.secondary" fontSize="sm" sx={{ mb: 1 }}>
+              <Typography
+                textColor="text.secondary"
+                sx={{
+                  fontSize: 'sm',
+                  mb: 1,
+                }}
+              >
                 Duplicates I have searched the existing issues Latest version I have
                 tested the …
               </Typography>

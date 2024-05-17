@@ -60,9 +60,12 @@ export default function NewsletterToast() {
           <div>
             <Typography
               variant="body2"
-              color="text.secondary"
-              fontWeight={500}
-              sx={{ ml: 1, mr: 2 }}
+              sx={{
+                color: 'text.secondary',
+                fontWeight: 500,
+                ml: 1,
+                mr: 2,
+              }}
             >
               You have subscribed to MUI newsletter.
             </Typography>

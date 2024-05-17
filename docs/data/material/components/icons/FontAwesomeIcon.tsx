@@ -18,7 +18,13 @@ export default function FontAwesomeIcon() {
   }, []);
 
   return (
-    <Stack direction="row" spacing={4} alignItems="flex-end">
+    <Stack
+      direction="row"
+      spacing={4}
+      sx={{
+        alignItems: 'flex-end',
+      }}
+    >
       <Icon baseClassName="fas" className="fa-plus-circle" />
       <Icon baseClassName="fas" className="fa-plus-circle" color="primary" />
       <Icon

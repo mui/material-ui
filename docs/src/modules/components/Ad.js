@@ -19,13 +19,34 @@ function PleaseDisableAdblock(props) {
       sx={{ display: 'block', p: 1.5, border: '2px solid', borderColor: 'primary.main' }}
       {...props}
     >
-      <Typography variant="body2" display="block" component="span" gutterBottom>
+      <Typography
+        variant="body2"
+        sx={{
+          display: 'block',
+        }}
+        component="span"
+        gutterBottom
+      >
         {t('likeMui')}
       </Typography>
-      <Typography variant="body2" display="block" component="span" gutterBottom>
+      <Typography
+        variant="body2"
+        sx={{
+          display: 'block',
+        }}
+        component="span"
+        gutterBottom
+      >
         {t('adblock')}
       </Typography>
-      <Typography variant="body2" display="block" component="span" gutterBottom>
+      <Typography
+        variant="body2"
+        sx={{
+          display: 'block',
+        }}
+        component="span"
+        gutterBottom
+      >
         {t('thanks')}{' '}
         <span role="img" aria-label={t('emojiLove')}>
           ❤️

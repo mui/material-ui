@@ -90,39 +90,52 @@ export default function OurValues() {
             >
               <Box sx={{ height: 94 }}>
                 <Box
-                  width={width}
-                  height={height}
-                  sx={(theme) => ({
-                    background: `${lightIcon}`,
-                    ...theme.applyDarkStyles({
-                      background: `${darkIcon}`,
+                  sx={[
+                    {
+                      width: width,
+                      height: height,
+                    },
+                    (theme) => ({
+                      background: `${lightIcon}`,
+                      ...theme.applyDarkStyles({
+                        background: `${darkIcon}`,
+                      }),
                     }),
-                  })}
+                  ]}
                 />
               </Box>
               <Box sx={{ flexGrow: 1 }}>
                 <Typography
-                  fontWeight="bold"
+                  sx={[
+                    {
+                      fontWeight: 'bold',
+                    },
+                    (theme) => ({
+                      mb: 0.5,
+                      color: (theme.vars || theme).palette.text.primary,
+                      '&::first-letter': {
+                        mr: 0.1,
+                        fontSize: theme.typography.pxToRem(16),
+                        color: (theme.vars || theme).palette.primary.main,
+                      },
+                      ...theme.applyDarkStyles({
+                        '&::first-letter': {
+                          color: (theme.vars || theme).palette.primary[400],
+                        },
+                      }),
+                    }),
+                  ]}
                   component="h3"
                   variant="body2"
-                  sx={(theme) => ({
-                    mb: 0.5,
-                    color: (theme.vars || theme).palette.text.primary,
-                    '&::first-letter': {
-                      mr: 0.1,
-                      fontSize: theme.typography.pxToRem(16),
-                      color: (theme.vars || theme).palette.primary.main,
-                    },
-                    ...theme.applyDarkStyles({
-                      '&::first-letter': {
-                        color: (theme.vars || theme).palette.primary[400],
-                      },
-                    }),
-                  })}
                 >
                   {title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: 'text.secondary',
+                  }}
+                >
                   {description}
                 </Typography>
               </Box>

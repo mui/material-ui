@@ -21,7 +21,12 @@ export default function SizesList() {
     >
       {(['sm', 'md', 'lg'] as const).map((size) => (
         <div key={size}>
-          <Typography level="body-xs" mb={2}>
+          <Typography
+            level="body-xs"
+            sx={{
+              mb: 2,
+            }}
+          >
             <code>size=&quot;{size}&quot;</code>
           </Typography>
           <List

@@ -24,7 +24,9 @@ export default function ExamplePaymentChannels() {
           id="example-payment-channel-label"
           level="title-md"
           textColor={'text.secondary'}
-          fontWeight="xl"
+          sx={{
+            fontWeight: 'xl',
+          }}
         >
           Pay with
         </Typography>
