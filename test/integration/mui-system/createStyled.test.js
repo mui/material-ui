@@ -730,4 +730,141 @@ describe('createStyled', () => {
       expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
     });
   });
+
+  // TODO: We need to figure out if it is possible to fix this
+  it.skip('styled() variants should have presedence over wrapper styled() base styles', () => {
+    const styled = createStyled();
+
+    const A = styled('div')({
+      paddingTop: '10px',
+      variants: [
+        {
+          props: { variant: 'filled' },
+          style: {
+            backgroundColor: 'rgb(255, 0, 0)',
+          },
+        },
+      ],
+    });
+
+    const B = styled(A)({
+      paddingTop: '20px',
+      // this should not override the one from A
+      backgroundColor: 'rgb(255, 255, 255)',
+    });
+
+    const C = styled(A)({
+      variants: [
+        {
+          props: { variant: 'filled' },
+          style: {
+            // this now overrides the one from A
+            backgroundColor: 'rgb(255, 255, 255)',
+          },
+        },
+      ],
+    });
+
+    const { getByTestId } = render(
+      <>
+        <B data-testid="b" variant="filled" />
+        {/*<C data-testid="c" variant="filled" />*/}
+      </>,
+    );
+    expect(getByTestId('b')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
+    // expect(getByTestId('c')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 255, 255)' });
+  });
+
+  it.only('styled() variant styles should take presedence over base style overrides', () => {
+    const styled = createStyled();
+
+    const A = styled('div', {
+      name: 'MuiA',
+      slot: 'root',
+    })({
+      paddingTop: '10px',
+      variants: [
+        {
+          props: { variant: 'filled' },
+          style: {
+            backgroundColor: 'rgb(255, 0, 0)',
+          },
+        },
+      ],
+    });
+
+    const { getByTestId } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiA: {
+              styleOverrides: {
+                root: {
+                  paddingTop: '20px',
+                  // this should not override the one from A
+                  backgroundColor: 'rgb(255, 255, 255)',
+                },
+              },
+            },
+          },
+        })}
+      >
+        <A data-testid="a" variant="filled" />
+      </ThemeProvider>,
+    );
+    expect(getByTestId('a')).toHaveComputedStyle({
+      paddingTop: '20px',
+      backgroundColor: 'rgb(255, 0, 0)',
+    });
+  });
+
+  it.only('styled() variant styles should not take presedence over variant style overrides', () => {
+    const styled = createStyled();
+
+    const A = styled('div', {
+      name: 'MuiA',
+      slot: 'root',
+    })({
+      paddingTop: '10px',
+      variants: [
+        {
+          props: { variant: 'filled' },
+          style: {
+            backgroundColor: 'rgb(255, 0, 0)',
+          },
+        },
+      ],
+    });
+
+    const { getByTestId } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiA: {
+              styleOverrides: {
+                root: {
+                  paddingTop: '20px',
+                  variants: [
+                    {
+                      props: { variant: 'filled' },
+                      style: {
+                        // this should not override the one from A
+                        backgroundColor: 'rgb(255, 255, 255)',
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        })}
+      >
+        <A data-testid="a" variant="filled" />
+      </ThemeProvider>,
+    );
+    expect(getByTestId('a')).toHaveComputedStyle({
+      paddingTop: '20px',
+      backgroundColor: 'rgb(255, 255, 255)',
+    });
+  });
 });
