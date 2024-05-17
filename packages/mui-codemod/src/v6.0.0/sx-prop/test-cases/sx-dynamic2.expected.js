@@ -2,10 +2,7 @@
   expanded={expanded}
   onChange={handleExpansion}
   slotProps={{ transition: { timeout: 400 } }}
-  sx={[{
-    '& .MuiAccordion-region': {},
-    '& .MuiAccordionDetails-root': {},
-  }, expanded ? {
+  sx={[expanded ? {
     '& .MuiAccordion-region': {
       height: 'auto'
     }

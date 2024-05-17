@@ -184,6 +184,12 @@ export default function sxV6(file, api, options) {
                 replaceValue: (newValue) => {
                   prop.value = newValue;
                 },
+                deleteSelf: () => {
+                  removeProperty(data.node, prop);
+                  if (data.node.properties.length === 0) {
+                    data.deleteSelf?.();
+                  }
+                },
                 modeStyles,
               });
             } else {
@@ -231,7 +237,11 @@ export default function sxV6(file, api, options) {
                   [mode]: data.node.argument.right,
                 });
               }
-              removeProperty(data.parentNode, data.node);
+              if (data.deleteSelf) {
+                data.deleteSelf();
+              } else {
+                removeProperty(data.parentNode, data.node);
+              }
               return;
             }
 
@@ -252,7 +262,11 @@ export default function sxV6(file, api, options) {
                 data.node.argument.right,
               ),
             );
-            removeProperty(data.parentNode, data.node);
+            if (data.deleteSelf) {
+              data.deleteSelf();
+            } else {
+              removeProperty(data.parentNode, data.node);
+            }
           }
           if (data.node.argument.type === 'ConditionalExpression') {
             recurseObjectExpression({
@@ -260,7 +274,11 @@ export default function sxV6(file, api, options) {
               node: data.node.argument,
               parentNode: data.node,
             });
-            removeProperty(data.parentNode, data.node);
+            if (data.deleteSelf) {
+              data.deleteSelf();
+            } else {
+              removeProperty(data.parentNode, data.node);
+            }
           }
         }
         if (data.node.type === 'ConditionalExpression') {
@@ -322,7 +340,11 @@ export default function sxV6(file, api, options) {
                       data.buildStyle?.(replaceUndefined(data.node.alternate)),
                     ),
                   );
-                  removeProperty(data.parentNode, data.node);
+                  if (data.deleteSelf) {
+                    data.deleteSelf();
+                  } else {
+                    removeProperty(data.parentNode, data.node);
+                  }
                 }
               }
             }
