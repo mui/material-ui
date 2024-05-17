@@ -368,9 +368,5 @@ export default function createCssVarsProvider(options) {
       ...params,
     });
 
-  const InitColorSchemeScript = React.memo(function InitColorSchemeScript(props) {
-    return getInitColorSchemeScript(props);
-  });
-
-  return { CssVarsProvider, useColorScheme, getInitColorSchemeScript, InitColorSchemeScript };
+  return { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
 }
