@@ -23,3 +23,9 @@ The steps you need to take to migrate from Material UI v5 to v6 are described 
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
+
+### UMD bundle was removed
+
+<!-- #default-branch-switch -->
+
+The UMD bundle is no longer provided. This was replaced in favor of [ESM CDNs](https://esm.sh/). Please refer to the [CDN docs](https://next.mui.com/material-ui/getting-started/installation/#cdn) for alternatives.

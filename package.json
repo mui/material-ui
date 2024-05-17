@@ -71,7 +71,6 @@
     "test:regressions:dev": "concurrently \"pnpm test:regressions:build --watch\" \"pnpm test:regressions:server\"",
     "test:regressions:run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
     "test:regressions:server": "serve test/regressions -p 5001",
-    "test:umd": "node packages/mui-material/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "test:argos": "node ./scripts/pushArgos.mjs",
     "typescript": "lerna run --no-bail --parallel typescript",
