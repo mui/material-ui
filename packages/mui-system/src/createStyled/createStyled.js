@@ -5,7 +5,6 @@ import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
 import createTheme from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
-import exp from 'constants';
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
