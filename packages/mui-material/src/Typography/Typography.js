@@ -77,7 +77,7 @@ export const TypographyRoot = styled('span', {
       },
     },
     {
-      props: ({ noWrap }) => noWrap,
+      props: ({ ownerState }) => ownerState.noWrap,
       style: {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
@@ -159,6 +159,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     paragraph,
     variant,
     variantMapping,
+    nkankan: 'nkmnkmnk',
   };
 
   const Component =
