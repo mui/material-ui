@@ -160,7 +160,7 @@ const ButtonRoot = styled(ButtonBase, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette.main && palette.dark && palette.contrastText)
+        .filter(([, palette]) => palette && palette.main && palette.dark && palette.contrastText)
         .map(([color]) => ({
           props: { color },
           style: {
