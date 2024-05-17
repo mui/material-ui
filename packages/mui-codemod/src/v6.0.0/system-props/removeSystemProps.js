@@ -144,6 +144,7 @@ export default function removeSystemProps(file, api, options) {
   const printOptions = options.printOptions;
 
   const deprecatedElements = [];
+  const colorCheckElements = [];
 
   root
     .find(j.ImportDeclaration, (decl) => decl.source.value.includes('@mui'))
@@ -154,11 +155,14 @@ export default function removeSystemProps(file, api, options) {
             deprecatedElements.push(spec.local.name);
           }
         }
-        if (
-          spec.type === 'ImportDefaultSpecifier' &&
-          components.includes(decl.node.source.value.split('/').pop())
-        ) {
-          deprecatedElements.push(spec.local.name);
+        if (spec.type === 'ImportDefaultSpecifier') {
+          const name = decl.node.source.value.split('/').pop();
+          if (components.includes(name)) {
+            deprecatedElements.push(spec.local.name);
+            if (name === 'Link' || name === 'Typography') {
+              colorCheckElements.push(spec.local.name);
+            }
+          }
         }
       });
     });
@@ -175,6 +179,7 @@ export default function removeSystemProps(file, api, options) {
     })
     .forEach((el) => {
       const sx = j.objectExpression([]);
+      const elementName = el.value?.openingElement?.name?.name;
       const attrNodes = j(el).find(j.JSXAttribute, {
         name: (name) => {
           const isInElement =
@@ -198,11 +203,20 @@ export default function removeSystemProps(file, api, options) {
         const key = attr?.value?.name?.name;
         const literal = attr?.value?.value;
         const val = literal.type === 'JSXExpressionContainer' ? literal.expression : literal;
+        const shouldPrune =
+          !colorCheckElements.includes(elementName) ||
+          key !== 'color' ||
+          (val.value?.includes('.') && val.value !== 'inherit') ||
+          val.value === 'divider';
         if (key && val) {
-          sx.properties.push(j.property('init', j.identifier(key), val));
+          if (shouldPrune) {
+            sx.properties.push(j.property('init', j.identifier(key), val));
+          }
         }
         if (index + 1 !== attrNodes.length) {
-          attr.prune();
+          if (shouldPrune) {
+            attr.prune();
+          }
         } else if (sx.properties.length > 0) {
           sxNodes.forEach((node) => node.prune());
           if (!existingSxValue) {

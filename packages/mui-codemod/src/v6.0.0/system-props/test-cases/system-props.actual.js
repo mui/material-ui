@@ -9,7 +9,9 @@ import Stackkk from '@mui/material/Stack';
 
 const sx = { display: 'flex' };
 const ml = 2;
-<Typographyyy variant="body1" ml={ml} sx={sx} />;
+<Typographyyy variant="body1" color="primary.main" ml={ml} sx={sx} />;
+<Typographyyy variant="body1" color="divider" ml={ml} sx={sx} />;
+<Typographyyy variant="body1" color="inherit" ml={ml} sx={sx} />;
 
 <Stackkk flex="1" sx={[...(Array.isArray(sx) ? sx : [sx])]} />;
 

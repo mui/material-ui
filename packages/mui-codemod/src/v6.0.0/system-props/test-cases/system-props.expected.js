@@ -20,6 +20,19 @@ const ml = 2;
 <Typographyyy
   variant="body1"
   sx={[{
+    color: "primary.main",
+    ml: ml
+  }, ...(Array.isArray(sx) ? sx : [sx])]} />;
+<Typographyyy
+  variant="body1"
+  sx={[{
+    color: "divider",
+    ml: ml
+  }, ...(Array.isArray(sx) ? sx : [sx])]} />;
+<Typographyyy
+  variant="body1"
+  color="inherit"
+  sx={[{
     ml: ml
   }, ...(Array.isArray(sx) ? sx : [sx])]} />;
 
