@@ -37,14 +37,10 @@
       "nodeName": "the Typography component",
       "conditions": "primary and secondary are set"
     },
-    "primary": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the primary <code>Typography</code> component"
-    },
-    "root": { "description": "Styles applied to the root element." },
-    "secondary": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the secondary <code>Typography</code> component"
-    }
+    "root": { "description": "Styles applied to the root element." }
+  },
+  "slotDescriptions": {
+    "primary": "The component that renders the main content.",
+    "secondary": "The component that renders the main content."
   }
 }

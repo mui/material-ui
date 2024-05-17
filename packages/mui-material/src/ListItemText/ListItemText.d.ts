@@ -3,11 +3,49 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TypographyProps } from '../Typography';
 import { ListItemTextClasses } from './listItemTextClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+
+export interface ListItemTextSlots {
+  /**
+   * The component that renders the main content.
+   * @default span
+   */
+  primary?: React.ElementType;
+  /**
+   * The component that renders the main content.
+   * @default p
+   */
+  secondary?: React.ElementType;
+}
+
+export type ListItemTextSlotsAndSlotProps<
+  PrimaryTypographyComponent extends React.ElementType = 'span',
+  SecondaryTypographyComponent extends React.ElementType = 'p',
+> = CreateSlotsAndSlotProps<
+  ListItemTextSlots,
+  {
+    primary: SlotProps<
+      React.ElementType<
+        TypographyProps<PrimaryTypographyComponent, { component?: PrimaryTypographyComponent }>
+      >,
+      {},
+      ListItemTextOwnerState
+    >;
+    secondary: SlotProps<
+      React.ElementType<
+        TypographyProps<SecondaryTypographyComponent, { component?: SecondaryTypographyComponent }>
+      >,
+      {},
+      ListItemTextOwnerState
+    >;
+  }
+>;
 
 export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p',
-> extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+> extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
+    ListItemTextSlotsAndSlotProps<PrimaryTypographyComponent, SecondaryTypographyComponent> {
   /**
    * Alias for the `primary` prop.
    */
@@ -37,6 +75,7 @@ export interface ListItemTextProps<
   /**
    * These props will be forwarded to the primary typography component
    * (as long as disableTypography is not `true`).
+   * @deprecated Use `slotProps.primary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   primaryTypographyProps?: TypographyProps<
     PrimaryTypographyComponent,
@@ -49,6 +88,7 @@ export interface ListItemTextProps<
   /**
    * These props will be forwarded to the secondary typography component
    * (as long as disableTypography is not `true`).
+   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   secondaryTypographyProps?: TypographyProps<
     SecondaryTypographyComponent,
@@ -59,6 +99,8 @@ export interface ListItemTextProps<
    */
   sx?: SxProps<Theme>;
 }
+
+export interface ListItemTextOwnerState extends ListItemTextProps {}
 
 /**
  *
