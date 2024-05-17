@@ -19,7 +19,13 @@ import SitemarkIcon from './SitemarkIcon';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" mt={1}>
+    <Typography
+      variant="body2"
+      sx={{
+        color: 'text.secondary',
+        mt: 1,
+      }}
+    >
       {'Copyright © '}
       <Link href="https://mui.com/">Sitemark&nbsp;</Link>
       {new Date().getFullYear()}
@@ -57,10 +63,23 @@ export default function Footer() {
         >
           <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
             <SitemarkIcon />
-            <Typography variant="body2" fontWeight={600} gutterBottom sx={{ mt: 2 }}>
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: 600,
+                mt: 2,
+              }}
+              gutterBottom
+            >
               Join the newsletter
             </Typography>
-            <Typography variant="body2" color="text.secondary" mb={2}>
+            <Typography
+              variant="body2"
+              sx={{
+                color: 'text.secondary',
+                mb: 2,
+              }}
+            >
               Subscribe for weekly updates. No spams ever!
             </Typography>
             <Stack direction="row" spacing={1} useFlexGap>
@@ -93,22 +112,57 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight="medium">
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 'medium',
+            }}
+          >
             Product
           </Typography>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Features
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Testimonials
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Highlights
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Pricing
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             FAQs
           </Link>
         </Box>
@@ -119,16 +173,39 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight="medium">
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 'medium',
+            }}
+          >
             Company
           </Typography>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             About us
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Careers
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Press
           </Link>
         </Box>
@@ -139,16 +216,39 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight="medium">
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 'medium',
+            }}
+          >
             Legal
           </Typography>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Terms
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Privacy
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Contact
           </Link>
         </Box>
@@ -164,25 +264,43 @@ export default function Footer() {
         }}
       >
         <div>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Privacy Policy
           </Link>
-          <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
+          <Typography
+            sx={{
+              display: 'inline',
+              mx: 0.5,
+              opacity: 0.5,
+            }}
+          >
             &nbsp;•&nbsp;
           </Typography>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link
+            sx={{
+              color: 'text.secondary',
+            }}
+            variant="body2"
+            href="#"
+          >
             Terms of Service
           </Link>
           <Copyright />
         </div>
         <Stack
           direction="row"
-          justifyContent="left"
-          spacing={1}
-          useFlexGap
           sx={{
+            justifyContent: 'left',
             color: 'text.secondary',
           }}
+          spacing={1}
+          useFlexGap
         >
           <IconButton
             color="inherit"

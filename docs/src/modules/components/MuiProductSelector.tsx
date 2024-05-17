@@ -33,10 +33,21 @@ function ProductSubMenu(props: ProductSubMenuProp) {
     >
       {icon}
       <Box sx={{ flexGrow: 1 }}>
-        <Typography color="text.primary" variant="body2" fontWeight="700">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.primary',
+            fontWeight: '700',
+          }}
+        >
           {name}
         </Typography>
-        <Typography color="text.secondary" variant="body2">
+        <Typography
+          sx={{
+            color: 'text.secondary',
+          }}
+          variant="body2"
+        >
           {description}
         </Typography>
       </Box>
@@ -109,13 +120,13 @@ export default function MuiProductSelector() {
         />
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
-          alignItems="flex-start"
-          spacing={1}
           sx={{
+            alignItems: 'flex-start',
             ml: '36px',
             pl: 2,
             pt: 1.5,
             position: 'relative',
+
             '& > .MuiChip-root': {
               position: 'initial',
               '&:hover': {
@@ -125,6 +136,7 @@ export default function MuiProductSelector() {
               },
             },
           }}
+          spacing={1}
         >
           {coreProducts.map((product) => (
             <Chip
@@ -153,13 +165,13 @@ export default function MuiProductSelector() {
         />
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
-          alignItems="flex-start"
-          spacing={1}
           sx={{
+            alignItems: 'flex-start',
             ml: '36px',
             pl: 2,
             pt: 1.5,
             position: 'relative',
+
             '& > .MuiChip-root': {
               position: 'initial',
               '&:hover': {
@@ -169,6 +181,7 @@ export default function MuiProductSelector() {
               },
             },
           }}
+          spacing={1}
         >
           {advancedProducts.map((product) => (
             <Chip

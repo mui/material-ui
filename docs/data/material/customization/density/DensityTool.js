@@ -75,7 +75,14 @@ export default function DensityTool() {
           label={t('useHighDensity')}
         />
       </Grid>
-      <Grid container item alignItems="center" spacing={2}>
+      <Grid
+        container
+        item
+        sx={{
+          alignItems: 'center',
+        }}
+        spacing={2}
+      >
         <Grid item>
           <Typography id="input-slider" gutterBottom>
             {t('spacingUnit')}

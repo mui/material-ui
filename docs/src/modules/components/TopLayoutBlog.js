@@ -380,7 +380,9 @@ export default function TopLayoutBlog(props) {
             {...(ROUTES.blog.startsWith('http') && {
               rel: 'nofollow',
             })}
-            color="primary"
+            sx={{
+              color: 'primary',
+            }}
             variant="body2"
             className={classes.back}
           >
@@ -418,16 +420,23 @@ export default function TopLayoutBlog(props) {
                       }?s=${36 * 3} 3x`}
                     />
                     <div>
-                      <Typography variant="body2" fontWeight="500">
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontWeight: '500',
+                        }}
+                      >
                         {authors[author].name}
                       </Typography>
                       <Link
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
                         rel="noopener"
-                        color="primary"
+                        sx={{
+                          color: 'primary',
+                          fontWeight: 500,
+                        }}
                         variant="body2"
-                        sx={{ fontWeight: 500 }}
                       >
                         @{authors[author].github}
                       </Link>

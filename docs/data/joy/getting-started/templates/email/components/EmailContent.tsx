@@ -58,7 +58,13 @@ export default function EmailContent() {
             srcSet="https://i.pravatar.cc/80?img=3"
           />
           <Box sx={{ ml: 2 }}>
-            <Typography level="title-sm" textColor="text.primary" mb={0.5}>
+            <Typography
+              level="title-sm"
+              textColor="text.primary"
+              sx={{
+                mb: 0.5,
+              }}
+            >
               Alex Jonnold
             </Typography>
             <Typography level="body-xs" textColor="text.tertiary">
@@ -210,7 +216,13 @@ export default function EmailContent() {
         </Box>
       </Box>
       <Divider />
-      <Typography level="body-sm" mt={2} mb={2}>
+      <Typography
+        level="body-sm"
+        sx={{
+          mt: 2,
+          mb: 2,
+        }}
+      >
         Hello, my friend!
         <br />
         <br />
@@ -235,7 +247,13 @@ export default function EmailContent() {
         See you soon, Alex Jonnold
       </Typography>
       <Divider />
-      <Typography level="title-sm" mt={2} mb={2}>
+      <Typography
+        level="title-sm"
+        sx={{
+          mt: 2,
+          mb: 2,
+        }}
+      >
         Attachments
       </Typography>
       <Box

@@ -44,20 +44,24 @@ function ComponentItem({
       <div>
         <Typography
           component="span"
-          color="text.primary"
           variant="body2"
-          fontWeight="bold"
-          display="block"
+          sx={{
+            color: 'text.primary',
+            fontWeight: 'bold',
+            display: 'block',
+          }}
         >
           {name}
         </Typography>
         {description && (
           <Typography
             component="span"
-            color="text.secondary"
             variant="body2"
-            fontWeight="regular"
-            display="block"
+            sx={{
+              color: 'text.secondary',
+              fontWeight: 'regular',
+              display: 'block',
+            }}
             gutterBottom
           >
             {description}
@@ -65,15 +69,15 @@ function ComponentItem({
         )}
         <Link
           href={href}
-          color="primary"
-          variant="body2"
           sx={{
+            color: 'primary',
             display: 'inline-flex',
             alignItems: 'center',
             fontWeight: 'semiBold',
             '& > svg': { transition: '0.2s' },
             '&:hover > svg': { transform: 'translateX(2px)' },
           }}
+          variant="body2"
           onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
             event.stopPropagation();
           }}

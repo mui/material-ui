@@ -257,7 +257,12 @@ export default function ComponentsGallery() {
   };
 
   return (
-    <Stack className="GalleryContainer" gap={2}>
+    <Stack
+      className="GalleryContainer"
+      sx={{
+        gap: 2,
+      }}
+    >
       {/* Copy theme button */}
       <Stack direction="row" spacing={1.5} sx={{ position: 'absolute', right: 24 }}>
         <SettingsButton
@@ -339,7 +344,14 @@ export default function ComponentsGallery() {
           <span className="GalleryBadge-content" />
         </Badge>
       </div>
-      <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+      <Stack
+        direction="row"
+        spacing={1}
+        useFlexGap
+        sx={{
+          flexWrap: 'wrap',
+        }}
+      >
         <Button className="GalleryButton">Solid button</Button>
         <Button className="GalleryButtonOutlined">Outlined button</Button>
         <Button className="GalleryButtonPlain">Plain button</Button>
@@ -384,7 +396,14 @@ export default function ComponentsGallery() {
           Features
         </Option>
       </Select>
-      <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+      <Stack
+        direction="row"
+        spacing={1}
+        useFlexGap
+        sx={{
+          flexWrap: 'wrap',
+        }}
+      >
         <div>
           <Dropdown>
             <MenuButton className="GalleryButtonOutlined">Open menu</MenuButton>

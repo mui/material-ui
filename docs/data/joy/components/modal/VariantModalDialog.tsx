@@ -13,7 +13,13 @@ export default function VariantModalDialog() {
   >(undefined);
   return (
     <React.Fragment>
-      <Stack direction="row" alignItems="center" spacing={1}>
+      <Stack
+        direction="row"
+        sx={{
+          alignItems: 'center',
+        }}
+        spacing={1}
+      >
         <Button
           variant="plain"
           color="neutral"

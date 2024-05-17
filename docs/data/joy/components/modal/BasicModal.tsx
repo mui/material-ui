@@ -34,8 +34,10 @@ export default function BasicModal() {
             id="modal-title"
             level="h4"
             textColor="inherit"
-            fontWeight="lg"
-            mb={1}
+            sx={{
+              fontWeight: 'lg',
+              mb: 1,
+            }}
           >
             This is the modal title
           </Typography>

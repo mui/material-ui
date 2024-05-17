@@ -121,9 +121,9 @@ export default function GitHubLabel() {
             })}
           >
             <Typography
-              fontSize="sm"
-              fontWeight={600}
               sx={{
+                fontSize: 'sm',
+                fontWeight: 600,
                 padding: '8px 10px',
                 borderBottom: '1px solid',
                 borderColor: 'divider',

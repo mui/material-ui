@@ -141,10 +141,21 @@ function Feedback({
           />
         </Box>
         <div>
-          <Typography variant="body2" fontWeight="semiBold" color="text.primary">
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 'semiBold',
+              color: 'text.primary',
+            }}
+          >
             {profile.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             {profile.role}
           </Typography>
         </div>
