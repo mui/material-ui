@@ -144,7 +144,18 @@ export default function removeSystemProps(file, api, options) {
   const printOptions = options.printOptions;
 
   const deprecatedElements = [];
-  const colorCheckElements = [];
+  const customReplacement = {
+    Typography: {
+      matcher: (key, val) =>
+        key !== 'color' ||
+        (val.value?.includes('.') && val.value !== 'inherit') ||
+        val.value === 'divider',
+    },
+    Link: {
+      matcher: (key) => key !== 'color',
+    },
+  };
+  const elementReplacement = {};
 
   root
     .find(j.ImportDeclaration, (decl) => decl.source.value.includes('@mui'))
@@ -159,8 +170,8 @@ export default function removeSystemProps(file, api, options) {
           const name = decl.node.source.value.split('/').pop();
           if (components.includes(name)) {
             deprecatedElements.push(spec.local.name);
-            if (name === 'Link' || name === 'Typography') {
-              colorCheckElements.push(spec.local.name);
+            if (customReplacement[name]) {
+              elementReplacement[spec.local.name] = customReplacement[name];
             }
           }
         }
@@ -180,21 +191,17 @@ export default function removeSystemProps(file, api, options) {
     .forEach((el) => {
       const sx = j.objectExpression([]);
       const elementName = el.value?.openingElement?.name?.name;
-      const attrNodes = j(el).find(j.JSXAttribute, {
-        name: (name) => {
-          const isInElement =
-            name.start >= el.node.start && name.end <= el.value.openingElement.end;
-          return systemProps.includes(name.name) && isInElement;
-        },
-      });
 
-      const sxNodes = j(el).find(j.JSXAttribute, {
-        name: (name) => {
-          const isInElement =
-            name.start >= el.node.start && name.end <= el.value.openingElement.end;
-          return name.name === 'sx' && isInElement;
-        },
-      });
+      const attrNodes = j(el)
+        .find(j.JSXAttribute)
+        .filter(
+          (path) =>
+            path.parent.parent.node === el.node && systemProps.includes(path.node.name.name),
+        );
+
+      const sxNodes = j(el)
+        .find(j.JSXAttribute)
+        .filter((path) => path.parent.parent.node === el.node && path.node.name.name === 'sx');
 
       const sxNodesArray = sxNodes.nodes() || [];
       const existingSxValue = sxNodesArray[0]?.value?.expression;
@@ -204,10 +211,7 @@ export default function removeSystemProps(file, api, options) {
         const literal = attr?.value?.value;
         const val = literal.type === 'JSXExpressionContainer' ? literal.expression : literal;
         const shouldPrune =
-          !colorCheckElements.includes(elementName) ||
-          key !== 'color' ||
-          (val.value?.includes('.') && val.value !== 'inherit') ||
-          val.value === 'divider';
+          !elementReplacement[elementName] || elementReplacement[elementName].matcher(key, val);
         if (key && val) {
           if (shouldPrune) {
             sx.properties.push(j.property('init', j.identifier(key), val));

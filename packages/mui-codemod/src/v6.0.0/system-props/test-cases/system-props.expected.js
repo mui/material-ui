@@ -35,6 +35,21 @@ const ml = 2;
   sx={[{
     ml: ml
   }, ...(Array.isArray(sx) ? sx : [sx])]} />;
+<Typographyyy
+  sx={{
+    fontSize: "xl4",
+    lineHeight: 1,
+    alignItems: 'flex-start'
+  }}
+  startDecorator={
+    <Typographyyy sx={{
+      fontSize: "lg"
+    }} textColor="text.secondary">
+      $
+    </Typographyyy>
+  }>
+  25
+</Typographyyy>;
 
 <Stackkk
   sx={[{

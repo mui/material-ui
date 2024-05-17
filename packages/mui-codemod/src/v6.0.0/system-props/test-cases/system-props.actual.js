@@ -12,6 +12,18 @@ const ml = 2;
 <Typographyyy variant="body1" color="primary.main" ml={ml} sx={sx} />;
 <Typographyyy variant="body1" color="divider" ml={ml} sx={sx} />;
 <Typographyyy variant="body1" color="inherit" ml={ml} sx={sx} />;
+<Typographyyy
+  fontSize="xl4"
+  lineHeight={1}
+  startDecorator={
+    <Typographyyy fontSize="lg" textColor="text.secondary">
+      $
+    </Typographyyy>
+  }
+  sx={{ alignItems: 'flex-start' }}
+>
+  25
+</Typographyyy>;
 
 <Stackkk flex="1" sx={[...(Array.isArray(sx) ? sx : [sx])]} />;
 
