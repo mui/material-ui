@@ -184,12 +184,11 @@ export const InputBaseInput = styled('input', {
     display: 'block',
     // Make the flex item shrink with Firefox
     minWidth: 0,
-    width: '100%', // Fix IE11 width issue
+    flexGrow: 1,
     animationName: 'mui-auto-fill-cancel',
     animationDuration: '10ms',
     '&::-webkit-input-placeholder': placeholder,
     '&::-moz-placeholder': placeholder, // Firefox 19+
-    '&:-ms-input-placeholder': placeholder, // IE11
     '&::-ms-input-placeholder': placeholder, // Edge
     '&:focus': {
       outline: 0,
@@ -206,11 +205,9 @@ export const InputBaseInput = styled('input', {
     [`label[data-shrink=false] + .${inputBaseClasses.formControl} &`]: {
       '&::-webkit-input-placeholder': placeholderHidden,
       '&::-moz-placeholder': placeholderHidden, // Firefox 19+
-      '&:-ms-input-placeholder': placeholderHidden, // IE11
       '&::-ms-input-placeholder': placeholderHidden, // Edge
       '&:focus::-webkit-input-placeholder': placeholderVisible,
       '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
-      '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
       '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
     [`&.${inputBaseClasses.disabled}`]: {
@@ -390,13 +387,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   }, [value, checkDirty, isControlled]);
 
   const handleFocus = (event) => {
-    // Fix a bug with IE11 where the focus/blur events are triggered
-    // while the component is disabled.
-    if (fcs.disabled) {
-      event.stopPropagation();
-      return;
-    }
-
     if (onFocus) {
       onFocus(event);
     }
