@@ -828,13 +828,13 @@ export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementP
     React.useEffect(() => {
       const elements = document.getElementsByClassName('title-link-to-anchor');
 
-      for (var i = 0; i < elements.length; i++) {
+      for (let i = 0; i < elements.length; i += 1) {
         elements[i].setAttribute('draggable', 'false');
         elements[i].addEventListener('click', handleClick, false);
       }
 
       return () => {
-        for (var i = 0; i < elements.length; i++) {
+        for (let i = 0; i < elements.length; i += 1) {
           elements[i].removeEventListener('click', handleClick);
         }
       };
