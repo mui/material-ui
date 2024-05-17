@@ -77,7 +77,7 @@ export const TypographyRoot = styled('span', {
       },
     },
     {
-      props: ({ ownerState }) => ownerState.noWrap,
+      props: ({ noWrap }) => noWrap,
       style: {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
