@@ -40,6 +40,8 @@ export interface GetInitColorSchemeScriptOptions {
    * @default 'data-color-scheme'
    */
   attribute?: string;
+  /** Nonce string to pass to the inline script for CSP headers */
+  nonce?: string | undefined;
 }
 
 export default function getInitColorSchemeScript(options?: GetInitColorSchemeScriptOptions) {
@@ -51,10 +53,13 @@ export default function getInitColorSchemeScript(options?: GetInitColorSchemeScr
     colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     attribute = DEFAULT_ATTRIBUTE,
     colorSchemeNode = 'document.documentElement',
+    nonce,
   } = options || {};
   return (
     <script
       key="mui-color-scheme-init"
+      suppressHydrationWarning
+      nonce={typeof window === 'undefined' ? nonce : ''}
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: `(function() {
