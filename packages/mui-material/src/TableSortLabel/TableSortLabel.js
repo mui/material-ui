@@ -15,7 +15,7 @@ const useUtilityClasses = (ownerState) => {
   const { classes, direction, active } = ownerState;
 
   const slots = {
-    root: ['root', active && 'active'],
+    root: ['root', active && 'active', `direction${capitalize(direction)}`],
     icon: ['icon', `iconDirection${capitalize(direction)}`],
   };
 
