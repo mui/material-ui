@@ -9,14 +9,25 @@ import {Autocomplete as MyAutocomplete} from '@mui/material';
   }}
   slotProps={{
     listbox: { height: 12 },
-    chip: { height: 10 }
+    chip: { height: 10 },
+    clearIndicator: { width: 10 },
+    paper: { width: 12 },
+    popper: { width: 14 },
+    popupIndicator: { width: 16 }
   }} />;
 
 <Autocomplete
   slotProps={{
-    popupIndicator: { width: 20 },
     listbox: { height: 12 },
-    chip: { height: 10 }
+    chip: { height: 10 },
+    clearIndicator: { width: 10 },
+    paper: { width: 12 },
+    popper: { width: 14 },
+
+    popupIndicator: {
+      ...{ width: 16 },
+      ...{ width: 20 }
+    }
   }}
   slots={{
     paper: CustomPaper,
@@ -32,7 +43,11 @@ import {Autocomplete as MyAutocomplete} from '@mui/material';
   }}
   slotProps={{
     listbox: { height: 12 },
-    chip: { height: 10 }
+    chip: { height: 10 },
+    clearIndicator: { width: 10 },
+    paper: { width: 12 },
+    popper: { width: 14 },
+    popupIndicator: { width: 16 }
   }} />;
 
 <CustomAutocomplete

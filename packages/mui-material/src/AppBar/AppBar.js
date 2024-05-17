@@ -114,13 +114,9 @@ const AppBarRoot = styled(Paper, {
         }),
       },
     },
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter(
-        (key) =>
-          (theme.vars ?? theme).palette[key].main &&
-          (theme.vars ?? theme).palette[key].contrastText,
-      )
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main && palette.contrastText)
+      .map(([color]) => ({
         props: { color },
         style: {
           '--AppBar-background': (theme.vars ?? theme).palette[color].main,

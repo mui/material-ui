@@ -268,6 +268,12 @@ npx @mui/codemod@next deprecations/alert-props <path>
 -  PopperComponent={CustomPopper}
 -  ListboxComponent={CustomListbox}
 -  ListboxProps={{ height: 12 }}
+-  componentsProps={{
+-    clearIndicator: { width: 10 },
+-    paper: { width: 12 },
+-    popper: { width: 14 },
+-    popupIndicator: { width: 16 },
+-  }}
 +  slots={{
 +    paper: CustomPaper,
 +    popper: CustomPopper,
@@ -276,6 +282,10 @@ npx @mui/codemod@next deprecations/alert-props <path>
 +  slotProps={{
 +    chip: { height: 10 },
 +    listbox: { height: 12 },
++    clearIndicator: { width: 10 },
++    paper: { width: 12 },
++    popper: { width: 14 },
++    popupIndicator: { width: 16 },
 +  }}
  />
 ```
@@ -288,6 +298,12 @@ npx @mui/codemod@next deprecations/alert-props <path>
 -    PopperComponent: CustomPopper,
 -    ListboxComponent: CustomListbox,
 -    ListboxProps: { height: 12 },
+-    componentsProps: {
+-       clearIndicator: { width: 10 },
+-       paper: { width: 12 },
+-       popper: { width: 14 },
+-       popupIndicator: { width: 16 },
+-     }
 +    slots: {
 +      paper: CustomPaper,
 +      popper: CustomPopper,
@@ -296,6 +312,10 @@ npx @mui/codemod@next deprecations/alert-props <path>
 +    slotProps: {
 +      chip: { height: 10 },
 +      listbox: { height: 12 },
++      clearIndicator: { width: 10 },
++      paper: { width: 12 },
++      popper: { width: 14 },
++      popupIndicator: { width: 16 },
 +    },
    },
  },
