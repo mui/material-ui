@@ -175,11 +175,8 @@ export default function BaseUIComponents() {
             <Typography
               component="h2"
               variant="body2"
-              sx={{
-                fontWeight: 'semiBold',
-                px: 2,
-                py: 1.5,
-              }}
+              fontWeight="semiBold"
+              sx={{ px: 2, py: 1.5 }}
             >
               {component.title}
             </Typography>

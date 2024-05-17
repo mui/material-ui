@@ -57,14 +57,18 @@ export default function ListVariables() {
             <ListItem>
               <Typography
                 level="body-sm"
-                sx={{
-                  fontWeight: 'md',
-                  width: 8,
-                  height: 8,
-                  bgcolor: 'success.500',
-                  borderRadius: '50%',
-                }}
-                startDecorator={<Sheet component="span" />}
+                fontWeight="md"
+                startDecorator={
+                  <Sheet
+                    component="span"
+                    sx={{
+                      width: 8,
+                      height: 8,
+                      bgcolor: 'success.500',
+                      borderRadius: '50%',
+                    }}
+                  />
+                }
               >
                 Online people
               </Typography>

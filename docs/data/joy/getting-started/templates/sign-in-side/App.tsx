@@ -127,17 +127,8 @@ export default function JoySignInSideTemplate() {
               },
             }}
           >
-            <Stack
-              sx={{
-                gap: 4,
-                mb: 2,
-              }}
-            >
-              <Stack
-                sx={{
-                  gap: 1,
-                }}
-              >
+            <Stack gap={4} sx={{ mb: 2 }}>
+              <Stack gap={1}>
                 <Typography component="h1" level="h3">
                   Sign in
                 </Typography>
@@ -166,12 +157,7 @@ export default function JoySignInSideTemplate() {
             >
               or
             </Divider>
-            <Stack
-              sx={{
-                gap: 4,
-                mt: 2,
-              }}
-            >
+            <Stack gap={4} sx={{ mt: 2 }}>
               <form
                 onSubmit={(event: React.FormEvent<SignInFormElement>) => {
                   event.preventDefault();
@@ -192,12 +178,7 @@ export default function JoySignInSideTemplate() {
                   <FormLabel>Password</FormLabel>
                   <Input type="password" name="password" />
                 </FormControl>
-                <Stack
-                  sx={{
-                    gap: 4,
-                    mt: 2,
-                  }}
-                >
+                <Stack gap={4} sx={{ mt: 2 }}>
                   <Box
                     sx={{
                       display: 'flex',
@@ -218,12 +199,7 @@ export default function JoySignInSideTemplate() {
             </Stack>
           </Box>
           <Box component="footer" sx={{ py: 3 }}>
-            <Typography
-              level="body-xs"
-              sx={{
-                textAlign: 'center',
-              }}
-            >
+            <Typography level="body-xs" textAlign="center">
               © Your company {new Date().getFullYear()}
             </Typography>
           </Box>

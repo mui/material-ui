@@ -33,14 +33,7 @@ export default function Sidebar(props: SidebarProps) {
         Archives
       </Typography>
       {archives.map((archive) => (
-        <Link
-          sx={{
-            display: 'block',
-          }}
-          variant="body1"
-          href={archive.url}
-          key={archive.title}
-        >
+        <Link display="block" variant="body1" href={archive.url} key={archive.title}>
           {archive.title}
         </Link>
       ))}
@@ -49,21 +42,13 @@ export default function Sidebar(props: SidebarProps) {
       </Typography>
       {social.map((network) => (
         <Link
-          sx={{
-            display: 'block',
-            mb: 0.5,
-          }}
+          display="block"
           variant="body1"
           href="#"
           key={network.name}
+          sx={{ mb: 0.5 }}
         >
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{
-              alignItems: 'center',
-            }}
-          >
+          <Stack direction="row" spacing={1} alignItems="center">
             <network.icon />
             <span>{network.name}</span>
           </Stack>

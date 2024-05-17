@@ -39,12 +39,10 @@ export default function AlertColors() {
       <Sheet sx={{ pl: 4, ml: 3, borderLeft: '1px solid', borderColor: 'divider' }}>
         <Typography
           level="body-sm"
+          fontWeight="xl"
           id="variant-label"
           textColor="text.primary"
-          sx={{
-            fontWeight: 'xl',
-            mb: 1,
-          }}
+          mb={1}
         >
           Variant:
         </Typography>

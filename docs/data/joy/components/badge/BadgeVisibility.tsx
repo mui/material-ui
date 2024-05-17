@@ -17,13 +17,7 @@ export default function BadgeVisibility() {
       }}
     >
       <Badge badgeContent={12} invisible={invisible}>
-        <Typography
-          sx={{
-            fontSize: 'xl',
-          }}
-        >
-          🛍
-        </Typography>
+        <Typography fontSize="xl">🛍</Typography>
       </Badge>
       <Switch
         startDecorator="invisible"

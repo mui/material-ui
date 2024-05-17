@@ -29,13 +29,7 @@ export default function ZeroWidthStack() {
           p: 2,
         }}
       >
-        <Stack
-          spacing={2}
-          direction="row"
-          sx={{
-            alignItems: 'center',
-          }}
-        >
+        <Stack spacing={2} direction="row" alignItems="center">
           <Avatar>W</Avatar>
           <Typography noWrap>{message}</Typography>
         </Stack>
@@ -48,13 +42,7 @@ export default function ZeroWidthStack() {
           p: 2,
         }}
       >
-        <Stack
-          spacing={2}
-          direction="row"
-          sx={{
-            alignItems: 'center',
-          }}
-        >
+        <Stack spacing={2} direction="row" alignItems="center">
           <Stack>
             <Avatar>W</Avatar>
           </Stack>

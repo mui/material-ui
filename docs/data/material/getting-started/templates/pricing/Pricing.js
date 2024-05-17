@@ -18,14 +18,7 @@ import Container from '@mui/material/Container';
 
 function Copyright(props) {
   return (
-    <Typography
-      variant="body2"
-      sx={{
-        color: 'text.secondary',
-      }}
-      align="center"
-      {...props}
-    >
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -122,34 +115,25 @@ export default function Pricing() {
           <nav>
             <Link
               variant="button"
-              sx={{
-                color: 'text.primary',
-                my: 1,
-                mx: 1.5,
-              }}
+              color="text.primary"
               href="#"
+              sx={{ my: 1, mx: 1.5 }}
             >
               Features
             </Link>
             <Link
               variant="button"
-              sx={{
-                color: 'text.primary',
-                my: 1,
-                mx: 1.5,
-              }}
+              color="text.primary"
               href="#"
+              sx={{ my: 1, mx: 1.5 }}
             >
               Enterprise
             </Link>
             <Link
               variant="button"
-              sx={{
-                color: 'text.primary',
-                my: 1,
-                mx: 1.5,
-              }}
+              color="text.primary"
               href="#"
+              sx={{ my: 1, mx: 1.5 }}
             >
               Support
             </Link>
@@ -165,21 +149,12 @@ export default function Pricing() {
           component="h1"
           variant="h2"
           align="center"
-          sx={{
-            color: 'text.primary',
-          }}
+          color="text.primary"
           gutterBottom
         >
           Pricing
         </Typography>
-        <Typography
-          variant="h5"
-          align="center"
-          sx={{
-            color: 'text.secondary',
-          }}
-          component="p"
-        >
+        <Typography variant="h5" align="center" color="text.secondary" component="p">
           Quickly build an effective pricing table for your potential customers with
           this layout. It&apos;s built with default MUI components with little
           customization.
@@ -187,13 +162,7 @@ export default function Pricing() {
       </Container>
       {/* End hero unit */}
       <Container maxWidth="md" component="main">
-        <Grid
-          container
-          spacing={5}
-          sx={{
-            alignItems: 'flex-end',
-          }}
-        >
+        <Grid container spacing={5} alignItems="flex-end">
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
             <Grid
@@ -228,21 +197,10 @@ export default function Pricing() {
                       mb: 2,
                     }}
                   >
-                    <Typography
-                      component="h2"
-                      variant="h3"
-                      sx={{
-                        color: 'text.primary',
-                      }}
-                    >
+                    <Typography component="h2" variant="h3" color="text.primary">
                       ${tier.price}
                     </Typography>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: 'text.secondary',
-                      }}
-                    >
+                    <Typography variant="h6" color="text.secondary">
                       /mo
                     </Typography>
                   </Box>
@@ -279,34 +237,16 @@ export default function Pricing() {
           py: [3, 6],
         }}
       >
-        <Grid
-          container
-          spacing={4}
-          sx={{
-            justifyContent: 'space-evenly',
-          }}
-        >
+        <Grid container spacing={4} justifyContent="space-evenly">
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: 'text.primary',
-                }}
-                gutterBottom
-              >
+              <Typography variant="h6" color="text.primary" gutterBottom>
                 {footer.title}
               </Typography>
               <ul>
                 {footer.description.map((item) => (
                   <li key={item}>
-                    <Link
-                      href="#"
-                      variant="subtitle1"
-                      sx={{
-                        color: 'text.secondary',
-                      }}
-                    >
+                    <Link href="#" variant="subtitle1" color="text.secondary">
                       {item}
                     </Link>
                   </li>

@@ -13,12 +13,9 @@ export default function InlineSkeleton() {
     <Stack spacing={2} useFlexGap sx={{ maxWidth: '60ch' }}>
       <Box sx={{ m: 'auto' }}>
         <Typography
+          sx={{ position: 'relative', overflow: 'hidden' }}
           level="h1"
-          sx={{
-            fontSize: 'xl',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
+          fontSize="xl"
         >
           <Skeleton loading={loading}>A heading</Skeleton>
         </Typography>

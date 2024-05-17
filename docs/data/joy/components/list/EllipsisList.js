@@ -13,10 +13,8 @@ export default function EllipsisList() {
       <Typography
         id="ellipsis-list-demo"
         level="body-xs"
-        sx={{
-          textTransform: 'uppercase',
-          letterSpacing: '0.15rem',
-        }}
+        textTransform="uppercase"
+        sx={{ letterSpacing: '0.15rem' }}
       >
         Inbox
       </Typography>

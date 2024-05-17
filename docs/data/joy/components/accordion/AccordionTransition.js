@@ -14,13 +14,7 @@ import { BrandingProvider } from '@mui/docs/branding';
 export default function AccordionTransition() {
   const [transition, setTransition] = React.useState('0.2s ease');
   return (
-    <Stack
-      sx={{
-        alignItems: 'center',
-        flex: 1,
-      }}
-      spacing={2}
-    >
+    <Stack alignItems="center" spacing={2} sx={{ flex: 1 }}>
       <RadioGroup
         orientation="horizontal"
         value={transition}

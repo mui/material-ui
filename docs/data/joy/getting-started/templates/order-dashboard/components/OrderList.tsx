@@ -131,12 +131,7 @@ export default function OrderList() {
                 <Avatar size="sm">{listItem.customer.initial}</Avatar>
               </ListItemDecorator>
               <div>
-                <Typography
-                  sx={{
-                    fontWeight: 600,
-                  }}
-                  gutterBottom
-                >
+                <Typography fontWeight={600} gutterBottom>
                   {listItem.customer.name}
                 </Typography>
                 <Typography level="body-xs" gutterBottom>
@@ -199,12 +194,7 @@ export default function OrderList() {
         >
           <KeyboardArrowLeftIcon />
         </IconButton>
-        <Typography
-          level="body-sm"
-          sx={{
-            mx: 'auto',
-          }}
-        >
+        <Typography level="body-sm" mx="auto">
           Page 1 of 10
         </Typography>
         <IconButton

@@ -50,40 +50,23 @@ export default function NotificationCard() {
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography
               id="demo-notification-card-messenger-name"
-              sx={{
-                color: 'primary.main',
-                fontWeight: 'semiBold',
-                fontSize: 12,
-              }}
+              color="primary.main"
+              fontWeight="semiBold"
+              fontSize={12}
               gutterBottom
             >
               Angela Erickson
             </Typography>
-            <Typography
-              sx={{
-                color: 'text.secondary',
-              }}
-              variant="caption"
-            >
+            <Typography color="text.secondary" variant="caption">
               09:41
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 2 }}>
             <div>
-              <Typography
-                sx={{
-                  fontWeight: 'semiBold',
-                  fontSize: 14,
-                }}
-              >
+              <Typography fontWeight="semiBold" fontSize={14}>
                 Incredible discoveries
               </Typography>
-              <Typography
-                sx={{
-                  fontSize: 14,
-                  color: 'text.secondary',
-                }}
-              >
+              <Typography fontSize={14} color="text.secondary">
                 It&apos;s about Material UI & Base UI...
               </Typography>
             </div>

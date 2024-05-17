@@ -16,20 +16,10 @@ export default function MinWidthButtonGroup() {
       }}
     >
       <CardContent sx={{ textAlign: 'center', alignItems: 'center' }}>
-        <Typography
-          sx={{
-            fontSize: 'lg',
-            fontWeight: 'lg',
-          }}
-        >
+        <Typography fontSize="lg" fontWeight="lg">
           Title
         </Typography>
-        <Typography
-          sx={{
-            mb: 3,
-            maxWidth: '32ch',
-          }}
-        >
+        <Typography mb={3} maxWidth="32ch">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </Typography>
         <ButtonGroup

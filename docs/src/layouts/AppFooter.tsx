@@ -53,22 +53,10 @@ export default function AppFooter(props: AppFooterProps) {
           <Link prefetch={false} href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
             <SvgMuiLogotype height={28} width={91} />
           </Link>
-          <Typography
-            variant="body2"
-            sx={{
-              fontWeight: 'semiBold',
-            }}
-            gutterBottom
-          >
+          <Typography variant="body2" fontWeight="semiBold" gutterBottom>
             Keep up to date
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              mb: 1,
-            }}
-          >
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
             Join our newsletter for regular updates. No spam ever.
           </Typography>
           <EmailSubscribe />
@@ -82,13 +70,7 @@ export default function AppFooter(props: AppFooterProps) {
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography
-              sx={{
-                fontWeight: 'semiBold',
-                mb: 0.5,
-              }}
-              variant="body2"
-            >
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Products
             </Typography>
             <Link prefetch={false} href={ROUTES.productMaterial}>
@@ -105,13 +87,7 @@ export default function AppFooter(props: AppFooterProps) {
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography
-              sx={{
-                fontWeight: 'semiBold',
-                mb: 0.5,
-              }}
-              variant="body2"
-            >
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Resources
             </Typography>
             <Link prefetch={false} href={ROUTES.materialIcons}>
@@ -131,13 +107,7 @@ export default function AppFooter(props: AppFooterProps) {
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography
-              sx={{
-                fontWeight: 'semiBold',
-                mb: 0.5,
-              }}
-              variant="body2"
-            >
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Explore
             </Typography>
             <Link prefetch={false} href={ROUTES.documentation}>
@@ -157,13 +127,7 @@ export default function AppFooter(props: AppFooterProps) {
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography
-              sx={{
-                fontWeight: 'semiBold',
-                mb: 0.5,
-              }}
-              variant="body2"
-            >
+            <Typography fontWeight="semiBold" variant="body2" sx={{ mb: 0.5 }}>
               Company
             </Typography>
             <Link prefetch={false} href={ROUTES.about}>
@@ -208,30 +172,15 @@ export default function AppFooter(props: AppFooterProps) {
       <Divider />
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
-        sx={{
-          alignItems: 'center',
-          justifyContent: { sm: 'space-between' },
-          gap: { xs: 2, sm: 1 },
-          my: 4,
-        }}
+        alignItems="center"
+        justifyContent={{ sm: 'space-between' }}
+        gap={{ xs: 2, sm: 1 }}
+        sx={{ my: 4 }}
       >
-        <Typography
-          variant="caption"
-          sx={{
-            color: 'text.tertiary',
-            fontWeight: 400,
-          }}
-        >
+        <Typography color="text.tertiary" variant="caption" fontWeight={400}>
           Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
         </Typography>
-        <Stack
-          spacing={1}
-          direction="row"
-          sx={{
-            flexWrap: 'wrap',
-          }}
-          useFlexGap
-        >
+        <Stack spacing={1} direction="row" flexWrap="wrap" useFlexGap>
           <IconButton
             target="_blank"
             rel="noopener"

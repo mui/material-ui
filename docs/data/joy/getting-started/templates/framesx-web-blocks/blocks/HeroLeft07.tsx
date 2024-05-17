@@ -10,20 +10,12 @@ export default function HeroLeft07() {
     <TwoSidedLayout>
       <Typography
         level="h1"
-        sx={{
-          fontWeight: 'xl',
-          fontSize: 'clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)',
-        }}
+        fontWeight="xl"
+        fontSize="clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)"
       >
         A large headlinerer about our product features & services
       </Typography>
-      <Typography
-        textColor="text.secondary"
-        sx={{
-          fontSize: 'lg',
-          lineHeight: 'lg',
-        }}
-      >
+      <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
         A descriptive secondary text placeholder. Use it to explain your business
         offer better.
       </Typography>
@@ -35,13 +27,7 @@ export default function HeroLeft07() {
       >
         <AutoAwesomeIcon color="success" fontSize="xl3" />
         <div>
-          <Typography
-            sx={{
-              fontSize: 'xl',
-              fontWeight: 'lg',
-              mb: 1,
-            }}
-          >
+          <Typography fontSize="xl" fontWeight="lg" sx={{ mb: 1 }}>
             The new version is out.
           </Typography>
           <Typography level="body-sm">

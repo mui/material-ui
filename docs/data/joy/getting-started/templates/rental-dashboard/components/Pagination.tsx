@@ -26,12 +26,7 @@ export default function Pagination() {
         >
           <ArrowBackIosRoundedIcon />
         </IconButton>
-        <Typography
-          level="body-sm"
-          sx={{
-            mx: 'auto',
-          }}
-        >
+        <Typography level="body-sm" mx="auto">
           Page 1 of 10
         </Typography>
         <IconButton

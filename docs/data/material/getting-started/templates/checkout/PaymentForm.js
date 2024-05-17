@@ -146,13 +146,7 @@ export default function PaymentForm() {
                     }),
                   })}
                 />
-                <Typography
-                  sx={{
-                    fontWeight: 'medium',
-                  }}
-                >
-                  Card
-                </Typography>
+                <Typography fontWeight="medium">Card</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -178,13 +172,7 @@ export default function PaymentForm() {
                     }),
                   })}
                 />
-                <Typography
-                  sx={{
-                    fontWeight: 'medium',
-                  }}
-                >
-                  Bank account
-                </Typography>
+                <Typography fontWeight="medium">Bank account</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -278,6 +266,7 @@ export default function PaymentForm() {
           />
         </Box>
       )}
+
       {paymentType === 'bankTransfer' && (
         <Box
           sx={{
@@ -289,68 +278,33 @@ export default function PaymentForm() {
           <Alert severity="warning" icon={<WarningRoundedIcon />}>
             Your order will be processed once we receive the funds.
           </Alert>
-          <Typography
-            variant="subtitle1"
-            sx={{
-              fontWeight: 'medium',
-            }}
-          >
+          <Typography variant="subtitle1" fontWeight="medium">
             Bank account
           </Typography>
           <Typography variant="body1" gutterBottom>
             Please transfer the payment to the bank account details shown below.
           </Typography>
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Typography
-              variant="body1"
-              sx={{
-                color: 'text.secondary',
-              }}
-            >
+            <Typography variant="body1" color="text.secondary">
               Bank:
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: 'medium',
-              }}
-            >
+            <Typography variant="body1" fontWeight="medium">
               Mastercredit
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Typography
-              variant="body1"
-              sx={{
-                color: 'text.secondary',
-              }}
-            >
+            <Typography variant="body1" color="text.secondary">
               Account number:
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: 'medium',
-              }}
-            >
+            <Typography variant="body1" fontWeight="medium">
               123456789
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Typography
-              variant="body1"
-              sx={{
-                color: 'text.secondary',
-              }}
-            >
+            <Typography variant="body1" color="text.secondary">
               Routing number:
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: 'medium',
-              }}
-            >
+            <Typography variant="body1" fontWeight="medium">
               987654321
             </Typography>
           </Box>

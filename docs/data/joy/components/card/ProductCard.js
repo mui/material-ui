@@ -26,9 +26,8 @@ export default function ProductCard() {
         <Typography level="body-xs">Bluetooth Headset</Typography>
         <Link
           href="#product-card"
-          sx={{
-            fontWeight: 'md',
-          }}
+          fontWeight="md"
+          color="neutral"
           textColor="text.primary"
           overlay
           endDecorator={<ArrowOutwardIcon />}

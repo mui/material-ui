@@ -34,11 +34,8 @@ export default function IconBreadcrumbs() {
           Core
         </Link>
         <Typography
-          sx={{
-            color: 'text.primary',
-            display: 'flex',
-            alignItems: 'center',
-          }}
+          sx={{ display: 'flex', alignItems: 'center' }}
+          color="text.primary"
         >
           <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
           Breadcrumb

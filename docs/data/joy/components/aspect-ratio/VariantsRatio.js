@@ -8,48 +8,28 @@ export default function VariantsRatio() {
     <Grid container spacing={2} sx={{ width: '100%' }}>
       <Grid xs={6} md>
         <AspectRatio variant="solid">
-          <Typography
-            level="inherit"
-            sx={{
-              fontWeight: 'lg',
-            }}
-          >
+          <Typography level="inherit" fontWeight="lg">
             Solid
           </Typography>
         </AspectRatio>
       </Grid>
       <Grid xs={6} md>
         <AspectRatio variant="soft">
-          <Typography
-            level="inherit"
-            sx={{
-              fontWeight: 'lg',
-            }}
-          >
+          <Typography level="inherit" fontWeight="lg">
             Soft
           </Typography>
         </AspectRatio>
       </Grid>
       <Grid xs={6} md>
         <AspectRatio variant="outlined">
-          <Typography
-            level="inherit"
-            sx={{
-              fontWeight: 'lg',
-            }}
-          >
+          <Typography level="inherit" fontWeight="lg">
             Outlined
           </Typography>
         </AspectRatio>
       </Grid>
       <Grid xs={6} md>
         <AspectRatio variant="plain">
-          <Typography
-            level="inherit"
-            sx={{
-              fontWeight: 'lg',
-            }}
-          >
+          <Typography level="inherit" fontWeight="lg">
             Plain
           </Typography>
         </AspectRatio>

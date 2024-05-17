@@ -42,33 +42,29 @@ function ProductItem({
       <span>
         <Typography
           component="span"
+          color="text.primary"
           variant="body2"
-          sx={{
-            color: 'text.primary',
-            fontWeight: 'bold',
-            display: 'block',
-          }}
+          fontWeight="bold"
+          display="block"
         >
           {name}
         </Typography>
         <Typography
           component="span"
+          color="text.secondary"
           variant="body2"
-          sx={{
-            color: 'text.secondary',
-            fontWeight: 'regular',
-            display: 'block',
-            my: 0.5,
-          }}
+          fontWeight="regular"
+          display="block"
+          sx={{ my: 0.5 }}
         >
           {description}
         </Typography>
         <Link
           href={href}
+          color="primary"
           variant="body2"
+          fontWeight="bold"
           sx={{
-            color: 'primary',
-            fontWeight: 'bold',
             display: 'inline-flex',
             alignItems: 'center',
             '& > svg': { transition: '0.2s' },

@@ -53,46 +53,25 @@ function RemoteAwardCard() {
           component="img"
           src="/static/branding/careers/remote-award-light.png"
           alt="MUI is the winner of the Remote Excellence Awards in the Small and Mighty for SMEs category."
-          sx={[
-            {
-              height: '1200px',
-              width: '1200px',
-            },
-            (theme) => ({
-              width: '100%',
-              height: '100%',
-              ...theme.applyDarkStyles({
-                content: `url(/static/branding/careers/remote-award-dark.png)`,
-              }),
+          height="1200px"
+          width="1200px"
+          sx={(theme) => ({
+            width: '100%',
+            height: '100%',
+            ...theme.applyDarkStyles({
+              content: `url(/static/branding/careers/remote-award-dark.png)`,
             }),
-          ]}
+          })}
         />
       </Box>
       <div>
-        <Typography
-          component="h2"
-          variant="body2"
-          sx={{
-            fontWeight: 'semiBold',
-          }}
-        >
+        <Typography component="h2" variant="body2" fontWeight="semiBold">
           Remote Excellence Awards
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            color: 'text.secondary',
-            mb: 1,
-          }}
-        >
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
           Winners in the first-ever Remote Excellence Awards, in the Small & Mighty category! 🎉
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            fontWeight: 'bold',
-          }}
-        >
+        <Typography variant="body2" fontWeight="bold" color="primary">
           Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
         </Typography>
       </div>
@@ -133,21 +112,10 @@ export default function PerksBenefits() {
               >
                 <IconImage name="pricing/yes" />
                 <div>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.primary',
-                      fontWeight: 'semiBold',
-                    }}
-                  >
+                  <Typography variant="body2" color="text.primary" fontWeight="semiBold">
                     {textArray[0]}
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                    }}
-                  >
+                  <Typography variant="body2" color="text.secondary">
                     {textArray[1]}
                   </Typography>
                 </div>
@@ -182,31 +150,13 @@ export default function PerksBenefits() {
                   flexDirection: 'column',
                 }}
               >
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontWeight: 'bold',
-                    mb: 0.5,
-                  }}
-                >
+                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
                   {title}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'text.secondary',
-                    mb: 1,
-                  }}
-                >
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   {description}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontWeight: 'bold',
-                    mt: 'auto',
-                  }}
-                >
+                <Typography variant="body2" fontWeight="bold" color="primary" sx={{ mt: 'auto' }}>
                   Learn more{' '}
                   <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
                 </Typography>

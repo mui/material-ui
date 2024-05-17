@@ -43,31 +43,13 @@ export default function Types() {
         neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
         quasi quidem quibusdam.
       </Typography>
-      <Typography
-        variant="button"
-        sx={{
-          display: 'block',
-        }}
-        gutterBottom
-      >
+      <Typography variant="button" display="block" gutterBottom>
         button text
       </Typography>
-      <Typography
-        variant="caption"
-        sx={{
-          display: 'block',
-        }}
-        gutterBottom
-      >
+      <Typography variant="caption" display="block" gutterBottom>
         caption text
       </Typography>
-      <Typography
-        variant="overline"
-        sx={{
-          display: 'block',
-        }}
-        gutterBottom
-      >
+      <Typography variant="overline" display="block" gutterBottom>
         overline text
       </Typography>
     </Box>

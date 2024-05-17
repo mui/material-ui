@@ -269,11 +269,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           <Typography
             id="usage-props"
             component="h3"
-            sx={{
-              fontWeight: 'lg',
-              scrollMarginTop: 160,
-              fontFamily: 'General Sans',
-            }}
+            fontWeight="lg"
+            sx={{ scrollMarginTop: 160, fontFamily: 'General Sans' }}
           >
             Playground
           </Typography>

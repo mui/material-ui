@@ -75,35 +75,17 @@ export default function Pricing() {
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
-        <Typography
-          component="h2"
-          variant="h4"
-          sx={{
-            color: 'text.primary',
-          }}
-        >
+        <Typography component="h2" variant="h4" color="text.primary">
           Pricing
         </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            color: 'text.secondary',
-          }}
-        >
+        <Typography variant="body1" color="text.secondary">
           Quickly build an effective pricing table for your potential customers with
           this layout. <br />
           It&apos;s built with default Material UI components with little
           customization.
         </Typography>
       </Box>
-      <Grid
-        container
-        spacing={3}
-        sx={{
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+      <Grid container spacing={3} alignItems="center" justifyContent="center">
         {tiers.map((tier) => (
           <Grid
             item
