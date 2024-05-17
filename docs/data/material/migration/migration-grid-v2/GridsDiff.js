@@ -24,13 +24,11 @@ export default function GridsDiff() {
           >
             <Grid
               item
-              sx={{
-                height: 100,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-              }}
+              height={100}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              textAlign="center"
               xs
             >
               ver.1 <br />

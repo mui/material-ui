@@ -174,25 +174,16 @@ export default function BadgeVisibility() {
   };
 
   return (
-    <Stack
-      direction="column"
-      sx={{
-        justifyContent: 'center',
-      }}
-      spacing={1}
-      useFlexGap
-    >
+    <Stack direction="column" justifyContent="center" spacing={1} useFlexGap>
       <Badge badgeContent={count} invisible={invisible}>
         <MailIcon />
       </Badge>
       <Divider sx={{ my: 2 }} />
       <Stack
         direction="row"
-        sx={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 1,
-        }}
+        justifyContent="center"
+        alignItems="center"
+        gap={1}
         useFlexGap
       >
         <StyledButton

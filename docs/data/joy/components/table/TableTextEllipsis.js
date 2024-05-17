@@ -26,12 +26,7 @@ export default function TableTextEllipsis() {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
               <Avatar src="/static/images/avatar/1.jpg" />
               <Box sx={{ minWidth: 0 }}>
-                <Typography
-                  noWrap
-                  sx={{
-                    fontWeight: 'lg',
-                  }}
-                >
+                <Typography noWrap fontWeight="lg">
                   Morty D Ardiousdellois Addami
                 </Typography>
                 <Typography noWrap level="body-sm">

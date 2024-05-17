@@ -14,13 +14,7 @@ export default function DenseAppBar() {
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            sx={{
-              color: 'inherit',
-            }}
-            component="div"
-          >
+          <Typography variant="h6" color="inherit" component="div">
             Photos
           </Typography>
         </Toolbar>

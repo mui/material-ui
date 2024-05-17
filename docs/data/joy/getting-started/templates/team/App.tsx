@@ -134,8 +134,9 @@ export default function TeamExample() {
       <Stack
         id="tab-bar"
         direction="row"
+        justifyContent="space-around"
+        spacing={1}
         sx={{
-          justifyContent: 'space-around',
           display: { xs: 'flex', sm: 'none' },
           zIndex: '999',
           bottom: 0,
@@ -146,7 +147,6 @@ export default function TeamExample() {
           borderTop: '1px solid',
           borderColor: 'divider',
         }}
-        spacing={1}
       >
         <Button
           variant="plain"

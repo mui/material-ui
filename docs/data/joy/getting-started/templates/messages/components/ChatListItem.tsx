@@ -55,9 +55,7 @@ export default function ChatListItem(props: ChatListItemProps) {
               )}
               <Typography
                 level="body-xs"
-                sx={{
-                  display: { xs: 'none', md: 'block' },
-                }}
+                display={{ xs: 'none', md: 'block' }}
                 noWrap
               >
                 5 mins ago

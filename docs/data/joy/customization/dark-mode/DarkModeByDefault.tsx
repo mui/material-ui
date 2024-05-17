@@ -28,14 +28,11 @@ export default function DarkModeByDefault() {
           <Typography
             component="div"
             endDecorator={
-              <Chip variant="outlined" size="sm">
+              <Chip variant="outlined" color="primary" size="sm">
                 Default
               </Chip>
             }
-            sx={{
-              color: 'primary',
-              fontSize: 'lg',
-            }}
+            fontSize="lg"
           >
             Dark mode
           </Typography>

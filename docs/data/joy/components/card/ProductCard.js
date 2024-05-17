@@ -26,10 +26,8 @@ export default function ProductCard() {
         <Typography level="body-xs">Bluetooth Headset</Typography>
         <Link
           href="#product-card"
-          sx={{
-            fontWeight: 'md',
-            color: 'neutral',
-          }}
+          fontWeight="md"
+          color="neutral"
           textColor="text.primary"
           overlay
           endDecorator={<ArrowOutwardIcon />}
@@ -39,17 +37,9 @@ export default function ProductCard() {
 
         <Typography
           level="title-lg"
+          sx={{ mt: 1, fontWeight: 'xl' }}
           endDecorator={
-            <Chip
-              component="span"
-              size="sm"
-              variant="soft"
-              sx={{
-                color: 'success',
-                mt: 1,
-                fontWeight: 'xl',
-              }}
-            >
+            <Chip component="span" size="sm" variant="soft" color="success">
               Lowest price
             </Chip>
           }

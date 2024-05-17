@@ -122,12 +122,7 @@ export default function MaterialUIExampleCollection() {
                 : { children: example.src })}
             />
             <div>
-              <Typography
-                sx={{
-                  fontWeight: 'medium',
-                }}
-                className="algolia-lvl3"
-              >
+              <Typography fontWeight="medium" className="algolia-lvl3">
                 {example.name}
               </Typography>
               <Box

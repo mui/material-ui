@@ -137,12 +137,7 @@ export function MaterialDesignKitInfo() {
           mb: 0.5,
         }}
       >
-        <Typography
-          variant="body2"
-          sx={{
-            fontWeight: 'semiBold',
-          }}
-        >
+        <Typography variant="body2" fontWeight="semiBold">
           Available in:
         </Typography>
         <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 20, height: 20 } }}>
@@ -159,13 +154,7 @@ export function MaterialDesignKitInfo() {
           />
         </Box>
       </Box>
-      <Typography
-        variant="body2"
-        sx={{
-          color: 'text.secondary',
-          mb: 2,
-        }}
-      >
+      <Typography variant="body2" color="text.secondary" mb={2}>
         We frequently update them to stay up-to-date with the latest release.
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5 }}>

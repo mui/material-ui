@@ -19,12 +19,7 @@ export default function HorizontalStepperWithError() {
           const labelProps = {};
           if (isStepFailed(index)) {
             labelProps.optional = (
-              <Typography
-                variant="caption"
-                sx={{
-                  color: 'error',
-                }}
-              >
+              <Typography variant="caption" color="error">
                 Alert message
               </Typography>
             );

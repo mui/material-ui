@@ -32,15 +32,7 @@ export default function BaseUITestimonial() {
               },
             }}
           >
-            <Typography
-              variant="h4"
-              component="h2"
-              sx={{
-                fontWeight: 'medium',
-                color: '#FFF',
-                mb: 2.5,
-              }}
-            >
+            <Typography variant="h4" component="h2" fontWeight="medium" color="#FFF" mb={2.5}>
               Nhost&apos;s dashboard
             </Typography>
             <Box
@@ -58,14 +50,7 @@ export default function BaseUITestimonial() {
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>
             Nhost&apos;s new dashboard, powered by Base UI &nbsp;&nbsp;
-            <Typography
-              component="span"
-              variant="inherit"
-              sx={{
-                color: 'grey.500',
-                opacity: '50%',
-              }}
-            >
+            <Typography component="span" variant="inherit" color="grey.500" sx={{ opacity: '50%' }}>
               /
             </Typography>
             &nbsp;&nbsp;
@@ -105,20 +90,10 @@ export default function BaseUITestimonial() {
               />
             </Box>
             <Box sx={{ flex: 1 }}>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontWeight: 'semiBold',
-                }}
-              >
+              <Typography variant="body2" fontWeight="semiBold">
                 Szilárd Dóró
               </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: 'text.secondary',
-                }}
-              >
+              <Typography variant="body2" color="text.secondary">
                 Senior Software Engineer
               </Typography>
             </Box>

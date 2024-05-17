@@ -30,9 +30,7 @@ export default function BreadcrumbsUsage() {
           <Link
             // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
             onClick={(event) => event.preventDefault()}
-            sx={{
-              color: 'neutral',
-            }}
+            color="neutral"
             href="/"
           >
             MUI
@@ -40,9 +38,7 @@ export default function BreadcrumbsUsage() {
           <Link
             // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
             onClick={(event) => event.preventDefault()}
-            sx={{
-              color: 'neutral',
-            }}
+            color="neutral"
             href="/joy-ui/getting-started/installation/"
           >
             Joy

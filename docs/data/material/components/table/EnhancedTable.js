@@ -170,10 +170,8 @@ function EnhancedTableToolbar(props) {
     >
       {numSelected > 0 ? (
         <Typography
-          sx={{
-            color: 'inherit',
-            flex: '1 1 100%',
-          }}
+          sx={{ flex: '1 1 100%' }}
+          color="inherit"
           variant="subtitle1"
           component="div"
         >
@@ -189,6 +187,7 @@ function EnhancedTableToolbar(props) {
           Nutrition
         </Typography>
       )}
+
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>

@@ -7,20 +7,9 @@ import Link from '@mui/material/Link';
 
 function Copyright() {
   return (
-    <Typography
-      variant="body2"
-      sx={{
-        color: 'text.secondary',
-      }}
-      align="center"
-    >
+    <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <Link
-        sx={{
-          color: 'inherit',
-        }}
-        href="https://mui.com/"
-      >
+      <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -41,9 +30,7 @@ function Footer(props) {
         <Typography
           variant="subtitle1"
           align="center"
-          sx={{
-            color: 'text.secondary',
-          }}
+          color="text.secondary"
           component="p"
         >
           {description}

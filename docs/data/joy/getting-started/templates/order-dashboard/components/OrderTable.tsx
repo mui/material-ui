@@ -412,19 +412,18 @@ export default function OrderTable() {
               <th style={{ width: 120, padding: '12px 6px' }}>
                 <Link
                   underline="none"
+                  color="primary"
                   component="button"
                   onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
+                  fontWeight="lg"
+                  endDecorator={<ArrowDropDownIcon />}
                   sx={{
-                    color: 'primary',
-                    fontWeight: 'lg',
-
                     '& svg': {
                       transition: '0.2s',
                       transform:
                         order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
                     },
                   }}
-                  endDecorator={<ArrowDropDownIcon />}
                 >
                   Invoice
                 </Link>

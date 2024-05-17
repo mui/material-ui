@@ -40,22 +40,10 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
       />
       <Box sx={{ width: 'clamp(15px, (304px - 100%) * 999 , 100%)', height: 15 }} />
       <Box sx={{ alignSelf: 'center' }}>
-        <Typography
-          variant="caption"
-          sx={{
-            color: 'text.secondary',
-            fontWeight: 'regular',
-          }}
-        >
+        <Typography variant="caption" color="text.secondary" fontWeight="regular">
           123 Main St, Phoenix, AZ, USA
         </Typography>
-        <Typography
-          sx={{
-            fontWeight: 'bold',
-          }}
-          noWrap
-          gutterBottom
-        >
+        <Typography fontWeight="bold" noWrap gutterBottom>
           $280k - $310k
         </Typography>
         <Chip

@@ -22,13 +22,7 @@ export default function SpacingGrid() {
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2}>
       <Grid xs={12}>
-        <Grid
-          container
-          sx={{
-            justifyContent: 'center',
-          }}
-          spacing={spacing}
-        >
+        <Grid container justifyContent="center" spacing={spacing}>
           {[0, 1, 2].map((value) => (
             <Grid key={value}>
               <Sheet

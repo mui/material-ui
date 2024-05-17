@@ -27,25 +27,13 @@ export default function TaskCard() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
           <ScheduleRounded fontSize="inherit" />
-          <Typography
-            variant="caption"
-            sx={{
-              fontWeight: 'semiBold',
-            }}
-          >
+          <Typography variant="caption" fontWeight="semiBold">
             March 25th
           </Typography>
         </Box>
         <Box sx={{ my: 'auto' }}>
           <CodeRounded />
-          <Typography
-            component="div"
-            sx={{
-              fontSize: 18,
-              fontWeight: 'semiBold',
-              lineHeight: 1.4,
-            }}
-          >
+          <Typography fontSize={18} component="div" fontWeight="semiBold" sx={{ lineHeight: 1.4 }}>
             Customize every button and chip instance primary color
           </Typography>
         </Box>
@@ -65,22 +53,10 @@ export default function TaskCard() {
             />
           </Box>
           <div>
-            <Typography
-              sx={{
-                color: 'primary.100',
-                fontWeight: 'semiBold',
-                fontSize: 12,
-              }}
-            >
+            <Typography color="primary.100" fontWeight="semiBold" fontSize={12}>
               Assigned to
             </Typography>
-            <Typography
-              id="demo-task-card-assignee-name"
-              variant="body2"
-              sx={{
-                fontWeight: 'semiBold',
-              }}
-            >
+            <Typography id="demo-task-card-assignee-name" variant="body2" fontWeight="semiBold">
               Lucas Smith
             </Typography>
           </div>
@@ -100,14 +76,7 @@ export default function TaskCard() {
               },
             }}
           />
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'primary.50',
-              fontWeight: 700,
-              ml: 2,
-            }}
-          >
+          <Typography color="primary.50" variant="body2" fontWeight={700} sx={{ ml: 2 }}>
             60%
           </Typography>
         </Box>

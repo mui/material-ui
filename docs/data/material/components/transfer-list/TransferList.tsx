@@ -90,23 +90,10 @@ export default function TransferList() {
   );
 
   return (
-    <Grid
-      container
-      spacing={2}
-      sx={{
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
       <Grid item>{customList(left)}</Grid>
       <Grid item>
-        <Grid
-          container
-          direction="column"
-          sx={{
-            alignItems: 'center',
-          }}
-        >
+        <Grid container direction="column" alignItems="center">
           <Button
             sx={{ my: 0.5 }}
             variant="outlined"

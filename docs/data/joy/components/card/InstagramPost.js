@@ -50,13 +50,7 @@ export default function InstagramPost() {
             sx={{ p: 0.5, border: '2px solid', borderColor: 'background.body' }}
           />
         </Box>
-        <Typography
-          sx={{
-            fontWeight: 'lg',
-          }}
-        >
-          MUI
-        </Typography>
+        <Typography fontWeight="lg">MUI</Typography>
         <IconButton variant="plain" color="neutral" size="sm" sx={{ ml: 'auto' }}>
           <MoreHoriz />
         </IconButton>
@@ -101,25 +95,17 @@ export default function InstagramPost() {
         <Link
           component="button"
           underline="none"
-          sx={{
-            fontSize: 'sm',
-            fontWeight: 'lg',
-          }}
+          fontSize="sm"
+          fontWeight="lg"
           textColor="text.primary"
         >
           8.1M Likes
         </Link>
-        <Typography
-          sx={{
-            fontSize: 'sm',
-          }}
-        >
+        <Typography fontSize="sm">
           <Link
             component="button"
-            sx={{
-              color: 'neutral',
-              fontWeight: 'lg',
-            }}
+            color="neutral"
+            fontWeight="lg"
             textColor="text.primary"
           >
             MUI
@@ -129,22 +115,17 @@ export default function InstagramPost() {
         <Link
           component="button"
           underline="none"
-          sx={{
-            fontSize: 'sm',
-            color: 'text.tertiary',
-          }}
+          fontSize="sm"
           startDecorator="…"
+          sx={{ color: 'text.tertiary' }}
         >
           more
         </Link>
         <Link
           component="button"
           underline="none"
-          sx={{
-            fontSize: '10px',
-            color: 'text.tertiary',
-            my: 0.5,
-          }}
+          fontSize="10px"
+          sx={{ color: 'text.tertiary', my: 0.5 }}
         >
           2 DAYS AGO
         </Link>

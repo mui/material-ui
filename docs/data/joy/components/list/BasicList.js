@@ -9,10 +9,8 @@ export default function BasicList() {
       <Typography
         id="basic-list-demo"
         level="body-xs"
-        sx={{
-          textTransform: 'uppercase',
-          fontWeight: 'lg',
-        }}
+        textTransform="uppercase"
+        fontWeight="lg"
       >
         Ingredients
       </Typography>

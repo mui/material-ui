@@ -23,49 +23,19 @@ export default function LinkColors() {
           gap: 2,
         }}
       >
-        <Link
-          href="#colors"
-          variant={variant}
-          sx={{
-            color: 'primary',
-          }}
-        >
+        <Link href="#colors" variant={variant} color="primary">
           Primary
         </Link>
-        <Link
-          href="#colors"
-          variant={variant}
-          sx={{
-            color: 'neutral',
-          }}
-        >
+        <Link href="#colors" variant={variant} color="neutral">
           Neutral
         </Link>
-        <Link
-          href="#colors"
-          variant={variant}
-          sx={{
-            color: 'danger',
-          }}
-        >
+        <Link href="#colors" variant={variant} color="danger">
           Danger
         </Link>
-        <Link
-          href="#colors"
-          variant={variant}
-          sx={{
-            color: 'success',
-          }}
-        >
+        <Link href="#colors" variant={variant} color="success">
           Success
         </Link>
-        <Link
-          href="#colors"
-          variant={variant}
-          sx={{
-            color: 'warning',
-          }}
-        >
+        <Link href="#colors" variant={variant} color="warning">
           Warning
         </Link>
       </Box>
@@ -79,12 +49,10 @@ export default function LinkColors() {
       >
         <Typography
           level="body-sm"
+          fontWeight="xl"
           id="variant-label"
           textColor="text.primary"
-          sx={{
-            fontWeight: 'xl',
-            mb: 1,
-          }}
+          mb={1}
         >
           Variant:
         </Typography>

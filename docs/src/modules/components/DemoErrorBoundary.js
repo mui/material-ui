@@ -67,14 +67,7 @@ export default class DemoErrorBoundary extends React.Component {
       /* eslint-disable material-ui/no-hardcoded-labels */
       return (
         <div>
-          <Typography
-            sx={{
-              color: 'error',
-            }}
-            component="p"
-            variant="h5"
-            gutterBottom
-          >
+          <Typography color="error" component="p" variant="h5" gutterBottom>
             This demo had a runtime error!
           </Typography>
           <Typography>

@@ -12,22 +12,18 @@ export default function DecoratorExamples() {
       <Link href="#common-examples" disabled startDecorator={<CircularProgress />}>
         Processing...
       </Link>
+
       <Link
         href="#common-examples"
         underline="none"
         variant="outlined"
+        color="neutral"
         endDecorator={
-          <Chip
-            sx={{
-              color: 'neutral',
-              color: 'success',
-            }}
-            variant="soft"
-            size="sm"
-          >
+          <Chip color="success" variant="soft" size="sm" sx={{}}>
             hiring
           </Chip>
         }
+        sx={{ '--Link-gap': '0.5rem', pl: 1, py: 0.5, borderRadius: 'md' }}
       >
         Careers
       </Link>

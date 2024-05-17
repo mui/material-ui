@@ -55,9 +55,7 @@ export default function MyProfile() {
           >
             <Link
               underline="none"
-              sx={{
-                color: 'neutral',
-              }}
+              color="neutral"
               href="#some-link"
               aria-label="Home"
             >
@@ -65,22 +63,14 @@ export default function MyProfile() {
             </Link>
             <Link
               underline="hover"
+              color="neutral"
               href="#some-link"
-              sx={{
-                color: 'neutral',
-                fontSize: 12,
-                fontWeight: 500,
-              }}
+              fontSize={12}
+              fontWeight={500}
             >
               Users
             </Link>
-            <Typography
-              sx={{
-                color: 'primary',
-                fontWeight: 500,
-                fontSize: 12,
-              }}
-            >
+            <Typography color="primary" fontWeight={500} fontSize={12}>
               My profile
             </Typography>
           </Breadcrumbs>
@@ -224,23 +214,13 @@ export default function MyProfile() {
                   >
                     <Option value="1">
                       Indochina Time (Bangkok){' '}
-                      <Typography
-                        textColor="text.tertiary"
-                        sx={{
-                          ml: 0.5,
-                        }}
-                      >
+                      <Typography textColor="text.tertiary" ml={0.5}>
                         — GMT+07:00
                       </Typography>
                     </Option>
                     <Option value="2">
                       Indochina Time (Ho Chi Minh City){' '}
-                      <Typography
-                        textColor="text.tertiary"
-                        sx={{
-                          ml: 0.5,
-                        }}
-                      >
+                      <Typography textColor="text.tertiary" ml={0.5}>
                         — GMT+07:00
                       </Typography>
                     </Option>
@@ -330,23 +310,13 @@ export default function MyProfile() {
                 >
                   <Option value="1">
                     Indochina Time (Bangkok){' '}
-                    <Typography
-                      textColor="text.tertiary"
-                      sx={{
-                        ml: 0.5,
-                      }}
-                    >
+                    <Typography textColor="text.tertiary" ml={0.5}>
                       — GMT+07:00
                     </Typography>
                   </Option>
                   <Option value="2">
                     Indochina Time (Ho Chi Minh City){' '}
-                    <Typography
-                      textColor="text.tertiary"
-                      sx={{
-                        ml: 0.5,
-                      }}
-                    >
+                    <Typography textColor="text.tertiary" ml={0.5}>
                       — GMT+07:00
                     </Typography>
                   </Option>

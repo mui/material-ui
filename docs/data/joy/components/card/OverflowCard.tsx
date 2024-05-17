@@ -26,23 +26,11 @@ export default function OverflowCard() {
       <CardOverflow variant="soft" sx={{ bgcolor: 'background.level1' }}>
         <Divider inset="context" />
         <CardContent orientation="horizontal">
-          <Typography
-            level="body-xs"
-            sx={{
-              fontWeight: 'md',
-            }}
-            textColor="text.secondary"
-          >
+          <Typography level="body-xs" fontWeight="md" textColor="text.secondary">
             6.3k views
           </Typography>
           <Divider orientation="vertical" />
-          <Typography
-            level="body-xs"
-            sx={{
-              fontWeight: 'md',
-            }}
-            textColor="text.secondary"
-          >
+          <Typography level="body-xs" fontWeight="md" textColor="text.secondary">
             1 hour ago
           </Typography>
         </CardContent>

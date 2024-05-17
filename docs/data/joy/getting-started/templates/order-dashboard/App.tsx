@@ -51,9 +51,7 @@ export default function JoyOrderDashboardTemplate() {
             >
               <Link
                 underline="none"
-                sx={{
-                  color: 'neutral',
-                }}
+                color="neutral"
                 href="#some-link"
                 aria-label="Home"
               >
@@ -61,22 +59,14 @@ export default function JoyOrderDashboardTemplate() {
               </Link>
               <Link
                 underline="hover"
+                color="neutral"
                 href="#some-link"
-                sx={{
-                  color: 'neutral',
-                  fontSize: 12,
-                  fontWeight: 500,
-                }}
+                fontSize={12}
+                fontWeight={500}
               >
                 Dashboard
               </Link>
-              <Typography
-                sx={{
-                  color: 'primary',
-                  fontWeight: 500,
-                  fontSize: 12,
-                }}
-              >
+              <Typography color="primary" fontWeight={500} fontSize={12}>
                 Orders
               </Typography>
             </Breadcrumbs>

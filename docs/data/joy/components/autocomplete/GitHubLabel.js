@@ -57,24 +57,23 @@ export default function GitHubLabel() {
       <Box sx={{ width: 221 }}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link
+          color="neutral"
+          component="button"
+          underline="none"
+          level="body-xs"
+          aria-describedby={id}
+          onClick={handleClick}
           sx={{
-            color: 'neutral',
             display: 'flex',
             justifyContent: 'space-between',
             width: '100%',
             fontWeight: 'lg',
             color: 'text.secondary',
             py: 1,
-
             '&:hover': {
               color: 'primary.plainColor',
             },
           }}
-          component="button"
-          underline="none"
-          level="body-xs"
-          aria-describedby={id}
-          onClick={handleClick}
         >
           <span>Labels</span>
           <SettingsIcon />
@@ -122,9 +121,9 @@ export default function GitHubLabel() {
             })}
           >
             <Typography
+              fontSize="sm"
+              fontWeight={600}
               sx={{
-                fontSize: 'sm',
-                fontWeight: 600,
                 padding: '8px 10px',
                 borderBottom: '1px solid',
                 borderColor: 'divider',

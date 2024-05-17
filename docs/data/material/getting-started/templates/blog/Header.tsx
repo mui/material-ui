@@ -24,12 +24,10 @@ export default function Header(props: HeaderProps) {
         <Typography
           component="h2"
           variant="h5"
-          sx={{
-            color: 'inherit',
-            flex: 1,
-          }}
+          color="inherit"
           align="center"
           noWrap
+          sx={{ flex: 1 }}
         >
           {title}
         </Typography>
@@ -47,15 +45,12 @@ export default function Header(props: HeaderProps) {
       >
         {sections.map((section) => (
           <Link
-            sx={{
-              color: 'inherit',
-              p: 1,
-              flexShrink: 0,
-            }}
+            color="inherit"
             noWrap
             key={section.title}
             variant="body2"
             href={section.url}
+            sx={{ p: 1, flexShrink: 0 }}
           >
             {section.title}
           </Link>

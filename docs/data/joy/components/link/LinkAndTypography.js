@@ -11,22 +11,20 @@ export default function LinkAndTypography() {
       <Typography
         id="heading-demo"
         level="h2"
+        fontSize="lg"
         endDecorator={
           <Link
             variant="outlined"
             aria-labelledby="heading-demo"
             href="#heading-demo"
+            fontSize="md"
+            borderRadius="sm"
           >
             <LinkIcon />
           </Link>
         }
-        sx={{
-          fontSize: 'lg',
-          fontSize: 'md',
-          borderRadius: 'sm',
-          mb: 1,
-          scrollMarginTop: 100,
-        }}
+        mb={1}
+        sx={{ scrollMarginTop: 100 }}
       >
         Heading
       </Typography>

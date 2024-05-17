@@ -17,13 +17,7 @@ export default function BreadcrumbsVariables() {
       renderDemo={(sx) => (
         <Breadcrumbs sx={sx}>
           {['Menu 1', 'Menu 2'].map((item) => (
-            <Link
-              key={item}
-              sx={{
-                color: 'neutral',
-              }}
-              href="#css-variable-playground"
-            >
+            <Link key={item} color="neutral" href="#css-variable-playground">
               {item}
             </Link>
           ))}

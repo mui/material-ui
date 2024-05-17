@@ -46,14 +46,8 @@ export default function TableFiles() {
             <td>
               <Typography
                 level="title-sm"
-                startDecorator={
-                  <FolderRoundedIcon
-                    sx={{
-                      color: 'primary',
-                      alignItems: 'flex-start',
-                    }}
-                  />
-                }
+                startDecorator={<FolderRoundedIcon color="primary" />}
+                sx={{ alignItems: 'flex-start' }}
               >
                 Travel pictures
               </Typography>
@@ -92,14 +86,8 @@ export default function TableFiles() {
             <td>
               <Typography
                 level="title-sm"
-                startDecorator={
-                  <FolderRoundedIcon
-                    sx={{
-                      color: 'primary',
-                      alignItems: 'flex-start',
-                    }}
-                  />
-                }
+                startDecorator={<FolderRoundedIcon color="primary" />}
+                sx={{ alignItems: 'flex-start' }}
               >
                 Important documents
               </Typography>
@@ -139,14 +127,8 @@ export default function TableFiles() {
             <td>
               <Typography
                 level="title-sm"
-                startDecorator={
-                  <FolderRoundedIcon
-                    sx={{
-                      color: 'primary',
-                      alignItems: 'flex-start',
-                    }}
-                  />
-                }
+                startDecorator={<FolderRoundedIcon color="primary" />}
+                sx={{ alignItems: 'flex-start' }}
               >
                 Projects
               </Typography>
@@ -181,14 +163,8 @@ export default function TableFiles() {
             <td>
               <Typography
                 level="title-sm"
-                startDecorator={
-                  <FolderRoundedIcon
-                    sx={{
-                      color: 'primary',
-                      alignItems: 'flex-start',
-                    }}
-                  />
-                }
+                startDecorator={<FolderRoundedIcon color="primary" />}
+                sx={{ alignItems: 'flex-start' }}
               >
                 Invoices
               </Typography>

@@ -50,13 +50,7 @@ export default function CustomizedTooltips() {
       <HtmlTooltip
         title={
           <React.Fragment>
-            <Typography
-              sx={{
-                color: 'inherit',
-              }}
-            >
-              Tooltip with HTML
-            </Typography>
+            <Typography color="inherit">Tooltip with HTML</Typography>
             <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
             {"It's very engaging. Right?"}
           </React.Fragment>

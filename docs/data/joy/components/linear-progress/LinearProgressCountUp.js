@@ -31,11 +31,9 @@ export default function LinearProgressCountUp() {
     >
       <Typography
         level="body-xs"
-        sx={{
-          fontWeight: 'xl',
-          mixBlendMode: 'difference',
-        }}
+        fontWeight="xl"
         textColor="common.white"
+        sx={{ mixBlendMode: 'difference' }}
       >
         LOADING… {`${Math.round(Number(value))}%`}
       </Typography>

@@ -103,8 +103,8 @@ export default function ButtonBaseDemo() {
             <Typography
               component="span"
               variant="subtitle1"
+              color="inherit"
               sx={{
-                color: 'inherit',
                 position: 'relative',
                 p: 4,
                 pt: 2,

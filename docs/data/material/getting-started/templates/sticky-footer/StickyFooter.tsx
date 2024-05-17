@@ -8,19 +8,9 @@ import Link from '@mui/material/Link';
 
 function Copyright() {
   return (
-    <Typography
-      variant="body2"
-      sx={{
-        color: 'text.secondary',
-      }}
-    >
+    <Typography variant="body2" color="text.secondary">
       {'Copyright © '}
-      <Link
-        sx={{
-          color: 'inherit',
-        }}
-        href="https://mui.com/"
-      >
+      <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}

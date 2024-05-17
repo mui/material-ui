@@ -106,19 +106,15 @@ export default function FreeSoloCreateOptionDialog() {
               id="basic-modal-dialog-title"
               component="h2"
               level="inherit"
-              sx={{
-                fontSize: '1.25em',
-                mb: '0.25em',
-              }}
+              fontSize="1.25em"
+              mb="0.25em"
             >
               Add a new film
             </Typography>
             <Typography
               id="basic-modal-dialog-description"
-              sx={{
-                mt: 0.5,
-                mb: 2,
-              }}
+              mt={0.5}
+              mb={2}
               textColor="text.tertiary"
             >
               Did you miss any film in our list? Please, add it!
@@ -151,13 +147,7 @@ export default function FreeSoloCreateOptionDialog() {
                   }
                 />
               </FormControl>
-              <Stack
-                direction="row"
-                sx={{
-                  justifyContent: 'flex-end',
-                }}
-                spacing={2}
-              >
+              <Stack direction="row" justifyContent="flex-end" spacing={2}>
                 <Button variant="plain" color="neutral" onClick={handleClose}>
                   Cancel
                 </Button>

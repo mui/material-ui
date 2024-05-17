@@ -60,12 +60,10 @@ export default function TooltipColors() {
       >
         <Typography
           level="body-sm"
+          fontWeight="xl"
           id="variant-label"
           textColor="text.primary"
-          sx={{
-            fontWeight: 'xl',
-            mb: 1,
-          }}
+          mb={1}
         >
           Variant:
         </Typography>

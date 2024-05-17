@@ -95,12 +95,8 @@ export default function ErrorDecoder() {
 
   if (data.state === 'rejected') {
     return (
-      <Typography
-        sx={{
-          color: 'error',
-        }}
-      >
-        Seems like we're having some issues loading the original message. Try
+      <Typography color="error">
+        Seems like we&apos;re having some issues loading the original message. Try
         reloading the page. If the error persists please report this issue on our{' '}
         <Link
           href="https://github.com/mui/material-ui/issues/new?template=1.bug.md"
