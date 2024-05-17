@@ -25,7 +25,7 @@
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
-    "@testing-library/dom": "^9.3.4",
+    "@testing-library/dom": "^10.1.0",
     "@testing-library/react": "^14.3.1",
     "chai": "^4.4.1",
     "chai-dom": "^1.12.0",
