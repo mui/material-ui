@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { OverridableStringUnion } from '@mui/types';
 import { SxConfig, SxProps, CSSObject, ApplyStyles } from '@mui/system';
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
