@@ -204,6 +204,50 @@ ListItemText.propTypes /* remove-proptypes */ = {
    */
   secondaryTypographyProps: PropTypes.object,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    primary: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        key: PropTypes.any,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+    secondary: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        key: PropTypes.any,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    primary: PropTypes.elementType,
+    secondary: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
