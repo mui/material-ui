@@ -28,7 +28,7 @@ Material UI v6 includes many bug fixes and improvements over v5.
 
 Apart from the support for Pigment CSS, the v6 release provides a stable API for adopting CSS variables which open more customization possibilities and offers a more enjoyable developer experience.
 
-Additionally, the v6 release does not include any breaking changes. Some APIs are deprecated to bring more consistent developer experience which are easily migrated using our codemod.
+Additionally, the v6 release does not include major breaking changes. Instead, they are deprecated to bring more consistent developer experience which are easily migrated using our codemod.
 
 ## Supported browsers and Node versions
 
@@ -38,17 +38,44 @@ The exact versions will be pinned on release from the browserslist query `"> 0.5
 
 <!-- #stable-snapshot -->
 
-<!-- Add  -->
+- Node ?? (up from 12)
+- Chrome 109 (up from 90)
+- Edge 121 (up from 91)
+- Firefox 115 (up from 78)
+- Safari 15.4 (macOS) and 15.4 (iOS)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v6.0.0/.browserslistrc#L11))
 
 ## Update React & TypeScript version
 
-<!-- Add minimum React & TypeScript version -->
+### Update React
+
+The minimum supported version of React is v17.0.0 (the same as v5).
+
+### Update TypeScript
+
+The minimum supported version of TypeScript has been increased from v3.5 to 4.1.
+
+:::info
+We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (that is packages published on npm under the `@types` namespace).
+
+We will not change the minimum supported version in a minor version of Material UI.
+However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
+:::
+
+If your project includes these packages, you'll need to update them:
+
+- `@types/react`
+- `@types/react-dom`
+
+:::warning
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+:::
 
 ## New features and improvements
 
 ### Container queries
 
-CSS Container Quries lets you apply styles based on the size of the container, rather than the viewport.
+[CSS Container Quries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) lets you apply styles based on the size of the container, rather than the viewport.
 
 The `theme` object now includes a field `containerQueries` which can be used to define container queries similar to `theme.breakpoints`.
 
@@ -62,7 +89,7 @@ const MyComponent = styled('div')(({ theme }) => ({
 }));
 ```
 
-or using the `sx` prop:
+or using the `sx` prop shorthand:
 
 ```js
 <Card sx={{
@@ -102,11 +129,33 @@ To learn more about using CSS theme variables, check out the CSS theme variables
 
 The Grid v2 is now becoming the default Grid component. Check out the [migration guide](/material-ui/migration/migration-grid-v2/) to see the differences and improvements.
 
+## Breaking changes
+
+:::info
+This list is a work in progress.
+Expect updates as new breaking changes are introduced.
+:::
+
+### UMD bundle was removed
+
+<!-- #default-branch-switch -->
+
+The UMD bundle is no longer provided. This was replaced in favor of [ESM CDNs](https://esm.sh/). Please refer to the [CDN docs](https://next.mui.com/material-ui/getting-started/installation/#cdn) for alternatives.
+
 ## Deprecations
 
-### `components` and `componentsProps`
+### `components`, `componentsProps` and composed CSS classes
 
-<!-- TODO: add info and codemod instruction -->
+- `components` and `componentsProps` are deprecated in favor of `slots` and `slotProps` in the theme object.
+- Composed CSS classes are deprecated in favor of atomic class alternatives.
+
+The deprecations can be migrated using the codemod below:
+
+```bash
+npx @mui/codemod@latest deprecations/all <path>
+```
+
+For more details on each component, check out the [deprecations page](/material-ui/migration/migrating-from-deprecated-apis/).
 
 ### Component style overrides
 

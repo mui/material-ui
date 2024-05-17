@@ -270,6 +270,7 @@ const productNameProductId = {
   toolpad: 'Toolpad',
   'toolpad-studio': 'Toolpad Studio',
   'toolpad-core': 'Toolpad Core',
+  'docs-infra': 'Docs Infra',
 };
 
 export function convertProductIdToName(productInfo) {
