@@ -1,5 +1,52 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.7
+
+<!-- generated comparing v6.0.0-alpha.6..next -->
+
+_May 16, 2024_
+
+A big thanks to the 14 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.7`
+
+- &#8203;<!-- 23 -->[Autocomplete] Deprecate `componentsProps` props (#42179) @lhilgert9
+- &#8203;<!-- 22 -->[Autocomplete] Improve design when there's a start adornment for small autocomplete (#41781) @TahaRhidouani
+- &#8203;<!-- 21 -->[Autocomplete] deprecate `*Component` and `*Props` for v6 (#41875) @lhilgert9
+- &#8203;<!-- 19 -->[CircularProgress] Deprecate composed classes (#42076) @sai6855
+- &#8203;<!-- 05 -->[ToggleButtonGroup] Add missing `selected` class in ToggleButtonGroupClasses type (#42243) @tarunrajput
+
+### `@mui/codemod@6.0.0-alpha.6`
+
+- &#8203;<!-- 18 -->[Divider] Only apply codemod if light prop is present (#42098) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 13 -->Fix 301 to Figma @oliviertassinari
+- &#8203;<!-- 12 -->Fix use of deprecated React API (#42118) @oliviertassinari
+- &#8203;<!-- 11 -->Remove the Base notification (#42191) @danilo-leal
+- &#8203;<!-- 07 -->[material-ui] Improve descriptions for deprecated props (#42221) @aarongarciah
+- &#8203;<!-- 06 -->[material-ui] Fix typo in composition docs (#42195) @aarongarciah
+
+### Core
+
+- &#8203;<!-- 20 -->[blog] Introducing Pigment CSS blog post (#42198) @samuelsycamore
+- &#8203;<!-- 17 -->[core] Remove confusing comment @oliviertassinari
+- &#8203;<!-- 16 -->[core] Match other repositories and convention @oliviertassinari
+- &#8203;<!-- 15 -->[core] Fix React 18.3 warnings about spreading keys in the Material UI `Autocomplete` component (#42099) @heath-freenome
+- &#8203;<!-- 14 -->[core] Remove unecessary quotes @oliviertassinari
+- &#8203;<!-- 10 -->[docs-infra] Share code for section title (#42236) @alexfauquette
+- &#8203;<!-- 09 -->[docs-infra] Limit the copy button to the visible code block (#42115) @danilo-leal
+- &#8203;<!-- 08 -->[docs-infra] Make select components with two capital letters (#42004) @alexfauquette
+- &#8203;<!-- 08 -->[docs-infra][toolpad] Fix Page title and SERP title mismatch (#41919) @bharatkashyap
+- &#8203;<!-- 05 -->[website] Add redirection for talk @oliviertassinari
+- &#8203;<!-- 04 -->[website] Adds Arthur Balduini team info (#42193) @arthurbalduini
+- &#8203;<!-- 03 -->[website] Update the role template file (#42192) @danilo-leal
+- &#8203;<!-- 02 -->[website] Update MUI X deps and migrate TreeView demos to v7 API (#42149) @noraleonte
+- &#8203;<!-- 01 -->[website] Fix pricing casing (#42178) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @arthurbalduini, @bharatkashyap, @danilo-leal, @DiegoAndai, @heath-freenome, @lhilgert9, @noraleonte, @oliviertassinari, @sai6855, @samuelsycamore, @TahaRhidouani, @tarunrajput
+
 ## v6.0.0-alpha.6
 
 <!-- generated comparing v6.0.0-alpha.5..next -->
