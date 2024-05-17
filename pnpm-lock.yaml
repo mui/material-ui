@@ -6701,11 +6701,11 @@ packages:
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/core': 7.24.4
+      '@babel/core': 7.24.5
       '@babel/helper-module-imports': 7.24.3
-      '@babel/helper-plugin-utils': 7.24.0
-      '@babel/parser': 7.24.4
-      '@babel/types': 7.24.0
+      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/parser': 7.24.5
+      '@babel/types': 7.24.5
       '@emotion/css': 11.11.2
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/react': 11.11.4(@types/react@18.2.55)(react@18.2.0)
