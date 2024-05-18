@@ -33,7 +33,7 @@ Steppers are implemented using a collection of related components:
 - Step: an individual step in the sequence. Renders as a `<li>` by default.
 - Step Label: a label for a Step.
 - Step Content: optional content for a Step.
-- Step Button: an optional button of a step.
+- Step Button: optional button for a Step.
 - Step Icon: an optional icon of a step.
 - Step Connector: an optional customized connector of a step.
 
