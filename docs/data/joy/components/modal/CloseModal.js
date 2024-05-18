@@ -39,7 +39,9 @@ export default function CloseModal() {
             id="close-modal-title"
             level="h4"
             textColor="inherit"
-            fontWeight="lg"
+            sx={{
+              fontWeight: 'lg',
+            }}
           >
             Modal title
           </Typography>

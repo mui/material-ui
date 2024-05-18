@@ -323,12 +323,23 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           <DialogContent>
             <Grid container>
               <Grid item xs>
-                <Grid container justifyContent="center">
+                <Grid
+                  container
+                  sx={{
+                    justifyContent: 'center',
+                  }}
+                >
                   <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
               <Grid item xs>
-                <Grid container alignItems="flex-end" justifyContent="center">
+                <Grid
+                  container
+                  sx={{
+                    alignItems: 'flex-end',
+                    justifyContent: 'center',
+                  }}
+                >
                   <Grid item>
                     <Tooltip title="fontSize small">
                       <FontSizeComponent
@@ -351,7 +362,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     </Tooltip>
                   </Grid>
                 </Grid>
-                <Grid container justifyContent="center">
+                <Grid
+                  container
+                  sx={{
+                    justifyContent: 'center',
+                  }}
+                >
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="primary"
@@ -361,7 +377,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     contextColor="primaryInverse"
                   />
                 </Grid>
-                <Grid container justifyContent="center">
+                <Grid
+                  container
+                  sx={{
+                    justifyContent: 'center',
+                  }}
+                >
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="textPrimary"
@@ -371,7 +392,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     contextColor="textPrimaryInverse"
                   />
                 </Grid>
-                <Grid container justifyContent="center">
+                <Grid
+                  container
+                  sx={{
+                    justifyContent: 'center',
+                  }}
+                >
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="textSecondary"
@@ -540,7 +566,12 @@ export default function SearchIcons() {
     <Grid container sx={{ minHeight: 500 }}>
       <Grid item xs={12} sm={3}>
         <Form>
-          <Typography fontWeight={500} sx={{ mb: 1 }}>
+          <Typography
+            sx={{
+              fontWeight: 500,
+              mb: 1,
+            }}
+          >
             Filter the style
           </Typography>
           <RadioGroup>

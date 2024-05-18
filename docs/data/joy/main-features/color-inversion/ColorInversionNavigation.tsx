@@ -126,7 +126,13 @@ export default function ColorInversionNavigation() {
             >
               Active
             </Chip>
-            <Typography fontSize="xs">Last update: 22/12/22</Typography>
+            <Typography
+              sx={{
+                fontSize: 'xs',
+              }}
+            >
+              Last update: 22/12/22
+            </Typography>
           </CardContent>
         </Card>
       </Sheet>

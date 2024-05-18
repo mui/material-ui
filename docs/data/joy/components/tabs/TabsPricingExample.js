@@ -49,9 +49,22 @@ export default function TabsPricingExample() {
         <Typography level="inherit">
           Get started with the industry-standard React UI library, MIT-licensed.
         </Typography>
-        <Typography textColor="success.400" fontSize="xl3" fontWeight="xl" mt={1}>
+        <Typography
+          textColor="success.400"
+          sx={{
+            fontSize: 'xl3',
+            fontWeight: 'xl',
+            mt: 1,
+          }}
+        >
           $0{' '}
-          <Typography fontSize="sm" textColor="text.secondary" fontWeight="md">
+          <Typography
+            textColor="text.secondary"
+            sx={{
+              fontSize: 'sm',
+              fontWeight: 'md',
+            }}
+          >
             － Free forever
           </Typography>
         </Typography>
@@ -61,9 +74,22 @@ export default function TabsPricingExample() {
           Best for professional developers building enterprise or data-rich
           applications.
         </Typography>
-        <Typography textColor="primary.400" fontSize="xl3" fontWeight="xl" mt={1}>
+        <Typography
+          textColor="primary.400"
+          sx={{
+            fontSize: 'xl3',
+            fontWeight: 'xl',
+            mt: 1,
+          }}
+        >
           $15{' '}
-          <Typography fontSize="sm" textColor="text.secondary" fontWeight="md">
+          <Typography
+            textColor="text.secondary"
+            sx={{
+              fontSize: 'sm',
+              fontWeight: 'md',
+            }}
+          >
             / dev / month
           </Typography>
         </Typography>
@@ -73,23 +99,40 @@ export default function TabsPricingExample() {
           The most advanced features for data-rich applications, as well as the
           highest priority for support.
         </Typography>
-        <Typography textColor="primary.400" fontSize="xl3" fontWeight="xl" mt={1}>
+        <Typography
+          textColor="primary.400"
+          sx={{
+            fontSize: 'xl3',
+            fontWeight: 'xl',
+            mt: 1,
+          }}
+        >
           <Typography
-            fontSize="xl"
-            borderRadius="sm"
-            px={0.5}
-            mr={0.5}
-            sx={(theme) => ({
-              ...theme.variants.soft.danger,
-              color: 'danger.400',
-              verticalAlign: 'text-top',
-              textDecoration: 'line-through',
-            })}
+            sx={[
+              {
+                fontSize: 'xl',
+                borderRadius: 'sm',
+                px: 0.5,
+                mr: 0.5,
+              },
+              (theme) => ({
+                ...theme.variants.soft.danger,
+                color: 'danger.400',
+                verticalAlign: 'text-top',
+                textDecoration: 'line-through',
+              }),
+            ]}
           >
             $49
           </Typography>
           $37*{' '}
-          <Typography fontSize="sm" textColor="text.secondary" fontWeight="md">
+          <Typography
+            textColor="text.secondary"
+            sx={{
+              fontSize: 'sm',
+              fontWeight: 'md',
+            }}
+          >
             / dev / month
           </Typography>
         </Typography>
