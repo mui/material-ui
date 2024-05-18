@@ -35,7 +35,7 @@ Steppers are implemented using a collection of related components:
 - Step Content: optional content for a Step.
 - Step Button: optional button for a Step.
 - Step Icon: optional icon for a Step.
-- Step Connector: an optional customized connector of a step.
+- Step Connector: optional customized connector between Steps.
 
 ## Basics
 
