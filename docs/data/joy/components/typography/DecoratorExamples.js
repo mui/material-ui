@@ -24,25 +24,20 @@ export default function DecoratorExamples() {
       >
         Inactive
       </Typography>
+
       <Typography
+        fontSize="xl4"
+        lineHeight={1}
         startDecorator={
-          <Typography
-            textColor="text.secondary"
-            sx={{
-              fontSize: 'lg',
-            }}
-          >
+          <Typography fontSize="lg" textColor="text.secondary">
             $
           </Typography>
         }
-        sx={{
-          fontSize: 'xl4',
-          lineHeight: 1,
-          alignItems: 'flex-start',
-        }}
+        sx={{ alignItems: 'flex-start' }}
       >
         25
       </Typography>
+
       <Typography
         level="body-sm"
         startDecorator={<InfoOutlined />}
@@ -50,18 +45,17 @@ export default function DecoratorExamples() {
       >
         This example demonstrates multiple lines of the text.
       </Typography>
+
       <Typography
         variant="soft"
         color="danger"
         startDecorator="🚨"
-        sx={{
-          fontSize: 'sm',
-          '--Typography-gap': '0.5rem',
-          p: 1,
-        }}
+        fontSize="sm"
+        sx={{ '--Typography-gap': '0.5rem', p: 1 }}
       >
         Simple alert using only Typography.
       </Typography>
+
       <Typography color="success">
         <SvgIcon fontSize="md" sx={{ m: '-2px', mr: '2px' }}>
           <svg

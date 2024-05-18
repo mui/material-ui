@@ -27,13 +27,7 @@ export default function CardVariables() {
       renderDemo={(sx) => (
         <Card variant="outlined" sx={{ maxWidth: 240, boxShadow: 'none', ...sx }}>
           <CardContent>
-            <Typography
-              sx={{
-                fontWeight: 'lg',
-              }}
-            >
-              Card title
-            </Typography>
+            <Typography fontWeight="lg">Card title</Typography>
             <Typography level="body-sm">An interesting description.</Typography>
           </CardContent>
           <CardActions buttonFlex="1">

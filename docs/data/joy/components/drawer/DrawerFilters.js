@@ -148,13 +148,7 @@ export default function DrawerFilters() {
               </RadioGroup>
             </FormControl>
 
-            <Typography
-              level="title-md"
-              sx={{
-                fontWeight: 'bold',
-                mt: 1,
-              }}
-            >
+            <Typography level="title-md" fontWeight="bold" sx={{ mt: 1 }}>
               Amenities
             </Typography>
             <div role="group" aria-labelledby="rank">
@@ -212,13 +206,7 @@ export default function DrawerFilters() {
               </List>
             </div>
 
-            <Typography
-              level="title-md"
-              sx={{
-                fontWeight: 'bold',
-                mt: 2,
-              }}
-            >
+            <Typography level="title-md" fontWeight="bold" sx={{ mt: 2 }}>
               Booking options
             </Typography>
             <FormControl orientation="horizontal">
@@ -247,11 +235,9 @@ export default function DrawerFilters() {
           <Divider sx={{ mt: 'auto' }} />
           <Stack
             direction="row"
+            justifyContent="space-between"
             useFlexGap
             spacing={1}
-            sx={{
-              justifyContent: 'space-between',
-            }}
           >
             <Button
               variant="outlined"

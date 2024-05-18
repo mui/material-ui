@@ -21,14 +21,7 @@ function Sidebar(props) {
         Archives
       </Typography>
       {archives.map((archive) => (
-        <Link
-          variant="body1"
-          href={archive.url}
-          key={archive.title}
-          sx={{
-            display: 'block',
-          }}
-        >
+        <Link display="block" variant="body1" href={archive.url} key={archive.title}>
           {archive.title}
         </Link>
       ))}
@@ -37,21 +30,13 @@ function Sidebar(props) {
       </Typography>
       {social.map((network) => (
         <Link
+          display="block"
           variant="body1"
           href="#"
           key={network.name}
-          sx={{
-            display: 'block',
-            mb: 0.5,
-          }}
+          sx={{ mb: 0.5 }}
         >
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{
-              alignItems: 'center',
-            }}
-          >
+          <Stack direction="row" spacing={1} alignItems="center">
             <network.icon />
             <span>{network.name}</span>
           </Stack>

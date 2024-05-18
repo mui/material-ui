@@ -39,11 +39,9 @@ export default function LinearProgressWithLabel() {
       >
         <Typography
           level="body-xs"
+          fontWeight="xl"
           textColor="common.white"
-          sx={{
-            fontWeight: 'xl',
-            mixBlendMode: 'difference',
-          }}
+          sx={{ mixBlendMode: 'difference' }}
         >
           LOADING… {`${Math.round(progress)}%`}
         </Typography>

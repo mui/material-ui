@@ -71,21 +71,10 @@ export default function UserCard() {
           />
         </AspectRatio>
         <CardContent>
-          <Typography
-            sx={{
-              fontSize: 'xl',
-              fontWeight: 'lg',
-            }}
-          >
+          <Typography fontSize="xl" fontWeight="lg">
             Alex Morrison
           </Typography>
-          <Typography
-            level="body-sm"
-            textColor="text.tertiary"
-            sx={{
-              fontWeight: 'lg',
-            }}
-          >
+          <Typography level="body-sm" fontWeight="lg" textColor="text.tertiary">
             Senior Journalist
           </Typography>
           <Sheet
@@ -100,55 +89,22 @@ export default function UserCard() {
             }}
           >
             <div>
-              <Typography
-                level="body-xs"
-                sx={{
-                  fontWeight: 'lg',
-                }}
-              >
+              <Typography level="body-xs" fontWeight="lg">
                 Articles
               </Typography>
-              <Typography
-                sx={{
-                  fontWeight: 'lg',
-                }}
-              >
-                34
-              </Typography>
+              <Typography fontWeight="lg">34</Typography>
             </div>
             <div>
-              <Typography
-                level="body-xs"
-                sx={{
-                  fontWeight: 'lg',
-                }}
-              >
+              <Typography level="body-xs" fontWeight="lg">
                 Followers
               </Typography>
-              <Typography
-                sx={{
-                  fontWeight: 'lg',
-                }}
-              >
-                980
-              </Typography>
+              <Typography fontWeight="lg">980</Typography>
             </div>
             <div>
-              <Typography
-                level="body-xs"
-                sx={{
-                  fontWeight: 'lg',
-                }}
-              >
+              <Typography level="body-xs" fontWeight="lg">
                 Rating
               </Typography>
-              <Typography
-                sx={{
-                  fontWeight: 'lg',
-                }}
-              >
-                8.9
-              </Typography>
+              <Typography fontWeight="lg">8.9</Typography>
             </div>
           </Sheet>
           <Box sx={{ display: 'flex', gap: 1.5, '& > button': { flex: 1 } }}>

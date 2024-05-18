@@ -27,13 +27,7 @@ export default function XSparklineDemo() {
     <Box sx={{ height: '100%' }}>
       <Frame sx={{ height: '100%' }}>
         <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
-          <Grid
-            container
-            spacing={1}
-            sx={{
-              justifyContent: 'space-around',
-            }}
-          >
+          <Grid container justifyContent="space-around" spacing={1}>
             <Grid item xs={6}>
               <Box sx={{ maxWidth: 200, ml: 'auto' }}>
                 <AspectRatioImage
@@ -61,24 +55,12 @@ export default function XSparklineDemo() {
               mb: 0.5,
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: 'bold',
-                mr: 1,
-              }}
-            >
+            <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
               Coming soon!
             </Typography>
             <Chip variant="outlined" label="PNG Preview" size="small" sx={{ fontWeight: 500 }} />
           </Box>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              mb: 2,
-            }}
-          >
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
             Subscribe to our newsletter to get first-hand info about the development and release of
             new components.
           </Typography>

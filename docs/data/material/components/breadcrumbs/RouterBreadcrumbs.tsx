@@ -73,12 +73,7 @@ function Page() {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
         return last ? (
-          <Typography
-            key={to}
-            sx={{
-              color: 'text.primary',
-            }}
-          >
+          <Typography color="text.primary" key={to}>
             {breadcrumbNameMap[to]}
           </Typography>
         ) : (

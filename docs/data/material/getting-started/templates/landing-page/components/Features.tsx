@@ -76,35 +76,20 @@ export default function Features() {
       <Grid container spacing={6}>
         <Grid item xs={12} md={6}>
           <div>
-            <Typography
-              component="h2"
-              variant="h4"
-              sx={{
-                color: 'text.primary',
-              }}
-            >
+            <Typography component="h2" variant="h4" color="text.primary">
               Product features
             </Typography>
             <Typography
               variant="body1"
-              sx={{
-                color: 'text.secondary',
-                mb: { xs: 2, sm: 4 },
-              }}
+              color="text.secondary"
+              sx={{ mb: { xs: 2, sm: 4 } }}
             >
               Provide a brief overview of the key features of the product. For
               example, you could list the number of features, their types or
               benefits, and add-ons.
             </Typography>
           </div>
-          <Grid
-            container
-            item
-            sx={{
-              gap: 1,
-              display: { xs: 'auto', sm: 'none' },
-            }}
-          >
+          <Grid container item gap={1} sx={{ display: { xs: 'auto', sm: 'none' } }}>
             {items.map(({ title }, index) => (
               <Chip
                 key={index}
@@ -133,29 +118,17 @@ export default function Features() {
               }}
             />
             <Box sx={{ px: 2, pb: 2 }}>
-              <Typography
-                gutterBottom
-                sx={{
-                  color: 'text.primary',
-                  fontWeight: 'medium',
-                }}
-              >
+              <Typography color="text.primary" fontWeight="medium" gutterBottom>
                 {selectedFeature.title}
               </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: 'text.secondary',
-                  mb: 1.5,
-                }}
-              >
+              <Typography color="text.secondary" variant="body2" sx={{ mb: 1.5 }}>
                 {selectedFeature.description}
               </Typography>
               <Link
                 color="primary"
                 variant="body2"
+                fontWeight="bold"
                 sx={{
-                  fontWeight: 'bold',
                   display: 'inline-flex',
                   alignItems: 'center',
                   '& > svg': { transition: '0.2s' },
@@ -172,14 +145,11 @@ export default function Features() {
           </Card>
           <Stack
             direction="column"
+            justifyContent="center"
+            alignItems="flex-start"
             spacing={2}
             useFlexGap
-            sx={{
-              justifyContent: 'center',
-              alignItems: 'flex-start',
-              width: '100%',
-              display: { xs: 'none', sm: 'flex' },
-            }}
+            sx={{ width: '100%', display: { xs: 'none', sm: 'flex' } }}
           >
             {items.map(({ icon, title, description }, index) => (
               <Card
@@ -237,35 +207,31 @@ export default function Features() {
                   </Box>
                   <div>
                     <Typography
+                      color="text.primary"
+                      fontWeight="medium"
                       gutterBottom
-                      sx={{
-                        color: 'text.primary',
-                        fontWeight: 'medium',
-                      }}
                     >
                       {title}
                     </Typography>
                     <Typography
+                      color="text.secondary"
                       variant="body2"
-                      sx={{
-                        color: 'text.secondary',
-                        mb: 1.5,
-                      }}
+                      sx={{ mb: 1.5 }}
                     >
                       {description}
                     </Typography>
                     <Link
                       color="primary"
                       variant="body2"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                      }}
+                      fontWeight="bold"
                       sx={{
-                        fontWeight: 'bold',
                         display: 'inline-flex',
                         alignItems: 'center',
                         '& > svg': { transition: '0.2s' },
                         '&:hover > svg': { transform: 'translateX(2px)' },
+                      }}
+                      onClick={(event) => {
+                        event.stopPropagation();
                       }}
                     >
                       <span>Learn more</span>

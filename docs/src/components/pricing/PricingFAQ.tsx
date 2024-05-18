@@ -249,13 +249,7 @@ export default function PricingFAQ() {
         <AccordionSummary
           expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
-          <Typography
-            variant="body2"
-            component="h3"
-            sx={{
-              fontWeight: 'bold',
-            }}
-          >
+          <Typography variant="body2" fontWeight="bold" component="h3">
             {faq.summary}
           </Typography>
         </AccordionSummary>
@@ -263,10 +257,8 @@ export default function PricingFAQ() {
           <Typography
             component="div"
             variant="body2"
-            sx={{
-              color: 'text.secondary',
-              '& ul': { pl: 2 },
-            }}
+            color="text.secondary"
+            sx={{ '& ul': { pl: 2 } }}
           >
             {faq.detail}
           </Typography>
@@ -308,36 +300,15 @@ export default function PricingFAQ() {
             })}
           >
             <Box sx={{ textAlign: 'left' }}>
-              <Typography
-                variant="body2"
-                component="h3"
-                sx={{
-                  color: 'text.primary',
-                  fontWeight: 'bold',
-                }}
-              >
+              <Typography variant="body2" color="text.primary" fontWeight="bold" component="h3">
                 Got any questions unanswered or need help?
               </Typography>
             </Box>
-            <Typography
-              variant="body2"
-              sx={{
-                color: 'text.secondary',
-                my: 1,
-                textAlign: 'left',
-              }}
-            >
+            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               Email us at <Link href="mailto:sales@mui.com">sales@mui.com</Link> for sales-related
               questions.
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: 'text.secondary',
-                my: 1,
-                textAlign: 'left',
-              }}
-            >
+            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               For product-related problems, please open
               <Link href="https://github.com/mui/mui-x/issues/new/choose">a new GitHub issue</Link>.
               (If you need to share private information, you can{' '}

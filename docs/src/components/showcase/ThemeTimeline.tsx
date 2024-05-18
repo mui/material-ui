@@ -55,13 +55,7 @@ export default function BasicTimeline() {
           1
         </Box>
         <Box sx={{ ml: 2, flex: 1 }}>
-          <Typography
-            variant="body2"
-            gutterBottom
-            sx={{
-              color: 'text.primary',
-            }}
-          >
+          <Typography variant="body2" color="text.primary" gutterBottom>
             Install one of our production-ready libraries to get your next app started inevitably
             successful:
           </Typography>

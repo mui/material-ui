@@ -1,0 +1,9 @@
+<Badge badgeContent={10} size="sm">
+  <Typography fontSize="xl">💌</Typography>
+</Badge>
+<Badge badgeContent={20} size="md">
+  <Typography fontSize="xl">💌</Typography>
+</Badge>
+<Badge badgeContent={30} size="lg">
+  <Typography fontSize="xl">💌</Typography>
+</Badge>

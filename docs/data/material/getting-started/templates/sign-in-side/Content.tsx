@@ -40,10 +40,10 @@ const items = [
 export default function Content() {
   return (
     <Stack
+      flexDirection="column"
+      alignSelf="center"
+      gap={4}
       sx={{
-        flexDirection: 'column',
-        alignSelf: 'center',
-        gap: 4,
         maxWidth: 450,
       }}
     >
@@ -51,28 +51,13 @@ export default function Content() {
         <SitemarkIcon />
       </Box>
       {items.map((item) => (
-        <Stack
-          direction="row"
-          sx={{
-            gap: 2,
-          }}
-        >
+        <Stack direction="row" gap={2}>
           {item.icon}
           <div>
-            <Typography
-              gutterBottom
-              sx={{
-                fontWeight: 'medium',
-              }}
-            >
+            <Typography fontWeight="medium" gutterBottom>
               {item.title}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: 'text.secondary',
-              }}
-            >
+            <Typography variant="body2" color="text.secondary">
               {item.description}
             </Typography>
           </div>

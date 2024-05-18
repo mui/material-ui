@@ -36,12 +36,10 @@ export default function InteractiveStack() {
     <Stack sx={{ flexGrow: 1 }}>
       <Stack
         direction={direction}
+        justifyContent={justifyContent}
+        alignItems={alignItems}
         spacing={spacing}
-        sx={{
-          justifyContent: justifyContent,
-          alignItems: alignItems,
-          height: 240,
-        }}
+        sx={{ height: 240 }}
       >
         {[0, 1, 2].map((value) => (
           <Item

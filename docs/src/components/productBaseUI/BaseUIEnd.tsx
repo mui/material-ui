@@ -54,13 +54,7 @@ export default function BaseUIEnd() {
             <ListItem sx={{ p: 0, mb: 4, gap: 2.5 }}>
               <GlowingIconContainer icon={<CompareIcon color="primary" />} />
               <div>
-                <Typography
-                  gutterBottom
-                  sx={{
-                    color: 'text.primary',
-                    fontWeight: 'semiBold',
-                  }}
-                >
+                <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
                   Base UI vs. Material UI
                 </Typography>
                 <Typography>
@@ -72,13 +66,7 @@ export default function BaseUIEnd() {
             <ListItem sx={{ p: 0, gap: 2.5 }}>
               <GlowingIconContainer icon={<StyleRoundedIcon color="primary" />} />
               <div>
-                <Typography
-                  gutterBottom
-                  sx={{
-                    color: 'text.primary',
-                    fontWeight: 'semiBold',
-                  }}
-                >
+                <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
                   Does it come with styles?
                 </Typography>
                 <Typography>

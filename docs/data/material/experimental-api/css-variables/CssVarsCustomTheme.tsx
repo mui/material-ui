@@ -71,12 +71,7 @@ export default function CssVarsCustomTheme() {
         colorSchemeStorageKey="custom-theme-color-scheme"
         modeStorageKey="custom-theme-mode"
       >
-        <Box
-          sx={{
-            bgcolor: 'background.paper',
-            p: 1,
-          }}
-        >
+        <Box bgcolor="background.paper" sx={{ p: 1 }}>
           <Box sx={{ py: 2, mx: 'auto' }}>
             <Box sx={{ pb: 4 }}>
               <ColorSchemePicker />

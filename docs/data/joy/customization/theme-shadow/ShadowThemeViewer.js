@@ -84,40 +84,18 @@ export default function ShadowThemeViewer() {
         <thead>
           <tr>
             <th>
-              <Typography
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
-                Token
-              </Typography>
+              <Typography fontSize="sm">Token</Typography>
             </th>
             <th>
-              <Typography
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
-                Value
-              </Typography>
+              <Typography fontSize="sm">Value</Typography>
             </th>
             <th>
-              <Typography
-                startDecorator={<LightMode />}
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
+              <Typography fontSize="sm" startDecorator={<LightMode />}>
                 Light
               </Typography>
             </th>
             <th>
-              <Typography
-                startDecorator={<DarkMode />}
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
+              <Typography fontSize="sm" startDecorator={<DarkMode />}>
                 Dark
               </Typography>
             </th>
@@ -127,25 +105,17 @@ export default function ShadowThemeViewer() {
           {tokens.map((token) => (
             <tr key={token}>
               <td>
-                <Typography
-                  sx={{
-                    fontSize: 'sm',
-                  }}
-                >
-                  {token}
-                </Typography>
+                <Typography fontSize="sm">{token}</Typography>
               </td>
               <td>
                 <Link
                   component="button"
                   color="neutral"
                   textColor="inherit"
+                  textAlign="left"
+                  fontSize="xs"
+                  fontFamily="code"
                   onClick={() => copy(token)}
-                  sx={{
-                    textAlign: 'left',
-                    fontSize: 'xs',
-                    fontFamily: 'code',
-                  }}
                 >
                   {formatShadowLayers(defaultTheme.shadow[token])}
                 </Link>

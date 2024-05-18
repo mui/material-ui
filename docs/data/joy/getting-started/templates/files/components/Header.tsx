@@ -73,12 +73,10 @@ export default function Header() {
     >
       <Stack
         direction="row"
+        justifyContent="center"
+        alignItems="center"
         spacing={1}
-        sx={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          display: { xs: 'none', sm: 'flex' },
-        }}
+        sx={{ display: { xs: 'none', sm: 'flex' } }}
       >
         <IconButton
           size="md"

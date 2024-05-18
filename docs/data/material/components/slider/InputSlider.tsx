@@ -35,13 +35,7 @@ export default function InputSlider() {
       <Typography id="input-slider" gutterBottom>
         Volume
       </Typography>
-      <Grid
-        container
-        spacing={2}
-        sx={{
-          alignItems: 'center',
-        }}
-      >
+      <Grid container spacing={2} alignItems="center">
         <Grid item>
           <VolumeUp />
         </Grid>

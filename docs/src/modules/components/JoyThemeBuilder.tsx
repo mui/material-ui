@@ -1030,26 +1030,14 @@ function GlobalVariantForm({
   ].filter((item) => !(tokens as Array<string>).includes(item));
   return (
     <React.Fragment>
-      <Typography
-        component="div"
-        level="title-md"
-        sx={{
-          fontWeight: 'xl',
-        }}
-      >
+      <Typography component="div" fontWeight="xl" level="title-md">
         Global variant tokens
       </Typography>
-      <Typography
-        component="div"
-        level="body-sm"
-        sx={{
-          mb: 2,
-          mt: 0.5,
-        }}
-      >
+      <Typography component="div" level="body-sm" mb={2} mt={0.5}>
         Pick the specific primitive color, now in CSS variables form already, to correspond to a
         semantic global variant token.
       </Typography>
+
       <Sheet
         variant="outlined"
         sx={{
@@ -1329,6 +1317,8 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link
               component="button"
+              fontSize="xl"
+              fontWeight="xl"
               color="neutral"
               textColor="#fff"
               overlay
@@ -1344,10 +1334,6 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
                   .openSandbox();
               }}
               endDecorator={<ArrowOutwardIcon sx={{ color: 'inherit', opacity: 0.72 }} />}
-              sx={{
-                fontSize: 'xl',
-                fontWeight: 'xl',
-              }}
             >
               {startCase(name)}
             </Link>
@@ -1375,13 +1361,7 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
           <Typography level="h2" id="templates-dialog">
             Clone a template sandbox
           </Typography>
-          <Typography
-            id="templates-dialog-description"
-            textColor="text.secondary"
-            sx={{
-              fontSize: 'md',
-            }}
-          >
+          <Typography id="templates-dialog-description" textColor="text.secondary" fontSize="md">
             Click on one of these template to see start a sandbox with your custom theme.
           </Typography>
 
@@ -1409,6 +1389,8 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 component="button"
+                fontSize="lg"
+                fontWeight="lg"
                 color="neutral"
                 textColor="text.primary"
                 overlay
@@ -1427,10 +1409,6 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
                     .openSandbox();
                 }}
                 endDecorator={<ArrowOutwardIcon />}
-                sx={{
-                  fontSize: 'lg',
-                  fontWeight: 'lg',
-                }}
               >
                 Minimal template
               </Link>
@@ -1603,12 +1581,7 @@ export default function JoyThemeBuilder() {
             if (colorProp === 'etc') {
               return (
                 <Box sx={{ p: 3, flex: 1 }}>
-                  <Typography
-                    sx={{
-                      fontSize: 'sm',
-                      fontWeight: 'lg',
-                    }}
-                  >
+                  <Typography fontSize="sm" fontWeight="lg">
                     background
                   </Typography>
                   <ColorPaletteForm
@@ -1632,13 +1605,7 @@ export default function JoyThemeBuilder() {
                       });
                     }}
                   />
-                  <Typography
-                    sx={{
-                      fontSize: 'sm',
-                      fontWeight: 'lg',
-                      mt: 2,
-                    }}
-                  >
+                  <Typography fontSize="sm" fontWeight="lg" mt={2}>
                     common
                   </Typography>
                   <ColorPaletteForm
@@ -1662,13 +1629,7 @@ export default function JoyThemeBuilder() {
                       });
                     }}
                   />
-                  <Typography
-                    sx={{
-                      fontSize: 'sm',
-                      fontWeight: 'lg',
-                      mt: 2,
-                    }}
-                  >
+                  <Typography fontSize="sm" fontWeight="lg" mt={2}>
                     text
                   </Typography>
                   <ColorPaletteForm
@@ -1714,23 +1675,10 @@ export default function JoyThemeBuilder() {
                   <Tab>Global variants</Tab>
                 </TabList>
                 <TabPanel value={0}>
-                  <Typography
-                    component="div"
-                    level="title-md"
-                    sx={{
-                      fontWeight: 'xl',
-                    }}
-                  >
+                  <Typography component="div" fontWeight="xl" level="title-md">
                     Customize primitive colors
                   </Typography>
-                  <Typography
-                    component="div"
-                    level="body-sm"
-                    sx={{
-                      mb: 2,
-                      mt: 0.5,
-                    }}
-                  >
+                  <Typography component="div" level="body-sm" mb={2} mt={0.5}>
                     Add your custom-tailored palette here, inserting each HEX value to the scale, or
                     choose from an available set of popular color palettes.
                   </Typography>

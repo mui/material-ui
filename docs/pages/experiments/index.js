@@ -47,13 +47,7 @@ export default function Experiments({ experiments }) {
               textAlign: 'center',
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{
-                color: 'primary.600',
-                fontWeight: 'bold',
-              }}
-            >
+            <Typography variant="body2" color="primary.600" fontWeight="bold">
               Welcome to
             </Typography>
             <Typography component="h1" variant="h2" sx={{ my: 1 }}>
@@ -82,12 +76,10 @@ export default function Experiments({ experiments }) {
           <Container sx={{ py: { xs: 4, md: 8 } }}>
             <Typography
               variant="body2"
-              sx={{
-                color: 'grey.600',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                mb: 2,
-              }}
+              color="grey.600"
+              fontWeight="bold"
+              textAlign="center"
+              sx={{ mb: 2 }}
             >
               All Experiments ({experiments.length})
             </Typography>

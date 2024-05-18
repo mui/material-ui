@@ -54,13 +54,7 @@ const theme = createTheme({
 
 export default function LinkRouterWithTheme() {
   return (
-    <Stack
-      spacing={1}
-      sx={{
-        alignItems: 'center',
-        typography: 'body1',
-      }}
-    >
+    <Stack sx={{ typography: 'body1' }} alignItems="center" spacing={1}>
       <ThemeProvider theme={theme}>
         <Router>
           <Link href="/">Link</Link>

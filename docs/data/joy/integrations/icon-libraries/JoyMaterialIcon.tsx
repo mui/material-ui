@@ -28,13 +28,7 @@ export default function JoyMaterialIcon() {
       </Stack>
       <Stack spacing={2}>
         {(['sm', 'md', 'lg', 'xl'] as const).map((size) => (
-          <Typography
-            key={size}
-            startDecorator={<Person />}
-            sx={{
-              fontSize: size,
-            }}
-          >
+          <Typography key={size} fontSize={size} startDecorator={<Person />}>
             Hello World
           </Typography>
         ))}

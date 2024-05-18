@@ -63,20 +63,12 @@ function PostPreview(props: BlogPost) {
           />
         ))}
       </Box>
-      <Typography
-        component="h2"
-        variant="subtitle1"
-        gutterBottom
-        sx={{
-          fontWeight: 'bold',
-        }}
-      >
+      <Typography component="h2" fontWeight="bold" variant="subtitle1" gutterBottom>
         <Link
           aria-describedby={`describe-${props.slug}`}
           href={`/blog/${props.slug}/`}
+          color="text.primary"
           sx={{
-            color: 'text.primary',
-
             '&:hover': {
               textDecoration: 'underline',
             },
@@ -85,12 +77,7 @@ function PostPreview(props: BlogPost) {
           {props.title}
         </Link>
       </Typography>
-      <Typography
-        sx={{
-          color: 'text.secondary',
-          mb: 'auto',
-        }}
-      >
+      <Typography color="text.secondary" sx={{ mb: 'auto' }}>
         {props.description}
       </Typography>
       {props.authors && (
@@ -139,12 +126,7 @@ function PostPreview(props: BlogPost) {
       >
         <Box sx={{ position: 'relative' }}>
           {props.authors && (
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: 'medium',
-              }}
-            >
+            <Typography variant="body2" fontWeight="medium">
               {props.authors
                 .slice(0, 3)
                 .map((userId) => {
@@ -163,13 +145,7 @@ function PostPreview(props: BlogPost) {
             </Typography>
           )}
           {props.date && (
-            <Typography
-              variant="caption"
-              sx={{
-                fontWeight: 'regular',
-                color: 'text.tertiary',
-              }}
-            >
+            <Typography variant="caption" fontWeight="regular" color="text.tertiary">
               {new Date(props.date).toDateString()}
             </Typography>
           )}
@@ -337,11 +313,8 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           <Typography
             component="h2"
             variant="h6"
-            sx={{
-              fontWeight: 'semiBold',
-              mb: { xs: 1, sm: 2 },
-              mt: 8,
-            }}
+            fontWeight="semiBold"
+            sx={{ mb: { xs: 1, sm: 2 }, mt: 8 }} // margin-top makes the title appear when scroll into view
           >
             Posts{' '}
             {Object.keys(selectedTags).length ? (
@@ -374,12 +347,10 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             >
               <Paper variant="outlined">
                 <Typography
+                  color="text.primary"
+                  fontWeight="semiBold"
                   variant="subtitle2"
-                  sx={{
-                    color: 'text.primary',
-                    fontWeight: 'semiBold',
-                    mb: 2,
-                  }}
+                  sx={{ mb: 2 }}
                 >
                   Filter posts by tag
                 </Typography>
@@ -426,71 +397,33 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               </Paper>
               <Paper variant="outlined">
                 <Typography
+                  color="text.primary"
+                  fontWeight="semiBold"
                   variant="subtitle2"
                   gutterBottom
-                  sx={{
-                    color: 'text.primary',
-                    fontWeight: 'semiBold',
-                  }}
                 >
                   Want to hear more from us?
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'text.secondary',
-                    mb: 2,
-                  }}
-                >
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                   Get up to date with everything MUI-related through our social media:
                 </Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, '* > svg': { mr: 1 } }}>
-                  <Link
-                    href="https://github.com/mui"
-                    target="_blank"
-                    sx={{
-                      fontSize: 14,
-                    }}
-                  >
+                  <Link href="https://github.com/mui" target="_blank" fontSize={14}>
                     <GitHubIcon fontSize="small" />
                     GitHub
                   </Link>
-                  <Link
-                    href="https://twitter.com/MUI_hq"
-                    target="_blank"
-                    sx={{
-                      fontSize: 14,
-                    }}
-                  >
+                  <Link href="https://twitter.com/MUI_hq" target="_blank" fontSize={14}>
                     <XIcon fontSize="small" />X
                   </Link>
-                  <Link
-                    href="https://mui.com/r/discord/"
-                    target="_blank"
-                    sx={{
-                      fontSize: 14,
-                    }}
-                  >
+                  <Link href="https://mui.com/r/discord/" target="_blank" fontSize={14}>
                     <DiscordIcon fontSize="small" />
                     Discord
                   </Link>
-                  <Link
-                    href="https://www.linkedin.com/company/mui/"
-                    target="_blank"
-                    sx={{
-                      fontSize: 14,
-                    }}
-                  >
+                  <Link href="https://www.linkedin.com/company/mui/" target="_blank" fontSize={14}>
                     <LinkedInIcon fontSize="small" />
                     LinkedIn
                   </Link>
-                  <Link
-                    href="https://www.youtube.com/@MUI_hq"
-                    target="_blank"
-                    sx={{
-                      fontSize: 14,
-                    }}
-                  >
+                  <Link href="https://www.youtube.com/@MUI_hq" target="_blank" fontSize={14}>
                     <YouTubeIcon fontSize="small" />
                     Youtube
                   </Link>

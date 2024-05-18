@@ -21,22 +21,16 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
   return (
     <Stack
       direction="row"
+      justifyContent="space-between"
       sx={{
-        justifyContent: 'space-between',
-        py: { xs: 2, md: 2 },
-        px: { xs: 1, md: 2 },
         borderBottom: '1px solid',
         borderColor: 'divider',
         backgroundColor: 'background.body',
       }}
+      py={{ xs: 2, md: 2 }}
+      px={{ xs: 1, md: 2 }}
     >
-      <Stack
-        direction="row"
-        spacing={{ xs: 1, md: 2 }}
-        sx={{
-          alignItems: 'center',
-        }}
-      >
+      <Stack direction="row" spacing={{ xs: 1, md: 2 }} alignItems="center">
         <IconButton
           variant="plain"
           color="neutral"
@@ -51,6 +45,8 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
         <Avatar size="lg" src={sender.avatar} />
         <div>
           <Typography
+            fontWeight="lg"
+            fontSize="lg"
             component="h2"
             noWrap
             endDecorator={
@@ -71,23 +67,13 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
                 </Chip>
               ) : undefined
             }
-            sx={{
-              fontWeight: 'lg',
-              fontSize: 'lg',
-            }}
           >
             {sender.name}
           </Typography>
           <Typography level="body-sm">{sender.username}</Typography>
         </div>
       </Stack>
-      <Stack
-        spacing={1}
-        direction="row"
-        sx={{
-          alignItems: 'center',
-        }}
-      >
+      <Stack spacing={1} direction="row" alignItems="center">
         <Button
           startDecorator={<PhoneInTalkRoundedIcon />}
           color="neutral"

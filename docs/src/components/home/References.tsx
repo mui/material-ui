@@ -29,16 +29,14 @@ export default function References({
         <CompaniesGrid data={companies} />
       </Box>
       <Typography
+        textAlign="center"
         variant="body2"
+        color="text.secondary"
         sx={{
-          textAlign: 'center',
-          color: 'text.secondary',
           mt: 4,
           mx: 'auto',
           maxWidth: 400,
-
-          // hard-coded to reduce CLS (layout shift)
-          minHeight: 42,
+          minHeight: 42, // hard-coded to reduce CLS (layout shift)
         }}
       >
         The world&apos;s best product teams trust MUI to deliver an unrivaled experience for both
