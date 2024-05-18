@@ -30,7 +30,7 @@ It supports horizontal and vertical orientation for desktop and mobile viewports
 Steppers are implemented using a collection of related components:
 
 - Stepper: the container for the steps. Renders as a `<ol>` by default.
-- Step: a step. Renders as a `<li>` by default.
+- Step: an individual step in the sequence. Renders as a `<li>` by default.
 - Step Label: a label of a step.
 - Step Content: an optional content of a step.
 - Step Button: an optional button of a step.
