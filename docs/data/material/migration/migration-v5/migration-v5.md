@@ -48,4 +48,4 @@ Expect updates as new breaking changes are introduced.
 
 ### UMD bundle was removed
 
-To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle. Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/). For alternative installation methods, please refer to our [CDN documentation](/material-ui/getting-started/installation/#cdn).
+To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle. Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended. For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
