@@ -34,7 +34,7 @@ Steppers are implemented using a collection of related components:
 - Step Label: a label for a Step.
 - Step Content: optional content for a Step.
 - Step Button: optional button for a Step.
-- Step Icon: an optional icon of a step.
+- Step Icon: optional icon for a Step.
 - Step Connector: an optional customized connector of a step.
 
 ## Basics
