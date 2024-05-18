@@ -44,12 +44,7 @@ export default function LevelOfImportance() {
             borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
           }}
         >
-          <Typography
-            level="h2"
-            sx={{
-              fontSize: 'md',
-            }}
-          >
+          <Typography level="h2" fontSize="md">
             Photo upload
           </Typography>
           <IconButton size="sm" variant="plain" color="neutral" sx={{ ml: 'auto' }}>

@@ -13,13 +13,7 @@ export default function SizeModalDialog() {
   );
   return (
     <React.Fragment>
-      <Stack
-        direction="row"
-        sx={{
-          alignItems: 'center',
-        }}
-        spacing={1}
-      >
+      <Stack direction="row" alignItems="center" spacing={1}>
         <Button
           variant="outlined"
           color="neutral"

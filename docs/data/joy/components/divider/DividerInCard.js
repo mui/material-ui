@@ -24,12 +24,7 @@ export default function DividerInCard() {
         variant="outlined"
         sx={{ width: 400, maxWidth: '100%', gap: 1.5 }}
       >
-        <Typography
-          sx={{
-            fontSize: 'lg',
-            fontWeight: 'md',
-          }}
-        >
+        <Typography fontSize="lg" fontWeight="md">
           Headline
         </Typography>
         <Divider />

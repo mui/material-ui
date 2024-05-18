@@ -141,14 +141,7 @@ export default function XRoadmap() {
         >
           <Grid xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
-              <Typography
-                component="div"
-                variant="body2"
-                sx={{
-                  fontWeight: 'bold',
-                  color: 'text.primary',
-                }}
-              >
+              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
                 Stable
                 <RoadmapStatusDot color="success.main" />
               </Typography>
@@ -168,14 +161,7 @@ export default function XRoadmap() {
           </Grid>
           <Grid xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
-              <Typography
-                component="div"
-                variant="body2"
-                sx={{
-                  fontWeight: 'bold',
-                  color: 'text.primary',
-                }}
-              >
+              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
                 Work in progress
                 <RoadmapStatusDot color="warning.main" />
               </Typography>
@@ -190,23 +176,11 @@ export default function XRoadmap() {
                   </Box>
                   Data Grid
                   {bullet}
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      fontWeight: 'medium',
-                    }}
-                  >
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
                     Pivoting
                   </Typography>
                   {bullet}
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      fontWeight: 'medium',
-                    }}
-                  >
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
                     Charts integration
                   </Typography>
                   {bullet}
@@ -227,23 +201,11 @@ export default function XRoadmap() {
                   </Box>
                   Tree View
                   {bullet}
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      fontWeight: 'medium',
-                    }}
-                  >
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
                     Virtualization
                   </Typography>
                   {bullet}
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      fontWeight: 'medium',
-                    }}
-                  >
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
                     Drag and Drop
                   </Typography>
                 </React.Fragment>,
@@ -253,14 +215,7 @@ export default function XRoadmap() {
           </Grid>
           <Grid xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
-              <Typography
-                component="div"
-                variant="body2"
-                sx={{
-                  fontWeight: 'bold',
-                  color: 'text.primary',
-                }}
-              >
+              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
                 Future components
                 <RoadmapStatusDot color="primaryDark.400" />
               </Typography>

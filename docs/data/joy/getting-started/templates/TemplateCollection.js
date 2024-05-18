@@ -173,10 +173,8 @@ export default function TemplateCollection() {
                   >
                     <Visibility />
                     <Typography
-                      sx={{
-                        fontWeight: 'bold',
-                        fontFamily: 'IBM Plex Sans',
-                      }}
+                      fontWeight="bold"
+                      fontFamily="IBM Plex Sans"
                       textColor="text.primary"
                     >
                       View live preview
@@ -193,11 +191,9 @@ export default function TemplateCollection() {
             >
               <Typography
                 component="h3"
-                sx={{
-                  fontFamily: 'IBM Plex Sans',
-                  fontSize: 'lg',
-                  fontWeight: 'xl',
-                }}
+                fontFamily="IBM Plex Sans"
+                fontSize="lg"
+                fontWeight="xl"
               >
                 {startCase(template.name)}
               </Typography>
@@ -213,10 +209,8 @@ export default function TemplateCollection() {
                 {template.author && (
                   <Typography
                     level="body-sm"
-                    sx={{
-                      fontWeight: 'md',
-                      fontFamily: 'IBM Plex Sans',
-                    }}
+                    fontWeight="md"
+                    fontFamily="IBM Plex Sans"
                   >
                     Built by{' '}
                     <Link
@@ -232,20 +226,16 @@ export default function TemplateCollection() {
                   <React.Fragment>
                     <Typography
                       level="caption"
-                      sx={{
-                        fontWeight: 'md',
-                        mx: 0.5,
-                      }}
+                      fontWeight="md"
                       textColor="text.tertiary"
+                      sx={{ mx: 0.5 }}
                     >
                       •
                     </Typography>
                     <Typography
                       level="body-sm"
-                      sx={{
-                        fontWeight: 'md',
-                        fontFamily: 'IBM Plex Sans',
-                      }}
+                      fontWeight="md"
+                      fontFamily="IBM Plex Sans"
                     >
                       Designed by{' '}
                       <Link

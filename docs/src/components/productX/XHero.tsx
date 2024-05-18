@@ -91,22 +91,18 @@ export default function XHero() {
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
-            sx={[
-              {
-                fontWeight: 'bold',
-              },
-              (theme) => ({
-                color: 'primary.600',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: { xs: 'center', md: 'flex-start' },
-                '& > *': { mr: 1 },
-                ...theme.applyDarkStyles({
-                  color: 'primary.400',
-                }),
-              }),
-            ]}
+            fontWeight="bold"
             variant="body2"
+            sx={(theme) => ({
+              color: 'primary.600',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: { xs: 'center', md: 'flex-start' },
+              '& > *': { mr: 1 },
+              ...theme.applyDarkStyles({
+                color: 'primary.400',
+              }),
+            })}
           >
             <IconImage width={28} height={28} loading="eager" name="product-advanced" /> MUI X
           </Typography>
@@ -116,13 +112,7 @@ export default function XHero() {
             <GradientText>advanced</GradientText>
             <br /> components
           </Typography>
-          <Typography
-            sx={{
-              color: 'text.secondary',
-              mb: 3,
-              maxWidth: 500,
-            }}
-          >
+          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             Build complex and data-rich applications using a growing list of advanced React
             components, like the Data Grid, Date and Time Pickers, Charts, and more!
           </Typography>
@@ -157,8 +147,8 @@ export default function XHero() {
           >
             <Typography
               variant="body2"
+              fontWeight="semiBold"
               sx={{
-                fontWeight: 'semiBold',
                 textAlign: 'center',
                 py: 1.5,
               }}
@@ -295,13 +285,7 @@ export default function XHero() {
                 }),
               })}
             >
-              <Typography
-                variant="body2"
-                sx={{
-                  fontWeight: 'semiBold',
-                  p: 2,
-                }}
-              >
+              <Typography variant="body2" fontWeight="semiBold" p={2}>
                 Cool UI project
               </Typography>
               <Divider />

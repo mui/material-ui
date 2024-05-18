@@ -75,11 +75,9 @@ const Plan = React.forwardRef<
             <img src={`/static/branding/pricing/yes-${mode}.svg`} alt="" />
             <Typography
               variant="body2"
-              sx={{
-                color: 'text.secondary',
-                fontWeight: 'extraBold',
-                ml: 1,
-              }}
+              color="text.secondary"
+              fontWeight="extraBold"
+              sx={{ ml: 1 }}
             >
               {text}
             </Typography>

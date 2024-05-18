@@ -19,12 +19,10 @@ export default function AlignItemsList() {
           secondary={
             <React.Fragment>
               <Typography
+                sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-                sx={{
-                  color: 'text.primary',
-                  display: 'inline',
-                }}
+                color="text.primary"
               >
                 Ali Connors
               </Typography>
@@ -43,12 +41,10 @@ export default function AlignItemsList() {
           secondary={
             <React.Fragment>
               <Typography
+                sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-                sx={{
-                  color: 'text.primary',
-                  display: 'inline',
-                }}
+                color="text.primary"
               >
                 to Scott, Alex, Jennifer
               </Typography>
@@ -67,12 +63,10 @@ export default function AlignItemsList() {
           secondary={
             <React.Fragment>
               <Typography
+                sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-                sx={{
-                  color: 'text.primary',
-                  display: 'inline',
-                }}
+                color="text.primary"
               >
                 Sandra Adams
               </Typography>

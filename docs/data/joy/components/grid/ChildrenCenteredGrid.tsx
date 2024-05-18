@@ -28,12 +28,10 @@ export default function ChildrenCenteredGrid() {
             xs={12}
             sm={6}
             md={3}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              minHeight: 180,
-            }}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight={180}
           >
             <Avatar src={`/static/images/avatar/${index + 1}.jpg`} size="lg" />
             <Typography sx={{ ml: 1.5 }}>{name}</Typography>

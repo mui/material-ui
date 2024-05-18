@@ -10,30 +10,19 @@ export default function HeroLeft06() {
     <TwoSidedLayout>
       <Typography
         level="h1"
-        sx={{
-          fontWeight: 'xl',
-          fontSize: 'clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)',
-        }}
+        fontWeight="xl"
+        fontSize="clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)"
       >
         A large headlinerer about our product features & services
       </Typography>
-      <Typography
-        textColor="text.secondary"
-        sx={{
-          fontSize: 'lg',
-          lineHeight: 'lg',
-        }}
-      >
+      <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
         A descriptive secondary text placeholder. Use it to explain your business
         offer better.
       </Typography>
       <Button size="lg">Get Started For Free</Button>
       <Typography
-        sx={{
-          fontSize: 'xl',
-          fontWeight: 'md',
-          mt: 3,
-        }}
+        fontSize="xl"
+        fontWeight="md"
         endDecorator={
           <React.Fragment>
             <Star sx={{ color: 'warning.300' }} />
@@ -43,6 +32,7 @@ export default function HeroLeft06() {
             <Star sx={{ color: 'warning.300' }} />
           </React.Fragment>
         }
+        sx={{ mt: 3 }}
       >
         5.0
       </Typography>

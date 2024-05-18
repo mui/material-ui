@@ -76,51 +76,25 @@ export default function TypographyThemeViewer() {
         <thead>
           <tr>
             <th>
-              <Typography
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
-                Level
-              </Typography>
+              <Typography fontSize="sm">Level</Typography>
             </th>
             <th>
-              <Typography
-                sx={{
-                  fontSize: 'sm',
-                }}
-                noWrap
-              >
+              <Typography fontSize="sm" noWrap>
                 Color
               </Typography>
             </th>
             <th>
-              <Typography
-                sx={{
-                  fontSize: 'sm',
-                }}
-                noWrap
-              >
+              <Typography fontSize="sm" noWrap>
                 Font size
               </Typography>
             </th>
             <th>
-              <Typography
-                sx={{
-                  fontSize: 'sm',
-                }}
-                noWrap
-              >
+              <Typography fontSize="sm" noWrap>
                 Font weight
               </Typography>
             </th>
             <th>
-              <Typography
-                sx={{
-                  fontSize: 'sm',
-                }}
-                noWrap
-              >
+              <Typography fontSize="sm" noWrap>
                 Line height
               </Typography>
             </th>
@@ -138,12 +112,7 @@ export default function TypographyThemeViewer() {
                   placement="bottom-start"
                   sx={{ pointerEvents: 'none' }}
                 >
-                  <Typography
-                    sx={{
-                      fontSize: 'sm',
-                      cursor: 'zoom-in',
-                    }}
-                  >
+                  <Typography fontSize="sm" sx={{ cursor: 'zoom-in' }}>
                     {level}
                   </Typography>
                 </Tooltip>
@@ -156,9 +125,7 @@ export default function TypographyThemeViewer() {
                   title={
                     <Box sx={{ display: 'flex', gap: 3 }}>
                       <Typography
-                        sx={{
-                          fontSize: 'xs',
-                        }}
+                        fontSize="xs"
                         startDecorator={renderSwatch(
                           'light',
                           defaultTheme.typography[level].color as string,
@@ -167,9 +134,7 @@ export default function TypographyThemeViewer() {
                         (light)
                       </Typography>
                       <Typography
-                        sx={{
-                          fontSize: 'xs',
-                        }}
+                        fontSize="xs"
                         startDecorator={renderSwatch(
                           'dark',
                           defaultTheme.typography[level].color as string,
@@ -182,11 +147,9 @@ export default function TypographyThemeViewer() {
                   sx={{ pointerEvents: 'none' }}
                 >
                   <Typography
-                    sx={{
-                      fontSize: 'xs',
-                      fontFamily: 'code',
-                      cursor: 'zoom-in',
-                    }}
+                    fontSize="xs"
+                    fontFamily="code"
+                    sx={{ cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].color || '-'}
                   </Typography>
@@ -207,11 +170,9 @@ export default function TypographyThemeViewer() {
                   sx={{ pointerEvents: 'none' }}
                 >
                   <Typography
-                    sx={{
-                      fontSize: 'xs',
-                      fontFamily: 'code',
-                      cursor: 'zoom-in',
-                    }}
+                    fontSize="xs"
+                    fontFamily="code"
+                    sx={{ cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].fontSize || '-'}
                   </Typography>
@@ -233,12 +194,10 @@ export default function TypographyThemeViewer() {
                     sx={{ pointerEvents: 'none' }}
                   >
                     <Typography
-                      sx={{
-                        fontSize: 'xs',
-                        fontFamily: 'code',
-                        textAlign: 'center',
-                        cursor: 'zoom-in',
-                      }}
+                      fontSize="xs"
+                      fontFamily="code"
+                      textAlign="center"
+                      sx={{ cursor: 'zoom-in' }}
                     >
                       {defaultTheme.typography[level][field] || '-'}
                     </Typography>

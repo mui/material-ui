@@ -36,42 +36,20 @@ const theme = createTheme({
 export default function ManuallyProvideCustomColor() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack
-        sx={{
-          gap: 2,
-          alignItems: 'center',
-        }}
-      >
+      <Stack gap={2} alignItems="center">
         <Button variant="contained" color="ochre">
           Ochre
         </Button>
-        <Stack
-          direction="row"
-          sx={{
-            gap: 1,
-          }}
-        >
-          <Stack
-            sx={{
-              alignItems: 'center',
-            }}
-          >
+        <Stack direction="row" gap={1}>
+          <Stack alignItems="center">
             <Typography variant="body2">light</Typography>
             <Box sx={{ bgcolor: 'ochre.light', width: 40, height: 20 }} />
           </Stack>
-          <Stack
-            sx={{
-              alignItems: 'center',
-            }}
-          >
+          <Stack alignItems="center">
             <Typography variant="body2">main</Typography>
             <Box sx={{ bgcolor: 'ochre.main', width: 40, height: 20 }} />
           </Stack>
-          <Stack
-            sx={{
-              alignItems: 'center',
-            }}
-          >
+          <Stack alignItems="center">
             <Typography variant="body2">dark</Typography>
             <Box sx={{ bgcolor: 'ochre.dark', width: 40, height: 20 }} />
           </Stack>

@@ -24,11 +24,9 @@ export default function Filters() {
       useFlexGap
       direction="row"
       spacing={{ xs: 0, sm: 2 }}
-      sx={{
-        justifyContent: { xs: 'space-between' },
-        flexWrap: 'wrap',
-        minWidth: 0,
-      }}
+      justifyContent={{ xs: 'space-between' }}
+      flexWrap="wrap"
+      sx={{ minWidth: 0 }}
     >
       <Button
         variant="outlined"

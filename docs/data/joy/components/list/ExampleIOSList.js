@@ -20,12 +20,10 @@ export default function ExampleIOSList() {
     <Sheet variant="soft" sx={{ width: 343, p: 2, borderRadius: 'sm' }}>
       <Typography
         level="h3"
+        fontSize="xl2"
+        fontWeight="xl"
         id="ios-example-demo"
-        sx={{
-          fontSize: 'xl2',
-          fontWeight: 'xl',
-          mb: 1,
-        }}
+        mb={1}
       >
         Settings
       </Typography>
@@ -72,18 +70,8 @@ export default function ExampleIOSList() {
                 </Avatar>
               </ListItemDecorator>
               <div>
-                <Typography
-                  sx={{
-                    fontSize: 'xl',
-                  }}
-                >
-                  Murphy Bates
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: 'xs',
-                  }}
-                >
+                <Typography fontSize="xl">Murphy Bates</Typography>
+                <Typography fontSize="xs">
                   Apple ID, iCloud, Media & Purchase
                 </Typography>
               </div>

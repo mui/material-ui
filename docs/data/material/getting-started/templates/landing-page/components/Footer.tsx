@@ -19,13 +19,7 @@ import SitemarkIcon from './SitemarkIcon';
 
 function Copyright() {
   return (
-    <Typography
-      variant="body2"
-      sx={{
-        color: 'text.secondary',
-        mt: 1,
-      }}
-    >
+    <Typography variant="body2" color="text.secondary" mt={1}>
       {'Copyright © '}
       <Link href="https://mui.com/">Sitemark&nbsp;</Link>
       {new Date().getFullYear()}
@@ -63,23 +57,10 @@ export default function Footer() {
         >
           <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
             <SitemarkIcon />
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: 600,
-                mt: 2,
-              }}
-              gutterBottom
-            >
+            <Typography variant="body2" fontWeight={600} gutterBottom sx={{ mt: 2 }}>
               Join the newsletter
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: 'text.secondary',
-                mb: 2,
-              }}
-            >
+            <Typography variant="body2" color="text.secondary" mb={2}>
               Subscribe for weekly updates. No spams ever!
             </Typography>
             <Stack direction="row" spacing={1} useFlexGap>
@@ -112,12 +93,7 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography
-            variant="body2"
-            sx={{
-              fontWeight: 'medium',
-            }}
-          >
+          <Typography variant="body2" fontWeight="medium">
             Product
           </Typography>
           <Link color="text.secondary" variant="body2" href="#">
@@ -143,12 +119,7 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography
-            variant="body2"
-            sx={{
-              fontWeight: 'medium',
-            }}
-          >
+          <Typography variant="body2" fontWeight="medium">
             Company
           </Typography>
           <Link color="text.secondary" variant="body2" href="#">
@@ -168,12 +139,7 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography
-            variant="body2"
-            sx={{
-              fontWeight: 'medium',
-            }}
-          >
+          <Typography variant="body2" fontWeight="medium">
             Legal
           </Typography>
           <Link color="text.secondary" variant="body2" href="#">
@@ -201,13 +167,7 @@ export default function Footer() {
           <Link color="text.secondary" variant="body2" href="#">
             Privacy Policy
           </Link>
-          <Typography
-            sx={{
-              display: 'inline',
-              mx: 0.5,
-              opacity: 0.5,
-            }}
-          >
+          <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
             &nbsp;•&nbsp;
           </Typography>
           <Link color="text.secondary" variant="body2" href="#">
@@ -217,12 +177,12 @@ export default function Footer() {
         </div>
         <Stack
           direction="row"
-          sx={{
-            justifyContent: 'left',
-            color: 'text.secondary',
-          }}
+          justifyContent="left"
           spacing={1}
           useFlexGap
+          sx={{
+            color: 'text.secondary',
+          }}
         >
           <IconButton
             color="inherit"
