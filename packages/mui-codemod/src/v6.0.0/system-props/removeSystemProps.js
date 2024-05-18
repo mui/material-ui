@@ -192,13 +192,6 @@ export default function removeSystemProps(file, api, options) {
       const sx = j.objectExpression([]);
       const elementName = el.value?.openingElement?.name?.name;
 
-      const attrNodes = j(el)
-        .find(j.JSXAttribute)
-        .filter(
-          (path) =>
-            path.parent.parent.node === el.node && systemProps.includes(path.node.name.name),
-        );
-
       const sxNodes = j(el)
         .find(j.JSXAttribute)
         .filter((path) => path.parent.parent.node === el.node && path.node.name.name === 'sx');
@@ -206,63 +199,92 @@ export default function removeSystemProps(file, api, options) {
       const sxNodesArray = sxNodes.nodes() || [];
       const existingSxValue = sxNodesArray[0]?.value?.expression;
 
-      attrNodes.forEach((attr, index) => {
-        const key = attr?.value?.name?.name;
-        const literal = attr?.value?.value;
+      let spreadElement = null;
+      el.node.openingElement.attributes.forEach((attr) => {
+        if (attr.type === 'JSXSpreadAttribute') {
+          spreadElement = attr;
+        }
+      });
+
+      const attrToPrune = ['sx'];
+      el.node.openingElement.attributes.forEach((attr) => {
+        if (
+          attr.type === 'JSXSpreadAttribute' ||
+          !attr.value ||
+          !systemProps.includes(attr?.name?.name)
+        ) {
+          return;
+        }
+        const key = attr?.name?.name;
+        const literal = attr?.value;
         const val = literal.type === 'JSXExpressionContainer' ? literal.expression : literal;
         const shouldPrune =
           !elementReplacement[elementName] || elementReplacement[elementName].matcher(key, val);
         if (key && val) {
           if (shouldPrune) {
             sx.properties.push(j.property('init', j.identifier(key), val));
-          }
-        }
-        if (index + 1 !== attrNodes.length) {
-          if (shouldPrune) {
-            attr.prune();
-          }
-        } else if (sx.properties.length > 0) {
-          sxNodes.forEach((node) => node.prune());
-          if (!existingSxValue) {
-            j(attr).replaceWith(
-              j.jsxAttribute(j.jsxIdentifier('sx'), j.jsxExpressionContainer(sx)),
-            );
-          } else if (existingSxValue?.type === 'ObjectExpression') {
-            sx.properties.push(...existingSxValue.properties);
-            j(attr).replaceWith(
-              j.jsxAttribute(j.jsxIdentifier('sx'), j.jsxExpressionContainer(sx)),
-            );
-          } else if (existingSxValue?.type === 'ArrayExpression') {
-            existingSxValue.elements = [sx, ...existingSxValue.elements];
-            j(attr).replaceWith(
-              j.jsxAttribute(j.jsxIdentifier('sx'), j.jsxExpressionContainer(existingSxValue)),
-            );
-          } else {
-            j(attr).replaceWith(
-              j.jsxAttribute(
-                j.jsxIdentifier('sx'),
-                j.jsxExpressionContainer(
-                  j.arrayExpression([
-                    sx,
-                    existingSxValue.type === 'Identifier'
-                      ? j.spreadElement(
-                          j.conditionalExpression(
-                            j.callExpression(
-                              j.memberExpression(j.identifier('Array'), j.identifier('isArray')),
-                              [existingSxValue],
-                            ),
-                            existingSxValue,
-                            j.arrayExpression([existingSxValue]),
-                          ),
-                        )
-                      : existingSxValue,
-                  ]),
-                ),
-              ),
-            );
+            attrToPrune.push(key);
           }
         }
       });
+
+      if (sx.properties.length) {
+        el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
+          (attr) => attr.type !== 'JSXAttribute' || !attrToPrune.includes(attr?.name?.name),
+        );
+
+        let finalSx;
+        if (!existingSxValue) {
+          finalSx = sx;
+        } else if (existingSxValue?.type === 'ObjectExpression') {
+          sx.properties.push(...existingSxValue.properties);
+          finalSx = sx;
+        } else if (existingSxValue?.type === 'ArrayExpression') {
+          existingSxValue.elements = [sx, ...existingSxValue.elements];
+          finalSx = existingSxValue;
+        } else {
+          finalSx = j.arrayExpression([
+            sx,
+            existingSxValue.type === 'Identifier'
+              ? j.spreadElement(
+                  j.conditionalExpression(
+                    j.callExpression(
+                      j.memberExpression(j.identifier('Array'), j.identifier('isArray')),
+                      [existingSxValue],
+                    ),
+                    existingSxValue,
+                    j.arrayExpression([existingSxValue]),
+                  ),
+                )
+              : existingSxValue,
+          ]);
+        }
+
+        if (spreadElement && spreadElement.argument.type === 'Identifier') {
+          if (finalSx.type === 'ObjectExpression') {
+            const propSx = j.memberExpression(spreadElement.argument, j.identifier('sx'));
+            finalSx = j.arrayExpression([
+              finalSx,
+              j.spreadElement(
+                j.conditionalExpression(
+                  j.callExpression(
+                    j.memberExpression(j.identifier('Array'), j.identifier('isArray')),
+                    [propSx],
+                  ),
+                  propSx,
+                  j.arrayExpression([propSx]),
+                ),
+              ),
+            ]);
+          } else if (finalSx.type === 'ArrayExpression') {
+            finalSx.elements.push(j.memberExpression(spreadElement.argument, j.identifier('sx')));
+          }
+        }
+
+        el.node.openingElement.attributes.push(
+          j.jsxAttribute(j.jsxIdentifier('sx'), j.jsxExpressionContainer(finalSx)),
+        );
+      }
     });
 
   return root.toSource(printOptions);

@@ -24,6 +24,18 @@ const ml = 2;
 >
   25
 </Typographyyy>;
+function Copyright(props) {
+  return (
+    <Typographyyy variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typographyyy>
+  );
+}
 
 <Stackkk flex="1" sx={[...(Array.isArray(sx) ? sx : [sx])]} />;
 

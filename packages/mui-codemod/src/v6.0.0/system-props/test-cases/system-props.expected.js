@@ -36,20 +36,38 @@ const ml = 2;
     ml: ml
   }, ...(Array.isArray(sx) ? sx : [sx])]} />;
 <Typographyyy
+  startDecorator={
+    <Typographyyy textColor="text.secondary" sx={{
+      fontSize: "lg"
+    }}>
+      $
+    </Typographyyy>
+  }
   sx={{
     fontSize: "xl4",
     lineHeight: 1,
     alignItems: 'flex-start'
-  }}
-  startDecorator={
-    <Typographyyy sx={{
-      fontSize: "lg"
-    }} textColor="text.secondary">
-      $
-    </Typographyyy>
-  }>
+  }}>
   25
 </Typographyyy>;
+function Copyright(props) {
+  return (
+    (<Typographyyy
+      variant="body2"
+      align="center"
+      {...props}
+      sx={[{
+        color: "text.secondary"
+      }, ...(Array.isArray(props.sx) ? props.sx : [props.sx])]}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typographyyy>)
+  );
+}
 
 <Stackkk
   sx={[{
