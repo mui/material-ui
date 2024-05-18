@@ -27,7 +27,7 @@ This component is no longer documented in the [Material Design guidelines](https
 The Stepper component displays progress through a sequence of logical and numbered steps. 
 It supports horizontal and vertical orientation for desktop and mobile viewports.
 
-Material UI Steppers are implemented using a collection of related components:
+Steppers are implemented using a collection of related components:
 
 - Stepper: a required container for steps. Renders as a `<ol>` by default.
 - Step: a step. Renders as a `<li>` by default.
