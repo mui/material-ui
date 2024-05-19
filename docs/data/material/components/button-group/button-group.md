@@ -9,7 +9,7 @@ githubLabel: 'component: ButtonGroup'
 
 <p class="description">The ButtonGroup component can be used to group related buttons.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic button group
 

@@ -18,9 +18,13 @@ export interface StepConnectorClasses {
   disabled: string;
   /** Styles applied to the line element. */
   line: string;
-  /** Styles applied to the root element if `orientation="horizontal"`. */
+  /** Styles applied to the line element if `orientation="horizontal"`.
+   * @deprecated Combine the [.MuiStepConnector-horizontal](/material-ui/api/step-connector/#step-connector-classes-horizontal) and [.MuiStepConnector-line](/material-ui/api/step-connector/#step-connector-classes-line) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   lineHorizontal: string;
-  /** Styles applied to the root element if `orientation="vertical"`. */
+  /** Styles applied to the line element if `orientation="vertical"`.
+   * @deprecated Combine the [.MuiStepConnector-vertical](/material-ui/api/step-connector/#step-connector-classes-vertical) and [.MuiStepConnector-line](/material-ui/api/step-connector/#step-connector-classes-line) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   lineVertical: string;
 }
 

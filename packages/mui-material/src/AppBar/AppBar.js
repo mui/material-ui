@@ -70,7 +70,6 @@ const AppBarRoot = styled(Paper, {
     {
       props: { position: 'sticky' },
       style: {
-        // ⚠️ sticky is not supported by IE11.
         position: 'sticky',
         zIndex: (theme.vars || theme).zIndex.appBar,
         top: 0,
@@ -115,13 +114,9 @@ const AppBarRoot = styled(Paper, {
         }),
       },
     },
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter(
-        (key) =>
-          (theme.vars ?? theme).palette[key].main &&
-          (theme.vars ?? theme).palette[key].contrastText,
-      )
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main && palette.contrastText)
+      .map(([color]) => ({
         props: { color },
         style: {
           '--AppBar-background': (theme.vars ?? theme).palette[color].main,

@@ -13,7 +13,8 @@ import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
-import styled, { rootShouldForwardProp } from '../styles/styled';
+import { styled } from '../zero-styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;

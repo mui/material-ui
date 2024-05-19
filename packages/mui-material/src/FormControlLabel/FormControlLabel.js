@@ -13,6 +13,7 @@ import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
 import formControlState from '../FormControl/formControlState';
+import useSlot from '../utils/useSlot';
 
 const useThemeProps = createUseThemeProps('MuiFormControlLabel');
 
@@ -121,6 +122,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     name,
     onChange,
     required: requiredProp,
+    slots = {},
     slotProps = {},
     value,
     ...other
@@ -158,18 +160,30 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
 
   const classes = useUtilityClasses(ownerState);
 
-  const typographySlotProps = slotProps.typography ?? componentsProps.typography;
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
+
+  const [TypographySlot, typographySlotProps] = useSlot('typography', {
+    elementType: Typography,
+    externalForwardedProps,
+    ownerState,
+  });
 
   let label = labelProp;
   if (label != null && label.type !== Typography && !disableTypography) {
     label = (
-      <Typography
+      <TypographySlot
         component="span"
         {...typographySlotProps}
         className={clsx(classes.label, typographySlotProps?.className)}
       >
         {label}
-      </Typography>
+      </TypographySlot>
     );
   }
 
@@ -215,6 +229,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     typography: PropTypes.object,
@@ -264,7 +279,14 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    typography: PropTypes.object,
+    typography: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    typography: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

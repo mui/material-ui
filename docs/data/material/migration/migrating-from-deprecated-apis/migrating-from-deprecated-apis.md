@@ -50,7 +50,7 @@ npx @mui/codemod@latest deprecations/accordion-props <path>
 
 ### TransitionComponent
 
-The Accordion's `TransitionComponent` was deprecated in favor of `slots.transition`:
+The Accordion's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
 
 ```diff
  <Accordion
@@ -61,7 +61,7 @@ The Accordion's `TransitionComponent` was deprecated in favor of `slots.transiti
 
 ### TransitionProps
 
-The Accordion's `TransitionProps` was deprecated in favor of `slotProps.transition`:
+The Accordion's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
 
 ```diff
  <Accordion
@@ -115,7 +115,7 @@ npx @mui/codemod@latest deprecations/alert-classes <path>
 
 ### components
 
-The Alert's `components` was deprecated in favor of `slots`:
+The Alert's `components` prop was deprecated in favor of `slots`:
 
 ```diff
  <Alert
@@ -126,7 +126,7 @@ The Alert's `components` was deprecated in favor of `slots`:
 
 ### componentsProps
 
-The Alert's `componentsProps` was deprecated in favor of `slotProps`:
+The Alert's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Alert
@@ -169,9 +169,9 @@ Here's how to migrate:
 ```
 
 ```diff
- import { alertClasses } from '@mui/material/PaginationItem';
+ import { alertClasses } from '@mui/material/Alert';
 
- MuiPaginationItem: {
+ MuiAlert: {
    styleOverrides: {
      root: {
 -      [`&.${alertClasses.standardSuccess}`]: {
@@ -227,6 +227,66 @@ Here's how to migrate:
  },
 ```
 
+## Autocomplete
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/autocomplete-props <path>
+```
+
+### \*Component props
+
+All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
+
+```diff
+ <Autocomplete
+-    ListboxComponent={CustomListboxComponent}
+-    PaperComponent={CustomPaperComponent}
+-    PopperComponent={CustomPopperComponent}
++    slots={{
++        listbox: CustomListboxComponent,
++        paper: CustomPaperComponent,
++        popper: CustomPopperComponent,
++    }}
+ />
+```
+
+### \*Props props
+
+All of the Autocomplete's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <Autocomplete
+-    ChipProps={CustomChipProps}
+-    ListboxProps={CustomListboxProps}
++    slotProps={{
++        chip: CustomChipProps,
++        listbox: CustomListboxProps,
++    }}
+ />
+```
+
+### componentsProps
+
+The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`:
+
+```diff
+ <Autocomplete
+-  componentsProps={{
+-    clearIndicator: { width: 10 },
+-    paper: { width: 12 },
+-    popper: { width: 14 },
+-    popupIndicator: { width: 16 },
++  slotProps={{
++    clearIndicator: { width: 10 },
++    paper: { width: 12 },
++    popper: { width: 14 },
++    popupIndicator: { width: 16 },
+    }}
+ />
+```
+
 ## Avatar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
@@ -237,7 +297,7 @@ npx @mui/codemod@latest deprecations/avatar-props <path>
 
 ### imgProps
 
-The Avatar's `imgProps` was deprecated in favor of `slotProps.img`:
+The Avatar's `imgProps` prop was deprecated in favor of `slotProps.img`:
 
 ```diff
  <Avatar
@@ -281,7 +341,7 @@ npx @mui/codemod@next deprecations/badge-props <path>
 
 ### components
 
-The Badge's `components` was deprecated in favor of `slots`:
+The Badge's `components` prop was deprecated in favor of `slots`:
 
 ```diff
  <Badge
@@ -292,7 +352,7 @@ The Badge's `components` was deprecated in favor of `slots`:
 
 ### componentsProps
 
-The Badge's `componentsProps` was deprecated in favor of `slotProps`:
+The Badge's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Badge
@@ -853,6 +913,46 @@ Here's how to migrate:
 
 ```
 
+## CircularProgress
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#circular-progress-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/circular-progress-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `circle` CSS class and `variant` prop values were removed.
+
+Here's how to migrate:
+
+```diff
+- .MuiCircularProgress-circleDeterminate
++.MuiCircularProgress-determinate > .MuiCircularProgress-circle
+- .MuiCircularProgress-circleIndeterminate
++.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle
+```
+
+```diff
+ import { circularProgressClasses } from '@mui/material/CircularProgress';
+
+ MuiCircularProgress: {
+   styleOverrides: {
+     root: {
+-      [`& .${circularProgressClasses.circleDeterminate}`]: {
++      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
+         color: 'red',
+        },
+-      [`& .${circularProgressClasses.circleIndeterminate}`]: {
++      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
 ## Divider
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
@@ -869,6 +969,25 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
  <Divider
 -  light
 +  sx={{ opacity : "0.6" }}
+ />
+```
+
+## FormControlLabel
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#form-control-label-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/form-control-label-props <path>
+```
+
+### componentsProps
+
+The FormControlLabel's `componentsProps` prop was deprecated in favor of `slotProps`:
+
+```diff
+ <FormControlLabel
+-  componentsProps={{ typography: typographyProps }}
++  slotProps={{ typography: typographyProps }}
  />
 ```
 
@@ -924,6 +1043,17 @@ Here's how to migrate:
  },
 ```
 
+### components
+
+The PaginationItems's `components` prop was deprecated in favor of `slots`:
+
+```diff
+ <PaginationItems
+-  components={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
++  slots={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
+ />
+```
+
 ## Slider
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following sections:
@@ -934,7 +1064,7 @@ npx @mui/codemod@latest deprecations/slider-props <path>
 
 ### components
 
-The Slider's `components` was deprecated in favor of `slots`:
+The Slider's `components` prop was deprecated in favor of `slots`:
 
 ```diff
  <Slider
@@ -945,13 +1075,53 @@ The Slider's `components` was deprecated in favor of `slots`:
 
 ### componentsProps
 
-The Slider's `componentsProps` was deprecated in favor of `slotProps`:
+The Slider's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Slider
 -  componentsProps={{ track: { testid: 'test-id' } }}
 +  slotProps={{ track: { testid: 'test-id' } }}
  />
+```
+
+## ToggleButtonGroup
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#toggle-button-group-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes composing the `orientation` prop value and `grouped` CSS class have been removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedHorizontal
++.MuiToggleButtonGroup-root.MuiToggleButtonGroup-horizontal > .MuiToggleButtonGroup-grouped
+-.MuiToggleButtonGroup-root .MuiToggleButtonGroup-groupedVertical
++.MuiToggleButtonGroup-root.MuiToggleButtonGroup-vertical > .MuiToggleButtonGroup-grouped
+```
+
+```diff
+
+ import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
+
+  MuiButtonGroup: {
+   styleOverrides: {
+     root: {
+-      [`& .${toggleButtonGroupClasses.groupedHorizontal}`]: {
++      [`&.${toggleButtonGroupClasses.horizontal} > .${toggleButtonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+-      [`& .${toggleButtonGroupClasses.groupedVertical}`]: {
++      [`&.${toggleButtonGroupClasses.vertical} > .${toggleButtonGroupClasses.grouped}`]: {
+          color: 'red',
+        },
+   },
+  },
 ```
 
 ## StepLabel
@@ -964,11 +1134,102 @@ npx @mui/codemod@latest deprecations/step-label-props <path>
 
 ### componentsProps
 
-The StepLabel's `componentsProps` was deprecated in favor of `slotProps`:
+The StepLabel's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <StepLabel
 -  componentsProps={{ label: labelProps }}
 +  slotProps={{ label: labelProps }}
+ />
+```
+
+### StepIconComponent
+
+The StepLabel's `StepIconComponent` prop was deprecated in favor of `slots.stepIcon`:
+
+```diff
+ <StepLabel
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+ />
+```
+
+### StepIconProps
+
+The StepLabel's `StepIconProps` prop was deprecated in favor of `slotProps.stepIcon`:
+
+```diff
+ <StepLabel
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
+ />
+```
+
+## StepConnector
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-connector-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/step-connector-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `line` CSS class and `orientation` prop values were removed.
+
+Here's how to migrate:
+
+```diff
+- .MuiStepConnector-lineHorizontal
++.MuiStepConnector-horizontal > .MuiStepConnector-line
+- .MuiStepConnector-lineVertical
++.MuiStepConnector-vertical > .MuiStepConnector-line
+```
+
+```diff
+ import { stepConnectorClasses } from '@mui/material/StepConnector';
+
+ MuiStepConnector: {
+   styleOverrides: {
+     root: {
+-      [`& .${stepConnectorClasses.lineHorizontal}`]: {
++      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+-      [`& .${stepConnectorClasses.lineVertical}`]: {
++      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+## SpeedDial
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/speed-dial-props <path>
+```
+
+### TransitionComponent
+
+The SpeedDial's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <SpeedDial
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+```
+
+### TransitionProps
+
+The SpeedDial's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <SpeedDial
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```

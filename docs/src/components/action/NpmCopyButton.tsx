@@ -13,6 +13,7 @@ const Button = styled('button')(({ theme }) => ({
   marginTop: 16,
   cursor: 'copy',
   padding: 0,
+  position: 'relative',
   display: 'inline-flex',
   alignItems: 'flex-start',
   justifyContent: 'center',
@@ -34,17 +35,17 @@ const Button = styled('button')(({ theme }) => ({
   }),
   WebkitTapHighlightColor: 'transparent',
   WebkitFontSmoothing: 'subpixel-antialiased',
-  color: (theme.vars || theme).palette.grey[600],
+  color: (theme.vars || theme).palette.text.tertiary,
   '&:hover, &:focus-visible': {
     color: (theme.vars || theme).palette.primary.main,
     '@media (hover: none)': {
-      color: (theme.vars || theme).palette.grey[600],
+      color: (theme.vars || theme).palette.text.tertiary,
     },
   },
   '& svg': {
     display: 'inline-block',
-    position: 'relative',
-    right: 3,
+    position: 'absolute',
+    right: -24,
     top: 1,
     opacity: 0,
     transition: theme.transitions.create('opacity', {

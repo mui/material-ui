@@ -35,10 +35,10 @@ export default function TemplateHero() {
             <IconImage width={28} height={28} loading="eager" name="product-templates" /> Templates
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            <GradientText>Fully built</GradientText> Material&nbsp;UI templates
+            <GradientText>Beautiful and fully built</GradientText> Material&nbsp;UI templates
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            A collection of 4.5 average rating templates, selected and curated by MUI&apos;s team of
+            A collection of 4.5 average rating templates, selected and curated by Material UI&apos;s
             maintainers to get your projects up and running today.
           </Typography>
           <Button

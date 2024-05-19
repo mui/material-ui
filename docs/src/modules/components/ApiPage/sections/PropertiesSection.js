@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import { useTranslate } from '@mui/docs/i18n';
+import { SectionTitle } from '@mui/docs/SectionTitle';
 import ToggleDisplayOption, {
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
@@ -46,7 +47,7 @@ export default function PropertiesSection(props) {
     showOptionalAbbr = false,
     title = 'api-docs.props',
     titleHash = 'props',
-    level: Level = 'h2',
+    level = 'h2',
     spreadHint,
     hooksParameters = false,
     hooksReturnValue = false,
@@ -121,19 +122,7 @@ export default function PropertiesSection(props) {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 1 }}>
-        <Level id={titleHash} style={{ flexGrow: 1 }}>
-          {t(title)}
-          <a
-            aria-labelledby={titleHash}
-            className="anchor-link"
-            href={`#${titleHash}`}
-            tabIndex={-1}
-          >
-            <svg>
-              <use xlinkHref="#anchor-link-icon" />
-            </svg>
-          </a>
-        </Level>
+        <SectionTitle title={t(title)} hash={titleHash} level={level} />
         <ToggleDisplayOption
           displayOption={displayOption}
           setDisplayOption={setDisplayOption}
