@@ -81,10 +81,11 @@
   },
   "dependencies": {
     "@googleapis/sheets": "^5.0.5",
-    "@slack/bolt": "^3.18.0",
     "@netlify/functions": "^2.6.3",
+    "@slack/bolt": "^3.18.0",
     "execa": "^8.0.1",
-    "google-auth-library": "^9.9.0"
+    "google-auth-library": "^9.9.0",
+    "markdownlint-rule-search-replace": "^1.2.0"
   },
   "devDependencies": {
     "@argos-ci/core": "^2.2.0",
@@ -98,11 +99,11 @@
     "@babel/preset-typescript": "^7.24.1",
     "@babel/register": "^7.23.7",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
-    "@mui/internal-docs-utils": "workspace:^",
-    "@mui/internal-scripts": "workspace:^",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-docs-utils": "workspace:^",
+    "@mui/internal-scripts": "workspace:^",
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",

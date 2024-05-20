@@ -3,6 +3,27 @@ const gitDiff = require('./packages/markdownlint-rule-mui/git-diff');
 const tableAlignment = require('./packages/markdownlint-rule-mui/table-alignment');
 const terminalLanguage = require('./packages/markdownlint-rule-mui/terminal-language');
 const duplicateH1 = require('./packages/markdownlint-rule-mui/duplicate-h1');
+const searchReplace = require('markdownlint-rule-search-replace');
+
+const brandNames = [
+  { search: 'Material UI', replace: 'Material&nbsp;UI' },
+  { search: 'MUI X', replace: 'MUI&nbsp;X' },
+  { search: 'Base UI', replace: 'Base&nbsp;UI' },
+  { search: 'MUI System', replace: 'MUI&nbsp;System' },
+  { search: 'MUI Store', replace: 'MUI&nbsp;Store' },
+  { search: 'MUI Core', replace: 'MUI&nbsp;Core' },
+  { search: 'MUI Toolpad', replace: 'Toolpad' },
+  { search: 'MUI Toolpad', replace: 'Toolpad' },
+  { search: 'MUI Connect', replace: 'MUI&nbsp;Connect' },
+  { search: 'Stack Overflow', replace: 'Stack&nbsp;Overflow' },
+  { search: 'Pigment CSS', replace: 'Pigment&nbsp;CSS' },
+
+  { search: 'NPM', replace: 'npm' }, // https://css-tricks.com/start-sentence-npm/
+  { search: 'Github', replace: 'GitHub' },
+  { search: 'StackOverflow', replace: 'Stack Overflow' },
+  { search: 'CSS modules', replace: 'CSS Modules' },
+  { search: 'Tailwind CSS', replace: 'Tailwind CSS' },
+];
 
 // https://github.com/DavidAnson/markdownlint#rules--aliases
 module.exports = {
@@ -37,8 +58,25 @@ module.exports = {
     tableAlignment: true,
     terminalLanguage: true,
     duplicateH1: true,
+    'search-replace': {
+      rules: [
+        {
+          name: 'non-breaking-space-in-brand-names',
+          message: 'Use non-breaking space in brand names.',
+          search: brandNames.map((item) => item.search),
+          replace: brandNames.map((item) => item.replace),
+        },
+      ],
+    },
   },
-  customRules: [straightQuotes, gitDiff, tableAlignment, terminalLanguage, duplicateH1],
+  customRules: [
+    straightQuotes,
+    gitDiff,
+    tableAlignment,
+    terminalLanguage,
+    duplicateH1,
+    searchReplace,
+  ],
   ignores: [
     'CHANGELOG.old.md',
     '**/node_modules/**',

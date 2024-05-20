@@ -13,11 +13,6 @@ swap:
   javascript: JavaScript
   ' css ': CSS
   ' html ': HTML
-  NPM: npm # https://css-tricks.com/start-sentence-npm/
-  Github: GitHub
-  StackOverflow: Stack Overflow
-  CSS modules: CSS Modules
-  Tailwind CSS: Tailwind CSS
   Heat map: Heatmap
   Tree map: Treemap
   Sparkline Chart: Sparkline
