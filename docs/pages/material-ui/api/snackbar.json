@@ -25,6 +25,14 @@
     },
     "open": { "type": { "name": "bool" } },
     "resumeHideDuration": { "type": { "name": "number" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -32,7 +40,12 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "default": "Grow",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7."
+    },
     "transitionDuration": {
       "type": {
         "name": "union",
@@ -40,12 +53,25 @@
       },
       "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     },
-    "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7."
+    }
   },
   "name": "Snackbar",
   "imports": [
     "import Snackbar from '@mui/material/Snackbar';",
     "import { Snackbar } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "transition",
+      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "Grow",
+      "class": null
+    }
   ],
   "classes": [
     {
