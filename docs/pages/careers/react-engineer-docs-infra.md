@@ -60,16 +60,16 @@ You will also play a fundamental role in defining the Docs Infra roadmap and pri
 ### Key responsibilities
 
 - Ensure the documentation feels fast and snappy for readers
-  You'll be closely keeping tabs on Lighthouse scores, bundle size, and search quality
+- Monitor Lighthouse scores, bundle size, and search quality to make incremental improvements
 - Develop new features that will enhance the way the libraries are showcased
 - Improve the documentation authoring experience for both the maintainers and the community
-- Own any infrastructure-related tasks, like managing dependencies, analytics, TypeScript modules, and hosting allowing each product team to never worry about the documentation platform and be 100% focused on their product
+- Own infrastructure tasks like managing dependencies, analytics, TypeScript modules, and hosting, so product teams can stay focused on their primary responsibilities
 
 ### Tasks and initiatives you might take on
 
-- Migrate the docs platform to Next.js App Router
+- Migrate the docs platform to the Next.js App Router
 - Allow users to search the docs within a specific product scope
-- Enable to store different parts of our documentation in different repositories
+- Make it possible to store different parts of our documentation in different repositories
 - Standardize the documentation design and layout across all of MUI's products
 - Introduce a more scalable solution for hosting videos and images
 
