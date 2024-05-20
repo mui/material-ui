@@ -75,9 +75,11 @@ export default function ShowcaseContainer({
         >
           {preview}
         </Frame.Demo>
-        <Frame.Info data-mui-color-scheme="dark" sx={{ p: 0 }}>
-          <NoSsr>{code}</NoSsr>
-        </Frame.Info>
+        {code ? (
+          <Frame.Info data-mui-color-scheme="dark" sx={{ p: 0 }}>
+            <NoSsr>{code}</NoSsr>
+          </Frame.Info>
+        ) : null}
       </Box>
     </Fade>
   );
