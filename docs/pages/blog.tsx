@@ -347,6 +347,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             >
               <Paper variant="outlined">
                 <Typography
+                  component="h3"
                   color="text.primary"
                   fontWeight="semiBold"
                   variant="subtitle2"
@@ -397,6 +398,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               </Paper>
               <Paper variant="outlined">
                 <Typography
+                  component="h3"
                   color="text.primary"
                   fontWeight="semiBold"
                   variant="subtitle2"
