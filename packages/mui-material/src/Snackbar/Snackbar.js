@@ -10,6 +10,7 @@ import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
+import useSlot from '../utils/useSlot';
 import { getSnackbarUtilityClass } from './snackbarClasses';
 
 const useThemeProps = createUseThemeProps('MuiSnackbar');
@@ -117,9 +118,11 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     onMouseLeave,
     open,
     resumeHideDuration,
-    TransitionComponent = Grow,
+    slots = {},
+    slotProps = {},
+    TransitionComponent: TransitionComponentProp,
+    TransitionProps: { onEnter, onExited, ...TransitionPropsProp } = {},
     transitionDuration = defaultTransitionDuration,
-    TransitionProps: { onEnter, onExited, ...TransitionProps } = {},
     ...other
   } = props;
 
@@ -128,11 +131,24 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     anchorOrigin: { vertical, horizontal },
     autoHideDuration,
     disableWindowBlurListener,
-    TransitionComponent,
     transitionDuration,
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
+  const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Grow,
+    externalForwardedProps: {
+      slots: backwardCompatibleSlots,
+      slotProps: backwardCompatibleSlotProps,
+    },
+    ownerState,
+  });
+
+  delete transitionProps.ownerState;
 
   const { getRootProps, onClickAway } = useSnackbar({ ...ownerState });
 
@@ -173,17 +189,17 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   return (
     <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
       <SnackbarRoot {...rootProps}>
-        <TransitionComponent
+        <TransitionSlot
           appear
           in={open}
           timeout={transitionDuration}
           direction={vertical === 'top' ? 'down' : 'up'}
           onEnter={handleEnter}
           onExited={handleExited}
-          {...TransitionProps}
+          {...transitionProps}
         >
           {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
-        </TransitionComponent>
+        </TransitionSlot>
       </SnackbarRoot>
     </ClickAwayListener>
   );
@@ -291,6 +307,20 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   resumeHideDuration: PropTypes.number,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    transition: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -302,6 +332,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -324,6 +355,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps: PropTypes.object,
 };
