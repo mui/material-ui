@@ -57,7 +57,7 @@ export default function DirectionSnackbar() {
       <Snackbar
         open={open}
         onClose={handleClose}
-        TransitionComponent={transition}
+        slots={{ transition }}
         message="I love snacks"
         key={transition ? transition.name : ''}
       />
