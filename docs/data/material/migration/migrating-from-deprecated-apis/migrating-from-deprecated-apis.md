@@ -1102,14 +1102,20 @@ The Snackbar's `TransitionComponent` prop was deprecated in favor of `slots.tran
 +  slots={{ transition: CustomTransition }}
 ```
 
-### TransitionProps
+### \*Props props
 
-The Snackbar's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+All the Snackbar's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
 
 ```diff
  <Snackbar
+-  ClickAwayListenerProps={CustomClickAwayListenerProps}
+-  ContentProps={CustomContentProps}
 -  TransitionProps={CustomTransitionProps}
-+  slotProps={{ transition: CustomTransitionProps }}
++  slotProps={{
++    clickAwayListener: CustomClickAwayListenerProps,
++    content: CustomContentProps,
++    transition: CustomTransitionProps
++  }}
  />
 ```
 

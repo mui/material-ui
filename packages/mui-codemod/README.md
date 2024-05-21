@@ -1099,10 +1099,16 @@ npx @mui/codemod@next deprecations/slider-props <path>
 
 ```diff
  <Snackbar
+-    ClickAwayListenerProps={CustomClickAwayListenerProps}
+-    ContentProps={CustomContentProps}
 -    TransitionComponent={CustomTransition}
 -    TransitionProps={CustomTransitionProps}
 +    slots={{ transition: CustomTransition }}
-+    slotProps={{ transition: CustomTransitionProps }}
++    slotProps={{
++        clickAwayListener: CustomClickAwayListenerProps,
++        content: CustomContentProps,
++        transition: CustomTransitionProps
++    }}
  />
 ```
 
