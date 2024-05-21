@@ -4,6 +4,8 @@ import { PaletteMode } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import ToggleColorMode from './ToggleColorMode';
@@ -18,13 +20,26 @@ interface NavBarProps {
 }
 
 const StyledToolbar = styled(Toolbar)({
+  maxWidth: 1538,
+  width: '100%',
+  padding: '16px 16px 0 16px',
   display: 'flex',
-  alignItems: 'center',
+  flexDirection: 'column',
+  alignItems: 'start',
   justifyContent: 'center',
   flexShrink: 0,
   backdropFilter: 'blur(24px)',
-  maxHeight: 40,
+  '& .MuiTabs-flexContainer': {
+    gap: '16px',
+  },
 });
+
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
   const [open, setOpen] = React.useState(false);
@@ -33,58 +48,66 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
     setOpen(newOpen);
   };
 
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
   return (
-    <div>
-      <AppBar
-        position="fixed"
-        sx={(theme) => ({
-          boxShadow: 0,
-          bgcolor: 'background.paper',
-          backgroundImage: 'none',
-          borderBottom: '1px solid',
-          borderColor: theme.palette.divider,
-        })}
-      >
-        <StyledToolbar variant="regular">
-          <Stack
-            maxWidth="xl"
-            direction="row"
-            gap={1}
-            alignItems="center"
-            justifyContent={{ xs: 'flex-end', md: 'space-between' }}
-            flexGrow={1}
-            sx={{ display: { xs: 'none', md: 'flex' } }}
-          >
-            <NavbarBreadcrumbs />
-            <Stack direction="row" gap={1}>
-              <MenuButton showBadge>
-                <NotificationsRoundedIcon />
-              </MenuButton>
-              <OptionsMenu />
-              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-            </Stack>
-          </Stack>
-          <Stack
-            maxWidth="xl"
-            direction="row"
-            justifyContent="space-between"
-            flexGrow={1}
-            alignItems="center"
-            sx={{ display: { sm: 'flex', md: 'none' } }}
-          >
-            <NavbarBreadcrumbs />
-            <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
-              <MenuRoundedIcon />
+    <AppBar
+      position="fixed"
+      sx={(theme) => ({
+        boxShadow: 0,
+        bgcolor: 'transparent',
+        backgroundImage: 'none',
+        alignItems: 'center',
+        borderBottom: '1px solid',
+        borderColor: theme.palette.divider,
+      })}
+    >
+      <StyledToolbar variant="regular">
+        <Stack
+          direction="row"
+          gap={1}
+          alignItems="center"
+          justifyContent={{ xs: 'flex-end', md: 'space-between' }}
+          flexGrow={1}
+          sx={{ width: '100%', display: { xs: 'none', md: 'flex' } }}
+        >
+          <NavbarBreadcrumbs />
+          <Stack direction="row" gap={1}>
+            <MenuButton showBadge>
+              <NotificationsRoundedIcon />
             </MenuButton>
-            <SideNav
-              open={open}
-              toggleDrawer={toggleDrawer}
-              mode={mode}
-              toggleColorMode={toggleColorMode}
-            />
+            <OptionsMenu />
+            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
           </Stack>
-        </StyledToolbar>
-      </AppBar>
-    </div>
+        </Stack>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          flexGrow={1}
+          alignItems="center"
+          sx={{ display: { sm: 'flex', md: 'none' } }}
+        >
+          <NavbarBreadcrumbs />
+          <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
+            <MenuRoundedIcon />
+          </MenuButton>
+          <SideNav
+            open={open}
+            toggleDrawer={toggleDrawer}
+            mode={mode}
+            toggleColorMode={toggleColorMode}
+          />
+        </Stack>
+        <Tabs value={value} onChange={handleChange} aria-label="navbar tabs">
+          <Tab label="Home" {...a11yProps(0)} />
+          <Tab label="Analytics" {...a11yProps(1)} />
+          <Tab label="Clients" {...a11yProps(2)} />
+        </Tabs>
+      </StyledToolbar>
+    </AppBar>
   );
 }
