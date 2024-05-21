@@ -30,6 +30,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 08 -->[docs-infra] Fix keyboard navigation on page tabs (#42152) @danilo-leal
 - &#8203;<!-- 10 -->[code-infra] Remove raw-loader (#42275) @Janpot
 - &#8203;<!-- 09 -->[core] Remove outdated Babel plugins (#42140) @ZeeshanTamboli
+- &#8203;<!-- 12 -->[core] Fix a few more key spread issues (#42168) @oliviertassinari
 - &#8203;<!-- 01 -->[website] Avoid duplicate simple vs. rich (#42100) @oliviertassinari
 
 All contributors of this release in alphabetical order: @danilo-leal, @DiegoAndai, @Janpot, @Mandar-Pandya, @oliviertassinari, @siriwatknp, @ZeeshanTamboli
