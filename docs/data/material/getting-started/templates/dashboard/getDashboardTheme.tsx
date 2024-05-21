@@ -336,11 +336,12 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       MuiChip: {
         styleOverrides: {
           root: ({ theme }) => ({
-            py: 1.5,
-            px: 0.5,
             border: '1px solid',
-            borderRadius: theme.shape.borderRadius,
-            fontWeight: 600,
+            borderRadius: '999px',
+            '& .MuiChip-label': {
+              padding: '0 4px',
+              fontWeight: 600,
+            },
             variants: [
               {
                 props: {
@@ -409,7 +410,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                     borderColor: red[800],
                     backgroundColor: red[900],
                     '& .MuiChip-label': {
-                      color: red[300],
+                      color: red[200],
                     },
                     '& .MuiChip-icon': {
                       color: red[300],

@@ -206,7 +206,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     },
     subtitle2: {
       fontSize: customTheme.typography.pxToRem(14),
-      fontWeight: 600,
+      fontWeight: 500,
     },
     body1: {
       fontSize: customTheme.typography.pxToRem(14),
