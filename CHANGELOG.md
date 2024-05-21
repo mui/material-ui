@@ -17,7 +17,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Docs
 
-- &#8203;<!-- 08 -->[docs] Remove Base UI from the README (#42307) @danilo-leal
+- &#8203;<!-- 08 -->[docs] Remove Base UI from the README (#42307) @danilo-leal
 - &#8203;<!-- 07 -->[docs][material-ui] Fix typo in style interoperability with Tailwind CSS docs (#42279) @ZeeshanTamboli
 - &#8203;<!-- 06 -->[docs][material-ui] Add supported browsers section to migration guide (#42194) @DiegoAndai
 - &#8203;<!-- 05 -->[docs][material-ui][Pagination] Clarify pagination `page` prop API (#42220) @Mandar-Pandya
@@ -25,7 +25,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 ### Core
 
 - &#8203;<!-- 12 -->[blog] Update blog post OG image (#42270) @danilo-leal
-- &#8203;<!-- 11 -->[blog] Update Pigment CSS post (#42266) @danilo-leal
+- &#8203;<!-- 11 -->[blog] Update Pigment CSS post (#42266) @danilo-leal
 - &#8203;<!-- 10 -->[code-infra] Remove raw-loader (#42275) @Janpot
 - &#8203;<!-- 09 -->[core] Remove outdated Babel plugins (#42140) @ZeeshanTamboli
 - &#8203;<!-- 01 -->[website] Avoid duplicate simple vs. rich (#42100) @oliviertassinari
