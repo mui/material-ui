@@ -27,10 +27,11 @@ const StyledToolbar = styled(Toolbar)({
   flexDirection: 'column',
   alignItems: 'start',
   justifyContent: 'center',
+  gap: '12px',
   flexShrink: 0,
   backdropFilter: 'blur(24px)',
   '& .MuiTabs-flexContainer': {
-    gap: '16px',
+    gap: '8px',
   },
 });
 

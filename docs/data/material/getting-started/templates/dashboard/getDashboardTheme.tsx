@@ -430,12 +430,11 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             fontWeight: theme.typography.fontWeightMedium,
             letterSpacing: 0,
             color: gray[600],
-            border: '1px solid',
-            borderColor: gray[200],
+            border: `1px solid ${theme.palette.divider}`,
             backgroundColor: gray[50],
             '&:hover': {
               backgroundColor: gray[100],
-              borderColor: gray[400],
+              borderColor: gray[300],
             },
             '&:active': {
               backgroundColor: gray[200],
@@ -443,11 +442,11 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             ...theme.applyStyles('dark', {
               color: gray[50],
               border: '1px solid',
-              borderColor: gray[700],
+
               backgroundColor: gray[800],
               '&:hover': {
-                backgroundColor: gray[800],
-                borderColor: gray[500],
+                backgroundColor: gray[900],
+                borderColor: gray[600],
               },
               '&:active': {
                 backgroundColor: gray[900],
@@ -676,16 +675,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiTabs: {
         styleOverrides: {
-          root: ({ theme }) => ({
-            '& .Mui-selected': {
-              color: theme.palette.grey[900],
-            },
-            ...theme.applyStyles('dark', {
-              '& .Mui-selected': {
-                color: '#fff',
-              },
-            }),
-          }),
+          root: { minHeight: 'fit-content' },
           indicator: ({ theme }) => ({
             backgroundColor: theme.palette.grey[800],
             ...theme.applyStyles('dark', {
@@ -697,14 +687,29 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       MuiTab: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: 0,
+            padding: '6px 8px',
+            marginBottom: '8px',
             textTransform: 'none',
             minWidth: 'fit-content',
+            minHeight: 'fit-content',
             color: theme.palette.text.secondary,
+            borderRadius: theme.shape.borderRadius,
+            border: '1px solid',
+            borderColor: 'transparent',
+            ':hover': {
+              color: theme.palette.text.primary,
+              backgroundColor: gray[100],
+              borderColor: gray[200],
+            },
             '&.Mui-selected': {
-              color: theme.palette.grey[900],
+              color: gray[900],
             },
             ...theme.applyStyles('dark', {
+              ':hover': {
+                color: theme.palette.text.primary,
+                backgroundColor: gray[800],
+                borderColor: gray[700],
+              },
               '&.Mui-selected': {
                 color: '#fff',
               },
