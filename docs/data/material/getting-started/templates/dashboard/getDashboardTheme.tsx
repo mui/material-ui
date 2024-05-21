@@ -574,13 +574,15 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       MuiMenu: {
         styleOverrides: {
           paper: ({ theme }) => ({
-            marginTop: 4,
+            marginTop: '4px',
+            padding: '0 8px',
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${theme.palette.divider}`,
             backgroundImage: 'none',
             boxShadow:
               'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
-            '& .MuiMenuItem-root': { borderRadius: 6, margin: '0 6px' },
+            '& .MuiDivider-root': { margin: '0 -8px' },
+            '& .MuiMenuItem-root': { borderRadius: 6, padding: '6px 8px' },
             ...theme.applyStyles('dark', {
               boxShadow:
                 'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
@@ -1021,6 +1023,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             }),
           }),
           row: ({ theme }) => ({
+            borderBottom: `1px solid ${theme.palette.divider}`,
             '&:hover': {
               background: alpha(theme.palette.primary.main, 0.1),
             },
