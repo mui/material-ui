@@ -912,7 +912,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           },
         },
       },
-      MuiRichTreeView: { styleOverrides: { root: { paddingBottom: 5 } } },
       MuiTreeItem2: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -929,7 +928,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           content: ({ theme }) => ({
             marginTop: theme.spacing(1),
             padding: theme.spacing(0.5, 1),
-            overflow: 'hidden',
+            overflow: 'clip',
             '&:hover': {
               backgroundColor: alpha(gray[300], 0.2),
             },

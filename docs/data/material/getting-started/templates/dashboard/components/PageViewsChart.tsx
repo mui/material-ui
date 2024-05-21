@@ -126,8 +126,8 @@ export default function PageViewsChart() {
             slotProps={{
               legend: {
                 labelStyle: { fontSize: 14 },
-                itemMarkWidth: 12,
-                itemMarkHeight: 12,
+                itemMarkWidth: 10,
+                itemMarkHeight: 10,
                 itemGap: 24,
                 position: { vertical: 'top', horizontal: 'right' },
               },
