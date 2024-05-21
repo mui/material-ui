@@ -15,9 +15,17 @@ export default function MenuButton({
       color="error"
       variant="dot"
       invisible={!showBadge}
-      sx={{ '& .MuiBadge-badge': { right: 2, top: 2 } }}
+      sx={{
+        '& .MuiBadge-badge': { right: 2, top: 2 },
+      }}
     >
-      <IconButton size="small" {...props} />
+      <IconButton
+        size="small"
+        sx={{
+          '& .MuiSvgIcon-root': { width: '1.125rem', height: '1.125rem' },
+        }}
+        {...props}
+      />
     </Badge>
   );
 }

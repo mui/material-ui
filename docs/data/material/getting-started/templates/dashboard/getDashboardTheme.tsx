@@ -459,7 +459,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                   size: 'small',
                 },
                 style: {
-                  minWidth: '2rem',
+                  width: '2rem',
                   height: '2rem',
                   padding: '0.25rem',
                 },
@@ -469,7 +469,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                   size: 'medium',
                 },
                 style: {
-                  minWidth: '2.5rem',
+                  width: '2.5rem',
                   height: '2.5rem',
                 },
               },
