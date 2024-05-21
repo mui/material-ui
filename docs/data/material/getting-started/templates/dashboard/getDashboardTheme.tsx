@@ -164,7 +164,8 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                     borderColor: brand[900],
                     backgroundColor: alpha(brand[900], 0.3),
                     '&:hover': {
-                      borderColor: brand[500],
+                      borderColor: brand[700],
+                      backgroundColor: alpha(brand[900], 0.6),
                     },
                     '&:active': {
                       backgroundColor: alpha(brand[900], 0.5),
@@ -590,10 +591,10 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       MuiOutlinedInput: {
         styleOverrides: {
           root: ({ theme }) => ({
-            color: gray[900],
+            color: theme.palette.text.primary,
             borderRadius: theme.shape.borderRadius,
-            border: '1px solid',
-            borderColor: gray[200],
+            border: `1px solid ${theme.palette.divider}`,
+            transition: 'border 120ms ease-in',
             '&:hover': {
               borderColor: gray[400],
             },
@@ -603,8 +604,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               borderColor: brand[400],
             },
             ...theme.applyStyles('dark', {
-              borderColor: gray[700],
-              color: gray[300],
               '&:hover': {
                 borderColor: gray[500],
               },
