@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
-import Toolbar from '@mui/material/Toolbar';
+import MuiToolbar from '@mui/material/Toolbar';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
@@ -19,7 +19,7 @@ interface NavBarProps {
   toggleColorMode: () => void;
 }
 
-const StyledToolbar = styled(Toolbar)({
+const Toolbar = styled(MuiToolbar)({
   maxWidth: 1538,
   width: '100%',
   padding: '16px 16px 0 16px',
@@ -67,7 +67,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
         borderColor: theme.palette.divider,
       })}
     >
-      <StyledToolbar variant="regular">
+      <Toolbar variant="regular">
         <Stack
           direction="row"
           gap={1}
@@ -108,7 +108,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
           <Tab label="Analytics" {...a11yProps(1)} />
           <Tab label="Clients" {...a11yProps(2)} />
         </Tabs>
-      </StyledToolbar>
+      </Toolbar>
     </AppBar>
   );
 }
