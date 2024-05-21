@@ -285,7 +285,7 @@ module.exports = {
     },
     // Next.js plugin
     {
-      files: ['docs/**/*'],
+      files: ['docs/*'],
       extends: ['plugin:@next/next/recommended'],
       settings: {
         next: {
@@ -299,7 +299,7 @@ module.exports = {
     },
     // Next.js entry points pages
     {
-      files: ['docs/pages/**/*.js'],
+      files: ['docs/pages/**/*{.tsx,.js}'],
       rules: {
         'react/prop-types': 'off',
       },
@@ -474,7 +474,13 @@ module.exports = {
       },
     },
     {
-      files: ['examples/**'],
+      /**
+       * Examples are for demonstration purposes and should not be considered a part of the library.
+       * They don't contain ESLint setup, so we don't want them to contain ESLint directives
+       * We do, however, want to keep the rules in place to ensure the examples are following
+       * a reasonably
+       */
+      files: ['examples/*'],
       rules: {
         'no-console': 'off',
         'no-underscore-dangle': 'off',
@@ -492,8 +498,8 @@ module.exports = {
       },
     },
     {
-      // TODO, to propagate: https://github.com/mui/material-ui/issues/42169
-      files: ['examples/pigment-css-remix-ts/**'],
+      // TODO, move rule to be global, propagate: https://github.com/mui/material-ui/issues/42169
+      files: ['examples/pigment-css-remix-ts/*'],
       rules: {
         'react/react-in-jsx-scope': 'off',
       },
