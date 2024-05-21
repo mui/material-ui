@@ -107,8 +107,8 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     autoHideDuration = null,
     children,
     className,
-    ClickAwayListenerProps,
-    ContentProps,
+    ClickAwayListenerProps: ClickAwayListenerPropsProp,
+    ContentProps: ContentPropsProp,
     disableWindowBlurListener = false,
     message,
     onBlur,
@@ -137,33 +137,16 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
-  const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
-
-  const [TransitionSlot, transitionProps] = useSlot('transition', {
-    elementType: Grow,
-    externalForwardedProps: {
-      slots: backwardCompatibleSlots,
-      slotProps: backwardCompatibleSlotProps,
-    },
-    ownerState,
-  });
-
-  delete transitionProps.ownerState;
+  const backwardCompatibleSlotProps = {
+    content: ContentPropsProp,
+    clickAwayListener: ClickAwayListenerPropsProp,
+    transition: TransitionPropsProp,
+    ...slotProps,
+  };
 
   const { getRootProps, onClickAway } = useSnackbar({ ...ownerState });
 
   const [exited, setExited] = React.useState(true);
-
-  const rootProps = useSlotProps({
-    elementType: SnackbarRoot,
-    getSlotProps: getRootProps,
-    externalForwardedProps: other,
-    ownerState,
-    additionalProps: {
-      ref,
-    },
-    className: [classes.root, className],
-  });
 
   const handleExited = (node) => {
     setExited(true);
@@ -181,24 +164,65 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     }
   };
 
+  const rootProps = useSlotProps({
+    elementType: SnackbarRoot,
+    getSlotProps: getRootProps,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      ref,
+    },
+    className: [classes.root, className],
+  });
+
+  const clickAwayListenerProps = useSlotProps({
+    elementType: ClickAwayListener,
+    externalSlotProps: backwardCompatibleSlotProps.clickAwayListener,
+    additionalProps: {
+      onClickAway,
+    },
+    ownerState,
+  });
+
+  const snackbarContentProps = useSlotProps({
+    elementType: SnackbarContent,
+    externalSlotProps: backwardCompatibleSlotProps.content,
+    additionalProps: {
+      message,
+      action,
+    },
+    ownerState,
+  });
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Grow,
+    externalForwardedProps: {
+      slots: backwardCompatibleSlots,
+      slotProps: backwardCompatibleSlotProps,
+    },
+    additionalProps: {
+      appear: true,
+      in: open,
+      timeout: transitionDuration,
+      direction: vertical === 'top' ? 'down' : 'up',
+      onEnter: handleEnter,
+      onExited: handleExited,
+    },
+    ownerState,
+  });
+
+  delete transitionProps.ownerState;
+
   // So we only render active snackbars.
   if (!open && exited) {
     return null;
   }
 
   return (
-    <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
+    <ClickAwayListener {...clickAwayListenerProps}>
       <SnackbarRoot {...rootProps}>
-        <TransitionSlot
-          appear
-          in={open}
-          timeout={transitionDuration}
-          direction={vertical === 'top' ? 'down' : 'up'}
-          onEnter={handleEnter}
-          onExited={handleExited}
-          {...transitionProps}
-        >
-          {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
+        <TransitionSlot {...transitionProps}>
+          {children || <SnackbarContent {...snackbarContentProps} />}
         </TransitionSlot>
       </SnackbarRoot>
     </ClickAwayListener>
@@ -246,10 +270,12 @@ Snackbar.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Props applied to the `ClickAwayListener` element.
+   * @deprecated Use `slots.clickAwayListener` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
    * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
+   * @deprecated Use `slots.content` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContentProps: PropTypes.object,
   /**
@@ -311,6 +337,8 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    clickAwayListener: PropTypes.object,
+    content: PropTypes.object,
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -355,7 +383,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps: PropTypes.object,
 };

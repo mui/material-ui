@@ -24,6 +24,26 @@ export interface SnackbarTransitionSlotPropsOverrides {}
 export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
   SnackbarSlots,
   {
+    /**
+     * Props applied to the `ClickAwayListener` element.
+     */
+    clickAwayListener?: SlotProps<
+      React.ElementType<ClickAwayListenerProps>,
+      Partial<ClickAwayListenerProps>,
+      SnackbarOwnerState
+    >;
+    /**
+     * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
+     */
+    content?: SlotProps<
+      React.ElementType<SnackbarContentProps>,
+      Partial<SnackbarContentProps>,
+      SnackbarOwnerState
+    >;
+    /**
+     * Props applied to the transition element.
+     * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+     */
     transition: SlotProps<
       React.ElementType<TransitionProps>,
       SnackbarTransitionSlotPropsOverrides,
@@ -71,10 +91,12 @@ export interface SnackbarProps
   classes?: Partial<SnackbarClasses>;
   /**
    * Props applied to the `ClickAwayListener` element.
+   * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
   /**
    * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
+   * @deprecated Use `slotProps.content` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContentProps?: Partial<SnackbarContentProps>;
   /**
@@ -141,7 +163,7 @@ export interface SnackbarProps
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps?: TransitionProps;
 }
