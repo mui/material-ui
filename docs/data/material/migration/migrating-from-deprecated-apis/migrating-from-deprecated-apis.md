@@ -267,6 +267,26 @@ All of the Autocomplete's slot props (`*Props`) props were deprecated in favor o
  />
 ```
 
+### componentsProps
+
+The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`:
+
+```diff
+ <Autocomplete
+-  componentsProps={{
+-    clearIndicator: { width: 10 },
+-    paper: { width: 12 },
+-    popper: { width: 14 },
+-    popupIndicator: { width: 16 },
++  slotProps={{
++    clearIndicator: { width: 10 },
++    paper: { width: 12 },
++    popper: { width: 14 },
++    popupIndicator: { width: 16 },
+    }}
+ />
+```
+
 ## Avatar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
@@ -1102,6 +1122,35 @@ Here's how to migrate:
         },
    },
   },
+```
+
+## TextField
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/text-field-props <path>
+```
+
+### \*Props props
+
+All of the TextField's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <TextField
+-    InputProps={CustomInputProps}
+-    inputProps={CustomHtmlInputProps}
+-    SelectProps={CustomSelectProps}
+-    InputLabelProps={CustomInputLabelProps}
+-    FormHelperTextProps={CustomFormHelperProps}
++    slotProps={{
++        input: CustomInputProps
++        htmlInput: CustomHtmlInputProps
++        select: CustomSelectProps
++        inputLabel: CustomInputLabelProps
++        formHelper: CustomFormHelperProps
++    }}
+ />
 ```
 
 ## StepLabel

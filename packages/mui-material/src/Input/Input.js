@@ -115,7 +115,7 @@ const InputRoot = styled(InputBaseRoot, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main)
+        .filter(([, value]) => value && value.main)
         .map(([color]) => ({
           props: { color, disableUnderline: false },
           style: {
