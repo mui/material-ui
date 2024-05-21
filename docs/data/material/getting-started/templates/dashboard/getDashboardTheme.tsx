@@ -37,6 +37,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             boxShadow: 'none',
             borderRadius: theme.shape.borderRadius,
             textTransform: 'none',
+            '& .MuiSvgIcon-root': { width: '1.125rem', height: '1.125rem' },
             variants: [
               {
                 props: {
@@ -118,24 +119,21 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                   variant: 'outlined',
                 },
                 style: {
-                  color: gray[600],
-                  border: '1px solid',
-                  borderColor: gray[200],
+                  color: theme.palette.text.primary,
+                  border: `1px solid ${theme.palette.divider}`,
                   backgroundColor: gray[50],
                   '&:hover': {
                     backgroundColor: gray[100],
-                    borderColor: gray[400],
+                    borderColor: gray[300],
                   },
                   '&:active': {
                     backgroundColor: gray[200],
                   },
                   ...theme.applyStyles('dark', {
-                    color: gray[50],
-                    border: '1px solid',
-                    borderColor: gray[700],
                     backgroundColor: gray[800],
                     '&:hover': {
-                      borderColor: gray[500],
+                      backgroundColor: gray[900],
+                      borderColor: gray[600],
                     },
                     '&:active': {
                       backgroundColor: gray[900],

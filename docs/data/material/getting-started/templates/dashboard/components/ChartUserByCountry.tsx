@@ -4,7 +4,6 @@ import { useDrawingArea } from '@mui/x-charts/hooks';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
@@ -101,70 +100,72 @@ const colors = [
 
 export default function ChartUserByCountry() {
   return (
-    <Card variant="outlined">
-      <CardContent>
-        <Typography variant="subtitle2">Users by country</Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <PieChart
-            colors={colors}
-            margin={{
-              left: 80,
-              right: 80,
-              top: 80,
-              bottom: 80,
-            }}
-            series={[
-              {
-                data,
-                innerRadius: 75,
-                outerRadius: 100,
-                paddingAngle: 0,
-                highlightScope: { faded: 'global', highlighted: 'item' },
-              },
-            ]}
-            height={260}
-            width={260}
-            slotProps={{
-              legend: { hidden: true },
-            }}
-          >
-            <PieCenterLabel primaryText="98.5K" secondaryText="Total" />
-          </PieChart>
-        </Box>
-        {countries.map((country, index) => (
-          <Stack
-            direction="row"
-            alignItems="center"
-            gap={2}
-            sx={{ '&:not(:last-of-type)': { pb: 2 } }}
-            key={index}
-          >
-            {country.flag}
-            <Stack gap={1} sx={{ flexGrow: 1 }}>
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-                gap={2}
-              >
-                <Typography variant="body2">{country.name}</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {country.value}%
-                </Typography>
-              </Stack>
-              <LinearProgress
-                variant="determinate"
-                value={country.value}
-                sx={{
-                  [`& .${linearProgressClasses.bar}`]: {
-                    backgroundColor: country.color,
-                  },
-                }}
-              />
+    <Card variant="outlined" sx={{ pb: '8px' }}>
+      <Typography component="h2" variant="subtitle2">
+        Users by country
+      </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <PieChart
+          colors={colors}
+          margin={{
+            left: 80,
+            right: 80,
+            top: 80,
+            bottom: 80,
+          }}
+          series={[
+            {
+              data,
+              innerRadius: 75,
+              outerRadius: 100,
+              paddingAngle: 0,
+              highlightScope: { faded: 'global', highlighted: 'item' },
+            },
+          ]}
+          height={260}
+          width={260}
+          slotProps={{
+            legend: { hidden: true },
+          }}
+        >
+          <PieCenterLabel primaryText="98.5K" secondaryText="Total" />
+        </PieChart>
+      </Box>
+      {countries.map((country, index) => (
+        <Stack
+          key={index}
+          direction="row"
+          alignItems="center"
+          gap={2}
+          sx={{ pb: 2 }}
+        >
+          {country.flag}
+          <Stack gap={1} sx={{ flexGrow: 1 }}>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              gap={2}
+            >
+              <Typography variant="body2" fontWeight="500">
+                {country.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {country.value}%
+              </Typography>
             </Stack>
+            <LinearProgress
+              variant="determinate"
+              value={country.value}
+              sx={{
+                [`& .${linearProgressClasses.bar}`]: {
+                  backgroundColor: country.color,
+                },
+              }}
+            />
           </Stack>
-        ))}
-      </CardContent>
+        </Stack>
+      ))}
     </Card>
   );
 }
