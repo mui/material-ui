@@ -8,9 +8,6 @@ const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
   '& .MuiBreadcrumbs-separator': {
     color: theme.palette.action.disabled,
   },
-  '& .MuiTypography-root': {
-    color: theme.palette.text.secondary,
-  },
   '& .MuiBreadcrumbs-ol': {
     alignItems: 'normal',
   },
@@ -20,7 +17,9 @@ export default function NavbarBreadcrumbs() {
   return (
     <StyledBreadcrumbs aria-label="breadcrumb">
       <SitemarkIcon />
-      <Typography>Project 1 (Production)</Typography>
+      <Typography fontWeight="medium" color="text.primary">
+        Project (Production)
+      </Typography>
     </StyledBreadcrumbs>
   );
 }
