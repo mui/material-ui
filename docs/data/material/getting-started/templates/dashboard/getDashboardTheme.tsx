@@ -428,7 +428,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             textTransform: 'none',
             fontWeight: theme.typography.fontWeightMedium,
             letterSpacing: 0,
-            color: gray[600],
+            color: theme.palette.text.primary,
             border: `1px solid ${theme.palette.divider}`,
             backgroundColor: gray[50],
             '&:hover': {
@@ -439,7 +439,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               backgroundColor: gray[200],
             },
             ...theme.applyStyles('dark', {
-              color: gray[50],
               backgroundColor: gray[800],
               '&:hover': {
                 backgroundColor: gray[900],
