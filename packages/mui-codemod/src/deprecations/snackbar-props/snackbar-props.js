@@ -24,5 +24,19 @@ export default function transformer(file, api, options) {
     slotName: 'transition',
   });
 
+  movePropIntoSlotProps(j, {
+    root,
+    componentName: 'Snackbar',
+    propName: 'ClickAwayListenerProps',
+    slotName: 'clickAwayListener',
+  });
+
+  movePropIntoSlotProps(j, {
+    root,
+    componentName: 'Snackbar',
+    propName: 'ContentProps',
+    slotName: 'content',
+  });
+
   return root.toSource(printOptions);
 }

@@ -1,6 +1,8 @@
 fn({
   MuiSnackbar: {
     defaultProps: {
+      ClickAwayListenerProps: CustomListenerProps,
+      ContentProps: CustomContentProps,
       TransitionComponent: CustomTransition,
       TransitionProps: CustomTransitionProps,
     },
@@ -10,6 +12,8 @@ fn({
 fn({
   MuiSnackbar: {
     defaultProps: {
+      ClickAwayListenerProps: CustomListenerProps,
+      ContentProps: CustomContentProps,
       TransitionComponent: CustomTransition,
       TransitionProps: CustomTransitionProps,
       slots: {
@@ -22,6 +26,8 @@ fn({
 fn({
   MuiSnackbar: {
     defaultProps: {
+      ClickAwayListenerProps: CustomListenerProps,
+      ContentProps: CustomContentProps,
       TransitionComponent: ComponentTransition,
       TransitionProps: CustomTransitionProps,
       slots: {

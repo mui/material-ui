@@ -11,8 +11,16 @@
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
     "children": { "type": { "name": "element" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "ClickAwayListenerProps": { "type": { "name": "object" } },
-    "ContentProps": { "type": { "name": "object" } },
+    "ClickAwayListenerProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.clickAwayListener</code> instead. This prop will be removed in v7."
+    },
+    "ContentProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.content</code> instead. This prop will be removed in v7."
+    },
     "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
     "key": { "type": { "name": "custom", "description": "any" } },
     "message": { "type": { "name": "node" } },
@@ -26,7 +34,10 @@
     "open": { "type": { "name": "bool" } },
     "resumeHideDuration": { "type": { "name": "number" } },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ transition?: func<br>&#124;&nbsp;object, clickAwayListener?: object, content?: object}"
+      },
       "default": "{}"
     },
     "slots": {
@@ -57,7 +68,7 @@
       "type": { "name": "object" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7."
+      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in v7."
     }
   },
   "name": "Snackbar",

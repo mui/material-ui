@@ -6,6 +6,8 @@ import { Snackbar as MySnackbar } from '@mui/material';
     transition: CustomTransition,
   }}
   slotProps={{
+    clickAwayListener: CustomListenerProps,
+    content: CustomContentProps,
     transition: CustomTransitionProps,
   }}
 />;
@@ -14,6 +16,8 @@ import { Snackbar as MySnackbar } from '@mui/material';
     transition: CustomTransition,
   }}
   slotProps={{
+    clickAwayListener: CustomListenerProps,
+    content: CustomContentProps,
     transition: CustomTransitionProps,
   }}
 />;
@@ -23,6 +27,8 @@ import { Snackbar as MySnackbar } from '@mui/material';
     transition: CustomTransition,
   }}
   slotProps={{
+    clickAwayListener: CustomListenerProps,
+    content: CustomContentProps,
     transition: CustomTransitionProps,
   }}
 />;
@@ -32,6 +38,8 @@ import { Snackbar as MySnackbar } from '@mui/material';
     transition: CustomTransition,
   }}
   slotProps={{
+    clickAwayListener: CustomListenerProps,
+    content: CustomContentProps,
     transition: CustomTransitionProps,
   }}
 />;
@@ -41,8 +49,15 @@ import { Snackbar as MySnackbar } from '@mui/material';
     transition: SlotTransition,
   }}
   slotProps={{
+    clickAwayListener: CustomListenerProps,
+    content: CustomContentProps,
     transition: CustomTransitionProps,
   }}
 />;
 // should skip non MUI components
-<NonMuiSnackbar TransitionComponent={CustomTransition} TransitionProps={CustomTransitionProps} />;
+<NonMuiSnackbar
+  ClickAwayListenerProps={CustomListenerProps}
+  ContentProps={CustomContentProps}
+  TransitionComponent={CustomTransition}
+  TransitionProps={CustomTransitionProps}
+/>;
