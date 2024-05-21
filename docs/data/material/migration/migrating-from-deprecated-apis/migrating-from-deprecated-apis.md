@@ -1084,6 +1084,35 @@ The Slider's `componentsProps` prop was deprecated in favor of `slotProps`:
  />
 ```
 
+## Snackbar
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#snackbar-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/snackbar-props <path>
+```
+
+### TransitionComponent
+
+The Snackbar's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Snackbar
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+```
+
+### TransitionProps
+
+The Snackbar's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Snackbar
+-  TransitionProps={CustomTransitionProps}
++  slotProps={{ transition: CustomTransitionProps }}
+ />
+```
+
 ## ToggleButtonGroup
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#toggle-button-group-classes) below to migrate the code as described in the following sections:

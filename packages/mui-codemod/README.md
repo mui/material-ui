@@ -1095,6 +1095,21 @@ npx @mui/codemod@next deprecations/pagination-item-props <path>
 npx @mui/codemod@next deprecations/slider-props <path>
 ```
 
+#### `snackbar-props`
+
+```diff
+ <Snackbar
+-    TransitionComponent={CustomTransition}
+-    TransitionProps={CustomTransitionProps}
++    slots={{ transition: CustomTransition }}
++    slotProps={{ transition: CustomTransitionProps }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/snackbar-props <path>
+```
+
 #### `text-field-props`
 
 ```diff
