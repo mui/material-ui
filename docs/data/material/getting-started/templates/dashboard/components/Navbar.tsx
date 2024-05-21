@@ -88,9 +88,9 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
         <Stack
           direction="row"
           justifyContent="space-between"
-          flexGrow={1}
           alignItems="center"
-          sx={{ display: { sm: 'flex', md: 'none' } }}
+          flexGrow={1}
+          sx={{ width: '100%', display: { sm: 'flex', md: 'none' } }}
         >
           <NavbarBreadcrumbs />
           <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
