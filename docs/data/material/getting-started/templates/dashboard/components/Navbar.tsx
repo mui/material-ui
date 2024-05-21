@@ -32,6 +32,8 @@ const Toolbar = styled(MuiToolbar)({
   backdropFilter: 'blur(24px)',
   '& .MuiTabs-flexContainer': {
     gap: '8px',
+    p: '8px',
+    pb: 0,
   },
 });
 
