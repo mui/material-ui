@@ -176,15 +176,6 @@ const appList = [
     dateAdded: '2018-01-24',
   },
   {
-    title: 'LocalMonero',
-    description:
-      'A safe and easy-to-use person-to-person platform to allow anyone ' +
-      'to trade their local currency for Monero, anywhere.',
-    image: 'localmonero.jpg',
-    link: 'https://localmonero.co/?rc=ogps',
-    dateAdded: '2018-01-04',
-  },
-  {
     title: 'LessWrong',
     description: 'LessWrong is a community blog devoted to the art of human rationality.',
     image: 'lesswrong.jpg',
