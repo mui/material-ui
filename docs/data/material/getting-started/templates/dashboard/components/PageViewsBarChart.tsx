@@ -75,10 +75,11 @@ export default function PageViewsBarChart() {
           grid={{ horizontal: true }}
           slotProps={{
             legend: {
-              labelStyle: { fontSize: 14 },
+              position: { vertical: 'top', horizontal: 'right' },
               itemMarkWidth: 12,
               itemMarkHeight: 12,
-              position: { vertical: 'top', horizontal: 'right' },
+              itemGap: 24,
+              labelStyle: { fontSize: 14 },
             },
           }}
         />

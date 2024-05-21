@@ -128,6 +128,7 @@ export default function PageViewsChart() {
                 labelStyle: { fontSize: 14 },
                 itemMarkWidth: 12,
                 itemMarkHeight: 12,
+                itemGap: 24,
                 position: { vertical: 'top', horizontal: 'right' },
               },
             }}
