@@ -285,7 +285,7 @@ module.exports = {
     },
     // Next.js plugin
     {
-      files: ['docs/*'],
+      files: ['docs/**/*'],
       extends: ['plugin:@next/next/recommended'],
       settings: {
         next: {
@@ -480,7 +480,7 @@ module.exports = {
        * We do, however, want to keep the rules in place to ensure the examples are following
        * a reasonably similar code style as the library.
        */
-      files: ['examples/*'],
+      files: ['examples/**/*'],
       rules: {
         'no-console': 'off',
         'no-underscore-dangle': 'off',
@@ -499,7 +499,7 @@ module.exports = {
     },
     {
       // TODO, move rule to be global, propagate: https://github.com/mui/material-ui/issues/42169
-      files: ['examples/pigment-css-remix-ts/*'],
+      files: ['examples/pigment-css-remix-ts/**/*'],
       rules: {
         'react/react-in-jsx-scope': 'off',
       },
