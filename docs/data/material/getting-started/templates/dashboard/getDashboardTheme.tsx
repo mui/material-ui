@@ -697,10 +697,10 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       MuiTab: {
         styleOverrides: {
           root: ({ theme }) => ({
+            padding: 0,
             textTransform: 'none',
-            px: 4,
             minWidth: 'fit-content',
-            color: theme.palette.grey[400],
+            color: theme.palette.text.secondary,
             '&.Mui-selected': {
               color: theme.palette.grey[900],
             },
