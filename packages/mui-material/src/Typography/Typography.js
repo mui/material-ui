@@ -63,7 +63,7 @@ export const TypographyRoot = styled('span', {
         style: value,
       })),
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main)
+      .filter(([, value]) => value && value.main)
       .map(([color]) => ({
         props: { color },
         style: {

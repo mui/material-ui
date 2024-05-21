@@ -214,7 +214,7 @@ const PaginationItemPage = styled(ButtonBase, {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main && value.dark && value.contrastText)
+      .filter(([, value]) => value && value.main && value.dark && value.contrastText)
       .map(([color]) => ({
         props: { variant: 'text', color },
         style: {
@@ -238,7 +238,7 @@ const PaginationItemPage = styled(ButtonBase, {
         },
       })),
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main && value.light)
+      .filter(([, value]) => value && value.main && value.light)
       .map(([color]) => ({
         props: { variant: 'outlined', color },
         style: {

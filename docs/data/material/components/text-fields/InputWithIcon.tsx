@@ -26,12 +26,14 @@ export default function InputWithIcon() {
       <TextField
         id="input-with-icon-textfield"
         label="TextField"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <AccountCircle />
-            </InputAdornment>
-          ),
+        slotProps={{
+          input: {
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccountCircle />
+              </InputAdornment>
+            ),
+          },
         }}
         variant="standard"
       />
