@@ -478,7 +478,7 @@ module.exports = {
        * Examples are for demonstration purposes and should not be considered a part of the library.
        * They don't contain ESLint setup, so we don't want them to contain ESLint directives
        * We do, however, want to keep the rules in place to ensure the examples are following
-       * a reasonably
+       * a reasonably similar code style as the library.
        */
       files: ['examples/*'],
       rules: {
