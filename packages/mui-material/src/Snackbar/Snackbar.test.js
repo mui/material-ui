@@ -30,6 +30,11 @@ describe('<Snackbar />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSnackbar',
+    slots: {
+      transition: {
+        testWithElement: null,
+      },
+    },
     skip: [
       'componentProp',
       'componentsProp',
