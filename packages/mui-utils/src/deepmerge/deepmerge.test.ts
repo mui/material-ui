@@ -34,6 +34,18 @@ describe('deepmerge', () => {
     expect({}).not.to.have.property('isAdmin');
   });
 
+  it('should appropriately copy the fields without prototype pollution', () => {
+    const result = deepmerge(
+      {},
+      JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'),
+    );
+
+    // @ts-expect-error __proto__ is not on this object type
+    // eslint-disable-next-line no-proto
+    expect(result.__proto__).to.have.property('isAdmin');
+    expect({}).not.to.have.property('isAdmin');
+  })
+
   it('should merge objects across realms', function test() {
     if (!/jsdom/.test(window.navigator.userAgent)) {
       // vm is only available in Node.js.
