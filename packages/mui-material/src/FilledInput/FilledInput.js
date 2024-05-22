@@ -287,6 +287,9 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     type,
   };
 
+  // https://github.com/mui/material-ui/issues/42184
+  delete ownerState.ownerState;
+
   const classes = useUtilityClasses(props);
   const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
 

@@ -206,6 +206,9 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     focused: fcs.focused,
   };
 
+  // https://github.com/mui/material-ui/issues/42184
+  delete ownerState.ownerState;
+
   const classes = useUtilityClasses(ownerState);
 
   return (

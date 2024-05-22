@@ -525,6 +525,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     type,
   };
 
+  // https://github.com/mui/material-ui/issues/42184
+  delete ownerState.ownerState;
+
   const classes = useUtilityClasses(ownerState);
 
   const Root = slots.root || components.Root || InputBaseRoot;
