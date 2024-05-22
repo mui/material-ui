@@ -28,18 +28,14 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props applied to the `ClickAwayListener` element.
      */
     clickAwayListener?: SlotProps<
-      React.ElementType<ClickAwayListenerProps>,
-      Partial<ClickAwayListenerProps>,
+      React.ElementType<Partial<ClickAwayListenerProps>>,
+      {},
       SnackbarOwnerState
     >;
     /**
      * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
      */
-    content?: SlotProps<
-      React.ElementType<SnackbarContentProps>,
-      Partial<SnackbarContentProps>,
-      SnackbarOwnerState
-    >;
+    content?: SlotProps<React.ElementType<Partial<SnackbarContentProps>>, {}, SnackbarOwnerState>;
     /**
      * Props applied to the transition element.
      * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.

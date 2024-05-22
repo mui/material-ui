@@ -85,6 +85,6 @@
     "root": { "description": "Styles applied to the root element." }
   },
   "slotDescriptions": {
-    "transition": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component."
+    "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }
