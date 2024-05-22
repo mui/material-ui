@@ -75,7 +75,7 @@ const PRODUCT_IDS = [
 ];
 
 type ProductSubMenuProps = {
-  icon: React.ReactElement;
+  icon: React.ReactElement<any>;
   name: React.ReactNode;
   description: React.ReactNode;
   chip?: React.ReactNode;
