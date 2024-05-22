@@ -270,12 +270,12 @@ Snackbar.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Props applied to the `ClickAwayListener` element.
-   * @deprecated Use `slots.clickAwayListener` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
    * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
-   * @deprecated Use `slots.content` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.content` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContentProps: PropTypes.object,
   /**
