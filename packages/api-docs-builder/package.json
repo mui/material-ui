@@ -34,7 +34,7 @@
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.33",
     "@types/react-docgen": "workspace:*",
-    "@types/sinon": "^10.0.20",
+    "@types/sinon": "^17.0.3",
     "chai": "^4.4.1",
     "sinon": "^15.2.0"
   }
