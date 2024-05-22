@@ -4,4 +4,4 @@ type Props = {
   baz?: false;
 };
 
-export default function Foo(props: Props): JSX.Element;
+export default function Foo(props: Props): React.JSX.Element;

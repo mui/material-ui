@@ -70,7 +70,7 @@ export interface ClickAwayListenerProps {
  *
  * - [ClickAwayListener API](https://mui.com/base-ui/react-click-away-listener/components-api/#click-away-listener)
  */
-function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
+function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   const {
     children,
     disableReactTree = false,

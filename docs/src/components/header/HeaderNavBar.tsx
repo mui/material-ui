@@ -80,7 +80,7 @@ type ProductSubMenuProps = {
   description: React.ReactNode;
   chip?: React.ReactNode;
   href: string;
-} & Omit<JSX.IntrinsicElements['a'], 'ref'>;
+} & Omit<React.JSX.IntrinsicElements['a'], 'ref'>;
 
 const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
   function ProductSubMenu({ icon, name, description, chip, href, ...props }, ref) {

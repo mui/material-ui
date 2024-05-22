@@ -100,5 +100,5 @@ export interface OptionOwnerState extends ApplyColorInversion<Omit<OptionProps, 
 
 export type ExtendOption<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendOptionTypeMap<M>, 'a'>,
-) => JSX.Element) &
+) => React.JSX.Element) &
   OverridableComponent<ExtendOptionTypeMap<M>>;

@@ -30,7 +30,7 @@ export interface ListItemSecondaryActionProps
  *
  * - [ListItemSecondaryAction API](https://mui.com/material-ui/api/list-item-secondary-action/)
  */
-declare const ListItemSecondaryAction: ((props: ListItemSecondaryActionProps) => JSX.Element) & {
+declare const ListItemSecondaryAction: ((props: ListItemSecondaryActionProps) => React.JSX.Element) & {
   muiName: string;
 };
 

@@ -26,7 +26,7 @@ export interface SlotTestingOptions {
   /**
    * A custom HTML tag to use for the `slots` prop.
    */
-  testWithElement?: keyof JSX.IntrinsicElements | null;
+  testWithElement?: keyof React.JSX.IntrinsicElements | null;
   /**
    * To ensure that the slot has this class name when `slotProps` is provided.
    */
