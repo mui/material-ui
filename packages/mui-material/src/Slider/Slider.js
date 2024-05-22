@@ -59,9 +59,9 @@ export const SliderRoot = styled('span', {
     },
   },
   variants: [
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter((key) => (theme.vars ?? theme).palette[key].main)
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main)
+      .map(([color]) => ({
         props: { color },
         style: {
           color: (theme.vars || theme).palette[color].main,
@@ -201,9 +201,9 @@ export const SliderTrack = styled('span', {
           display: 'none',
         },
       },
-      ...Object.keys((theme.vars ?? theme).palette)
-        .filter((key) => (theme.vars ?? theme).palette[key].main)
-        .map((color) => ({
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
           props: { color, track: 'inverted' },
           style: {
             ...(theme.vars
@@ -301,9 +301,9 @@ export const SliderThumb = styled('span', {
         transform: 'translate(-50%, 50%)',
       },
     },
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter((key) => (theme.vars ?? theme).palette[key].main)
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main)
+      .map(([color]) => ({
         props: { color },
         style: {
           [`&:hover, &.${sliderClasses.focusVisible}`]: {

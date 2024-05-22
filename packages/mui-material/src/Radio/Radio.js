@@ -59,7 +59,7 @@ const RadioRoot = styled(SwitchBase, {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
+      .filter(([, palette]) => palette && palette.main)
       .map(([color]) => ({
         props: { color, disableRipple: false },
         style: {
@@ -71,7 +71,7 @@ const RadioRoot = styled(SwitchBase, {
         },
       })),
     ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
+      .filter(([, palette]) => palette && palette.main)
       .map(([color]) => ({
         props: { color },
         style: {
