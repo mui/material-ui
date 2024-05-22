@@ -87,13 +87,9 @@ const ToggleButtonRoot = styled(ButtonBase, {
         },
       },
     },
-    ...Object.keys((theme.vars || theme).palette)
-      .filter((key) =>
-        theme.vars
-          ? theme.vars.palette[key].main && theme.vars.palette[key].mainChannel
-          : theme.palette[key].main,
-      )
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main)
+      .map(([color]) => ({
         props: { color },
         style: {
           [`&.${toggleButtonClasses.selected}`]: {
