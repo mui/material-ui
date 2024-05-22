@@ -4,7 +4,7 @@
 
 Material UI aims to provide building blocks for developers to create great user interfaces using the Material Design guidelines as a reference, which we strive to follow where practical.
 That doesn't mean we support every component or every feature.
-We often apply common sense and the latest around web development wherever their guidelines are missing or contradictory.
+We often apply common sense and the latest knowledge around web development wherever their guidelines are missing or contradictory.
 
 ## Inputs
 
