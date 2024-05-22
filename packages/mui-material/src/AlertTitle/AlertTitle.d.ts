@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme, TypographyProps } from '..';
+import { Theme, TypographyProps } from '..';
 import { AlertTitleClasses } from './alertTitleClasses';
 
-export interface AlertTitleProps
-  extends Pick<
-      TypographyProps,
-      'align' | 'component' | 'gutterBottom' | 'noWrap' | 'paragraph' | 'variant' | 'variantMapping'
-    >,
-    StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface AlertTitleProps extends TypographyProps<'div'> {
   /**
    * The content of the component.
    */
