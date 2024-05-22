@@ -11,8 +11,6 @@
 
 - [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
 
-- [Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
-
 - [MUI System](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
@@ -54,13 +52,6 @@ Use `@latest` for the latest stable release.
 Visit [https://mui.com/joy-ui/getting-started/](https://mui.com/joy-ui/getting-started/) to view the full documentation.
 
 **Note**: Joy UI is still in beta.
-We are adding new components regularly and you're welcome to contribute!
-
-### Base UI
-
-Visit [https://mui.com/base-ui/](https://mui.com/base-ui/) to view the full documentation.
-
-**Note**: Base UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
 ### MUI System
