@@ -26,33 +26,24 @@ const Card = styled(MuiCard)(({ theme }) => ({
 
 export default function HighlightedCard() {
   return (
-    <Card
-      sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row', md: 'column' },
-        justifyContent: 'space-between',
-        alignItems: { xs: 'space-between', sm: 'flex-end', md: 'space-between' },
-      }}
-    >
+    <Card sx={{ height: '100%' }}>
       <CardContent>
         <InsightsRoundedIcon color="primary" />
         <Typography component="h2" variant="subtitle2" fontWeight="600" gutterBottom>
           Explore your data
         </Typography>
-        <Typography color="text.secondary">
+        <Typography color="text.secondary" sx={{ mb: '8px' }}>
           Uncover performance and visitor insights with our data wizardry.
         </Typography>
+        <Button
+          variant="outlined"
+          size="small"
+          color="primary"
+          endIcon={<ChevronRightRoundedIcon />}
+        >
+          Get insights
+        </Button>
       </CardContent>
-      <Button
-        variant="outlined"
-        size="small"
-        color="secondary"
-        endIcon={<ChevronRightRoundedIcon />}
-        fullWidth
-      >
-        Get insights
-      </Button>
     </Card>
   );
 }

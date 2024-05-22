@@ -186,22 +186,24 @@ export default function CustomizedTreeView() {
       variant="outlined"
       sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
     >
-      <Typography variant="subtitle2">Product tree</Typography>
-      <RichTreeView
-        items={ITEMS}
-        aria-label="pages"
-        multiSelect
-        defaultExpandedItems={['1', '1.1']}
-        defaultSelectedItems={['1.1', '1.1.1']}
-        sx={{
-          m: '0 -8px',
-          pb: '8px',
-          height: 'fit-content',
-          flexGrow: 1,
-          overflowY: 'auto',
-        }}
-        slots={{ item: CustomTreeItem }}
-      />
+      <CardContent>
+        <Typography variant="subtitle2">Product tree</Typography>
+        <RichTreeView
+          items={ITEMS}
+          aria-label="pages"
+          multiSelect
+          defaultExpandedItems={['1', '1.1']}
+          defaultSelectedItems={['1.1', '1.1.1']}
+          sx={{
+            m: '0 -8px',
+            pb: '8px',
+            height: 'fit-content',
+            flexGrow: 1,
+            overflowY: 'auto',
+          }}
+          slots={{ item: CustomTreeItem }}
+        />
+      </CardContent>
     </Card>
   );
 }

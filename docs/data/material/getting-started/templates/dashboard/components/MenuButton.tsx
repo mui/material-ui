@@ -19,13 +19,7 @@ export default function MenuButton({
         '& .MuiBadge-badge': { right: 2, top: 2 },
       }}
     >
-      <IconButton
-        size="small"
-        sx={{
-          '& .MuiSvgIcon-root': { width: '1.125rem', height: '1.125rem' },
-        }}
-        {...props}
-      />
+      <IconButton size="small" {...props} />
     </Badge>
   );
 }
