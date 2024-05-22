@@ -434,7 +434,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     clearOnEscape = false,
     clearText = 'Clear',
     closeText = 'Close',
-    componentsProps = {},
+    componentsProps,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -640,8 +640,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const renderGroup = renderGroupProp || defaultRenderGroup;
   const defaultRenderOption = (props2, option) => {
     // Need to clearly apply key because of https://github.com/vercel/next.js/issues/55642
+    const { key, ...otherProps } = props2;
     return (
-      <li {...props2} key={props2.key}>
+      <li key={key} {...otherProps}>
         {getOptionLabel(option)}
       </li>
     );
@@ -867,7 +868,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   closeText: PropTypes.string,
   /**
    * The props used for each slot inside.
-   * @default {}
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,

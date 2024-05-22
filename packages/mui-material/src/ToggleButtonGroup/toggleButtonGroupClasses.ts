@@ -4,6 +4,8 @@ import generateUtilityClass from '@mui/utils/generateUtilityClass';
 export interface ToggleButtonGroupClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** State class applied to the root element if `selected={true}`. */
+  selected: string;
   /** Styles applied to the root element if `orientation="horizontal"`. */
   horizontal: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
