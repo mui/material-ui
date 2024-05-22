@@ -3,57 +3,52 @@ import { Snackbar as MySnackbar } from '@mui/material';
 
 <Snackbar
   slots={{
-    transition: CustomTransition,
+    transition: CustomTransition
   }}
   slotProps={{
-    clickAwayListener: CustomListenerProps,
-    content: CustomContentProps,
     transition: CustomTransitionProps,
-  }}
-/>;
+    clickAwayListener: CustomListenerProps,
+    content: CustomContentProps
+  }} />;
 <MySnackbar
   slots={{
-    transition: CustomTransition,
+    transition: CustomTransition
   }}
   slotProps={{
-    clickAwayListener: CustomListenerProps,
-    content: CustomContentProps,
     transition: CustomTransitionProps,
-  }}
-/>;
+    clickAwayListener: CustomListenerProps,
+    content: CustomContentProps
+  }} />;
 <Snackbar
   slots={{
     root: 'div',
-    transition: CustomTransition,
+    transition: CustomTransition
   }}
   slotProps={{
-    clickAwayListener: CustomListenerProps,
-    content: CustomContentProps,
     transition: CustomTransitionProps,
-  }}
-/>;
+    clickAwayListener: CustomListenerProps,
+    content: CustomContentProps
+  }} />;
 <MySnackbar
   slots={{
     ...outerSlots,
-    transition: CustomTransition,
+    transition: CustomTransition
   }}
   slotProps={{
-    clickAwayListener: CustomListenerProps,
-    content: CustomContentProps,
     transition: CustomTransitionProps,
-  }}
-/>;
+    clickAwayListener: CustomListenerProps,
+    content: CustomContentProps
+  }} />;
 <Snackbar
   slots={{
     root: 'div',
-    transition: SlotTransition,
+    transition: SlotTransition
   }}
   slotProps={{
-    clickAwayListener: CustomListenerProps,
-    content: CustomContentProps,
     transition: CustomTransitionProps,
-  }}
-/>;
+    clickAwayListener: CustomListenerProps,
+    content: CustomContentProps
+  }} />;
 // should skip non MUI components
 <NonMuiSnackbar
   ClickAwayListenerProps={CustomListenerProps}

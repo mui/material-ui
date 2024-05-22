@@ -2,13 +2,14 @@ fn({
   MuiSnackbar: {
     defaultProps: {
       slots: {
-        transition: CustomTransition,
+        transition: CustomTransition
       },
+
       slotProps: {
-        clickAwayListener: CustomListenerProps,
-        content: CustomContentProps,
         transition: CustomTransitionProps,
-      },
+        clickAwayListener: CustomListenerProps,
+        content: CustomContentProps
+      }
     },
   },
 });
@@ -18,13 +19,14 @@ fn({
     defaultProps: {
       slots: {
         root: 'div',
-        transition: CustomTransition,
+        transition: CustomTransition
       },
+
       slotProps: {
-        clickAwayListener: CustomListenerProps,
-        content: CustomContentProps,
         transition: CustomTransitionProps,
-      },
+        clickAwayListener: CustomListenerProps,
+        content: CustomContentProps
+      }
     },
   },
 });
@@ -34,13 +36,14 @@ fn({
     defaultProps: {
       slots: {
         root: 'div',
-        transition: SlotTransition,
+        transition: SlotTransition
       },
+
       slotProps: {
-        clickAwayListener: CustomListenerProps,
-        content: CustomContentProps,
         transition: CustomTransitionProps,
-      },
+        clickAwayListener: CustomListenerProps,
+        content: CustomContentProps
+      }
     },
   },
 });

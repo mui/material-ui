@@ -38,7 +38,7 @@ import { Snackbar as MySnackbar } from '@mui/material';
   TransitionProps={CustomTransitionProps}
   slots={{
     root: 'div',
-    transition: SlotTransition,
+    transition: SlotTransition
   }}
 />;
 // should skip non MUI components

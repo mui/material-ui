@@ -4,7 +4,7 @@ fn({
       ClickAwayListenerProps: CustomListenerProps,
       ContentProps: CustomContentProps,
       TransitionComponent: CustomTransition,
-      TransitionProps: CustomTransitionProps,
+      TransitionProps: CustomTransitionProps
     },
   },
 });
@@ -18,7 +18,7 @@ fn({
       TransitionProps: CustomTransitionProps,
       slots: {
         root: 'div',
-      },
+      }
     },
   },
 });
@@ -32,8 +32,8 @@ fn({
       TransitionProps: CustomTransitionProps,
       slots: {
         root: 'div',
-        transition: SlotTransition,
-      },
+        transition: SlotTransition
+      }
     },
   },
 });
