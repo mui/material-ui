@@ -212,6 +212,8 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   });
 
   delete transitionProps.ownerState;
+  delete snackbarContentProps.ownerState;
+  delete clickAwayListenerProps.ownerState;
 
   // So we only render active snackbars.
   if (!open && exited) {
