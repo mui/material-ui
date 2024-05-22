@@ -2,7 +2,7 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
 const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
-const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css'];
+const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
 
 /**
  * WARNING: Always uses `latest` typings.
