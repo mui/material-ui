@@ -26,10 +26,6 @@
       "matchPackagePatterns": "@emotion/*"
     },
     {
-      "groupName": "WyW-in-JS",
-      "matchPackagePatterns": ["@wyw-in-js/*"]
-    },
-    {
       "groupName": "Font awesome SVG icons",
       "matchPackagePatterns": "@fortawesome/*"
     },
