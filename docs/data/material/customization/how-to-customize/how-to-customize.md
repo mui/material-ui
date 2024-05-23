@@ -187,6 +187,10 @@ Here is an example of how you can override styles for the `h1` elements:
 
 {{"demo": "GlobalCssOverride.js", "iframe": true, "height": 100}}
 
+The `styles` prop in the `GlobalStyles` component supports a callback in case you need to access the theme.
+
+{{"demo": "GlobalCssOverrideTheme.js", "iframe": true, "height": 100}}
+
 If you are already using the [CssBaseline](/material-ui/react-css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach.
 
 {{"demo": "OverrideCssBaseline.js", "iframe": true, "height": 100}}
