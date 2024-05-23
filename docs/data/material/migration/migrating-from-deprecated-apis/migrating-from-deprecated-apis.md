@@ -1043,7 +1043,7 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
 -    </IconButton>
 -  </ListItemSecondaryAction>
  </ListItem>
- ```
+```
 
 ## PaginationItem
 
