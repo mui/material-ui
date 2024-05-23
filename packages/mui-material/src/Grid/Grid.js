@@ -285,7 +285,7 @@ const GridRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } = ownerState;
+    const { container, direction, item, spacing, zeroMinWidth, breakpoints } = ownerState;
 
     let spacingStyles = [];
 
@@ -311,7 +311,6 @@ const GridRoot = styled('div', {
       zeroMinWidth && styles.zeroMinWidth,
       ...spacingStyles,
       direction !== 'row' && styles[`direction-xs-${String(direction)}`],
-      wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
       ...breakpointsStyles,
     ];
   },
@@ -328,9 +327,6 @@ const GridRoot = styled('div', {
     }),
     ...(ownerState.zeroMinWidth && {
       minWidth: 0,
-    }),
-    ...(ownerState.wrap !== 'wrap' && {
-      flexWrap: ownerState.wrap,
     }),
   }),
   generateDirection,
@@ -368,8 +364,7 @@ export function resolveSpacingClasses(spacing, breakpoints) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } =
-    ownerState;
+  const { classes, container, direction, item, spacing, zeroMinWidth, breakpoints } = ownerState;
 
   let spacingClasses = [];
 
@@ -396,7 +391,6 @@ const useUtilityClasses = (ownerState) => {
       zeroMinWidth && 'zeroMinWidth',
       ...spacingClasses,
       direction !== 'row' && `direction-xs-${String(direction)}`,
-      wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
       ...breakpointsClasses,
     ],
   };
@@ -447,10 +441,10 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     columns,
     container,
     direction,
+    flexWrap: other.flexWrap || wrap,
     item,
     rowSpacing,
     columnSpacing,
-    wrap,
     zeroMinWidth,
     spacing,
     ...breakpointsValues,
@@ -530,6 +524,65 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
+   * @ignore
+   */
+  flexWrap: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      '-moz-initial',
+      'inherit',
+      'initial',
+      'nowrap',
+      'revert-layer',
+      'revert',
+      'unset',
+      'wrap-reverse',
+      'wrap',
+    ]),
+    PropTypes.arrayOf(
+      PropTypes.oneOf([
+        '-moz-initial',
+        'inherit',
+        'initial',
+        'nowrap',
+        'revert-layer',
+        'revert',
+        'unset',
+        'wrap-reverse',
+        'wrap',
+      ]).isRequired,
+    ),
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.oneOf([
+          '-moz-initial',
+          'inherit',
+          'initial',
+          'nowrap',
+          'revert-layer',
+          'revert',
+          'unset',
+          'wrap-reverse',
+          'wrap',
+        ]),
+        PropTypes.arrayOf(
+          PropTypes.oneOf([
+            '-moz-initial',
+            'inherit',
+            'initial',
+            'nowrap',
+            'revert-layer',
+            'revert',
+            'unset',
+            'wrap-reverse',
+            'wrap',
+          ]).isRequired,
+        ),
+      ]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
    * @default false
@@ -598,6 +651,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
+   * @deprecated Use `flexWrap` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
   /**
