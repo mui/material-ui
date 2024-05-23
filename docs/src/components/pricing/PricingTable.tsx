@@ -30,14 +30,13 @@ const planInfo = {
   pro: {
     iconName: 'pricing/x-plan-pro',
     title: 'Pro',
-    description:
-      'For professionals with specifics requirements',
+    description: 'For professionals with specifics requirements and a single\u00A0project',
   },
   proplus: {
     iconName: 'pricing/x-plan-proplus',
     title: 'Pro+',
     description:
-      'For professionals looking for a broader portfolio of supported use cases.',
+      'For professionals looking for a broader portfolio of supported use cases in multiple projects',
   },
   premium: {
     iconName: 'pricing/x-plan-premium',
@@ -298,12 +297,18 @@ export function PlanPrice(props: PlanPriceProps) {
   }
 
   if (plan === 'proplus') {
-    const numberOfComponentsCovered = 4
+    const numberOfComponentsCovered = includedComponents?.length || 1;
 
     const monthlyValue =
-      numberOfComponentsCovered * (annual ? 9 : 8 * 3) - 2 * (numberOfComponentsCovered - 1);
-    const annualValue = monthlyValue * 12;
+      numberOfComponentsCovered * (annual ? 12 : 11 * 3) - 2 * (numberOfComponentsCovered - 1);
+    const annualValue = (monthlyValue * 12).toFixed(0);
 
+    console.log(
+      'numberOfComponentsCovered',
+      numberOfComponentsCovered,
+      monthlyValue,
+      numberOfComponentsCovered * ((annual ? 12 : 11 * 3) - 2) * (numberOfComponentsCovered - 1),
+    );
     const mainDisplayValue = monthlyDisplay ? monthlyValue : annualValue;
     const priceExplanation = getPriceExplanation(monthlyDisplay ? annualValue : monthlyValue);
 
@@ -1475,29 +1480,35 @@ export default function PricingTable({
               Get started
             </Button>
           </Box>
-          <ColumnHeadHighlight sx={[
-            () => ({
-              p: 2,
-              pt: 1.5,
-              display: 'flex',
-              flexDirection: 'column',
-              position: 'relative',
-              borderRadius: '10px 10px 0 0',
-              borderWidth: '1px 1px 0 1px',
-              borderStyle: 'solid',
-              borderColor: '#f6f6f6',
-              background: 'rgba(255,255,255,0) 100%',
-            }),
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: 'primaryDark.700',
-                background: '#0000',
+          <ColumnHeadHighlight
+            sx={[
+              () => ({
+                p: 2,
+                pt: 1.5,
+                display: 'flex',
+                flexDirection: 'column',
+                position: 'relative',
+                borderRadius: '10px 10px 0 0',
+                borderWidth: '1px 1px 0 1px',
+                borderStyle: 'solid',
+                borderColor: '#f6f6f6',
+                background: 'rgba(255,255,255,0) 100%',
               }),
-            ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
-          ]}>
+              (theme) =>
+                theme.applyDarkStyles({
+                  borderColor: 'primaryDark.700',
+                  background: '#0000',
+                }),
+              ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+            ]}
+          >
             <div>
               <PlanName plan="pro" />
+
               <PlanPrice plan="pro" includedComponents={includedComponentsOnPro} />
+              <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ mb: 2 }}>
+                License for single project
+              </Typography>
               <ComponentSelector
                 includedComponents={includedComponentsOnPro}
                 setIncludedComponents={setIncludedComponentsOnPro}
@@ -1509,14 +1520,11 @@ export default function PricingTable({
             <div>
               <PlanName plan="proplus" />
               <PlanPrice plan="proplus" includedComponents={includedComponentsOnPro} />
+              <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ mb: 2 }}>
+                License for multiple projects
+              </Typography>
               <ComponentSelector
-                includedComponents={[
-                  Components.DataGrid,
-                  Components.Charts,
-                  Components.DatePickers,
-                  Components.TreeView,
-                ]}
-                premium={true}
+                includedComponents={includedComponentsOnPro}
                 setIncludedComponents={setIncludedComponentsOnPro}
               />
             </div>
@@ -1525,6 +1533,9 @@ export default function PricingTable({
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
             <PlanName plan="premium" />
             <PlanPrice plan="premium" />
+            <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ mb: 2 }}>
+              License for multiple projects
+            </Typography>
             <ComponentSelector
               includedComponents={[
                 Components.DataGrid,
