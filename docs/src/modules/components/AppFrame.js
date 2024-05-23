@@ -114,8 +114,7 @@ const StyledAppBar = styled(AppBar, {
     justifyContent: 'center',
     boxShadow: 'none',
     backdropFilter: 'blur(8px)',
-    borderBottom: '1px solid',
-    borderColor: (theme.vars || theme).palette.divider,
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
     backgroundColor: 'hsla(0, 0%, 100%, 0.6)',
     color: (theme.vars || theme).palette.grey[800],
     ...theme.applyDarkStyles({
