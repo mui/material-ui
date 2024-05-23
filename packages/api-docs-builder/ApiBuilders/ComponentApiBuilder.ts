@@ -81,6 +81,7 @@ export interface ReactApi extends ReactDocgenApi {
   imports: string[];
   translations: {
     componentDescription: string;
+    deprecationInfo: string | undefined;
     propDescriptions: {
       [key: string]: {
         description: string;
@@ -104,6 +105,7 @@ export interface ReactApi extends ReactDocgenApi {
    * The folder used to store the API translation.
    */
   apiDocsTranslationFolder?: string;
+  deprecated: true | undefined;
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
@@ -409,6 +411,7 @@ const generateApiPage = async (
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
+    deprecated: reactApi.deprecated,
   };
 
   const { classesSort = sortAlphabetical('key'), slotsSort = null } = {
@@ -463,9 +466,14 @@ const generateApiPage = async (
   }
 };
 
-const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePropSettings) => {
+const attachTranslations = (
+  reactApi: ReactApi,
+  deprecationInfo: string | undefined,
+  settings?: CreateDescribeablePropSettings,
+) => {
   const translations: ReactApi['translations'] = {
     componentDescription: reactApi.description,
+    deprecationInfo: deprecationInfo ? renderMarkdown(deprecationInfo) : undefined,
     propDescriptions: {},
     classDescriptions: {},
   };
@@ -804,8 +812,13 @@ export default async function generateComponentApi(
     reactApi.classes = classes;
   }
 
+  const deprecation = componentJsdoc.tags.find((tag) => tag.title === 'deprecated');
+  const deprecationInfo = deprecation?.description || undefined;
+
+  reactApi.deprecated = !!deprecation || undefined;
+
   attachPropsTable(reactApi, projectSettings.propsSettings);
-  attachTranslations(reactApi, projectSettings.propsSettings);
+  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);
