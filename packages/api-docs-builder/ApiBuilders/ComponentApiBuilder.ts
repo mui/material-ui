@@ -770,7 +770,8 @@ export default async function generateComponentApi(
     reactApi.spread = testInfo.spread ?? spread;
     reactApi.themeDefaultProps = testInfo.themeDefaultProps;
     reactApi.inheritance = componentInfo.getInheritance(testInfo.inheritComponent);
-  } catch (e) {
+  } catch (e: any) {
+    console.error(e.message);
     if (project.name.includes('grid')) {
       // TODO: Use `describeConformance` for the DataGrid components
       reactApi.forwardsRefTo = 'GridRoot';
