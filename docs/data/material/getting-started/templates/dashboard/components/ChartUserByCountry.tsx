@@ -136,7 +136,7 @@ export default function ChartUserByCountry() {
             direction="row"
             alignItems="center"
             gap={2}
-            sx={{ '&:not(:last-of-type)': { pb: 2 } }}
+            sx={{ pb: 2 }}
             key={index}
           >
             {country.flag}
