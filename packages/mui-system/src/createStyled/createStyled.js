@@ -66,7 +66,7 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
     variants.forEach((variant) => {
       let isMatch = true;
       if (typeof variant.props === 'function') {
-        isMatch = variant.props({ ownerState, ...props, ...ownerState });
+        isMatch = variant.props({ ...props, ...ownerState, ownerState });
       } else {
         Object.keys(variant.props).forEach((key) => {
           if (ownerState?.[key] !== variant.props[key] && props[key] !== variant.props[key]) {
