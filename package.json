@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0-alpha.7",
+  "version": "6.0.0-alpha.8",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -115,7 +115,6 @@
     "@types/lodash": "^4.17.4",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.33",
-    "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.55",
     "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
@@ -184,6 +183,9 @@
     "yargs": "^17.7.2"
   },
   "packageManager": "pnpm@8.15.8",
+  "engines": {
+    "pnpm": "8.15.8"
+  },
   "resolutions": {
     "@babel/core": "^7.24.5",
     "@babel/code-frame": "^7.24.2",

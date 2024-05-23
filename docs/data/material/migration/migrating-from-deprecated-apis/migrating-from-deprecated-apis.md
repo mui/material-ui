@@ -991,6 +991,30 @@ The FormControlLabel's `componentsProps` prop was deprecated in favor of `slotPr
  />
 ```
 
+## ListItemSecondaryAction
+
+### Deprecated component
+
+The ListItemSecondaryAction component was deprecated in favor of the `secondaryAction` prop in the ListItem component.
+
+```diff
+ <ListItem
++  secondaryAction={
++    <IconButton aria-label="Leave a comment">
++      <CommentIcon />
++    </IconButton>
++  }
+   disablePadding
+ >
+   <ListItemText primary="John Doe" />
+-  <ListItemSecondaryAction>
+-    <IconButton aria-label="Leave a comment">
+-      <CommentIcon />
+-    </IconButton>
+-  </ListItemSecondaryAction>
+ </ListItem>
+```
+
 ## PaginationItem
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-classes) below to migrate the code as described in the following sections:
