@@ -255,7 +255,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const children = React.Children.toArray(childrenProp);
 
-  // v4 implementation, deprecated in v5, will be removed in v6
+  // v4 implementation, deprecated in v6, will be removed in v7
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
@@ -298,7 +298,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     Component = ButtonBase;
   }
 
-  // v4 implementation, deprecated in v5, will be removed in v6
+  // v4 implementation, deprecated in v6, will be removed in v7
   if (hasSecondaryAction) {
     // Use div by default.
     Component = !componentProps.component && !componentProp ? 'div' : Component;
