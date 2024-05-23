@@ -22,7 +22,7 @@
     "@types/chai": "^4.3.16",
     "@types/react": "^18.2.55",
     "@types/react-is": "^18.3.0",
-    "@types/sinon": "^10.0.20",
+    "@types/sinon": "^17.0.3",
     "chai": "^4.4.1",
     "docs": "workspace:^",
     "fast-glob": "^3.3.2",
