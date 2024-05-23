@@ -45,20 +45,21 @@ const SearchButton = styled('button')(({ theme }) => [
         display: 'none',
       },
     },
-    fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    backgroundColor: alpha(theme.palette.grey[50], 0.8),
-    color: (theme.vars || theme).palette.text.secondary,
+    backgroundColor: alpha(theme.palette.grey[50], 0.6),
+    fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(14),
+    color: (theme.vars || theme).palette.text.secondary,
     border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
     borderRadius: (theme.vars || theme).shape.borderRadius,
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
-    boxShadow: `hsl(200, 0%, 100%) 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+    boxShadow: `hsl(200, 0%, 100%) 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
     '&:hover': {
       background: alpha(theme.palette.grey[100], 0.5),
       borderColor: (theme.vars || theme).palette.grey[300],
+      boxShadow: 'none',
     },
     '&:focus-visible': {
       outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
@@ -72,6 +73,7 @@ const SearchButton = styled('button')(({ theme }) => [
     '&:hover': {
       background: (theme.vars || theme).palette.primaryDark[700],
       borderColor: (theme.vars || theme).palette.primaryDark[600],
+      boxShadow: 'none',
     },
   }),
 ]);
@@ -80,6 +82,7 @@ const SearchLabel = styled('span')(({ theme }) => ({
   marginRight: 'auto',
   marginBottom: '1px', // optical alignment
   color: (theme.vars || theme).palette.text.tertiary,
+  lineHeight: 1,
 }));
 
 const Shortcut = styled('kbd')(({ theme }) => {

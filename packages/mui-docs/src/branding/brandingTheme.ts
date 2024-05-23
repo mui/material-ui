@@ -509,7 +509,7 @@ export function getThemedComponents(): ThemeOptions {
                 color: (theme.vars || theme).palette.text.primary,
                 backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
-                boxShadow: `${alpha(theme.palette.grey[50], 0.5)} 0 2px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -2px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                boxShadow: `${alpha(theme.palette.grey[200], 0.5)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.grey[50],
                 },
@@ -517,7 +517,7 @@ export function getThemedComponents(): ThemeOptions {
                   color: (theme.vars || theme).palette.primaryDark[100],
                   borderColor: alpha(theme.palette.primaryDark[600], 0.5),
                   backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
-                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+                  boxShadow: `${alpha(theme.palette.primaryDark[600], 0.3)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                   '&:hover': {
                     backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                     borderColor: (theme.vars || theme).palette.primaryDark[600],
@@ -570,10 +570,10 @@ export function getThemedComponents(): ThemeOptions {
                 },
                 ...theme.applyDarkStyles({
                   '&:hover': {
-                    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                    backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
                   },
                   '&:active': {
-                    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                   },
                 }),
               }),
@@ -742,7 +742,7 @@ export function getThemedComponents(): ThemeOptions {
                 color: (theme.vars || theme).palette.primary.main,
                 backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
-                boxShadow: `${alpha(theme.palette.grey[50], 0.4)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                boxShadow: `${alpha(theme.palette.grey[200], 0.5)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                   background: (theme.vars || theme).palette.grey[50],
@@ -752,7 +752,7 @@ export function getThemedComponents(): ThemeOptions {
                 color: (theme.vars || theme).palette.primary[300],
                 borderColor: alpha(theme.palette.primaryDark[600], 0.5),
                 backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
-                boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+                boxShadow: `${alpha(theme.palette.primaryDark[600], 0.3)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                 '&:hover': {
                   borderColor: (theme.vars || theme).palette.primaryDark[600],
                   background: alpha(theme.palette.primaryDark[700], 0.8),
@@ -828,7 +828,7 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
                 '&.Mui-selected': {
-                  color: (theme.vars || theme).palette.primary[300],
+                  color: (theme.vars || theme).palette.primary[200],
                   backgroundColor: alpha(theme.palette.primary[900], 0.4),
                 },
               },
