@@ -349,10 +349,12 @@ export interface ThemedBaseStyledInterface<
 
   <
     Tag extends keyof React.JSX.IntrinsicElements,
-    ForwardedProps extends keyof React.JSX.IntrinsicElements[Tag] = keyof React.JSX.IntrinsicElements[Tag],
+    ForwardedProps extends
+      keyof React.JSX.IntrinsicElements[Tag] = keyof React.JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
-    options: FilteringStyledOptions<React.JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
+    options: FilteringStyledOptions<React.JSX.IntrinsicElements[Tag], ForwardedProps> &
+      MuiStyledOptions,
   ): CreateStyledComponent<
     MUIStyledCommonProps,
     Pick<React.JSX.IntrinsicElements[Tag], ForwardedProps>,
@@ -372,8 +374,9 @@ export type CreateMUIStyled<
   T extends object = {},
 > = ThemedBaseStyledInterface<MUIStyledCommonProps, MuiStyledOptions, AnyIfEmpty<T>>;
 
-export type PropsOf<C extends keyof React.JSX.IntrinsicElements | React.JSXElementConstructor<any>> =
-  React.JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
+export type PropsOf<
+  C extends keyof React.JSX.IntrinsicElements | React.JSXElementConstructor<any>,
+> = React.JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
 
 export interface MUIStyledComponent<
   ComponentProps extends {},

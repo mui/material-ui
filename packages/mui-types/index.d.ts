@@ -27,7 +27,10 @@ export type PropInjector<InjectedProps, AdditionalProps = {}> = <
 >(
   component: C,
 ) => React.JSXElementConstructor<
-  DistributiveOmit<React.JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
+  DistributiveOmit<
+    React.JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>,
+    keyof InjectedProps
+  > &
     AdditionalProps
 >;
 

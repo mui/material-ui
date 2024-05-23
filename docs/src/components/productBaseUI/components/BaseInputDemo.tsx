@@ -95,17 +95,18 @@ const CSS = `.base-Input-root {${fieldStyles}}
 
 .base-Input-input {${inputStyles}}`;
 
-const StyledFloatingLabelInput = React.forwardRef<HTMLInputElement, React.JSX.IntrinsicElements['input']>(
-  function StyledFloatingLabelInput(props, ref) {
-    const id = unstable_useId(props.id);
-    return (
-      <React.Fragment>
-        <StyledInput ref={ref} {...props} id={id} />
-        <label htmlFor={id}>Floating label</label>
-      </React.Fragment>
-    );
-  },
-);
+const StyledFloatingLabelInput = React.forwardRef<
+  HTMLInputElement,
+  React.JSX.IntrinsicElements['input']
+>(function StyledFloatingLabelInput(props, ref) {
+  const id = unstable_useId(props.id);
+  return (
+    <React.Fragment>
+      <StyledInput ref={ref} {...props} id={id} />
+      <label htmlFor={id}>Floating label</label>
+    </React.Fragment>
+  );
+});
 
 const FloatingLabelInput = React.forwardRef<HTMLInputElement, React.JSX.IntrinsicElements['input']>(
   function FloatingLabelInput(props, ref) {
