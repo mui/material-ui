@@ -983,6 +983,19 @@ npx @mui/codemod@next deprecations/form-control-label-props <path>
 
 ```
 
+#### `grid-props`
+
+```diff
+ <Grid
+-    wrap="nowrap"
++    flexWrap="nowrap"
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/grid-props <path>
+```
+
 #### `pagination-item-classes`
 
 JS transforms:
