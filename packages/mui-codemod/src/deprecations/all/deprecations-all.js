@@ -16,6 +16,7 @@ import transformBackdropProps from '../backdrop-props';
 import transformStepConnectorClasses from '../step-connector-classes';
 import transformCircularProgressClasses from '../circular-progress-classes';
 import transformSpeedDialProps from '../speed-dial-props';
+import transformTextFieldProps from '../text-field-props';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -40,6 +41,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformStepConnectorClasses(file, api, options);
   file.source = transformCircularProgressClasses(file, api, options);
   file.source = transformSpeedDialProps(file, api, options);
+  file.source = transformTextFieldProps(file, api, options);
 
   return file.source;
 }

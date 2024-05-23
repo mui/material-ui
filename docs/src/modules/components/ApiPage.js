@@ -13,6 +13,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 import { BrandingProvider } from '@mui/docs/branding';
+import { SectionTitle } from '@mui/docs/SectionTitle';
 import PropertiesSection, {
   getPropsToC,
 } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
@@ -47,21 +48,9 @@ export function getTranslatedHeader(t, header) {
 }
 
 function Heading(props) {
-  const { hash, level: Level = 'h2' } = props;
+  const { hash, level = 'h2' } = props;
   const t = useTranslate();
-
-  return (
-    <Level id={hash}>
-      <a aria-labelledby={hash} className="title-link-to-anchor" href={`#${hash}`} tabIndex={-1}>
-        {getTranslatedHeader(t, hash)}
-        <span className="anchor-icon">
-          <svg>
-            <use xlinkHref="#anchor-link-icon" />
-          </svg>
-        </span>
-      </a>
-    </Level>
-  );
+  return <SectionTitle title={getTranslatedHeader(t, hash)} hash={hash} level={level} />;
 }
 
 Heading.propTypes = {
