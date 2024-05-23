@@ -211,10 +211,10 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   return (
     <InputLabelRoot
       data-shrink={shrink}
-      ownerState={ownerState}
       ref={ref}
       className={clsx(classes.root, className)}
       {...other}
+      ownerState={ownerState}
       classes={classes}
     />
   );

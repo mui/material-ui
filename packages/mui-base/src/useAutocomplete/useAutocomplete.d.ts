@@ -411,7 +411,7 @@ export interface UseAutocompleteReturnValue<
    */
   getOptionProps: (
     renderedOption: UseAutocompleteRenderedOption<Value>,
-  ) => React.HTMLAttributes<HTMLLIElement>;
+  ) => React.HTMLAttributes<HTMLLIElement> & { key: any };
   /**
    * Id for the Autocomplete.
    */

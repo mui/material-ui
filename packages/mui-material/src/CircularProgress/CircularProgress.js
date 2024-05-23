@@ -100,7 +100,7 @@ const CircularProgressRoot = styled('span', {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
+      .filter(([, palette]) => palette && palette.main)
       .map(([color]) => ({
         props: { color },
         style: {
