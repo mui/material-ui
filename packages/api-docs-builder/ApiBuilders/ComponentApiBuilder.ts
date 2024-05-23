@@ -283,7 +283,7 @@ async function annotateComponentDefinition(api: ReactApi) {
   }
 
   let inheritanceAPILink = null;
-  if (api.inheritance !== null) {
+  if (api.inheritance) {
     inheritanceAPILink = `[${api.inheritance.name} API](${
       api.inheritance.apiPathname.startsWith('http')
         ? api.inheritance.apiPathname
@@ -314,7 +314,7 @@ async function annotateComponentDefinition(api: ReactApi) {
       api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
     })`,
   );
-  if (api.inheritance !== null) {
+  if (api.inheritance) {
     markdownLines.push(`- inherits ${inheritanceAPILink}`);
   }
 
@@ -754,6 +754,7 @@ export default async function generateComponentApi(
   reactApi.slots = [];
   reactApi.classes = [];
   reactApi.demos = componentInfo.getDemos();
+  reactApi.inheritance = null;
   if (reactApi.demos.length === 0) {
     throw new Error(
       'Unable to find demos. \n' +
