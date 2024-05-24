@@ -269,7 +269,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     },
     spacing: 8,
     typography: {
-      fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
+      fontFamily: ['graphik', ...systemFont].join(','),
       // Match VS Code
       // https://github.com/microsoft/vscode/blob/b38691f611d1ce3ef437c67a1b047c757b7b4e53/src/vs/editor/common/config/editorOptions.ts#L4578-L4580
       // https://github.com/microsoft/vscode/blob/d950552131d7350a45dac8b59bf179469c36c2ac/src/vs/editor/standalone/browser/standalone-tokens.css#L10
@@ -279,12 +279,12 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         '"Droid Sans Mono"', // Linux
         'monospace', // fallback
       ].join(','),
-      fontFamilyTagline: ['"General Sans"', ...systemFont].join(','),
+      fontFamilyTagline: ['graphik', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
       fontWeightSemiBold: 600,
       fontWeightExtraBold: 800,
       h1: {
-        fontFamily: ['"General Sans"', ...systemFont].join(','),
+        fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: 'clamp(2.5rem, 1.125rem + 3.5vw, 3.5em)',
         fontWeight: 600,
         lineHeight: 78 / 70,
@@ -294,7 +294,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         }),
       },
       h2: {
-        fontFamily: ['"General Sans"', ...systemFont].join(','),
+        fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 600,
         lineHeight: 44 / 36,
@@ -302,24 +302,26 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         color: mode === 'dark' ? grey[100] : blueDark[700],
       },
       h3: {
-        fontFamily: ['"General Sans"', ...systemFont].join(','),
+        fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(36),
         lineHeight: 44 / 36,
         letterSpacing: 0.2,
       },
       h4: {
-        fontFamily: ['"General Sans"', ...systemFont].join(','),
+        fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(30),
         lineHeight: 42 / 28,
         letterSpacing: 0.2,
       },
       h5: {
+        fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(24),
         lineHeight: 36 / 24,
         letterSpacing: 0.1,
         color: mode === 'dark' ? blue[300] : blue.main,
       },
       h6: {
+        fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(20),
         lineHeight: 30 / 20,
       },
@@ -329,22 +331,26 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         letterSpacing: 0,
       },
       subtitle1: {
+        fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(18),
         lineHeight: 24 / 18,
         letterSpacing: 0,
         fontWeight: 500,
       },
       body1: {
+        fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(16),
         lineHeight: 24 / 16,
         letterSpacing: 0,
       },
       body2: {
+        fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(14),
         lineHeight: 21 / 14,
         letterSpacing: 0,
       },
       caption: {
+        fontFamily: ['graphik', ...systemFont].join(','),
         display: 'inline-block',
         fontSize: defaultTheme.typography.pxToRem(12),
         lineHeight: 18 / 12,

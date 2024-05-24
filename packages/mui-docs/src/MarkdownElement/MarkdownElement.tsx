@@ -63,7 +63,7 @@ const Root = styled('div')(
     '& h1': {
       ...lightTheme.typography.h3,
       fontSize: lightTheme.typography.pxToRem(36),
-      fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
+      fontFamily: `graphik, ${lightTheme.typography.fontFamilySystem}`,
       margin: '10px 0',
       color: `var(--muidocs-palette-primaryDark-900, ${lightTheme.palette.primaryDark[900]})`,
       fontWeight: 600,
@@ -79,7 +79,7 @@ const Root = styled('div')(
     },
     '& h2': {
       ...lightTheme.typography.h5,
-      fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
+      fontFamily: `graphik, ${lightTheme.typography.fontFamilySystem}`,
       fontSize: theme.typography.pxToRem(26),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
@@ -87,7 +87,7 @@ const Root = styled('div')(
     },
     '& h3': {
       ...lightTheme.typography.h6,
-      fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
+      fontFamily: `graphik, ${lightTheme.typography.fontFamilySystem}`,
       fontSize: theme.typography.pxToRem(20),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
@@ -95,14 +95,14 @@ const Root = styled('div')(
     },
     '& h4': {
       ...lightTheme.typography.subtitle1,
-      fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
+      fontFamily: `graphik, ${lightTheme.typography.fontFamilySystem}`,
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '20px 0 6px',
     },
     '& h5': {
       ...lightTheme.typography.subtitle2,
-      fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
+      fontFamily: `graphik, ${lightTheme.typography.fontFamilySystem}`,
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '20px 0 8px',
