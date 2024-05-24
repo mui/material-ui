@@ -381,12 +381,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     slots,
     slotProps: {
       ...slotProps,
-      paper: {
-        ...externalPaperSlotProps,
-        style: isPositioned
-          ? externalPaperSlotProps.style
-          : { ...externalPaperSlotProps.style, opacity: 0 },
-      },
+      paper: externalPaperSlotProps,
     },
   };
 
@@ -395,9 +390,12 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     externalForwardedProps,
     additionalProps: {
       elevation,
+      className: clsx(classes.paper, externalPaperSlotProps?.className),
+      style: isPositioned
+        ? externalPaperSlotProps.style
+        : { ...externalPaperSlotProps.style, opacity: 0 },
     },
     ownerState,
-    className: clsx(classes.paper, externalPaperSlotProps?.className),
   });
 
   const [RootSlot, { slotProps: rootSlotPropsProp, ...rootProps }] = useSlot('root', {
