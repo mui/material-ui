@@ -4,7 +4,7 @@ import MenuItem from '@mui/joy/MenuItem';
 import { ListActionTypes } from '@mui/base/useList';
 
 export default function Menu(props: {
-  control: React.ReactElement;
+  control: React.ReactElement<any>;
   id: string;
   menus: Array<{ label: string } & { [k: string]: any }>;
 }) {

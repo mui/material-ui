@@ -48,7 +48,7 @@ const StyledLabel = styled('label')(({ theme }) => ({
 
 const InnerTextarea = React.forwardRef<
   HTMLTextAreaElement,
-  JSX.IntrinsicElements['textarea']
+  React.JSX.IntrinsicElements['textarea']
 >(function InnerTextarea(props, ref) {
   const id = React.useId();
   return (

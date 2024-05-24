@@ -32,7 +32,9 @@ export interface ListItemSecondaryActionProps
  *
  * @deprecated Use the `secondaryAction` prop in the `ListItem` component instead. This component will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
  */
-declare const ListItemSecondaryAction: ((props: ListItemSecondaryActionProps) => JSX.Element) & {
+declare const ListItemSecondaryAction: ((
+  props: ListItemSecondaryActionProps,
+) => React.JSX.Element) & {
   muiName: string;
 };
 
