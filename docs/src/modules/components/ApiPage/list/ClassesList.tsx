@@ -34,10 +34,6 @@ const StyledApiItem = styled(ExpandableApiItem)(
         color: `var(--muidocs-palette-warning-700, ${lightTheme.palette.warning[700]})`,
       },
     },
-    '& .classes-list-alert': {
-      marginTop: 12,
-      marginBottom: 16,
-    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
