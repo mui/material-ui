@@ -22,7 +22,25 @@ const DialogActionsRoot = styled(StyledCardActionsRoot, {
   name: 'JoyDialogActions',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: DialogActionsProps }>({});
+})<{ ownerState: DialogActionsProps }>(({ ownerState }) => {
+  return {
+    ...(ownerState.orientation?.startsWith('horizontal') && {
+      alignItems: 'center', // it is common to have children aligned center in horizontal orientation, but not vertically.
+    }),
+    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+    ...(ownerState.orientation === 'horizontal-reverse' && {
+      flexDirection: 'row',
+      justifyContent: 'end',
+    }),
+    ...(ownerState.orientation === 'horizontal' && {
+      flexDirection: 'row-reverse',
+      justifyContent: 'start',
+    }),
+    ...(ownerState.orientation === 'vertical' && {
+      flexDirection: 'column-reverse',
+    }),
+  };
+});
 /**
  *
  * Demos:
@@ -67,7 +85,9 @@ const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
     ownerState,
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  const reorderedChildren = React.Children.toArray(children).reverse();
+
+  return <SlotRoot {...rootProps}>{reorderedChildren}</SlotRoot>;
 }) as OverridableComponent<DialogActionsTypeMap>;
 
 DialogActions.propTypes /* remove-proptypes */ = {
