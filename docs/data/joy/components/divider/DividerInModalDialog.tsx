@@ -31,7 +31,7 @@ export default function DividerInModalDialog() {
         <Divider inset="context" />
         <DialogActions
           buttonFlex="none"
-          sx={{ pt: 1.5, justifyContent: 'flex-start' }}
+          sx={{ pt: 1.5, justifyContent: 'flex-end' }}
         >
           <Button size="sm">Got it!</Button>
         </DialogActions>

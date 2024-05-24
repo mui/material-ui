@@ -24,17 +24,13 @@ const DialogActionsRoot = styled(StyledCardActionsRoot, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: DialogActionsProps }>(({ ownerState }) => {
   return {
-    ...(ownerState.orientation?.startsWith('horizontal') && {
-      alignItems: 'center', // it is common to have children aligned center in horizontal orientation, but not vertically.
-    }),
-    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
     ...(ownerState.orientation === 'horizontal-reverse' && {
       flexDirection: 'row',
-      justifyContent: 'end',
+      justifyContent: 'flex-end',
     }),
     ...(ownerState.orientation === 'horizontal' && {
       flexDirection: 'row-reverse',
-      justifyContent: 'start',
+      justifyContent: 'flex-end',
     }),
     ...(ownerState.orientation === 'vertical' && {
       flexDirection: 'column-reverse',
