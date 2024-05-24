@@ -45,7 +45,7 @@ export default function TableOfContentsBanner() {
         <Box sx={{ height: 6, width: 16, backgroundColor: '#0057B7' }} />
         <Box sx={{ height: 6, width: 16, backgroundColor: '#FFD700' }} />
       </Box>
-      <Typography component="span" variant="caption" fontWeight="medium" color="text.secondary">
+      <Typography component="span" variant="caption" fontWeight="normal" color="text.secondary">
         MUI stands in solidarity with Ukraine.
       </Typography>
     </Link>

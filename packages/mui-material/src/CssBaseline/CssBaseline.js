@@ -41,7 +41,7 @@ export const styles = (theme, enableColorScheme = false) => {
       boxSizing: 'inherit',
     },
     'strong, b': {
-      fontWeight: theme.typography.fontWeightBold,
+      fontWeight: 500,
     },
     body: {
       margin: 0, // Remove the margin in all browsers.

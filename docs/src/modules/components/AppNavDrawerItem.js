@@ -40,7 +40,7 @@ const Item = styled(
       padding: 6,
       justifyContent: 'flex-start',
       fontWeight:
-        depth === 0 ? theme.typography.fontWeightSemiBold : theme.typography.fontWeightMedium,
+        depth === 0 ? theme.typography.fontWeightSemiBold : 400,
       transition: theme.transitions.create(['color', 'background-color'], {
         duration: theme.transitions.duration.shortest,
       }),

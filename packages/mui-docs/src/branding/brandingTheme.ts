@@ -281,12 +281,12 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       ].join(','),
       fontFamilyTagline: ['graphik', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
-      fontWeightSemiBold: 600,
-      fontWeightExtraBold: 800,
+      fontWeightSemiBold: 500,
+      fontWeightExtraBold: 500,
       h1: {
         fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: 'clamp(2.5rem, 1.125rem + 3.5vw, 3.5em)',
-        fontWeight: 600,
+        fontWeight: 500,
         lineHeight: 78 / 70,
         letterSpacing: -0.2,
         ...(mode === 'light' && {
@@ -296,7 +296,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       h2: {
         fontFamily: ['graphik', ...systemFont].join(','),
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
-        fontWeight: 600,
+        fontWeight: 500,
         lineHeight: 44 / 36,
         letterSpacing: -0.2,
         color: mode === 'dark' ? grey[100] : blueDark[700],
@@ -355,7 +355,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontSize: defaultTheme.typography.pxToRem(12),
         lineHeight: 18 / 12,
         letterSpacing: 0,
-        fontWeight: 700,
+        fontWeight: 500,
       },
       allVariants: {
         scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
@@ -782,7 +782,7 @@ export function getThemedComponents(): ThemeOptions {
               borderColor: (theme.vars || theme).palette.grey[200],
               '& .MuiMenuItem-root': {
                 fontSize: theme.typography.pxToRem(14),
-                fontWeight: 500,
+                // fontWeight: 500,
                 '&:hover, &:focus': {
                   backgroundColor: (theme.vars || theme).palette.grey[100],
                   color: (theme.vars || theme).palette.text.primary,

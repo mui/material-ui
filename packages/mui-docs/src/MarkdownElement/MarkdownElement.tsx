@@ -66,7 +66,7 @@ const Root = styled('div')(
       fontFamily: `graphik, ${lightTheme.typography.fontFamilySystem}`,
       margin: '10px 0',
       color: `var(--muidocs-palette-primaryDark-900, ${lightTheme.palette.primaryDark[900]})`,
-      fontWeight: 600,
+      fontWeight: 500,
       letterSpacing: -0.2,
     },
     '& .description': {
@@ -421,9 +421,10 @@ const Root = styled('div')(
     '& a:not(.title-link-to-anchor), & a:not(.title-link-to-anchor) code': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
-      fontWeight: theme.typography.fontWeightMedium,
       textDecoration: 'underline',
-      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
+      textUnderlineOffset: 3,
+      textDecorationThickness: 1,
+      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.15),
       '&:hover': {
         textDecorationColor: 'inherit',
       },

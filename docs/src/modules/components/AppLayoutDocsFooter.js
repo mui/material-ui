@@ -400,7 +400,6 @@ export default function AppLayoutDocsFooter(props) {
             <Typography
               id="feedback-message"
               variant="body2"
-              fontWeight="medium"
               color="text.secondary"
             >
               {t('feedbackMessage')}
