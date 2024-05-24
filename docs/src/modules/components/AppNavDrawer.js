@@ -356,7 +356,7 @@ export default function AppNavDrawer(props) {
             {versions.map((item) => {
               if (item.text === 'View all versions') {
                 return [
-                  <Divider key="divider" sx={{ mx: -1 }} />,
+                  <Divider key="divider" />,
                   <MenuItem key="all-versions" component="a" href={item.href} onClick={onClose}>
                     {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                     {`View all versions`}
