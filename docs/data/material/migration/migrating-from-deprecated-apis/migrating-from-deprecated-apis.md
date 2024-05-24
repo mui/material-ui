@@ -1116,6 +1116,36 @@ The PaginationItems's `components` prop was deprecated in favor of `slots`:
  />
 ```
 
+## Popper
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/popper-props <path>
+```
+
+### components
+
+The Popper's prop `components` was deprecated in favor of `slots`:
+
+```diff
+ <Popper
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+ />
+```
+
+### componentsProps
+
+The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Popper
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
 ## Slider
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following sections:
@@ -1247,6 +1277,36 @@ All of the TextField's slot props (`*Props`) props were deprecated in favor of e
 +        inputLabel: CustomInputLabelProps
 +        formHelper: CustomFormHelperProps
 +    }}
+ />
+```
+
+## Tooltip
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/tooltip-props <path>
+```
+
+### components
+
+The Tooltip's prop `components` was deprecated in favor of `slots`:
+
+```diff
+ <Tooltip
+-  components={{ Arrow: CustomArrow }}
++  slots={{ arrow: CustomArrow }}
+ />
+```
+
+### componentsProps
+
+The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Tooltip
+-  componentsProps={{ arrow: { testid: 'test-id' } }}
++  slotProps={{ arrow: { testid: 'test-id' } }}
  />
 ```
 

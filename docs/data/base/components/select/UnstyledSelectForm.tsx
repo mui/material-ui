@@ -47,7 +47,7 @@ const Select = React.forwardRef(function CustomSelect<
   return <BaseSelect {...props} ref={ref} slots={slots} />;
 }) as <TValue extends {}, Multiple extends boolean>(
   props: SelectProps<TValue, Multiple> & React.RefAttributes<HTMLButtonElement>,
-) => JSX.Element;
+) => React.JSX.Element;
 
 const blue = {
   100: '#DAECFF',

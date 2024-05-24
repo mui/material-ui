@@ -28,4 +28,4 @@ export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<
  *
  * - [ListItemAvatar API](https://mui.com/material-ui/api/list-item-avatar/)
  */
-export default function ListItemAvatar(props: ListItemAvatarProps): JSX.Element;
+export default function ListItemAvatar(props: ListItemAvatarProps): React.JSX.Element;

@@ -175,4 +175,4 @@ export interface SnackbarOwnerState extends SnackbarProps {}
  *
  * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
  */
-export default function Snackbar(props: SnackbarProps): JSX.Element;
+export default function Snackbar(props: SnackbarProps): React.JSX.Element;

@@ -8,9 +8,9 @@ import { alpha } from '@mui/material/styles';
 interface HeroContainerProps {
   disableMobileHidden?: boolean;
   disableTabExclusion?: boolean;
-  left: React.ReactElement;
+  left: React.ReactElement<any>;
   linearGradient?: boolean;
-  right: React.ReactElement;
+  right: React.ReactElement<any>;
   rightSx?: BoxProps['sx'];
 }
 
