@@ -3,10 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import ListContext from '../List/ListContext';
 import { getListItemSecondaryActionClassesUtilityClass } from './listItemSecondaryActionClasses';
+
+const useThemeProps = createUseThemeProps('MuiListItemSecondaryAction');
 
 const useUtilityClasses = (ownerState) => {
   const { disableGutters, classes } = ownerState;
@@ -43,6 +44,8 @@ const ListItemSecondaryActionRoot = styled('div', {
 
 /**
  * Must be used as the last child of ListItem to function properly.
+ *
+ * @deprecated Use the `secondaryAction` prop in the `ListItem` component instead. This component will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
  */
 const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItemSecondaryAction' });

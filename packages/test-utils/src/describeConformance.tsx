@@ -26,7 +26,7 @@ export interface SlotTestingOptions {
   /**
    * A custom HTML tag to use for the `slots` prop.
    */
-  testWithElement?: keyof JSX.IntrinsicElements | null;
+  testWithElement?: keyof React.JSX.IntrinsicElements | null;
   /**
    * To ensure that the slot has this class name when `slotProps` is provided.
    */
@@ -45,8 +45,8 @@ export interface ConformanceOptions {
   refInstanceof: any;
   after?: () => void;
   inheritComponent?: React.ElementType;
-  render: (node: React.ReactElement) => MuiRenderResult;
-  mount?: (node: React.ReactElement) => ReactWrapper;
+  render: (node: React.ReactElement<any>) => MuiRenderResult;
+  mount?: (node: React.ReactElement<any>) => ReactWrapper;
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: string;
@@ -58,8 +58,8 @@ export interface ConformanceOptions {
   testVariantProps?: object;
   testLegacyComponentsProp?: boolean;
   wrapMount?: (
-    mount: (node: React.ReactElement) => ReactWrapper,
-  ) => (node: React.ReactElement) => ReactWrapper;
+    mount: (node: React.ReactElement<any>) => ReactWrapper,
+  ) => (node: React.ReactElement<any>) => ReactWrapper;
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
   createTheme?: (arg: any) => any;
@@ -79,7 +79,7 @@ function assertDOMNode(node: unknown) {
  * The element should have a component wrapped in withStyles as the root
  */
 function testRef(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   mount: ConformanceOptions['mount'],
   onRef: (instance: unknown, wrapper: import('enzyme').ReactWrapper) => void = assertDOMNode,
 ) {
@@ -129,7 +129,10 @@ function throwMissingPropError(field: string): never {
  * MUI components have a `className` prop. The `className` is applied to
  * the root component.
  */
-export function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+export function testClassName(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
   it('applies the className to the root component', () => {
     const { mount } = getOptions();
     if (!mount) {
@@ -149,7 +152,7 @@ export function testClassName(element: React.ReactElement, getOptions: () => Con
  * Component from @inheritComponent
  */
 export function testComponentProp(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('prop: component', () => {
@@ -169,7 +172,10 @@ export function testComponentProp(
 /**
  * MUI components can spread additional props to a documented component.
  */
-export function testPropsSpread(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+export function testPropsSpread(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
   it(`spreads props to the root component`, () => {
     // type def in ConformanceOptions
     const { inheritComponent, mount } = getOptions();
@@ -199,7 +205,10 @@ export function testPropsSpread(element: React.ReactElement, getOptions: () => C
  * This is determined by a given constructor i.e. a React.Component or HTMLElement for
  * components that forward their ref and attach it to a host component.
  */
-export function describeRef(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+export function describeRef(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
   describe('ref', () => {
     it(`attaches the ref`, () => {
       // type def in ConformanceOptions
@@ -220,7 +229,10 @@ export function describeRef(element: React.ReactElement, getOptions: () => Confo
 /**
  * Tests that the root component has the root class
  */
-export function testRootClass(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+export function testRootClass(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
   it('applies the root class to the root component if it has this class', () => {
     const { classes, render, skip } = getOptions();
     if (classes.root == null) {
@@ -259,7 +271,7 @@ export function testRootClass(element: React.ReactElement, getOptions: () => Con
  * Tests that the component can be rendered with react-test-renderer.
  * This is important for snapshot testing with Jest (even if we don't encourage it).
  */
-export function testReactTestRenderer(element: React.ReactElement) {
+export function testReactTestRenderer(element: React.ReactElement<any>) {
   it('should render without errors in ReactTestRenderer', () => {
     ReactTestRenderer.act(() => {
       ReactTestRenderer.create(element, {
@@ -286,7 +298,7 @@ function forEachSlot(
   });
 }
 
-function testSlotsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testSlotsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   const CustomComponent = React.forwardRef<
@@ -457,7 +469,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => Conformanc
   });
 }
 
-function testSlotPropsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   if (!render) {
@@ -540,7 +552,10 @@ function testSlotPropsProp(element: React.ReactElement, getOptions: () => Confor
   });
 }
 
-function testSlotPropsCallback(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testSlotPropsCallback(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
   const { render, slots } = getOptions();
 
   if (!render) {
@@ -568,7 +583,10 @@ function testSlotPropsCallback(element: React.ReactElement, getOptions: () => Co
  * MUI components have a `components` prop that allows rendering a different
  * Components from @inheritComponent
  */
-function testComponentsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testComponentsProp(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
   describe('prop components:', () => {
     it('can render another root component with the `components` prop', () => {
       const { mount, testComponentsRootPropWith: component = 'em' } = getOptions();
@@ -587,7 +605,10 @@ function testComponentsProp(element: React.ReactElement, getOptions: () => Confo
  * MUI theme has a components section that allows specifying default props.
  * Components from @inheritComponent
  */
-function testThemeDefaultProps(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testThemeDefaultProps(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
   describe('theme default components:', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
@@ -631,7 +652,7 @@ function testThemeDefaultProps(element: React.ReactElement, getOptions: () => Co
  * Components from @inheritComponent
  */
 function testThemeStyleOverrides(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme style overrides:', () => {
@@ -877,7 +898,7 @@ function testThemeStyleOverrides(
  * MUI theme has a components section that allows specifying custom variants.
  * Components from @inheritComponent
  */
-function testThemeVariants(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testThemeVariants(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   describe('theme variants:', () => {
     it("respect theme's variants", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -982,7 +1003,10 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
  * MUI theme supports custom palettes.
  * The components that iterate over the palette via `variants` should be able to render with or without applying the custom palette styles.
  */
-function testThemeCustomPalette(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testThemeCustomPalette(
+  element: React.ReactElement<any>,
+  getOptions: () => ConformanceOptions,
+) {
   describe('theme extended palette:', () => {
     it('should render without errors', function test() {
       const { render, ThemeProvider, createTheme } = getOptions();
@@ -995,6 +1019,7 @@ function testThemeCustomPalette(element: React.ReactElement, getOptions: () => C
           custom: {
             main: '#ff5252',
           },
+          unknown: null,
         },
       });
 
@@ -1025,7 +1050,7 @@ const fullSuite = {
  * components.
  */
 function describeConformance(
-  minimalElement: React.ReactElement,
+  minimalElement: React.ReactElement<any>,
   getOptions: () => ConformanceOptions,
 ) {
   let originalMatchmedia: typeof window.matchMedia;

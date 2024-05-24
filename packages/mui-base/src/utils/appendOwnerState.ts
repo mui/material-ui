@@ -10,7 +10,7 @@ import { isHostComponent } from './isHostComponent';
 type OwnerStateWhenApplicable<ElementType extends React.ElementType, OwnerState> =
   ElementType extends React.ComponentType<any>
     ? OwnerState
-    : ElementType extends keyof JSX.IntrinsicElements
+    : ElementType extends keyof React.JSX.IntrinsicElements
       ? undefined
       : OwnerState | undefined;
 
