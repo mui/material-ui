@@ -259,6 +259,72 @@ npx @mui/codemod@next deprecations/alert-classes <path>
 npx @mui/codemod@next deprecations/alert-props <path>
 ```
 
+#### `autocomplete-props`
+
+```diff
+ <Autocomplete
+-  ChipProps={{ height: 10 }}
+-  PaperComponent={CustomPaper}
+-  PopperComponent={CustomPopper}
+-  ListboxComponent={CustomListbox}
+-  ListboxProps={{ height: 12 }}
+-  componentsProps={{
+-    clearIndicator: { width: 10 },
+-    paper: { width: 12 },
+-    popper: { width: 14 },
+-    popupIndicator: { width: 16 },
+-  }}
++  slots={{
++    paper: CustomPaper,
++    popper: CustomPopper,
++    listbox: CustomListbox,
++  }}
++  slotProps={{
++    chip: { height: 10 },
++    listbox: { height: 12 },
++    clearIndicator: { width: 10 },
++    paper: { width: 12 },
++    popper: { width: 14 },
++    popupIndicator: { width: 16 },
++  }}
+ />
+```
+
+```diff
+ MuiAutocomplete: {
+   defaultProps: {
+-    ChipProps: { height: 10 },
+-    PaperComponent: CustomPaper,
+-    PopperComponent: CustomPopper,
+-    ListboxComponent: CustomListbox,
+-    ListboxProps: { height: 12 },
+-    componentsProps: {
+-       clearIndicator: { width: 10 },
+-       paper: { width: 12 },
+-       popper: { width: 14 },
+-       popupIndicator: { width: 16 },
+-     }
++    slots: {
++      paper: CustomPaper,
++      popper: CustomPopper,
++      listbox: CustomListbox,
++    },
++    slotProps: {
++      chip: { height: 10 },
++      listbox: { height: 12 },
++      clearIndicator: { width: 10 },
++      paper: { width: 12 },
++      popper: { width: 14 },
++      popupIndicator: { width: 16 },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/autocomplete-props <path>
+```
+
 #### `avatar-props`
 
 ```diff
@@ -845,6 +911,42 @@ CSS transforms:
 npx @mui/codemod@next deprecations/chip-classes <path>
 ```
 
+#### `circular-progress-classes`
+
+JS transforms:
+
+```diff
+ import { circularProgressClasses } from '@mui/material/CircularProgress';
+
+ MuiCircularProgress: {
+   styleOverrides: {
+     root: {
+-      [`& .${circularProgressClasses.circleDeterminate}`]: {
++      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
+         color: 'red',
+        },
+-      [`& .${circularProgressClasses.circleIndeterminate}`]: {
++      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiCircularProgress-circleDeterminate
++.MuiCircularProgress-determinate > .MuiCircularProgress-circle
+- .MuiCircularProgress-circleIndeterminate
++.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle
+```
+
+```bash
+npx @mui/codemod@next deprecations/circular-progress-classes <path>
+```
+
 #### `divider-props`
 
 ```diff
@@ -879,6 +981,32 @@ npx @mui/codemod@next deprecations/divider-props <path>
 ```bash
 npx @mui/codemod@next deprecations/form-control-label-props <path>
 
+```
+
+#### `list-item-props`
+
+```diff
+ <ListItem
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiListItem: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'test-id' }}
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/list-item-props <path>
 ```
 
 #### `pagination-item-classes`
@@ -1019,6 +1147,82 @@ npx @mui/codemod@next deprecations/popper-props <path>
 npx @mui/codemod@next deprecations/slider-props <path>
 ```
 
+#### `step-connector-classes`
+
+JS transforms:
+
+```diff
+ import { stepConnectorClasses } from '@mui/material/StepConnector';
+
+ MuiStepConnector: {
+   styleOverrides: {
+     root: {
+-      [`& .${stepConnectorClasses.lineHorizontal}`]: {
++      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+-      [`& .${stepConnectorClasses.lineVertical}`]: {
++      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+#### `step-label-props`
+
+```diff
+ <StepLabel
+-  componentsProps={{ label: labelProps }}
++  slotProps={{ label: labelProps }}
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
+ />
+```
+
+```diff
+ MuiStepLabel: {
+   defaultProps: {
+-  componentsProps:{ label: labelProps }
++  slotProps:{ label: labelProps }
+-  StepIconComponent:StepIconComponent
++  slots:{ stepIcon: StepIconComponent }
+-  StepIconProps:StepIconProps
++  slotProps:{ stepIcon: StepIconProps }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-label-props <path>
+```
+
+#### `text-field-props`
+
+```diff
+ <TextField
+-    InputProps={CustomInputProps}
+-    inputProps={CustomHtmlInputProps}
+-    SelectProps={CustomSelectProps}
+-    InputLabelProps={CustomInputLabelProps}
+-    FormHelperTextProps={CustomFormHelperProps}
++    slotProps={{
++        input: CustomInputProps
++        htmlInput: CustomHtmlInputProps
++        select: CustomSelectProps
++        inputLabel: CustomInputLabelProps
++        formHelper: CustomFormHelperProps
++    }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/text-field-props <path>
+```
+
 #### `toggle-button-group-classes`
 
 JS transforms:
@@ -1054,60 +1258,6 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
-```
-
-#### `step-label-props`
-
-```diff
- <StepLabel
--  componentsProps={{ label: labelProps }}
-+  slotProps={{ label: labelProps }}
--  StepIconComponent={StepIconComponent}
-+  slots={{ stepIcon: StepIconComponent }}
--  StepIconProps={StepIconProps}
-+  slotProps={{ stepIcon: StepIconProps }}
- />
-```
-
-```diff
- MuiStepLabel: {
-   defaultProps: {
--  componentsProps:{ label: labelProps }
-+  slotProps:{ label: labelProps }
--  StepIconComponent:StepIconComponent
-+  slots:{ stepIcon: StepIconComponent }
--  StepIconProps:StepIconProps
-+  slotProps:{ stepIcon: StepIconProps }
-  },
- },
-```
-
-```bash
-npx @mui/codemod@latest deprecations/step-label-props <path>
-
-```
-
-#### `step-connector-classes`
-
-JS transforms:
-
-```diff
- import { stepConnectorClasses } from '@mui/material/StepConnector';
-
- MuiStepConnector: {
-   styleOverrides: {
-     root: {
--      [`& .${stepConnectorClasses.lineHorizontal}`]: {
-+      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
-         color: 'red',
-        },
--      [`& .${stepConnectorClasses.lineVertical}`]: {
-+      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
 ```
 
 CSS transforms:

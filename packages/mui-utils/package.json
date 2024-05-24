@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "6.0.0-alpha.5",
+  "version": "6.0.0-alpha.8",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -38,7 +38,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.4",
+    "@babel/runtime": "^7.24.5",
     "@types/prop-types": "^15.7.12",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0"
@@ -47,13 +47,13 @@
     "@mui-internal/test-utils": "workspace:^",
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.14",
+    "@types/chai": "^4.3.16",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.31",
+    "@types/node": "^18.19.33",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.3.0",
     "@types/react-is": "^18.3.0",
-    "@types/sinon": "^10.0.20",
+    "@types/sinon": "^17.0.3",
     "chai": "^4.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

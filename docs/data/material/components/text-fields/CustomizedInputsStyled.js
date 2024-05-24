@@ -65,7 +65,12 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const RedditTextField = styled((props) => (
-  <TextField InputProps={{ disableUnderline: true }} {...props} />
+  <TextField
+    slotProps={{
+      input: { disableUnderline: true },
+    }}
+    {...props}
+  />
 ))(({ theme }) => ({
   '& .MuiFilledInput-root': {
     overflow: 'hidden',

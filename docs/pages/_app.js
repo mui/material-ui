@@ -5,7 +5,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { LicenseInfo } from '@mui/x-data-grid-pro';
+import { LicenseInfo } from '@mui/x-license';
 import materialPkgJson from 'packages/mui-material/package.json';
 import joyPkgJson from 'packages/mui-joy/package.json';
 import systemPkgJson from 'packages/mui-system/package.json';
@@ -163,7 +163,7 @@ function AppWrapper(props) {
 
     if (productId === 'material-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'Material UI',
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
@@ -182,7 +182,7 @@ function AppWrapper(props) {
 
     if (productId === 'joy-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'Joy UI',
         versions: [{ text: `v${joyPkgJson.version}`, current: true }],
       };
@@ -190,7 +190,7 @@ function AppWrapper(props) {
 
     if (productId === 'system') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'MUI System',
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
@@ -206,7 +206,7 @@ function AppWrapper(props) {
 
     if (productId === 'base-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'Base UI',
         versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };

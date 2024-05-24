@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import integerPropType from '@mui/utils/integerPropType';
-import useThemeProps from '../styles/useThemeProps';
 import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
+
+const useThemeProps = createUseThemeProps('MuiPagination');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant } = ownerState;
@@ -198,7 +199,7 @@ Pagination.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
-   * The current page.
+   * The current page. Unlike `TablePagination`, which starts numbering from `0`, this pagination starts from `1`.
    */
   page: integerPropType,
   /**

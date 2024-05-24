@@ -5,9 +5,10 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
+
+const useThemeProps = createUseThemeProps('MuiListItemText');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, inset, primary, secondary, dense } = ownerState;
