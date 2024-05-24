@@ -581,9 +581,7 @@ Popover.propTypes /* remove-proptypes */ = {
     component: elementTypeAcceptingRef,
   }),
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -592,7 +590,6 @@ Popover.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
    * @default {}
    */
   slots: PropTypes.shape({

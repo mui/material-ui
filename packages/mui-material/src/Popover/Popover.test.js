@@ -74,7 +74,6 @@ describe('<Popover />', () => {
       'themeStyleOverrides', // portal, can't determine the root
       'themeVariants',
       'reactTestRenderer', // react-transition-group issue
-      'slotPropsCallback', // not supported yet
     ],
   }));
 
