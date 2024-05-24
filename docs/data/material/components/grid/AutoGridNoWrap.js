@@ -43,7 +43,7 @@ export default function AutoGridNoWrap() {
           p: 2,
         }}
       >
-        <Grid container wrap="nowrap" spacing={2}>
+        <Grid container flexWrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
@@ -59,7 +59,7 @@ export default function AutoGridNoWrap() {
           p: 2,
         }}
       >
-        <Grid container wrap="nowrap" spacing={2}>
+        <Grid container flexWrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>

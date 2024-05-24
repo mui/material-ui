@@ -524,65 +524,6 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * @ignore
-   */
-  flexWrap: PropTypes.oneOfType([
-    PropTypes.oneOf([
-      '-moz-initial',
-      'inherit',
-      'initial',
-      'nowrap',
-      'revert-layer',
-      'revert',
-      'unset',
-      'wrap-reverse',
-      'wrap',
-    ]),
-    PropTypes.arrayOf(
-      PropTypes.oneOf([
-        '-moz-initial',
-        'inherit',
-        'initial',
-        'nowrap',
-        'revert-layer',
-        'revert',
-        'unset',
-        'wrap-reverse',
-        'wrap',
-      ]).isRequired,
-    ),
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.oneOf([
-          '-moz-initial',
-          'inherit',
-          'initial',
-          'nowrap',
-          'revert-layer',
-          'revert',
-          'unset',
-          'wrap-reverse',
-          'wrap',
-        ]),
-        PropTypes.arrayOf(
-          PropTypes.oneOf([
-            '-moz-initial',
-            'inherit',
-            'initial',
-            'nowrap',
-            'revert-layer',
-            'revert',
-            'unset',
-            'wrap-reverse',
-            'wrap',
-          ]).isRequired,
-        ),
-      ]),
-    ),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-  /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
    * @default false

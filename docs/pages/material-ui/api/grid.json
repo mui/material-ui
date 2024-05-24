@@ -230,6 +230,18 @@
       "isGlobal": false
     },
     {
+      "key": "wrap-xs-nowrap",
+      "className": "MuiGrid-wrap-xs-nowrap",
+      "description": "Styles applied to the root element if `wrap=\"nowrap\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "wrap-xs-wrap-reverse",
+      "className": "MuiGrid-wrap-xs-wrap-reverse",
+      "description": "Styles applied to the root element if `wrap=\"reverse\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "zeroMinWidth",
       "className": "MuiGrid-zeroMinWidth",
       "description": "Styles applied to the root element if `zeroMinWidth={true}`.",
