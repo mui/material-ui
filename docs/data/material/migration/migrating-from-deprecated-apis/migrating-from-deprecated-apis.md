@@ -991,6 +991,68 @@ The FormControlLabel's `componentsProps` prop was deprecated in favor of `slotPr
  />
 ```
 
+## ListItem
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/list-item-props <path>
+```
+
+### components
+
+The ListItem's `components` prop was deprecated in favor of `slots`:
+
+```diff
+ <ListItem
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+ />
+```
+
+### componentsProps
+
+The ListItem's `componentsProps` prop was deprecated in favor of `slotProps`:
+
+```diff
+ <ListItem
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+### ContainerComponent
+
+The ListItem's `ContainerComponent` prop was deprecated in favor of `slots.root` or `component` instead.
+
+### ContainerProps
+
+The ListItem's `ContainerProps` prop was deprecated in favor of `slotProps.root` instead.
+
+## ListItemSecondaryAction
+
+### Deprecated component
+
+The ListItemSecondaryAction component was deprecated in favor of the `secondaryAction` prop in the ListItem component.
+
+```diff
+ <ListItem
++  secondaryAction={
++    <IconButton aria-label="Leave a comment">
++      <CommentIcon />
++    </IconButton>
++  }
+   disablePadding
+ >
+   <ListItemText primary="John Doe" />
+-  <ListItemSecondaryAction>
+-    <IconButton aria-label="Leave a comment">
+-      <CommentIcon />
+-    </IconButton>
+-  </ListItemSecondaryAction>
+ </ListItem>
+```
+
 ## PaginationItem
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-classes) below to migrate the code as described in the following sections:
@@ -1122,6 +1184,35 @@ Here's how to migrate:
         },
    },
   },
+```
+
+## TextField
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/text-field-props <path>
+```
+
+### \*Props props
+
+All of the TextField's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <TextField
+-    InputProps={CustomInputProps}
+-    inputProps={CustomHtmlInputProps}
+-    SelectProps={CustomSelectProps}
+-    InputLabelProps={CustomInputLabelProps}
+-    FormHelperTextProps={CustomFormHelperProps}
++    slotProps={{
++        input: CustomInputProps
++        htmlInput: CustomHtmlInputProps
++        select: CustomSelectProps
++        inputLabel: CustomInputLabelProps
++        formHelper: CustomFormHelperProps
++    }}
+ />
 ```
 
 ## StepLabel

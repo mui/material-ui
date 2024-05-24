@@ -995,6 +995,7 @@ function testThemeCustomPalette(element: React.ReactElement, getOptions: () => C
           custom: {
             main: '#ff5252',
           },
+          unknown: null,
         },
       });
 

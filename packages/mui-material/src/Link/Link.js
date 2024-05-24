@@ -84,7 +84,7 @@ const LinkRoot = styled(Typography, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main)
+        .filter(([, value]) => value && value.main)
         .map(([color]) => ({
           props: { underline: 'always', color },
           style: {
