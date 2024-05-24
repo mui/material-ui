@@ -793,9 +793,6 @@ importers:
       react-swipeable-views:
         specifier: ^0.14.0
         version: 0.14.0(react@18.2.0)
-      react-swipeable-views-utils:
-        specifier: ^0.14.0
-        version: 0.14.0(react@18.2.0)
       react-transition-group:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
@@ -866,9 +863,6 @@ importers:
       '@types/react-swipeable-views':
         specifier: ^0.13.5
         version: 0.13.5
-      '@types/react-swipeable-views-utils':
-        specifier: ^0.13.7
-        version: 0.13.7
       '@types/react-transition-group':
         specifier: ^4.4.10
         version: 4.4.10
@@ -5096,12 +5090,6 @@ packages:
       - supports-color
     dev: true
 
-  /@material-ui/types@4.1.1:
-    resolution: {integrity: sha512-AN+GZNXytX9yxGi0JOfxHrRTbhFybjUJ05rnsBVjcB+16e466Z0Xe5IxawuOayVZgTBNDxmPKo5j4V6OnMtaSQ==}
-    dependencies:
-      '@types/react': 18.2.55
-    dev: true
-
   /@mnajdova/enzyme-adapter-react-18@0.2.0(enzyme@3.11.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-BOnjlVa7FHI1YUnYe+FdUtQu6szI1wLJ+C1lHyqmF3T9gu/J/WCYqqcD44dPkrU+8eYvvk/gQducsqna4HFiAg==}
     peerDependencies:
@@ -8155,14 +8143,6 @@ packages:
       '@types/react': 18.2.55
     dev: false
 
-  /@types/react-swipeable-views-utils@0.13.7:
-    resolution: {integrity: sha512-ED8pf8dq3S79uWtP8EnSdrg7dUCrxyL9Uapq1dSA2mz+H83SjS8vsqmlFWmmBQoTuEHsQp5Ru9fxxsofQ+bI9Q==}
-    dependencies:
-      '@material-ui/types': 4.1.1
-      '@types/react': 18.2.55
-      '@types/react-swipeable-views': 0.13.5
-    dev: true
-
   /@types/react-swipeable-views@0.13.5:
     resolution: {integrity: sha512-ni6WjO7gBq2xB2Y/ZiRdQOgjGOxIik5ow2s7xKieDq8DxsXTdV46jJslSBVK2yoIJHf6mG3uqNTwxwgzbXRRzg==}
     dependencies:
@@ -8746,6 +8726,7 @@ packages:
 
   /airbnb-prop-types@2.16.0(react@18.2.0):
     resolution: {integrity: sha512-7WHOFolP/6cS96PhKNrslCLMYAI8yB1Pp6u6XmxozQOiZbsI5ycglZr5cHhBFfuRcQQjzCMith5ZPZdYiJCxUg==}
+    deprecated: This package has been renamed to 'prop-types-tools'
     peerDependencies:
       react: ^0.14 || ^15.0.0 || ^16.0.0-alpha
     dependencies:
