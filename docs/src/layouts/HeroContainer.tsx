@@ -138,8 +138,8 @@ export default function HeroContainer(props: HeroContainerProps) {
     <Box sx={{ overflow: 'hidden' }}>
       <Container
         sx={{
-          pt: { xs: 8, sm: 0 },
-          minHeight: { xs: 'auto', sm: 500 },
+          pt: { xs: 8, md: 0 },
+          minHeight: { xs: 'auto', md: 500 },
           height: { md: 'calc(100vh - 120px)' },
           maxHeight: { md: 700, xl: 850 },
           transition: '0.3s',

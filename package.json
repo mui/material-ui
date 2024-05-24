@@ -115,7 +115,6 @@
     "@types/lodash": "^4.17.4",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.33",
-    "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.55",
     "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
