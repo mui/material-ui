@@ -123,6 +123,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     transitionDuration: transitionDurationProp = 'auto',
     TransitionProps: { onEntering, ...TransitionProps } = {},
     disableScrollLock = false,
+    ...other
   } = props;
 
   const externalPaperSlotProps = slotProps?.paper ?? PaperPropsProp;
@@ -412,11 +413,12 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     className: clsx(classes.root, className),
   });
 
-  console.log(rootSlotPropsProp);
   return (
     <RootSlot
       {...rootProps}
       {...(!isHostComponent(RootSlot) && { slotProps: rootSlotPropsProp, disableScrollLock })}
+      {...other}
+      ref={ref}
     >
       <TransitionComponent
         appear

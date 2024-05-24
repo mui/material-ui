@@ -584,7 +584,7 @@ describe('<Popover />', () => {
     });
   });
 
-  it.only('should pass through container prop if container and anchorEl props are provided', () => {
+  it('should pass through container prop if container and anchorEl props are provided', () => {
     const container = document.createElement('div');
     const anchorEl = document.createElement('div');
     render(<Popover anchorEl={anchorEl} data-testid="popover" container={container} open />);
