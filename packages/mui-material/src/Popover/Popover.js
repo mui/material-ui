@@ -18,6 +18,7 @@ import Grow from '../Grow';
 import Modal from '../Modal';
 import PaperBase from '../Paper';
 import { getPopoverUtilityClass } from './popoverClasses';
+import useSlot from '../utils/useSlot';
 
 const useThemeProps = createUseThemeProps('MuiPopover');
 
@@ -112,8 +113,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     marginThreshold = 16,
     open,
     PaperProps: PaperPropsProp = {},
-    slots,
-    slotProps,
+    slots = {},
+    slotProps = {},
     transformOrigin = {
       vertical: 'top',
       horizontal: 'left',
@@ -378,19 +379,25 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
 
   const RootSlot = slots?.root ?? PopoverRoot;
-  const PaperSlot = slots?.paper ?? PopoverPaper;
 
-  const paperProps = useSlotProps({
-    elementType: PaperSlot,
-    externalSlotProps: {
-      ...externalPaperSlotProps,
-      style: isPositioned
-        ? externalPaperSlotProps.style
-        : { ...externalPaperSlotProps.style, opacity: 0 },
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      ...slotProps,
+      paper: {
+        ...externalPaperSlotProps,
+        style: isPositioned
+          ? externalPaperSlotProps.style
+          : { ...externalPaperSlotProps.style, opacity: 0 },
+      },
     },
+  };
+
+  const [PaperSlot, paperProps] = useSlot('paper', {
+    elementType: PopoverPaper,
+    externalForwardedProps,
     additionalProps: {
       elevation,
-      ref: handlePaperRef,
     },
     ownerState,
     className: clsx(classes.paper, externalPaperSlotProps?.className),
@@ -423,7 +430,9 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         timeout={transitionDuration}
         {...TransitionProps}
       >
-        <PaperSlot {...paperProps}>{children}</PaperSlot>
+        <PaperSlot {...paperProps} ref={handlePaperRef}>
+          {children}
+        </PaperSlot>
       </TransitionComponent>
     </RootSlot>
   );
