@@ -30,7 +30,7 @@ export default function OptionsMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
+        <MenuItem sx={{ mt: 1 }}>
           <Avatar
             sizes="small"
             alt="Riley Carter"

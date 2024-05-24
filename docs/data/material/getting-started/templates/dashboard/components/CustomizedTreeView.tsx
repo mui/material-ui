@@ -155,7 +155,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
         <TreeItem2Content
           {...getContentProps({
             className: clsx('content', {
-              exanded: status.expanded,
+              expanded: status.expanded,
               selected: status.selected,
               focused: status.focused,
               disabled: status.disabled,
