@@ -286,6 +286,8 @@ const Root = styled('div')(
       padding: '16px',
       margin: '16px 0',
       border: '1px solid',
+      fontSize: 14,
+      lineHeight: '20px',
       color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
       borderColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
       borderRadius: `var(--muidocs-shape-borderRadius, ${
