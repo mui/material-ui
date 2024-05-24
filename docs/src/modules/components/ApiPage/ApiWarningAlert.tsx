@@ -13,7 +13,7 @@ export default function ApiWarningAlert({ children, className }: ApiWarningAlert
       severity="warning"
       className={className}
       icon={<WarningRoundedIcon fontSize="small" />}
-      sx={{ fontSize: '0.875rem', marginTop: '12px' }}
+      sx={{ fontSize: '0.875rem', mt: '12px' }}
     >
       {children}
     </Alert>
