@@ -11,6 +11,5 @@ export default function transformer(file, api, options) {
 
   replaceComponentsWithSlots(j, { root, componentName: 'Tooltip' });
 
-  // I've tried { lineTerminator } option here, but still get wrong line endings on my Windows machine
   return root.toSource(printOptions);
 }
