@@ -1245,6 +1245,36 @@ All of the TextField's slot props (`*Props`) props were deprecated in favor of e
  />
 ```
 
+## Tooltip
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/tooltip-props <path>
+```
+
+### components
+
+The Tooltip's prop `components` was deprecated in favor of `slots`:
+
+```diff
+ <Tooltip
+-  components={{ Arrow: CustomArrow }}
++  slots={{ arrow: CustomArrow }}
+ />
+```
+
+### componentsProps
+
+The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <Tooltip
+-  componentsProps={{ arrow: { testid: 'test-id' } }}
++  slotProps={{ arrow: { testid: 'test-id' } }}
+ />
+```
+
 ## StepLabel
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-label-props) below to migrate the code as described in the following sections:
