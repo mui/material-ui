@@ -382,7 +382,11 @@ function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
   );
 }
 
-function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: React.ReactElement }) {
+function RowHead({
+  children,
+  startIcon,
+  ...props
+}: BoxProps & { startIcon?: React.ReactElement<any> }) {
   return (
     <Box
       {...props}
@@ -564,10 +568,16 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/localization': (
     <ColumnHead label="Localization" href="/x/react-data-grid/localization/" />
   ),
-  'date-picker/simple': <ColumnHead label="Date Picker" />,
-  'date-picker/range': <ColumnHead label="Date Range Picker" />,
-
-  // -- charts - components --
+  'date-picker/simple': (
+    <ColumnHead label="Date and Time Pickers" href="/x/react-date-pickers/date-picker/" />
+  ),
+  'date-picker/range': (
+    <ColumnHead
+      label="Date and Time Range Pickers"
+      href="/x/react-date-pickers/date-range-picker/"
+    />
+  ),
+  // charts - components
   'charts/line': <ColumnHead label="Line chart" href="/x/react-charts/lines/" />,
   'charts/bar': <ColumnHead label="Bar chart" href="/x/react-charts/bars/" />,
   'charts/scatter': <ColumnHead label="Scatter chart" href="/x/react-charts/scatter/" />,
@@ -583,18 +593,18 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/gantt-advanced': <ColumnHead label="Advanced Gantt" />,
   'charts/candlestick': <ColumnHead label="Candlestick" />,
   'charts/large-dataset': <ColumnHead label="Large dataset with canvas" />,
-  // -- charts - features --
+  // charts - features
   'charts/legend': <ColumnHead label="Legend" href="/x/react-charts/legend/" />,
   'charts/tooltip': <ColumnHead label="Tooltip" href="/x/react-charts/tooltip/" />,
   'charts/mouse-zoom': <ColumnHead label="Zoom on mouse" />,
   'charts/export': <ColumnHead label="Export" />,
-  // -- charts - datagrid --
+  // charts - datagrid
   'charts/cell-with-charts': (
     <ColumnHead label="Cell with chart" href="/x/react-data-grid/custom-columns/#sparkline" />
   ),
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
-
+  'tree-view/tree-view': <ColumnHead label="Tree View" href="/x/react-tree-view/" />,
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-development-perpetual': (
@@ -692,20 +702,20 @@ const toBeDefined = (
 );
 
 const communityData: Record<string, React.ReactNode> = {
-  // MUI Core
+  // Core open-source libraries
   'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  // -- data grid - columns --
+  // data grid - columns
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
-  'data-grid/column-resizing': no,
-  'data-grid/column-autosizing': no,
+  'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
-  // -- data grid - rows --
+  // data grid - rows
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': no,
@@ -713,7 +723,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
   'data-grid/row-cell-selection': no,
-  // -- data grid - filter --
+  // data grid - filter
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': no,
@@ -722,10 +732,10 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/multi-column-sorting': no,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': no,
-  // -- data grid - edit --
+  // data grid - edit
   'data-grid/edit-row': yes,
   'data-grid/edit-cell': yes,
-  // -- data grid - export --
+  // data grid - export
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard-copy': yes,
@@ -742,18 +752,16 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
-
-  // -- picker --
+  // picker
   'date-picker/simple': yes,
   'date-picker/range': no,
-
-  // -- charts - components --
+  // charts - components
   'charts/line': yes,
   'charts/bar': yes,
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
   'charts/heatmap': no,
   'charts/radar': pending,
@@ -763,17 +771,18 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/gantt-advanced': no,
   'charts/candlestick': no,
   'charts/large-dataset': no,
-  // -- charts - features --
+  // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/mouse-zoom': no,
   'charts/export': no,
-  // -- charts - datagrid --
+  // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
-
-  // -- general --
+  // Tree View
+  'tree-view/tree-view': yes,
+  // general
   'mui-x-production': yes,
   'mui-x-updates': yes,
   'mui-x-development': yes,
@@ -790,20 +799,20 @@ const communityData: Record<string, React.ReactNode> = {
 };
 
 const proData: Record<string, React.ReactNode> = {
-  // MUI Core
+  // Core
   'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  // -- data grid - columns --
+  // data grid - columns
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
-  // -- data grid - rows --
+  // data grid - rows
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
@@ -811,7 +820,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-cell-selection': no,
-  // -- data grid - filter --
+  // data grid - filter
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': yes,
@@ -820,10 +829,10 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/multi-column-sorting': yes,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': yes,
-  // -- data grid - edit --
+  // data grid - edit
   'data-grid/edit-row': yes,
   'data-grid/edit-cell': yes,
-  // -- data grid - export --
+  // data grid - export
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard-copy': yes,
@@ -843,13 +852,13 @@ const proData: Record<string, React.ReactNode> = {
   'date-picker/simple': yes,
   'date-picker/range': yes,
 
-  // -- charts - components --
+  // charts - components
   'charts/line': yes,
   'charts/bar': yes,
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
   'charts/heatmap': pending,
   'charts/radar': pending,
@@ -859,17 +868,18 @@ const proData: Record<string, React.ReactNode> = {
   'charts/gantt-advanced': no,
   'charts/candlestick': no,
   'charts/large-dataset': no,
-  // -- charts - features --
+  // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/mouse-zoom': pending,
   'charts/export': pending,
-  // -- charts - datagrid --
+  // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
-
-  // -- general --
+  // Tree View
+  'tree-view/tree-view': yes,
+  // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-development-perpetual': <Info value="Perpetual" />,
@@ -891,20 +901,20 @@ const proData: Record<string, React.ReactNode> = {
 };
 
 const premiumData: Record<string, React.ReactNode> = {
-  // MUI Core
+  // Core
   'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  // -- data grid - columns --
+  // data grid - columns
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
-  // -- data grid - rows --
+  // data grid - rows
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
@@ -912,7 +922,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-cell-selection': yes,
-  // -- data grid - filter --
+  // data grid - filter
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/header-filters': yes,
@@ -921,10 +931,10 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/multi-column-sorting': yes,
   'data-grid/pagination': yes,
   'data-grid/pagination-large': yes,
-  // -- data grid - edit --
+  // data grid - edit
   'data-grid/edit-row': yes,
   'data-grid/edit-cell': yes,
-  // -- data grid - export --
+  // data grid - export
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard-copy': yes,
@@ -944,13 +954,13 @@ const premiumData: Record<string, React.ReactNode> = {
   'date-picker/simple': yes,
   'date-picker/range': yes,
 
-  // -- charts - components --
+  // charts - components
   'charts/line': yes,
   'charts/bar': yes,
   'charts/scatter': yes,
   'charts/pie': yes,
   'charts/sparkline': yes,
-  'charts/gauge': pending,
+  'charts/gauge': yes,
   'charts/treemap': pending,
   'charts/heatmap': pending,
   'charts/radar': pending,
@@ -960,23 +970,24 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/gantt-advanced': toBeDefined,
   'charts/candlestick': toBeDefined,
   'charts/large-dataset': toBeDefined,
-  // -- charts - features --
+  // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/mouse-zoom': pending,
   'charts/export': pending,
-  // -- charts - datagrid --
+  // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
-
-  // -- general --
+  // Tree View
+  'tree-view/tree-view': yes,
+  // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  'core-support': <Info value={pending} metadata="priority add-on only" />,
+  'core-support': <Info value={pending} metadata="Priority add-on only" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
@@ -994,7 +1005,7 @@ const premiumData: Record<string, React.ReactNode> = {
     />
   ),
   'pre-screening': <Info value={pending} metadata="4 hours (priority add-on only)" />,
-  'issue-escalation': <Info value={pending} metadata="priority add-on only" />,
+  'issue-escalation': <Info value={pending} metadata="Priority add-on only" />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
 };
 
@@ -1564,6 +1575,8 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/selection-interaction')}
       </StyledCollapse>
+      {divider}
+      {renderRow('tree-view/tree-view')}
       {divider}
       {renderRow('mui-x-production')}
       {divider}

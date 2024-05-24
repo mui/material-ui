@@ -5,7 +5,7 @@ import WebRoundedIcon from '@mui/icons-material/WebRounded';
 import DrawRoundedIcon from '@mui/icons-material/DrawRounded';
 import PlayCircleFilledWhiteRoundedIcon from '@mui/icons-material/PlayCircleFilledWhiteRounded';
 import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 
 const content = [
   {
@@ -47,8 +47,8 @@ const content = [
         src={`/static/branding/design-kits/figma-logo.svg`}
         alt="Figma logo"
         loading="lazy"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
       />
     ),
   },

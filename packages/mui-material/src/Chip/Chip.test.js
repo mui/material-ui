@@ -54,6 +54,7 @@ describe('<Chip />', () => {
       expect(label).to.have.text('My text Chip');
 
       expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.class(classes.colorDefault);
       expect(chip).not.to.have.class(classes.colorPrimary);
       expect(chip).not.to.have.class(classes.colorSecondary);
       expect(chip).not.to.have.class(classes.clickable);

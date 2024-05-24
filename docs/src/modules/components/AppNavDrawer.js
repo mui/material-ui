@@ -44,6 +44,15 @@ function transitionTheme(theme) {
 
 const savedScrollTop = {};
 
+const customButtonStyles = (theme) => ({
+  pl: 1,
+  pr: '6px',
+  height: 26,
+  fontSize: theme.typography.pxToRem(13),
+  fontWeight: theme.typography.fontWeightMedium,
+  letterSpacing: '0.01rem',
+});
+
 function ProductDrawerButton(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -67,26 +76,14 @@ function ProductDrawerButton(props) {
   return (
     <React.Fragment>
       <Button
+        size="small"
         id="mui-product-selector"
         aria-haspopup="true"
         aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
-        sx={(theme) => ({
-          minWidth: 0,
-          p: '1px 8px',
-          fontSize: theme.typography.pxToRem(13),
-          fontWeight: theme.typography.fontWeightMedium,
-          color: (theme.vars || theme).palette.primary[600],
-          '& svg': {
-            width: 18,
-            height: 18,
-          },
-          ...theme.applyDarkStyles({
-            color: (theme.vars || theme).palette.primary[300],
-          }),
-        })}
+        sx={customButtonStyles}
       >
         {props.productName}
       </Button>
@@ -121,8 +118,8 @@ function ProductIdentifier(props) {
     <Box sx={{ flexGrow: 1 }}>
       <Typography
         sx={(theme) => ({
-          ml: 1,
-          fontSize: theme.typography.pxToRem(11),
+          ml: '6px',
+          fontSize: theme.typography.pxToRem(10),
           fontWeight: theme.typography.fontWeightBold,
           textTransform: 'uppercase',
           letterSpacing: '.1rem',
@@ -184,7 +181,7 @@ PersistScroll.propTypes = {
 };
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1.6, 2),
+  padding: theme.spacing(1.5),
   paddingRight: 0,
   flexShrink: 0,
   height: 'var(--MuiDocs-header-height)',
@@ -193,6 +190,8 @@ const ToolbarDiv = styled('div')(({ theme }) => ({
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
+  borderBottom: '1px solid',
+  borderColor: (theme.vars || theme).palette.divider,
 }));
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -261,6 +260,7 @@ function reduceChildRoutes(context) {
         newFeature={page.newFeature}
         planned={page.planned}
         unstable={page.unstable}
+        beta={page.beta}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -294,6 +294,7 @@ function reduceChildRoutes(context) {
         newFeature={page.newFeature}
         planned={page.planned}
         unstable={page.unstable}
+        beta={page.beta}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -321,7 +322,7 @@ export default function AppNavDrawer(props) {
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
 
-    const renderVersionSelector = (versions, sx) => {
+    const renderVersionSelector = (versions) => {
       if (!versions?.length) {
         return null;
       }
@@ -330,6 +331,9 @@ export default function AppNavDrawer(props) {
       return (
         <React.Fragment>
           <Button
+            variant="text"
+            color="secondary"
+            size="small"
             id="mui-version-selector"
             onClick={(event) => {
               setAnchorEl(event.currentTarget);
@@ -339,24 +343,7 @@ export default function AppNavDrawer(props) {
                 <ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />
               ) : null
             }
-            sx={[
-              (theme) => ({
-                py: 0.1,
-                minWidth: 0,
-                fontSize: theme.typography.pxToRem(13),
-                fontWeight: 500,
-                color: (theme.vars || theme).palette.primary[600],
-                '& svg': {
-                  ml: -0.6,
-                  width: 18,
-                  height: 18,
-                },
-                ...theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.primary[300],
-                }),
-              }),
-              ...(Array.isArray(sx) ? sx : [sx]),
-            ]}
+            sx={customButtonStyles}
           >
             {currentVersion.text}
           </Button>
@@ -369,7 +356,7 @@ export default function AppNavDrawer(props) {
             {versions.map((item) => {
               if (item.text === 'View all versions') {
                 return [
-                  <Divider key="divider" />,
+                  <Divider key="divider" sx={{ mx: -1 }} />,
                   <MenuItem key="all-versions" component="a" href={item.href} onClick={onClose}>
                     {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                     {`View all versions`}
@@ -390,7 +377,7 @@ export default function AppNavDrawer(props) {
                         onClick: onClose,
                       })}
                 >
-                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />}
+                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 'auto' }} />}
                 </MenuItem>
               );
             })}
@@ -403,17 +390,7 @@ export default function AppNavDrawer(props) {
       <React.Fragment>
         <ToolbarDiv>
           <NextLink href="/" passHref legacyBehavior>
-            <Box
-              component="a"
-              onClick={onClose}
-              aria-label={t('goToHome')}
-              sx={{
-                pr: '12px',
-                mr: '8px',
-                borderRight: '1px solid',
-                borderColor: 'divider',
-              }}
-            >
+            <Box component="a" onClick={onClose} aria-label={t('goToHome')} sx={{ mr: 1.5 }}>
               <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
@@ -423,7 +400,6 @@ export default function AppNavDrawer(props) {
             versionSelector={renderVersionSelector(productIdentifier.versions)}
           />
         </ToolbarDiv>
-        <Divider />
         <Box
           sx={{
             pt: 0.5,

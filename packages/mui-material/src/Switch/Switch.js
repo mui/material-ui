@@ -150,7 +150,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.light) // check all the used fields in the style below
+        .filter(([, value]) => value && value.main && value.light) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color },
           style: {

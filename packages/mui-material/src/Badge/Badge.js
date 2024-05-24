@@ -89,13 +89,9 @@ const BadgeBadge = styled('span', {
     duration: theme.transitions.duration.enteringScreen,
   }),
   variants: [
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter(
-        (key) =>
-          (theme.vars ?? theme).palette[key].main &&
-          (theme.vars ?? theme).palette[key].contrastText,
-      )
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main && palette.contrastText)
+      .map(([color]) => ({
         props: { color },
         style: {
           backgroundColor: (theme.vars || theme).palette[color].main,
@@ -398,8 +394,7 @@ Badge.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -411,8 +406,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

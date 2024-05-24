@@ -21,73 +21,73 @@ export interface AlertClasses {
   /** Styles applied to the root element if `variant="standard"` and `color="success"`.
    * @deprecated Combine the [.MuiAlert-standard](/material-ui/api/alert/#alert-classes-standard)
    * and [.MuiAlert-colorSuccess](/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   standardSuccess: string;
   /** Styles applied to the root element if `variant="standard"` and `color="info"`.
    * @deprecated Combine the [.MuiAlert-standard](/material-ui/api/alert/#alert-classes-standard)
    * and [.MuiAlert-colorInfo](/material-ui/api/alert/#alert-classes-colorInfo) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   standardInfo: string;
   /** Styles applied to the root element if `variant="standard"` and `color="warning"`.
    * @deprecated Combine the [.MuiAlert-standard](/material-ui/api/alert/#alert-classes-standard)
    * and [.MuiAlert-colorWarning](/material-ui/api/alert/#alert-classes-colorWarning) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   standardWarning: string;
   /** Styles applied to the root element if `variant="standard"` and `color="error"`.
    * @deprecated Combine the [.MuiAlert-standard](/material-ui/api/alert/#alert-classes-standard)
    * and [.MuiAlert-colorError](/material-ui/api/alert/#alert-classes-colorError) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   standardError: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="success"`.
    * @deprecated Combine the [.MuiAlert-outlined](/material-ui/api/alert/#alert-classes-outlined)
    * and [.MuiAlert-colorSuccess](/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedSuccess: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="info"`.
    * @deprecated Combine the [.MuiAlert-outlined](/material-ui/api/alert/#alert-classes-outlined)
    * and [.MuiAlert-colorInfo](/material-ui/api/alert/#alert-classes-colorInfo) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedInfo: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="warning"`.
    * @deprecated Combine the [.MuiAlert-outlined](/material-ui/api/alert/#alert-classes-outlined)
    * and [.MuiAlert-colorWarning](/material-ui/api/alert/#alert-classes-colorWarning) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedWarning: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="error"`.
    * @deprecated Combine the [.MuiAlert-outlined](/material-ui/api/alert/#alert-classes-outlined)
    * and [.MuiAlert-colorError](/material-ui/api/alert/#alert-classes-colorError) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedError: string;
   /** Styles applied to the root element if `variant="filled"` and `color="success"`.
    * @deprecated Combine the [.MuiAlert-filled](/material-ui/api/alert/#alert-classes-filled)
    * and [.MuiAlert-colorSuccess](/material-ui/api/alert/#alert-classes-colorSuccess) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   filledSuccess: string;
   /** Styles applied to the root element if `variant="filled"` and `color="info"`.
    * @deprecated Combine the [.MuiAlert-filled](/material-ui/api/alert/#alert-classes-filled)
    * and [.MuiAlert-colorInfo](/material-ui/api/alert/#alert-classes-colorInfo) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   filledInfo: string;
   /** Styles applied to the root element if `variant="filled"` and `color="warning"`
    * @deprecated Combine the [.MuiAlert-filled](/material-ui/api/alert/#alert-classes-filled)
    * and [.MuiAlert-colorWarning](/material-ui/api/alert/#alert-classes-colorWarning) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   filledWarning: string;
   /** Styles applied to the root element if `variant="filled"` and `color="error"`.
    * @deprecated Combine the [.MuiAlert-filled](/material-ui/api/alert/#alert-classes-filled)
    * and [.MuiAlert-colorError](/material-ui/api/alert/#alert-classes-colorError) classes instead.
-   * [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   filledError: string;
   /** Styles applied to the icon wrapper element. */

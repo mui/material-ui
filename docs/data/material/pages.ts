@@ -195,11 +195,6 @@ const pages: MuiPage[] = [
     pathname: '/material-ui/guides',
     title: 'How-to guides',
     children: [
-      {
-        pathname: '/material-ui/guides/material-3-components',
-        title: 'Material Design 3 components',
-        newFeature: true,
-      },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
       { pathname: '/material-ui/guides/server-rendering' },
       { pathname: '/material-ui/guides/responsive-ui', title: 'Responsive UI' },
@@ -330,6 +325,21 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/discover-more/backers', title: 'Sponsors and Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
+    ],
+  },
+  {
+    pathname: '/material-ui/design-resources',
+    title: 'Design resources',
+    children: [
+      {
+        pathname: '/material-ui/design-resources/material-ui-for-figma',
+        title: 'Figma Design Kit',
+      },
+      {
+        pathname: '/material-ui/design-resources/material-ui-sync',
+        title: 'Figma Sync plugin',
+        beta: true,
+      },
     ],
   },
   {

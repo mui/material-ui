@@ -8,6 +8,7 @@ import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
+import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { renderMarkdown } from '@mui/internal-markdown';
 import { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
@@ -108,7 +109,7 @@ export interface ReactApi extends ReactDocgenApi {
  * *
  * * - [useButton API](https://mui.com/base-ui/api/use-button/)
  */
-async function annotateHookDefinition(api: ReactApi) {
+async function annotateHookDefinition(api: ReactApi, hookJsdoc: Annotation) {
   const HOST = 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
@@ -284,6 +285,14 @@ async function annotateHookDefinition(api: ReactApi) {
       api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
     })`,
   );
+
+  if (hookJsdoc.tags.length > 0) {
+    markdownLines.push('');
+  }
+
+  hookJsdoc.tags.forEach((tag) => {
+    markdownLines.push(`@${tag.title}${tag.name ? ` ${tag.name} -` : ''} ${tag.description}`);
+  });
 
   const jsdoc = `/**\n${markdownLines
     .map((line) => (line.length > 0 ? ` * ${line}` : ` *`))
@@ -482,7 +491,7 @@ const extractInfoFromType = async (
  * @param filename The filename where its defined (to infer the package)
  * @returns an array of import command
  */
-const getHookImports = (name: string, filename: string) => {
+const defaultGetHookImports = (name: string, filename: string) => {
   const githubPath = toGitHubPath(filename);
   const rootImportPath = githubPath.replace(
     /\/packages\/mui(?:-(.+?))?\/src\/.*/,
@@ -546,12 +555,19 @@ export default async function generateHookApi(
 
   const parameters = await extractInfoFromType(`${upperFirst(name)}Parameters`, project);
   const returnValue = await extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
+  const hookJsdoc = parseDoctrine(reactApi.description);
+
+  // We override `reactApi.description` with `hookJsdoc.description` because
+  // the former can include JSDoc tags that we don't want to render in the docs.
+  reactApi.description = hookJsdoc.description;
 
   // Ignore what we might have generated in `annotateHookDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
+
+  const { getHookImports = defaultGetHookImports } = projectSettings;
   reactApi.filename = filename;
   reactApi.name = name;
   reactApi.imports = getHookImports(name, filename);
@@ -588,7 +604,7 @@ export default async function generateHookApi(
     await generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
-    await annotateHookDefinition(reactApi);
+    await annotateHookDefinition(reactApi, hookJsdoc);
   }
 
   return reactApi;

@@ -34,7 +34,7 @@ import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
 import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
 import { Link } from '@mui/docs/Link';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 
 const Grid = styled('div')(({ theme }) => [
   {
@@ -125,7 +125,7 @@ function Demo({
 }: {
   name: string;
   theme: Theme | undefined;
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   control?: { prop: string; values: Array<string>; defaultValue?: string };
 }) {
   const [propValue, setPropValue] = React.useState(

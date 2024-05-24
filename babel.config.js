@@ -13,7 +13,7 @@ const productionPlugins = [
 ];
 
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['regressions', 'legacy', 'modern', 'stable', 'rollup']);
+  const useESModules = api.env(['regressions', 'modern', 'stable']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
@@ -31,7 +31,6 @@ module.exports = function getBabelConfig(api) {
     '@mui/base': resolveAliasPath('./packages/mui-base/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
-    '@pigment-css/react': resolveAliasPath('./packages/pigment-css-react/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),
@@ -68,12 +67,6 @@ module.exports = function getBabelConfig(api) {
       },
     ],
     'babel-plugin-optimize-clsx',
-    // Need the following 3 proposals for all targets in .browserslistrc.
-    // With our usage the transpiled loose mode is equivalent to spec mode.
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
-    ['@babel/plugin-proposal-private-methods', { loose: true }],
-    ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
-    ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     [
       '@babel/plugin-transform-runtime',
       {
@@ -141,22 +134,6 @@ module.exports = function getBabelConfig(api) {
               root: ['./'],
             },
           ],
-        ],
-      },
-      rollup: {
-        plugins: [
-          [
-            'babel-plugin-module-resolver',
-            {
-              alias: defaultAlias,
-            },
-          ],
-        ],
-      },
-      legacy: {
-        plugins: [
-          // IE11 support
-          '@babel/plugin-transform-object-assign',
         ],
       },
       test: {

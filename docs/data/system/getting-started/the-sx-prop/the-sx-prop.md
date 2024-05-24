@@ -1,6 +1,6 @@
 # The sx prop
 
-<p class="description">The sx prop is a shortcut for defining custom styles that has access to the theme.</p>
+<p class="description">The sx prop is a shortcut for defining custom styles that have access to the theme.</p>
 
 The `sx` prop lets you work with a superset of CSS that packages all of the style functions exposed in `@mui/system`.
 You can specify any valid CSS using this prop, as well as many _theme-aware_ properties that are unique to MUI System.
@@ -179,7 +179,7 @@ Read more on the [Typography page](/system/typography/).
 
 ## Responsive values
 
-All properties associated with the `sx` prop also support responsive values for specific breakpoints.
+All properties associated with the `sx` prop also support responsive values for specific breakpoints and container queries.
 
 Read more on the [Usage page—Responsive values](/system/getting-started/usage/#responsive-values).
 

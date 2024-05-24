@@ -1,5 +1,5 @@
 const synonyms = {
-  Abc: 'alphabet character font letter symbol text type',
+  Abc: 'alphabet character font letters symbol text type',
   AccessAlarm: 'clock time',
   AccessAlarms: 'clock time',
   Accessibility: 'accessible body handicap help human people person user',
@@ -191,15 +191,16 @@ const synonyms = {
   AssistWalker:
     'accessibility accessible body disability handicap help human injured injury mobility person',
   AssuredWorkload:
-    'compliance confidential federal government regulatory secure sensitive',
-  Atm: 'alphabet automated bill card cart cash character coin commerce credit currency dollars font letter machine money online payment shopping symbol teller text type',
-  AttachEmail: 'attachment clip compose envelop letter link message send',
+    'account balance bank bill building card cash coin commerce compliance confidential credit currency dollars federal finance government money online payment regulatory secure sensitive',
+  Atm: 'alphabet automated bill card cart cash character coin commerce credit currency dollars font letters machine money online payment shopping symbol teller text type',
+  AttachEmail: 'attachment compose envelop letters link message paperclip send',
   AttachFile: 'add attachment item link mail media paperclip',
   Attachment: 'compose file image item link paperclip',
   AttachMoney:
     'attachment bill card cash coin commerce cost credit currency dollars finance online payment price profit sale symbol',
   Attractions: 'amusement entertainment ferris fun maps park places wheel',
-  Attribution: 'attribute body copyright copywriter human people person',
+  Attribution:
+    'account attribute body circle copyright copywriter human people person profile user youtube',
   AudioFile: 'document key music note sound track',
   Audiotrack: 'key music note sound',
   AutoAwesome:
@@ -216,7 +217,7 @@ const synonyms = {
   AutoFixOff:
     'artificial automatic automation custom disabled edit enabled erase genai intelligence magic modify slash smart sparkle stars wand',
   AutofpsSelect:
-    'A alphabet character font frame frequency letter per rate seconds symbol text type',
+    'A alphabet character font frame frequency letters per rate seconds symbol text type',
   AutoGraph:
     'analytics chart data diagram infographic line measure metrics stars statistics tracking',
   AutoMode:
@@ -414,7 +415,8 @@ const synonyms = {
     'access automobile cars entry key maps password transportation unlock vehicle',
   CarRepair: 'automobile cars maps transportation vehicle',
   Cases: 'baggage briefcase business purse suitcase',
-  Casino: 'dice dots entertainment gamble gambling games luck places',
+  Casino:
+    'casino chips dice dots entertainment gamble gambling games luck places tokens',
   Cast: 'Android airplay chromecast connect desktop device display hardware iOS mac monitor screencast streaming television tv web window wireless',
   CastConnected:
     'Android airplay chromecast desktop device display hardware iOS mac monitor screencast streaming television tv web window wireless',
@@ -422,7 +424,7 @@ const synonyms = {
     'Android airplay chrome connect desktop device display hardware iOS learning lessons mac monitor screencast streaming teaching television tv web window wireless',
   Castle: 'fortress mansion palace',
   CatchingPokemon: 'go pokestop travel',
-  Category: 'categories circle collection items product sort square triangle',
+  Category: 'categories circle collection items product shapes sort square triangle',
   Celebration: 'activity birthday event fun party',
   CellTower: 'broadcast casting network signal transmitting wireless',
   CellWifi: 'connection data internet mobile network phone service signal wireless',
@@ -447,7 +449,7 @@ const synonyms = {
   CheckBoxOutlineBlank:
     'button checkmark component control dashed deselected empty form selection square tick toggle ui',
   CheckCircle:
-    'approve checkmark complete done download finished ok select success tick upload validate verified yes',
+    'approve checkmark complete confirm done download finished ok select success tick upload validate verified yes',
   CheckCircleOutline:
     'approve checkmark complete done finished ok select success tick validate verified yes',
   Checklist:
@@ -473,11 +475,11 @@ const synonyms = {
   ClearAll: 'delete document erase format lines list notifications wipe',
   Close: 'allowed cancel clear cross disable exit not remove status stop times',
   ClosedCaption:
-    'accessible alphabet character decoder font language letter media movies subtitles symbol text tv type',
+    'accessible alphabet character decoder font language letters media movies subtitles symbol text tv type',
   ClosedCaptionDisabled:
-    'accessible alphabet character decoder enabled font language letter media movies off slash subtitles symbol text tv type',
+    'accessible alphabet character decoder enabled font language letters media movies off slash subtitles symbol text tv type',
   ClosedCaptionOff:
-    'accessible alphabet character decoder font language letter media movies outline subtitles symbol text tv type',
+    'accessible alphabet character decoder font language letters media movies outline subtitles symbol text tv type',
   CloseFullscreen: 'action arrows collapse direction minimize',
   Cloud: 'climate connection internet network queue sky temperature upload weather',
   CloudCircle:
@@ -521,7 +523,7 @@ const synonyms = {
   Compress: 'arrows collide pressure push together',
   Computer:
     'Android chrome desktop device hardware iOS laptop mac monitor pc web window',
-  ConfirmationNumber: 'admission entertainment event ticket',
+  ConfirmationNumber: 'admission entertainment event numbers ticket',
   ConnectedTv:
     'Android airplay chrome desktop device display hardware iOS mac monitor screencast streaming television web window wireless',
   ConnectingAirports: 'airplanes flight transportation travel trip',
@@ -556,7 +558,7 @@ const synonyms = {
   Cookie: 'biscuit cookies data dessert wafer',
   CoPresent: 'arrow co-present presentation screen share slides togather website',
   CopyAll: 'content cut dashed document file multiple page paper past',
-  Copyright: 'alphabet character circle emblem font legal letter owner symbol text',
+  Copyright: 'alphabet character circle emblem font legal letters owner symbol text',
   Coronavirus: '19 bacteria covid disease germs illness sick social',
   CorporateFare:
     'architecture building business estate organization place real residence residential shelter',
@@ -598,7 +600,7 @@ const synonyms = {
     'adjustments area arrows editing frame images photos settings size turn',
   CropSquare:
     'adjustments application area components design editing expand frame images interface open photos rectangle screen settings shapes size ui ux website window',
-  Css: 'alphabet brackets character code developer engineering font html letter platform symbol text type',
+  Css: 'alphabet brackets character code developer engineering font html letters platform symbol text type',
   CurrencyBitcoin:
     'bill blockchain card cash commerce cost credit digital dollars finance franc money online payment price shopping symbol',
   CurrencyExchange:
@@ -619,7 +621,7 @@ const synonyms = {
     'bill card cash coin commerce cost credit dollars finance money online payment price shopping symbol',
   Curtains: 'blinds cover nest open shutter sunshade',
   CurtainsClosed: 'blinds cover nest shutter sunshade',
-  Cyclone: 'crisis disaster natural rain storm weather winds',
+  Cyclone: 'crisis disaster natural rain storm water weather winds',
   Dangerous: 'broken fix no sign stop update warning wrong',
   DarkMode: 'application device interface moon night silent theme ui ux website',
   Dashboard: 'cards format layout rectangle shapes square website',
@@ -671,12 +673,12 @@ const synonyms = {
     'Android computer desktop hardware iOS laptop mobile monitor phone tablet watch wearable web',
   DevicesFold: 'Android cell dashed foldable hardware iOS mobile phone tablet',
   DevicesOther:
-    'Android cell chrome desktop gadget hardware iOS ipad mac mobile monitor phone smartwatch tablet vr wearables window',
+    'Android cell chrome desktop gadget hardware iOS ipad mac mobile monitor phone smartwatch tablet virtual_reality vr wearables window',
   DeviceThermostat: 'celsius fahrenheit temperature thermometer',
   DeviceUnknown:
     '? Android assistance cell hardware help iOS information mark mobile phone punctuation question support symbol tablet',
   DialerSip:
-    'alphabet call cell character contact device font hardware initiation internet letter mobile over protocol routing session symbol telephone text type voice',
+    'alphabet call cell character contact device font hardware initiation internet letters mobile over protocol routing session symbol telephone text type voice',
   Dialpad: 'buttons call contact device dots mobile numbers phone',
   Diamond: 'fashion gems jewelry logo retail valuables',
   Difference: 'compare content copy cut document duplicate file multiple past stack',
@@ -762,7 +764,7 @@ const synonyms = {
   DownloadDone: 'arrows check downloads drive installed ok tick upload',
   DownloadForOffline: 'arrow circle for install offline upload',
   Downloading: 'arrow circle downloads install pending progress upload',
-  Drafts: 'document email envelope file letter message read',
+  Drafts: 'document email envelope file letters message read',
   DragHandle:
     'application components design interface layout lines menu move screen ui ux website window',
   DragIndicator:
@@ -806,11 +808,11 @@ const synonyms = {
   EighteenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   EightK:
-    '8000 8K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '8000 8K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   EightKPlus:
-    '+ 7000 8K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '+ 7000 8K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   EightMp:
-    'camera digit font image letters megapixels number quality resolution symbol text type',
+    'camera digit font image letters megapixels numbers quality resolution symbol text type',
   EightteenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   Eject: 'arrow disc drive dvd player remove triangle up usb',
@@ -819,7 +821,7 @@ const synonyms = {
     'body cane female gender girl human lady old people person senior social symbol women',
   ElectricalServices: 'charge cord plug power wire',
   ElectricBike:
-    'automobile cars electricity maps scooter transportation travel vehicle vespa',
+    'automobile cars ebike electricity maps scooter transportation travel vehicle vespa',
   ElectricBolt: 'energy fast instant lightning nest thunderbolt',
   ElectricCar: 'automobile cars electricity maps transportation travel vehicle',
   ElectricMeter:
@@ -831,11 +833,12 @@ const synonyms = {
   Elevator: 'body down human people person up',
   ElevenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
-  Email: 'envelope letter message note post receive send write',
+  Email: 'envelope letters message note post receive send write',
+  Emergency: 'asterisk clinic health hospital maps medical symbol',
   EmergencyRecording:
     'alert attention camera caution danger filming hardware image important motion notification picture videography warning',
   EmergencyShare: 'alert attention caution danger important notification warning',
-  EMobiledata: 'alphabet font letter text type',
+  EMobiledata: 'alphabet font letters text type',
   EmojiEmotions:
     '+ add emoticon expressions face feelings glad happiness happy icons insert like mood new person pleased plus smiley smiling social survey symbol',
   EmojiEvents:
@@ -881,7 +884,7 @@ const synonyms = {
   ExpandLess: 'arrows chevron collapse direction expandable list up',
   ExpandMore: 'arrows chevron collapse direction down expandable list',
   Explicit:
-    'adult alphabet character content font language letter media movies music parent rating supervision symbol text type',
+    'adult alphabet character content font language letters media movies music parent rating supervision symbol text type',
   Explore:
     'compass destination direction east location maps needle north south travel west',
   ExploreOff:
@@ -908,7 +911,7 @@ const synonyms = {
     'disabled editing effect emoji emotion enabled faces image natural photography settings slash tag',
   FactCheck: 'approve complete done list mark ok select tick validate verified yes',
   Factory: 'industry manufacturing warehouse',
-  FamilyRestroom: 'bathroom children father kids mother parents wc',
+  FamilyRestroom: 'bathroom children father gender kids mother parents wc',
   Fastfood: 'drink hamburger maps meal places',
   FastForward: 'control ff media music play speed time tv video',
   FastRewind: 'back control media music play speed time tv video',
@@ -926,10 +929,10 @@ const synonyms = {
     'backyard barrier boundaries boundary entrance flowers garden gate grass home house nature nest outdoor outside protection',
   Festival: 'circus event local maps places tent tour travel',
   FiberDvr:
-    'alphabet character digital electronics font letter network recorder symbol text tv type video',
+    'alphabet character digital electronics font letters network recorder symbol text tv type video',
   FiberManualRecord: 'circle dot play watch',
-  FiberNew: 'alphabet character font letter network symbol text type',
-  FiberPin: 'alphabet character font letter network symbol text type',
+  FiberNew: 'alphabet character font letters network symbol text type',
+  FiberPin: 'alphabet character font letters network symbol text type',
   FiberSmartRecord: 'circle dot play watch',
   FifteenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
@@ -945,25 +948,25 @@ const synonyms = {
   FileUpload: 'arrows download drive export',
   Filter: 'editing effect image landscape mountains photography picture settings',
   Filter1:
-    'digit editing effect images multiple number photography pictures settings stack symbol',
+    'digit editing effect images multiple numbers photography pictures settings stack symbol',
   Filter2:
-    'digit editing effect images multiple number photography pictures settings stack symbol',
+    'digit editing effect images multiple numbers photography pictures settings stack symbol',
   Filter3:
-    'digit editing effect images multiple number photography pictures settings stack symbol',
+    'digit editing effect images multiple numbers photography pictures settings stack symbol',
   Filter4:
-    'digit editing effect images multiple number photography pictures settings stack symbol',
+    'digit editing effect images multiple numbers photography pictures settings stack symbol',
   Filter5:
-    'digit editing effect images multiple number photography pictures settings stack symbol',
+    'digit editing effect images multiple numbers photography pictures settings stack symbol',
   Filter6:
-    'digit editing effect images multiple number photography pictures settings stack symbol',
+    'digit editing effect images multiple numbers photography pictures settings stack symbol',
   Filter7:
-    'digit editing effect images multiple number photography pictures settings stack symbol',
+    'digit editing effect images multiple numbers photography pictures settings stack symbol',
   Filter8:
-    'digit editing effect images multiple number photography pictures settings stack symbol',
+    'digit editing effect images multiple numbers photography pictures settings stack symbol',
   Filter9:
-    'digit editing effect images multiple number photography pictures settings stack symbol',
+    'digit editing effect images multiple numbers photography pictures settings stack symbol',
   Filter9Plus:
-    '+ digit editing effect images multiple number photography pictures settings stack symbol',
+    '+ digit editing effect images multiple numbers photography pictures settings stack symbol',
   FilterAlt: 'edit funnel options refine sift',
   FilterAltOff: '[offline] disabled edit funnel options refine sift slash',
   FilterBAndW:
@@ -993,16 +996,16 @@ const synonyms = {
     'athlete dumbbell exercise gym health hobby places sport weights workout',
   FitScreen: 'enlarge format layout reduce scale size',
   FiveG:
-    '5g alphabet cellular character data digit font letter mobile network number phone signal speed symbol text type wifi',
+    '5g alphabet cellular character data digit font letters mobile network numbers phone signal speed symbol text type wifi',
   FiveK:
-    '5000 5K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '5000 5K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   FiveKPlus:
-    '+ 5000 5K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '+ 5000 5K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   FiveMp:
-    'camera digit font image letters megapixels number quality resolution symbol text type',
+    'camera digit font image letters megapixels numbers quality resolution symbol text type',
   FivteenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
-  Flag: 'country goal mark nation report start',
+  Flag: 'country destination emoji flags goal landmark location milepost milestone place pole report save social start world',
   FlagCircle: 'country goal mark nation report round start',
   Flaky:
     'approve check close complete contrast done exit mark no ok options select stop tick verified yes',
@@ -1029,7 +1032,7 @@ const synonyms = {
     'DISABLE_IOS android disable_ios editing front image mobile orientation rear reverse rotate turn',
   FlipToBack: 'arrangement dashed format front layout move order sort',
   FlipToFront: 'arrangement back dashed format layout move order sort',
-  Flood: 'crisis disaster natural rain storm weather',
+  Flood: 'crisis disaster flooding natural rain storm water wave weather',
   Fluorescent: 'bright lamp lightbulb',
   FlutterDash: 'application bird framework logo mascot open program software source',
   FmdBad:
@@ -1049,9 +1052,10 @@ const synonyms = {
     'bookmark data directory document drive favorite file highlight important marked saved shape sheet slide star storage',
   FolderZip: 'compress data document drive file folders open sheet slide storage',
   FollowTheSigns: 'arrow body directional human people person right social',
-  FontDownload: 'A alphabet character letter square symbol text type',
+  FontDownload:
+    'A alphabet character classification letters square symbol text typeface',
   FontDownloadOff:
-    'alphabet character disabled enabled letter slash square symbol text type',
+    'alphabet character disabled enabled letters slash square symbol text type',
   FoodBank:
     'architecture building charity eat estate fork house knife meal place real residence residential shelter utensils',
   Forest: 'jungle nature plantation plants trees woodland',
@@ -1066,9 +1070,9 @@ const synonyms = {
   FormatAlignRight:
     'alignment doc editing editor lines spreadsheet text type writing',
   FormatBold:
-    'B alphabet character doc editing editor font letter spreadsheet styles symbol text type writing',
+    'B alphabet character doc editing editor font letters spreadsheet styles symbol text type writing',
   FormatClear:
-    'T alphabet character disabled doc editing editor enabled font letter off slash spreadsheet style symbol text type writing',
+    'T alphabet character disabled doc editing editor enabled font letters off slash spreadsheet style symbol text type writing',
   FormatColorFill:
     'bucket doc editing editor paint spreadsheet style text type writing',
   FormatColorReset:
@@ -1079,55 +1083,55 @@ const synonyms = {
   FormatIndentIncrease:
     'alignment doc editing editor indentation paragraph spreadsheet text type writing',
   FormatItalic:
-    'alphabet character doc editing editor font letter spreadsheet style symbol text type writing',
+    'alphabet character doc editing editor font letters spreadsheet style symbol text type writing',
   FormatLineSpacing: 'alignment doc editing editor spreadsheet text type writing',
   FormatListBulleted:
     'alignment doc editing editor notes spreadsheet task text todo type writing',
   FormatListNumbered:
-    'alignment digit doc editing editor notes spreadsheet symbol task text todo type writing',
+    'alignment digit doc editing editor notes numbers spreadsheet symbol task text todo type writing',
   FormatListNumberedRtl:
-    'alignment digit doc editing editor notes spreadsheet symbol task text todo type writing',
+    'alignment digit doc editing editor notes numbers spreadsheet symbol task text todo type writing',
   FormatOverline:
-    'alphabet character doc editing editor font letter spreadsheet style symbol text type under writing',
+    'alphabet character doc editing editor font letters spreadsheet style symbol text type under writing',
   FormatPaint:
     'brush color doc editing editor fill paintroller spreadsheet style text type writing',
   FormatQuote: 'doc editing editor quotation spreadsheet text type writing',
   FormatShapes:
-    'alphabet character color doc editing editor fill font letter paint spreadsheet style symbol text type writing',
+    'alphabet character color doc editing editor fill font letters paint spreadsheet style symbol text type writing',
   FormatSize:
-    'alphabet character color doc editing editor fill font letter paint spreadsheet style symbol text type writing',
+    'alphabet character color doc editing editor fill font letters paint spreadsheet style symbol text type writing',
   FormatStrikethrough:
-    'alphabet character doc editing editor font letter spreadsheet style symbol text type writing',
+    'alphabet character doc editing editor font letters spreadsheet style symbol text type writing',
   FormatTextdirectionLToR:
     'alignment doc editing editor ltr paragraph spreadsheet type writing',
   FormatTextdirectionRToL:
-    'alignment doc editing editor paragraph rtl spreadsheet type writing',
+    'alignment doc editing editor ltr paragraph rtl spreadsheet type writing',
   FormatUnderlined:
-    'alphabet character doc editing editor font letter spreadsheet style symbol text type writing',
+    'alphabet character doc editing editor font letters spreadsheet style symbol text type writing',
   Fort: 'castle fortress mansion palace',
   Forum:
     'bubble chat comment communicate community conversation feedback hub messages speech talk',
   Forward: 'arrow mail message playback right sent',
   Forward10:
-    'arrow circle controls digit fast music number play rotate seconds speed symbol time video',
+    'arrow circle controls digit fast music numbers play rotate seconds speed symbol time video',
   Forward30:
-    'arrow circle controls digit fast music number rotate seconds speed symbol time video',
+    'arrow circle controls digit fast music numbers rotate seconds speed symbol time video',
   Forward5:
-    '10 arrow circle controls digit fast music number rotate seconds speed symbol time video',
+    '10 arrow circle controls digit fast music numbers rotate seconds speed symbol time video',
   ForwardToInbox:
-    'arrows directions email envelop letter message navigation outgoing right send',
+    'arrows directions email envelop letters message navigation outgoing right send',
   Foundation:
     'architecture base basis building construction estate home house real residential',
   FourGMobiledata:
-    'alphabet cellular character digit font letter network number phone signal speed symbol text type wifi',
+    'alphabet cellular character digit font letters network numbers phone signal speed symbol text type wifi',
   FourGPlusMobiledata:
-    'alphabet cellular character digit font letter network number phone signal speed symbol text type wifi',
+    'alphabet cellular character digit font letters network numbers phone signal speed symbol text type wifi',
   FourK:
-    '4000 4K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '4000 4K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   FourKPlus:
-    '+ 4000 4K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '+ 4000 4K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   FourMp:
-    'camera digit font image letters megapixels number quality resolution symbol text type',
+    'camera digit font image letters megapixels numbers quality resolution symbol text type',
   FourteenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   FreeBreakfast: 'beverage cafe coffee cup drink mug tea',
@@ -1144,13 +1148,13 @@ const synonyms = {
     'agreement contract court document government hammer judge law mallet official police rules terms',
   Gesture: 'doodle drawing finger gestures hand line motion string thread',
   GetApp: 'arrows downloads export install play pointing retrieve upload',
-  Gif: 'alphabet animated animation bitmap character font format graphics interchange letter symbol text type',
+  Gif: 'alphabet animated animation bitmap character font format graphics interchange letters symbol text type',
   GifBox:
-    'alphabet animated animation bitmap character font format graphics interchange letter symbol text type',
+    'alphabet animated animation bitmap character font format graphics interchange letters symbol text type',
   Girl: 'body female gender human lady people person social symbol woman women',
   Gite: 'architecture estate home hostel house maps place real residence residential stay traveling',
   GitHub: 'brand code',
-  GMobiledata: 'alphabet character font letter network service symbol text type',
+  GMobiledata: 'alphabet character font letters network service symbol text type',
   GolfCourse:
     'athlete athletic ball club entertainment flag golfer golfing hobby hole places putt sports',
   Google: 'brand logo',
@@ -1197,23 +1201,23 @@ const synonyms = {
   Handshake: 'agreement partnership',
   Handyman: 'build construction fix hammer repair screwdriver tools',
   Hardware: 'break construction hammer nail repair tool',
-  Hd: 'alphabet character definition display font high letter movies quality resolution screen symbol text tv type video',
+  Hd: 'alphabet character codec definition display font high letters movies quality resolution screen symbol text tv type video',
   HdrAuto:
-    'A alphabet camera character circle dynamic font high letter photo range symbol text type',
+    'A alphabet camera character circle dynamic font high letters photo range symbol text type',
   HdrAutoSelect:
-    '+ A alphabet camera character circle dynamic font high letter photo range symbol text type',
+    '+ A alphabet camera character circle dynamic font high letters photo range symbol text type',
   HdrEnhancedSelect:
-    'add alphabet character dynamic font high letter plus range symbol text type',
+    'add alphabet character dynamic font high letters plus range symbol text type',
   HdrOff:
-    'alphabet character disabled dynamic enabled enhance font high letter range select slash symbol text type',
+    'alphabet character disabled dynamic enabled enhance font high letters range select slash symbol text type',
   HdrOffSelect:
-    'alphabet camera character circle disabled dynamic enabled font high letter photo range slash symbol text type',
+    'alphabet camera character circle disabled dynamic enabled font high letters photo range slash symbol text type',
   HdrOn:
-    'add alphabet character dynamic enhance font high letter plus range select symbol text type',
+    'add alphabet character dynamic enhance font high letters plus range select symbol text type',
   HdrOnSelect:
-    '+ alphabet camera character circle dynamic font high letter photo range symbol text type',
+    '+ alphabet camera character circle dynamic font high letters photo range symbol text type',
   HdrPlus:
-    '+ add alphabet character circle dynamic enhance font high letter range select symbol text type',
+    '+ add alphabet character circle dynamic enhance font high letters range select symbol text type',
   HdrStrong: 'circles dots dynamic enhance high range',
   HdrWeak: 'circles dots dynamic enhance high range',
   Headphones: 'accessory audio device earphone headset listen music sound',
@@ -1224,14 +1228,14 @@ const synonyms = {
   HeadsetMic:
     'accessory audio chat device earphone headphones listen music sound talk',
   HeadsetOff:
-    'accessory audio chat device disabled earphone enabled headphones listen mic music slash sound talk',
+    'accessory audio chat device disabled earphone enabled headphones listen mic music mute slash sound talk',
   Healing: 'bandage bandaid editing emergency fix health hospital image medicine',
   HealthAndSafety:
     '+ add certified cross home nest plus privacy private protection security shield symbol verified',
   Hearing:
     'accessibility accessible aid handicap help impaired listen mono sound volume',
   HearingDisabled:
-    'accessibility accessible aid enabled handicap help impaired listen off on slash sound volume',
+    'accessibility accessible aid enabled handicap help impaired listen mute off on slash sound volume',
   HeartBroken: 'break core crush health nucleus split',
   HeatPump: 'air conditioner cool energy furnance nest usage',
   Height:
@@ -1241,7 +1245,7 @@ const synonyms = {
     '? assistance information mark punctuation question recent restore support symbol',
   HelpOutline:
     '? alert announcement assistance circle information mark punctuation question recent restore shape support symbol',
-  Hevc: 'alphabet character coding efficiency font high letter symbol text type video',
+  Hevc: 'alphabet character coding efficiency font high letters symbol text type video',
   Hexagon: 'shape sides six',
   HideImage: 'disabled enabled landscape mountains off on photography picture slash',
   HideSource: 'circle disabled enabled offline on shape slash',
@@ -1251,19 +1255,19 @@ const synonyms = {
   HighlightOff:
     'cancel circle clear click close delete disable exit focus no quit remove stop target times',
   HighQuality:
-    'alphabet character definition display font hq letter movies resolution screen symbol text tv type',
+    'alphabet character definition display font hq letters movies resolution screen symbol text tv type',
   Hiking:
     'backpacking bag climbing duffle mountain social sports stick trail travel walking',
   History:
-    'arrow backwards clock date refresh renew reverse revert rotate schedule time turn undo',
+    'arrow backwards clock date device home nest refresh renew reset restore reverse revert rotate schedule time turn undo',
   HistoryEdu:
-    'document education feather letter paper pen quill school tools write writing',
+    'document education feather letters paper pen quill school tools write writing',
   HistoryToggleOff: 'clock dashed date schedule time',
   Hive: 'bee honeycomb',
-  Hls: 'alphabet character developer engineering font letter platform symbol text type',
+  Hls: 'alphabet character developer engineering font letters platform symbol text type',
   HlsOff:
-    '[offline] alphabet character developer disabled enabled engineering font letter platform slash symbol text type',
-  HMobiledata: 'alphabet character font letter network service symbol text type',
+    '[offline] alphabet character developer disabled enabled engineering font letters platform slash symbol text type',
+  HMobiledata: 'alphabet character font letters network service symbol text type',
   HolidayVillage:
     'architecture beach camping cottage estate home house lake lodge maps place real residence residential stay traveling vacation',
   Home: 'address application--house architecture building components design estate homepage interface layout place real residence residential screen shelter structure unit ux website window',
@@ -1293,9 +1297,9 @@ const synonyms = {
     'approve ballot check complete done election mark ok poll register registration select tick to validate verified vote yes',
   HowToVote: 'ballot election poll',
   HPlusMobiledata:
-    '+ alphabet character font letter network service symbol text type',
-  Html: 'alphabet brackets character code css developer engineering font letter platform symbol text type',
-  Http: 'alphabet character font internet letter network symbol text transfer type url website',
+    '+ alphabet character font letters network service symbol text type',
+  Html: 'alphabet brackets character code css developer engineering font letters platform symbol text type',
+  Http: 'alphabet character font internet letters network symbol text transfer type url website',
   Https:
     'connection encrypt internet key locked network password privacy private protection safety secure security ssl web',
   Hub: 'center connection core focal network nucleus point topology',
@@ -1342,7 +1346,8 @@ const synonyms = {
   IntegrationInstructions:
     'brackets clipboard code css developer document engineering html platform',
   Interests: 'circle heart shapes social square triangle',
-  InterpreterMode: 'language microphone person speaking symbol',
+  InterpreterMode:
+    'accounts committee dictation face family friends group hearing humans keyboard language microphone network noise people persons profiles recorder social sound speaker speaking symbol team users voice',
   Inventory:
     'archive box buy check clipboard document e-commerce file list organize packages product purchase shop stock store supply',
   Inventory2: 'archive box file organize packages product stock storage supply',
@@ -1354,7 +1359,7 @@ const synonyms = {
   Iron: 'appliance clothes electric ironing machine object',
   Iso: 'add editing effect image minus photography picture plus sensor shutter speed subtract',
   Javascript:
-    'alphabet brackets character code css developer engineering font html letter platform symbol text type',
+    'alphabet brackets character code css developer engineering font html letters platform symbol text type',
   JoinFull: 'circle combine command left outer outter overlap right sql',
   JoinInner: 'circle command matching overlap sql values',
   JoinLeft: 'circle command matching overlap sql values',
@@ -1363,8 +1368,8 @@ const synonyms = {
     'athlete athletic body canoe entertainment exercise hobby human lake paddle paddling people person rafting river row social sports summer travel water',
   KebabDining: 'dinner food meal meat skewer',
   Key: 'access blackout door entry password restricted secret unlock',
-  Keyboard: 'computer device hardware input keypad letter office text type',
-  KeyboardAlt: 'computer device hardware input keypad letter office text type',
+  Keyboard: 'computer device hardware input keypad letters office text type',
+  KeyboardAlt: 'computer device hardware input keypad letters office text type',
   KeyboardArrowDown: 'arrows chevron open',
   KeyboardArrowLeft: 'arrows chevron',
   KeyboardArrowRight: 'arrows chevron open start',
@@ -1381,7 +1386,7 @@ const synonyms = {
   KeyboardOptionKey: 'alt key modifier',
   KeyboardReturn: 'arrow back left',
   KeyboardTab: 'arrow left next right',
-  KeyboardVoice: 'microphone noise recorder speaker',
+  KeyboardVoice: 'dictation hearing microphone noise recorder sound speaker',
   KeyOff: '[offline] access disabled door enabled entry on password slash unlock',
   KingBed:
     'bedroom double furniture home hotel house night pillows queen rest sleep',
@@ -1473,17 +1478,17 @@ const synonyms = {
     'bill building business buy card cart cash coin commerce credit currency dollars handbag money online payment shopping storefront',
   LocalOffer: 'deal discount price shopping store tag',
   LocalParking:
-    'alphabet auto car character font garage letter symbol text type vehicle',
+    'alphabet auto car character font garage letters symbol text type vehicle',
   LocalPharmacy: '911 aid cross emergency first food hospital medicine places',
   LocalPhone: 'booth call telecommunication',
   LocalPizza: 'drink fastfood meal',
   LocalPolice: '911 badge law officer protection security shield',
   LocalPostOffice:
-    'delivery email envelop letter message package parcel postal send stamp',
+    'delivery email envelop letters message package parcel postal send stamp',
   LocalPrintshop: 'draft fax ink machine office paper printer send',
   LocalSee: 'camera lens photography picture',
   LocalShipping:
-    'automobile cars delivery letter mail maps office package parcel postal semi send shopping stamp transportation truck vehicle',
+    'automobile cars delivery letters mail maps office package parcel postal semi send shopping stamp transportation truck vehicle',
   LocalTaxi:
     'automobile cab call cars direction lyft maps public transportation uber vehicle yellow',
   LocationCity:
@@ -1520,18 +1525,18 @@ const synonyms = {
   Loyalty:
     'badge benefits card credit heart love membership miles points program sale subscription tag travel trip',
   LteMobiledata:
-    'alphabet character font internet letter network speed symbol text type wifi wireless',
+    'alphabet character font internet letters network speed symbol text type wifi wireless',
   LtePlusMobiledata:
-    '+ alphabet character font internet letter network speed symbol text type wifi wireless',
+    '+ alphabet character font internet letters network speed symbol text type wifi wireless',
   Luggage: 'airport baggage carry flight hotel on suitcase travel trip',
   LunchDining: 'breakfast dinner drink fastfood hamburger meal',
   Lyrics:
     'audio bubble chat comment communicate feedback key message music note song sound speech track',
   MacroOff: '[offline] camera disabled enabled flower garden image on slash',
-  Mail: 'email envelope inbox letter message send',
+  Mail: 'email envelope inbox letters message send',
   MailLock:
-    'email envelop letter locked message password privacy private protection safety secure security send',
-  MailOutline: 'email envelope letter message note post receive send write',
+    'email envelop letters locked message password privacy private protection safety secure security send',
+  MailOutline: 'email envelope letters message note post receive send write',
   Male: 'boy gender man social symbol',
   Man: 'boy gender male social symbol',
   Man2: 'boy gender male social symbol',
@@ -1547,18 +1552,18 @@ const synonyms = {
   MapsUgc:
     '+ add bubble comment communicate feedback message new plus speech symbol',
   Margin: 'design dots layout padding size square',
-  MarkAsUnread: 'envelop letter mail postal receive send',
+  MarkAsUnread: 'envelop letters mail postal receive send',
   MarkChatRead:
     'approve bubble check comment communicate complete done message ok select sent speech tick verified yes',
   MarkChatUnread:
     'alarm alert bubble circle comment communicate dot message notifications notify reminder speech',
   MarkEmailRead:
-    'approve check complete done envelop letter message note ok select send sent tick yes',
-  MarkEmailUnread: 'check circle envelop letter message note notification send',
-  Markunread: 'email envelope letter message send',
+    'approve check complete done envelop letters message note ok select send sent tick yes',
+  MarkEmailUnread: 'check circle envelop letters message note notification send',
+  Markunread: 'email envelope letters message send',
   MarkUnreadChatAlt:
     'alarm alert bubble circle comment communicate dot message notifications notify reminder speech',
-  MarkunreadMailbox: 'deliver envelop letter postal postbox receive send',
+  MarkunreadMailbox: 'deliver envelop letters postal postbox receive send',
   Masks:
     'air cover covid face hospital medical pollution protection respirator sick social',
   Maximize:
@@ -1569,7 +1574,7 @@ const synonyms = {
     'connection connectivity device disabled enabled music note off online paring signal slash symbol wireless',
   Mediation:
     'alternative arrows compromise direction dots negotiation party right structure',
-  MedicalInformation: 'badge card health id services',
+  MedicalInformation: 'badge card health identification services',
   MedicalServices: 'aid bag briefcase emergency first kit medicine',
   Medication: 'doctor drug emergency hospital medicine pharmacy pills prescription',
   MedicationLiquid:
@@ -1584,12 +1589,13 @@ const synonyms = {
   Merge: 'arrows directions maps navigation path route sign traffic',
   MergeType: 'arrow combine direction format text',
   Message: 'bubble chat comment communicate feedback speech talk text',
-  Mic: 'dictation hearing microphone noise record search sound speech voice',
+  Mic: 'dictation hearing keyboard microphone noise recorder search sound speaker speech voice',
   MicExternalOff: 'audio disabled enabled microphone slash sound voice',
   MicExternalOn: 'audio disabled enabled microphone off slash sound voice',
-  MicNone: 'hearing microphone noise record sound voice',
+  MicNone:
+    'dictation hearing keyboard microphone noise recorder sound speaker voice',
   MicOff:
-    'audio disabled enabled hearing microphone noise recording slash sound voice',
+    'audio disabled enabled hearing microphone mute noise recording slash sound voice',
   Microwave: 'appliance cooking electric heat home house kitchen machine',
   MilitaryTech:
     'army award badge honor medal merit order privilege prize rank reward ribbon soldier star status trophy winner',
@@ -1622,7 +1628,7 @@ const synonyms = {
   MonetizationOn:
     'bill card cash circle coin commerce cost credit currency dollars finance money online payment price profit sale shopping symbol',
   Money:
-    '100 bill card cash coin commerce cost credit currency digit dollars finance number online payment price profit shopping symbol',
+    '100 bill card cash coin commerce cost credit currency digit dollars finance numbers online payment price profit shopping symbol',
   MoneyOff:
     'bill card cart cash coin commerce credit currency disabled dollars enabled finance money online payment price profit shopping slash symbol',
   MoneyOffCsred:
@@ -1644,32 +1650,32 @@ const synonyms = {
     '3 DISABLE_IOS android application components disable_ios dots etc interface screen three ui ux vertical website',
   Mosque: 'ideology islamic masjid muslim religion spiritual worship',
   MotionPhotosAuto:
-    'A alphabet animation automatic character circle font gif letter live symbol text type video',
+    'A alphabet animation automatic character circle font gif letters live symbol text type video',
   MotionPhotosOff: 'animation circle disabled enabled slash video',
   Mouse: 'click computer cursor device hardware wireless',
   MoveDown: 'arrow direction jump navigation transfer',
   MoveToInbox:
-    'archive arrow down email envelop incoming letter message move send to',
+    'archive arrow down email envelop incoming letters message move send to',
   MoveUp: 'arrow direction jump navigation transfer',
   Movie: 'cinema film media screen show slate tv video watch',
   MovieCreation: 'cinema clapperboard film movies slate video',
   MovieFilter:
     'artificial automatic automation clapperboard creation custom film genai intelligence magic movies slate smart sparkle stars video',
   Moving: 'arrow direction navigation travel up',
-  Mp: 'alphabet character font image letter megapixel photography pixels quality resolution symbol text type',
+  Mp: 'alphabet character font image letters megapixel photography pixels quality resolution symbol text type',
   MultilineChart:
     'analytics bars data diagram infographic line measure metrics multiple statistics tracking',
   MultipleStop: 'arrows dashed directions dots left maps navigation right',
   Museum:
     'architecture attraction building estate event exhibition explore local palces places real see shop store tour',
   MusicNote: 'audiotrack key sound',
-  MusicOff: 'audiotrack disabled enabled key note on slash sound',
+  MusicOff: 'audiotrack disabled enabled key mute note on slash sound',
   MusicVideo: 'band mv recording screen tv watch',
   MyLocation: 'destination direction maps navigation pin place point stop',
   Nat: 'communication',
   Nature: 'forest outdoor outside park tree wilderness',
   NaturePeople:
-    'activity body forest human outdoor outside park person tree wilderness',
+    'activity body forest human landscape outdoor outside park person tree wilderness',
   NavigateBefore: 'arrows direction left',
   NavigateNext: 'arrows direction right',
   Navigation: 'arrow destination direction location maps pin place point stop',
@@ -1706,11 +1712,11 @@ const synonyms = {
   NightsStay:
     'climate cloud crescent dark lunar mode moon phases silence silent sky time weather',
   NineK:
-    '9000 9K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '9000 9K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   NineKPlus:
-    '+ 9000 9K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '+ 9000 9K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   NineMp:
-    'camera digit font image letters megapixels number quality resolution symbol text type',
+    'camera digit font image letters megapixels numbers quality resolution symbol text type',
   NineteenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   NoAccounts:
@@ -1779,11 +1785,11 @@ const synonyms = {
     'Android chrome desktop device hardware iOS mac monitor play television tv web window',
   OnDeviceTraining:
     'arrow bulb call cell contact hardware idea inprogress light loading mobile model refresh renew restore reverse rotate telephone',
-  OneK: '1000 1K alphabet character digit display font letter number pixels resolution symbol text type video',
+  OneK: '1000 1K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   OneKk:
-    '10000 10K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '10000 10K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   OneKPlus:
-    '+ 1000 1K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '+ 1000 1K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   OnlinePrediction: 'bulb connection idea light network signal wireless',
   Opacity: 'color droplet hue inverted liquid palette tone water',
   OpenInBrowser: 'arrow box new up website window',
@@ -1820,7 +1826,7 @@ const synonyms = {
     'athlete athletic body entertainment exercise fly hobby human parachute people person skydiving social sports travel',
   Park: 'attraction fresh local nature outside plant tree',
   PartyMode: 'camera lens photography picture',
-  Password: 'key login pin security star unlock',
+  Password: 'code key login pin security star unlock',
   Pattern: 'key login password pin security star unlock',
   Pause: 'controls media music pending player status video wait',
   PauseCircle: 'controls media music video',
@@ -1843,7 +1849,7 @@ const synonyms = {
     'accounts committee face family friends group humans network persons profiles social team users',
   PeopleOutline:
     'accounts committee face family friends group humans network persons profiles social team users',
-  Percent: 'math number symbol',
+  Percent: 'math numbers symbol',
   PermCameraMic: 'image microphone min photography picture speaker',
   PermContactCalendar:
     'account agenda date face human information people person profile schedule time user',
@@ -1881,7 +1887,7 @@ const synonyms = {
   PersonSearch:
     'account avatar face find glass human look magnifying people profile user',
   PestControl: 'bug exterminator insects',
-  PestControlRodent: 'exterminator mice',
+  PestControlRodent: 'exterminator mice mouse',
   Pets: 'animal cat claw dog hand paw',
   Phishing: 'fishing fraud hook scam',
   Phone: 'call cell chat contact device hardware mobile telephone text',
@@ -1926,11 +1932,11 @@ const synonyms = {
     'adjust album dashed editing image library mountains photography picture',
   PhotoSizeSelectSmall:
     'adjust album editing image large library mountains photography picture',
-  Php: 'alphabet brackets character code css developer engineering font html letter platform symbol text type',
+  Php: 'alphabet brackets character code css developer engineering font html letters platform symbol text type',
   Piano: 'instrument keyboard keys musical social',
   PianoOff: 'disabled enabled instrument keyboard keys musical on slash social',
   PictureAsPdf:
-    'alphabet character copy document duplicate file font image letter multiple photography stack symbol text type',
+    'alphabet character copy document duplicate file font image letters multiple photography stack symbol text type',
   PictureInPicture: 'chat cropped overlap photo pip position shape sizes talktrack',
   PictureInPictureAlt:
     'chat cropped overlap photo pip position shape sizes talktrack',
@@ -1938,7 +1944,7 @@ const synonyms = {
     'analytics bars data diagram infographic measure metrics statistics tracking',
   PieChartOutline:
     'analytics bars data diagram infographic measure metrics statistics tracking',
-  Pin: '1 2 3 digit key login logout number password pattern security star symbol unlock',
+  Pin: '1 2 3 digit key login logout numbers password pattern security star symbol unlock',
   Pinch: 'arrows compress direction finger grasp hand navigation nip squeeze tweak',
   PinDrop: 'destination direction gps location maps navigation place stop',
   Pinterest: 'brand logo social',
@@ -1965,7 +1971,7 @@ const synonyms = {
   PlaylistPlay: 'arow arrow collection music',
   PlaylistRemove: '- collection minus music',
   Plumbing: 'build construction fix handyman repair tools wrench',
-  PlusOne: '1 add digit increase number symbol',
+  PlusOne: '1 add digit increase numbers symbol',
   Podcasts: 'broadcast casting network signal transmitting wireless',
   PointOfSale:
     'checkout cost machine merchant money payment pos retail system transaction',
@@ -2046,9 +2052,9 @@ const synonyms = {
   RampRight: 'arrows directions maps navigation path route sign traffic',
   RateReview: 'chat comment feedback message pencil stars write',
   RawOff:
-    'alphabet character disabled enabled font image letter original photography slash symbol text type',
+    'alphabet character disabled enabled font image letters original photography slash symbol text type',
   RawOn:
-    'alphabet character disabled enabled font image letter off original photography slash symbol text type',
+    'alphabet character disabled enabled font image letters off original photography slash symbol text type',
   ReadMore: 'arrow text',
   Receipt: 'bill credit invoice paper payment sale transaction',
   ReceiptLong: 'bill check document list paperwork record store transaction',
@@ -2090,16 +2096,16 @@ const synonyms = {
   Repartition: 'arrows data refresh renew restore table',
   Repeat: 'arrows controls loop media music video',
   RepeatOn: 'arrows controls loop media music video',
-  RepeatOne: '1 arrows controls digit loop media music number symbol video',
-  RepeatOneOn: 'arrows controls digit loop media music number symbol video',
+  RepeatOne: '1 arrows controls digit loop media music numbers symbol video',
+  RepeatOneOn: 'arrows controls digit loop media music numbers symbol video',
   Replay:
     'arrows controls music refresh reload renew repeat retry rewind undo video',
   Replay10:
-    'arrows controls digit music number refresh renew repeat rewind symbol ten video',
+    'arrows controls digit music numbers refresh renew repeat rewind symbol ten video',
   Replay30:
-    'arrows controls digit music number refresh renew repeat rewind symbol thirty video',
+    'arrows controls digit music numbers refresh renew repeat rewind symbol thirty video',
   Replay5:
-    'arrows controls digit five music number refresh renew repeat rewind symbol video',
+    'arrows controls digit five music numbers refresh renew repeat rewind symbol video',
   ReplayCircleFilled: 'arrows controls music refresh renew repeat video',
   Reply: 'arrow backward left mail message send share',
   ReplyAll: 'arrows backward group left mail message multiple send share',
@@ -2120,7 +2126,7 @@ const synonyms = {
     'breakfast cutlery dining dinner eat food fork knife local lunch meal places spoon utensils',
   RestaurantMenu: 'book dining eat food fork knife local meal spoon',
   Restore:
-    'arrow backwards clock date history refresh renew reverse rotate schedule time turn undo',
+    'arrow backwards clock date device history home nest refresh renew reset reverse rotate schedule time turn undo',
   RestoreFromTrash:
     'arrow backwards can clock date delete garbage history refresh remove renew reverse rotate schedule time turn up',
   RestorePage:
@@ -2130,7 +2136,7 @@ const synonyms = {
   RiceBowl: 'dinner food lunch meal restaurant',
   RingVolume:
     'calling cell contact device hardware incoming mobile ringer sound telephone',
-  RMobiledata: 'alphabet character font letter symbol text type',
+  RMobiledata: 'alphabet character font letters symbol text type',
   Rocket: 'spaceship',
   RocketLaunch: 'spaceship takeoff',
   RollerShades: 'blinds cover curtains nest open shutter sunshade',
@@ -2156,7 +2162,7 @@ const synonyms = {
   Rowing: 'activity boat body canoe human people person sports water',
   RssFeed:
     'application blog connection data internet network service signal website wifi wireless',
-  Rsvp: 'alphabet character font invitation invite letter plaît respond répondez sil symbol text type vous',
+  Rsvp: 'alphabet character font invitation invite letters plaît respond répondez sil symbol text type vous',
   Rtt: 'call real rrt text time',
   Rule: 'approve check done incomplete line mark missing no ok select tick validate verified wrong x yes',
   RuleFolder:
@@ -2187,7 +2193,7 @@ const synonyms = {
   ScatterPlot:
     'analytics bars chart circles data diagram dot infographic measure metrics statistics tracking',
   Schedule: 'calendar clock date history mark recent save time',
-  ScheduleSend: 'calendar clock date email letter remember share time',
+  ScheduleSend: 'calendar clock date email letters remember share time',
   Schema:
     'analytics chart data diagram flow infographic measure metrics squares statistics tracking',
   School:
@@ -2195,7 +2201,7 @@ const synonyms = {
   Science:
     'beaker chemical chemistry experiment flask glass laboratory research tube',
   Score:
-    '2k alphabet analytics bars character chart data diagram digit font infographic letter measure metrics number statistics symbol text tracking type',
+    '2k alphabet analytics bars character chart data diagram digit font infographic letters measure metrics numbers statistics symbol text tracking type',
   Scoreboard: 'points sports',
   ScreenLockLandscape:
     'Android device hardware iOS mobile phone rotate security tablet',
@@ -2214,7 +2220,7 @@ const synonyms = {
   ScreenshotMonitor:
     'Android chrome desktop device display hardware iOS mac screengrab web window',
   ScubaDiving: 'entertainment exercise hobby social swimming',
-  Sd: 'alphabet camera card character data device digital drive flash font image letter memory photo secure symbol text type',
+  Sd: 'alphabet camera card character data device digital drive flash font image letters memory photo secure symbol text type',
   SdCard: 'camera digital memory photos secure storage',
   SdCardAlert:
     '! attention camera caution danger digital error exclamation important mark memory notification photos secure storage symbol warning',
@@ -2234,7 +2240,7 @@ const synonyms = {
     'body calm care chi human meditate meditation people person relax sitting wellbeing yoga zen',
   Sell: 'bill card cart cash coin commerce credit currency dollars money online payment price shopping tag',
   Send: 'chat email message paper plane reply right share telegram',
-  SendAndArchive: 'arrow download email letter save share',
+  SendAndArchive: 'arrow download email letters save share',
   SendTimeExtension: 'deliver dispatch envelop mail message schedule',
   SendToMobile:
     'Android arrow device export forward hardware iOS phone right share tablet',
@@ -2287,11 +2293,11 @@ const synonyms = {
   SettingsSystemDaydream: 'backup cloud drive storage',
   SettingsVoice: 'microphone recorder speaker',
   SevenK:
-    '7000 7K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '7000 7K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   SevenKPlus:
-    '+ 7000 7K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '+ 7000 7K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   SevenMp:
-    'camera digit font image letters megapixels number quality resolution symbol text type',
+    'camera digit font image letters megapixels numbers quality resolution symbol text type',
   SeventeenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   SevereCold:
@@ -2374,15 +2380,15 @@ const synonyms = {
   SimCardDownload: 'arrow camera chip device memory phone storage',
   SingleBed:
     'bedroom double furniture home hotel house king night pillows queen rest sleep twin',
-  Sip: 'alphabet call character dialer font initiation internet letter over phone protocol routing session symbol text type voice',
-  SixK: '6000 6K alphabet character digit display font letter number pixels resolution symbol text type video',
+  Sip: 'alphabet call character dialer font initiation internet letters over phone protocol routing session symbol text type voice',
+  SixK: '6000 6K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   SixKPlus:
-    '+ 6000 6K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '+ 6000 6K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   SixMp:
-    'camera digit font image letters megapixels number quality resolution symbol text type',
+    'camera digit font image letters megapixels numbers quality resolution symbol text type',
   SixteenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
-  SixtyFps: 'camera digit frames number symbol video',
+  SixtyFps: 'camera digit frames numbers symbol video',
   SixtyFpsSelect: 'camera digits frame frequency numbers per rate seconds video',
   Skateboarding:
     'athlete athletic body entertainment exercise hobby human people person skateboarder social sports',
@@ -2439,11 +2445,11 @@ const synonyms = {
     'bubble cards chat comment communicate format list message speech text',
   SpeakerNotesOff:
     'bubble cards chat comment communicate disabled enabled format list message on slash speech text',
-  SpeakerPhone: 'Android cell device hardware iOS mobile sound tablet volume',
+  SpeakerPhone: 'Android audio cell device hardware iOS mobile sound tablet volume',
   Speed:
     'arrow clock controls dial fast gauge measure motion music slow speedometer test velocity video',
   Spellcheck:
-    'alphabet approve character checkmark edit font letter ok processor select symbol text tick type word write yes',
+    'alphabet approve character checkmark edit font letters ok processor select symbol text tick type word write yes',
   Splitscreen: 'column grid layout multitasking row two',
   Spoke: 'connection network radius',
   Sports:
@@ -2454,7 +2460,7 @@ const synonyms = {
   SportsCricket:
     'athlete athletic ball bat entertainment exercise game hobby social',
   SportsEsports:
-    'controller entertainment gamepad gaming hobby online playstation social video xbox',
+    'asset console controller device entertainment gamepad gaming google handheld hardware hobby online playstation remote social stadia videogame xbox',
   SportsFootball:
     'american athlete athletic entertainment exercise game hobby social',
   SportsGolf:
@@ -2522,7 +2528,7 @@ const synonyms = {
   Stream: 'cast connected feed live network signal wireless',
   Streetview: 'gps location maps',
   StrikethroughS:
-    'alphabet character cross doc editing editor font letter out spreadsheet styles symbol text type writing',
+    'alphabet character cross doc editing editor font letters out spreadsheet styles symbol text type writing',
   Stroller: 'baby care carriage children infant kid newborn toddler young',
   Style: 'booklet cards filters options tags',
   SubdirectoryArrowLeft: 'arrow down navigation',
@@ -2543,11 +2549,11 @@ const synonyms = {
   SupervisedUserCircle:
     'account avatar control face human parental parents people person profile supervisor',
   SupervisorAccount:
-    'administrator avatar control face human parental parents people person profile supervised user',
+    'administrator avatar control custodian face guardian human parental parents people person profile supervised user',
   Support: 'assist help lifebuoy rescue safety',
   SupportAgent: 'care customer face headphone person representative service',
   Surfing:
-    'athlete athletic beach body entertainment exercise hobby human people person sea social sports summer water',
+    'athlete athletic beach body entertainment exercise hobby human people person sea social sports summer water wave',
   SurroundSound: 'audio circle signal speaker system volume volumn wireless',
   SwapCalls: 'arrows device direction mobile share',
   SwapHoriz: 'arrows back direction forward horizontal',
@@ -2575,7 +2581,7 @@ const synonyms = {
   SwitchAccessShortcutAdd:
     '+ arrows direction navigation new north plus star symbol up',
   SwitchAccount:
-    'choices face human multiple options people person profile social user',
+    'choices face human multiple options people person profile social stack user',
   SwitchCamera: 'arrows photography picture',
   SwitchLeft: 'arrows directional navigation toggle',
   SwitchRight: 'arrows directional navigation toggle',
@@ -2610,7 +2616,7 @@ const synonyms = {
   TableView: 'format grid group layout multiple',
   TabUnselected:
     'browser computer dashed documents folder internet tabs website windows',
-  Tag: 'hashtag key media number pound social trend',
+  Tag: 'hashtag key media numbers pound social trend',
   TagFaces: 'emoji emotion happy satisfied smile',
   TakeoutDining: 'box container delivery food meal restaurant',
   TapAndPlay:
@@ -2629,47 +2635,47 @@ const synonyms = {
   Terminal: 'application code emulator program software',
   Terrain: 'geography landscape mountain',
   TextDecrease:
-    '- alphabet character font letter minus remove resize subtract symbol type',
-  TextFields: 'T add alphabet character font input letter symbol type',
-  TextFormat: 'A alphabet character font letter square style symbol type',
-  TextIncrease: '+ add alphabet character font letter new plus resize symbol type',
-  TextRotateUp: 'A alphabet arrow character field font letter move symbol type',
+    '- alphabet character font letters minus remove resize subtract symbol type',
+  TextFields: 'T add alphabet character font input letters symbol type',
+  TextFormat: 'A alphabet character font letters square style symbol type',
+  TextIncrease: '+ add alphabet character font letters new plus resize symbol type',
+  TextRotateUp: 'A alphabet arrow character field font letters move symbol type',
   TextRotateVertical:
-    'A alphabet arrow character down field font letter move symbol type verticle',
+    'A alphabet arrow character down field font letters move symbol type verticle',
   TextRotationAngledown:
-    'A alphabet arrow character field font letter move rotate symbol type',
+    'A alphabet arrow character field font letters move rotate symbol type',
   TextRotationAngleup:
-    'A alphabet arrow character field font letter move rotate symbol type',
+    'A alphabet arrow character field font letters move rotate symbol type',
   TextRotationDown:
-    'A alphabet arrow character field font letter move rotate symbol type',
+    'A alphabet arrow character field font letters move rotate symbol type',
   TextRotationNone:
-    'A alphabet arrow character field font letter move rotate symbol type',
+    'A alphabet arrow character field font letters move rotate symbol type',
   Textsms: 'bubble chat comment communicate dots feedback message speech',
   TextSnippet: 'data document file notes storage writing',
   Texture: 'diagonal lines pattern stripes',
-  TheaterComedy: 'broadway event movie musical places show standup tour watch',
+  TheaterComedy: 'broadway event masks movie musical places show standup tour watch',
   Theaters: 'film media movies photography showtimes video watch',
   Thermostat: 'climate forecast temperature weather',
   ThermostatAuto: 'A celsius fahrenheit temperature thermometer',
   ThirteenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   ThirtyFps:
-    'alphabet camera character digit font frames letter number symbol text type video',
+    'alphabet camera character digit font frames letters numbers symbol text type video',
   ThirtyFpsSelect:
     'camera digits frame frequency image numbers per rate seconds video',
   ThreeDRotation:
-    '3d D alphabet arrows av camera character digit font letter number symbol text type vr',
+    '3d D alphabet arrows av camera character digit font letters numbers symbol text type virtual_reality vr',
   ThreeGMobiledata:
-    'alphabet cellular character digit font letter network number phone signal speed symbol text type wifi',
+    'alphabet cellular character digit font letters network numbers phone signal speed symbol text type wifi',
   ThreeK:
-    '3000 3K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '3000 3K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   ThreeKPlus:
-    '+ 3000 3K alphabet character digit display font letter number pixels resolution symbol text type video',
+    '+ 3000 3K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   ThreeMp:
-    'camera digit font image letters megapixels number quality resolution symbol text type',
+    'camera digit font image letters megapixels numbers quality resolution symbol text type',
   ThreeP:
     'account avatar bubble chat comment communicate face human message party people person profile speech user',
-  ThreeSixty: 'arrow av camera direction rotate rotation vr',
+  ThreeSixty: 'arrow av camera direction reality rotate rotation virtual vr',
   ThumbDown:
     'dislike downvote favorite fingers gesture hands ranking rate rating reject up',
   ThumbDownAlt:
@@ -2689,22 +2695,23 @@ const synonyms = {
     'analytics chart data graph history line movement points tracking trending zigzag zigzap',
   Timer:
     'alarm alart alert bell clock disabled duration enabled notification off slash stopwatch wait',
-  Timer10: 'digits duration numbers seconds',
+  Timer10:
+    'alarm alert bell clock digits disabled duration enabled notification numbers seconds ten watch',
   Timer10Select:
-    'alphabet camera character digit font letter number seconds symbol text type',
-  Timer3: 'digits duration numbers seconds',
+    'alphabet camera character digit font letters numbers seconds symbol ten text type',
+  Timer3: 'digits duration numbers seconds three',
   Timer3Select:
-    'alphabet camera character digit font letter number seconds symbol text type',
+    'alphabet camera character digit font letters numbers seconds symbol text three type',
   TimerOff:
     'alarm alart alert bell clock disabled duration enabled notification slash stopwatch',
   TimesOneMobiledata:
-    'alphabet cellular character digit font letter network number phone signal speed symbol text type wifi',
+    'alphabet cellular character digit font letters network numbers phone signal speed symbol text type wifi',
   TimeToLeave:
     'automobile cars destination direction drive estimate eta maps public transportation travel trip vehicle',
   TipsAndUpdates:
     'alert announcement artificial automatic automation custom electricity genai idea information intelligence lamp lightbulb magic smart sparkle stars',
   TireRepair: 'automobile cars gauge mechanic pressure vehicle',
-  Title: 'T alphabet character font header letter subject symbol text type',
+  Title: 'T alphabet character font header letters subject symbol text type',
   Toc: 'content format lines list reorder stacked table text titles',
   Today:
     'agenda calendar date event mark month range remember reminder schedule time week',
@@ -2741,10 +2748,11 @@ const synonyms = {
   Troubleshoot:
     'analytics chart data diagram find glass infographic line look magnifying measure metrics search see statistics tracking',
   Try: 'bookmark bubble chat comment communicate favorite feedback highlight important marked message saved shape special speech star',
-  Tsunami: 'crisis disaster flood rain storm weather',
+  Tsunami: 'crisis disaster flood ocean rain sea storm water wave weather',
   Tty: 'call cell contact deaf device hardware impaired mobile speech talk telephone text',
   Tune: 'adjust audio controls customize editing filters instant mix music options settings sliders switches',
-  Tungsten: 'electricity indoor lamp lightbulb setting',
+  Tungsten:
+    'balance bright editing electricity indoor iridescent lamp lightbulb lighting settings white wp',
   TurnedIn:
     'archive bookmark favorite item label library reading remember ribbon save submit tag',
   TurnedInNot:
@@ -2771,10 +2779,10 @@ const synonyms = {
   TwentyZeroMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   Twitter: 'brand logo social',
-  TwoK: '2000 2K alphabet character digit display font letter number pixels resolution symbol text type video',
-  TwoKPlus: '+ alphabet character digit font letter number symbol text type',
+  TwoK: '2000 2K alphabet character digit display font letters numbers pixels resolution symbol text type video',
+  TwoKPlus: '+ alphabet character digit font letters numbers symbol text type',
   TwoMp:
-    'camera digit font image letters megapixels number quality resolution symbol text type',
+    'camera digit font image letters megapixels numbers quality resolution symbol text type',
   TwoWheeler:
     'automobile bicycle cars direction maps moped motorbike motorcycle public ride riding scooter transportation travel twom vehicle wheeler wheels',
   Umbrella: 'beach protection rain sunny',
@@ -2790,7 +2798,7 @@ const synonyms = {
   Unpublished:
     'approve check circle complete disabled done enabled mark off ok select slash tick validate verified yes',
   Unsubscribe:
-    'cancel close email envelop esubscribe message newsletter off remove send',
+    'cancel close email envelop esubscribe letters message newsletter off remove send',
   Upcoming: 'alarm calendar mail message notification',
   Update:
     'arrow backwards clock forward future history load refresh reverse rotate schedule time',
@@ -2838,9 +2846,9 @@ const synonyms = {
     'bubble camera comment communicate facetime feedback message speech voice',
   VideoFile: 'camera document filming hardware image motion picture videography',
   VideogameAsset:
-    'console controller device gamepad gaming nintendo playstation xbox',
+    'console controller device entertainment esports gamepad gaming google handheld hardware hobby nintendo online playstation remote social stadia video xbox',
   VideogameAssetOff:
-    'console controller device disabled enabled gamepad gaming playstation slash',
+    'console controller device disabled enabled entertainment esports gamepad gaming google handheld hardware hobby online playstation remote slash social stadia video xbox',
   VideoLabel: 'device item screen window',
   VideoLibrary: 'arrow collection play',
   VideoSettings:
@@ -2857,7 +2865,7 @@ const synonyms = {
   ViewCozy: 'comfy design format layout web',
   ViewDay: 'blocks calendar cards carousel design format grid layout website week',
   ViewHeadline: 'blocks design format grid layout paragraph text website',
-  ViewInAr: '3d augmented cube daydream headset reality square vr',
+  ViewInAr: '3d augmented cube daydream headset square virtual_reality vr',
   ViewKanban: 'grid layout pattern squares',
   ViewList: 'blocks design format grid layout lines reorder stacked title website',
   ViewModule:
@@ -2879,7 +2887,7 @@ const synonyms = {
     'bubble camera comment communicate facetime feedback message speech video',
   Voicemail: 'call device message missed mobile phone recording',
   VoiceOverOff:
-    'account disabled enabled face human people person profile recording slash speaking speech transcript user',
+    'account disabled enabled face human mute people person profile recording slash speaking speech transcript user',
   Volcano: 'crisis disaster eruption lava magma natural',
   VolumeDown: 'audio av control music quieter shh soft sound speaker tv',
   VolumeMute: 'audio control music sound speaker tv',
@@ -2913,10 +2921,11 @@ const synonyms = {
   Waves: 'beach lake ocean pool river sea swim water',
   WavingHand: 'fingers gesture goodbye greetings hello palm wave',
   WbAuto:
-    'A W alphabet automatic balance character editing font image letter photography symbol text type white wp',
+    'A W alphabet automatic balance character editing font image letters photography symbol text type white wp',
   WbCloudy: 'balance editing white wp',
   WbIncandescent: 'balance bright editing lamp lightbulb lighting settings white wp',
-  WbIridescent: 'balance bright editing lighting settings white wp',
+  WbIridescent:
+    'balance bright editing electricity indoor lamp lightbulb lighting settings tungsten white wp',
   WbShade: 'balance house lighting white',
   WbSunny: 'balance bright lighting weather white',
   WbTwilight: 'balance lighting noon sunset white',

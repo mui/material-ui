@@ -10,7 +10,7 @@ githubLabel: 'component: snackbar'
 
 <p class="description">The Snackbar component informs users that an action has been or will be performed by the app.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 

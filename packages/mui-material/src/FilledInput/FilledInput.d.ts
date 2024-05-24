@@ -17,6 +17,7 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
   hiddenLabel?: boolean;
   /**
    * If `true`, the input will not have an underline.
+   * @default false
    */
   disableUnderline?: boolean;
   /**
@@ -36,6 +37,6 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
  * - [FilledInput API](https://mui.com/material-ui/api/filled-input/)
  * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
-declare const FilledInput: ((props: FilledInputProps) => JSX.Element) & { muiName: string };
+declare const FilledInput: ((props: FilledInputProps) => React.JSX.Element) & { muiName: string };
 
 export default FilledInput;

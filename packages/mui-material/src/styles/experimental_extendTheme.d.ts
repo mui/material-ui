@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { OverridableStringUnion } from '@mui/types';
 import { SxConfig, SxProps, CSSObject, ApplyStyles } from '@mui/system';
+import { ExtractTypographyTokens } from '@mui/system/cssVars';
 import { ThemeOptions, Theme } from './createTheme';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
@@ -321,6 +322,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
 
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
 export interface ThemeVars {
+  font: ExtractTypographyTokens<Theme['typography']>;
   palette: Omit<
     ColorSystem['palette'],
     | 'colorScheme'
@@ -334,6 +336,7 @@ export interface ThemeVars {
   overlays: Overlays;
   shadows: Shadows;
   shape: Theme['shape'];
+  spacing: string;
   zIndex: ZIndex;
 }
 
@@ -431,6 +434,7 @@ export interface CssVarsTheme extends ColorSystem {
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
   generateThemeVars: () => ThemeVars;
   generateStyleSheets: () => Array<Record<string, any>>;
+  generateSpacing: () => Theme['spacing'];
 
   // Default theme tokens
   spacing: Theme['spacing'];

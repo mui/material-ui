@@ -1,12 +1,14 @@
-import * as React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+
 import MaterialUILayout from '../../Layout';
-import ActiveLastBreadcrumb from '../../../../../docs/data/material/components/breadcrumbs/ActiveLastBreadcrumb.tsx';
-import BasicBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/BasicBreadcrumbs.tsx';
-import CollapsedBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/CollapsedBreadcrumbs.tsx';
-import CustomSeparator from '../../../../../docs/data/material/components/breadcrumbs/CustomSeparator.tsx';
-import CustomizedBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/CustomizedBreadcrumbs.tsx';
-import IconBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/IconBreadcrumbs.tsx';
-import RouterBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/RouterBreadcrumbs.tsx';
+import ActiveLastBreadcrumb from '../../../../../docs/data/material/components/breadcrumbs/ActiveLastBreadcrumb';
+import BasicBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/BasicBreadcrumbs';
+import CollapsedBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/CollapsedBreadcrumbs';
+import CustomSeparator from '../../../../../docs/data/material/components/breadcrumbs/CustomSeparator';
+import CustomizedBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/CustomizedBreadcrumbs';
+import IconBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/IconBreadcrumbs';
+import RouterBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/RouterBreadcrumbs';
+import { ErrorBoundaryFallback } from '../../components/ErrorBoundaryFallback';
 
 export default function Breadcrumbs() {
   return (
@@ -51,7 +53,9 @@ export default function Breadcrumbs() {
       <section>
         <h2> Router Breadcrumbs</h2>
         <div className="demo-container">
-          <RouterBreadcrumbs />
+          <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+            <RouterBreadcrumbs />
+          </ErrorBoundary>
         </div>
       </section>
     </MaterialUILayout>

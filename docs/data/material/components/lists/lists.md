@@ -12,7 +12,7 @@ materialDesign: https://m2.material.io/components/lists
 
 Lists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -97,7 +97,6 @@ The switch is the secondary action and a separate target.
 
 Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
 This feature relies on CSS sticky positioning.
-(⚠️ no IE 11 support)
 
 {{"demo": "PinnedSubheaderList.js", "bg": true}}
 

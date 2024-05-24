@@ -59,9 +59,9 @@ export const SliderRoot = styled('span', {
     },
   },
   variants: [
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter((key) => (theme.vars ?? theme).palette[key].main)
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main)
+      .map(([color]) => ({
         props: { color },
         style: {
           color: (theme.vars || theme).palette[color].main,
@@ -201,9 +201,9 @@ export const SliderTrack = styled('span', {
           display: 'none',
         },
       },
-      ...Object.keys((theme.vars ?? theme).palette)
-        .filter((key) => (theme.vars ?? theme).palette[key].main)
-        .map((color) => ({
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
           props: { color, track: 'inverted' },
           style: {
             ...(theme.vars
@@ -277,34 +277,6 @@ export const SliderThumb = styled('span', {
     },
   },
   variants: [
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter((key) => (theme.vars ?? theme).palette[key].main)
-      .map((color) => ({
-        props: { color },
-        style: {
-          [`&:hover, &.${sliderClasses.focusVisible}`]: {
-            ...(theme.vars
-              ? {
-                  boxShadow: `0px 0px 0px 8px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
-                }
-              : {
-                  boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[color].main, 0.16)}`,
-                }),
-            '@media (hover: none)': {
-              boxShadow: 'none',
-            },
-          },
-          [`&.${sliderClasses.active}`]: {
-            ...(theme.vars
-              ? {
-                  boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)}`,
-                }
-              : {
-                  boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[color].main, 0.16)}`,
-                }),
-          },
-        },
-      })),
     {
       props: { size: 'small' },
       style: {
@@ -329,6 +301,34 @@ export const SliderThumb = styled('span', {
         transform: 'translate(-50%, 50%)',
       },
     },
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          [`&:hover, &.${sliderClasses.focusVisible}`]: {
+            ...(theme.vars
+              ? {
+                  boxShadow: `0px 0px 0px 8px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
+                }
+              : {
+                  boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[color].main, 0.16)}`,
+                }),
+            '@media (hover: none)': {
+              boxShadow: 'none',
+            },
+          },
+          [`&.${sliderClasses.active}`]: {
+            ...(theme.vars
+              ? {
+                  boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
+                }
+              : {
+                  boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[color].main, 0.16)}`,
+                }),
+          },
+        },
+      })),
   ],
 }));
 
@@ -890,7 +890,7 @@ Slider.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -908,7 +908,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

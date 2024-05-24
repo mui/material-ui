@@ -11,7 +11,7 @@ interface ModeProps {
    * using `wrapper.setProps({ children })` would work differently if this component
    * would be the root.
    */
-  __element: React.ReactElement;
+  __element: React.ReactElement<any>;
   __strict: boolean;
 }
 
@@ -93,7 +93,7 @@ export default function createMount(options: CreateMountOptions = {}) {
   });
 
   const mountWithContext = function mountWithContext(
-    node: React.ReactElement,
+    node: React.ReactElement<any>,
     localOptions: Omit<CreateMountOptions, 'mount'> = {},
   ) {
     const { strict = globalStrict, ...localEnzymeOptions } = localOptions;

@@ -6,7 +6,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 import ExpandableApiItem, {
   ApiItemContaier,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
@@ -235,21 +235,6 @@ export default function PropertiesList(props: PropertiesListProps) {
                 }}
               />
             ))}
-            {isDeprecated && (
-              <ApiWarning className="MuiApi-collapsible prop-list-alert">
-                {t('api-docs.deprecated')}
-                {deprecationInfo && (
-                  <React.Fragment>
-                    {' - '}
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: deprecationInfo,
-                      }}
-                    />
-                  </React.Fragment>
-                )}
-              </ApiWarning>
-            )}
             <div className="prop-list-additional-info">
               {typeName && (
                 <p className="prop-list-type MuiApi-collapsible">
@@ -305,6 +290,21 @@ export default function PropertiesList(props: PropertiesListProps) {
                 </div>
               )}
             </div>
+            {isDeprecated && (
+              <ApiWarning className="MuiApi-collapsible prop-list-alert">
+                <b>{t('api-docs.deprecated')}</b>
+                {deprecationInfo && (
+                  <React.Fragment>
+                    {'－'}
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: deprecationInfo,
+                      }}
+                    />
+                  </React.Fragment>
+                )}
+              </ApiWarning>
+            )}
           </StyledApiItem>
         );
       })}

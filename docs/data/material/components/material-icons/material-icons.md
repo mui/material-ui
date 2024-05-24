@@ -10,7 +10,7 @@ githubLabel: 'package: icons'
 
 <p class="description">2,100+ ready-to-use React Material Icons from the official website.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 <br/>
 
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)
@@ -43,6 +43,8 @@ pnpm add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/re
 See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.
 
 <hr/>
+
+## Search Material Icons
 
 Browse through the icons below to find the one you need.
 The search field supports synonyms—for example, try searching for "hamburger" or "logout."

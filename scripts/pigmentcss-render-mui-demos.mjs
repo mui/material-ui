@@ -2,19 +2,20 @@ import path from 'path';
 import fse from 'fs-extra';
 import * as prettier from 'prettier';
 
-function capitalize(string) {
+function pascalCase(string) {
   if (typeof string !== 'string') {
-    throw new Error('`capitalize(string)` expects a string argument.');
+    throw new Error('`pascalCase(string)` expects a string argument.');
   }
 
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  const result = string.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+
+  return result.charAt(0).toUpperCase() + result.slice(1);
 }
 
 function titleCase(str) {
   const result = str.replace(/([A-Z])/g, ' $1');
   return result.charAt(0).toUpperCase() + result.slice(1);
 }
-
 const args = process.argv.slice(2);
 
 async function run() {
@@ -57,11 +58,14 @@ async function run() {
     const componentName = filename.replace('.tsx', '');
     return `import ${componentName} from '../../../../../../docs/data/material/components/${dataFolderName}/${componentName}';`;
   });
+
+  const functionName = pascalCase(dataFolderName);
+
   const nextFileContent = `'use client';
 import * as React from 'react';
 ${nextImports.join('\n')}
 
-export default function ${capitalize(dataFolderName)}() {
+export default function ${functionName}() {
   return (
     <React.Fragment>
 ${renders.join('\n')}
@@ -93,10 +97,10 @@ ${renders.join('\n')}
 import MaterialUILayout from '../../Layout';
 ${viteImports.join('\n')}
 
-export default function ${capitalize(dataFolderName)}() {
+export default function ${functionName}() {
   return (
     <MaterialUILayout>
-      <h1>${capitalize(dataFolderName)}</h1>
+      <h1>${functionName}</h1>
 ${renders.join('\n')}
     </MaterialUILayout>
   );
