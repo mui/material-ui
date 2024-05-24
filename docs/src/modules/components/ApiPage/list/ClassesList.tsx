@@ -11,7 +11,7 @@ import {
   brandingLightTheme as lightTheme,
   brandingDarkTheme as darkTheme,
 } from '@mui/docs/branding';
-import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
+import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -101,7 +101,7 @@ export default function ClassesList(props: ClassesListProps) {
               </p>
             )}
             {isDeprecated && (
-              <ApiWarning className="MuiApi-collapsible classes-list-alert">
+              <ApiWarningAlert>
                 <b>{t('api-docs.deprecated')}</b>
                 {deprecationInfo && (
                   <React.Fragment>
@@ -113,7 +113,7 @@ export default function ClassesList(props: ClassesListProps) {
                     />
                   </React.Fragment>
                 )}
-              </ApiWarning>
+              </ApiWarningAlert>
             )}
           </StyledApiItem>
         );
