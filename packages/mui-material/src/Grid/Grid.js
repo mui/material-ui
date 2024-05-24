@@ -285,7 +285,7 @@ const GridRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { container, direction, item, spacing, zeroMinWidth, breakpoints } = ownerState;
+    const { container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } = ownerState;
 
     let spacingStyles = [];
 
@@ -311,6 +311,7 @@ const GridRoot = styled('div', {
       zeroMinWidth && styles.zeroMinWidth,
       ...spacingStyles,
       direction !== 'row' && styles[`direction-xs-${String(direction)}`],
+      wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
       ...breakpointsStyles,
     ];
   },
@@ -327,6 +328,9 @@ const GridRoot = styled('div', {
     }),
     ...(ownerState.zeroMinWidth && {
       minWidth: 0,
+    }),
+    ...(ownerState.wrap !== 'wrap' && {
+      flexWrap: ownerState.wrap,
     }),
   }),
   generateDirection,
@@ -364,7 +368,8 @@ export function resolveSpacingClasses(spacing, breakpoints) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, container, direction, item, spacing, zeroMinWidth, breakpoints } = ownerState;
+  const { classes, container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } =
+    ownerState;
 
   let spacingClasses = [];
 
@@ -391,6 +396,7 @@ const useUtilityClasses = (ownerState) => {
       zeroMinWidth && 'zeroMinWidth',
       ...spacingClasses,
       direction !== 'row' && `direction-xs-${String(direction)}`,
+      wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
       ...breakpointsClasses,
     ],
   };
@@ -441,10 +447,10 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     columns,
     container,
     direction,
-    flexWrap: other.flexWrap || wrap,
     item,
     rowSpacing,
     columnSpacing,
+    wrap,
     zeroMinWidth,
     spacing,
     ...breakpointsValues,
