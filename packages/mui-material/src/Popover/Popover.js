@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useSlotProps, isHostComponent } from '@mui/base/utils';
+import { isHostComponent } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import refType from '@mui/utils/refType';
@@ -123,7 +123,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     transitionDuration: transitionDurationProp = 'auto',
     TransitionProps: { onEntering, ...TransitionProps } = {},
     disableScrollLock = false,
-    ...other
   } = props;
 
   const externalPaperSlotProps = slotProps?.paper ?? PaperPropsProp;
@@ -378,8 +377,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const container =
     containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
 
-  const RootSlot = slots?.root ?? PopoverRoot;
-
   const externalForwardedProps = {
     slots,
     slotProps: {
@@ -403,12 +400,10 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     className: clsx(classes.paper, externalPaperSlotProps?.className),
   });
 
-  const { slotProps: rootSlotPropsProp, ...rootProps } = useSlotProps({
-    elementType: RootSlot,
-    externalSlotProps: slotProps?.root || {},
-    externalForwardedProps: other,
+  const [RootSlot, { slotProps: rootSlotPropsProp, ...rootProps }] = useSlot('root', {
+    elementType: PopoverRoot,
+    externalForwardedProps,
     additionalProps: {
-      ref,
       slotProps: { backdrop: { invisible: true } },
       container,
       open,
@@ -417,6 +412,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     className: clsx(classes.root, className),
   });
 
+  console.log(rootSlotPropsProp);
   return (
     <RootSlot
       {...rootProps}
