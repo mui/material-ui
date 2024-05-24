@@ -129,7 +129,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const externalPaperSlotProps = slotProps?.paper ?? PaperPropsProp;
 
   const paperRef = React.useRef();
-  const handlePaperRef = useForkRef(paperRef, externalPaperSlotProps.ref);
 
   const ownerState = {
     ...props,
@@ -412,6 +411,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     ownerState,
     className: clsx(classes.root, className),
   });
+
+  const handlePaperRef = useForkRef(paperRef, paperProps.ref);
 
   return (
     <RootSlot
