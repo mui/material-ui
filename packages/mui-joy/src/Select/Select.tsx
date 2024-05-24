@@ -626,12 +626,12 @@ interface SelectComponent {
       component: C;
       multiple?: Multiple;
     } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, C>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   <OptionValue extends {}, Multiple extends boolean = false>(
     props: {
       multiple?: Multiple;
     } & DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   propTypes?: any;
 }
 

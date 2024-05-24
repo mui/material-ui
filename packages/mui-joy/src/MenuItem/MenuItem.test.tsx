@@ -26,7 +26,7 @@ function Wrapper({ children }: { children: React.ReactNode }) {
 
 describe('Joy <MenuItem />', () => {
   const { render: baseRender } = createRenderer();
-  const render = (element: JSX.Element, options = {}) =>
+  const render = (element: React.JSX.Element, options = {}) =>
     baseRender(element, {
       wrapper: Wrapper as React.JSXElementConstructor<{ children?: React.ReactNode }>,
       ...options,

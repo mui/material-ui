@@ -2,8 +2,8 @@
   "parameters": {
     "children": {
       "type": {
-        "name": "React.ReactElement | undefined | null",
-        "description": "React.ReactElement | undefined | null"
+        "name": "React.ReactElement&lt;any&gt; | undefined | null",
+        "description": "React.ReactElement&lt;any&gt; | undefined | null"
       },
       "required": true
     },

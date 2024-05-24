@@ -225,4 +225,4 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
  *
  * - [Tooltip API](https://mui.com/material-ui/api/tooltip/)
  */
-export default function Tooltip(props: TooltipProps): JSX.Element;
+export default function Tooltip(props: TooltipProps): React.JSX.Element;

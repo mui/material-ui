@@ -27,7 +27,10 @@ export type PropInjector<InjectedProps, AdditionalProps = {}> = <
 >(
   component: C,
 ) => React.JSXElementConstructor<
-  DistributiveOmit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
+  DistributiveOmit<
+    React.JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>,
+    keyof InjectedProps
+  > &
     AdditionalProps
 >;
 
@@ -101,8 +104,8 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
        */
       component: C;
     } & OverrideProps<M, C>,
-  ): JSX.Element | null;
-  (props: DefaultComponentProps<M>): JSX.Element | null;
+  ): React.JSX.Element | null;
+  (props: DefaultComponentProps<M>): React.JSX.Element | null;
   propTypes?: any;
 }
 

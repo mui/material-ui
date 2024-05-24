@@ -281,7 +281,7 @@ export interface SliderTypeMap<
 }
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   index: number;
   open: boolean;
   value: number;

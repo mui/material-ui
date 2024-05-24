@@ -193,10 +193,10 @@ interface ToggleButtonGroupComponent {
        */
       component: C;
     } & OverrideProps<ToggleButtonGroupTypeMap<TValue>, C>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   <TValue extends SupportedValue>(
     props: DefaultComponentProps<ToggleButtonGroupTypeMap<TValue>>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   propTypes?: any;
 }
 
