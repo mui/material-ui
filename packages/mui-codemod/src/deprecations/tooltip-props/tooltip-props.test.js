@@ -1,80 +1,16 @@
-import { EOL } from 'os';
-import path from 'path';
-import { expect } from 'chai';
-
-import { jscodeshift } from '../../../testUtils';
+import { describeJscodeshiftTransform } from '../../../testUtils';
 import transform from './tooltip-props';
-import readFile from '../../util/readFile';
-
-function read(fileName) {
-  return readFile(path.join(__dirname, fileName));
-}
 
 describe('@mui/codemod', () => {
   describe('deprecations', () => {
-    describe('tooltip-props', () => {
-      it('transforms props as needed', () => {
-        const actual = transform(
-          { source: read('./test-cases/actual.js') },
-          { jscodeshift },
-          {
-            printOptions: {
-              lineTerminator: EOL,
-            },
-          },
-        );
-
-        const expected = read('./test-cases/expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
-      });
-
-      it('should be idempotent', () => {
-        const actual = transform(
-          { source: read('./test-cases/expected.js') },
-          { jscodeshift },
-          {
-            printOptions: {
-              lineTerminator: EOL,
-            },
-          },
-        );
-
-        const expected = read('./test-cases/expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
-      });
-    });
-
-    describe('[theme] tooltip-props', () => {
-      it('transforms props as needed', () => {
-        const actual = transform(
-          { source: read('./test-cases/theme.actual.js') },
-          { jscodeshift },
-          {
-            printOptions: {
-              trailingComma: false,
-              lineTerminator: EOL,
-            },
-          },
-        );
-
-        const expected = read('./test-cases/theme.expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
-      });
-
-      it('should be idempotent', () => {
-        const actual = transform(
-          { source: read('./test-cases/theme.expected.js') },
-          { jscodeshift },
-          {
-            printOptions: {
-              lineTerminator: EOL,
-            },
-          },
-        );
-
-        const expected = read('./test-cases/theme.expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
-      });
+    describeJscodeshiftTransform({
+      transform,
+      transformName: 'tooltip-props',
+      dirname: __dirname,
+      testCases: [
+        { actual: '/test-cases/actual.js', expected: '/test-cases/expected.js' },
+        { actual: '/test-cases/theme.actual.js', expected: '/test-cases/theme.expected.js' },
+      ],
     });
   });
 });
