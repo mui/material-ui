@@ -5,7 +5,7 @@ describe('@mui/codemod', () => {
   describe('deprecations', () => {
     describeJscodeshiftTransform({
       transform,
-      transformName: 'grid-props',
+      transformName: 'snackbar-props',
       dirname: __dirname,
       testCases: [
         { actual: '/test-cases/actual.js', expected: '/test-cases/expected.js' },
