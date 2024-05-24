@@ -91,12 +91,11 @@ const Root = styled('div')(
     '& h3': {
       ...lightTheme.typography.h6,
       fontFamily: `graphik, ${lightTheme.typography.fontFamilySystem}`,
-      fontSize: theme.typography.pxToRem(18),
+      fontSize: theme.typography.pxToRem(16),
       lineHeight: theme.typography.pxToRem(24),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-      margin: '24px 0 12px',
-      letterSpacing: -0.3,
+      margin: '24px 0 4px',
     },
     '& h4': {
       ...lightTheme.typography.subtitle1,
@@ -290,7 +289,7 @@ const Root = styled('div')(
       display: 'flex',
       gap: 12,
       padding: '16px',
-      margin: '16px 0',
+      margin: '24px 0',
       border: '1px solid',
       fontSize: 14,
       lineHeight: '20px',
@@ -307,6 +306,9 @@ const Root = styled('div')(
       '& .MuiCallout-content': {
         minWidth: 0, // Allows content to shrink. Useful when callout contains code block
         flexGrow: 1,
+        '& > p': {
+          lineHeight: '20px',
+        },
         '& > p:last-child, & > ul:last-child': {
           // Avoid margin on last child
           marginBottom: 0,
@@ -348,9 +350,9 @@ const Root = styled('div')(
         },
         '& a': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
-          textDecorationColor: alpha(lightTheme.palette.error.main, 0.4),
+          textDecorationColor: alpha(lightTheme.palette.error.main, 0.12),
           '&:hover': {
-            textDecorationColor: 'inherit',
+            textDecorationColor: alpha(lightTheme.palette.error.main, 0.35),
           },
         },
       },
@@ -377,9 +379,9 @@ const Root = styled('div')(
         },
         '& a': {
           color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
-          textDecorationColor: alpha(lightTheme.palette.success.main, 0.4),
+          textDecorationColor: alpha(lightTheme.palette.success.main, 0.12),
           '&:hover': {
-            textDecorationColor: 'inherit',
+            textDecorationColor: alpha(lightTheme.palette.success.main, 0.35),
           },
         },
       },
@@ -395,9 +397,9 @@ const Root = styled('div')(
         },
         '& a': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-          textDecorationColor: alpha(lightTheme.palette.warning.main, 0.4),
+          textDecorationColor: alpha(lightTheme.palette.warning.main, 0.12),
           '&:hover': {
-            textDecorationColor: 'inherit',
+            textDecorationColor: alpha(lightTheme.palette.warning.main, 0.35),
           },
         },
       },
@@ -430,11 +432,11 @@ const Root = styled('div')(
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
       textDecoration: 'underline',
-      textUnderlineOffset: 3,
+      textUnderlineOffset: 4,
       textDecorationThickness: 1,
-      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.15),
+      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.12),
       '&:hover': {
-        textDecorationColor: 'inherit',
+        textDecorationColor: alpha(lightTheme.palette.primary.main, 0.35),
       },
     },
     '& a code': {

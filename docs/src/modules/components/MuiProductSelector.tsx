@@ -33,7 +33,7 @@ function ProductSubMenu(props: ProductSubMenuProp) {
     >
       {icon}
       <Box sx={{ flexGrow: 1 }}>
-        <Typography color="text.primary" variant="body2" fontWeight="700">
+        <Typography color="text.primary" variant="body2" fontWeight="500">
           {name}
         </Typography>
         <Typography color="text.secondary" variant="body2">

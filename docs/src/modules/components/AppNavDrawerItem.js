@@ -24,7 +24,7 @@ const Item = styled(
       color: (theme.vars || theme).palette.text.primary,
     }),
     ...(subheader && {
-      color: (theme.vars || theme).palette.text.tertiary,
+      color: (theme.vars || theme).palette.text.secondary,
     }),
   };
 
@@ -61,10 +61,8 @@ const Item = styled(
       ...color,
       ...(subheader && {
         marginTop: theme.spacing(1),
-        textTransform: 'uppercase',
-        letterSpacing: '.1rem',
-        fontWeight: theme.typography.fontWeightBold,
-        fontSize: theme.typography.pxToRem(11),
+        fontWeight: theme.typography.fontWeightSemiBold,
+        fontSize: theme.typography.pxToRem(14),
         '&::before': {
           content: '""',
           display: 'block',
