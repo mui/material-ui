@@ -1063,7 +1063,7 @@ npx @mui/codemod@latest deprecations/grid-props <path>
 
 ### wrap prop
 
-The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI system prop:
+The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
 
 ```diff
  <Grid
