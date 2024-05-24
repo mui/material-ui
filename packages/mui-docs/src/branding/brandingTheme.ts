@@ -419,30 +419,89 @@ export function getThemedComponents(): ThemeOptions {
       MuiAlert: {
         styleOverrides: {
           root: {
-            padding: '12px 16px',
+            padding: '16px',
+            gap: '12px',
+            fontSize: '1rem',
+            '& * ul': { paddingLeft: '24px !important', marginBottom: '0 !important' }, // !important is used here to override the anchor tag color coming from MarkdownElement
+            '& .MuiAlert-icon': {
+              margin: 0,
+              marginTop: '2px',
+              padding: 0,
+            },
+            '& .MuiAlert-message': { padding: 0 },
+          },
+          icon: {
+            paddingTop: 10,
+            paddingBottom: 0,
           },
           standardWarning: ({ theme }) => [
+            // same styles from the MarkdownElement callout
             {
               backgroundColor: alpha(theme.palette.warning[50], 0.5),
               color: (theme.vars || theme).palette.grey[900],
               border: '1px solid',
-              borderColor: alpha(theme.palette.warning[600], 0.3),
+              borderColor: alpha(theme.palette.warning[700], 0.15),
               '& .MuiAlert-icon': {
-                color: (theme.vars || theme).palette.warning[700],
+                color: (theme.vars || theme).palette.warning[600],
+              },
+              '& * a': {
+                // !important is used here to override the anchor tag color coming from MarkdownElement
+                color: `${(theme.vars || theme).palette.warning[900]} !important`,
+                textDecorationColor: `${alpha(theme.palette.warning.main, 0.4)} !important`,
+                '&:hover': {
+                  textDecorationColor: `${(theme.vars || theme).palette.warning[900]} !important`,
+                },
               },
             },
             theme.applyDarkStyles({
-              backgroundColor: alpha(theme.palette.warning[700], 0.2),
+              backgroundColor: alpha(theme.palette.warning[700], 0.12),
               color: (theme.vars || theme).palette.warning[50],
               '& .MuiAlert-icon': {
-                color: (theme.vars || theme).palette.warning[200],
+                color: (theme.vars || theme).palette.warning[400],
+              },
+              '& * a': {
+                color: `${(theme.vars || theme).palette.warning[100]} !important`,
+                textDecorationColor: `${alpha(theme.palette.warning[600], 0.4)} !important`,
+                '&:hover': {
+                  textDecorationColor: `${(theme.vars || theme).palette.warning[600]} !important`,
+                },
               },
             }),
           ],
-          icon: {
-            paddingTop: 12,
-            paddingBottom: 0,
-          },
+          standardSuccess: ({ theme }) => [
+            // same styles from the MarkdownElement callout
+            {
+              backgroundColor: alpha(theme.palette.success[50], 0.5),
+              color: (theme.vars || theme).palette.success[900],
+              border: `1px solid ${(theme.vars || theme).palette.success[100]}`,
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.success[600],
+              },
+              '& * a': {
+                // !important is used here to override the anchor tag color coming from MarkdownElement
+                color: `${(theme.vars || theme).palette.success[900]} !important`,
+                textDecorationColor: `${alpha(theme.palette.success.main, 0.4)} !important`,
+                '&:hover': {
+                  textDecorationColor: `${(theme.vars || theme).palette.success[900]} !important`,
+                },
+              },
+            },
+            theme.applyDarkStyles({
+              backgroundColor: alpha(theme.palette.success[700], 0.12),
+              color: (theme.vars || theme).palette.success[50],
+              borderColor: alpha(theme.palette.success[400], 0.1),
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.success[500],
+              },
+              '& * a': {
+                color: `${(theme.vars || theme).palette.success[100]} !important`,
+                textDecorationColor: `${alpha(theme.palette.success[600], 0.4)} !important`,
+                '&:hover': {
+                  textDecorationColor: `${(theme.vars || theme).palette.success[600]} !important`,
+                },
+              },
+            }),
+          ],
         },
       },
       MuiButtonBase: {
