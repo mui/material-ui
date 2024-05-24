@@ -62,12 +62,13 @@ const Root = styled('div')(
     },
     '& h1': {
       ...lightTheme.typography.h3,
-      fontSize: lightTheme.typography.pxToRem(36),
+      fontSize: lightTheme.typography.pxToRem(32),
+      lineHeight: theme.typography.pxToRem(36),
       fontFamily: `graphik, ${lightTheme.typography.fontFamilySystem}`,
       margin: '10px 0',
       color: `var(--muidocs-palette-primaryDark-900, ${lightTheme.palette.primaryDark[900]})`,
       fontWeight: 500,
-      letterSpacing: -0.2,
+      letterSpacing: -1.25,
     },
     '& .description': {
       ...lightTheme.typography.subtitle1,
@@ -80,18 +81,22 @@ const Root = styled('div')(
     '& h2': {
       ...lightTheme.typography.h5,
       fontFamily: `graphik, ${lightTheme.typography.fontFamilySystem}`,
-      fontSize: theme.typography.pxToRem(26),
+      fontSize: theme.typography.pxToRem(20),
+      lineHeight: theme.typography.pxToRem(26),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-      margin: '40px 0 4px',
+      margin: '40px 0 12px',
+      letterSpacing: -0.4,
     },
     '& h3': {
       ...lightTheme.typography.h6,
       fontFamily: `graphik, ${lightTheme.typography.fontFamilySystem}`,
-      fontSize: theme.typography.pxToRem(20),
+      fontSize: theme.typography.pxToRem(18),
+      lineHeight: theme.typography.pxToRem(24),
       fontWeight: lightTheme.typography.fontWeightSemiBold,
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-      margin: '24px 0 4px',
+      margin: '24px 0 12px',
+      letterSpacing: -0.3,
     },
     '& h4': {
       ...lightTheme.typography.subtitle1,
@@ -110,10 +115,11 @@ const Root = styled('div')(
     '& p': {
       marginTop: 0,
       marginBottom: 16,
+      lineHeight: theme.typography.pxToRem(24),
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
     },
     '& ul, & ol': {
-      paddingLeft: 30,
+      paddingLeft: 32,
       marginTop: 0,
       marginBottom: 16,
       '& ul, & ol': {
