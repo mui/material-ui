@@ -126,7 +126,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main) // check all the used fields in the style below
+        .filter(([, value]) => value && value.main) // check all the used fields in the style below
         .map(([color]) => ({
           props: {
             disableUnderline: false,

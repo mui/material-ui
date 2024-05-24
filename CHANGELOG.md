@@ -1,5 +1,40 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.8
+
+<!-- generated comparing v6.0.0-alpha.7..next -->
+
+_May 21, 2024_
+
+A big thanks to the 7 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@6.0.0-alpha.7`
+
+- &#8203;<!-- 04 -->[material-ui] Filter only valid theme palette for generating styles (#42147) @siriwatknp
+- &#8203;<!-- 03 -->[material-ui] Remove UMD bundle (#42172) @ZeeshanTamboli
+- &#8203;<!-- 02 -->[material-ui][TextField] Deprecate `*Props` props (#42062) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 08 -->[docs] Remove Base UI from the README (#42307) @danilo-leal
+- &#8203;<!-- 07 -->[docs][material-ui] Fix typo in style interoperability with Tailwind CSS docs (#42279) @ZeeshanTamboli
+- &#8203;<!-- 06 -->[docs][material-ui] Add supported browsers section to migration guide (#42194) @DiegoAndai
+- &#8203;<!-- 05 -->[docs][material-ui][Pagination] Clarify pagination `page` prop API (#42220) @Mandar-Pandya
+
+### Core
+
+- &#8203;<!-- 12 -->[blog] Update blog post OG image (#42270) @danilo-leal
+- &#8203;<!-- 11 -->[blog] Update Pigment CSS post (#42266) @danilo-leal
+- &#8203;<!-- 10 -->[docs] Remove LocalMonero (#42224) @oliviertassinari
+- &#8203;<!-- 08 -->[docs-infra] Fix keyboard navigation on page tabs (#42152) @danilo-leal
+- &#8203;<!-- 10 -->[code-infra] Remove raw-loader (#42275) @Janpot
+- &#8203;<!-- 09 -->[core] Remove outdated Babel plugins (#42140) @ZeeshanTamboli
+- &#8203;<!-- 12 -->[core] Fix a few more key spread issues (#42168) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Avoid duplicate simple vs. rich (#42100) @oliviertassinari
+
+All contributors of this release in alphabetical order: @danilo-leal, @DiegoAndai, @Janpot, @Mandar-Pandya, @oliviertassinari, @siriwatknp, @ZeeshanTamboli
+
 ## v6.0.0-alpha.7
 
 <!-- generated comparing v6.0.0-alpha.6..next -->
@@ -53,7 +88,7 @@ All contributors of this release in alphabetical order: @aarongarciah, @alexfauq
 
 _May 8, 2024_
 
-A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 10 contributors who made this release possible.
 
 ### `@mui/material@6.0.0-alpha.6`
 
@@ -101,7 +136,7 @@ All contributors of this release in alphabetical order: @aarongarciah, @danilo-l
 
 _May 1, 2024_
 
-A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 9 contributors who made this release possible.
 
 ### `@mui/material@6.0.0-alpha.5`
 
