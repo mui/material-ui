@@ -16,4 +16,4 @@ export interface FilledProps extends BaseProps {
 
 export type TextFieldProps = StandardProps | OutlinedProps | FilledProps;
 
-export default function TextField(props: TextFieldProps): JSX.Element;
+export default function TextField(props: TextFieldProps): React.JSX.Element;

@@ -19,7 +19,7 @@
     },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
-    "disableUnderline": { "type": { "name": "bool" } },
+    "disableUnderline": { "type": { "name": "bool" }, "default": "false" },
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },

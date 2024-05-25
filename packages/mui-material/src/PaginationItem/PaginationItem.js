@@ -214,7 +214,7 @@ const PaginationItemPage = styled(ButtonBase, {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main && value.dark && value.contrastText)
+      .filter(([, value]) => value && value.main && value.dark && value.contrastText)
       .map(([color]) => ({
         props: { variant: 'text', color },
         style: {
@@ -238,7 +238,7 @@ const PaginationItemPage = styled(ButtonBase, {
         },
       })),
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main && value.light)
+      .filter(([, value]) => value && value.main && value.light)
       .map(([color]) => ({
         props: { variant: 'outlined', color },
         style: {
@@ -455,7 +455,7 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * It's recommended to use the `slots` prop instead.
    *
    * @default {}
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   components: PropTypes.shape({
     first: PropTypes.elementType,

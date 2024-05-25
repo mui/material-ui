@@ -58,7 +58,7 @@ export default function XPlans2() {
         <Grid xs={12} md={6}>
           <Stack spacing={2} useFlexGap>
             {content.map(({ icon, title, description, link }) => (
-              <InfoCard dense title={title} icon={icon} description={description} link={link} />
+              <InfoCard title={title} icon={icon} description={description} link={link} />
             ))}
           </Stack>
         </Grid>

@@ -1,3 +1,4 @@
+import replaceComponentsWithSlots from '../utils/replaceComponentsWithSlots';
 import movePropIntoSlots from '../utils/movePropIntoSlots';
 import movePropIntoSlotProps from '../utils/movePropIntoSlotProps';
 
@@ -9,6 +10,8 @@ export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
   const printOptions = options.printOptions;
+
+  replaceComponentsWithSlots(j, { root, componentName: 'Tooltip' });
 
   movePropIntoSlots(j, {
     root,

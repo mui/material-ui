@@ -25,3 +25,4 @@ import { Divider as MyDivider } from '@mui/material';
     bgcolor: 'black',
     opacity: "0.6"
   }} />;
+<Divider className="test" />;
