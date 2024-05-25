@@ -104,7 +104,7 @@ const IconButtonRoot = styled(ButtonBase, {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value.main) // check all the used fields in the style below
+          .filter(([, value]) => value && value.main) // check all the used fields in the style below
           .map(([color]) => ({
             props: { color },
             style: {
@@ -112,7 +112,7 @@ const IconButtonRoot = styled(ButtonBase, {
             },
           })),
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value.main) // check all the used fields in the style below
+          .filter(([, value]) => value && value.main) // check all the used fields in the style below
           .map(([color]) => ({
             props: { color, disableRipple: false },
             style: {

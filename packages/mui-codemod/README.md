@@ -268,6 +268,12 @@ npx @mui/codemod@next deprecations/alert-props <path>
 -  PopperComponent={CustomPopper}
 -  ListboxComponent={CustomListbox}
 -  ListboxProps={{ height: 12 }}
+-  componentsProps={{
+-    clearIndicator: { width: 10 },
+-    paper: { width: 12 },
+-    popper: { width: 14 },
+-    popupIndicator: { width: 16 },
+-  }}
 +  slots={{
 +    paper: CustomPaper,
 +    popper: CustomPopper,
@@ -276,6 +282,10 @@ npx @mui/codemod@next deprecations/alert-props <path>
 +  slotProps={{
 +    chip: { height: 10 },
 +    listbox: { height: 12 },
++    clearIndicator: { width: 10 },
++    paper: { width: 12 },
++    popper: { width: 14 },
++    popupIndicator: { width: 16 },
 +  }}
  />
 ```
@@ -288,6 +298,12 @@ npx @mui/codemod@next deprecations/alert-props <path>
 -    PopperComponent: CustomPopper,
 -    ListboxComponent: CustomListbox,
 -    ListboxProps: { height: 12 },
+-    componentsProps: {
+-       clearIndicator: { width: 10 },
+-       paper: { width: 12 },
+-       popper: { width: 14 },
+-       popupIndicator: { width: 16 },
+-     }
 +    slots: {
 +      paper: CustomPaper,
 +      popper: CustomPopper,
@@ -296,6 +312,10 @@ npx @mui/codemod@next deprecations/alert-props <path>
 +    slotProps: {
 +      chip: { height: 10 },
 +      listbox: { height: 12 },
++      clearIndicator: { width: 10 },
++      paper: { width: 12 },
++      popper: { width: 14 },
++      popupIndicator: { width: 16 },
 +    },
    },
  },
@@ -1011,6 +1031,45 @@ npx @mui/codemod@next deprecations/form-control-label-props <path>
 
 ```
 
+#### `list-item-props`
+
+```diff
+ <ListItem
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiListItem: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'test-id' }}
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/list-item-props <path>
+```
+
+#### `grid-props`
+
+```diff
+ <Grid
+-    wrap="nowrap"
++    flexWrap="nowrap"
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/grid-props <path>
+```
+
 #### `pagination-item-classes`
 
 JS transforms:
@@ -1097,6 +1156,32 @@ npx @mui/codemod@next deprecations/pagination-item-classes <path>
 npx @mui/codemod@next deprecations/pagination-item-props <path>
 ```
 
+#### `popper-props`
+
+```diff
+ <Popper
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiPopper: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'test-id' }}
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/popper-props <path>
+```
+
 #### `slider-props`
 
 ```diff
@@ -1121,6 +1206,108 @@ npx @mui/codemod@next deprecations/pagination-item-props <path>
 
 ```bash
 npx @mui/codemod@next deprecations/slider-props <path>
+```
+
+#### `tooltip-props`
+
+```diff
+ <Tooltip
+-  components={{ Arrow: CustomArrow }}
++  slots={{ arrow: CustomArrow }}
+-  componentsProps={{ arrow: { testid: 'test-id' } }}
++  slotProps={{ arrow: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiTooltip: {
+   defaultProps: {
+-    components: { Arrow: CustomArrow }
++    slots: { arrow: CustomArrow },
+-    componentsProps: { arrow: { testid: 'test-id' }}
++    slotProps: { arrow: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/tooltip-props <path>
+```
+
+#### `step-connector-classes`
+
+JS transforms:
+
+```diff
+ import { stepConnectorClasses } from '@mui/material/StepConnector';
+
+ MuiStepConnector: {
+   styleOverrides: {
+     root: {
+-      [`& .${stepConnectorClasses.lineHorizontal}`]: {
++      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+-      [`& .${stepConnectorClasses.lineVertical}`]: {
++      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+#### `step-label-props`
+
+```diff
+ <StepLabel
+-  componentsProps={{ label: labelProps }}
++  slotProps={{ label: labelProps }}
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
+ />
+```
+
+```diff
+ MuiStepLabel: {
+   defaultProps: {
+-  componentsProps:{ label: labelProps }
++  slotProps:{ label: labelProps }
+-  StepIconComponent:StepIconComponent
++  slots:{ stepIcon: StepIconComponent }
+-  StepIconProps:StepIconProps
++  slotProps:{ stepIcon: StepIconProps }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-label-props <path>
+```
+
+#### `text-field-props`
+
+```diff
+ <TextField
+-    InputProps={CustomInputProps}
+-    inputProps={CustomHtmlInputProps}
+-    SelectProps={CustomSelectProps}
+-    InputLabelProps={CustomInputLabelProps}
+-    FormHelperTextProps={CustomFormHelperProps}
++    slotProps={{
++        input: CustomInputProps
++        htmlInput: CustomHtmlInputProps
++        select: CustomSelectProps
++        inputLabel: CustomInputLabelProps
++        formHelper: CustomFormHelperProps
++    }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/text-field-props <path>
 ```
 
 #### `toggle-button-group-classes`
@@ -1158,60 +1345,6 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
-```
-
-#### `step-label-props`
-
-```diff
- <StepLabel
--  componentsProps={{ label: labelProps }}
-+  slotProps={{ label: labelProps }}
--  StepIconComponent={StepIconComponent}
-+  slots={{ stepIcon: StepIconComponent }}
--  StepIconProps={StepIconProps}
-+  slotProps={{ stepIcon: StepIconProps }}
- />
-```
-
-```diff
- MuiStepLabel: {
-   defaultProps: {
--  componentsProps:{ label: labelProps }
-+  slotProps:{ label: labelProps }
--  StepIconComponent:StepIconComponent
-+  slots:{ stepIcon: StepIconComponent }
--  StepIconProps:StepIconProps
-+  slotProps:{ stepIcon: StepIconProps }
-  },
- },
-```
-
-```bash
-npx @mui/codemod@latest deprecations/step-label-props <path>
-
-```
-
-#### `step-connector-classes`
-
-JS transforms:
-
-```diff
- import { stepConnectorClasses } from '@mui/material/StepConnector';
-
- MuiStepConnector: {
-   styleOverrides: {
-     root: {
--      [`& .${stepConnectorClasses.lineHorizontal}`]: {
-+      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
-         color: 'red',
-        },
--      [`& .${stepConnectorClasses.lineVertical}`]: {
-+      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
 ```
 
 CSS transforms:

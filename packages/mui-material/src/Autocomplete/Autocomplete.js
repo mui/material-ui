@@ -87,21 +87,11 @@ const AutocompleteRoot = styled('div', {
     ];
   },
 })({
-  [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
-    visibility: 'visible',
-  },
-  /* Avoid double tap issue on iOS */
-  '@media (pointer: fine)': {
-    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
-      visibility: 'visible',
-    },
-  },
   [`& .${autocompleteClasses.tag}`]: {
     margin: 3,
     maxWidth: 'calc(100% - 6px)',
   },
   [`& .${autocompleteClasses.inputRoot}`]: {
-    flexWrap: 'wrap',
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 26 + 4,
     },
@@ -111,6 +101,23 @@ const AutocompleteRoot = styled('div', {
     [`& .${autocompleteClasses.input}`]: {
       width: 0,
       minWidth: 30,
+    },
+  },
+  [`&.${autocompleteClasses.focused}`]: {
+    [`& .${autocompleteClasses.clearIndicator}`]: {
+      visibility: 'visible',
+    },
+    [`& .${autocompleteClasses.input}`]: {
+      minWidth: 0,
+    },
+  },
+  /* Avoid double tap issue on iOS */
+  '@media (pointer: fine)': {
+    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+      visibility: 'visible',
+    },
+    [`&:hover .${autocompleteClasses.input}`]: {
+      minWidth: 0,
     },
   },
   [`& .${inputClasses.root}`]: {
@@ -212,6 +219,14 @@ const AutocompleteRoot = styled('div', {
       style: {
         [`& .${autocompleteClasses.input}`]: {
           opacity: 1,
+        },
+      },
+    },
+    {
+      props: { multiple: true },
+      style: {
+        [`& .${autocompleteClasses.inputRoot}`]: {
+          flexWrap: 'wrap',
         },
       },
     },
@@ -419,7 +434,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     clearOnEscape = false,
     clearText = 'Clear',
     closeText = 'Close',
-    componentsProps = {},
+    componentsProps,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -625,8 +640,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const renderGroup = renderGroupProp || defaultRenderGroup;
   const defaultRenderOption = (props2, option) => {
     // Need to clearly apply key because of https://github.com/vercel/next.js/issues/55642
+    const { key, ...otherProps } = props2;
     return (
-      <li {...props2} key={props2.key}>
+      <li key={key} {...otherProps}>
         {getOptionLabel(option)}
       </li>
     );
@@ -852,7 +868,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   closeText: PropTypes.string,
   /**
    * The props used for each slot inside.
-   * @default {}
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
