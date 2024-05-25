@@ -14,6 +14,7 @@ import transformStepLabelProps from '../step-label-props';
 import transformBackdropProps from '../backdrop-props';
 import transformStepConnectorClasses from '../step-connector-classes';
 import transformCircularProgressClasses from '../circular-progress-classes';
+import transformGridProps from '../grid-props';
 import transformSpeedDialProps from '../speed-dial-props';
 import transformTextFieldProps from '../text-field-props';
 import transformSnackbarProps from '../snackbar-props';
@@ -41,6 +42,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformCircularProgressClasses(file, api, options);
   file.source = transformSpeedDialProps(file, api, options);
   file.source = transformTextFieldProps(file, api, options);
+  file.source = transformGridProps(file, api, options);
   file.source = transformSnackbarProps(file, api, options);
 
   return file.source;

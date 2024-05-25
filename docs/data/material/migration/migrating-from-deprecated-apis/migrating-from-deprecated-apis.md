@@ -1053,6 +1053,25 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
  </ListItem>
 ```
 
+## Grid
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#grid-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/grid-props <path>
+```
+
+### wrap prop
+
+The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
+
+```diff
+ <Grid
+-  wrap="nowrap"
++  flexWrap="nowrap"
+ />;
+```
+
 ## PaginationItem
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-classes) below to migrate the code as described in the following sections:
