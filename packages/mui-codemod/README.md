@@ -1258,6 +1258,7 @@ npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
 ```bash
 npx @mui/codemod@next deprecations/tooltip-props <path>
 ```
+
 #### `step-label-props`
 
 ```diff
