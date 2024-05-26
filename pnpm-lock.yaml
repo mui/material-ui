@@ -767,8 +767,8 @@ importers:
         specifier: ^6.5.9
         version: 6.5.9(final-form@4.20.10)(react@18.2.0)
       react-imask:
-        specifier: ^7.6.0
-        version: 7.6.0(react@18.2.0)
+        specifier: ^7.6.1
+        version: 7.6.1(react@18.2.0)
       react-intersection-observer:
         specifier: ^9.10.2
         version: 9.10.2(react-dom@18.2.0)(react@18.2.0)
@@ -12910,6 +12910,7 @@ packages:
 
   /glob@7.1.6:
     resolution: {integrity: sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==}
+    deprecated: Glob versions prior to v9 are no longer supported
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -12920,6 +12921,7 @@ packages:
 
   /glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -12931,6 +12933,7 @@ packages:
   /glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
+    deprecated: Glob versions prior to v9 are no longer supported
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -13522,8 +13525,8 @@ packages:
       queue: 6.0.2
     dev: false
 
-  /imask@7.6.0:
-    resolution: {integrity: sha512-6EHsq1q7v5+M4Vas2MGrs2oRpxPRWPwPDiL0HmG1ikBI/0hOwvkxRhVRFQnWIlZcTG7R8iw0az5V+z868qnQ9A==}
+  /imask@7.6.1:
+    resolution: {integrity: sha512-sJlIFM7eathUEMChTh9Mrfw/IgiWgJqBKq2VNbyXvBZ7ev/IlO6/KQTKlV/Fm+viQMLrFLG/zCuudrLIwgK2dg==}
     engines: {npm: '>=4.0.0'}
     dependencies:
       '@babel/runtime-corejs3': 7.24.4
@@ -18041,13 +18044,13 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-imask@7.6.0(react@18.2.0):
-    resolution: {integrity: sha512-SilPct67Xw4TN+dqn3SM4BVpy+FwNSeT0wblA/DXQ3El2KPBEWwrn4x3gQ39ZohFAphp7yG7w6gSKq5SeR/6Kg==}
+  /react-imask@7.6.1(react@18.2.0):
+    resolution: {integrity: sha512-vLNfzcCz62Yzx/GRGh5tiCph9Gbh2cZu+Tz8OiO5it2eNuuhpA0DWhhSlOtVtSJ80+Bx+vFK5De8eQ9AmbkXzA==}
     engines: {npm: '>=4.0.0'}
     peerDependencies:
       react: '>=0.14.0'
     dependencies:
-      imask: 7.6.0
+      imask: 7.6.1
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
@@ -18867,6 +18870,7 @@ packages:
 
   /rimraf@2.5.4:
     resolution: {integrity: sha512-Lw7SHMjssciQb/rRz7JyPIy9+bbUshEucPoLRvWqy09vC5zQixl8Uet+Zl+SROBB/JMWHJRdCk1qdxNWHNMvlQ==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
@@ -18874,6 +18878,7 @@ packages:
 
   /rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
@@ -18881,12 +18886,14 @@ packages:
 
   /rimraf@2.7.1:
     resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
 
   /rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
