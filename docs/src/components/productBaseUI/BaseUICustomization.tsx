@@ -121,7 +121,7 @@ function App() {
 `;
 
 const startLine = [6, 89, 64];
-const endLine = [26, 93, 84];
+const endLine = [31, 93, 84];
 const scrollTo = [0, 1400, 1140];
 
 const StyledSwitchRoot = styled('span')(`
@@ -135,8 +135,7 @@ const StyledSwitchRoot = styled('span')(`
   border-radius: 16px;
   background: #B0B8C4;
   transition: all ease 120ms;
-
-  :hover {
+  &:hover {
     background: #9DA8B7;
   }
 
@@ -147,9 +146,11 @@ const StyledSwitchRoot = styled('span')(`
 
   &.Mui-checked {
     background: #007FFF;
-    :hover {
+
+    &:hover {
       background: #0072E5;
     }
+
     & .MuiSwitch-thumb {
       left: 20px;
     }
@@ -161,8 +162,8 @@ const StyledSwitchRoot = styled('span')(`
 
   :where([data-mui-color-scheme='dark']) & {
     background: #6B7A90;
-  
-    :hover {
+
+    &:hover {
       background: #434D5B;
     }
   }
