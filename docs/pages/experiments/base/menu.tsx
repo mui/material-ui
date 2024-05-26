@@ -98,14 +98,14 @@ const StyledMenuButton = styled(MenuButton)(
   `,
 );
 
-const Page = styled('div')(`
+const Page = styled('div')`
   max-width: 800px;
   min-height: calc(100vh - 40px);
   box-sizing: border-box;
   margin: 20px auto;
   padding: 20px;
   border-radius: 4px;
-`);
+`;
 
 function UnstyledSeparator(props: React.HTMLAttributes<HTMLLIElement>) {
   return <li {...props} role="separator" />;

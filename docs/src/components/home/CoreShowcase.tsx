@@ -124,7 +124,7 @@ export default function CoreShowcase() {
         </Box>
       }
       code={
-        <div data-mui-color-scheme="dark">
+        <Box sx={{ position: 'relative' }}>
           <Box
             sx={{
               pb: 1.5,
@@ -165,12 +165,10 @@ export default function CoreShowcase() {
               Custom Theme
             </Button>
           </Box>
-          <Box sx={{ position: 'relative' }}>
-            <HighlightedCode copyButtonHidden plainStyle code={componentCode} language="jsx" />
-            {startLine !== undefined && <FlashCode startLine={startLine} endLine={endLine} />}
-            <StylingInfo appeared={customized} sx={{ mx: -2 }} />
-          </Box>
-        </div>
+          <HighlightedCode copyButtonHidden plainStyle code={componentCode} language="jsx" />
+          {startLine !== undefined && <FlashCode startLine={startLine} endLine={endLine} />}
+          <StylingInfo appeared={customized} sx={{ mx: -2, mb: -2 }} />
+        </Box>
       }
     />
   );

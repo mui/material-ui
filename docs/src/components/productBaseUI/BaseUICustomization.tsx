@@ -124,7 +124,7 @@ const startLine = [6, 89, 64];
 const endLine = [31, 93, 84];
 const scrollTo = [0, 1400, 1140];
 
-const StyledSwitchRoot = styled('span')(`
+const StyledSwitchRoot = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -133,10 +133,19 @@ const StyledSwitchRoot = styled('span')(`
   margin: 10px;
   cursor: pointer;
   border-radius: 16px;
-  background: #B0B8C4;
+  background: #b0b8c4;
   transition: all ease 120ms;
+
+  :where([data-mui-color-scheme='dark']) & {
+    background: #6b7a90;
+
+    &:hover {
+      background: #434d5b;
+    }
+  }
+
   &:hover {
-    background: #9DA8B7;
+    background: #9da8b7;
   }
 
   &.Mui-disabled {
@@ -145,10 +154,10 @@ const StyledSwitchRoot = styled('span')(`
   }
 
   &.Mui-checked {
-    background: #007FFF;
+    background: #007fff;
 
     &:hover {
-      background: #0072E5;
+      background: #0072e5;
     }
 
     & .MuiSwitch-thumb {
@@ -157,17 +166,9 @@ const StyledSwitchRoot = styled('span')(`
   }
 
   &.Mui-focusVisible {
-    outline: 4px solid rgba(0, 127, 255, 0.4);
+    outline: 4px solid rgb(0 127 255 / 0.4);
   }
-
-  :where([data-mui-color-scheme='dark']) & {
-    background: #6B7A90;
-
-    &:hover {
-      background: #434D5B;
-    }
-  }
-`);
+`;
 
 const StyledSwitchInput = styled('input')`
   cursor: inherit;

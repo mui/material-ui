@@ -429,14 +429,13 @@ const StyledSlider = styled(Slider)(`
   }
 `);
 
-const StyledSwitch = styled('span')(`
+const StyledSwitch = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
   width: 34px;
   height: 20px;
   cursor: pointer;
-
 
   &.${switchClasses.disabled} {
     opacity: 0.4;
@@ -451,11 +450,10 @@ const StyledSwitch = styled('span')(`
     width: 100%;
     position: absolute;
     transition: background-color ease 100ms;
-
   }
-  
-  :hover {
-    .${switchClasses.track} {
+
+  &:hover {
+    & .${switchClasses.track} {
       background: var(--Switch-hoverBackground, var(--muidocs-palette-grey-400));
     }
   }
@@ -480,20 +478,20 @@ const StyledSwitch = styled('span')(`
   }
 
   &.${switchClasses.checked} {
-    .${switchClasses.thumb} {
+    & .${switchClasses.thumb} {
       left: 17px;
       top: 3px;
       background-color: #fff;
     }
 
-    .${switchClasses.track} {
+    & .${switchClasses.track} {
       background: var(--muidocs-palette-primary-500);
     }
 
-    :hover {
-      .${switchClasses.track} {
+    &:hover {
+      & .${switchClasses.track} {
         background: var(--muidocs-palette-primary-700);
-      } 
+      }
     }
   }
 
@@ -508,7 +506,7 @@ const StyledSwitch = styled('span')(`
     z-index: 1;
     margin: 0;
   }
-  `);
+`;
 
 const Backdrop = React.forwardRef<HTMLDivElement, { open?: boolean; className: string }>(
   (props, ref) => {
@@ -661,7 +659,7 @@ const StyledMenuItem = styled(MenuItem)(
   `,
 );
 
-const StyledMenuListbox = styled('ul')(`
+const StyledMenuListbox = styled('ul')`
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -676,7 +674,7 @@ const StyledMenuListbox = styled('ul')(`
   border: var(--border-width) solid;
   border-color: var(--border-color);
   box-shadow: var(--Panel-shadow);
-  `);
+`;
 
 const StyledMenuButton = styled(MenuButton)({
   padding: 0,
