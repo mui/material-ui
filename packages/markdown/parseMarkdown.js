@@ -1,3 +1,7 @@
+const React = require('react');
+const { useState } = React;
+const { useEffect } = React;
+const processMarkdown = require('./rehypeHighlight');
 const { marked } = require('marked');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
@@ -246,6 +250,27 @@ function getFeatureList(content) {
   );
 }
 
+function MarkdownProcessor({ markdownText }) {
+  console.log("entrei no md processor");
+  const [processedMarkdown, setProcessedMarkdown] = useState('');
+
+  useEffect(() => {
+    const process = async () => {
+      const result = await processMarkdown(`
+      \`\`\`js {1,2}
+      const carrot = "carrot";
+      ola olaaa
+      hello
+      \`\`\`
+      `);
+      setProcessedMarkdown(result);
+    };
+    process();
+  }, [markdownText]);
+
+  return React.createElement('div', { dangerouslySetInnerHTML: { __html: processedMarkdown } });
+}
+
 /**
  * @param {string} markdown
  */
@@ -411,20 +436,22 @@ function createRender(context) {
       // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
       const lang = (infostring || '').match(/\S*/)[0];
       const title = (infostring || '').match(/title="([^"]*)"/)?.[1];
-      const out = prism(code, lang);
+      /* const out = prism(code, lang);
       if (out != null && out !== code) {
         escaped = true;
         code = out;
-      }
+      } */
 
-      code = `${code.replace(/\n$/, '')}\n`;
+      //code = `${code.replace(/\n$/, '')}\n`;
+      escaped = true;
+      const rehypeResult = MarkdownProcessor(code);
 
       if (!lang) {
-        return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
+        return `<pre><code>${escaped ? rehypeResult : escape(rehypeResult, true)}</code></pre>\n`;
       }
 
       return `<div class="MuiCode-root">${title ? `<div class="MuiCode-title">${title}</div>` : ''}<pre><code class="language-${escape(lang, true)}">${
-        escaped ? code : escape(code, true)
+        escaped ? rehypeResult : escape(rehypeResult, true)
       }</code></pre>${[
         '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
         '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
