@@ -302,7 +302,7 @@ function createRender(context) {
   const { headingHashes, toc, userLanguage, options } = context;
   const headingHashesFallbackTranslated = {};
   let headingIndex = -1;
-  var cssInjected = false;
+  let cssInjected = false;
 
   /**
    * @param {string} markdown
@@ -322,7 +322,7 @@ function createRender(context) {
         </style>
       `;
 
-      var cssToInject = '';
+      let cssToInject = '';
 
       if (!cssInjected) {
         cssToInject = cssLinksAndStyles;
@@ -433,31 +433,33 @@ function createRender(context) {
       const lang = (infostring || '').match(/\S*/)[0];
       const title = (infostring || '').match(/title="([^"]*)"/)?.[1];
 
-      const highlightRegex = /\{\s*\d+(\s*[,-]\s*\d+)+\s*\}/;
+      const highlightRegex = /\{\s*\d+(\s*[,-]\s*\d+)*\s*\}/;
       const linesString = (infostring || '').match(highlightRegex)?.[0];
+      let linesArray = [];
 
       if (linesString) {
         const stringNoBraces = linesString.slice(1, -1);
         const stringNoComma = stringNoBraces.split(',');
-        var linesArray = [];
 
         stringNoComma.forEach(part => {
           if (part.includes('-')) {
             const [start, end] = part.split('-').map(Number);
-            for (let i = start; i <= end; i++) {
+            for (let i = start; i <= end; i+=1) {
               linesArray.push(i);
             }
           } else {
             linesArray.push(Number(part.trim()));
           }
         });
+      } else {
+        linesArray = [];
       }
 
       const out = prism(code, lang, linesArray);
       if (out[0] != null && out[0] !== code) {
         escaped = true;
         code = out[0];
-      } 
+      }
 
       code = `${code.replace(/\n$/, '')}\n`;
 
@@ -465,7 +467,7 @@ function createRender(context) {
 
       if (!lang) {
         return `<pre ${highlight}><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
-      } 
+      }
 
       return `<div class="MuiCode-root">${title ? `<div class="MuiCode-title">${title}</div>` : ''}<pre ${highlight}><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
