@@ -4,8 +4,8 @@
 
 ## Getting started
 
-The CSS variables API relies on a new provider called `CssVarsProvider` to inject styles into Material UI components.
-In addition to providing the theme in the inner React context through [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), this new provider also generates CSS variables out of all tokens in the theme that are not functions, and makes them available in the context as well.
+The CSS variables API relies on a provider called `CssVarsProvider` to inject styles into Material UI components.
+`CssVarsProvider` generates CSS variables out of all tokens in the theme that are serializable, and makes them available in the React context along with the theme itself via [`ThemeProvider`](/material-ui/customization/theming/#theme-provider).
 
 Once the `App` renders on the screen, you will see the CSS theme variables in the HTML `:root` stylesheet.
 The variables are flattened and prefixed with `--mui` by default:
@@ -28,7 +28,7 @@ The following demo uses `--md-demo` as a prefix for the variables:
 :::info
 The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
 
-If you have an existing theme, you can easily migrate to CSS theme variables by following the [migration guide](/material-ui/migration/migration-css-theme-variables/).
+If you have an existing theme, you can migrate to CSS theme variables by following the [migration guide](/material-ui/migration/migration-css-theme-variables/).
 :::
 
 ## Toggle between light and dark mode

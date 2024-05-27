@@ -274,7 +274,7 @@ const Button = styled('button')(({ theme }) => ({
 ```
 
 :::info
-The `theme.applyStyles()` is a new utility function in v6 that applies the provided styles to the specified mode.
+The `theme.applyStyles()` is a new utility function available in Material UI v6 that applies the provided styles to the specified mode.
 :::
 
 ## 5. Test dark-mode flickering
