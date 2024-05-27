@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
+import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
@@ -71,6 +72,7 @@ export default function ApiPage(props) {
   const {
     cssComponent,
     demos,
+    deprecated,
     filename,
     forwardsRefTo,
     inheritance,
@@ -103,6 +105,7 @@ export default function ApiPage(props) {
     componentDescription,
     componentDescriptionToc = [],
     classDescriptions,
+    deprecationInfo,
     propDescriptions,
     slotDescriptions,
   } = descriptions[userLanguage];
@@ -179,6 +182,19 @@ export default function ApiPage(props) {
     >
       <MarkdownElement>
         <h1>{pageContent.name} API</h1>
+        {deprecated ? (
+          <Alert
+            severity="warning"
+            icon={<WarningRoundedIcon fontSize="small" />}
+            sx={{ mt: 1.5, mb: 3 }}
+          >
+            <span
+              dangerouslySetInnerHTML={{
+                __html: deprecationInfo || t('api-docs.defaultDeprecationMessage'),
+              }}
+            />
+          </Alert>
+        ) : null}
         <Typography variant="h5" component="p" className="description" gutterBottom>
           {description}
           {disableAd ? null : (
