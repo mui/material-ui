@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 pre {
-    position: relative;
-  }
-  
-  pre code {
-    display: block;
-  }
-  
-  .line-highlight {
-    margin-top: 1.3em;
-    position: absolute;
-    left: 0;
-    right: 0;
-    background-color: rgba(253, 232, 219, 0.092);
-    pointer-events: none;
-    z-index: 0;
-  }
+  position: relative;
+}
+
+pre code {
+  display: block;
+}
+
+.line-highlight {
+  margin-top: 1.3em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: rgba(253, 232, 219, 0.092);
+  pointer-events: none;
+  z-index: 0;
+}

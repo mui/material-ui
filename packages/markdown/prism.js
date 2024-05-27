@@ -58,11 +58,10 @@ function highlight(code, language, highlightLines = []) {
 
   const highlightedCode = prism.highlight(code, prismLanguage);
 
-  const lineHighlightAttr = highlightLines.length > 0 
-    ? ` data-line="${highlightLines.join(',')}"` 
-    : '';
+  const lineHighlightAttr =
+    highlightLines.length > 0 ? ` data-line="${highlightLines.join(',')}"` : '';
 
-  return [highlightedCode,lineHighlightAttr];
+  return [highlightedCode, lineHighlightAttr];
 }
 
 module.exports = highlight;
