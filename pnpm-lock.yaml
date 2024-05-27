@@ -734,8 +734,8 @@ importers:
         specifier: ^7.4.7
         version: 7.4.7(react@18.2.0)
       material-ui-popup-state:
-        specifier: ^5.1.1
-        version: 5.1.1(@mui/material@packages+mui-material+build)(react@18.2.0)
+        specifier: ^5.1.2
+        version: 5.1.2(@mui/material@packages+mui-material+build)(react@18.2.0)
       next:
         specifier: ^13.5.1
         version: 13.5.1(@babel/core@7.24.6)(@opentelemetry/api@1.8.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
@@ -15444,8 +15444,8 @@ packages:
     resolution: {integrity: sha512-q9JtQJKjpsVxCRVgQ+WapguSbKC3SQ5HEzFGPAJMStgh3QjCawp00UKv3MTTAArTmGmmPUvllHZoNbZ3gs0I+Q==}
     dev: false
 
-  /material-ui-popup-state@5.1.1(@mui/material@packages+mui-material+build)(react@18.2.0):
-    resolution: {integrity: sha512-6HbWnQ8hEcx8SVTRd0E29YLBIK0n8/ECBxPtkyYFF7+vG7ACSW/fvCr13JmsTTPdCDLKaY3U7b7cvh08cwISZw==}
+  /material-ui-popup-state@5.1.2(@mui/material@packages+mui-material+build)(react@18.2.0):
+    resolution: {integrity: sha512-+MPpydg2a/NqSbF4vNKbsHeEktiH6j0OPtNud0ZbhElKRc915XdyNH3Z7N+lL/l1erHcsCHB85izHC+zc6GgmQ==}
     engines: {node: '>=16'}
     peerDependencies:
       '@mui/material': ^5.0.0
