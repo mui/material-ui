@@ -1314,6 +1314,19 @@ npx @mui/codemod@next deprecations/step-connector-classes <path>
 
 ### v6.0.0
 
+#### `system-props`
+
+```bash
+npx @mui/codemod@next v6.0.0/system-props <path>
+```
+
+Remove system props and add them to the `sx` prop.
+
+```diff
+- <Box ml="2px" py={1} color="primary.main" />
++ <Box sx={{ ml: "2px", py: 1, color: 'primary.main' }} />
+```
+
 #### `theme-v6`
 
 ```bash
