@@ -4,7 +4,7 @@ import * as pageProps from 'docs/data/material/components/backdrop/backdrop.md?m
 import * as Prism from 'prismjs';
 
 export default function Page() {
-  React.useEffect(()=>{
+  React.useEffect(() => {
     Prism.highlightAll();
   }, []);
   return <MarkdownDocs {...pageProps} />;

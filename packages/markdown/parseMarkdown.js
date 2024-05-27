@@ -310,7 +310,6 @@ function createRender(context) {
   function render(markdown) {
     const renderer = new marked.Renderer();
     renderer.heading = (headingHtml, level) => {
-
       const cssLinksAndStyles = `
         <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet" />
@@ -441,10 +440,10 @@ function createRender(context) {
         const stringNoBraces = linesString.slice(1, -1);
         const stringNoComma = stringNoBraces.split(',');
 
-        stringNoComma.forEach(part => {
+        stringNoComma.forEach((part) => {
           if (part.includes('-')) {
             const [start, end] = part.split('-').map(Number);
-            for (let i = start; i <= end; i+=1) {
+            for (let i = start; i <= end; i += 1) {
               linesArray.push(i);
             }
           } else {
