@@ -164,7 +164,7 @@
     "mocha": "^10.4.0",
     "nx": "^17.3.2",
     "nyc": "^15.1.0",
-    "piscina": "^4.4.0",
+    "piscina": "^4.5.1",
     "postcss-styled-syntax": "^0.6.4",
     "prettier": "^3.2.5",
     "pretty-quick": "^4.0.0",
