@@ -75,7 +75,7 @@ You can find a similar concept in the [wrapping components](/material-ui/guides/
 
 If using a class component as a child, you'll also need to ensure that the ref is forwarded to the underlying DOM element. (A ref to the class component itself will not work.)
 
-```jsx {1,2,3,5,7-10}
+```jsx
 class MyComponent extends React.Component {
   render() {
     const { innerRef, ...props } = this.props;
