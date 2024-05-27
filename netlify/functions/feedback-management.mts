@@ -21,38 +21,57 @@ const X_EXPLORE_FEEBACKS_CHANNEL_ID = 'C074TBYQK2T';
 // This dead code is here to simplify the creation of special feedback channel
 const DESIGN_FEEDBACKS_CHANNEL_ID = 'C05HHSFH2QJ';
 
-const getSlackChannelId = (url, specialCases) => {
+export type MuiProductId =
+  | 'null'
+  | 'base-ui'
+  | 'material-ui'
+  | 'joy-ui'
+  | 'system'
+  | 'docs-infra'
+  | 'docs'
+  | 'x-data-grid'
+  | 'x-date-pickers'
+  | 'x-charts'
+  | 'x-tree-view'
+  | 'toolpad-studio'
+  | 'toolpad-core';
+
+const getSlackChannelId = (
+  url: string,
+  productId: MuiProductId,
+  specialCases: { isDesignFeedback?: boolean },
+) => {
   const { isDesignFeedback } = specialCases;
 
   if (isDesignFeedback) {
     return DESIGN_FEEDBACKS_CHANNEL_ID;
   }
 
-  if (url.includes('/x/')) {
-    if (url.includes('/x/react-charts')) {
-      return X_CHARTS_FEEBACKS_CHANNEL_ID;
-    }
-    if (url.includes('/x/react-date-pickers') || url.includes('/x/react-tree-view')) {
-      return X_EXPLORE_FEEBACKS_CHANNEL_ID;
-    }
-    if (url.includes('/x/react-data-grid')) {
+  switch (productId) {
+    case 'base-ui':
+      return BASE_UI_FEEBACKS_CHANNEL_ID;
+    case 'material-ui':
+      return MATERIAL_UI_FEEBACKS_CHANNEL_ID;
+    case 'joy-ui':
+      return JOY_FEEBACKS_CHANNEL_ID;
+    case 'x-data-grid':
       return X_GRID_FEEBACKS_CHANNEL_ID;
-    }
+    case 'x-date-pickers':
+    case 'x-tree-view':
+      return X_EXPLORE_FEEBACKS_CHANNEL_ID;
+    case 'x-charts':
+      return X_CHARTS_FEEBACKS_CHANNEL_ID;
+    case 'toolpad-studio':
+    case 'toolpad-core':
+      return TOOLPAD_FEEBACKS_CHANNEL_ID;
+    default:
+      break;
+  }
 
+  // Fallback
+
+  if (url.includes('/x/')) {
     return X_FEEBACKS_CHANNEL_ID;
-  }
-  if (url.includes('/material-ui/')) {
-    return MATERIAL_UI_FEEBACKS_CHANNEL_ID;
-  }
-  if (url.includes('/base-ui/')) {
-    return BASE_UI_FEEBACKS_CHANNEL_ID;
-  }
-  if (url.includes('/joy-ui/')) {
-    return JOY_FEEBACKS_CHANNEL_ID;
-  }
-
-  if (url.includes('/toolpad/')) {
-    return TOOLPAD_FEEBACKS_CHANNEL_ID;
   }
   return CORE_FEEBACKS_CHANNEL_ID;
 };
@@ -181,6 +200,7 @@ export const handler: Handler = async (event, context, callback) => {
         commmentSectionURL: inCommmentSectionURL,
         commmentSectionTitle,
         githubRepo,
+        productId,
       } = data;
 
       // The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
@@ -208,7 +228,7 @@ from ${commmentSectionURL}
       });
 
       await app.client.chat.postMessage({
-        channel: getSlackChannelId(currentLocationURL, { isDesignFeedback }),
+        channel: getSlackChannelId(currentLocationURL, productId, { isDesignFeedback }),
         text: simpleSlackMessage, // Fallback for notification
         blocks: [
           {
