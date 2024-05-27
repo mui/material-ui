@@ -80,7 +80,7 @@
     "canary:release": "tsx ./scripts/canaryRelease.mts"
   },
   "dependencies": {
-    "@googleapis/sheets": "^5.0.5",
+    "@googleapis/sheets": "^7.0.0",
     "@slack/bolt": "^3.18.0",
     "@netlify/functions": "^2.7.0",
     "execa": "^8.0.1",
