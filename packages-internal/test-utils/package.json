@@ -9,7 +9,7 @@
     "./createDescribe": "./build/createDescribe.js",
     "./createRenderer": "./build/createRenderer.js",
     "./init": "./build/init.js",
-    "./initMatchers": { 
+    "./initMatchers": {
       "types": "./build/initMatchers.d.ts",
       "default": "./build/initMatchers.js"
     },
