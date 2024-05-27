@@ -1,8 +1,5 @@
 import * as React from 'react';
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  useColorScheme,
-} from '@mui/material/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';

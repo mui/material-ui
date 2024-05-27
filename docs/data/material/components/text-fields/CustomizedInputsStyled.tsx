@@ -67,7 +67,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 const RedditTextField = styled((props: TextFieldProps) => (
   <TextField
-    InputProps={{ disableUnderline: true } as Partial<OutlinedInputProps>}
+    slotProps={{
+      input: { disableUnderline: true } as Partial<OutlinedInputProps>,
+    }}
     {...props}
   />
 ))(({ theme }) => ({

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createTheme, experimental_extendTheme as extendTheme } from '../styles';
+import { createTheme, extendTheme } from '../styles';
 import getTextDecoration from './getTextDecoration';
 
 describe('getTextDecoration', () => {

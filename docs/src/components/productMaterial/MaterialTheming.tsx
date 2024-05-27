@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+import { CssVarsProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
