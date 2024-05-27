@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/material/customization/css-theme-variables/customization.md?muiMarkdown';
+} from 'docs/data/material/customization/css-theme-variables/configuration.md?muiMarkdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

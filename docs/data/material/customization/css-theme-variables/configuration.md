@@ -1,6 +1,6 @@
-# CSS theme variables - Customization
+# CSS theme variables - Configuration
 
-<p class="description">A guide for customizing CSS theme variables in Material UI.</p>
+<p class="description">A guide for configuring CSS theme variables in Material UI.</p>
 
 ## Theming
 
@@ -178,7 +178,7 @@ Or use `var()` to refer to the CSS variable directly:
 ```
 
 :::warning
-If you're using a [custom prefix](/material-ui/customization/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
+If you're using a [custom prefix](/material-ui/customization/css-theme-variables/configuration/#changing-variable-prefixes), make sure to replace the default `--mui`.
 :::
 
 ### TypeScript

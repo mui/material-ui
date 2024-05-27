@@ -177,15 +177,6 @@ const pages: MuiPage[] = [
         ],
       },
       {
-        pathname: '/material-ui/customization/css-variables',
-        subheader: '/material-ui/customization/css-variables',
-        children: [
-          { pathname: '/material-ui/customization/css-theme-variables/overview' },
-          { pathname: '/material-ui/customization/css-theme-variables/usage' },
-          { pathname: '/material-ui/customization/css-theme-variables/customization' },
-        ],
-      },
-      {
         pathname: '/material-ui/customization/tokens',
         subheader: 'tokens',
         children: [
@@ -196,6 +187,17 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/density' },
           { pathname: '/material-ui/customization/z-index', title: 'z-index' },
           { pathname: '/material-ui/customization/transitions' },
+        ],
+      },
+      {
+        pathname: '/material-ui/customization/css-variables',
+        subheader: '/material-ui/customization/css-variables',
+        children: [
+          { pathname: '/material-ui/customization/css-theme-variables/overview' },
+          { pathname: '/material-ui/customization/css-theme-variables/usage' },
+          {
+            pathname: '/material-ui/customization/css-theme-variables/configuration',
+          },
         ],
       },
     ],
