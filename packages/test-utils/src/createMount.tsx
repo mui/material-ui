@@ -42,6 +42,9 @@ interface CreateMountOptions extends MountRendererProps {
 export default function createMount(options: CreateMountOptions = {}) {
   const { mount = enzymeMount, strict: globalStrict = true, ...globalEnzymeOptions } = options;
 
+  // @ts-ignore
+  const act = React.act ?? ReactDOMTestUtils.act;
+
   let container: HTMLElement | null = null;
 
   function computeTestName(test: Test | undefined) {
@@ -84,7 +87,7 @@ export default function createMount(options: CreateMountOptions = {}) {
   });
 
   afterEach(() => {
-    ReactDOMTestUtils.act(() => {
+    act(() => {
       // eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(container!);
     });
@@ -103,7 +106,7 @@ export default function createMount(options: CreateMountOptions = {}) {
         `Tried to mount without setup. Mounting inside before() is not allowed. Try mounting in beforeEach or better: in each test`,
       );
     }
-    ReactDOMTestUtils.act(() => {
+    act(() => {
       // eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(container!);
     });
@@ -122,7 +125,7 @@ export default function createMount(options: CreateMountOptions = {}) {
 
     wrapper.unmount = () => {
       // flush effect cleanup functions
-      ReactDOMTestUtils.act(() => {
+      act(() => {
         originalUnmount.call(wrapper);
       });
 
