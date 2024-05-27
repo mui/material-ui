@@ -116,6 +116,7 @@ You can extend the outer theme by providing a function:
 {{"demo": "ThemeNestingExtend.js"}}
 
 ## CSS variables provider
+
 The `CssVarsProvider` is built on top of the `ThemeProvider` with extra features like theme CSS variables generation, built-in color scheme synchronization with the user's system preference, and more.
 The `CssVarsProvider` is built on top of the `ThemeProvider` with extra features like theme CSS variables generation, built-in color scheme synchronization, user's system preference, and more.
 
