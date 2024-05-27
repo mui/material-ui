@@ -246,6 +246,12 @@ function getFeatureList(content) {
   );
 }
 
+function extractPreTag(content) {
+  const preMatch = content.match(/<pre\s+[^>]*>([\s\S]*?)<\/pre>/);
+
+  return preMatch ? preMatch[0] : '';
+}
+
 /**
  * @param {string} markdown
  */
@@ -537,6 +543,7 @@ module.exports = {
   getDescription,
   getCodeblock,
   getFeatureList,
+  extractPreTag,
   getHeaders,
   getTitle,
   renderMarkdown,

@@ -7,6 +7,7 @@ import {
   getCodeblock,
   renderMarkdown,
   createRender,
+  extractPreTag,
 } from './parseMarkdown';
 
 describe('parseMarkdown', () => {
@@ -329,78 +330,51 @@ authors:
       const render = createRender(context);
 
       expect(
-        render(['js {1}', 'var a = 3', 'var b = 5', 'const result = b + a'].join('\n')),
-      ).to.equal(
-        [
-          '<div class="MuiCode-root"><pre data-line="1" class="language-js" tabindex="0"><code class="language-js"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>',
-          '<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>',
-          '<span class="token keyword">const</span> result <span class="token operator">=</span> b <span class="token operator">+</span> a<span class="token punctuation">;</span><span class="token punctuation">,</span>',
-          '<div aria-hidden="true" data-range="1" class=" line-highlight" data-start="1" style="top: 0px; width: 832px;"></div></code></pre>',
-          '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy"><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon"><use class="MuiCode-copy-icon" xlink:href="#copy-icon"></use><use class="MuiCode-copied-icon" xlink:href="#copied-icon"></use></svg><span class="MuiCode-copyKeypress"><span>(or</span> Ctrl + C<span>)</span></span></button></div>',
-        ].join(''),
-      );
+        extractPreTag(
+          render(['```js {1}', 'var a = 3', 'var b = 5', 'const result = b + a', '```'].join('\n')),
+        ),
+      ).to.equal(extractPreTag('<pre  data-line="1">'));
     });
 
     it('should highlight lines 3 lines and return the correct html', () => {
       const render = createRender(context);
       expect(
-        render(
-          [
-            'jsx {1,3,8}',
-            'const App = () => (',
-            '  <div>',
-            '    <h1>Hello, World!</h1>',
-            '    <p>This is a simple JSX example embedded in markdown.</p>',
-            '  </div>',
-            ');',
+        extractPreTag(
+          render(
+            [
+              '```jsx {1,3,8}',
+              'const App = () => (',
+              '  <div>',
+              '    <h1>Hello, World!</h1>',
+              '    <p>This is a simple JSX example embedded in markdown.</p>',
+              '  </div>',
+              ');',
 
-            'ReactDOM.render(<App />, document.getElementById());',
-          ].join('\n'),
+              'ReactDOM.render(<App />, document.getElementById());',
+              '```',
+            ].join('\n'),
+          ),
         ),
-      ).to.equal(
-        [
-          '<div class="MuiCode-root"><pre data-line="1,3,8" class="language-jsx" tabindex="0"><code class="language-jsx"><span class="token keyword">const</span> <span class="token function-variable function">App</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>',
-          '<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">',
-          '</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">Hello, World!</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">',
-          '</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">This is a simple JSX example embedded in markdown.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">',
-          '</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>',
-          '<span class="token punctuation">)</span><span class="token punctuation">;</span>',
-          'ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span> <span class="token punctuation">/&gt;</span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>',
-          '<div aria-hidden="true" data-range="1" class=" line-highlight" data-start="1" style="top: 0px; width: 832px;">',
-          '</div><div aria-hidden="true" data-range="3" class=" line-highlight" data-start="3" style="top: 39px; width: 832px;">',
-          '</div><div aria-hidden="true" data-range="8" class=" line-highlight" data-start="8" style="top: 136.5px; width: 832px;">',
-          '</div></code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy"><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon"><use class="MuiCode-copy-icon" xlink:href="#copy-icon"></use><use class="MuiCode-copied-icon" xlink:href="#copied-icon"></use></svg><span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
-        ].join(''),
-      );
+      ).to.equal('<pre  data-line="1,3,8">');
     });
 
     it('should highlight lines 3 lines using - and another line and return the correct html', () => {
       const render = createRender(context);
       expect(
-        render(
-          [
-            'js {1-3,5}',
-            'var a = 3;',
-            'var b = 5;',
-            'const result = b + a;',
-            'console.log(result);',
-            'console.log("This was the result");',
-          ].join('\n'),
+        extractPreTag(
+          render(
+            [
+              '```js {1-3,5, 9-15, 20, 27-29}',
+              'var a = 3;',
+              'var b = 5;',
+              'const result = b + a;',
+              'console.log(result);',
+              'console.log("This was the result");',
+              '```',
+            ].join('\n'),
+          ),
         ),
-      ).to.equal(
-        [
-          '<div class="MuiCode-root"><pre data-line="1,2,3,5" class="language-js" tabindex="0"><code class="language-js"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>',
-          '<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>',
-          '<span class="token keyword">const</span> result <span class="token operator">=</span> b <span class="token operator">+</span> a<span class="token punctuation">;</span>',
-          'console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>',
-          'console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"This was the result"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>',
-          '<div aria-hidden="true" data-range="1" class=" line-highlight" data-start="1" style="top: 0px; width: 832px;">',
-          '</div><div aria-hidden="true" data-range="2" class=" line-highlight" data-start="2" style="top: 19.5px; width: 832px;">',
-          '</div><div aria-hidden="true" data-range="3" class=" line-highlight" data-start="3" style="top: 39px; width: 832px;">',
-          '</div><div aria-hidden="true" data-range="5" class=" line-highlight" data-start="5" style="top: 78px; width: 832px;">',
-          '</div></code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy"><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon"><use class="MuiCode-copy-icon" xlink:href="#copy-icon"></use><use class="MuiCode-copied-icon" xlink:href="#copied-icon"></use></svg><span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
-        ].join(''),
-      );
+      ).to.equal('<pre  data-line="1,2,3,5,9,10,11,12,13,14,15,20,27,28,29">');
     });
   });
 });
