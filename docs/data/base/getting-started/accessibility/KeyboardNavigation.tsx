@@ -54,7 +54,7 @@ const Select = React.forwardRef(function Select<
   return <BaseSelect {...props} ref={ref} slots={slots} />;
 }) as <TValue extends {}, Multiple extends boolean>(
   props: SelectProps<TValue, Multiple> & React.RefAttributes<HTMLButtonElement>,
-) => JSX.Element;
+) => React.JSX.Element;
 
 const SelectButton = React.forwardRef(function SelectButton<
   TValue extends {},

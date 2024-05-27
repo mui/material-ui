@@ -47,7 +47,7 @@ export const FormLabelRoot = styled('label', {
   position: 'relative',
   variants: [
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main)
+      .filter(([, value]) => value && value.main)
       .map(([color]) => ({
         props: { color },
         style: {

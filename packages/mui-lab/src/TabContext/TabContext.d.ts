@@ -25,7 +25,7 @@ export interface TabContextProps {
  *
  * - [TabContext API](https://mui.com/material-ui/api/tab-context/)
  */
-export default function TabContext(props: TabContextProps): JSX.Element;
+export default function TabContext(props: TabContextProps): React.JSX.Element;
 export function useTabContext(): TabContextValue | null;
 export function getPanelId(context: TabContextValue, tabValue: string): string;
 export function getTabId(context: TabContextValue, tabValue: string): string;

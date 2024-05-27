@@ -33,4 +33,4 @@ export interface AccordionActionsProps extends StandardProps<React.HTMLAttribute
  *
  * - [AccordionActions API](https://mui.com/material-ui/api/accordion-actions/)
  */
-export default function AccordionActions(props: AccordionActionsProps): JSX.Element;
+export default function AccordionActions(props: AccordionActionsProps): React.JSX.Element;
