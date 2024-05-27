@@ -8,8 +8,9 @@ require('prismjs/components/prism-jsx');
 require('prismjs/components/prism-markup');
 require('prismjs/components/prism-yaml');
 require('prismjs/components/prism-tsx');
+require('prismjs/plugins/line-highlight/prism-line-highlight');
 
-function highlight(code, language) {
+function highlight(code, language, highlightLines = []) {
   let prismLanguage;
   switch (language) {
     case 'ts':
@@ -55,7 +56,13 @@ function highlight(code, language) {
     }
   }
 
-  return prism.highlight(code, prismLanguage);
+  const highlightedCode = prism.highlight(code, prismLanguage);
+
+  const lineHighlightAttr = highlightLines.length > 0 
+    ? ` data-line="${highlightLines.join(',')}"` 
+    : '';
+
+  return [highlightedCode,lineHighlightAttr];
 }
 
 module.exports = highlight;
