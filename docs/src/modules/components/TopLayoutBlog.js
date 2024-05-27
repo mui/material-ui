@@ -121,6 +121,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/28001064',
     github: 'DavidCnoops',
   },
+  brijeshb42: {
+    name: 'Brijesh Bittu',
+    avatar: 'https://avatars.githubusercontent.com/u/717550?',
+    github: 'brijeshb42',
+  },
 };
 
 const classes = {

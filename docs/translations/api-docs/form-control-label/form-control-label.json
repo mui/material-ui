@@ -24,6 +24,7 @@
       "description": "If <code>true</code>, the label will indicate that the <code>input</code> is required."
     },
     "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -69,5 +70,8 @@
       "conditions": "<code>required={true}</code>"
     },
     "root": { "description": "Styles applied to the root element." }
+  },
+  "slotDescriptions": {
+    "typography": "The component that renders the label. This is unused if <code>disableTypography</code> is true."
   }
 }

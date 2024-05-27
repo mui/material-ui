@@ -228,10 +228,10 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   ))}
                   {isDeprecated && (
                     <ApiWarning className="prop-table-alert">
-                      {t('api-docs.deprecated')}
+                      <b>{t('api-docs.deprecated')}</b>
                       {deprecationInfo && (
                         <React.Fragment>
-                          {' - '}
+                          {'－'}
                           <span
                             dangerouslySetInnerHTML={{
                               __html: deprecationInfo,

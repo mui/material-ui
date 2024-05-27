@@ -1,4 +1,6 @@
 import transformAccordionProps from '../accordion-props';
+import transformAutocompleteProps from '../autocomplete-props';
+import transformFormControlLabelProps from '../form-control-label-props';
 import transformAvatarProps from '../avatar-props';
 import transformDividerProps from '../divider-props';
 import transformAccordionClasses from '../accordion-summary-classes';
@@ -11,6 +13,10 @@ import transformToggleButtonGroupClasses from '../toggle-button-group-classes';
 import transformStepLabelProps from '../step-label-props';
 import transformBackdropProps from '../backdrop-props';
 import transformStepConnectorClasses from '../step-connector-classes';
+import transformCircularProgressClasses from '../circular-progress-classes';
+import transformGridProps from '../grid-props';
+import transformSpeedDialProps from '../speed-dial-props';
+import transformTextFieldProps from '../text-field-props';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -18,6 +24,8 @@ import transformStepConnectorClasses from '../step-connector-classes';
  */
 export default function deprecationsAll(file, api, options) {
   file.source = transformAccordionProps(file, api, options);
+  file.source = transformAutocompleteProps(file, api, options);
+  file.source = transformFormControlLabelProps(file, api, options);
   file.source = transformAvatarProps(file, api, options);
   file.source = transformDividerProps(file, api, options);
   file.source = transformAccordionClasses(file, api, options);
@@ -30,6 +38,10 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformStepLabelProps(file, api, options);
   file.source = transformBackdropProps(file, api, options);
   file.source = transformStepConnectorClasses(file, api, options);
+  file.source = transformCircularProgressClasses(file, api, options);
+  file.source = transformSpeedDialProps(file, api, options);
+  file.source = transformTextFieldProps(file, api, options);
+  file.source = transformGridProps(file, api, options);
 
   return file.source;
 }

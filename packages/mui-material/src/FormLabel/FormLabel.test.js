@@ -180,5 +180,15 @@ describe('<FormLabel />', () => {
         color: hexToRgb(defaultTheme.palette.error.main),
       });
     });
+
+    it('should have the disabled class and style, even when focused', () => {
+      const { container, getByTestId } = render(
+        <FormLabel data-testid="FormLabel" color="secondary" focused disabled />,
+      );
+      expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.disabled);
+      expect(getByTestId('FormLabel')).toHaveComputedStyle({
+        color: defaultTheme.palette.text.disabled,
+      });
+    });
   });
 });
