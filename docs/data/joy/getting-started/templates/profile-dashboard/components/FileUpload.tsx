@@ -13,7 +13,7 @@ import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutl
 
 export default function FileUpload(
   props: CardProps & {
-    icon?: React.ReactElement;
+    icon?: React.ReactElement<any>;
     fileName: string;
     fileSize: string;
     progress: number;

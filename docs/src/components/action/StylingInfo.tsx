@@ -12,7 +12,7 @@ export default function StylingInfo({
   appeared,
   stylingContent,
   ...props
-}: { appeared: boolean; stylingContent?: React.ReactElement } & BoxProps) {
+}: { appeared: boolean; stylingContent?: React.ReactElement<any> } & BoxProps) {
   const [hidden, setHidden] = React.useState(false);
   const defaultContent = (
     <React.Fragment>

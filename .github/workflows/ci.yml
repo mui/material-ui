@@ -30,7 +30,7 @@ jobs:
           # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
       - name: Set up pnpm
-        uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
       - name: Use Node.js 18.x
         uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
