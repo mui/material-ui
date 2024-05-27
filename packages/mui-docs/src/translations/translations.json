@@ -15,6 +15,7 @@
     "defaultComponent": "Default component",
     "defaultValue": "Default value",
     "defaultHTMLTag": "Default HTML tag",
+    "defaultDeprecationMessage": "This API is deprecated.",
     "demos": "Demos",
     "deprecated": "Deprecated",
     "description": "Description",
