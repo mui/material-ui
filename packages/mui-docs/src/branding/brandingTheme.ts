@@ -568,7 +568,7 @@ export function getThemedComponents(): ThemeOptions {
                 color: (theme.vars || theme).palette.text.primary,
                 backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
                 borderColor: (theme.vars || theme).palette.primaryDark[100],
-                boxShadow: `${alpha(theme.palette.grey[200], 0.5)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                boxShadow: `#FFF 0 1px 0 inset, ${alpha(theme.palette.grey[200], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.grey[50],
                 },
@@ -860,6 +860,14 @@ export function getThemedComponents(): ThemeOptions {
               border: '1px solid',
               backgroundColor: (theme.vars || theme).palette.background.paper,
               borderColor: (theme.vars || theme).palette.grey[200],
+              '& .MuiMenu-list': {
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '2px',
+                '& .MuiDivider-root': {
+                  margin: '4px -8px 4px -8px',
+                },
+              },
               '& .MuiMenuItem-root': {
                 padding: '6px 12px',
                 borderRadius: '6px',
@@ -908,10 +916,7 @@ export function getThemedComponents(): ThemeOptions {
       MuiDivider: {
         styleOverrides: {
           root: ({ theme }) => ({
-            borderColor: (theme.vars || theme).palette.grey[100],
-            ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primaryDark[500], 0.3),
-            }),
+            borderColor: (theme.vars || theme).palette.divider,
           }),
         },
       },
