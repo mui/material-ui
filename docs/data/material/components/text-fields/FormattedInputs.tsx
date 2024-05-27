@@ -85,8 +85,10 @@ export default function FormattedInputs() {
         onChange={handleChange}
         name="numberformat"
         id="formatted-numberformat-input"
-        InputProps={{
-          inputComponent: NumericFormatCustom as any,
+        slotProps={{
+          input: {
+            inputComponent: NumericFormatCustom as any,
+          },
         }}
         variant="standard"
       />

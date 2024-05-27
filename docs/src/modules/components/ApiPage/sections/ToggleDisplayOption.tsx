@@ -135,10 +135,10 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="table"
         >
-          <CheckIcon
-            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'table' ? 1 : 0 }}
-          />
           Table
+          <CheckIcon
+            sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'table' ? 1 : 0 }}
+          />
         </MenuItem>
         <MenuItem
           value="expanded"
@@ -148,10 +148,10 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="expanded"
         >
-          <CheckIcon
-            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'expanded' ? 1 : 0 }}
-          />
           Expanded list
+          <CheckIcon
+            sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'expanded' ? 1 : 0 }}
+          />
         </MenuItem>
         <MenuItem
           value="collapsed"
@@ -161,10 +161,10 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="collapsed"
         >
-          <CheckIcon
-            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'collapsed' ? 1 : 0 }}
-          />
           Collapsed list
+          <CheckIcon
+            sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'collapsed' ? 1 : 0 }}
+          />
         </MenuItem>
       </Menu>
     </React.Fragment>

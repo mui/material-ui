@@ -279,6 +279,7 @@
     "location": "Gold Coast, Australia",
     "locationCountry": "au",
     "about": "Enjoy creating open source libraries and reading about AI 🤖",
+    "twitter": "atomiksdev",
     "github": "atomiks"
   },
   {
@@ -305,5 +306,22 @@
     "locationCountry": "fr",
     "about": "Cooking 🍳, plant caring 🪴 and literature 📖",
     "github": "arthurbalduini"
+  },
+  {
+    "name": "Kenan Yusuf",
+    "title": "Design Engineer - X",
+    "location": "London, UK",
+    "locationCountry": "gb",
+    "about": "Amateur cook, DIYer, and film photographer",
+    "github": "KenanYusuf",
+    "twitter": "KebabYusuf"
+  },
+  {
+    "name": "Nikita Ossei",
+    "title": "Customer Support",
+    "location": "London, United Kingdom",
+    "locationCountry": "uk",
+    "about": "Astrology ♊️, learning 📚 and designing stuff 🎨",
+    "github": "nikitaa24"
   }
 ]

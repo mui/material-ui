@@ -12,9 +12,49 @@ import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
 import { Theme } from '../styles';
 import { TextFieldClasses } from './textFieldClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface TextFieldPropsColorOverrides {}
 export interface TextFieldPropsSizeOverrides {}
+
+export interface TextFieldSlots {
+  /**
+   * The component that renders the input.
+   * @default OutlinedInput
+   */
+  input?: React.ElementType;
+  /**
+   * The component that renders the input's label.
+   * @default InputLabel
+   */
+  inputLabel?: React.ElementType;
+  /**
+   * The html input element.
+   * @default 'input'
+   */
+  htmlInput?: React.ElementType;
+  /**
+   * The component that renders the helper text.
+   * @default FormHelperText
+   */
+  formHelperText?: React.ElementType;
+  /**
+   * The component that renders the select.
+   * @default Select
+   */
+  select?: React.ElementType;
+}
+
+export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps<
+  TextFieldSlots,
+  {
+    input: SlotProps<React.ElementType<InputPropsType>, {}, TextFieldOwnerState>;
+    inputLabel: SlotProps<React.ElementType<InputLabelProps>, {}, TextFieldOwnerState>;
+    htmlInput: SlotProps<React.ElementType<InputBaseProps['inputProps']>, {}, TextFieldOwnerState>;
+    formHelperText: SlotProps<React.ElementType<FormHelperTextProps>, {}, TextFieldOwnerState>;
+    select: SlotProps<React.ElementType<SelectProps>, {}, TextFieldOwnerState>;
+  }
+>;
 
 export interface BaseTextFieldProps
   extends StandardProps<
@@ -67,6 +107,7 @@ export interface BaseTextFieldProps
   error?: boolean;
   /**
    * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
+   * @deprecated Use `slotProps.formHelperText` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   FormHelperTextProps?: Partial<FormHelperTextProps>;
   /**
@@ -86,10 +127,12 @@ export interface BaseTextFieldProps
   /**
    * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
+   * @deprecated Use `slotProps.inputLabel` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputLabelProps?: Partial<InputLabelProps>;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.htmlInput` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps?: InputBaseProps['inputProps'];
   /**
@@ -140,6 +183,7 @@ export interface BaseTextFieldProps
   select?: boolean;
   /**
    * Props applied to the [`Select`](/material-ui/api/select/) element.
+   * @deprecated Use `slotProps.select` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SelectProps?: Partial<SelectProps>;
   /**
@@ -160,7 +204,9 @@ export interface BaseTextFieldProps
   value?: unknown;
 }
 
-export interface StandardTextFieldProps extends BaseTextFieldProps {
+export interface StandardTextFieldProps
+  extends BaseTextFieldProps,
+    TextFieldSlotsAndSlotProps<StandardInputProps> {
   /**
    * Callback fired when the value is changed.
    *
@@ -178,11 +224,14 @@ export interface StandardTextFieldProps extends BaseTextFieldProps {
    * It will be a [`FilledInput`](/material-ui/api/filled-input/),
    * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps?: Partial<StandardInputProps>;
 }
 
-export interface FilledTextFieldProps extends BaseTextFieldProps {
+export interface FilledTextFieldProps
+  extends BaseTextFieldProps,
+    TextFieldSlotsAndSlotProps<FilledInputProps> {
   /**
    * Callback fired when the value is changed.
    *
@@ -200,11 +249,14 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
    * It will be a [`FilledInput`](/material-ui/api/filled-input/),
    * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps?: Partial<FilledInputProps>;
 }
 
-export interface OutlinedTextFieldProps extends BaseTextFieldProps {
+export interface OutlinedTextFieldProps
+  extends BaseTextFieldProps,
+    TextFieldSlotsAndSlotProps<OutlinedInputProps> {
   /**
    * Callback fired when the value is changed.
    *
@@ -222,6 +274,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
    * It will be a [`FilledInput`](/material-ui/api/filled-input/),
    * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps?: Partial<OutlinedInputProps>;
 }
@@ -234,6 +287,8 @@ export type TextFieldProps<Variant extends TextFieldVariants = TextFieldVariants
     : Variant extends 'standard'
       ? StandardTextFieldProps
       : OutlinedTextFieldProps;
+
+export type TextFieldOwnerState = BaseTextFieldProps;
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
@@ -285,4 +340,4 @@ export default function TextField<Variant extends TextFieldVariants>(
      */
     variant?: Variant;
   } & Omit<TextFieldProps, 'variant'>,
-): JSX.Element;
+): React.JSX.Element;
