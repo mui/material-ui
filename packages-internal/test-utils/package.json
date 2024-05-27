@@ -9,8 +9,14 @@
     "./createDescribe": "./build/createDescribe.js",
     "./createRenderer": "./build/createRenderer.js",
     "./init": "./build/init.js",
-    "./initMatchers": "./build/initMatchers.js",
-    "./initPlaywrightMatchers": "./build/initPlaywrightMatchers.js",
+    "./initMatchers": { 
+      "types": "./build/initMatchers.d.ts",
+      "default": "./build/initMatchers.js"
+    },
+    "./initPlaywrightMatchers": {
+      "types": "./build/initPlaywrightMatchers.d.ts",
+      "default": "./build/initPlaywrightMatchers.js"
+    },
     "./KarmaReporterReactProfiler": "./build/KarmaReporterReactProfiler.js",
     "./setupBabel": "./build/setupBabel.js",
     "./setupBabelPlaywright": "./build/setupBabelPlaywright.js",
