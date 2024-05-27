@@ -767,8 +767,8 @@ importers:
         specifier: ^6.5.9
         version: 6.5.9(final-form@4.20.10)(react@18.2.0)
       react-imask:
-        specifier: ^7.6.0
-        version: 7.6.0(react@18.2.0)
+        specifier: ^7.6.1
+        version: 7.6.1(react@18.2.0)
       react-intersection-observer:
         specifier: ^9.10.2
         version: 9.10.2(react-dom@18.2.0)(react@18.2.0)
@@ -13527,8 +13527,8 @@ packages:
       queue: 6.0.2
     dev: false
 
-  /imask@7.6.0:
-    resolution: {integrity: sha512-6EHsq1q7v5+M4Vas2MGrs2oRpxPRWPwPDiL0HmG1ikBI/0hOwvkxRhVRFQnWIlZcTG7R8iw0az5V+z868qnQ9A==}
+  /imask@7.6.1:
+    resolution: {integrity: sha512-sJlIFM7eathUEMChTh9Mrfw/IgiWgJqBKq2VNbyXvBZ7ev/IlO6/KQTKlV/Fm+viQMLrFLG/zCuudrLIwgK2dg==}
     engines: {npm: '>=4.0.0'}
     dependencies:
       '@babel/runtime-corejs3': 7.24.4
@@ -18046,13 +18046,13 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-imask@7.6.0(react@18.2.0):
-    resolution: {integrity: sha512-SilPct67Xw4TN+dqn3SM4BVpy+FwNSeT0wblA/DXQ3El2KPBEWwrn4x3gQ39ZohFAphp7yG7w6gSKq5SeR/6Kg==}
+  /react-imask@7.6.1(react@18.2.0):
+    resolution: {integrity: sha512-vLNfzcCz62Yzx/GRGh5tiCph9Gbh2cZu+Tz8OiO5it2eNuuhpA0DWhhSlOtVtSJ80+Bx+vFK5De8eQ9AmbkXzA==}
     engines: {npm: '>=4.0.0'}
     peerDependencies:
       react: '>=0.14.0'
     dependencies:
-      imask: 7.6.0
+      imask: 7.6.1
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
