@@ -8,6 +8,15 @@ const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
 const JOY_FEEBACKS_CHANNEL_ID = 'C050VE13HDL';
 const TOOLPAD_FEEBACKS_CHANNEL_ID = 'C050MHU703Z';
 const CORE_FEEBACKS_CHANNEL_ID = 'C041SDSF32L';
+
+const BASE_UI_FEEBACKS_CHANNEL_ID = 'C075LJG1LMP';
+const MATERIAL_UI_FEEBACKS_CHANNEL_ID = 'C0757QYLK7V';
+// const PIGMENT_CSS_FEEBACKS_CHANNEL_ID = 'C074TBW0JKZ';
+const X_GRID_FEEBACKS_CHANNEL_ID = 'C0757R0KW67';
+const X_CHARTS_FEEBACKS_CHANNEL_ID = 'C0757UBND98';
+const X_EXPLORE_FEEBACKS_CHANNEL_ID = 'C074TBYQK2T';
+// const DESIGN_KITS_FEEBACKS_CHANNEL_ID = 'C075ADGN0UU';
+
 // The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
 // This dead code is here to simplify the creation of special feedback channel
 const DESIGN_FEEDBACKS_CHANNEL_ID = 'C05HHSFH2QJ';
@@ -18,12 +27,30 @@ const getSlackChannelId = (url, specialCases) => {
   if (isDesignFeedback) {
     return DESIGN_FEEDBACKS_CHANNEL_ID;
   }
+
   if (url.includes('/x/')) {
+    if (url.includes('/x/react-charts')) {
+      return X_CHARTS_FEEBACKS_CHANNEL_ID;
+    }
+    if (url.includes('/x/react-date-pickers') || url.includes('/x/react-tree-view')) {
+      return X_EXPLORE_FEEBACKS_CHANNEL_ID;
+    }
+    if (url.includes('/x/react-data-grid')) {
+      return X_GRID_FEEBACKS_CHANNEL_ID;
+    }
+
     return X_FEEBACKS_CHANNEL_ID;
+  }
+  if (url.includes('/material-ui/')) {
+    return MATERIAL_UI_FEEBACKS_CHANNEL_ID;
+  }
+  if (url.includes('/base-ui/')) {
+    return BASE_UI_FEEBACKS_CHANNEL_ID;
   }
   if (url.includes('/joy-ui/')) {
     return JOY_FEEBACKS_CHANNEL_ID;
   }
+
   if (url.includes('/toolpad/')) {
     return TOOLPAD_FEEBACKS_CHANNEL_ID;
   }
