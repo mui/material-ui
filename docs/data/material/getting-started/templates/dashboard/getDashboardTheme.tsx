@@ -17,7 +17,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
     mixins: {
       MuiDataGrid: {
         // Headers, and top & bottom fixed rows
-        containerBackground: mode === 'dark' ? gray[800] : 'hsl(0, 0%, 100%)',
+        containerBackground: mode === 'dark' ? 'hsl(0, 0%, 0%)' : 'hsl(0, 0%, 100%)',
       },
     },
     components: {
@@ -1013,7 +1013,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme }) => ({
             borderColor: theme.palette.divider,
-            // background: theme.palette.background.paper,
           }),
           menu: ({ theme }) => ({
             borderRadius: theme.shape.borderRadius,
@@ -1032,7 +1031,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           }),
           row: ({ theme }) => ({
             borderBottom: `1px solid ${theme.palette.divider}`,
-            backgroundColor: theme.palette.background.paper,
             '&:hover': {
               background: alpha(theme.palette.primary.main, 0.1),
             },
@@ -1043,7 +1041,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               },
             },
             '&.even': {
-              background: alpha(theme.palette.grey[100], 0.4),
+              background: alpha(theme.palette.grey[200], 0.3),
               '&:hover': {
                 background: alpha(theme.palette.primary.main, 0.1),
               },
@@ -1055,6 +1053,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               },
             },
             ...theme.applyStyles('dark', {
+              backgroundColor: theme.palette.grey[900],
               '&.Mui-selected': {
                 background: theme.palette.grey[800],
               },

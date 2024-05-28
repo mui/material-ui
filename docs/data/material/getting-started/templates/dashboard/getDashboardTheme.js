@@ -10,6 +10,12 @@ import { brand, getDesignTokens, gray, green, red } from './themePrimitives';
 export default function getDashboardTheme(mode) {
   return {
     ...getDesignTokens(mode),
+    mixins: {
+      MuiDataGrid: {
+        // Headers, and top & bottom fixed rows
+        containerBackground: mode === 'dark' ? 'hsl(0, 0%, 0%)' : 'hsl(0, 0%, 100%)',
+      },
+    },
     components: {
       MuiButtonBase: {
         defaultProps: {
@@ -1031,7 +1037,7 @@ export default function getDashboardTheme(mode) {
               },
             },
             '&.even': {
-              background: alpha(theme.palette.grey[100], 0.4),
+              background: alpha(theme.palette.grey[200], 0.3),
               '&:hover': {
                 background: alpha(theme.palette.primary.main, 0.1),
               },
@@ -1043,6 +1049,7 @@ export default function getDashboardTheme(mode) {
               },
             },
             ...theme.applyStyles('dark', {
+              backgroundColor: theme.palette.grey[900],
               '&.Mui-selected': {
                 background: theme.palette.grey[800],
               },
