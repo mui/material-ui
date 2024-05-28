@@ -86,7 +86,7 @@ export default function BasicContainerQueries() {
           resize: 'horizontal',
           width: 400,
           maxWidth: 'min(80vw, 600px)',
-          containerType: 'inline-size',
+          containerType: 'inline-size', // required for container queries
         }}
       >
         <DynamicCard variant="outlined">
