@@ -5,7 +5,7 @@ import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { UseDateFieldProps } from '@mui/x-date-pickers/DateField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker, DatePickerProps } from '@mui/x-date-pickers/DatePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {
   BaseSingleInputFieldProps,
   DateValidationError,
@@ -51,38 +51,26 @@ function ButtonField(props: ButtonFieldProps) {
   );
 }
 
-function ButtonDatePicker(
-  props: Omit<DatePickerProps<Dayjs>, 'open' | 'onOpen' | 'onClose'>,
-) {
+export default function CustomDatePicker() {
+  const [value, setValue] = React.useState<Dayjs | null>(dayjs('2023-04-17'));
   const [open, setOpen] = React.useState(false);
 
   return (
-    <DatePicker
-      slots={{ ...props.slots, field: ButtonField }}
-      slotProps={{
-        ...props.slotProps,
-        field: { setOpen } as any,
-        nextIconButton: { size: 'small' },
-        previousIconButton: { size: 'small' },
-      }}
-      {...props}
-      open={open}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      views={['day', 'month', 'year']}
-    />
-  );
-}
-
-export default function CustomDatePicker() {
-  const [value, setValue] = React.useState<Dayjs | null>(dayjs('2023-04-17'));
-
-  return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <ButtonDatePicker
-        label={value == null ? null : value.format('MMM DD, YYYY')}
+      <DatePicker
         value={value}
+        label={value == null ? null : value.format('MMM DD, YYYY')}
         onChange={(newValue) => setValue(newValue)}
+        slots={{ field: ButtonField }}
+        slotProps={{
+          field: { setOpen } as any,
+          nextIconButton: { size: 'small' },
+          previousIconButton: { size: 'small' },
+        }}
+        open={open}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        views={['day', 'month', 'year']}
       />
     </LocalizationProvider>
   );
