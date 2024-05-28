@@ -1007,7 +1007,7 @@ export const enUS: Localization = {
       },
       labelRowsPerPage: 'Rows per page:',
       labelDisplayedRows: ({ from, to, count }) =>
-  `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`,
+  `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`, 
     }},
     MuiRating: { defaultProps: {
       getLabelText: value => `${value} Star${value !== 1 ? 's' : ''}`,
@@ -3030,7 +3030,7 @@ export const psAF: Localization = {
         },
         labelRowsPerPage: 'په پاڼه کی د کرښو شمیر',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} تر ${count !== -1 ? count : `زیات له  ${to}`}`,
+          `${count !== -1 ? count : `${to} زیات له`} ${to}- ${from} د`,
       },
     },
     MuiRating: {
