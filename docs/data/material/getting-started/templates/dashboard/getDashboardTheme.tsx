@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { ThemeOptions, alpha } from '@mui/material/styles';
+import { ThemeOptions, alpha, Theme } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 import type {} from '@mui/x-charts/themeAugmentation';
@@ -897,7 +897,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               fill: gray[400],
               fontWeight: 500,
             },
-            ...theme.applyStyles('dark', {
+            ...(theme as Omit<Theme, 'components'>).applyStyles('dark', {
               '& .MuiChartsAxis-line': {
                 stroke: gray[700],
               },
@@ -929,7 +929,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               strokeDasharray: '4 2',
               strokeWidth: 0.8,
             },
-            ...theme.applyStyles('dark', {
+            ...(theme as Omit<Theme, 'components'>).applyStyles('dark', {
               '& .MuiChartsGrid-line': {
                 stroke: gray[700],
                 strokeDasharray: '4 2',
