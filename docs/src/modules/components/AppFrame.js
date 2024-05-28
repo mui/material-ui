@@ -14,7 +14,6 @@ import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import NProgressBar from '@mui/docs/NProgressBar';
 import { debounce } from '@mui/material/utils';
-import NextLink from 'next/link';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
@@ -23,7 +22,7 @@ import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import MuiLogoMenu from 'docs/src/components/action/MuiLogoMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 
 const nProgressStart = debounce(() => {
@@ -194,15 +193,9 @@ export default function AppFrame(props) {
           >
             <SvgHamburgerMenu />
           </NavIconButton>
-          <NextLink href="/" passHref /* onClick={onClose} */ legacyBehavior>
-            <Box
-              component="a"
-              aria-label={t('goToHome')}
-              sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
-            >
-              <SvgMuiLogomark width={30} />
-            </Box>
-          </NextLink>
+          <Box sx={{ display: { md: 'flex', lg: 'none' } }}>
+            <MuiLogoMenu marginLeft />
+          </Box>
           <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
             <BannerComponent />
             <DeferredAppSearch />
