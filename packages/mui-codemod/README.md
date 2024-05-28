@@ -983,6 +983,45 @@ npx @mui/codemod@next deprecations/form-control-label-props <path>
 
 ```
 
+#### `list-item-props`
+
+```diff
+ <ListItem
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiListItem: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'test-id' }}
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/list-item-props <path>
+```
+
+#### `grid-props`
+
+```diff
+ <Grid
+-    wrap="nowrap"
++    flexWrap="nowrap"
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/grid-props <path>
+```
+
 #### `pagination-item-classes`
 
 JS transforms:
@@ -1069,6 +1108,32 @@ npx @mui/codemod@next deprecations/pagination-item-classes <path>
 npx @mui/codemod@next deprecations/pagination-item-props <path>
 ```
 
+#### `popper-props`
+
+```diff
+ <Popper
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiPopper: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'test-id' }}
++    slotProps: { root: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/popper-props <path>
+```
+
 #### `slider-props`
 
 ```diff
@@ -1093,6 +1158,108 @@ npx @mui/codemod@next deprecations/pagination-item-props <path>
 
 ```bash
 npx @mui/codemod@next deprecations/slider-props <path>
+```
+
+#### `tooltip-props`
+
+```diff
+ <Tooltip
+-  components={{ Arrow: CustomArrow }}
++  slots={{ arrow: CustomArrow }}
+-  componentsProps={{ arrow: { testid: 'test-id' } }}
++  slotProps={{ arrow: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiTooltip: {
+   defaultProps: {
+-    components: { Arrow: CustomArrow }
++    slots: { arrow: CustomArrow },
+-    componentsProps: { arrow: { testid: 'test-id' }}
++    slotProps: { arrow: { testid: 'test-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/tooltip-props <path>
+```
+
+#### `step-connector-classes`
+
+JS transforms:
+
+```diff
+ import { stepConnectorClasses } from '@mui/material/StepConnector';
+
+ MuiStepConnector: {
+   styleOverrides: {
+     root: {
+-      [`& .${stepConnectorClasses.lineHorizontal}`]: {
++      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+-      [`& .${stepConnectorClasses.lineVertical}`]: {
++      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+#### `step-label-props`
+
+```diff
+ <StepLabel
+-  componentsProps={{ label: labelProps }}
++  slotProps={{ label: labelProps }}
+-  StepIconComponent={StepIconComponent}
++  slots={{ stepIcon: StepIconComponent }}
+-  StepIconProps={StepIconProps}
++  slotProps={{ stepIcon: StepIconProps }}
+ />
+```
+
+```diff
+ MuiStepLabel: {
+   defaultProps: {
+-  componentsProps:{ label: labelProps }
++  slotProps:{ label: labelProps }
+-  StepIconComponent:StepIconComponent
++  slots:{ stepIcon: StepIconComponent }
+-  StepIconProps:StepIconProps
++  slotProps:{ stepIcon: StepIconProps }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-label-props <path>
+```
+
+#### `text-field-props`
+
+```diff
+ <TextField
+-    InputProps={CustomInputProps}
+-    inputProps={CustomHtmlInputProps}
+-    SelectProps={CustomSelectProps}
+-    InputLabelProps={CustomInputLabelProps}
+-    FormHelperTextProps={CustomFormHelperProps}
++    slotProps={{
++        input: CustomInputProps
++        htmlInput: CustomHtmlInputProps
++        select: CustomSelectProps
++        inputLabel: CustomInputLabelProps
++        formHelper: CustomFormHelperProps
++    }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/text-field-props <path>
 ```
 
 #### `toggle-button-group-classes`
@@ -1132,60 +1299,6 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
 ```
 
-#### `step-label-props`
-
-```diff
- <StepLabel
--  componentsProps={{ label: labelProps }}
-+  slotProps={{ label: labelProps }}
--  StepIconComponent={StepIconComponent}
-+  slots={{ stepIcon: StepIconComponent }}
--  StepIconProps={StepIconProps}
-+  slotProps={{ stepIcon: StepIconProps }}
- />
-```
-
-```diff
- MuiStepLabel: {
-   defaultProps: {
--  componentsProps:{ label: labelProps }
-+  slotProps:{ label: labelProps }
--  StepIconComponent:StepIconComponent
-+  slots:{ stepIcon: StepIconComponent }
--  StepIconProps:StepIconProps
-+  slotProps:{ stepIcon: StepIconProps }
-  },
- },
-```
-
-```bash
-npx @mui/codemod@latest deprecations/step-label-props <path>
-
-```
-
-#### `step-connector-classes`
-
-JS transforms:
-
-```diff
- import { stepConnectorClasses } from '@mui/material/StepConnector';
-
- MuiStepConnector: {
-   styleOverrides: {
-     root: {
--      [`& .${stepConnectorClasses.lineHorizontal}`]: {
-+      [`&.${stepConnectorClasses.horizontal} > .${stepConnectorClasses.line}`]: {
-         color: 'red',
-        },
--      [`& .${stepConnectorClasses.lineVertical}`]: {
-+      [`&.${stepConnectorClasses.vertical} > .${stepConnectorClasses.line}`]: {
-         color: 'red',
-        },
-     },
-   },
- },
-```
-
 CSS transforms:
 
 ```diff
@@ -1200,6 +1313,42 @@ npx @mui/codemod@next deprecations/step-connector-classes <path>
 ```
 
 ### v6.0.0
+
+#### `sx-prop`
+
+```bash
+npx @mui/codemod@next v6.0.0/sx-prop <path>
+```
+
+Update the usage of the `sx` prop to be compatible with `@pigment-css/react`.
+
+```diff
+ <Box
+-  sx={{
+-    backgroundColor: (theme) =>
+-       theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
+-  }}
++  sx={theme => ({
++    backgroundColor: theme.palette.grey[900],
++    ...theme.applyStyles("light", {
++      backgroundColor: theme.palette.grey[100]
++    })
++  })}
+ />
+```
+
+#### `system-props`
+
+```bash
+npx @mui/codemod@next v6.0.0/system-props <path>
+```
+
+Remove system props and add them to the `sx` prop.
+
+```diff
+- <Box ml="2px" py={1} color="primary.main" />
++ <Box sx={{ ml: "2px", py: 1, color: 'primary.main' }} />
+```
 
 #### `theme-v6`
 
@@ -1263,10 +1412,10 @@ Update the theme creation from `@mui/system@v5` to be compatible with `@pigment-
   })
 ```
 
-#### `styled-v6`
+#### `styled`
 
 ```bash
-npx @mui/codemod@next v6.0.0/styled-v6 <path>
+npx @mui/codemod@next v6.0.0/styled <path>
 ```
 
 Updates the usage of `styled` from `@mui/system@v5` to be compatible with `@pigment-css/react`.

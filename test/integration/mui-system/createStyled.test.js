@@ -729,5 +729,37 @@ describe('createStyled', () => {
       expect(getByTestId('outlined')).toHaveComputedStyle({ borderTopColor: 'rgb(0, 0, 255)' });
       expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
     });
+
+    it('should not consume values from nested ownerState', () => {
+      const styled = createStyled({ defaultTheme: { colors: { blue: 'rgb(0, 0, 255)' } } });
+
+      const Test = styled('div')(({ theme }) => ({
+        variants: [
+          {
+            props: ({ ownerState }) => ownerState.color === 'blue',
+            style: {
+              backgroundColor: theme.colors.blue,
+            },
+          },
+        ],
+      }));
+
+      const ownerState = { color: 'blue' };
+
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Test data-testid="blue" ownerState={ownerState}>
+            Blue
+          </Test>
+          <Test data-testid="nested" ownerState={{ ownerState }}>
+            Nested ownerState
+          </Test>
+        </React.Fragment>,
+      );
+      expect(getByTestId('blue')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
+      expect(getByTestId('nested')).not.toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+    });
   });
 });

@@ -292,8 +292,8 @@ const Link = React.forwardRef(function Link(inProps, ref) {
         )}
 
         {isMuiElement(children, ['Skeleton'])
-          ? React.cloneElement(children as React.ReactElement, {
-              variant: (children as React.ReactElement).props.variant || 'inline',
+          ? React.cloneElement(children as React.ReactElement<any>, {
+              variant: (children as React.ReactElement<any>).props.variant || 'inline',
             })
           : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
