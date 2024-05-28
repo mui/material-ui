@@ -26,8 +26,8 @@ declare module '@mui/material/styles/createPalette' {
 const customTheme = createTheme();
 
 export const brand = {
-  50: 'hsl(210, 100%, 97%)',
-  100: 'hsl(210, 100%, 90%)',
+  50: 'hsl(210, 100%, 95%)',
+  100: 'hsl(210, 100%, 92%)',
   200: 'hsl(210, 100%, 80%)',
   300: 'hsl(210, 100%, 65%)',
   400: 'hsl(210, 98%, 48%)',
@@ -39,7 +39,7 @@ export const brand = {
 };
 
 export const gray = {
-  50: 'hsl(220, 60%, 99%)',
+  50: 'hsl(220, 60%, 97%)',
   100: 'hsl(220, 35%, 94%)',
   200: 'hsl(220, 35%, 88%)',
   300: 'hsl(220, 25%, 80%)',
@@ -152,7 +152,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     },
     divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
     background: {
-      default: gray[50],
+      default: gray[100],
       paper: 'hsl(0, 0%, 100%)',
       ...(mode === 'dark' && { default: gray[900], paper: gray[800] }),
     },
@@ -206,7 +206,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     },
     subtitle2: {
       fontSize: customTheme.typography.pxToRem(14),
-      fontWeight: 600,
+      fontWeight: 500,
     },
     body1: {
       fontSize: customTheme.typography.pxToRem(14),
