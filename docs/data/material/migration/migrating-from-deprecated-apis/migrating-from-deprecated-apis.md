@@ -313,6 +313,64 @@ The Avatar's `imgProps` prop was deprecated in favor of `slotProps.img`:
  />;
 ```
 
+## AvatarGroup
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/avatar-group-props <path>
+```
+
+### slotProps.additionalAvatar
+
+The AvatarGroup's `slotProps.additionalAvatar` was deprecated in favor of `slotProps.surplus`:
+
+```diff
+ <AvatarGroup
+   slotProps={{
+-    additionalAvatar: {color: "red"}
++    surplus: {color: "red"}
+   }}
+ />;
+```
+
+```diff
+ MuiAvatarGroup: {
+   defaultProps: {
+     slotProps: {
+-      additionalAvatar: {color: "red"}
++      surplus: {color: "red"}
+     },
+   },
+ },
+```
+
+### componentsProps
+
+The AvatarGroup's `componentsProps` was deprecated in favor of `slotProps`:
+
+```diff
+ <AvatarGroup
+-  componentsProps={{
+-    additionalAvatar: {color: "red"}
++  slotProps={{
++    surplus: {color: "red"}
+   }}
+ />;
+```
+
+```diff
+ MuiAvatarGroup: {
+   defaultProps: {
+-    componentsProps: {
+-      additionalAvatar: {color: "red"}
++    slotProps: {
++      surplus: {color: "red"}
+     },
+   },
+ },
+```
+
 ## Backdrop
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following sections:
