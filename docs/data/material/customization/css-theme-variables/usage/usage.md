@@ -1,11 +1,11 @@
 # CSS theme variables - Usage
 
-<p class="description">Learn how to use the experimental APIs to adopt CSS theme variables.</p>
+<p class="description">Learn how to adopt CSS theme variables.</p>
 
 ## Getting started
 
-The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
-In addition to providing the theme in the inner React context, this new provider also generates CSS variables out of all tokens in the theme that are not functions, and makes them available in the context as well.
+The CSS variables API relies on a provider called `CssVarsProvider` to inject styles into Material UI components.
+`CssVarsProvider` generates CSS variables out of all tokens in the theme that are serializable, and makes them available in the React context along with the theme itself via [`ThemeProvider`](/material-ui/customization/theming/#theme-provider).
 
 Once the `App` renders on the screen, you will see the CSS theme variables in the HTML `:root` stylesheet.
 The variables are flattened and prefixed with `--mui` by default:
@@ -27,6 +27,8 @@ The following demo uses `--md-demo` as a prefix for the variables:
 
 :::info
 The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
+
+If you have an existing theme, you can migrate to CSS theme variables by following the [migration guide](/material-ui/migration/migration-css-theme-variables/).
 :::
 
 ## Toggle between light and dark mode
@@ -34,10 +36,7 @@ The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/cust
 The `useColorScheme` hook lets you read and update the user-selected mode:
 
 ```jsx
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  useColorScheme,
-} from '@mui/material/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/material/styles';
 
 // ModeSwitcher is an example interface for toggling between modes.
 // Material UI does not provide the toggle interface—you have to build it yourself.
@@ -111,7 +110,7 @@ The structure of this object is nearly identical to the theme structure, the onl
   ```
 
   :::warning
-  If you have set up a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
+  If you have set up a [custom prefix](/material-ui/customization/css-theme-variables/configuration/#changing-variable-prefixes), make sure to replace the default `--mui`.
   :::
 
 ## Server-side rendering

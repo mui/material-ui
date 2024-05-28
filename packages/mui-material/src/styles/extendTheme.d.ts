@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { OverridableStringUnion } from '@mui/types';
 import { SxConfig, SxProps, CSSObject, ApplyStyles } from '@mui/system';
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
@@ -465,7 +464,7 @@ export interface CssVarsTheme extends ColorSystem {
  * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready-to-use theme object.
  */
-export default function experimental_extendTheme(
+export default function extendTheme(
   options?: CssVarsThemeOptions,
   ...args: object[]
 ): Omit<Theme, 'applyStyles'> & CssVarsTheme;

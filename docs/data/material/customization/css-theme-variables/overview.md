@@ -11,8 +11,15 @@ If this is your first time encountering CSS variables, you should check out [the
 
 ## Introduction
 
-CSS theme variable support is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0) (but not enabled by default). It tells Material UI components to use the generated CSS theme variables instead of raw values. This provides significant improvements in developer experience related to theming and customization.
-With these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
+CSS theme variables replace raw values in Material UI components for a better developer experience because, in the browser dev tool, you will see which theme token is used as a value.
+
+In addition with these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
+
+:::info
+The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
+
+If you have an existing theme, you can migrate to CSS theme variables by following the [migration guide](/material-ui/migration/migration-css-theme-variables/).
+:::
 
 ## Advantages
 
@@ -60,7 +67,7 @@ const darkTheme = createTheme({
 **CSS theme variables**: Light and dark colors are consolidated into a theme.
 
 ```js
-import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
+import { extendTheme } from '@mui/material/styles';
 
 // `extendTheme` is a new API
 const theme = extendTheme({
@@ -117,6 +124,6 @@ extendTheme({
 
 ## What's next
 
-- To start a new project with CSS theme variables, check out the [basic usage guide](/material-ui/experimental-api/css-theme-variables/usage/).
-- For an existing Material UI project, check out the [migration guide](/material-ui/experimental-api/css-theme-variables/migration/).
-- For theming and customization, check out the [how-to guide](/material-ui/experimental-api/css-theme-variables/customization/).
+- To start a new project with CSS theme variables, check out the [basic usage guide](/material-ui/customization/css-theme-variables/usage/).
+- For an existing Material UI project, check out the [migration guide](/material-ui/migration/migration-css-theme-variables/).
+- For theming and customization, check out the [how-to guide](/material-ui/customization/css-theme-variables/configuration/).

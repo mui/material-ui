@@ -1,16 +1,13 @@
-# CSS theme variables - Customization
+# CSS theme variables - Configuration
 
-<p class="description">A guide for customizing CSS theme variables in Material UI.</p>
+<p class="description">A guide for configuring CSS theme variables in Material UI.</p>
 
 ## Theming
 
-`experimental_extendTheme` is an API that extends the default theme. It returns a theme that can only be used by the `Experimental_CssVarsProvider`.
+`extendTheme` is an API that extends the default theme. It returns a theme that can only be used by the `CssVarsProvider`.
 
 ```js
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme,
-} from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 
 const theme = extendTheme();
 // ...custom theme
@@ -181,7 +178,7 @@ Or use `var()` to refer to the CSS variable directly:
 ```
 
 :::warning
-If you're using a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
+If you're using a [custom prefix](/material-ui/customization/css-theme-variables/configuration/#changing-variable-prefixes), make sure to replace the default `--mui`.
 :::
 
 ### TypeScript
@@ -289,7 +286,7 @@ function App() {
 }
 ```
 
-For a server-side application, provide the same value to [`getInitColorSchemeScript()`](/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering):
+For a server-side application, provide the same value to [`getInitColorSchemeScript()`](/material-ui/customization/css-theme-variables/usage/#server-side-rendering):
 
 ```js
 getInitColorSchemeScript({

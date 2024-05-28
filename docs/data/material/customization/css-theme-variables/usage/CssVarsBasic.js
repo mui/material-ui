@@ -1,8 +1,5 @@
 import * as React from 'react';
-import {
-  experimental_extendTheme as extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
-} from '@mui/material/styles';
+import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
 const theme = extendTheme({

@@ -1314,6 +1314,42 @@ npx @mui/codemod@next deprecations/step-connector-classes <path>
 
 ### v6.0.0
 
+#### `sx-prop`
+
+```bash
+npx @mui/codemod@next v6.0.0/sx-prop <path>
+```
+
+Update the usage of the `sx` prop to be compatible with `@pigment-css/react`.
+
+```diff
+ <Box
+-  sx={{
+-    backgroundColor: (theme) =>
+-       theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
+-  }}
++  sx={theme => ({
++    backgroundColor: theme.palette.grey[900],
++    ...theme.applyStyles("light", {
++      backgroundColor: theme.palette.grey[100]
++    })
++  })}
+ />
+```
+
+#### `system-props`
+
+```bash
+npx @mui/codemod@next v6.0.0/system-props <path>
+```
+
+Remove system props and add them to the `sx` prop.
+
+```diff
+- <Box ml="2px" py={1} color="primary.main" />
++ <Box sx={{ ml: "2px", py: 1, color: 'primary.main' }} />
+```
+
 #### `theme-v6`
 
 ```bash
@@ -1376,10 +1412,10 @@ Update the theme creation from `@mui/system@v5` to be compatible with `@pigment-
   })
 ```
 
-#### `styled-v6`
+#### `styled`
 
 ```bash
-npx @mui/codemod@next v6.0.0/styled-v6 <path>
+npx @mui/codemod@next v6.0.0/styled <path>
 ```
 
 Updates the usage of `styled` from `@mui/system@v5` to be compatible with `@pigment-css/react`.
