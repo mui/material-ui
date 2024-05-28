@@ -51,6 +51,7 @@ const getSlackChannelId = (
     case 'base-ui':
       return BASE_UI_FEEBACKS_CHANNEL_ID;
     case 'material-ui':
+    case 'system':
       return MATERIAL_UI_FEEBACKS_CHANNEL_ID;
     case 'joy-ui':
       return JOY_FEEBACKS_CHANNEL_ID;
