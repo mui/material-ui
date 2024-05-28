@@ -14,6 +14,12 @@ import { brand, getDesignTokens, gray, green, red } from './themePrimitives';
 export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
   return {
     ...getDesignTokens(mode),
+    mixins: {
+      MuiDataGrid: {
+        // Headers, and top & bottom fixed rows
+        containerBackground: mode === 'dark' ? gray[800] : 'hsl(0, 0%, 100%)',
+      },
+    },
     components: {
       MuiButtonBase: {
         defaultProps: {
@@ -1007,6 +1013,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme }) => ({
             borderColor: theme.palette.divider,
+            // background: theme.palette.background.paper,
           }),
           menu: ({ theme }) => ({
             borderRadius: theme.shape.borderRadius,
@@ -1025,6 +1032,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           }),
           row: ({ theme }) => ({
             borderBottom: `1px solid ${theme.palette.divider}`,
+            backgroundColor: theme.palette.background.paper,
             '&:hover': {
               background: alpha(theme.palette.primary.main, 0.1),
             },
@@ -1104,6 +1112,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               },
             }),
           }),
+
           columnHeaderTitleContainer: {
             flexGrow: 1,
             justifyContent: 'space-between',
