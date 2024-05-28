@@ -435,6 +435,7 @@ const generateApiPage = async (
       path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
       `import * as React from 'react';
   import ApiPage from 'docs/src/modules/components/ApiPage';
+  import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
   import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';${
     layoutConfigPath === ''
       ? ''
@@ -445,7 +446,11 @@ const generateApiPage = async (
 
   export default function Page(props) {
     const { descriptions, pageContent } = props;
-    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
+    return (
+      <BrandingCssVarsProvider>
+        <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
+      </BrandingCssVarsProvider>
+    );
   }
 
   Page.getInitialProps = () => {

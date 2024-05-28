@@ -8,7 +8,7 @@ export default function Page(props) {
   const { descriptions, pageContent } = props;
   return (
     <BrandingCssVarsProvider>
-      <ApiPage descriptions={descriptions} pageContent={pageContent} />
+      <ApiPage descriptions={descriptions} pageContent={pageContent} />;
     </BrandingCssVarsProvider>
   );
 }
