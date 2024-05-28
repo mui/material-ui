@@ -255,7 +255,7 @@ export const InputBaseInput = styled('input', {
   };
 });
 
-const inputGlobalStyles = globalCss({
+const InputGlobalStyles = globalCss({
   '@keyframes mui-auto-fill': { from: { display: 'block' } },
   '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
 });
@@ -535,7 +535,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   return (
     <React.Fragment>
-      {!disableInjectingGlobalStyles && inputGlobalStyles}
+      {!disableInjectingGlobalStyles && typeof InputGlobalStyles === 'function' && (
+        <InputGlobalStyles />
+      )}
       <Root
         {...rootProps}
         ref={ref}

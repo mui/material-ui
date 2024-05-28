@@ -6,8 +6,10 @@ export { css, keyframes } from '@mui/system';
 
 export { default as styled } from '../styles/styled';
 
-export function globalCss(props: GlobalStylesProps) {
-  return <GlobalStyles {...props} />;
+export function globalCss(styles: GlobalStylesProps['styles']) {
+  return function GlobalStylesWrapper() {
+    return <GlobalStyles styles={styles} />;
+  };
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
