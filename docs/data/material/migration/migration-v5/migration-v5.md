@@ -14,23 +14,32 @@ In the `package.json` file, change the package version from `latest` to `next`.
 Using `next` ensures your project always uses the latest v6 alpha release.
 Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-alpha.0`.
 
-## Introduction
+## Why you should migrate
 
-## Supported browsers
+Material UI v6 includes many bug fixes and improvements over v5.
+
+The biggest highlight in v6 is the opt-in support for Pigment CSS which enable styles extraction that get rid of style recalculation and reduce bundle size.
+
+Apart from the support for Pigment CSS, the v6 release provides a stable API for adopting CSS variables which open more customization possibilities and offers a more enjoyable developer experience.
+
+Additionally, the v6 release does not include major breaking changes. Instead, they are deprecated to bring more consistent developer experience which can be migrated using our codemods.
+
+Last but not least, the v6 release includes new features such as container queries and theme utility for styling across color schemes.
+
+## Supported browsers and Node versions
 
 The targets of the default bundle have changed in v6.
 
 The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"`.
 
-The stable bundle supports the following minimum versions:
-
 <!-- #stable-snapshot -->
 
+- Node 18 (up from 12)
 - Chrome 109 (up from 90)
 - Edge 121 (up from 91)
 - Firefox 115 (up from 78)
 - Safari 15.4 in both macOS and iOS (up from 14 in macOS and 12.5 in iOS)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v6.0.0/.browserslistrc#L16))
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v6.0.0/.browserslistrc#L11))
 
 ### Removed support for IE 11
 
@@ -38,42 +47,15 @@ Support for IE 11 is completely removed, by dropping the legacy bundle and all I
 This allows us to decrease bundle size and keep the scope manageable.
 If you need to support IE 11, you can use Material UI v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle), but it won't get updates or bug fixes.
 
-## Breaking changes
-
-The biggest change in v6 is the support for Pigment CSS integration, our zero-runtime CSS-in-JS solution.
-
-<!-- :::info
-Need to refer back to an older version of the docs? Check out [the v5 documentation here](https://v5.mui.com/).
-::: -->
-
-## Why you should migrate
-
-Material UI v6 includes many bug fixes and improvements over v5.
-
-Apart from the support for Pigment CSS, the v6 release provides a stable API for adopting CSS variables which open more customization possibilities and offers a more enjoyable developer experience.
-
-Additionally, the v6 release does not include major breaking changes. Instead, they are deprecated to bring more consistent developer experience which are easily migrated using our codemod.
-
-## Supported browsers and Node versions
-
-The targets of the default bundle have changed in v6.
-
-The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
-
-<!-- #stable-snapshot -->
-
-- Node ?? (up from 12)
-- Chrome 109 (up from 90)
-- Edge 121 (up from 91)
-- Firefox 115 (up from 78)
-- Safari 15.4 (macOS) and 15.4 (iOS)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v6.0.0/.browserslistrc#L11))
-
 ## Update React & TypeScript version
 
 ### Update React
 
 The minimum supported version of React is v17.0.0 (the same as v5).
+
+:::warning
+This is not a final decision. It might change before the stable release.
+:::
 
 ### Update TypeScript
 
@@ -132,26 +114,14 @@ To learn more about using container queries, check out the [Container Queries do
 
 ### CssVarsProvider and extendTheme
 
-CSS theme variables become a recommended way to customize the theme. The `CssVarsProvider` and `extendTheme` APIs are now stable.
+The `CssVarsProvider` and `extendTheme` APIs are now stable. If you are using them in v5, you can now use them without the prefix.
 
 ```diff
-- import { createTheme, ThemeProvider } from '@mui/material/styles';
+- import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 + import { extendTheme, CssVarsProvider } from '@mui/material/styles';
-
-- const theme = createTheme({...});
-+ const theme = extendTheme({...});
-
-- <ThemeProvider theme={theme}>
-+ <CssVarsProvider theme={theme}>
 ```
 
-<!-- Link to CSS theme variables page -->
-
-To learn more about using CSS theme variables, check out the CSS theme variables page.
-
-### Grid
-
-The Grid v2 is now becoming the default Grid component. Check out the [migration guide](/material-ui/migration/migration-grid-v2/) to see the differences and improvements.
+To learn more about using CSS theme variables, check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/).
 
 ## Breaking changes
 
@@ -168,32 +138,28 @@ The UMD bundle is no longer provided. This was replaced in favor of [ESM CDNs](h
 
 ## Deprecations
 
-### `components`, `componentsProps` and composed CSS classes
-
-- `components` and `componentsProps` are deprecated in favor of `slots` and `slotProps` in the theme object.
-- Composed CSS classes are deprecated in favor of atomic class alternatives.
-
-The deprecations can be migrated using the codemod below:
-
-```bash
-npx @mui/codemod@latest deprecations/all <path>
-```
+### Components and classes
 
 For more details on each component, check out the [deprecations page](/material-ui/migration/migrating-from-deprecated-apis/).
 
-### Component style overrides
-
-<!-- TODO: add info and codemod instruction -->
-
 ### System props
 
-System props are deprecated in `Box`, `Typography`, `Link`, `Grid`, and `Stack` components. Move all system props into the `sx` prop instead. Example:
+System props are deprecated in `Box`, `Typography`, `Link`, `Grid`, and `Stack` components.
+Move all system props into the `sx` prop by using the codemod below:
+
+```bash
+npx @mui/codemod@next v6.0.0/system-props <path/to/folder>
+```
+
+Or do it manually like the example below:
 
 ```diff
 - <Button mr={2}>...</Button>
 + <Button sx={{ mr: 2 }}>...</Button>
 ```
 
-<!-- TODO: add codemod instruction -->
+## Pigment CSS integration (optional)
 
-## Pigment CSS integration
+:::info
+⏳ This section is under construction
+:::
