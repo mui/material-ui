@@ -886,7 +886,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiChartsAxis: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             '& .MuiChartsAxis-line': {
               stroke: gray[300],
             },
@@ -897,7 +897,19 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               fill: gray[400],
               fontWeight: 500,
             },
-          },
+            ...theme.applyStyles('dark', {
+              '& .MuiChartsAxis-line': {
+                stroke: gray[700],
+              },
+              '& .MuiChartsAxis-tick': {
+                stroke: gray[700],
+              },
+              '& .MuiChartsAxis-tickLabel': {
+                fill: gray[400],
+                fontWeight: 500,
+              },
+            }),
+          }),
         },
       },
       MuiChartsLegend: {
@@ -911,13 +923,20 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiChartsGrid: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             '& .MuiChartsGrid-line': {
               stroke: gray[200],
               strokeDasharray: '4 2',
               strokeWidth: 0.8,
             },
-          },
+            ...theme.applyStyles('dark', {
+              '& .MuiChartsGrid-line': {
+                stroke: gray[700],
+                strokeDasharray: '4 2',
+                strokeWidth: 0.8,
+              },
+            }),
+          }),
         },
       },
       MuiTreeItem2: {
