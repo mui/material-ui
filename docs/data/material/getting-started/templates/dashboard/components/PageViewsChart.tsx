@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -53,7 +52,7 @@ export default function PageViewsChart() {
     <Card variant="outlined" sx={{ height: 400, width: '100%' }}>
       <CardContent>
         <Typography variant="subtitle2" gutterBottom>
-          Page views and downloads
+          Sessions
         </Typography>
         <LineChart
           colors={colorPalette}
@@ -66,8 +65,8 @@ export default function PageViewsChart() {
           ]}
           series={[
             {
-              id: 'page-views',
-              label: 'Page views',
+              id: 'organic',
+              label: 'Organic',
               showMark: false,
               curve: 'linear',
               stack: 'total',
@@ -80,8 +79,8 @@ export default function PageViewsChart() {
               area: true,
             },
             {
-              id: 'downloads',
-              label: 'Downloads',
+              id: 'referral',
+              label: 'Referral',
               showMark: false,
               curve: 'linear',
               stack: 'total',
@@ -94,8 +93,8 @@ export default function PageViewsChart() {
               ],
             },
             {
-              id: 'conversions',
-              label: 'Conversions',
+              id: 'direct',
+              label: 'Direct',
               showMark: false,
               curve: 'linear',
               stack: 'total',
@@ -112,14 +111,14 @@ export default function PageViewsChart() {
           margin={{ left: 50, right: 0, top: 60, bottom: 30 }}
           grid={{ horizontal: true }}
           sx={{
-            '& .MuiAreaElement-series-page-views': {
-              fill: "url('#page-views')",
+            '& .MuiAreaElement-series-organic': {
+              fill: "url('#organic')",
             },
-            '& .MuiAreaElement-series-downloads': {
-              fill: "url('#conversions')",
+            '& .MuiAreaElement-series-referral': {
+              fill: "url('#referral')",
             },
-            '& .MuiAreaElement-series-conversions': {
-              fill: "url('#conversions')",
+            '& .MuiAreaElement-series-direct': {
+              fill: "url('#direct')",
             },
           }}
           slotProps={{
@@ -136,19 +135,19 @@ export default function PageViewsChart() {
             color={
               mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[600]
             }
-            id="page-views"
+            id="organic"
           />
           <AreaGradient
             color={
               mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[600]
             }
-            id="downloads"
+            id="referral"
           />
           <AreaGradient
             color={
               mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
             }
-            id="conversions"
+            id="direct"
           />
         </LineChart>
       </CardContent>
