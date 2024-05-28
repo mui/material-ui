@@ -184,6 +184,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/typography' },
           { pathname: '/material-ui/customization/spacing' },
           { pathname: '/material-ui/customization/breakpoints' },
+          { pathname: '/material-ui/customization/containerQueries', newFeature: true },
           { pathname: '/material-ui/customization/density' },
           { pathname: '/material-ui/customization/z-index', title: 'z-index' },
           { pathname: '/material-ui/customization/transitions' },
