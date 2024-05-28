@@ -38,7 +38,7 @@ export interface TypographyOwnProps extends SystemProps<Theme> {
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
-   * @deprecated use the `component` prop instead, or use variant="body2" to get the same behavior.
+   * @deprecated use the `component` prop instead.
    */
   paragraph?: boolean;
   /**
