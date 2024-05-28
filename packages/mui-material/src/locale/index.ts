@@ -3006,7 +3006,6 @@ export const plPL: Localization = {
   },
 };
 
-
 export const psAF: Localization = {
   components: {
     MuiBreadcrumbs: {
