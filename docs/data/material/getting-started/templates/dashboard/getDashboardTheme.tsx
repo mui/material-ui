@@ -37,6 +37,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             boxShadow: 'none',
             borderRadius: theme.shape.borderRadius,
             textTransform: 'none',
+            '& .MuiSvgIcon-root': { width: '1.125rem', height: '1.125rem' },
             variants: [
               {
                 props: {
@@ -118,24 +119,21 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                   variant: 'outlined',
                 },
                 style: {
-                  color: gray[600],
-                  border: '1px solid',
-                  borderColor: gray[200],
+                  color: theme.palette.text.primary,
+                  border: `1px solid ${theme.palette.divider}`,
                   backgroundColor: gray[50],
                   '&:hover': {
                     backgroundColor: gray[100],
-                    borderColor: gray[400],
+                    borderColor: gray[300],
                   },
                   '&:active': {
                     backgroundColor: gray[200],
                   },
                   ...theme.applyStyles('dark', {
-                    color: gray[50],
-                    border: '1px solid',
-                    borderColor: gray[700],
                     backgroundColor: gray[800],
                     '&:hover': {
-                      borderColor: gray[500],
+                      backgroundColor: gray[900],
+                      borderColor: gray[600],
                     },
                     '&:active': {
                       backgroundColor: gray[900],
@@ -166,7 +164,8 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                     borderColor: brand[900],
                     backgroundColor: alpha(brand[900], 0.3),
                     '&:hover': {
-                      borderColor: brand[500],
+                      borderColor: brand[700],
+                      backgroundColor: alpha(brand[900], 0.6),
                     },
                     '&:active': {
                       backgroundColor: alpha(brand[900], 0.5),
@@ -336,11 +335,12 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       MuiChip: {
         styleOverrides: {
           root: ({ theme }) => ({
-            py: 1.5,
-            px: 0.5,
             border: '1px solid',
-            borderRadius: theme.shape.borderRadius,
-            fontWeight: 600,
+            borderRadius: '999px',
+            '& .MuiChip-label': {
+              padding: '0 4px',
+              fontWeight: 600,
+            },
             variants: [
               {
                 props: {
@@ -409,7 +409,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                     borderColor: red[800],
                     backgroundColor: red[900],
                     '& .MuiChip-label': {
-                      color: red[300],
+                      color: red[200],
                     },
                     '& .MuiChip-icon': {
                       color: red[300],
@@ -429,25 +429,22 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             textTransform: 'none',
             fontWeight: theme.typography.fontWeightMedium,
             letterSpacing: 0,
-            color: gray[600],
-            border: '1px solid',
-            borderColor: gray[200],
+            color: theme.palette.text.primary,
+            border: `1px solid ${theme.palette.divider}`,
             backgroundColor: gray[50],
             '&:hover': {
               backgroundColor: gray[100],
-              borderColor: gray[400],
+              borderColor: gray[300],
             },
             '&:active': {
               backgroundColor: gray[200],
             },
+            '& .MuiSvgIcon-root': { width: '1.125rem', height: '1.125rem' },
             ...theme.applyStyles('dark', {
-              color: gray[50],
-              border: '1px solid',
-              borderColor: gray[700],
               backgroundColor: gray[800],
               '&:hover': {
-                backgroundColor: gray[800],
-                borderColor: gray[500],
+                backgroundColor: gray[900],
+                borderColor: gray[600],
               },
               '&:active': {
                 backgroundColor: gray[900],
@@ -459,7 +456,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                   size: 'small',
                 },
                 style: {
-                  minWidth: '2rem',
+                  width: '2rem',
                   height: '2rem',
                   padding: '0.25rem',
                 },
@@ -469,7 +466,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                   size: 'medium',
                 },
                 style: {
-                  minWidth: '2.5rem',
+                  width: '2.5rem',
                   height: '2.5rem',
                 },
               },
@@ -534,7 +531,11 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiList: {
         styleOverrides: {
-          root: { display: 'flex', flexDirection: 'column', gap: 8 },
+          root: {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+          },
         },
       },
       MuiListItem: {
@@ -576,13 +577,20 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       MuiMenu: {
         styleOverrides: {
           paper: ({ theme }) => ({
-            marginTop: 4,
+            marginTop: '4px',
+            padding: '0 8px',
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${theme.palette.divider}`,
             backgroundImage: 'none',
             boxShadow:
               'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
-            '& .MuiMenuItem-root': { borderRadius: 6, margin: '0 6px' },
+            '& .MuiMenuItem-root': {
+              borderRadius: 6,
+              padding: '6px 8px',
+            },
+            '& .MuiMenu-list': {
+              '& .MuiDivider-root': { margin: '0 -8px' },
+            },
             ...theme.applyStyles('dark', {
               boxShadow:
                 'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
@@ -593,10 +601,10 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       MuiOutlinedInput: {
         styleOverrides: {
           root: ({ theme }) => ({
-            color: gray[900],
+            color: theme.palette.text.primary,
             borderRadius: theme.shape.borderRadius,
-            border: '1px solid',
-            borderColor: gray[200],
+            border: `1px solid ${theme.palette.divider}`,
+            transition: 'border 120ms ease-in',
             '&:hover': {
               borderColor: gray[400],
             },
@@ -606,8 +614,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               borderColor: brand[400],
             },
             ...theme.applyStyles('dark', {
-              borderColor: gray[700],
-              color: gray[300],
               '&:hover': {
                 borderColor: gray[500],
               },
@@ -676,16 +682,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiTabs: {
         styleOverrides: {
-          root: ({ theme }) => ({
-            '& .Mui-selected': {
-              color: theme.palette.grey[900],
-            },
-            ...theme.applyStyles('dark', {
-              '& .Mui-selected': {
-                color: '#fff',
-              },
-            }),
-          }),
+          root: { minHeight: 'fit-content' },
           indicator: ({ theme }) => ({
             backgroundColor: theme.palette.grey[800],
             ...theme.applyStyles('dark', {
@@ -697,14 +694,29 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       MuiTab: {
         styleOverrides: {
           root: ({ theme }) => ({
+            padding: '6px 8px',
+            marginBottom: '8px',
             textTransform: 'none',
-            px: 4,
             minWidth: 'fit-content',
-            color: theme.palette.grey[400],
+            minHeight: 'fit-content',
+            color: theme.palette.text.secondary,
+            borderRadius: theme.shape.borderRadius,
+            border: '1px solid',
+            borderColor: 'transparent',
+            ':hover': {
+              color: theme.palette.text.primary,
+              backgroundColor: gray[100],
+              borderColor: gray[200],
+            },
             '&.Mui-selected': {
-              color: theme.palette.grey[900],
+              color: gray[900],
             },
             ...theme.applyStyles('dark', {
+              ':hover': {
+                color: theme.palette.text.primary,
+                backgroundColor: gray[800],
+                borderColor: gray[700],
+              },
               '&.Mui-selected': {
                 color: '#fff',
               },
@@ -874,7 +886,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiChartsAxis: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             '& .MuiChartsAxis-line': {
               stroke: gray[300],
             },
@@ -885,7 +897,19 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               fill: gray[400],
               fontWeight: 500,
             },
-          },
+            ...theme.applyStyles('dark', {
+              '& .MuiChartsAxis-line': {
+                stroke: gray[700],
+              },
+              '& .MuiChartsAxis-tick': {
+                stroke: gray[700],
+              },
+              '& .MuiChartsAxis-tickLabel': {
+                fill: gray[400],
+                fontWeight: 500,
+              },
+            }),
+          }),
         },
       },
       MuiChartsLegend: {
@@ -899,16 +923,22 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiChartsGrid: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             '& .MuiChartsGrid-line': {
               stroke: gray[200],
               strokeDasharray: '4 2',
               strokeWidth: 0.8,
             },
-          },
+            ...theme.applyStyles('dark', {
+              '& .MuiChartsGrid-line': {
+                stroke: gray[700],
+                strokeDasharray: '4 2',
+                strokeWidth: 0.8,
+              },
+            }),
+          }),
         },
       },
-      MuiRichTreeView: { styleOverrides: { root: { paddingBottom: 5 } } },
       MuiTreeItem2: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -925,7 +955,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           content: ({ theme }) => ({
             marginTop: theme.spacing(1),
             padding: theme.spacing(0.5, 1),
-            overflow: 'hidden',
+            overflow: 'clip',
             '&:hover': {
               backgroundColor: alpha(gray[300], 0.2),
             },
@@ -944,43 +974,19 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                 backgroundColor: alpha(gray[300], 0.6),
               },
             },
-            '&.selected.focused': {
-              backgroundColor: alpha(gray[300], 0.4),
-              outline: `3px solid ${alpha(brand[500], 0.5)}`,
-              outlineOffset: '2px',
-              '&:hover': {
-                backgroundColor: alpha(gray[300], 0.6),
-                outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                outlineOffset: '2px',
-              },
-            },
             ...theme.applyStyles('dark', {
               '&:hover': {
                 backgroundColor: alpha(gray[500], 0.2),
               },
-              '&.focused': {
-                outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                outlineOffset: '2px',
+              '&:focus-visible': {
                 '&:hover': {
                   backgroundColor: alpha(gray[500], 0.2),
-                  outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                  outlineOffset: '2px',
                 },
               },
               '&.selected': {
                 backgroundColor: alpha(gray[500], 0.4),
                 '&:hover': {
                   backgroundColor: alpha(gray[500], 0.6),
-                },
-              },
-              '&.selected.focused': {
-                backgroundColor: alpha(gray[500], 0.4),
-                outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                outlineOffset: '2px',
-                '&:hover': {
-                  backgroundColor: alpha(gray[500], 0.6),
-                  outline: `3px solid ${alpha(brand[500], 0.5)}`,
-                  outlineOffset: '2px',
                 },
               },
             }),
@@ -1018,6 +1024,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             }),
           }),
           row: ({ theme }) => ({
+            borderBottom: `1px solid ${theme.palette.divider}`,
             '&:hover': {
               background: alpha(theme.palette.primary.main, 0.1),
             },

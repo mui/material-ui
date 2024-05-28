@@ -182,7 +182,10 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 
 export default function CustomizedTreeView() {
   return (
-    <Card variant="outlined">
+    <Card
+      variant="outlined"
+      sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
+    >
       <CardContent>
         <Typography variant="subtitle2">Product tree</Typography>
         <RichTreeView
@@ -192,8 +195,9 @@ export default function CustomizedTreeView() {
           defaultExpandedItems={['1', '1.1']}
           defaultSelectedItems={['1.1', '1.1.1']}
           sx={{
+            m: '0 -8px',
+            pb: '8px',
             height: 'fit-content',
-            width: '100%',
             flexGrow: 1,
             overflowY: 'auto',
           }}

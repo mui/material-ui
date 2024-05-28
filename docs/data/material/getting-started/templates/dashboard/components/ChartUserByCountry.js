@@ -98,9 +98,11 @@ const colors = [
 
 export default function ChartUserByCountry() {
   return (
-    <Card variant="outlined">
+    <Card variant="outlined" sx={{ pb: '8px' }}>
       <CardContent>
-        <Typography variant="subtitle2">Users by country</Typography>
+        <Typography component="h2" variant="subtitle2">
+          Users by country
+        </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <PieChart
             colors={colors}
@@ -130,11 +132,11 @@ export default function ChartUserByCountry() {
         </Box>
         {countries.map((country, index) => (
           <Stack
+            key={index}
             direction="row"
             alignItems="center"
             gap={2}
             sx={{ pb: 2 }}
-            key={index}
           >
             {country.flag}
             <Stack gap={1} sx={{ flexGrow: 1 }}>
@@ -144,7 +146,9 @@ export default function ChartUserByCountry() {
                 alignItems="center"
                 gap={2}
               >
-                <Typography variant="body2">{country.name}</Typography>
+                <Typography variant="body2" fontWeight="500">
+                  {country.name}
+                </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {country.value}%
                 </Typography>
