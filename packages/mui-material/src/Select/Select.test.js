@@ -802,6 +802,16 @@ describe('<Select />', () => {
       fireEvent.keyUp(trigger, { key: 'ArrowDown' });
       expect(screen.queryByRole('listbox')).to.equal(null);
     });
+
+    it('should pass readOnly to input element', () => {
+      const { container } = render(
+        <Select readOnly value="10">
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+        </Select>,
+      );
+      expect(container.querySelector('input')).to.have.property('readOnly', true);
+    });
   });
 
   describe('prop: MenuProps', () => {

@@ -531,6 +531,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         disabled={disabled}
         className={classes.nativeInput}
         autoFocus={autoFocus}
+        readOnly={readOnly}
         {...other}
         ownerState={ownerState}
       />
