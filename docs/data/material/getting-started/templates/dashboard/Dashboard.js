@@ -8,7 +8,6 @@ import getDashboardTheme from './getDashboardTheme';
 import ToggleCustomTheme from './internals/components/ToggleCustomTheme';
 import Copyright from './internals/components/Copyright';
 import Navbar from './components/Navbar';
-import SecondaryNavbar from './components/SecondaryNavbar';
 import Header from './components/Header';
 import MainGrid from './components/MainGrid';
 
@@ -31,7 +30,6 @@ export default function Dashboard() {
       <CssBaseline />
       <Box sx={{ display: 'flex' }}>
         <Navbar mode={mode} toggleColorMode={toggleColorMode} />
-        <SecondaryNavbar />
         <Box
           component="main"
           sx={{

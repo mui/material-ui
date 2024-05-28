@@ -57,47 +57,44 @@ function StatCard({ title, value, interval, trend, data }) {
   return (
     <Card variant="outlined" sx={{ height: '100%', flexGrow: 1 }}>
       <CardContent>
-        <Stack>
-          <Typography variant="subtitle2" gutterBottom>
-            {title}
-          </Typography>
-          <Stack
-            direction="column"
-            justifyContent="space-between"
-            flexGrow="1"
-            gap={1}
-          >
-            <Stack justifyContent="space-between">
-              <Stack
-                direction="row"
-                justifyContent={'space-between'}
-                alignItems="center"
-              >
-                <Typography variant="h4" component="div">
-                  {value}
-                </Typography>
-                <Chip size="small" color={color} label={trendValues[trend]} />
-              </Stack>
-              <Typography variant="caption" color="text.secondary">
-                {interval}
+        <Typography component="h2" variant="subtitle2" gutterBottom>
+          {title}
+        </Typography>
+        <Stack
+          direction="column"
+          justifyContent="space-between"
+          flexGrow="1"
+          gap={1}
+        >
+          <Stack justifyContent="space-between">
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="h4" component="p">
+                {value}
               </Typography>
+              <Chip size="small" color={color} label={trendValues[trend]} />
             </Stack>
-
-            <Box sx={{ width: '100%', height: 50 }}>
-              <SparkLineChart
-                colors={[chartColor]}
-                data={data}
-                area
-                sx={{
-                  [`& .${areaElementClasses.root}`]: {
-                    fill: `url(#area-gradient-${value})`,
-                  },
-                }}
-              >
-                <AreaGradient color={chartColor} id={`area-gradient-${value}`} />
-              </SparkLineChart>
-            </Box>
+            <Typography variant="caption" color="text.secondary">
+              {interval}
+            </Typography>
           </Stack>
+          <Box sx={{ width: '100%', height: 50 }}>
+            <SparkLineChart
+              colors={[chartColor]}
+              data={data}
+              area
+              sx={{
+                [`& .${areaElementClasses.root}`]: {
+                  fill: `url(#area-gradient-${value})`,
+                },
+              }}
+            >
+              <AreaGradient color={chartColor} id={`area-gradient-${value}`} />
+            </SparkLineChart>
+          </Box>
         </Stack>
       </CardContent>
     </Card>
