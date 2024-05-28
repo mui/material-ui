@@ -60,31 +60,31 @@ export default function MuiLogoMenu({ smallerMargin, marginLeft }: MuiLogoMenuPr
         sx={{ mr: smallerMargin ? 1 : 1.5, ml: marginLeft ? 1.5 : undefined, cursor: 'default' }}
       >
         <SvgMuiLogomark height={30} width={30} />
-        <Menu
-          open={contextMenu !== null}
-          onClose={handleClose}
-          anchorReference="anchorPosition"
-          anchorPosition={
-            contextMenu !== null ? { top: contextMenu.mouseY, left: contextMenu.mouseX } : undefined
-          }
-        >
-          <MenuItem onClick={() => handleCopy(logo)}>
-            <SvgMuiLogomark
-              height={16}
-              width={18}
-              sx={(theme) => ({
-                mr: 1,
-                '> path': { fill: (theme.vars || theme).palette.text.tertiary },
-              })}
-            />
-            Copy logo as SVG
-          </MenuItem>
-          <MenuItem onClick={() => handleCopy(logoWordmark)}>
-            <TextFieldsRoundedIcon sx={{ fontSize: '18px', mr: 1, color: 'text.tertiary' }} />
-            Copy wordmark as SVG
-          </MenuItem>
-        </Menu>
       </Box>
+      <Menu
+        open={contextMenu !== null}
+        onClose={handleClose}
+        anchorReference="anchorPosition"
+        anchorPosition={
+          contextMenu !== null ? { top: contextMenu.mouseY, left: contextMenu.mouseX } : undefined
+        }
+      >
+        <MenuItem onClick={() => handleCopy(logo)}>
+          <SvgMuiLogomark
+            height={16}
+            width={18}
+            sx={(theme) => ({
+              mr: 1,
+              '> path': { fill: (theme.vars || theme).palette.text.tertiary },
+            })}
+          />
+          Copy logo as SVG
+        </MenuItem>
+        <MenuItem onClick={() => handleCopy(logoWordmark)}>
+          <TextFieldsRoundedIcon sx={{ fontSize: '18px', mr: 1, color: 'text.tertiary' }} />
+          Copy wordmark as SVG
+        </MenuItem>
+      </Menu>
       <Snackbar
         open={copied}
         onClose={handleClose}
