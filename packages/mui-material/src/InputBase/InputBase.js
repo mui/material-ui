@@ -11,11 +11,10 @@ import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, createUseThemeProps, globalCss } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
@@ -185,7 +184,6 @@ export const InputBaseInput = styled('input', {
     // Make the flex item shrink with Firefox
     minWidth: 0,
     width: '100%', // Fix IE11 width issue
-    animationName: 'mui-auto-fill-cancel',
     animationDuration: '10ms',
     '&::-webkit-input-placeholder': placeholder,
     '&::-moz-placeholder': placeholder, // Firefox 19+
@@ -217,11 +215,17 @@ export const InputBaseInput = styled('input', {
       opacity: 1, // Reset iOS opacity
       WebkitTextFillColor: (theme.vars || theme).palette.text.disabled, // Fix opacity Safari bug
     },
-    '&:-webkit-autofill': {
-      animationDuration: '5000s',
-      animationName: 'mui-auto-fill',
-    },
     variants: [
+      {
+        props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
+        style: {
+          animationName: 'mui-auto-fill-cancel',
+          '&:-webkit-autofill': {
+            animationDuration: '5000s',
+            animationName: 'mui-auto-fill',
+          },
+        },
+      },
       {
         props: {
           size: 'small',
@@ -251,14 +255,10 @@ export const InputBaseInput = styled('input', {
   };
 });
 
-const inputGlobalStyles = (
-  <GlobalStyles
-    styles={{
-      '@keyframes mui-auto-fill': { from: { display: 'block' } },
-      '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
-    }}
-  />
-);
+const inputGlobalStyles = globalCss({
+  '@keyframes mui-auto-fill': { from: { display: 'block' } },
+  '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
+});
 
 /**
  * `InputBase` contains as few styles as possible.
