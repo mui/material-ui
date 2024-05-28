@@ -60,7 +60,7 @@ function forEachSlot(
 }
 
 function testPropForwarding(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const {
@@ -110,7 +110,10 @@ function testPropForwarding(
   });
 }
 
-function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledConformanceOptions) {
+function testSlotsProp(
+  element: React.ReactElement<any>,
+  getOptions: () => UnstyledConformanceOptions,
+) {
   const {
     render,
     slots,
@@ -224,7 +227,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
 }
 
 function testSlotPropsProp(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const { render, slots } = getOptions();
@@ -271,7 +274,7 @@ interface TestOwnerState {
 }
 
 function testSlotPropsCallbacks(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const { render, slots } = getOptions();
@@ -307,7 +310,7 @@ function testSlotPropsCallbacks(
 }
 
 function testOwnerStatePropagation(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const {
@@ -359,7 +362,7 @@ function testOwnerStatePropagation(
 }
 
 function testDisablingClassGeneration(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const { render } = getOptions();
@@ -394,7 +397,7 @@ const fullSuite = {
 };
 
 function describeConformance(
-  minimalElement: React.ReactElement,
+  minimalElement: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();

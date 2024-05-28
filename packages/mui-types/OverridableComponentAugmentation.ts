@@ -15,8 +15,8 @@ declare module '@mui/types' {
          */
         component: C;
       } & OverridePropsVer2<M, C>,
-    ): JSX.Element;
-    (props: DefaultComponentPropsVer2<M>): JSX.Element;
+    ): React.JSX.Element;
+    (props: DefaultComponentPropsVer2<M>): React.JSX.Element;
     propTypes?: any;
   }
 

@@ -11,7 +11,7 @@ authors:
     'danilo-leal',
     'oliviertassinari',
   ]
-tags: ['Pigment CSS']
+tags: ['Pigment CSS', 'Product']
 manualCard: true
 ---
 
