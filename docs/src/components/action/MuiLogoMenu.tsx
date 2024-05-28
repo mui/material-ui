@@ -68,20 +68,27 @@ export default function MuiLogoMenu({ smallerMargin, marginLeft }: MuiLogoMenuPr
         anchorPosition={
           contextMenu !== null ? { top: contextMenu.mouseY, left: contextMenu.mouseX } : undefined
         }
+        sx={(theme) => ({
+          '& .MuiMenuItem-root': {
+            '& * path, .MuiSvgIcon-root': {
+              fill: (theme.vars || theme).palette.text.tertiary,
+              color: (theme.vars || theme).palette.text.tertiary,
+            },
+            '&:hover, &:focus': {
+              '& * path, .MuiSvgIcon-root': {
+                fill: (theme.vars || theme).palette.text.primary,
+                color: (theme.vars || theme).palette.text.primary,
+              },
+            },
+          },
+        })}
       >
         <MenuItem onClick={() => handleCopy(logo)}>
-          <SvgMuiLogomark
-            height={16}
-            width={18}
-            sx={(theme) => ({
-              mr: 1,
-              '> path': { fill: (theme.vars || theme).palette.text.tertiary },
-            })}
-          />
+          <SvgMuiLogomark height={16} width={18} sx={{ mr: 1 }} />
           Copy logo as SVG
         </MenuItem>
         <MenuItem onClick={() => handleCopy(logoWordmark)}>
-          <TextFieldsRoundedIcon sx={{ fontSize: '18px', mr: 1, color: 'text.tertiary' }} />
+          <TextFieldsRoundedIcon sx={{ fontSize: '18px', mr: 1 }} />
           Copy wordmark as SVG
         </MenuItem>
       </Menu>
