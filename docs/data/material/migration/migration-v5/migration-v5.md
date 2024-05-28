@@ -66,15 +66,18 @@ import Chip from '@mui/material/Chip';
 
 export default function ChipExample() {
   const chipRef = React.useRef(null);
-  const keyUpHandler= (event) => {
+  const keyUpHandler = (event) => {
     if (event.key === 'Escape' && chipRef.current) {
-        chipRef.current.blur();
-      }
-  }
+      chipRef.current.blur();
+    }
+  };
   return (
-      <Chip label="Chip Outlined" variant="outlined" ref={chipRef}
-        onKeyUp={keyUpHandler}
-      />
+    <Chip
+      label="Chip Outlined"
+      variant="outlined"
+      ref={chipRef}
+      onKeyUp={keyUpHandler}
+    />
   );
 }
 ```

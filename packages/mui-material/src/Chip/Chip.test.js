@@ -446,7 +446,6 @@ describe('<Chip />', () => {
       expect(handleKeydown.firstCall.returnValue).to.equal('p');
     });
 
-
     it('should call onClick when `space` is released ', () => {
       const handleClick = spy();
       const { getByRole } = render(<Chip onClick={handleClick} />);
