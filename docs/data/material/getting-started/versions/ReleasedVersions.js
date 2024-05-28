@@ -21,33 +21,34 @@ export default function ReleasedVersions() {
   return (
     <Table sx={{ minHeight: 33 * 11, overflow: 'auto', width: '100%' }}>
       <TableBody>
-        {versions.map((doc) => (
-          <TableRow key={doc.version}>
-            <TableCell>
-              <Typography variant="body2">
-                {doc.version}
-                {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
-              </Typography>
-            </TableCell>
-            <TableCell>
-              <Link variant="body2" rel="nofollow" href={doc.url}>
-                Documentation
-              </Link>
-            </TableCell>
-            <TableCell>
-              {doc.version.length >= 6 &&
-              doc.version.indexOf('pre-release') === -1 ? (
-                <Link
-                  variant="body2"
-                  rel="nofollow"
-                  href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
-                >
-                  Release notes
+        {versions &&
+          versions.map((doc) => (
+            <TableRow key={doc.version}>
+              <TableCell>
+                <Typography variant="body2">
+                  {doc.version}
+                  {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Link variant="body2" rel="nofollow" href={doc.url}>
+                  Documentation
                 </Link>
-              ) : null}
-            </TableCell>
-          </TableRow>
-        ))}
+              </TableCell>
+              <TableCell>
+                {doc.version.length >= 6 &&
+                doc.version.indexOf('pre-release') === -1 ? (
+                  <Link
+                    variant="body2"
+                    rel="nofollow"
+                    href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
+                  >
+                    Release notes
+                  </Link>
+                ) : null}
+              </TableCell>
+            </TableRow>
+          ))}
       </TableBody>
     </Table>
   );
