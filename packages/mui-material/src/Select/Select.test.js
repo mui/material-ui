@@ -804,13 +804,13 @@ describe('<Select />', () => {
     });
 
     it('should pass readOnly to input element', () => {
-      const { container } = render(
+      render(
         <Select readOnly value="10">
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
         </Select>,
       );
-      expect(container.querySelector('input')).to.have.property('readOnly', true);
+      expect(screen.getByRole('textbox')).to.have.property('readOnly', true);
     });
   });
 
