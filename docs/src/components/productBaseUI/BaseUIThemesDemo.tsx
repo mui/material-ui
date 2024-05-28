@@ -110,19 +110,15 @@ const StyledTab = styled('button')({
   color: 'var(--muidocs-palette-text-secondary)',
   userSelect: 'none',
   transition: 'all 100ms ease',
-
   '&:hover:not(.base--selected)': {
     background: 'var(--Tab-hoverBackground)',
   },
-
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
     outlineOffset: -4,
   },
-
   '&.base--selected': {
     color: 'var(--color-primary)',
-
     '&::after': {
       content: '""',
       display: 'block',
@@ -153,21 +149,17 @@ const StyledSelectButton = styled('button')({
   lineHeight: 21 / 14,
   userSelect: 'none',
   transition: 'all 100ms ease',
-
   '&:hover': {
     backgroundColor: 'var(--Button-bg-hover)',
     borderColor: 'var(--Button-border-hover)',
     boxShadow: 'none',
   },
-
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
   },
-
   '& svg:last-child': {
     marginLeft: 'auto',
   },
-
   '& svg:first-child': {
     marginRight: 'var(--Select-spacing)',
   },
@@ -191,13 +183,11 @@ const StyledLinkButton = styled(Link)({
   lineHeight: 21 / 14,
   userSelect: 'none',
   transition: 'all 100ms ease',
-
   '&:hover': {
     backgroundColor: 'var(--LinkButton-bg-hover)',
     borderColor: 'var(--LinkButton-border-hover)',
     boxShadow: 'none',
   },
-
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
   },
@@ -221,13 +211,11 @@ const StyledButton = styled('button')({
   lineHeight: 21 / 14,
   userSelect: 'none',
   transition: 'all 100ms ease',
-
   '&:hover': {
     backgroundColor: 'var(--Button-bg-hover)',
     borderColor: 'var(--Button-border-hover)',
     boxShadow: 'none',
   },
-
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
   },
@@ -289,18 +277,15 @@ const StyledListbox = styled('ul')({
       alignItems: 'center',
       cursor: 'pointer',
       borderRadius: 'calc(var(--_listbox-radius) - var(--Select-spacing) * 0.05)',
-
       '&:hover, &.base-Option-highlighted': {
         backgroundColor: 'var(--Option-hoverBackground, var(--muidocs-palette-grey-50))',
         color: 'var(--muidocs-palette-text-primary)',
       },
-
       '&.base--selected': {
         backgroundColor: 'var(--Option-selectedBackground, var(--muidocs-palette-grey-50))',
         borderColor: 'var(--border-color)',
         color: 'var(--muidocs-palette-text-primary)',
       },
-
       '& svg:first-child': {
         color: 'var(--muidocs-palette-primary-main)',
         marginRight: 'var(--Select-spacing)',
@@ -387,7 +372,7 @@ const StyledSlider = styled(Slider)(`
     transition-duration: 120ms;
     transform-origin: center;
 
-    :hover,
+    &:hover,
     &.${sliderClasses.focusVisible} {
       box-shadow: 0 0 0 6px var(--Slider-thumb-focus);
     }
@@ -624,7 +609,6 @@ const StyledMenuItem = styled(MenuItem)(
   list-style: none;
   padding: 6px 8px;
   margin: 4px 0;
-  border-radius: 8px;
   cursor: default;
   user-select: none;
   border-radius: min(var(--border-radius), 8px);
@@ -633,7 +617,6 @@ const StyledMenuItem = styled(MenuItem)(
   &:last-of-type {
     border-bottom: none;
   }
-
 
   &.${menuItemClasses.focusVisible} {
     outline: 3px solid var(--muidocs-palette-primary-300);
@@ -751,7 +734,6 @@ const StyledInputElement = styled('input')({
   fontFamily: 'var(--muidocs-font-family)',
   lineHeight: 21 / 14,
   boxShadow: 'var(--formControl-shadow, 0px 2px 2px rgba(205, 210, 215, 0.3))',
-
   '&:hover': {
     borderColor: 'var(--Input-border)',
   },

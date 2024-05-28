@@ -11,7 +11,7 @@ export default {
   },
   overrides: [
     {
-      files: ['**/*.js', '**/*.cjs', '**/*.mjs', '**/*.jsx', '**/*.ts', '**/*.tsx'],
+      files: ['**/*.js', '**/*.cjs', '**/*.mjs', '**/*.ts', '**/*.tsx'],
       customSyntax: 'postcss-styled-syntax',
     },
   ],
