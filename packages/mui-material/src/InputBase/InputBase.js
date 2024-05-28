@@ -536,6 +536,8 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   return (
     <React.Fragment>
       {!disableInjectingGlobalStyles && typeof InputGlobalStyles === 'function' && (
+        // For Emotion/Styled-components, InputGlobalStyles will be a function
+        // For Pigment CSS, this has no effect because the InputGlobalStyles will be null.
         <InputGlobalStyles />
       )}
       <Root
