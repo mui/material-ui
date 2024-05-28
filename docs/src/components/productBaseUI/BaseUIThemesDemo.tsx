@@ -666,7 +666,6 @@ const StyledMenuListbox = styled('ul')`
   padding: 6px;
   margin: 12px 0;
   min-width: 230px;
-  border-radius: 12px;
   overflow: auto;
   outline: 0;
   background-color: var(--muidocs-palette-background-default);
