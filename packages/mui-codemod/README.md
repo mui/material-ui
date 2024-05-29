@@ -1008,6 +1008,32 @@ npx @mui/codemod@next deprecations/circular-progress-classes <path>
 npx @mui/codemod@next deprecations/divider-props <path>
 ```
 
+#### `filled-input-props`
+
+```diff
+ <FilledInput
+-  components={{ Input: CustomInput, Root: CustomRoot }}
++  slots={{ input: CustomInput, root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiFilledInput: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
++    slots: { input: CustomInput, root: CustomRoot },
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/filled-input-props <path>
+```
+
 #### `form-control-label-props`
 
 ```diff
@@ -1068,6 +1094,58 @@ npx @mui/codemod@next deprecations/list-item-props <path>
 
 ```bash
 npx @mui/codemod@next deprecations/grid-props <path>
+```
+
+#### `input-base-props`
+
+```diff
+ <InputBase
+-  components={{ Input: CustomInput, Root: CustomRoot }}
++  slots={{ input: CustomInput, root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiInputBase: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
++    slots: { input: CustomInput, root: CustomRoot },
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/input-base-props <path>
+```
+
+#### `input-props`
+
+```diff
+ <Input
+-  components={{ Input: CustomInput, Root: CustomRoot }}
++  slots={{ input: CustomInput, root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiInput: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
++    slots: { input: CustomInput, root: CustomRoot },
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/input-props <path>
 ```
 
 #### `pagination-item-classes`
@@ -1180,6 +1258,32 @@ npx @mui/codemod@next deprecations/pagination-item-props <path>
 
 ```bash
 npx @mui/codemod@next deprecations/popper-props <path>
+```
+
+#### `outlined-input-props`
+
+```diff
+ <OutlinedInput
+-  components={{ Input: CustomInput, Root: CustomRoot }}
++  slots={{ input: CustomInput, root: CustomRoot }}
+-  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
++  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
+ />
+```
+
+```diff
+ MuiOutlinedInput: {
+   defaultProps: {
+-    components: { Input: CustomInput, Root: CustomRoot }
++    slots: { input: CustomInput, root: CustomRoot },
+-    componentsProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }
++    slotProps: { input: { id: 'test-input-id' }, root: { id: 'test-root-id' } },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/outlined-input-props <path>
 ```
 
 #### `slider-props`
