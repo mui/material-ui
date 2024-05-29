@@ -46,7 +46,7 @@ export default function MuiLogoMenu({ smallerMargin, marginLeft }: MuiLogoMenuPr
   const handleCopy = (svgSnippet: string) => {
     setCopied(true);
     copy(svgSnippet).then(() => {
-      setTimeout(() => setCopied(false), 500000);
+      setTimeout(() => setCopied(false), 3500);
       handleClose();
     });
   };
@@ -58,9 +58,14 @@ export default function MuiLogoMenu({ smallerMargin, marginLeft }: MuiLogoMenuPr
         href="/"
         aria-label="Go to homepage"
         onContextMenu={handleContextMenu}
-        sx={{ mr: smallerMargin ? 1 : 1.5, ml: marginLeft ? 1.5 : undefined, cursor: 'default' }}
+        sx={{
+          '& > svg': { m: '0 !important' }, // override the 2px margin-left coming from the Link component
+          mr: smallerMargin ? 1 : 1.5,
+          ml: marginLeft ? 1.5 : undefined,
+          cursor: 'default',
+        }}
       >
-        <SvgMuiLogomark height={30} width={30} />
+        <SvgMuiLogomark height={28} width={28} />
       </Box>
       <Menu
         open={contextMenu !== null}
@@ -75,7 +80,7 @@ export default function MuiLogoMenu({ smallerMargin, marginLeft }: MuiLogoMenuPr
               fill: (theme.vars || theme).palette.text.tertiary,
               color: (theme.vars || theme).palette.text.tertiary,
             },
-            '&:hover, &:focus': {
+            '&:hover, &:focus-visible': {
               '& * path, .MuiSvgIcon-root': {
                 fill: (theme.vars || theme).palette.text.primary,
                 color: (theme.vars || theme).palette.text.primary,
@@ -102,7 +107,7 @@ export default function MuiLogoMenu({ smallerMargin, marginLeft }: MuiLogoMenuPr
           message={
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <CheckCircleRoundedIcon sx={{ fontSize: '18px', color: 'success.main' }} />
-              Copied to clipboard!
+              Logo SVG copied to clipboard!
             </Box>
           }
         />

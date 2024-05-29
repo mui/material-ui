@@ -873,7 +873,7 @@ export function getThemedComponents(): ThemeOptions {
                 borderRadius: '6px',
                 fontSize: theme.typography.pxToRem(14),
                 fontWeight: theme.typography.fontWeightMedium,
-                '&:hover, &:focus': {
+                '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.grey[100],
                   color: (theme.vars || theme).palette.text.primary,
                 },
@@ -891,7 +891,7 @@ export function getThemedComponents(): ThemeOptions {
               backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               borderColor: (theme.vars || theme).palette.primaryDark[700],
               '& .MuiMenuItem-root': {
-                '&:hover, &:focus': {
+                '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
                 '&.Mui-selected': {
