@@ -18,26 +18,11 @@ export interface ListItemTextSlots {
   secondary?: React.ElementType;
 }
 
-export type ListItemTextSlotsAndSlotProps<
-  PrimaryTypographyComponent extends React.ElementType = 'span',
-  SecondaryTypographyComponent extends React.ElementType = 'p',
-> = CreateSlotsAndSlotProps<
+export type ListItemTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
   ListItemTextSlots,
   {
-    primary: SlotProps<
-      React.ElementType<
-        TypographyProps<PrimaryTypographyComponent, { component?: PrimaryTypographyComponent }>
-      >,
-      {},
-      ListItemTextOwnerState
-    >;
-    secondary: SlotProps<
-      React.ElementType<
-        TypographyProps<SecondaryTypographyComponent, { component?: SecondaryTypographyComponent }>
-      >,
-      {},
-      ListItemTextOwnerState
-    >;
+    primary: SlotProps<React.ElementType<HTMLSpanElement>, {}, ListItemTextOwnerState>;
+    secondary: SlotProps<React.ElementType<HTMLParagraphElement>, {}, ListItemTextOwnerState>;
   }
 >;
 
@@ -45,7 +30,7 @@ export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p',
 > extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
-    ListItemTextSlotsAndSlotProps<PrimaryTypographyComponent, SecondaryTypographyComponent> {
+    ListItemTextSlotsAndSlotProps {
   /**
    * Alias for the `primary` prop.
    */

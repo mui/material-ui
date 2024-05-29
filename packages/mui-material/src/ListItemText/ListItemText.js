@@ -209,36 +209,8 @@ ListItemText.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    primary: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.object,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        key: PropTypes.any,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
-    secondary: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.object,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        key: PropTypes.any,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
+    primary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    secondary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
