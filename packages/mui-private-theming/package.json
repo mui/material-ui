@@ -42,7 +42,7 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.16",
     "@types/react": "^18.2.55",
