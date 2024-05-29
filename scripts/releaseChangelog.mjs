@@ -111,7 +111,18 @@ async function main(argv) {
       return chalk.red("TODO INSERT AUTHOR'S USERNAME");
     }
 
-    return commit.author?.login;
+    const authorLogin = commit.author.login;
+
+    if (authorLogin === 'github-actions[bot]') {
+      const authorFromMessage = /\(@(?<author>[a-zA-Z0-9-_]+)\) \(#[\d]+\)/.exec(
+        commit.commit.message.split('\n')[0],
+      );
+      if (authorFromMessage.groups?.author) {
+        return authorFromMessage.groups.author;
+      }
+    }
+
+    return authorLogin;
   };
 
   const authors = Array.from(
