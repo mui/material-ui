@@ -66,34 +66,6 @@ export interface ConformanceOptions {
 }
 
 /**
- * @param {object} node
- * @returns
- */
-function assertDOMNode(node: unknown) {
-  // duck typing a DOM node
-  expect(typeof (node as HTMLElement).nodeName).to.equal('string');
-}
-
-/**
- * Utility method to make assertions about the ref on an element
- * The element should have a component wrapped in withStyles as the root
- */
-function testRef(
-  element: React.ReactElement<any>,
-  mount: ConformanceOptions['mount'],
-  onRef: (instance: unknown, wrapper: import('enzyme').ReactWrapper) => void = assertDOMNode,
-) {
-  if (!mount) {
-    throwMissingPropError('mount');
-  }
-
-  const ref = React.createRef();
-
-  const wrapper = mount(<React.Fragment>{React.cloneElement(element, { ref })}</React.Fragment>);
-  onRef(ref.current, wrapper);
-}
-
-/**
  * Glossary
  * - root component:
  *   - renders the outermost host component
@@ -209,16 +181,17 @@ export function describeRef(
   describe('ref', () => {
     it(`attaches the ref`, () => {
       // type def in ConformanceOptions
-      const { inheritComponent, mount, refInstanceof } = getOptions();
+      const { render, refInstanceof } = getOptions();
 
-      testRef(element, mount, (instance, wrapper) => {
-        expect(instance).to.be.instanceof(refInstanceof);
+      if (!render) {
+        throwMissingPropError('render');
+      }
 
-        if (inheritComponent !== undefined && (instance as HTMLElement).nodeType === 1) {
-          const rootHost = findOutermostIntrinsic(wrapper);
-          expect(instance).to.equal(rootHost.instance());
-        }
-      });
+      const ref = React.createRef();
+
+      render(React.cloneElement(element, { ref }));
+
+      expect(ref.current).to.be.instanceof(refInstanceof);
     });
   });
 }

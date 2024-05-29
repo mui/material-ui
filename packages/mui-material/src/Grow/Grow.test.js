@@ -17,7 +17,7 @@ describe('<Grow />', () => {
   };
 
   describeConformance(
-    <Grow in>
+    <Grow in appear={false}>
       <div />
     </Grow>,
     () => ({
