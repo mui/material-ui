@@ -206,7 +206,9 @@ export default function CustomizedTreeView() {
       sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
     >
       <CardContent>
-        <Typography variant="subtitle2">Product tree</Typography>
+        <Typography variant="subtitle2" component="p">
+          Product tree
+        </Typography>
         <RichTreeView
           items={ITEMS}
           aria-label="pages"

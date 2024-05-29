@@ -18,7 +18,7 @@ export default function OptionsMenu() {
   };
   return (
     <React.Fragment>
-      <MenuButton onClick={handleClick}>
+      <MenuButton ariaLabel="Options menu button" onClick={handleClick}>
         <MoreVertRoundedIcon />
       </MenuButton>
       <Menu
@@ -30,7 +30,7 @@ export default function OptionsMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem sx={{ mt: 1 }}>
+        <MenuItem>
           <Avatar
             sizes="small"
             alt="Riley Carter"

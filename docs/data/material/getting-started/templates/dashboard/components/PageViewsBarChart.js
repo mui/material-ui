@@ -13,7 +13,7 @@ export default function PageViewsBarChart() {
   return (
     <Card variant="outlined" sx={{ width: '100%' }}>
       <CardContent>
-        <Typography variant="subtitle2" gutterBottom>
+        <Typography variant="subtitle2" component="h2" gutterBottom>
           Page views and downloads
         </Typography>
         <BarChart

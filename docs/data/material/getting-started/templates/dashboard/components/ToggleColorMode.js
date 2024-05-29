@@ -10,7 +10,7 @@ function ToggleColorMode({ mode, toggleColorMode }) {
     <MenuButton
       onClick={toggleColorMode}
       size="small"
-      aria-label="button to toggle theme"
+      aria-label="Button to toggle theme"
     >
       {mode === 'dark' ? (
         <WbSunnyRoundedIcon fontSize="small" />
