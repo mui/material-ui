@@ -21,6 +21,7 @@ describe('<Grow />', () => {
       <div />
     </Grow>,
     () => ({
+      render,
       classes: {},
       inheritComponent: Transition,
       refInstanceof: window.HTMLDivElement,

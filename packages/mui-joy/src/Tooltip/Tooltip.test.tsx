@@ -52,6 +52,7 @@ describe('<Tooltip />', () => {
         'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
+        'propsSpread', // props are spread to root and children
       ],
     }),
   );

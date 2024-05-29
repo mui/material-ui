@@ -170,7 +170,7 @@ export function testComponentProp(
 }
 
 /**
- * MUI components can spread additional props to a documented component.
+ * MUI components spread additional props to its root.
  */
 export function testPropsSpread(
   element: React.ReactElement<any>,
@@ -178,24 +178,21 @@ export function testPropsSpread(
 ) {
   it(`spreads props to the root component`, () => {
     // type def in ConformanceOptions
-    const { inheritComponent, mount } = getOptions();
-    if (!mount) {
-      throwMissingPropError('mount');
-    }
+    const { render } = getOptions();
 
-    if (inheritComponent === undefined) {
-      throw new TypeError(
-        'Unable to test props spread without `inheritComponent`. Either skip the test or pass a React element type.',
-      );
+    if (!render) {
+      throwMissingPropError('render');
     }
 
     const testProp = 'data-test-props-spread';
     const value = randomStringValue();
+    const testId = randomStringValue();
 
-    const wrapper = mount(React.cloneElement(element, { [testProp]: value }));
-    const root = findRootComponent(wrapper, inheritComponent);
+    const { getByTestId } = render(
+      React.cloneElement(element, { [testProp]: value, 'data-testid': testId }),
+    );
 
-    expect(root.props()).to.have.property(testProp, value);
+    expect(getByTestId(testId)).to.have.attribute(testProp, value);
   });
 }
 
