@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-  experimental_extendTheme as extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
-  styled,
-  useTheme,
-  Overlays,
-} from '@mui/material/styles';
+import { extendTheme, CssVarsProvider, styled, useTheme, Overlays } from '@mui/material/styles';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 
 const customTheme = extendTheme({

@@ -100,9 +100,9 @@ export default function ComponentPageTabs(props) {
         className="component-tabs"
         sx={{
           position: 'sticky',
-          top: 65, // to be positioned below the app bar
-          width: '100%',
+          top: 57, // to be positioned below the app bar
           mt: 2,
+          mx: { xs: -2, sm: -1 },
           backgroundColor: 'background.default',
           borderBottom: 1,
           borderColor: 'divider',
