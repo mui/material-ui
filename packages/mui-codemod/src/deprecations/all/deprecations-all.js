@@ -14,6 +14,7 @@ import transformToggleButtonGroupClasses from '../toggle-button-group-classes';
 import transformStepLabelProps from '../step-label-props';
 import transformBackdropProps from '../backdrop-props';
 import transformStepConnectorClasses from '../step-connector-classes';
+import transformListItemTextProps from '../list-item-text-props';
 import transformCircularProgressClasses from '../circular-progress-classes';
 import transformGridProps from '../grid-props';
 import transformSpeedDialProps from '../speed-dial-props';
@@ -40,6 +41,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformStepLabelProps(file, api, options);
   file.source = transformBackdropProps(file, api, options);
   file.source = transformStepConnectorClasses(file, api, options);
+  file.source = transformListItemTextProps(file, api, options);
   file.source = transformCircularProgressClasses(file, api, options);
   file.source = transformSpeedDialProps(file, api, options);
   file.source = transformTextFieldProps(file, api, options);
