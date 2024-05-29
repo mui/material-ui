@@ -59,7 +59,7 @@ export interface ModalOwnProps extends ModalSlotsAndSlotProps {
   /**
    * A single child content element.
    */
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   /**
    * Override or extend the styles applied to the component.
    */

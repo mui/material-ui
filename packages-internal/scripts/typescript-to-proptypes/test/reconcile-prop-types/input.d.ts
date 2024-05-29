@@ -4,4 +4,4 @@ interface Props {
   children?: React.ReactNode;
 }
 
-export default function Component(props: Props): JSX.Element;
+export default function Component(props: Props): React.JSX.Element;

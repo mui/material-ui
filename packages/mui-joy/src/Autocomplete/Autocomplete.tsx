@@ -735,7 +735,7 @@ interface AutocompleteComponent {
     FreeSolo extends boolean | undefined = undefined,
   >(
     props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
-  ): JSX.Element;
+  ): React.JSX.Element;
   propTypes?: any;
 }
 

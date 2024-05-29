@@ -64,7 +64,7 @@ const CheckboxRoot = styled(SwitchBase, {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
+      .filter(([, palette]) => palette && palette.main)
       .map(([color]) => ({
         props: { color, disableRipple: false },
         style: {
@@ -76,7 +76,7 @@ const CheckboxRoot = styled(SwitchBase, {
         },
       })),
     ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
+      .filter(([, palette]) => palette && palette.main)
       .map(([color]) => ({
         props: { color },
         style: {
@@ -117,6 +117,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
     inputProps,
     size = 'medium',
+    disableRipple = false,
     className,
     ...other
   } = props;
@@ -126,6 +127,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const ownerState = {
     ...props,
+    disableRipple,
     color,
     indeterminate,
     size,

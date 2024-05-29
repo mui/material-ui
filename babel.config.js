@@ -13,7 +13,7 @@ const productionPlugins = [
 ];
 
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['regressions', 'modern', 'stable', 'rollup']);
+  const useESModules = api.env(['regressions', 'modern', 'stable']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
@@ -67,12 +67,6 @@ module.exports = function getBabelConfig(api) {
       },
     ],
     'babel-plugin-optimize-clsx',
-    // Need the following 3 proposals for all targets in .browserslistrc.
-    // With our usage the transpiled loose mode is equivalent to spec mode.
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
-    ['@babel/plugin-proposal-private-methods', { loose: true }],
-    ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
-    ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     [
       '@babel/plugin-transform-runtime',
       {
@@ -138,16 +132,6 @@ module.exports = function getBabelConfig(api) {
                 modules: './modules',
               },
               root: ['./'],
-            },
-          ],
-        ],
-      },
-      rollup: {
-        plugins: [
-          [
-            'babel-plugin-module-resolver',
-            {
-              alias: defaultAlias,
             },
           ],
         ],

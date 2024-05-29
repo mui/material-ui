@@ -1,5 +1,6 @@
 {
   "componentDescription": "Responsively hides children based on the selected implementation.",
+  "deprecationInfo": "The Hidden component was deprecated in Material UI v5. To learn more, see <a href=\"/material-ui/migration/v5-component-changes/#hidden\">the Hidden section</a> of the migration docs.",
   "propDescriptions": {
     "children": { "description": "The content of the component." },
     "implementation": {

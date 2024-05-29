@@ -143,7 +143,7 @@ const LinearProgressRoot = styled('span', {
   },
   variants: [
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main)
+      .filter(([, value]) => value && value.main)
       .map(([color]) => ({
         props: { color },
         style: {
@@ -201,7 +201,7 @@ const LinearProgressDashed = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main)
+        .filter(([, value]) => value && value.main)
         .map(([color]) => {
           const backgroundColor = getColorShade(theme, color);
           return {
@@ -252,7 +252,7 @@ const LinearProgressBar1 = styled('span', {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main)
+      .filter(([, value]) => value && value.main)
       .map(([color]) => ({
         props: { color },
         style: {
@@ -317,7 +317,7 @@ const LinearProgressBar2 = styled('span', {
   transformOrigin: 'left',
   variants: [
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main)
+      .filter(([, value]) => value && value.main)
       .map(([color]) => ({
         props: { color },
         style: {
@@ -339,7 +339,7 @@ const LinearProgressBar2 = styled('span', {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main)
+      .filter(([, value]) => value && value.main)
       .map(([color]) => ({
         props: { color, variant: 'buffer' },
         style: {

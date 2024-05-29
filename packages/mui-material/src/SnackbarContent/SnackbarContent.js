@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Paper from '../Paper';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
+
+const useThemeProps = createUseThemeProps('MuiSnackbarContent');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
