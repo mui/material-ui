@@ -50,6 +50,15 @@ export interface ConformanceOptions {
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: string;
+  /**
+   * A custom React component to test if the component prop is implemented correctly.
+   *
+   * It must either:
+   * - Be a string that is a valid HTML tag, or
+   * - Contain at least one DOM which has `data-testid="custom"`
+   *
+   * If not provided, the default 'em' element is used
+   */
   testComponentPropWith?: string | React.ElementType;
   testDeepOverrides?: SlotTestOverride | SlotTestOverride[];
   testRootOverrides?: SlotTestOverride;
@@ -133,14 +142,23 @@ export function testComponentProp(
 ) {
   describe('prop: component', () => {
     it('can render another root component with the `component` prop', () => {
-      const { mount, testComponentPropWith: component = 'em' } = getOptions();
-      if (!mount) {
-        throwMissingPropError('mount');
+      const { render, testComponentPropWith: component = 'em' } = getOptions();
+      if (!render) {
+        throwMissingPropError('render');
       }
 
-      const wrapper = mount(React.cloneElement(element, { component }));
+      if (typeof component === 'string') {
+        const testId = randomStringValue();
 
-      expect(findRootComponent(wrapper, component).exists()).to.equal(true);
+        const { getByTestId } = render(
+          React.cloneElement(element, { component, 'data-testid': testId }),
+        );
+        expect(getByTestId(testId)).not.to.equal(null);
+        expect(getByTestId(testId).nodeName.toLowerCase()).to.eq(component);
+      } else {
+        const { getByTestId } = render(React.cloneElement(element, { component }));
+        expect(getByTestId('custom')).not.to.equal(null);
+      }
     });
   });
 }

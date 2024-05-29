@@ -24,7 +24,7 @@ describe('<SvgIcon />', () => {
       muiName: 'MuiSvgIcon',
       refInstanceof: window.SVGSVGElement,
       testComponentPropWith: (props) => (
-        <svg {...props}>
+        <svg {...props} data-testid="custom">
           <defs>
             <linearGradient id="gradient1">
               <stop offset="20%" stopColor="#39F" />
