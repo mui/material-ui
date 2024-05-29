@@ -80,15 +80,15 @@ importers:
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:packages/test-utils
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:packages-internal/scripts
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:packages-internal/test-utils
       '@mui/joy':
         specifier: workspace:*
         version: link:packages/mui-joy/build
@@ -108,8 +108,8 @@ importers:
         specifier: ^0.0.10
         version: 0.0.10(@types/react@18.2.55)(react@18.2.0)
       '@playwright/test':
-        specifier: 1.44.0
-        version: 1.44.0
+        specifier: 1.44.1
+        version: 1.44.1
       '@types/enzyme':
         specifier: ^3.10.18
         version: 3.10.18
@@ -189,8 +189,8 @@ importers:
         specifier: ^15.0.0
         version: 15.0.0(eslint-plugin-import@2.29.1)(eslint@8.57.0)
       eslint-config-airbnb-typescript:
-        specifier: ^17.1.0
-        version: 17.1.0(@typescript-eslint/eslint-plugin@6.21.0)(@typescript-eslint/parser@6.21.0)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
+        specifier: ^18.0.0
+        version: 18.0.0(@typescript-eslint/eslint-plugin@6.21.0)(@typescript-eslint/parser@6.21.0)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.0)
@@ -306,8 +306,8 @@ importers:
         specifier: ^5.3.10
         version: 5.3.10(webpack@5.91.0)
       tsx:
-        specifier: ^4.10.5
-        version: 4.10.5
+        specifier: ^4.11.0
+        version: 4.11.0
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -364,7 +364,7 @@ importers:
         version: link:../local-ui-lib
       next:
         specifier: latest
-        version: 14.2.3(@babel/core@7.24.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 14.2.3(@babel/core@7.24.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -452,8 +452,8 @@ importers:
         specifier: 18.3.0
         version: 18.3.0
       '@vitejs/plugin-react':
-        specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.11)
+        specifier: ^4.3.0
+        version: 4.3.0(vite@5.2.11)
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
@@ -509,8 +509,8 @@ importers:
         specifier: ^10.10.0
         version: 10.10.0
       playwright:
-        specifier: ^1.44.0
-        version: 1.44.0
+        specifier: ^1.44.1
+        version: 1.44.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -581,8 +581,8 @@ importers:
         specifier: ^6.5.2
         version: 6.5.2
       '@fortawesome/react-fontawesome':
-        specifier: ^0.2.1
-        version: 0.2.1(@fortawesome/fontawesome-svg-core@6.5.2)(react@18.2.0)
+        specifier: ^0.2.2
+        version: 0.2.2(@fortawesome/fontawesome-svg-core@6.5.2)(react@18.2.0)
       '@mui/base':
         specifier: workspace:*
         version: link:../packages/mui-base/build
@@ -623,32 +623,32 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-utils/build
       '@mui/x-charts':
-        specifier: 7.5.0
-        version: 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.5.1
+        version: 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid':
-        specifier: 7.5.0
-        version: 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.5.1
+        version: 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-generator':
-        specifier: 7.5.0
-        version: 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.5.1
+        version: 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-premium':
-        specifier: 7.5.0
-        version: 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.5.1
+        version: 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-pro':
-        specifier: 7.5.0
-        version: 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.5.1
+        version: 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-date-pickers':
-        specifier: 7.5.0
-        version: 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.5.1
+        version: 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-date-pickers-pro':
-        specifier: 7.5.0
-        version: 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.5.1
+        version: 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license':
-        specifier: 7.2.0
-        version: 7.2.0(@types/react@18.2.55)(react@18.2.0)
+        specifier: 7.2.1
+        version: 7.2.1(@types/react@18.2.55)(react@18.2.0)
       '@mui/x-tree-view':
-        specifier: 7.5.0
-        version: 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.5.1
+        version: 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -697,6 +697,9 @@ importers:
       date-fns-jalali:
         specifier: ^2.21.3-1
         version: 2.21.3-1
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
       feed:
         specifier: ^4.2.2
         version: 4.2.2
@@ -797,8 +800,8 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
       react-virtuoso:
-        specifier: ^4.7.10
-        version: 4.7.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^4.7.11
+        version: 4.7.11(react-dom@18.2.0)(react@18.2.0)
       react-window:
         specifier: ^1.8.10
         version: 1.8.10(react-dom@18.2.0)(react@18.2.0)
@@ -827,15 +830,15 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.24.6
         version: 7.24.6(@babel/core@7.24.6)
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:../packages/test-utils
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../packages-internal/docs-utils
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:../packages-internal/scripts
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../packages-internal/test-utils
       '@types/autosuggest-highlight':
         specifier: ^3.2.3
         version: 3.2.3
@@ -885,8 +888,8 @@ importers:
         specifier: ^5.1.2
         version: 5.1.2
       playwright:
-        specifier: ^1.44.0
-        version: 1.44.0
+        specifier: ^1.44.1
+        version: 1.44.1
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -976,6 +979,112 @@ importers:
         specifier: ^5.0.7
         version: 5.0.7
 
+  packages-internal/test-utils:
+    dependencies:
+      '@babel/plugin-transform-modules-commonjs':
+        specifier: ^7.24.6
+        version: 7.24.6(@babel/core@7.24.6)
+      '@babel/preset-typescript':
+        specifier: ^7.24.6
+        version: 7.24.6(@babel/core@7.24.6)
+      '@babel/register':
+        specifier: ^7.24.6
+        version: 7.24.6(@babel/core@7.24.6)
+      '@babel/runtime':
+        specifier: ^7.24.6
+        version: 7.24.6
+      '@emotion/cache':
+        specifier: ^11.11.0
+        version: 11.11.0
+      '@emotion/react':
+        specifier: ^11.11.4
+        version: 11.11.4(@types/react@18.2.55)(react@18.2.0)
+      '@mnajdova/enzyme-adapter-react-18':
+        specifier: ^0.2.0
+        version: 0.2.0(enzyme@3.11.0)(react-dom@18.2.0)(react@18.2.0)
+      '@testing-library/dom':
+        specifier: ^10.1.0
+        version: 10.1.0
+      '@testing-library/react':
+        specifier: ^15.0.7
+        version: 15.0.7(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      chai:
+        specifier: ^4.4.1
+        version: 4.4.1
+      chai-dom:
+        specifier: ^1.12.0
+        version: 1.12.0(chai@4.4.1)
+      dom-accessibility-api:
+        specifier: ^0.6.3
+        version: 0.6.3
+      enzyme:
+        specifier: ^3.11.0
+        version: 3.11.0
+      format-util:
+        specifier: ^1.0.5
+        version: 1.0.5
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.2.0
+      jsdom:
+        specifier: ^24.0.0
+        version: 24.0.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      mocha:
+        specifier: ^10.4.0
+        version: 10.4.0
+      playwright:
+        specifier: ^1.44.1
+        version: 1.44.1
+      prop-types:
+        specifier: ^15.8.1
+        version: 15.8.1
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-test-renderer:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      sinon:
+        specifier: ^16.1.3
+        version: 16.1.3
+    devDependencies:
+      '@types/chai':
+        specifier: ^4.3.16
+        version: 4.3.16
+      '@types/chai-dom':
+        specifier: ^1.11.3
+        version: 1.11.3
+      '@types/enzyme':
+        specifier: ^3.10.18
+        version: 3.10.18
+      '@types/format-util':
+        specifier: ^1.0.4
+        version: 1.0.4
+      '@types/prop-types':
+        specifier: ^15.7.12
+        version: 15.7.12
+      '@types/react':
+        specifier: 18.2.55
+        version: 18.2.55
+      '@types/react-dom':
+        specifier: 18.3.0
+        version: 18.3.0
+      '@types/react-test-renderer':
+        specifier: ^18.3.0
+        version: 18.3.0
+      '@types/sinon':
+        specifier: ^17.0.3
+        version: 17.0.3
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
   packages/api-docs-builder:
     dependencies:
       '@babel/core':
@@ -1058,8 +1167,8 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1
       sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^16.1.3
+        version: 16.1.3
 
   packages/api-docs-builder-core:
     dependencies:
@@ -1092,8 +1201,8 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1
       sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^16.1.3
+        version: 16.1.3
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -1124,8 +1233,8 @@ importers:
         version: 9.0.1
     optionalDependencies:
       aws-sdk:
-        specifier: ^2.1623.0
-        version: 2.1623.0
+        specifier: ^2.1628.0
+        version: 2.1628.0
     devDependencies:
       claudia:
         specifier: ^5.14.1
@@ -1196,8 +1305,8 @@ importers:
         specifier: ^7.24.6
         version: 7.24.6
       '@floating-ui/react-dom':
-        specifier: ^2.0.8
-        version: 2.0.8(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^2.1.0
+        version: 2.1.0(react-dom@18.2.0)(react@18.2.0)
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -1214,12 +1323,12 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:../test-utils
       '@mui/internal-babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../../packages-internal/test-utils
       '@testing-library/react':
         specifier: ^15.0.7
         version: 15.0.7(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
@@ -1257,8 +1366,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^16.1.3
+        version: 16.1.3
     publishDirectory: build
 
   packages/mui-codemod:
@@ -1488,9 +1597,9 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material/build
@@ -1528,8 +1637,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^16.1.3
+        version: 16.1.3
     publishDirectory: build
 
   packages/mui-lab:
@@ -1562,9 +1671,9 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/material':
         specifier: workspace:*
         version: link:../mui-material/build
@@ -1593,8 +1702,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^16.1.3
+        version: 16.1.3
     publishDirectory: build
 
   packages/mui-material:
@@ -1642,12 +1751,12 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:../test-utils
       '@mui/internal-babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../../packages-internal/test-utils
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -1688,8 +1797,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       playwright:
-        specifier: ^1.44.0
-        version: 1.44.0
+        specifier: ^1.44.1
+        version: 1.44.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1700,8 +1809,8 @@ importers:
         specifier: ^6.23.1
         version: 6.23.1(react-dom@18.2.0)(react@18.2.0)
       sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^16.1.3
+        version: 16.1.3
     publishDirectory: build
 
   packages/mui-material-nextjs:
@@ -1745,9 +1854,9 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -1786,9 +1895,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.11.5
         version: 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/styled-engine':
         specifier: workspace:*
         version: link:build
@@ -1821,9 +1930,9 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/styled-engine-sc':
         specifier: workspace:*
         version: link:build
@@ -1901,9 +2010,9 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@mui-internal/test-utils':
+      '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../test-utils
+        version: link:../../packages-internal/test-utils
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material/build
@@ -1929,8 +2038,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^16.1.3
+        version: 16.1.3
     publishDirectory: build
 
   packages/mui-system:
@@ -1966,12 +2075,12 @@ importers:
       '@emotion/styled':
         specifier: ^11.11.5
         version: 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.55)(react@18.2.0)
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:../test-utils
       '@mui/internal-babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../../packages-internal/test-utils
       '@mui/system':
         specifier: workspace:*
         version: link:build
@@ -2000,8 +2109,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^16.1.3
+        version: 16.1.3
       styled-components:
         specifier: ^6.1.11
         version: 6.1.11(react-dom@18.2.0)(react@18.2.0)
@@ -2032,12 +2141,12 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:../test-utils
       '@mui/internal-babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../../packages-internal/test-utils
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -2072,8 +2181,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^16.1.3
+        version: 16.1.3
     publishDirectory: build
 
   packages/netlify-plugin-cache-docs:
@@ -2104,112 +2213,6 @@ importers:
         specifier: ^18.19.33
         version: 18.19.33
 
-  packages/test-utils:
-    dependencies:
-      '@babel/plugin-transform-modules-commonjs':
-        specifier: ^7.24.6
-        version: 7.24.6(@babel/core@7.24.6)
-      '@babel/preset-typescript':
-        specifier: ^7.24.6
-        version: 7.24.6(@babel/core@7.24.6)
-      '@babel/register':
-        specifier: ^7.24.6
-        version: 7.24.6(@babel/core@7.24.6)
-      '@babel/runtime':
-        specifier: ^7.24.6
-        version: 7.24.6
-      '@emotion/cache':
-        specifier: ^11.11.0
-        version: 11.11.0
-      '@emotion/react':
-        specifier: ^11.11.4
-        version: 11.11.4(@types/react@18.2.55)(react@18.2.0)
-      '@mnajdova/enzyme-adapter-react-18':
-        specifier: ^0.2.0
-        version: 0.2.0(enzyme@3.11.0)(react-dom@18.2.0)(react@18.2.0)
-      '@testing-library/dom':
-        specifier: ^10.1.0
-        version: 10.1.0
-      '@testing-library/react':
-        specifier: ^15.0.7
-        version: 15.0.7(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      chai:
-        specifier: ^4.4.1
-        version: 4.4.1
-      chai-dom:
-        specifier: ^1.12.0
-        version: 1.12.0(chai@4.4.1)
-      dom-accessibility-api:
-        specifier: ^0.6.3
-        version: 0.6.3
-      enzyme:
-        specifier: ^3.11.0
-        version: 3.11.0
-      format-util:
-        specifier: ^1.0.5
-        version: 1.0.5
-      fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
-      jsdom:
-        specifier: ^24.0.0
-        version: 24.0.0
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      mocha:
-        specifier: ^10.4.0
-        version: 10.4.0
-      playwright:
-        specifier: ^1.44.0
-        version: 1.44.0
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-test-renderer:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
-    devDependencies:
-      '@types/chai':
-        specifier: ^4.3.16
-        version: 4.3.16
-      '@types/chai-dom':
-        specifier: ^1.11.3
-        version: 1.11.3
-      '@types/enzyme':
-        specifier: ^3.10.18
-        version: 3.10.18
-      '@types/format-util':
-        specifier: ^1.0.4
-        version: 1.0.4
-      '@types/prop-types':
-        specifier: ^15.7.12
-        version: 15.7.12
-      '@types/react':
-        specifier: 18.2.55
-        version: 18.2.55
-      '@types/react-dom':
-        specifier: 18.3.0
-        version: 18.3.0
-      '@types/react-test-renderer':
-        specifier: ^18.3.0
-        version: 18.3.0
-      '@types/sinon':
-        specifier: ^17.0.3
-        version: 17.0.3
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
-
   packages/waterfall: {}
 
   test:
@@ -2223,15 +2226,15 @@ importers:
       '@emotion/react':
         specifier: ^11.11.4
         version: 11.11.4(@types/react@18.2.55)(react@18.2.0)
-      '@mui-internal/test-utils':
-        specifier: workspace:^
-        version: link:../packages/test-utils
       '@mui/base':
         specifier: workspace:*
         version: link:../packages/mui-base/build
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../packages/mui-icons-material/build
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../packages-internal/test-utils
       '@mui/joy':
         specifier: workspace:*
         version: link:../packages/mui-joy/build
@@ -2248,8 +2251,8 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-utils/build
       '@playwright/test':
-        specifier: 1.44.0
-        version: 1.44.0
+        specifier: 1.44.1
+        version: 1.44.1
       '@testing-library/dom':
         specifier: ^9.3.4
         version: 9.3.4
@@ -2284,8 +2287,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       playwright:
-        specifier: ^1.44.0
-        version: 1.44.0
+        specifier: ^1.44.1
+        version: 1.44.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -2302,8 +2305,8 @@ importers:
         specifier: ^6.23.1
         version: 6.23.1(react-dom@18.2.0)(react@18.2.0)
       sinon:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^16.1.3
+        version: 16.1.3
       styled-components:
         specifier: ^6.1.11
         version: 6.1.11(react-dom@18.2.0)(react@18.2.0)
@@ -3568,8 +3571,8 @@ packages:
       '@babel/plugin-transform-react-jsx': 7.24.6(@babel/core@7.24.6)
     dev: true
 
-  /@babel/plugin-transform-react-jsx-self@7.24.1(@babel/core@7.24.6):
-    resolution: {integrity: sha512-kDJgnPujTmAZ/9q2CN4m2/lRsUUPDvsG3+tSHWUJIzMGTt5U/b/fwWd3RO3n+5mjLrsBrVa5eKFRVSQbi3dF1w==}
+  /@babel/plugin-transform-react-jsx-self@7.24.6(@babel/core@7.24.6):
+    resolution: {integrity: sha512-FfZfHXtQ5jYPQsCRyLpOv2GeLIIJhs8aydpNh39vRDjhD411XcfWDni5i7OjP/Rs8GAtTn7sWFFELJSHqkIxYg==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.24.6
@@ -4576,8 +4579,8 @@ packages:
       '@floating-ui/utils': 0.2.1
     dev: false
 
-  /@floating-ui/react-dom@2.0.8(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-HOdqOt3R3OGeTKidaLvJKcgg75S6tibQ3Tif4eyd91QnIJWr0NLvoXFpJA/j8HqkFSL68GDca9AuyWEHlhyClw==}
+  /@floating-ui/react-dom@2.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-lNzj5EQmEKn5FFKc04+zasr09h/uX8RtJRNj5gUXsSQIXHVWTVh+hVAg1vOMCexkX8EgvemMvIFpQfkosnVNyA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -4613,8 +4616,8 @@ packages:
       '@fortawesome/fontawesome-common-types': 6.5.2
     dev: false
 
-  /@fortawesome/react-fontawesome@0.2.1(@fortawesome/fontawesome-svg-core@6.5.2)(react@18.2.0):
-    resolution: {integrity: sha512-ldr5QO2MneAX5W5WBCYB2pZp/PiHDD1hy9YEBLcXUyJb0qnO86oP8RU+CgmYVSH/R4Dbe2ernhcWOrcgaKD9NQ==}
+  /@fortawesome/react-fontawesome@0.2.2(@fortawesome/fontawesome-svg-core@6.5.2)(react@18.2.0):
+    resolution: {integrity: sha512-EnkrprPNqI6SXJl//m29hpaNzOp1bruISWaOiRtkMi/xSvHJlzc2j2JAYS7egxt/EbjSNV/k6Xy0AQI6vB2+1g==}
     peerDependencies:
       '@fortawesome/fontawesome-svg-core': ~1 || ~6
       react: '>=16.3'
@@ -5112,7 +5115,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.24.6
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.1.0(react-dom@18.2.0)(react@18.2.0)
       '@mui/types': 7.2.14(@types/react@18.2.55)
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
       '@popperjs/core': 2.11.8
@@ -5135,7 +5138,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.24.6
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.1.0(react-dom@18.2.0)(react@18.2.0)
       '@mui/types': 7.2.14(@types/react@18.2.55)
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
       '@popperjs/core': 2.11.8
@@ -5158,7 +5161,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.24.6
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.1.0(react-dom@18.2.0)(react@18.2.0)
       '@mui/types': 7.2.14(@types/react@18.2.55)
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
       '@popperjs/core': 2.11.8
@@ -5421,8 +5424,8 @@ packages:
       react: 18.2.0
       react-is: 18.2.0
 
-  /@mui/x-charts@7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-paWplffe+pNgiK3NFKl9zklzA72oRcvIuq2LsDxaMAl7JoUMEmgX7IMpc6SLPy9e3XM1XRpSbkJ4wXITlP8J5A==}
+  /@mui/x-charts@7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-8vMQyJL13cGXMbp+gm2QdABzFuOpP4hxEa/o6nL3ZpVNp7hja6h9F5bc0FNGR8h/eRN+4+swDnrEebnR0w4cbA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.9.0
@@ -5458,8 +5461,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-data-grid-generator@7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-+yoBZufbklyurLiLv0qTDVRYc13V+qHmpIc0iF8MYrWgSni+g07Rz12BPsEJLBOc9OiliOB1DsXZvJCsxlJBtQ==}
+  /@mui/x-data-grid-generator@7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-3x3wLwHeq0vBrnrD3Zh6hPCIuOQrjIL2JJ9lhEp6YFAvH69JkzlIfMnV5Q3pAbUVFY8mE4SBaUG6abH/OGZQGQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@mui/icons-material': ^5.4.1
@@ -5470,7 +5473,7 @@ packages:
       '@mui/base': 5.0.0-beta.40(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/icons-material': link:packages/mui-icons-material/build
       '@mui/material': link:packages/mui-material/build
-      '@mui/x-data-grid-premium': 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-data-grid-premium': 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       chance: 1.1.11
       clsx: 2.1.1
       lru-cache: 7.18.3
@@ -5482,8 +5485,8 @@ packages:
       - react-dom
     dev: false
 
-  /@mui/x-data-grid-premium@7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-OjcWUr+0Z3czun5O8XMBovW+px+hXeRuS8rWpcXYgScN/Aau9ETTTDWBAL9xnhVn3EYj0cBALf3TEqXYiiWY4g==}
+  /@mui/x-data-grid-premium@7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-aNM4doFIM/0xuAvYs0uoi+JnJsyfGtpB60+KHBxUCGR5vL7/NYlZAhVhzA8r9mfGBqnUUKhVogN5mmqaifa4Wg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@mui/material': ^5.15.14
@@ -5494,9 +5497,9 @@ packages:
       '@mui/material': link:packages/mui-material/build
       '@mui/system': 5.15.14(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.55)(react@18.2.0)
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
-      '@mui/x-data-grid': 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/x-data-grid-pro': 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/x-license': 7.2.0(@types/react@18.2.55)(react@18.2.0)
+      '@mui/x-data-grid': 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-data-grid-pro': 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-license': 7.2.1(@types/react@18.2.55)(react@18.2.0)
       '@types/format-util': 1.0.4
       clsx: 2.1.1
       exceljs: 4.4.0
@@ -5510,8 +5513,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-data-grid-pro@7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-eo4vAqdkUTptNjofqTsq70m1/f8tghw34sKzmPZvMZIVjlxNFU1lGF4b1ogKIxl7Oi/9f+pDgUkH0QC6r9MSrg==}
+  /@mui/x-data-grid-pro@7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-ye2NXr5+Tgu1hLBWnIvudrOWeD91/QTmlCRSkTquZImdL+2Q2p3/IyfV9J36i7aZGiYXu+FVaKwqOQmuLKYmWQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@mui/material': ^5.15.14
@@ -5522,8 +5525,8 @@ packages:
       '@mui/material': link:packages/mui-material/build
       '@mui/system': 5.15.14(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.55)(react@18.2.0)
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
-      '@mui/x-data-grid': 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/x-license': 7.2.0(@types/react@18.2.55)(react@18.2.0)
+      '@mui/x-data-grid': 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-license': 7.2.1(@types/react@18.2.55)(react@18.2.0)
       '@types/format-util': 1.0.4
       clsx: 2.1.1
       prop-types: 15.8.1
@@ -5536,8 +5539,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-data-grid@7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-CdIDjqMHPWJvG/M6z36fnqIR+z2nW8Guk/wLUOv7vRJNVeOJasrkqg3xVZ3IFEGtbkTlQQ6iu1Os8YlF2HPWww==}
+  /@mui/x-data-grid@7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-5GuHg95UcphQ3O4LftUEFkNPP00YKUDZoSxmsNJ2+o6pwhHH4f8XIuuXEZJCyEMUiVYQk6/iYZwxJL6CpvbNCw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@mui/material': ^5.15.14
@@ -5559,8 +5562,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-date-pickers-pro@7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-bTli7vHbMT2wzuFRbMU8VkEg9N7FMsd8bxvp706uts5IK7ZM0VB7CRm1Nz8AY7PMOYKOedFUs9yT7rXCZIRrAg==}
+  /@mui/x-date-pickers-pro@7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-aTBPoPE2CnTNMnE80wKJcypM39n7g6hYrvhOF+u8uVy0/W61w07AZVMNfVklBxi7QehZn+tfgF9NAfJLcwSL7g==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.9.0
@@ -5602,11 +5605,12 @@ packages:
       '@mui/material': link:packages/mui-material/build
       '@mui/system': 5.15.14(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.55)(react@18.2.0)
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
-      '@mui/x-date-pickers': 7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/x-license': 7.2.0(@types/react@18.2.55)(react@18.2.0)
+      '@mui/x-date-pickers': 7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-license': 7.2.1(@types/react@18.2.55)(react@18.2.0)
       clsx: 2.1.1
       date-fns: 2.30.0
       date-fns-jalali: 2.21.3-1
+      dayjs: 1.11.10
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -5615,8 +5619,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-date-pickers@7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-azm9AX36/XzllKtfyHn8u8iYDsxf425/LacP4oVaCeQQgIasajSRFxU/g8vxpNWwgTuzIeWwKjj8cvTc/2UBAw==}
+  /@mui/x-date-pickers@7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-O3K2pewxk5u9mK8PG0+xgIOAn+GSBRWHtU0ZbzaqCjS8ZbxNT2OhkI0aXqp/W2ECVwxYaGjwtjl3ypQIdqRvjw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.9.0
@@ -5662,6 +5666,7 @@ packages:
       clsx: 2.1.1
       date-fns: 2.30.0
       date-fns-jalali: 2.21.3-1
+      dayjs: 1.11.10
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -5670,8 +5675,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-license@7.2.0(@types/react@18.2.55)(react@18.2.0):
-    resolution: {integrity: sha512-z9mqsfNPVFqjfxcPgz15o29Vb3FupSImwpMd5CFjZqNasJu3ptLpKxbIUnTtJMUicRdhsVfm3d93Z5XQkq1JuQ==}
+  /@mui/x-license@7.2.1(@types/react@18.2.55)(react@18.2.0):
+    resolution: {integrity: sha512-v0ObZw6wWu5GGre/AhASXay3Rw+aKWO0ID8yhjzmQliUfE1AYrNUw5KsiK/gNVE2YPRTYZKhIqCivtkNU+rIGA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
@@ -5683,8 +5688,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-tree-view@7.5.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-Oy+awMPMN8M6QE6fzKwrQSG/7Rh0sEDvEc7TyENP7h75J2LPy5qqztCgRTlliEG1/Iq+aC4yFoIsJnEUH+M4gw==}
+  /@mui/x-tree-view@7.5.1(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@packages+mui-material+build)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-b4Lfclg1Lpa+kSs305snl/xFG5yOxq3/oVZEyPIseg8oOfl0r79UKqCIdO2iQqQydjUsUMbLtnR9TFypxlwCbQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.9.0
@@ -6597,7 +6602,7 @@ packages:
       next: ^12.0.0 || ^13.0.0 || ^14.0.0
     dependencies:
       '@pigment-css/unplugin': 0.0.10(@types/react@18.2.55)(react@18.2.0)
-      next: 14.2.3(@babel/core@7.24.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.2.3(@babel/core@7.24.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
       - react
@@ -6705,12 +6710,12 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@playwright/test@1.44.0:
-    resolution: {integrity: sha512-rNX5lbNidamSUorBhB4XZ9SQTjAqfe5M+p37Z8ic0jPFBMo5iCtQz1kRWkEMg+rYOKSlVycpQmpqjSFq7LXOfg==}
+  /@playwright/test@1.44.1:
+    resolution: {integrity: sha512-1hZ4TNvD5z9VuhNJ/walIjvMVvYkZKf71axoF/uiAqpntQJXpG64dlXhoDXE3OczPuTuvjf/M5KWFg5VAVUS3Q==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright: 1.44.0
+      playwright: 1.44.1
 
   /@polka/url@1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
@@ -6936,7 +6941,7 @@ packages:
       '@babel/plugin-transform-private-property-in-object': 7.24.6(@babel/core@7.24.6)
       '@babel/plugin-transform-react-display-name': 7.24.6(@babel/core@7.24.6)
       '@babel/plugin-transform-react-jsx': 7.24.6(@babel/core@7.24.6)
-      '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.24.6)
+      '@babel/plugin-transform-react-jsx-self': 7.24.6(@babel/core@7.24.6)
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.6)
       '@babel/plugin-transform-runtime': 7.24.6(@babel/core@7.24.6)
       '@babel/plugin-transform-shorthand-properties': 7.24.6(@babel/core@7.24.6)
@@ -6947,7 +6952,7 @@ packages:
       '@babel/template': 7.24.6
       '@react-native/babel-plugin-codegen': 0.73.4(@babel/preset-env@7.24.6)
       babel-plugin-transform-flow-enums: 0.0.2(@babel/core@7.24.6)
-      react-refresh: 0.14.0
+      react-refresh: 0.14.2
     transitivePeerDependencies:
       - '@babel/preset-env'
       - supports-color
@@ -8359,17 +8364,17 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vitejs/plugin-react@4.2.1(vite@5.2.11):
-    resolution: {integrity: sha512-oojO9IDc4nCUUi8qIR11KoQm0XFFLIwsRBwHRR4d/88IWghn1y6ckz/bJ8GHDCsYEJee8mDzqtJxh15/cisJNQ==}
+  /@vitejs/plugin-react@4.3.0(vite@5.2.11):
+    resolution: {integrity: sha512-KcEbMsn4Dpk+LIbHMj7gDPRKaTMStxxWRkRmxsg/jVdFdJCZWt1SchZcf0M4t8lIKdwwMsEyzhrcOXRrDPtOBw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0
     dependencies:
       '@babel/core': 7.24.6
-      '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.24.6)
+      '@babel/plugin-transform-react-jsx-self': 7.24.6(@babel/core@7.24.6)
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.6)
       '@types/babel__core': 7.20.5
-      react-refresh: 0.14.0
+      react-refresh: 0.14.2
       vite: 5.2.11(@types/node@18.19.33)
     transitivePeerDependencies:
       - supports-color
@@ -9202,8 +9207,8 @@ packages:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  /aws-sdk@2.1623.0:
-    resolution: {integrity: sha512-SFPc+QJqoghsE0nn6YSmrDDDPpWc3m4rcDQYg6W3GQek+f1v6kycxM5+N58pMZ2iWhRSOTf9NQRcZj0ZU3PklQ==}
+  /aws-sdk@2.1628.0:
+    resolution: {integrity: sha512-mUjvITHmV46JbCTQR8TovWzJEHZtbC9cTRySXyuIuuYQNjA2RrbfqLXXKR/xru+vPFKnfTLw+QQ/BC2l1/Ln5g==}
     engines: {node: '>= 10.0.0'}
     requiresBuild: true
     dependencies:
@@ -9961,7 +9966,7 @@ packages:
     hasBin: true
     dependencies:
       archiver: 3.1.1
-      aws-sdk: 2.1623.0
+      aws-sdk: 2.1628.0
       fs-extra: 6.0.1
       glob: 7.2.3
       gunzip-maybe: 1.4.2
@@ -11625,19 +11630,19 @@ packages:
       semver: 6.3.1
     dev: true
 
-  /eslint-config-airbnb-typescript@17.1.0(@typescript-eslint/eslint-plugin@6.21.0)(@typescript-eslint/parser@6.21.0)(eslint-plugin-import@2.29.1)(eslint@8.57.0):
-    resolution: {integrity: sha512-GPxI5URre6dDpJ0CtcthSZVBAfI+Uw7un5OYNVxP2EYi3H81Jw701yFP7AU+/vCE7xBtFmjge7kfhhk4+RAiig==}
+  /eslint-config-airbnb-typescript@18.0.0(@typescript-eslint/eslint-plugin@6.21.0)(@typescript-eslint/parser@6.21.0)(eslint-plugin-import@2.29.1)(eslint@8.57.0):
+    resolution: {integrity: sha512-oc+Lxzgzsu8FQyFVa4QFaVKiitTYiiW3frB9KYW5OWdPrqFc7FzxgB20hP4cHMlr+MBzGcLl3jnCOVOydL9mIg==}
     peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^5.13.0 || ^6.0.0
-      '@typescript-eslint/parser': ^5.0.0 || ^6.0.0
-      eslint: ^7.32.0 || ^8.2.0
-      eslint-plugin-import: ^2.25.3
+      '@typescript-eslint/eslint-plugin': ^7.0.0
+      '@typescript-eslint/parser': ^7.0.0
+      eslint: ^8.56.0
     dependencies:
       '@typescript-eslint/eslint-plugin': 6.21.0(@typescript-eslint/parser@6.21.0)(eslint@8.57.0)(typescript@5.4.5)
       '@typescript-eslint/parser': 6.21.0(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
       eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.29.1)(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.21.0)(eslint-import-resolver-webpack@0.13.8)(eslint@8.57.0)
+    transitivePeerDependencies:
+      - eslint-plugin-import
     dev: true
 
   /eslint-config-airbnb@19.0.4(eslint-plugin-import@2.29.1)(eslint-plugin-jsx-a11y@6.7.1)(eslint-plugin-react-hooks@4.6.2)(eslint-plugin-react@7.34.1)(eslint@8.57.0):
@@ -16027,7 +16032,7 @@ packages:
       - '@babel/core'
       - babel-plugin-macros
 
-  /next@14.2.3(@babel/core@7.24.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.0)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0):
+  /next@14.2.3(@babel/core@7.24.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -16047,7 +16052,7 @@ packages:
     dependencies:
       '@next/env': 14.2.3
       '@opentelemetry/api': 1.8.0
-      '@playwright/test': 1.44.0
+      '@playwright/test': 1.44.1
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
       caniuse-lite: 1.0.30001599
@@ -17246,17 +17251,17 @@ packages:
     resolution: {integrity: sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==}
     dev: false
 
-  /playwright-core@1.44.0:
-    resolution: {integrity: sha512-ZTbkNpFfYcGWohvTTl+xewITm7EOuqIqex0c7dNZ+aXsbrLj0qI8XlGKfPpipjm0Wny/4Lt4CJsWJk1stVS5qQ==}
+  /playwright-core@1.44.1:
+    resolution: {integrity: sha512-wh0JWtYTrhv1+OSsLPgFzGzt67Y7BE/ZS3jEqgGBlp2ppp1ZDj8c+9IARNW4dwf1poq5MgHreEM2KV/GuR4cFA==}
     engines: {node: '>=16'}
     hasBin: true
 
-  /playwright@1.44.0:
-    resolution: {integrity: sha512-F9b3GUCLQ3Nffrfb6dunPOkE5Mh68tR7zN32L4jCk4FjQamgesGay7/dAAe1WaMEGV04DkdJfcJzjoCKygUaRQ==}
+  /playwright@1.44.1:
+    resolution: {integrity: sha512-qr/0UJ5CFAtloI3avF95Y0L1xQo6r3LQArLIg/z/PoGJ6xa+EwzrwO5lpNr/09STxdHuUoP2mvuELJS+hLdtgg==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright-core: 1.44.0
+      playwright-core: 1.44.1
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -17978,7 +17983,7 @@ packages:
       promise: 8.3.0
       react: 18.2.0
       react-devtools-core: 4.28.5
-      react-refresh: 0.14.0
+      react-refresh: 0.14.2
       react-shallow-renderer: 16.15.0(react@18.2.0)
       regenerator-runtime: 0.13.11
       scheduler: 0.24.0-canary-efb381bbf-20230505
@@ -18060,8 +18065,8 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  /react-refresh@0.14.0:
-    resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
+  /react-refresh@0.14.2:
+    resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
     engines: {node: '>=0.10.0'}
 
   /react-router-dom@6.23.1(react-dom@18.2.0)(react@18.2.0):
@@ -18210,8 +18215,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-virtuoso@4.7.10(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-l+fnBf/G1Fp6pHCnhFq2Ra4lkZtT6c5XrS9rCS0OA6de7WGLZviCo0y61CUZZG79TeAw3L7O4czeNPiqh9CIrg==}
+  /react-virtuoso@4.7.11(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Kdn9qEtQI2ulEuBMzW2BTkDsfijB05QUd6lpZ1K36oyA3k65Cz4lG4EKrh2pCfUafX4C2uMSZOwzMOhbrMOTFA==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>=16 || >=17 || >= 18'
@@ -19139,9 +19144,8 @@ packages:
       is-arrayish: 0.3.2
     dev: true
 
-  /sinon@15.2.0:
-    resolution: {integrity: sha512-nPS85arNqwBXaIsFCkolHjGIkFo+Oxu9vbgmBJizLAhqe6P2o3Qmj3KCUoRkfhHtvgDhZdWD3risLHAUJ8npjw==}
-    deprecated: 16.1.1
+  /sinon@16.1.3:
+    resolution: {integrity: sha512-mjnWWeyxcAf9nC0bXcPmiDut+oE8HYridTNzBbF98AYVLmWwGRp2ISEpyhYflG1ifILT+eNn3BmKUJPxjXUPlA==}
     dependencies:
       '@sinonjs/commons': 3.0.0
       '@sinonjs/fake-timers': 10.3.0
@@ -20189,8 +20193,8 @@ packages:
     engines: {node: '>=0.6.x'}
     dev: false
 
-  /tsx@4.10.5:
-    resolution: {integrity: sha512-twDSbf7Gtea4I2copqovUiNTEDrT8XNFXsuHpfGbdpW/z9ZW4fTghzzhAG0WfrCuJmJiOEY1nLIjq4u3oujRWQ==}
+  /tsx@4.11.0:
+    resolution: {integrity: sha512-vzGGELOgAupsNVssAmZjbUDfdm/pWP4R+Kg8TVdsonxbXk0bEpE1qh0yV6/QxUVXaVlNemgcPajGdJJ82n3stg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:

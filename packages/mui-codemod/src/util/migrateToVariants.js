@@ -1,10 +1,10 @@
 const MAX_DEPTH = 20;
+
 /**
- *
  * @param {import('jscodeshift').API['j']} j
- * @param {any[]} styles
+ * @returns
  */
-export default function migrateToVariants(j, styles) {
+export const getCreateBuildStyle = (j) =>
   function createBuildStyle(key, upperBuildStyle, applyStylesMode) {
     if (applyStylesMode) {
       upperBuildStyle = (styleExpression) =>
@@ -35,63 +35,159 @@ export default function migrateToVariants(j, styles) {
       }
       return upperBuildStyle ? upperBuildStyle(styleExpression) : styleExpression;
     };
-  }
+  };
 
+/**
+ * @param {import('jscodeshift').API['j']} j
+ */
+export const getAppendPaletteModeStyles = (j) =>
   /**
    *
-   * @param {import('ast-types').namedTypes.MemberExpression | import('ast-types').namedTypes.Identifier} node
+   * @param {{ properties: any[] }} node
+   * @param {Record<string, any[] | import('jscodeshift').ObjectExpression>} modeStyles
    */
-  function getIdentifierKey(node) {
-    if (node.type === 'MemberExpression') {
-      return node.property;
-    }
-    return node;
-  }
-
-  /**
-   *
-   * @param {import('ast-types').namedTypes.UnaryExpression | import('ast-types').namedTypes.MemberExpression | import('ast-types').namedTypes.Identifier} node
-   */
-  function getObjectKey(node) {
-    let tempNode = { ...node };
-    while (tempNode.type === 'UnaryExpression') {
-      tempNode = tempNode.argument;
-    }
-    while (tempNode.type === 'MemberExpression') {
-      tempNode = tempNode.object;
-    }
-    return tempNode;
-  }
-
-  /**
-   *
-   * @param {import('ast-types').namedTypes.ObjectExpression} objectExpression
-   * @param {import('ast-types').namedTypes.BinaryExpression} addtional
-   */
-  function objectToArrowFunction(objectExpression, addtional) {
-    const paramKeys = new Set();
-    let left;
-    objectExpression.properties.forEach((prop, index) => {
-      paramKeys.add(prop.key.name);
-      const result = j.binaryExpression('===', prop.key, prop.value);
-      if (index === 0) {
-        left = result;
-      } else {
-        left = j.logicalExpression('&&', left, result);
-      }
+  function appendPaletteModeStyles(node, modeStyles) {
+    Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
+      node.properties.push(
+        j.spreadElement(
+          j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')), [
+            j.stringLiteral(mode),
+            Array.isArray(objectStyles) ? j.objectExpression(objectStyles) : objectStyles,
+          ]),
+        ),
+      );
     });
-    if (addtional) {
-      paramKeys.add(getObjectKey(addtional.left).name);
-    }
-    return buildArrowFunctionAST(
-      paramKeys,
-      addtional ? j.logicalExpression('&&', left, addtional) : left,
-    );
+  };
+
+/**
+ *
+ * @param {import('jscodeshift').MemberExpression | import('jscodeshift').Identifier} node
+ */
+export function getIdentifierKey(node) {
+  if (node.type === 'MemberExpression') {
+    return node.property;
   }
+  return node;
+}
+
+/**
+ *
+ * @param {import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression | import('jscodeshift').Identifier} node
+ */
+export function getObjectKey(node) {
+  let tempNode = { ...node };
+  while (tempNode.type === 'UnaryExpression') {
+    tempNode = tempNode.argument;
+  }
+  while (tempNode.type === 'MemberExpression' || tempNode.type === 'OptionMemberExpression') {
+    tempNode = tempNode.object;
+  }
+  return tempNode;
+}
+
+/**
+ *
+ * @param {import('jscodeshift').ObjectExpression} node
+ */
+export function removeProperty(parentNode, child) {
+  if (parentNode) {
+    if (parentNode.type === 'ObjectExpression') {
+      parentNode.properties = parentNode.properties.filter(
+        (prop) => prop !== child && prop.value !== child,
+      );
+    }
+  }
+}
+
+/**
+ * @param {import('jscodeshift').API['j']} j
+ */
+export const getBuildArrowFunctionAST = (j) =>
+  /**
+   *
+   * @param {Set<string> | import('jscodeshift').Expression[]} params
+   * @param {import('jscodeshift').BlockStatement} body
+   * @returns
+   */
+  function buildArrowFunctionAST(params, body) {
+    const destructured = [...params].every((param) => typeof param === 'string');
+    return j.arrowFunctionExpression(
+      destructured
+        ? [
+            j.objectPattern(
+              [...params].map((k) => ({
+                ...j.objectProperty(j.identifier(k), j.identifier(k)),
+                shorthand: true,
+              })),
+            ),
+          ]
+        : params,
+      body,
+    );
+  };
+
+/**
+ * @param {import('jscodeshift').API['j']} j
+ */
+export const getObjectToArrowFunction = (j) => {
+  const buildArrowFunctionAST = getBuildArrowFunctionAST(j);
+  return (
+    /**
+     *
+     * @param {import('jscodeshift').ObjectExpression} objectExpression
+     * @param {import('jscodeshift').BinaryExpression} addtional
+     */
+    function objectToArrowFunction(objectExpression, addtional) {
+      const paramKeys = new Set();
+      let left;
+      objectExpression.properties.forEach((prop, index) => {
+        paramKeys.add(prop.key.name);
+        const result = j.binaryExpression('===', prop.key, prop.value);
+        if (index === 0) {
+          left = result;
+        } else {
+          left = j.logicalExpression('&&', left, result);
+        }
+      });
+      if (addtional) {
+        paramKeys.add(getObjectKey(addtional.left).name);
+      }
+      return buildArrowFunctionAST(
+        paramKeys,
+        addtional ? j.logicalExpression('&&', left, addtional) : left,
+      );
+    }
+  );
+};
+
+/**
+ *
+ * @param {undefined | null | import('jscodeshift').Expression} node
+ */
+export function isThemePaletteMode(node) {
+  return (
+    node?.type === 'MemberExpression' &&
+    node.object.type === 'MemberExpression' &&
+    node.object.object.name === 'theme' &&
+    node.object.property.name === 'palette' &&
+    node.property.name === 'mode'
+  );
+}
+
+/**
+ *
+ * @param {import('jscodeshift').API['j']} j
+ * @param {any[]} styles
+ */
+export default function migrateToVariants(j, styles) {
+  const createBuildStyle = getCreateBuildStyle(j);
+  const appendPaletteModeStyles = getAppendPaletteModeStyles(j);
+  const buildArrowFunctionAST = getBuildArrowFunctionAST(j);
+  const objectToArrowFunction = getObjectToArrowFunction(j);
 
   /**
    *
-   * @param {import('ast-types').namedTypes.Identifier | import('ast-types').namedTypes.BinaryExpression | import('ast-types').namedTypes.UnaryExpression | import('ast-types').namedTypes.MemberExpression} node
+   * @param {import('jscodeshift').Identifier | import('jscodeshift').BinaryExpression | import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression} node
    */
   function inverseBinaryExpression(node) {
     if (node.type === 'Identifier' || node.type === 'MemberExpression') {
@@ -112,20 +208,6 @@ export default function migrateToVariants(j, styles) {
     return node;
   }
 
-  /**
-   *
-   * @param {import('ast-types').namedTypes.ObjectExpression} node
-   */
-  function removeProperty(parentNode, child) {
-    if (parentNode) {
-      if (parentNode.type === 'ObjectExpression') {
-        parentNode.properties = parentNode.properties.filter(
-          (prop) => prop !== child && prop.value !== child,
-        );
-      }
-    }
-  }
-
   function buildObjectAST(jsObject) {
     const result = j.objectExpression([]);
     Object.entries(jsObject).forEach(([key, value]) => {
@@ -134,41 +216,9 @@ export default function migrateToVariants(j, styles) {
     return result;
   }
 
-  function buildArrowFunctionAST(params, body) {
-    return j.arrowFunctionExpression(
-      [
-        j.objectPattern(
-          [...params].map((k) => ({
-            ...j.objectProperty(j.identifier(k), j.identifier(k)),
-            shorthand: true,
-          })),
-        ),
-      ],
-      body,
-    );
-  }
-
   /**
    *
-   * @param {{ properties: any[] }} node
-   * @param {Record<string, any[] | import('ast-types').namedTypes.ObjectExpression>} modeStyles
-   */
-  function appendPaletteModeStyles(node, modeStyles) {
-    Object.entries(modeStyles).forEach(([mode, objectStyles]) => {
-      node.properties.push(
-        j.spreadElement(
-          j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('applyStyles')), [
-            j.stringLiteral(mode),
-            Array.isArray(objectStyles) ? j.objectExpression(objectStyles) : objectStyles,
-          ]),
-        ),
-      );
-    });
-  }
-
-  /**
-   *
-   * @param {import('ast-types').namedTypes.LogicalExpression | import('ast-types').namedTypes.BinaryExpression | import('ast-types').namedTypes.UnaryExpression | import('ast-types').namedTypes.MemberExpression} node
+   * @param {import('jscodeshift').LogicalExpression | import('jscodeshift').BinaryExpression | import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression} node
    */
   function buildProps(node) {
     const properties = [];
@@ -243,16 +293,6 @@ export default function migrateToVariants(j, styles) {
     );
   }
 
-  function isThemePaletteMode(node) {
-    return (
-      node.type === 'MemberExpression' &&
-      node.object.type === 'MemberExpression' &&
-      node.object.object.name === 'theme' &&
-      node.object.property.name === 'palette' &&
-      node.property.name === 'mode'
-    );
-  }
-
   // 2. Find logical spread expressions to convert to variants
   styles.forEach((style) => {
     const parameters = new Set();
@@ -262,14 +302,18 @@ export default function migrateToVariants(j, styles) {
           parameters.add(prop.key.name);
         });
       }
+      if (param.type === 'Identifier') {
+        parameters.add(param.name);
+      }
     });
     const variants = [];
 
     if (style.body.type === 'LogicalExpression') {
       if (
         style.params[0] &&
-        style.params[0].type === 'ObjectPattern' &&
-        style.params[0].properties.some((prop) => prop.key.name !== 'theme')
+        (style.params[0].type === 'Identifier' ||
+          (style.params[0].type === 'ObjectPattern' &&
+            style.params[0].properties.some((prop) => prop.key.name !== 'theme')))
       ) {
         // case: ({ theme, ownerState }) => ownerState.variant === 'regular' && theme.mixins.toolbar
         style.body = j.objectExpression([
@@ -531,6 +575,11 @@ export default function migrateToVariants(j, styles) {
               }
               data.modeStyles[mode].push(j.objectProperty(data.key, clonedNode));
             });
+            if (data.key) {
+              // to remove the arrow function
+              // { ...: theme => `1px solid...` } to { ...: `1px solid...` }
+              data.replaceValue?.(data.node);
+            }
           }
         }
       }

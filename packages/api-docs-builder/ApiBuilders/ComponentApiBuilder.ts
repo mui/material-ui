@@ -286,7 +286,7 @@ async function annotateComponentDefinition(api: ReactApi, componentJsdoc: Annota
   }
 
   let inheritanceAPILink = null;
-  if (api.inheritance !== null) {
+  if (api.inheritance) {
     inheritanceAPILink = `[${api.inheritance.name} API](${
       api.inheritance.apiPathname.startsWith('http')
         ? api.inheritance.apiPathname
@@ -317,7 +317,7 @@ async function annotateComponentDefinition(api: ReactApi, componentJsdoc: Annota
       api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
     })`,
   );
-  if (api.inheritance !== null) {
+  if (api.inheritance) {
     markdownLines.push(`- inherits ${inheritanceAPILink}`);
   }
 
@@ -777,6 +777,7 @@ export default async function generateComponentApi(
   reactApi.slots = [];
   reactApi.classes = [];
   reactApi.demos = componentInfo.getDemos();
+  reactApi.inheritance = null;
   if (reactApi.demos.length === 0) {
     throw new Error(
       'Unable to find demos. \n' +
@@ -792,7 +793,8 @@ export default async function generateComponentApi(
     reactApi.spread = testInfo.spread ?? spread;
     reactApi.themeDefaultProps = testInfo.themeDefaultProps;
     reactApi.inheritance = componentInfo.getInheritance(testInfo.inheritComponent);
-  } catch (e) {
+  } catch (error: any) {
+    console.error(error.message);
     if (project.name.includes('grid')) {
       // TODO: Use `describeConformance` for the DataGrid components
       reactApi.forwardsRefTo = 'GridRoot';
