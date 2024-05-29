@@ -6,8 +6,9 @@
 
 _May 29, 2024_
 
-A big thanks to the 23 contributors who made this release possible.
-This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+A big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 `CssVarsProvider` and `extendTheme` are now stable (#42246) @siriwatknp
 
 ### `@mui/material@6.0.0-alpha.9`
 
