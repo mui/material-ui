@@ -95,9 +95,15 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     hideBackdrop = false,
     keepMounted = false,
     onBackdropClick,
+    onClose,
+    onTransitionEnter,
+    onTransitionExited,
     open,
     slotProps = {},
     slots = {},
+    // eslint-disable-next-line react/prop-types
+    theme,
+    ...other
   } = props;
 
   const propsWithDefaults = {
@@ -146,7 +152,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   }
 
   const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const backdropSlotProps = slotProps?.backdrop ?? componentsProps.backdrop;
+  const backdropSlotProps = slotProps?.backdrop ?? componentsProps.backdrop ?? BackdropProps;
 
   const externalForwardedProps = {
     slots: {
@@ -155,7 +161,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     },
     slotProps: {
       root: slotProps.root ?? componentsProps.root,
-      backdrop: { ...backdropSlotProps, ...BackdropProps },
+      backdrop: backdropSlotProps,
     },
   };
 
@@ -208,7 +214,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
        * is not meant for humans to interact with directly.
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
-      <RootSlot {...rootProps}>
+      <RootSlot {...rootProps} {...other}>
         {!hideBackdrop && BackdropComponent ? <BackdropSlot {...backdropProps} /> : null}
         <FocusTrap
           disableEnforceFocus={disableEnforceFocus}
