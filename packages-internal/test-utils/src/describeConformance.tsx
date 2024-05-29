@@ -581,14 +581,18 @@ function testComponentsProp(
 ) {
   describe('prop components:', () => {
     it('can render another root component with the `components` prop', () => {
-      const { mount, testComponentsRootPropWith: component = 'em' } = getOptions();
-      if (!mount) {
-        throwMissingPropError('mount');
+      const { render, testComponentsRootPropWith: component = 'em' } = getOptions();
+      if (!render) {
+        throwMissingPropError('render');
       }
 
-      const wrapper = mount(React.cloneElement(element, { components: { Root: component } }));
+      const testId = randomStringValue();
 
-      expect(findRootComponent(wrapper, component).exists()).to.equal(true);
+      const { getByTestId } = render(
+        React.cloneElement(element, { components: { Root: component }, 'data-testid': testId }),
+      );
+      expect(getByTestId(testId)).not.to.equal(null);
+      expect(getByTestId(testId).nodeName.toLowerCase()).to.eq(component);
     });
   });
 }
