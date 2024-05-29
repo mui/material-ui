@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@mui/material/ToggleButtonGroup';

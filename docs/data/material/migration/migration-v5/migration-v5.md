@@ -48,6 +48,8 @@ Expect updates as new breaking changes are introduced.
 
 ### UMD bundle was removed
 
-<!-- #default-branch-switch -->
+To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle.
+This results in a reduction of the `@mui/material` package size by 2.5MB or 25% of the total package size.
 
-The UMD bundle is no longer provided. This was replaced in favor of [ESM CDNs](https://esm.sh/). Please refer to the [CDN docs](https://next.mui.com/material-ui/getting-started/installation/#cdn) for alternatives.
+Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended.
+For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
