@@ -103,7 +103,7 @@ export default function ChartUserByCountry() {
   return (
     <Card variant="outlined" sx={{ pb: '8px' }}>
       <CardContent>
-        <Typography component="h2" variant="subtitle2">
+        <Typography variant="subtitle2" component="p">
           Users by country
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -158,6 +158,7 @@ export default function ChartUserByCountry() {
               </Stack>
               <LinearProgress
                 variant="determinate"
+                aria-label="Amount of users by country"
                 value={country.value}
                 sx={{
                   [`& .${linearProgressClasses.bar}`]: {

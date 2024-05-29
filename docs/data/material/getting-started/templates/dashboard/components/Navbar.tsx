@@ -37,21 +37,43 @@ const Toolbar = styled(MuiToolbar)({
   },
 });
 
-function a11yProps(index: number) {
+function a11yProps(index: number, selectedIndex: number) {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
+    'aria-selected': selectedIndex === index,
+    role: 'tab',
   };
+}
+
+function TabPanel(props: {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {/* This would be replaced when the content content of other tabs is added */}
+      {value === index && <div />}
+    </div>
+  );
 }
 
 export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState(0);
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
-
-  const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -80,7 +102,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
         >
           <NavbarBreadcrumbs />
           <Stack direction="row" gap={1}>
-            <MenuButton showBadge>
+            <MenuButton showBadge ariaLabel="Notification menu button">
               <NotificationsRoundedIcon />
             </MenuButton>
             <OptionsMenu />
@@ -106,11 +128,20 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
           />
         </Stack>
         <Tabs value={value} onChange={handleChange} aria-label="navbar tabs">
-          <Tab label="Home" {...a11yProps(0)} />
-          <Tab label="Analytics" {...a11yProps(1)} />
-          <Tab label="Clients" {...a11yProps(2)} />
+          <Tab label="Home" {...a11yProps(0, value)} />
+          <Tab label="Analytics" {...a11yProps(1, value)} />
+          <Tab label="Clients" {...a11yProps(2, value)} />
         </Tabs>
       </Toolbar>
+      <TabPanel value={value} index={0}>
+        Home Content
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Analytics Content
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Clients Content
+      </TabPanel>
     </AppBar>
   );
 }
