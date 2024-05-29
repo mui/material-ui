@@ -106,16 +106,20 @@ export function testClassName(
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the className to the root component', () => {
-    const { mount } = getOptions();
-    if (!mount) {
-      throwMissingPropError('mount');
+    const { render } = getOptions();
+
+    if (!render) {
+      throwMissingPropError('render');
     }
 
     const className = randomStringValue();
+    const testId = randomStringValue();
 
-    const wrapper = mount(React.cloneElement(element, { className }));
+    const { getByTestId } = render(
+      React.cloneElement(element, { className, 'data-testid': testId }),
+    );
 
-    expect(findOutermostIntrinsic(wrapper).instance()).to.have.class(className);
+    expect(getByTestId(testId)).to.have.class(className);
   });
 }
 
