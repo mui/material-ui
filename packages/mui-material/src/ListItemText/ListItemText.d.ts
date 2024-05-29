@@ -115,4 +115,6 @@ export interface ListItemTextOwnerState extends ListItemTextProps {}
 export default function ListItemText<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p',
->(props: ListItemTextProps<PrimaryTypographyComponent, SecondaryTypographyComponent>): JSX.Element;
+>(
+  props: ListItemTextProps<PrimaryTypographyComponent, SecondaryTypographyComponent>,
+): React.JSX.Element;

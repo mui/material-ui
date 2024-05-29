@@ -64,6 +64,7 @@ export default function AppHeader(props: AppHeaderProps) {
             <IconButton
               component="a"
               color="primary"
+              size="small"
               href={gitHubRepository}
               target="_blank"
               rel="noopener"
