@@ -110,7 +110,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
     externalForwardedProps,
     ownerState,
   });
-  delete primarySlotProps.ownerState;
+
   if (primary != null && primary.type !== Typography && !disableTypography) {
     primary = (
       <PrimarySlot
@@ -124,7 +124,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
       </PrimarySlot>
     );
   }
-  delete secondarySlotProps.ownerState;
+
   if (secondary != null && secondary.type !== Typography && !disableTypography) {
     secondary = (
       <SecondarySlot
@@ -132,7 +132,6 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
         className={classes.secondary}
         color="text.secondary"
         display="block"
-        {...secondarySlotProps.ownerState}
         {...secondarySlotProps}
       >
         {secondary}
