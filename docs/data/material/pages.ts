@@ -25,8 +25,8 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/getting-started/support-links',
         subheader: 'Support',
         children: [
-          { pathname: '/material-ui/getting-started/support', title: 'Getting support' },
           { pathname: '/material-ui/getting-started/faq', title: 'FAQs' },
+          { pathname: '/material-ui/getting-started/support', title: 'Getting support' },
           { pathname: '/material-ui/getting-started/supported-components' },
           { pathname: '/material-ui/getting-started/supported-platforms' },
         ],
