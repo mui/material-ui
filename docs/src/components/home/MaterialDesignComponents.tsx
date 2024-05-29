@@ -4,8 +4,8 @@ import {
   Theme,
   ThemeOptions,
   alpha,
-  experimental_extendTheme as extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
+  extendTheme,
+  CssVarsProvider,
 } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
@@ -125,7 +125,7 @@ function Demo({
 }: {
   name: string;
   theme: Theme | undefined;
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   control?: { prop: string; values: Array<string>; defaultValue?: string };
 }) {
   const [propValue, setPropValue] = React.useState(

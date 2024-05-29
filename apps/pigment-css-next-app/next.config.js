@@ -1,7 +1,7 @@
 /* eslint-env node */
 // eslint-ignore-next-line import/no-unresolved
 const { withPigment } = require('@pigment-css/nextjs-plugin');
-const { experimental_extendTheme: extendTheme } = require('@mui/material/styles');
+const { extendTheme } = require('@mui/material/styles');
 
 /**
  * @typedef {import('@pigment-css/nextjs-plugin').PigmentOptions} PigmentOptions

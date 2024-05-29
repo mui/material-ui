@@ -1,6 +1,7 @@
 import transformAccordionProps from '../accordion-props';
 import transformAutocompleteProps from '../autocomplete-props';
 import transformFormControlLabelProps from '../form-control-label-props';
+import transformAvatarGroupProps from '../avatar-group-props';
 import transformAvatarProps from '../avatar-props';
 import transformDividerProps from '../divider-props';
 import transformAccordionClasses from '../accordion-summary-classes';
@@ -14,6 +15,7 @@ import transformStepLabelProps from '../step-label-props';
 import transformBackdropProps from '../backdrop-props';
 import transformStepConnectorClasses from '../step-connector-classes';
 import transformCircularProgressClasses from '../circular-progress-classes';
+import transformGridProps from '../grid-props';
 import transformSpeedDialProps from '../speed-dial-props';
 import transformTableSortLabelClasses from '../table-sort-label-classes';
 import transformTextFieldProps from '../text-field-props';
@@ -26,6 +28,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformAccordionProps(file, api, options);
   file.source = transformAutocompleteProps(file, api, options);
   file.source = transformFormControlLabelProps(file, api, options);
+  file.source = transformAvatarGroupProps(file, api, options);
   file.source = transformAvatarProps(file, api, options);
   file.source = transformDividerProps(file, api, options);
   file.source = transformAccordionClasses(file, api, options);
@@ -42,6 +45,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformSpeedDialProps(file, api, options);
   file.source = transformTableSortLabelClasses(file, api, options);
   file.source = transformTextFieldProps(file, api, options);
+  file.source = transformGridProps(file, api, options);
 
   return file.source;
 }
