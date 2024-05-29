@@ -1,11 +1,8 @@
 /* eslint-env mocha */
 import * as React from 'react';
 import { expect } from 'chai';
-import { ReactWrapper } from 'enzyme';
 import ReactTestRenderer from 'react-test-renderer';
-import createMount from './createMount';
 import createDescribe from './createDescribe';
-import findOutermostIntrinsic from './findOutermostIntrinsic';
 import { MuiRenderResult } from './createRenderer';
 
 function capitalize(string: string): string {
@@ -46,7 +43,6 @@ export interface ConformanceOptions {
   after?: () => void;
   inheritComponent?: React.ElementType;
   render: (node: React.ReactElement<any>) => MuiRenderResult;
-  mount?: (node: React.ReactElement<any>) => ReactWrapper;
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: string;
@@ -66,9 +62,6 @@ export interface ConformanceOptions {
   testCustomVariant?: boolean;
   testVariantProps?: object;
   testLegacyComponentsProp?: boolean;
-  wrapMount?: (
-    mount: (node: React.ReactElement<any>) => ReactWrapper,
-  ) => (node: React.ReactElement<any>) => ReactWrapper;
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
   createTheme?: (arg: any) => any;
@@ -82,18 +75,6 @@ export interface ConformanceOptions {
  *   - excess props are spread to this component
  *   - has the type of `inheritComponent`
  */
-
-/**
- * Returns the component with the same constructor as `component` that renders
- * the outermost host
- */
-export function findRootComponent(wrapper: ReactWrapper, component: string | React.ElementType) {
-  const outermostHostElement = findOutermostIntrinsic(wrapper).getElement();
-
-  return wrapper.find(component as string).filterWhere((componentWrapper) => {
-    return componentWrapper.contains(outermostHostElement);
-  });
-}
 
 export function randomStringValue() {
   return `s${Math.random().toString(36).slice(2)}`;
@@ -1077,7 +1058,6 @@ function describeConformance(
     only = Object.keys(fullSuite),
     slots,
     skip = [],
-    wrapMount,
   } = getOptions();
 
   let filteredTests = Object.keys(fullSuite).filter(
@@ -1092,21 +1072,11 @@ function describeConformance(
     filteredTests = filteredTests.filter((testKey) => !slotBasedTests.includes(testKey));
   }
 
-  const baseMount = createMount();
-  const mount = wrapMount !== undefined ? wrapMount(baseMount) : baseMount;
-
   after(runAfterHook);
-
-  function getTestOptions(): ConformanceOptions {
-    return {
-      ...getOptions(),
-      mount,
-    };
-  }
 
   filteredTests.forEach((testKey) => {
     const test = fullSuite[testKey];
-    test(minimalElement, getTestOptions);
+    test(minimalElement, getOptions);
   });
 }
 
