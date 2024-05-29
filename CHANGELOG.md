@@ -9,7 +9,7 @@ _May 29, 2024_
 A big thanks to the 23 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
-### `@mui/material@6.0.0-alpha.8`
+### `@mui/material@6.0.0-alpha.9`
 
 - &#8203;<!-- 49 -->[AlertTitle] Enable extending Typography props (#42269) @lucasgmelo
 - &#8203;<!-- 48 -->[AvatarGroup] deprecate `componentsProps` for v6 (#42122) @lhilgert9
@@ -23,11 +23,11 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 08 -->[Slider] Fix wrong CSS value (#42370) @mnajdova
 - &#8203;<!-- 07 -->[Tooltip] Deprecate components and componentProps props for v6 (#42107) @ChronicusUA
 
-### `@mui/system@6.0.0-alpha.8`
+### `@mui/system@6.0.0-alpha.9`
 
 - &#8203;<!-- 34 -->[createStyled] Intercept `ownerState` coming from `props` and `ownerState` (#42358) @DiegoAndai
 
-### `@mui/codemod@6.0.0-alpha.8`
+### `@mui/codemod@6.0.0-alpha.9`
 
 - &#8203;<!-- 41 -->Add `sx` prop for v6 migration (#42153) @siriwatknp
 - &#8203;<!-- 40 -->Add codemod for removing system props (#42282) @siriwatknp
