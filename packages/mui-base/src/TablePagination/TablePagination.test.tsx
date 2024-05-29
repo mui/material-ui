@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { fireEvent, createRenderer, createMount } from '@mui-internal/test-utils';
+import { fireEvent, createRenderer, createMount } from '@mui/internal-test-utils';
 import {
   TablePagination,
   tablePaginationClasses as classes,

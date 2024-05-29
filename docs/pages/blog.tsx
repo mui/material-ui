@@ -82,28 +82,28 @@ function PostPreview(props: BlogPost) {
       </Typography>
       {props.authors && (
         <AvatarGroup
-          sx={[
-            (theme) => ({
-              mt: 2,
-              mb: 1,
-              alignSelf: 'flex-start',
+          sx={(theme) => ({
+            mt: 2,
+            mb: 1,
+            alignSelf: 'flex-start',
+            '& .MuiAvatar-circular': {
+              width: 28,
+              height: 28,
+              fontSize: theme.typography.pxToRem(13),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              color: (theme.vars || theme).palette.text.primary,
+              border: `1px solid ${(theme.vars || theme).palette.divider}`,
+              outline: '3px solid',
+              outlineColor: '#FFF',
+              backgroundColor: (theme.vars || theme).palette.grey[100],
+            },
+            ...theme.applyDarkStyles({
               '& .MuiAvatar-circular': {
-                width: 28,
-                height: 28,
-                border: `1px solid ${(theme.vars || theme).palette.divider}`,
-                outline: '3px solid',
-                outlineColor: '#FFF',
-                backgroundColor: (theme.vars || theme).palette.grey[100],
+                outlineColor: (theme.vars || theme).palette.primaryDark[900],
+                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
               },
             }),
-            (theme) =>
-              theme.applyDarkStyles({
-                '& .MuiAvatar-circular': {
-                  outlineColor: (theme.vars || theme).palette.primaryDark[900],
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-                },
-              }),
-          ]}
+          })}
         >
           {(props.authors as Array<keyof typeof AUTHORS>).map((author) => (
             <Avatar
@@ -347,6 +347,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             >
               <Paper variant="outlined">
                 <Typography
+                  component="h3"
                   color="text.primary"
                   fontWeight="semiBold"
                   variant="subtitle2"
@@ -387,9 +388,6 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                               },
                             })}
                         size="small"
-                        sx={{
-                          py: 1.2,
-                        }}
                       />
                     );
                   })}
@@ -397,6 +395,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               </Paper>
               <Paper variant="outlined">
                 <Typography
+                  component="h3"
                   color="text.primary"
                   fontWeight="semiBold"
                   variant="subtitle2"
@@ -437,7 +436,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 <Box
                   component="li"
                   key={post.slug}
-                  sx={() => ({
+                  sx={{
                     py: 2.5,
                     display: 'flex',
                     flexDirection: 'column',
@@ -446,7 +445,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                       borderBottom: '1px solid',
                       borderColor: 'divider',
                     },
-                  })}
+                  }}
                 >
                   <PostPreview {...post} />
                 </Box>
@@ -461,7 +460,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 setPage(value - 1);
                 postListRef.current?.scrollIntoView();
               }}
-              sx={{ mt: 1, mb: 8 }}
+              sx={{ mt: 1, mb: 4 }}
             />
           </div>
         </Container>

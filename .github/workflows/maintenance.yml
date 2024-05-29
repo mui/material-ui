@@ -29,7 +29,7 @@ jobs:
     steps:
       - run: echo "${{ github.actor }}"
       - name: check if prs are dirty
-        uses: eps1lon/actions-label-merge-conflict@fd1f295ee7443d13745804bc49fe158e240f6c6e # v2.1.0
+        uses: eps1lon/actions-label-merge-conflict@6d74047dcef155976a15e4a124dde2c7fe0c5522 # v3.0.1
         with:
           dirtyLabel: 'PR: out-of-date'
           removeOnDirtyLabel: 'PR: ready to ship'

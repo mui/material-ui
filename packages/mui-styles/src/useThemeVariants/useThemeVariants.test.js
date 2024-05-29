@@ -4,7 +4,7 @@ import {
   createRenderer,
   screen,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { createTheme } from '@mui/material/styles';
 import ThemeProvider from '../ThemeProvider';
 import useThemeVariants from './useThemeVariants';

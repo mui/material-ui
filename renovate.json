@@ -26,10 +26,6 @@
       "matchPackagePatterns": "@emotion/*"
     },
     {
-      "groupName": "WyW-in-JS",
-      "matchPackagePatterns": ["@wyw-in-js/*"]
-    },
-    {
       "groupName": "Font awesome SVG icons",
       "matchPackagePatterns": "@fortawesome/*"
     },
@@ -109,6 +105,10 @@
     {
       "groupName": "@definitelytyped tools",
       "matchPackagePatterns": ["@definitelytyped/*"]
+    },
+    {
+      "groupName": "Testing libraries",
+      "matchPackagePatterns": ["@testing-library/*"]
     },
     {
       "groupName": "envinfo tests",

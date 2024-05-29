@@ -163,7 +163,7 @@ function AppWrapper(props) {
 
     if (productId === 'material-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'Material UI',
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
@@ -182,7 +182,7 @@ function AppWrapper(props) {
 
     if (productId === 'joy-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'Joy UI',
         versions: [{ text: `v${joyPkgJson.version}`, current: true }],
       };
@@ -190,7 +190,7 @@ function AppWrapper(props) {
 
     if (productId === 'system') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'MUI System',
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
@@ -206,7 +206,7 @@ function AppWrapper(props) {
 
     if (productId === 'base-ui') {
       return {
-        metadata: 'MUI Core',
+        metadata: '',
         name: 'Base UI',
         versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };
