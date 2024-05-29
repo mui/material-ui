@@ -869,11 +869,11 @@ export function getThemedComponents(): ThemeOptions {
                 },
               },
               '& .MuiMenuItem-root': {
-                padding: '6px 12px',
+                padding: '6px 8px',
                 borderRadius: '6px',
                 fontSize: theme.typography.pxToRem(14),
                 fontWeight: theme.typography.fontWeightMedium,
-                '&:hover, &:focus': {
+                '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.grey[100],
                   color: (theme.vars || theme).palette.text.primary,
                 },
@@ -891,7 +891,7 @@ export function getThemedComponents(): ThemeOptions {
               backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               borderColor: (theme.vars || theme).palette.primaryDark[700],
               '& .MuiMenuItem-root': {
-                '&:hover, &:focus': {
+                '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
                 '&.Mui-selected': {
@@ -1321,6 +1321,23 @@ export function getThemedComponents(): ThemeOptions {
             width: '14px',
             height: '14px',
           },
+        },
+      },
+      MuiSnackbar: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            '& .MuiSnackbarContent-root': {
+              backgroundColor: '#FFF',
+              color: (theme.vars || theme).palette.text.primary,
+              fontWeight: theme.typography.fontWeightMedium,
+              border: `1px solid ${(theme.vars || theme).palette.divider}`,
+              boxShadow: `0 4px 16px ${alpha(theme.palette.grey[400], 0.2)}`,
+              ...theme.applyDarkStyles({
+                backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+                boxShadow: '0 4px 16px hsl(0, 100%, 1%)',
+              }),
+            },
+          }),
         },
       },
       MuiPaginationItem: {
