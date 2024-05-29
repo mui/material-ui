@@ -4,12 +4,10 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
 interface StyledMenuButtonProps extends IconButtonProps {
   showBadge?: boolean;
-  ariaLabel?: string;
 }
 
 export default function MenuButton({
   showBadge = false,
-  ariaLabel,
   ...props
 }: StyledMenuButtonProps) {
   return (
@@ -21,7 +19,7 @@ export default function MenuButton({
         '& .MuiBadge-badge': { right: 2, top: 2 },
       }}
     >
-      <IconButton size="small" aria-label={ariaLabel} {...props} />
+      <IconButton size="small" {...props} />
     </Badge>
   );
 }

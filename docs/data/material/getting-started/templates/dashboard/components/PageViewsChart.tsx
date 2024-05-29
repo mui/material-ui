@@ -51,7 +51,7 @@ export default function PageViewsChart() {
   return (
     <Card variant="outlined" sx={{ height: 400, width: '100%' }}>
       <CardContent>
-        <Typography variant="subtitle2" component="p" gutterBottom>
+        <Typography component="h2" variant="subtitle2" gutterBottom>
           Sessions
         </Typography>
         <LineChart

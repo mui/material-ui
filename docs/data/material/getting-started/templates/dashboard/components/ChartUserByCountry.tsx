@@ -103,7 +103,7 @@ export default function ChartUserByCountry() {
   return (
     <Card variant="outlined" sx={{ pb: '8px' }}>
       <CardContent>
-        <Typography variant="subtitle2" component="p">
+        <Typography component="h2" variant="subtitle2">
           Users by country
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>

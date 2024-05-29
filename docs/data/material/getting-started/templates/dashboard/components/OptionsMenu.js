@@ -18,7 +18,7 @@ export default function OptionsMenu() {
   };
   return (
     <React.Fragment>
-      <MenuButton ariaLabel="Options menu button" onClick={handleClick}>
+      <MenuButton aria-label="Open menu" onClick={handleClick}>
         <MoreVertRoundedIcon />
       </MenuButton>
       <Menu

@@ -102,7 +102,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
         >
           <NavbarBreadcrumbs />
           <Stack direction="row" gap={1}>
-            <MenuButton showBadge ariaLabel="Notification menu button">
+            <MenuButton showBadge aria-label="Open notifications">
               <NotificationsRoundedIcon />
             </MenuButton>
             <OptionsMenu />
