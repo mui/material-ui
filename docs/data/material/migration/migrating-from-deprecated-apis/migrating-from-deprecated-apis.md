@@ -982,7 +982,7 @@ npx @mui/codemod@next deprecations/filled-input-props <path>
 
 ### components
 
-The Input's prop `components` was deprecated in favor of `slots`:
+The FilledInput's prop `components` was deprecated in favor of `slots`:
 
 ```diff
  <FilledInput
@@ -993,7 +993,7 @@ The Input's prop `components` was deprecated in favor of `slots`:
 
 ### componentsProps
 
-The Input's prop `componentsProps` was deprecated in favor of `slotProps`:
+The FilledInput's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <FilledInput
@@ -1172,7 +1172,7 @@ npx @mui/codemod@next deprecations/outlined-input-props <path>
 
 ### components
 
-The Input's prop `components` was deprecated in favor of `slots`:
+The OutlinedInput's prop `components` was deprecated in favor of `slots`:
 
 ```diff
  <OutlinedInput
@@ -1183,7 +1183,7 @@ The Input's prop `components` was deprecated in favor of `slots`:
 
 ### componentsProps
 
-The Input's prop `componentsProps` was deprecated in favor of `slotProps`:
+The OutlinedInput's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <OutlinedInput
