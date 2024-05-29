@@ -29,7 +29,7 @@
     "@emotion/styled": "^11.11.5",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
-    "@fortawesome/react-fontawesome": "^0.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@mui/base": "workspace:*",
     "@mui/docs": "workspace:^",
     "@mui/icons-material": "workspace:^",
