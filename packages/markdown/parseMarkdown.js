@@ -247,7 +247,7 @@ function getFeatureList(content) {
 }
 
 function extractPreTag(content) {
-  const preMatch = content.match(/<pre\s+[^>]*>([\s\S]*?)<\/pre>/);
+  const preMatch = content.match(/<pre\b[^>]*>/);
 
   return preMatch ? preMatch[0] : '';
 }

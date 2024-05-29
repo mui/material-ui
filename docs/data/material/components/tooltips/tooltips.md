@@ -54,7 +54,7 @@ Alternatively, you can use the `slotProps` prop to customize the margin of the p
 The tooltip needs to apply DOM event listeners to its child element.
 If the child is a custom React element, you need to make sure that it spreads its props to the underlying DOM element.
 
-```jsx
+```jsx {1}
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
   //  Spread the props to the underlying DOM element.
   return (
