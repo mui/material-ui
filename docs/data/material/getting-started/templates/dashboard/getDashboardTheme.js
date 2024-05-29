@@ -117,7 +117,7 @@ export default function getDashboardTheme(mode) {
                 style: {
                   color: theme.palette.text.primary,
                   border: `1px solid ${theme.palette.divider}`,
-                  backgroundColor: gray[50],
+                  backgroundColor: alpha(gray[50], 0.3),
                   '&:hover': {
                     backgroundColor: gray[100],
                     borderColor: gray[300],
@@ -416,7 +416,7 @@ export default function getDashboardTheme(mode) {
             letterSpacing: 0,
             color: theme.palette.text.primary,
             border: `1px solid ${theme.palette.divider}`,
-            backgroundColor: gray[50],
+            backgroundColor: alpha(gray[50], 0.3),
             '&:hover': {
               backgroundColor: gray[100],
               borderColor: gray[300],
@@ -883,7 +883,7 @@ export default function getDashboardTheme(mode) {
               stroke: gray[300],
             },
             '& .MuiChartsAxis-tickLabel': {
-              fill: gray[400],
+              fill: gray[500],
               fontWeight: 500,
             },
             ...theme.applyStyles('dark', {
@@ -894,9 +894,26 @@ export default function getDashboardTheme(mode) {
                 stroke: gray[700],
               },
               '& .MuiChartsAxis-tickLabel': {
-                fill: gray[400],
+                fill: gray[300],
                 fontWeight: 500,
               },
+            }),
+          }),
+        },
+      },
+      MuiChartsTooltip: {
+        styleOverrides: {
+          mark: ({ theme }) => ({
+            ry: 6,
+            boxShadow: 'none',
+            border: `1px solid ${theme.palette.divider}`,
+          }),
+          table: ({ theme }) => ({
+            border: `1px solid ${theme.palette.divider}`,
+            borderRadius: theme.shape.borderRadius,
+            background: 'hsl(0, 0%, 100%)',
+            ...theme.applyStyles('dark', {
+              background: gray[900],
             }),
           }),
         },
@@ -1014,7 +1031,6 @@ export default function getDashboardTheme(mode) {
             }),
           }),
           row: ({ theme }) => ({
-            // borderBottom: `1px solid ${theme.palette.divider}`,
             '&:last-of-type': { borderBottom: `1px solid ${theme.palette.divider}` },
             '&:hover': {
               background: alpha(theme.palette.primary.main, 0.1),
@@ -1026,7 +1042,7 @@ export default function getDashboardTheme(mode) {
               },
             },
             '&.even': {
-              background: alpha(theme.palette.grey[200], 0.3),
+              background: alpha(theme.palette.grey[200], 0.2),
               '&:hover': {
                 background: alpha(theme.palette.primary.main, 0.1),
               },

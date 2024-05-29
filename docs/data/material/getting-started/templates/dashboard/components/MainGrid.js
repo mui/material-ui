@@ -32,7 +32,7 @@ const data = [
     data: [5, 4, 6, 3, 4, 3, 7, 6],
   },
   {
-    title: 'Engagements',
+    title: 'Engagement',
     value: '30k',
     interval: 'Last 30 days',
     trend: 'up',
