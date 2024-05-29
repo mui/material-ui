@@ -14,7 +14,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 const Popper = styled(MuiPopper, {
   shouldForwardProp: (prop) => prop !== 'arrow',
@@ -275,20 +275,23 @@ export default function ScrollPlayground() {
               sx={{ width: 200 }}
               label="Placement"
               select
-              InputLabelProps={{
-                id: 'scroll-playground-placement-label',
-              }}
-              SelectProps={{
-                native: true,
-                inputProps: {
-                  'aria-labelledby': 'scroll-playground-placement-label',
-                },
-              }}
               value={placement}
               onChange={(event) => {
                 setPlacement(event.target.value);
               }}
               variant="standard"
+              slotProps={{
+                select: {
+                  native: true,
+                  inputProps: {
+                    'aria-labelledby': 'scroll-playground-placement-label',
+                  },
+                },
+
+                inputLabel: {
+                  id: 'scroll-playground-placement-label',
+                },
+              }}
             >
               <option value="top-start">top-start</option>
               <option value="top">top</option>
@@ -396,16 +399,6 @@ export default function ScrollPlayground() {
                 size="small"
                 label="Root Boundary"
                 select
-                InputLabelProps={{
-                  id: 'scroll-playground-prevent-overflow-root-boundary',
-                }}
-                SelectProps={{
-                  native: true,
-                  inputProps: {
-                    'aria-labelledby':
-                      'scroll-playground-prevent-overflow-root-boundary',
-                  },
-                }}
                 value={preventOverflow.rootBoundary}
                 onChange={(event) => {
                   setPreventOverflow((old) => ({
@@ -414,6 +407,19 @@ export default function ScrollPlayground() {
                   }));
                 }}
                 variant="standard"
+                slotProps={{
+                  select: {
+                    native: true,
+                    inputProps: {
+                      'aria-labelledby':
+                        'scroll-playground-prevent-overflow-root-boundary',
+                    },
+                  },
+
+                  inputLabel: {
+                    id: 'scroll-playground-prevent-overflow-root-boundary',
+                  },
+                }}
               >
                 <option value="document">document</option>
                 <option value="viewport">viewport</option>
@@ -458,15 +464,6 @@ export default function ScrollPlayground() {
                 size="small"
                 label="Root Boundary"
                 select
-                InputLabelProps={{
-                  id: 'scroll-playground-flip-root-boundary',
-                }}
-                SelectProps={{
-                  native: true,
-                  inputProps: {
-                    'aria-labelledby': 'scroll-playground-flip-root-boundary',
-                  },
-                }}
                 value={flip.rootBoundary}
                 onChange={(event) => {
                   setFlip((old) => ({
@@ -475,6 +472,18 @@ export default function ScrollPlayground() {
                   }));
                 }}
                 variant="standard"
+                slotProps={{
+                  select: {
+                    native: true,
+                    inputProps: {
+                      'aria-labelledby': 'scroll-playground-flip-root-boundary',
+                    },
+                  },
+
+                  inputLabel: {
+                    id: 'scroll-playground-flip-root-boundary',
+                  },
+                }}
               >
                 <option value="document">document</option>
                 <option value="viewport">viewport</option>

@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getTableHeadUtilityClass } from './tableHeadClasses';
+
+const useThemeProps = createUseThemeProps('MuiTableHead');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;

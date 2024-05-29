@@ -160,7 +160,7 @@ const ButtonGroupRoot = styled('div', {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main)
+      .filter(([, value]) => value && value.main)
       .flatMap(([color]) => [
         {
           props: { variant: 'text', color },
@@ -224,7 +224,7 @@ const ButtonGroupRoot = styled('div', {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.dark)
+      .filter(([, value]) => value && value.dark)
       .map(([color]) => ({
         props: { variant: 'contained', color },
         style: {

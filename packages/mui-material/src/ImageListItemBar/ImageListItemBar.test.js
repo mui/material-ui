@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import ImageListItemBar, {
   imageListItemBarClasses as classes,
 } from '@mui/material/ImageListItemBar';

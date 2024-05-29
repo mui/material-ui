@@ -4,10 +4,11 @@ import integerPropType from '@mui/utils/integerPropType';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getImageListUtilityClass } from './imageListClasses';
 import ImageListContext from './ImageListContext';
+
+const useThemeProps = createUseThemeProps('MuiImageList');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant } = ownerState;
@@ -27,18 +28,23 @@ const ImageListRoot = styled('ul', {
 
     return [styles.root, styles[ownerState.variant]];
   },
-})(({ ownerState }) => {
-  return {
-    display: 'grid',
-    overflowY: 'auto',
-    listStyle: 'none',
-    padding: 0,
-    // Add iOS momentum scrolling for iOS < 13.0
-    WebkitOverflowScrolling: 'touch',
-    ...(ownerState.variant === 'masonry' && {
-      display: 'block',
-    }),
-  };
+})({
+  display: 'grid',
+  overflowY: 'auto',
+  listStyle: 'none',
+  padding: 0,
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
+  variants: [
+    {
+      props: {
+        variant: 'masonry',
+      },
+      style: {
+        display: 'block',
+      },
+    },
+  ],
 });
 
 const ImageList = React.forwardRef(function ImageList(inProps, ref) {

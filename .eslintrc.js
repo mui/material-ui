@@ -1,8 +1,8 @@
 const path = require('path');
 const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
 
-const forbidTopLevelMessage = [
-  'Prefer one level nested imports to avoid bundling everything in dev mode',
+const OneLevelImportMessage = [
+  'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
   'See https://github.com/mui/material-ui/pull/24147 for the kind of win it can unlock.',
 ].join('\n');
 // This only applies to packages published from this monorepo.
@@ -65,7 +65,20 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: ['@mui/*/*/*'],
+        patterns: [
+          {
+            group: [
+              '@mui/*/*/*',
+              '@pigment-css/*/*/*',
+              '@base_ui/*/*/*',
+              // Allow any import depth with any internal packages
+              '!@mui/internal-*/**',
+              // TODO delete, @mui/docs should be @mui/internal-docs
+              '!@mui/docs/**',
+            ],
+            message: OneLevelImportMessage,
+          },
+        ],
       },
     ],
     'no-continue': 'off',
@@ -286,7 +299,7 @@ module.exports = {
     },
     // Next.js entry points pages
     {
-      files: ['docs/pages/**/*.js'],
+      files: ['docs/pages/**/*{.tsx,.js}'],
       rules: {
         'react/prop-types': 'off',
       },
@@ -331,23 +344,6 @@ module.exports = {
         'import/export': 'off', // Not sure why it doesn't work
       },
     },
-    {
-      files: ['*.tsx'],
-      excludedFiles: '*.spec.tsx',
-      rules: {
-        // WARNING: If updated, make sure these rules are merged with `no-restricted-imports` (#ts-source-files)
-        'no-restricted-imports': [
-          'error',
-          {
-            patterns: [
-              // Allow deeper imports for TypeScript types. TODO remove
-              '@mui/*/*/*/*',
-            ],
-          },
-        ],
-      },
-    },
-    // Files used for generating TypeScript declaration files (#ts-source-files)
     {
       files: ['packages/*/src/**/*.tsx'],
       excludedFiles: '*.spec.tsx',
@@ -429,11 +425,11 @@ module.exports = {
             paths: [
               {
                 name: '@mui/material',
-                message: forbidTopLevelMessage,
+                message: OneLevelImportMessage,
               },
               {
                 name: '@mui/lab',
-                message: forbidTopLevelMessage,
+                message: OneLevelImportMessage,
               },
             ],
           },
@@ -475,6 +471,37 @@ module.exports = {
       rules: {
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
+      },
+    },
+    {
+      /**
+       * Examples are for demonstration purposes and should not be considered a part of the library.
+       * They don't contain ESLint setup, so we don't want them to contain ESLint directives
+       * We do, however, want to keep the rules in place to ensure the examples are following
+       * a reasonably similar code style as the library.
+       */
+      files: ['examples/**/*'],
+      rules: {
+        'no-console': 'off',
+        'no-underscore-dangle': 'off',
+        'import/no-unresolved': 'off',
+        'import/namespace': 'off',
+        'import/extensions': 'off',
+        'import/named': 'off',
+        'import/no-duplicates': 'off',
+        'import/no-named-as-default': 'off',
+        'import/default': 'off',
+        'import/no-named-as-default-member': 'off',
+        'import/order': 'off',
+        // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
+        'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
+      },
+    },
+    {
+      // TODO, move rule to be global, propagate: https://github.com/mui/material-ui/issues/42169
+      files: ['examples/pigment-css-remix-ts/**/*'],
+      rules: {
+        'react/react-in-jsx-scope': 'off',
       },
     },
   ],

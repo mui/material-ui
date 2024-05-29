@@ -59,7 +59,7 @@ import Search from '@mui/icons-material/Search';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import sourceJoyTemplates, { TemplateData } from 'docs/src/modules/joy/sourceJoyTemplates';
@@ -1037,7 +1037,6 @@ function GlobalVariantForm({
         Pick the specific primitive color, now in CSS variables form already, to correspond to a
         semantic global variant token.
       </Typography>
-
       <Sheet
         variant="outlined"
         sx={{
@@ -1273,7 +1272,7 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
   return tokens;
 }
 
-function TemplatesDialog({ children, data }: { children: React.ReactElement; data: any }) {
+function TemplatesDialog({ children, data }: { children: React.ReactElement<any>; data: any }) {
   const [open, setOpen] = React.useState(false);
   const { map: templateMap } = sourceJoyTemplates();
   const renderItem = (name: string, item: TemplateData) => {

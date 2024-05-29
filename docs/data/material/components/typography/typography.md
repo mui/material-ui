@@ -10,7 +10,7 @@ materialDesign: https://m2.material.io/design/typography/the-type-system.html
 
 <p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Roboto font
 

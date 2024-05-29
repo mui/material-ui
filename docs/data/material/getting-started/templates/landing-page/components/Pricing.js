@@ -196,13 +196,7 @@ export default function Pricing() {
                 ))}
               </CardContent>
               <CardActions>
-                <Button
-                  fullWidth
-                  variant={tier.buttonVariant}
-                  component="a"
-                  href="/material-ui/getting-started/templates/checkout/"
-                  target="_blank"
-                >
+                <Button fullWidth variant={tier.buttonVariant}>
                   {tier.buttonText}
                 </Button>
               </CardActions>

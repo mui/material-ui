@@ -7,8 +7,7 @@ import refType from '@mui/utils/refType';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import useTheme from '../styles/useTheme';
 import debounce from '../utils/debounce';
 import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
@@ -19,6 +18,8 @@ import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
+
+const useThemeProps = createUseThemeProps('MuiTabs');
 
 const nextItem = (list, item) => {
   if (list === item) {
@@ -114,22 +115,30 @@ const TabsRoot = styled('div', {
       ownerState.vertical && styles.vertical,
     ];
   },
-})(({ ownerState, theme }) => ({
+})(({ theme }) => ({
   overflow: 'hidden',
   minHeight: 48,
   // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
   display: 'flex',
-  ...(ownerState.vertical && {
-    flexDirection: 'column',
-  }),
-  ...(ownerState.scrollButtonsHideMobile && {
-    [`& .${tabsClasses.scrollButtons}`]: {
-      [theme.breakpoints.down('sm')]: {
-        display: 'none',
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.vertical,
+      style: {
+        flexDirection: 'column',
       },
     },
-  }),
+    {
+      props: ({ ownerState }) => ownerState.scrollButtonsHideMobile,
+      style: {
+        [`& .${tabsClasses.scrollButtons}`]: {
+          [theme.breakpoints.down('sm')]: {
+            display: 'none',
+          },
+        },
+      },
+    },
+  ],
 }));
 
 const TabsScroller = styled('div', {
@@ -145,31 +154,45 @@ const TabsScroller = styled('div', {
       ownerState.scrollableY && styles.scrollableY,
     ];
   },
-})(({ ownerState }) => ({
+})({
   position: 'relative',
   display: 'inline-block',
   flex: '1 1 auto',
   whiteSpace: 'nowrap',
-  ...(ownerState.fixed && {
-    overflowX: 'hidden',
-    width: '100%',
-  }),
-  ...(ownerState.hideScrollbar && {
-    // Hide dimensionless scrollbar on macOS
-    scrollbarWidth: 'none', // Firefox
-    '&::-webkit-scrollbar': {
-      display: 'none', // Safari + Chrome
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.fixed,
+      style: {
+        overflowX: 'hidden',
+        width: '100%',
+      },
     },
-  }),
-  ...(ownerState.scrollableX && {
-    overflowX: 'auto',
-    overflowY: 'hidden',
-  }),
-  ...(ownerState.scrollableY && {
-    overflowY: 'auto',
-    overflowX: 'hidden',
-  }),
-}));
+    {
+      props: ({ ownerState }) => ownerState.hideScrollbar,
+      style: {
+        // Hide dimensionless scrollbar on macOS
+        scrollbarWidth: 'none', // Firefox
+        '&::-webkit-scrollbar': {
+          display: 'none', // Safari + Chrome
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.scrollableX,
+      style: {
+        overflowX: 'auto',
+        overflowY: 'hidden',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.scrollableY,
+      style: {
+        overflowY: 'auto',
+        overflowX: 'hidden',
+      },
+    },
+  ],
+});
 
 const FlexContainer = styled('div', {
   name: 'MuiTabs',
@@ -182,37 +205,60 @@ const FlexContainer = styled('div', {
       ownerState.centered && styles.centered,
     ];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
-  ...(ownerState.vertical && {
-    flexDirection: 'column',
-  }),
-  ...(ownerState.centered && {
-    justifyContent: 'center',
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.vertical,
+      style: {
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.centered,
+      style: {
+        justifyContent: 'center',
+      },
+    },
+  ],
+});
 
 const TabsIndicator = styled('span', {
   name: 'MuiTabs',
   slot: 'Indicator',
   overridesResolver: (props, styles) => styles.indicator,
-})(({ ownerState, theme }) => ({
+})(({ theme }) => ({
   position: 'absolute',
   height: 2,
   bottom: 0,
   width: '100%',
   transition: theme.transitions.create(),
-  ...(ownerState.indicatorColor === 'primary' && {
-    backgroundColor: (theme.vars || theme).palette.primary.main,
-  }),
-  ...(ownerState.indicatorColor === 'secondary' && {
-    backgroundColor: (theme.vars || theme).palette.secondary.main,
-  }),
-  ...(ownerState.vertical && {
-    height: '100%',
-    width: 2,
-    right: 0,
-  }),
+  variants: [
+    {
+      props: {
+        indicatorColor: 'primary',
+      },
+      style: {
+        backgroundColor: (theme.vars || theme).palette.primary.main,
+      },
+    },
+    {
+      props: {
+        indicatorColor: 'secondary',
+      },
+      style: {
+        backgroundColor: (theme.vars || theme).palette.secondary.main,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.vertical,
+      style: {
+        height: '100%',
+        width: 2,
+        right: 0,
+      },
+    },
+  ],
 }));
 
 const TabsScrollbarSize = styled(ScrollbarSize)({

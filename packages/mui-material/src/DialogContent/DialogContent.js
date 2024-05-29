@@ -3,10 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
+
+const useThemeProps = createUseThemeProps('MuiDialogContent');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, dividers } = ownerState;
@@ -26,23 +27,30 @@ const DialogContentRoot = styled('div', {
 
     return [styles.root, ownerState.dividers && styles.dividers];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   flex: '1 1 auto',
   // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
   overflowY: 'auto',
   padding: '20px 24px',
-  ...(ownerState.dividers
-    ? {
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.dividers,
+      style: {
         padding: '16px 24px',
         borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
         borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-      }
-    : {
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState.dividers,
+      style: {
         [`.${dialogTitleClasses.root} + &`]: {
           paddingTop: 0,
         },
-      }),
+      },
+    },
+  ],
 }));
 
 const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {

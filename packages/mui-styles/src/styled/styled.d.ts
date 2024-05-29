@@ -23,7 +23,7 @@ export type ComponentCreator<Component extends React.ElementType> = <
   options?: WithStylesOptions<Theme>,
 ) => StyledComponent<
   DistributiveOmit<
-    JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
+    React.JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
   > &
     StyledComponentProps<'root'> &
