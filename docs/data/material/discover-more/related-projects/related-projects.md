@@ -40,6 +40,10 @@ Feel free to submit a pull request!
 
 - [mui-tel-input](https://github.com/viclafouch/mui-tel-input): A phone number input designed for use with Material UI, built with [libphonenumber-js](https://www.npmjs.com/package/libphonenumber-js).
 
+### Number
+
+- [material-ui-autonumeric](https://material-ui-autonumeric.8hob.io/): AutoNumeric-Powered Material UI Components. [AutoNumeric](https://autonumeric.org/) is a powerful library that automatically formats numbers and currencies. Material UI-AutoNumeric brings that power to Material UI.
+
 ### One-Time Password
 
 - [mui-otp-input](https://github.com/viclafouch/mui-otp-input): A One-Time Password input designed for use with Material UI.
