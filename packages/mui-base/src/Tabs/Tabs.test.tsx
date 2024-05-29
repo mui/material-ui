@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen, createMount } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen, createMount } from '@mui/internal-test-utils';
 import { Tab } from '@mui/base/Tab';
 import { Tabs, tabsClasses as classes, TabsProps } from '@mui/base/Tabs';
 import { TabsList } from '@mui/base/TabsList';

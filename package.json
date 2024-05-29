@@ -54,35 +54,44 @@
     "test": "node scripts/test.mjs",
     "tc": "node test/cli.js",
     "test:extended": "pnpm eslint && pnpm typescript && pnpm test:coverage",
-    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
-    "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
-    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "test:coverage": "nx run nx_test_coverage",
+    "test:coverage:ci": "nx run nx_test_coverage_ci",
+    "test:coverage:html": "nx run nx_test_coverage_html",
     "test:e2e": "cross-env NODE_ENV=production pnpm test:e2e:build && concurrently --success first --kill-others \"pnpm test:e2e:run\" \"pnpm test:e2e:server\"",
-    "test:e2e:build": "webpack --config test/e2e/webpack.config.js",
+    "test:e2e:build": "nx run nx_test_e2e_build",
     "test:e2e:dev": "concurrently \"pnpm test:e2e:build --watch\" \"pnpm test:e2e:server\"",
-    "test:e2e:run": "mocha --config test/e2e/.mocharc.js 'test/e2e/**/*.test.{js,ts,tsx}'",
+    "test:e2e:run": "nx run nx_test_e2e_run",
     "test:e2e:server": "serve test/e2e -p 5001",
     "test:e2e-website": "playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
     "test:e2e-website:dev": "cross-env PLAYWRIGHT_TEST_BASE_URL=http://localhost:3000 playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
-    "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
-    "test:karma:profile": "cross-env NODE_ENV=test karma start test/karma.conf.profile.js",
+    "test:karma": "nx run nx_test_karma",
+    "test:karma:profile": "nx run nx_test_karma_profile",
     "test:regressions": "cross-env NODE_ENV=production pnpm test:regressions:build && concurrently --success first --kill-others \"pnpm test:regressions:run\" \"pnpm test:regressions:server\"",
     "test:regressions:build": "webpack --config test/regressions/webpack.config.js",
     "test:regressions:dev": "concurrently \"pnpm test:regressions:build --watch\" \"pnpm test:regressions:server\"",
-    "test:regressions:run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
+    "test:regressions:run": "nx run nx_test_regressions_run",
     "test:regressions:server": "serve test/regressions -p 5001",
-    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "test:unit": "nx run nx_test_unit",
     "test:argos": "node ./scripts/pushArgos.mjs",
     "typescript": "lerna run --no-bail --parallel typescript",
     "typescript:ci": "lerna run --concurrency 3 --no-bail --no-sort typescript",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
-    "canary:release": "tsx ./scripts/canaryRelease.mts"
+    "canary:release": "tsx ./scripts/canaryRelease.mts",
+    "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "nx_test_coverage_html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "nx_test_coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "nx_test_e2e_build": "webpack --config test/e2e/webpack.config.js",
+    "nx_test_e2e_run": "mocha --config test/e2e/.mocharc.js 'test/e2e/**/*.test.{js,ts,tsx}'",
+    "nx_test_karma_profile": "cross-env NODE_ENV=test karma start test/karma.conf.profile.js",
+    "nx_test_karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
+    "nx_test_regressions_run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
+    "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'"
   },
   "dependencies": {
     "@googleapis/sheets": "^7.0.0",
-    "@slack/bolt": "^3.18.0",
     "@netlify/functions": "^2.7.0",
+    "@slack/bolt": "^3.18.0",
     "execa": "^8.0.1",
     "google-auth-library": "^9.10.0"
   },
@@ -98,11 +107,11 @@
     "@babel/preset-typescript": "^7.24.6",
     "@babel/register": "^7.24.6",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
-    "@mui/internal-docs-utils": "workspace:^",
-    "@mui/internal-scripts": "workspace:^",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
-    "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-docs-utils": "workspace:^",
+    "@mui/internal-scripts": "workspace:^",
+    "@mui/internal-test-utils": "workspace:^",
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -213,5 +222,54 @@
     ],
     "sourceMap": false,
     "instrument": false
+  },
+  "nx": {
+    "targets": {
+      "nx_test_unit": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      },
+      "nx_test_karma": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      },
+      "nx_test_karma_profile": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      },
+      "nx_test_coverage": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      },
+      "nx_test_coverage_ci": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      },
+      "nx_test_coverage_html": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      },
+      "nx_test_regressions_run": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      },
+      "nx_test_e2e_build": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      },
+      "nx_test_e2e_run": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      }
+    }
   }
 }
