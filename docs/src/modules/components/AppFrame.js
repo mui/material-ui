@@ -199,6 +199,7 @@ export default function AppFrame(props) {
               logoSvgString={productIdentifier.logoSvg}
               wordmarkSvgString={productIdentifier.wordmarkSvg}
               smallerMargin
+              marginLeft
             />
           </Box>
           <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
