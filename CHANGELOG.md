@@ -6,7 +6,7 @@
 
 _May 29, 2024_
 
-A big thanks to the 4 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.15.19`
@@ -37,7 +37,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 02 -->[website] Adds Kenan Yusuf to about page (@KenanYusuf) (#42330) @github-actions[bot]
 - &#8203;<!-- 01 -->[website] Improve about page @oliviertassinari
 
-All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @github-actions[bot], @oliviertassinari
+All contributors of this release in alphabetical order: @aarongarciah, @brijeshb42, @danilo-leal, @DiegoAndai, @KenanYusuf, @lucasgmelo, @Mandar-Pandya, @MatheusEli, @mnajdova, @nikitaa24, @oliviertassinari, @ZeeshanTamboli
 
 ## v5.15.18
 
