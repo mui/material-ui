@@ -1083,6 +1083,32 @@ npx @mui/codemod@next deprecations/form-control-label-props <path>
 npx @mui/codemod@next deprecations/list-item-props <path>
 ```
 
+#### `list-item-text-props`
+
+```diff
+ <ListItemText
+-  primaryTypographyProps={primaryTypographyProps}
++  slotProps={{ primary: primaryTypographyProps }}
+-  secondaryTypographyProps={secondaryTypographyProps}
++  slotProps={{ secondary: secondaryTypographyProps }}
+ />
+```
+
+```diff
+ MuiListItemText: {
+   defaultProps: {
+-  primaryTypographyProps:primaryTypographyProps
++  slotProps:{ primary: primaryTypographyProps }
+-  secondaryTypographyProps:secondaryTypographyProps
++  slotProps:{ secondary: secondaryTypographyProps }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-text-props <path>
+```
+
 #### `grid-props`
 
 ```diff
