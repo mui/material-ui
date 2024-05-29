@@ -8,9 +8,9 @@ import { alpha } from '@mui/material/styles';
 interface HeroContainerProps {
   disableMobileHidden?: boolean;
   disableTabExclusion?: boolean;
-  left: React.ReactElement;
+  left: React.ReactElement<any>;
   linearGradient?: boolean;
-  right: React.ReactElement;
+  right: React.ReactElement<any>;
   rightSx?: BoxProps['sx'];
 }
 
@@ -145,7 +145,7 @@ export default function HeroContainer(props: HeroContainerProps) {
           transition: '0.3s',
         }}
       >
-        <Grid container alignItems="center" wrap="nowrap" sx={{ height: '100%', mx: 'auto' }}>
+        <Grid container alignItems="center" flexWrap="nowrap" sx={{ height: '100%', mx: 'auto' }}>
           <Grid item md={7} lg={6} sx={{ m: 'auto' }}>
             {left}
           </Grid>

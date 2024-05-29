@@ -96,7 +96,7 @@ async function postFeedback(data) {
 }
 
 async function postFeedbackOnSlack(data) {
-  const { rating, comment, commentedSection } = data;
+  const { rating, comment, commentedSection, productId } = data;
 
   const sentData = {
     callback_id: 'send_feedback',
@@ -106,6 +106,7 @@ async function postFeedbackOnSlack(data) {
     commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
     commmentSectionTitle: commentedSection.text,
     githubRepo: process.env.SOURCE_CODE_REPO,
+    productId,
   };
   if (!comment || comment.length < 10) {
     return 'ignored';
@@ -187,7 +188,7 @@ async function getUserFeedback(id) {
   }
 }
 
-async function submitFeedback(page, rating, comment, language, commentedSection) {
+async function submitFeedback(page, rating, comment, language, commentedSection, productId) {
   const data = {
     id: getCookie('feedbackId'),
     page,
@@ -197,7 +198,7 @@ async function submitFeedback(page, rating, comment, language, commentedSection)
     language,
   };
 
-  const resultSlack = await postFeedbackOnSlack({ ...data, commentedSection });
+  const resultSlack = await postFeedbackOnSlack({ ...data, productId, commentedSection });
   if (rating !== undefined) {
     const resultVote = await postFeedback(data);
     if (resultVote) {
@@ -259,7 +260,7 @@ export default function AppLayoutDocsFooter(props) {
   const theme = useTheme();
   const t = useTranslate();
   const userLanguage = useUserLanguage();
-  const { activePage } = React.useContext(PageContext);
+  const { activePage, productId } = React.useContext(PageContext);
   const [rating, setRating] = React.useState();
   const [comment, setComment] = React.useState('');
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
@@ -303,6 +304,7 @@ export default function AppLayoutDocsFooter(props) {
       comment,
       userLanguage,
       commentedSection,
+      productId,
     );
     if (result) {
       setSnackbarMessage(t('feedbackSubmitted'));

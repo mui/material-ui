@@ -190,4 +190,4 @@ export declare const PopoverPaper: React.FC<PopoverPaperProps>;
  * - [Popover API](https://mui.com/material-ui/api/popover/)
  * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
  */
-export default function Popover(props: PopoverProps): JSX.Element;
+export default function Popover(props: PopoverProps): React.JSX.Element;
