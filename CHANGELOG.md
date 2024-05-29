@@ -1,5 +1,44 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.19
+
+<!-- generated comparing v5.15.18..master -->
+
+_May 29, 2024_
+
+A big thanks to the 12 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.19`
+
+- &#8203;<!-- 19 -->[AlertTitle] Enable extending Typography props (@lucasgmelo) (#42334) @github-actions[bot]
+- &#8203;<!-- 06 -->[responsiveFontSizes] Handled undefined variants (@brijeshb42) (#42419) @github-actions[bot]
+- &#8203;<!-- 05 -->[Slider] Fix wrong CSS value (@mnajdova) (#42373) @github-actions[bot]
+
+### Docs
+
+- &#8203;<!-- 13 -->Link to pnpm installation docs (#42420) @aarongarciah
+- &#8203;<!-- 12 -->Remove LocalMonero (@oliviertassinari) (#42315) @github-actions[bot]
+- &#8203;<!-- 10 -->[material-ui] Fix typo in style interoperability with Tailwind CSS docs (@ZeeshanTamboli) (#42312) @github-actions[bot]
+- &#8203;<!-- 09 -->[material-ui][Pagination] Clarify pagination `page` prop API (@Mandar-Pandya) (#42265) @github-actions[bot]
+- &#8203;<!-- 08 -->[material-ui][Tabs] Improve the Basic Tabs demo (@MatheusEli) (#42426) @github-actions[bot]
+- &#8203;<!-- 07 -->[pigment-css] Fix duplication of content (#42410) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 18 -->[blog] Add the "Product" tag to the Pigment CSS post (@danilo-leal) (#42366) @github-actions[bot]
+- &#8203;<!-- 17 -->[blog] Update blog post OG image (@danilo-leal) (#42306) @github-actions[bot]
+- &#8203;<!-- 16 -->[blog] Update Pigment CSS post (@danilo-leal) (#42267) @github-actions[bot]
+- &#8203;<!-- 15 -->[core] Fix React 18.3 warnings about spreading keys in the Material UI `Autocomplete` component (#42099) (#42241) @DiegoAndai
+- &#8203;<!-- 14 -->[core] Fix a few more key spread issues (@oliviertassinari) (#42318) @github-actions[bot]
+- &#8203;<!-- 11 -->[docs-infra] Allow JSDoc tags (#42327) @aarongarciah
+- &#8203;<!-- 04 -->[website] Add Nikita to the about page (@nikitaa24) (#42421) @github-actions[bot]
+- &#8203;<!-- 03 -->[website] Fix hero spacing changes applying at the wrong breakpoint (@KenanYusuf) (#42357) @github-actions[bot]
+- &#8203;<!-- 02 -->[website] Adds Kenan Yusuf to about page (@KenanYusuf) (#42330) @github-actions[bot]
+- &#8203;<!-- 01 -->[website] Improve about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @brijeshb42, @danilo-leal, @DiegoAndai, @KenanYusuf, @lucasgmelo, @Mandar-Pandya, @MatheusEli, @mnajdova, @nikitaa24, @oliviertassinari, @ZeeshanTamboli
+
 ## v5.15.18
 
 <!-- generated comparing v5.15.17..master -->
