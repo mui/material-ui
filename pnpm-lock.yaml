@@ -1305,8 +1305,8 @@ importers:
         specifier: ^7.24.6
         version: 7.24.6
       '@floating-ui/react-dom':
-        specifier: ^2.0.8
-        version: 2.0.8(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^2.1.0
+        version: 2.1.0(react-dom@18.2.0)(react@18.2.0)
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -4579,8 +4579,8 @@ packages:
       '@floating-ui/utils': 0.2.1
     dev: false
 
-  /@floating-ui/react-dom@2.0.8(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-HOdqOt3R3OGeTKidaLvJKcgg75S6tibQ3Tif4eyd91QnIJWr0NLvoXFpJA/j8HqkFSL68GDca9AuyWEHlhyClw==}
+  /@floating-ui/react-dom@2.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-lNzj5EQmEKn5FFKc04+zasr09h/uX8RtJRNj5gUXsSQIXHVWTVh+hVAg1vOMCexkX8EgvemMvIFpQfkosnVNyA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -5115,7 +5115,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.24.6
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.1.0(react-dom@18.2.0)(react@18.2.0)
       '@mui/types': 7.2.14(@types/react@18.2.55)
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
       '@popperjs/core': 2.11.8
@@ -5138,7 +5138,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.24.6
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.1.0(react-dom@18.2.0)(react@18.2.0)
       '@mui/types': 7.2.14(@types/react@18.2.55)
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
       '@popperjs/core': 2.11.8
@@ -5161,7 +5161,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.24.6
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.1.0(react-dom@18.2.0)(react@18.2.0)
       '@mui/types': 7.2.14(@types/react@18.2.55)
       '@mui/utils': 5.15.14(@types/react@18.2.55)(react@18.2.0)
       '@popperjs/core': 2.11.8
