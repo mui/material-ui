@@ -43,7 +43,6 @@ const ALLOWED_TAGS = [
   'Pigment CSS',
   'Joy UI',
   'MUI X',
-  'MUI System',
   'Toolpad',
 ];
 

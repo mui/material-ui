@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui-internal/test-utils';
 import Box from '@mui/material/Box';
-import { Experimental_CssVarsProvider as CssVarsProvider, useTheme } from '@mui/material/styles';
+import { CssVarsProvider, useTheme } from '@mui/material/styles';
 
 describe('[Material UI] CssVarsProvider', () => {
   let originalMatchmedia;

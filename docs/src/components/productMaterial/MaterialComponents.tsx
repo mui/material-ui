@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider, alpha } from '@mui/material/styles';
+import { CssVarsProvider, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button, { buttonClasses } from '@mui/material/Button';

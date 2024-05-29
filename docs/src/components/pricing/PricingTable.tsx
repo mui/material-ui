@@ -382,7 +382,11 @@ function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
   );
 }
 
-function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: React.ReactElement }) {
+function RowHead({
+  children,
+  startIcon,
+  ...props
+}: BoxProps & { startIcon?: React.ReactElement<any> }) {
   return (
     <Box
       {...props}

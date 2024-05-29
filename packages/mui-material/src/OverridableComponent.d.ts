@@ -20,8 +20,8 @@ export interface OverridableComponent<TypeMap extends OverridableTypeMap> {
        */
       component: RootComponent;
     } & OverrideProps<TypeMap, RootComponent>,
-  ): JSX.Element | null;
-  (props: DefaultComponentProps<TypeMap>): JSX.Element | null;
+  ): React.JSX.Element | null;
+  (props: DefaultComponentProps<TypeMap>): React.JSX.Element | null;
 }
 
 /**

@@ -41,12 +41,12 @@ export default function deepmerge<T>(
 
   if (isPlainObject(target) && isPlainObject(source)) {
     Object.keys(source).forEach((key) => {
-      // Avoid prototype pollution
-      if (key === '__proto__') {
-        return;
-      }
-
-      if (isPlainObject(source[key]) && key in target && isPlainObject(target[key])) {
+      if (
+        isPlainObject(source[key]) &&
+        // Avoid prototype pollution
+        Object.prototype.hasOwnProperty.call(target, key) &&
+        isPlainObject(target[key])
+      ) {
         // Since `output` is a clone of `target` and we have narrowed `target` in this block we can cast to the same type.
         (output as Record<keyof any, unknown>)[key] = deepmerge(target[key], source[key], options);
       } else if (options.clone) {
