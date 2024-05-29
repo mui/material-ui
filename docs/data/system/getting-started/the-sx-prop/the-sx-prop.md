@@ -288,7 +288,7 @@ Each index can be an object or a callback.
 
 ## Passing the sx prop
 
-If you want to receive the `sx` prop from a custom component and pass it down to another MUI System, we recommend this approach:\*\*\*\*
+If you want to receive the `sx` prop from a custom component and pass it down to another MUI System, we recommend this approach:
 
 {{"demo": "PassingSxProp.js", "bg": true, "defaultCodeOpen": true}}
 
