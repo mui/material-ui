@@ -198,7 +198,6 @@ export default function AppFrame(props) {
               logo={productIdentifier.logo}
               logoSvgString={productIdentifier.logoSvg}
               wordmarkSvgString={productIdentifier.wordmarkSvg}
-              smallerMargin
               marginLeft
             />
           </Box>

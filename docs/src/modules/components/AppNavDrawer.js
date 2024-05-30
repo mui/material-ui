@@ -392,7 +392,6 @@ export default function AppNavDrawer(props) {
             logo={productIdentifier.logo}
             logoSvgString={productIdentifier.logoSvg}
             wordmarkSvgString={productIdentifier.wordmarkSvg}
-            smallerMargin
           />
           <ProductIdentifier
             name={productIdentifier.name}
