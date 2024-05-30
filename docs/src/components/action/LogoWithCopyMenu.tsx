@@ -11,8 +11,8 @@ import TextFieldsRoundedIcon from '@mui/icons-material/TextFieldsRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import { RootSvgProps } from 'docs/src/icons/RootSvg';
 import SvgMuiLogomark, {
-  MuiSvgLogoString,
-  MuiSvgWordmarkString,
+  muiSvgLogoString,
+  muiSvgWordmarkString,
 } from 'docs/src/icons/SvgMuiLogomark';
 
 interface LogoWithCopyMenuProps {
@@ -20,14 +20,12 @@ interface LogoWithCopyMenuProps {
   logoSvgString?: string;
   wordmarkSvgString?: string;
   marginLeft?: boolean;
-  smallerMargin?: boolean;
 }
 
 export default function LogoWithCopyMenu({
   logo: LogoSvg = SvgMuiLogomark,
-  logoSvgString = MuiSvgLogoString,
-  wordmarkSvgString = MuiSvgWordmarkString,
-  smallerMargin,
+  logoSvgString = muiSvgLogoString,
+  wordmarkSvgString = muiSvgWordmarkString,
   marginLeft,
 }: LogoWithCopyMenuProps) {
   const [contextMenu, setContextMenu] = React.useState<{
@@ -69,7 +67,7 @@ export default function LogoWithCopyMenu({
         onContextMenu={handleContextMenu}
         sx={{
           cursor: 'default',
-          mr: smallerMargin ? 1 : 1.5,
+          mr: 1,
           ml: marginLeft ? 1.5 : undefined,
           '& > svg': { m: '0 !important' }, // override the 2px margin-left coming from the Link component
         }}
