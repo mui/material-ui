@@ -8,15 +8,10 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
-import {
-  ThemeProvider,
-  createTheme,
-  hexToRgb,
-  experimental_extendTheme as extendTheme,
-} from '@mui/material/styles';
+import { ThemeProvider, createTheme, hexToRgb, extendTheme } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import defaultTheme from '../styles/defaultTheme';
 import describeConformance from '../../test/describeConformance';

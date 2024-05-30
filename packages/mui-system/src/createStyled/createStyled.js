@@ -56,6 +56,8 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
     );
   }
 
+  const mergedState = { ...props, ...ownerState, ownerState };
+
   if (
     !!resolvedStylesArg &&
     typeof resolvedStylesArg === 'object' &&
@@ -66,7 +68,7 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
     variants.forEach((variant) => {
       let isMatch = true;
       if (typeof variant.props === 'function') {
-        isMatch = variant.props({ ownerState, ...props, ...ownerState });
+        isMatch = variant.props(mergedState);
       } else {
         Object.keys(variant.props).forEach((key) => {
           if (ownerState?.[key] !== variant.props[key] && props[key] !== variant.props[key]) {
@@ -79,9 +81,7 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
           result = [result];
         }
         result.push(
-          typeof variant.style === 'function'
-            ? variant.style({ ownerState, ...props, ...ownerState })
-            : variant.style,
+          typeof variant.style === 'function' ? variant.style(mergedState) : variant.style,
         );
       }
     });

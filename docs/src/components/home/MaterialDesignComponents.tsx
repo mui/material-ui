@@ -4,8 +4,8 @@ import {
   Theme,
   ThemeOptions,
   alpha,
-  experimental_extendTheme as extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
+  extendTheme,
+  CssVarsProvider,
 } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';

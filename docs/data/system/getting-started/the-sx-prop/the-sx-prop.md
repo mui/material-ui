@@ -292,6 +292,18 @@ If you want to receive the `sx` prop from a custom component and pass it down to
 
 {{"demo": "PassingSxProp.js", "bg": true, "defaultCodeOpen": true}}
 
+## Dynamic values
+
+For highly dynamic CSS values, we recommend using inline CSS variables instead of passing an object with varying values to the `sx` prop on each render.
+This approach avoids inserting unnecessary `style` tags into the DOM, which prevents potential performance issues when dealing with CSS properties that can hold a wide range of values that change frequently—for example, a color picker with live preview.
+
+:::info
+If you're having problems with your Content Security Policy while using inline styles with the `style` attribute, make sure you've enabled the [`style-src-attr` directive](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src-attr).
+Visit the [Content Security Policy guide](/material-ui/guides/content-security-policy/) for configuration details.
+:::
+
+{{"demo": "DynamicValues.js", "bg": true}}
+
 ## TypeScript usage
 
 A frequent source of confusion with the `sx` prop is TypeScript's [type widening](https://mariusschulz.com/blog/literal-type-widening-in-typescript), which causes this example not to work as expected:

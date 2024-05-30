@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import StepIndicator, { stepIndicatorClasses as classes } from '@mui/joy/StepIndicator';
 import describeConformance from '../../test/describeConformance';

@@ -1,18 +1,12 @@
 'use client';
-// do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// @ts-ignore
 import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
-import experimental_extendTheme, {
-  SupportedColorScheme,
-  CssVarsTheme,
-} from './experimental_extendTheme';
+import extendTheme, { SupportedColorScheme, CssVarsTheme } from './extendTheme';
 import createTypography from './createTypography';
 import THEME_ID from './identifier';
 
-const defaultTheme = experimental_extendTheme();
+const defaultTheme = extendTheme();
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   SupportedColorScheme,
@@ -41,8 +35,23 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   },
 });
 
-export {
-  useColorScheme,
-  getInitColorSchemeScript,
-  CssVarsProvider as Experimental_CssVarsProvider,
-};
+let warnedOnce = false;
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+function Experimental_CssVarsProvider(props: any) {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'MUI: The Experimental_CssVarsProvider component has been stabilized.',
+        '',
+        "You should use `import { CssVarsProvider } from '@mui/material/styles'`",
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
+
+  return <CssVarsProvider {...props} />;
+}
+
+export { useColorScheme, getInitColorSchemeScript, CssVarsProvider, Experimental_CssVarsProvider };

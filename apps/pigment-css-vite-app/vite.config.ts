@@ -3,7 +3,7 @@ import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import reactPlugin from '@vitejs/plugin-react';
 import Pages from 'vite-plugin-pages';
 import { pigment } from '@pigment-css/vite-plugin';
-import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
+import { extendTheme } from '@mui/material/styles';
 
 const theme = extendTheme({
   getSelector: function getSelector(colorScheme, css) {
