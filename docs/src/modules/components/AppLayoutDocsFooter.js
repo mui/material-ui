@@ -2,7 +2,7 @@
 /* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 // Components
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
@@ -21,34 +21,12 @@ import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import PanToolRoundedIcon from '@mui/icons-material/PanToolRounded';
-import XIcon from '@mui/icons-material/X';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import RssFeedIcon from '@mui/icons-material/RssFeed';
-import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
-import DiscordIcon from 'docs/src/icons/DiscordIcon';
 // Other imports
 import { Link } from '@mui/docs/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import EditPage from 'docs/src/modules/components/EditPage';
-import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
-
-const FooterLink = styled(Typography)(({ theme }) => {
-  return {
-    ...theme.typography.body2,
-    display: 'flex',
-    alignItems: 'center',
-    gap: 4,
-    fontWeight: (theme.vars || theme).typography.fontWeightSemiBold,
-    color: (theme.vars || theme).palette.primary[600],
-    '& > svg': { transition: '0.2s' },
-    '&:hover > svg': { transform: 'translateX(2px)' },
-    ...theme.applyDarkStyles({
-      color: (theme.vars || theme).palette.primary[300],
-    }),
-  };
-});
 
 /**
  * @typedef {import('docs/src/pages').MuiPage} MuiPage
@@ -390,7 +368,41 @@ export default function AppLayoutDocsFooter(props) {
 
   return (
     <React.Fragment>
-      <Stack component="footer" direction="column" spacing={2.5} sx={{ my: 6 }}>
+      <Stack component="footer" direction="column" sx={{ my: 4 }}>
+        {hidePagePagination ? null : (
+          <Stack direction="row" justifyContent="space-between">
+            {prevPage !== null ? (
+              <Button
+                size="small"
+                variant="text"
+                component={Link}
+                noLinkStyle
+                prefetch={false}
+                href={prevPage.pathname}
+                {...prevPage.linkProps}
+                startIcon={<ChevronLeftIcon />}
+              >
+                {pageToTitleI18n(prevPage, t)}
+              </Button>
+            ) : (
+              <div />
+            )}
+            {nextPage !== null ? (
+              <Button
+                size="small"
+                component={Link}
+                noLinkStyle
+                prefetch={false}
+                href={nextPage.pathname}
+                {...nextPage.linkProps}
+                endIcon={<ChevronRightIcon />}
+              >
+                {pageToTitleI18n(nextPage, t)}
+              </Button>
+            ) : null}
+          </Stack>
+        )}
+        <Divider sx={{ my: 2 }} />
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           alignItems="center"
@@ -399,12 +411,7 @@ export default function AppLayoutDocsFooter(props) {
         >
           <EditPage sourceLocation={location} />
           <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
-            <Typography
-              id="feedback-message"
-              variant="body2"
-              fontWeight="medium"
-              color="text.secondary"
-            >
+            <Typography id="feedback-message" variant="body2" color="text.secondary">
               {t('feedbackMessage')}
             </Typography>
             <Tooltip title={t('feedbackYes')}>
@@ -433,6 +440,7 @@ export default function AppLayoutDocsFooter(props) {
             onEntered={handleEntered}
             timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
           >
+            <Divider sx={{ my: 2, borderStyle: 'dashed' }} />
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
             <form
               aria-labelledby="feedback-message"
@@ -454,7 +462,7 @@ export default function AppLayoutDocsFooter(props) {
                     }}
                   />
                 ) : (
-                  <Typography variant="body2" id="feedback-description" color="text.secondary">
+                  <Typography id="feedback-description" color="text.secondary">
                     {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
                   </Typography>
                 )}
@@ -463,7 +471,7 @@ export default function AppLayoutDocsFooter(props) {
                   margin="dense"
                   name="comment"
                   fullWidth
-                  rows={4}
+                  rows={2}
                   value={comment}
                   onChange={handleChangeTextfield}
                   inputProps={{
@@ -507,110 +515,6 @@ export default function AppLayoutDocsFooter(props) {
             </form>
           </Collapse>
         </div>
-        <Divider />
-        {hidePagePagination ? null : (
-          <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
-            {prevPage !== null ? (
-              <Button
-                size="small"
-                variant="text"
-                component={Link}
-                noLinkStyle
-                prefetch={false}
-                href={prevPage.pathname}
-                {...prevPage.linkProps}
-                startIcon={<ChevronLeftIcon />}
-              >
-                {pageToTitleI18n(prevPage, t)}
-              </Button>
-            ) : (
-              <div />
-            )}
-            {nextPage !== null ? (
-              <Button
-                size="small"
-                component={Link}
-                noLinkStyle
-                prefetch={false}
-                href={nextPage.pathname}
-                {...nextPage.linkProps}
-                endIcon={<ChevronRightIcon />}
-              >
-                {pageToTitleI18n(nextPage, t)}
-              </Button>
-            ) : null}
-          </Stack>
-        )}
-        <Divider />
-        <Stack
-          direction={{ xs: 'column', sm: 'row' }}
-          alignItems="center"
-          spacing={{ xs: 3, sm: 1 }}
-        >
-          <Stack direction="row" alignItems="center" spacing={1.2} useFlexGap sx={{ flexGrow: 1 }}>
-            <Link href="https://mui.com/" aria-label="Go to homepage">
-              <SvgMuiLogotype height={24} width={72} />
-            </Link>
-            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
-              &bull;
-            </Typography>
-            <Link href="https://mui.com/blog/" target="_blank" rel="noopener">
-              <FooterLink>
-                Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
-              </FooterLink>
-            </Link>
-            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
-              &bull;
-            </Typography>
-            <Link href="https://mui.com/store/" target="_blank" rel="noopener">
-              <FooterLink>
-                Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
-              </FooterLink>
-            </Link>
-          </Stack>
-          <Stack spacing={1} direction="row" useFlexGap>
-            <IconButton
-              target="_blank"
-              rel="noopener"
-              href="https://mui.com/feed/blog/rss.xml"
-              aria-label="RSS Feed"
-              title="RSS Feed"
-              size="small"
-            >
-              <RssFeedIcon fontSize="small" sx={{ color: 'grey.500' }} />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener"
-              href="https://twitter.com/MUI_hq"
-              aria-label="twitter"
-              title="X"
-              size="small"
-            >
-              <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener"
-              href="https://www.youtube.com/@MUI_hq"
-              aria-label="YouTube"
-              title="YouTube"
-              size="small"
-            >
-              <YouTubeIcon fontSize="small" sx={{ color: 'grey.500' }} />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener"
-              href="https://mui.com/r/discord/"
-              aria-label="Discord"
-              title="Discord"
-              size="small"
-            >
-              <DiscordIcon fontSize="small" sx={{ color: 'grey.500' }} />
-            </IconButton>
-          </Stack>
-        </Stack>
       </Stack>
       <Snackbar
         open={snackbarOpen}
