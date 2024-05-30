@@ -30,12 +30,12 @@ import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl'
 import { DocsProvider } from '@mui/docs/DocsProvider';
 import { mapTranslations } from '@mui/docs/i18n';
 import SvgMuiLogomark, {
-  MuiSvgLogoString,
-  MuiSvgWordmarkString,
+  muiSvgLogoString,
+  muiSvgWordmarkString,
 } from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo, {
-  BaseSvgLogoString,
-  BaseSvgWordmarkString,
+  baseSvgLogoString,
+  baseSvgWordmarkString,
 } from 'docs/src/icons/SvgBaseUiLogo';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
@@ -174,8 +174,8 @@ function AppWrapper(props) {
         metadata: '',
         name: 'Material UI',
         logo: SvgMuiLogomark,
-        logoSvg: MuiSvgLogoString,
-        wordmarkSvg: MuiSvgWordmarkString,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           { text: `v5`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
@@ -196,8 +196,8 @@ function AppWrapper(props) {
         metadata: '',
         name: 'Joy UI',
         logo: SvgMuiLogomark,
-        logoSvg: MuiSvgLogoString,
-        wordmarkSvg: MuiSvgWordmarkString,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [{ text: `v${joyPkgJson.version}`, current: true }],
       };
     }
@@ -207,8 +207,8 @@ function AppWrapper(props) {
         metadata: '',
         name: 'MUI System',
         logo: SvgMuiLogomark,
-        logoSvg: MuiSvgLogoString,
-        wordmarkSvg: MuiSvgWordmarkString,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
           { text: 'v5', href: `https://mui.com${languagePrefix}/system/getting-started/` },
@@ -226,8 +226,8 @@ function AppWrapper(props) {
         metadata: '',
         name: 'Base UI',
         logo: SvgBaseUiLogo,
-        logoSvg: BaseSvgLogoString,
-        wordmarkSvg: BaseSvgWordmarkString,
+        logoSvg: baseSvgLogoString,
+        wordmarkSvg: baseSvgWordmarkString,
         versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };
     }
@@ -237,8 +237,8 @@ function AppWrapper(props) {
         metadata: '',
         name: 'MUI Core',
         logo: SvgMuiLogomark,
-        logoSvg: MuiSvgLogoString,
-        wordmarkSvg: MuiSvgWordmarkString,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           {
@@ -254,8 +254,8 @@ function AppWrapper(props) {
         metadata: '',
         name: 'Docs-infra',
         logo: SvgMuiLogomark,
-        logoSvg: MuiSvgLogoString,
-        wordmarkSvg: MuiSvgWordmarkString,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           {
             text: 'v0.0.0',
@@ -270,8 +270,8 @@ function AppWrapper(props) {
         metadata: '',
         name: 'Home docs',
         logo: SvgMuiLogomark,
-        logoSvg: MuiSvgLogoString,
-        wordmarkSvg: MuiSvgWordmarkString,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           {
             text: 'v0.0.0',
