@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { styled } from '@mui/material/styles';
 import FilledInput, { filledInputClasses as classes } from '@mui/material/FilledInput';
 import InputBase from '@mui/material/InputBase';
