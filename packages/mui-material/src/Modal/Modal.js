@@ -162,7 +162,14 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     },
     slotProps: {
       root: slotProps.root ?? componentsProps.root,
-      backdrop: backdropSlotProps,
+      backdrop:
+        typeof slotProps?.backdrop === 'function'
+          ? slotProps?.backdrop
+          : {
+              ...(BackdropProps ?? {}),
+              ...(componentsProps?.backdrop ?? {}),
+              ...(slotProps.backdrop ?? {}),
+            },
     },
   };
 
