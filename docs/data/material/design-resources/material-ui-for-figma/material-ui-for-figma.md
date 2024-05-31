@@ -28,7 +28,7 @@ Then you can either follow [Figma's import guide](https://help.figma.com/hc/en-u
 
 ### Changelog
 
-Visit [the Releases tab](https://github.com/mui/mui-design-kits/releases?q=figma&expanded=true) on GitHub to keep track of new design kit versions.
+Visit [the Releases tab on GitHub](https://github.com/mui/mui-design-kits/releases?q=figma&expanded=true) to keep track of new design kit versions.
 
 ## Theme
 
