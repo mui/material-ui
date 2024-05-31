@@ -1284,14 +1284,17 @@ export function getThemedComponents(): ThemeOptions {
         },
       },
       MuiTooltip: {
+        defaultProps: {
+          arrow: true,
+        },
         styleOverrides: {
           tooltip: ({ theme }) => ({
             padding: '6px 8px',
             borderRadius: 6,
-            backgroundColor: (theme.vars || theme).palette.grey[400],
-            ...theme.applyDarkStyles({
-              backgroundColor: (theme.vars || theme).palette.grey[800],
-            }),
+            backgroundColor: (theme.vars || theme).palette.grey[800],
+            '& .MuiTooltip-arrow': {
+              color: (theme.vars || theme).palette.grey[800],
+            },
           }),
         },
       },
