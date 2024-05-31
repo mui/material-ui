@@ -8,6 +8,13 @@ describe('useButton', () => {
   const { render } = createRenderer();
 
   describe('state: active', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM crashes when matching :focus-visible
+        this.skip();
+      }
+    });
+
     describe('when using a button element', () => {
       it('is set when triggered by mouse', () => {
         function TestComponent() {

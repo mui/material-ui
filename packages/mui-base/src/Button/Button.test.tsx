@@ -56,6 +56,13 @@ describe('<Button />', () => {
   });
 
   describe('prop: focusableWhenDisabled', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM crashes when matching :focus-visible
+        this.skip();
+      }
+    });
+
     describe('as native button', () => {
       it('has the aria-disabled instead of disabled attribute when disabled', () => {
         const { getByRole } = render(<Button focusableWhenDisabled disabled />);

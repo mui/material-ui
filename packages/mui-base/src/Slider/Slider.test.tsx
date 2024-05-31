@@ -154,7 +154,12 @@ describe('<Slider />', () => {
     ['range', [2, 1]],
   ] as Values;
   values.forEach(([valueLabel, value]) => {
-    it(`calls onChange even if the ${valueLabel} did not change`, () => {
+    it(`calls onChange even if the ${valueLabel} did not change`, function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM crashes when matching :focus-visible
+        this.skip();
+      }
+
       const handleChange = spy();
 
       render(
@@ -368,7 +373,12 @@ describe('<Slider />', () => {
       expect(screen.getByTestId('value-label')).to.have.text('20');
     });
 
-    it('should provide focused state to the slotProps.thumb', () => {
+    it('should provide focused state to the slotProps.thumb', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM crashes when matching :focus-visible
+        this.skip();
+      }
+
       const { getByTestId } = render(
         <Slider
           defaultValue={[20, 40]}
@@ -442,7 +452,12 @@ describe('<Slider />', () => {
     });
   });
 
-  it('should support Shift + Left Arrow / Right Arrow keys', () => {
+  it('should support Shift + Left Arrow / Right Arrow keys', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM crashes when matching :focus-visible
+      this.skip();
+    }
+
     const hanleChange = spy();
     const { getByTestId } = render(
       <Slider
@@ -475,7 +490,12 @@ describe('<Slider />', () => {
     expect(hanleChange.args[1][1]).to.deep.equal(20);
   });
 
-  it('should support Shift + Up Arrow / Down Arrow keys', () => {
+  it('should support Shift + Up Arrow / Down Arrow keys', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM crashes when matching :focus-visible
+      this.skip();
+    }
+
     const hanleChange = spy();
     const { getByTestId } = render(
       <Slider
@@ -508,7 +528,12 @@ describe('<Slider />', () => {
     expect(hanleChange.args[1][1]).to.deep.equal(20);
   });
 
-  it('should support PageUp / PageDown keys', () => {
+  it('should support PageUp / PageDown keys', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM crashes when matching :focus-visible
+      this.skip();
+    }
+
     const hanleChange = spy();
     const { getByTestId } = render(
       <Slider
@@ -541,7 +566,12 @@ describe('<Slider />', () => {
     expect(hanleChange.args[1][1]).to.deep.equal(20);
   });
 
-  it('should support Shift + Left Arrow / Right Arrow keys by taking acount step and shiftStep', () => {
+  it('should support Shift + Left Arrow / Right Arrow keys by taking acount step and shiftStep', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM crashes when matching :focus-visible
+      this.skip();
+    }
+
     const hanleChange = spy();
     const defaultValue = 20;
     const shiftStep = 15;
@@ -581,7 +611,12 @@ describe('<Slider />', () => {
     expect(input).to.have.attribute('aria-valuenow', `${defaultValue}`);
   });
 
-  it('should stop at max/min when using Shift + Left Arrow / Right Arrow keys', () => {
+  it('should stop at max/min when using Shift + Left Arrow / Right Arrow keys', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM crashes when matching :focus-visible
+      this.skip();
+    }
+
     const hanleChange = spy();
     const { getByTestId } = render(
       <Slider
