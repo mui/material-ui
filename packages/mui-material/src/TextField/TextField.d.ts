@@ -107,7 +107,6 @@ export interface BaseTextFieldProps
   error?: boolean;
   /**
    * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
-   * @deprecated Use `slotProps.formHelperText` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   FormHelperTextProps?: Partial<FormHelperTextProps>;
   /**
@@ -127,12 +126,10 @@ export interface BaseTextFieldProps
   /**
    * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
-   * @deprecated Use `slotProps.inputLabel` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputLabelProps?: Partial<InputLabelProps>;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.htmlInput` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps?: InputBaseProps['inputProps'];
   /**
@@ -183,7 +180,6 @@ export interface BaseTextFieldProps
   select?: boolean;
   /**
    * Props applied to the [`Select`](/material-ui/api/select/) element.
-   * @deprecated Use `slotProps.select` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SelectProps?: Partial<SelectProps>;
   /**
@@ -224,7 +220,6 @@ export interface StandardTextFieldProps
    * It will be a [`FilledInput`](/material-ui/api/filled-input/),
    * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps?: Partial<StandardInputProps>;
 }
@@ -249,7 +244,6 @@ export interface FilledTextFieldProps
    * It will be a [`FilledInput`](/material-ui/api/filled-input/),
    * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps?: Partial<FilledInputProps>;
 }
@@ -274,7 +268,6 @@ export interface OutlinedTextFieldProps
    * It will be a [`FilledInput`](/material-ui/api/filled-input/),
    * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps?: Partial<OutlinedInputProps>;
 }

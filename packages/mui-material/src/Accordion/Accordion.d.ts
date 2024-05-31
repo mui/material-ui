@@ -79,7 +79,6 @@ export type AccordionTypeMap<
       /**
        * The component used for the transition.
        * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-       * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
        */
       TransitionComponent?: React.JSXElementConstructor<
         TransitionProps & { children?: React.ReactElement<any, any> }
@@ -87,7 +86,6 @@ export type AccordionTypeMap<
       /**
        * Props applied to the transition element.
        * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-       * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
        */
       TransitionProps?: TransitionProps;
     } & AccordionSlotsAndSlotProps;

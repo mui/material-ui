@@ -33,16 +33,9 @@
     },
     "ContainerComponent": {
       "type": { "name": "custom", "description": "element type" },
-      "default": "'li'",
-      "deprecated": true,
-      "deprecationInfo": "Use the <code>component</code> or <code>slots.root</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "default": "'li'"
     },
-    "ContainerProps": {
-      "type": { "name": "object" },
-      "default": "{}",
-      "deprecated": true,
-      "deprecationInfo": "Use the <code>slotProps.root</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
+    "ContainerProps": { "type": { "name": "object" }, "default": "{}" },
     "dense": { "type": { "name": "bool" }, "default": "false" },
     "disabled": {
       "type": { "name": "bool" },
