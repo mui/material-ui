@@ -6,7 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
-  unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_isFocusVisible as isFocusVisible,
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
@@ -216,17 +216,10 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState<boolean>(false);
-  const handleRef = useForkRef(ref, focusVisibleRef) as React.Ref<HTMLAnchorElement>;
+  const handleRef = useForkRef(ref) as React.Ref<HTMLAnchorElement>;
   const handleBlur = (event: React.FocusEvent<HTMLAnchorElement>) => {
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event)) {
       setFocusVisible(false);
     }
     if (onBlur) {
@@ -234,8 +227,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     }
   };
   const handleFocus = (event: React.FocusEvent<HTMLAnchorElement>) => {
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event)) {
       setFocusVisible(true);
     }
     if (onFocus) {

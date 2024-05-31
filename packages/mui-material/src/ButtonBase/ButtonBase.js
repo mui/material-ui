@@ -5,11 +5,11 @@ import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
+import isFocusVisible from '@mui/utils/isFocusVisible';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
@@ -112,12 +112,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const rippleRef = React.useRef(null);
   const handleRippleRef = useForkRef(rippleRef, touchRippleRef);
 
-  const {
-    isFocusVisibleRef,
-    onFocus: handleFocusVisible,
-    onBlur: handleBlurVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
   if (disabled && focusVisible) {
     setFocusVisible(false);
@@ -182,8 +176,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const handleBlur = useRippleHandler(
     'stop',
     (event) => {
-      handleBlurVisible(event);
-      if (isFocusVisibleRef.current === false) {
+      if (!isFocusVisible(event)) {
         setFocusVisible(false);
       }
       if (onBlur) {
@@ -199,8 +192,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       buttonRef.current = event.currentTarget;
     }
 
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event)) {
       setFocusVisible(true);
 
       if (onFocusVisible) {
@@ -297,7 +289,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   }
 
-  const handleRef = useForkRef(ref, focusVisibleRef, buttonRef);
+  const handleRef = useForkRef(ref, buttonRef);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks

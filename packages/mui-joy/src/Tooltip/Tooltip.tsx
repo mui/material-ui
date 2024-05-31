@@ -7,7 +7,7 @@ import {
   unstable_useControlled as useControlled,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_isFocusVisible as isFocusVisible,
   unstable_useId as useId,
   unstable_useTimeout as useTimeout,
   unstable_Timeout as Timeout,
@@ -333,18 +333,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     });
   };
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   // We don't necessarily care about the focusVisible state (which is safe to access via ref anyway).
   // We just need to re-render the Tooltip if the focus-visible state changes.
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event: React.FocusEvent<HTMLElement> | React.MouseEvent<HTMLElement>) => {
-    handleBlurVisible(event as React.FocusEvent<HTMLElement>);
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event as React.FocusEvent<HTMLElement>)) {
       setChildIsFocusVisible(false);
       handleMouseLeave(event as React.MouseEvent<HTMLElement>);
     }
@@ -358,8 +351,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       setChildNode(event.currentTarget);
     }
 
-    handleFocusVisible(event as React.FocusEvent<HTMLElement>);
-    if (isFocusVisibleRef.current === true) {
+    if (!isFocusVisible(event as React.FocusEvent<HTMLElement>)) {
       setChildIsFocusVisible(true);
       handleMouseOver(event as React.MouseEvent<HTMLElement>);
     }
@@ -423,7 +415,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }, [handleClose, open]);
 
   const handleUseRef = useForkRef(setChildNode, ref);
-  const handleFocusRef = useForkRef<Element>(focusVisibleRef, handleUseRef);
+  const handleFocusRef = useForkRef<Element>(handleUseRef);
   const handleRef = useForkRef(
     (children as unknown as { ref: React.Ref<HTMLElement> }).ref,
     handleFocusRef,
