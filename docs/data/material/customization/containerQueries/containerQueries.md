@@ -1,13 +1,11 @@
 # Container Queries
 
-<p class="description">API that enables the use of CSS container queries based on theme breakpoints.</p>
-
-A utility function based on the [theme breakpoints](/material-ui/customization/breakpoints/) for creating [CSS container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries).
+<p class="description">Material UI provides a utility function for creating CSS container queries based on theme breakpoints.</p>
 
 ## Usage
 
-To create a container query, use `theme.containerQueries` with any method available in the [theme.breakpoints](/material-ui/customization/breakpoints/#api).
-The value can be a unitless (pixel), a string, or a breakpoint key, for example:
+To create [CSS container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries), use `theme.containerQueries` with any method available in the [theme.breakpoints](/material-ui/customization/breakpoints/#api).
+The value can be unitless (in which case it'll be rendered in pixels), a string, or a breakpoint key. For example:
 
 ```js
 theme.containerQueries.up('sm'); // => '@container (min-width: 600px)'
@@ -21,7 +19,7 @@ One of the ancestors must have the CSS container type specified.
 
 ### Named containment contexts
 
-To refer to a [containment context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries#naming_containment_contexts), call the `containerQueries` method with the name, then you will be able to access all the breakpoint methods like the example above:
+To refer to a [containment context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries#naming_containment_contexts), call the `containerQueries` method with the name of the container for access to all breakpoint methods:
 
 ```js
 theme.containerQueries('sidebar').up('500px'); // => '@container sidebar (min-width: 500px)'
@@ -29,7 +27,7 @@ theme.containerQueries('sidebar').up('500px'); // => '@container sidebar (min-wi
 
 ## Shorthand syntax
 
-In sx prop, a format of `@<size>` or `@<size>/<name>` can be used to apply container queries without refering to the theme.
+When adding styles using the `sx` prop, use the `@<size>` or `@<size>/<name>` notation to apply container queries without referring to the theme.
 
 - `<size>`: a width or a breakpoint key.
 - `<name>` (optional): a named containment context.
@@ -52,34 +50,32 @@ For example:
 
 ### Caveats
 
-- When `@` is used without a width or name, `0px` is applied.
 - To get pixel unit, use a unitless number. For example, `@500` is equivalent to `500px`. Using `@500px` will not work.
-- Container queries, **with the same unit**, are sorted in ascending order.
+  The `@` prefix takes no unit but renders as `px`, so `@500` is equivalent to `500px`—but `@500px` is incorrect syntax and won't render correctly.
+  `@` with no number renders as `0px`.
+- Container queries must share the same units (the sizes can be defined in any order), as shown below:
 
   ```js
-  // ✅ The container queries will be sorted correctly.
-  sx={{
-    padding: {
-      '@40em': 4,
-      '@20em': 2,
-      '@': 0,
-    },
-  }}
+  // ✅ These container queries will be sorted correctly.
+  padding: {
+    '@40em': 4,
+    '@20em': 2,
+    '@': 0,
+  }
 
-  // ❌ The container queries won't be sorted correctly.
-  //    because 40em is usually greater than 50px
-  sx={{
-    padding: {
-      '@40em': 4,
-      '@50': 2,
-      '@': 0,
-    },
-  }}
+  // ❌ These container queries won't be sorted correctly
+  //    because 40em is typically greater than 50px
+  //    and the units don't match.
+  padding: {
+    '@40em': 4,
+    '@50': 2,
+    '@': 0,
+  }
   ```
 
 ## API
 
-CSS container queries support all the methods available in the [breakpoints](/material-ui/customization/breakpoints/#api) API.
+CSS container queries support all the methods available in [the breakpoints API](/material-ui/customization/breakpoints/#api).
 
 ```js
 // For default breakpoints
