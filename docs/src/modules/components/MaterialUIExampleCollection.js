@@ -94,6 +94,12 @@ const examples = [
     link: 'https://github.com/marmelab/material-ui-react-admin',
     src: '/static/images/examples/reactadmin.svg',
   },
+  {
+    name: 'Refine',
+    label: 'View TypeScript',
+    link: 'https://github.com/refinedev/refine/tree/master/examples/with-material-ui-vite',
+    src: '/static/images/examples/refine.svg',
+  },
 ];
 
 export default function MaterialUIExampleCollection() {
