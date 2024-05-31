@@ -1148,6 +1148,32 @@ npx @mui/codemod@next deprecations/input-base-props <path>
 npx @mui/codemod@next deprecations/input-props <path>
 ```
 
+#### `modal-props`
+
+```diff
+ <Modal
+-  components={{ Root: CustomRoot, Backdrop: CustomBackdrop }}
++  slots={{ root: CustomRoot, backdrop: CustomBackdrop }}
+-  componentsProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
++  slotProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
+ />
+```
+
+```diff
+ MuiModal: {
+   defaultProps: {
+-    components: { Root: CustomRoot, Backdrop: CustomBackdrop }
++    slots: { root: CustomRoot, backdrop: CustomBackdrop },
+-    componentsProps: { root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' }}
++    slotProps: { root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/modal-props <path>
+```
+
 #### `pagination-item-classes`
 
 JS transforms:

@@ -1220,6 +1220,36 @@ The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
  />;
 ```
 
+## Modal
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#modal-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/modal-props <path>
+```
+
+### components
+
+The Modal's `components` prop was deprecated in favor of `slots`:
+
+```diff
+ <Modal
+-  components={{ Root: CustomRoot, Backdrop: CustomBackdrop }}
++  slots={{ root: CustomRoot, backdrop: CustomBackdrop }}
+ />
+```
+
+### componentsProps
+
+The Modal's `componentsProps` prop was deprecated in favor of `slotProps`:
+
+```diff
+ <Modal
+-  componentsProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
++  slotProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
+ />
+```
+
 ## OutlinedInput
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#outlined-input-props) below to migrate the code as described in the following sections:
