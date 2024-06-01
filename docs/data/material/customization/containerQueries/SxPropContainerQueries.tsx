@@ -4,25 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
-
-const Line = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  height: '100vh',
-  top: 0,
-  transform: 'translateY(-400px)',
-  left: 0,
-  borderLeft: '1px dashed',
-  borderColor: (theme.vars || theme).palette.divider,
-  color: (theme.vars || theme).palette.text.secondary,
-  fontSize: '0.875rem',
-  fontFamily: 'Menlo, monospace',
-  '& span': {
-    position: 'absolute',
-    top: 'calc(400px - 1em)',
-    left: 4,
-  },
-}));
+import Line from './Line';
 
 export default function SxPropContainerQueries() {
   return (

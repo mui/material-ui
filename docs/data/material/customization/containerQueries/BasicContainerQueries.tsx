@@ -1,64 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
-
-const DynamicCard = styled(Card)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  [theme.containerQueries.up(350)]: {
-    flexDirection: 'row',
-  },
-}));
-
-const Image = styled('img')(({ theme }) => ({
-  alignSelf: 'stretch',
-  aspectRatio: '16 / 9',
-  objectFit: 'cover',
-  width: '100%',
-  maxHeight: 160,
-  transition: '0.4s',
-  [theme.containerQueries.up(350)]: {
-    maxWidth: '36%',
-    maxHeight: 'initial',
-  },
-  [theme.containerQueries.up(500)]: {
-    maxWidth: 240,
-  },
-}));
-
-const Content = styled(CardContent)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: theme.spacing(1),
-  padding: theme.spacing(2),
-  flex: 'auto',
-  transition: 'padding 0.4s',
-  [theme.containerQueries.up(500)]: {
-    padding: theme.spacing(3),
-  },
-}));
-
-const Line = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  height: '100vh',
-  top: 0,
-  transform: 'translateY(-400px)',
-  left: 0,
-  borderLeft: '1px dashed',
-  borderColor: (theme.vars || theme).palette.divider,
-  color: (theme.vars || theme).palette.text.secondary,
-  fontSize: '0.875rem',
-  fontFamily: 'Menlo, monospace',
-  '& span': {
-    position: 'absolute',
-    top: 'calc(400px - 1em)',
-    left: 4,
-  },
-}));
+import Line from './Line';
+import Content from './Content';
+import DynamicCard from './DynamicCard';
+import Image from './Image';
 
 export default function BasicContainerQueries() {
   return (
