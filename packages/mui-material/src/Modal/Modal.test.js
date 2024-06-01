@@ -33,6 +33,7 @@ describe('<Modal />', () => {
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
+      testLegacyComponentsProp: true,
       slots: {
         root: { expectedClassName: classes.root },
         backdrop: {},

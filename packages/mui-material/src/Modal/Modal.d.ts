@@ -7,7 +7,6 @@ import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
 import { OverridableComponent } from '../OverridableComponent';
 import { ModalClasses } from './modalClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface ModalComponentsPropsOverrides {}
 
@@ -27,15 +26,7 @@ export interface ModalSlots {
   backdrop?: React.ElementType;
 }
 
-export type ModalSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  ModalSlots,
-  {
-    root: SlotProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>;
-    backdrop: SlotProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>;
-  }
->;
-
-export interface ModalOwnProps extends ModalSlotsAndSlotProps {
+export interface ModalOwnProps {
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
    * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
@@ -188,6 +179,20 @@ export interface ModalOwnProps extends ModalSlotsAndSlotProps {
    */
   open: boolean;
   /**
+   * The components used for each slot inside the Modal.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: ModalSlots;
+  /**
+   * The props used for each slot inside the Modal.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>;
+    backdrop?: SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -234,7 +239,5 @@ export type ModalProps<
 > = OverrideProps<ModalTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
   component?: React.ElementType;
 };
-
-export interface ModalOwnerState extends ModalProps {}
 
 export default Modal;
