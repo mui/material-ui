@@ -4,7 +4,7 @@
 
 ## Usage
 
-To create [CSS container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries), use `theme.containerQueries` with any method available in the [theme.breakpoints](/material-ui/customization/breakpoints/#api).
+To create [CSS container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries), use `theme.containerQueries` with any method available in the [`theme.breakpoints`](/material-ui/customization/breakpoints/#api).
 The value can be unitless (in which case it'll be rendered in pixels), a string, or a breakpoint key. For example:
 
 ```js
