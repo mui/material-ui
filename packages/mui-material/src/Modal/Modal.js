@@ -12,6 +12,7 @@ import { styled, createUseThemeProps } from '../zero-styled';
 import Backdrop from '../Backdrop';
 import { getModalUtilityClass } from './modalClasses';
 import useSlot from '../utils/useSlot';
+import { useForkRef } from '../utils';
 
 const useThemeProps = createUseThemeProps('MuiModal');
 
@@ -204,6 +205,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     ownerState,
   });
 
+  const backdropRef = useForkRef(BackdropProps?.ref, backdropProps.ref);
+
   if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
   }
@@ -217,7 +220,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
       <RootSlot {...rootProps} {...other}>
-        {!hideBackdrop && BackdropComponent ? <BackdropSlot {...backdropProps} /> : null}
+        {!hideBackdrop && BackdropComponent ? (
+          <BackdropSlot {...backdropProps} ref={backdropRef} />
+        ) : null}
         <FocusTrap
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
