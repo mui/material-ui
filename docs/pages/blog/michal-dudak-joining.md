@@ -7,7 +7,7 @@ tags: ['Company']
 manualCard: true
 ---
 
-We are excited to share that [Michał Dudak](https://twitter.com/michaldudak) has joined MUI!
+We are excited to share that [Michał Dudak](https://x.com/michaldudak) has joined MUI!
 He started a couple of days ago full-time and is part of the core components team.
 
 Before joining MUI, Michał worked as a full-stack engineer and software architect at Future Processing, a high-end development agency in Poland.

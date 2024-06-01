@@ -2209,7 +2209,7 @@ Here are some highlights ✨:
 - 🔍 Introduce a new Autocomplete component in the lab to support the autocomplete, combobox and multi-select use cases (#17037) @dreamsinspace.
 
   This [new component](https://mui.com/components/autocomplete/) will replace the [third-party integration examples](https://mui.com/components/integrated-autocomplete/) once it graduates from the lab to the core.
-  It was one of the [most requested features](https://twitter.com/MaterialUI/status/1148901411180163073) (by number of 👍 on the corresponding issue).
+  It was one of the [most requested features](https://x.com/MaterialUI/status/1148901411180163073) (by number of 👍 on the corresponding issue).
 
 - 📚 Show the JSX by default for small examples (#17831) @mbrookes.
 - ♿️ Improve Gatsby's Modal support (#17972) @sreetej1998.
