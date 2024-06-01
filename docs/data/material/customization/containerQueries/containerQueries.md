@@ -1,6 +1,6 @@
 # Container Queries
 
-<p class="description">Material UI provides a utility function for creating CSS container queries based on theme breakpoints.</p>
+<p class="description">Material UI provides a utility function for creating CSS container queries based on theme breakpoints.</p>
 
 ## Usage
 
