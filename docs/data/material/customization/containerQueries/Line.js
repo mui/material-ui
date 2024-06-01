@@ -9,7 +9,7 @@ const Line = styled('div')(({ theme }) => ({
   borderLeft: '1px dashed',
   borderColor: (theme.vars || theme).palette.divider,
   color: (theme.vars || theme).palette.text.secondary,
-  fontSize: '0.875rem',
+  fontSize: '0.75rem',
   fontFamily: 'Menlo, monospace',
   '& span': {
     position: 'absolute',
