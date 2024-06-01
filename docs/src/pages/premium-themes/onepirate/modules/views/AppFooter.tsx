@@ -65,7 +65,7 @@ export default function AppFooter() {
                     alt="Facebook"
                   />
                 </Box>
-                <Box component="a" href="https://twitter.com/MUI_hq" sx={iconStyle}>
+                <Box component="a" href="https://x.com/MUI_hq" sx={iconStyle}>
                   <img src="/static/themes/onepirate/appFooterTwitter.png" alt="X" />
                 </Box>
               </Grid>

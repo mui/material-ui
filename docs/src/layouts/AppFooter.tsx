@@ -204,8 +204,8 @@ export default function AppFooter(props: AppFooterProps) {
           <IconButton
             target="_blank"
             rel="noopener"
-            href="https://twitter.com/MUI_hq"
-            aria-label="twitter"
+            href="https://x.com/MUI_hq"
+            aria-label="X/twitter"
             title="X"
             size="small"
           >
