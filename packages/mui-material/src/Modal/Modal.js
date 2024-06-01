@@ -153,13 +153,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   }
 
   const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const backdropSlotProps =
-    typeof slotProps?.backdrop === 'function'
-      ? slotProps?.backdrop
-      : {
-          ...(BackdropProps ?? {}),
-          ...(slotProps?.backdrop ?? componentsProps?.backdrop ?? {}),
-        };
+  const backdropSlotProps = slotProps.backdrop ?? componentsProps?.backdrop;
 
   const externalForwardedProps = {
     slots: {
@@ -192,6 +186,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const [BackdropSlot, backdropProps] = useSlot('backdrop', {
     elementType: BackdropComponent,
     externalForwardedProps,
+    additionalProps: BackdropProps,
     getSlotProps: (otherHandlers) => {
       return getBackdropProps({
         ...otherHandlers,
