@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 
 const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
-  ({ theme, checked }) => ({
+  ({ theme }) => ({
     '.MuiFormControlLabel-label': checked && {
       color: theme.palette.primary.main,
     },

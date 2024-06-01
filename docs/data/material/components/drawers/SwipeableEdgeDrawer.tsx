@@ -21,22 +21,30 @@ interface Props {
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
-  backgroundColor:
-    theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
+  backgroundColor: theme.palette.background.default,
+  ...theme.applyStyles('light', {
+    backgroundColor: grey[100],
+  }),
 }));
 
 const StyledBox = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
+  backgroundColor: grey[800],
+  ...theme.applyStyles('light', {
+    backgroundColor: '#fff',
+  }),
 }));
 
 const Puller = styled('div')(({ theme }) => ({
   width: 30,
   height: 6,
-  backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
+  backgroundColor: grey[900],
   borderRadius: 3,
   position: 'absolute',
   top: 8,
   left: 'calc(50% - 15px)',
+  ...theme.applyStyles('light', {
+    backgroundColor: grey[300],
+  }),
 }));
 
 export default function SwipeableEdgeDrawer(props: Props) {
