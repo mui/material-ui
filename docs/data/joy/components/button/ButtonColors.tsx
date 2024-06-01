@@ -50,10 +50,12 @@ export default function ButtonColors() {
       >
         <Typography
           level="body-sm"
-          fontWeight="xl"
           id="variant-label"
           textColor="text.primary"
-          mb={1}
+          sx={{
+            fontWeight: 'xl',
+            mb: 1,
+          }}
         >
           Variant:
         </Typography>

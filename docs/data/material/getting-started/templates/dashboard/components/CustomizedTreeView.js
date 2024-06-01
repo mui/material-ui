@@ -114,8 +114,13 @@ function CustomLabel({ color, expandable, children, ...other }) {
       }}
     >
       {iconColor && <DotIcon color={iconColor} />}
-
-      <Typography className="labelText" variant="body2" color="text.primary">
+      <Typography
+        className="labelText"
+        variant="body2"
+        sx={{
+          color: 'text.primary',
+        }}
+      >
         {children}
       </Typography>
     </TreeItem2Label>

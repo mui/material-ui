@@ -17,7 +17,12 @@ export default function NavbarBreadcrumbs() {
   return (
     <StyledBreadcrumbs aria-label="breadcrumb">
       <SitemarkIcon />
-      <Typography fontWeight="medium" color="text.primary">
+      <Typography
+        sx={{
+          fontWeight: 'medium',
+          color: 'text.primary',
+        }}
+      >
         Project (Production)
       </Typography>
     </StyledBreadcrumbs>

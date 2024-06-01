@@ -24,7 +24,12 @@ export default function CustomSeparator() {
     >
       Core
     </Link>,
-    <Typography key="3" color="text.primary">
+    <Typography
+      key="3"
+      sx={{
+        color: 'text.primary',
+      }}
+    >
       Breadcrumb
     </Typography>,
   ];

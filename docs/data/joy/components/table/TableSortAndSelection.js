@@ -137,7 +137,6 @@ function EnhancedTableHead(props) {
                 textColor={active ? 'primary.plainColor' : undefined}
                 component="button"
                 onClick={createSortHandler(headCell.id)}
-                fontWeight="lg"
                 startDecorator={
                   headCell.numeric ? (
                     <ArrowDownwardIcon sx={{ opacity: active ? 1 : 0 }} />
@@ -149,11 +148,14 @@ function EnhancedTableHead(props) {
                   ) : null
                 }
                 sx={{
+                  fontWeight: 'lg',
+
                   '& svg': {
                     transition: '0.2s',
                     transform:
                       active && order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
                   },
+
                   '&:hover': { '& svg': { opacity: 1 } },
                 }}
               >
@@ -409,7 +411,12 @@ export default function TableSortAndSelection() {
                     <Option value={25}>25</Option>
                   </Select>
                 </FormControl>
-                <Typography textAlign="center" sx={{ minWidth: 80 }}>
+                <Typography
+                  sx={{
+                    textAlign: 'center',
+                    minWidth: 80,
+                  }}
+                >
                   {labelDisplayedRows({
                     from: rows.length === 0 ? 0 : page * rowsPerPage + 1,
                     to: getLabelDisplayedRowsTo(),

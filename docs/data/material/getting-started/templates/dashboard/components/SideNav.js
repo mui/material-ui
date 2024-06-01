@@ -37,16 +37,28 @@ function SideNav({ open, toggleDrawer, mode, toggleColorMode }) {
   return (
     <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
       <Stack
-        gap={2}
         sx={{
+          gap: 2,
           minWidth: '80dvw',
           p: 3,
           backgroundColor: 'background.paper',
           flexGrow: 1,
         }}
       >
-        <Stack direction="row" gap={1}>
-          <Stack direction="row" gap={1} alignItems="center" flexGrow={1}>
+        <Stack
+          direction="row"
+          sx={{
+            gap: 1,
+          }}
+        >
+          <Stack
+            direction="row"
+            sx={{
+              gap: 1,
+              alignItems: 'center',
+              flexGrow: 1,
+            }}
+          >
             <Avatar
               sizes="small"
               alt="Riley Carter"
@@ -65,7 +77,11 @@ function SideNav({ open, toggleDrawer, mode, toggleColorMode }) {
           </MenuButton>
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
-        <Stack gap={2}>
+        <Stack
+          sx={{
+            gap: 2,
+          }}
+        >
           <Divider />
           <List>
             {accountsList.map((item, index) => (

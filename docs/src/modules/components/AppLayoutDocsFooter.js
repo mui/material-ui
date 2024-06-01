@@ -396,13 +396,28 @@ export default function AppLayoutDocsFooter(props) {
       <Stack component="footer" direction="column" sx={{ my: 4 }}>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
-          alignItems="center"
-          justifyContent="space-between"
           spacing={{ xs: 3, sm: 1 }}
+          sx={{
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
         >
           <EditPage sourceLocation={location} />
-          <Stack direction="row" alignItems="center" spacing={0.5} useFlexGap>
-            <Typography id="feedback-message" variant="body2" color="text.secondary">
+          <Stack
+            direction="row"
+            spacing={0.5}
+            useFlexGap
+            sx={{
+              alignItems: 'center',
+            }}
+          >
+            <Typography
+              id="feedback-message"
+              variant="body2"
+              sx={{
+                color: 'text.secondary',
+              }}
+            >
               {t('feedbackMessage')}
             </Typography>
             <Tooltip title={t('feedbackYes')}>
@@ -444,16 +459,23 @@ export default function AppLayoutDocsFooter(props) {
                   <Typography
                     variant="body2"
                     id="feedback-description"
-                    color="text.secondary"
                     dangerouslySetInnerHTML={{
                       __html: t('feedbackSectionSpecific').replace(
                         '{{sectionName}}',
                         `"${commentedSection.text}"`,
                       ),
                     }}
+                    sx={{
+                      color: 'text.secondary',
+                    }}
                   />
                 ) : (
-                  <Typography id="feedback-description" color="text.secondary">
+                  <Typography
+                    id="feedback-description"
+                    sx={{
+                      color: 'text.secondary',
+                    }}
+                  >
                     {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
                   </Typography>
                 )}
@@ -508,7 +530,12 @@ export default function AppLayoutDocsFooter(props) {
         </div>
         <Divider sx={{ my: 2 }} />
         {hidePagePagination ? null : (
-          <Stack direction="row" justifyContent="space-between">
+          <Stack
+            direction="row"
+            sx={{
+              justifyContent: 'space-between',
+            }}
+          >
             {prevPage !== null ? (
               <Button
                 size="small"
@@ -543,20 +570,42 @@ export default function AppLayoutDocsFooter(props) {
         <Divider sx={{ my: 2 }} />
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
-          alignItems="center"
           spacing={{ xs: 3, sm: 1 }}
+          sx={{
+            alignItems: 'center',
+          }}
         >
-          <Stack direction="row" alignItems="center" spacing={1} useFlexGap sx={{ flexGrow: 1 }}>
+          <Stack
+            direction="row"
+            spacing={1}
+            useFlexGap
+            sx={{
+              alignItems: 'center',
+              flexGrow: 1,
+            }}
+          >
             <Link href="https://mui.com/" aria-label="Go to homepage">
               <SvgMuiLogotype height={28} width={64} />
             </Link>
-            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
+            <Typography
+              sx={{
+                color: 'grey.500',
+                fontSize: 13,
+                opacity: '70%',
+              }}
+            >
               &bull;
             </Typography>
             <FooterLink href="https://mui.com/blog/" target="_blank" rel="noopener">
               Blog <ArrowOutwardRoundedIcon />
             </FooterLink>
-            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
+            <Typography
+              sx={{
+                color: 'grey.500',
+                fontSize: 13,
+                opacity: '70%',
+              }}
+            >
               &bull;
             </Typography>
             <FooterLink href="https://mui.com/store/" target="_blank" rel="noopener">

@@ -43,7 +43,12 @@ export default function NumberBadge() {
         >
           <Remove />
         </IconButton>
-        <Typography fontWeight="md" textColor="text.secondary">
+        <Typography
+          textColor="text.secondary"
+          sx={{
+            fontWeight: 'md',
+          }}
+        >
           {count}
         </Typography>
         <IconButton

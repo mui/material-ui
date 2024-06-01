@@ -84,7 +84,12 @@ export default function AppSettingsDrawer(props) {
           py: 1,
         }}
       >
-        <Typography variant="body1" fontWeight="medium">
+        <Typography
+          variant="body1"
+          sx={{
+            fontWeight: 'medium',
+          }}
+        >
           {t('settings.settings')}
         </Typography>
         <IconButton color="inherit" onClick={onClose} edge="end" aria-label={t('close')}>

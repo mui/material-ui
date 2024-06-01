@@ -415,9 +415,10 @@ export default function OrderTable() {
                   color="primary"
                   component="button"
                   onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
-                  fontWeight="lg"
                   endDecorator={<ArrowDropDownIcon />}
                   sx={{
+                    fontWeight: 'lg',
+
                     '& svg': {
                       transition: '0.2s',
                       transform:
