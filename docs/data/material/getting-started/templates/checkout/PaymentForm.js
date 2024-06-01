@@ -278,6 +278,7 @@ export default function PaymentForm() {
           />
         </Box>
       )}
+
       {paymentType === 'bankTransfer' && (
         <Box
           sx={{

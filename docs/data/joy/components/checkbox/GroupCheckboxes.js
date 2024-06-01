@@ -10,10 +10,7 @@ export default function GroupCheckboxes() {
       <Typography
         id="sandwich-group"
         level="body-sm"
-        sx={{
-          fontWeight: 'lg',
-          mb: 1,
-        }}
+        sx={{ fontWeight: 'lg', mb: 1 }}
       >
         Sandwich Dressings
       </Typography>

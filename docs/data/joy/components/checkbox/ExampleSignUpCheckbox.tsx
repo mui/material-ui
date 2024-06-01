@@ -12,14 +12,7 @@ export default function ExampleSignUpCheckbox() {
         label={
           <React.Fragment>
             I have read and agree to the{' '}
-            <Typography
-              sx={{
-                fontWeight: 'md',
-              }}
-            >
-              terms and conditions
-            </Typography>
-            .
+            <Typography sx={{ fontWeight: 'md' }}>terms and conditions</Typography>.
           </React.Fragment>
         }
       />

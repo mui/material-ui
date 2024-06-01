@@ -149,13 +149,11 @@ function EnhancedTableHead(props) {
                 }
                 sx={{
                   fontWeight: 'lg',
-
                   '& svg': {
                     transition: '0.2s',
                     transform:
                       active && order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
                   },
-
                   '&:hover': { '& svg': { opacity: 1 } },
                 }}
               >

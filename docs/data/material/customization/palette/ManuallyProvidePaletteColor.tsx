@@ -71,12 +71,7 @@ function ColorShowcase({ color }: { color: 'primary' | 'secondary' }) {
 export default function ManuallyProvidePaletteColor() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack
-        direction="row"
-        sx={{
-          gap: 8,
-        }}
-      >
+      <Stack direction="row" sx={{ gap: 8 }}>
         <ColorShowcase color="primary" />
         <ColorShowcase color="secondary" />
       </Stack>
