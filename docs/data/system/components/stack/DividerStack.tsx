@@ -21,10 +21,12 @@ export default function DividerStack() {
         divider={
           <Box
             component="hr"
-            sx={{
-              border: (theme) =>
-                `1px solid ${theme.palette.mode === 'dark' ? '#262B32' : '#fff'}`,
-            }}
+            sx={(theme) => ({
+              border: `1px solid ${'#fff'}`,
+              ...theme.applyStyles('dark', {
+                border: `1px solid ${'#262B32'}`,
+              }),
+            })}
           />
         }
         spacing={2}
