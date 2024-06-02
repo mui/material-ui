@@ -101,6 +101,7 @@ const AutocompleteRoot = styled('div', {
     [`& .${autocompleteClasses.input}`]: {
       width: 0,
       minWidth: 30,
+      pointerEvents: 'none',
     },
   },
   [`&.${autocompleteClasses.focused}`]: {
