@@ -39,6 +39,8 @@ Learn more about what we value as an organization: [Evolving MUI's core values a
 ## Why we're hiring
 
 Documentation is critical to the overall experience of our products, and as one of the leading open-source UI projects, users expect our docs to be the best in class.
+It's a differentiating factor for the product.
+
 The docs are the primary means by which developers discover our products and learn how to wield them effectively.
 And just like the products themselves, the documentation should reflect our fundamental priorities of performance, speed, beauty, and clarity.
 
