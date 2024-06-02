@@ -137,7 +137,7 @@ const NavIconButton = styled(IconButton, {
   variants: [
     {
       props: {
-        disablePermanent: true,
+        disablePermanent: false,
       },
       style: {
         [theme.breakpoints.up('lg')]: {
@@ -152,7 +152,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ theme }) => ({
   variants: [
     {
       props: {
-        disablePermanent: true,
+        disablePermanent: false,
       },
       style: {
         [theme.breakpoints.up('lg')]: {
