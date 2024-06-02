@@ -59,3 +59,9 @@ body:
           Output from `npx @mui/envinfo` goes here.
         ```
         </details>
+  - type: markdown
+    attributes:
+      value: |
+        ## :heart: Love Material UI?
+
+        Consider donating $ to sustain our open-source work and non-profit: [https://opencollective.com/mui-org](https://opencollective.com/mui-org).
