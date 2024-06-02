@@ -61,7 +61,6 @@ const code = `
 
 const startLine = [27, 16, 12];
 const endLine = [37, 21, 12];
-const scrollTo = [19, 12, 5];
 
 export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
@@ -137,19 +136,20 @@ export default function MaterialStyling() {
   const objectRef = React.useRef<HTMLDivElement | null>(null);
   const { dragging, getDragHandlers } = useResizeHandle(objectRef, { minWidth: '253px' });
   const infoRef = React.useRef<HTMLDivElement | null>(null);
-  function getSelectedProps(i: number) {
-    return {
-      selected: index === i,
-      sx: { '& svg': { opacity: index === i ? 1 : 0.5 } },
-    };
-  }
+
+  const getSelectedProps = (i: number) => ({
+    selected: index === i,
+    sx: { '& svg': { opacity: index === i ? 1 : 0.5 } },
+  });
+
   React.useEffect(() => {
-    if (infoRef.current) {
-      infoRef.current.scroll({ top: scrollTo[index] * 0.75 * 16 * 1.5 - 3, behavior: 'smooth' });
-    }
-    if (objectRef.current) {
-      objectRef.current.style.width = '100%';
-    }
+    // 18px line-height
+    // 16px margin-top
+    // 1px border-width
+    // 70% to try to center the zone
+    infoRef.current!.scroll({ top: (startLine[index] * 18 + 16 - 1) * 0.7, behavior: 'smooth' });
+
+    objectRef.current!.style.width = '100%';
   }, [index]);
 
   return (
