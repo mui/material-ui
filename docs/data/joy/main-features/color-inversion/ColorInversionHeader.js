@@ -36,9 +36,10 @@ export default function ColorInversionHeader() {
           borderRadius: { xs: 0, sm: 'sm' },
           minWidth: 'min-content',
         },
-        color !== 'warning' && {
-          background: `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,
-        },
+        color !== 'warning' &&
+          ((theme) => ({
+            background: `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,
+          })),
       ]}
     >
       <IconButton
@@ -89,10 +90,10 @@ export default function ColorInversionHeader() {
               <Chip
                 variant="outlined"
                 size="sm"
-                sx={{
+                sx={(theme) => ({
                   ml: 'auto',
                   bgcolor: `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`,
-                }}
+                })}
               >
                 Beta
               </Chip>

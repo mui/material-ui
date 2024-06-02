@@ -20,15 +20,23 @@ const ToggleButton = styled('button')(({ theme }) => ({
   boxShadow: theme.vars.shadow.md,
   [theme.focus.selector]: theme.focus.default,
   ...theme.variants.plain.neutral,
-  ...(pressed === 'false' && {
-    '&:hover': theme.variants.plainHover.neutral,
-    '&:active': theme.variants.plainActive.neutral,
-  }),
-  ...(pressed === 'true' && {
-    color: theme.vars.palette.danger.plainColor,
-    backgroundColor: theme.vars.palette.background.body,
-    boxShadow: theme.shadow.sm.replace(/,/g, ', inset'),
-  }),
+  variants: [
+    {
+      props: { pressed: 'false' },
+      style: {
+        '&:hover': theme.variants.plainHover.neutral,
+        '&:active': theme.variants.plainActive.neutral,
+      },
+    },
+    {
+      props: { pressed: 'true' },
+      style: {
+        color: theme.vars.palette.danger.plainColor,
+        backgroundColor: theme.vars.palette.background.body,
+        boxShadow: theme.shadow.sm.replace(/,/g, ', inset'),
+      },
+    },
+  ],
 }));
 
 export default function StyledComponent() {

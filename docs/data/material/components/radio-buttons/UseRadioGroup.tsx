@@ -13,9 +13,16 @@ interface StyledFormControlLabelProps extends FormControlLabelProps {
 const StyledFormControlLabel = styled((props: StyledFormControlLabelProps) => (
   <FormControlLabel {...props} />
 ))(({ theme }) => ({
-  '.MuiFormControlLabel-label': checked && {
-    color: theme.palette.primary.main,
-  },
+  variants: [
+    {
+      props: { checked: true },
+      style: {
+        '.MuiFormControlLabel-label': {
+          color: theme.palette.primary.main,
+        },
+      },
+    },
+  ],
 }));
 
 function MyFormControlLabel(props: FormControlLabelProps) {
