@@ -83,8 +83,8 @@ You will also play a fundamental role in defining the Docs-infra roadmap and pri
 - You get energized to dive into complex problems
 - You're excited about helping engineers and designers build amazing UIs
 - You're highly empathetic
-- You have great written and spoken English skills
 - You have good product/design sensibility
+- You have great written and spoken English skills
 
 ### Nice to have (but not required)
 
