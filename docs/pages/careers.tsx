@@ -29,7 +29,7 @@ const openRolesData = [
         url: '/careers/react-engineer-x/',
       },
       {
-        title: 'React Engineer — Docs Infra',
+        title: 'React Engineer — Docs-infra',
         description:
           'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
         url: '/careers/react-engineer-docs-infra/',
