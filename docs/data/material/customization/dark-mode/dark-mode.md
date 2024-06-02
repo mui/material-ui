@@ -214,7 +214,7 @@ import Button from '@mui/material/Button';
 We provide codemods to migrate your codebase from using `theme.palette.mode` to use `theme.applyStyles()`.
 You can run each codemod below or all of them at once.
 
-```
+```bash
 npx @mui/codemod@next v6.0.0/styled <path/to/folder-or-file>
 npx @mui/codemod@next v6.0.0/sx-prop <path/to/folder-or-file>
 npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme-file>
