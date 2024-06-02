@@ -61,6 +61,7 @@ const code = `
 
 const startLine = [27, 16, 12];
 const endLine = [37, 21, 12];
+const scrollTo = [27, 10, 4];
 
 export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
@@ -146,8 +147,7 @@ export default function MaterialStyling() {
     // 18px line-height
     // 16px margin-top
     // 1px border-width
-    // 70% to try to center the zone
-    infoRef.current!.scroll({ top: (startLine[index] * 18 + 16 - 1) * 0.7, behavior: 'smooth' });
+    infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
 
     objectRef.current!.style.width = '100%';
   }, [index]);

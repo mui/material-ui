@@ -122,7 +122,7 @@ function App() {
 
 const startLine = [6, 89, 64];
 const endLine = [31, 93, 84];
-const scrollTo = [0, 1400, 1140];
+const scrollTo = [0, 89, 62];
 
 const StyledSwitchRoot = styled('span')`
   font-size: 0;
@@ -227,9 +227,10 @@ export default function BaseUICustomization() {
     };
   }
   React.useEffect(() => {
-    if (infoRef.current) {
-      infoRef.current.scroll({ top: scrollTo[index], behavior: 'smooth' });
-    }
+    // 18px line-height
+    // 16px margin-top
+    // 1px border-width
+    infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
   }, [index]);
   return (
     <Section>
