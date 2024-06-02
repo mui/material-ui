@@ -49,7 +49,7 @@ Our internal Docs-infra team currently shares responsibility for this domain, an
 There are so many other features we'd like to implement, and projects we could draw inspiration from (for example, [Nextra](https://nextra.site/))—but the existing team (each of whom spends most of their time on one of our product engineering teams) simply doesn't have the bandwidth to take on bigger and more ambitious projects.
 For example, we could offer visitors the ability to toggle the design language they want to view the docs in; add automatic conversion of demos to Tailwind CSS; use AI to provide component demo customization; and so much more.
 
-That's why we're looking for a skilled full-stack developer to own the docs infrastructure as their full-time responsibility.
+That's why we're looking for a skilled JavaScript developer to own the docs infrastructure as their full-time responsibility.
 
 ## The role
 
