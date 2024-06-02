@@ -9,7 +9,7 @@ const FlashCodeRoot = styled('div', {
   borderRadius: 2,
   pointerEvents: 'none',
   position: 'absolute',
-  left: 0,
+  left: -1, // Have at least a 1px gap between the text and the border of the FlashCode.
   right: 0,
   top: `calc(var(--Flashcode-lineHeight) * 1.5 * var(--Flashcode-startLine))`,
   height: `calc(var(--Flashcode-lineHeight) * 1.5 * (var(--Flashcode-endLine) - var(--Flashcode-startLine) + 1))`,
@@ -20,7 +20,6 @@ const FlashCodeRoot = styled('div', {
     : alpha(theme.palette.primary.main, 0.1),
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.primary.dark,
-  zIndex: 2,
 }));
 
 const FlashCode = React.forwardRef(function FlashCode(
