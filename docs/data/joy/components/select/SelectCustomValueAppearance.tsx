@@ -59,9 +59,11 @@ export default function SelectCustomValueAppearance() {
               fontSize: 'xs',
               bgcolor: `${'var(--colors-undefined)'}.softBg`,
             }}
-            style={{
-              '--colors-undefined': colors[data.role],
-            }}
+            style={
+              {
+                '--colors-undefined': colors[data.role],
+              } as any
+            }
           >
             {data.role}
           </Chip>
