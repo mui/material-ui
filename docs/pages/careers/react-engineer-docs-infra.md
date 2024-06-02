@@ -100,7 +100,7 @@ You can find the other perks and benefits on the [careers](https://mui.com/caree
 
 ## How to apply
 
-[Apply now for this position 📮](/careers/react-engineer-docs-infra/)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/673f3178-56f4-47fd-bd2b-6dcba57758aa/application?utm_source=ZNRrPGBkqO)
 (will add the link once we publish the role also on Ashby)
 
 Don't meet every requirement?
