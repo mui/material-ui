@@ -12,7 +12,10 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    backgroundColor: theme.palette.grey[800],
+    ...theme.applyStyles('light', {
+      backgroundColor: theme.palette.grey[200],
+    }),
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
@@ -29,10 +32,12 @@ function FacebookCircularProgress(props: CircularProgressProps) {
     <Box sx={{ position: 'relative' }}>
       <CircularProgress
         variant="determinate"
-        sx={{
-          color: (theme) =>
-            theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-        }}
+        sx={(theme) => ({
+          color: theme.palette.grey[800],
+          ...theme.applyStyles('light', {
+            color: theme.palette.grey[200],
+          }),
+        })}
         size={40}
         thickness={4}
         {...props}
