@@ -84,11 +84,11 @@ You will also play a fundamental role in defining the Docs-infra roadmap and pri
 - You're excited about helping engineers and designers build amazing UIs
 - You're highly empathetic
 - You have great written and spoken English skills
-- You have basic design sensibility
+- You have good product/design sensibility
 
 ### Nice to have (but not required)
 
-- Strong design skills
+- Strong product/design skills
 - Experience in open-source
 - Experience with design systems
 - Experience with MUI products
