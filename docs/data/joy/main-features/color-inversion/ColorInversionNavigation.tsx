@@ -32,12 +32,14 @@ export default function ColorInversionNavigation() {
       <Sheet
         variant="solid"
         invertedColors
-        sx={{
-          p: 2,
-          ...(color !== 'neutral' && {
+        sx={[
+          {
+            p: 2,
+          },
+          color !== 'neutral' && {
             bgcolor: `${color}.700`,
-          }),
-        }}
+          },
+        ]}
       >
         <Select
           variant="soft"

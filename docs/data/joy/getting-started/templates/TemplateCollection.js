@@ -127,11 +127,15 @@ export default function TemplateCollection() {
               >
                 <Box
                   sx={(theme) => ({
-                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}.jpg)`,
+                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${'var(--template-name)'}.jpg)`,
                     [theme.getColorSchemeSelector('dark')]: {
-                      background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}-dark.jpg)`,
+                      background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${'var(--template-name)'}-dark.jpg)`,
                     },
                   })}
+                  style={{
+                    '--template-name': template.name,
+                    '--template-name': template.name,
+                  }}
                 />
                 <NextLink
                   href={`/joy-ui/getting-started/templates/${template.name}/`}

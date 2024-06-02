@@ -261,7 +261,6 @@ function RowMenu() {
     </Dropdown>
   );
 }
-
 export default function OrderTable() {
   const [order, setOrder] = React.useState<Order>('desc');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -417,13 +416,24 @@ export default function OrderTable() {
                   onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
                   fontWeight="lg"
                   endDecorator={<ArrowDropDownIcon />}
-                  sx={{
-                    '& svg': {
-                      transition: '0.2s',
-                      transform:
-                        order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
+                  sx={[
+                    {
+                      '& svg': {
+                        transition: '0.2s',
+                      },
                     },
-                  }}
+                    order === 'desc'
+                      ? {
+                          '& svg': {
+                            transform: 'rotate(0deg)',
+                          },
+                        }
+                      : {
+                          '& svg': {
+                            transform: 'rotate(180deg)',
+                          },
+                        },
+                  ]}
                 >
                   Invoice
                 </Link>
@@ -536,7 +546,6 @@ export default function OrderTable() {
           </IconButton>
         ))}
         <Box sx={{ flex: 1 }} />
-
         <Button
           size="sm"
           variant="outlined"

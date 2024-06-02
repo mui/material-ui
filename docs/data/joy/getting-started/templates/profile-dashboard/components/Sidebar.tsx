@@ -50,14 +50,22 @@ function Toggler({
     <React.Fragment>
       {renderToggle({ open, setOpen })}
       <Box
-        sx={{
-          display: 'grid',
-          gridTemplateRows: open ? '1fr' : '0fr',
-          transition: '0.2s ease',
-          '& > *': {
-            overflow: 'hidden',
+        sx={[
+          {
+            display: 'grid',
+            transition: '0.2s ease',
+            '& > *': {
+              overflow: 'hidden',
+            },
           },
-        }}
+          open
+            ? {
+                gridTemplateRows: '1fr',
+              }
+            : {
+                gridTemplateRows: '0fr',
+              },
+        ]}
       >
         {children}
       </Box>
@@ -185,7 +193,15 @@ export default function Sidebar() {
                     <Typography level="title-sm">Tasks</Typography>
                   </ListItemContent>
                   <KeyboardArrowDownIcon
-                    sx={{ transform: open ? 'rotate(180deg)' : 'none' }}
+                    sx={[
+                      open
+                        ? {
+                            transform: 'rotate(180deg)',
+                          }
+                        : {
+                            transform: 'none',
+                          },
+                    ]}
                   />
                 </ListItemButton>
               )}
@@ -231,7 +247,15 @@ export default function Sidebar() {
                     <Typography level="title-sm">Users</Typography>
                   </ListItemContent>
                   <KeyboardArrowDownIcon
-                    sx={{ transform: open ? 'rotate(180deg)' : 'none' }}
+                    sx={[
+                      open
+                        ? {
+                            transform: 'rotate(180deg)',
+                          }
+                        : {
+                            transform: 'none',
+                          },
+                    ]}
                   />
                 </ListItemButton>
               )}

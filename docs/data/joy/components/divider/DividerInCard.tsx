@@ -29,7 +29,17 @@ export default function DividerInCard() {
           Headline
         </Typography>
         <Divider />
-        <Box sx={{ display: orientation === 'horizontal' ? 'block' : 'contents' }}>
+        <Box
+          sx={[
+            orientation === 'horizontal'
+              ? {
+                  display: 'block',
+                }
+              : {
+                  display: 'contents',
+                },
+          ]}
+        >
           <Typography level="body-sm">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry standard dummy text ever
@@ -40,7 +50,18 @@ export default function DividerInCard() {
             variant="soft"
             color="neutral"
             endDecorator={<ArrowForward />}
-            sx={{ width: '100%', mt: orientation === 'horizontal' ? 2 : 0 }}
+            sx={[
+              {
+                width: '100%',
+              },
+              orientation === 'horizontal'
+                ? {
+                    mt: 2,
+                  }
+                : {
+                    mt: 0,
+                  },
+            ]}
           >
             See more
           </Button>

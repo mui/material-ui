@@ -74,7 +74,15 @@ export default function ExampleCollapsibleList() {
               onClick={() => setOpen(!open)}
             >
               <KeyboardArrowDown
-                sx={{ transform: open ? 'initial' : 'rotate(-90deg)' }}
+                sx={[
+                  open
+                    ? {
+                        transform: 'initial',
+                      }
+                    : {
+                        transform: 'rotate(-90deg)',
+                      },
+                ]}
               />
             </IconButton>
           }
@@ -82,10 +90,17 @@ export default function ExampleCollapsibleList() {
           <ListItem>
             <Typography
               level="inherit"
-              sx={{
-                fontWeight: open ? 'bold' : undefined,
-                color: open ? 'text.primary' : 'inherit',
-              }}
+              sx={[
+                open
+                  ? {
+                      fontWeight: 'bold',
+                      color: 'text.primary',
+                    }
+                  : {
+                      fontWeight: null,
+                      color: 'inherit',
+                    },
+              ]}
             >
               Tutorial
             </Typography>
@@ -125,7 +140,15 @@ export default function ExampleCollapsibleList() {
               onClick={() => setOpen2((bool) => !bool)}
             >
               <KeyboardArrowDown
-                sx={{ transform: open2 ? 'initial' : 'rotate(-90deg)' }}
+                sx={[
+                  open2
+                    ? {
+                        transform: 'initial',
+                      }
+                    : {
+                        transform: 'rotate(-90deg)',
+                      },
+                ]}
               />
             </IconButton>
           }
@@ -133,10 +156,17 @@ export default function ExampleCollapsibleList() {
           <ListItem>
             <Typography
               level="inherit"
-              sx={{
-                fontWeight: open2 ? 'bold' : undefined,
-                color: open2 ? 'text.primary' : 'inherit',
-              }}
+              sx={[
+                open2
+                  ? {
+                      fontWeight: 'bold',
+                      color: 'text.primary',
+                    }
+                  : {
+                      fontWeight: null,
+                      color: 'inherit',
+                    },
+              ]}
             >
               How-to Guides
             </Typography>

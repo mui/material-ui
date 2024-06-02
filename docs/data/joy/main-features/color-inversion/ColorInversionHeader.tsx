@@ -27,18 +27,19 @@ export default function ColorInversionHeader() {
       variant="solid"
       color={color}
       invertedColors
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        flexGrow: 1,
-        p: 2,
-        borderRadius: { xs: 0, sm: 'sm' },
-        minWidth: 'min-content',
-        ...(color !== 'warning' && {
-          background: (theme) =>
-            `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,
-        }),
-      }}
+      sx={[
+        {
+          display: 'flex',
+          alignItems: 'center',
+          flexGrow: 1,
+          p: 2,
+          borderRadius: { xs: 0, sm: 'sm' },
+          minWidth: 'min-content',
+        },
+        color !== 'warning' && {
+          background: `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,
+        },
+      ]}
     >
       <IconButton
         variant="soft"
@@ -95,8 +96,7 @@ export default function ColorInversionHeader() {
                 size="sm"
                 sx={{
                   ml: 'auto',
-                  bgcolor: (theme) =>
-                    `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`,
+                  bgcolor: `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`,
                 }}
               >
                 Beta

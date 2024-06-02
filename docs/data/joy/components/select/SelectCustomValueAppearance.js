@@ -58,7 +58,10 @@ export default function SelectCustomValueAppearance() {
               minHeight: '20px',
               paddingInline: '4px',
               fontSize: 'xs',
-              bgcolor: `${colors[data.role]}.softBg`,
+              bgcolor: `${'var(--colors-undefined)'}.softBg`,
+            }}
+            style={{
+              '--colors-undefined': colors[data.role],
             }}
           >
             {data.role}
