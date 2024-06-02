@@ -47,7 +47,7 @@ const NavList = styled(Typography)({
 const NavItem = styled(Link, {
   shouldForwardProp: (prop) =>
     prop !== 'active' && prop !== 'secondary' && prop !== 'secondarySubItem',
-})(({ active, secondary, secondarySubItem, theme }) => {
+})(({ theme }) => {
   const activeStyles = {
     borderLeftColor: (theme.vars || theme).palette.primary[200],
     color: (theme.vars || theme).palette.primary[600],
@@ -64,18 +64,12 @@ const NavItem = styled(Link, {
       color: (theme.vars || theme).palette.primary[400],
     },
   };
-  let paddingLeft = '12px';
-  if (secondary) {
-    paddingLeft = 3;
-  }
-  if (secondarySubItem) {
-    paddingLeft = 4.5;
-  }
 
   return [
     {
+      '--_padding-left': '12px',
       boxSizing: 'border-box',
-      padding: theme.spacing('6px', 0, '6px', paddingLeft),
+      padding: theme.spacing('6px', 0, '6px', 'var(--_padding-left)'),
       borderLeft: `1px solid transparent`,
       display: 'block',
       fontSize: theme.typography.pxToRem(13),
@@ -86,11 +80,31 @@ const NavItem = styled(Link, {
         borderLeftColor: (theme.vars || theme).palette.grey[400],
         color: (theme.vars || theme).palette.grey[600],
       },
-      ...(!active && {
-        color: (theme.vars || theme).palette.text.primary,
-      }),
       // TODO: We probably want `aria-current="location"` instead.
-      ...(active && activeStyles),
+      variants: [
+        {
+          props: ({ active }) => !!active,
+          style: activeStyles,
+        },
+        {
+          props: ({ active }) => !active,
+          style: {
+            color: (theme.vars || theme).palette.text.primary,
+          },
+        },
+        {
+          props: ({ secondary }) => secondary,
+          style: {
+            '--_padding-left': theme.spacing(3),
+          },
+        },
+        {
+          props: ({ secondarySubItem }) => secondarySubItem,
+          style: {
+            '--_padding-left': theme.spacing(4.5),
+          },
+        },
+      ],
       '&:active': activeStyles,
     },
     theme.applyDarkStyles({
@@ -98,10 +112,18 @@ const NavItem = styled(Link, {
         borderLeftColor: (theme.vars || theme).palette.grey[500],
         color: (theme.vars || theme).palette.grey[200],
       },
-      ...(!active && {
-        color: (theme.vars || theme).palette.grey[500],
-      }),
-      ...(active && activeDarkStyles),
+      variants: [
+        {
+          props: ({ active }) => !!active,
+          style: activeDarkStyles,
+        },
+        {
+          props: ({ active }) => !active,
+          style: {
+            color: (theme.vars || theme).palette.grey[500],
+          },
+        },
+      ],
       '&:active': activeDarkStyles,
     }),
   ];

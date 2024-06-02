@@ -5,11 +5,16 @@ import { styled } from '@mui/material/styles';
 
 const PaperRoot = styled(MuiPaper, {
   shouldForwardProp: (prop) => prop !== 'background' && prop !== 'padding',
-})(({ theme, background, padding }) => ({
+})(({ theme }) => ({
   backgroundColor: theme.palette.secondary[background],
-  ...(padding && {
-    padding: theme.spacing(1),
-  }),
+  variants: [
+    {
+      props: ({ padding }) => padding,
+      style: {
+        padding: theme.spacing(1),
+      },
+    },
+  ],
 }));
 
 function Paper(props) {

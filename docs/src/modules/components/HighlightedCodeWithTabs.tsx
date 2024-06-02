@@ -9,79 +9,239 @@ import HighlightedCode from './HighlightedCode';
 
 export const CodeTabList = styled(TabsListBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
-}>(({ theme, ownerState }) => ({
-  padding: ownerState?.contained ? theme.spacing(1.5, 1) : theme.spacing(1),
+}>(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(0.5),
   borderLeft: '1px solid',
   borderRight: '1px solid',
-  borderTop: ownerState?.contained ? 'none' : '1px solid',
-  borderBottom: ownerState?.contained ? 'none' : '1px solid',
-  borderTopLeftRadius: ownerState?.contained ? 0 : (theme.vars || theme).shape.borderRadius,
-  borderTopRightRadius: ownerState?.contained ? 0 : (theme.vars || theme).shape.borderRadius,
-  borderColor: ownerState?.contained
-    ? (theme.vars || theme).palette.divider
-    : (theme.vars || theme).palette.primaryDark[700],
-  backgroundColor: ownerState?.contained
-    ? alpha(theme.palette.grey[50], 0.2)
-    : (theme.vars || theme).palette.primaryDark[900],
   ...theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[800], 0.2),
   }),
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState?.contained,
+      style: {
+        padding: theme.spacing(1.5, 1),
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        padding: theme.spacing(1),
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState?.contained,
+      style: {
+        borderTop: 'none',
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        borderTop: '1px solid',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState?.contained,
+      style: {
+        borderBottom: 'none',
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        borderBottom: '1px solid',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState?.contained,
+      style: {
+        borderTopLeftRadius: 0,
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState?.contained,
+      style: {
+        borderTopRightRadius: 0,
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState?.contained,
+      style: {
+        borderColor: (theme.vars || theme).palette.divider,
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        borderColor: (theme.vars || theme).palette.primaryDark[700],
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState?.contained,
+      style: {
+        backgroundColor: alpha(theme.palette.grey[50], 0.2),
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+      },
+    },
+  ],
 }));
 
 export const CodeTabPanel = styled(TabPanelBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
-}>(({ ownerState }) => ({
-  marginTop: ownerState?.contained ? -1 : 0,
+}>({
   '& pre': {
-    marginTop: ownerState?.contained ? 0 : -1,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
-    '& code': {
-      opacity: ownerState.mounted ? 1 : 0,
-    },
+    '& code': {},
   },
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState?.contained,
+      style: {
+        marginTop: -1,
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        marginTop: 0,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState?.contained,
+      style: {
+        '& pre': {
+          marginTop: 0,
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        '& pre': {
+          marginTop: -1,
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.mounted,
+      style: {
+        '& pre': {
+          '& code': {
+            opacity: 1,
+          },
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState.mounted,
+      style: {
+        '& pre': {
+          '& code': {
+            opacity: 0,
+          },
+        },
+      },
+    },
+  ],
+});
 
 export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contained?: boolean } }>(
-  ({ theme, ownerState }) =>
-    theme.unstable_sx({
-      height: 26,
-      p: '0 8px 2px 8px',
-      border: ownerState?.contained ? '1px solid transparent' : 'none',
-      bgcolor: 'transparent',
-      color: ownerState?.contained
-        ? (theme.vars || theme).palette.text.tertiary
-        : (theme.vars || theme).palette.grey[500],
-      fontSize: theme.typography.pxToRem(ownerState?.contained ? 13 : 12),
-      fontFamily: ownerState?.contained
-        ? theme.typography.fontFamily
-        : theme.typography.fontFamilyCode,
-      fontWeight: ownerState?.contained
-        ? theme.typography.fontWeightMedium
-        : theme.typography.fontWeightBold,
-      lineHeight: 1.2,
-      outline: 'none',
-      minWidth: 52,
-      cursor: 'pointer',
-      borderRadius: 99,
-      position: 'relative',
-      transition: ownerState?.contained ? 'background, color, 100ms ease' : 'unset',
-      '&:hover': {
-        backgroundColor: (theme.vars || theme).palette.divider,
-      },
-      '&:focus-visible': {
-        outline: '3px solid',
-        outlineOffset: '1px',
-        outlineColor: (theme.vars || theme).palette.primary.light,
-      },
-      ...(!ownerState?.contained && {
-        '&:hover': {
-          backgroundColor: alpha(theme.palette.primaryDark[500], 0.5),
-          color: (theme.vars || theme).palette.grey[400],
+  ({ theme }) => ({
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState?.contained,
+        style: {
+          border: '1px solid transparent',
+          fontSize: theme.typography.pxToRem(13),
         },
-        ...(ownerState.mounted && {
+      },
+      {
+        props: ({ ownerState }) => !ownerState?.contained,
+        style: {
+          border: 'none',
+          fontSize: theme.typography.pxToRem(12),
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState?.contained,
+        style: {
+          color: (theme.vars || theme).palette.text.tertiary,
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState?.contained,
+        style: {
+          color: (theme.vars || theme).palette.grey[500],
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState?.contained,
+        style: {
+          fontFamily: theme.typography.fontFamily,
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState?.contained,
+        style: {
+          fontFamily: theme.typography.fontFamilyCode,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState?.contained,
+        style: {
+          fontWeight: theme.typography.fontWeightMedium,
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState?.contained,
+        style: {
+          fontWeight: theme.typography.fontWeightBold,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState?.contained,
+        style: {
+          transition: 'background, color, 100ms ease',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState?.contained,
+        style: {
+          transition: 'unset',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState?.contained,
+        style: {
+          '&:hover': {
+            backgroundColor: alpha(theme.palette.primaryDark[500], 0.5),
+            color: (theme.vars || theme).palette.grey[400],
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState?.contained && ownerState.mounted,
+        style: {
           '&.base--selected': {
             color: '#FFF',
             '&::after': {
@@ -94,9 +254,29 @@ export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contain
               bgcolor: (theme.vars || theme).palette.primary.light,
             },
           },
-        }),
-      }),
+        },
+      },
+    ],
+    ...theme.unstable_sx({
+      height: 26,
+      p: '0 8px 2px 8px',
+      bgcolor: 'transparent',
+      lineHeight: 1.2,
+      outline: 'none',
+      minWidth: 52,
+      cursor: 'pointer',
+      borderRadius: 99,
+      position: 'relative',
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.divider,
+      },
+      '&:focus-visible': {
+        outline: '3px solid',
+        outlineOffset: '1px',
+        outlineColor: (theme.vars || theme).palette.primary.light,
+      },
     }),
+  }),
 );
 
 type TabsConfig = {
