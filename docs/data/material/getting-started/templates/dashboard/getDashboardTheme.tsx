@@ -1008,7 +1008,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           root: ({ theme }) => ({
             borderColor: theme.palette.divider,
           }),
-
           cell: ({ theme }) => ({ borderTopColor: theme.palette.divider }),
           menu: ({ theme }) => ({
             borderRadius: theme.shape.borderRadius,
@@ -1108,7 +1107,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               },
             }),
           }),
-
           columnHeaderTitleContainer: {
             flexGrow: 1,
             justifyContent: 'space-between',

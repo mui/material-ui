@@ -40,10 +40,12 @@ export default function Hero() {
       sx={(theme) => ({
         width: '100%',
         backgroundImage:
-          theme.palette.mode === 'light'
-            ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 90%), transparent)'
-            : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 16%), transparent)',
+          'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 16%), transparent)',
         backgroundRepeat: 'no-repeat',
+        ...theme.applyStyles('light', {
+          backgroundImage:
+            'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 90%), transparent)',
+        }),
       })}
     >
       <Container
@@ -74,11 +76,13 @@ export default function Hero() {
             <Typography
               component="span"
               variant="h1"
-              sx={{
+              sx={(theme) => ({
                 fontSize: 'inherit',
-                color: (theme) =>
-                  theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
-              }}
+                color: 'primary.light',
+                ...theme.applyStyles('light', {
+                  color: 'primary.main',
+                }),
+              })}
             >
               products
             </Typography>

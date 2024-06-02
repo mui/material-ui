@@ -106,7 +106,7 @@ export default function Pricing() {
         position="static"
         color="default"
         elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+        sx={(theme) => ({ borderBottom: `1px solid ${theme.palette.divider}` })}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
@@ -181,12 +181,12 @@ export default function Pricing() {
                   subheaderTypographyProps={{
                     align: 'center',
                   }}
-                  sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? theme.palette.grey[200]
-                        : theme.palette.grey[700],
-                  }}
+                  sx={(theme) => ({
+                    backgroundColor: theme.palette.grey[700],
+                    ...theme.applyStyles('light', {
+                      backgroundColor: theme.palette.grey[200],
+                    }),
+                  })}
                 />
                 <CardContent>
                   <Box
@@ -231,11 +231,11 @@ export default function Pricing() {
       <Container
         maxWidth="md"
         component="footer"
-        sx={{
-          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+        sx={(theme) => ({
+          borderTop: `1px solid ${theme.palette.divider}`,
           mt: 8,
           py: [3, 6],
-        }}
+        })}
       >
         <Grid container spacing={4} justifyContent="space-evenly">
           {footers.map((footer) => (

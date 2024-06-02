@@ -112,15 +112,21 @@ export default function Features() {
             }}
           >
             <Box
-              sx={{
-                backgroundImage: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? items[selectedItemIndex].imageLight
-                    : items[selectedItemIndex].imageDark,
+              sx={(theme) => ({
+                backgroundImage: 'var(--items-imageDark)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 minHeight: 280,
-              }}
+                ...theme.applyStyles('light', {
+                  backgroundImage: 'var(--items-imageLight)',
+                }),
+              })}
+              style={
+                {
+                  '--items-imageLight': items[selectedItemIndex].imageLight,
+                  '--items-imageDark': items[selectedItemIndex].imageDark,
+                } as any
+              }
             />
             <Box sx={{ px: 2, pb: 2 }}>
               <Typography color="text.primary" fontWeight="medium" gutterBottom>
@@ -161,33 +167,34 @@ export default function Features() {
                 key={index}
                 component={Button}
                 onClick={() => handleItemClick(index)}
-                sx={(theme) => ({
-                  p: 3,
-                  height: 'fit-content',
-                  width: '100%',
-                  background: 'none',
-                  ...(selectedItemIndex === index && {
-                    backgroundColor: 'action.selected',
-                    borderColor:
-                      theme.palette.mode === 'light'
-                        ? 'primary.light'
-                        : 'primary.dark',
+                sx={[
+                  (theme) => ({
+                    p: 3,
+                    height: 'fit-content',
+                    width: '100%',
+                    background: 'none',
+                    '&:hover': {
+                      background:
+                        'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+                      borderColor: 'primary.dark',
+                      boxShadow: '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
+                      ...theme.applyStyles('light', {
+                        background:
+                          'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
+                        borderColor: 'primary.light',
+                        boxShadow: '0px 2px 8px hsla(0, 0%, 0%, 0.1)',
+                      }),
+                    },
                   }),
-                  '&:hover': {
-                    background:
-                      theme.palette.mode === 'light'
-                        ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
-                        : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
-                    borderColor:
-                      theme.palette.mode === 'light'
-                        ? 'primary.light'
-                        : 'primary.dark',
-                    boxShadow:
-                      theme.palette.mode === 'light'
-                        ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
-                        : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
-                  },
-                })}
+                  selectedItemIndex === index &&
+                    ((theme) => ({
+                      backgroundColor: 'action.selected',
+                      borderColor: 'primary.dark',
+                      ...theme.applyStyles('light', {
+                        borderColor: 'primary.light',
+                      }),
+                    })),
+                ]}
               >
                 <Box
                   sx={{
@@ -200,13 +207,17 @@ export default function Features() {
                   }}
                 >
                   <Box
-                    sx={(theme) => ({
-                      color:
-                        theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
-                      ...(selectedItemIndex === index && {
-                        color: 'primary.main',
+                    sx={[
+                      (theme) => ({
+                        color: 'grey.600',
+                        ...theme.applyStyles('light', {
+                          color: 'grey.400',
+                        }),
                       }),
-                    })}
+                      selectedItemIndex === index && {
+                        color: 'primary.main',
+                      },
+                    ]}
                   >
                     {icon}
                   </Box>
@@ -267,16 +278,22 @@ export default function Features() {
             }}
           >
             <Box
-              sx={{
+              sx={(theme) => ({
                 m: 'auto',
                 width: 420,
                 height: 500,
                 backgroundSize: 'contain',
-                backgroundImage: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? items[selectedItemIndex].imageLight
-                    : items[selectedItemIndex].imageDark,
-              }}
+                backgroundImage: 'var(--items-imageDark)',
+                ...theme.applyStyles('light', {
+                  backgroundImage: 'var(--items-imageLight)',
+                }),
+              })}
+              style={
+                {
+                  '--items-imageLight': items[selectedItemIndex].imageLight,
+                  '--items-imageDark': items[selectedItemIndex].imageDark,
+                } as any
+              }
             />
           </Card>
         </Grid>

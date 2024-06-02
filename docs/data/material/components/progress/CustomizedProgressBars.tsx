@@ -41,15 +41,18 @@ function FacebookCircularProgress(props: CircularProgressProps) {
       <CircularProgress
         variant="indeterminate"
         disableShrink
-        sx={{
-          color: (theme) => (theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8'),
+        sx={(theme) => ({
+          color: '#308fe8',
           animationDuration: '550ms',
           position: 'absolute',
           left: 0,
           [`& .${circularProgressClasses.circle}`]: {
             strokeLinecap: 'round',
           },
-        }}
+          ...theme.applyStyles('light', {
+            color: '#1a90ff',
+          }),
+        })}
         size={40}
         thickness={4}
         {...props}
@@ -74,7 +77,6 @@ function GradientCircularProgress() {
     </React.Fragment>
   );
 }
-
 export default function CustomizedProgressBars() {
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>

@@ -122,8 +122,8 @@ export default function MusicPlayerSlider() {
           step={1}
           max={duration}
           onChange={(_, value) => setPosition(value)}
-          sx={{
-            color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
+          sx={(t) => ({
+            color: 'rgba(0,0,0,0.87)',
             height: 4,
             '& .MuiSlider-thumb': {
               width: 8,
@@ -133,11 +133,10 @@ export default function MusicPlayerSlider() {
                 boxShadow: '0 2px 12px 0 rgba(0,0,0,0.4)',
               },
               '&:hover, &.Mui-focusVisible': {
-                boxShadow: `0px 0px 0px 8px ${
-                  theme.palette.mode === 'dark'
-                    ? 'rgb(255 255 255 / 16%)'
-                    : 'rgb(0 0 0 / 16%)'
-                }`,
+                boxShadow: `0px 0px 0px 8px ${'rgb(0 0 0 / 16%)'}`,
+                ...t.applyStyles('dark', {
+                  boxShadow: `0px 0px 0px 8px ${'rgb(255 255 255 / 16%)'}`,
+                }),
               },
               '&.Mui-active': {
                 width: 20,
@@ -147,7 +146,10 @@ export default function MusicPlayerSlider() {
             '& .MuiSlider-rail': {
               opacity: 0.28,
             },
-          }}
+            ...t.applyStyles('dark', {
+              color: '#fff',
+            }),
+          })}
         />
         <Box
           sx={{
@@ -193,8 +195,8 @@ export default function MusicPlayerSlider() {
           <Slider
             aria-label="Volume"
             defaultValue={30}
-            sx={{
-              color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
+            sx={(t) => ({
+              color: 'rgba(0,0,0,0.87)',
               '& .MuiSlider-track': {
                 border: 'none',
               },
@@ -209,7 +211,10 @@ export default function MusicPlayerSlider() {
                   boxShadow: 'none',
                 },
               },
-            }}
+              ...t.applyStyles('dark', {
+                color: '#fff',
+              }),
+            })}
           />
           <VolumeUpRounded htmlColor={lightIconColor} />
         </Stack>

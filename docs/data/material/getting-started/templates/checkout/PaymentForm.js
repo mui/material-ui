@@ -147,12 +147,17 @@ export default function PaymentForm() {
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <CreditCardRoundedIcon
                   fontSize="small"
-                  sx={(theme) => ({
-                    color: theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
-                    ...(paymentType === 'creditCard' && {
-                      color: 'primary.main',
+                  sx={[
+                    (theme) => ({
+                      color: 'grey.600',
+                      ...theme.applyStyles('light', {
+                        color: 'grey.400',
+                      }),
                     }),
-                  })}
+                    paymentType === 'creditCard' && {
+                      color: 'primary.main',
+                    },
+                  ]}
                 />
                 <Typography fontWeight="medium">Card</Typography>
               </CardContent>
@@ -173,12 +178,17 @@ export default function PaymentForm() {
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <AccountBalanceRoundedIcon
                   fontSize="small"
-                  sx={(theme) => ({
-                    color: theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
-                    ...(paymentType === 'bankTransfer' && {
-                      color: 'primary.main',
+                  sx={[
+                    (theme) => ({
+                      color: 'grey.600',
+                      ...theme.applyStyles('light', {
+                        color: 'grey.400',
+                      }),
                     }),
-                  })}
+                    paymentType === 'bankTransfer' && {
+                      color: 'primary.main',
+                    },
+                  ]}
                 />
                 <Typography fontWeight="medium">Bank account</Typography>
               </CardContent>
