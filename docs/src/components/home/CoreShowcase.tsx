@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme, alpha } from '@mui/material/styles';
+import { alpha, ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Button, { buttonClasses } from '@mui/material/Button';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
-import ShowcaseContainer, { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
+import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
-import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
-import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
+import StylingInfo from 'docs/src/components/action/StylingInfo';
 import FlashCode from 'docs/src/components/animation/FlashCode';
-import ROUTES from 'docs/src/route';
 
 const lineMapping: Record<string, number | number[]> = {
   card: [0, 20],
@@ -25,7 +25,7 @@ export default function CoreShowcase() {
   const { vars, ...globalTheme } = useTheme();
   const mode = globalTheme.palette.mode;
   const [element, setElement] = React.useState<Data>({ id: null, name: null, target: null });
-  const [customized, setCustomized] = React.useState(true);
+  const [customized, setCustomized] = React.useState(false);
   const theme = React.useMemo(
     () =>
       customized
@@ -48,8 +48,8 @@ export default function CoreShowcase() {
                   root: {
                     boxShadow:
                       mode === 'dark'
-                        ? `0 4px 8px ${alpha(globalTheme.palette.common.black, 0.3)}`
-                        : `0 4px 8px ${alpha(globalTheme.palette.primaryDark[300], 0.3)}`,
+                        ? '0px 4px 12px rgba(0, 0, 0, 0.4)'
+                        : '0px 4px 12px rgba(61, 71, 82, 0.1)',
                     backgroundColor:
                       mode === 'dark' ? globalTheme.palette.primaryDark[800] : '#fff',
                     border: '1px solid',
@@ -109,7 +109,6 @@ export default function CoreShowcase() {
     startLine = Array.isArray(highlightedLines) ? highlightedLines[0] : highlightedLines;
     endLine = Array.isArray(highlightedLines) ? highlightedLines[1] : startLine;
   }
-
   return (
     <ShowcaseContainer
       preview={
