@@ -89,10 +89,14 @@ For users of Emotion and styled-components, the benefits of adopting Pigment CS
 
 When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following page load performance gains using the same code, but powered by different style engines:
 
-| Metrics                      |                                                                                                        Emotion |                                                                                                        Pigment CSS | Change |
-| :--------------------------- | -------------------------------------------------------------------------------------------------------------: | -----------------------------------------------------------------------------------------------------------------: | -----: |
-| First Load JS                |                                                                                                          [131 kB](https://emotion-demo.vercel.app/?metric=1) |                                                                                                              [104 kB](https://pigment-css-demo.vercel.app/?metric=1) |   -20% |
-| Total blocking time          | [280 ms](https://pagespeed.web.dev/analysis/https-emotion-demo-vercel-app/uxfpkvbp31?hl=fr&form_factor=mobile) | [210 ms](https://pagespeed.web.dev/analysis/https-pigment-css-demo-vercel-app/azcw1qxkec?hl=fr&form_factor=mobile) |   -25% |
+<!-- vale MUI.CorrectReferenceAllCases = NO -->
+
+| Metrics             |                                                                                                        Emotion |                                                                                                        Pigment CSS | Change |
+| :------------------ | -------------------------------------------------------------------------------------------------------------: | -----------------------------------------------------------------------------------------------------------------: | -----: |
+| First Load JS       |                                                            [131 kB](https://emotion-demo.vercel.app/?metric=1) |                                                            [104 kB](https://pigment-css-demo.vercel.app/?metric=1) |   -20% |
+| Total blocking time | [280 ms](https://pagespeed.web.dev/analysis/https-emotion-demo-vercel-app/uxfpkvbp31?hl=fr&form_factor=mobile) | [210 ms](https://pagespeed.web.dev/analysis/https-pigment-css-demo-vercel-app/azcw1qxkec?hl=fr&form_factor=mobile) |   -25% |
+
+<!-- vale MUI.CorrectReferenceAllCases = YES -->
 
 :::info
 **Reproduction**. Because you should only trust numbers that you can reproduce, we've shared below how we found these numbers.
@@ -114,9 +118,9 @@ When comparing the same Material UI app built with Next.js and either Emotion o
 
 | Metrics                                 | Emotion | Pigment CSS | Change |
 | :-------------------------------------- | ------: | ----------: | -----: |
-| Create and mount a new button           |  17.3 ms |      10.1 ms |   -42% |
-| Change a variant on a mounted component |  14.0 ms |      9.13 ms |   -34% |
-| Change a value inside a CSS prop        |  13.6 ms |      8.63 ms |   -37% |
+| Create and mount a new button           | 17.3 ms |     10.1 ms |   -42% |
+| Change a variant on a mounted component | 14.0 ms |     9.13 ms |   -34% |
+| Change a value inside a CSS prop        | 13.6 ms |     8.63 ms |   -37% |
 
 :::info
 **Reproduction**. Because you should only trust numbers that you can reproduce, we've shared below how we found these numbers.
