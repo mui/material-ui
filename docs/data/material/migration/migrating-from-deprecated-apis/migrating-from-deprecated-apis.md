@@ -379,6 +379,28 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 npx @mui/codemod@next deprecations/backdrop-props <path>
 ```
 
+### components
+
+The Backdrop's `components` prop was deprecated in favor of `slots`:
+
+```diff
+ <Backdrop
+-  components={{ root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+ />
+```
+
+### componentsProps
+
+The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
+
+```diff
+ <Backdrop
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
 ### TransitionComponent
 
 The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
