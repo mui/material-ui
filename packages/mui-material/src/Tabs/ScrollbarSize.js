@@ -23,7 +23,9 @@ export default function ScrollbarSize(props) {
   const nodeRef = React.useRef(null);
 
   const setMeasurements = () => {
-    scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
+    if (nodeRef.current) {
+      scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
+    }
   };
 
   useEnhancedEffect(() => {
