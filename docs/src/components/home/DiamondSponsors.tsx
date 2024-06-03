@@ -12,13 +12,14 @@ const DIAMONDs = [
   {
     src: '/static/sponsors/octopus-square.svg',
     name: 'Octopus Deploy',
-    description: 'A unified DevOps automation platform for your team',
+    description: 'A unified DevOps automation platform for your team.',
     href: 'https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
-    description: 'Delivers technology and cloud expertise to buy, optimize and manage public cloud.',
+    description:
+      'Delivers technology and cloud expertise to buy, optimize and manage public cloud.',
     href: 'https://www.doit.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
