@@ -1124,8 +1124,8 @@ importers:
         specifier: ^5.4.3
         version: 5.4.3
       recast:
-        specifier: ^0.23.7
-        version: 0.23.7
+        specifier: ^0.23.9
+        version: 0.23.9
       remark:
         specifier: ^13.0.0
         version: 13.0.0
@@ -14201,7 +14201,7 @@ packages:
       micromatch: 4.0.5
       neo-async: 2.6.2
       node-dir: 0.1.17
-      recast: 0.23.7
+      recast: 0.23.9
       temp: 0.8.4
       write-file-atomic: 2.4.3
     transitivePeerDependencies:
@@ -18375,8 +18375,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /recast@0.23.7:
-    resolution: {integrity: sha512-MpQlLZVpqbbxYcqEjwpRWo88sGvjOYoXptySz710RuddNMHx+wPkoNX6YyLZJlXAh5VZr1qmPrTwcTuFMh0Lag==}
+  /recast@0.23.9:
+    resolution: {integrity: sha512-Hx/BGIbwj+Des3+xy5uAtAbdCyqK9y9wbBcDFDYanLS9JnMqf7OeF87HQwUimE87OEc72mr6tkKUKMBBL+hF9Q==}
     engines: {node: '>= 4'}
     dependencies:
       ast-types: 0.16.1
