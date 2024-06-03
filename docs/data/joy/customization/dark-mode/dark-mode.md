@@ -151,8 +151,7 @@ export default class MyDocument extends Document {
 
 To use the Joy UI API with a Next.js project with the App Router, create a separate [Client Component](https://nextjs.org/docs/app/building-your-application/rendering/client-components) to utilize the [`getInitColorSchemeScript`](https://mui.com/joy-ui/main-features/dark-mode-optimization/#the-solution-css-variables) function:
 
-```jsx
-// colorInit.js
+```jsx title="colorInit.js"
 "use client";
 
 import { getInitColorSchemeScript } from "@mui/joy/styles";
@@ -163,8 +162,7 @@ export default function ColorInit() {
 ```
 Now, you can use the it in your [`app/layout.js`](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts) file in order to prevent flickering:
 
-```jsx
-// layout.js
+```jsx title="layout.js"
 import ColorInit from "./colorInit";
 import { CssBaseline, CssVarsProvider } from "@mui/joy";
 
