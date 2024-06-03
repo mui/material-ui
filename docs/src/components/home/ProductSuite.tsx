@@ -47,7 +47,7 @@ export default function ProductSuite() {
     rootMargin: '200px',
   });
   return (
-    <Section bg="gradient" ref={ref}>
+    <Section id="product-suite" bg="gradient" ref={ref}>
       <Grid container spacing={2}>
         <Grid md={6}>
           <SectionHeadline

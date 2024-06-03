@@ -85,17 +85,14 @@ export default function Hero() {
           <SectionHeadline
             title={
               <Typography variant="h1">
-                A comprehensive <GradientText>ecosystem</GradientText> of React UI libraries
-                {/* A comprehensive ecosystem of React UI tools // iteration 2 */}
-                {/* A design system ecosystem of React UI tools // iteration 1 */}
-                {/* Move faster with intuitive React UI tools // current version*/}
+                A <GradientText>comprehensive ecosystem</GradientText> of React UI libraries
               </Typography>
             }
             description="MUI offers an extensive suite of free UI libraries to help you ship new features and products faster. Quickly start with styled, production-ready Material UI components or explore our other products for alternative use cases."
           />
           <GetStartedButtons
             primaryLabel="View all products"
-            primaryUrl="/blog/mui-product-comparison/"
+            primaryUrl="#product-suite"
             secondaryLabel="Start with Material UI"
             secondaryUrl="/material-ui/getting-started/"
           />

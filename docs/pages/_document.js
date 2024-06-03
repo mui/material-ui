@@ -41,7 +41,12 @@ export default class MyDocument extends Document {
     const { canonicalAsServer, userLanguage } = this.props;
 
     return (
-      <Html lang={userLanguage} data-mui-color-scheme="light" data-joy-color-scheme="light">
+      <Html
+        lang={userLanguage}
+        data-mui-color-scheme="light"
+        data-joy-color-scheme="light"
+        style={{ scrollBehavior: 'smooth' }}
+      >
         <Head>
           {/*
             manifest.json provides metadata used when your web app is added to the
