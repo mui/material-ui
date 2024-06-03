@@ -14,7 +14,7 @@ interface Props {
    * You won't need it on your project.
    */
   window?: () => Window;
-  children: React.ReactElement;
+  children?: React.ReactElement<any>;
 }
 
 function HideOnScroll(props: Props) {
@@ -28,7 +28,7 @@ function HideOnScroll(props: Props) {
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
-      {children}
+      {children ?? <div />}
     </Slide>
   );
 }

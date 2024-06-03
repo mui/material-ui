@@ -2,10 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getTableContainerUtilityClass } from './tableContainerClasses';
+
+const useThemeProps = createUseThemeProps('MuiTableContainer');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;

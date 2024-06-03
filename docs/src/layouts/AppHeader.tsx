@@ -7,13 +7,12 @@ import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import MuiLogoMenu from 'docs/src/components/action/MuiLogoMenu';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
-import Link from 'docs/src/modules/components/Link';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 const Header = styled('header')(({ theme }) => [
   {
@@ -39,7 +38,6 @@ interface AppHeaderProps {
 
 export default function AppHeader(props: AppHeaderProps) {
   const { gitHubRepository = 'https://github.com/mui' } = props;
-
   const t = useTranslate();
 
   return (
@@ -52,9 +50,7 @@ export default function AppHeader(props: AppHeaderProps) {
         }}
       />
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: HEIGHT }}>
-        <Box component={Link} href="/" aria-label="Go to homepage" sx={{ lineHeight: 0, mr: 2 }}>
-          <SvgMuiLogomark width={30} />
-        </Box>
+        <MuiLogoMenu />
         <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
         </Box>
@@ -65,6 +61,7 @@ export default function AppHeader(props: AppHeaderProps) {
             <IconButton
               component="a"
               color="primary"
+              size="small"
               href={gitHubRepository}
               target="_blank"
               rel="noopener"

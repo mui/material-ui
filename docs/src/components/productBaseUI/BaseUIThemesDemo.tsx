@@ -42,7 +42,7 @@ import InterestsRoundedIcon from '@mui/icons-material/InterestsRounded';
 import RadioRoundedIcon from '@mui/icons-material/RadioRounded';
 
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import heroVariables from 'docs/src/components/productBaseUI/heroVariables';
 
 const Panel = styled('div')({
@@ -110,19 +110,15 @@ const StyledTab = styled('button')({
   color: 'var(--muidocs-palette-text-secondary)',
   userSelect: 'none',
   transition: 'all 100ms ease',
-
   '&:hover:not(.base--selected)': {
     background: 'var(--Tab-hoverBackground)',
   },
-
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
     outlineOffset: -4,
   },
-
   '&.base--selected': {
     color: 'var(--color-primary)',
-
     '&::after': {
       content: '""',
       display: 'block',
@@ -153,21 +149,17 @@ const StyledSelectButton = styled('button')({
   lineHeight: 21 / 14,
   userSelect: 'none',
   transition: 'all 100ms ease',
-
   '&:hover': {
     backgroundColor: 'var(--Button-bg-hover)',
     borderColor: 'var(--Button-border-hover)',
     boxShadow: 'none',
   },
-
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
   },
-
   '& svg:last-child': {
     marginLeft: 'auto',
   },
-
   '& svg:first-child': {
     marginRight: 'var(--Select-spacing)',
   },
@@ -191,13 +183,11 @@ const StyledLinkButton = styled(Link)({
   lineHeight: 21 / 14,
   userSelect: 'none',
   transition: 'all 100ms ease',
-
   '&:hover': {
     backgroundColor: 'var(--LinkButton-bg-hover)',
     borderColor: 'var(--LinkButton-border-hover)',
     boxShadow: 'none',
   },
-
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
   },
@@ -221,13 +211,11 @@ const StyledButton = styled('button')({
   lineHeight: 21 / 14,
   userSelect: 'none',
   transition: 'all 100ms ease',
-
   '&:hover': {
     backgroundColor: 'var(--Button-bg-hover)',
     borderColor: 'var(--Button-border-hover)',
     boxShadow: 'none',
   },
-
   '&:focus-visible': {
     outline: '3px solid var(--muidocs-palette-primary-300)',
   },
@@ -289,18 +277,15 @@ const StyledListbox = styled('ul')({
       alignItems: 'center',
       cursor: 'pointer',
       borderRadius: 'calc(var(--_listbox-radius) - var(--Select-spacing) * 0.05)',
-
       '&:hover, &.base-Option-highlighted': {
         backgroundColor: 'var(--Option-hoverBackground, var(--muidocs-palette-grey-50))',
         color: 'var(--muidocs-palette-text-primary)',
       },
-
       '&.base--selected': {
         backgroundColor: 'var(--Option-selectedBackground, var(--muidocs-palette-grey-50))',
         borderColor: 'var(--border-color)',
         color: 'var(--muidocs-palette-text-primary)',
       },
-
       '& svg:first-child': {
         color: 'var(--muidocs-palette-primary-main)',
         marginRight: 'var(--Select-spacing)',
@@ -387,7 +372,7 @@ const StyledSlider = styled(Slider)(`
     transition-duration: 120ms;
     transform-origin: center;
 
-    :hover,
+    &:hover,
     &.${sliderClasses.focusVisible} {
       box-shadow: 0 0 0 6px var(--Slider-thumb-focus);
     }
@@ -429,14 +414,13 @@ const StyledSlider = styled(Slider)(`
   }
 `);
 
-const StyledSwitch = styled('span')(`
+const StyledSwitch = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
   width: 34px;
   height: 20px;
   cursor: pointer;
-
 
   &.${switchClasses.disabled} {
     opacity: 0.4;
@@ -451,11 +435,10 @@ const StyledSwitch = styled('span')(`
     width: 100%;
     position: absolute;
     transition: background-color ease 100ms;
-
   }
-  
-  :hover {
-    .${switchClasses.track} {
+
+  &:hover {
+    & .${switchClasses.track} {
       background: var(--Switch-hoverBackground, var(--muidocs-palette-grey-400));
     }
   }
@@ -480,20 +463,20 @@ const StyledSwitch = styled('span')(`
   }
 
   &.${switchClasses.checked} {
-    .${switchClasses.thumb} {
+    & .${switchClasses.thumb} {
       left: 17px;
       top: 3px;
       background-color: #fff;
     }
 
-    .${switchClasses.track} {
+    & .${switchClasses.track} {
       background: var(--muidocs-palette-primary-500);
     }
 
-    :hover {
-      .${switchClasses.track} {
+    &:hover {
+      & .${switchClasses.track} {
         background: var(--muidocs-palette-primary-700);
-      } 
+      }
     }
   }
 
@@ -508,7 +491,7 @@ const StyledSwitch = styled('span')(`
     z-index: 1;
     margin: 0;
   }
-  `);
+`;
 
 const Backdrop = React.forwardRef<HTMLDivElement, { open?: boolean; className: string }>(
   (props, ref) => {
@@ -626,7 +609,6 @@ const StyledMenuItem = styled(MenuItem)(
   list-style: none;
   padding: 6px 8px;
   margin: 4px 0;
-  border-radius: 8px;
   cursor: default;
   user-select: none;
   border-radius: min(var(--border-radius), 8px);
@@ -635,7 +617,6 @@ const StyledMenuItem = styled(MenuItem)(
   &:last-of-type {
     border-bottom: none;
   }
-
 
   &.${menuItemClasses.focusVisible} {
     outline: 3px solid var(--muidocs-palette-primary-300);
@@ -661,22 +642,21 @@ const StyledMenuItem = styled(MenuItem)(
   `,
 );
 
-const StyledMenuListbox = styled('ul')(`
+const StyledMenuListbox = styled('ul')`
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
   min-width: 230px;
-  border-radius: 12px;
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   background-color: var(--muidocs-palette-background-default);
   border-radius: min(var(--border-radius), 16px);
   border: var(--border-width) solid;
   border-color: var(--border-color);
   box-shadow: var(--Panel-shadow);
-  `);
+`;
 
 const StyledMenuButton = styled(MenuButton)({
   padding: 0,
@@ -754,7 +734,6 @@ const StyledInputElement = styled('input')({
   fontFamily: 'var(--muidocs-font-family)',
   lineHeight: 21 / 14,
   boxShadow: 'var(--formControl-shadow, 0px 2px 2px rgba(205, 210, 215, 0.3))',
-
   '&:hover': {
     borderColor: 'var(--Input-border)',
   },
@@ -785,7 +764,7 @@ export default function BaseUIThemesDemo() {
   // Snackbar
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
 
-  const handleCloseSnackbar = (_: any, reason: SnackbarCloseReason) => {
+  const handleCloseSnackbar = (_: any, reason?: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
     }

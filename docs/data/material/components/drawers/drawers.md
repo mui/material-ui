@@ -14,7 +14,7 @@ A navigation drawer can either be permanently on-screen or controlled by a navig
 
 [Side sheets](https://m2.material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Temporary drawer
 
@@ -24,6 +24,14 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key.
 It closes when an item is selected, handled by controlling the `open` prop.
 
 {{"demo": "TemporaryDrawer.js"}}
+
+### Anchor
+
+Use the `anchor` prop to specify which side of the screen the Drawer should originate from.
+
+The default value is `left`.
+
+{{"demo": "AnchorTemporaryDrawer.js"}}
 
 ### Swipeable
 

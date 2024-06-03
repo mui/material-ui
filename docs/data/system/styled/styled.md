@@ -217,7 +217,9 @@ If you prefer the `sx` syntax and want to use it in both the `sx` prop and the `
 
 The overhead added by using the `unstable_sx` utility is the same as if you were to use the `sx` prop on the component.
 
-> Note: You can use `unstable_sx` outside of the `styled()` utility, too; for example when defining `variants` in your custom theme.
+:::info
+Note: You can use `unstable_sx` outside of the `styled()` utility, too; for example when defining `variants` in your custom theme.
+:::
 
 ## How to use components selector API
 

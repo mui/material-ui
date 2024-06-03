@@ -15,7 +15,7 @@ export interface ChipOwnProps {
   /**
    * The Avatar element to display.
    */
-  avatar?: React.ReactElement;
+  avatar?: React.ReactElement<any>;
   /**
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.
@@ -47,7 +47,7 @@ export interface ChipOwnProps {
   /**
    * Override the default delete icon element. Shown only if `onDelete` is set.
    */
-  deleteIcon?: React.ReactElement;
+  deleteIcon?: React.ReactElement<any>;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -56,7 +56,7 @@ export interface ChipOwnProps {
   /**
    * Icon element.
    */
-  icon?: React.ReactElement;
+  icon?: React.ReactElement<any>;
   /**
    * The content of the component.
    */

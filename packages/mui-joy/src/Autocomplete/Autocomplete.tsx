@@ -211,7 +211,7 @@ const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: OwnerState }>(({ theme }) => ({
-  // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+  // `unstable_popup-zIndex` is a private variable that lets other component, for example Modal, to override the z-index so that the listbox can be displayed above the Modal.
   zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
 }));
 
@@ -416,6 +416,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             variant="soft"
             color="neutral"
             endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
+            sx={{ minWidth: 0 }}
           >
             {getOptionLabel(option)}
           </Chip>
@@ -734,7 +735,7 @@ interface AutocompleteComponent {
     FreeSolo extends boolean | undefined = undefined,
   >(
     props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
-  ): JSX.Element;
+  ): React.JSX.Element;
   propTypes?: any;
 }
 
@@ -985,7 +986,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   limitTags: integerPropType,
   /**
    * If `true`, the component is in a loading state.
-   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
    * @default false
    */
   loading: PropTypes.bool,

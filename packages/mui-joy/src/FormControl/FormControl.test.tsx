@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import FormControl, { formControlClasses as classes } from '@mui/joy/FormControl';
@@ -14,6 +14,7 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Radio, { radioClasses } from '@mui/joy/Radio';
 import Switch, { switchClasses } from '@mui/joy/Switch';
 import Autocomplete, { autocompleteClasses } from '@mui/joy/Autocomplete';
+import describeConformance from '../../test/describeConformance';
 
 describe('<FormControl />', () => {
   const { render } = createRenderer();

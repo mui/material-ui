@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 import HighlightAltRoundedIcon from '@mui/icons-material/HighlightAltRounded';
 import CssRoundedIcon from '@mui/icons-material/CssRounded';
 import DnsRoundedIcon from '@mui/icons-material/DnsRounded';
@@ -70,7 +70,7 @@ export default function MaterialUtilComponents() {
     <Grid container spacing={2}>
       {utilComponents.map(({ icon, title, link }) => (
         <Grid key={title} xs={12} sm={4}>
-          <InfoCard dense link={link} title={title} icon={icon} />
+          <InfoCard link={link} title={title} icon={icon} />
         </Grid>
       ))}
     </Grid>

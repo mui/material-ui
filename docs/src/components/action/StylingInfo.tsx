@@ -5,14 +5,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 export default function StylingInfo({
   appeared,
   stylingContent,
   ...props
-}: { appeared: boolean; stylingContent?: React.ReactElement } & BoxProps) {
+}: { appeared: boolean; stylingContent?: React.ReactElement<any> } & BoxProps) {
   const [hidden, setHidden] = React.useState(false);
   const defaultContent = (
     <React.Fragment>
@@ -37,8 +37,7 @@ export default function StylingInfo({
         transition: '0.3s',
         left: 0,
         right: 0,
-        px: 2,
-        pt: 1,
+        p: 2,
         background: ({ palette }) => alpha(palette.common.black, 0.5),
         backdropFilter: 'blur(8px)',
         zIndex: 1,

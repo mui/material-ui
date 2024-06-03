@@ -1,8 +1,5 @@
 import * as React from 'react';
-import {
-  experimental_extendTheme as extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
-} from '@mui/material/styles';
+import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -59,8 +56,8 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { getDesignTokens } from 'docs/src/modules/brandingTheme';
-import Link from 'docs/src/modules/components/Link';
+import { getDesignTokens } from '@mui/docs/branding';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 function Checkboxes() {
@@ -294,7 +291,7 @@ export default function MaterialHero() {
               },
             }}
           >
-            <Stack spacing={4}>
+            <Stack spacing={4} useFlexGap>
               <div>
                 <Accordion
                   elevation={0}
@@ -395,7 +392,11 @@ export default function MaterialHero() {
                 </List>
               </Paper>
             </Stack>
-            <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+            <Stack
+              spacing={4}
+              useFlexGap
+              sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}
+            >
               <Box sx={{ display: 'flex', gap: 2, '& button': { textWrap: 'nowrap' } }}>
                 <Button variant="contained" startIcon={<DownloadIcon fontSize="small" />} fullWidth>
                   Install library
@@ -466,8 +467,7 @@ export default function MaterialHero() {
                   <Typography variant="body2" color="text.secondary">
                     Not just a great valley, but a shrine to human foresight, the strength of
                     granite, the power of glaciers, the persistence of life, and the tranquility of
-                    the High Sierra. It&apos;s famed for its giant, ancient sequoia trees, and the
-                    granite cliffs of El Capitan and Half Dome.
+                    the High Sierra.
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>

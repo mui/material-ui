@@ -75,7 +75,7 @@ Move the component from the lab to the core. The component is now stable.
 
 ### Remove debug prop
 
-Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
+Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://x.com/sulco/status/1305841873945272321), or React devtools prop setter.
 
 ### Update `renderOption`
 
@@ -796,7 +796,7 @@ Rename the `GridList` components to `ImageList` to align with the current Materi
 
 ### Use CSS object-fit
 
-Use CSS `object-fit`. For IE11 support either use a polyfill such as
+Use CSS `object-fit`. For IE 11 support either use a polyfill such as
 [this npm package](https://www.npmjs.com/package/object-fit-images), or else continue to use the v4 component.
 
 ```diff
@@ -991,7 +991,7 @@ prop `listItemClasses` is removed, use `classes` instead.
 +<MenuItem classes={{...}}>
 ```
 
-Read more about the [MenuItem CSS API](/material-ui/api/menu-item/#css).
+Read more about the [MenuItem CSS API](/material-ui/api/menu-item/#classes).
 
 ## Modal
 
@@ -2008,7 +2008,7 @@ This change removes the confusion with the built-in `Omit` helper introduced in 
 
 The built-in `Omit`, while similar, is non-distributive.
 This leads to differences when applied to union types.
-[See this Stack Overflow answer for further details](https://stackoverflow.com/questions/57103834/typescript-omit-a-property-from-all-interfaces-in-a-union-but-keep-the-union-s/57103940#57103940).
+[See this Stack Overflow answer for further details](https://stackoverflow.com/questions/57103834/typescript-omit-a-property-from-all-interfaces-in-a-union-but-keep-the-union-s/57103940#57103940).
 
 ```diff
 -import { Omit } from '@mui/types';

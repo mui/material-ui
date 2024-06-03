@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { styled, ThemeProvider } from '@mui/material/styles';
@@ -15,11 +14,11 @@ import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import MuiLogoMenu from 'docs/src/components/action/MuiLogoMenu';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
@@ -44,8 +43,18 @@ function transitionTheme(theme) {
 
 const savedScrollTop = {};
 
+const customButtonStyles = (theme) => ({
+  pl: 1,
+  pr: '6px',
+  height: 26,
+  fontSize: theme.typography.pxToRem(13),
+  fontWeight: theme.typography.fontWeightMedium,
+  letterSpacing: '0.01rem',
+});
+
 function ProductDrawerButton(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -54,33 +63,26 @@ function ProductDrawerButton(props) {
     setAnchorEl(null);
   };
 
+  const handleEventDelegation = (event) => {
+    // Assert whether an 'a' tag resides in the parent of the clicked element through which the event bubbles out.
+    const isLinkInParentTree = Boolean(event.target.closest('a'));
+    // If the element clicked is link or just inside of a link element then close the menu.
+    if (isLinkInParentTree) {
+      handleClose();
+    }
+  };
+
   return (
     <React.Fragment>
       <Button
+        size="small"
         id="mui-product-selector"
         aria-haspopup="true"
         aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
-        sx={(theme) => ({
-          py: 0.1,
-          minWidth: 0,
-          fontSize: theme.typography.pxToRem(13),
-          fontWeight: theme.typography.fontWeightMedium,
-          color: (theme.vars || theme).palette.primary[600],
-          '& svg': {
-            ml: -0.6,
-            width: 18,
-            height: 18,
-          },
-          '& > span': {
-            ml: '4px',
-          },
-          ...theme.applyDarkStyles({
-            color: (theme.vars || theme).palette.primary[300],
-          }),
-        })}
+        sx={customButtonStyles}
       >
         {props.productName}
       </Button>
@@ -97,6 +99,7 @@ function ProductDrawerButton(props) {
             width: { xs: 340, sm: 'auto' },
           },
         }}
+        onClick={handleEventDelegation}
       >
         <MuiProductSelector />
       </Menu>
@@ -114,12 +117,12 @@ function ProductIdentifier(props) {
     <Box sx={{ flexGrow: 1 }}>
       <Typography
         sx={(theme) => ({
-          ml: 1.5,
-          color: (theme.vars || theme).palette.grey[600],
-          fontSize: theme.typography.pxToRem(11),
-          fontWeight: 700,
+          ml: '6px',
+          fontSize: theme.typography.pxToRem(10),
+          fontWeight: theme.typography.fontWeightBold,
           textTransform: 'uppercase',
-          letterSpacing: '.08rem',
+          letterSpacing: '.1rem',
+          color: (theme.vars || theme).palette.text.tertiary,
         })}
       >
         {metadata}
@@ -158,7 +161,7 @@ function PersistScroll(props) {
     const activeBox = activeDrawerLink.getBoundingClientRect();
 
     if (activeBox.top < 0 || activeBox.bottom + browserUrlPreviewMarge > window.innerHeight) {
-      // Scroll the least possible from the initial render, e.g. server-side, scrollTop = 0.
+      // Scroll the least possible from the initial render, for example server-side, scrollTop = 0.
       activeDrawerLink.scrollIntoView({ block: 'nearest' });
     }
 
@@ -177,7 +180,7 @@ PersistScroll.propTypes = {
 };
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1.6, 2),
+  padding: theme.spacing(1.5),
   paddingRight: 0,
   flexShrink: 0,
   height: 'var(--MuiDocs-header-height)',
@@ -186,6 +189,8 @@ const ToolbarDiv = styled('div')(({ theme }) => ({
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
+  borderBottom: '1px solid',
+  borderColor: (theme.vars || theme).palette.divider,
 }));
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -254,6 +259,7 @@ function reduceChildRoutes(context) {
         newFeature={page.newFeature}
         planned={page.planned}
         unstable={page.unstable}
+        beta={page.beta}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -287,6 +293,7 @@ function reduceChildRoutes(context) {
         newFeature={page.newFeature}
         planned={page.planned}
         unstable={page.unstable}
+        beta={page.beta}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -314,7 +321,7 @@ export default function AppNavDrawer(props) {
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
 
-    const renderVersionSelector = (versions, sx) => {
+    const renderVersionSelector = (versions) => {
       if (!versions?.length) {
         return null;
       }
@@ -323,6 +330,9 @@ export default function AppNavDrawer(props) {
       return (
         <React.Fragment>
           <Button
+            variant="text"
+            color="secondary"
+            size="small"
             id="mui-version-selector"
             onClick={(event) => {
               setAnchorEl(event.currentTarget);
@@ -332,24 +342,7 @@ export default function AppNavDrawer(props) {
                 <ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />
               ) : null
             }
-            sx={[
-              (theme) => ({
-                py: 0.1,
-                minWidth: 0,
-                fontSize: theme.typography.pxToRem(13),
-                fontWeight: 500,
-                color: (theme.vars || theme).palette.primary[600],
-                '& svg': {
-                  ml: -0.6,
-                  width: 18,
-                  height: 18,
-                },
-                ...theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.primary[300],
-                }),
-              }),
-              ...(Array.isArray(sx) ? sx : [sx]),
-            ]}
+            sx={customButtonStyles}
           >
             {currentVersion.text}
           </Button>
@@ -383,7 +376,7 @@ export default function AppNavDrawer(props) {
                         onClick: onClose,
                       })}
                 >
-                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />}
+                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 'auto' }} />}
                 </MenuItem>
               );
             })}
@@ -395,28 +388,13 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref legacyBehavior>
-            <Box
-              component="a"
-              onClick={onClose}
-              aria-label={t('goToHome')}
-              sx={{
-                pr: '12px',
-                mr: '4px',
-                borderRight: '1px solid',
-                borderColor: 'divider',
-              }}
-            >
-              <SvgMuiLogomark width={30} />
-            </Box>
-          </NextLink>
+          <MuiLogoMenu smallerMargin />
           <ProductIdentifier
             name={productIdentifier.name}
             metadata={productIdentifier.metadata}
             versionSelector={renderVersionSelector(productIdentifier.versions)}
           />
         </ToolbarDiv>
-        <Divider />
         <Box
           sx={{
             pt: 0.5,

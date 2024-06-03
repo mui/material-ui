@@ -1,6 +1,6 @@
 # Dark mode
 
-<p class="description">Learn about the different methods for applying dark mode to a Joy UI app.</p>
+<p class="description">Learn about the different methods for applying dark mode to a Joy UI app.</p>
 
 ## Set as default
 
@@ -125,7 +125,7 @@ To [prevent the UI from flickering](/joy-ui/main-features/dark-mode-optimization
 
 ### Next.js Pages Router
 
-To use the Joy UI API with a Next.js project, add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
+To use the Joy UI API with a Next.js project, add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';

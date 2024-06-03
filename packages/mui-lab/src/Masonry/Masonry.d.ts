@@ -35,6 +35,11 @@ export interface MasonryOwnProps {
    */
   spacing?: ResponsiveStyleValue<number | string>;
   /**
+   * Allows using sequential order rather than adding to shortest column
+   * @default false
+   */
+  sequential?: boolean;
+  /**
    * Allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;

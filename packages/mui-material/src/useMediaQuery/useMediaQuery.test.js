@@ -6,7 +6,7 @@ import {
   screen,
   RenderCounter,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
@@ -46,10 +46,12 @@ describe('useMediaQuery', () => {
 
   describe('without window.matchMedia', () => {
     let originalMatchmedia;
+
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
       delete window.matchMedia;
     });
+
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });

@@ -3,8 +3,8 @@ title: A major update is coming for MUI X—and you can get involved
 description: Let us know what you want to see in MUI X v6 as we begin the alpha phase of development.
 date: 2022-09-30T00:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'News']
-card: true
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
 We're kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0).

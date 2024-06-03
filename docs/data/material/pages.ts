@@ -15,10 +15,6 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started/learn' },
       { pathname: '/material-ui/getting-started/design-resources' },
       { pathname: '/material-ui/getting-started/faq', title: 'FAQs' },
-      {
-        pathname: '/material-ui/getting-started/understand-mui-packages',
-        title: 'Understanding MUI packages',
-      },
       { pathname: '/material-ui/getting-started/supported-components' },
       { pathname: '/material-ui/getting-started/supported-platforms' },
       { pathname: '/material-ui/getting-started/support' },
@@ -193,17 +189,23 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/transitions' },
         ],
       },
+      {
+        pathname: '/material-ui/customization/css-variables',
+        subheader: '/material-ui/customization/css-variables',
+        children: [
+          { pathname: '/material-ui/customization/css-theme-variables/overview' },
+          { pathname: '/material-ui/customization/css-theme-variables/usage' },
+          {
+            pathname: '/material-ui/customization/css-theme-variables/configuration',
+          },
+        ],
+      },
     ],
   },
   {
     pathname: '/material-ui/guides',
     title: 'How-to guides',
     children: [
-      {
-        pathname: '/material-ui/guides/material-3-components',
-        title: 'Material 3 components',
-        newFeature: true,
-      },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
       { pathname: '/material-ui/guides/server-rendering' },
       { pathname: '/material-ui/guides/responsive-ui', title: 'Responsive UI' },
@@ -247,19 +249,6 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/experimental-api/classname-generator',
         title: 'ClassName generator',
       },
-      {
-        pathname: '/material-ui/experimental-api/css-theme-variables',
-        subheader: 'CSS theme variables',
-        children: [
-          { pathname: '/material-ui/experimental-api/css-theme-variables/overview' },
-          { pathname: '/material-ui/experimental-api/css-theme-variables/usage' },
-          { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
-          {
-            pathname: '/material-ui/experimental-api/css-theme-variables/migration',
-            title: 'Migrating to CSS variables',
-          },
-        ],
-      },
     ],
   },
   {
@@ -277,6 +266,20 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/migration/pickers-migration',
         title: 'Migration from @material-ui/pickers',
+      },
+      {
+        pathname: '/material-ui/migration/v6',
+        subheader: 'Upgrade to v6',
+        children: [
+          {
+            pathname: '/material-ui/migration/migration-v5',
+            title: 'Migrating to v6',
+          },
+          {
+            pathname: '/material-ui/migration/migration-css-theme-variables',
+            title: 'Migrating to CSS theme variables',
+          },
+        ],
       },
       {
         pathname: '/material-ui/migration/v5',
@@ -319,7 +322,6 @@ const pages: MuiPage[] = [
     children: [
       { pathname: '/material-ui/discover-more/showcase' },
       { pathname: '/material-ui/discover-more/related-projects' },
-      { pathname: '/material-ui/discover-more/design-kits' },
       { pathname: '/material-ui/discover-more/roadmap' },
       { pathname: '/material-ui/discover-more/backers', title: 'Sponsors and Backers' },
       { pathname: '/material-ui/discover-more/vision' },
@@ -327,9 +329,24 @@ const pages: MuiPage[] = [
     ],
   },
   {
+    pathname: '/material-ui/design-resources',
+    title: 'Design resources',
+    children: [
+      {
+        pathname: '/material-ui/design-resources/material-ui-for-figma',
+        title: 'Figma Design Kit',
+      },
+      {
+        pathname: '/material-ui/design-resources/material-ui-sync',
+        title: 'Figma Sync plugin',
+        beta: true,
+      },
+    ],
+  },
+  {
     pathname: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav',
-    title: 'Templates',
-    icon: standardNavIcons.ReaderIcon,
+    title: 'Template store',
+    icon: standardNavIcons.WebIcon,
   },
 ];
 

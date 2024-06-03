@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -13,7 +13,8 @@ import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
-import styled, { rootShouldForwardProp } from '../styles/styled';
+import { styled } from '../zero-styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;

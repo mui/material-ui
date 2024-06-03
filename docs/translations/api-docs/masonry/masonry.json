@@ -16,6 +16,9 @@
     "defaultSpacing": {
       "description": "The default spacing of the component. Like <code>spacing</code>, it is a factor of the theme&#39;s spacing. This is provided for server-side rendering."
     },
+    "sequential": {
+      "description": "Allows using sequential order rather than adding to shortest column"
+    },
     "spacing": {
       "description": "Defines the space between children. It is a factor of the theme&#39;s spacing."
     },

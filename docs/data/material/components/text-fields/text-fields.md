@@ -13,7 +13,7 @@ unstyled: /base-ui/react-input/
 
 Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic TextField
 
@@ -30,7 +30,7 @@ but Material UI will continue to support it.
 
 ## Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
+Standard form attributes are supported, for example `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
 {{"demo": "FormPropsTextFields.js"}}
 
@@ -197,7 +197,7 @@ import { useFormControl } from '@mui/material/FormControl';
 ## Performance
 
 Global styles for the auto-fill keyframes are injected and removed on each mount and unmount, respectively.
-If you are loading a large number of Text Field components at once, it might be a good idea to change this default behavior by enabling [`disableInjectingGlobalStyles`](/material-ui/api/input-base/#InputBase-prop-disableInjectingGlobalStyles) in `MuiInputBase`.
+If you are loading a large number of Text Field components at once, it might be a good idea to change this default behavior by enabling [`disableInjectingGlobalStyles`](/material-ui/api/input-base/#input-base-prop-disableInjectingGlobalStyles) in `MuiInputBase`.
 Make sure to inject `GlobalStyles` for the auto-fill keyframes at the top of your application.
 
 ```jsx
@@ -286,7 +286,7 @@ This can be fixed by passing a space character to the `helperText` prop:
 You can use third-party libraries to format an input.
 You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
-The following demo uses the [react-imask](https://github.com/uNmAnNeR/imaskjs) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui/material-ui/issues/16037).
+The following demo uses the [react-imask](https://github.com/uNmAnNeR/imaskjs) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to, for example [react-stripe-element](https://github.com/mui/material-ui/issues/16037).
 
 {{"demo": "FormattedInputs.js"}}
 
@@ -338,7 +338,7 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side.
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client-side.
   Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
 - If you are composing the component:
 

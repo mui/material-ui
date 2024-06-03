@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider, styled } from '@mui/material/styles';
+import { CssVarsProvider, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Button, { buttonClasses } from '@mui/material/Button';
+import Grid from '@mui/material/Unstable_Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -29,35 +29,12 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Button', 'Text field', 'Table', 'Alert', 'Tooltip'] as const;
-
-const StyledButton = styled(Button)(({ theme }) => ({
-  borderRadius: 40,
-  padding: theme.spacing('2px', 1),
-  fontSize: theme.typography.pxToRem(12),
-  lineHeight: 18 / 12,
-  '&.MuiButton-text': {
-    color: theme.palette.grey[500],
-    border: '1px solid',
-    borderColor: theme.palette.primaryDark[700],
-    '&:hover': {
-      backgroundColor: theme.palette.primaryDark[700],
-    },
-  },
-  '&.MuiButton-outlined': {
-    color: '#fff',
-    backgroundColor: theme.palette.primary[800],
-    borderColor: theme.palette.primary[700],
-    '&:hover': {
-      backgroundColor: theme.palette.primary[700],
-    },
-  },
-}));
 
 const CODES = {
   Button: `
@@ -141,7 +118,7 @@ export default function MaterialComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
             overline="Component library"
             title={
@@ -151,7 +128,7 @@ export default function MaterialComponents() {
             }
             description="A meticulous implementation of Material Design; every Material UI component meets the highest standards of form and function."
           />
-          <Group desktopColumns={2} sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
@@ -160,7 +137,7 @@ export default function MaterialComponents() {
             <More href={ROUTES.components} />
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
               <CssVarsProvider theme={customized ? customTheme : undefined}>
@@ -210,7 +187,7 @@ export default function MaterialComponents() {
                     sx={{
                       mx: 'auto',
                       my: 4,
-                      maxWidth: 320,
+                      maxWidth: '90%',
                       '& .MuiTableBody-root > .MuiTableRow-root:last-of-type > .MuiTableCell-root':
                         {
                           borderBottomWidth: 0,
@@ -310,14 +287,14 @@ export default function MaterialComponents() {
             <Frame.Info
               data-mui-color-scheme="dark"
               sx={{
-                minHeight: 180,
+                minHeight: 220,
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
-                overflow: 'hidden',
                 p: 0,
                 pt: 5,
               }}
             >
+              <StylingInfo appeared={customized} />
               <Box
                 sx={{
                   overflow: 'auto',
@@ -327,49 +304,54 @@ export default function MaterialComponents() {
                   height: '100%',
                 }}
               >
-                <HighlightedCode
-                  copyButtonHidden
-                  component={MarkdownElement}
-                  code={CODES[demo]}
-                  language="jsx"
-                />
+                <HighlightedCode copyButtonHidden plainStyle code={CODES[demo]} language="jsx" />
               </Box>
               <Box
                 sx={(theme) => ({
                   pb: 3,
                   display: 'flex',
                   alignItems: 'center',
+                  gap: 1,
                   position: 'absolute',
-                  top: 12,
-                  left: 16,
+                  top: 16,
+                  left: 12,
                   right: 0,
                   zIndex: 10,
                   background: `linear-gradient(to bottom, ${
                     (theme.vars || theme).palette.common.black
                   } 30%, transparent)`,
+                  [`& .${buttonClasses.root}`]: {
+                    borderRadius: 40,
+                    padding: '2px 10px',
+                    fontSize: '0.75rem',
+                    lineHeight: 18 / 12,
+                  },
+                  '& .MuiButton-outlinedPrimary': {
+                    backgroundColor: alpha(theme.palette.primary[900], 0.5),
+                  },
                 })}
               >
-                <StyledButton
+                <Button
                   size="small"
-                  variant={customized ? 'text' : 'outlined'}
+                  variant="outlined"
+                  color={customized ? 'secondary' : 'primary'}
                   onClick={() => {
                     setCustomized(false);
                   }}
                 >
                   Material Design
-                </StyledButton>
-                <StyledButton
+                </Button>
+                <Button
                   size="small"
-                  variant={customized ? 'outlined' : 'text'}
+                  variant="outlined"
+                  color={customized ? 'primary' : 'secondary'}
                   onClick={() => {
                     setCustomized(true);
                   }}
-                  sx={{ ml: 1 }}
                 >
                   Custom theme
-                </StyledButton>
+                </Button>
               </Box>
-              <StylingInfo appeared={customized} />
             </Frame.Info>
           </Frame>
         </Grid>

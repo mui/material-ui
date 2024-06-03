@@ -4,8 +4,8 @@ import {
   Theme,
   ThemeOptions,
   alpha,
-  experimental_extendTheme as extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
+  extendTheme,
+  CssVarsProvider,
 } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
@@ -33,8 +33,8 @@ import MailRounded from '@mui/icons-material/MailRounded';
 import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
 import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import { Link } from '@mui/docs/Link';
+import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 
 const Grid = styled('div')(({ theme }) => [
   {
@@ -125,7 +125,7 @@ function Demo({
 }: {
   name: string;
   theme: Theme | undefined;
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   control?: { prop: string; values: Array<string>; defaultValue?: string };
 }) {
   const [propValue, setPropValue] = React.useState(
@@ -453,11 +453,11 @@ export function buildTheme(): ThemeOptions {
       MuiTableHead: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: 10,
+            padding: 8,
             backgroundColor: alpha(theme.palette.grey[50], 0.5),
             borderColor: (theme.vars || theme).palette.divider,
             ...theme.applyDarkStyles({
-              backgroundColor: alpha(theme.palette.primaryDark[600], 0.5),
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
             }),
           }),
         },
@@ -465,7 +465,7 @@ export function buildTheme(): ThemeOptions {
       MuiTableCell: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: 10,
+            padding: 8,
             borderColor: (theme.vars || theme).palette.divider,
           }),
         },

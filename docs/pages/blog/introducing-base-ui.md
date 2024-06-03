@@ -3,11 +3,11 @@ title: 'Introducing Base UI: the headless alternative to Material UI'
 description: The Base UI component library gives you complete control over the look and feel of your app.
 date: 2022-09-07T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
-tags: ['News', 'MUI Core']
-card: true
+tags: ['Base UI', 'Product']
+manualCard: true
 ---
 
-<a href="https://mui.com/base-ui/"><img src="/static/blog/introducing-base-ui/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" /></a>
+<a href="https://mui.com/base-ui/"><img src="/static/blog/introducing-base-ui/hero-image.png" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" width="1200" height="500" /></a>
 
 While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
 We get it.
@@ -33,7 +33,7 @@ Also, many of the improvements to Material UI proposed by the community over th
 
 While they were created for different use cases, these two libraries share many common features and design patterns, and are intended to be complementary to one another within the MUI ecosystem.
 Base UI's API will be familiar to you if you've used Material UI before, making it easy to migrate a project—or just a part of it—from one library to the other if needed.
-We aim to create [unstyled versions of all Material UI components](https://github.com/mui/material-ui/issues/27170) (that make sense to do so).
+We aim to create [unstyled versions of all Material UI components](https://github.com/mui/base-ui/issues/10) (that make sense to do so).
 
 ## Components and hooks
 
@@ -42,8 +42,8 @@ Base UI offers two kinds of building blocks: unstyled components and hooks.
 Components are more straightforward to use of the two.
 Place a component on a page, add your own styles, and it's ready to go!
 It's important to note that you are not limited to the styling options available in Material UI.
-You can, of course, still use [MUI System](https://mui.com/system/getting-started/), but if you prefer Emotion, Tailwind CSS, plain CSS, or any other styling engine, they are available too!
-Check out the [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for an example of using this library.
+You can, of course, still use [MUI System](https://mui.com/system/getting-started/), but if you prefer Emotion, Tailwind CSS, plain CSS, or any other styling engine, they are available too!
+Check out the [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for an example of using this library.
 
 In contrast to Material UI, Base UI's components do not have any default styles.
 They provide functionality and structure, while designers and developers are responsible for the visuals.
@@ -52,7 +52,7 @@ Each unstyled component lets you modify or override its _slots_—smaller subcom
 For example, a `SwitchUnstyled` contains the root, thumb, input, and track slots.
 You can control props passed to each of these slots (including `className`) based on the component's state, and even replace the default slot components with your own.
 
-<img src="/static/blog/introducing-base-ui/switch-slots.png" style="width: 692px; aspect-ratio: 173/80; margin-bottom: 24px;" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
+<img src="/static/blog/introducing-base-ui/switch-slots.png" width="1200" height="500" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
 
 See how it works on the live demo:
 
@@ -65,7 +65,7 @@ See how it works on the live demo:
 Hooks take this one step further by extracting the logic from the structure entirely, so you can build from scratch using any DOM elements you need.
 This requires more work to implement but gives you the most freedom to customize.
 
-Upon calling, a hook returns an object describing the component's state (i.e., whether the switch is turned on), along with methods that apply accessibility props and event handlers.
+Upon calling, a hook returns an object describing the component's state (that is whether the switch is turned on), along with methods that apply accessibility props and event handlers.
 You should spread these props on the components you've defined, as shown below:
 
 ```tsx
@@ -86,31 +86,37 @@ function MySwitch(props: UseSwitchParameters) {
 The initial version of the library contains 17 components.
 Check out the [Base UI documentation](/base-ui/getting-started/) for details.
 
-You can track our progress in adding new components—and comment to influence our priorities—in [this dedicated GitHub issue](https://github.com/mui/material-ui/issues/27170).
+You can track our progress in adding new components—and comment to influence our priorities—in [this dedicated GitHub issue](https://github.com/mui/base-ui/issues/10).
 
-The @mui/base package is released as an alpha.
+The `@mui/base` package is released as an alpha.
 This means the component APIs are subject to change—especially as we receive feedback from the community about room for improvement.
 However, we believe the library is solid enough at this point to start building design systems with it.
-In fact, we're using Base UI to create [Joy UI](/blog/first-look-at-joy/)—the next product we'll be launching in our line of Core component libraries that also includes Material UI.
+In fact, we're using Base UI to create [Joy UI](/blog/first-look-at-joy/)—the next product we'll be launching in our line of Core component libraries that also includes Material UI.
 In the future, Base UI will also be used as the foundation for Material UI components to provide a consistent developer experience across our entire suite of products.
 
 ## Feedback needed
 
-Give Base UI a try today by installing the package via npm:
+Give Base UI a try today by running one of the following commands:
 
-```bash
+<codeblock storageKey="package-manager">
+
+```bash npm
 npm install @mui/base
 ```
 
-or yarn:
-
-```bash
+```bash yarn
 yarn add @mui/base
 ```
+
+```bash pnpm
+pnpm add @mui/base
+```
+
+</codeblock>
 
 Check out [the docs](/base-ui/getting-started/), play with the components, and be sure to let us know what you think!
 
 If you find any bugs or want to share ideas for improvements, please don't hesitate to open an issue in the [MUI Core repository on GitHub](https://github.com/mui/material-ui/issues/new/choose).
-Be sure to include "[base]" in the issue title to help us keep things organized.
+Be sure to include "[base-ui]" in the issue title to help us keep things organized.
 
-**Happy creating!**
+Happy creating!

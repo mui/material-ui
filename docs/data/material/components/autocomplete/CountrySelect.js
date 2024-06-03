@@ -27,9 +27,11 @@ export default function CountrySelect() {
         <TextField
           {...params}
           label="Choose a country"
-          inputProps={{
-            ...params.inputProps,
-            autoComplete: 'new-password', // disable autocomplete and autofill
+          slotProps={{
+            htmlInput: {
+              ...params.inputProps,
+              autoComplete: 'new-password', // disable autocomplete and autofill
+            },
           }}
         />
       )}

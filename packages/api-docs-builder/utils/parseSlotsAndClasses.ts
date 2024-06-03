@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
-import { renderMarkdown } from '@mui/markdown';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
+import { renderMarkdown } from '@mui/internal-markdown';
 import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { getPropsFromComponentNode } from './getPropsFromComponentNode';
@@ -53,7 +53,10 @@ export default function parseSlotsAndClasses({
   componentName,
   muiName,
   slotInterfaceName,
-}: ParseSlotsAndClassesParameters): { slots: Slot[]; classes: ComponentClassDefinition[] } {
+}: ParseSlotsAndClassesParameters): {
+  slots: Slot[];
+  classes: ComponentClassDefinition[];
+} {
   // Obtain an array of classes for the given component
   const classDefinitions = extractClasses(
     typescriptProject,
@@ -109,6 +112,10 @@ function extractClassesFromInterface(
   if (classesTypeDeclaration && ts.isInterfaceDeclaration(classesTypeDeclaration)) {
     const classesProperties = classesType.getProperties();
     classesProperties.forEach((symbol) => {
+      const tags = getSymbolJSDocTags(symbol);
+      if (tags.ignore) {
+        return;
+      }
       result.push({
         key: symbol.name,
         className: projectSettings.generateClassName(muiName, symbol.name),
@@ -155,6 +162,10 @@ function extractClassesFromProps(
     removeUndefinedFromType(type)
       ?.getProperties()
       .forEach((property) => {
+        const tags = getSymbolJSDocTags(property);
+        if (tags.ignore) {
+          return;
+        }
         const description = getSymbolDescription(property, typescriptProject);
         classes[property.escapedName.toString()] = {
           description,

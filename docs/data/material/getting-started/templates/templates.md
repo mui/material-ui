@@ -5,13 +5,13 @@ title: 9+ Free React Templates
 
 # React Templates
 
-<p class="description">Browse our collection of free React templates to get started building your app with Material UI, including a React dashboard, React admin panel, and more.</p>
+<p class="description">Browse our collection of free React templates to get started building your app with Material UI, including a React dashboard, React landing page, and more.</p>
 
 <!-- #default-branch-switch -->
 
 ## Free templates
 
-Our curated collection of free Material UI templates includes dashboards, sign-in and sign-up pages, a blog, a checkout flow, and more.
+Our curated collection of free Material UI templates includes dashboards, landing pages, sign-in and sign-up pages, a blog, a checkout flow, and more.
 They can be combined with one of the [example projects](/material-ui/getting-started/example-projects/) to form a complete starter.
 
 Sections of each layout are clearly defined either by comments or use of separate files,
@@ -30,5 +30,10 @@ Please feel free to open an [issue](https://github.com/mui/material-ui/issues/ne
 Looking for something more? You can find complete templates and themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a>.
 
 <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">
-<img src="/static/images/themes-display.png" alt="react templates" width="2280" height="1200" />
+<span class="only-light-mode">
+<img src="/static/images/themes-display-light.png" alt="The MUI Store includes several carefully curated React templates using Material UI" width="2280" height="1200" />
+</span>
+<span class="only-dark-mode">
+<img src="/static/images/themes-display-dark.png" alt="The MUI Store includes several carefully curated React templates using Material UI" width="2280" height="1200" />
+</span>
 </a>

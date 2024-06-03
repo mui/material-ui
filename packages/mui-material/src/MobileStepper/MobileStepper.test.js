@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, fireEvent, screen } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import MobileStepper, { mobileStepperClasses as classes } from '@mui/material/MobileStepper';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import describeConformance from '../../test/describeConformance';
 
 describe('<MobileStepper />', () => {
   const { render } = createRenderer();

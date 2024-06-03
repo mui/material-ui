@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "../build/typescript-to-proptypes",
+    "tsBuildInfoFile": "../build/typescript-to-proptypes/.tsbuildinfo"
+  },
+  "include": ["./src/*"]
+}

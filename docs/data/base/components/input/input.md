@@ -10,7 +10,7 @@ githubLabel: 'component: input'
 
 <p class="description">The Input component provides users with a field to enter and edit text.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -105,7 +105,7 @@ The demo below shows how to use the `useInput` hook to create a custom input com
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Adornments

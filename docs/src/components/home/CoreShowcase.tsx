@@ -2,8 +2,7 @@ import * as React from 'react';
 import { alpha, ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button, { buttonClasses } from '@mui/material/Button';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
@@ -113,17 +112,19 @@ export default function CoreShowcase() {
   return (
     <ShowcaseContainer
       preview={
-        <ThemeProvider theme={theme}>
-          <PointerContainer
-            onElementChange={setElement}
-            sx={{ minWidth: 300, width: '100%', maxWidth: '100%' }}
-          >
-            <MaterialDesignDemo />
-          </PointerContainer>
-        </ThemeProvider>
+        <Box sx={{ minHeight: 200, width: '100%' }}>
+          <ThemeProvider theme={theme}>
+            <PointerContainer
+              onElementChange={setElement}
+              sx={{ minWidth: 300, width: '100%', maxWidth: '100%' }}
+            >
+              <MaterialDesignDemo />
+            </PointerContainer>
+          </ThemeProvider>
+        </Box>
       }
       code={
-        <div data-mui-color-scheme="dark">
+        <Box sx={{ position: 'relative' }}>
           <Box
             sx={{
               pb: 1.5,
@@ -164,36 +165,10 @@ export default function CoreShowcase() {
               Custom Theme
             </Button>
           </Box>
-          <Box
-            sx={{
-              position: 'relative',
-              overflow: 'clip',
-              flexGrow: 1,
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-              '& pre': {
-                bgcolor: 'transparent !important',
-                position: 'relative',
-                zIndex: 1,
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
-              },
-            }}
-          >
-            <Box sx={{ position: 'relative' }}>
-              {startLine !== undefined && <FlashCode startLine={startLine} endLine={endLine} />}
-              <HighlightedCode
-                copyButtonHidden
-                component={MarkdownElement}
-                code={componentCode}
-                language="jsx"
-              />
-              <StylingInfo appeared={customized} sx={{ mb: 0, mx: -2 }} />
-            </Box>
-          </Box>
-        </div>
+          <HighlightedCode copyButtonHidden plainStyle code={componentCode} language="jsx" />
+          {startLine !== undefined && <FlashCode startLine={startLine} endLine={endLine} />}
+          <StylingInfo appeared={customized} sx={{ mx: -2, mb: -2 }} />
+        </Box>
       }
     />
   );

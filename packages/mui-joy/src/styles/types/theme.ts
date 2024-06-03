@@ -1,6 +1,7 @@
 import { OverridableStringUnion } from '@mui/types';
 import {
   Breakpoints,
+  CssContainerQueries,
   Spacing,
   SxProps as SystemSxProps,
   SystemProps as SystemSystemProps,
@@ -8,6 +9,7 @@ import {
   SxConfig,
   ApplyStyles,
 } from '@mui/system';
+import { ExtractTypographyTokens } from '@mui/system/cssVars';
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
 import { Focus } from './focus';
@@ -82,12 +84,14 @@ export type ThemeScalesOptions = MergeDefault<
 interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {
   palette: Omit<ColorSystem['palette'], 'mode'>;
 }
-export interface ThemeVars extends ThemeScales, ColorSystemVars {}
+export interface ThemeVars extends ThemeScales, ColorSystemVars {
+  font: ExtractTypographyTokens<TypographySystem>;
+}
 
 export interface ThemeCssVarOverrides {}
 
 /**
- * For providing `sx` autocomplete, e.g. `color`, `bgcolor`, `borderColor`.
+ * For providing `sx` autocomplete, for example `color`, `bgcolor`, `borderColor`.
  */
 export type TextColor =
   | NormalizeVars<Omit<ColorSystem['palette'], 'mode'>, '.'>
@@ -95,8 +99,9 @@ export type TextColor =
 
 export type ThemeCssVar = OverridableStringUnion<NormalizeVars<ThemeVars>, ThemeCssVarOverrides>;
 
-export interface Theme extends ThemeScales, RuntimeColorSystem {
+export interface Theme extends ThemeScales, RuntimeColorSystem, CssContainerQueries {
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
+  defaultColorScheme: DefaultColorScheme | ExtendedColorScheme;
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
@@ -106,10 +111,9 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
-  generateCssVars: (colorScheme?: DefaultColorScheme | ExtendedColorScheme) => {
-    css: Record<string, string | number>;
-    vars: ThemeVars;
-  };
+  generateThemeVars: () => ThemeVars;
+  generateStyleSheets: () => Record<string, any>[];
+  generateSpacing: () => Spacing;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.

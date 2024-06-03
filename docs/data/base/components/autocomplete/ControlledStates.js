@@ -136,7 +136,7 @@ const Listbox = styled('ul')(
   max-width: 320px;
   border-radius: 12px;
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   max-height: 300px;
   z-index: 1;
   position: absolute;
@@ -171,18 +171,18 @@ const Option = styled('li')(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.base--focused,
-  &.base--focusVisible {
+  &.Mui-focused,
+  &.Mui-focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.base--focusVisible {
+  &.Mui-focusVisible {
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  &[aria-selected=true].base--focused,
-  &[aria-selected=true].base--focusVisible {
+  &[aria-selected=true].Mui-focused,
+  &[aria-selected=true].Mui-focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }

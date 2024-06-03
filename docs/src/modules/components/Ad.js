@@ -5,8 +5,9 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
+import { GA_ADS_DISPLAY_RATIO } from 'docs/src/modules/constants';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 function PleaseDisableAdblock(props) {
   const t = useTranslate();
@@ -88,7 +89,7 @@ class AdErrorBoundary extends React.Component {
   componentDidCatch() {
     // send explicit `'null'`
     const eventLabel = String(this.props.eventLabel);
-    // TODO: Use proper error monitoring service (e.g. Sentry) instead
+    // TODO: Use proper error monitoring service (for example Sentry) instead
 
     window.gtag('event', 'ad', {
       eventAction: 'crash',
@@ -197,7 +198,7 @@ export default function Ad() {
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
-    if (Math.random() < 0.9 || !eventLabel) {
+    if (Math.random() > GA_ADS_DISPLAY_RATIO || !eventLabel) {
       return undefined;
     }
 
@@ -238,6 +239,7 @@ export default function Ad() {
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
+      className="Ad-root"
     >
       <AdErrorBoundary eventLabel={eventLabel}>{children}</AdErrorBoundary>
     </Box>

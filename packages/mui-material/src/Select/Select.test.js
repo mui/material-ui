@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import {
-  describeConformance,
-  ErrorBoundary,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -19,6 +12,7 @@ import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -1416,7 +1410,7 @@ describe('<Select />', () => {
   });
 
   // https://github.com/testing-library/react-testing-library/issues/322
-  // https://twitter.com/devongovett/status/1248306411508916224
+  // https://x.com/devongovett/status/1248306411508916224
   it('should handle the browser autofill event and simple testing-library API', () => {
     const onChangeHandler = spy();
     const { container, getByRole } = render(

@@ -18,7 +18,7 @@ We highly recommend running our [codemods](#run-codemods) for efficiency—these
 
 One of the biggest changes in v5 is the replacement of JSS for [Emotion](https://emotion.sh/docs/introduction) as a default styling solution.
 
-Note that you may continue to use JSS for adding overrides to the components (e.g. `makeStyles`, `withStyles`) even after migrating to v5.
+Note that you may continue to use JSS for adding overrides to the components (for example `makeStyles`, `withStyles`) even after migrating to v5.
 Once you've completed the rest of the v5 upgrade, we recommend progressively moving over to the new styling engine.
 
 This process is covered in [Migrating from JSS](/material-ui/migration/migrating-from-jss/).
@@ -46,7 +46,7 @@ Create small commits as you go to ensure a smooth migration.
 
 If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc.
 
-For problems not addressed there, please [create an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: **[Migration] Summary of your issue**.
+For problems not addressed there please [create an issue](https://github.com/mui/material-ui/issues/new/choose) with this title format: **[Migration] Summary of your issue**.
 :::
 
 ## Supported browsers and Node versions
@@ -67,7 +67,7 @@ The default bundle supports the following minimum versions:
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v5.0.0/.browserslistrc#L11))
 
 Material UI no longer supports IE 11.
-If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
+If you need to support IE 11, check out the [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
 
 ## Update React & TypeScript version
 
@@ -94,7 +94,7 @@ yarn upgrade @material-ui/core@^4.11.2 react@^17.0.0
 The minimum supported version of TypeScript has been increased from v3.2 to v3.5.
 
 :::info
-We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (that is packages published on npm under the `@types` namespace).
 
 We will not change the minimum supported version in a minor version of Material UI.
 However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.

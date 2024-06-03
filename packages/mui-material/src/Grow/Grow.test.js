@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grow from '@mui/material/Grow';
 import useForkRef from '../utils/useForkRef';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Grow />', () => {
   const { clock, render } = createRenderer();

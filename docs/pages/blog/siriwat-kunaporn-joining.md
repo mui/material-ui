@@ -4,10 +4,10 @@ description: We are excited to share that Siriwat Kunaporn has joined MUI.
 date: 2021-05-17T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
-We are excited to share that [Siriwat Kunaporn](https://twitter.com/siriwatknp) (Jun) has joined MUI.
+We are excited to share that [Siriwat Kunaporn](https://x.com/siriwatknp) (Jun) has joined MUI.
 He started a couple of days ago full-time and is part of the core components team.
 
 Before joining MUI, Jun worked as a software engineer at ThoughtWorks.

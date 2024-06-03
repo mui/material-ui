@@ -4,18 +4,18 @@ import { spy } from 'sinon';
 import {
   createMount,
   createRenderer,
-  describeConformanceUnstyled,
   fireEvent,
   act,
   MuiRenderResult,
   RenderOptions,
   flushMicrotasks,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { Menu, menuClasses } from '@mui/base/Menu';
 import { MenuItem, MenuItemRootSlotProps } from '@mui/base/MenuItem';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { Popper } from '@mui/base/Popper';
 import { MenuProvider, useMenu } from '@mui/base/useMenu';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 const testContext: DropdownContextValue = {
   dispatch: () => {},

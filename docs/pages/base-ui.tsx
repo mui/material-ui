@@ -16,7 +16,7 @@ export default function BaseUI() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="Base UI: Unstyled React components and low-level hooks."
+        title="Base UI: Unstyled React components and low-level hooks"
         description={`Base UI is a library of headless ("unstyled") React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.`}
         card="/static/social-previews/baseui-preview.jpg"
       >
@@ -27,7 +27,7 @@ export default function BaseUI() {
         />
       </Head>
       <AppHeaderBanner />
-      <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
+      <AppHeader gitHubRepository="https://github.com/mui/base-ui" />
       <main id="main-content">
         <BaseUIHero />
         <BaseUISummary />

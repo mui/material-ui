@@ -7,7 +7,6 @@ import match from 'autosuggest-highlight/match';
 export default function Highlights() {
   return (
     <Autocomplete
-      id="highlights-demo"
       sx={{ width: 300 }}
       options={top100Films}
       getOptionLabel={(option) => option.title}

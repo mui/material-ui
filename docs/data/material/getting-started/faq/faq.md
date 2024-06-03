@@ -9,14 +9,14 @@ If you still can't find what you're looking for, you can refer to our [support p
 There are many ways to support us:
 
 - **Spread the word**. Evangelize MUI's products by [linking to mui.com](https://mui.com/) on your website—every backlink matters.
-  Follow us on [X](https://twitter.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
+  Follow us on [X](https://x.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what is going well or where there is improvement opportunities. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
-  [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
+  [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**.
   - Edit the documentation. At the bottom of every page, you can find an "Edit this page" button.
   - Report bugs or missing features by [creating an issue](https://github.com/mui/material-ui/issues/new).
-  - Review and comment on existing [pull requests](https://github.com/mui/material-ui/pulls) and [issues](https://github.com/mui/material-ui/issues).
+  - Review and comment on existing [pull requests](https://github.com/mui/material-ui/pulls?q=is%3Apr) and [issues](https://github.com/mui/material-ui/issues?q=is%3Aopen+is%3Aclosed).
   - [Improve our documentation](https://github.com/mui/material-ui/tree/HEAD/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui/material-ui/pulls).
 - **Support us financially on [Open Collective](https://opencollective.com/mui-org)**.
   If you use Material UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through Open Collective.
@@ -138,7 +138,7 @@ const element = ref.current;
 ```
 
 If you're not sure if the Material UI component in question forwards its ref you can check the API documentation under "Props."
-You should find the message below, like in the [Button API](/material-ui/api/button/#props), [Button API](/material-ui/api/button/#props)
+You should find the message below, like in the [Button API](/material-ui/api/button/#props).
 
 > The ref is forwarded to the root element.
 

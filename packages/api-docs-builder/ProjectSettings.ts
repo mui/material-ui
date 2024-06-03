@@ -1,4 +1,4 @@
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { ComponentInfo, HookInfo } from './buildApiUtils';
 import { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
 import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
@@ -61,6 +61,10 @@ export interface ProjectSettings {
    */
   skipAnnotatingComponentDefinition?: boolean | ((filename: string) => boolean);
   /**
+   * If `true`, skips extracting CSS class and slot information from the component.
+   */
+  skipSlotsAndClasses?: boolean;
+  /**
    * The path to the translation directory.
    */
   translationPagesDirectory: string;
@@ -70,9 +74,13 @@ export interface ProjectSettings {
    */
   importTranslationPagesDirectory?: string;
   /**
-   * Returns an array of import commands used for the API page header.
+   * Returns an array of import commands used for the component API page header.
    */
   getComponentImports?: (name: string, filename: string) => string[];
+  /**
+   * Returns an array of import commands used for the hook API page header.
+   */
+  getHookImports?: (name: string, filename: string) => string[];
   /**
    * Settings to configure props definition tests.
    */

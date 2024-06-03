@@ -3,15 +3,17 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { HTMLElementType } from '@mui/utils';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import { useRtl } from '@mui/system/RtlProvider';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getMenuUtilityClass } from './menuClasses';
+
+const useThemeProps = createUseThemeProps('MuiMenu');
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -85,8 +87,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     ...other
   } = props;
 
-  const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const isRtl = useRtl();
 
   const ownerState = {
     ...props,
@@ -108,7 +109,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {
-      menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
+      menuListActionsRef.current.adjustStyleForScrollbar(element, {
+        direction: isRtl ? 'rtl' : 'ltr',
+      });
     }
 
     if (onEntering) {
@@ -282,9 +285,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   PopoverClasses: PropTypes.object,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -293,7 +294,6 @@ Menu.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
    * @default {}
    */
   slots: PropTypes.shape({
@@ -323,7 +323,7 @@ Menu.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps: PropTypes.object,

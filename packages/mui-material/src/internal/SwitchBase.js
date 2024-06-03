@@ -2,10 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
-import styled, { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled } from '../zero-styled';
 import useControlled from '../utils/useControlled';
 import useFormControl from '../FormControl/useFormControl';
 import ButtonBase from '../ButtonBase';
@@ -22,16 +23,42 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = styled(ButtonBase)(({ ownerState }) => ({
+const SwitchBaseRoot = styled(ButtonBase)({
   padding: 9,
   borderRadius: '50%',
-  ...(ownerState.edge === 'start' && {
-    marginLeft: ownerState.size === 'small' ? -3 : -12,
-  }),
-  ...(ownerState.edge === 'end' && {
-    marginRight: ownerState.size === 'small' ? -3 : -12,
-  }),
-}));
+  variants: [
+    {
+      props: {
+        edge: 'start',
+        size: 'small',
+      },
+      style: {
+        marginLeft: -3,
+      },
+    },
+    {
+      props: ({ edge, ownerState }) => edge === 'start' && ownerState.size !== 'small',
+      style: {
+        marginLeft: -12,
+      },
+    },
+    {
+      props: {
+        edge: 'end',
+        size: 'small',
+      },
+      style: {
+        marginRight: -3,
+      },
+    },
+    {
+      props: ({ edge, ownerState }) => edge === 'end' && ownerState.size !== 'small',
+      style: {
+        marginRight: -12,
+      },
+    },
+  ],
+});
 
 const SwitchBaseInput = styled('input', { shouldForwardProp: rootShouldForwardProp })({
   cursor: 'inherit',
@@ -194,7 +221,6 @@ SwitchBase.propTypes = {
   checkedIcon: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

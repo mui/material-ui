@@ -1,0 +1,15 @@
+.MuiPaginationItem-textPrimary {
+  color: red;
+}
+
+.MuiPaginationItem-textSecondary {
+  color: blue;
+}
+
+.MuiPaginationItem-outlinedPrimary {
+  border: 1px solid black;
+}
+
+.MuiPaginationItem-outlinedSecondary {
+  border: 1px solid green;
+}

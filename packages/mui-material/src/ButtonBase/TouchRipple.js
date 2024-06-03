@@ -3,12 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
-import { keyframes } from '@mui/system';
-import { unstable_useTimeout as useTimeout } from '@mui/utils';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import useTimeout from '@mui/utils/useTimeout';
+import { keyframes, styled, createUseThemeProps } from '../zero-styled';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
+
+const useThemeProps = createUseThemeProps('MuiTouchRipple');
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
@@ -316,7 +316,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   );
 });
 
-TouchRipple.propTypes = {
+TouchRipple.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the ripple starts at the center of the component
    * rather than at the point of interaction.
@@ -324,7 +324,6 @@ TouchRipple.propTypes = {
   center: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

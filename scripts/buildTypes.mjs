@@ -1,12 +1,11 @@
 import chalk from 'chalk';
-import childProcess from 'child_process';
 import glob from 'fast-glob';
 import fse from 'fs-extra';
 import path from 'path';
-import { promisify } from 'util';
 import yargs from 'yargs';
+import { $ } from 'execa';
 
-const exec = promisify(childProcess.exec);
+const $$ = $({ stdio: 'inherit' });
 
 /**
  * Fixes a wrong import path caused by https://github.com/microsoft/TypeScript/issues/39117
@@ -111,7 +110,7 @@ async function main() {
     );
   }
 
-  await exec(['pnpm', 'tsc', '-b', tsconfigPath].join(' '));
+  await $$`pnpm tsc -b ${tsconfigPath}`;
 
   const publishDir = path.join(packageRoot, 'build');
   const declarationFiles = await glob('**/*.d.ts', { absolute: true, cwd: publishDir });

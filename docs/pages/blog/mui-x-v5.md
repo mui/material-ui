@@ -4,8 +4,8 @@ description: We are excited to introduce MUI X v5.0.0!
 date: 2021-11-22T00:00:00.000Z
 authors:
   ['oliviertassinari', 'm4theushw', 'flaviendelangle', 'DanailH', 'alexfauquette']
-card: true
-tags: ['News']
+manualCard: true
+tags: ['MUI X', 'Product']
 ---
 
 We are excited to introduce [MUI X v5.0.0](https://github.com/mui/mui-x/releases/tag/v5.0.0)!
@@ -92,7 +92,7 @@ These changes improved the developer experience when using the `apiRef` methods:
 
 - We removed the `state` structure from the public API. Access to data in the state should always be done through `apiRef` methods (`apiRef.current.getSelectedRows`) or selectors (`selectedGridRowsSelector`).
 - We renamed most selectors to have a consistent naming convention, making it easier to deduce their name or infer purpose.
-- We restructured our state so that each feature has a single sub-state, and the feature hook is the only one to update it (e.g. `state.filter` is only managed by the `useGridFilter` hook, which exposes methods for both internal and 3rd party code to interact with this state).
+- We restructured our state so that each feature has a single sub-state, and the feature hook is the only one to update it (for example `state.filter` is only managed by the `useGridFilter` hook, which exposes methods for both internal and 3rd party code to interact with this state).
 
 The work on this topic isn't over. We have several developments in progress or under discussion to improve the developer experience when using the advanced features of the grid.
 Here are a few that should be release in the following months:

@@ -28,7 +28,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      '"Material UI looks great and lets us deliver fast, thanks to their solid API design and documentation - it\'s refreshing to use a component library where you get everything you need from their site rather than Stack Overflow. We think the upcoming version, with extra themes and customizability, will make Material UI even more of a game changer. We\'re extremely grateful to the team for the time and effort spent maintaining the project."',
+      '"Material UI looks great and lets us deliver fast, thanks to their solid API design and documentation - it\'s refreshing to use a component library where you get everything you need from their site rather than Stack Overflow. We think the upcoming version, with extra themes and customizability, will make Material UI even more of a game changer. We\'re extremely grateful to the team for the time and effort spent maintaining the project."',
     profile: {
       avatarSrc: 'https://avatars.githubusercontent.com/u/197016?s=58',
       avatarSrcSet: 'https://avatars.githubusercontent.com/u/197016?s=116 2x',
@@ -95,7 +95,7 @@ function Feedback({
     avatarSrcSet: string;
     name: string;
     role: string;
-    company?: React.ReactElement;
+    company?: React.ReactElement<any>;
   };
 }) {
   return (
@@ -133,7 +133,7 @@ function Feedback({
             srcSet={profile.avatarSrcSet}
             src={profile.avatarSrc}
             alt={`${profile.name}'s profile picture`}
-            imgProps={{ loading: 'lazy' }}
+            slotProps={{ img: { loading: 'lazy' } }}
             sx={{
               width: 36,
               height: 36,

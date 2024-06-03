@@ -7,6 +7,7 @@ const {
   getContents,
   getDescription,
   getCodeblock,
+  getFeatureList,
   getHeaders,
   getTitle,
 } = require('./parseMarkdown');
@@ -37,6 +38,9 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
+  }
+  if (productId === 'toolpad-core') {
+    return `/toolpad/core/api/${kebabCase(component)}/`;
   }
   return `/${productId}/api/${kebabCase(component)}/`;
 }
@@ -104,12 +108,12 @@ function prepareMarkdown(config) {
         contents.push(`
 ## Unstyled
 
-Use the [Base UI ${markdownH1}](${headers.unstyled}) for complete ownership of the component's design, with no Material UI styles to override.
+Use the [Base UI ${markdownH1}](${headers.unstyled}) for complete ownership of the component's design, with no Material UI or Joy UI styles to override.
 This unstyled version of the component is the ideal choice for heavy customization with a smaller bundle size.
         `);
       }
 
-      if (headers.components.length > 0) {
+      if (headers.components.length > 0 && headers.productId !== 'base-ui') {
         contents.push(`
 ## API
 
@@ -155,11 +159,16 @@ ${headers.hooks
             return null;
           }
         }
-
         const codeblock = getCodeblock(content);
 
         if (codeblock) {
           return codeblock;
+        }
+
+        const featureList = getFeatureList(content);
+
+        if (featureList) {
+          return featureList;
         }
 
         return render(content);
@@ -240,7 +249,7 @@ ${headers.hooks
   if (docs.en.headers.card === 'true') {
     const slug = docs.en.location.replace(/(.*)\/(.*)\.md/, '$2');
     const exists = fs.existsSync(
-      path.resolve(__dirname, `../../docs/public/static/blog/${slug}/card.png`),
+      path.resolve(config.options.workspaceRoot, `docs/public/static/blog/${slug}/card.png`),
     );
 
     if (!exists) {

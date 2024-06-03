@@ -37,7 +37,7 @@ function AdCarbonImage() {
     // Once the script starts loading, it will asynchronous resolve, with no way to stop it.
     // This leads to duplication of the ad.
     //
-    // To solve the issue, e.g. StrictModel double effect execution, we debounce the load action.
+    // To solve the issue, for example StrictModel double effect execution, we debounce the load action.
     const load = setTimeout(() => {
       const script = loadScript(
         'https://cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom',
@@ -126,6 +126,7 @@ export function AdCarbonInline(props) {
           name: ad.company,
           description: `<strong>${ad.company}</strong> - ${ad.description}`,
           poweredby: 'Carbon',
+          label: 'carbon-demo-inline',
         }}
       />
     </React.Fragment>

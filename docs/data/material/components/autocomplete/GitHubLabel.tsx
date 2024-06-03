@@ -189,7 +189,8 @@ export default function GitHubLabel() {
               onChange={(event, newValue, reason) => {
                 if (
                   event.type === 'keydown' &&
-                  (event as React.KeyboardEvent).key === 'Backspace' &&
+                  ((event as React.KeyboardEvent).key === 'Backspace' ||
+                    (event as React.KeyboardEvent).key === 'Delete') &&
                   reason === 'removeOption'
                 ) {
                   return;
@@ -197,7 +198,6 @@ export default function GitHubLabel() {
                 setPendingValue(newValue);
               }}
               disableCloseOnSelect
-              PopperComponent={PopperComponent}
               renderTags={() => null}
               noOptionsText="No labels"
               renderOption={(props, option, { selected }) => (
@@ -260,6 +260,9 @@ export default function GitHubLabel() {
                   placeholder="Filter labels"
                 />
               )}
+              slots={{
+                popper: PopperComponent,
+              }}
             />
           </div>
         </ClickAwayListener>

@@ -132,7 +132,7 @@ function defaultIsEnabled(): boolean {
  *
  * - [FocusTrap API](https://mui.com/base-ui/react-focus-trap/components-api/#focus-trap)
  */
-function FocusTrap(props: FocusTrapProps): JSX.Element {
+function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   const {
     children,
     disableAutoFocus = false,
@@ -313,7 +313,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
     doc.addEventListener('keydown', loopFocus, true);
 
     // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area.
-    // e.g. https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
+    // for example https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
     // Instead, we can look if the active element was restored on the BODY element.
     //
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:

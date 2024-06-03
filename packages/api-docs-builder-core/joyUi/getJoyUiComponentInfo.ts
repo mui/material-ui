@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import { getHeaders, getTitle } from '@mui/markdown';
+import { getHeaders, getTitle } from '@mui/internal-markdown';
 import {
   ComponentInfo,
   extractPackageFile,
@@ -68,12 +68,12 @@ export function getJoyUiComponentInfo(filename: string): ComponentInfo {
     getDemos: () => {
       const allMarkdowns = findPagesMarkdown().map((markdown) => {
         const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-        const markdownHeaders = getHeaders(markdownContent) as any;
+        const markdownHeaders = getHeaders(markdownContent);
 
         return {
           ...markdown,
           markdownContent,
-          components: markdownHeaders.components as string[],
+          components: markdownHeaders.components,
         };
       });
       return allMarkdowns

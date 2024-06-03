@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme,
-  PaletteColorOptions,
-} from '@mui/material/styles';
+import { CssVarsProvider, extendTheme, PaletteColorOptions } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 

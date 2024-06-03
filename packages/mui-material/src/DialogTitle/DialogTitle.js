@@ -2,12 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
 import DialogContext from '../Dialog/DialogContext';
+
+const useThemeProps = createUseThemeProps('MuiDialogTitle');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;

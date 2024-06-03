@@ -1,15 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  describeConformance,
-  createRenderer,
-  screen,
-  act,
-  fireEvent,
-} from '@mui-internal/test-utils';
+import { createRenderer, screen, act, fireEvent } from '@mui/internal-test-utils';
 import Textarea, { textareaClasses as classes } from '@mui/joy/Textarea';
 import { ThemeProvider } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <Textarea />', () => {
   const { render } = createRenderer();

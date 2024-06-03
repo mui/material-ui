@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Avatar, { avatarClasses as classes } from '@mui/material/Avatar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CancelIcon from '../internal/svg-icons/Cancel';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Avatar />', () => {
   const { render } = createRenderer();
@@ -46,8 +47,17 @@ describe('<Avatar />', () => {
     });
 
     it('should be able to add more props to the image', () => {
+      // TODO: remove this test in v7
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img);
+      expect(onError.callCount).to.equal(1);
+    });
+
+    it('should be able to add more props to the img slot', () => {
+      const onError = spy();
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
@@ -64,8 +74,17 @@ describe('<Avatar />', () => {
     });
 
     it('should be able to add more props to the image', () => {
+      // TODO: remove this test in v7
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img);
+      expect(onError.callCount).to.equal(1);
+    });
+
+    it('should be able to add more props to the img slot', () => {
+      const onError = spy();
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);

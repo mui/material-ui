@@ -17,12 +17,12 @@ The Stack component manages the layout of its immediate children along the verti
 Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ horizontal arrangement.
 :::
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Basics
 
 ```jsx
-import Stack from '@mui/joy/Stack';
+import Stack from '@mui/system/Stack';
 ```
 
 The Stack component acts as a generic container, wrapping around the elements to be arranged.

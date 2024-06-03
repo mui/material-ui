@@ -27,7 +27,10 @@ export type PropInjector<InjectedProps, AdditionalProps = {}> = <
 >(
   component: C,
 ) => React.JSXElementConstructor<
-  DistributiveOmit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
+  DistributiveOmit<
+    React.JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>,
+    keyof InjectedProps
+  > &
     AdditionalProps
 >;
 
@@ -92,7 +95,7 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
   // If you make any changes to this interface, please make sure to update the
   // `OverridableComponent` type in `mui-material/src/OverridableComponent.d.ts` as well.
   // Also, there are types in Base UI that have a similar shape to this interface
-  // (e.g. SelectType, OptionType, etc.).
+  // (for example SelectType, OptionType, etc.).
   <C extends React.ElementType>(
     props: {
       /**
@@ -101,8 +104,8 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
        */
       component: C;
     } & OverrideProps<M, C>,
-  ): JSX.Element | null;
-  (props: DefaultComponentProps<M>): JSX.Element | null;
+  ): React.JSX.Element | null;
+  (props: DefaultComponentProps<M>): React.JSX.Element | null;
   propTypes?: any;
 }
 

@@ -4,7 +4,7 @@ description: An update on our mission for Q3 2020.
 date: 2020-10-14T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the coming months.
@@ -118,7 +118,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
   <p class="blog-description">Slider powered by styled-components</p>
 
 - ♿︎ We have kept investing in accessibility, we have fixed [13 bugs](https://github.com/mui/material-ui/pulls?q=is%3Apr+label%3Aaccessibility+is%3Aclosed+sort%3Aupdated-desc).
-- 🗓 We have introduced public quarterly roadmaps, both for [MUI Core](https://github.com/orgs/mui/projects/18/views/1) and [MUI X](https://github.com/mui/mui-x/projects/1).
+- 🗓 We have introduced public quarterly roadmaps, both for each [MUI Core](https://github.com/mui/material-ui/projects?query=is%3Aopen) product and [MUI X](https://github.com/mui/mui-x/projects/1).
 
 ## Company
 
@@ -151,7 +151,7 @@ We'll do our best, no guarantee!
 
 ### Community
 
-- 🗓 Execute on all the items of the [public roadmap](https://github.com/orgs/mui/projects/18/views/1).
+- 🗓 Execute on all the items of the [public roadmap](https://github.com/orgs/mui/projects/23/views/12).
 - 👩‍🎨 Simplify the migration experience from v4 to v5.
 - ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 

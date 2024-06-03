@@ -9,7 +9,7 @@
       "description": "If <code>true</code>, the shrink animation is disabled. This only works if variant is <code>indeterminate</code>."
     },
     "size": {
-      "description": "The size of the component. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, e.g. &#39;3rem&#39;."
+      "description": "The size of the component. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, for example &#39;3rem&#39;."
     },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
@@ -30,7 +30,8 @@
     "circleDeterminate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the <code>circle</code> svg path",
-      "conditions": "<code>variant=\"determinate\"</code>"
+      "conditions": "<code>variant=\"determinate\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/circular-progress/#circular-progress-classes-circle\">.MuiCircularProgress-circle</a> and <a href=\"/material-ui/api/circular-progress/#circular-progress-classes-determinate\">.MuiCircularProgress-determinate</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "circleDisableShrink": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -40,7 +41,8 @@
     "circleIndeterminate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the <code>circle</code> svg path",
-      "conditions": "<code>variant=\"indeterminate\"</code>"
+      "conditions": "<code>variant=\"indeterminate\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/circular-progress/#circular-progress-classes-circle\">.MuiCircularProgress-circle</a> and <a href=\"/material-ui/api/circular-progress/#circular-progress-classes-indeterminate\">.MuiCircularProgress-indeterminate</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "colorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

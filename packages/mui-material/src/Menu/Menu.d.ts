@@ -69,7 +69,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -94,4 +94,4 @@ export declare const MenuPaper: React.FC<PaperProps>;
  * - [Menu API](https://mui.com/material-ui/api/menu/)
  * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
  */
-export default function Menu(props: MenuProps): JSX.Element;
+export default function Menu(props: MenuProps): React.JSX.Element;

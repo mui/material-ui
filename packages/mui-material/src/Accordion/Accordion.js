@@ -3,16 +3,17 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
 import useSlot from '../utils/useSlot';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
+
+const useThemeProps = createUseThemeProps('MuiAccordion');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, square, expanded, disabled, disableGutters } = ownerState;
@@ -91,28 +92,36 @@ const AccordionRoot = styled(Paper, {
       },
     };
   },
-  ({ theme, ownerState }) => ({
-    ...(!ownerState.square && {
-      borderRadius: 0,
-      '&:first-of-type': {
-        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-        borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      },
-      '&:last-of-type': {
-        borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
-        borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
-        // Fix a rendering issue on Edge
-        '@supports (-ms-ime-align: auto)': {
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
+  ({ theme }) => ({
+    variants: [
+      {
+        props: (props) => !props.square,
+        style: {
+          borderRadius: 0,
+          '&:first-of-type': {
+            borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+            borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+          },
+          '&:last-of-type': {
+            borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+            borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
+            // Fix a rendering issue on Edge
+            '@supports (-ms-ime-align: auto)': {
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+          },
         },
       },
-    }),
-    ...(!ownerState.disableGutters && {
-      [`&.${accordionClasses.expanded}`]: {
-        margin: '16px 0',
+      {
+        props: (props) => !props.disableGutters,
+        style: {
+          [`&.${accordionClasses.expanded}`]: {
+            margin: '16px 0',
+          },
+        },
       },
-    }),
+    ],
   }),
 );
 
@@ -179,8 +188,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     },
     ownerState,
   });
-
-  delete transitionProps.ownerState;
 
   return (
     <AccordionRoot
@@ -293,13 +300,13 @@ Accordion.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps: PropTypes.object,
 };

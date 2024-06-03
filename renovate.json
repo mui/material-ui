@@ -107,6 +107,10 @@
       "matchPackagePatterns": ["@definitelytyped/*"]
     },
     {
+      "groupName": "Testing libraries",
+      "matchPackagePatterns": ["@testing-library/*"]
+    },
+    {
       "groupName": "envinfo tests",
       "matchPaths": ["packages/mui-envinfo/test/package.json"],
       "matchPackagePatterns": ["@mui/*"],

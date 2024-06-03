@@ -77,7 +77,7 @@ function ListItemLink(props) {
 ```
 
 :::warning
-However, since we are using an inline function to change the rendered component, React will remount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily but the state will be lost, e.g. the ripple effect of the `ListItem` will also not work correctly.
+However, since we are using an inline function to change the rendered component, React will remount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily but the state will be lost, for example the ripple effect of the `ListItem` will also not work correctly.
 :::
 
 The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead.
@@ -123,7 +123,7 @@ import { Link } from 'react-router-dom';
 
 :::warning
 However, this strategy suffers from a limitation: prop name collisions.
-The component receiving the `component` prop (e.g. ListItem) might intercept the prop (e.g. to) that is destined to the leave element (e.g. Link).
+The component receiving the `component` prop (for example ListItem) might intercept the prop (for example to) that is destined to the leaf element (for example Link).
 :::
 
 ### With TypeScript
@@ -186,8 +186,8 @@ by using `ReactDOM.findDOMNode`. This function is deprecated in favor of `ref` a
 ref forwarding. However, only the following component types can be given a `ref`:
 
 - Any Material UI component
-- class components i.e. `React.Component` or `React.PureComponent`
-- DOM (or host) components e.g. `div` or `button`
+- class components, that is `React.Component` or `React.PureComponent`
+- DOM (or host) components, for example `div` or `button`
 - [React.forwardRef components](https://react.dev/reference/react/forwardRef)
 - [React.lazy components](https://react.dev/reference/react/lazy)
 - [React.memo components](https://react.dev/reference/react/memo)

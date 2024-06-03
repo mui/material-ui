@@ -73,20 +73,11 @@
     "import Popover from '@mui/material/Popover';",
     "import { Popover } from '@mui/material';"
   ],
-  "classes": [
-    {
-      "key": "paper",
-      "className": "MuiPopover-paper",
-      "description": "Styles applied to the Paper component.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiPopover-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    }
+  "slots": [
+    { "name": "root", "description": "", "class": "MuiPopover-root" },
+    { "name": "paper", "description": "", "class": "MuiPopover-paper" }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiPopover",
