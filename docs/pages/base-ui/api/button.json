@@ -26,7 +26,8 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "props.href || props.to ? 'a' : 'button'",
-      "class": "base-Button-root"
+      "class": "base-Button-root",
+      "tutorial": "https://mui.com/sdlkfj/sdlkfjls"
     }
   ],
   "classes": [

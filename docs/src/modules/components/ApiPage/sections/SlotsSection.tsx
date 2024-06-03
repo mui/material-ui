@@ -11,7 +11,7 @@ import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
 
 export type SlotsSectionProps = {
-  componentSlots: { class: string; name: string; default: string }[];
+  componentSlots: { class: string; name: string; default: string; tutorial?: string }[];
   slotDescriptions: { [key: string]: string };
   componentName: string;
   title?: string;
@@ -42,15 +42,18 @@ export default function SlotsSection(props: SlotsSectionProps) {
     return null;
   }
 
-  const formatedSlots = componentSlots?.map(({ class: className, name, default: defaultValue }) => {
-    return {
-      description: slotDescriptions[name],
-      className,
-      name,
-      defaultValue,
-      componentName,
-    };
-  });
+  const formatedSlots = componentSlots?.map(
+    ({ class: className, name, default: defaultValue, tutorial }) => {
+      return {
+        description: slotDescriptions[name],
+        tutorial,
+        className,
+        name,
+        defaultValue,
+        componentName,
+      };
+    },
+  );
 
   return (
     <React.Fragment>

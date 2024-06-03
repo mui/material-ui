@@ -6,6 +6,7 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
+import { Link } from '@mui/docs/Link';
 import { SlotsFormatedParams, getHash } from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 
@@ -89,7 +90,7 @@ export default function SlotsTable(props: SlotsTableProps) {
         </thead>
         <tbody>
           {slots.map((params) => {
-            const { description, className, name, defaultValue, componentName } = params;
+            const { description, className, name, defaultValue, componentName, tutorial } = params;
 
             return (
               <tr key={className} id={getHash({ componentName, className })}>
@@ -106,6 +107,15 @@ export default function SlotsTable(props: SlotsTableProps) {
                       __html: description || '',
                     }}
                   />
+                  {tutorial && (
+                    <React.Fragment>
+                      <br />
+                      <span>
+                        {t('api-docs.tutorial-link.see')}
+                        <Link href={tutorial}>{t('api-docs.tutorial-link.docs-section')}</Link>
+                      </span>
+                    </React.Fragment>
+                  )}
                 </td>
               </tr>
             );

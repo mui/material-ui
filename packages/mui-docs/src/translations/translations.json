@@ -61,6 +61,10 @@
       "joy-size": "To learn how to add custom sizes to the component, check out <a href='/joy-ui/customization/themed-components/#extend-sizes'>Themed components—Extend sizes</a>.",
       "joy-color": "To learn how to add your own colors, check out <a href='/joy-ui/customization/themed-components/#extend-colors'>Themed components—Extend colors</a>.",
       "joy-variant": "To learn how to add your own variants, check out <a href='/joy-ui/customization/themed-components/#extend-variants'>Themed components—Extend variants</a>."
+    },
+    "tutorial-link": {
+      "see": "See ",
+      "docs-section": "dedicated demos"
     }
   },
   "landingPageDescr": "A responsive landing page layout with common sections found in marketing pages.",

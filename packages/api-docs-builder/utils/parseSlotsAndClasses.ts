@@ -18,6 +18,7 @@ export interface Slot {
   name: string;
   description: string;
   default?: string;
+  tutorial?: string;
 }
 
 /**
@@ -223,6 +224,7 @@ function extractSlots(
       description: getSymbolDescription(propertySymbol, project),
       default: tags.default?.text?.[0].text,
       class: slotClassDefinition?.className ?? null,
+      tutorial: tags.tutorial?.text?.[0].text,
     };
   });
 

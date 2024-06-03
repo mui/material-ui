@@ -9,6 +9,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import ExpandableApiItem, {
   ApiItemContaier,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
+import { Link } from '@mui/docs/Link';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -21,6 +22,11 @@ const StyledApiItem = styled(ExpandableApiItem)(
       },
     },
     '& .default-slot-value': {
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+    '& .tutorial-slot-value': {
       ...theme.typography.caption,
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightRegular,
@@ -53,6 +59,7 @@ export type SlotsFormatedParams = {
   className: string;
   componentName: string;
   description?: string;
+  tutorial?: string;
   name: string;
   defaultValue?: string;
 };
@@ -69,7 +76,7 @@ export default function SlotsList(props: SlotsListProps) {
   return (
     <ApiItemContaier className="MuiApi-slot-list">
       {slots.map((params) => {
-        const { description, className, name, defaultValue, componentName } = params;
+        const { description, className, name, defaultValue, componentName, tutorial } = params;
 
         const isExtendable = description || defaultValue || className;
 
@@ -103,6 +110,11 @@ export default function SlotsList(props: SlotsListProps) {
               <p className="slot-default-element">
                 <span className="prop-list-title">{t('api-docs.defaultComponent')}:</span>{' '}
                 <code className="default-slot-value">{defaultValue}</code>
+              </p>
+            )}
+            {tutorial && (
+              <p className="slot-default-element">
+                {t('api-docs.tutorial-link.see')}<Link href={tutorial}>{t('api-docs.tutorial-link.docs-section')}</Link>
               </p>
             )}
           </StyledApiItem>

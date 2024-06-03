@@ -41,6 +41,7 @@ export interface ButtonSlots {
   /**
    * The component that renders the root.
    * @default props.href || props.to ? 'a' : 'button'
+   * @tutorial https://mui.com/sdlkfj/sdlkfjls
    */
   root?: React.ElementType;
 }
