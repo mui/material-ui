@@ -18,7 +18,7 @@ const DIAMONDs = [
   {
     src: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
-    description: 'Delivers technology and cloud expertise to buy, optimize and manage public cloud',
+    description: 'Delivers technology and cloud expertise to buy, optimize and manage public cloud.',
     href: 'https://www.doit.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
