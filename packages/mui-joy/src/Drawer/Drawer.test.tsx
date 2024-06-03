@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Drawer, { drawerClasses as classes } from '@mui/joy/Drawer';
 import describeConformance from '../../test/describeConformance';

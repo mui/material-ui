@@ -32,7 +32,7 @@ const Nav = styled('nav')(({ theme }) => ({
 const NavLabel = styled(Typography)(({ theme }) => ({
   padding: theme.spacing(1, 0, 1, 1.4),
   fontSize: theme.typography.pxToRem(11),
-  fontWeight: theme.typography.fontWeightBold,
+  fontWeight: theme.typography.fontWeightSemiBold,
   textTransform: 'uppercase',
   letterSpacing: '.1rem',
   color: (theme.vars || theme).palette.text.tertiary,

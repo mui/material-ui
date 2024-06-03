@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,15 +12,57 @@ import describeConformance from '../../test/describeConformance';
 describe('<TextField />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<TextField variant="standard" />, () => ({
-    classes,
-    inheritComponent: FormControl,
-    render,
-    muiName: 'MuiTextField',
-    refInstanceof: window.HTMLDivElement,
-    testVariantProps: { variant: 'outlined' },
-    skip: ['componentProp', 'componentsProp'],
-  }));
+  function TestComponent(props) {
+    const { children, className, 'data-testid': testId } = props;
+    return (
+      <div className={className} data-testid={testId ?? 'custom'}>
+        {typeof children === 'function' ? children({}) : children}
+      </div>
+    );
+  }
+
+  describeConformance(
+    <TextField variant="standard" helperText="Helper text" label="Label" />,
+    () => ({
+      classes,
+      inheritComponent: FormControl,
+      render,
+      muiName: 'MuiTextField',
+      refInstanceof: window.HTMLDivElement,
+      testVariantProps: { variant: 'outlined' },
+      slots: {
+        input: {
+          testWithComponent: TestComponent,
+          testWithElement: null,
+        },
+        inputLabel: {},
+        htmlInput: {
+          testWithElement: 'input',
+        },
+        formHelperText: {},
+      },
+      skip: ['componentProp', 'componentsProp'],
+    }),
+  );
+
+  describeConformance(
+    <TextField select>
+      <option>A</option>
+    </TextField>,
+    () => ({
+      classes,
+      inheritComponent: FormControl,
+      render,
+      muiName: 'MuiTextField',
+      slots: {
+        select: {
+          testWithComponent: TestComponent,
+          testWithElement: null,
+        },
+      },
+      only: ['slotsProp', 'slotPropsProp', 'slotPropsCallback'],
+    }),
+  );
 
   describe('structure', () => {
     it('should have an input as the only child', () => {
@@ -246,6 +288,14 @@ describe('<TextField />', () => {
       expect(handleClick.callCount).to.equal(1);
       // return value is event.currentTarget
       expect(handleClick.returned(root)).to.equal(true);
+    });
+  });
+
+  describe('prop: inputProps', () => {
+    it('should apply additional props to the input element', () => {
+      const { getByRole } = render(<TextField inputProps={{ 'data-testid': 'input-element' }} />);
+
+      expect(getByRole('textbox')).to.have.attribute('data-testid', 'input-element');
     });
   });
 });

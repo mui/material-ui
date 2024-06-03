@@ -8,15 +8,10 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
-import {
-  ThemeProvider,
-  createTheme,
-  hexToRgb,
-  experimental_extendTheme as extendTheme,
-} from '@mui/material/styles';
+import { ThemeProvider, createTheme, hexToRgb, extendTheme } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import defaultTheme from '../styles/defaultTheme';
 import describeConformance from '../../test/describeConformance';
@@ -54,6 +49,7 @@ describe('<Chip />', () => {
       expect(label).to.have.text('My text Chip');
 
       expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.class(classes.colorDefault);
       expect(chip).not.to.have.class(classes.colorPrimary);
       expect(chip).not.to.have.class(classes.colorSecondary);
       expect(chip).not.to.have.class(classes.clickable);

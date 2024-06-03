@@ -10,7 +10,7 @@ unstyled: /base-ui/react-textarea-autosize/
 
 <p class="description">Textarea component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## Introduction
 

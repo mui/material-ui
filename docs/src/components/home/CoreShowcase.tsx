@@ -113,31 +113,63 @@ export default function CoreShowcase() {
   return (
     <ShowcaseContainer
       preview={
-        <ThemeProvider theme={theme}>
-          <PointerContainer
-            onElementChange={setElement}
-            sx={{ minWidth: 300, width: '100%', maxWidth: '100%' }}
-          >
-            <MaterialDesignDemo />
-          </PointerContainer>
-        </ThemeProvider>
+        <Box sx={{ minHeight: 200, width: '100%' }}>
+          <ThemeProvider theme={theme}>
+            <PointerContainer
+              onElementChange={setElement}
+              sx={{ minWidth: 300, width: '100%', maxWidth: '100%' }}
+            >
+              <MaterialDesignDemo />
+            </PointerContainer>
+          </ThemeProvider>
+        </Box>
       }
       code={
-        <React.Fragment>
-          <MaterialVsCustomToggle customized={customized} setCustomized={setCustomized} />
-          <ShowcaseCodeWrapper maxHeight={320} hasDesignToggle>
-            {startLine !== undefined && (
-              <FlashCode startLine={startLine} endLine={endLine} sx={{ m: 1, mt: 7 }} />
-            )}
-            <HighlightedCode copyButtonHidden code={componentCode} language="jsx" plainStyle />
-          </ShowcaseCodeWrapper>
-          <MoreInfoBox
-            primaryBtnLabel="Start with Material UI"
-            primaryBtnHref={ROUTES.productCore}
-            secondaryBtnLabel="Learn more about the Core libraries"
-            secondaryBtnHref={ROUTES.productCore}
-          />
-        </React.Fragment>
+        <Box sx={{ position: 'relative' }}>
+          <Box
+            sx={{
+              pb: 1.5,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              right: 0,
+              zIndex: 10,
+              [`& .${buttonClasses.root}`]: {
+                borderRadius: 40,
+                padding: '2px 10px',
+                fontSize: '0.75rem',
+                lineHeight: 18 / 12,
+              },
+              '& .MuiButton-outlinedPrimary': {
+                backgroundColor: alpha(globalTheme.palette.primary[900], 0.5),
+              },
+            }}
+          >
+            <Button
+              size="small"
+              variant="outlined"
+              color={customized ? 'secondary' : 'primary'}
+              onClick={() => {
+                setCustomized(false);
+              }}
+            >
+              Material Design
+            </Button>
+            <Button
+              size="small"
+              variant="outlined"
+              color={customized ? 'primary' : 'secondary'}
+              onClick={() => {
+                setCustomized(true);
+              }}
+            >
+              Custom Theme
+            </Button>
+          </Box>
+          <HighlightedCode copyButtonHidden plainStyle code={componentCode} language="jsx" />
+          {startLine !== undefined && <FlashCode startLine={startLine} endLine={endLine} />}
+          <StylingInfo appeared={customized} sx={{ mx: -2, mb: -2 }} />
+        </Box>
       }
     />
   );

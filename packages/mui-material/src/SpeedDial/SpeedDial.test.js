@@ -7,7 +7,7 @@ import {
   fireEvent,
   fireDiscreteEvent,
   screen,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
@@ -35,6 +35,7 @@ describe('<SpeedDial />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSpeedDial',
     testVariantProps: { direction: 'right' },
+    slots: { transition: { testWithElement: null } },
     skip: [
       'componentProp', // react-transition-group issue
       'componentsProp',

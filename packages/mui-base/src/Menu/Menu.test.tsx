@@ -9,7 +9,7 @@ import {
   MuiRenderResult,
   RenderOptions,
   flushMicrotasks,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { Menu, menuClasses } from '@mui/base/Menu';
 import { MenuItem, MenuItemRootSlotProps } from '@mui/base/MenuItem';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';

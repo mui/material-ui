@@ -10,7 +10,7 @@ materialDesign: https://m2.material.io/components/cards
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

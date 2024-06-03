@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 
 <p class="description">Snackbars (also known as toasts) are used for brief notifications of processes that have been or will be performed.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

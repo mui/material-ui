@@ -78,7 +78,7 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 ### Social media
 
-The Base UI community is active on both [X/Twitter](https://twitter.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/mui/).
+The Base UI community is active on both [X/Twitter](https://x.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/mui/).
 These are great platforms to share what you're working on and connect with other developers.
 
 ### Discord
