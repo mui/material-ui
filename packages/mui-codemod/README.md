@@ -401,6 +401,17 @@ npx @mui/codemod@next deprecations/avatar-group-props <path>
 ```
 
 ```diff
+ MuiBackdrop: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'root-id' } }
++    slotProps: { root: { testid: 'root-id' } },
+  },
+ },
+```
+
+```diff
  <Backdrop
 -    TransitionComponent={CustomTransition}
 +    slots={{ transition: CustomTransition }}
