@@ -33,18 +33,11 @@ export default function HighlightedCard() {
           component="h2"
           variant="subtitle2"
           gutterBottom
-          sx={{
-            fontWeight: '600',
-          }}
+          sx={{ fontWeight: '600' }}
         >
           Explore your data
         </Typography>
-        <Typography
-          sx={{
-            color: 'text.secondary',
-            mb: '8px',
-          }}
-        >
+        <Typography sx={{ color: 'text.secondary', mb: '8px' }}>
           Uncover performance and visitor insights with our data wizardry.
         </Typography>
         <Button

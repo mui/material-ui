@@ -11,12 +11,7 @@ export default function TabsPricingExample() {
       variant="outlined"
       aria-label="Pricing plan"
       defaultValue={0}
-      sx={{
-        width: 343,
-        borderRadius: 'lg',
-        boxShadow: 'sm',
-        overflow: 'auto',
-      }}
+      sx={{ width: 343, borderRadius: 'lg', boxShadow: 'sm', overflow: 'auto' }}
     >
       <TabList
         disableUnderline
@@ -51,19 +46,12 @@ export default function TabsPricingExample() {
         </Typography>
         <Typography
           textColor="success.400"
-          sx={{
-            fontSize: 'xl3',
-            fontWeight: 'xl',
-            mt: 1,
-          }}
+          sx={{ fontSize: 'xl3', fontWeight: 'xl', mt: 1 }}
         >
           $0{' '}
           <Typography
             textColor="text.secondary"
-            sx={{
-              fontSize: 'sm',
-              fontWeight: 'md',
-            }}
+            sx={{ fontSize: 'sm', fontWeight: 'md' }}
           >
             － Free forever
           </Typography>
@@ -76,19 +64,12 @@ export default function TabsPricingExample() {
         </Typography>
         <Typography
           textColor="primary.400"
-          sx={{
-            fontSize: 'xl3',
-            fontWeight: 'xl',
-            mt: 1,
-          }}
+          sx={{ fontSize: 'xl3', fontWeight: 'xl', mt: 1 }}
         >
           $15{' '}
           <Typography
             textColor="text.secondary"
-            sx={{
-              fontSize: 'sm',
-              fontWeight: 'md',
-            }}
+            sx={{ fontSize: 'sm', fontWeight: 'md' }}
           >
             / dev / month
           </Typography>
@@ -101,11 +82,7 @@ export default function TabsPricingExample() {
         </Typography>
         <Typography
           textColor="primary.400"
-          sx={{
-            fontSize: 'xl3',
-            fontWeight: 'xl',
-            mt: 1,
-          }}
+          sx={{ fontSize: 'xl3', fontWeight: 'xl', mt: 1 }}
         >
           <Typography
             sx={[
@@ -128,10 +105,7 @@ export default function TabsPricingExample() {
           $37*{' '}
           <Typography
             textColor="text.secondary"
-            sx={{
-              fontSize: 'sm',
-              fontWeight: 'md',
-            }}
+            sx={{ fontSize: 'sm', fontWeight: 'md' }}
           >
             / dev / month
           </Typography>

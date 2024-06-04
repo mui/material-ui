@@ -14,11 +14,7 @@ export default function InlineSkeleton() {
       <Box sx={{ m: 'auto' }}>
         <Typography
           level="h1"
-          sx={{
-            fontSize: 'xl',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
+          sx={{ fontSize: 'xl', position: 'relative', overflow: 'hidden' }}
         >
           <Skeleton loading={loading}>A heading</Skeleton>
         </Typography>

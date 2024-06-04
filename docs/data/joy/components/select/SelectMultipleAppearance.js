@@ -17,9 +17,7 @@ export default function SelectMultipleAppearance() {
           ))}
         </Box>
       )}
-      sx={{
-        minWidth: '15rem',
-      }}
+      sx={{ minWidth: '15rem' }}
       slotProps={{
         listbox: {
           sx: {

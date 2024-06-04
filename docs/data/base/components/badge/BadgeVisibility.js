@@ -178,9 +178,7 @@ export default function BadgeVisibility() {
       direction="column"
       spacing={1}
       useFlexGap
-      sx={{
-        justifyContent: 'center',
-      }}
+      sx={{ justifyContent: 'center' }}
     >
       <Badge badgeContent={count} invisible={invisible}>
         <MailIcon />
@@ -189,11 +187,7 @@ export default function BadgeVisibility() {
       <Stack
         direction="row"
         useFlexGap
-        sx={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 1,
-        }}
+        sx={{ justifyContent: 'center', alignItems: 'center', gap: 1 }}
       >
         <StyledButton
           aria-label="decrease"

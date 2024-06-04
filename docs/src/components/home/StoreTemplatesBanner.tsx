@@ -91,13 +91,7 @@ const StoreTemplateLink = React.forwardRef<
           justifyContent: 'center',
         }}
       >
-        <Typography
-          sx={{
-            fontWeight: 'bold',
-          }}
-        >
-          Go to store
-        </Typography>
+        <Typography sx={{ fontWeight: 'bold' }}>Go to store</Typography>
         <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
       </Box>
     </Anchor>

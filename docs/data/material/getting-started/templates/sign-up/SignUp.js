@@ -274,13 +274,7 @@ export default function SignUp() {
               </Link>
             </Box>
             <Divider>
-              <Typography
-                sx={{
-                  color: 'text.secondary',
-                }}
-              >
-                or
-              </Typography>
+              <Typography sx={{ color: 'text.secondary' }}>or</Typography>
             </Divider>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Button

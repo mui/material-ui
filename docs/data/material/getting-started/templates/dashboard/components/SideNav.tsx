@@ -56,28 +56,13 @@ export default function SideNav({
           flexGrow: 1,
         }}
       >
-        <Stack
-          direction="row"
-          sx={{
-            gap: 1,
-          }}
-        >
-          <Stack
-            direction="row"
-            sx={{
-              gap: 1,
-              alignItems: 'center',
-              flexGrow: 1,
-            }}
-          >
+        <Stack direction="row" sx={{ gap: 1 }}>
+          <Stack direction="row" sx={{ gap: 1, alignItems: 'center', flexGrow: 1 }}>
             <Avatar
               sizes="small"
               alt="Riley Carter"
               src="/static/images/avatar/7.jpg"
-              sx={{
-                width: 24,
-                height: 24,
-              }}
+              sx={{ width: 24, height: 24 }}
             />
             <Typography component="p" variant="h6">
               Riley Carter
@@ -88,11 +73,7 @@ export default function SideNav({
           </MenuButton>
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
-        <Stack
-          sx={{
-            gap: 2,
-          }}
-        >
+        <Stack sx={{ gap: 2 }}>
           <Divider />
           <List>
             {accountsList.map((item, index) => (

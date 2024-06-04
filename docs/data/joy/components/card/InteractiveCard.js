@@ -31,9 +31,7 @@ export default function InteractiveCard() {
         <Typography
           level="body-sm"
           aria-describedby="card-description"
-          sx={{
-            mb: 1,
-          }}
+          sx={{ mb: 1 }}
         >
           <Link
             overlay

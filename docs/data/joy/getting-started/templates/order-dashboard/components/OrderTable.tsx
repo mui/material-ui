@@ -308,11 +308,7 @@ export default function OrderTable() {
     <React.Fragment>
       <Sheet
         className="SearchAndFilters-mobile"
-        sx={{
-          display: { xs: 'flex', sm: 'none' },
-          my: 1,
-          gap: 1,
-        }}
+        sx={{ display: { xs: 'flex', sm: 'none' }, my: 1, gap: 1 }}
       >
         <Input
           size="sm"

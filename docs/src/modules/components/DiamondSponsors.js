@@ -41,14 +41,7 @@ export default function DiamondSponsors() {
   const t = useTranslate();
 
   return (
-    <Stack
-      direction="column"
-      spacing={1}
-      useFlexGap
-      sx={{
-        mt: 2,
-      }}
-    >
+    <Stack direction="column" spacing={1} useFlexGap sx={{ mt: 2 }}>
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
@@ -154,13 +147,7 @@ export default function DiamondSponsors() {
           }),
         })}
       >
-        <Typography
-          variant="caption"
-          sx={{
-            fontWeight: 'semiBold',
-            textAlign: 'center',
-          }}
-        >
+        <Typography variant="caption" sx={{ fontWeight: 'semiBold', textAlign: 'center' }}>
           {t('becomeADiamondSponsor')}
         </Typography>
         {/* <Typography variant="caption" fontWeight="regular" color="text.secondary">

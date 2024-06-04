@@ -69,31 +69,13 @@ function RemoteAwardCard() {
         />
       </Box>
       <div>
-        <Typography
-          component="h2"
-          variant="body2"
-          sx={{
-            fontWeight: 'semiBold',
-          }}
-        >
+        <Typography component="h2" variant="body2" sx={{ fontWeight: 'semiBold' }}>
           Remote Excellence Awards
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            color: 'text.secondary',
-            mb: 1,
-          }}
-        >
+        <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
           Winners in the first-ever Remote Excellence Awards, in the Small & Mighty category! 🎉
         </Typography>
-        <Typography
-          variant="body2"
-          color="primary"
-          sx={{
-            fontWeight: 'bold',
-          }}
-        >
+        <Typography variant="body2" color="primary" sx={{ fontWeight: 'bold' }}>
           Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
         </Typography>
       </div>
@@ -136,19 +118,11 @@ export default function PerksBenefits() {
                 <div>
                   <Typography
                     variant="body2"
-                    sx={{
-                      color: 'text.primary',
-                      fontWeight: 'semiBold',
-                    }}
+                    sx={{ color: 'text.primary', fontWeight: 'semiBold' }}
                   >
                     {textArray[0]}
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                    }}
-                  >
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                     {textArray[1]}
                   </Typography>
                 </div>
@@ -175,40 +149,15 @@ export default function PerksBenefits() {
                 href={routeUrl}
                 noLinkStyle
                 variant="outlined"
-                sx={{
-                  p: 2,
-                  width: '100%',
-                  flexGrow: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
+                sx={{ p: 2, width: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column' }}
               >
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontWeight: 'bold',
-                    mb: 0.5,
-                  }}
-                >
+                <Typography variant="body2" sx={{ fontWeight: 'bold', mb: 0.5 }}>
                   {title}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'text.secondary',
-                    mb: 1,
-                  }}
-                >
+                <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
                   {description}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  color="primary"
-                  sx={{
-                    fontWeight: 'bold',
-                    mt: 'auto',
-                  }}
-                >
+                <Typography variant="body2" color="primary" sx={{ fontWeight: 'bold', mt: 'auto' }}>
                   Learn more{' '}
                   <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
                 </Typography>

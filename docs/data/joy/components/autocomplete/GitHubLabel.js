@@ -92,11 +92,7 @@ export default function GitHubLabel() {
           {value.map((label) => (
             <ListItem
               key={label.name}
-              sx={{
-                fontWeight: 600,
-                backgroundColor: label.color,
-                color: '#fff',
-              }}
+              sx={{ fontWeight: 600, backgroundColor: label.color, color: '#fff' }}
             >
               {label.name}
             </ListItem>

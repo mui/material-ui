@@ -31,12 +31,7 @@ export default function TeamStatistics() {
           >
             {item.number}
           </Typography>
-          <Typography
-            sx={{
-              color: 'text.secondary',
-              textAlign: { xs: 'left', sm: 'center' },
-            }}
-          >
+          <Typography sx={{ color: 'text.secondary', textAlign: { xs: 'left', sm: 'center' } }}>
             {item.metadata}
           </Typography>
         </Box>

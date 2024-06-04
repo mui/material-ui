@@ -174,13 +174,7 @@ function SwitchToggleDemo() {
 function SlideDemo() {
   const [value, setValue] = React.useState([30, 60]);
   return (
-    <Stack
-      spacing={2}
-      direction="row"
-      sx={{
-        alignItems: 'center',
-      }}
-    >
+    <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
       <AcUnitRounded
         fontSize="small"
         color="primary"
@@ -259,13 +253,7 @@ export default function MaterialHero() {
             <br />
             components
           </Typography>
-          <Typography
-            sx={{
-              color: 'text.secondary',
-              mb: 3,
-              maxWidth: 500,
-            }}
-          >
+          <Typography sx={{ color: 'text.secondary', mb: 3, maxWidth: 500 }}>
             Material UI is an open-source React component library that implements Google&apos;s
             Material Design. It&apos;s comprehensive and can be used in production out of the box.
           </Typography>
@@ -373,10 +361,7 @@ export default function MaterialHero() {
                           <Typography
                             component="span"
                             variant="body2"
-                            sx={{
-                              color: 'text.primary',
-                              display: 'inline',
-                            }}
+                            sx={{ color: 'text.primary', display: 'inline' }}
                           >
                             Michael Scott
                           </Typography>
@@ -397,10 +382,7 @@ export default function MaterialHero() {
                           <Typography
                             component="span"
                             variant="body2"
-                            sx={{
-                              color: 'text.primary',
-                              display: 'inline',
-                            }}
+                            sx={{ color: 'text.primary', display: 'inline' }}
                           >
                             to Jim, Pam and Ryan
                           </Typography>
@@ -484,12 +466,7 @@ export default function MaterialHero() {
                   image="/static/images/cards/yosemite.jpeg"
                 />
                 <CardContent sx={{ pb: 0 }}>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                    }}
-                  >
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                     Not just a great valley, but a shrine to human foresight, the strength of
                     granite, the power of glaciers, the persistence of life, and the tranquility of
                     the High Sierra.

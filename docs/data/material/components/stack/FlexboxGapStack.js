@@ -20,9 +20,7 @@ export default function FlexboxGapStack() {
         spacing={{ xs: 1, sm: 2 }}
         direction="row"
         useFlexGap
-        sx={{
-          flexWrap: 'wrap',
-        }}
+        sx={{ flexWrap: 'wrap' }}
       >
         <Item>Item 1</Item>
         <Item>Item 2</Item>

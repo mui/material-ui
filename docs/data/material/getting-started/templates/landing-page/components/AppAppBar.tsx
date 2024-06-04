@@ -44,12 +44,7 @@ export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
   return (
     <AppBar
       position="fixed"
-      sx={{
-        boxShadow: 0,
-        bgcolor: 'transparent',
-        backgroundImage: 'none',
-        mt: 2,
-      }}
+      sx={{ boxShadow: 0, bgcolor: 'transparent', backgroundImage: 'none', mt: 2 }}
     >
       <Container maxWidth="lg">
         <Toolbar
@@ -74,14 +69,7 @@ export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                 : '0 1px 2px hsla(210, 0%, 0%, 0.5), 0 2px 12px hsla(210, 100%, 25%, 0.3)',
           })}
         >
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: 'flex',
-              alignItems: 'center',
-              px: 0,
-            }}
-          >
+          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Sitemark />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button
@@ -147,12 +135,7 @@ export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
               <MenuIcon />
             </IconButton>
             <Drawer anchor="top" open={open} onClose={toggleDrawer(false)}>
-              <Box
-                sx={{
-                  p: 2,
-                  backgroundColor: 'background.default',
-                }}
-              >
+              <Box sx={{ p: 2, backgroundColor: 'background.default' }}>
                 <Box
                   sx={{
                     display: 'flex',

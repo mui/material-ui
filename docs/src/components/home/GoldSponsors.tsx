@@ -129,21 +129,10 @@ export default function GoldSponsors() {
               <AddRounded />
             </IconButton>
             <div>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: 'text.primary',
-                  fontWeight: 'bold',
-                }}
-              >
+              <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
                 Become a sponsor
               </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: 'text.secondary',
-                }}
-              >
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 Find out how{' '}
                 <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener">
                   you can support MUI.

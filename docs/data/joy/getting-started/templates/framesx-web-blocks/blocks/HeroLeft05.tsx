@@ -21,10 +21,7 @@ export default function HeroLeft05() {
       </Typography>
       <Typography
         textColor="text.secondary"
-        sx={{
-          fontSize: 'lg',
-          lineHeight: 'lg',
-        }}
+        sx={{ fontSize: 'lg', lineHeight: 'lg' }}
       >
         A descriptive secondary text placeholder. Use it to explain your business
         offer better.

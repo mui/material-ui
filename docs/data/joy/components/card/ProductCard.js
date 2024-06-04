@@ -30,9 +30,7 @@ export default function ProductCard() {
           textColor="text.primary"
           overlay
           endDecorator={<ArrowOutwardIcon />}
-          sx={{
-            fontWeight: 'md',
-          }}
+          sx={{ fontWeight: 'md' }}
         >
           Super Rockez A400
         </Link>

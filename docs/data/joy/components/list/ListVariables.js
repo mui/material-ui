@@ -68,9 +68,7 @@ export default function ListVariables() {
                     }}
                   />
                 }
-                sx={{
-                  fontWeight: 'md',
-                }}
+                sx={{ fontWeight: 'md' }}
               >
                 Online people
               </Typography>

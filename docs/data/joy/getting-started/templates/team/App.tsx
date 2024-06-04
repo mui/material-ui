@@ -398,11 +398,7 @@ export default function TeamExample() {
                 key={index}
                 component="li"
                 variant="outlined"
-                sx={{
-                  borderRadius: 'sm',
-                  p: 2,
-                  listStyle: 'none',
-                }}
+                sx={{ borderRadius: 'sm', p: 2, listStyle: 'none' }}
               >
                 <Box sx={{ display: 'flex', gap: 2 }}>
                   <Avatar

@@ -36,24 +36,14 @@ export default function PositionedPopper() {
           </Fade>
         )}
       </Popper>
-      <Grid
-        container
-        sx={{
-          justifyContent: 'center',
-        }}
-      >
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item>
           <Button onClick={handleClick('top-start')}>top-start</Button>
           <Button onClick={handleClick('top')}>top</Button>
           <Button onClick={handleClick('top-end')}>top-end</Button>
         </Grid>
       </Grid>
-      <Grid
-        container
-        sx={{
-          justifyContent: 'center',
-        }}
-      >
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item xs={6}>
           <Button onClick={handleClick('left-start')}>left-start</Button>
           <br />
@@ -66,9 +56,7 @@ export default function PositionedPopper() {
           container
           xs={6}
           direction="column"
-          sx={{
-            alignItems: 'flex-end',
-          }}
+          sx={{ alignItems: 'flex-end' }}
         >
           <Grid item>
             <Button onClick={handleClick('right-start')}>right-start</Button>
@@ -81,12 +69,7 @@ export default function PositionedPopper() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid
-        container
-        sx={{
-          justifyContent: 'center',
-        }}
-      >
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item>
           <Button onClick={handleClick('bottom-start')}>bottom-start</Button>
           <Button onClick={handleClick('bottom')}>bottom</Button>

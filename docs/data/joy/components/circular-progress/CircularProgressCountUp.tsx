@@ -45,10 +45,7 @@ export default function CircularProgressCountUp() {
     <Stack
       direction="row"
       spacing={8}
-      sx={{
-        alignItems: 'center',
-        flexWrap: 'wrap',
-      }}
+      sx={{ alignItems: 'center', flexWrap: 'wrap' }}
     >
       <Stack spacing={2}>
         <CircularProgress size="lg" determinate value={value1 as number}>

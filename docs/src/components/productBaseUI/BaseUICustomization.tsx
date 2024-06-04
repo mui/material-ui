@@ -298,11 +298,7 @@ export default function BaseUICustomization() {
             </Frame.Demo>
             <Frame.Info
               ref={infoRef}
-              sx={{
-                maxHeight: 450,
-                position: 'relative',
-                overflow: 'auto',
-              }}
+              sx={{ maxHeight: 450, position: 'relative', overflow: 'auto' }}
             >
               <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
               <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />

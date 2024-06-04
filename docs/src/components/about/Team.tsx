@@ -177,32 +177,15 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
           )}
         </Box>
       </Box>
-      <Typography
-        variant="body2"
-        sx={{
-          fontWeight: 'bold',
-          mt: 2,
-          mb: 0.5,
-        }}
-      >
+      <Typography variant="body2" sx={{ fontWeight: 'bold', mt: 2, mb: 0.5 }}>
         {props.name}
       </Typography>
-      <Typography
-        variant="body2"
-        sx={{
-          color: 'text.secondary',
-        }}
-      >
+      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
         {props.title}
       </Typography>
       {props.about && <Divider sx={{ my: 1.5 }} />}
       {props.about && (
-        <Typography
-          variant="body2"
-          sx={{
-            color: 'text.tertiary',
-          }}
-        >
+        <Typography variant="body2" sx={{ color: 'text.tertiary' }}>
           {props.about}
         </Typography>
       )}
@@ -349,13 +332,7 @@ export default function Team() {
   return (
     <React.Fragment>
       <Section cozy>
-        <Box
-          sx={{
-            my: 4,
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+        <Box sx={{ my: 4, display: 'flex', flexDirection: 'column' }}>
           <SectionHeadline
             overline="Team"
             title={
@@ -400,19 +377,11 @@ export default function Team() {
           <Typography
             component="h3"
             variant="h4"
-            sx={{
-              color: 'primary.200',
-              fontWeight: 'semiBold',
-            }}
+            sx={{ color: 'primary.200', fontWeight: 'semiBold' }}
           >
             Community contributors
           </Typography>
-          <Typography
-            sx={{
-              color: 'text.secondary',
-              maxWidth: { md: 500 },
-            }}
-          >
+          <Typography sx={{ color: 'text.secondary', maxWidth: { md: 500 } }}>
             Special members of the community deserve a shout-out for their ever-lasting impact on
             MUI&apos;s products.
           </Typography>
@@ -427,19 +396,11 @@ export default function Team() {
           <Typography
             component="h3"
             variant="h4"
-            sx={{
-              color: 'warning.300',
-              fontWeight: 'semiBold',
-            }}
+            sx={{ color: 'warning.300', fontWeight: 'semiBold' }}
           >
             Community emeriti
           </Typography>
-          <Typography
-            sx={{
-              color: 'text.secondary',
-              maxWidth: { md: 500 },
-            }}
-          >
+          <Typography sx={{ color: 'text.secondary', maxWidth: { md: 500 } }}>
             We honor some no-longer-active core team members who have made valuable contributions in
             the past. They advise us from time to time.
           </Typography>

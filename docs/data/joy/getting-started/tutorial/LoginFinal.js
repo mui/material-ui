@@ -81,10 +81,7 @@ export default function LoginFinal() {
         <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
         <Typography
           endDecorator={<Link href="/sign-up">Sign up</Link>}
-          sx={{
-            fontSize: 'sm',
-            alignSelf: 'center',
-          }}
+          sx={{ fontSize: 'sm', alignSelf: 'center' }}
         >
           Don&apos;t have an account?
         </Typography>

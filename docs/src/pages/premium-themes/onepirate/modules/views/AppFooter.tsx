@@ -55,10 +55,7 @@ export default function AppFooter() {
               container
               direction="column"
               spacing={2}
-              sx={{
-                justifyContent: 'flex-end',
-                height: 120,
-              }}
+              sx={{ justifyContent: 'flex-end', height: 120 }}
             >
               <Grid item sx={{ display: 'flex' }}>
                 <Box component="a" href="https://mui.com/" sx={iconStyle}>

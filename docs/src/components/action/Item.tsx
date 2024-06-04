@@ -104,11 +104,7 @@ export default function Item({
         <Typography
           component="span"
           variant="body2"
-          sx={{
-            color: 'text.primary',
-            fontWeight: 'bold',
-            display: 'block',
-          }}
+          sx={{ color: 'text.primary', fontWeight: 'bold', display: 'block' }}
         >
           {title}
         </Typography>
@@ -116,11 +112,7 @@ export default function Item({
           <Typography
             component="span"
             variant="body2"
-            sx={{
-              color: 'text.secondary',
-              fontWeight: 'regular',
-              mt: 0.5,
-            }}
+            sx={{ color: 'text.secondary', fontWeight: 'regular', mt: 0.5 }}
           >
             {description}
           </Typography>

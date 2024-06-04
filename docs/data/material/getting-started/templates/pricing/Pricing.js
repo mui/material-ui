@@ -160,9 +160,7 @@ export default function Pricing() {
           variant="h2"
           align="center"
           gutterBottom
-          sx={{
-            color: 'text.primary',
-          }}
+          sx={{ color: 'text.primary' }}
         >
           Pricing
         </Typography>
@@ -170,9 +168,7 @@ export default function Pricing() {
           variant="h5"
           align="center"
           component="p"
-          sx={{
-            color: 'text.secondary',
-          }}
+          sx={{ color: 'text.secondary' }}
         >
           Quickly build an effective pricing table for your potential customers with
           this layout. It&apos;s built with default MUI components with little
@@ -181,13 +177,7 @@ export default function Pricing() {
       </Container>
       {/* End hero unit */}
       <Container maxWidth="md" component="main">
-        <Grid
-          container
-          spacing={5}
-          sx={{
-            alignItems: 'flex-end',
-          }}
-        >
+        <Grid container spacing={5} sx={{ alignItems: 'flex-end' }}>
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
             <Grid
@@ -225,18 +215,11 @@ export default function Pricing() {
                     <Typography
                       component="h2"
                       variant="h3"
-                      sx={{
-                        color: 'text.primary',
-                      }}
+                      sx={{ color: 'text.primary' }}
                     >
                       ${tier.price}
                     </Typography>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: 'text.secondary',
-                      }}
-                    >
+                    <Typography variant="h6" sx={{ color: 'text.secondary' }}>
                       /mo
                     </Typography>
                   </Box>
@@ -273,22 +256,10 @@ export default function Pricing() {
           py: [3, 6],
         }}
       >
-        <Grid
-          container
-          spacing={4}
-          sx={{
-            justifyContent: 'space-evenly',
-          }}
-        >
+        <Grid container spacing={4} sx={{ justifyContent: 'space-evenly' }}>
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography
-                variant="h6"
-                gutterBottom
-                sx={{
-                  color: 'text.primary',
-                }}
-              >
+              <Typography variant="h6" gutterBottom sx={{ color: 'text.primary' }}>
                 {footer.title}
               </Typography>
               <ul>

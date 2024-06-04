@@ -382,9 +382,7 @@ export default function TopLayoutBlog(props) {
             })}
             variant="body2"
             className={classes.back}
-            sx={{
-              color: 'primary',
-            }}
+            sx={{ color: 'primary' }}
           >
             <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
@@ -420,12 +418,7 @@ export default function TopLayoutBlog(props) {
                       }?s=${36 * 3} 3x`}
                     />
                     <div>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          fontWeight: '500',
-                        }}
-                      >
+                      <Typography variant="body2" sx={{ fontWeight: '500' }}>
                         {authors[author].name}
                       </Typography>
                       <Link
@@ -433,10 +426,7 @@ export default function TopLayoutBlog(props) {
                         target="_blank"
                         rel="noopener"
                         variant="body2"
-                        sx={{
-                          color: 'primary',
-                          fontWeight: 500,
-                        }}
+                        sx={{ color: 'primary', fontWeight: 500 }}
                       >
                         @{authors[author].github}
                       </Link>

@@ -287,10 +287,7 @@ export default function Sidebar() {
         >
           <Stack
             direction="row"
-            sx={{
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
+            sx={{ justifyContent: 'space-between', alignItems: 'center' }}
           >
             <Typography level="title-sm">Used space</Typography>
             <IconButton size="sm">

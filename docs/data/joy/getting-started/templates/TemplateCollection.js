@@ -174,10 +174,7 @@ export default function TemplateCollection() {
                     <Visibility />
                     <Typography
                       textColor="text.primary"
-                      sx={{
-                        fontWeight: 'bold',
-                        fontFamily: 'IBM Plex Sans',
-                      }}
+                      sx={{ fontWeight: 'bold', fontFamily: 'IBM Plex Sans' }}
                     >
                       View live preview
                     </Typography>
@@ -185,12 +182,7 @@ export default function TemplateCollection() {
                 </NextLink>
               </AspectRatio>
             </CardOverflow>
-            <CardContent
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
+            <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
               <Typography
                 component="h3"
                 sx={{
@@ -213,10 +205,7 @@ export default function TemplateCollection() {
                 {template.author && (
                   <Typography
                     level="body-sm"
-                    sx={{
-                      fontWeight: 'md',
-                      fontFamily: 'IBM Plex Sans',
-                    }}
+                    sx={{ fontWeight: 'md', fontFamily: 'IBM Plex Sans' }}
                   >
                     Built by{' '}
                     <Link
@@ -233,19 +222,13 @@ export default function TemplateCollection() {
                     <Typography
                       level="caption"
                       textColor="text.tertiary"
-                      sx={{
-                        fontWeight: 'md',
-                        mx: 0.5,
-                      }}
+                      sx={{ fontWeight: 'md', mx: 0.5 }}
                     >
                       •
                     </Typography>
                     <Typography
                       level="body-sm"
-                      sx={{
-                        fontWeight: 'md',
-                        fontFamily: 'IBM Plex Sans',
-                      }}
+                      sx={{ fontWeight: 'md', fontFamily: 'IBM Plex Sans' }}
                     >
                       Designed by{' '}
                       <Link

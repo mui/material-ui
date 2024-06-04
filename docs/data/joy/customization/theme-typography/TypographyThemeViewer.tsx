@@ -76,51 +76,25 @@ export default function TypographyThemeViewer() {
         <thead>
           <tr>
             <th>
-              <Typography
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
-                Level
-              </Typography>
+              <Typography sx={{ fontSize: 'sm' }}>Level</Typography>
             </th>
             <th>
-              <Typography
-                noWrap
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
+              <Typography noWrap sx={{ fontSize: 'sm' }}>
                 Color
               </Typography>
             </th>
             <th>
-              <Typography
-                noWrap
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
+              <Typography noWrap sx={{ fontSize: 'sm' }}>
                 Font size
               </Typography>
             </th>
             <th>
-              <Typography
-                noWrap
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
+              <Typography noWrap sx={{ fontSize: 'sm' }}>
                 Font weight
               </Typography>
             </th>
             <th>
-              <Typography
-                noWrap
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
+              <Typography noWrap sx={{ fontSize: 'sm' }}>
                 Line height
               </Typography>
             </th>
@@ -138,12 +112,7 @@ export default function TypographyThemeViewer() {
                   placement="bottom-start"
                   sx={{ pointerEvents: 'none' }}
                 >
-                  <Typography
-                    sx={{
-                      fontSize: 'sm',
-                      cursor: 'zoom-in',
-                    }}
-                  >
+                  <Typography sx={{ fontSize: 'sm', cursor: 'zoom-in' }}>
                     {level}
                   </Typography>
                 </Tooltip>
@@ -160,9 +129,7 @@ export default function TypographyThemeViewer() {
                           'light',
                           defaultTheme.typography[level].color as string,
                         )}
-                        sx={{
-                          fontSize: 'xs',
-                        }}
+                        sx={{ fontSize: 'xs' }}
                       >
                         (light)
                       </Typography>
@@ -171,9 +138,7 @@ export default function TypographyThemeViewer() {
                           'dark',
                           defaultTheme.typography[level].color as string,
                         )}
-                        sx={{
-                          fontSize: 'xs',
-                        }}
+                        sx={{ fontSize: 'xs' }}
                       >
                         (dark)
                       </Typography>
@@ -182,11 +147,7 @@ export default function TypographyThemeViewer() {
                   sx={{ pointerEvents: 'none' }}
                 >
                   <Typography
-                    sx={{
-                      fontSize: 'xs',
-                      fontFamily: 'code',
-                      cursor: 'zoom-in',
-                    }}
+                    sx={{ fontSize: 'xs', fontFamily: 'code', cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].color || '-'}
                   </Typography>
@@ -207,11 +168,7 @@ export default function TypographyThemeViewer() {
                   sx={{ pointerEvents: 'none' }}
                 >
                   <Typography
-                    sx={{
-                      fontSize: 'xs',
-                      fontFamily: 'code',
-                      cursor: 'zoom-in',
-                    }}
+                    sx={{ fontSize: 'xs', fontFamily: 'code', cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].fontSize || '-'}
                   </Typography>

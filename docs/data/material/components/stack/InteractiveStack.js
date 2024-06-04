@@ -29,11 +29,7 @@ export default function InteractiveStack() {
       <Stack
         direction={direction}
         spacing={spacing}
-        sx={{
-          justifyContent: justifyContent,
-          alignItems: alignItems,
-          height: 240,
-        }}
+        sx={{ justifyContent: justifyContent, alignItems: alignItems, height: 240 }}
       >
         {[0, 1, 2].map((value) => (
           <Paper

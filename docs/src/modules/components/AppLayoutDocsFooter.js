@@ -397,27 +397,11 @@ export default function AppLayoutDocsFooter(props) {
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           spacing={{ xs: 3, sm: 1 }}
-          sx={{
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
+          sx={{ alignItems: 'center', justifyContent: 'space-between' }}
         >
           <EditPage sourceLocation={location} />
-          <Stack
-            direction="row"
-            spacing={0.5}
-            useFlexGap
-            sx={{
-              alignItems: 'center',
-            }}
-          >
-            <Typography
-              id="feedback-message"
-              variant="body2"
-              sx={{
-                color: 'text.secondary',
-              }}
-            >
+          <Stack direction="row" spacing={0.5} useFlexGap sx={{ alignItems: 'center' }}>
+            <Typography id="feedback-message" variant="body2" sx={{ color: 'text.secondary' }}>
               {t('feedbackMessage')}
             </Typography>
             <Tooltip title={t('feedbackYes')}>
@@ -465,17 +449,10 @@ export default function AppLayoutDocsFooter(props) {
                         `"${commentedSection.text}"`,
                       ),
                     }}
-                    sx={{
-                      color: 'text.secondary',
-                    }}
+                    sx={{ color: 'text.secondary' }}
                   />
                 ) : (
-                  <Typography
-                    id="feedback-description"
-                    sx={{
-                      color: 'text.secondary',
-                    }}
-                  >
+                  <Typography id="feedback-description" sx={{ color: 'text.secondary' }}>
                     {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
                   </Typography>
                 )}
@@ -506,9 +483,7 @@ export default function AppLayoutDocsFooter(props) {
                         href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
                         target="_blank"
                         underline="always"
-                        sx={{
-                          fontWeight: 'semiBold',
-                        }}
+                        sx={{ fontWeight: 'semiBold' }}
                       >
                         {t('feedbackMessageToGitHub.callToAction.link')}
                       </Link>{' '}
@@ -530,12 +505,7 @@ export default function AppLayoutDocsFooter(props) {
         </div>
         <Divider sx={{ my: 2 }} />
         {hidePagePagination ? null : (
-          <Stack
-            direction="row"
-            sx={{
-              justifyContent: 'space-between',
-            }}
-          >
+          <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
             {prevPage !== null ? (
               <Button
                 size="small"
@@ -571,43 +541,17 @@ export default function AppLayoutDocsFooter(props) {
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           spacing={{ xs: 3, sm: 1 }}
-          sx={{
-            alignItems: 'center',
-          }}
+          sx={{ alignItems: 'center' }}
         >
-          <Stack
-            direction="row"
-            spacing={1}
-            useFlexGap
-            sx={{
-              alignItems: 'center',
-              flexGrow: 1,
-            }}
-          >
+          <Stack direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center', flexGrow: 1 }}>
             <Link href="https://mui.com/" aria-label="Go to homepage">
               <SvgMuiLogotype height={28} width={64} />
             </Link>
-            <Typography
-              sx={{
-                color: 'grey.500',
-                fontSize: 13,
-                opacity: '70%',
-              }}
-            >
-              &bull;
-            </Typography>
+            <Typography sx={{ color: 'grey.500', fontSize: 13, opacity: '70%' }}>&bull;</Typography>
             <FooterLink href="https://mui.com/blog/" target="_blank" rel="noopener">
               Blog <ArrowOutwardRoundedIcon />
             </FooterLink>
-            <Typography
-              sx={{
-                color: 'grey.500',
-                fontSize: 13,
-                opacity: '70%',
-              }}
-            >
-              &bull;
-            </Typography>
+            <Typography sx={{ color: 'grey.500', fontSize: 13, opacity: '70%' }}>&bull;</Typography>
             <FooterLink href="https://mui.com/store/" target="_blank" rel="noopener">
               Store <ArrowOutwardRoundedIcon />
             </FooterLink>

@@ -19,10 +19,7 @@ export default function HeroLeft06() {
       </Typography>
       <Typography
         textColor="text.secondary"
-        sx={{
-          fontSize: 'lg',
-          lineHeight: 'lg',
-        }}
+        sx={{ fontSize: 'lg', lineHeight: 'lg' }}
       >
         A descriptive secondary text placeholder. Use it to explain your business
         offer better.
@@ -38,11 +35,7 @@ export default function HeroLeft06() {
             <Star sx={{ color: 'warning.300' }} />
           </React.Fragment>
         }
-        sx={{
-          fontSize: 'xl',
-          fontWeight: 'md',
-          mt: 3,
-        }}
+        sx={{ fontSize: 'xl', fontWeight: 'md', mt: 3 }}
       >
         5.0
       </Typography>

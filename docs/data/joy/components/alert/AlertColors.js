@@ -41,10 +41,7 @@ export default function AlertColors() {
           level="body-sm"
           id="variant-label"
           textColor="text.primary"
-          sx={{
-            fontWeight: 'xl',
-            mb: 1,
-          }}
+          sx={{ fontWeight: 'xl', mb: 1 }}
         >
           Variant:
         </Typography>

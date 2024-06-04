@@ -10,13 +10,7 @@ import TwoSidedLayout from '../components/TwoSidedLayout';
 export default function HeroLeft02() {
   return (
     <TwoSidedLayout>
-      <Typography
-        color="primary"
-        sx={{
-          fontSize: 'lg',
-          fontWeight: 'lg',
-        }}
-      >
+      <Typography color="primary" sx={{ fontSize: 'lg', fontWeight: 'lg' }}>
         The power to do more
       </Typography>
       <Typography
@@ -30,10 +24,7 @@ export default function HeroLeft02() {
       </Typography>
       <Typography
         textColor="text.secondary"
-        sx={{
-          fontSize: 'lg',
-          lineHeight: 'lg',
-        }}
+        sx={{ fontSize: 'lg', lineHeight: 'lg' }}
       >
         A descriptive secondary text placeholder. Use it to explain your business
         offer better.
@@ -81,10 +72,7 @@ export default function HeroLeft02() {
         <div>
           <Typography
             endDecorator={<Star fontSize="xl4" sx={{ color: 'warning.300' }} />}
-            sx={{
-              fontSize: 'xl4',
-              fontWeight: 'lg',
-            }}
+            sx={{ fontSize: 'xl4', fontWeight: 'lg' }}
           >
             4.9
           </Typography>
@@ -93,14 +81,7 @@ export default function HeroLeft02() {
           </Typography>
         </div>
         <div>
-          <Typography
-            sx={{
-              fontSize: 'xl4',
-              fontWeight: 'lg',
-            }}
-          >
-            2M
-          </Typography>
+          <Typography sx={{ fontSize: 'xl4', fontWeight: 'lg' }}>2M</Typography>
           <Typography textColor="text.secondary">
             Global <br /> Transactions.
           </Typography>

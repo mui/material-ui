@@ -20,10 +20,7 @@ export default function HeroLeft08() {
       </Typography>
       <Typography
         textColor="text.secondary"
-        sx={{
-          fontSize: 'lg',
-          lineHeight: 'lg',
-        }}
+        sx={{ fontSize: 'lg', lineHeight: 'lg' }}
       >
         A descriptive secondary text placeholder. Use it to explain your business
         offer better.
@@ -69,10 +66,7 @@ export default function HeroLeft08() {
         <div>
           <Typography
             endDecorator={<Star fontSize="xl4" sx={{ color: 'warning.300' }} />}
-            sx={{
-              fontSize: 'xl4',
-              fontWeight: 'lg',
-            }}
+            sx={{ fontSize: 'xl4', fontWeight: 'lg' }}
           >
             4.9
           </Typography>
@@ -81,14 +75,7 @@ export default function HeroLeft08() {
           </Typography>
         </div>
         <div>
-          <Typography
-            sx={{
-              fontSize: 'xl4',
-              fontWeight: 'lg',
-            }}
-          >
-            9.5k+
-          </Typography>
+          <Typography sx={{ fontSize: 'xl4', fontWeight: 'lg' }}>9.5k+</Typography>
           <Typography textColor="text.secondary">
             Active users from the top world companies.
           </Typography>

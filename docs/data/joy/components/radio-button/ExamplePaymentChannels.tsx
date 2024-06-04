@@ -25,9 +25,7 @@ export default function ExamplePaymentChannels() {
           id="example-payment-channel-label"
           level="title-md"
           textColor={'text.secondary'}
-          sx={{
-            fontWeight: 'xl',
-          }}
+          sx={{ fontWeight: 'xl' }}
         >
           Pay with
         </Typography>
@@ -52,10 +50,7 @@ export default function ExamplePaymentChannels() {
           component="div"
           variant="outlined"
           orientation={orientation}
-          sx={{
-            borderRadius: 'sm',
-            boxShadow: 'sm',
-          }}
+          sx={{ borderRadius: 'sm', boxShadow: 'sm' }}
         >
           {['Credit Card', 'Paypal', 'QR Code'].map((value, index) => (
             <React.Fragment key={value}>

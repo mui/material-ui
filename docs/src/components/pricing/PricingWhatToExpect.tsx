@@ -41,20 +41,12 @@ export default function PricingWhatToExpect() {
             <Typography
               component="h3"
               variant="body2"
-              sx={{
-                fontWeight: 'bold',
-                color: 'text.primary',
-              }}
+              sx={{ fontWeight: 'bold', color: 'text.primary' }}
             >
               Required quantity
             </Typography>
           </Box>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             The number of developers licensed must correspond to the maximum number of concurrent
             developers contributing changes to the front-end code of the projects that use the
             software.
@@ -77,21 +69,12 @@ export default function PricingWhatToExpect() {
             <Typography
               component="h3"
               variant="body2"
-              sx={{
-                fontWeight: 'bold',
-                color: 'text.primary',
-              }}
+              sx={{ fontWeight: 'bold', color: 'text.primary' }}
             >
               Perpetual license model
             </Typography>
           </Box>
-          <Typography
-            variant="body2"
-            component="div"
-            sx={{
-              color: 'text.secondary',
-            }}
-          >
+          <Typography variant="body2" component="div" sx={{ color: 'text.secondary' }}>
             The Perpetual license model offers the right to keep using your licensed versions
             forever in production and development. It comes with 12 months of maintenance (free
             updates & support).
@@ -112,20 +95,12 @@ export default function PricingWhatToExpect() {
             <Typography
               component="h3"
               variant="body2"
-              sx={{
-                fontWeight: 'bold',
-                color: 'text.primary',
-              }}
+              sx={{ fontWeight: 'bold', color: 'text.primary' }}
             >
               Perpetual vs. Annual license model
             </Typography>
           </Box>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             On both license models, any version released before the end of your license term is
             forever available for applications deployed in production.
             <br />
@@ -143,20 +118,12 @@ export default function PricingWhatToExpect() {
             <Typography
               component="h3"
               variant="body2"
-              sx={{
-                fontWeight: 'bold',
-                color: 'text.primary',
-              }}
+              sx={{ fontWeight: 'bold', color: 'text.primary' }}
             >
               Annual license model
             </Typography>
           </Box>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             The Annual license model requires an active license to use the software in development.
             You will need to renew your license if you wish to continue active development after
             your current license term expires.
@@ -183,20 +150,12 @@ export default function PricingWhatToExpect() {
             <Typography
               component="h3"
               variant="body2"
-              sx={{
-                fontWeight: 'bold',
-                color: 'text.primary',
-              }}
+              sx={{ fontWeight: 'bold', color: 'text.primary' }}
             >
               Maintenance and support
             </Typography>
           </Box>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             With your purchase, you receive support and access to new versions for the duration of
             your subscription. You can{' '}
             <Link href="https://mui.com/x/introduction/support/#technical-support">
@@ -215,20 +174,12 @@ export default function PricingWhatToExpect() {
             <Typography
               component="h3"
               variant="body2"
-              sx={{
-                fontWeight: 'bold',
-                color: 'text.primary',
-              }}
+              sx={{ fontWeight: 'bold', color: 'text.primary' }}
             >
               Volume discounts
             </Typography>
           </Box>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             The Pro plan is capped at 10 developers licensed; you do not need to pay for additional
             licenses for more than 10 developers.
             <br />

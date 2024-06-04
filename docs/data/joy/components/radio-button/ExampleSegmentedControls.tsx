@@ -10,10 +10,7 @@ export default function ExampleSegmentedControls() {
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
       <Typography
         id="segmented-controls-example"
-        sx={{
-          fontWeight: 'lg',
-          fontSize: 'sm',
-        }}
+        sx={{ fontWeight: 'lg', fontSize: 'sm' }}
       >
         Justify:
       </Typography>
@@ -42,10 +39,7 @@ export default function ExampleSegmentedControls() {
             disableIcon
             label={item}
             variant="plain"
-            sx={{
-              px: 2,
-              alignItems: 'center',
-            }}
+            sx={{ px: 2, alignItems: 'center' }}
             slotProps={{
               action: ({ checked }) => ({
                 sx: {

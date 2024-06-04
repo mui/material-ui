@@ -43,23 +43,14 @@ function ProductItem({
         <Typography
           component="span"
           variant="body2"
-          sx={{
-            color: 'text.primary',
-            fontWeight: 'bold',
-            display: 'block',
-          }}
+          sx={{ color: 'text.primary', fontWeight: 'bold', display: 'block' }}
         >
           {name}
         </Typography>
         <Typography
           component="span"
           variant="body2"
-          sx={{
-            color: 'text.secondary',
-            fontWeight: 'regular',
-            display: 'block',
-            my: 0.5,
-          }}
+          sx={{ color: 'text.secondary', fontWeight: 'regular', display: 'block', my: 0.5 }}
         >
           {description}
         </Typography>

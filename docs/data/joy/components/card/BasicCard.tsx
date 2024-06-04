@@ -34,14 +34,7 @@ export default function BasicCard() {
       <CardContent orientation="horizontal">
         <div>
           <Typography level="body-xs">Total price:</Typography>
-          <Typography
-            sx={{
-              fontSize: 'lg',
-              fontWeight: 'lg',
-            }}
-          >
-            $2,900
-          </Typography>
+          <Typography sx={{ fontSize: 'lg', fontWeight: 'lg' }}>$2,900</Typography>
         </div>
         <Button
           variant="solid"

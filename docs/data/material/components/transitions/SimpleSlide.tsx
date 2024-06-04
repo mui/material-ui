@@ -29,14 +29,7 @@ export default function SimpleSlide() {
   };
 
   return (
-    <Box
-      sx={{
-        height: 180,
-        width: 130,
-        position: 'relative',
-        zIndex: 1,
-      }}
-    >
+    <Box sx={{ height: 180, width: 130, position: 'relative', zIndex: 1 }}>
       <FormControlLabel
         control={<Switch checked={checked} onChange={handleChange} />}
         label="Show"

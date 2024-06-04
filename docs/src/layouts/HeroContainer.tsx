@@ -100,14 +100,7 @@ export default function HeroContainer(props: HeroContainerProps) {
             transition: '0.3s',
           }}
         >
-          <Grid
-            container
-            sx={{
-              alignItems: 'center',
-              height: '100%',
-              mx: 'auto',
-            }}
-          >
+          <Grid container sx={{ alignItems: 'center', height: '100%', mx: 'auto' }}>
             <Grid
               item
               xs={12}
@@ -154,12 +147,7 @@ export default function HeroContainer(props: HeroContainerProps) {
       >
         <Grid
           container
-          sx={{
-            alignItems: 'center',
-            flexWrap: 'nowrap',
-            height: '100%',
-            mx: 'auto',
-          }}
+          sx={{ alignItems: 'center', flexWrap: 'nowrap', height: '100%', mx: 'auto' }}
         >
           <Grid item md={7} lg={6} sx={{ m: 'auto' }}>
             {left}

@@ -83,21 +83,9 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             }),
           }}
         />
-        <Stack
-          direction="column"
-          spacing={1}
-          useFlexGap
-          sx={{
-            alignItems: 'center',
-          }}
-        >
+        <Stack direction="column" spacing={1} useFlexGap sx={{ alignItems: 'center' }}>
           <div>
-            <Typography
-              sx={{
-                color: 'text.primary',
-                fontWeight: 'semiBold',
-              }}
-            >
+            <Typography sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
               Contemplative Reptile
             </Typography>
             <Typography
@@ -112,14 +100,7 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
               Sounds of Nature
             </Typography>
           </div>
-          <Stack
-            direction="row"
-            spacing={1}
-            useFlexGap
-            sx={{
-              alignItems: 'center',
-            }}
-          >
+          <Stack direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center' }}>
             <IconButton aria-label="Shuffle" disabled size="small">
               <ShuffleRoundedIcon fontSize="small" />
             </IconButton>

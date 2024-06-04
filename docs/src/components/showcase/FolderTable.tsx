@@ -127,13 +127,7 @@ export default function BasicTable() {
               <TableCell component="th" scope="row">
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <Folder fontSize="small" sx={{ color: 'primary.400' }} />
-                  <Typography
-                    sx={{
-                      fontSize: 13,
-                      fontWeight: 500,
-                      color: 'text.primary',
-                    }}
-                  >
+                  <Typography sx={{ fontSize: 13, fontWeight: 500, color: 'text.primary' }}>
                     {row.name}
                   </Typography>
                 </Box>
