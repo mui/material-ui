@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Search from './Search';
 import CustomDatePicker from './CustomDatePicker';
 
 export default function Header() {
@@ -22,7 +21,6 @@ export default function Header() {
         </Typography>
       </Stack>
       <Stack direction="row" gap={1} sx={{ width: { xs: '100%', sm: 'auto' } }}>
-        <Search />
         <CustomDatePicker />
       </Stack>
     </Stack>

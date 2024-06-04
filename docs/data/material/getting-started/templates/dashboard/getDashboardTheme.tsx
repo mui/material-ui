@@ -1101,6 +1101,13 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           columnHeaderDraggableContainer: { paddingRight: 2 },
         },
       },
+      MuiDrawer: {
+        styleOverrides: {
+          paper: ({ theme }) => ({
+            backgroundColor: theme.palette.background.default,
+          }),
+        },
+      },
     },
   };
 }

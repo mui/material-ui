@@ -46,7 +46,12 @@ export default function SideNav({
   toggleColorMode,
 }: SideNavProps) {
   return (
-    <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={toggleDrawer(false)}
+      sx={(theme) => ({ zIndex: theme.zIndex.drawer + 2 })} // Increase the z-index due to the Navbar
+    >
       <Stack
         gap={2}
         sx={{
