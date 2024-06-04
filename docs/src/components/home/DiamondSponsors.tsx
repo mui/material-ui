@@ -96,21 +96,10 @@ export default function DiamondSponsors() {
                 <AddRounded />
               </IconButton>
               <div>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'text.primary',
-                    fontWeight: 'bold',
-                  }}
-                >
+                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
                   Become our sponsor!
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'text.secondary',
-                  }}
-                >
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   To join us, contact us at{' '}
                   <Link href="mailto:sales@mui.com" target="_blank" rel="noopener">
                     sales@mui.com

@@ -45,11 +45,7 @@ function ComponentItem({
         <Typography
           component="span"
           variant="body2"
-          sx={{
-            color: 'text.primary',
-            fontWeight: 'bold',
-            display: 'block',
-          }}
+          sx={{ color: 'text.primary', fontWeight: 'bold', display: 'block' }}
         >
           {name}
         </Typography>
@@ -58,11 +54,7 @@ function ComponentItem({
             component="span"
             variant="body2"
             gutterBottom
-            sx={{
-              color: 'text.secondary',
-              fontWeight: 'regular',
-              display: 'block',
-            }}
+            sx={{ color: 'text.secondary', fontWeight: 'regular', display: 'block' }}
           >
             {description}
           </Typography>
@@ -131,11 +123,7 @@ export default function XComponentsSwitcher(props: {
   return (
     <React.Fragment>
       <Box
-        sx={{
-          display: { md: 'none' },
-          maxWidth: 'calc(100vw - 40px)',
-          '& > div': { pr: '32%' },
-        }}
+        sx={{ display: { md: 'none' }, maxWidth: 'calc(100vw - 40px)', '& > div': { pr: '32%' } }}
       >
         <SwipeableViews
           index={componentIndex}

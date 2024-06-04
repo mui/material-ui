@@ -92,13 +92,7 @@ function ChipsPlayground() {
   return (
     <Grid container sx={{ flexGrow: 1 }}>
       <Grid item xs={12}>
-        <Grid
-          container
-          sx={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <Grid container sx={{ justifyContent: 'center', alignItems: 'center' }}>
           <Grid item sx={{ height: (theme) => theme.spacing(10) }}>
             <Chip
               label="Chip Component"

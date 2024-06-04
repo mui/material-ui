@@ -1,6 +1,5 @@
 <Slider
-  sx={{
-    '& input[type="range"]': {
+  sx={{  '& input[type="range"]': {
       WebkitAppearance: 'slider-vertical',
     },
   }}

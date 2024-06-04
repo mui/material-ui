@@ -229,12 +229,7 @@ export default function SignIn() {
                 />
               </FormControl>
               <FormControl>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                  }}
-                >
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <FormLabel htmlFor="password">Password</FormLabel>
                   <Link
                     component="button"

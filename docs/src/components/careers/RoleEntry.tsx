@@ -27,20 +27,11 @@ export default function RoleEntry(props: RoleProps) {
           <Typography
             variant="body1"
             gutterBottom
-            sx={{
-              color: 'text.primary',
-              fontWeight: 'medium',
-            }}
+            sx={{ color: 'text.primary', fontWeight: 'medium' }}
           >
             {props.title}
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              maxWidth: 550,
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.secondary', maxWidth: 550 }}>
             {props.description}
           </Typography>
         </div>
@@ -60,23 +51,10 @@ export default function RoleEntry(props: RoleProps) {
 
   return (
     <div>
-      <Typography
-        variant="body1"
-        gutterBottom
-        sx={{
-          color: 'text.primary',
-          fontWeight: 'medium',
-        }}
-      >
+      <Typography variant="body1" gutterBottom sx={{ color: 'text.primary', fontWeight: 'medium' }}>
         {props.title}
       </Typography>
-      <Typography
-        variant="body2"
-        sx={{
-          color: 'text.secondary',
-          maxWidth: 650,
-        }}
-      >
+      <Typography variant="body2" sx={{ color: 'text.secondary', maxWidth: 650 }}>
         {props.description}
       </Typography>
     </div>

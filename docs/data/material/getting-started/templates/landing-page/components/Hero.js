@@ -63,10 +63,7 @@ export default function Hero() {
         <Stack
           spacing={2}
           useFlexGap
-          sx={{
-            alignItems: 'center',
-            width: { xs: '100%', sm: '70%' },
-          }}
+          sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}
         >
           <Typography
             variant="h1"
@@ -128,12 +125,7 @@ export default function Hero() {
               Start now
             </Button>
           </Stack>
-          <Typography
-            variant="caption"
-            sx={{
-              textAlign: 'center',
-            }}
-          >
+          <Typography variant="caption" sx={{ textAlign: 'center' }}>
             By clicking &quot;Start now&quot; you agree to our&nbsp;
             <Link href="#" color="primary">
               Terms & Conditions

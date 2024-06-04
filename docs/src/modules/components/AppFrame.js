@@ -181,14 +181,7 @@ export default function AppFrame(props) {
             },
           }}
         />
-        <Stack
-          direction="row"
-          sx={{
-            alignItems: 'center',
-            position: 'relative',
-            width: '100%',
-          }}
-        >
+        <Stack direction="row" sx={{ alignItems: 'center', position: 'relative', width: '100%' }}>
           <NavIconButton
             edge="start"
             color="primary"

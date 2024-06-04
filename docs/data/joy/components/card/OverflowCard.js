@@ -29,9 +29,7 @@ export default function OverflowCard() {
           <Typography
             level="body-xs"
             textColor="text.secondary"
-            sx={{
-              fontWeight: 'md',
-            }}
+            sx={{ fontWeight: 'md' }}
           >
             6.3k views
           </Typography>
@@ -39,9 +37,7 @@ export default function OverflowCard() {
           <Typography
             level="body-xs"
             textColor="text.secondary"
-            sx={{
-              fontWeight: 'md',
-            }}
+            sx={{ fontWeight: 'md' }}
           >
             1 hour ago
           </Typography>

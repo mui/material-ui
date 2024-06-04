@@ -221,14 +221,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           },
         })}
       >
-        <Box
-          sx={{
-            flexGrow: 1,
-            m: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
+        <Box sx={{ flexGrow: 1, m: 'auto', display: 'flex', alignItems: 'center' }}>
           {renderDemo(demoProps)}
         </Box>
         <BrandingProvider mode="dark">
@@ -269,11 +262,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           <Typography
             id="usage-props"
             component="h3"
-            sx={{
-              fontWeight: 'lg',
-              scrollMarginTop: 160,
-              fontFamily: 'General Sans',
-            }}
+            sx={{ fontWeight: 'lg', scrollMarginTop: 160, fontFamily: 'General Sans' }}
           >
             Playground
           </Typography>

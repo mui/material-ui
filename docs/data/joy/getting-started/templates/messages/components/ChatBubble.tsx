@@ -25,10 +25,7 @@ export default function ChatBubble(props: ChatBubbleProps) {
       <Stack
         direction="row"
         spacing={2}
-        sx={{
-          justifyContent: 'space-between',
-          mb: 0.25,
-        }}
+        sx={{ justifyContent: 'space-between', mb: 0.25 }}
       >
         <Typography level="body-xs">
           {sender === 'You' ? sender : sender.name}
@@ -46,24 +43,12 @@ export default function ChatBubble(props: ChatBubbleProps) {
             borderTopLeftRadius: isSent ? 'lg' : 0,
           }}
         >
-          <Stack
-            direction="row"
-            spacing={1.5}
-            sx={{
-              alignItems: 'center',
-            }}
-          >
+          <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
             <Avatar color="primary" size="lg">
               <InsertDriveFileRoundedIcon />
             </Avatar>
             <div>
-              <Typography
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
-                {attachment.fileName}
-              </Typography>
+              <Typography sx={{ fontSize: 'sm' }}>{attachment.fileName}</Typography>
               <Typography level="body-sm">{attachment.size}</Typography>
             </div>
           </Stack>

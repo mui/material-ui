@@ -322,10 +322,7 @@ export default function ScrollPlayground() {
             />
             <Typography
               variant="caption"
-              sx={{
-                display: 'block',
-                color: 'text.secondary',
-              }}
+              sx={{ display: 'block', color: 'text.secondary' }}
             >
               (the children stay within their parent DOM hierarchy)
             </Typography>

@@ -21,10 +21,7 @@ export default function InstagramPost() {
   return (
     <Card
       variant="outlined"
-      sx={{
-        minWidth: 300,
-        '--Card-radius': (theme) => theme.vars.radius.xs,
-      }}
+      sx={{ minWidth: 300, '--Card-radius': (theme) => theme.vars.radius.xs }}
     >
       <CardContent orientation="horizontal" sx={{ alignItems: 'center', gap: 1 }}>
         <Box
@@ -50,13 +47,7 @@ export default function InstagramPost() {
             sx={{ p: 0.5, border: '2px solid', borderColor: 'background.body' }}
           />
         </Box>
-        <Typography
-          sx={{
-            fontWeight: 'lg',
-          }}
-        >
-          MUI
-        </Typography>
+        <Typography sx={{ fontWeight: 'lg' }}>MUI</Typography>
         <IconButton variant="plain" color="neutral" size="sm" sx={{ ml: 'auto' }}>
           <MoreHoriz />
         </IconButton>
@@ -102,25 +93,16 @@ export default function InstagramPost() {
           component="button"
           underline="none"
           textColor="text.primary"
-          sx={{
-            fontSize: 'sm',
-            fontWeight: 'lg',
-          }}
+          sx={{ fontSize: 'sm', fontWeight: 'lg' }}
         >
           8.1M Likes
         </Link>
-        <Typography
-          sx={{
-            fontSize: 'sm',
-          }}
-        >
+        <Typography sx={{ fontSize: 'sm' }}>
           <Link
             component="button"
             color="neutral"
             textColor="text.primary"
-            sx={{
-              fontWeight: 'lg',
-            }}
+            sx={{ fontWeight: 'lg' }}
           >
             MUI
           </Link>{' '}
@@ -130,21 +112,14 @@ export default function InstagramPost() {
           component="button"
           underline="none"
           startDecorator="…"
-          sx={{
-            fontSize: 'sm',
-            color: 'text.tertiary',
-          }}
+          sx={{ fontSize: 'sm', color: 'text.tertiary' }}
         >
           more
         </Link>
         <Link
           component="button"
           underline="none"
-          sx={{
-            fontSize: '10px',
-            color: 'text.tertiary',
-            my: 0.5,
-          }}
+          sx={{ fontSize: '10px', color: 'text.tertiary', my: 0.5 }}
         >
           2 DAYS AGO
         </Link>

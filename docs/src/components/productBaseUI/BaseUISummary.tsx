@@ -57,13 +57,7 @@ export default function BaseUISummary() {
         </Grid>
       </Box>
       <Typography
-        sx={{
-          fontWeight: 'medium',
-          textAlign: 'center',
-          mt: 6,
-          mb: 2,
-          fontSize: '0.875rem',
-        }}
+        sx={{ fontWeight: 'medium', textAlign: 'center', mt: 6, mb: 2, fontSize: '0.875rem' }}
       >
         Alternative to libraries such as:
       </Typography>

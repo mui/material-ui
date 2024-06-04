@@ -48,10 +48,7 @@ export default function TableOfContentsBanner() {
       <Typography
         component="span"
         variant="caption"
-        sx={{
-          fontWeight: 'medium',
-          color: 'text.secondary',
-        }}
+        sx={{ fontWeight: 'medium', color: 'text.secondary' }}
       >
         MUI stands in solidarity with Ukraine.
       </Typography>

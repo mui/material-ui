@@ -19,21 +19,11 @@ export default function Header() {
         <Typography variant="h4" component="h1">
           Dashboard
         </Typography>
-        <Typography
-          sx={{
-            color: 'text.secondary',
-          }}
-        >
+        <Typography sx={{ color: 'text.secondary' }}>
           Real-time analytics to improve user engagement and guide strategy.
         </Typography>
       </Stack>
-      <Stack
-        direction="row"
-        sx={{
-          gap: 1,
-          width: { xs: '100%', sm: 'auto' },
-        }}
-      >
+      <Stack direction="row" sx={{ gap: 1, width: { xs: '100%', sm: 'auto' } }}>
         <Search />
         <CustomDatePicker />
       </Stack>

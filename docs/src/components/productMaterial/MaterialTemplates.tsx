@@ -272,22 +272,14 @@ export default function MaterialTemplates() {
                 >
                   <Typography
                     variant="body2"
-                    sx={{
-                      color: 'text.tertiary',
-                      fontWeight: 'semiBold',
-                      textAlign: 'center',
-                    }}
+                    sx={{ color: 'text.tertiary', fontWeight: 'semiBold', textAlign: 'center' }}
                   >
                     Developed by {templates[templateIndex].author}
                   </Typography>
                   <Typography
                     component="p"
                     variant="h6"
-                    sx={{
-                      fontWeight: 'semiBold',
-                      textAlign: 'center',
-                      color: 'text.primary',
-                    }}
+                    sx={{ fontWeight: 'semiBold', textAlign: 'center', color: 'text.primary' }}
                   >
                     {templates[templateIndex].name}
                   </Typography>
@@ -304,13 +296,7 @@ export default function MaterialTemplates() {
                       }),
                     ]}
                   >
-                    <Typography
-                      sx={{
-                        fontWeight: 'bold',
-                      }}
-                    >
-                      Buy now
-                    </Typography>
+                    <Typography sx={{ fontWeight: 'bold' }}>Buy now</Typography>
                     <LaunchRounded fontSize="small" />
                   </Box>
                 </Link>

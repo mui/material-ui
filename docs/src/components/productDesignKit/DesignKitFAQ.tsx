@@ -127,13 +127,7 @@ export default function DesignKitFAQ() {
         <AccordionSummary
           expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
-          <Typography
-            variant="body2"
-            component="h3"
-            sx={{
-              fontWeight: 'bold',
-            }}
-          >
+          <Typography variant="body2" component="h3" sx={{ fontWeight: 'bold' }}>
             {faq.summary}
           </Typography>
         </AccordionSummary>
@@ -141,10 +135,7 @@ export default function DesignKitFAQ() {
           <Typography
             component="div"
             variant="body2"
-            sx={{
-              color: 'text.secondary',
-              '& ul': { pl: 2 },
-            }}
+            sx={{ color: 'text.secondary', '& ul': { pl: 2 } }}
           >
             {faq.detail}
           </Typography>
@@ -184,20 +175,11 @@ export default function DesignKitFAQ() {
             <Typography
               variant="body2"
               gutterBottom
-              sx={{
-                color: 'text.primary',
-                fontWeight: 'bold',
-              }}
+              sx={{ color: 'text.primary', fontWeight: 'bold' }}
             >
               Got any questions unanswered or need more help?
             </Typography>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{
-                color: 'text.primary',
-              }}
-            >
+            <Typography variant="body2" gutterBottom sx={{ color: 'text.primary' }}>
               From community help to premium business support, we&apos;re here to help.
             </Typography>
             <Button

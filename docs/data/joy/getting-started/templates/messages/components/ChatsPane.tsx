@@ -31,12 +31,7 @@ export default function ChatsPane(props: ChatsPaneProps) {
       <Stack
         direction="row"
         spacing={1}
-        sx={{
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          p: 2,
-          pb: 1.5,
-        }}
+        sx={{ alignItems: 'center', justifyContent: 'space-between', p: 2, pb: 1.5 }}
       >
         <Typography
           component="h1"
@@ -50,11 +45,7 @@ export default function ChatsPane(props: ChatsPaneProps) {
               4
             </Chip>
           }
-          sx={{
-            fontSize: { xs: 'md', md: 'lg' },
-            fontWeight: 'lg',
-            mr: 'auto',
-          }}
+          sx={{ fontSize: { xs: 'md', md: 'lg' }, fontWeight: 'lg', mr: 'auto' }}
         >
           Messages
         </Typography>

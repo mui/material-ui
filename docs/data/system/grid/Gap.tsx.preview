@@ -1,6 +1,5 @@
 <Box
-  sx={{
-    display: 'grid',
+  sx={{  display: 'grid',
     gap: 1,
     gridTemplateColumns: 'repeat(2, 1fr)',
   }}

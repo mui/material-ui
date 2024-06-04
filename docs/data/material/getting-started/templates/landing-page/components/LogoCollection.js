@@ -39,20 +39,11 @@ export default function LogoCollection() {
         component="p"
         variant="subtitle2"
         align="center"
-        sx={{
-          color: 'text.secondary',
-        }}
+        sx={{ color: 'text.secondary' }}
       >
         Trusted by the best companies
       </Typography>
-      <Grid
-        container
-        sx={{
-          justifyContent: 'center',
-          mt: 0.5,
-          opacity: 0.6,
-        }}
-      >
+      <Grid container sx={{ justifyContent: 'center', mt: 0.5, opacity: 0.6 }}>
         {logos.map((logo, index) => (
           <Grid item key={index}>
             <img

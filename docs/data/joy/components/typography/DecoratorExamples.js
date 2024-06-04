@@ -26,20 +26,11 @@ export default function DecoratorExamples() {
       </Typography>
       <Typography
         startDecorator={
-          <Typography
-            textColor="text.secondary"
-            sx={{
-              fontSize: 'lg',
-            }}
-          >
+          <Typography textColor="text.secondary" sx={{ fontSize: 'lg' }}>
             $
           </Typography>
         }
-        sx={{
-          fontSize: 'xl4',
-          lineHeight: 1,
-          alignItems: 'flex-start',
-        }}
+        sx={{ fontSize: 'xl4', lineHeight: 1, alignItems: 'flex-start' }}
       >
         25
       </Typography>
@@ -54,11 +45,7 @@ export default function DecoratorExamples() {
         variant="soft"
         color="danger"
         startDecorator="🚨"
-        sx={{
-          fontSize: 'sm',
-          '--Typography-gap': '0.5rem',
-          p: 1,
-        }}
+        sx={{ fontSize: 'sm', '--Typography-gap': '0.5rem', p: 1 }}
       >
         Simple alert using only Typography.
       </Typography>

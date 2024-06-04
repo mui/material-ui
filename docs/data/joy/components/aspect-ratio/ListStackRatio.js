@@ -42,13 +42,7 @@ export default function ListStackRatio() {
                   />
                 </AspectRatio>
                 <ListItemContent>
-                  <Typography
-                    sx={{
-                      fontWeight: 'md',
-                    }}
-                  >
-                    {item.title}
-                  </Typography>
+                  <Typography sx={{ fontWeight: 'md' }}>{item.title}</Typography>
                   <Typography level="body-sm">{item.description}</Typography>
                 </ListItemContent>
               </ListItemButton>

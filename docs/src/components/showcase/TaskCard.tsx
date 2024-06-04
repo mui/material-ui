@@ -27,12 +27,7 @@ export default function TaskCard() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
           <ScheduleRounded fontSize="inherit" />
-          <Typography
-            variant="caption"
-            sx={{
-              fontWeight: 'semiBold',
-            }}
-          >
+          <Typography variant="caption" sx={{ fontWeight: 'semiBold' }}>
             March 25th
           </Typography>
         </Box>
@@ -40,11 +35,7 @@ export default function TaskCard() {
           <CodeRounded />
           <Typography
             component="div"
-            sx={{
-              fontSize: 18,
-              fontWeight: 'semiBold',
-              lineHeight: 1.4,
-            }}
+            sx={{ fontSize: 18, fontWeight: 'semiBold', lineHeight: 1.4 }}
           >
             Customize every button and chip instance primary color
           </Typography>
@@ -65,21 +56,13 @@ export default function TaskCard() {
             />
           </Box>
           <div>
-            <Typography
-              sx={{
-                color: 'primary.100',
-                fontWeight: 'semiBold',
-                fontSize: 12,
-              }}
-            >
+            <Typography sx={{ color: 'primary.100', fontWeight: 'semiBold', fontSize: 12 }}>
               Assigned to
             </Typography>
             <Typography
               id="demo-task-card-assignee-name"
               variant="body2"
-              sx={{
-                fontWeight: 'semiBold',
-              }}
+              sx={{ fontWeight: 'semiBold' }}
             >
               Lucas Smith
             </Typography>
@@ -100,14 +83,7 @@ export default function TaskCard() {
               },
             }}
           />
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'primary.50',
-              fontWeight: 700,
-              ml: 2,
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'primary.50', fontWeight: 700, ml: 2 }}>
             60%
           </Typography>
         </Box>

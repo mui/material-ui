@@ -16,19 +16,12 @@ export default function LinkAndTypography() {
             variant="outlined"
             aria-labelledby="heading-demo"
             href="#heading-demo"
-            sx={{
-              fontSize: 'md',
-              borderRadius: 'sm',
-            }}
+            sx={{ fontSize: 'md', borderRadius: 'sm' }}
           >
             <LinkIcon />
           </Link>
         }
-        sx={{
-          fontSize: 'lg',
-          mb: 1,
-          scrollMarginTop: 100,
-        }}
+        sx={{ fontSize: 'lg', mb: 1, scrollMarginTop: 100 }}
       >
         Heading
       </Typography>

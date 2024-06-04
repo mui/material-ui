@@ -66,12 +66,7 @@ function ProductHeroLayout(props) {
           component="img"
           src="/static/themes/onepirate/productHeroArrowDown.png"
           alt="arrow down"
-          sx={{
-            height: '16',
-            width: '12',
-            position: 'absolute',
-            bottom: 32,
-          }}
+          sx={{ height: '16', width: '12', position: 'absolute', bottom: 32 }}
         />
       </Container>
     </ProductHeroLayoutRoot>

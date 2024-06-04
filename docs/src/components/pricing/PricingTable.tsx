@@ -102,22 +102,12 @@ export function PlanPrice(props: PlanPriceProps) {
           <Typography
             variant="h3"
             component="div"
-            sx={{
-              fontWeight: 'bold',
-              color: 'success.600',
-              mt: 4.5,
-            }}
+            sx={{ fontWeight: 'bold', color: 'success.600', mt: 4.5 }}
           >
             $0
           </Typography>
         </Box>
-        <Typography
-          variant="body2"
-          sx={{
-            color: 'text.secondary',
-            textAlign: 'center',
-          }}
-        >
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
           Free forever!
         </Typography>
       </React.Fragment>
@@ -150,44 +140,22 @@ export function PlanPrice(props: PlanPriceProps) {
           <Typography
             variant="h3"
             component="div"
-            sx={{
-              fontWeight: 'bold',
-              color: 'primary.main',
-            }}
+            sx={{ fontWeight: 'bold', color: 'primary.main' }}
           >
             {formatCurrency(mainDisplayValue)}
           </Typography>
           <Box sx={{ width: 5 }} />
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              mt: '3px',
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
             {priceUnit}
           </Typography>
         </Box>
         <Box sx={{ minHeight: planPriceMinHeight }}>
           {(annual || monthlyDisplay) && (
-            <Typography
-              variant="body2"
-              sx={{
-                color: 'text.secondary',
-                textAlign: 'center',
-              }}
-            >
+            <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
               {priceExplanation}
             </Typography>
           )}
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              textAlign: 'center',
-              mb: 3,
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', mb: 3 }}>
             {'No additional fee beyond 10 devs.'}
           </Typography>
         </Box>
@@ -241,47 +209,21 @@ export function PlanPrice(props: PlanPriceProps) {
           {formatCurrency(premiumOriginalValue)}
         </Typography>
         <Box sx={{ width: 10 }} />
-        <Typography
-          variant="h3"
-          component="div"
-          sx={{
-            fontWeight: 'bold',
-            color: 'primary.main',
-          }}
-        >
+        <Typography variant="h3" component="div" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
           {formatCurrency(premiumDisplayedValue)}
         </Typography>
         <Box sx={{ width: 5 }} />
-        <Typography
-          variant="body2"
-          sx={{
-            color: 'text.secondary',
-            mt: '3px',
-          }}
-        >
+        <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
           {priceUnit}
         </Typography>
       </Box>
       <Box sx={{ minHeight: planPriceMinHeight }}>
         {(annual || monthlyDisplay) && (
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              textAlign: 'center',
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
             {priceExplanation}
           </Typography>
         )}
-        <Typography
-          variant="body2"
-          sx={{
-            color: 'text.secondary',
-            textAlign: 'center',
-            mb: 2,
-          }}
-        >
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', mb: 2 }}>
           🐦 Early bird special (25% off).
         </Typography>
       </Box>
@@ -381,11 +323,7 @@ function ColumnHead({
       {metadata && (
         <Typography
           variant="caption"
-          sx={{
-            color: 'text.secondary',
-            fontWeight: 'normal',
-            display: 'block',
-          }}
+          sx={{ color: 'text.secondary', fontWeight: 'normal', display: 'block' }}
         >
           {metadata}
         </Typography>
@@ -764,11 +702,7 @@ const toBeDefined = (
     href="https://forms.gle/19vN87eBvmXPjBVp6"
     target="_blank"
     variant="body2"
-    sx={{
-      '&:hover > svg': { color: 'primary.main', opacity: 1 },
-      fontWeight: 500,
-      pl: '16px',
-    }}
+    sx={{ '&:hover > svg': { color: 'primary.main', opacity: 1 }, fontWeight: 500, pl: '16px' }}
     title="To be determined"
   >
     TBD
@@ -1178,14 +1112,7 @@ function StickyHead({
           gridTemplateColumns: `minmax(160px, 1fr) repeat(3, minmax(240px, 1fr))`,
         }}
       >
-        <Typography
-          variant="body2"
-          sx={{
-            fontWeight: 'bold',
-            px: 2,
-            py: 1,
-          }}
-        >
+        <Typography variant="body2" sx={{ fontWeight: 'bold', px: 2, py: 1 }}>
           Plans
         </Typography>
         {(['community', 'pro', 'premium'] as const).map((plan) => (
@@ -1355,13 +1282,7 @@ export default function PricingTable({
       <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
         <Box sx={gridSx}>
-          <Typography
-            variant="body2"
-            sx={{
-              fontWeight: 'bold',
-              p: 2,
-            }}
-          >
+          <Typography variant="body2" sx={{ fontWeight: 'bold', p: 2 }}>
             Plans
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
@@ -1429,9 +1350,7 @@ export default function PricingTable({
           endIcon={
             <KeyboardArrowRightRounded
               color="primary"
-              sx={{
-                transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
-              }}
+              sx={{ transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
             />
           }
           sx={[
@@ -1580,9 +1499,7 @@ export default function PricingTable({
           endIcon={
             <KeyboardArrowRightRounded
               color="primary"
-              sx={{
-                transform: chartsCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
-              }}
+              sx={{ transform: chartsCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
             />
           }
           sx={[

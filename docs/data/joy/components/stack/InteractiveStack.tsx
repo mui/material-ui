@@ -48,14 +48,7 @@ export default function InteractiveStack() {
         }}
       >
         {[0, 1, 2].map((value) => (
-          <Item
-            key={value}
-            sx={{
-              p: 2,
-              pt: value + 1,
-              pb: value + 1,
-            }}
-          >
+          <Item key={value} sx={{ p: 2, pt: value + 1, pb: value + 1 }}>
             {`Item ${value + 1}`}
           </Item>
         ))}

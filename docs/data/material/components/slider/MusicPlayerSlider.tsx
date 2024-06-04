@@ -103,22 +103,14 @@ export default function MusicPlayerSlider() {
           <Box sx={{ ml: 1.5, minWidth: 0 }}>
             <Typography
               variant="caption"
-              sx={{
-                color: 'text.secondary',
-                fontWeight: 500,
-              }}
+              sx={{ color: 'text.secondary', fontWeight: 500 }}
             >
               Jun Pulse
             </Typography>
             <Typography noWrap>
               <b>คนเก่าเขาทำไว้ดี (Can&apos;t win)</b>
             </Typography>
-            <Typography
-              noWrap
-              sx={{
-                letterSpacing: -0.25,
-              }}
-            >
+            <Typography noWrap sx={{ letterSpacing: -0.25 }}>
               Chilling Sunday &mdash; คนเก่าเขาทำไว้ดี
             </Typography>
           </Box>
@@ -200,11 +192,7 @@ export default function MusicPlayerSlider() {
         <Stack
           spacing={2}
           direction="row"
-          sx={{
-            alignItems: 'center',
-            mb: 1,
-            px: 1,
-          }}
+          sx={{ alignItems: 'center', mb: 1, px: 1 }}
         >
           <VolumeDownRounded htmlColor={lightIconColor} />
           <Slider

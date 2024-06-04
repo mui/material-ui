@@ -142,12 +142,7 @@ export default function PaletteThemeViewer() {
         <thead>
           <tr>
             <th>
-              <Typography
-                textColor="inherit"
-                sx={{
-                  fontSize: 'sm',
-                }}
-              >
+              <Typography textColor="inherit" sx={{ fontSize: 'sm' }}>
                 Token
               </Typography>
             </th>
@@ -155,9 +150,7 @@ export default function PaletteThemeViewer() {
               <Typography
                 startDecorator={<LightMode />}
                 textColor="inherit"
-                sx={{
-                  fontSize: 'sm',
-                }}
+                sx={{ fontSize: 'sm' }}
               >
                 Light
               </Typography>
@@ -166,9 +159,7 @@ export default function PaletteThemeViewer() {
               <Typography
                 startDecorator={<DarkMode />}
                 textColor="inherit"
-                sx={{
-                  fontSize: 'sm',
-                }}
+                sx={{ fontSize: 'sm' }}
               >
                 Dark
               </Typography>
@@ -196,11 +187,7 @@ export default function PaletteThemeViewer() {
                               Translucent color usage: <br />
                               <Typography
                                 component="code"
-                                sx={{
-                                  fontFamily: 'code',
-                                  py: 1,
-                                  display: 'block',
-                                }}
+                                sx={{ fontFamily: 'code', py: 1, display: 'block' }}
                               >
                                 rgba(var(--joy-palette-{token.replace('.', '-')}) /
                                 0.6)

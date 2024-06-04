@@ -16,12 +16,7 @@ export default function ExampleFilterMemberCheckbox() {
   return (
     <Sheet
       variant="outlined"
-      sx={{
-        p: 2,
-        borderRadius: 'sm',
-        width: 360,
-        maxWidth: '100%',
-      }}
+      sx={{ p: 2, borderRadius: 'sm', width: 360, maxWidth: '100%' }}
     >
       <Typography
         id="member"

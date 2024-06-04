@@ -82,12 +82,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
           }}
         >
           <NavbarBreadcrumbs />
-          <Stack
-            direction="row"
-            sx={{
-              gap: 1,
-            }}
-          >
+          <Stack direction="row" sx={{ gap: 1 }}>
             <MenuButton showBadge>
               <NotificationsRoundedIcon />
             </MenuButton>

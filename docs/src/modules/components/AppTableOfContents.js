@@ -281,21 +281,14 @@ export default function AppTableOfContents(props) {
             <Typography
               component="span"
               variant="button"
-              sx={{
-                fontWeight: '500',
-                color: 'text.primary',
-              }}
+              sx={{ fontWeight: '500', color: 'text.primary' }}
             >
               {'🚀 Join the MUI team!'}
             </Typography>
             <Typography
               component="span"
               variant="caption"
-              sx={{
-                fontWeight: 'normal',
-                color: 'text.secondary',
-                mt: 0.5,
-              }}
+              sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
             >
               {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {"We're looking for React Engineers and other amazing roles－come find out more!"}

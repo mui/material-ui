@@ -72,35 +72,19 @@ export default function Features() {
       <Grid container spacing={6}>
         <Grid item xs={12} md={6}>
           <div>
-            <Typography
-              component="h2"
-              variant="h4"
-              sx={{
-                color: 'text.primary',
-              }}
-            >
+            <Typography component="h2" variant="h4" sx={{ color: 'text.primary' }}>
               Product features
             </Typography>
             <Typography
               variant="body1"
-              sx={{
-                color: 'text.secondary',
-                mb: { xs: 2, sm: 4 },
-              }}
+              sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
             >
               Provide a brief overview of the key features of the product. For
               example, you could list the number of features, their types or
               benefits, and add-ons.
             </Typography>
           </div>
-          <Grid
-            container
-            item
-            sx={{
-              gap: 1,
-              display: { xs: 'auto', sm: 'none' },
-            }}
-          >
+          <Grid container item sx={{ gap: 1, display: { xs: 'auto', sm: 'none' } }}>
             {items.map(({ title }, index) => (
               <Chip
                 key={index}
@@ -112,10 +96,7 @@ export default function Features() {
           </Grid>
           <Card
             variant="outlined"
-            sx={{
-              display: { xs: 'auto', sm: 'none' },
-              mt: 4,
-            }}
+            sx={{ display: { xs: 'auto', sm: 'none' }, mt: 4 }}
           >
             <Box
               sx={{
@@ -131,20 +112,11 @@ export default function Features() {
             <Box sx={{ px: 2, pb: 2 }}>
               <Typography
                 gutterBottom
-                sx={{
-                  color: 'text.primary',
-                  fontWeight: 'medium',
-                }}
+                sx={{ color: 'text.primary', fontWeight: 'medium' }}
               >
                 {selectedFeature.title}
               </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: 'text.secondary',
-                  mb: 1.5,
-                }}
-              >
+              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1.5 }}>
                 {selectedFeature.description}
               </Typography>
               <Link
@@ -234,19 +206,13 @@ export default function Features() {
                   <div>
                     <Typography
                       gutterBottom
-                      sx={{
-                        color: 'text.primary',
-                        fontWeight: 'medium',
-                      }}
+                      sx={{ color: 'text.primary', fontWeight: 'medium' }}
                     >
                       {title}
                     </Typography>
                     <Typography
                       variant="body2"
-                      sx={{
-                        color: 'text.secondary',
-                        mb: 1.5,
-                      }}
+                      sx={{ color: 'text.secondary', mb: 1.5 }}
                     >
                       {description}
                     </Typography>

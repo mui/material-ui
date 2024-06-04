@@ -79,13 +79,7 @@ export default function BaseUIHero() {
             A <GradientText>blank canvas</GradientText> for <br />
             total flexibility
           </Typography>
-          <Typography
-            sx={{
-              color: 'text.secondary',
-              mb: 3,
-              maxWidth: 500,
-            }}
-          >
+          <Typography sx={{ color: 'text.secondary', mb: 3, maxWidth: 500 }}>
             Base UI gives you a set of foundational &quot;headless&quot; components that you can
             build with using any styling solution you choose—no need to override any default style
             engine or theme.

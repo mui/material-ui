@@ -144,10 +144,7 @@ export default function XRoadmap() {
               <Typography
                 component="div"
                 variant="body2"
-                sx={{
-                  fontWeight: 'bold',
-                  color: 'text.primary',
-                }}
+                sx={{ fontWeight: 'bold', color: 'text.primary' }}
               >
                 Stable
                 <RoadmapStatusDot color="success.main" />
@@ -171,41 +168,28 @@ export default function XRoadmap() {
               <Typography
                 component="div"
                 variant="body2"
-                sx={{
-                  fontWeight: 'bold',
-                  color: 'text.primary',
-                }}
+                sx={{ fontWeight: 'bold', color: 'text.primary' }}
               >
                 Work in progress
                 <RoadmapStatusDot color="warning.main" />
               </Typography>
               {renderList(
                 <React.Fragment>
-                  <Box
-                    sx={{
-                      lineHeight: 0,
-                    }}
-                  >
+                  <Box sx={{ lineHeight: 0 }}>
                     <PivotTableChartRoundedIcon sx={{ fontSize: 16 }} />
                   </Box>
                   Data Grid
                   {bullet}
                   <Typography
                     variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      fontWeight: 'medium',
-                    }}
+                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
                   >
                     Pivoting
                   </Typography>
                   {bullet}
                   <Typography
                     variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      fontWeight: 'medium',
-                    }}
+                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
                   >
                     Charts integration
                   </Typography>
@@ -218,31 +202,21 @@ export default function XRoadmap() {
               )}
               {renderList(
                 <React.Fragment>
-                  <Box
-                    sx={{
-                      lineHeight: 0,
-                    }}
-                  >
+                  <Box sx={{ lineHeight: 0 }}>
                     <AccountTreeRounded sx={{ fontSize: 16 }} />
                   </Box>
                   Tree View
                   {bullet}
                   <Typography
                     variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      fontWeight: 'medium',
-                    }}
+                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
                   >
                     Virtualization
                   </Typography>
                   {bullet}
                   <Typography
                     variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      fontWeight: 'medium',
-                    }}
+                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
                   >
                     Drag and Drop
                   </Typography>
@@ -256,10 +230,7 @@ export default function XRoadmap() {
               <Typography
                 component="div"
                 variant="body2"
-                sx={{
-                  fontWeight: 'bold',
-                  color: 'text.primary',
-                }}
+                sx={{ fontWeight: 'bold', color: 'text.primary' }}
               >
                 Future components
                 <RoadmapStatusDot color="primaryDark.400" />

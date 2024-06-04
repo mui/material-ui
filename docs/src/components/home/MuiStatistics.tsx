@@ -52,10 +52,7 @@ export default function MuiStatistics() {
           </Typography>
           <Typography
             variant="body2"
-            sx={{
-              color: 'text.secondary',
-              textAlign: { xs: 'left', sm: 'center' },
-            }}
+            sx={{ color: 'text.secondary', textAlign: { xs: 'left', sm: 'center' } }}
           >
             {item.metadata}
           </Typography>

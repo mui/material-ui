@@ -234,13 +234,7 @@ export default function Notifications() {
                           <Typography gutterBottom>
                             <b>{message.title}</b>
                           </Typography>
-                          <Typography
-                            gutterBottom
-                            variant="body2"
-                            sx={{
-                              color: 'text.secondary',
-                            }}
-                          >
+                          <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
                             <span
                               id="notification-message"
                               // eslint-disable-next-line react/no-danger
@@ -248,12 +242,7 @@ export default function Notifications() {
                             />
                           </Typography>
                           {message.date && (
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                color: 'text.secondary',
-                              }}
-                            >
+                            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                               {new Date(message.date).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',

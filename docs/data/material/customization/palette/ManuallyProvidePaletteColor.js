@@ -25,42 +25,20 @@ const theme = createTheme({
 
 function ColorShowcase({ color }) {
   return (
-    <Stack
-      sx={{
-        gap: 2,
-        alignItems: 'center',
-      }}
-    >
+    <Stack sx={{ gap: 2, alignItems: 'center' }}>
       <Button variant="contained" color={color}>
         {capitalize(color)}
       </Button>
-      <Stack
-        direction="row"
-        sx={{
-          gap: 1,
-        }}
-      >
-        <Stack
-          sx={{
-            alignItems: 'center',
-          }}
-        >
+      <Stack direction="row" sx={{ gap: 1 }}>
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">light</Typography>
           <Box sx={{ bgcolor: `${color}.light`, width: 40, height: 20 }} />
         </Stack>
-        <Stack
-          sx={{
-            alignItems: 'center',
-          }}
-        >
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">main</Typography>
           <Box sx={{ bgcolor: `${color}.main`, width: 40, height: 20 }} />
         </Stack>
-        <Stack
-          sx={{
-            alignItems: 'center',
-          }}
-        >
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">dark</Typography>
           <Box sx={{ bgcolor: `${color}.dark`, width: 40, height: 20 }} />
         </Stack>

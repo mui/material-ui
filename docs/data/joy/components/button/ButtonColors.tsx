@@ -10,13 +10,7 @@ import { VariantProp } from '@mui/joy/styles';
 export default function ButtonColors() {
   const [variant, setVariant] = React.useState<VariantProp>('solid');
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 3,
-      }}
-    >
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
       <Box
         sx={{
           display: 'grid',
@@ -52,10 +46,7 @@ export default function ButtonColors() {
           level="body-sm"
           id="variant-label"
           textColor="text.primary"
-          sx={{
-            fontWeight: 'xl',
-            mb: 1,
-          }}
+          sx={{ fontWeight: 'xl', mb: 1 }}
         >
           Variant:
         </Typography>

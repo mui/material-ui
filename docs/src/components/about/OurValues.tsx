@@ -130,12 +130,7 @@ export default function OurValues() {
                 >
                   {title}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'text.secondary',
-                  }}
-                >
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   {description}
                 </Typography>
               </Box>

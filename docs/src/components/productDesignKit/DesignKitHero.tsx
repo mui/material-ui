@@ -44,13 +44,7 @@ export default function TemplateHero() {
             <br /> in your favorite
             <br /> <GradientText>design tool</GradientText>
           </Typography>
-          <Typography
-            sx={{
-              color: 'text.secondary',
-              mb: 3,
-              maxWidth: 450,
-            }}
-          >
+          <Typography sx={{ color: 'text.secondary', mb: 3, maxWidth: 450 }}>
             Pick your favorite design tool to enjoy and use Material UI components. Boost
             consistency and facilitate communication when working with developers.
           </Typography>

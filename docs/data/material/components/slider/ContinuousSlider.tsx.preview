@@ -1,8 +1,7 @@
 <Stack
   spacing={2}
   direction="row"
-  sx={{
-    alignItems: 'center',
+  sx={{  alignItems: 'center',
     mb: 1,
   }}
 >

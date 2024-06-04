@@ -137,19 +137,10 @@ export default function ChartUserByCountry() {
           <Stack
             key={index}
             direction="row"
-            sx={{
-              alignItems: 'center',
-              gap: 2,
-              pb: 2,
-            }}
+            sx={{ alignItems: 'center', gap: 2, pb: 2 }}
           >
             {country.flag}
-            <Stack
-              sx={{
-                gap: 1,
-                flexGrow: 1,
-              }}
-            >
+            <Stack sx={{ gap: 1, flexGrow: 1 }}>
               <Stack
                 direction="row"
                 sx={{
@@ -158,20 +149,10 @@ export default function ChartUserByCountry() {
                   gap: 2,
                 }}
               >
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontWeight: '500',
-                  }}
-                >
+                <Typography variant="body2" sx={{ fontWeight: '500' }}>
                   {country.name}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'text.secondary',
-                  }}
-                >
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   {country.value}%
                 </Typography>
               </Stack>

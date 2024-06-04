@@ -1,7 +1,6 @@
 <ThemeProvider theme={customTheme}>
   <Box
-    sx={{
-      size: 10,
+    sx={{    size: 10,
       border: 1,
     }}
   />

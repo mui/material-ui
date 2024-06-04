@@ -70,12 +70,7 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
           role="region"
           aria-labelledby={`accordion-${slot}`}
           id={`section-${slot}`}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            flexWrap: 'wrap',
-            gap: 1,
-          }}
+          sx={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', gap: 1 }}
         >
           {data.map((item) => renderField(item))}
         </Box>
@@ -120,14 +115,7 @@ export default function JoyVariablesDemo(props: {
           },
         })}
       >
-        <Box
-          sx={{
-            flexGrow: 1,
-            m: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
+        <Box sx={{ flexGrow: 1, m: 'auto', display: 'flex', alignItems: 'center' }}>
           {props.renderDemo(sx)}
         </Box>
         <BrandingProvider mode="dark">
@@ -164,12 +152,7 @@ export default function JoyVariablesDemo(props: {
               alignItems: 'center',
             }}
           >
-            <Typography
-              sx={{
-                fontWeight: 'lg',
-                fontFamily: 'General Sans',
-              }}
-            >
+            <Typography sx={{ fontWeight: 'lg', fontFamily: 'General Sans' }}>
               CSS variables
             </Typography>
             <IconButton
@@ -187,14 +170,7 @@ export default function JoyVariablesDemo(props: {
             </IconButton>
           </Box>
           <Divider sx={{ opacity: 0.5 }} />
-          <Box
-            sx={{
-              p: 3,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 1,
-            }}
-          >
+          <Box sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 1 }}>
             {data.map((dataItem) => {
               function renderField(item: DataItem) {
                 const resolvedValue = sx[item.var] || item.defaultValue;
@@ -216,12 +192,7 @@ export default function JoyVariablesDemo(props: {
                       endDecorator={
                         <React.Fragment>
                           {typeof resolvedValue === 'string' && (
-                            <Typography
-                              level="body-xs"
-                              sx={{
-                                mr: 0.5,
-                              }}
-                            >
+                            <Typography level="body-xs" sx={{ mr: 0.5 }}>
                               px
                             </Typography>
                           )}

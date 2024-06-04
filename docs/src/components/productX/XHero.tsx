@@ -116,13 +116,7 @@ export default function XHero() {
             <GradientText>advanced</GradientText>
             <br /> components
           </Typography>
-          <Typography
-            sx={{
-              color: 'text.secondary',
-              mb: 3,
-              maxWidth: 500,
-            }}
-          >
+          <Typography sx={{ color: 'text.secondary', mb: 3, maxWidth: 500 }}>
             Build complex and data-rich applications using a growing list of advanced React
             components, like the Data Grid, Date and Time Pickers, Charts, and more!
           </Typography>
@@ -157,11 +151,7 @@ export default function XHero() {
           >
             <Typography
               variant="body2"
-              sx={{
-                fontWeight: 'semiBold',
-                textAlign: 'center',
-                py: 1.5,
-              }}
+              sx={{ fontWeight: 'semiBold', textAlign: 'center', py: 1.5 }}
             >
               Trades, March 2023
             </Typography>
@@ -295,13 +285,7 @@ export default function XHero() {
                 }),
               })}
             >
-              <Typography
-                variant="body2"
-                sx={{
-                  fontWeight: 'semiBold',
-                  p: 2,
-                }}
-              >
+              <Typography variant="body2" sx={{ fontWeight: 'semiBold', p: 2 }}>
                 Cool UI project
               </Typography>
               <Divider />

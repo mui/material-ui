@@ -409,12 +409,7 @@ export default function TableSortAndSelection() {
                     <Option value={25}>25</Option>
                   </Select>
                 </FormControl>
-                <Typography
-                  sx={{
-                    textAlign: 'center',
-                    minWidth: 80,
-                  }}
-                >
+                <Typography sx={{ textAlign: 'center', minWidth: 80 }}>
                   {labelDisplayedRows({
                     from: rows.length === 0 ? 0 : page * rowsPerPage + 1,
                     to: getLabelDisplayedRowsTo(),

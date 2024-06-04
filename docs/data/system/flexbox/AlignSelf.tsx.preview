@@ -1,6 +1,5 @@
 <Box
-  sx={{
-    display: 'flex',
+  sx={{  display: 'flex',
     alignItems: 'flex-start',
     p: 1,
     m: 1,

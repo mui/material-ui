@@ -449,13 +449,7 @@ export default function Showcase() {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
-        <Typography
-          variant="body2"
-          sx={{
-            color: 'text.secondary',
-            fontWeight: 'semiBold',
-          }}
-        >
+        <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 'semiBold' }}>
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'Sort by:'}
         </Typography>
@@ -538,13 +532,7 @@ export default function Showcase() {
                         </IconButton>
                       ) : null}
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: 'text.secondary',
-                        flexGrow: 1,
-                      }}
-                    >
+                    <Typography variant="body2" sx={{ color: 'text.secondary', flexGrow: 1 }}>
                       {app.description}
                     </Typography>
                     <Typography

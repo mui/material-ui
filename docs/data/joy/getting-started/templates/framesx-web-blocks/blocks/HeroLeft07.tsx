@@ -19,10 +19,7 @@ export default function HeroLeft07() {
       </Typography>
       <Typography
         textColor="text.secondary"
-        sx={{
-          fontSize: 'lg',
-          lineHeight: 'lg',
-        }}
+        sx={{ fontSize: 'lg', lineHeight: 'lg' }}
       >
         A descriptive secondary text placeholder. Use it to explain your business
         offer better.
@@ -35,13 +32,7 @@ export default function HeroLeft07() {
       >
         <AutoAwesomeIcon color="success" fontSize="xl3" />
         <div>
-          <Typography
-            sx={{
-              fontSize: 'xl',
-              fontWeight: 'lg',
-              mb: 1,
-            }}
-          >
+          <Typography sx={{ fontSize: 'xl', fontWeight: 'lg', mb: 1 }}>
             The new version is out.
           </Typography>
           <Typography level="body-sm">

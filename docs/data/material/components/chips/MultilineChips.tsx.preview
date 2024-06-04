@@ -1,6 +1,5 @@
 <Chip
-  sx={{
-    height: 'auto',
+  sx={{  height: 'auto',
     '& .MuiChip-label': {
       display: 'block',
       whiteSpace: 'normal',

@@ -112,21 +112,10 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
       >
         <Box sx={{ px: 2 }}>{icon}</Box>
         <Box sx={{ flexGrow: 1 }}>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.primary',
-              fontWeight: 'bold',
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
             {name}
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-            }}
-          >
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {description}
           </Typography>
         </Box>
