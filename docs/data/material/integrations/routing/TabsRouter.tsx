@@ -62,7 +62,7 @@ function CurrentRoute() {
 
   return (
     <Typography variant="body2" sx={{ color: 'text.secondary', pb: 2 }}>
-      Current route:{location.pathname}
+      Current route: {location.pathname}
     </Typography>
   );
 }
