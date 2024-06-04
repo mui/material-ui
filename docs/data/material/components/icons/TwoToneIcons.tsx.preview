@@ -1,5 +1,6 @@
 <Icon
-[isDarkMode && { filter: 'invert(1)' }]}
-ClassName="material-icons-two-tone"
-ircle
+  sx={[isDarkMode && { filter: 'invert(1)' }]}
+  baseClassName="material-icons-two-tone"
+>
+  add_circle
 </Icon>
