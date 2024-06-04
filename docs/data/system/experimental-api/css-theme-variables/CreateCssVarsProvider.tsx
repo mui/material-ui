@@ -103,7 +103,7 @@ const WrapperDiv = styled('div')<{ theme?: Theme }>(({ theme }) => ({
   backgroundColor: '#fff',
   '[data-system-demo-color-scheme="dark"] &': {
     backgroundColor: '#111',
-  }
+  },
 }));
 
 function App() {
