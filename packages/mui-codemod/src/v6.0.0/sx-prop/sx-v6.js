@@ -219,8 +219,10 @@ export default function sxV6(file, api, options) {
                 });
               }
             } else if (
-              returnExpression.type === 'CallExpression' &&
-              getObjectKey(returnExpression.callee)?.name === 'theme'
+              (returnExpression.type === 'CallExpression' &&
+                getObjectKey(returnExpression.callee)?.name === 'theme') ||
+              (returnExpression.type === 'MemberExpression' &&
+                getObjectKey(returnExpression)?.name === 'theme')
             ) {
               data.replaceValue?.(returnExpression);
               rootThemeCallback(data);

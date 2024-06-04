@@ -87,3 +87,14 @@ function FacebookCircularProgress(props) {
     </div>
   )}
 />;
+
+<Box
+  sx={theme => ({
+    position: 'relative',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    p: 4
+  })}
+></Box>;
