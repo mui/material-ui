@@ -29,9 +29,11 @@ export default function InteractiveStack() {
   const jsx = `
 <Stack
   direction="${direction}"
-  justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
   spacing={${spacing}}
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
@@ -41,8 +43,8 @@ export default function InteractiveStack() {
         direction={direction}
         spacing={spacing}
         sx={{
-          justifyContent: justifyContent,
-          alignItems: alignItems,
+          justifyContent,
+          alignItems,
           minHeight: 200,
           pb: 3,
         }}

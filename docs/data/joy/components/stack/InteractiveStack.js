@@ -30,8 +30,10 @@ export default function InteractiveStack() {
 <Stack
   direction="${direction}"
   justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
-  spacing={${spacing}}
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
@@ -40,12 +42,7 @@ export default function InteractiveStack() {
       <Stack
         direction={direction}
         spacing={spacing}
-        sx={{
-          justifyContent: justifyContent,
-          alignItems: alignItems,
-          minHeight: 200,
-          pb: 3,
-        }}
+        sx={{ justifyContent, alignItems, minHeight: 200, pb: 3 }}
       >
         {[0, 1, 2].map((value) => (
           <Item key={value} sx={{ p: 2, pt: value + 1, pb: value + 1 }}>

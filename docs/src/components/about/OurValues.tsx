@@ -92,8 +92,8 @@ export default function OurValues() {
                 <Box
                   sx={[
                     {
-                      width: width,
-                      height: height,
+                      width,
+                      height,
                     },
                     (theme) => ({
                       background: `${lightIcon}`,

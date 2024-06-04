@@ -8,13 +8,13 @@ function getSurveyMessage() {
   return (
     <React.Fragment>
       {`🚀 Influence MUI's 2024 roadmap! Participate in the latest`}
+      &nbsp;
       <Link
         href="https://tally.so/r/3Ex4PN?source=website"
         target="_blank"
         underline="always"
         sx={{
           color: 'inherit',
-
           '&:hover': {
             opacity: 0.9,
           },
@@ -29,7 +29,8 @@ function getSurveyMessage() {
 function getDefaultHiringMessage() {
   return (
     <React.Fragment>
-      🚀  We're hiring a Designer, Full-stack Engineer, React Community Engineer, and more!
+      🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Community Engineer, and
+      more!&nbsp;&#160;
       <Link
         // Fix me!
         href={ROUTES.careers}
@@ -37,7 +38,6 @@ function getDefaultHiringMessage() {
         underline="always"
         sx={{
           color: 'inherit',
-
           '&:hover': {
             opacity: 0.9,
           },
