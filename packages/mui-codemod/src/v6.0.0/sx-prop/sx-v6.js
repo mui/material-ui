@@ -165,10 +165,24 @@ export default function sxV6(file, api, options) {
         if (data.node.type === 'ArrowFunctionExpression') {
           const returnExpression = getReturnExpression(data.node);
           if (returnExpression) {
-            recurseObjectExpression({
-              ...data,
-              node: returnExpression,
-            });
+            if (
+              returnExpression.type === 'MemberExpression' &&
+              returnExpression.property?.type === 'ConditionalExpression'
+            ) {
+              recurseObjectExpression({
+                ...data,
+                node: j.conditionalExpression(
+                  returnExpression.property.test,
+                  { ...returnExpression, property: returnExpression.property.consequent },
+                  { ...returnExpression, property: returnExpression.property.alternate },
+                ),
+              });
+            } else {
+              recurseObjectExpression({
+                ...data,
+                node: returnExpression,
+              });
+            }
           }
         }
         if (data.node.type === 'ObjectExpression') {
