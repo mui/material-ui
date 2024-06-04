@@ -5,7 +5,8 @@
 <Checkbox
   {...label}
   defaultChecked
-  sx={{  color: pink[800],
+  sx={{
+    color: pink[800],
     '&.Mui-checked': {
       color: pink[600],
     },

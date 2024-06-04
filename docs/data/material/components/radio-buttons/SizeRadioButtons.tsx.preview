@@ -2,7 +2,8 @@
 <Radio {...controlProps('b')} />
 <Radio
   {...controlProps('c')}
-  sx={{  '& .MuiSvgIcon-root': {
+  sx={{
+    '& .MuiSvgIcon-root': {
       fontSize: 28,
     },
   }}

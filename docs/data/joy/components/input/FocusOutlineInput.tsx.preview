@@ -1,6 +1,7 @@
 <Input
   placeholder="Type in here…"
-  sx={{  '&::before': {
+  sx={{
+    '&::before': {
       display: 'none',
     },
     '&:focus-within': {

@@ -1,6 +1,7 @@
 <Tabs aria-label="Scrollable tabs" defaultValue={0} sx={{ width: 400 }}>
   <TabList
-    sx={{    overflow: 'auto',
+    sx={{
+      overflow: 'auto',
       scrollSnapType: 'x mandatory',
       '&::-webkit-scrollbar': { display: 'none' },
     }}
