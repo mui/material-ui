@@ -5,15 +5,16 @@ const options = ['Option 1', 'Option 2'];
 
 export default function CustomInputAutocomplete() {
   return (
-    (<label>Value:{' '}
+    <label>
+      Value:{' '}
       <Autocomplete
-        sx={theme => ({
+        sx={(theme) => ({
           display: 'inline-block',
           '& input': {
             width: 200,
             bgcolor: 'background.paper',
             color: theme.palette.getContrastText(theme.palette.background.paper),
-          }
+          },
         })}
         id="custom-input-demo"
         options={options}
@@ -23,6 +24,6 @@ export default function CustomInputAutocomplete() {
           </div>
         )}
       />
-    </label>)
+    </label>
   );
 }

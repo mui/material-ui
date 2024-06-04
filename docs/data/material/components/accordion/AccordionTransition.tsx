@@ -14,29 +14,36 @@ export default function AccordionTransition() {
   };
 
   return (
-    (<div>
+    <div>
       <Accordion
         expanded={expanded}
         onChange={handleExpansion}
         slots={{ transition: Fade as AccordionSlots['transition'] }}
         slotProps={{ transition: { timeout: 400 } }}
-        sx={[expanded ? {
-          '& .MuiAccordion-region': {
-            height: 'auto'
-          }
-        } : {
-          '& .MuiAccordion-region': {
-            height: 0
-          }
-        }, expanded ? {
-          '& .MuiAccordionDetails-root': {
-            display: 'block'
-          }
-        } : {
-          '& .MuiAccordionDetails-root': {
-            display: 'none'
-          }
-        }]}
+        sx={[
+          expanded
+            ? {
+                '& .MuiAccordion-region': {
+                  height: 'auto',
+                },
+              }
+            : {
+                '& .MuiAccordion-region': {
+                  height: 0,
+                },
+              },
+          expanded
+            ? {
+                '& .MuiAccordionDetails-root': {
+                  display: 'block',
+                },
+              }
+            : {
+                '& .MuiAccordionDetails-root': {
+                  display: 'none',
+                },
+              },
+        ]}
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -67,6 +74,6 @@ export default function AccordionTransition() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-    </div>)
+    </div>
   );
 }

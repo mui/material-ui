@@ -90,12 +90,15 @@ function ChipsPlayground() {
 `;
 
   return (
-    (<Grid container sx={{ flexGrow: 1 }}>
+    <Grid container sx={{ flexGrow: 1 }}>
       <Grid item xs={12}>
         <Grid container justifyContent="center" alignItems="center">
-          <Grid item sx={theme => ({
-            height: theme.spacing(10)
-          })}>
+          <Grid
+            item
+            sx={(theme) => ({
+              height: theme.spacing(10),
+            })}
+          >
             <Chip
               label="Chip Component"
               color={color}
@@ -257,7 +260,7 @@ function ChipsPlayground() {
       <Grid item xs={12}>
         <HighlightedCode code={jsx} language="jsx" />
       </Grid>
-    </Grid>)
+    </Grid>
   );
 }
 export default ChipsPlayground;

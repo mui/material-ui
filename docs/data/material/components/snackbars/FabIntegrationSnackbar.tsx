@@ -13,7 +13,7 @@ import Snackbar from '@mui/material/Snackbar';
 
 export default function FabIntegrationSnackbar() {
   return (
-    (<React.Fragment>
+    <React.Fragment>
       <CssBaseline />
       <GlobalStyles
         styles={(theme) => ({
@@ -38,10 +38,10 @@ export default function FabIntegrationSnackbar() {
         </AppBar>
         <Fab
           color="secondary"
-          sx={theme => ({
+          sx={(theme) => ({
             position: 'absolute',
             bottom: theme.spacing(2),
-            right: theme.spacing(2)
+            right: theme.spacing(2),
           })}
         >
           <AddIcon />
@@ -58,6 +58,6 @@ export default function FabIntegrationSnackbar() {
           sx={{ bottom: { xs: 90, sm: 0 } }}
         />
       </div>
-    </React.Fragment>)
+    </React.Fragment>
   );
 }

@@ -25,7 +25,7 @@ export default function InteractiveStack() {
 `;
 
   return (
-    (<Stack sx={{ flexGrow: 1 }}>
+    <Stack sx={{ flexGrow: 1 }}>
       <Stack
         direction={direction}
         justifyContent={justifyContent}
@@ -36,16 +36,16 @@ export default function InteractiveStack() {
         {[0, 1, 2].map((value) => (
           <Paper
             key={value}
-            sx={theme => ({
+            sx={(theme) => ({
               p: 2,
               pt: value + 1,
               pb: value + 1,
               color: 'text.secondary',
               typography: 'body2',
               backgroundColor: '#fff',
-              ...theme.applyStyles("dark", {
-                backgroundColor: '#1A2027'
-              })
+              ...theme.applyStyles('dark', {
+                backgroundColor: '#1A2027',
+              }),
             })}
           >
             {`Item ${value + 1}`}
@@ -196,6 +196,6 @@ export default function InteractiveStack() {
         </Grid>
       </Paper>
       <HighlightedCode code={jsx} language="jsx" />
-    </Stack>)
+    </Stack>
   );
 }

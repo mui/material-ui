@@ -11,10 +11,11 @@ export default function TwoToneIcons() {
   const isDarkMode = useIsDarkMode();
 
   return (
-    (<Icon
+    <Icon
       sx={[isDarkMode && { filter: 'invert(1)' }]}
       baseClassName="material-icons-two-tone"
-    >add_circle
-          </Icon>)
+    >
+      add_circle
+    </Icon>
   );
 }

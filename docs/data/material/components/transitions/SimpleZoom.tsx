@@ -11,10 +11,10 @@ const icon = (
       <Box
         component="polygon"
         points="0,100 50,00, 100,100"
-        sx={theme => ({
+        sx={(theme) => ({
           fill: theme.palette.common.white,
           stroke: theme.palette.divider,
-          strokeWidth: 1
+          strokeWidth: 1,
         })}
       />
     </svg>

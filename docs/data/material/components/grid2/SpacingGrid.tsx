@@ -21,7 +21,7 @@ export default function SpacingGrid() {
 `;
 
   return (
-    (<Box
+    <Box
       sx={{
         flexGrow: 1,
         display: 'flex',
@@ -35,13 +35,13 @@ export default function SpacingGrid() {
         {[0, 1, 2].map((value) => (
           <Grid key={value}>
             <Paper
-              sx={theme => ({
+              sx={(theme) => ({
                 height: 140,
                 width: 100,
                 backgroundColor: '#fff',
-                ...theme.applyStyles("dark", {
-                  backgroundColor: '#1A2027'
-                })
+                ...theme.applyStyles('dark', {
+                  backgroundColor: '#1A2027',
+                }),
               })}
             />
           </Grid>
@@ -69,6 +69,6 @@ export default function SpacingGrid() {
         </FormControl>
       </Paper>
       <HighlightedCode code={jsx} language="jsx" />
-    </Box>)
+    </Box>
   );
 }

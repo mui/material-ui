@@ -103,7 +103,7 @@ export default function MiniDrawer() {
   };
 
   return (
-    (<Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -112,9 +112,12 @@ export default function MiniDrawer() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={[{
-              marginRight: 5
-            }, open && { display: 'none' }]}
+            sx={[
+              {
+                marginRight: 5,
+              },
+              open && { display: 'none' },
+            ]}
           >
             <MenuIcon />
           </IconButton>
@@ -134,32 +137,49 @@ export default function MiniDrawer() {
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
-                sx={[{
-                  minHeight: 48,
-                  px: 2.5
-                }, open ? {
-                  justifyContent: 'initial'
-                } : {
-                  justifyContent: 'center'
-                }]}
+                sx={[
+                  {
+                    minHeight: 48,
+                    px: 2.5,
+                  },
+                  open
+                    ? {
+                        justifyContent: 'initial',
+                      }
+                    : {
+                        justifyContent: 'center',
+                      },
+                ]}
               >
                 <ListItemIcon
-                  sx={[{
-                    minWidth: 0,
-                    justifyContent: 'center'
-                  }, open ? {
-                    mr: 3
-                  } : {
-                    mr: 'auto'
-                  }]}
+                  sx={[
+                    {
+                      minWidth: 0,
+                      justifyContent: 'center',
+                    },
+                    open
+                      ? {
+                          mr: 3,
+                        }
+                      : {
+                          mr: 'auto',
+                        },
+                  ]}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={[open ? {
-                  opacity: 1
-                } : {
-                  opacity: 0
-                }]} />
+                <ListItemText
+                  primary={text}
+                  sx={[
+                    open
+                      ? {
+                          opacity: 1,
+                        }
+                      : {
+                          opacity: 0,
+                        },
+                  ]}
+                />
               </ListItemButton>
             </ListItem>
           ))}
@@ -169,32 +189,49 @@ export default function MiniDrawer() {
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
-                sx={[{
-                  minHeight: 48,
-                  px: 2.5
-                }, open ? {
-                  justifyContent: 'initial'
-                } : {
-                  justifyContent: 'center'
-                }]}
+                sx={[
+                  {
+                    minHeight: 48,
+                    px: 2.5,
+                  },
+                  open
+                    ? {
+                        justifyContent: 'initial',
+                      }
+                    : {
+                        justifyContent: 'center',
+                      },
+                ]}
               >
                 <ListItemIcon
-                  sx={[{
-                    minWidth: 0,
-                    justifyContent: 'center'
-                  }, open ? {
-                    mr: 3
-                  } : {
-                    mr: 'auto'
-                  }]}
+                  sx={[
+                    {
+                      minWidth: 0,
+                      justifyContent: 'center',
+                    },
+                    open
+                      ? {
+                          mr: 3,
+                        }
+                      : {
+                          mr: 'auto',
+                        },
+                  ]}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={[open ? {
-                  opacity: 1
-                } : {
-                  opacity: 0
-                }]} />
+                <ListItemText
+                  primary={text}
+                  sx={[
+                    open
+                      ? {
+                          opacity: 1,
+                        }
+                      : {
+                          opacity: 0,
+                        },
+                  ]}
+                />
               </ListItemButton>
             </ListItem>
           ))}
@@ -230,6 +267,6 @@ export default function MiniDrawer() {
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Box>
-    </Box>)
+    </Box>
   );
 }

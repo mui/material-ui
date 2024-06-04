@@ -14,7 +14,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function OverflowGrid() {
   return (
-    (<Box
+    <Box
       sx={(theme) => ({
         display: 'flex',
         flexDirection: 'column',
@@ -28,9 +28,9 @@ export default function OverflowGrid() {
             border: '2px solid',
             borderColor: '#E7EBF0',
             backgroundColor: 'rgba(0 0 0 / 0.5)',
-            ...theme.applyStyles("dark", {
-              borderColor: ''
-            })
+            ...theme.applyStyles('dark', {
+              borderColor: '',
+            }),
           },
         },
       })}
@@ -49,6 +49,6 @@ export default function OverflowGrid() {
           </Grid>
         </Grid>
       </div>
-    </Box>)
+    </Box>
   );
 }

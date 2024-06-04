@@ -4,15 +4,15 @@ import TextField from '@mui/material/TextField';
 
 function RedBar() {
   return (
-    (<Box
-      sx={theme => ({
+    <Box
+      sx={(theme) => ({
         height: 20,
         backgroundColor: 'rgb(255 132 132 / 25%)',
-        ...theme.applyStyles("light", {
-          backgroundColor: 'rgba(255, 0, 0, 0.1)'
-        })
+        ...theme.applyStyles('light', {
+          backgroundColor: 'rgba(255, 0, 0, 0.1)',
+        }),
       })}
-    />)
+    />
   );
 }
 

@@ -134,7 +134,7 @@ export default function GitHubLabel() {
   const id = open ? 'github-label' : undefined;
 
   return (
-    (<React.Fragment>
+    <React.Fragment>
       <Box sx={{ width: 221, fontSize: 13 }}>
         <Button disableRipple aria-describedby={id} onClick={handleClick}>
           <span>Labels</span>
@@ -164,15 +164,13 @@ export default function GitHubLabel() {
         <ClickAwayListener onClickAway={handleClose}>
           <div>
             <Box
-              sx={theme => ({
-                borderBottom: `1px solid ${
-                  '#30363d'
-                }`,
+              sx={(theme) => ({
+                borderBottom: `1px solid ${'#30363d'}`,
                 padding: '8px 10px',
                 fontWeight: 600,
-                ...theme.applyStyles("light", {
-                  borderBottom: `1px solid ${'#eaecef'}`
-                })
+                ...theme.applyStyles('light', {
+                  borderBottom: `1px solid ${'#eaecef'}`,
+                }),
               })}
             >
               Apply labels to this pull request
@@ -225,15 +223,14 @@ export default function GitHubLabel() {
                     style={{ backgroundColor: option.color }}
                   />
                   <Box
-                    sx={theme => ({
+                    sx={(theme) => ({
                       flexGrow: 1,
                       '& span': {
-                        color:
-                          '#8b949e',
-                        ...theme.applyStyles("light", {
-                          color: '#586069'
-                        })
-                      }
+                        color: '#8b949e',
+                        ...theme.applyStyles('light', {
+                          color: '#586069',
+                        }),
+                      },
                     })}
                   >
                     {option.name}
@@ -273,7 +270,7 @@ export default function GitHubLabel() {
           </div>
         </ClickAwayListener>
       </StyledPopper>
-    </React.Fragment>)
+    </React.Fragment>
   );
 }
 
