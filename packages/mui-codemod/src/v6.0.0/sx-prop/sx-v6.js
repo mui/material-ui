@@ -436,7 +436,12 @@ export default function sxV6(file, api, options) {
             }
           }
           if (
-            data.node.expressions?.some((expression) => getObjectKey(expression)?.name === 'theme')
+            data.node.expressions?.some(
+              (expression) =>
+                getObjectKey(expression)?.name === 'theme' ||
+                (expression.type === 'CallExpression' &&
+                  getObjectKey(expression.callee)?.name === 'theme'),
+            )
           ) {
             if (data.root.type === 'ObjectExpression') {
               data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
