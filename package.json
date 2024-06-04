@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0-alpha.9",
+  "version": "6.0.0-alpha.10",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -92,7 +92,7 @@
     "@googleapis/sheets": "^7.0.0",
     "@netlify/functions": "^2.7.0",
     "@slack/bolt": "^3.18.0",
-    "execa": "^8.0.1",
+    "execa": "^9.1.0",
     "google-auth-library": "^9.10.0"
   },
   "devDependencies": {
@@ -154,7 +154,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-material-ui": "workspace:^",
     "eslint-plugin-mocha": "^10.4.3",
-    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
@@ -175,7 +175,7 @@
     "nyc": "^15.1.0",
     "piscina": "^4.5.1",
     "postcss-styled-syntax": "^0.6.4",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.0",
     "pretty-quick": "^4.0.0",
     "process": "^0.11.10",
     "rimraf": "^5.0.7",

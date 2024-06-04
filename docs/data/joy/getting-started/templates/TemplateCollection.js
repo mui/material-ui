@@ -26,11 +26,11 @@ import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
 const authors = {
   MUI: {
     name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+    link: 'https://x.com/MUI_hq',
   },
   SteveEberger: {
     name: 'Steve Ernstberger',
-    link: 'https://twitter.com/SteveEberger',
+    link: 'https://x.com/SteveEberger',
   },
 };
 

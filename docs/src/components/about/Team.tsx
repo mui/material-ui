@@ -157,7 +157,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
             <IconButton
               aria-label={`${props.name} X profile`}
               component="a"
-              href={`https://twitter.com/${props.twitter}`}
+              href={`https://x.com/${props.twitter}`}
               target="_blank"
               rel="noopener"
             >

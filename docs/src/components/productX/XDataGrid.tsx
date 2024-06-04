@@ -194,25 +194,11 @@ export default function XDataGrid() {
             sx={{
               borderBottomLeftRadius: 10,
               borderBottomRightRadius: 10,
-              mt: -1,
-              pb: 1,
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-              '&& pre': {
-                bgcolor: 'transparent',
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
-              },
-              overflow: 'hidden',
             }}
           >
             <Box sx={{ position: 'relative' }}>
-              <Box sx={{ position: 'relative', zIndex: 1 }}>
-                <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
-              </Box>
-              {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
+              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+              {demo && <FlashCode startLine={startLine[demo]} />}
               <StylingInfo
                 appeared={demo === DEMOS[3] || demo === DEMOS[4]}
                 stylingContent={
