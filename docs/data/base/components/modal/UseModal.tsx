@@ -39,7 +39,7 @@ export default function UseModal() {
 }
 
 interface ModalProps {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   closeAfterTransition?: boolean;
   container?: Element | (() => Element | null) | null;
   disableAutoFocus?: boolean;

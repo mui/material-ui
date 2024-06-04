@@ -26,10 +26,6 @@
       "matchPackagePatterns": "@emotion/*"
     },
     {
-      "groupName": "WyW-in-JS",
-      "matchPackagePatterns": ["@wyw-in-js/*"]
-    },
-    {
       "groupName": "Pigment CSS",
       "matchPackagePatterns": ["@pigment-css/*"]
     },
@@ -113,6 +109,10 @@
     {
       "groupName": "@definitelytyped tools",
       "matchPackagePatterns": ["@definitelytyped/*"]
+    },
+    {
+      "groupName": "Testing libraries",
+      "matchPackagePatterns": ["@testing-library/*"]
     },
     {
       "groupName": "envinfo tests",

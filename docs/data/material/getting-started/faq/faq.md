@@ -9,7 +9,7 @@ If you still can't find what you're looking for, you can refer to our [support p
 There are many ways to support us:
 
 - **Spread the word**. Evangelize MUI's products by [linking to mui.com](https://mui.com/) on your website—every backlink matters.
-  Follow us on [X](https://twitter.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
+  Follow us on [X](https://x.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what is going well or where there is improvement opportunities. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
   [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui).

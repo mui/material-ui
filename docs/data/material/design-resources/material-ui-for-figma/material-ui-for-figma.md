@@ -26,6 +26,10 @@ The Material UI design kit is available in the [community (free) version](https
 Start by extracting the `.zip` archive which contains the `.fig` files.
 Then you can either follow [Figma's import guide](https://help.figma.com/hc/en-us/articles/360041003114-Import-files-to-the-file-browser) or [add it to your team library](https://help.figma.com/hc/en-us/articles/360041051154-Guide-to-libraries-in-Figma).
 
+### Changelog
+
+Visit [the Releases tab on GitHub](https://github.com/mui/mui-design-kits/releases?q=figma&expanded=true) to keep track of new design kit versions.
+
 ## Theme
 
 ### Local variables
