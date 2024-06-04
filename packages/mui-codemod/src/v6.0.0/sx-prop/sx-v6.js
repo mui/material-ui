@@ -478,7 +478,7 @@ export default function sxV6(file, api, options) {
         }
         lines.push(line);
       }
-      if (line.includes('sx=') && !line.match(/sx=\{\{[^\}]+\}\}/)) {
+      if (line.includes('sx=') && !line.match(/sx=\{\{[^}]+\}\}/)) {
         isInStyled = true;
         spaceMatch = line.match(/^\s+/);
       }
