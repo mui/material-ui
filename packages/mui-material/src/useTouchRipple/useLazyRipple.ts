@@ -51,15 +51,6 @@ export class LazyRipple {
         if (this.ref.current !== null) {
           this.mounted!.resolve();
         }
-
-        if (process.env.NODE_ENV !== 'production' && this.ref.current === null) {
-          throw new Error(
-            [
-              'MUI: Invalid usage of the useLazyRipple hook.',
-              'The `ripple.ref` must be set on the Ripple component.',
-            ].join('\n'),
-          );
-        }
       });
     }
   };
