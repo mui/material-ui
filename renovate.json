@@ -26,6 +26,10 @@
       "matchPackagePatterns": "@emotion/*"
     },
     {
+      "groupName": "Pigment CSS",
+      "matchPackagePatterns": ["@pigment-css/*"]
+    },
+    {
       "groupName": "Font awesome SVG icons",
       "matchPackagePatterns": "@fortawesome/*"
     },
