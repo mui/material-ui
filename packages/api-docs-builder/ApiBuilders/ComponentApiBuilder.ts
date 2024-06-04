@@ -150,7 +150,11 @@ export async function computeApiDescription(
  *  *
  *  * - [Icon API](https://mui.com/api/icon/)
  */
-async function annotateComponentDefinition(api: ReactApi, componentJsdoc: Annotation, projectSettings: ProjectSettings) {
+async function annotateComponentDefinition(
+  api: ReactApi,
+  componentJsdoc: Annotation,
+  projectSettings: ProjectSettings,
+) {
   const HOST = projectSettings.baseApiUrl ?? 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');

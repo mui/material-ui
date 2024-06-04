@@ -111,7 +111,11 @@ export interface ReactApi extends ReactDocgenApi {
  * *
  * * - [useButton API](https://mui.com/base-ui/api/use-button/)
  */
-async function annotateHookDefinition(api: ReactApi, hookJsdoc: Annotation, projectSettings: ProjectSettings) {
+async function annotateHookDefinition(
+  api: ReactApi,
+  hookJsdoc: Annotation,
+  projectSettings: ProjectSettings,
+) {
   const HOST = projectSettings.baseApiUrl ?? 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
