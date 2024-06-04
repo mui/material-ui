@@ -1,5 +1,32 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.20
+
+<!-- generated comparing v5.15.19..master -->
+
+_Jun 4, 2024_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### Docs
+
+- &#8203;<!-- 11 -->Add Pigment CSS and Base UI logos SVGs (#42513) @danilo-leal
+- &#8203;<!-- 10 -->Update twitter.com to x.com @oliviertassinari
+- &#8203;<!-- 09 -->Simplify Example projects page @oliviertassinari
+- &#8203;<!-- 08 -->[material-ui] Add changelog section to the design kits page (@danilo-leal) (#42463) @danilo-leal
+- &#8203;<!-- 07 -->[material-ui] Fix sentence in the All components page (@danilo-leal) (#42462) @danilo-leal
+- &#8203;<!-- 06 -->[material-ui] Update Figma design kit doc redirect link (@danilo-leal) (#42456) @danilo-leal
+- &#8203;<!-- 05 -->[system] Add "dynamic values" section to sx prop page (@aarongarciah) (#42453) @aarongarciah
+
+### Core
+
+- &#8203;<!-- 04 -->[website] Update DoiT description and link in Sponsors section (@erezstmn-doit) (#42511) @erezstmn-doit
+- &#8203;<!-- 03 -->[website] Clean up the docs-infra job ad (@danilo-leal) (#42509) @danilo-leal
+- &#8203;<!-- 02 -->[website] Open the Docs-infra engineer role (@danilo-leal) (#42496) @danilo-leal
+- &#8203;<!-- 01 -->[website] Fix locationCountry in about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @danilo-leal, @erezstmn-doit, @oliviertassinari
+
 ## v5.15.19
 
 <!-- generated comparing v5.15.18..master -->
