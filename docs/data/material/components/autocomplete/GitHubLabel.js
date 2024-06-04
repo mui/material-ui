@@ -162,11 +162,11 @@ export default function GitHubLabel() {
         <ClickAwayListener onClickAway={handleClose}>
           <div>
             <Box
-              sx={(theme) => ({
+              sx={(t) => ({
                 borderBottom: `1px solid ${'#30363d'}`,
                 padding: '8px 10px',
                 fontWeight: 600,
-                ...theme.applyStyles('light', {
+                ...t.applyStyles('light', {
                   borderBottom: `1px solid ${'#eaecef'}`,
                 }),
               })}
@@ -217,11 +217,11 @@ export default function GitHubLabel() {
                     style={{ backgroundColor: option.color }}
                   />
                   <Box
-                    sx={(theme) => ({
+                    sx={(t) => ({
                       flexGrow: 1,
                       '& span': {
                         color: '#8b949e',
-                        ...theme.applyStyles('light', {
+                        ...t.applyStyles('light', {
                           color: '#586069',
                         }),
                       },

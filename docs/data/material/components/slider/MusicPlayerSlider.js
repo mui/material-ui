@@ -120,7 +120,7 @@ export default function MusicPlayerSlider() {
           step={1}
           max={duration}
           onChange={(_, value) => setPosition(value)}
-          sx={(theme) => ({
+          sx={(t) => ({
             color: 'rgba(0,0,0,0.87)',
             height: 4,
             '& .MuiSlider-thumb': {
@@ -132,7 +132,7 @@ export default function MusicPlayerSlider() {
               },
               '&:hover, &.Mui-focusVisible': {
                 boxShadow: `0px 0px 0px 8px ${'rgb(0 0 0 / 16%)'}`,
-                ...theme.applyStyles('dark', {
+                ...t.applyStyles('dark', {
                   boxShadow: `0px 0px 0px 8px ${'rgb(255 255 255 / 16%)'}`,
                 }),
               },
@@ -144,7 +144,7 @@ export default function MusicPlayerSlider() {
             '& .MuiSlider-rail': {
               opacity: 0.28,
             },
-            ...theme.applyStyles('dark', {
+            ...t.applyStyles('dark', {
               color: '#fff',
             }),
           })}
@@ -193,7 +193,7 @@ export default function MusicPlayerSlider() {
           <Slider
             aria-label="Volume"
             defaultValue={30}
-            sx={(theme) => ({
+            sx={(t) => ({
               color: 'rgba(0,0,0,0.87)',
               '& .MuiSlider-track': {
                 border: 'none',
@@ -209,7 +209,7 @@ export default function MusicPlayerSlider() {
                   boxShadow: 'none',
                 },
               },
-              ...theme.applyStyles('dark', {
+              ...t.applyStyles('dark', {
                 color: '#fff',
               }),
             })}
