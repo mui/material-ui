@@ -5,6 +5,8 @@ import Paper from '@mui/material/Paper';
 import Popover from '@mui/material/Popover';
 import ShowcaseContainer, { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
+import ROUTES from 'docs/src/route';
 
 const tabs = [
   {
@@ -14,12 +16,12 @@ kind: page
 spec:
   title: Default page
   alias:
-    - CZndx3v    
+    - CZndx3v
   content:
     - component: DataGrid
       name: dataGrid
       props:
-        dataProviderId: dataProvider.ts:default         
+        dataProviderId: dataProvider.ts:default
         columns:
         - field: firstname
           type: string
@@ -36,15 +38,10 @@ spec:
       left: '7.5%',
     },
     popoverContent:
-      'Your application configuration is stored locally in yaml files. Changes in the visual editor are synced to the files, and vice versa. You can version control them however you want.',
+      'Configure your app locally in yaml files. Then, changes in the visual editor are synced to the files, and vice versa. Version control them however you want.',
   },
   {
     code: `
-    /**
- * Toolpad data provider file.
- * See: https://mui.com/toolpad/studio/concepts/data-providers/
- */
-
 import { createDataProvider } from "@toolpad/studio/server";
 import db from "../db";
 
@@ -58,21 +55,20 @@ export default createDataProvider({
     language: 'tsx',
     tab: 'dataProvider.ts',
     position: {
-      top: '30%',
-      left: '40%',
+      top: '20%',
+      left: '60%',
     },
     popoverContent:
-      'You can write serverless functions that have access to your project code. Use your own ORM, database connections, serverside secrets. Toolpad will handle linking your data with UI components.',
+      'Write serverless functions that have access to your project code. Use your own ORM, database connections, and server-side secrets. Toolpad handles linking your data with UI components.',
   },
   {
     code: `
-// See: https://mui.com/toolpad/studio/how-to-guides/map-display/
 import * as React from "react";
 import { createComponent } from "@toolpad/studio/browser";
 import * as L from "leaflet";
 
 function Leaflet({ lat, long, zoom }: LeafletProps) {
-  const root: any = React.useRef(null);  
+  const root: any = React.useRef(null);
   return (
     <div ref={root} style={{ height: 400 }} />
   );
@@ -86,11 +82,11 @@ export default createComponent(Leaflet, {
     language: 'tsx',
     tab: 'mapComponent.tsx',
     position: {
-      top: '80%',
-      left: '50%',
+      top: '64%',
+      left: '70%',
     },
     popoverContent:
-      'Bring your own react components, compose them with drag and drop in the canvas. Define your own properties to edit visually in Toolpad Studio',
+      'Use your own React components and compose them with drag and drop in the canvas. Use Toolpad Sutido to edit them visually.',
   },
 ];
 
@@ -102,7 +98,7 @@ const PulsingButton = styled('button')(({ theme }) => {
   }
   70% {
     transform: scale(1.1);
-    box-shadow: 0 0 0 10px ${alpha(theme.palette.primary.main, 0)};
+    box-shadow: 0 0 0 4px ${alpha(theme.palette.primary.main, 0)};
   }
   100% {
     transform: scale(1);
@@ -112,16 +108,18 @@ const PulsingButton = styled('button')(({ theme }) => {
 
   return {
     position: 'absolute',
-    width: 30,
-    height: 30,
+    width: 16,
+    height: 16,
     borderRadius: '50%',
-    backgroundColor: theme.palette.primary.main,
-    border: 'none',
+    backgroundColor: alpha(theme.palette.primary[200], 0.5),
+    border: `2px solid ${theme.palette.primary[300]}`,
+    // backgroundColor: theme.palette.primary.main,
+    // border: 'none',
     cursor: 'pointer',
-    animation: `${pulse} 1.5s infinite`,
+    animation: `${pulse} 2s infinite`,
     transition: theme.transitions.create('background-color'),
     '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: theme.palette.primary.main,
     },
   };
 });
@@ -174,7 +172,7 @@ export default function ToolpadShowcase() {
             bgcolor: '#fff',
             border: '1px solid',
             borderColor: 'grey.200',
-            borderRadius: '6px',
+            borderRadius: '8px',
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.800',
               boxShadow: `0 4px 8px ${alpha(theme.palette.common.black, 0.3)}`,
@@ -188,7 +186,12 @@ export default function ToolpadShowcase() {
               alt="Toolpad user management app"
               loading="lazy"
               height={400}
-              sx={{ width: { xs: 'auto', sm: '100%' } }}
+              sx={{
+                width: { xs: 'auto', sm: '100%' },
+                objectFit: 'cover',
+                objectPosition: 'left',
+                mt: '-1px',
+              }}
             />
             {tabs.map((tab, index) => (
               <PulsingButton
@@ -208,15 +211,24 @@ export default function ToolpadShowcase() {
               vertical: 'bottom',
               horizontal: 'left',
             }}
+            sx={{ mt: '4px' }}
           >
-            <Box sx={{ p: 2, maxWidth: 250, fontSize: 12 }}>{popoverState.content}</Box>
+            <Box sx={{ p: 1.5, maxWidth: 250, fontSize: '.75rem' }}>{popoverState.content}</Box>
           </Popover>
         </Paper>
       }
       code={
-        <ShowcaseCodeWrapper maxHeight={300}>
-          <HighlightedCode copyButtonHidden code={codeState} language="jsx" plainStyle />
-        </ShowcaseCodeWrapper>
+        <React.Fragment>
+          <ShowcaseCodeWrapper maxHeight={280}>
+            <HighlightedCode copyButtonHidden code={codeState} language="jsx" plainStyle />
+          </ShowcaseCodeWrapper>
+          <MoreInfoBox
+            primaryBtnLabel="Start using Toolpad"
+            primaryBtnHref={ROUTES.toolpadLandingPage}
+            secondaryBtnLabel="Learn more about why to use Toolpad"
+            secondaryBtnHref={ROUTES.toolpadWhy}
+          />
+        </React.Fragment>
       }
     />
   );

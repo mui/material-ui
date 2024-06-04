@@ -49,6 +49,7 @@ const ROUTES = {
   // Tree View doc pages
   treeViewOverview: '/x/react-tree-view/',
   // Toolpad pages
+  toolpadLandingPage: '/toolpad/',
   toolpadStudioDocs: '/toolpad/studio/getting-started/',
   toolpadWhy: '/toolpad/studio/getting-started/why-toolpad/',
   // External pages
