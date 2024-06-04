@@ -26,8 +26,11 @@ export default function OverflowGrid() {
           '&::-webkit-scrollbar-thumb': {
             borderRadius: 8,
             border: '2px solid',
-            borderColor: theme.palette.mode === 'dark' ? '' : '#E7EBF0',
+            borderColor: '#E7EBF0',
             backgroundColor: 'rgba(0 0 0 / 0.5)',
+            ...theme.applyStyles('dark', {
+              borderColor: '',
+            }),
           },
         },
       })}
