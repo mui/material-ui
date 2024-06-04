@@ -222,7 +222,10 @@ export default function sxV6(file, api, options) {
               (returnExpression.type === 'CallExpression' &&
                 getObjectKey(returnExpression.callee)?.name === 'theme') ||
               (returnExpression.type === 'MemberExpression' &&
-                getObjectKey(returnExpression)?.name === 'theme')
+                getObjectKey(returnExpression)?.name === 'theme') ||
+              (returnExpression.type === 'BinaryExpression' &&
+                (getObjectKey(returnExpression.left)?.name === 'theme' ||
+                  getObjectKey(returnExpression.right)?.name === 'theme'))
             ) {
               data.replaceValue?.(returnExpression);
               rootThemeCallback(data);
