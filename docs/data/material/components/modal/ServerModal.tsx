@@ -7,7 +7,7 @@ export default function ServerModal() {
   const rootRef = React.useRef<HTMLDivElement>(null);
 
   return (
-    <Box
+    (<Box
       sx={{
         height: 300,
         flexGrow: 1,
@@ -32,14 +32,14 @@ export default function ServerModal() {
         container={() => rootRef.current!}
       >
         <Box
-          sx={{
+          sx={theme => ({
             position: 'relative',
             width: 400,
             bgcolor: 'background.paper',
             border: '2px solid #000',
-            boxShadow: (theme) => theme.shadows[5],
-            p: 4,
-          }}
+            boxShadow: theme.shadows[5],
+            p: 4
+          })}
         >
           <Typography id="server-modal-title" variant="h6" component="h2">
             Server-side modal
@@ -49,6 +49,6 @@ export default function ServerModal() {
           </Typography>
         </Box>
       </Modal>
-    </Box>
+    </Box>)
   );
 }

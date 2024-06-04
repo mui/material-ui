@@ -43,7 +43,7 @@ const FireNav = styled(List)<{ component?: React.ElementType }>({
 export default function CustomizedList() {
   const [open, setOpen] = React.useState(true);
   return (
-    <Box sx={{ display: 'flex' }}>
+    (<Box sx={{ display: 'flex' }}>
       <ThemeProvider
         theme={createTheme({
           components: {
@@ -126,20 +126,39 @@ export default function CustomizedList() {
             </ListItem>
             <Divider />
             <Box
-              sx={{
-                bgcolor: open ? 'rgba(71, 98, 130, 0.2)' : null,
-                pb: open ? 2 : 0,
-              }}
+              sx={[open ? {
+                bgcolor: 'rgba(71, 98, 130, 0.2)'
+              } : {
+                bgcolor: null
+              }, open ? {
+                pb: 2
+              } : {
+                pb: 0
+              }]}
             >
               <ListItemButton
                 alignItems="flex-start"
                 onClick={() => setOpen(!open)}
-                sx={{
+                sx={[{
                   px: 3,
-                  pt: 2.5,
-                  pb: open ? 0 : 2.5,
-                  '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
-                }}
+                  pt: 2.5
+                }, open ? {
+                  pb: 0
+                } : {
+                  pb: 2.5
+                }, open ? {
+                  '&:hover, &:focus': {
+                    '& svg': {
+                      opacity: 1
+                    }
+                  }
+                } : {
+                  '&:hover, &:focus': {
+                    '& svg': {
+                      opacity: 0
+                    }
+                  }
+                }]}
               >
                 <ListItemText
                   primary="Build"
@@ -159,12 +178,15 @@ export default function CustomizedList() {
                   sx={{ my: 0 }}
                 />
                 <KeyboardArrowDown
-                  sx={{
+                  sx={[{
                     mr: -1,
                     opacity: 0,
-                    transform: open ? 'rotate(-180deg)' : 'rotate(0)',
-                    transition: '0.2s',
-                  }}
+                    transition: '0.2s'
+                  }, open ? {
+                    transform: 'rotate(-180deg)'
+                  } : {
+                    transform: 'rotate(0)'
+                  }]}
                 />
               </ListItemButton>
               {open &&
@@ -186,6 +208,6 @@ export default function CustomizedList() {
           </FireNav>
         </Paper>
       </ThemeProvider>
-    </Box>
+    </Box>)
   );
 }

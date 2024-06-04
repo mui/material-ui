@@ -83,7 +83,7 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    (<Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -92,7 +92,9 @@ export default function PersistentDrawerLeft() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={[{
+              mr: 2
+            }, open && { display: 'none' }]}
           >
             <MenuIcon />
           </IconButton>
@@ -176,6 +178,6 @@ export default function PersistentDrawerLeft() {
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Main>
-    </Box>
+    </Box>)
   );
 }

@@ -39,7 +39,7 @@ export default function InteractiveGrid() {
 `;
 
   return (
-    <Grid sx={{ flexGrow: 1 }} container>
+    (<Grid sx={{ flexGrow: 1 }} container>
       <Grid item xs={12}>
         <Grid
           sx={{ height: 300, pb: 2 }}
@@ -52,15 +52,17 @@ export default function InteractiveGrid() {
           {[0, 1, 2].map((value) => (
             <Grid key={value} item>
               <Paper
-                sx={{
+                sx={theme => ({
                   p: 2,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+                  backgroundColor: '#fff',
                   height: '100%',
                   color: 'text.secondary',
                   pt: `${(value + 1) * 10}px`,
                   pb: `${(value + 1) * 10}px`,
-                }}
+                  ...theme.applyStyles("dark", {
+                    backgroundColor: '#1A2027'
+                  })
+                })}
               >
                 {`Cell ${value + 1}`}
               </Paper>
@@ -199,6 +201,6 @@ export default function InteractiveGrid() {
       <Grid item xs={12}>
         <HighlightedCode code={jsx} language="jsx" />
       </Grid>
-    </Grid>
+    </Grid>)
   );
 }

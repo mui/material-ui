@@ -51,14 +51,14 @@ export default function CustomizedDividers() {
   };
 
   return (
-    <div>
+    (<div>
       <Paper
         elevation={0}
-        sx={{
+        sx={theme => ({
           display: 'flex',
-          border: (theme) => `1px solid ${theme.palette.divider}`,
-          flexWrap: 'wrap',
-        }}
+          border: `1px solid ${theme.palette.divider}`,
+          flexWrap: 'wrap'
+        })}
       >
         <StyledToggleButtonGroup
           size="small"
@@ -102,6 +102,6 @@ export default function CustomizedDividers() {
           </ToggleButton>
         </StyledToggleButtonGroup>
       </Paper>
-    </div>
+    </div>)
   );
 }

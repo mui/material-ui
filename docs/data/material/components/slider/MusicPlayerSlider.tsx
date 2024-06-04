@@ -91,7 +91,7 @@ export default function MusicPlayerSlider() {
   const lightIconColor =
     theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)';
   return (
-    <Box sx={{ width: '100%', overflow: 'hidden' }}>
+    (<Box sx={{ width: '100%', overflow: 'hidden' }}>
       <Widget>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <CoverImage>
@@ -120,8 +120,8 @@ export default function MusicPlayerSlider() {
           step={1}
           max={duration}
           onChange={(_, value) => setPosition(value as number)}
-          sx={{
-            color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
+          sx={theme => ({
+            color: 'rgba(0,0,0,0.87)',
             height: 4,
             '& .MuiSlider-thumb': {
               width: 8,
@@ -132,10 +132,11 @@ export default function MusicPlayerSlider() {
               },
               '&:hover, &.Mui-focusVisible': {
                 boxShadow: `0px 0px 0px 8px ${
-                  theme.palette.mode === 'dark'
-                    ? 'rgb(255 255 255 / 16%)'
-                    : 'rgb(0 0 0 / 16%)'
+                  'rgb(0 0 0 / 16%)'
                 }`,
+                ...theme.applyStyles("dark", {
+                  boxShadow: `0px 0px 0px 8px ${'rgb(255 255 255 / 16%)'}`
+                })
               },
               '&.Mui-active': {
                 width: 20,
@@ -145,7 +146,10 @@ export default function MusicPlayerSlider() {
             '& .MuiSlider-rail': {
               opacity: 0.28,
             },
-          }}
+            ...theme.applyStyles("dark", {
+              color: '#fff'
+            })
+          })}
         />
         <Box
           sx={{
@@ -191,8 +195,8 @@ export default function MusicPlayerSlider() {
           <Slider
             aria-label="Volume"
             defaultValue={30}
-            sx={{
-              color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
+            sx={theme => ({
+              color: 'rgba(0,0,0,0.87)',
               '& .MuiSlider-track': {
                 border: 'none',
               },
@@ -207,12 +211,15 @@ export default function MusicPlayerSlider() {
                   boxShadow: 'none',
                 },
               },
-            }}
+              ...theme.applyStyles("dark", {
+                color: '#fff'
+              })
+            })}
           />
           <VolumeUpRounded htmlColor={lightIconColor} />
         </Stack>
       </Widget>
       <WallPaper />
-    </Box>
+    </Box>)
   );
 }

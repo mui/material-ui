@@ -90,7 +90,7 @@ export default function PersistentDrawerRight() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    (<Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -102,7 +102,7 @@ export default function PersistentDrawerRight() {
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerOpen}
-            sx={{ ...(open && { display: 'none' }) }}
+            sx={[open && { display: 'none' }]}
           >
             <MenuIcon />
           </IconButton>
@@ -182,6 +182,6 @@ export default function PersistentDrawerRight() {
           ))}
         </List>
       </Drawer>
-    </Box>
+    </Box>)
   );
 }
