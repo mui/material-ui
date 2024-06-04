@@ -31,7 +31,7 @@ const NativeLink = styled('a')(({ theme }) => ({
   ...theme.applyDarkStyles({
     boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset`,
     '&:hover': {
-      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+      backgroundColor: alpha(theme.palette.primary[800], 0.2),
       borderColor: (theme.vars || theme).palette.primary[900],
     },
   }),
@@ -69,7 +69,7 @@ export default function DiamondSponsors() {
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
         data-ga-event-label="doit.com"
-        href="https://www.doit.com/flexsave/?utm_source=materialui&utm_medium=referral"
+        href="https://www.doit.com/?utm_source=materialui&utm_medium=referral"
         rel="noopener sponsored"
         target="_blank"
       >

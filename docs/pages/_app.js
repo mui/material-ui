@@ -29,6 +29,14 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { DocsProvider } from '@mui/docs/DocsProvider';
 import { mapTranslations } from '@mui/docs/i18n';
+import SvgMuiLogomark, {
+  muiSvgLogoString,
+  muiSvgWordmarkString,
+} from 'docs/src/icons/SvgMuiLogomark';
+import SvgBaseUiLogo, {
+  baseSvgLogoString,
+  baseSvgWordmarkString,
+} from 'docs/src/icons/SvgBaseUiLogo';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
 import config from '../config';
@@ -165,6 +173,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'Material UI',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           { text: `v5`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
@@ -184,6 +195,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'Joy UI',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [{ text: `v${joyPkgJson.version}`, current: true }],
       };
     }
@@ -192,6 +206,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'MUI System',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
           { text: 'v5', href: `https://mui.com${languagePrefix}/system/getting-started/` },
@@ -208,6 +225,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'Base UI',
+        logo: SvgBaseUiLogo,
+        logoSvg: baseSvgLogoString,
+        wordmarkSvg: baseSvgWordmarkString,
         versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };
     }
@@ -216,6 +236,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'MUI Core',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           {
@@ -230,6 +253,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'Docs-infra',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           {
             text: 'v0.0.0',
@@ -243,6 +269,9 @@ function AppWrapper(props) {
       return {
         metadata: '',
         name: 'Home docs',
+        logo: SvgMuiLogomark,
+        logoSvg: muiSvgLogoString,
+        wordmarkSvg: muiSvgWordmarkString,
         versions: [
           {
             text: 'v0.0.0',

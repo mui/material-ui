@@ -8,6 +8,7 @@ import Link from '@mui/material/Link';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import CloudRoundedIcon from '@mui/icons-material/CloudRounded';
 
+// #default-branch-switch
 const examples = [
   {
     name: 'Next.js App Router',
@@ -92,6 +93,12 @@ const examples = [
     label: 'View TypeScript',
     link: 'https://github.com/marmelab/material-ui-react-admin',
     src: '/static/images/examples/reactadmin.svg',
+  },
+  {
+    name: 'Refine',
+    label: 'View TypeScript',
+    link: 'https://github.com/refinedev/refine/tree/master/examples/with-material-ui-vite',
+    src: '/static/images/examples/refine.svg',
   },
 ];
 
