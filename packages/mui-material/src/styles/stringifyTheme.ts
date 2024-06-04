@@ -23,8 +23,8 @@ function isSerializable(val: any) {
  * const { extendTheme } = require('@mui/material/styles');
  *
  * const theme = extendTheme();
- * // `.toRuntime` is Pigment CSS specific to create a theme that is available at runtime.
- * theme.toRuntime = () => stringifyTheme(theme);
+ * // `.toRuntimeSource` is Pigment CSS specific to create a theme that is available at runtime.
+ * theme.toRuntimeSource = stringifyTheme;
  *
  * module.exports = withPigment({
  *  theme,

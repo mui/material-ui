@@ -124,4 +124,24 @@ export default theme;`);
     // test that non-seriazable values still exist in the original theme
     expect(typeof theme.generateStyleSheets).to.equal('function');
   });
+
+  it('works with framework toRuntimeSource', () => {
+    const theme = { palette: { primary: { main: '#ff5252' } }, toRuntimeSource: stringifyTheme };
+    expect(theme.toRuntimeSource.call(theme, theme)).to
+      .equal(`import createBreakpoints from '@mui/system/createBreakpoints';
+import { createTransitions } from '@mui/material/styles';
+
+const theme = {
+  "palette": {
+    "primary": {
+      "main": "#ff5252"
+    }
+  }
+};
+
+theme.breakpoints = createBreakpoints(theme.breakpoints || {});
+theme.transitions = createTransitions(theme.transitions || {});
+
+export default theme;`);
+  });
 });
