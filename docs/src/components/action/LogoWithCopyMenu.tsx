@@ -84,12 +84,12 @@ export default function LogoWithCopyMenu({
         sx={(theme) => ({
           '& .MuiMenuItem-root': {
             gap: 1,
-            '& * path, .MuiSvgIcon-root': {
+            '& path': {
               fill: (theme.vars || theme).palette.text.tertiary,
               color: (theme.vars || theme).palette.text.tertiary,
             },
             '&:hover, &:focus-visible': {
-              '& * path, .MuiSvgIcon-root': {
+              '& path': {
                 fill: (theme.vars || theme).palette.text.primary,
                 color: (theme.vars || theme).palette.text.primary,
               },
