@@ -1017,8 +1017,8 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme }) => ({
             borderColor: theme.palette.divider,
+            backgroundColor: theme.palette.background.default,
           }),
-
           cell: ({ theme }) => ({ borderTopColor: theme.palette.divider }),
           menu: ({ theme }) => ({
             borderRadius: theme.shape.borderRadius,
@@ -1036,6 +1036,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             }),
           }),
           row: ({ theme }) => ({
+            backgroundColor: theme.palette.background.paper,
             '&:last-of-type': { borderBottom: `1px solid ${theme.palette.divider}` },
             '&:hover': {
               background: alpha(theme.palette.primary.main, 0.1),
@@ -1046,34 +1047,10 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                 background: alpha(theme.palette.primary.main, 0.2),
               },
             },
-            '&.even': {
-              background: alpha(theme.palette.grey[200], 0.2),
-              '&:hover': {
-                background: alpha(theme.palette.primary.main, 0.1),
-              },
-              '&.Mui-selected': {
-                background: theme.palette.grey[100],
-                '&:hover': {
-                  background: alpha(theme.palette.primary.main, 0.2),
-                },
-              },
-            },
             ...theme.applyStyles('dark', {
-              backgroundColor: theme.palette.grey[900],
+              backgroundColor: alpha(theme.palette.background.paper, 0.5),
               '&.Mui-selected': {
                 background: theme.palette.grey[800],
-              },
-              '&.even': {
-                background: alpha(theme.palette.grey[800], 0.4),
-                '&:hover': {
-                  background: alpha(theme.palette.primary.main, 0.1),
-                },
-                '&.Mui-selected': {
-                  background: theme.palette.grey[800],
-                  '&:hover': {
-                    background: alpha(theme.palette.primary.main, 0.2),
-                  },
-                },
               },
             }),
           }),
@@ -1117,7 +1094,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               },
             }),
           }),
-
           columnHeaderTitleContainer: {
             flexGrow: 1,
             justifyContent: 'space-between',
