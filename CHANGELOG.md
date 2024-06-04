@@ -25,7 +25,7 @@ A big thanks to the 7 contributors who made this release possible.
 
 ### Docs
 
-- &#8203;<!-- 23 -->Reflect Base UI and MUI System in a different repository @oliviertassinari
+- &#8203;<!-- 23 -->Reflect Base UI and MUI System in a different repository @oliviertassinari
 - &#8203;<!-- 22 -->Update twitter.com to x.com @oliviertassinari
 - &#8203;<!-- 21 -->Simplify Example projects page @oliviertassinari
 - &#8203;<!-- 17 -->[icons] Update README and docs page (#41938) @danilo-leal
