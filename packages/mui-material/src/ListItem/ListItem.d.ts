@@ -20,7 +20,7 @@ export interface ListItemBaseProps {
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
+   * @deprecated checkout [ListItemButton](https://next.mui.com/material-ui/api/list-item-button/) instead
    */
   autoFocus?: boolean;
   /**
@@ -35,13 +35,13 @@ export interface ListItemBaseProps {
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
-   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerComponent?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   /**
    * Props applied to the container component if used.
    * @default {}
-   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
@@ -53,7 +53,7 @@ export interface ListItemBaseProps {
   /**
    * If `true`, the component is disabled.
    * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
+   * @deprecated checkout [ListItemButton](https://next.mui.com/material-ui/api/list-item-button/) instead
    */
   disabled?: boolean;
   /**
@@ -78,7 +78,7 @@ export interface ListItemBaseProps {
   /**
    * Use to apply selected styling.
    * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
+   * @deprecated checkout [ListItemButton](https://next.mui.com/material-ui/api/list-item-button/) instead
    */
   selected?: boolean;
   /**
@@ -91,7 +91,7 @@ export interface ListItemOwnProps extends ListItemBaseProps {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   components?: {
@@ -101,7 +101,7 @@ export interface ListItemOwnProps extends ListItemBaseProps {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   componentsProps?: {
@@ -150,7 +150,7 @@ declare const ListItem: ExtendButtonBase<
        * If `true`, the list item is a button (using `ButtonBase`). Props intended
        * for `ButtonBase` can then be applied to `ListItem`.
        * @default false
-       * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
+       * @deprecated checkout [ListItemButton](https://next.mui.com/material-ui/api/list-item-button/) instead
        *
        */
       button: true;
@@ -165,7 +165,7 @@ declare const ListItem: ExtendButtonBase<
          * If `true`, the list item is a button (using `ButtonBase`). Props intended
          * for `ButtonBase` can then be applied to `ListItem`.
          * @default false
-         * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
+         * @deprecated checkout [ListItemButton](https://next.mui.com/material-ui/api/list-item-button/) instead
          */
         button?: false;
       },
