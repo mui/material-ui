@@ -4,7 +4,7 @@
 
 ## Released versions
 
-The most recent stable version (✓) is recommended for use in production.
+The most recent stable version (marked with ✅) is recommended for use in production.
 
 {{"demo": "ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
 
