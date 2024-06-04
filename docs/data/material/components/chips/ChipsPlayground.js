@@ -258,5 +258,4 @@ function ChipsPlayground() {
     </Grid>
   );
 }
-
 export default ChipsPlayground;

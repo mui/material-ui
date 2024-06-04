@@ -52,15 +52,17 @@ export default function InteractiveGrid() {
           {[0, 1, 2].map((value) => (
             <Grid key={value} item>
               <Paper
-                sx={{
+                sx={(theme) => ({
                   p: 2,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+                  backgroundColor: '#fff',
                   height: '100%',
                   color: 'text.secondary',
                   pt: `${(value + 1) * 10}px`,
                   pb: `${(value + 1) * 10}px`,
-                }}
+                  ...theme.applyStyles('dark', {
+                    backgroundColor: '#1A2027',
+                  }),
+                })}
               >
                 {`Cell ${value + 1}`}
               </Paper>

@@ -36,15 +36,17 @@ export default function InteractiveStack() {
         {[0, 1, 2].map((value) => (
           <Paper
             key={value}
-            sx={{
+            sx={(theme) => ({
               p: 2,
               pt: value + 1,
               pb: value + 1,
               color: 'text.secondary',
               typography: 'body2',
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-            }}
+              backgroundColor: '#fff',
+              ...theme.applyStyles('dark', {
+                backgroundColor: '#1A2027',
+              }),
+            })}
           >
             {`Item ${value + 1}`}
           </Paper>
