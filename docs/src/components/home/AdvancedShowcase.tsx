@@ -1716,7 +1716,7 @@ export default function DataTable() {
       }
       code={
         <React.Fragment>
-          <ShowcaseCodeWrapper maxHeight={300}>
+          <ShowcaseCodeWrapper maxHeight={280}>
             <HighlightedCode copyButtonHidden code={code} language="jsx" plainStyle />
           </ShowcaseCodeWrapper>
           <MoreInfoBox
