@@ -45,8 +45,9 @@ export default function Dashboard() {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              mx: 3,
-              py: 8,
+              mr: 3,
+              ml: 6,
+              py: 10,
               gap: 2,
             }}
           >

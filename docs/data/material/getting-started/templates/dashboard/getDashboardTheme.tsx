@@ -523,25 +523,23 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
           root: {
             display: 'flex',
             flexDirection: 'column',
-            gap: 8,
+            gap: 0,
+            padding: 4,
           },
         },
       },
       MuiListItem: {
         styleOverrides: {
-          root: ({ theme }) => ({
-            padding: 0,
-            '&.Mui-selected': { borderRadius: theme.shape.borderRadius },
-          }),
+          root: ({ theme }) => ({}),
         },
       },
       MuiListItemIcon: {
         styleOverrides: {
           root: ({ theme }) => ({
             minWidth: 0,
-            marginRight: '8px',
-            color: theme.palette.grey[500],
-            ...theme.applyStyles('dark', { color: theme.palette.grey[100] }),
+            marginRight: 8,
+            color: theme.palette.grey[400],
+            ...theme.applyStyles('dark', { color: theme.palette.grey[400] }),
           }),
         },
       },
@@ -551,15 +549,30 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             color: theme.palette.grey[700],
             ...theme.applyStyles('dark', { color: theme.palette.grey[50] }),
           }),
-          primary: { fontWeight: 600 },
+          primary: { fontWeight: 500 },
         },
       },
       MuiListItemButton: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: '4px 0',
             borderRadius: theme.shape.borderRadius,
             background: 'transparent',
+            width: 'fit-content',
+            '&.Mui-selected': {
+              borderRadius: theme.shape.borderRadius,
+              '.MuiListItemIcon-root': {
+                color: theme.palette.primary.main,
+              },
+              '.MuiListItemText-root': {
+                color: theme.palette.primary.main,
+              },
+              '&.MuiButtonBase-root': {
+                backgroundColor: 'transparent',
+              },
+            },
+            '&.MuiButtonBase-root': {
+              padding: '2px 12px 2px 12px',
+            },
           }),
         },
       },
