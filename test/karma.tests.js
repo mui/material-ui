@@ -1,5 +1,5 @@
-import '@mui-internal/test-utils/init';
-import '@mui-internal/test-utils/setupKarma';
+import '@mui/internal-test-utils/init';
+import '@mui/internal-test-utils/setupKarma';
 
 const materialIntegrationContext = require.context(
   '../packages/mui-material/test/integration',

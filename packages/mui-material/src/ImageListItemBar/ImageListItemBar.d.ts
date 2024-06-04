@@ -48,4 +48,4 @@ export interface ImageListItemBarProps
  *
  * - [ImageListItemBar API](https://next.mui.com/material-ui/api/image-list-item-bar/)
  */
-export default function ImageListItemBar(props: ImageListItemBarProps): JSX.Element;
+export default function ImageListItemBar(props: ImageListItemBarProps): React.JSX.Element;

@@ -20,7 +20,7 @@ import { useTranslate } from '@mui/docs/i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '16px 0 8px',
-  fontWeight: theme.typography.fontWeightBold,
+  fontWeight: theme.typography.fontWeightSemiBold,
   fontSize: theme.typography.pxToRem(11),
   textTransform: 'uppercase',
   letterSpacing: '.1rem',

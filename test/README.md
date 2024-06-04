@@ -22,7 +22,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 
 ## Writing tests
 
-For all unit tests, please use the return value from `@mui-internal/test-utils/createRenderer`.
+For all unit tests, please use the return value from `@mui/internal-test-utils/createRenderer`.
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
 

@@ -5,7 +5,7 @@ import migrateToVariants from '../../util/migrateToVariants';
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function styledV6(file, api, options) {
+export default function themeV6(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
   const printOptions = options.printOptions;

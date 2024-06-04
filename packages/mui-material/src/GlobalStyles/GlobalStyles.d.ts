@@ -18,4 +18,4 @@ export interface GlobalStylesProps {
  *
  * - [GlobalStyles API](https://next.mui.com/material-ui/api/global-styles/)
  */
-export default function GlobalStyles(props: GlobalStylesProps): React.ReactElement;
+export default function GlobalStyles(props: GlobalStylesProps): React.ReactElement<any>;

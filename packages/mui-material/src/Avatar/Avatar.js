@@ -172,6 +172,8 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     component,
     variant,
   };
+  // This issue explains why this is required: https://github.com/mui/material-ui/issues/42184
+  delete ownerState.ownerState;
 
   const classes = useUtilityClasses(ownerState);
 
@@ -201,10 +203,10 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   return (
     <AvatarRoot
       as={component}
-      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      ownerState={ownerState}
     >
       {children}
     </AvatarRoot>
