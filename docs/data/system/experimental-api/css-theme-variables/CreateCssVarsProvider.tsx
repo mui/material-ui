@@ -101,9 +101,9 @@ const WrapperDiv = styled('div')<{ theme?: Theme }>(({ theme }) => ({
   padding: 20,
   color: theme.vars.palette.text.default,
   backgroundColor: '#fff',
-  ...theme.applyStyles('dark', {
+  '[data-system-demo-color-scheme="dark"] &': {
     backgroundColor: '#111',
-  }),
+  }
 }));
 
 function App() {
