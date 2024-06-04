@@ -10,7 +10,7 @@ A big thanks to the 4 contributors who made this release possible.
 
 ### Docs
 
-- &#8203;<!-- 11 -->Add Pigment CSS and Base UI logos SVGs (#42513) @danilo-leal
+- &#8203;<!-- 11 -->Add Pigment CSS and Base UI logos SVGs (#42513) @danilo-leal
 - &#8203;<!-- 10 -->Update twitter.com to x.com @oliviertassinari
 - &#8203;<!-- 09 -->Simplify Example projects page @oliviertassinari
 - &#8203;<!-- 08 -->[material-ui] Add changelog section to the design kits page (@danilo-leal) (#42463) @danilo-leal
