@@ -278,7 +278,7 @@ function Styles() {
         width: 100%;
         border-radius: 12px;
         overflow: auto;
-        outline: 0px;
+        outline: 0;
         max-height: 300px;
         z-index: 1;
         position: absolute;
