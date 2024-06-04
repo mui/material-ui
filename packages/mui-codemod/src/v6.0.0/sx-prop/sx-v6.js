@@ -177,6 +177,35 @@ export default function sxV6(file, api, options) {
                   { ...returnExpression, property: returnExpression.property.alternate },
                 ),
               });
+            } else if (returnExpression.type === 'TemplateLiteral') {
+              const firstExpression = returnExpression.expressions[0];
+              if (firstExpression?.type === 'ConditionalExpression') {
+                recurseObjectExpression({
+                  ...data,
+                  node: j.conditionalExpression(
+                    firstExpression.test,
+                    {
+                      ...returnExpression,
+                      expressions: [
+                        firstExpression.consequent,
+                        ...(returnExpression.expressions || []).slice(1),
+                      ],
+                    },
+                    {
+                      ...returnExpression,
+                      expressions: [
+                        firstExpression.alternate,
+                        ...(returnExpression.expressions || []).slice(1),
+                      ],
+                    },
+                  ),
+                });
+              } else {
+                recurseObjectExpression({
+                  ...data,
+                  node: returnExpression,
+                });
+              }
             } else {
               recurseObjectExpression({
                 ...data,
@@ -404,6 +433,22 @@ export default function sxV6(file, api, options) {
               if (data.key) {
                 data.replaceValue?.(data.node);
               }
+            }
+          }
+          if (
+            data.node.expressions?.some((expression) => getObjectKey(expression)?.name === 'theme')
+          ) {
+            if (data.root.type === 'ObjectExpression') {
+              data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
+            } else if (data.root.type === 'ArrayExpression') {
+              data.root.elements.forEach((item, index) => {
+                if (item === data.node) {
+                  data.root.elements[index] = buildArrowFunctionAST(
+                    [j.identifier('theme')],
+                    data.root,
+                  );
+                }
+              });
             }
           }
         }

@@ -36,3 +36,21 @@ function FacebookCircularProgress(props) {
     </Box>)
   );
 }
+
+<Paper
+  elevation={0}
+  sx={theme => ({
+    display: 'flex',
+    border: `1px solid ${theme.palette.divider}`,
+    flexWrap: 'wrap'
+  })}
+></Paper>;
+
+<Divider
+  sx={theme => ({
+    border: `1px solid ${'#000'}`,
+    ...theme.applyStyles("dark", {
+      border: `1px solid ${'#fff'}`
+    })
+  })}
+/>;
