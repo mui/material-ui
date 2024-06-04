@@ -157,6 +157,18 @@ export default function sxV6(file, api, options) {
         }
       }
 
+      function rootThemeCallback(data) {
+        if (data.root.type === 'ObjectExpression') {
+          data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
+        } else if (data.root.type === 'ArrayExpression') {
+          data.root.elements.forEach((item, index) => {
+            if (item === data.node) {
+              data.root.elements[index] = buildArrowFunctionAST([j.identifier('theme')], data.root);
+            }
+          });
+        }
+      }
+
       /**
        *
        * @param {{ node: import('jscodeshift').Expression }} data
@@ -206,6 +218,12 @@ export default function sxV6(file, api, options) {
                   node: returnExpression,
                 });
               }
+            } else if (
+              returnExpression.type === 'CallExpression' &&
+              getObjectKey(returnExpression.callee)?.name === 'theme'
+            ) {
+              data.replaceValue?.(returnExpression);
+              rootThemeCallback(data);
             } else {
               recurseObjectExpression({
                 ...data,
@@ -362,19 +380,7 @@ export default function sxV6(file, api, options) {
                     );
                   }
                   data.replaceValue?.(replaceUndefined(data.node.alternate));
-
-                  if (data.root.type === 'ObjectExpression') {
-                    data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
-                  } else if (data.root.type === 'ArrayExpression') {
-                    data.root.elements.forEach((item, index) => {
-                      if (item === data.node) {
-                        data.root.elements[index] = buildArrowFunctionAST(
-                          [j.identifier('theme')],
-                          data.root,
-                        );
-                      }
-                    });
-                  }
+                  rootThemeCallback(data);
                 } else {
                   wrapSxInArray(
                     j.conditionalExpression(
@@ -443,18 +449,7 @@ export default function sxV6(file, api, options) {
                   getObjectKey(expression.callee)?.name === 'theme'),
             )
           ) {
-            if (data.root.type === 'ObjectExpression') {
-              data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
-            } else if (data.root.type === 'ArrayExpression') {
-              data.root.elements.forEach((item, index) => {
-                if (item === data.node) {
-                  data.root.elements[index] = buildArrowFunctionAST(
-                    [j.identifier('theme')],
-                    data.root,
-                  );
-                }
-              });
-            }
+            rootThemeCallback(data);
           }
         }
       }
