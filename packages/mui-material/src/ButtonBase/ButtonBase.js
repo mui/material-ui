@@ -10,6 +10,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
+import useLazyRipple from '../useTouchRipple/useLazyRipple';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
@@ -109,8 +110,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const buttonRef = React.useRef(null);
 
-  const rippleRef = React.useRef(null);
-  const handleRippleRef = useForkRef(rippleRef, touchRippleRef);
+  const ripple = useLazyRipple();
+  const handleRippleRef = useForkRef(ripple.ref, touchRippleRef);
 
   const {
     isFocusVisibleRef,
@@ -134,19 +135,13 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     [],
   );
 
-  const [mountedState, setMountedState] = React.useState(false);
+  const enableTouchRipple = ripple.shouldMount && !disableRipple && !disabled;
 
   React.useEffect(() => {
-    setMountedState(true);
-  }, []);
-
-  const enableTouchRipple = mountedState && !disableRipple && !disabled;
-
-  React.useEffect(() => {
-    if (focusVisible && focusRipple && !disableRipple && mountedState) {
-      rippleRef.current.pulsate();
+    if (focusVisible && focusRipple && !disableRipple) {
+      ripple.pulsate();
     }
-  }, [disableRipple, focusRipple, focusVisible, mountedState]);
+  }, [disableRipple, focusRipple, focusVisible, ripple]);
 
   function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
     return useEventCallback((event) => {
@@ -155,8 +150,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       }
 
       const ignore = skipRippleAction;
-      if (!ignore && rippleRef.current) {
-        rippleRef.current[rippleAction](event);
+      if (!ignore) {
+        ripple[rippleAction](event);
       }
 
       return true;
@@ -220,9 +215,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const handleKeyDown = useEventCallback((event) => {
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (focusRipple && !event.repeat && focusVisible && rippleRef.current && event.key === ' ') {
-      rippleRef.current.stop(event, () => {
-        rippleRef.current.start(event);
+    if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
+      ripple.stop(event, () => {
+        ripple.start(event);
       });
     }
 
@@ -254,12 +249,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     if (
       focusRipple &&
       event.key === ' ' &&
-      rippleRef.current &&
       focusVisible &&
       !event.defaultPrevented
     ) {
-      rippleRef.current.stop(event, () => {
-        rippleRef.current.pulsate(event);
+      ripple.stop(event, () => {
+        ripple.pulsate(event);
       });
     }
     if (onKeyUp) {
@@ -302,7 +296,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-      if (enableTouchRipple && !rippleRef.current) {
+      if (enableTouchRipple && !ripple.ref) {
         console.error(
           [
             'MUI: The `component` prop provided to ButtonBase is invalid.',
@@ -310,7 +304,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
           ].join('\n'),
         );
       }
-    }, [enableTouchRipple]);
+    }, [enableTouchRipple, ripple.ref]);
   }
 
   const ownerState = {
@@ -353,7 +347,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     >
       {children}
       {enableTouchRipple ? (
-        /* TouchRipple is only needed client-side, x2 boost on the server. */
         <TouchRipple ref={handleRippleRef} center={centerRipple} {...TouchRippleProps} />
       ) : null}
     </ButtonBaseRoot>
