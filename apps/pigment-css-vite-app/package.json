@@ -9,7 +9,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@pigment-css/react": "^0.0.11",
+    "@pigment-css/react": "^0.0.12",
     "@mui/utils": "workspace:^",
     "@mui/base": "workspace:^",
     "@mui/lab": "workspace:^",
