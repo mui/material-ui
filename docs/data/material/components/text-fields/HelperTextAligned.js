@@ -4,13 +4,7 @@ import TextField from '@mui/material/TextField';
 
 export default function HelperTextAligned() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Box sx={{ display: 'flex', alignItems: 'center', '& > :not(style)': { m: 1 } }}>
       <TextField
         helperText="Please enter your name"
         id="demo-helper-text-aligned"

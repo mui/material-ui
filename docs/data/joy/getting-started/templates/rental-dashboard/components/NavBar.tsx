@@ -35,18 +35,13 @@ export default function HeaderSection() {
         <IconButton size="sm" variant="soft">
           <MapsHomeWorkIcon />
         </IconButton>
-        <Typography component="h1" fontWeight="xl">
+        <Typography component="h1" sx={{ fontWeight: 'xl' }}>
           Acme Rental
         </Typography>
       </Box>
-
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
         <Box
-          sx={{
-            gap: 1,
-            alignItems: 'center',
-            display: { xs: 'none', sm: 'flex' },
-          }}
+          sx={{ gap: 1, alignItems: 'center', display: { xs: 'none', sm: 'flex' } }}
         >
           <Avatar
             variant="outlined"

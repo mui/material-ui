@@ -111,16 +111,13 @@ function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps
 
   const iconColor = color ? colors[color] : null;
   return (
-    <TreeItem2Label
-      {...other}
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <TreeItem2Label {...other} sx={{ display: 'flex', alignItems: 'center' }}>
       {iconColor && <DotIcon color={iconColor} />}
-
-      <Typography className="labelText" variant="body2" color="text.primary">
+      <Typography
+        className="labelText"
+        variant="body2"
+        sx={{ color: 'text.primary' }}
+      >
         {children}
       </Typography>
     </TreeItem2Label>

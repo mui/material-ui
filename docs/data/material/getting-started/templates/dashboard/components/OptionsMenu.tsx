@@ -35,11 +35,7 @@ export default function OptionsMenu() {
             sizes="small"
             alt="Riley Carter"
             src="/static/images/avatar/7.jpg"
-            sx={{
-              width: 24,
-              height: 24,
-              mr: 1,
-            }}
+            sx={{ width: 24, height: 24, mr: 1 }}
           />
           <Typography component="p" variant="subtitle2">
             Riley Carter

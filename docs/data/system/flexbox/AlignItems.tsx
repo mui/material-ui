@@ -97,20 +97,8 @@ export default function AlignItems() {
           borderRadius: 1,
         }}
       >
-        <Item
-          sx={{
-            height: 64,
-          }}
-        >
-          Item 1
-        </Item>
-        <Item
-          sx={{
-            height: 84,
-          }}
-        >
-          Item 2
-        </Item>
+        <Item sx={{ height: 64 }}>Item 1</Item>
+        <Item sx={{ height: 84 }}>Item 2</Item>
         <Item>Item 3</Item>
       </Box>
     </div>

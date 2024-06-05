@@ -63,5 +63,5 @@ Feel free to submit a pull request!
 
 ## Admin frameworks
 
-- [React Admin](https://github.com/marmelab/react-admin): A frontend Framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
-- [refine](https://github.com/refinedev/refine): An open source, headless React-based framework for the rapid development of web applications.
+- [React-admin](https://github.com/marmelab/react-admin): A frontend Framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
+- [Refine](https://github.com/refinedev/refine): An open source, headless React meta-framework for the rapid development of web applications.

@@ -23,10 +23,10 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Engineer — X',
+        title: 'React Engineer — Docs-infra',
         description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
+          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
+        url: '/careers/react-engineer-docs-infra/',
       },
     ],
   },
@@ -52,6 +52,30 @@ const nextRolesData = [
     title: 'Engineering',
     roles: [
       {
+        title: 'React Tech Lead — Core',
+        description:
+          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
+        url: '/careers/react-tech-lead-core/',
+      },
+      {
+        title: 'React Engineer — X',
+        description:
+          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x/',
+      },
+      {
+        title: 'React Engineer — xCharts',
+        description:
+          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x-charts/',
+      },
+      {
+        title: 'React Community Engineer — X',
+        description:
+          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
+        url: '/careers/react-community-engineer/',
+      },
+      {
         title: 'Accessibility Engineer',
         description:
           'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
@@ -62,24 +86,6 @@ const nextRolesData = [
         description:
           'You will join the Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
-      },
-      {
-        title: 'React Engineer — xCharts',
-        description:
-          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-charts/',
-      },
-      {
-        title: 'React Tech Lead — Core',
-        description:
-          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
-        url: '/careers/react-tech-lead-core/',
-      },
-      {
-        title: 'React Community Engineer — X',
-        description:
-          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
-        url: '/careers/react-community-engineer/',
       },
     ],
   },
@@ -161,7 +167,7 @@ export default function Careers() {
               .map((category) => {
                 return (
                   <React.Fragment key={category.title}>
-                    <Typography component="h3" variant="h5" fontWeight="semiBold">
+                    <Typography component="h3" variant="h5" sx={{ fontWeight: 'semiBold' }}>
                       {category.title}
                     </Typography>
                     {category.roles.map((role) => (
@@ -206,7 +212,7 @@ export default function Careers() {
                   .map((category) => {
                     return (
                       <React.Fragment key={category.title}>
-                        <Typography component="h3" variant="h5" fontWeight="extraBold">
+                        <Typography component="h3" variant="h5" sx={{ fontWeight: 'extraBold' }}>
                           {category.title}
                         </Typography>
                         {category.roles.map((role) => (

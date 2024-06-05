@@ -62,9 +62,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           noLinkStyle
           variant="contained"
           endIcon={<KeyboardArrowRightRounded />}
-          sx={{
-            flexShrink: 0,
-          }}
+          sx={{ flexShrink: 0 }}
         >
           {primaryLabel}
         </Button>

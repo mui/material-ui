@@ -280,6 +280,7 @@ const noSEOadvantage = [
   'https://headlessui.com/',
   'https://refine.dev/',
   'https://scaffoldhub.io/',
+  'https://marmelab.com/',
 ];
 
 /**
