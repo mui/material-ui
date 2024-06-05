@@ -1,6 +1,6 @@
 {
   "name": "@mui/joy",
-  "version": "5.0.0-beta.41",
+  "version": "5.0.0-beta.43",
   "private": false,
   "author": "MUI Team",
   "description": "Joy UI is an open-source React component library that implements MUI's own design principles. It's comprehensive and can be used in production out of the box.",
@@ -48,7 +48,7 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.16",
     "@types/prop-types": "^15.7.12",
@@ -61,7 +61,7 @@
     "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sinon": "^15.2.0"
+    "sinon": "^16.1.3"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

@@ -101,13 +101,16 @@ export default function MusicPlayerSlider() {
             />
           </CoverImage>
           <Box sx={{ ml: 1.5, minWidth: 0 }}>
-            <Typography variant="caption" color="text.secondary" fontWeight={500}>
+            <Typography
+              variant="caption"
+              sx={{ color: 'text.secondary', fontWeight: 500 }}
+            >
               Jun Pulse
             </Typography>
             <Typography noWrap>
               <b>คนเก่าเขาทำไว้ดี (Can&apos;t win)</b>
             </Typography>
-            <Typography noWrap letterSpacing={-0.25}>
+            <Typography noWrap sx={{ letterSpacing: -0.25 }}>
               Chilling Sunday &mdash; คนเก่าเขาทำไว้ดี
             </Typography>
           </Box>
@@ -120,8 +123,8 @@ export default function MusicPlayerSlider() {
           step={1}
           max={duration}
           onChange={(_, value) => setPosition(value)}
-          sx={{
-            color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
+          sx={(t) => ({
+            color: 'rgba(0,0,0,0.87)',
             height: 4,
             '& .MuiSlider-thumb': {
               width: 8,
@@ -131,11 +134,10 @@ export default function MusicPlayerSlider() {
                 boxShadow: '0 2px 12px 0 rgba(0,0,0,0.4)',
               },
               '&:hover, &.Mui-focusVisible': {
-                boxShadow: `0px 0px 0px 8px ${
-                  theme.palette.mode === 'dark'
-                    ? 'rgb(255 255 255 / 16%)'
-                    : 'rgb(0 0 0 / 16%)'
-                }`,
+                boxShadow: `0px 0px 0px 8px ${'rgb(0 0 0 / 16%)'}`,
+                ...t.applyStyles('dark', {
+                  boxShadow: `0px 0px 0px 8px ${'rgb(255 255 255 / 16%)'}`,
+                }),
               },
               '&.Mui-active': {
                 width: 20,
@@ -145,7 +147,10 @@ export default function MusicPlayerSlider() {
             '& .MuiSlider-rail': {
               opacity: 0.28,
             },
-          }}
+            ...t.applyStyles('dark', {
+              color: '#fff',
+            }),
+          })}
         />
         <Box
           sx={{
@@ -186,13 +191,17 @@ export default function MusicPlayerSlider() {
             <FastForwardRounded fontSize="large" htmlColor={mainIconColor} />
           </IconButton>
         </Box>
-        <Stack spacing={2} direction="row" sx={{ mb: 1, px: 1 }} alignItems="center">
+        <Stack
+          spacing={2}
+          direction="row"
+          sx={{ alignItems: 'center', mb: 1, px: 1 }}
+        >
           <VolumeDownRounded htmlColor={lightIconColor} />
           <Slider
             aria-label="Volume"
             defaultValue={30}
-            sx={{
-              color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
+            sx={(t) => ({
+              color: 'rgba(0,0,0,0.87)',
               '& .MuiSlider-track': {
                 border: 'none',
               },
@@ -207,7 +216,10 @@ export default function MusicPlayerSlider() {
                   boxShadow: 'none',
                 },
               },
-            }}
+              ...t.applyStyles('dark', {
+                color: '#fff',
+              }),
+            })}
           />
           <VolumeUpRounded htmlColor={lightIconColor} />
         </Stack>

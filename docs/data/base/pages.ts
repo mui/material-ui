@@ -110,7 +110,7 @@ const pages: readonly MuiPage[] = [
     children: [
       {
         pathname: '/base-ui/guides/working-with-tailwind-css',
-        title: 'Working with Tailwind CSS',
+        title: 'Working with Tailwind CSS',
       },
       {
         pathname: '/base-ui/guides/overriding-component-structure',

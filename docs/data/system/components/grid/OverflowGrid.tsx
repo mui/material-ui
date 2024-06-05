@@ -31,11 +31,7 @@ export default function OverflowGrid() {
         },
       })}
     >
-      <Box
-        sx={{
-          width: 200,
-        }}
-      >
+      <Box sx={{ width: 200 }}>
         <Grid container spacing={3}>
           <Grid xs={12}>
             <Item>Scroll bar appears</Item>

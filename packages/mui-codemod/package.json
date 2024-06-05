@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "6.0.0-alpha.8",
+  "version": "6.0.0-alpha.10",
   "bin": "./codemod.js",
   "private": false,
   "author": "MUI Team",
@@ -36,7 +36,7 @@
     "jscodeshift": "^0.15.2",
     "jscodeshift-add-imports": "^1.0.10",
     "postcss": "^8.4.38",
-    "postcss-cli": "^8.3.1",
+    "postcss-cli": "^11.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

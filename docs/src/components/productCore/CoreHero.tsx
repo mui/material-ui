@@ -13,7 +13,7 @@ export default function CoreHero() {
       <SectionHeadline
         alwaysCenter
         overline={
-          <Stack direction="row" justifyContent="center" alignItems="center">
+          <Stack direction="row" sx={{ justifyContent: 'center', alignItems: 'center' }}>
             <IconImage loading="eager" width={28} height={28} name="product-core" sx={{ mr: 1 }} />{' '}
             MUI Core
           </Stack>

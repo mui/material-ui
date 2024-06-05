@@ -39,13 +39,7 @@ Item.propTypes = {
 export default function Gap() {
   return (
     <div style={{ width: '100%' }}>
-      <Box
-        sx={{
-          display: 'grid',
-          gap: 1,
-          gridTemplateColumns: 'repeat(2, 1fr)',
-        }}
-      >
+      <Box sx={{ display: 'grid', gap: 1, gridTemplateColumns: 'repeat(2, 1fr)' }}>
         <Item>1</Item>
         <Item>2</Item>
         <Item>3</Item>

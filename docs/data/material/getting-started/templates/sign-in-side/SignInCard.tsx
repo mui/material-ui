@@ -100,12 +100,7 @@ export default function SignInCard() {
         component="form"
         onSubmit={handleSubmit}
         noValidate
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          gap: 2,
-        }}
+        sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
       >
         <FormControl>
           <FormLabel htmlFor="email">Email</FormLabel>
@@ -126,12 +121,7 @@ export default function SignInCard() {
           />
         </FormControl>
         <FormControl>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <FormLabel htmlFor="password">Password</FormLabel>
             <Link
               component="button"
