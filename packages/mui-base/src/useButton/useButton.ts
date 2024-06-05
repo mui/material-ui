@@ -57,7 +57,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
   };
 
   const createHandleBlur = (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
-    if (!isFocusVisible(event)) {
+    if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
     }
 
@@ -71,7 +71,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
         buttonRef.current = event.currentTarget;
       }
 
-      if (isFocusVisible(event)) {
+      if (isFocusVisible(event.target)) {
         setFocusVisible(true);
         otherHandlers.onFocusVisible?.(event);
       }

@@ -66,7 +66,7 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
         inputRef.current = event.currentTarget;
       }
 
-      if (isFocusVisible(event)) {
+      if (isFocusVisible(event.target)) {
         setFocusVisible(true);
         onFocusVisible?.(event);
       }
@@ -78,7 +78,7 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
   const createHandleBlur =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.FocusEvent<HTMLInputElement>) => {
-      if (!isFocusVisible(event)) {
+      if (!isFocusVisible(event.target)) {
         setFocusVisible(false);
       }
 

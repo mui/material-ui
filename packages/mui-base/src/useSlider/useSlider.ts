@@ -273,7 +273,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const createHandleHiddenInputFocus =
     (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
       const index = Number(event.currentTarget.getAttribute('data-index'));
-      if (isFocusVisible(event)) {
+      if (isFocusVisible(event.target)) {
         setFocusedThumbIndex(index);
       }
       setOpen(index);
@@ -281,7 +281,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
   const createHandleHiddenInputBlur =
     (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
-      if (!isFocusVisible(event)) {
+      if (!isFocusVisible(event.target)) {
         setFocusedThumbIndex(-1);
       }
       setOpen(-1);

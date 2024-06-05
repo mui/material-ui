@@ -464,7 +464,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   };
 
   const handleFocus = (event) => {
-    if (isFocusVisible(event)) {
+    if (isFocusVisible(event.target)) {
       setFocusVisible(true);
     }
 
@@ -480,7 +480,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       return;
     }
 
-    if (!isFocusVisible(event)) {
+    if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
     }
 

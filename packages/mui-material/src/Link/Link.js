@@ -9,7 +9,6 @@ import isFocusVisible from '@mui/utils/isFocusVisible';
 import capitalize from '../utils/capitalize';
 import { styled, useTheme } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import getTextDecoration, { colorTransformations } from './getTextDecoration';
@@ -144,7 +143,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const [focusVisible, setFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
-    if (!isFocusVisible(event)) {
+    if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
     }
     if (onBlur) {
@@ -152,7 +151,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     }
   };
   const handleFocus = (event) => {
-    if (isFocusVisible(event)) {
+    if (isFocusVisible(event.target)) {
       setFocusVisible(true);
     }
     if (onFocus) {

@@ -337,7 +337,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   // We just need to re-render the Tooltip if the focus-visible state changes.
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event: React.FocusEvent<HTMLElement> | React.MouseEvent<HTMLElement>) => {
-    if (!isFocusVisible(event as React.FocusEvent<HTMLElement>)) {
+    if (!isFocusVisible(event.target as EventTarget & Element)) {
       setChildIsFocusVisible(false);
       handleMouseLeave(event as React.MouseEvent<HTMLElement>);
     }
@@ -351,7 +351,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       setChildNode(event.currentTarget);
     }
 
-    if (!isFocusVisible(event as React.FocusEvent<HTMLElement>)) {
+    if (!isFocusVisible(event.target as EventTarget & Element)) {
       setChildIsFocusVisible(true);
       handleMouseOver(event as React.MouseEvent<HTMLElement>);
     }

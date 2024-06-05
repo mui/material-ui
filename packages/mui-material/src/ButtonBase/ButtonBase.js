@@ -176,7 +176,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const handleBlur = useRippleHandler(
     'stop',
     (event) => {
-      if (!isFocusVisible(event)) {
+      if (!isFocusVisible(event.target)) {
         setFocusVisible(false);
       }
       if (onBlur) {
@@ -192,7 +192,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       buttonRef.current = event.currentTarget;
     }
 
-    if (isFocusVisible(event)) {
+    if (isFocusVisible(event.target)) {
       setFocusVisible(true);
 
       if (onFocusVisible) {

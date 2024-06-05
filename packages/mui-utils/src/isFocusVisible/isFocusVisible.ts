@@ -1,10 +1,9 @@
 /**
  * Returns a boolean indicating if the event's target has :focus-visible
  */
-export default function isFocusVisible(event: React.FocusEvent): boolean {
-  const { target } = event;
+export default function isFocusVisible(element: EventTarget & Element): boolean {
   try {
-    return target.matches(':focus-visible');
+    return element.matches(':focus-visible');
   } catch (error) {
     if (process.env.NODE_ENV !== 'production') {
       console.warn(
