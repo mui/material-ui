@@ -48,7 +48,6 @@ const IconButtonRoot = styled(ButtonBase, {
     fontSize: theme.typography.pxToRem(24),
     padding: 8,
     borderRadius: '50%',
-    overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
     color: (theme.vars || theme).palette.action.active,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,

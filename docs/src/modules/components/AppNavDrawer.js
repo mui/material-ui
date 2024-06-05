@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { styled, ThemeProvider } from '@mui/material/styles';
@@ -15,7 +14,7 @@ import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -389,11 +388,11 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref legacyBehavior>
-            <Box component="a" onClick={onClose} aria-label={t('goToHome')} sx={{ mr: 1.5 }}>
-              <SvgMuiLogomark width={30} />
-            </Box>
-          </NextLink>
+          <LogoWithCopyMenu
+            logo={productIdentifier.logo}
+            logoSvgString={productIdentifier.logoSvg}
+            wordmarkSvgString={productIdentifier.wordmarkSvg}
+          />
           <ProductIdentifier
             name={productIdentifier.name}
             metadata={productIdentifier.metadata}

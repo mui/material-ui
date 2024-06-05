@@ -530,7 +530,7 @@ export function getThemedComponents(): ThemeOptions {
               ...theme.typography.body1,
               lineHeight: 21 / 16,
               padding: theme.spacing('8px', '10px', '10px', '12px'),
-              fontWeight: theme.typography.fontWeightSemiBold,
+              fontWeight: theme.typography.fontWeightMedium,
               borderRadius: 10,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
@@ -538,16 +538,16 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.size === 'medium' && {
               fontSize: defaultTheme.typography.pxToRem(15),
               padding: theme.spacing('8px', '12px', '8px', '14px'),
-              fontWeight: theme.typography.fontWeightSemiBold,
+              fontWeight: theme.typography.fontWeightMedium,
               borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'small' && {
-              padding: theme.spacing('6px', 1.5),
+              padding: '6px 8px',
               fontFamily: theme.typography.fontFamily,
               fontSize: defaultTheme.typography.pxToRem(13),
-              fontWeight: theme.typography.fontWeightSemiBold,
+              fontWeight: theme.typography.fontWeightMedium,
               borderRadius: 8,
               '& .MuiButton-startIcon': {
                 transition: '0.15s',
@@ -783,6 +783,15 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             borderRadius: theme.shape.borderRadius,
+            transition: 'all 100ms ease-in',
+            '&:hover': {
+              borderColor: (theme.vars || theme).palette.grey[300],
+              background: (theme.vars || theme).palette.grey[50],
+              ...theme.applyDarkStyles({
+                borderColor: (theme.vars || theme).palette.primaryDark[600],
+                background: alpha(theme.palette.primaryDark[700], 0.8),
+              }),
+            },
             ...(ownerState.size === 'small' && {
               height: 32,
               width: 32,
@@ -797,11 +806,10 @@ export function getThemedComponents(): ThemeOptions {
             props: { color: 'primary' },
             style: ({ theme }) => [
               {
-                border: `1px solid`,
                 color: (theme.vars || theme).palette.primary.main,
                 backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
-                borderColor: (theme.vars || theme).palette.primaryDark[100],
-                boxShadow: `${alpha(theme.palette.grey[200], 0.5)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                border: `1px solid ${(theme.vars || theme).palette.primaryDark[100]}`,
+                boxShadow: `#FFF 0 1px 0 inset, ${alpha(theme.palette.grey[200], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
                   borderColor: (theme.vars || theme).palette.grey[300],
                   background: (theme.vars || theme).palette.grey[50],
@@ -823,14 +831,12 @@ export function getThemedComponents(): ThemeOptions {
             props: { color: 'info' },
             style: ({ theme }) => [
               {
-                color: (theme.vars || theme).palette.text.tertiary,
-                borderRadius: theme.shape.borderRadius,
-                border: `1px solid`,
+                color: (theme.vars || theme).palette.text.secondary,
                 backgroundColor: alpha(theme.palette.primaryDark[50], 0.1),
-                borderColor: (theme.vars || theme).palette.primaryDark[100],
-                boxShadow: `${alpha(theme.palette.grey[50], 0.4)} 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
+                border: `1px solid ${(theme.vars || theme).palette.primaryDark[100]}`,
+                boxShadow: `#FFF 0 1px 0 inset, ${alpha(theme.palette.grey[200], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
                 '&:hover': {
-                  color: (theme.vars || theme).palette.primary.main,
+                  color: (theme.vars || theme).palette.text.primary,
                   borderColor: (theme.vars || theme).palette.grey[300],
                   background: (theme.vars || theme).palette.grey[50],
                 },
@@ -838,11 +844,10 @@ export function getThemedComponents(): ThemeOptions {
               theme.applyDarkStyles({
                 borderColor: alpha(theme.palette.primaryDark[600], 0.5),
                 backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
-                boxShadow: `${alpha(theme.palette.primaryDark[600], 0.2)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
+                boxShadow: `${alpha(theme.palette.primaryDark[600], 0.3)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
                 '&:hover': {
-                  color: (theme.vars || theme).palette.primary[400],
-                  borderColor: (theme.vars || theme).palette.primaryDark[500],
-                  background: alpha(theme.palette.primaryDark[700], 0.4),
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                  background: alpha(theme.palette.primaryDark[700], 0.8),
                 },
               }),
             ],
@@ -869,11 +874,11 @@ export function getThemedComponents(): ThemeOptions {
                 },
               },
               '& .MuiMenuItem-root': {
-                padding: '6px 12px',
+                padding: '6px 8px',
                 borderRadius: '6px',
                 fontSize: theme.typography.pxToRem(14),
                 fontWeight: theme.typography.fontWeightMedium,
-                '&:hover, &:focus': {
+                '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.grey[100],
                   color: (theme.vars || theme).palette.text.primary,
                 },
@@ -891,7 +896,7 @@ export function getThemedComponents(): ThemeOptions {
               backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               borderColor: (theme.vars || theme).palette.primaryDark[700],
               '& .MuiMenuItem-root': {
-                '&:hover, &:focus': {
+                '&:hover': {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
                 '&.Mui-selected': {
@@ -1279,11 +1284,18 @@ export function getThemedComponents(): ThemeOptions {
         },
       },
       MuiTooltip: {
+        defaultProps: {
+          arrow: true,
+        },
         styleOverrides: {
-          tooltip: {
+          tooltip: ({ theme }) => ({
+            padding: '6px 8px',
             borderRadius: 6,
-            padding: '6px 12px',
-          },
+            backgroundColor: (theme.vars || theme).palette.grey[800],
+            '& .MuiTooltip-arrow': {
+              color: (theme.vars || theme).palette.grey[800],
+            },
+          }),
         },
       },
       MuiSwitch: {
@@ -1321,6 +1333,23 @@ export function getThemedComponents(): ThemeOptions {
             width: '14px',
             height: '14px',
           },
+        },
+      },
+      MuiSnackbar: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            '& .MuiSnackbarContent-root': {
+              backgroundColor: '#FFF',
+              color: (theme.vars || theme).palette.text.primary,
+              fontWeight: theme.typography.fontWeightMedium,
+              border: `1px solid ${(theme.vars || theme).palette.divider}`,
+              boxShadow: `0 4px 16px ${alpha(theme.palette.grey[400], 0.2)}`,
+              ...theme.applyDarkStyles({
+                backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+                boxShadow: '0 4px 16px hsl(0, 100%, 1%)',
+              }),
+            },
+          }),
         },
       },
       MuiPaginationItem: {

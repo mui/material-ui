@@ -39,13 +39,7 @@ Item.propTypes = {
 export default function GridAutoColumns() {
   return (
     <div style={{ width: '100%' }}>
-      <Box
-        sx={{
-          display: 'grid',
-          gridAutoColumns: '1fr',
-          gap: 1,
-        }}
-      >
+      <Box sx={{ display: 'grid', gridAutoColumns: '1fr', gap: 1 }}>
         <Item sx={{ gridRow: '1', gridColumn: 'span 2' }}>span 2</Item>
         {/* The second non-visible column has width of 1/4 */}
         <Item sx={{ gridRow: '1', gridColumn: '4 / 5' }}>4 / 5</Item>

@@ -75,17 +75,21 @@ export default function Pricing() {
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
-        <Typography component="h2" variant="h4" color="text.primary">
+        <Typography component="h2" variant="h4" sx={{ color: 'text.primary' }}>
           Pricing
         </Typography>
-        <Typography variant="body1" color="text.secondary">
+        <Typography variant="body1" sx={{ color: 'text.secondary' }}>
           Quickly build an effective pricing table for your potential customers with
           this layout. <br />
           It&apos;s built with default Material UI components with little
           customization.
         </Typography>
       </Box>
-      <Grid container spacing={3} alignItems="center" justifyContent="center">
+      <Grid
+        container
+        spacing={3}
+        sx={{ alignItems: 'center', justifyContent: 'center' }}
+      >
         {tiers.map((tier) => (
           <Grid
             item
@@ -157,22 +161,11 @@ export default function Pricing() {
                     &nbsp; per month
                   </Typography>
                 </Box>
-                <Divider
-                  sx={{
-                    my: 2,
-                    opacity: 0.8,
-                    borderColor: 'divider',
-                  }}
-                />
+                <Divider sx={{ my: 2, opacity: 0.8, borderColor: 'divider' }} />
                 {tier.description.map((line) => (
                   <Box
                     key={line}
-                    sx={{
-                      py: 1,
-                      display: 'flex',
-                      gap: 1.5,
-                      alignItems: 'center',
-                    }}
+                    sx={{ py: 1, display: 'flex', gap: 1.5, alignItems: 'center' }}
                   >
                     <CheckCircleRoundedIcon
                       sx={{

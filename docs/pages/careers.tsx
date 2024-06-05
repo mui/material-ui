@@ -28,6 +28,12 @@ const openRolesData = [
           'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
         url: '/careers/react-engineer-x/',
       },
+      {
+        title: 'React Engineer — Docs-infra',
+        description:
+          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
+        url: '/careers/react-engineer-docs-infra/',
+      },
     ],
   },
   {
@@ -161,7 +167,7 @@ export default function Careers() {
               .map((category) => {
                 return (
                   <React.Fragment key={category.title}>
-                    <Typography component="h3" variant="h5" fontWeight="semiBold">
+                    <Typography component="h3" variant="h5" sx={{ fontWeight: 'semiBold' }}>
                       {category.title}
                     </Typography>
                     {category.roles.map((role) => (
@@ -206,7 +212,7 @@ export default function Careers() {
                   .map((category) => {
                     return (
                       <React.Fragment key={category.title}>
-                        <Typography component="h3" variant="h5" fontWeight="extraBold">
+                        <Typography component="h3" variant="h5" sx={{ fontWeight: 'extraBold' }}>
                           {category.title}
                         </Typography>
                         {category.roles.map((role) => (

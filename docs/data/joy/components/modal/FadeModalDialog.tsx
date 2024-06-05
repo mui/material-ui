@@ -32,9 +32,7 @@ export default function FadeModalDialog() {
                 },
               },
             }}
-            sx={{
-              visibility: state === 'exited' ? 'hidden' : 'visible',
-            }}
+            sx={{ visibility: state === 'exited' ? 'hidden' : 'visible' }}
           >
             <ModalDialog
               sx={{
