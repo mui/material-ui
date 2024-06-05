@@ -184,8 +184,6 @@ export const InputBaseInput = styled('input', {
     // Make the flex item shrink with Firefox
     minWidth: 0,
     flexGrow: 1,
-    animationName: 'mui-auto-fill-cancel',
-    animationDuration: '10ms',
     '&::-webkit-input-placeholder': placeholder,
     '&::-moz-placeholder': placeholder, // Firefox 19+
     '&::-ms-input-placeholder': placeholder, // Edge
@@ -218,6 +216,7 @@ export const InputBaseInput = styled('input', {
         props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
         style: {
           animationName: 'mui-auto-fill-cancel',
+          animationDuration: '10ms',
           '&:-webkit-autofill': {
             animationDuration: '5000s',
             animationName: 'mui-auto-fill',
