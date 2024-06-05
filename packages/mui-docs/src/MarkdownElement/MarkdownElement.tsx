@@ -137,7 +137,6 @@ const Root = styled('div')(
         display: 'flex',
         alignItems: 'center',
         userSelect: 'text',
-        // WebkitUserDrag: 'none',
       },
       '& .anchor-icon': {
         // To prevent the link to get the focus.
@@ -829,6 +828,7 @@ export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementP
       const elements = document.getElementsByClassName('title-link-to-anchor');
 
       for (let i = 0; i < elements.length; i += 1) {
+        // More reliable than `-webkit-user-drag` (https://caniuse.com/webkit-user-drag)
         elements[i].setAttribute('draggable', 'false');
         elements[i].addEventListener('click', handleClick, false);
       }
