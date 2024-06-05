@@ -18,7 +18,10 @@ const names = new Set(process.argv.slice(2));
   // eslint-disable-next-line no-console
   console.info('Host:', host);
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 1600, height: 800 } });
+  const page = await browser.newPage({
+    viewport: { width: 1600, height: 800 },
+    reducedMotion: 'reduce',
+  });
 
   const files = await fs.readdir(
     path.join(process.cwd(), 'docs/pages/joy-ui/getting-started/templates'),
