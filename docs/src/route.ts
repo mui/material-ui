@@ -33,6 +33,8 @@ const ROUTES = {
   joyDocs: '/joy-ui/getting-started/',
   // System pages
   systemDocs: '/system/getting-started/',
+  // Pigment CSS pages
+  pigmentDocs: 'https://github.com/mui/pigment-css?tab=readme-ov-file#documentation',
   // X general pages
   xIntro: '/x/introduction/',
   xRoadmap: 'https://github.com/mui/mui-x/projects/1',

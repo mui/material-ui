@@ -12,7 +12,9 @@ import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import { Link } from '@mui/docs/Link';
-import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
+import SvgPigmentLogo from 'docs/src/icons/SvgPigmentLogo';
 
 const Navigation = styled('nav')(({ theme }) => [
   {
@@ -67,7 +69,10 @@ const Navigation = styled('nav')(({ theme }) => [
 ]);
 
 const PRODUCT_IDS = [
-  'product-core',
+  'product-material',
+  'product-base',
+  'product-pigment',
+  'product-joy',
   'product-advanced',
   'product-toolpad',
   'product-templates',
@@ -90,12 +95,16 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         href={href}
         ref={ref}
         sx={(theme) => ({
+          p: 1,
           display: 'flex',
           alignItems: 'center',
-          py: 2,
-          pr: 3,
+          gap: '12px',
+          border: '1px solid transparent',
+          borderRadius: '8px',
+          transition: '100ms ease-in background-color, border',
           '&:hover, &:focus': {
             backgroundColor: (theme.vars || theme).palette.grey[50],
+            borderColor: (theme.vars || theme).palette.divider,
             outline: 0,
             '@media (hover: none)': {
               backgroundColor: 'initial',
@@ -110,16 +119,28 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         })}
         {...props}
       >
-        <Box sx={{ px: 2 }}>{icon}</Box>
-        <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
-            {name}
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        <Box
+          sx={{
+            height: '36px',
+            width: '36px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {icon}
+        </Box>
+        <div>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Typography color="text.primary" variant="body2" fontWeight="semiBold">
+              {name}
+            </Typography>
+            {chip}
+          </Box>
+          <Typography color="text.secondary" variant="body2" fontSize="0.813rem">
             {description}
           </Typography>
-        </Box>
-        {chip}
+        </div>
       </Box>
     );
   },
@@ -235,28 +256,24 @@ export default function HeaderNavBar() {
                   variant="outlined"
                   sx={(theme) => ({
                     mt: 1,
+                    p: 1,
                     minWidth: 498,
                     overflow: 'hidden',
                     borderColor: 'grey.200',
                     bgcolor: 'background.paper',
-                    boxShadow: `0px 4px 16px ${alpha(theme.palette.grey[200], 0.8)}`,
+                    boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.15)}`,
                     '& ul': {
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+                      gap: '8px',
                       margin: 0,
                       padding: 0,
                       listStyle: 'none',
                     },
-                    '& li:not(:last-of-type)': {
-                      borderBottom: '1px solid',
-                      borderColor: 'grey.100',
-                    },
                     '& a': { textDecoration: 'none' },
                     ...theme.applyDarkStyles({
-                      borderColor: 'primaryDark.700',
                       bgcolor: 'primaryDark.900',
                       boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.8)}`,
-                      '& li:not(:last-of-type)': {
-                        borderColor: 'primaryDark.700',
-                      },
                     }),
                   })}
                 >
@@ -264,103 +281,93 @@ export default function HeaderNavBar() {
                     <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[0]}
-                        href={ROUTES.productCore}
-                        icon={<IconImage name="product-core" />}
-                        name="MUI Core"
-                        description="Ready-to-use foundational React components, free forever."
+                        href={ROUTES.productMaterial}
+                        icon={<SvgMuiLogomark height={24} width={24} />}
+                        name="Material UI"
+                        description="Ready-to-use foundational React components."
                       />
                     </li>
                     <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[1]}
-                        href={ROUTES.productAdvanced}
-                        icon={<IconImage name="product-advanced" />}
-                        name="MUI X"
-                        description="Advanced and powerful components for complex use cases."
+                        href={ROUTES.productBase}
+                        icon={<SvgBaseUiLogo height={24} width={24} />}
+                        name="Base UI"
+                        description="Unstyled components and hooks."
                       />
                     </li>
                     <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[2]}
-                        href={ROUTES.productToolpad}
-                        icon={<IconImage name="product-toolpad" />}
-                        name="Toolpad"
-                        chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
-                        description="Low-code admin builder."
+                        href={ROUTES.pigmentDocs}
+                        icon={<SvgPigmentLogo height={24} width={24} />}
+                        name="Pigment CSS"
+                        description="Zero-runtime CSS-in-JS."
                       />
                     </li>
                     <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[3]}
-                        href={ROUTES.productTemplates}
-                        icon={<IconImage name="product-templates" />}
-                        name="Templates"
-                        description="Fully built, out-of-the-box, templates for your application."
+                        href={ROUTES.joyDocs}
+                        icon={<IconImage name="product-core" />}
+                        name="Joy UI"
+                        description="Beautiful foudational React components."
                       />
                     </li>
                     <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[4]}
+                        href={ROUTES.productAdvanced}
+                        icon={<IconImage name="product-advanced" />}
+                        name="MUI X"
+                        description="Advanced components for complex use cases."
+                      />
+                    </li>
+                    <li>
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[5]}
+                        href={ROUTES.productToolpad}
+                        icon={<IconImage name="product-toolpad" />}
+                        name="Toolpad"
+                        chip={
+                          <Chip
+                            label="Beta"
+                            size="small"
+                            color="primary"
+                            variant="outlined"
+                            sx={{
+                              fontSize: '.625rem',
+                              fontWeight: 'semiBold',
+                              textTransform: 'uppercase',
+                              letterSpacing: '.04rem',
+                              height: '16px',
+                              '& .MuiChip-label': {
+                                px: '4px',
+                              },
+                            }}
+                          />
+                        }
+                        description="Low-code admin builder."
+                      />
+                    </li>
+                    <li>
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[6]}
+                        href={ROUTES.productTemplates}
+                        icon={<IconImage name="product-templates" />}
+                        name="Templates"
+                        description="Fully built Material UI templates."
+                      />
+                    </li>
+                    <li>
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[7]}
                         href={ROUTES.productDesignKits}
                         icon={<IconImage name="product-designkits" />}
                         name="Design Kits"
-                        description="Material UI components in your favorite design tool."
+                        description="Material UI in your favorite design tool."
                       />
                     </li>
-                  </ul>
-                </Paper>
-              </Fade>
-            )}
-          </Popper>
-        </li>
-        <li
-          onMouseEnter={setSubMenuOpenUndebounce('docs')}
-          onFocus={setSubMenuOpenUndebounce('docs')}
-          onMouseLeave={() => setSubMenuOpenDebounced(null)}
-          onBlur={setSubMenuOpenUndebounce(null)}
-        >
-          <ButtonBase
-            ref={docsMenuRef}
-            aria-haspopup
-            aria-expanded={subMenuOpen === 'docs' ? 'true' : 'false'}
-            onClick={handleClickMenu('docs')}
-            aria-controls={subMenuOpen === 'docs' ? 'docs-popper' : undefined}
-          >
-            Docs
-          </ButtonBase>
-          <Popper
-            id="docs-popper"
-            open={subMenuOpen === 'docs'}
-            anchorEl={docsMenuRef.current}
-            transition
-            placement="bottom-start"
-            style={{ zIndex: 1200, pointerEvents: subMenuOpen === 'docs' ? undefined : 'none' }}
-          >
-            {({ TransitionProps }) => (
-              <Fade {...TransitionProps} timeout={250}>
-                <Paper
-                  variant="outlined"
-                  sx={(theme) => ({
-                    mt: 1,
-                    minWidth: 498,
-                    overflow: 'hidden',
-                    borderColor: 'grey.200',
-                    bgcolor: 'background.paper',
-                    boxShadow: `0px 4px 16px ${alpha(theme.palette.grey[200], 0.8)}`,
-                    '& ul': {
-                      margin: 0,
-                      padding: 0,
-                      listStyle: 'none',
-                    },
-                    ...theme.applyDarkStyles({
-                      borderColor: 'primaryDark.700',
-                      bgcolor: 'primaryDark.900',
-                      boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.8)}`,
-                    }),
-                  })}
-                >
-                  <ul>
-                    <MuiProductSelector />
                   </ul>
                 </Paper>
               </Fade>
