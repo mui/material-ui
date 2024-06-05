@@ -537,7 +537,7 @@ export function getThemedComponents(): ThemeOptions {
             }),
             ...(ownerState.size === 'medium' && {
               fontSize: defaultTheme.typography.pxToRem(15),
-              padding: theme.spacing('8px', '12px', '8px', '14px'),
+              padding: '8px 12px',
               fontWeight: theme.typography.fontWeightMedium,
               borderRadius: 8,
               '& > span': { transition: '0.2s', marginLeft: 4 },

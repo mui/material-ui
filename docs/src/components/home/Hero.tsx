@@ -95,6 +95,7 @@ export default function Hero() {
             primaryUrl="#product-suite"
             secondaryLabel="Start with Material UI"
             secondaryUrl="/material-ui/getting-started/"
+            sx={{ '& .primary-button-chevron': { display: 'none' } }}
           />
         </React.Fragment>
       }

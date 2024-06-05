@@ -61,7 +61,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
           rel={primaryUrlTarget ? 'noopener' : ''}
           noLinkStyle
           variant="contained"
-          endIcon={<KeyboardArrowRightRounded />}
+          endIcon={<KeyboardArrowRightRounded className="primary-button-chevron" />}
           sx={{ flexShrink: 0 }}
         >
           {primaryLabel}
