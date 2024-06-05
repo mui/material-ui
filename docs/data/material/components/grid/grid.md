@@ -191,9 +191,12 @@ But as seen below, you can easily use [MUI System](/system/grid/) and CSS Grid 
 
 ## System props
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
-For instance, a padding:
+:::info
+System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
 
-```jsx
-<Grid item p={2}>
+```diff
+- <Grid item p={2} />
++ <Grid item sx={{ p: 2 }} />
 ```
+
+:::

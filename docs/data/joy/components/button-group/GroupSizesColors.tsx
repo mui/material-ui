@@ -5,7 +5,7 @@ import Stack from '@mui/joy/Stack';
 
 export default function GroupSizesColors() {
   return (
-    <Stack spacing={2} alignItems="center">
+    <Stack spacing={2} sx={{ alignItems: 'center' }}>
       <ButtonGroup size="sm" aria-label="outlined button group">
         <Button>One</Button>
         <Button>Two</Button>

@@ -167,7 +167,7 @@ export default function Careers() {
               .map((category) => {
                 return (
                   <React.Fragment key={category.title}>
-                    <Typography component="h3" variant="h5" fontWeight="semiBold">
+                    <Typography component="h3" variant="h5" sx={{ fontWeight: 'semiBold' }}>
                       {category.title}
                     </Typography>
                     {category.roles.map((role) => (
@@ -212,7 +212,7 @@ export default function Careers() {
                   .map((category) => {
                     return (
                       <React.Fragment key={category.title}>
-                        <Typography component="h3" variant="h5" fontWeight="extraBold">
+                        <Typography component="h3" variant="h5" sx={{ fontWeight: 'extraBold' }}>
                           {category.title}
                         </Typography>
                         {category.roles.map((role) => (

@@ -8,13 +8,13 @@ export default function ContentBadge() {
   return (
     <Box sx={{ display: 'flex', gap: 3 }}>
       <Badge badgeContent={4}>
-        <Typography fontSize="xl">🛍</Typography>
+        <Typography sx={{ fontSize: 'xl' }}>🛍</Typography>
       </Badge>
       <Badge badgeContent="❕">
-        <Typography fontSize="xl">🔔</Typography>
+        <Typography sx={{ fontSize: 'xl' }}>🔔</Typography>
       </Badge>
       <Badge variant="plain" color="danger" badgeContent={<Warning />}>
-        <Typography fontSize="xl">🪫</Typography>
+        <Typography sx={{ fontSize: 'xl' }}>🪫</Typography>
       </Badge>
     </Box>
   );

@@ -6,7 +6,13 @@ import Link from '@mui/material/Link';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
+    <Typography
+      variant="body2"
+      align="center"
+      sx={{
+        color: 'text.secondary',
+      }}
+    >
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -34,8 +40,10 @@ export default function Footer(props: FooterProps) {
         <Typography
           variant="subtitle1"
           align="center"
-          color="text.secondary"
           component="p"
+          sx={{
+            color: 'text.secondary',
+          }}
         >
           {description}
         </Typography>

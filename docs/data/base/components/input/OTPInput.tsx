@@ -176,13 +176,7 @@ export default function OTPInput() {
   const [otp, setOtp] = React.useState('');
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 2,
-      }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <OTP separator={<span>-</span>} value={otp} onChange={setOtp} length={5} />
       <span>Entered value: {otp}</span>
     </Box>

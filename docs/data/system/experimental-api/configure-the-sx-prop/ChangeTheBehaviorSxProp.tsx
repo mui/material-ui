@@ -28,7 +28,7 @@ const theme = createTheme({
 
 export default function ChangeTheBehaviorSxProp() {
   return (
-    <Stack direction="row" gap={1}>
+    <Stack direction="row" sx={{ gap: 1 }}>
       <ThemeProvider theme={theme}>
         <Box sx={{ borderRadius: 'sm', border: 1, p: 4 }} />
         <Box sx={{ borderRadius: 'md', border: 1, p: 4 }} />

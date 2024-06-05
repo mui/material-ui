@@ -62,22 +62,19 @@ function StatCard({ title, value, interval, trend, data }) {
         </Typography>
         <Stack
           direction="column"
-          justifyContent="space-between"
-          flexGrow="1"
-          gap={1}
+          sx={{ justifyContent: 'space-between', flexGrow: '1', gap: 1 }}
         >
-          <Stack justifyContent="space-between">
+          <Stack sx={{ justifyContent: 'space-between' }}>
             <Stack
               direction="row"
-              justifyContent="space-between"
-              alignItems="center"
+              sx={{ justifyContent: 'space-between', alignItems: 'center' }}
             >
               <Typography variant="h4" component="p">
                 {value}
               </Typography>
               <Chip size="small" color={color} label={trendValues[trend]} />
             </Stack>
-            <Typography variant="caption" color="text.secondary">
+            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
               {interval}
             </Typography>
           </Stack>
