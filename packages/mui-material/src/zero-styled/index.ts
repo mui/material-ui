@@ -1,4 +1,5 @@
 import useThemeProps from '../styles/useThemeProps';
+import useTheme from '../styles/useTheme';
 
 export { css, keyframes } from '@mui/system';
 
@@ -8,3 +9,5 @@ export { default as styled } from '../styles/styled';
 export function createUseThemeProps(name: string) {
   return useThemeProps;
 }
+
+export { useTheme };
