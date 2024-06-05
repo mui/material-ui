@@ -1,4 +1,4 @@
-# Staff Engineer - Pigment CSS
+# Staff Engineer - Pigment CSS
 
 <p class="description">Research, build, document, and ship high-quality zero-runtime CSS-in-JS library with a focus on performance and great developer experience.</p>
 
@@ -11,17 +11,17 @@
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
 We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS-in-JS library, that is a replacement of the current styling engine that uses emotion/styled-components under the hood.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS-in-JS library, that is a replacement of the current styling engine that uses emotion/styled-components under the hood.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -38,7 +38,7 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-The Pigment CSS team is just starting to take shape now, and we have big goals for the next few years. We need experienced people to work in an IC capacity, to research, spec, build, document, and ship high-quality, zero-runtime CSS-in-JS library with a focus on performance and great developer experience.
+The Pigment CSS team is just starting to take shape now, and we have big goals for the next few years. We need experienced people to work in an IC capacity, to research, spec, build, document, and ship high-quality, zero-runtime CSS-in-JS library with a focus on performance and great developer experience.
 
 Overall, both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
@@ -99,7 +99,7 @@ We're looking for someone with strong core JavaScript skills. More important tha
 - **Avoid monolithic deliverables**.
   You scope and stage your work into well-defined milestones to ship.
 - **Past work with front-end infrastructure**.
-  Perhaps you've written a Babel plugin, or even worked on a problem similar to the ones Pigment CSS tries to address.
+  Perhaps you've written a Babel plugin, or even worked on a problem similar to the ones Pigment CSS aims to address.
   It would be great if you could address this in your cover letter!
 
 ### Nice to have (but not required)
