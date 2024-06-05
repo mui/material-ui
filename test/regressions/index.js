@@ -33,7 +33,8 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
-  'docs-getting-started-templates-dashboard-internals-components/CustomIcons.png', // No public components
+  'docs-getting-started-templates-dashboard-components', // Already tested by /docs-getting-started-templates-dashboard/Dashboard
+  'docs-getting-started-templates-dashboard-internals-components', // No public components
   'docs-getting-started-templates-dashboard-components/SideNav.png', // No public components
   'docs-getting-started-templates-dashboard-components/PageViewsBarChart.png', // No public components
   'docs-getting-started-templates-dashboard-components/StatCard.png', // No public components
