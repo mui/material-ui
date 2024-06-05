@@ -157,6 +157,18 @@ export default function sxV6(file, api, options) {
         }
       }
 
+      function rootThemeCallback(data) {
+        if (data.root.type === 'ObjectExpression') {
+          data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
+        } else if (data.root.type === 'ArrayExpression') {
+          data.root.elements.forEach((item, index) => {
+            if (item === data.node) {
+              data.root.elements[index] = buildArrowFunctionAST([j.identifier('theme')], data.root);
+            }
+          });
+        }
+      }
+
       /**
        *
        * @param {{ node: import('jscodeshift').Expression }} data
@@ -165,10 +177,64 @@ export default function sxV6(file, api, options) {
         if (data.node.type === 'ArrowFunctionExpression') {
           const returnExpression = getReturnExpression(data.node);
           if (returnExpression) {
-            recurseObjectExpression({
-              ...data,
-              node: returnExpression,
-            });
+            if (
+              returnExpression.type === 'MemberExpression' &&
+              returnExpression.property?.type === 'ConditionalExpression'
+            ) {
+              recurseObjectExpression({
+                ...data,
+                node: j.conditionalExpression(
+                  returnExpression.property.test,
+                  { ...returnExpression, property: returnExpression.property.consequent },
+                  { ...returnExpression, property: returnExpression.property.alternate },
+                ),
+              });
+            } else if (returnExpression.type === 'TemplateLiteral') {
+              const firstExpression = returnExpression.expressions[0];
+              if (firstExpression?.type === 'ConditionalExpression') {
+                recurseObjectExpression({
+                  ...data,
+                  node: j.conditionalExpression(
+                    firstExpression.test,
+                    {
+                      ...returnExpression,
+                      expressions: [
+                        firstExpression.consequent,
+                        ...(returnExpression.expressions || []).slice(1),
+                      ],
+                    },
+                    {
+                      ...returnExpression,
+                      expressions: [
+                        firstExpression.alternate,
+                        ...(returnExpression.expressions || []).slice(1),
+                      ],
+                    },
+                  ),
+                });
+              } else {
+                recurseObjectExpression({
+                  ...data,
+                  node: returnExpression,
+                });
+              }
+            } else if (
+              (returnExpression.type === 'CallExpression' &&
+                getObjectKey(returnExpression.callee)?.name === 'theme') ||
+              (returnExpression.type === 'MemberExpression' &&
+                getObjectKey(returnExpression)?.name === 'theme') ||
+              (returnExpression.type === 'BinaryExpression' &&
+                (getObjectKey(returnExpression.left)?.name === 'theme' ||
+                  getObjectKey(returnExpression.right)?.name === 'theme'))
+            ) {
+              data.replaceValue?.(returnExpression);
+              rootThemeCallback(data);
+            } else {
+              recurseObjectExpression({
+                ...data,
+                node: returnExpression,
+              });
+            }
           }
         }
         if (data.node.type === 'ObjectExpression') {
@@ -319,19 +385,7 @@ export default function sxV6(file, api, options) {
                     );
                   }
                   data.replaceValue?.(replaceUndefined(data.node.alternate));
-
-                  if (data.root.type === 'ObjectExpression') {
-                    data.replaceRoot?.(buildArrowFunctionAST([j.identifier('theme')], data.root));
-                  } else if (data.root.type === 'ArrayExpression') {
-                    data.root.elements.forEach((item, index) => {
-                      if (item === data.node) {
-                        data.root.elements[index] = buildArrowFunctionAST(
-                          [j.identifier('theme')],
-                          data.root,
-                        );
-                      }
-                    });
-                  }
+                  rootThemeCallback(data);
                 } else {
                   wrapSxInArray(
                     j.conditionalExpression(
@@ -392,6 +446,16 @@ export default function sxV6(file, api, options) {
               }
             }
           }
+          if (
+            data.node.expressions?.some(
+              (expression) =>
+                getObjectKey(expression)?.name === 'theme' ||
+                (expression.type === 'CallExpression' &&
+                  getObjectKey(expression.callee)?.name === 'theme'),
+            )
+          ) {
+            rootThemeCallback(data);
+          }
         }
       }
     });
@@ -414,7 +478,7 @@ export default function sxV6(file, api, options) {
         }
         lines.push(line);
       }
-      if (line.includes('sx=')) {
+      if (line.includes('sx=') && !line.match(/sx=\{\{[^}]+\}\}/)) {
         isInStyled = true;
         spaceMatch = line.match(/^\s+/);
       }
