@@ -15,8 +15,9 @@ import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import SelectContent from './SelectContent';
 
-const drawerWidth = 180;
+const drawerWidth = 240;
 
 const Drawer = styled(MuiDrawer)({
   width: drawerWidth,
@@ -33,14 +34,20 @@ export default function SideMenu() {
   return (
     <Drawer
       variant="permanent"
-      sx={(theme) => ({
+      sx={{
         display: { xs: 'none', md: 'block' },
-        '.MuiPaper-root': {
-          backgroundColor: theme.palette.background.paper,
-        },
-      })}
+      }}
     >
-      <Box sx={{ height: 64 }} />
+      <Box
+        sx={{
+          height: 64,
+          display: 'flex',
+          alignItems: 'center',
+          px: 1.5,
+        }}
+      >
+        <SelectContent />
+      </Box>
       <Divider />
       <List>
         {[
@@ -50,23 +57,8 @@ export default function SideMenu() {
           { text: 'Tasks', icon: <AssignmentOutlinedIcon /> },
         ].map((item, index) => (
           <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-            <ListItemButton
-              selected={index === 0}
-              sx={{
-                minHeight: 48,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  paddingRight: 0.5,
-                  '&.Mui-SvgIcon-root': {
-                    fontSize: '1rem',
-                  },
-                }}
-              >
-                {item.icon}
-              </ListItemIcon>
+            <ListItemButton selected={index === 0}>
+              <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
@@ -80,19 +72,8 @@ export default function SideMenu() {
           { text: 'Feedback', icon: <HelpOutlineOutlinedIcon /> },
         ].map((item, index) => (
           <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  paddingRight: 0.5,
-                }}
-              >
-                {item.icon}
-              </ListItemIcon>
+            <ListItemButton>
+              <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>

@@ -46,9 +46,10 @@ export default function Dashboard() {
               display: 'flex',
               flexDirection: 'column',
               mr: 3,
-              ml: 6,
-              py: 10,
+              ml: { sm: 3, md: 4 },
+              py: 8,
               gap: 2,
+              maxWidth: { sm: '100%', md: '1500px' },
             }}
           >
             <Header />

@@ -141,10 +141,10 @@ export const getDesignTokens = (mode) => ({
     },
     action: {
       hover: alpha(gray[300], 0.2),
-      selected: `${alpha(brand[200], 0.2)}`,
+      selected: `${alpha(gray[300], 0.4)}`,
       ...(mode === 'dark' && {
         hover: alpha(gray[500], 0.2),
-        selected: alpha(brand[800], 0.2),
+        selected: alpha(gray[500], 0.4),
       }),
     },
   },

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import { ThemeOptions, alpha, Theme } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
+import { PaletteMode, SvgIconProps } from '@mui/material';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 import type {} from '@mui/x-charts/themeAugmentation';
 import type {} from '@mui/x-data-grid/themeAugmentation';
@@ -9,6 +9,7 @@ import type {} from '@mui/x-tree-view/themeAugmentation';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { brand, getDesignTokens, gray, green, red } from './themePrimitives';
 
 export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
@@ -524,56 +525,40 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             display: 'flex',
             flexDirection: 'column',
             gap: 0,
-            padding: 4,
+            padding: '4px 8px',
           },
         },
       },
       MuiListItem: {
         styleOverrides: {
-          root: ({ theme }) => ({}),
+          root: ({ theme }) => ({
+            padding: 4,
+            '.MuiSvgIcon-root': {
+              width: '1.25rem',
+              height: '1.25rem',
+              color: theme.palette.text.secondary,
+            },
+            '.MuiTypography-root': {
+              fontWeight: 500,
+            },
+            '.MuiButtonBase-root': {
+              padding: '2px 8px',
+              borderRadius: theme.shape.borderRadius,
+              opacity: 0.7,
+              '&.Mui-selected': {
+                opacity: 1,
+                backgroundColor: theme.palette.action.selected,
+              },
+            },
+          }),
         },
       },
       MuiListItemIcon: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: {
             minWidth: 0,
             marginRight: 8,
-            color: theme.palette.grey[400],
-            ...theme.applyStyles('dark', { color: theme.palette.grey[400] }),
-          }),
-        },
-      },
-      MuiListItemText: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            color: theme.palette.grey[700],
-            ...theme.applyStyles('dark', { color: theme.palette.grey[50] }),
-          }),
-          primary: { fontWeight: 500 },
-        },
-      },
-      MuiListItemButton: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            borderRadius: theme.shape.borderRadius,
-            background: 'transparent',
-            width: 'fit-content',
-            '&.Mui-selected': {
-              borderRadius: theme.shape.borderRadius,
-              '.MuiListItemIcon-root': {
-                color: theme.palette.primary.main,
-              },
-              '.MuiListItemText-root': {
-                color: theme.palette.primary.main,
-              },
-              '&.MuiButtonBase-root': {
-                backgroundColor: 'transparent',
-              },
-            },
-            '&.MuiButtonBase-root': {
-              padding: '2px 12px 2px 12px',
-            },
-          }),
+          },
         },
       },
       MuiMenu: {
@@ -1118,6 +1103,33 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           paper: ({ theme }) => ({
             backgroundColor: theme.palette.background.default,
+          }),
+        },
+      },
+      MuiSelect: {
+        defaultProps: {
+          IconComponent: React.forwardRef<SVGSVGElement, SvgIconProps>(
+            (props, ref) => <UnfoldMoreRoundedIcon {...props} ref={ref} />,
+          ),
+        },
+        styleOverrides: {
+          root: ({ theme }) => ({
+            '&.MuiFilledInput-root': {
+              borderRadius: '10px',
+              border: '1px solid transparent',
+              '&:hover': {},
+              '&.Mui-focused': {
+                borderColor: theme.palette.primary.main,
+              },
+              '&:before, &:after': {
+                display: 'none',
+              },
+            },
+            '& .MuiSelect-select': {
+              display: 'flex',
+              alignItems: 'center',
+              padding: theme.spacing(1, 2),
+            },
           }),
         },
       },

@@ -49,9 +49,12 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
         bgcolor: 'background.default',
         backgroundImage: 'none',
         alignItems: 'center',
-        borderBottom: '1px solid',
-        borderColor: theme.palette.divider,
-        zIndex: theme.zIndex.drawer + 1,
+        outline: '1px solid',
+        outlineColor: theme.palette.divider,
+        zIndex: theme.zIndex.drawer - 1,
+        left: { xs: 0, md: 240 },
+        width: { xs: '100dvw', md: `calc(100% - 240px)` },
+        maxHeight: 64,
       })}
     >
       <Toolbar variant="regular">
@@ -64,6 +67,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
             flexGrow: 1,
             width: '100%',
             display: { xs: 'none', md: 'flex' },
+            maxWidth: { sm: '100%', md: '1500px' },
           }}
         >
           <NavbarBreadcrumbs />
