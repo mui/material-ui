@@ -1,4 +1,4 @@
-# Staff Engineer - Pigment CSS
+# Staff Engineer — Pigment CSS
 
 <p class="description">Research, build, document, and ship high-quality zero-runtime CSS-in-JS library with a focus on performance and great developer experience.</p>
 
@@ -38,10 +38,15 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-The Pigment CSS team is just starting to take shape now, and we have big goals for the next few years. We need experienced people to work in an IC capacity, to research, spec, build, document, and ship high-quality, zero-runtime CSS-in-JS library with a focus on performance and great developer experience.
+The React ecosystem is trending toward migrating away from CSS-in-JS, initially for performance considerations, and now because of a struggle to keep up with the latest React 19 features.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+To thrive, Material UI needs a strong styling engine to build on top of since the point of Material UI is to provide pre-designed components with the same stack that developers would want to use if Material UI didn't exist.
+Developers adopt Material UI because it takes a lot of time to build these components, and it also requires a lot of design skills that most don't have.
+
+We started the work on Pigment CSS about a year ago to solve these problems.
+We believe that CSS-in-JS is still the best API and DX to write style.
+We recently [announced an early alpha release](https://mui.com/blog/introducing-pigment-css/) of Pigment CSS. 
+We believe that we had enough [market](https://npm-stat.com/charts.html?package=@stylexjs/stylex,@pigment-css/react) [validation](https://x.com/JoshWComeau/status/1767224693575053692) to create a dedicated team on this project.
 
 ### Why this is interesting
 
