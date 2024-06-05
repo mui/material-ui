@@ -4,6 +4,9 @@ import * as React from 'react';
 // storage events only work across tabs, we'll use an event emitter to announce within the current tab
 const currentTabChangeListeners = new Map<string, Set<() => void>>();
 
+let defaultSerializer = JSON.stringify;
+let defaultDeserializer = JSON.parse;
+
 function onCurrentTabStorageChange(key: string, handler: () => void) {
   let listeners = currentTabChangeListeners.get(key);
 
@@ -52,12 +55,17 @@ function subscribe(area: Storage, key: string | null, callback: () => void): () 
   };
 }
 
-function getSnapshot(area: Storage, key: string | null): string | null {
+function getSnapshot<T>(area: Storage, key: string | null): T | null {
   if (!key) {
     return null;
   }
   try {
-    return area.getItem(key);
+    const storedValue = area.getItem(key);
+    if (!storedValue) {
+      return null;
+    }
+
+    return defaultDeserializer(storedValue);
   } catch {
     // ignore
     // See https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#feature-detecting_localstorage
@@ -65,7 +73,7 @@ function getSnapshot(area: Storage, key: string | null): string | null {
   }
 }
 
-function setValue(area: Storage, key: string | null, value: string | null) {
+function setValue<T>(area: Storage, key: string | null, value: T | null) {
   if (!key) {
     return;
   }
@@ -73,7 +81,7 @@ function setValue(area: Storage, key: string | null, value: string | null) {
     if (value === null) {
       area.removeItem(key);
     } else {
-      area.setItem(key, String(value));
+      area.setItem(key, defaultSerializer(value));
     }
   } catch {
     // ignore
@@ -83,24 +91,34 @@ function setValue(area: Storage, key: string | null, value: string | null) {
   emitCurrentTabStorageChange(key);
 }
 
-type Initializer = () => string | null;
+type Initializer<T> = () => T | null;
 
-interface Options {
+type Serializer<T> = (object: T | undefined) => string;
+type Parser<T> = (cachedString: string) => T | undefined;
+
+interface Options<T> {
   /**
    * The storage client
    * @default `localStorage`
    */
-  storage: Storage | undefined | null;
+  storage?: Storage | null;
+  /**
+   * Serialize the data to storage.
+   * @default `JSON.stringify`
+   */
+  serialize?: Serializer<T>;
+  /**
+   * Deserialize the data from storage.
+   * @default `JSON.parse`
+   */
+  deserialize?: Parser<T>;
 }
 
-type UseSyncStorageStateHookResult = [
-  string | null,
-  React.Dispatch<React.SetStateAction<string | null>>,
-];
+type UseSyncStorageStateHookResult<T> = [T | null, React.Dispatch<React.SetStateAction<T | null>>];
 
-const serverValue: UseSyncStorageStateHookResult = [null, () => {}];
+const serverValue: UseSyncStorageStateHookResult<null> = [null, () => {}];
 
-function useSyncStorageStateServer(): UseSyncStorageStateHookResult {
+function useSyncStorageStateServer() {
   return serverValue;
 }
 
@@ -112,21 +130,33 @@ function useSyncStorageStateServer(): UseSyncStorageStateHookResult {
  * Since the storage API isn't available in server-rendering environments, we
  * return null during SSR and hydration.
  */
-function useSyncStorageStateBrowser(
+function useSyncStorageStateBrowser<T>(
   key: string | null,
-  initializer: string | null | Initializer = null,
-  options?: Options,
-): UseSyncStorageStateHookResult {
+  initializer: T | null | Initializer<T> = null,
+  options?: Options<T>,
+): UseSyncStorageStateHookResult<T> {
+  const { storage = window.localStorage } = options || {};
+
+  // Override default serializer or deserializer function
+  React.useEffect(() => {
+    if (options?.serialize) {
+      defaultSerializer = options.serialize;
+    }
+
+    if (options?.deserialize) {
+      defaultDeserializer = options.deserialize;
+    }
+  }, [options?.serialize, options?.deserialize]);
+
   const [initialValue] = React.useState(initializer);
 
-  const { storage = window.localStorage } = options || {};
   const area = storage!;
   const subscribeKey = React.useCallback(
     (callback: () => void) => subscribe(area, key, callback),
     [area, key],
   );
   const getKeySnapshot = React.useCallback(
-    () => getSnapshot(area, key) ?? initialValue,
+    () => getSnapshot<T>(area, key) ?? initialValue,
     [area, initialValue, key],
   );
 
@@ -140,7 +170,7 @@ function useSyncStorageStateBrowser(
   );
 
   const setStoredValue = React.useCallback(
-    (value: React.SetStateAction<string | null>) => {
+    (value: React.SetStateAction<T | null>) => {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
       setValue(area, key, valueToStore);
     },
@@ -156,6 +186,7 @@ function useSyncStorageStateBrowser(
   return [storedValue, setStoredValue];
 }
 
-export default typeof window === 'undefined'
-  ? useSyncStorageStateServer
-  : useSyncStorageStateBrowser;
+const useSyncStorageState =
+  typeof window === 'undefined' ? useSyncStorageStateServer : useSyncStorageStateBrowser;
+
+export default useSyncStorageState;
