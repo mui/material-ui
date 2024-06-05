@@ -1,12 +1,25 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/base';
 import { InternalStandardProps as StandardProps } from '..';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalOwnerState, ModalProps } from '../Modal';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { PopoverClasses } from './popoverClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+
+export interface PopoverSlots {
+  root?: React.ElementType;
+  paper?: React.ElementType;
+}
+
+export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  PopoverSlots,
+  {
+    root: SlotProps<typeof Modal, {}, ModalOwnerState>;
+    paper: SlotProps<typeof Paper, {}, {}>;
+  }
+>;
 
 export interface PopoverOrigin {
   vertical: 'top' | 'center' | 'bottom' | number;
@@ -26,7 +39,8 @@ interface PopoverVirtualElement {
 }
 
 export interface PopoverProps
-  extends StandardProps<Omit<ModalProps, 'slots' | 'slotProps'>, 'children'> {
+  extends StandardProps<Omit<ModalProps, 'slots' | 'slotProps'>, 'children'>,
+    PopoverSlotsAndSlotProps {
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.
@@ -109,25 +123,6 @@ export interface PopoverProps
    * @default {}
    */
   PaperProps?: Partial<PaperProps<React.ElementType>>;
-  /**
-   * The components used for each slot inside.
-   *
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-    paper?: React.ElementType;
-  };
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    root?: SlotComponentProps<typeof Modal, {}, ModalOwnerState>;
-    paper?: SlotComponentProps<typeof Paper, {}, {}>;
-  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
