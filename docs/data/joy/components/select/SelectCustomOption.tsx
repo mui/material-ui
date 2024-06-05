@@ -37,10 +37,7 @@ export default function SelectCustomOption() {
           },
         },
       }}
-      sx={{
-        '--ListItemDecorator-size': '44px',
-        minWidth: 240,
-      }}
+      sx={{ '--ListItemDecorator-size': '44px', minWidth: 240 }}
       renderValue={renderValue}
     >
       {options.map((option, index) => (

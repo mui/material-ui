@@ -27,8 +27,7 @@ const code = `
     height="100"
     alt="123 Main St, Phoenix, AZ cover"
     src="/images/real-estate.png"
-    sx={{
-      borderRadius: '6px',
+    sx={{    borderRadius: '6px',
       width: { xs: '100%', sm: 100 },
     }}
   />
@@ -191,11 +190,7 @@ export default function MaterialStyling() {
         </Grid>
         <Grid xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
-            <Frame.Demo
-              sx={{
-                overflow: 'auto',
-              }}
-            >
+            <Frame.Demo sx={{ overflow: 'auto' }}>
               <Box
                 ref={objectRef}
                 style={{ touchAction: dragging ? 'none' : 'auto' }}
