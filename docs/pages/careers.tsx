@@ -28,6 +28,12 @@ const openRolesData = [
           'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
         url: '/careers/react-engineer-docs-infra/',
       },
+      {
+        title: 'Staff Engineer - Pigment CSS',
+        description:
+          'Research, build, document, and ship high-quality zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
+        url: '/careers/staff-engineer-pigment-css/',
+      },
     ],
   },
   {
