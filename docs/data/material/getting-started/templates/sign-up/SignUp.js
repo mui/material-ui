@@ -171,8 +171,8 @@ export default function SignUp() {
       <SignUpContainer direction="column" justifyContent="space-between">
         <Stack
           direction="row"
-          justifyContent="space-between"
           sx={{
+            justifyContent: 'space-between',
             position: { xs: 'static', sm: 'fixed' },
             width: '100%',
             p: { xs: 2, sm: 4 },
@@ -188,8 +188,11 @@ export default function SignUp() {
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
         <Stack
-          justifyContent="center"
-          sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
+          sx={{
+            justifyContent: 'center',
+            height: { xs: '100%', sm: '100dvh' },
+            p: 2,
+          }}
         >
           <Card>
             <SitemarkIcon />
@@ -271,7 +274,7 @@ export default function SignUp() {
               </Link>
             </Box>
             <Divider>
-              <Typography color="text.secondary">or</Typography>
+              <Typography sx={{ color: 'text.secondary' }}>or</Typography>
             </Divider>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Button

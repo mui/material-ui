@@ -167,8 +167,8 @@ export default function SignIn() {
       <SignInContainer direction="column" justifyContent="space-between">
         <Stack
           direction="row"
-          justifyContent="space-between"
           sx={{
+            justifyContent: 'space-between',
             position: { xs: 'static', sm: 'fixed' },
             width: '100%',
             p: { xs: 2, sm: 4 },
@@ -184,8 +184,11 @@ export default function SignIn() {
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
         <Stack
-          justifyContent="center"
-          sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
+          sx={{
+            justifyContent: 'center',
+            height: { xs: '100%', sm: '100dvh' },
+            p: 2,
+          }}
         >
           <Card>
             <SitemarkIcon />
@@ -226,12 +229,7 @@ export default function SignIn() {
                 />
               </FormControl>
               <FormControl>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                  }}
-                >
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <FormLabel htmlFor="password">Password</FormLabel>
                   <Link
                     component="button"

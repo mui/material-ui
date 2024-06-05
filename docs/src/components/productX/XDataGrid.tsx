@@ -194,34 +194,20 @@ export default function XDataGrid() {
             sx={{
               borderBottomLeftRadius: 10,
               borderBottomRightRadius: 10,
-              mt: -1,
-              pb: 1,
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-              '&& pre': {
-                bgcolor: 'transparent',
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
-              },
-              overflow: 'hidden',
             }}
           >
             <Box sx={{ position: 'relative' }}>
-              <Box sx={{ position: 'relative', zIndex: 1 }}>
-                <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
-              </Box>
-              {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
+              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+              {demo && <FlashCode startLine={startLine[demo]} />}
               <StylingInfo
                 appeared={demo === DEMOS[3] || demo === DEMOS[4]}
                 stylingContent={
                   <React.Fragment>
-                    <Typography fontWeight="bold" color="#fff" variant="body2">
+                    <Typography color="#fff" variant="body2" sx={{ fontWeight: 'bold' }}>
                       {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}
                       {demo === DEMOS[4] && 'Multi-column filtering is a paid feature!'}
                     </Typography>
-                    <Typography color="grey.300" variant="body2">
+                    <Typography variant="body2" sx={{ color: 'grey.300' }}>
                       The Data Grid and all other MUI X components are available on free and paid
                       plans. Find more details about each plan and its features are on{' '}
                       <Link href={ROUTES.pricing}>the pricing page</Link>.

@@ -112,7 +112,6 @@ Responsive values are supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all other [MUI System props](#system-props)
 
 ## Auto-layout
 

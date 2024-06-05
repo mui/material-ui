@@ -26,12 +26,7 @@ export default function Visibility() {
       </Box>
       <Box
         component="span"
-        sx={{
-          visibility: 'hidden',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-        }}
+        sx={{ visibility: 'hidden', p: 1, m: 1, bgcolor: 'background.paper' }}
       >
         Invisible container
       </Box>
