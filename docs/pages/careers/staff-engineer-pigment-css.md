@@ -40,12 +40,12 @@ For additional details about the culture, you can check our [careers](https://mu
 
 The React ecosystem is trending toward migrating away from CSS-in-JS, initially for performance considerations, and now because of a struggle to keep up with the latest React 19 features.
 
-To thrive, Material UI needs a strong styling engine to build on top of since the point of Material UI is to provide pre-designed components with the same stack that developers would want to use if Material UI didn't exist.
-Developers adopt Material UI because it takes a lot of time to build these components, and it also requires a lot of design skills that most don't have.
+To thrive, Material UI needs a strong styling engine to build on top of since the point of Material UI is to provide pre-designed components with the same stack that developers would want to use if Material UI didn't exist.
+Developers adopt Material UI because it takes a lot of time to build these components, and it also requires a lot of design skills that most don't have.
 
 We started the work on Pigment CSS about a year ago to solve these problems.
 We believe that CSS-in-JS is still the best API and DX to write style.
-We recently [announced an early alpha release](https://mui.com/blog/introducing-pigment-css/) of Pigment CSS. 
+We recently [announced an early alpha release](https://mui.com/blog/introducing-pigment-css/) of Pigment CSS. 
 We believe that we had enough [market](https://npm-stat.com/charts.html?package=@stylexjs/stylex,@pigment-css/react) [validation](https://x.com/JoshWComeau/status/1767224693575053692) to create a dedicated team on this project.
 
 ### Why this is interesting
