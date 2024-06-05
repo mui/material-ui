@@ -40,14 +40,17 @@ const names = new Set(process.argv.slice(2));
         const filePath = `${directory}${aUrl.replace(/\/$/, '')}.jpg`;
         // eslint-disable-next-line no-console
         console.info('Saving screenshot to:', filePath);
-        await page.screenshot({ path: filePath });
+        await page.screenshot({ path: filePath, animations: 'disabled' });
 
         // capture dark mode
         const toggle = await page.$('#toggle-mode');
         if (toggle) {
           await page.click('#toggle-mode');
           await page.reload({ waitUntil: 'networkidle' });
-          await page.screenshot({ path: filePath.replace('.jpg', '-dark.jpg') });
+          await page.screenshot({
+            path: filePath.replace('.jpg', '-dark.jpg'),
+            animations: 'disabled',
+          });
 
           await page.click('#toggle-mode'); // switch back to light
         }

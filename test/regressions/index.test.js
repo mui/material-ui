@@ -70,7 +70,11 @@ async function main() {
     const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
     const screenshotTarget = explicitScreenshotTarget || testcase;
 
-    await screenshotTarget.screenshot({ path: screenshotPath, type: 'png' });
+    await screenshotTarget.screenshot({
+      path: screenshotPath,
+      type: 'png',
+      animations: 'disabled',
+    });
   }
 
   // prepare screenshots
