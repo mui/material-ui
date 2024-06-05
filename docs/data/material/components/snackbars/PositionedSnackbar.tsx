@@ -31,13 +31,13 @@ export default function PositionedSnackbar() {
           Top-Center
         </Button>
       </Box>
-      <Grid container justifyContent="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item xs={6}>
           <Button onClick={handleClick({ vertical: 'top', horizontal: 'left' })}>
             Top-Left
           </Button>
         </Grid>
-        <Grid item xs={6} textAlign="right">
+        <Grid item xs={6} sx={{ textAlign: 'right' }}>
           <Button onClick={handleClick({ vertical: 'top', horizontal: 'right' })}>
             Top-Right
           </Button>
@@ -47,7 +47,7 @@ export default function PositionedSnackbar() {
             Bottom-Left
           </Button>
         </Grid>
-        <Grid item xs={6} textAlign="right">
+        <Grid item xs={6} sx={{ textAlign: 'right' }}>
           <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'right' })}>
             Bottom-Right
           </Button>

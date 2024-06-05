@@ -7,7 +7,7 @@ export default function DynamicValues() {
   const [color, setColor] = React.useState('#007fff');
 
   return (
-    <Stack spacing={1} alignItems="center">
+    <Stack spacing={1} sx={{ alignItems: 'center' }}>
       <Typography
         component="label"
         variant="body2"

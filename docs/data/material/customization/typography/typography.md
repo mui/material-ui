@@ -70,13 +70,7 @@ const theme = createTheme({
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <Box
-      sx={{
-        fontFamily: 'Raleway',
-      }}
-    >
-      Raleway
-    </Box>
+    <Box sx={{ fontFamily: 'Raleway' }}>Raleway</Box>
   </ThemeProvider>
 );
 ```
