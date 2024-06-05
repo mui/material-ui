@@ -12,6 +12,8 @@ export default function SxPropContainerQueries() {
       sx={{
         position: 'relative',
         paddingBlock: 2,
+        ml: 2,
+        mr: 'auto',
         '*:has(> &)': {
           overflow: 'hidden',
         },
