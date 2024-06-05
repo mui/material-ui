@@ -85,14 +85,14 @@ function setValue(area: Storage, key: string | null, value: string | null) {
 
 type Initializer = () => string | null;
 
-type UseStorageStateHookResult = [
+type UseSyncStorageStateHookResult = [
   string | null,
   React.Dispatch<React.SetStateAction<string | null>>,
 ];
 
-const serverValue: UseStorageStateHookResult = [null, () => {}];
+const serverValue: UseSyncStorageStateHookResult = [null, () => {}];
 
-function useLocalStorageStateServer(): UseStorageStateHookResult {
+function useSyncStorageStateServer(): UseSyncStorageStateHookResult {
   return serverValue;
 }
 
@@ -104,10 +104,10 @@ function useLocalStorageStateServer(): UseStorageStateHookResult {
  * Since the storage API isn't available in server-rendering environments, we
  * return null during SSR and hydration.
  */
-function useLocalStorageStateBrowser(
+function useSyncStorageStateBrowser(
   key: string | null,
   initializer: string | null | Initializer = null,
-): UseStorageStateHookResult {
+): UseSyncStorageStateHookResult {
   const [initialValue] = React.useState(initializer);
   const area = window.localStorage;
   const subscribeKey = React.useCallback(
@@ -146,5 +146,5 @@ function useLocalStorageStateBrowser(
 }
 
 export default typeof window === 'undefined'
-  ? useLocalStorageStateServer
-  : useLocalStorageStateBrowser;
+  ? useSyncStorageStateServer
+  : useSyncStorageStateBrowser;
