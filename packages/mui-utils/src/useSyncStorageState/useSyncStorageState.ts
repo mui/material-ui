@@ -137,7 +137,7 @@ function useSyncStorageStateBrowser<T>(
 ): UseSyncStorageStateHookResult<T> {
   const { storage = window.localStorage } = options || {};
 
-  // Override default serializer or deserializer function
+  // Override serializer or deserializer default function
   React.useEffect(() => {
     if (options?.serialize) {
       defaultSerializer = options.serialize;
