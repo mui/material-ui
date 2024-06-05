@@ -195,9 +195,19 @@ export default function MusicPlayerSlider() {
         <Stack
           spacing={2}
           direction="row"
-          sx={{ alignItems: 'center', mb: 1, px: 1 }}
+          sx={(theme) => ({
+            mb: 1,
+            px: 1,
+            '& > svg': {
+              color: 'rgba(0,0,0,0.4)',
+              ...theme.applyStyles('dark', {
+                color: 'rgba(255,255,255,0.4)',
+              }),
+            },
+          })}
+          alignItems="center"
         >
-          <VolumeDownRounded htmlColor={lightIconColor} />
+          <VolumeDownRounded />
           <Slider
             aria-label="Volume"
             defaultValue={30}
