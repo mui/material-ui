@@ -42,13 +42,7 @@ const WriteEmail = React.forwardRef<HTMLDivElement, WriteEmailProps>(
             right: 24,
             transition: 'transform 0.3s ease',
           },
-          open
-            ? {
-                transform: 'translateY(0)',
-              }
-            : {
-                transform: 'translateY(100%)',
-              },
+          open ? { transform: 'translateY(0)' } : { transform: 'translateY(100%)' },
         ]}
       >
         <Box sx={{ mb: 2 }}>

@@ -19,16 +19,8 @@ export default function FlexRowRatio() {
       >
         <AspectRatio
           sx={[
-            {
-              overflow: 'auto',
-            },
-            flexBasis
-              ? {
-                  flexBasis: `${flexBasis}px`,
-                }
-              : {
-                  flexBasis: null,
-                },
+            { overflow: 'auto' },
+            flexBasis ? { flexBasis: `${flexBasis}px` } : { flexBasis: null },
           ]}
         >
           <img

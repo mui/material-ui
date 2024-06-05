@@ -29,12 +29,8 @@ export default function DividerInCard() {
         <Box
           sx={[
             orientation === 'horizontal'
-              ? {
-                  display: 'block',
-                }
-              : {
-                  display: 'contents',
-                },
+              ? { display: 'block' }
+              : { display: 'contents' },
           ]}
         >
           <Typography level="body-sm">
@@ -48,16 +44,8 @@ export default function DividerInCard() {
             color="neutral"
             endDecorator={<ArrowForward />}
             sx={[
-              {
-                width: '100%',
-              },
-              orientation === 'horizontal'
-                ? {
-                    mt: 2,
-                  }
-                : {
-                    mt: 0,
-                  },
+              { width: '100%' },
+              orientation === 'horizontal' ? { mt: 2 } : { mt: 0 },
             ]}
           >
             See more

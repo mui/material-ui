@@ -140,30 +140,14 @@ function EnhancedTableHead(props) {
                 startDecorator={
                   headCell.numeric ? (
                     <ArrowDownwardIcon
-                      sx={[
-                        active
-                          ? {
-                              opacity: 1,
-                            }
-                          : {
-                              opacity: 0,
-                            },
-                      ]}
+                      sx={[active ? { opacity: 1 } : { opacity: 0 }]}
                     />
                   ) : null
                 }
                 endDecorator={
                   !headCell.numeric ? (
                     <ArrowDownwardIcon
-                      sx={[
-                        active
-                          ? {
-                              opacity: 1,
-                            }
-                          : {
-                              opacity: 0,
-                            },
-                      ]}
+                      sx={[active ? { opacity: 1 } : { opacity: 0 }]}
                     />
                   ) : null
                 }

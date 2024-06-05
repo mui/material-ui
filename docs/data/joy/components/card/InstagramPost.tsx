@@ -80,12 +80,8 @@ export default function InstagramPost() {
                   height: `max(${6 - index}px, 3px)`,
                 },
                 index === 0
-                  ? {
-                      bgcolor: 'primary.solidBg',
-                    }
-                  : {
-                      bgcolor: 'background.level3',
-                    },
+                  ? { bgcolor: 'primary.solidBg' }
+                  : { bgcolor: 'background.level3' },
               ]}
             />
           ))}

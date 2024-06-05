@@ -70,13 +70,7 @@ export default function ExampleCollapsibleList() {
             >
               <KeyboardArrowDown
                 sx={[
-                  open
-                    ? {
-                        transform: 'initial',
-                      }
-                    : {
-                        transform: 'rotate(-90deg)',
-                      },
+                  open ? { transform: 'initial' } : { transform: 'rotate(-90deg)' },
                 ]}
               />
             </IconButton>
@@ -87,14 +81,8 @@ export default function ExampleCollapsibleList() {
               level="inherit"
               sx={[
                 open
-                  ? {
-                      fontWeight: 'bold',
-                      color: 'text.primary',
-                    }
-                  : {
-                      fontWeight: null,
-                      color: 'inherit',
-                    },
+                  ? { fontWeight: 'bold', color: 'text.primary' }
+                  : { fontWeight: null, color: 'inherit' },
               ]}
             >
               Tutorial
@@ -136,13 +124,7 @@ export default function ExampleCollapsibleList() {
             >
               <KeyboardArrowDown
                 sx={[
-                  open2
-                    ? {
-                        transform: 'initial',
-                      }
-                    : {
-                        transform: 'rotate(-90deg)',
-                      },
+                  open2 ? { transform: 'initial' } : { transform: 'rotate(-90deg)' },
                 ]}
               />
             </IconButton>
@@ -153,14 +135,8 @@ export default function ExampleCollapsibleList() {
               level="inherit"
               sx={[
                 open2
-                  ? {
-                      fontWeight: 'bold',
-                      color: 'text.primary',
-                    }
-                  : {
-                      fontWeight: null,
-                      color: 'inherit',
-                    },
+                  ? { fontWeight: 'bold', color: 'text.primary' }
+                  : { fontWeight: null, color: 'inherit' },
               ]}
             >
               How-to Guides

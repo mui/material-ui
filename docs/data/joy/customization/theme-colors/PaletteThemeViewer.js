@@ -129,14 +129,10 @@ export default function PaletteThemeViewer() {
           },
           isCopied
             ? {
-                transform: {
-                  transform: '-0.5rem',
-                },
+                transform: `translateX(-50%) translateY(-0.5rem)`,
               }
             : {
-                transform: {
-                  transform: 'calc(100% + 0.5rem)',
-                },
+                transform: `translateX(-50%) translateY(calc(100% + 0.5rem))`,
               },
         ]}
       >

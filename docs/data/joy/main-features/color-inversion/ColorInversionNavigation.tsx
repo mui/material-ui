@@ -33,9 +33,7 @@ export default function ColorInversionNavigation() {
         variant="solid"
         invertedColors
         sx={[
-          {
-            p: 2,
-          },
+          { p: 2 },
           color !== 'neutral' && {
             bgcolor: `${color}.700`,
           },

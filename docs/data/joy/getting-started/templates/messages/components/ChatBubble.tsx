@@ -41,20 +41,8 @@ export default function ChatBubble(props: ChatBubbleProps) {
               py: 1.25,
               borderRadius: 'lg',
             },
-            isSent
-              ? {
-                  borderTopRightRadius: 0,
-                }
-              : {
-                  borderTopRightRadius: 'lg',
-                },
-            isSent
-              ? {
-                  borderTopLeftRadius: 'lg',
-                }
-              : {
-                  borderTopLeftRadius: 0,
-                },
+            isSent ? { borderTopRightRadius: 0 } : { borderTopRightRadius: 'lg' },
+            isSent ? { borderTopLeftRadius: 'lg' } : { borderTopLeftRadius: 0 },
           ]}
         >
           <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>

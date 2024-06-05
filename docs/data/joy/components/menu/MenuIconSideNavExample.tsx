@@ -95,13 +95,7 @@ function NavMenuButton({
               bgcolor: 'neutral.plainHoverBg',
             },
           },
-          open
-            ? {
-                bgcolor: 'neutral.plainHoverBg',
-              }
-            : {
-                bgcolor: null,
-              },
+          open ? { bgcolor: 'neutral.plainHoverBg' } : { bgcolor: null },
         ]}
       >
         {children}

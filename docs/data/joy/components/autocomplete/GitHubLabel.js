@@ -182,12 +182,8 @@ export default function GitHubLabel() {
                   <DoneIcon
                     sx={[
                       selected
-                        ? {
-                            visibility: 'visible',
-                          }
-                        : {
-                            visibility: 'hidden',
-                          },
+                        ? { visibility: 'visible' }
+                        : { visibility: 'hidden' },
                     ]}
                   />
                   <Box

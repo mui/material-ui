@@ -74,16 +74,8 @@ export default function ShadowThemeViewer() {
             zIndex: 1,
           },
           isCopied
-            ? {
-                transform: {
-                  transform: '-0.5rem',
-                },
-              }
-            : {
-                transform: {
-                  transform: 'calc(100% + 0.5rem)',
-                },
-              },
+            ? { transform: `translateX(-50%) translateY(-0.5rem)` }
+            : { transform: `translateX(-50%) translateY(calc(100% + 0.5rem))` },
         ]}
       >
         <Typography level="body-xs" textColor="inherit" startDecorator={<Check />}>

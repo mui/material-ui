@@ -55,13 +55,7 @@ function Toggler(props: {
               overflow: 'hidden',
             },
           },
-          open
-            ? {
-                gridTemplateRows: '1fr',
-              }
-            : {
-                gridTemplateRows: '0fr',
-              },
+          open ? { gridTemplateRows: '1fr' } : { gridTemplateRows: '0fr' },
         ]}
       >
         {children}

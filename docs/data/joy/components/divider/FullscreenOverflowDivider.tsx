@@ -22,19 +22,9 @@ export default function FullscreenOverflowDivider() {
           <Divider
             sx={[
               shadow
-                ? {
-                    boxShadow: '0 0 0 100vmax var(--Divider-lineColor)',
-                  }
-                : {
-                    boxShadow: 'initial',
-                  },
-              clip
-                ? {
-                    clipPath: 'inset(0px -100vmax)',
-                  }
-                : {
-                    clipPath: 'initial',
-                  },
+                ? { boxShadow: '0 0 0 100vmax var(--Divider-lineColor)' }
+                : { boxShadow: 'initial' },
+              clip ? { clipPath: 'inset(0px -100vmax)' } : { clipPath: 'initial' },
             ]}
           />
         </Box>

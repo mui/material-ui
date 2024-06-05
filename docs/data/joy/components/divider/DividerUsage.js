@@ -44,13 +44,7 @@ export default function DividerUsage() {
                   borderRadius: 'xs',
                   bgcolor: 'background.level3',
                 },
-                props.orientation === 'vertical'
-                  ? {
-                      height: 120,
-                    }
-                  : {
-                      height: 40,
-                    },
+                props.orientation === 'vertical' ? { height: 120 } : { height: 40 },
               ]}
             />
             <Divider {...props} />
@@ -61,13 +55,7 @@ export default function DividerUsage() {
                   borderRadius: 'xs',
                   bgcolor: 'background.level3',
                 },
-                props.orientation === 'vertical'
-                  ? {
-                      height: 120,
-                    }
-                  : {
-                      height: 40,
-                    },
+                props.orientation === 'vertical' ? { height: 120 } : { height: 40 },
               ]}
             />
           </Stack>

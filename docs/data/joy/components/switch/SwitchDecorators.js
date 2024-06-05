@@ -11,28 +11,12 @@ export default function SwitchDecorators() {
       slotProps={{ input: { 'aria-label': 'dark mode' } }}
       startDecorator={
         <LocalFireDepartmentRoundedIcon
-          sx={[
-            dark
-              ? {
-                  color: 'text.tertiary',
-                }
-              : {
-                  color: 'danger.600',
-                },
-          ]}
+          sx={[dark ? { color: 'text.tertiary' } : { color: 'danger.600' }]}
         />
       }
       endDecorator={
         <WavesRoundedIcon
-          sx={[
-            dark
-              ? {
-                  color: 'primary.500',
-                }
-              : {
-                  color: 'text.tertiary',
-                },
-          ]}
+          sx={[dark ? { color: 'primary.500' } : { color: 'text.tertiary' }]}
         />
       }
       checked={dark}

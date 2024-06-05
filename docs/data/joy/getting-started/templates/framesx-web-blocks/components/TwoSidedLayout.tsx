@@ -26,13 +26,7 @@ export default function TwoSidedLayout({
             gap: 12,
           },
         }),
-        reversed
-          ? {
-              flexDirection: 'column-reverse',
-            }
-          : {
-              flexDirection: 'column',
-            },
+        reversed ? { flexDirection: 'column-reverse' } : { flexDirection: 'column' },
       ]}
     >
       <Box

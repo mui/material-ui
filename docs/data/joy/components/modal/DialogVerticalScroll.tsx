@@ -66,13 +66,7 @@ export default function DialogVerticalScroll() {
                 mx: 'calc(-1 * var(--ModalDialog-padding))',
                 px: 'var(--ModalDialog-padding)',
               },
-              scroll
-                ? {
-                    overflow: 'scroll',
-                  }
-                : {
-                    overflow: 'initial',
-                  },
+              scroll ? { overflow: 'scroll' } : { overflow: 'initial' },
             ]}
           >
             {[...Array(100)].map((item, index) => (

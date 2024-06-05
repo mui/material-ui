@@ -421,16 +421,8 @@ export default function OrderTable() {
                       },
                     },
                     order === 'desc'
-                      ? {
-                          '& svg': {
-                            transform: 'rotate(0deg)',
-                          },
-                        }
-                      : {
-                          '& svg': {
-                            transform: 'rotate(180deg)',
-                          },
-                        },
+                      ? { '& svg': { transform: 'rotate(0deg)' } }
+                      : { '& svg': { transform: 'rotate(180deg)' } },
                   ]}
                 >
                   Invoice

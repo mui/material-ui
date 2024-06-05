@@ -59,13 +59,7 @@ export default function ColorInversionMarketing() {
             right: { xs: '-70%', sm: '-15%' },
           },
         },
-        solid
-          ? {
-              bgcolor: shade(800),
-            }
-          : {
-              bgcolor: shade(100),
-            },
+        solid ? { bgcolor: shade(800) } : { bgcolor: shade(100) },
       ]}
     >
       <div>
@@ -79,20 +73,10 @@ export default function ColorInversionMarketing() {
           <Button
             endDecorator={<ArrowForwardIcon fontSize="md" />}
             sx={[
-              {
-                ...buttonStyles,
-              },
+              { ...buttonStyles },
               solid
-                ? {
-                    '&:active': {
-                      bgcolor: shade(200),
-                    },
-                  }
-                : {
-                    '&:active': {
-                      bgcolor: shade(700),
-                    },
-                  },
+                ? { '&:active': { bgcolor: shade(200) } }
+                : { '&:active': { bgcolor: shade(700) } },
             ]}
           >
             Install

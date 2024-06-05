@@ -22,9 +22,7 @@ export default function TabsBottomNavExample() {
         borderTopRightRadius: '12px',
         bgcolor: `${'var(--colors-index)'}.500`,
       }}
-      style={{
-        '--colors-index': colors[index],
-      }}
+      style={{ '--colors-index': colors[index] }}
     >
       <Tabs
         size="lg"
