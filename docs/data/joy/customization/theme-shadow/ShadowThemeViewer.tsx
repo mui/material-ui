@@ -80,18 +80,18 @@ export default function ShadowThemeViewer() {
         <thead>
           <tr>
             <th>
-              <Typography fontSize="sm">Token</Typography>
+              <Typography sx={{ fontSize: 'sm' }}>Token</Typography>
             </th>
             <th>
-              <Typography fontSize="sm">Value</Typography>
+              <Typography sx={{ fontSize: 'sm' }}>Value</Typography>
             </th>
             <th>
-              <Typography fontSize="sm" startDecorator={<LightMode />}>
+              <Typography startDecorator={<LightMode />} sx={{ fontSize: 'sm' }}>
                 Light
               </Typography>
             </th>
             <th>
-              <Typography fontSize="sm" startDecorator={<DarkMode />}>
+              <Typography startDecorator={<DarkMode />} sx={{ fontSize: 'sm' }}>
                 Dark
               </Typography>
             </th>
@@ -101,17 +101,15 @@ export default function ShadowThemeViewer() {
           {tokens.map((token) => (
             <tr key={token}>
               <td>
-                <Typography fontSize="sm">{token}</Typography>
+                <Typography sx={{ fontSize: 'sm' }}>{token}</Typography>
               </td>
               <td>
                 <Link
                   component="button"
                   color="neutral"
                   textColor="inherit"
-                  textAlign="left"
-                  fontSize="xs"
-                  fontFamily="code"
                   onClick={() => copy(token)}
+                  sx={{ textAlign: 'left', fontSize: 'xs', fontFamily: 'code' }}
                 >
                   {formatShadowLayers(defaultTheme.shadow[token])}
                 </Link>

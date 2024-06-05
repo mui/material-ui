@@ -9,13 +9,7 @@ import Typography from '@mui/joy/Typography';
 export default function LinkColors() {
   const [variant, setVariant] = React.useState('solid');
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 3,
-      }}
-    >
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
       <Box
         sx={{
           display: 'grid',
@@ -49,10 +43,9 @@ export default function LinkColors() {
       >
         <Typography
           level="body-sm"
-          fontWeight="xl"
           id="variant-label"
           textColor="text.primary"
-          mb={1}
+          sx={{ fontWeight: 'xl', mb: 1 }}
         >
           Variant:
         </Typography>

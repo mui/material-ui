@@ -39,12 +39,9 @@ function Widget({
     >
       <GlowingIconContainer icon={icon} />
       <Typography
-        fontWeight="bold"
         component="h3"
-        color="text.primary"
         variant="body2"
-        mt={2}
-        mb={0.5}
+        sx={{ fontWeight: 'bold', color: 'text.primary', mt: 2, mb: 0.5 }}
       >
         {title}
       </Typography>
@@ -72,7 +69,7 @@ export default function HowToSupport() {
             icon={<ForumRoundedIcon fontSize="small" color="primary" />}
             title="Give feedback"
           >
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+            <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
               Tell us what and where we can improve or share your happy moments with us! You can
               also up or downvote any page on our documentation. <br />
               <br /> And lastly, from time to time, we send our community a survey for more
@@ -96,18 +93,10 @@ export default function HowToSupport() {
             icon={<PeopleRoundedIcon fontSize="small" color="primary" />}
             title="Join the community"
           >
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+            <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
               Become a member of a huge community of developers supporting MUI. You can:
             </Typography>
-            <Box
-              component="ul"
-              sx={{
-                typography: 'body2',
-                color: 'text.secondary',
-                pl: 2,
-                mb: 2,
-              }}
-            >
+            <Box component="ul" sx={{ typography: 'body2', color: 'text.secondary', pl: 2, mb: 2 }}>
               <li>
                 Add new features by{' '}
                 <Link href="https://github.com/mui/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
@@ -157,7 +146,7 @@ export default function HowToSupport() {
             icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
             title="Support us financially"
           >
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+            <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
               If you use MUI in a commercial project and would like to support its continued
               development by becoming a Sponsor, or in a side or hobby project and would like to
               become a Backer, you can do so through {'Open Collective'}.

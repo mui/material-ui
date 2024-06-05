@@ -9,12 +9,7 @@ export default function PasswordMeterInput() {
   const [value, setValue] = React.useState('');
   const minLength = 12;
   return (
-    <Stack
-      spacing={0.5}
-      sx={{
-        '--hue': Math.min(value.length * 10, 120),
-      }}
-    >
+    <Stack spacing={0.5} sx={{ '--hue': Math.min(value.length * 10, 120) }}>
       <Input
         type="password"
         placeholder="Type in here…"
@@ -26,10 +21,7 @@ export default function PasswordMeterInput() {
         determinate
         size="sm"
         value={Math.min((value.length * 100) / minLength, 100)}
-        sx={{
-          bgcolor: 'background.level3',
-          color: 'hsl(var(--hue) 80% 40%)',
-        }}
+        sx={{ bgcolor: 'background.level3', color: 'hsl(var(--hue) 80% 40%)' }}
       />
       <Typography
         level="body-xs"

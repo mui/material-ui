@@ -56,41 +56,55 @@ export default function BaseUISummary() {
           ))}
         </Grid>
       </Box>
-      <Typography fontWeight="medium" textAlign="center" mt={6} mb={2} fontSize="0.875rem">
+      <Typography
+        sx={{ fontWeight: 'medium', textAlign: 'center', mt: 6, mb: 2, fontSize: '0.875rem' }}
+      >
         Alternative to libraries such as:
       </Typography>
       <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
         <Box
-          sx={(theme) => ({
-            background: 'url(/static/branding/base-ui/radix.svg)',
-            ...theme.applyDarkStyles({
-              background: 'url(/static/branding/base-ui/radix-dark.svg)',
+          sx={[
+            {
+              width: 77,
+              height: 37,
+            },
+            (theme) => ({
+              background: 'url(/static/branding/base-ui/radix.svg)',
+              ...theme.applyDarkStyles({
+                background: 'url(/static/branding/base-ui/radix-dark.svg)',
+              }),
             }),
-          })}
-          width={77}
-          height={37}
+          ]}
         />
 
         <Box
-          sx={(theme) => ({
-            background: 'url(/static/branding/base-ui/react-aria.svg)',
-            ...theme.applyDarkStyles({
-              background: 'url(/static/branding/base-ui/react-aria-dark.svg)',
+          sx={[
+            {
+              width: 113,
+              height: 37,
+            },
+            (theme) => ({
+              background: 'url(/static/branding/base-ui/react-aria.svg)',
+              ...theme.applyDarkStyles({
+                background: 'url(/static/branding/base-ui/react-aria-dark.svg)',
+              }),
             }),
-          })}
-          width={113}
-          height={37}
+          ]}
         />
 
         <Box
-          sx={(theme) => ({
-            background: 'url(/static/branding/base-ui/headless-ui.svg)',
-            ...theme.applyDarkStyles({
-              background: 'url(/static/branding/base-ui/headless-ui-dark.svg)',
+          sx={[
+            {
+              width: 116,
+              height: 37,
+            },
+            (theme) => ({
+              background: 'url(/static/branding/base-ui/headless-ui.svg)',
+              ...theme.applyDarkStyles({
+                background: 'url(/static/branding/base-ui/headless-ui-dark.svg)',
+              }),
             }),
-          })}
-          width={116}
-          height={37}
+          ]}
         />
       </Box>
     </Section>

@@ -901,9 +901,7 @@ describe('<ButtonBase />', () => {
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
 
-      // technically the second keydown should be fire with repeat: true
-      // but that isn't implemented in IE11 so we shouldn't mock it here either
-      fireEvent.keyDown(button, { key: 'Enter' });
+      fireEvent.keyDown(button, { key: 'Enter', repeat: true });
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
     });

@@ -6,13 +6,7 @@ import StepIndicator from '@mui/joy/StepIndicator';
 
 export default function VerticalStepper() {
   return (
-    <Box
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: 2,
-      }}
-    >
+    <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
       <Stepper orientation="vertical" sx={{ width: 200 }}>
         <Step
           indicator={

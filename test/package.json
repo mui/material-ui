@@ -18,7 +18,7 @@
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
     "@playwright/test": "1.44.1",
-    "@testing-library/dom": "^9.3.4",
+    "@testing-library/dom": "^10.1.0",
     "@types/chai": "^4.3.16",
     "@types/react": "^18.2.55",
     "@types/react-is": "^18.3.0",
@@ -43,5 +43,8 @@
     "webfontloader": "^1.6.28",
     "webpack": "^5.91.0",
     "yargs": "^17.7.2"
+  },
+  "dependencies": {
+    "@react-spring/web": "^9.7.3"
   }
 }
