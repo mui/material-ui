@@ -4,30 +4,11 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
-import Line from './Line';
+import ResizableDemo from './ResizableDemo';
 
 export default function SxPropContainerQueries() {
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        paddingBlock: 2,
-        ml: 2,
-        mr: 'auto',
-        '*:has(> &)': {
-          overflow: 'hidden',
-        },
-      }}
-    >
-      <Line>
-        <span>0px</span>
-      </Line>
-      <Line sx={{ left: 350 }}>
-        <span>350px</span>
-      </Line>
-      <Line sx={{ left: 500 }}>
-        <span>500px</span>
-      </Line>
+    <ResizableDemo>
       <Box
         sx={{
           overflow: 'auto',
@@ -106,6 +87,6 @@ export default function SxPropContainerQueries() {
           </CardContent>
         </Card>
       </Box>
-    </Box>
+    </ResizableDemo>
   );
 }

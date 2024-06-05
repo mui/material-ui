@@ -1,34 +1,51 @@
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
-import Line from './Line';
-import Content from './Content';
-import DynamicCard from './DynamicCard';
-import Image from './Image';
+import ResizableDemo from './ResizableDemo';
+
+const DynamicCard = styled(Card)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  [theme.containerQueries.up(350)]: {
+    flexDirection: 'row',
+  },
+}));
+
+const Image = styled('img')(({ theme }) => ({
+  alignSelf: 'stretch',
+  aspectRatio: '16 / 9',
+  objectFit: 'cover',
+  width: '100%',
+  maxHeight: 160,
+  transition: '0.4s',
+  [theme.containerQueries.up(350)]: {
+    maxWidth: '36%',
+    maxHeight: 'initial',
+  },
+  [theme.containerQueries.up(500)]: {
+    maxWidth: 240,
+  },
+}));
+
+const Content = styled(CardContent)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(1),
+  padding: theme.spacing(2),
+  flex: 'auto',
+  transition: 'padding 0.4s',
+  [theme.containerQueries.up(500)]: {
+    padding: theme.spacing(3),
+  },
+}));
 
 export default function BasicContainerQueries() {
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        paddingBlock: 2,
-        ml: 2,
-        mr: 'auto',
-        '*:has(> &)': {
-          overflow: 'hidden',
-        },
-      }}
-    >
-      <Line>
-        <span>0px</span>
-      </Line>
-      <Line sx={{ left: 350 }}>
-        <span>350px</span>
-      </Line>
-      <Line sx={{ left: 500 }}>
-        <span>500px</span>
-      </Line>
+    <ResizableDemo>
       <Box
         sx={{
           overflow: 'auto',
@@ -70,6 +87,6 @@ export default function BasicContainerQueries() {
           </Content>
         </DynamicCard>
       </Box>
-    </Box>
+    </ResizableDemo>
   );
 }
