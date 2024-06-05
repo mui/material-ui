@@ -85,6 +85,14 @@ function setValue(area: Storage, key: string | null, value: string | null) {
 
 type Initializer = () => string | null;
 
+interface Options {
+  /**
+   * The storage client
+   * @default `localStorage`
+   */
+  storage: Storage | undefined | null;
+}
+
 type UseSyncStorageStateHookResult = [
   string | null,
   React.Dispatch<React.SetStateAction<string | null>>,
@@ -107,9 +115,12 @@ function useSyncStorageStateServer(): UseSyncStorageStateHookResult {
 function useSyncStorageStateBrowser(
   key: string | null,
   initializer: string | null | Initializer = null,
+  options?: Options,
 ): UseSyncStorageStateHookResult {
   const [initialValue] = React.useState(initializer);
-  const area = window.localStorage;
+
+  const { storage = window.localStorage } = options || {};
+  const area = storage!;
   const subscribeKey = React.useCallback(
     (callbark: () => void) => subscribe(area, key, callbark),
     [area, key],
