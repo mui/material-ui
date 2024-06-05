@@ -233,7 +233,7 @@
     "/material-ui/customization/typography": "Typography",
     "/material-ui/customization/spacing": "Spacing",
     "/material-ui/customization/breakpoints": "Breakpoints",
-    "/material-ui/customization/containerQueries": "ContainerQueries",
+    "/material-ui/customization/containerQueries": "Container queries",
     "/material-ui/customization/density": "Density",
     "/material-ui/customization/z-index": "z-index",
     "/material-ui/customization/transitions": "Transitions",
