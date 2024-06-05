@@ -33,7 +33,21 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
-  'docs-getting-started-templates-dashboard-components', // Already tested by /docs-getting-started-templates-dashboard/Dashboard
+  // Next components are tested by docs-getting-started-templates-dashboard-components/MainGrid.png
+  '/docs-getting-started-templates-dashboard/Dashboard.png',
+  '/docs-getting-started-templates-dashboard-components/ChartUserByCountry.png',
+  '/docs-getting-started-templates-dashboard-components/CustomDatePicker.png',
+  '/docs-getting-started-templates-dashboard-components/CustomizedDataGrid.png',
+  '/docs-getting-started-templates-dashboard-components/CustomizedTreeView.png',
+  '/docs-getting-started-templates-dashboard-components/Header.png',
+  '/docs-getting-started-templates-dashboard-components/HighlightedCard.png',
+  '/docs-getting-started-templates-dashboard-components/MenuButton.png',
+  '/docs-getting-started-templates-dashboard-components/Navbar.png',
+  '/docs-getting-started-templates-dashboard-components/NavbarBreadcrumbs.png',
+  '/docs-getting-started-templates-dashboard-components/OptionsMenu.png',
+  '/docs-getting-started-templates-dashboard-components/PageViewsChart.png',
+  '/docs-getting-started-templates-dashboard-components/Search.png',
+  '/docs-getting-started-templates-dashboard-components/ToggleColorMode.png',
   'docs-getting-started-templates-dashboard-internals-components', // No public components
   'docs-getting-started-templates-dashboard-components/SideNav.png', // No public components
   'docs-getting-started-templates-dashboard-components/PageViewsBarChart.png', // No public components
