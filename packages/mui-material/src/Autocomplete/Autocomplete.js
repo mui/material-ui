@@ -552,14 +552,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     if (renderTags) {
       startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
-      startAdornment = value.map((option, index) => (
-        <Chip
-          label={getOptionLabel(option)}
-          size={size}
-          {...getCustomizedTagProps({ index })}
-          {...ChipProps}
-        />
-      ));
+      startAdornment = value.map((option, index) => {
+        const { key, ...customTagProps } = getCustomizedTagProps({ index });
+        return (
+          <Chip
+            key={key}
+            label={getOptionLabel(option)}
+            size={size}
+            {...customTagProps}
+            {...ChipProps}
+          />
+        );
+      });
     }
   }
 
@@ -593,8 +597,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const renderGroup = renderGroupProp || defaultRenderGroup;
   const defaultRenderOption = (props2, option) => {
     // Need to clearly apply key because of https://github.com/vercel/next.js/issues/55642
+    const { key, ...otherProps } = props2;
     return (
-      <li {...props2} key={props2.key}>
+      <li key={key} {...otherProps}>
         {getOptionLabel(option)}
       </li>
     );

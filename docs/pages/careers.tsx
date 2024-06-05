@@ -153,6 +153,12 @@ const openRolesData = [
         url: '/careers/react-engineer-x/',
       },
       {
+        title: 'React Engineer — Docs-infra',
+        description:
+          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
+        url: '/careers/react-engineer-docs-infra/',
+      },
+      {
         title: 'React Tech Lead — Core',
         description:
           'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',

@@ -79,7 +79,7 @@ git checkout master
 git pull upstream master
 ```
 
-4. Install the dependencies with pnpm (yarn or npm aren't supported):
+4. Install the dependencies with [pnpm](https://pnpm.io/installation) (yarn or npm aren't supported):
 
 ```bash
 pnpm install

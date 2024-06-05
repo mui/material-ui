@@ -28,7 +28,9 @@
         "page": "The page selected."
       }
     },
-    "page": { "description": "The current page." },
+    "page": {
+      "description": "The current page. Unlike <code>TablePagination</code>, which starts numbering from <code>0</code>, this pagination starts from <code>1</code>."
+    },
     "renderItem": {
       "description": "Render the item.",
       "typeDescriptions": { "params": "The props to spread on a PaginationItem." }

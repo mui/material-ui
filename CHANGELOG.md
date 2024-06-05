@@ -1,5 +1,69 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.19
+
+<!-- generated comparing v5.15.18..master -->
+
+_May 29, 2024_
+
+A big thanks to the 12 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.19`
+
+- &#8203;<!-- 19 -->[AlertTitle] Enable extending Typography props (@lucasgmelo) (#42334) @github-actions[bot]
+- &#8203;<!-- 06 -->[responsiveFontSizes] Handled undefined variants (@brijeshb42) (#42419) @github-actions[bot]
+- &#8203;<!-- 05 -->[Slider] Fix wrong CSS value (@mnajdova) (#42373) @github-actions[bot]
+
+### Docs
+
+- &#8203;<!-- 13 -->Link to pnpm installation docs (#42420) @aarongarciah
+- &#8203;<!-- 12 -->Remove LocalMonero (@oliviertassinari) (#42315) @github-actions[bot]
+- &#8203;<!-- 10 -->[material-ui] Fix typo in style interoperability with Tailwind CSS docs (@ZeeshanTamboli) (#42312) @github-actions[bot]
+- &#8203;<!-- 09 -->[material-ui][Pagination] Clarify pagination `page` prop API (@Mandar-Pandya) (#42265) @github-actions[bot]
+- &#8203;<!-- 08 -->[material-ui][Tabs] Improve the Basic Tabs demo (@MatheusEli) (#42426) @github-actions[bot]
+- &#8203;<!-- 07 -->[pigment-css] Fix duplication of content (#42410) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 18 -->[blog] Add the "Product" tag to the Pigment CSS post (@danilo-leal) (#42366) @github-actions[bot]
+- &#8203;<!-- 17 -->[blog] Update blog post OG image (@danilo-leal) (#42306) @github-actions[bot]
+- &#8203;<!-- 16 -->[blog] Update Pigment CSS post (@danilo-leal) (#42267) @github-actions[bot]
+- &#8203;<!-- 15 -->[core] Fix React 18.3 warnings about spreading keys in the Material UI `Autocomplete` component (#42099) (#42241) @DiegoAndai
+- &#8203;<!-- 14 -->[core] Fix a few more key spread issues (@oliviertassinari) (#42318) @github-actions[bot]
+- &#8203;<!-- 11 -->[docs-infra] Allow JSDoc tags (#42327) @aarongarciah
+- &#8203;<!-- 04 -->[website] Add Nikita to the about page (@nikitaa24) (#42421) @github-actions[bot]
+- &#8203;<!-- 03 -->[website] Fix hero spacing changes applying at the wrong breakpoint (@KenanYusuf) (#42357) @github-actions[bot]
+- &#8203;<!-- 02 -->[website] Adds Kenan Yusuf to about page (@KenanYusuf) (#42330) @github-actions[bot]
+- &#8203;<!-- 01 -->[website] Improve about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @brijeshb42, @danilo-leal, @DiegoAndai, @KenanYusuf, @lucasgmelo, @Mandar-Pandya, @MatheusEli, @mnajdova, @nikitaa24, @oliviertassinari, @ZeeshanTamboli
+
+## v5.15.18
+
+<!-- generated comparing v5.15.17..master -->
+
+_May 14, 2024_
+
+A big thanks to the 5 contributors who made this release possible. Here are some highlights ✨:
+
+### `@mui/material@5.15.18`
+
+- &#8203;<!-- 6 -->[Autocomplete] Improve design when there's a start adornment for small autocomplete (@TahaRhidouani) (#42176) @github-actions[bot]
+- &#8203;<!-- 3 -->[ToggleButtonGroup] Add missing `selected` class in ToggleButtonGroupClasses type (@tarunrajput) (#42250) @github-actions[bot]
+
+### Docs
+
+- &#8203;<!-- 4 -->[docs] Fix 301 to Figma @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 5 -->[blog] Introducing Pigment CSS blog post (#42198) (#42255) @samuelsycamore
+- &#8203;<!-- 2 -->[website] Add redirection for talk @oliviertassinari
+- &#8203;<!-- 1 -->[website] Adds Arthur Balduini team info (@arthurbalduini) (#42226) @github-actions[bot]
+
+All contributors of this release in alphabetical order: @arthurbalduini, @oliviertassinari, @samuelsycamore, @TahaRhidouani, @tarunrajput
+
 ## v5.15.17
 
 <!-- generated comparing v5.15.16..master -->
@@ -8312,7 +8376,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 27 -->[core] Rename mui/core to mui/base (#29585) @michaldudak
 
-  Based on the results of the [poll](https://twitter.com/michaldudak/status/1452630484706635779) and our internal discussions, we decided to rename the `@mui/core` package to `@mui/base`. The main rationale for this is the fact that we use the term "Core" to refer to the core components product family, the one that includes Material Design components, unstyled components, System utilities, etc. Therefore, @mui/core was effectively a subset of MUI Core. This was confusing.
+  Based on the results of the [poll](https://x.com/michaldudak/status/1452630484706635779) and our internal discussions, we decided to rename the `@mui/core` package to `@mui/base`. The main rationale for this is the fact that we use the term "Core" to refer to the core components product family, the one that includes Material Design components, unstyled components, System utilities, etc. Therefore, @mui/core was effectively a subset of MUI Core. This was confusing.
 
   The new name better reflects the purpose of the package: it contains unstyled components, hooks, and utilities that serve as a **base** to build on.
 
@@ -12729,7 +12793,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
   ```
 
 - [Autocomplete] Remove `debug` in favor of `open` and dev tools (#23377) @eps1lon
-  There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools props.
+  There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://x.com/sulco/status/1305841873945272321), or React devtools props.
 
 #### Changes
 

@@ -321,7 +321,7 @@ export const SliderThumb = styled('span', {
           [`&.${sliderClasses.active}`]: {
             ...(theme.vars
               ? {
-                  boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)}`,
+                  boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
                 }
               : {
                   boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[color].main, 0.16)}`,

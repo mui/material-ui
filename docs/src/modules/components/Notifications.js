@@ -131,7 +131,7 @@ export default function Notifications() {
           }, */
           {
             id: 1,
-            text: 'You can <a style="color: inherit;" target="_blank" rel="noopener" href="https://twitter.com/MUI_hq">follow us on X</a> or subscribe on <a style="color: inherit;" target="_blank" rel="noopener" href="/blog/">our blog</a> to receive exclusive tips and updates about MUI and the React ecosystem.',
+            text: 'You can <a style="color: inherit;" target="_blank" rel="noopener" href="https://x.com/MUI_hq">follow us on X</a> or subscribe on <a style="color: inherit;" target="_blank" rel="noopener" href="/blog/">our blog</a> to receive exclusive tips and updates about MUI and the React ecosystem.',
           },
           // Only 3
           ...notifications.splice(-3),

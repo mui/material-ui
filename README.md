@@ -23,7 +23,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/@mui/material.svg)](https://www.npmjs.com/package/@mui/material)
 [![CircleCI](https://circleci.com/gh/mui/material-ui/tree/master.svg?style=shield)](https://app.circleci.com/pipelines/github/mui/material-ui?branch=master)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mui/material-ui/master.svg)](https://codecov.io/gh/mui/material-ui/branch/master)
-[![Follow on X](https://img.shields.io/twitter/follow/MUI_hq.svg?label=follow+MUI)](https://twitter.com/MUI_hq)
+[![Follow on X](https://img.shields.io/twitter/follow/MUI_hq.svg?label=follow+MUI)](https://x.com/MUI_hq)
 [![Renovate status](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://github.com/mui/material-ui/issues/27062)
 [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/mui/material-ui.svg)](https://isitmaintained.com/project/mui/material-ui 'Average time to resolve an issue')
 [![Open Collective backers and sponsors](https://img.shields.io/opencollective/all/mui-org)](https://opencollective.com/mui-org)
@@ -73,7 +73,7 @@ Visit [https://mui.com/system/getting-started/](https://mui.com/system/getting-s
 
 <p>
   <a href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/octopus-square.svg" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
-  <a href="https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a href="https://www.doit.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
 <a href="https://www.marblism.com/?utm_source=mui" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/marblism-square.svg" alt="marblism" title="AI web app generation" loading="lazy" /></a>
 </p>
 
