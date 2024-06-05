@@ -92,11 +92,7 @@ export default function GitHubLabel() {
           {value.map((label) => (
             <ListItem
               key={label.name}
-              sx={{
-                fontWeight: 600,
-                backgroundColor: label.color,
-                color: '#fff',
-              }}
+              sx={{ fontWeight: 600, backgroundColor: label.color, color: '#fff' }}
             >
               {label.name}
             </ListItem>
@@ -121,9 +117,9 @@ export default function GitHubLabel() {
             })}
           >
             <Typography
-              fontSize="sm"
-              fontWeight={600}
               sx={{
+                fontSize: 'sm',
+                fontWeight: 600,
                 padding: '8px 10px',
                 borderBottom: '1px solid',
                 borderColor: 'divider',

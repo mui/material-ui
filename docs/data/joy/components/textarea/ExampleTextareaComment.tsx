@@ -83,13 +83,7 @@ export default function ExampleTextareaComment() {
             minWidth: 300,
             fontWeight,
           },
-          italic
-            ? {
-                fontStyle: 'italic',
-              }
-            : {
-                fontStyle: 'initial',
-              },
+          italic ? { fontStyle: 'italic' } : { fontStyle: 'initial' },
         ]}
       />
     </FormControl>

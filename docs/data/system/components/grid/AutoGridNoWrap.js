@@ -20,13 +20,7 @@ const message = `Truncation should be conditionally applicable on this long line
 export default function AutoGridNoWrap() {
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3, maxWidth: 400 }}>
-      <Item
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
+      <Item sx={{ my: 1, mx: 'auto', p: 2 }}>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid>
             <Avatar>W</Avatar>
@@ -36,13 +30,7 @@ export default function AutoGridNoWrap() {
           </Grid>
         </Grid>
       </Item>
-      <Item
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
+      <Item sx={{ my: 1, mx: 'auto', p: 2 }}>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid>
             <Avatar>W</Avatar>

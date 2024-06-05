@@ -75,13 +75,7 @@ export default function ColorInversionMarketing() {
         <Typography sx={{ mt: 1, mb: 2, ...textColor }}>
           Instant access to the power of the Joy UI library.
         </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 1,
-          }}
-        >
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
           <Button
             endDecorator={<ArrowForwardIcon fontSize="md" />}
             sx={[
@@ -106,10 +100,7 @@ export default function ColorInversionMarketing() {
           <Button
             variant="plain"
             endDecorator={<ArrowForwardIcon fontSize="md" />}
-            sx={{
-              ...textColor,
-              ...buttonStyles,
-            }}
+            sx={{ ...textColor, ...buttonStyles }}
           >
             See the docs
           </Button>

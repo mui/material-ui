@@ -24,9 +24,8 @@ export default function ChatBubble(props: ChatBubbleProps) {
     <Box sx={{ maxWidth: '60%', minWidth: 'auto' }}>
       <Stack
         direction="row"
-        justifyContent="space-between"
         spacing={2}
-        sx={{ mb: 0.25 }}
+        sx={{ justifyContent: 'space-between', mb: 0.25 }}
       >
         <Typography level="body-xs">
           {sender === 'You' ? sender : sender.name}
@@ -58,12 +57,12 @@ export default function ChatBubble(props: ChatBubbleProps) {
                 },
           ]}
         >
-          <Stack direction="row" spacing={1.5} alignItems="center">
+          <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
             <Avatar color="primary" size="lg">
               <InsertDriveFileRoundedIcon />
             </Avatar>
             <div>
-              <Typography fontSize="sm">{attachment.fileName}</Typography>
+              <Typography sx={{ fontSize: 'sm' }}>{attachment.fileName}</Typography>
               <Typography level="body-sm">{attachment.size}</Typography>
             </div>
           </Stack>
@@ -123,9 +122,9 @@ export default function ChatBubble(props: ChatBubbleProps) {
           {(isHovered || isLiked || isCelebrated) && (
             <Stack
               direction="row"
-              justifyContent={isSent ? 'flex-end' : 'flex-start'}
               spacing={0.5}
               sx={{
+                justifyContent: isSent ? 'flex-end' : 'flex-start',
                 position: 'absolute',
                 top: '50%',
                 p: 1.5,

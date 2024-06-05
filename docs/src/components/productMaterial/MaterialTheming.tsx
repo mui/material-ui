@@ -16,8 +16,7 @@ import PlayerCard from 'docs/src/components/showcase/PlayerCard';
 const code = `
 <Card
   variant="outlined"
-  sx={{
-    p: 2,
+  sx={{  p: 2,
     width: { xs: '100%', sm: 'auto' },
     display: 'flex',
     flexDirection: { xs: 'column', sm: 'row' },
@@ -31,8 +30,7 @@ const code = `
     height="100"
     alt="Contemplative Reptile album cover"
     src="/images/contemplative-reptile.jpg"
-    sx={{
-      width: { xs: '100%', sm: 100 },
+    sx={{    width: { xs: '100%', sm: 100 },
     }}
   />
   <Stack direction="column" alignItems="center" spacing={1} useFlexGap>

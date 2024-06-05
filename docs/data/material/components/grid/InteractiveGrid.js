@@ -17,8 +17,10 @@ export default function InteractiveGrid() {
 <Grid
   container
   direction="${direction}"
-  justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
@@ -26,12 +28,10 @@ export default function InteractiveGrid() {
     <Grid sx={{ flexGrow: 1 }} container>
       <Grid item xs={12}>
         <Grid
-          sx={{ height: 300, pb: 2 }}
           container
           spacing={2}
-          alignItems={alignItems}
           direction={direction}
-          justifyContent={justifyContent}
+          sx={{ alignItems, justifyContent, height: 300, pb: 2 }}
         >
           {[0, 1, 2].map((value) => (
             <Grid key={value} item>

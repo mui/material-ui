@@ -307,11 +307,7 @@ export default function OrderTable() {
     <React.Fragment>
       <Sheet
         className="SearchAndFilters-mobile"
-        sx={{
-          display: { xs: 'flex', sm: 'none' },
-          my: 1,
-          gap: 1,
-        }}
+        sx={{ display: { xs: 'flex', sm: 'none' }, my: 1, gap: 1 }}
       >
         <Input
           size="sm"
@@ -414,12 +410,14 @@ export default function OrderTable() {
                   color="primary"
                   component="button"
                   onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
-                  fontWeight="lg"
                   endDecorator={<ArrowDropDownIcon />}
                   sx={[
                     {
+                      fontWeight: 'lg',
                       '& svg': {
                         transition: '0.2s',
+                        transform:
+                          order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
                       },
                     },
                     order === 'desc'

@@ -9,9 +9,7 @@ function MenuButton({ showBadge = false, ...props }) {
       color="error"
       variant="dot"
       invisible={!showBadge}
-      sx={{
-        '& .MuiBadge-badge': { right: 2, top: 2 },
-      }}
+      sx={{ '& .MuiBadge-badge': { right: 2, top: 2 } }}
     >
       <IconButton size="small" {...props} />
     </Badge>

@@ -55,9 +55,7 @@ const BpCheckedIcon = styled(BpIcon)({
 function BpCheckbox(props: CheckboxProps) {
   return (
     <Checkbox
-      sx={{
-        '&:hover': { bgcolor: 'transparent' },
-      }}
+      sx={{ '&:hover': { bgcolor: 'transparent' } }}
       disableRipple
       color="default"
       checkedIcon={<BpCheckedIcon />}

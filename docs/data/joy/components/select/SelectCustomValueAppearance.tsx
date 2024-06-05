@@ -28,9 +28,7 @@ export default function SelectCustomValueAppearance() {
           },
         },
       }}
-      sx={{
-        minWidth: 240,
-      }}
+      sx={{ minWidth: 240 }}
     >
       {people.map((data, index) => (
         <Option

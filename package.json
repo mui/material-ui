@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0-alpha.9",
+  "version": "6.0.0-alpha.10",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -78,21 +78,21 @@
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
     "canary:release": "tsx ./scripts/canaryRelease.mts",
-    "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
-    "nx_test_coverage_html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
-    "nx_test_coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx} 'packages-internal/**/*.test.{js,ts,tsx}'' 'docs/**/*.test.{js,ts,tsx}'",
+    "nx_test_coverage_html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
+    "nx_test_coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "nx_test_e2e_build": "webpack --config test/e2e/webpack.config.js",
     "nx_test_e2e_run": "mocha --config test/e2e/.mocharc.js 'test/e2e/**/*.test.{js,ts,tsx}'",
     "nx_test_karma_profile": "cross-env NODE_ENV=test karma start test/karma.conf.profile.js",
     "nx_test_karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "nx_test_regressions_run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
-    "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'"
+    "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'"
   },
   "dependencies": {
     "@googleapis/sheets": "^7.0.0",
     "@netlify/functions": "^2.7.0",
     "@slack/bolt": "^3.18.0",
-    "execa": "^8.0.1",
+    "execa": "^9.1.0",
     "google-auth-library": "^9.10.0"
   },
   "devDependencies": {
@@ -117,7 +117,7 @@
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "^14.2.3",
     "@octokit/rest": "^20.1.1",
-    "@pigment-css/react": "^0.0.10",
+    "@pigment-css/react": "^0.0.12",
     "@playwright/test": "1.44.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
@@ -154,7 +154,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-material-ui": "workspace:^",
     "eslint-plugin-mocha": "^10.4.3",
-    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
@@ -175,7 +175,7 @@
     "nyc": "^15.1.0",
     "piscina": "^4.5.1",
     "postcss-styled-syntax": "^0.6.4",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.0",
     "pretty-quick": "^4.0.0",
     "process": "^0.11.10",
     "rimraf": "^5.0.7",

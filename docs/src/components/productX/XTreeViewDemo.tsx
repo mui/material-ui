@@ -144,13 +144,7 @@ interface CustomLabelProps {
 
 function CustomLabel({ icon: Icon, expandable, children, ...other }: CustomLabelProps) {
   return (
-    <TreeItem2Label
-      {...other}
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <TreeItem2Label {...other} sx={{ display: 'flex', alignItems: 'center' }}>
       {Icon && (
         <Box
           component={Icon}
