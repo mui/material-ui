@@ -24,7 +24,6 @@ const Popper = styled(MuiPopper, {
     position: 'relative',
   },
   '&[data-popper-placement*="bottom"]': {
-    '& > div': {},
     '& .MuiPopper-arrow': {
       top: 0,
       left: 0,
@@ -38,7 +37,6 @@ const Popper = styled(MuiPopper, {
     },
   },
   '&[data-popper-placement*="top"]': {
-    '& > div': {},
     '& .MuiPopper-arrow': {
       bottom: 0,
       left: 0,
@@ -52,7 +50,6 @@ const Popper = styled(MuiPopper, {
     },
   },
   '&[data-popper-placement*="right"]': {
-    '& > div': {},
     '& .MuiPopper-arrow': {
       left: 0,
       marginLeft: '-0.9em',
@@ -65,7 +62,6 @@ const Popper = styled(MuiPopper, {
     },
   },
   '&[data-popper-placement*="left"]': {
-    '& > div': {},
     '& .MuiPopper-arrow': {
       right: 0,
       marginRight: '-0.9em',

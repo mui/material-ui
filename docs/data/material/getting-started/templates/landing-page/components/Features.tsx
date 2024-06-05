@@ -52,15 +52,15 @@ const Chip = styled(MuiChip)<ChipProps>(({ theme }) => ({
     {
       props: ({ selected }) => selected,
       style: {
-        borderColor: theme.palette.primary.dark,
         background:
           'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
         color: 'hsl(0, 0%, 100%)',
+        borderColor: theme.palette.primary.light,
         '& .MuiChip-label': {
           color: 'hsl(0, 0%, 100%)',
         },
-        ...theme.applyStyles('light', {
-          borderColor: theme.palette.primary.light,
+        ...theme.applyStyles('dark', {
+          borderColor: theme.palette.primary.dark,
         }),
       },
     },
@@ -109,12 +109,12 @@ export default function Features() {
           >
             <Box
               sx={(theme) => ({
-                backgroundImage: 'var(--items-imageDark)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 minHeight: 280,
-                ...theme.applyStyles('light', {
-                  backgroundImage: 'var(--items-imageLight)',
+                backgroundImage: 'var(--items-imageLight)',
+                ...theme.applyStyles('dark', {
+                  backgroundImage: 'var(--items-imageDark)',
                 }),
               })}
               style={
@@ -177,23 +177,23 @@ export default function Features() {
                     background: 'none',
                     '&:hover': {
                       background:
-                        'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
-                      borderColor: 'primary.dark',
-                      boxShadow: '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
-                      ...theme.applyStyles('light', {
+                        'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
+                      borderColor: 'primary.light',
+                      boxShadow: '0px 2px 8px hsla(0, 0%, 0%, 0.1)',
+                      ...theme.applyStyles('dark', {
                         background:
-                          'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
-                        borderColor: 'primary.light',
-                        boxShadow: '0px 2px 8px hsla(0, 0%, 0%, 0.1)',
+                          'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+                        borderColor: 'primary.dark',
+                        boxShadow: '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
                       }),
                     },
                   }),
                   selectedItemIndex === index &&
                     ((theme) => ({
                       backgroundColor: 'action.selected',
-                      borderColor: 'primary.dark',
-                      ...theme.applyStyles('light', {
-                        borderColor: 'primary.light',
+                      borderColor: 'primary.light',
+                      ...theme.applyStyles('dark', {
+                        borderColor: 'primary.dark',
                       }),
                     })),
                 ]}
@@ -211,9 +211,9 @@ export default function Features() {
                   <Box
                     sx={[
                       (theme) => ({
-                        color: 'grey.600',
-                        ...theme.applyStyles('light', {
-                          color: 'grey.400',
+                        color: 'grey.400',
+                        ...theme.applyStyles('dark', {
+                          color: 'grey.600',
                         }),
                       }),
                       selectedItemIndex === index && {
@@ -283,9 +283,9 @@ export default function Features() {
                 width: 420,
                 height: 500,
                 backgroundSize: 'contain',
-                backgroundImage: 'var(--items-imageDark)',
-                ...theme.applyStyles('light', {
-                  backgroundImage: 'var(--items-imageLight)',
+                backgroundImage: 'var(--items-imageLight)',
+                ...theme.applyStyles('dark', {
+                  backgroundImage: 'var(--items-imageDark)',
                 }),
               })}
               style={

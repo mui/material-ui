@@ -27,14 +27,14 @@ const Card = styled(MuiCard)<{ selected?: boolean }>(({ theme }) => ({
   width: '100%',
   '&:hover': {
     background:
-      'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
-    borderColor: 'primary.dark',
-    boxShadow: '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
-    ...theme.applyStyles('light', {
+      'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
+    borderColor: 'primary.light',
+    boxShadow: '0px 2px 8px hsla(0, 0%, 0%, 0.1)',
+    ...theme.applyStyles('dark', {
       background:
-        'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
-      borderColor: 'primary.light',
-      boxShadow: '0px 2px 8px hsla(0, 0%, 0%, 0.1)',
+        'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+      borderColor: 'primary.dark',
+      boxShadow: '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
     }),
   },
   [theme.breakpoints.up('md')]: {
@@ -46,9 +46,9 @@ const Card = styled(MuiCard)<{ selected?: boolean }>(({ theme }) => ({
       props: ({ selected }) => selected,
       style: {
         backgroundColor: theme.palette.action.selected,
-        borderColor: theme.palette.primary.dark,
-        ...theme.applyStyles('light', {
-          borderColor: theme.palette.primary.light,
+        borderColor: theme.palette.primary.light,
+        ...theme.applyStyles('dark', {
+          borderColor: theme.palette.primary.dark,
         }),
       },
     },
@@ -66,7 +66,7 @@ const PaymentContainer = styled('div')(({ theme }) => ({
   border: '1px solid ',
   borderColor: theme.palette.divider,
   background:
-    'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+    'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.3) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
   boxShadow: '0px 4px 8px hsla(210, 0%, 0%, 0.05)',
   [theme.breakpoints.up('xs')]: {
     height: 300,
@@ -74,9 +74,9 @@ const PaymentContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
     height: 350,
   },
-  ...theme.applyStyles('light', {
+  ...theme.applyStyles('dark', {
     background:
-      'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.3) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
+      'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
   }),
 }));
 
@@ -151,9 +151,9 @@ export default function PaymentForm() {
                   fontSize="small"
                   sx={[
                     (theme) => ({
-                      color: 'grey.600',
-                      ...theme.applyStyles('light', {
-                        color: 'grey.400',
+                      color: 'grey.400',
+                      ...theme.applyStyles('dark', {
+                        color: 'grey.600',
                       }),
                     }),
                     paymentType === 'creditCard' && {
@@ -182,9 +182,9 @@ export default function PaymentForm() {
                   fontSize="small"
                   sx={[
                     (theme) => ({
-                      color: 'grey.600',
-                      ...theme.applyStyles('light', {
-                        color: 'grey.400',
+                      color: 'grey.400',
+                      ...theme.applyStyles('dark', {
+                        color: 'grey.600',
                       }),
                     }),
                     paymentType === 'bankTransfer' && {

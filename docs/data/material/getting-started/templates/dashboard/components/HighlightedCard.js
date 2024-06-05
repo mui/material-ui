@@ -9,14 +9,14 @@ import InsightsRoundedIcon from '@mui/icons-material/InsightsRounded';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   border: '1px solid',
-  borderColor: theme.palette.primary.dark,
   boxShadow: 'none',
-  background: 'hsla(210, 100%, 15%, 0.25)',
-  color: theme.palette.grey[200],
-  ...theme.applyStyles('light', {
-    borderColor: theme.palette.primary.light,
-    background: 'hsl(210, 100%, 98%)',
-    color: theme.palette.grey[900],
+  borderColor: theme.palette.primary.light,
+  background: 'hsl(210, 100%, 98%)',
+  color: theme.palette.grey[900],
+  ...theme.applyStyles('dark', {
+    borderColor: theme.palette.primary.dark,
+    background: 'hsla(210, 100%, 15%, 0.25)',
+    color: theme.palette.grey[200],
   }),
 }));
 

@@ -27,13 +27,15 @@ const StyledAutocompletePopper = styled('div')(({ theme }) => ({
     fontSize: 13,
   },
   [`& .${autocompleteClasses.listbox}`]: {
-    backgroundColor: '#1c2128',
+    backgroundColor: '#fff',
+
     padding: 0,
     [`& .${autocompleteClasses.option}`]: {
       minHeight: 'auto',
       alignItems: 'flex-start',
       padding: 8,
-      borderBottom: `1px solid  ${'#30363d'}`,
+      borderBottom: `1px solid  ${' #eaecef'}`,
+
       '&[aria-selected="true"]': {
         backgroundColor: 'transparent',
       },
@@ -41,12 +43,12 @@ const StyledAutocompletePopper = styled('div')(({ theme }) => ({
         {
           backgroundColor: theme.palette.action.hover,
         },
-      ...theme.applyStyles('light', {
-        borderBottom: `1px solid  ${' #eaecef'}`,
+      ...theme.applyStyles('dark', {
+        borderBottom: `1px solid  ${'#30363d'}`,
       }),
     },
-    ...theme.applyStyles('light', {
-      backgroundColor: '#fff',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#1c2128',
     }),
   },
   [`&.${autocompleteClasses.popperDisablePortal}`]: {
@@ -60,19 +62,19 @@ function PopperComponent(props: PopperComponentProps) {
 }
 
 const StyledPopper = styled(Popper)(({ theme }) => ({
-  border: `1px solid ${'#30363d'}`,
-  boxShadow: `0 8px 24px ${'rgb(1, 4, 9)'}`,
+  border: `1px solid ${'#e1e4e8'}`,
+  boxShadow: `0 8px 24px ${'rgba(149, 157, 165, 0.2)'}`,
+  color: '#24292e',
+  backgroundColor: '#fff',
   borderRadius: 6,
   width: 300,
   zIndex: theme.zIndex.modal,
   fontSize: 13,
-  color: '#c9d1d9',
-  backgroundColor: '#1c2128',
-  ...theme.applyStyles('light', {
-    border: `1px solid ${'#e1e4e8'}`,
-    boxShadow: `0 8px 24px ${'rgba(149, 157, 165, 0.2)'}`,
-    color: '#24292e',
-    backgroundColor: '#fff',
+  ...theme.applyStyles('dark', {
+    border: `1px solid ${'#30363d'}`,
+    boxShadow: `0 8px 24px ${'rgb(1, 4, 9)'}`,
+    color: '#c9d1d9',
+    backgroundColor: '#1c2128',
   }),
 }));
 
@@ -83,24 +85,24 @@ const StyledInput = styled(InputBase)(({ theme }) => ({
   '& input': {
     borderRadius: 4,
     backgroundColor: '#0d1117',
+    border: `1px solid ${'#30363d'}`,
     padding: 8,
     transition: theme.transitions.create(['border-color', 'box-shadow']),
-    border: `1px solid ${'#30363d'}`,
     fontSize: 14,
     '&:focus': {
-      boxShadow: `0px 0px 0px 3px ${'rgb(12, 45, 107)'}`,
-      borderColor: '#388bfd',
-      ...theme.applyStyles('light', {
-        boxShadow: `0px 0px 0px 3px ${'rgba(3, 102, 214, 0.3)'}`,
-        borderColor: '#0366d6',
+      boxShadow: `0px 0px 0px 3px ${'rgba(3, 102, 214, 0.3)'}`,
+      borderColor: '#0366d6',
+      ...theme.applyStyles('dark', {
+        boxShadow: `0px 0px 0px 3px ${'rgb(12, 45, 107)'}`,
+        borderColor: '#388bfd',
       }),
     },
-    ...theme.applyStyles('light', {
+    ...theme.applyStyles('dark', {
       backgroundColor: '#fff',
       border: `1px solid ${'#eaecef'}`,
     }),
   },
-  ...theme.applyStyles('light', {
+  ...theme.applyStyles('dark', {
     borderBottom: `1px solid ${'#eaecef'}`,
   }),
 }));
@@ -110,12 +112,12 @@ const Button = styled(ButtonBase)(({ theme }) => ({
   width: '100%',
   textAlign: 'left',
   paddingBottom: 8,
-  color: '#8b949e',
+  color: '#586069',
   fontWeight: 600,
   '&:hover,&:focus': {
-    color: '#58a6ff',
-    ...theme.applyStyles('light', {
-      color: '#0366d6',
+    color: '#0366d6',
+    ...theme.applyStyles('dark', {
+      color: '#58a6ff',
     }),
   },
   '& span': {
@@ -125,8 +127,8 @@ const Button = styled(ButtonBase)(({ theme }) => ({
     width: 16,
     height: 16,
   },
-  ...theme.applyStyles('light', {
-    color: '#586069',
+  ...theme.applyStyles('dark', {
+    color: '#8b949e',
   }),
 }));
 

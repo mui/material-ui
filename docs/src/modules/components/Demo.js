@@ -217,7 +217,6 @@ const DemoRootMaterial = styled('div', {
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {},
   variants: [
     {
       props: ({ hideToolbar }) => hideToolbar,

@@ -125,15 +125,15 @@ const IOSSwitch = styled((props: SwitchProps) => (
       border: '6px solid #fff',
     },
     '&.Mui-disabled .MuiSwitch-thumb': {
-      color: theme.palette.grey[600],
-      ...theme.applyStyles('light', {
-        color: theme.palette.grey[100],
+      color: theme.palette.grey[100],
+      ...theme.applyStyles('dark', {
+        color: theme.palette.grey[600],
       }),
     },
     '&.Mui-disabled + .MuiSwitch-track': {
-      opacity: 0.3,
-      ...theme.applyStyles('light', {
-        opacity: 0.7,
+      opacity: 0.7,
+      ...theme.applyStyles('dark', {
+        opacity: 0.3,
       }),
     },
   },
@@ -144,13 +144,13 @@ const IOSSwitch = styled((props: SwitchProps) => (
   },
   '& .MuiSwitch-track': {
     borderRadius: 26 / 2,
-    backgroundColor: '#39393D',
+    backgroundColor: '#E9E9EA',
     opacity: 1,
     transition: theme.transitions.create(['background-color'], {
       duration: 500,
     }),
-    ...theme.applyStyles('light', {
-      backgroundColor: '#E9E9EA',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#39393D',
     }),
   },
 }));

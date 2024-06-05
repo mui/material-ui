@@ -82,13 +82,13 @@ declare module 'react' {
 }
 
 const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
-  color: theme.palette.grey[400],
+  color: theme.palette.grey[800],
   position: 'relative',
   [`& .${treeItemClasses.groupTransition}`]: {
     paddingLeft: theme.spacing(0.5),
   },
-  ...theme.applyStyles('light', {
-    color: theme.palette.grey[800],
+  ...theme.applyStyles('dark', {
+    color: theme.palette.grey[400],
   }),
 })) as unknown as typeof TreeItem2Root;
 const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
@@ -101,9 +101,9 @@ const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
     top: '28px',
     height: 'calc(100% - 28px)',
     width: '1.5px',
-    backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-    ...theme.applyStyles('light', {
-      backgroundColor: (theme.vars || theme).palette.grey[100],
+    backgroundColor: (theme.vars || theme).palette.grey[100],
+    ...theme.applyStyles('dark', {
+      backgroundColor: (theme.vars || theme).palette.primaryDark[700],
     }),
   },
 }));

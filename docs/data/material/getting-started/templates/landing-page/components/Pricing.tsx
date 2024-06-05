@@ -109,11 +109,11 @@ export default function Pricing() {
                 tier.title === 'Professional' &&
                   ((theme) => ({
                     border: 'none',
-                    boxShadow: `0 8px 12px hsla(0, 0%, 0%, 0.8)`,
                     background:
                       'radial-gradient(circle at 50% 0%, hsl(210, 98%, 35%), hsl(210, 100%, 16%))',
-                    ...theme.applyStyles('light', {
-                      boxShadow: `0 8px 12px hsla(210, 98%, 42%, 0.2)`,
+                    boxShadow: `0 8px 12px hsla(210, 98%, 42%, 0.2)`,
+                    ...theme.applyStyles('dark', {
+                      boxShadow: `0 8px 12px hsla(0, 0%, 0%, 0.8)`,
                     }),
                   })),
               ]}
@@ -129,12 +129,8 @@ export default function Pricing() {
                       gap: 2,
                     },
                     tier.title === 'Professional'
-                      ? {
-                          color: 'grey.100',
-                        }
-                      : {
-                          color: '',
-                        },
+                      ? { color: 'grey.100' }
+                      : { color: '' },
                   ]}
                 >
                   <Typography component="h3" variant="h6">
@@ -165,12 +161,8 @@ export default function Pricing() {
                       alignItems: 'baseline',
                     },
                     tier.title === 'Professional'
-                      ? {
-                          color: 'grey.50',
-                        }
-                      : {
-                          color: null,
-                        },
+                      ? { color: 'grey.50' }
+                      : { color: null },
                   ]}
                 >
                   <Typography component="h3" variant="h2">
@@ -192,12 +184,8 @@ export default function Pricing() {
                           width: 20,
                         },
                         tier.title === 'Professional'
-                          ? {
-                              color: 'primary.light',
-                            }
-                          : {
-                              color: 'primary.main',
-                            },
+                          ? { color: 'primary.light' }
+                          : { color: 'primary.main' },
                       ]}
                     />
                     <Typography
@@ -205,12 +193,8 @@ export default function Pricing() {
                       component={'span'}
                       sx={[
                         tier.title === 'Professional'
-                          ? {
-                              color: 'grey.50',
-                            }
-                          : {
-                              color: null,
-                            },
+                          ? { color: 'grey.50' }
+                          : { color: null },
                       ]}
                     >
                       {line}

@@ -197,9 +197,9 @@ export default function Pricing() {
                     align: 'center',
                   }}
                   sx={(theme) => ({
-                    backgroundColor: theme.palette.grey[700],
-                    ...theme.applyStyles('light', {
-                      backgroundColor: theme.palette.grey[200],
+                    backgroundColor: theme.palette.grey[200],
+                    ...theme.applyStyles('dark', {
+                      backgroundColor: theme.palette.grey[700],
                     }),
                   })}
                 />

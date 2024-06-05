@@ -307,12 +307,8 @@ export default function Checkout() {
                       mb: '60px',
                     },
                     activeStep !== 0
-                      ? {
-                          justifyContent: 'space-between',
-                        }
-                      : {
-                          justifyContent: 'flex-end',
-                        },
+                      ? { justifyContent: 'space-between' }
+                      : { justifyContent: 'flex-end' },
                   ]}
                 >
                   {activeStep !== 0 && (

@@ -41,27 +41,11 @@ export default function ColorSchemeToggle(props: IconButtonProps) {
       }}
       sx={[
         mode === 'dark'
-          ? {
-              '& > *:first-child': {
-                display: 'none',
-              },
-            }
-          : {
-              '& > *:first-child': {
-                display: 'initial',
-              },
-            },
+          ? { '& > *:first-child': { display: 'none' } }
+          : { '& > *:first-child': { display: 'initial' } },
         mode === 'light'
-          ? {
-              '& > *:last-child': {
-                display: 'none',
-              },
-            }
-          : {
-              '& > *:last-child': {
-                display: 'initial',
-              },
-            },
+          ? { '& > *:last-child': { display: 'none' } }
+          : { '& > *:last-child': { display: 'initial' } },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >

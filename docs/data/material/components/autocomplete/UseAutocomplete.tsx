@@ -8,11 +8,11 @@ const Label = styled('label')({
 
 const Input = styled('input')(({ theme }) => ({
   width: 200,
-  backgroundColor: '#000',
-  color: '#fff',
-  ...theme.applyStyles('light', {
-    backgroundColor: '#fff',
-    color: '#000',
+  backgroundColor: '#fff',
+  color: '#000',
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#000',
+    color: '#fff',
   }),
 }));
 
@@ -23,7 +23,7 @@ const Listbox = styled('ul')(({ theme }) => ({
   zIndex: 1,
   position: 'absolute',
   listStyle: 'none',
-  backgroundColor: '#000',
+  backgroundColor: '#fff',
   overflow: 'auto',
   maxHeight: 200,
   border: '1px solid rgba(0,0,0,.25)',
@@ -36,8 +36,8 @@ const Listbox = styled('ul')(({ theme }) => ({
     backgroundColor: '#2977f5',
     color: 'white',
   },
-  ...theme.applyStyles('light', {
-    backgroundColor: '#fff',
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#000',
   }),
 }));
 

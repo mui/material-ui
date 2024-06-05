@@ -188,13 +188,7 @@ export default function Sidebar() {
                   </ListItemContent>
                   <KeyboardArrowDownIcon
                     sx={[
-                      open
-                        ? {
-                            transform: 'rotate(180deg)',
-                          }
-                        : {
-                            transform: 'none',
-                          },
+                      open ? { transform: 'rotate(180deg)' } : { transform: 'none' },
                     ]}
                   />
                 </ListItemButton>
@@ -242,13 +236,7 @@ export default function Sidebar() {
                   </ListItemContent>
                   <KeyboardArrowDownIcon
                     sx={[
-                      open
-                        ? {
-                            transform: 'rotate(180deg)',
-                          }
-                        : {
-                            transform: 'none',
-                          },
+                      open ? { transform: 'rotate(180deg)' } : { transform: 'none' },
                     ]}
                   />
                 </ListItemButton>

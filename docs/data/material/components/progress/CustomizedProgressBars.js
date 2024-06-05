@@ -11,16 +11,16 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[800],
-    ...theme.applyStyles('light', {
-      backgroundColor: theme.palette.grey[200],
+    backgroundColor: theme.palette.grey[200],
+    ...theme.applyStyles('dark', {
+      backgroundColor: theme.palette.grey[800],
     }),
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: '#308fe8',
-    ...theme.applyStyles('light', {
-      backgroundColor: '#1a90ff',
+    backgroundColor: '#1a90ff',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#308fe8',
     }),
   },
 }));
@@ -32,9 +32,9 @@ function FacebookCircularProgress(props) {
       <CircularProgress
         variant="determinate"
         sx={(theme) => ({
-          color: theme.palette.grey[800],
-          ...theme.applyStyles('light', {
-            color: theme.palette.grey[200],
+          color: theme.palette.grey[200],
+          ...theme.applyStyles('dark', {
+            color: theme.palette.grey[800],
           }),
         })}
         size={40}
@@ -46,15 +46,15 @@ function FacebookCircularProgress(props) {
         variant="indeterminate"
         disableShrink
         sx={(theme) => ({
-          color: '#308fe8',
+          color: '#1a90ff',
           animationDuration: '550ms',
           position: 'absolute',
           left: 0,
           [`& .${circularProgressClasses.circle}`]: {
             strokeLinecap: 'round',
           },
-          ...theme.applyStyles('light', {
-            color: '#1a90ff',
+          ...theme.applyStyles('dark', {
+            color: '#308fe8',
           }),
         })}
         size={40}

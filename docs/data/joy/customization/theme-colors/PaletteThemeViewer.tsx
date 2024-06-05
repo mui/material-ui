@@ -127,12 +127,8 @@ export default function PaletteThemeViewer() {
             zIndex: 1,
           },
           isCopied
-            ? {
-                transform: `translateX(-50%) translateY(-0.5rem)`,
-              }
-            : {
-                transform: `translateX(-50%) translateY(calc(100% + 0.5rem))`,
-              },
+            ? { transform: `translateX(-50%) translateY(-0.5rem)` }
+            : { transform: `translateX(-50%) translateY(calc(100% + 0.5rem))` },
         ]}
       >
         <Typography

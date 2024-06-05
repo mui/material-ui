@@ -34,9 +34,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
     borderRadius: 4,
     position: 'relative',
-    backgroundColor: '#1A2027',
+    backgroundColor: '#F3F6F9',
+    borderColor: '#E0E3E7',
     border: '1px solid',
-    borderColor: '#2D3843',
     fontSize: 16,
     width: 'auto',
     padding: '10px 12px',
@@ -62,9 +62,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
     },
-    ...theme.applyStyles('light', {
-      backgroundColor: '#F3F6F9',
-      borderColor: '#E0E3E7',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#1A2027',
+      borderColor: '#2D3843',
     }),
   },
 }));
@@ -80,9 +80,9 @@ const RedditTextField = styled((props: TextFieldProps) => (
   '& .MuiFilledInput-root': {
     overflow: 'hidden',
     borderRadius: 4,
-    backgroundColor: '#1A2027',
     border: '1px solid',
-    borderColor: '#2D3843',
+    backgroundColor: '#F3F6F9',
+    borderColor: '#E0E3E7',
     transition: theme.transitions.create([
       'border-color',
       'background-color',
@@ -96,9 +96,9 @@ const RedditTextField = styled((props: TextFieldProps) => (
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
       borderColor: theme.palette.primary.main,
     },
-    ...theme.applyStyles('light', {
-      backgroundColor: '#F3F6F9',
-      borderColor: '#E0E3E7',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#1A2027',
+      borderColor: '#2D3843',
     }),
   },
 }));

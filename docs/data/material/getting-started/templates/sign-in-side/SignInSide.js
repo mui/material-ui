@@ -63,12 +63,15 @@ export default function SignInSide() {
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignInSideTheme = createTheme(getSignInSideTheme(mode));
+
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
+
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
   };
+
   return (
     <ThemeProvider theme={showCustomTheme ? SignInSideTheme : defaultTheme}>
       <CssBaseline />

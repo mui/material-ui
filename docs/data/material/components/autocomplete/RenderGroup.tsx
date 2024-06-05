@@ -8,9 +8,9 @@ const GroupHeader = styled('div')(({ theme }) => ({
   top: '-8px',
   padding: '4px 10px',
   color: theme.palette.primary.main,
-  backgroundColor: darken(theme.palette.primary.main, 0.8),
-  ...theme.applyStyles('light', {
-    backgroundColor: lighten(theme.palette.primary.light, 0.85),
+  backgroundColor: lighten(theme.palette.primary.light, 0.85),
+  ...theme.applyStyles('dark', {
+    backgroundColor: darken(theme.palette.primary.main, 0.8),
   }),
 }));
 

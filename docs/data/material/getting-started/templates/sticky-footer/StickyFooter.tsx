@@ -43,9 +43,9 @@ export default function StickyFooter() {
             py: 3,
             px: 2,
             mt: 'auto',
-            backgroundColor: theme.palette.grey[800],
-            ...theme.applyStyles('light', {
-              backgroundColor: theme.palette.grey[200],
+            backgroundColor: theme.palette.grey[200],
+            ...theme.applyStyles('dark', {
+              backgroundColor: theme.palette.grey[800],
             }),
           })}
         >

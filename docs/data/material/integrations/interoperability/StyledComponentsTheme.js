@@ -14,6 +14,7 @@ const customTheme = createTheme({
 const CustomizedSlider = styled(Slider)(
   ({ theme }) => `
   color: ${theme.palette.primary.main};
+
   :hover {
     color: ${darken(theme.palette.primary.main, 0.2)};
   }
