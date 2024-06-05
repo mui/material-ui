@@ -16,10 +16,10 @@ export default function StylingInfo({
   const [hidden, setHidden] = React.useState(false);
   const defaultContent = (
     <React.Fragment>
-      <Typography fontWeight="bold" variant="body2">
+      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
         Own the styling!
       </Typography>
-      <Typography color="text.secondary" variant="body2">
+      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
         Build your own design system using the{' '}
         <Link href={ROUTES.theming}>sophisticated theming features</Link>. You can also start by
         using Google&apos;s Material Design.

@@ -23,10 +23,11 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
           id={id}
           component="h2"
           variant="body2"
-          fontWeight="bold"
-          color="primary.main"
           sx={{
+            fontWeight: 'bold',
+            color: 'primary.main',
             mb: 1,
+
             ...(alwaysCenter && {
               textAlign: 'center',
             }),

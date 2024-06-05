@@ -15,9 +15,7 @@ export default function LoadingButtonsTransition() {
   return (
     <div>
       <FormControlLabel
-        sx={{
-          display: 'block',
-        }}
+        sx={{ display: 'block' }}
         control={
           <Switch
             checked={loading}

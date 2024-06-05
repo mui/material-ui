@@ -43,5 +43,8 @@
     "webfontloader": "^1.6.28",
     "webpack": "^5.91.0",
     "yargs": "^17.7.2"
+  },
+  "dependencies": {
+    "@react-spring/web": "^9.7.3"
   }
 }
