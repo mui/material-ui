@@ -95,7 +95,9 @@ export const generateGridOffsetStyles = ({ theme, ownerState }: Props) => {
       if (typeof value === 'number') {
         style = {
           marginLeft:
-            value === 0 ? '0px' : `calc(100% * ${value} / ${getParentColumns(ownerState)} + ${getParentSpacing('column')} * ${value} / ${getParentColumns(ownerState)})`,
+            value === 0
+              ? '0px'
+              : `calc(100% * ${value} / ${getParentColumns(ownerState)} + ${getParentSpacing('column')} * ${value} / ${getParentColumns(ownerState)})`,
         };
       }
       appendStyle(styles, style);
