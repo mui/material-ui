@@ -116,12 +116,6 @@ interface Options<T> {
 
 type UseSyncStorageStateHookResult<T> = [T | null, React.Dispatch<React.SetStateAction<T | null>>];
 
-const serverValue: UseSyncStorageStateHookResult<null> = [null, () => {}];
-
-function useSyncStorageStateServer() {
-  return serverValue;
-}
-
 /**
  * Sync state to local storage so that it persists through a page refresh. Usage is
  * similar to useState except we pass in a storage key so that we can default
@@ -130,7 +124,7 @@ function useSyncStorageStateServer() {
  * Since the storage API isn't available in server-rendering environments, we
  * return null during SSR and hydration.
  */
-function useSyncStorageStateBrowser<T>(
+function useSyncStorageState<T>(
   key: string | null,
   initializer: T | null | Initializer<T> = null,
   options?: Options<T>,
@@ -185,8 +179,5 @@ function useSyncStorageStateBrowser<T>(
 
   return [storedValue, setStoredValue];
 }
-
-const useSyncStorageState =
-  typeof window === 'undefined' ? useSyncStorageStateServer : useSyncStorageStateBrowser;
 
 export default useSyncStorageState;
