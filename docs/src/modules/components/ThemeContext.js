@@ -12,7 +12,7 @@ import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from '@mui/docs/i18n';
 import { getDesignTokens, getThemedComponents, getMetaThemeColor } from '@mui/docs/branding';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import useLocalStorageState from '@mui/utils/useLocalStorageState';
+import useSyncStorageState from '@mui/utils/useSyncStorageState';
 
 const languageMap = {
   en: enUS,
@@ -276,7 +276,7 @@ export function useChangeTheme() {
 
 // TODO: remove once all pages support css vars and replace call sites with useColorScheme()
 export function useColorSchemeShim() {
-  const [mode, setMode] = useLocalStorageState('mui-mode', 'system');
+  const [mode, setMode] = useSyncStorageState('mui-mode', 'system');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
   const systemMode = prefersDarkMode ? 'dark' : 'light';
 

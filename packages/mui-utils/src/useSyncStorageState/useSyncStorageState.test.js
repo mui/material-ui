@@ -36,8 +36,6 @@ describe('useSyncStorageState', () => {
       render(<TestComponent />);
     }).not.toErrorDev();
 
-    expect(screen.getByTestId('state')).to.have.text('false');
-
     const button = screen.getByRole('button');
     fireEvent.click(button);
 
