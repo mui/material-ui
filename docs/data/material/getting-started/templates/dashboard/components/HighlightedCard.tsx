@@ -29,10 +29,15 @@ export default function HighlightedCard() {
     <Card sx={{ height: '100%' }}>
       <CardContent>
         <InsightsRoundedIcon color="primary" />
-        <Typography component="h2" variant="subtitle2" fontWeight="600" gutterBottom>
+        <Typography
+          component="h2"
+          variant="subtitle2"
+          gutterBottom
+          sx={{ fontWeight: '600' }}
+        >
           Explore your data
         </Typography>
-        <Typography color="text.secondary" sx={{ mb: '8px' }}>
+        <Typography sx={{ color: 'text.secondary', mb: '8px' }}>
           Uncover performance and visitor insights with our data wizardry.
         </Typography>
         <Button

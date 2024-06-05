@@ -43,16 +43,20 @@ export default function DiamondSponsors() {
       <Typography
         component="h3"
         variant="h6"
-        fontWeight="bold"
-        sx={(theme) => ({
-          mt: 4,
-          mb: 1.5,
-          background: `linear-gradient(45deg, ${(theme.vars || theme).palette.primary[400]} 50%, ${
-            (theme.vars || theme).palette.primary[800]
-          } 100%)`,
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-        })}
+        sx={[
+          {
+            fontWeight: 'bold',
+          },
+          (theme) => ({
+            mt: 4,
+            mb: 1.5,
+            background: `linear-gradient(45deg, ${(theme.vars || theme).palette.primary[400]} 50%, ${
+              (theme.vars || theme).palette.primary[800]
+            } 100%)`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }),
+        ]}
       >
         Diamond
       </Typography>
@@ -93,10 +97,10 @@ export default function DiamondSponsors() {
                 <AddRounded />
               </IconButton>
               <div>
-                <Typography variant="body2" color="text.primary" fontWeight="bold">
+                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
                   Become our sponsor!
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   To join us, contact us at{' '}
                   <Link href="mailto:sales@mui.com" target="_blank" rel="noopener">
                     sales@mui.com

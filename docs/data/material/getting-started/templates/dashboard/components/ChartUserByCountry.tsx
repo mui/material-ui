@@ -137,22 +137,22 @@ export default function ChartUserByCountry() {
           <Stack
             key={index}
             direction="row"
-            alignItems="center"
-            gap={2}
-            sx={{ pb: 2 }}
+            sx={{ alignItems: 'center', gap: 2, pb: 2 }}
           >
             {country.flag}
-            <Stack gap={1} sx={{ flexGrow: 1 }}>
+            <Stack sx={{ gap: 1, flexGrow: 1 }}>
               <Stack
                 direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-                gap={2}
+                sx={{
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  gap: 2,
+                }}
               >
-                <Typography variant="body2" fontWeight="500">
+                <Typography variant="body2" sx={{ fontWeight: '500' }}>
                   {country.name}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   {country.value}%
                 </Typography>
               </Stack>
