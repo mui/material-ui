@@ -22,7 +22,7 @@ export type UseModalParameters = {
   /**
    * A single child content element.
    */
-  children: React.ReactElement | undefined | null;
+  children: React.ReactElement<any> | undefined | null;
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false

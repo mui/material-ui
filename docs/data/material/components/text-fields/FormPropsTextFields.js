@@ -6,9 +6,7 @@ export default function FormPropsTextFields() {
   return (
     <Box
       component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
+      sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
       noValidate
       autoComplete="off"
     >
@@ -35,16 +33,20 @@ export default function FormPropsTextFields() {
           id="outlined-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
-          InputProps={{
-            readOnly: true,
+          slotProps={{
+            input: {
+              readOnly: true,
+            },
           }}
         />
         <TextField
           id="outlined-number"
           label="Number"
           type="number"
-          InputLabelProps={{
-            shrink: true,
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
           }}
         />
         <TextField id="outlined-search" label="Search field" type="search" />
@@ -81,19 +83,23 @@ export default function FormPropsTextFields() {
           id="filled-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
-          InputProps={{
-            readOnly: true,
-          }}
           variant="filled"
+          slotProps={{
+            input: {
+              readOnly: true,
+            },
+          }}
         />
         <TextField
           id="filled-number"
           label="Number"
           type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
           variant="filled"
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
         />
         <TextField
           id="filled-search"
@@ -135,19 +141,23 @@ export default function FormPropsTextFields() {
           id="standard-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
-          InputProps={{
-            readOnly: true,
-          }}
           variant="standard"
+          slotProps={{
+            input: {
+              readOnly: true,
+            },
+          }}
         />
         <TextField
           id="standard-number"
           label="Number"
           type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
           variant="standard"
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
         />
         <TextField
           id="standard-search"

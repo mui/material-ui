@@ -71,7 +71,7 @@ const SvgIconRoot = styled('svg', {
     },
     // TODO v5 deprecate color prop, v6 remove for sx
     ...Object.entries((theme.vars ?? theme).palette)
-      .filter(([, value]) => value.main)
+      .filter(([, value]) => value && value.main)
       .map(([color]) => ({
         props: { color },
         style: { color: (theme.vars ?? theme).palette?.[color]?.main },

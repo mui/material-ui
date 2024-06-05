@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { typographyClasses } from '@mui/material/Typography';
 import CardHeader, { cardHeaderClasses as classes } from '@mui/material/CardHeader';
 import describeConformance from '../../test/describeConformance';

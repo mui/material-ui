@@ -9,7 +9,7 @@ const FlashCode = styled('div', {
     borderRadius: 2,
     pointerEvents: 'none',
     position: 'absolute',
-    left: 0,
+    left: -1, // Have at least a 1px gap between the text and the border of the FlashCode.
     right: 0,
     top: `calc(${lineHeight} * 1.5 * ${startLine})`,
     height: `calc(${lineHeight} * 1.5 * ${endLine - startLine + 1})`,
@@ -20,7 +20,6 @@ const FlashCode = styled('div', {
       : alpha(theme.palette.primary.main, 0.1),
     border: '1px solid',
     borderColor: (theme.vars || theme).palette.primary.dark,
-    zIndex: 2,
   }),
 );
 

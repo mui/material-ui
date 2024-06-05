@@ -4,19 +4,6 @@
     <meta charset="utf-8" />
     <title>My page</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <script
-      src="https://unpkg.com/react@latest/umd/react.development.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
-    <script
-      src="https://unpkg.com/@mui/material@latest/umd/material-ui.development.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://unpkg.com/@babel/standalone@latest/babel.min.js"
-      crossorigin="anonymous"
-    ></script>
     <!-- Fonts to support Material Design -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,11 +13,26 @@
     />
     <!-- Icons to support Material Design -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@latest",
+          "react-dom": "https://esm.sh/react-dom@latest",
+          "react/jsx-runtime": "https://esm.sh/react@latest/jsx-runtime",
+          "@mui/material": "https://esm.sh/@mui/material@latest?external=react"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="text/babel">
-      const {
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Usage -->
+    <script type="text/babel" data-type="module">
+      import * as React from 'react';
+      import { createRoot } from 'react-dom';
+      import {
         colors,
         CssBaseline,
         ThemeProvider,
@@ -40,7 +42,7 @@
         Box,
         SvgIcon,
         Link,
-      } = MaterialUI;
+      } from '@mui/material';
 
       // Create a theme instance.
       const theme = createTheme({
@@ -103,7 +105,7 @@
         );
       }
 
-      const root = ReactDOM.createRoot(document.getElementById('root'));
+      const root = createRoot(document.getElementById('root'));
       root.render(
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

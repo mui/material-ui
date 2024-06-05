@@ -77,6 +77,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Nepali                  | ne-NP               | `neNP`      |
 | Norwegian (bokmål)      | nb-NO               | `nbNO`      |
 | Norwegian (nynorsk)     | nn-NO               | `nnNO`      |
+| Pashto (Afghanistan)    | ps-AF               | `psAF`      |
 | Persian                 | fa-IR               | `faIR`      |
 | Polish                  | pl-PL               | `plPL`      |
 | Portuguese              | pt-PT               | `ptPT`      |

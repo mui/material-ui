@@ -8,7 +8,7 @@ import {
   createMount,
   createRenderer,
   fireEvent,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 

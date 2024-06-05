@@ -14,6 +14,7 @@ import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
 import { getTextFieldUtilityClass } from './textFieldClasses';
+import useSlot from '../utils/useSlot';
 
 const useThemeProps = createUseThemeProps('MuiTextField');
 
@@ -82,13 +83,13 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     defaultValue,
     disabled = false,
     error = false,
-    FormHelperTextProps,
+    FormHelperTextProps: FormHelperTextPropsProp,
     fullWidth = false,
     helperText,
     id: idOverride,
-    InputLabelProps,
-    inputProps,
-    InputProps,
+    InputLabelProps: InputLabelPropsProp,
+    inputProps: inputPropsProp,
+    InputProps: InputPropsProp,
     inputRef,
     label,
     maxRows,
@@ -102,7 +103,9 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     required = false,
     rows,
     select = false,
-    SelectProps,
+    SelectProps: SelectPropsProp,
+    slots = {},
+    slotProps = {},
     type,
     value,
     variant = 'outlined',
@@ -132,28 +135,73 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     }
   }
 
-  const InputMore = {};
-
-  if (variant === 'outlined') {
-    if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
-      InputMore.notched = InputLabelProps.shrink;
-    }
-    InputMore.label = label;
-  }
-  if (select) {
-    // unset defaults from textbox inputs
-    if (!SelectProps || !SelectProps.native) {
-      InputMore.id = undefined;
-    }
-    InputMore['aria-describedby'] = undefined;
-  }
-
   const id = useId(idOverride);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;
   const InputComponent = variantComponent[variant];
+
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      input: InputPropsProp,
+      inputLabel: InputLabelPropsProp,
+      htmlInput: inputPropsProp,
+      formHelperText: FormHelperTextPropsProp,
+      select: SelectPropsProp,
+      ...slotProps,
+    },
+  };
+
+  const inputAdditionalProps = {};
+  const inputLabelSlotProps = externalForwardedProps.slotProps.inputLabel;
+
+  if (variant === 'outlined') {
+    if (inputLabelSlotProps && typeof inputLabelSlotProps.shrink !== 'undefined') {
+      inputAdditionalProps.notched = inputLabelSlotProps.shrink;
+    }
+    inputAdditionalProps.label = label;
+  }
+  if (select) {
+    // unset defaults from textbox inputs
+    if (!SelectPropsProp || !SelectPropsProp.native) {
+      inputAdditionalProps.id = undefined;
+    }
+    inputAdditionalProps['aria-describedby'] = undefined;
+  }
+
+  const [InputSlot, inputProps] = useSlot('input', {
+    elementType: InputComponent,
+    externalForwardedProps,
+    additionalProps: inputAdditionalProps,
+    ownerState,
+  });
+
+  const [InputLabelSlot, inputLabelProps] = useSlot('inputLabel', {
+    elementType: InputLabel,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [HtmlInputSlot, htmlInputProps] = useSlot('htmlInput', {
+    elementType: 'input',
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [FormHelperTextSlot, formHelperTextProps] = useSlot('formHelperText', {
+    elementType: FormHelperText,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SelectSlot, selectProps] = useSlot('select', {
+    elementType: Select,
+    externalForwardedProps,
+    ownerState,
+  });
+
   const InputElement = (
-    <InputComponent
+    <InputSlot
       aria-describedby={helperTextId}
       autoComplete={autoComplete}
       autoFocus={autoFocus}
@@ -172,9 +220,11 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       onChange={onChange}
       onFocus={onFocus}
       placeholder={placeholder}
-      inputProps={inputProps}
-      {...InputMore}
-      {...InputProps}
+      inputProps={htmlInputProps}
+      slots={{
+        input: slots.htmlInput ? HtmlInputSlot : undefined,
+      }}
+      {...inputProps}
     />
   );
 
@@ -192,30 +242,30 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       {...other}
     >
       {label != null && label !== '' && (
-        <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
+        <InputLabelSlot htmlFor={id} id={inputLabelId} {...inputLabelProps}>
           {label}
-        </InputLabel>
+        </InputLabelSlot>
       )}
 
       {select ? (
-        <Select
+        <SelectSlot
           aria-describedby={helperTextId}
           id={id}
           labelId={inputLabelId}
           value={value}
           input={InputElement}
-          {...SelectProps}
+          {...selectProps}
         >
           {children}
-        </Select>
+        </SelectSlot>
       ) : (
         InputElement
       )}
 
       {helperText && (
-        <FormHelperText id={helperTextId} {...FormHelperTextProps}>
+        <FormHelperTextSlot id={helperTextId} {...formHelperTextProps}>
           {helperText}
-        </FormHelperText>
+        </FormHelperTextSlot>
       )}
     </TextFieldRoot>
   );
@@ -275,6 +325,7 @@ TextField.propTypes /* remove-proptypes */ = {
   error: PropTypes.bool,
   /**
    * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
+   * @deprecated Use `slotProps.formHelperText` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -294,10 +345,12 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
+   * @deprecated Use `slotProps.inputLabel` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputLabelProps: PropTypes.object,
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.htmlInput` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps: PropTypes.object,
   /**
@@ -305,6 +358,7 @@ TextField.propTypes /* remove-proptypes */ = {
    * It will be a [`FilledInput`](/material-ui/api/filled-input/),
    * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps: PropTypes.object,
   /**
@@ -373,6 +427,7 @@ TextField.propTypes /* remove-proptypes */ = {
   select: PropTypes.bool,
   /**
    * Props applied to the [`Select`](/material-ui/api/select/) element.
+   * @deprecated Use `slotProps.select` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SelectProps: PropTypes.object,
   /**
@@ -382,6 +437,28 @@ TextField.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    formHelperText: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    htmlInput: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    inputLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    select: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    formHelperText: PropTypes.elementType,
+    htmlInput: PropTypes.elementType,
+    input: PropTypes.elementType,
+    inputLabel: PropTypes.elementType,
+    select: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

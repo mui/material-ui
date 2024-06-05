@@ -78,9 +78,7 @@ function fixedHeaderContent() {
           variant="head"
           align={column.numeric || false ? 'right' : 'left'}
           style={{ width: column.width }}
-          sx={{
-            backgroundColor: 'background.paper',
-          }}
+          sx={{ backgroundColor: 'background.paper' }}
         >
           {column.label}
         </TableCell>

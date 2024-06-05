@@ -26,13 +26,7 @@ function Item(props: BoxProps) {
 export default function GridAutoRows() {
   return (
     <div style={{ width: '100%', height: 220 }}>
-      <Box
-        sx={{
-          display: 'grid',
-          gridAutoRows: '40px',
-          gap: 1,
-        }}
-      >
+      <Box sx={{ display: 'grid', gridAutoRows: '40px', gap: 1 }}>
         <Item sx={{ gridColumn: '1', gridRow: 'span 2' }}>span 2</Item>
         {/* The second non-visible row has height of 40px */}
         <Item sx={{ gridColumn: '1', gridRow: '4 / 5' }}>4 / 5</Item>
