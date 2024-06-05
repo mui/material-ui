@@ -1,1 +1,1 @@
-export { default } from './useLocalStorageState';
+export { default } from './useSyncStorageState';
