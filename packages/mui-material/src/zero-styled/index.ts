@@ -10,6 +10,7 @@ export function createUseThemeProps(name: string) {
   return useThemeProps;
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_createExtendSxProp() {
   return extendSxProp;
 }
