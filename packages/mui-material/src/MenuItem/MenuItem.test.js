@@ -6,6 +6,7 @@ import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import ListContext from '../List/ListContext';
 import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<MenuItem />', () => {
   const { render } = createRenderer();
@@ -28,12 +29,11 @@ describe('<MenuItem />', () => {
     expect(menuitem).to.have.property('tabIndex', -1);
   });
 
-  it('has a ripple when clicked', () => {
+  it('has a ripple when clicked', async () => {
     render(<MenuItem TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />);
     const menuitem = screen.getByRole('menuitem');
 
-    // ripple starts on mousedown
-    fireEvent.mouseDown(menuitem);
+    await ripple.startTouch(menuitem)
 
     expect(menuitem.querySelectorAll('.ripple-visible')).to.have.length(1);
   });
