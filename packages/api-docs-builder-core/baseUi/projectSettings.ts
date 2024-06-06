@@ -43,6 +43,6 @@ export const projectSettings: ProjectSettings = {
   translationPagesDirectory: 'docs/translations/api-docs-base',
   generateClassName: generateUtilityClass,
   isGlobalClassName: isGlobalState,
-  // #major-version-switch
+  // #default-branch-switch
   baseApiUrl: 'https://next.mui.com',
 };
