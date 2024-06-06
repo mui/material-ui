@@ -5,10 +5,10 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 export default function SelectContent() {
-  const [age, setAge] = React.useState('');
+  const [company, setCompany] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+    setCompany(event.target.value as string);
   };
 
   return (
@@ -17,7 +17,7 @@ export default function SelectContent() {
         <Select
           labelId="company-select"
           id="company-simple-select"
-          value={age}
+          value={company}
           variant="filled"
           label="Company"
           onChange={handleChange}
@@ -26,7 +26,7 @@ export default function SelectContent() {
         >
           <MenuItem value="">Sitemark-web</MenuItem>
           <MenuItem value={10}>Sitemark-App</MenuItem>
-          <MenuItem value={20}>Store</MenuItem>
+          <MenuItem value={20}>Production</MenuItem>
           <MenuItem value={30}>Development</MenuItem>
         </Select>
       </FormControl>

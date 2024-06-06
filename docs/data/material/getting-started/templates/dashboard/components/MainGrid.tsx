@@ -31,13 +31,6 @@ const data: StatCardProps[] = [
     trend: 'neutral',
     data: [5, 4, 6, 3, 4, 3, 7, 6],
   },
-  // {
-  //   title: 'Engagement',
-  //   value: '30k',
-  //   interval: 'Last 30 days',
-  //   trend: 'up',
-  //   data: [2, 4, 3, 4, 5, 4, 7, 8],
-  // },
 ];
 
 export default function MainGrid() {

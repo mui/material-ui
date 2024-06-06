@@ -3,6 +3,7 @@ import { PaletteMode } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
+import { alpha } from '@mui/material';
 import getDashboardTheme from './getDashboardTheme';
 import ToggleCustomTheme from './internals/components/ToggleCustomTheme';
 import Copyright from './internals/components/Copyright';
@@ -33,20 +34,19 @@ export default function Dashboard() {
         <SideMenu />
         <Box
           component="main"
-          sx={{
-            backgroundColor: 'background.default',
+          sx={(theme) => ({
+            backgroundColor: alpha(theme.palette.background.paper, 0.4),
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
-          }}
+          })}
         >
           {/* Main content */}
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              mr: 3,
-              ml: { sm: 3, md: 4 },
+              mx: 3,
               py: 8,
               gap: 2,
               maxWidth: { sm: '100%', md: '1500px' },

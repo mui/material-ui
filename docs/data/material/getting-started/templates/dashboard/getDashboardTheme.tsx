@@ -233,11 +233,10 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               transition: 'all 100ms ease',
               backgroundColor: gray[50],
               borderRadius: theme.shape.borderRadius,
-              border: `1px solid ${alpha(gray[200], 0.5)}`,
+              border: `1px solid ${theme.palette.divider}`,
               boxShadow: 'none',
               ...theme.applyStyles('dark', {
                 backgroundColor: gray[800],
-                border: `1px solid ${alpha(gray[700], 0.3)}`,
               }),
               variants: [
                 {
@@ -245,12 +244,11 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
                     variant: 'outlined',
                   },
                   style: {
-                    border: `1px solid ${gray[200]}`,
+                    border: `1px solid ${theme.palette.divider}`,
                     boxShadow: 'none',
                     background: 'hsl(0, 0%, 100%)',
                     ...theme.applyStyles('dark', {
-                      borderColor: alpha(gray[700], 0.4),
-                      background: alpha(gray[800], 0.4),
+                      background: alpha(gray[900], 0.4),
                     }),
                   },
                 },
@@ -548,6 +546,9 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               '&.Mui-selected': {
                 opacity: 1,
                 backgroundColor: theme.palette.action.selected,
+                '.MuiSvgIcon-root': {
+                  color: theme.palette.text.primary,
+                },
               },
             },
           }),
@@ -565,7 +566,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           paper: ({ theme }) => ({
             marginTop: '4px',
-            padding: '0 8px',
+            padding: '4px 0',
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${theme.palette.divider}`,
             backgroundImage: 'none',
@@ -573,7 +574,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             boxShadow:
               'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
             '& .MuiMenuItem-root': {
-              borderRadius: 6,
+              borderRadius: theme.shape.borderRadius,
               padding: '6px 8px',
             },
             '& .MuiMenu-list': {
@@ -1024,17 +1025,27 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             backgroundImage: 'none',
             boxShadow:
               'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
+            '& .MuiPaper-root': {
+              background: 'hsl(0, 0%, 100%)',
+            },
             '& .MuiMenuItem-root': {
               borderRadius: theme.shape.borderRadius,
               margin: '0 6px',
+              padding: '6px 8px',
+            },
+            '& .MuiListItemIcon-root': { marginRight: 0 },
+            '& .MuiMenu-list': {
+              '& .MuiDivider-root': { margin: '0 -8px' },
             },
             ...theme.applyStyles('dark', {
+              '& .MuiPaper-root': {
+                background: gray[900],
+              },
               boxShadow:
                 'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
             }),
           }),
           row: ({ theme }) => ({
-            backgroundColor: theme.palette.background.paper,
             '&:last-of-type': { borderBottom: `1px solid ${theme.palette.divider}` },
             '&:hover': {
               background: alpha(theme.palette.primary.main, 0.1),
@@ -1046,7 +1057,6 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               },
             },
             ...theme.applyStyles('dark', {
-              backgroundColor: alpha(theme.palette.background.paper, 0.5),
               '&.Mui-selected': {
                 background: theme.palette.grey[800],
               },
@@ -1115,11 +1125,13 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
         styleOverrides: {
           root: ({ theme }) => ({
             '&.MuiFilledInput-root': {
-              borderRadius: '10px',
-              border: '1px solid transparent',
+              borderRadius: theme.shape.borderRadius,
+              border: `1px solid ${theme.palette.divider}`,
+              backgroundColor: theme.palette.background.paper,
               '&:hover': {},
-              '&.Mui-focused': {
-                borderColor: theme.palette.primary.main,
+              '&:focus-visible': {
+                outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
+                outlineOffset: '2px',
               },
               '&:before, &:after': {
                 display: 'none',

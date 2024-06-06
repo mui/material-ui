@@ -1,30 +1,21 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import CustomDatePicker from './CustomDatePicker';
+import NavbarBreadcrumbs from './NavbarBreadcrumbs';
 
 export default function Header() {
   return (
     <Stack
-      direction={{ xs: 'column', md: 'row' }}
+      direction="row"
       sx={{
-        alignItems: { xs: 'flex-start', md: 'flex-end' },
+        alignItems: { xs: 'flex-start', md: 'center' },
         justifyContent: 'space-between',
         gap: 2,
-        my: 2,
+        mt: 2,
       }}
     >
-      <Stack sx={{ maxWidth: 500 }}>
-        <Typography variant="h4" component="h1">
-          Dashboard
-        </Typography>
-        <Typography sx={{ color: 'text.secondary' }}>
-          Real-time analytics to improve user engagement and guide strategy.
-        </Typography>
-      </Stack>
-      <Stack direction="row" sx={{ width: { xs: '100%', sm: 'auto' } }}>
-        <CustomDatePicker />
-      </Stack>
+      <NavbarBreadcrumbs />
+      <CustomDatePicker />
     </Stack>
   );
 }
