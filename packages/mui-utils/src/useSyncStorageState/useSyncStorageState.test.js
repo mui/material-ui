@@ -6,11 +6,6 @@ import useSyncStorageState from './useSyncStorageState';
 describe('useSyncStorageState', () => {
   const { render } = createRenderer();
 
-  before(() => {
-    localStorage.clear();
-    sessionStorage.clear();
-  });
-
   it('returns the value from store', () => {
     function TestComponent() {
       const [state, setState] = useSyncStorageState('TEST', false, {
@@ -40,10 +35,5 @@ describe('useSyncStorageState', () => {
     fireEvent.click(button);
 
     expect(screen.getByTestId('state')).to.have.text('true');
-  });
-
-  after(() => {
-    localStorage.clear();
-    sessionStorage.clear();
   });
 });
