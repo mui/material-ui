@@ -8,7 +8,7 @@ function delay(ms: number) {
 
 export async function asyncFireEvent(node: Element, event: keyof typeof fireEvent, options?: any) {
   await act(async () => {
-    fireEvent[event](node, options)
+    fireEvent[event](node, options);
     await delay(1);
   });
 }
