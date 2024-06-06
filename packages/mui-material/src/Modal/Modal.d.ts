@@ -50,7 +50,7 @@ export interface ModalOwnProps {
   /**
    * A single child content element.
    */
-  children: React.ReactElement<any>;
+  children: React.ReactElement<unknown>;
   /**
    * Override or extend the styles applied to the component.
    */
