@@ -114,9 +114,8 @@
       "conditions": "<code>variant=\"overline\"</code>"
     },
     "paragraph": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>paragraph={true}</code>"
+      "description": "",
+      "deprecationInfo": "Styles applied to the root element if <code>paragraph={true}</code>."
     },
     "root": { "description": "Styles applied to the root element." },
     "subtitle1": {
