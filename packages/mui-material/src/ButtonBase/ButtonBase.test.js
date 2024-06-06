@@ -667,7 +667,7 @@ describe('<ButtonBase />', () => {
       expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(0);
     });
 
-    it('should stop and re-pulsate when space bar is released', async function () {
+    it('should stop and re-pulsate when space bar is released', async () => {
       const { getByRole } = render(
         <ButtonBase
           focusRipple
