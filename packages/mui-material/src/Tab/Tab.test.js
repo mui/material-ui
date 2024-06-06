@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import ButtonBase from '@mui/material/ButtonBase';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Tab />', () => {
@@ -166,5 +167,27 @@ describe('<Tab />', () => {
       expect(style).to.have.property('color', 'red');
       expect(style).to.have.property('alignText', 'center');
     });
+  });
+
+  it('should apply iconWrapper styles from theme to Tab', () => {
+    const theme = createTheme({
+      components: {
+        MuiTab: {
+          styleOverrides: {
+            iconWrapper: {
+              color: 'red',
+            },
+          },
+        },
+      },
+    });
+
+    const { getByRole } = render(
+      <ThemeProvider theme={theme}>
+        <Tab icon={<div>hello</div>} />
+      </ThemeProvider>,
+    );
+    const { style } = getByRole('tab');
+    expect(style).to.have.property('color', 'red');
   });
 });
