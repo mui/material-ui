@@ -10,6 +10,7 @@ export { default as findOutermostIntrinsic, wrapsIntrinsicElement } from './find
 export {
   default as focusVisible,
   simulatePointerDevice,
+  simulateKeyboardDevice,
   programmaticFocusTriggersFocusVisible,
 } from './focusVisible';
 export {} from './initMatchers';

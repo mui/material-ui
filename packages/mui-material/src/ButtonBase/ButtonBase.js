@@ -288,20 +288,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const handleRef = useForkRef(ref, focusVisibleRef, buttonRef);
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (enableTouchRipple && !ripple.ref.current) {
-        console.error(
-          [
-            'MUI: The `component` prop provided to ButtonBase is invalid.',
-            'Please make sure the children prop is rendered in this custom component.',
-          ].join('\n'),
-        );
-      }
-    }, [enableTouchRipple, ripple.ref]);
-  }
-
   const ownerState = {
     ...props,
     centerRipple,

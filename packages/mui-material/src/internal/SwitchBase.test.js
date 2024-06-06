@@ -54,7 +54,7 @@ describe('<SwitchBase />', () => {
       />,
     );
 
-    await ripple.startTouch(container.querySelector('button'));
+    await ripple.startTouch(container.querySelector('input'));
 
     expect(getByTestId('TouchRipple')).not.to.equal(null);
   });
@@ -78,7 +78,7 @@ describe('<SwitchBase />', () => {
       />,
     );
 
-    await ripple.startTouch(container.querySelector('button'));
+    await ripple.startTouch(container.querySelector('input'));
 
     expect(queryByTestId('TouchRipple')).to.equal(null);
   });

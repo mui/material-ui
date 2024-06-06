@@ -1190,20 +1190,6 @@ describe('<ButtonBase />', () => {
         'Invalid prop `component` supplied to `MockedName`. Expected an element type that can hold a ref',
       );
     });
-
-    it('warns on invalid `component` prop: prop forward', () => {
-      const Component = React.forwardRef((props, ref) => (
-        <button type="button" ref={ref} {...props}>
-          Hello
-        </button>
-      ));
-
-      // cant match the error message here because flakiness with mocha watchmode
-
-      expect(() => {
-        render(<ButtonBase component={Component} />);
-      }).toErrorDev('Please make sure the children prop is rendered in this custom component.');
-    });
   });
 
   describe('prop: type', () => {
