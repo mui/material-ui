@@ -175,7 +175,7 @@ describe('<Tab />', () => {
         MuiTab: {
           styleOverrides: {
             iconWrapper: {
-              color: 'red',
+              marginBottom: '6px',
             },
           },
         },
@@ -187,7 +187,7 @@ describe('<Tab />', () => {
         <Tab icon={<div>hello</div>} />
       </ThemeProvider>,
     );
-    const { style } = getByRole('tab');
-    expect(style).to.have.property('color', 'red');
+    const wrapper = getByRole('tab').children[0];
+    expect(wrapper).toHaveComputedStyle({ marginBottom: '6px' });
   });
 });
