@@ -469,6 +469,9 @@ importers:
 
   benchmark:
     dependencies:
+      '@babel/runtime':
+        specifier: ^7.24.6
+        version: 7.24.6
       '@chakra-ui/system':
         specifier: ^2.6.2
         version: 2.6.2(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(react@18.2.0)
