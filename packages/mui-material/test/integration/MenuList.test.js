@@ -485,7 +485,7 @@ describe('<MenuList> integration', () => {
       expect(getByText('Arcansas')).toHaveFocus();
     });
 
-    it('should not get focusVisible class on click', () => {
+    it('should not get focusVisible class on click', async () => {
       const { getByText } = render(
         <MenuList>
           <MenuItem focusVisibleClassName="focus-visible">Arizona</MenuItem>
@@ -498,7 +498,10 @@ describe('<MenuList> integration', () => {
         fireEvent.mouseDown(menuitem);
         menuitem.focus();
       });
-      fireEvent.click(menuitem);
+
+      await act(async () => {
+        fireEvent.click(menuitem);
+      });
 
       expect(menuitem).toHaveFocus();
       if (programmaticFocusTriggersFocusVisible()) {
