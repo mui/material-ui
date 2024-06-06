@@ -1,5 +1,52 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.10
+
+<!-- generated comparing v6.0.0-alpha.9..next -->
+
+_Jun 4, 2024_
+
+A big thanks to the 7 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.10`
+
+- &#8203;<!-- 26 -->[Backdrop] Deprecate `components` and `componentsProps` (#42468) @DiegoAndai
+- &#8203;<!-- 25 -->[Collapse] Bound max transition time (#42390) @oliviertassinari
+- &#8203;<!-- 12 -->[FilledInput] Remove unapplied classes from filledInputClasses interface and add missing classes to root (#42082) @sai6855
+- &#8203;<!-- 11 -->[InputBase] Deprecate components and componentProps props for v6 (#42093) @ChronicusUA
+- &#8203;<!-- 10 -->Remove remaining IE11 code (#42283) @DiegoAndai
+- &#8203;<!-- 09 -->[Modal] Deprecate `components` and `componentsProps` (#42469) @DiegoAndai
+- &#8203;<!-- 08 -->[Popover] Migrate useSlotProps to useSlot (#42369) @sai6855
+- &#8203;<!-- 07 -->[useMediaQuery] Remove unused useMediaQueryTheme (#42367) @aarongarciah
+
+### `@mui/system@6.0.0-alpha.10`
+
+- &#8203;<!-- 06 -->Remove IE11 code (#42436) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 23 -->Reflect Base UI and MUI System in a different repository @oliviertassinari
+- &#8203;<!-- 22 -->Update twitter.com to x.com @oliviertassinari
+- &#8203;<!-- 21 -->Simplify Example projects page @oliviertassinari
+- &#8203;<!-- 17 -->[icons] Update README and docs page (#41938) @danilo-leal
+- &#8203;<!-- 16 -->[material-ui] Add changelog section to the design kits page (#42449) @danilo-leal
+- &#8203;<!-- 15 -->[material-ui] Fix sentence in the All components page (#42336) @danilo-leal
+- &#8203;<!-- 14 -->[material-ui] Update Figma design kit doc redirect link (#42448) @danilo-leal
+- &#8203;<!-- 13 -->[system] Add "dynamic values" section to sx prop page (#42239) @aarongarciah
+
+### Core
+
+- &#8203;<!-- 20 -->[docs-infra] Update the OG card image design (#42470) @danilo-leal
+- &#8203;<!-- 19 -->[docs-infra] Add small design polish (#42455) @danilo-leal
+- &#8203;<!-- 18 -->[docs-infra] Update the Material logo + add copy functionality (#42435) @danilo-leal
+- &#8203;<!-- 05 -->[website] Update DoiT description and link in Sponsors section (#42505) @erezstmn-doit
+- &#8203;<!-- 04 -->[website] Clean up the docs-infra job ad (#42504) @danilo-leal
+- &#8203;<!-- 03 -->[website] Fix FlashCode position (#42139) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Open Docs-infra engineer role (#42101) @danilo-leal
+- &#8203;<!-- 01 -->[website] Fix locationCountry in about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @ChronicusUA, @danilo-leal, @DiegoAndai, @erezstmn-doit, @oliviertassinari, @sai6855
+
 ## v6.0.0-alpha.9
 
 <!-- generated comparing v6.0.0-alpha.8..next -->
@@ -94,7 +141,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 ### Docs
 
 - &#8203;<!-- 08 -->[docs] Remove Base UI from the README (#42307) @danilo-leal
-- &#8203;<!-- 07 -->[docs][material-ui] Fix typo in style interoperability with Tailwind CSS docs (#42279) @ZeeshanTamboli
+- &#8203;<!-- 07 -->[docs][material-ui] Fix typo in style interoperability with Tailwind CSS docs (#42279) @ZeeshanTamboli
 - &#8203;<!-- 06 -->[docs][material-ui] Add supported browsers section to migration guide (#42194) @DiegoAndai
 - &#8203;<!-- 05 -->[docs][material-ui][Pagination] Clarify pagination `page` prop API (#42220) @Mandar-Pandya
 
@@ -8806,7 +8853,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 27 -->[core] Rename mui/core to mui/base (#29585) @michaldudak
 
-  Based on the results of the [poll](https://twitter.com/michaldudak/status/1452630484706635779) and our internal discussions, we decided to rename the `@mui/core` package to `@mui/base`. The main rationale for this is the fact that we use the term "Core" to refer to the core components product family, the one that includes Material Design components, unstyled components, System utilities, etc. Therefore, @mui/core was effectively a subset of MUI Core. This was confusing.
+  Based on the results of the [poll](https://x.com/michaldudak/status/1452630484706635779) and our internal discussions, we decided to rename the `@mui/core` package to `@mui/base`. The main rationale for this is the fact that we use the term "Core" to refer to the core components product family, the one that includes Material Design components, unstyled components, System utilities, etc. Therefore, @mui/core was effectively a subset of MUI Core. This was confusing.
 
   The new name better reflects the purpose of the package: it contains unstyled components, hooks, and utilities that serve as a **base** to build on.
 
@@ -13223,7 +13270,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
   ```
 
 - [Autocomplete] Remove `debug` in favor of `open` and dev tools (#23377) @eps1lon
-  There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools props.
+  There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://x.com/sulco/status/1305841873945272321), or React devtools props.
 
 #### Changes
 

@@ -81,11 +81,11 @@ export default function Hero() {
       linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' }, maxWidth: 500 }}>
-          <Typography variant="h1" mb={1}>
+          <Typography variant="h1" sx={{ mb: 1 }}>
             <GradientText>Move faster</GradientText> <br />
             with intuitive React UI tools
           </Typography>
-          <Typography color="text.secondary" mb={3}>
+          <Typography sx={{ color: 'text.secondary', mb: 3 }}>
             MUI offers a comprehensive suite of free UI tools to help you ship new features faster.
             Start with Material UI, our fully-loaded component library, or bring your own design
             system to our production-ready components.

@@ -25,13 +25,7 @@ export default function HoverRating() {
   const [hover, setHover] = React.useState(-1);
 
   return (
-    <Box
-      sx={{
-        width: 200,
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <Box sx={{ width: 200, display: 'flex', alignItems: 'center' }}>
       <Rating
         name="hover-feedback"
         value={value}

@@ -7,14 +7,7 @@ import Sheet from '@mui/joy/Sheet';
 
 export default function ExampleTiers() {
   return (
-    <Sheet
-      variant="outlined"
-      sx={{
-        boxShadow: 'sm',
-        borderRadius: 'sm',
-        p: 1,
-      }}
-    >
+    <Sheet variant="outlined" sx={{ boxShadow: 'sm', borderRadius: 'sm', p: 1 }}>
       <RadioGroup name="tiers" sx={{ gap: 1, '& > div': { p: 1 } }}>
         <FormControl size="sm">
           <Radio overlay value="small" label="Small" />

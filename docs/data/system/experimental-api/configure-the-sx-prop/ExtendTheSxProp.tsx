@@ -27,12 +27,7 @@ const customTheme = createTheme({
 export default function ExtendTheSxProp() {
   return (
     <ThemeProvider theme={customTheme}>
-      <Box
-        sx={{
-          size: 10,
-          border: 1,
-        }}
-      />
+      <Box sx={{ size: 10, border: 1 }} />
     </ThemeProvider>
   );
 }

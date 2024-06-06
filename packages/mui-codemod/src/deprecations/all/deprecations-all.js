@@ -15,6 +15,7 @@ import transformFormControlLabelProps from '../form-control-label-props';
 import transformGridProps from '../grid-props';
 import transformInputBaseProps from '../input-base-props';
 import transformInputProps from '../input-props';
+import transformModalProps from '../modal-props';
 import transformOutlinedInputProps from '../outlined-input-props';
 import transformPaginationItemClasses from '../pagination-item-classes';
 import transformSpeedDialProps from '../speed-dial-props';
@@ -45,6 +46,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformGridProps(file, api, options);
   file.source = transformInputBaseProps(file, api, options);
   file.source = transformInputProps(file, api, options);
+  file.source = transformModalProps(file, api, options);
   file.source = transformOutlinedInputProps(file, api, options);
   file.source = transformPaginationItemClasses(file, api, options);
   file.source = transformSpeedDialProps(file, api, options);

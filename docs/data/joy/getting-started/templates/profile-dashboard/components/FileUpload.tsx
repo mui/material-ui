@@ -37,16 +37,12 @@ export default function FileUpload(
         ratio="1"
         variant="soft"
         color="neutral"
-        sx={{
-          minWidth: 32,
-          borderRadius: '50%',
-          '--Icon-fontSize': '16px',
-        }}
+        sx={{ minWidth: 32, borderRadius: '50%', '--Icon-fontSize': '16px' }}
       >
         <div>{icon ?? <InsertDriveFileRoundedIcon />}</div>
       </AspectRatio>
       <CardContent>
-        <Typography fontSize="sm">{fileName}</Typography>
+        <Typography sx={{ fontSize: 'sm' }}>{fileName}</Typography>
         <Typography level="body-xs">{fileSize}</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <LinearProgress
@@ -61,7 +57,7 @@ export default function FileUpload(
               },
             ]}
           />
-          <Typography fontSize="xs">{progress}%</Typography>
+          <Typography sx={{ fontSize: 'xs' }}>{progress}%</Typography>
         </Box>
       </CardContent>
       {progress >= 100 ? (
@@ -69,11 +65,7 @@ export default function FileUpload(
           ratio="1"
           variant="solid"
           color="success"
-          sx={{
-            minWidth: 20,
-            borderRadius: '50%',
-            '--Icon-fontSize': '14px',
-          }}
+          sx={{ minWidth: 20, borderRadius: '50%', '--Icon-fontSize': '14px' }}
         >
           <div>
             <CheckRoundedIcon />

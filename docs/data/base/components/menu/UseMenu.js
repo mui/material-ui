@@ -137,7 +137,7 @@ function Styles() {
       border-radius: 0.75em;
       color: ${grey[900]};
       overflow: auto;
-      outline: 0px;
+      outline: 0;
       box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
     }
 
