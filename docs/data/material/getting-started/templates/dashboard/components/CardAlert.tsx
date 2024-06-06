@@ -8,14 +8,14 @@ export default function CardAlert() {
   return (
     <Card sx={{ m: 1.5, p: 2 }}>
       <CardContent>
-        <Typography variant="h6" gutterBottom>
-          Your plan is about to expire
+        <Typography fontWeight="600" gutterBottom>
+          Plan about to expire
         </Typography>
-        <Typography variant="body2" gutterBottom>
-          Enjoy 10% off when you renew your plan today.
+        <Typography color="text.secondary" variant="body2" sx={{ mb: 2 }}>
+          Enjoy 10% off when renewing your plan today.
         </Typography>
         <Button variant="contained" size="small" fullWidth>
-          Get the discount!
+          Get the discount
         </Button>
       </CardContent>
     </Card>
