@@ -281,7 +281,7 @@ describe('<ButtonBase />', () => {
         );
         const button = getByRole('button');
 
-        await ripple.startTouch(button)
+        await ripple.startTouch(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(0);
         expect(
@@ -303,8 +303,8 @@ describe('<ButtonBase />', () => {
         );
         const button = getByRole('button');
 
-        await ripple.startTouch(button)
-        await ripple.stopTouch(button)
+        await ripple.startTouch(button);
+        await ripple.stopTouch(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
         expect(
@@ -326,10 +326,10 @@ describe('<ButtonBase />', () => {
         );
         const button = getByRole('button');
 
-        await ripple.startTouch(button)
-        await ripple.stopTouch(button)
+        await ripple.startTouch(button);
+        await ripple.stopTouch(button);
 
-        await ripple.startTouch(button)
+        await ripple.startTouch(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
         expect(
@@ -451,14 +451,14 @@ describe('<ButtonBase />', () => {
           />,
         );
         const button = getByRole('button');
-        await ripple.asyncFireEvent(button, 'mouseDown')
+        await ripple.asyncFireEvent(button, 'mouseDown');
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(0);
         expect(
           button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
         ).to.have.lengthOf(1);
 
-        await ripple.asyncFireEvent(button, 'contextMenu')
+        await ripple.asyncFireEvent(button, 'contextMenu');
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
         expect(
@@ -557,8 +557,8 @@ describe('<ButtonBase />', () => {
           Hello
         </ButtonBase>,
       );
-      await ripple.startTouch(getByRole('button'))
-      await ripple.stopTouch(getByRole('button'))
+      await ripple.startTouch(getByRole('button'));
+      await ripple.stopTouch(getByRole('button'));
       // @ts-ignore
       stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
         width: 100,
@@ -567,7 +567,7 @@ describe('<ButtonBase />', () => {
         left: 20,
         top: 20,
       }));
-      await ripple.startTouch(getByRole('button'), { clientX: 10, clientY: 10 })
+      await ripple.startTouch(getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
       expect(rippleRipple).not.to.equal(null);
       // @ts-ignore
@@ -584,8 +584,8 @@ describe('<ButtonBase />', () => {
           Hello
         </ButtonBase>,
       );
-      await ripple.startTouch(getByRole('button'))
-      await ripple.stopTouch(getByRole('button'))
+      await ripple.startTouch(getByRole('button'));
+      await ripple.stopTouch(getByRole('button'));
       // @ts-ignore
       stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
         width: 100,
@@ -594,7 +594,7 @@ describe('<ButtonBase />', () => {
         left: 20,
         top: 20,
       }));
-      await ripple.startTouch(getByRole('button'), { clientX: 10, clientY: 10 })
+      await ripple.startTouch(getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
       expect(rippleRipple).not.to.equal(null);
       // @ts-ignore
@@ -688,10 +688,10 @@ describe('<ButtonBase />', () => {
       await ripple.startFocus(button);
       expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
 
-      await ripple.asyncFireEvent(button, 'keyDown', { key: ' ' })
+      await ripple.asyncFireEvent(button, 'keyDown', { key: ' ' });
       expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(2);
 
-      await ripple.asyncFireEvent(button, 'keyUp', { key: ' ' })
+      await ripple.asyncFireEvent(button, 'keyUp', { key: ' ' });
       expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(3);
     });
 

@@ -246,12 +246,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const handleKeyUp = useEventCallback((event) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
-    if (
-      focusRipple &&
-      event.key === ' ' &&
-      focusVisible &&
-      !event.defaultPrevented
-    ) {
+    if (focusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
       ripple.stop(event, () => {
         ripple.pulsate(event);
       });

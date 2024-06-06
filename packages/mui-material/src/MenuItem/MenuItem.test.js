@@ -33,7 +33,7 @@ describe('<MenuItem />', () => {
     render(<MenuItem TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />);
     const menuitem = screen.getByRole('menuitem');
 
-    await ripple.startTouch(menuitem)
+    await ripple.startTouch(menuitem);
 
     expect(menuitem.querySelectorAll('.ripple-visible')).to.have.length(1);
   });

@@ -680,7 +680,7 @@ describe('<Button />', () => {
         <Button>Disabled ripple 2</Button>
       </ThemeProvider>,
     );
-    await ripple.startTouch(container.querySelector('button'))
+    await ripple.startTouch(container.querySelector('button'));
     expect(container.querySelectorAll(`.${touchRippleClasses.root}`)).to.have.length(1);
   });
 

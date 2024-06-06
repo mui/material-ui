@@ -28,14 +28,8 @@ interface RippleEventHandlers {
 }
 
 const useTouchRipple = (props: UseTouchRippleProps) => {
-  const {
-    disabled,
-    disableFocusRipple,
-    disableRipple,
-    disableTouchRipple,
-    focusVisible,
-    ripple,
-  } = props;
+  const { disabled, disableFocusRipple, disableRipple, disableTouchRipple, focusVisible, ripple } =
+    props;
 
   React.useEffect(() => {
     if (focusVisible && !disableFocusRipple && !disableRipple) {
@@ -59,12 +53,7 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
 
   const keydownRef = React.useRef(false);
   const handleKeyDown = useEventCallback((event: React.KeyboardEvent) => {
-    if (
-      !disableFocusRipple &&
-      !keydownRef.current &&
-      focusVisible &&
-      event.key === ' '
-    ) {
+    if (!disableFocusRipple && !keydownRef.current && focusVisible && event.key === ' ') {
       keydownRef.current = true;
       ripple.stop(event, () => {
         ripple.start(event);
@@ -75,12 +64,7 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
   const handleKeyUp = useEventCallback((event: React.KeyboardEvent) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
-    if (
-      !disableFocusRipple &&
-      event.key === ' ' &&
-      focusVisible &&
-      !event.defaultPrevented
-    ) {
+    if (!disableFocusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
       keydownRef.current = false;
       ripple.stop(event, () => {
         ripple.pulsate(event);
