@@ -7,8 +7,10 @@ function delay(ms: number) {
 }
 
 export async function asyncFireEvent(node: Element, event: keyof typeof fireEvent, options?: any) {
-  act(() => fireEvent[event](node, options));
-  await delay(1);
+  await act(async () => {
+    fireEvent[event](node, options)
+    await delay(1);
+  });
 }
 
 export function startTouch(node: Element, options?: any) {
@@ -20,15 +22,15 @@ export async function stopTouch(node: Element) {
 }
 
 export async function startFocus(node: HTMLElement) {
-  act(() => {
+  await act(async () => {
     node.focus();
+    await delay(1);
   });
-  await delay(1);
 }
 
 export async function stopFocus(node: HTMLElement) {
-  act(() => {
+  await act(async () => {
     node.blur();
+    await delay(1);
   });
-  await delay(1);
 }
