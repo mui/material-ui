@@ -291,7 +291,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-      if (enableTouchRipple && !ripple.ref) {
+      if (enableTouchRipple && !ripple.ref.current) {
         console.error(
           [
             'MUI: The `component` prop provided to ButtonBase is invalid.',
