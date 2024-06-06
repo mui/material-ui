@@ -188,6 +188,6 @@ describe('<Tab />', () => {
       </ThemeProvider>,
     );
     const tab = getByRole('tab');
-    expect(tab).toHaveComputedStyle({ marginBottom: 'rgb(0, 0, 255)' });
+    expect(tab).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
   });
 });
