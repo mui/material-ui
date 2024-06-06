@@ -22,6 +22,9 @@ export class LazyRipple {
   /** Promise that resolves when the ripple component is mounted */
   private mounted: ControlledPromise | null;
 
+  /** If the ripple component has been mounted */
+  private didMount: boolean;
+
   /** React state hook setter */
   private setShouldMount: React.Dispatch<boolean> | null;
 
@@ -31,8 +34,9 @@ export class LazyRipple {
 
   constructor() {
     this.ref = { current: null };
-    this.shouldMount = false;
     this.mounted = null;
+    this.didMount = false;
+    this.shouldMount = false;
     this.setShouldMount = null;
   }
 
@@ -46,9 +50,10 @@ export class LazyRipple {
   }
 
   mountEffect = () => {
-    if (this.shouldMount) {
+    if (this.shouldMount && !this.didMount) {
       Promise.resolve().then(() => {
         if (this.ref.current !== null) {
+          this.didMount = true;
           this.mounted!.resolve();
         }
       });
