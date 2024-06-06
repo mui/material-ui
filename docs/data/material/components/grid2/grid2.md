@@ -241,21 +241,6 @@ declare module '@mui/system' {
 }
 ```
 
-## Disable the scrollbar
-
-If you use grid as a container in a small viewport, you might see a horizontal scrollbar because the negative margin is applied on all sides of the grid container.
-
-To disable this scrollbar, set the `disableEqualOverflow` prop to `true`.
-This removes the negative margins from the bottom and right sides of the grid to prevent overflow.
-
-The demo below shows how this works:
-
-{{"demo": "OverflowGrid.js", "bg": true}}
-
-:::warning
-You should avoid adding borders and backgrounds to the grid when `disableEqualOverflow` is `true` because the negative margin (applied only at the top and left sides) causes the grid to be visually misaligned.
-:::
-
 ## Customization
 
 ### Centered elements
