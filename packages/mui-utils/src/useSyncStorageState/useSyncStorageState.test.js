@@ -14,7 +14,7 @@ describe('useSyncStorageState', () => {
 
       return (
         <div>
-          <p data-testid="state">Result: {state}</p>
+          <p data-testid="state">Result: {JSON.stringify(state)}</p>
 
           <button
             onClick={() => {
