@@ -34,6 +34,6 @@ describe('useSyncStorageState', () => {
     const button = screen.getByRole('button');
     fireEvent.click(button);
 
-    expect(screen.getByTestId('state')).to.have.text('true');
+    expect(screen.getByTestId('state')).to.have.text('Result: true');
   });
 });
