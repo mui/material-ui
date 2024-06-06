@@ -50,9 +50,8 @@ For example:
 
 ### Caveats
 
-- To get pixel unit, use a unitless number. For example, `@500` is equivalent to `500px`. Using `@500px` will not work.
-  The `@` prefix takes no unit but renders as `px`, so `@500` is equivalent to `500px`—but `@500px` is incorrect syntax and won't render correctly.
-  `@` with no number renders as `0px`.
+- The `@` prefix with unitless value renders as `px`, so `@500` is equivalent to `500px`—but `@500px` is incorrect syntax and won't render correctly.
+- `@` with no number renders as `0px`.
 - Container queries must share the same units (the sizes can be defined in any order), as shown below:
 
   ```js
