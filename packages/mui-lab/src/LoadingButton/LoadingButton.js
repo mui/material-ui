@@ -34,10 +34,6 @@ const useUtilityClasses = (ownerState) => {
   };
 };
 
-const contentDivStyles = {
-  display: 'contents',
-};
-
 // TODO use `import rootShouldForwardProp from '../styles/rootShouldForwardProp';` once move to core
 const rootShouldForwardProp = (prop) =>
   prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as' && prop !== 'classes';
@@ -247,14 +243,15 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       ownerState={ownerState}
     >
       {ownerState.loadingPosition === 'end' ? (
-        <div style={contentDivStyles}>{children}</div>
+        <span>{children}</span>
       ) : (
         loadingButtonLoadingIndicator
       )}
+
       {ownerState.loadingPosition === 'end' ? (
         loadingButtonLoadingIndicator
       ) : (
-        <div style={contentDivStyles}>{children}</div>
+        <span>{children}</span>
       )}
     </LoadingButtonRoot>
   );
