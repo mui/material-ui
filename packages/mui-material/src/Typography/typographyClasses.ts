@@ -44,7 +44,9 @@ export interface TypographyClasses {
   noWrap: string;
   /** Styles applied to the root element if `gutterBottom={true}`. */
   gutterBottom: string;
-  /** Styles applied to the root element if `paragraph={true}`. */
+  /**
+   * @deprecated
+   * Styles applied to the root element if `paragraph={true}`. */
   paragraph: string;
 }
 
