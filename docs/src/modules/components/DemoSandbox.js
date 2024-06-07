@@ -25,7 +25,7 @@ function FramedDemo(props) {
 
   const theme = useTheme();
   React.useEffect(() => {
-    document.body.dir = theme.direction;
+    document.body.setAttribute('dir', theme.direction);
   }, [document, theme.direction]);
 
   const { jss, sheetsManager } = React.useMemo(() => {
