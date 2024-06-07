@@ -1128,7 +1128,10 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               borderRadius: theme.shape.borderRadius,
               border: `1px solid ${theme.palette.divider}`,
               backgroundColor: theme.palette.background.paper,
-              '&:hover': {},
+              boxShadow: `inset 0 2px 0 hsl(220, 0%, 100%), inset 0 -2px 0 ${gray[100]}`,
+              '&:hover': {
+                borderColor: gray[300],
+              },
               '&:focus-visible': {
                 outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
                 outlineOffset: '2px',
@@ -1142,6 +1145,29 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               alignItems: 'center',
               padding: theme.spacing(1, 2),
             },
+            ...theme.applyStyles('dark', {
+              '&.MuiFilledInput-root': {
+                borderRadius: theme.shape.borderRadius,
+                border: `1px solid ${theme.palette.divider}`,
+                backgroundColor: theme.palette.background.paper,
+                boxShadow: `inset 0 2px 0 ${alpha(gray[700], 0.3)}, inset 0 -2px 0 hsl(220, 0%, 0%)`,
+                '&:hover': {
+                  borderColor: gray[600],
+                },
+                '&:focus-visible': {
+                  outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
+                  outlineOffset: '2px',
+                },
+                '&:before, &:after': {
+                  display: 'none',
+                },
+              },
+              '& .MuiSelect-select': {
+                display: 'flex',
+                alignItems: 'center',
+                padding: theme.spacing(1, 2),
+              },
+            }),
           }),
         },
       },

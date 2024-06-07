@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 export default function CardAlert() {
   return (
-    <Card sx={{ m: 1.5, p: 2 }}>
+    <Card sx={{ m: 1.5, p: 1.5 }}>
       <CardContent>
         <Typography fontWeight="600" gutterBottom>
           Plan about to expire
