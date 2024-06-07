@@ -184,7 +184,7 @@ describe('<Tab />', () => {
 
     const { getByRole } = render(
       <ThemeProvider theme={theme}>
-        <Tab icon={<div>hello</div>} />
+        <Tab icon={<div>hello</div>} label="icon" />
       </ThemeProvider>,
     );
     const icon = getByRole('tab').querySelector(`.${classes.iconWrapper}`);
