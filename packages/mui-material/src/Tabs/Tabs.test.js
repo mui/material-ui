@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import userEvent from '@testing-library/user-event';
 import {
   act,
   createRenderer,
@@ -9,6 +10,8 @@ import {
   strictModeDoubleLoggingSuppressed,
   waitFor,
 } from '@mui/internal-test-utils';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
@@ -1437,6 +1440,94 @@ describe('<Tabs />', () => {
       fireEvent.click(deleteButton);
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(false);
+    });
+
+    // https://github.com/mui/material-ui/issues/41388
+    it('should allow a user to click a scrollable Tab without an error', async function test() {
+      function DynamicScrollableTabs() {
+        const [value, setValue] = React.useState(0);
+        const handleChange = (_, newValue) => {
+          setValue(newValue);
+        };
+        const tabLabels = [
+          'Item One',
+          'Item Two',
+          'Item Three',
+          'Item Four',
+          'Item Five',
+          'Item Six',
+          'Item Seven',
+          'Item Eight',
+          'Item Nine',
+          'Item Ten',
+        ];
+        return (
+          <Container maxWidth="sm">
+            <Box sx={{ width: '100%', m: 2 }}>
+              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs
+                  onChange={handleChange}
+                  value={value}
+                  variant="scrollable"
+                  scrollButtons
+                  allowScrollButtonsMobile
+                  selectionFollowsFocus
+                >
+                  {tabLabels.map((label, index) => (
+                    <Tab
+                      key={`tab-${index}`}
+                      label={label}
+                      id={`dynamic-tab-${index}`}
+                      aria-controls={`dynamic-tabpanel-${index}`}
+                    />
+                  ))}
+                </Tabs>
+              </Box>
+              {tabLabels.map((label, index) => {
+                return (
+                  <Box
+                    key={`tab-panel-${index}`}
+                    role="tabpanel"
+                    hidden={value !== index}
+                    id={`dynamic-tabpanel-${index}`}
+                    aria-labelledby={`dynamic-tab-${index}`}
+                  >
+                    {value === index && (
+                      <Box sx={{ p: 3 }}>
+                        <p>{label}</p>
+                      </Box>
+                    )}
+                  </Box>
+                );
+              })}
+            </Box>
+          </Container>
+        );
+      }
+
+      const { getByRole } = render(<DynamicScrollableTabs />);
+
+      const user = userEvent.setup();
+
+      // Tab and TabPanel for Item One should be visible
+      const tab1 = getByRole('tab', { name: 'Item One' });
+      expect(tab1).toBeVisible();
+      const tabPanel1 = getByRole('tabpanel', { name: 'Item One' });
+      expect(tabPanel1).toBeVisible();
+
+      // Tab for Item Seven should be visible
+      const tab7 = getByRole('tab', { name: 'Item Seven' });
+      expect(tab7).toBeVisible();
+
+      // Click on the Item Seven Tab
+      // In the test fixture, this fails with
+      //  TypeError: Cannot read properties of null (reading 'offsetHeight')
+      await user.click(tab7);
+
+      // TabPanel for Item Seven should be visible
+      const tabPanel7 = getByRole('tabpanel', { name: 'Item Seven' });
+      expect(tabPanel7).toBeVisible();
+      expect(tabPanel7).text('Item Seven');
     });
   });
 });
