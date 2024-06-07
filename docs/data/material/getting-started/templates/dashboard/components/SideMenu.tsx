@@ -9,13 +9,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
-import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import AnalyticsRoundedIcon from '@mui/icons-material/AnalyticsRounded';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
+import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import SelectContent from './SelectContent';
 import CardAlert from './CardAlert';
 
@@ -32,16 +32,16 @@ const Drawer = styled(MuiDrawer)({
 });
 
 const mainListItems = [
-  { text: 'Home', icon: <HomeOutlinedIcon /> },
-  { text: 'Analytics', icon: <AnalyticsOutlinedIcon /> },
-  { text: 'Clients', icon: <PeopleOutlinedIcon /> },
-  { text: 'Tasks', icon: <AssignmentOutlinedIcon /> },
+  { text: 'Home', icon: <HomeRoundedIcon /> },
+  { text: 'Analytics', icon: <AnalyticsRoundedIcon /> },
+  { text: 'Clients', icon: <PeopleRoundedIcon /> },
+  { text: 'Tasks', icon: <AssignmentRoundedIcon /> },
 ];
 
 const secondaryListItems = [
-  { text: 'Settings', icon: <SettingsOutlinedIcon /> },
-  { text: 'About', icon: <InfoOutlinedIcon /> },
-  { text: 'Feedback', icon: <HelpOutlineOutlinedIcon /> },
+  { text: 'Settings', icon: <SettingsRoundedIcon /> },
+  { text: 'About', icon: <InfoRoundedIcon /> },
+  { text: 'Feedback', icon: <HelpRoundedIcon /> },
 ];
 
 export default function SideMenu() {
