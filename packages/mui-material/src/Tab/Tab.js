@@ -42,7 +42,6 @@ const TabRoot = styled(ButtonBase, {
       styles[`textColor${capitalize(ownerState.textColor)}`],
       ownerState.fullWidth && styles.fullWidth,
       ownerState.wrapped && styles.wrapped,
-      ownerState.icon && styles.iconWrapper,
     ];
   },
 })(({ theme }) => ({
