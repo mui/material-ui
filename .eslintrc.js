@@ -37,7 +37,7 @@ module.exports = {
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
     'eslint-plugin-filenames',
-    ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
+    'eslint-plugin-react-compiler',
   ],
   settings: {
     'import/resolver': {
@@ -475,7 +475,7 @@ module.exports = {
       rules: {
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
-        ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'off' } : {}),
+        'react-compiler/react-compiler': 'off',
       },
     },
     {
