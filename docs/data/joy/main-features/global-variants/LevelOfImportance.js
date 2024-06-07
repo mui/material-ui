@@ -13,14 +13,7 @@ import Crop from '@mui/icons-material/Crop';
 
 export default function LevelOfImportance() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        py: 2,
-        borderRadius: 'xs',
-      }}
-    >
+    <Box sx={{ display: 'flex', width: '100%', py: 2, borderRadius: 'xs' }}>
       <Box
         sx={{
           border: '1px solid',
@@ -44,7 +37,7 @@ export default function LevelOfImportance() {
             borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
           }}
         >
-          <Typography level="h2" fontSize="md">
+          <Typography level="h2" sx={{ fontSize: 'md' }}>
             Photo upload
           </Typography>
           <IconButton size="sm" variant="plain" color="neutral" sx={{ ml: 'auto' }}>

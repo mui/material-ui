@@ -81,6 +81,7 @@ export interface ReactApi extends ReactDocgenApi {
   imports: string[];
   translations: {
     componentDescription: string;
+    deprecationInfo: string | undefined;
     propDescriptions: {
       [key: string]: {
         description: string;
@@ -104,6 +105,7 @@ export interface ReactApi extends ReactDocgenApi {
    * The folder used to store the API translation.
    */
   apiDocsTranslationFolder?: string;
+  deprecated: true | undefined;
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
@@ -148,7 +150,11 @@ export async function computeApiDescription(
  *  *
  *  * - [Icon API](https://mui.com/api/icon/)
  */
-async function annotateComponentDefinition(api: ReactApi, componentJsdoc: Annotation, projectSettings: ProjectSettings) {
+async function annotateComponentDefinition(
+  api: ReactApi,
+  componentJsdoc: Annotation,
+  projectSettings: ProjectSettings,
+) {
   const HOST = projectSettings.baseApiUrl ?? 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
@@ -284,7 +290,7 @@ async function annotateComponentDefinition(api: ReactApi, componentJsdoc: Annota
   }
 
   let inheritanceAPILink = null;
-  if (api.inheritance !== null) {
+  if (api.inheritance) {
     inheritanceAPILink = `[${api.inheritance.name} API](${
       api.inheritance.apiPathname.startsWith('http')
         ? api.inheritance.apiPathname
@@ -315,7 +321,7 @@ async function annotateComponentDefinition(api: ReactApi, componentJsdoc: Annota
       api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
     })`,
   );
-  if (api.inheritance !== null) {
+  if (api.inheritance) {
     markdownLines.push(`- inherits ${inheritanceAPILink}`);
   }
 
@@ -409,6 +415,7 @@ const generateApiPage = async (
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
+    deprecated: reactApi.deprecated,
   };
 
   const { classesSort = sortAlphabetical('key'), slotsSort = null } = {
@@ -463,9 +470,14 @@ const generateApiPage = async (
   }
 };
 
-const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePropSettings) => {
+const attachTranslations = (
+  reactApi: ReactApi,
+  deprecationInfo: string | undefined,
+  settings?: CreateDescribeablePropSettings,
+) => {
   const translations: ReactApi['translations'] = {
     componentDescription: reactApi.description,
+    deprecationInfo: deprecationInfo ? renderMarkdown(deprecationInfo) : undefined,
     propDescriptions: {},
     classDescriptions: {},
   };
@@ -769,6 +781,7 @@ export default async function generateComponentApi(
   reactApi.slots = [];
   reactApi.classes = [];
   reactApi.demos = componentInfo.getDemos();
+  reactApi.inheritance = null;
   if (reactApi.demos.length === 0) {
     throw new Error(
       'Unable to find demos. \n' +
@@ -784,7 +797,8 @@ export default async function generateComponentApi(
     reactApi.spread = testInfo.spread ?? spread;
     reactApi.themeDefaultProps = testInfo.themeDefaultProps;
     reactApi.inheritance = componentInfo.getInheritance(testInfo.inheritComponent);
-  } catch (e) {
+  } catch (error: any) {
+    console.error(error.message);
     if (project.name.includes('grid')) {
       // TODO: Use `describeConformance` for the DataGrid components
       reactApi.forwardsRefTo = 'GridRoot';
@@ -804,8 +818,13 @@ export default async function generateComponentApi(
     reactApi.classes = classes;
   }
 
+  const deprecation = componentJsdoc.tags.find((tag) => tag.title === 'deprecated');
+  const deprecationInfo = deprecation?.description || undefined;
+
+  reactApi.deprecated = !!deprecation || undefined;
+
   attachPropsTable(reactApi, projectSettings.propsSettings);
-  attachTranslations(reactApi, projectSettings.propsSettings);
+  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);

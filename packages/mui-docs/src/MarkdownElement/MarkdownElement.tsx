@@ -136,6 +136,7 @@ const Root = styled('div')(
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
+        userSelect: 'text',
       },
       '& .anchor-icon': {
         // To prevent the link to get the focus.
@@ -549,7 +550,7 @@ const Root = styled('div')(
       border: '1px solid',
       borderColor: alpha(lightTheme.palette.primaryDark[600], 0.5),
       backgroundColor: alpha(lightTheme.palette.primaryDark[800], 0.5),
-      color: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
       transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
       }),
@@ -802,6 +803,18 @@ const Root = styled('div')(
   }),
 );
 
+function handleClick(event: Event) {
+  const selection = document.getSelection();
+
+  if (selection === null) {
+    return;
+  }
+  const isRangeSelection = selection.type === 'Range';
+
+  if (isRangeSelection) {
+    event.preventDefault();
+  }
+}
 export interface MarkdownElementProps {
   className?: string;
   renderedMarkdown?: string;
@@ -810,6 +823,23 @@ export interface MarkdownElementProps {
 export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
   function MarkdownElement(props, ref) {
     const { className, renderedMarkdown, ...other } = props;
+
+    React.useEffect(() => {
+      const elements = document.getElementsByClassName('title-link-to-anchor');
+
+      for (let i = 0; i < elements.length; i += 1) {
+        // More reliable than `-webkit-user-drag` (https://caniuse.com/webkit-user-drag)
+        elements[i].setAttribute('draggable', 'false');
+        elements[i].addEventListener('click', handleClick, false);
+      }
+
+      return () => {
+        for (let i = 0; i < elements.length; i += 1) {
+          elements[i].removeEventListener('click', handleClick);
+        }
+      };
+    }, []);
+
     const more: React.ComponentProps<typeof Root> = {};
 
     if (typeof renderedMarkdown === 'string') {

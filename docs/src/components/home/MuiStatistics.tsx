@@ -35,21 +35,24 @@ export default function MuiStatistics() {
           <Typography
             variant="h4"
             component="h3"
-            fontWeight="semiBold"
-            sx={(theme) => ({
-              textAlign: { xs: 'left', sm: 'center' },
-              color: 'primary.main',
-              ...theme.applyDarkStyles({
-                color: 'primary.200',
+            sx={[
+              {
+                fontWeight: 'semiBold',
+              },
+              (theme) => ({
+                textAlign: { xs: 'left', sm: 'center' },
+                color: 'primary.main',
+                ...theme.applyDarkStyles({
+                  color: 'primary.200',
+                }),
               }),
-            })}
+            ]}
           >
             {item.title}
           </Typography>
           <Typography
             variant="body2"
-            color="text.secondary"
-            sx={{ textAlign: { xs: 'left', sm: 'center' } }}
+            sx={{ color: 'text.secondary', textAlign: { xs: 'left', sm: 'center' } }}
           >
             {item.metadata}
           </Typography>

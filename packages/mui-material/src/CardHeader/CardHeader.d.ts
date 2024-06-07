@@ -98,7 +98,7 @@ export interface OverridableCardHeader extends OverridableComponent<CardHeaderTy
       TitleTypographyComponent,
       SubheaderTypographyComponent
     >,
-  ): JSX.Element;
+  ): React.JSX.Element;
 }
 
 export type CardHeaderProps<

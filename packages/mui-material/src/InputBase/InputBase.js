@@ -184,12 +184,11 @@ export const InputBaseInput = styled('input', {
     display: 'block',
     // Make the flex item shrink with Firefox
     minWidth: 0,
-    width: '100%', // Fix IE11 width issue
+    flexGrow: 1,
     animationName: 'mui-auto-fill-cancel',
     animationDuration: '10ms',
     '&::-webkit-input-placeholder': placeholder,
     '&::-moz-placeholder': placeholder, // Firefox 19+
-    '&:-ms-input-placeholder': placeholder, // IE11
     '&::-ms-input-placeholder': placeholder, // Edge
     '&:focus': {
       outline: 0,
@@ -206,11 +205,9 @@ export const InputBaseInput = styled('input', {
     [`label[data-shrink=false] + .${inputBaseClasses.formControl} &`]: {
       '&::-webkit-input-placeholder': placeholderHidden,
       '&::-moz-placeholder': placeholderHidden, // Firefox 19+
-      '&:-ms-input-placeholder': placeholderHidden, // IE11
       '&::-ms-input-placeholder': placeholderHidden, // Edge
       '&:focus::-webkit-input-placeholder': placeholderVisible,
       '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
-      '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
       '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
     [`&.${inputBaseClasses.disabled}`]: {
@@ -390,13 +387,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   }, [value, checkDirty, isControlled]);
 
   const handleFocus = (event) => {
-    // Fix a bug with IE11 where the focus/blur events are triggered
-    // while the component is disabled.
-    if (fcs.disabled) {
-      event.stopPropagation();
-      return;
-    }
-
     if (onFocus) {
       onFocus(event);
     }
@@ -645,8 +635,7 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -658,8 +647,7 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

@@ -63,14 +63,7 @@ function NotFoundIllustration() {
           bgcolor: 'background.paper',
         }}
       >
-        <Box
-          sx={{
-            height: 3,
-            width: '40%',
-            bgcolor: 'rgba(0,0,0,0.3)',
-            borderRadius: 2,
-          }}
-        />
+        <Box sx={{ height: 3, width: '40%', bgcolor: 'rgba(0,0,0,0.3)', borderRadius: 2 }} />
       </Box>
       <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <SearchOffRoundedIcon sx={{ fontSize: 50, color: 'primary.500', opacity: '40%' }} />
@@ -98,7 +91,7 @@ export default function NotFoundHero() {
       <SectionHeadline
         alwaysCenter
         title={
-          <Typography component="h1" variant="h4" fontWeight="semiBold">
+          <Typography component="h1" variant="h4" sx={{ fontWeight: 'semiBold' }}>
             Page not found
           </Typography>
         }

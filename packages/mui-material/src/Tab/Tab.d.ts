@@ -28,7 +28,7 @@ export interface TabOwnProps {
   /**
    * The icon to display.
    */
-  icon?: string | React.ReactElement;
+  icon?: string | React.ReactElement<unknown>;
   /**
    * The position of the icon relative to the label.
    * @default 'top'

@@ -92,7 +92,7 @@ export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;
  *
  * - [StepLabel API](https://next.mui.com/material-ui/api/step-label/)
  */
-declare const StepLabel: ((props: StepLabelProps) => JSX.Element) & {
+declare const StepLabel: ((props: StepLabelProps) => React.JSX.Element) & {
   muiName: string;
 };
 

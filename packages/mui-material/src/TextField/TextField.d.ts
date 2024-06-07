@@ -340,4 +340,4 @@ export default function TextField<Variant extends TextFieldVariants>(
      */
     variant?: Variant;
   } & Omit<TextFieldProps, 'variant'>,
-): JSX.Element;
+): React.JSX.Element;

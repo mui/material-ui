@@ -79,6 +79,7 @@ export interface ReactApi extends ReactDocgenApi {
   }>;
   translations: {
     hookDescription: string;
+    deprecationInfo: string | undefined;
     parametersDescriptions: {
       [key: string]: {
         description: string;
@@ -96,6 +97,7 @@ export interface ReactApi extends ReactDocgenApi {
    * The folder used to store the API translation.
    */
   apiDocsTranslationFolder?: string;
+  deprecated: true | undefined;
 }
 
 /**
@@ -109,7 +111,11 @@ export interface ReactApi extends ReactDocgenApi {
  * *
  * * - [useButton API](https://mui.com/base-ui/api/use-button/)
  */
-async function annotateHookDefinition(api: ReactApi, hookJsdoc: Annotation, projectSettings: ProjectSettings) {
+async function annotateHookDefinition(
+  api: ReactApi,
+  hookJsdoc: Annotation,
+  projectSettings: ProjectSettings,
+) {
   const HOST = projectSettings.baseApiUrl ?? 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
@@ -370,9 +376,10 @@ const generateTranslationDescription = (description: string) => {
   return renderMarkdown(description.replace(/\n@default.*$/, ''));
 };
 
-const attachTranslations = (reactApi: ReactApi) => {
+const attachTranslations = (reactApi: ReactApi, deprecationInfo: string | undefined) => {
   const translations: ReactApi['translations'] = {
     hookDescription: reactApi.description,
+    deprecationInfo: deprecationInfo ? renderMarkdown(deprecationInfo).trim() : undefined,
     parametersDescriptions: {},
     returnValueDescriptions: {},
   };
@@ -440,6 +447,7 @@ const generateApiJson = async (outputDirectory: string, reactApi: ReactApi) => {
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
+    deprecated: reactApi.deprecated,
   };
 
   await writePrettifiedFile(
@@ -589,7 +597,12 @@ export default async function generateHookApi(
   attachTable(reactApi, returnValue, 'returnValueTable');
   reactApi.returnValue = returnValue;
 
-  attachTranslations(reactApi);
+  const deprecation = hookJsdoc.tags.find((tag) => tag.title === 'deprecated');
+  const deprecationInfo = deprecation?.description || undefined;
+
+  reactApi.deprecated = !!deprecation || undefined;
+
+  attachTranslations(reactApi, deprecationInfo);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.name);

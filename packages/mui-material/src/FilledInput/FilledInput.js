@@ -14,14 +14,24 @@ import {
   InputBaseRoot,
   InputBaseInput,
 } from '../InputBase/InputBase';
+import { capitalize } from '../utils';
 
 const useThemeProps = createUseThemeProps('MuiFilledInput');
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disableUnderline } = ownerState;
+  const { classes, disableUnderline, startAdornment, endAdornment, size, hiddenLabel, multiline } =
+    ownerState;
 
   const slots = {
-    root: ['root', !disableUnderline && 'underline'],
+    root: [
+      'root',
+      !disableUnderline && 'underline',
+      startAdornment && 'adornedStart',
+      endAdornment && 'adornedEnd',
+      size === 'small' && `size${capitalize(size)}`,
+      hiddenLabel && 'hiddenLabel',
+      multiline && 'multiline',
+    ],
     input: ['input'],
   };
 
@@ -79,7 +89,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
           '&::after': {
             left: 0,
             bottom: 0,
-            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
             content: '""',
             position: 'absolute',
             right: 0,
@@ -108,7 +117,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
             }`,
             left: 0,
             bottom: 0,
-            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
             content: '"\\00a0"',
             position: 'absolute',
             right: 0,
@@ -345,8 +353,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -358,8 +365,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
