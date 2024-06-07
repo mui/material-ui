@@ -114,6 +114,6 @@ In v6, this is fixed:
 
 :::warning
 Both of these changes might slightly affect your layout.
-Note that the items position doesn't change.
+Note that the items' position doesn't change.
 We recommend adopting this new behavior and **not trying to replicate the old one**, as this is a more predictable and modern approach.
 :::
