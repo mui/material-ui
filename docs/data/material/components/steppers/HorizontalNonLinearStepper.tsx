@@ -49,7 +49,7 @@ export default function HorizontalNonLinearStepper() {
   };
 
   const handleComplete = () => {
-    const newCompleted = completed;
+    const newCompleted = { ...completed };
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);
     handleNext();
