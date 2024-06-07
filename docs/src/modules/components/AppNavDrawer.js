@@ -90,6 +90,7 @@ function ProductDrawerButton(props) {
         id="mui-product-menu"
         anchorEl={anchorEl}
         open={open}
+        onClick={handleEventDelegation}
         onClose={handleClose}
         MenuListProps={{
           'aria-labelledby': 'mui-product-selector',
@@ -97,9 +98,9 @@ function ProductDrawerButton(props) {
         PaperProps={{
           sx: {
             width: { xs: 340, sm: 'auto' },
+            p: 0,
           },
         }}
-        onClick={handleEventDelegation}
       >
         <MuiProductSelector />
       </Menu>
