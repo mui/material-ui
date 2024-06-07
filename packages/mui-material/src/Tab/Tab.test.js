@@ -169,7 +169,11 @@ describe('<Tab />', () => {
     });
   });
 
-  it('should apply iconWrapper styles from theme', () => {
+  it('should apply iconWrapper styles from theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
     const theme = createTheme({
       components: {
         MuiTab: {
