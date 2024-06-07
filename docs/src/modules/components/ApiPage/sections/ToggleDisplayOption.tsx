@@ -42,6 +42,7 @@ export function useApiPageOption(
   const [option, setOption] = React.useState(getOption(storageKey, defaultValue));
 
   useEnhancedEffect(() => {
+    // eslint-disable-next-line react-compiler/react-compiler -- useEnhancedEffect uses useEffect under the hood
     neverHydrated = false;
     const newOption = getOption(storageKey, defaultValue);
     setOption(newOption);
