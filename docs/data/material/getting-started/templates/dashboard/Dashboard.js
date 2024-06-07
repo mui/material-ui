@@ -3,13 +3,14 @@ import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import { alpha } from '@mui/material';
 import getDashboardTheme from './getDashboardTheme';
 import ToggleCustomTheme from './internals/components/ToggleCustomTheme';
 import Copyright from './internals/components/Copyright';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import MainGrid from './components/MainGrid';
+import SideMenu from './components/SideMenu';
 
 export default function Dashboard() {
   const [mode, setMode] = React.useState('light');
@@ -30,29 +31,31 @@ export default function Dashboard() {
       <CssBaseline />
       <Box sx={{ display: 'flex' }}>
         <Navbar mode={mode} toggleColorMode={toggleColorMode} />
+        <SideMenu />
         <Box
           component="main"
-          sx={{
-            backgroundColor: 'background.default',
+          sx={(theme) => ({
+            backgroundColor: alpha(theme.palette.background.paper, 0.4),
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
-          }}
+          })}
         >
           {/* Main content */}
-          <Container
-            maxWidth="xl"
+          <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              py: { xs: 14, sm: 16 },
+              mx: 3,
+              py: 8,
               gap: 2,
+              maxWidth: { sm: '100%', md: '1500px' },
             }}
           >
             <Header />
             <MainGrid />
             <Copyright sx={{ my: 4 }} />
-          </Container>
+          </Box>
         </Box>
         <ToggleCustomTheme
           showCustomTheme={showCustomTheme}

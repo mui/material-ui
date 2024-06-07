@@ -5,6 +5,7 @@ import { alpha } from '@mui/material/styles';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { brand, getDesignTokens, gray, green, red } from './themePrimitives';
 
 export default function getDashboardTheme(mode) {
@@ -228,11 +229,10 @@ export default function getDashboardTheme(mode) {
               transition: 'all 100ms ease',
               backgroundColor: gray[50],
               borderRadius: theme.shape.borderRadius,
-              border: `1px solid ${alpha(gray[200], 0.5)}`,
+              border: `1px solid ${theme.palette.divider}`,
               boxShadow: 'none',
               ...theme.applyStyles('dark', {
                 backgroundColor: gray[800],
-                border: `1px solid ${alpha(gray[700], 0.3)}`,
               }),
               variants: [
                 {
@@ -240,12 +240,11 @@ export default function getDashboardTheme(mode) {
                     variant: 'outlined',
                   },
                   style: {
-                    border: `1px solid ${gray[200]}`,
+                    border: `1px solid ${theme.palette.divider}`,
                     boxShadow: 'none',
                     background: 'hsl(0, 0%, 100%)',
                     ...theme.applyStyles('dark', {
-                      borderColor: alpha(gray[700], 0.4),
-                      background: alpha(gray[800], 0.4),
+                      background: alpha(gray[900], 0.4),
                     }),
                   },
                 },
@@ -519,51 +518,51 @@ export default function getDashboardTheme(mode) {
           root: {
             display: 'flex',
             flexDirection: 'column',
-            gap: 8,
+            gap: 0,
+            padding: '4px 8px',
           },
         },
       },
       MuiListItem: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: 0,
-            '&.Mui-selected': { borderRadius: theme.shape.borderRadius },
+            padding: 4,
+            '.MuiSvgIcon-root': {
+              width: '1.25rem',
+              height: '1.25rem',
+              color: theme.palette.text.secondary,
+            },
+            '.MuiTypography-root': {
+              fontWeight: 500,
+            },
+            '.MuiButtonBase-root': {
+              padding: '2px 8px',
+              borderRadius: theme.shape.borderRadius,
+              opacity: 0.7,
+              '&.Mui-selected': {
+                opacity: 1,
+                backgroundColor: theme.palette.action.selected,
+                '.MuiSvgIcon-root': {
+                  color: theme.palette.text.primary,
+                },
+              },
+            },
           }),
         },
       },
       MuiListItemIcon: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: {
             minWidth: 0,
-            marginRight: '8px',
-            color: theme.palette.grey[500],
-            ...theme.applyStyles('dark', { color: theme.palette.grey[100] }),
-          }),
-        },
-      },
-      MuiListItemText: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            color: theme.palette.grey[700],
-            ...theme.applyStyles('dark', { color: theme.palette.grey[50] }),
-          }),
-          primary: { fontWeight: 600 },
-        },
-      },
-      MuiListItemButton: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            padding: '4px 0',
-            borderRadius: theme.shape.borderRadius,
-            background: 'transparent',
-          }),
+            marginRight: 8,
+          },
         },
       },
       MuiMenu: {
         styleOverrides: {
           paper: ({ theme }) => ({
             marginTop: '4px',
-            padding: '0 8px',
+            padding: '4px 0',
             borderRadius: theme.shape.borderRadius,
             border: `1px solid ${theme.palette.divider}`,
             backgroundImage: 'none',
@@ -571,7 +570,7 @@ export default function getDashboardTheme(mode) {
             boxShadow:
               'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
             '& .MuiMenuItem-root': {
-              borderRadius: 6,
+              borderRadius: theme.shape.borderRadius,
               padding: '6px 8px',
             },
             '& .MuiMenu-list': {
@@ -1013,6 +1012,7 @@ export default function getDashboardTheme(mode) {
         styleOverrides: {
           root: ({ theme }) => ({
             borderColor: theme.palette.divider,
+            backgroundColor: theme.palette.background.default,
           }),
           cell: ({ theme }) => ({ borderTopColor: theme.palette.divider }),
           menu: ({ theme }) => ({
@@ -1021,11 +1021,22 @@ export default function getDashboardTheme(mode) {
             backgroundImage: 'none',
             boxShadow:
               'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
+            '& .MuiPaper-root': {
+              background: 'hsl(0, 0%, 100%)',
+            },
             '& .MuiMenuItem-root': {
               borderRadius: theme.shape.borderRadius,
               margin: '0 6px',
+              padding: '6px 8px',
+            },
+            '& .MuiListItemIcon-root': { marginRight: 0 },
+            '& .MuiMenu-list': {
+              '& .MuiDivider-root': { margin: '0 -8px' },
             },
             ...theme.applyStyles('dark', {
+              '& .MuiPaper-root': {
+                background: gray[900],
+              },
               boxShadow:
                 'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
             }),
@@ -1041,34 +1052,9 @@ export default function getDashboardTheme(mode) {
                 background: alpha(theme.palette.primary.main, 0.2),
               },
             },
-            '&.even': {
-              background: alpha(theme.palette.grey[200], 0.2),
-              '&:hover': {
-                background: alpha(theme.palette.primary.main, 0.1),
-              },
-              '&.Mui-selected': {
-                background: theme.palette.grey[100],
-                '&:hover': {
-                  background: alpha(theme.palette.primary.main, 0.2),
-                },
-              },
-            },
             ...theme.applyStyles('dark', {
-              backgroundColor: theme.palette.grey[900],
               '&.Mui-selected': {
                 background: theme.palette.grey[800],
-              },
-              '&.even': {
-                background: alpha(theme.palette.grey[800], 0.4),
-                '&:hover': {
-                  background: alpha(theme.palette.primary.main, 0.1),
-                },
-                '&.Mui-selected': {
-                  background: theme.palette.grey[800],
-                  '&:hover': {
-                    background: alpha(theme.palette.primary.main, 0.2),
-                  },
-                },
               },
             }),
           }),
@@ -1117,6 +1103,68 @@ export default function getDashboardTheme(mode) {
             justifyContent: 'space-between',
           },
           columnHeaderDraggableContainer: { paddingRight: 2 },
+        },
+      },
+      MuiDrawer: {
+        styleOverrides: {
+          paper: ({ theme }) => ({
+            backgroundColor: theme.palette.background.default,
+          }),
+        },
+      },
+      MuiSelect: {
+        defaultProps: {
+          IconComponent: React.forwardRef((props, ref) => (
+            <UnfoldMoreRoundedIcon {...props} ref={ref} />
+          )),
+        },
+        styleOverrides: {
+          root: ({ theme }) => ({
+            '&.MuiFilledInput-root': {
+              borderRadius: theme.shape.borderRadius,
+              border: `1px solid ${theme.palette.divider}`,
+              backgroundColor: theme.palette.background.paper,
+              boxShadow: `inset 0 2px 0 hsl(220, 0%, 100%), inset 0 -2px 0 ${gray[100]}`,
+              '&:hover': {
+                borderColor: gray[300],
+              },
+              '&:focus-visible': {
+                outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
+                outlineOffset: '2px',
+              },
+              '&:before, &:after': {
+                display: 'none',
+              },
+            },
+            '& .MuiSelect-select': {
+              display: 'flex',
+              alignItems: 'center',
+              padding: theme.spacing(1, 2),
+            },
+            ...theme.applyStyles('dark', {
+              '&.MuiFilledInput-root': {
+                borderRadius: theme.shape.borderRadius,
+                border: `1px solid ${theme.palette.divider}`,
+                backgroundColor: theme.palette.background.paper,
+                boxShadow: `inset 0 2px 0 ${alpha(gray[700], 0.3)}, inset 0 -2px 0 hsl(220, 0%, 0%)`,
+                '&:hover': {
+                  borderColor: gray[600],
+                },
+                '&:focus-visible': {
+                  outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
+                  outlineOffset: '2px',
+                },
+                '&:before, &:after': {
+                  display: 'none',
+                },
+              },
+              '& .MuiSelect-select': {
+                display: 'flex',
+                alignItems: 'center',
+                padding: theme.spacing(1, 2),
+              },
+            }),
+          }),
         },
       },
     },

@@ -31,13 +31,6 @@ const data = [
     trend: 'neutral',
     data: [5, 4, 6, 3, 4, 3, 7, 6],
   },
-  {
-    title: 'Engagement',
-    value: '30k',
-    interval: 'Last 30 days',
-    trend: 'up',
-    data: [2, 4, 3, 4, 5, 4, 7, 8],
-  },
 ];
 
 export default function MainGrid() {
@@ -47,11 +40,11 @@ export default function MainGrid() {
 
       <Grid container spacing={2} columns={12}>
         {data.map((card, index) => (
-          <Grid xs={6} sm={3} md={2} lg={2.25}>
+          <Grid xs={12} sm={6} md={3} lg={3}>
             <StatCard key={index} {...card} />
           </Grid>
         ))}
-        <Grid xs={12} md={4} lg={3}>
+        <Grid xs={12} sm={6} md={3} lg={3}>
           <HighlightedCard />
         </Grid>
       </Grid>

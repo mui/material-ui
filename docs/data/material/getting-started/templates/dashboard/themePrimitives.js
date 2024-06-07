@@ -198,6 +198,6 @@ export const getDesignTokens = (mode) => ({
     },
   },
   shape: {
-    borderRadius: 8,
+    borderRadius: 6,
   },
 });

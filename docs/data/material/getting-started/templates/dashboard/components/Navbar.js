@@ -3,29 +3,30 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import MuiToolbar from '@mui/material/Toolbar';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
+import Typography from '@mui/material/Typography';
+
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
+
 import ToggleColorMode from './ToggleColorMode';
 import SideNav from './SideNav';
 import MenuButton from './MenuButton';
-import NavbarBreadcrumbs from './NavbarBreadcrumbs';
 import OptionsMenu from './OptionsMenu';
+import Search from './Search';
 
 const Toolbar = styled(MuiToolbar)({
-  maxWidth: 1538,
   width: '100%',
-  padding: '16px 16px 0 16px',
+  padding: '12px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
   justifyContent: 'center',
   gap: '12px',
   flexShrink: 0,
-  backdropFilter: 'blur(24px)',
   '& .MuiTabs-flexContainer': {
     gap: '8px',
     p: '8px',
@@ -33,48 +34,11 @@ const Toolbar = styled(MuiToolbar)({
   },
 });
 
-function a11yProps(index, selectedIndex) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-    'aria-selected': selectedIndex === index,
-    role: 'tab',
-  };
-}
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {/* This would be replaced when the content content of other tabs is added */}
-      {value === index && <div />}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
 function Navbar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState(0);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
-  };
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
   };
 
   return (
@@ -82,11 +46,15 @@ function Navbar({ mode, toggleColorMode }) {
       position="fixed"
       sx={(theme) => ({
         boxShadow: 0,
-        bgcolor: 'transparent',
+        bgcolor: 'background.default',
         backgroundImage: 'none',
         alignItems: 'center',
-        borderBottom: '1px solid',
-        borderColor: theme.palette.divider,
+        outline: '1px solid',
+        outlineColor: theme.palette.divider,
+        zIndex: theme.zIndex.drawer - 1,
+        left: { xs: 0, md: 240 },
+        width: { xs: '100dvw', md: `calc(100% - 240px)` },
+        maxHeight: 64,
       })}
     >
       <Toolbar variant="regular">
@@ -99,10 +67,18 @@ function Navbar({ mode, toggleColorMode }) {
             flexGrow: 1,
             width: '100%',
             display: { xs: 'none', md: 'flex' },
+            maxWidth: { sm: '100%', md: '1500px' },
           }}
         >
-          <NavbarBreadcrumbs />
+          <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
+            <CustomIcon />
+            <Typography variant="h5" component="h1" color="text.primary">
+              Dashboard
+            </Typography>
+          </Stack>
+
           <Stack direction="row" sx={{ gap: 1 }}>
+            <Search />
             <MenuButton showBadge aria-label="Open notifications">
               <NotificationsRoundedIcon />
             </MenuButton>
@@ -120,7 +96,12 @@ function Navbar({ mode, toggleColorMode }) {
             display: { sm: 'flex', md: 'none' },
           }}
         >
-          <NavbarBreadcrumbs />
+          <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
+            <CustomIcon />
+            <Typography variant="h4" component="h1" color="text.primary">
+              Dashboard
+            </Typography>
+          </Stack>
           <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
             <MenuRoundedIcon />
           </MenuButton>
@@ -131,21 +112,7 @@ function Navbar({ mode, toggleColorMode }) {
             toggleColorMode={toggleColorMode}
           />
         </Stack>
-        <Tabs value={value} onChange={handleChange} aria-label="navbar tabs">
-          <Tab label="Home" {...a11yProps(0, value)} />
-          <Tab label="Analytics" {...a11yProps(1, value)} />
-          <Tab label="Clients" {...a11yProps(2, value)} />
-        </Tabs>
       </Toolbar>
-      <TabPanel value={value} index={0}>
-        Home Content
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Analytics Content
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Clients Content
-      </TabPanel>
     </AppBar>
   );
 }
@@ -156,3 +123,27 @@ Navbar.propTypes = {
 };
 
 export default Navbar;
+
+export function CustomIcon() {
+  return (
+    <Box
+      sx={{
+        width: '1.5rem',
+        height: '1.5rem',
+        bgcolor: 'black',
+        borderRadius: '999px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundImage:
+          'linear-gradient(135deg, hsl(210, 98%, 60%) 0%, hsl(210, 100%, 35%) 100%)',
+        color: 'hsla(210, 100%, 95%, 0.9)',
+        border: '1px solid',
+        borderColor: 'hsl(210, 100%, 55%)',
+        boxShadow: 'inset 0 2px 5px rgba(255, 255, 255, 0.3)',
+      }}
+    >
+      <DashboardRoundedIcon color="inherit" sx={{ width: '1rem' }} />
+    </Box>
+  );
+}

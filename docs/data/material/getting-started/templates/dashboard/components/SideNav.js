@@ -35,7 +35,12 @@ const settingsList = [
 
 function SideNav({ open, toggleDrawer, mode, toggleColorMode }) {
   return (
-    <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={toggleDrawer(false)}
+      sx={(theme) => ({ zIndex: theme.zIndex.drawer + 2 })} // Increase the z-index due to the Navbar
+    >
       <Stack
         sx={{
           gap: 2,
