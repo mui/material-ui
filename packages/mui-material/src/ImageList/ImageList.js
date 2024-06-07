@@ -70,20 +70,6 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
     [rowHeight, gap, variant],
   );
 
-  React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      // Detect Internet Explorer 8+
-      if (document !== undefined && 'objectFit' in document.documentElement.style === false) {
-        console.error(
-          [
-            'MUI: ImageList v5+ no longer natively supports Internet Explorer.',
-            'Use v4 of this component instead, or polyfill CSS object-fit.',
-          ].join('\n'),
-        );
-      }
-    }
-  }, []);
-
   const style =
     variant === 'masonry'
       ? { columnCount: cols, columnGap: gap, ...styleProp }

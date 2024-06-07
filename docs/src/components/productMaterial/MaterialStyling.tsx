@@ -14,18 +14,12 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
-
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
 <Card
   variant="outlined"
-  sx={{
-    p: 2,
-    display: 'flex',
-    flexWrap: 'wrap',
-    zIndex: 1,
-  }}
+  sx={{ p: 2, display: 'flex', flexWrap: 'wrap', zIndex: 1 }}
 >
   <CardMedia
     component="img"
@@ -33,8 +27,7 @@ const code = `
     height="100"
     alt="123 Main St, Phoenix, AZ cover"
     src="/images/real-estate.png"
-    sx={{
-      borderRadius: '6px',
+    sx={{    borderRadius: '6px',
       width: { xs: '100%', sm: 100 },
     }}
   />
@@ -65,9 +58,9 @@ const code = `
   </Box>
 </Card>`;
 
-const startLine = [32, 21, 17];
-const endLine = [42, 26, 17];
-const scrollTo = [540, 320, 200];
+const startLine = [27, 16, 12];
+const endLine = [37, 21, 12];
+const scrollTo = [27, 10, 4];
 
 export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
@@ -143,19 +136,19 @@ export default function MaterialStyling() {
   const objectRef = React.useRef<HTMLDivElement | null>(null);
   const { dragging, getDragHandlers } = useResizeHandle(objectRef, { minWidth: '253px' });
   const infoRef = React.useRef<HTMLDivElement | null>(null);
-  function getSelectedProps(i: number) {
-    return {
-      selected: index === i,
-      sx: { '& svg': { opacity: index === i ? 1 : 0.5 } },
-    };
-  }
+
+  const getSelectedProps = (i: number) => ({
+    selected: index === i,
+    sx: { '& svg': { opacity: index === i ? 1 : 0.5 } },
+  });
+
   React.useEffect(() => {
-    if (infoRef.current) {
-      infoRef.current.scroll({ top: scrollTo[index], behavior: 'smooth' });
-    }
-    if (objectRef.current) {
-      objectRef.current.style.width = '100%';
-    }
+    // 18px line-height
+    // 16px margin-top
+    // 1px border-width
+    infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
+
+    objectRef.current!.style.width = '100%';
   }, [index]);
 
   return (
@@ -197,11 +190,7 @@ export default function MaterialStyling() {
         </Grid>
         <Grid xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
-            <Frame.Demo
-              sx={{
-                overflow: 'auto',
-              }}
-            >
+            <Frame.Demo sx={{ overflow: 'auto' }}>
               <Box
                 ref={objectRef}
                 style={{ touchAction: dragging ? 'none' : 'auto' }}
@@ -311,11 +300,12 @@ export default function MaterialStyling() {
               sx={{
                 maxHeight: index === 2 ? 282 : 400,
                 overflow: 'auto',
-                position: 'relative',
               }}
             >
-              <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
-              <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />
+              <Box sx={{ position: 'relative' }}>
+                <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+                <FlashCode startLine={startLine[index]} endLine={endLine[index]} />
+              </Box>
             </Frame.Info>
           </Frame>
         </Grid>

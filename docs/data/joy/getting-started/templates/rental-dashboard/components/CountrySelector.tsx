@@ -31,7 +31,7 @@ export default function ContrySelector(props: FormControlProps) {
               </AspectRatio>
             </ListItemDecorator>
             {option.label}
-            <Typography component="span" textColor="text.tertiary" ml={0.5}>
+            <Typography component="span" textColor="text.tertiary" sx={{ ml: 0.5 }}>
               (+{option.phone})
             </Typography>
           </AutocompleteOption>

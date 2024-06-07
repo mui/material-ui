@@ -35,12 +35,14 @@ export default function SpacingGrid() {
         {[0, 1, 2].map((value) => (
           <Grid key={value}>
             <Paper
-              sx={{
+              sx={(theme) => ({
                 height: 140,
                 width: 100,
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-              }}
+                backgroundColor: '#fff',
+                ...theme.applyStyles('dark', {
+                  backgroundColor: '#1A2027',
+                }),
+              })}
             />
           </Grid>
         ))}
