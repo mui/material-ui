@@ -101,7 +101,10 @@ export const useResizeHandle = (
       if (target.current && dragging && clientX) {
         const objectRect = target.current.getBoundingClientRect();
         const newWidth = clientX - objectRect.left + dragOffset;
-        target.current.style.width = `clamp(${minWidth}, ${Math.floor(newWidth)}px, ${maxWidth})`;
+        target.current.style.setProperty(
+          'width',
+          `clamp(${minWidth}, ${Math.floor(newWidth)}px, ${maxWidth})`,
+        );
       }
     }
     function stopResize() {
@@ -148,7 +151,7 @@ export default function MaterialStyling() {
     // 1px border-width
     infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
 
-    objectRef.current!.style.width = '100%';
+    objectRef.current!.style.setProperty('width', '100%');
   }, [index]);
 
   return (
