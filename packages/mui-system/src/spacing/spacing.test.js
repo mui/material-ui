@@ -160,7 +160,7 @@ describe('system spacing', () => {
         theme: {
           vars: {
             spacing: 'var(--mui-spacing)',
-          }
+          },
         },
         p: 1,
       });
