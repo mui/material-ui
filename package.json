@@ -52,7 +52,7 @@
     "size:why": "pnpm size:snapshot --analyze",
     "start": "pnpm install && pnpm docs:dev",
     "test": "node scripts/test.mjs",
-    "tc": "node test/cli.js",
+    "tc": "nx run nx_test_tc",
     "test:extended": "pnpm eslint && pnpm typescript && pnpm test:coverage",
     "test:coverage": "nx run nx_test_coverage",
     "test:coverage:ci": "nx run nx_test_coverage_ci",
@@ -78,6 +78,7 @@
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
     "canary:release": "tsx ./scripts/canaryRelease.mts",
+    "nx_test_tc": "node test/cli.js",
     "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx} 'packages-internal/**/*.test.{js,ts,tsx}'' 'docs/**/*.test.{js,ts,tsx}'",
     "nx_test_coverage_html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "nx_test_coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
@@ -226,6 +227,11 @@
   },
   "nx": {
     "targets": {
+      "nx_test_tc": {
+        "dependsOn": [
+          "@mui/internal-test-utils:build"
+        ]
+      },
       "nx_test_unit": {
         "dependsOn": [
           "@mui/internal-test-utils:build"
