@@ -155,6 +155,18 @@ describe('system spacing', () => {
       expect(output).to.deep.equal({ padding: '-2em' });
     });
 
+    it('should support CSS variables', () => {
+      const output = spacing({
+        theme: {
+          vars: {
+            spacing: 'var(--mui-spacing)',
+          }
+        },
+        p: 1,
+      });
+      expect(output).to.deep.equal({ padding: 'calc(1 * var(--mui-spacing))' });
+    });
+
     it('should support breakpoints', () => {
       const output1 = spacing({
         p: [1, 2],
