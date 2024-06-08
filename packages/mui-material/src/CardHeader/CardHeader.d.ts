@@ -77,11 +77,11 @@ export interface CardHeaderTypeMap<
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Card](https://next.mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardHeader API](https://mui.com/material-ui/api/card-header/)
+ * - [CardHeader API](https://next.mui.com/material-ui/api/card-header/)
  */
 declare const CardHeader: OverridableCardHeader;
 
@@ -98,7 +98,7 @@ export interface OverridableCardHeader extends OverridableComponent<CardHeaderTy
       TitleTypographyComponent,
       SubheaderTypographyComponent
     >,
-  ): JSX.Element;
+  ): React.JSX.Element;
 }
 
 export type CardHeaderProps<

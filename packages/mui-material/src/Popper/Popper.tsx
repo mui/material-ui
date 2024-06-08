@@ -17,6 +17,8 @@ export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
+   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   components?: {
@@ -24,6 +26,8 @@ export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
   };
   /**
    * The props used for each slot inside the Popper.
+   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   componentsProps?: BasePopperProps['slotProps'];
@@ -43,13 +47,13 @@ const PopperRoot = styled(BasePopper, {
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
- * - [Menu](https://mui.com/material-ui/react-menu/)
- * - [Popper](https://mui.com/material-ui/react-popper/)
+ * - [Autocomplete](https://next.mui.com/material-ui/react-autocomplete/)
+ * - [Menu](https://next.mui.com/material-ui/react-menu/)
+ * - [Popper](https://next.mui.com/material-ui/react-popper/)
  *
  * API:
  *
- * - [Popper API](https://mui.com/material-ui/api/popper/)
+ * - [Popper API](https://next.mui.com/material-ui/api/popper/)
  */
 const Popper = React.forwardRef(function Popper(
   inProps: PopperProps,
@@ -137,6 +141,8 @@ Popper.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
+   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   components: PropTypes.shape({
@@ -144,6 +150,8 @@ Popper.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The props used for each slot inside the Popper.
+   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   componentsProps: PropTypes.shape({

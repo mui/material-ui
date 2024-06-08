@@ -19,7 +19,7 @@ const endDate = new Date();
 endDate.setDate(endDate.getDate() + 28);
 
 function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
-  const { items, onChange, isValid } = props;
+  const { items, onChange, isValid, changeImportance = 'accept' } = props;
 
   if (items == null || items.length === 0) {
     return null;
@@ -31,19 +31,14 @@ function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
     return {
       label: item.label,
       onClick: () => {
-        onChange(newValue);
+        onChange(newValue, changeImportance, item);
       },
       disabled: !isValid(newValue),
     };
   });
 
   return (
-    <Box
-      sx={{
-        gridRow: 1,
-        gridColumn: 2,
-      }}
-    >
+    <Box sx={{ gridRow: 1, gridColumn: 2 }}>
       <List
         sx={{
           display: 'flex',

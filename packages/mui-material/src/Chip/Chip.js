@@ -164,7 +164,7 @@ const ChipRoot = styled('div', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.contrastText)
+        .filter(([, value]) => value && value.main && value.contrastText)
         .map(([color]) => {
           return {
             props: { color },
@@ -212,7 +212,7 @@ const ChipRoot = styled('div', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.dark)
+        .filter(([, value]) => value && value.dark)
         .map(([color]) => {
           return {
             props: { color, onDelete: true },
@@ -251,7 +251,7 @@ const ChipRoot = styled('div', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.dark)
+        .filter(([, value]) => value && value.dark)
         .map(([color]) => ({
           props: { color, clickable: true },
           style: {
@@ -296,7 +296,7 @@ const ChipRoot = styled('div', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main) // no need to check for mainChannel as it's calculated from main
+        .filter(([, value]) => value && value.main) // no need to check for mainChannel as it's calculated from main
         .map(([color]) => ({
           props: { variant: 'outlined', color },
           style: {
@@ -429,8 +429,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     if (event.currentTarget === event.target) {
       if (onDelete && isDeleteKeyboardEvent(event)) {
         onDelete(event);
-      } else if (event.key === 'Escape' && chipRef.current) {
-        chipRef.current.blur();
       }
     }
 

@@ -134,8 +134,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -146,8 +145,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -192,7 +190,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**

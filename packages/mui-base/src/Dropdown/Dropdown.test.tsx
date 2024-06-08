@@ -6,7 +6,7 @@ import {
   flushMicrotasks,
   MuiRenderResult,
   RenderOptions,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { Dropdown } from '@mui/base/Dropdown';
 import { DropdownContext } from '@mui/base/useDropdown';
 import { MenuButton } from '@mui/base/MenuButton';

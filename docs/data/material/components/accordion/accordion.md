@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 <p class="description">The Accordion component lets users show and hide sections of related content on a page.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

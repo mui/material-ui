@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 
 <p class="description">Radio buttons enable the user to select one option from a set.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -37,7 +37,7 @@ When should you use radio buttons rather than checkboxes, switches, or selects?
 import Radio from '@mui/joy/Radio';
 ```
 
-The Joy UI Radio button behaves similar to the native HTML <input type="radio">, so it accepts props like `checked`, `value` and `onChange`.
+The Joy UI Radio button behaves similar to the native HTML `<input type="radio">`, so it accepts props like `checked`, `value` and `onChange`.
 
 {{"demo": "RadioButtons.js"}}
 

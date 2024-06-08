@@ -13,7 +13,7 @@ materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 The [grid](https://m2.material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 Material Design's responsive UI is based on a 12-column grid layout.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 :::warning
 The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
@@ -191,9 +191,12 @@ But as seen below, you can easily use [MUI System](/system/grid/) and CSS Grid 
 
 ## System props
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
-For instance, a padding:
+:::info
+System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
 
-```jsx
-<Grid item p={2}>
+```diff
+- <Grid item p={2} />
++ <Grid item sx={{ p: 2 }} />
 ```
+
+:::

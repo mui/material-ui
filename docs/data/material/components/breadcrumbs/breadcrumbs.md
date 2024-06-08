@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
 
 <p class="description">A breadcrumbs is a list of links that help visualize a page's location within a site's hierarchical structure, it allows navigation up to any of the ancestors.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic breadcrumbs
 

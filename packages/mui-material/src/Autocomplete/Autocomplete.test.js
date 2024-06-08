@@ -7,7 +7,7 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
 import Box from '@mui/system/Box';
@@ -59,20 +59,50 @@ describe('<Autocomplete />', () => {
       testStateOverrides: { prop: 'fullWidth', value: true, styleKey: 'fullWidth' },
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
-      testLegacyComponentsProp: true,
+      slots: {
+        listbox: { expectedClassName: classes.listbox },
+        paper: { expectedClassName: classes.paper },
+        popper: { expectedClassName: classes.popper, testWithElement: null },
+      },
+      skip: ['componentProp', 'componentsProp', 'reactTestRenderer'],
+    }),
+  );
+
+  describeConformance(
+    <Autocomplete
+      options={['one', 'two']}
+      defaultValue="one"
+      open
+      renderInput={(params) => <TextField {...params} />}
+    />,
+    () => ({
+      classes,
+      render,
+      muiName: 'MuiAutocomplete',
       slots: {
         clearIndicator: { expectedClassName: classes.clearIndicator },
-        paper: { expectedClassName: classes.paper },
-        popper: { expectedClassName: classes.popper },
         popupIndicator: { expectedClassName: classes.popupIndicator },
       },
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'slotsProp',
-        'reactTestRenderer',
-        'slotPropsCallback', // not supported yet
-      ],
+      only: ['slotPropsProp'],
+    }),
+  );
+
+  describeConformance(
+    <Autocomplete
+      options={['one', 'two']}
+      defaultValue={['one']}
+      multiple
+      open
+      renderInput={(params) => <TextField {...params} />}
+    />,
+    () => ({
+      classes,
+      render,
+      muiName: 'MuiAutocomplete',
+      slots: {
+        chip: {},
+      },
+      only: ['slotPropsProp'],
     }),
   );
 
@@ -638,7 +668,10 @@ describe('<Autocomplete />', () => {
           renderTags={(value, getTagProps) =>
             value
               .filter((x, index) => index === 1)
-              .map((option, index) => <Chip label={option.title} {...getTagProps({ index })} />)
+              .map((option, index) => {
+                const { key, ...tagProps } = getTagProps({ index });
+                return <Chip key={key} label={option.title} {...tagProps} />;
+              })
           }
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} autoFocus />}

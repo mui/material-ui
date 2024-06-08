@@ -42,15 +42,7 @@ export default function BackToTop() {
         onClose={handleClose}
         onOpen={handleOpen}
       >
-        <Box
-          className="mui-fixed"
-          sx={{
-            position: 'fixed',
-            bottom: 24,
-            right: 24,
-            zIndex: 10,
-          }}
-        >
+        <Box className="mui-fixed" sx={{ position: 'fixed', bottom: 24, right: 24, zIndex: 10 }}>
           <Fab
             size="small"
             aria-label={t('backToTop')}

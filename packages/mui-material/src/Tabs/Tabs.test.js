@@ -8,7 +8,7 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
@@ -46,7 +46,7 @@ function hasRightScrollButton(container) {
 
 describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
-  const isJSDOM = navigator.userAgent === 'node.js';
+  const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
   const { clock, render, renderToString } = createRenderer();
 

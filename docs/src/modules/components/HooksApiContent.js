@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { SectionTitle } from '@mui/docs/SectionTitle';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -22,21 +23,10 @@ function getTranslatedHeader(t, header, text) {
 }
 
 function Heading(props) {
-  const { hash, text, level: Level = 'h2' } = props;
+  const { hash, text, level = 'h2' } = props;
   const t = useTranslate();
 
-  return (
-    <Level id={hash}>
-      <a aria-labelledby={hash} className="title-link-to-anchor" href={`#${hash}`} tabIndex={-1}>
-        {getTranslatedHeader(t, hash, text)}
-        <div className="anchor-icon">
-          <svg>
-            <use xlinkHref="#anchor-link-icon" />
-          </svg>
-        </div>
-      </a>
-    </Level>
-  );
+  return <SectionTitle hash={hash} title={getTranslatedHeader(t, hash, text)} level={level} />;
 }
 
 Heading.propTypes = {

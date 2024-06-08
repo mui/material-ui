@@ -65,7 +65,12 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const RedditTextField = styled((props) => (
-  <TextField InputProps={{ disableUnderline: true }} {...props} />
+  <TextField
+    slotProps={{
+      input: { disableUnderline: true },
+    }}
+    {...props}
+  />
 ))(({ theme }) => ({
   '& .MuiFilledInput-root': {
     overflow: 'hidden',
@@ -109,11 +114,7 @@ export default function CustomizedInputsStyled() {
     <Box
       component="form"
       noValidate
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: { sm: '1fr 1fr' },
-        gap: 2,
-      }}
+      sx={{ display: 'grid', gridTemplateColumns: { sm: '1fr 1fr' }, gap: 2 }}
     >
       <FormControl variant="standard">
         <InputLabel shrink htmlFor="bootstrap-input">

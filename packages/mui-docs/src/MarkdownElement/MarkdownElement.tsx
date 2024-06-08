@@ -136,6 +136,7 @@ const Root = styled('div')(
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
+        userSelect: 'text',
       },
       '& .anchor-icon': {
         // To prevent the link to get the focus.
@@ -532,44 +533,34 @@ const Root = styled('div')(
       top: 0,
     },
     '& .MuiCode-copy': {
-      display: 'inline-flex',
-      flexDirection: 'row-reverse',
-      alignItems: 'center',
-      width: 26,
-      height: 26,
       cursor: 'pointer',
       position: 'absolute',
       top: 12,
       right: 12,
+      display: 'inline-flex',
+      flexDirection: 'row-reverse',
+      alignItems: 'center',
+      height: 24,
       padding: theme.spacing(0.5),
-      fontFamily: 'inherit',
-      fontWeight: 500,
+      paddingBottom: '5px', // optical alignment
+      fontFamily: lightTheme.typography.fontFamily,
+      fontWeight: lightTheme.typography.fontWeightMedium,
+      fontSize: lightTheme.typography.pxToRem(12),
       borderRadius: 6,
-      border: 'none',
-      backgroundColor: 'hsl(210, 35%, 9%)', // using the code block one-off background color (defined in line 23)
-      color: '#FFF',
+      border: '1px solid',
+      borderColor: alpha(lightTheme.palette.primaryDark[600], 0.5),
+      backgroundColor: alpha(lightTheme.palette.primaryDark[800], 0.5),
+      color: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
       transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
       }),
-      '& svg': {
-        userSelect: 'none',
-        width: theme.typography.pxToRem(16),
-        height: theme.typography.pxToRem(16),
-        display: 'inline-block',
-        fill: 'currentcolor',
-        flexShrink: 0,
-        fontSize: '18px',
-        margin: 'auto',
-        opacity: 0.5,
-      },
-      '& .MuiCode-copied-icon': {
+      '& .MuiCode-copied-label': {
         display: 'none',
       },
       '&:hover, &:focus': {
-        backgroundColor: lightTheme.palette.primaryDark[600],
-        '& svg': {
-          opacity: 1,
-        },
+        borderColor: `var(--muidocs-palette-primaryDark-400, ${lightTheme.palette.primaryDark[400]})`,
+        backgroundColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
+        color: '#FFF',
         '& .MuiCode-copyKeypress': {
           display: 'block',
           // Approximate no hover capabilities with no keyboard
@@ -582,17 +573,19 @@ const Root = styled('div')(
       '& .MuiCode-copyKeypress': {
         display: 'none',
         position: 'absolute',
-        right: 26,
+        right: 34,
       },
       '&[data-copied]': {
-        // style of the button when it is in copied state.
-        borderColor: lightTheme.palette.primary[700],
+        borderColor: `var(--muidocs-palette-primaryDark-400, ${lightTheme.palette.primaryDark[400]})`,
+        backgroundColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
         color: '#fff',
-        backgroundColor: lightTheme.palette.primaryDark[600],
-        '& .MuiCode-copy-icon': {
+        '& .MuiCode-copyKeypress': {
+          opacity: 0,
+        },
+        '& .MuiCode-copy-label': {
           display: 'none',
         },
-        '& .MuiCode-copied-icon': {
+        '& .MuiCode-copied-label': {
           display: 'block',
         },
       },
@@ -810,6 +803,18 @@ const Root = styled('div')(
   }),
 );
 
+function handleClick(event: Event) {
+  const selection = document.getSelection();
+
+  if (selection === null) {
+    return;
+  }
+  const isRangeSelection = selection.type === 'Range';
+
+  if (isRangeSelection) {
+    event.preventDefault();
+  }
+}
 export interface MarkdownElementProps {
   className?: string;
   renderedMarkdown?: string;
@@ -818,6 +823,23 @@ export interface MarkdownElementProps {
 export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
   function MarkdownElement(props, ref) {
     const { className, renderedMarkdown, ...other } = props;
+
+    React.useEffect(() => {
+      const elements = document.getElementsByClassName('title-link-to-anchor');
+
+      for (let i = 0; i < elements.length; i += 1) {
+        // More reliable than `-webkit-user-drag` (https://caniuse.com/webkit-user-drag)
+        elements[i].setAttribute('draggable', 'false');
+        elements[i].addEventListener('click', handleClick, false);
+      }
+
+      return () => {
+        for (let i = 0; i < elements.length; i += 1) {
+          elements[i].removeEventListener('click', handleClick);
+        }
+      };
+    }, []);
+
     const more: React.ComponentProps<typeof Root> = {};
 
     if (typeof renderedMarkdown === 'string') {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { act, createMount, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createMount, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { Button, buttonClasses } from '@mui/base/Button';

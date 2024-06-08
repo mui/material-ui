@@ -43,13 +43,16 @@ export default function BrandingThemeTest() {
             <Button variant="outlined" size="small" color="secondary">
               Outlined secondary
             </Button>
-            <Button variant="text" size="small" color="info">
+            <Button variant="text" size="small">
               This button
             </Button>
             <IconButton color="primary">
               <GitHubIcon fontSize="small" />
             </IconButton>
             <IconButton color="info">
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+            <IconButton>
               <GitHubIcon fontSize="small" />
             </IconButton>
           </Stack>

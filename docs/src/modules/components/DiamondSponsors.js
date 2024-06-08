@@ -31,7 +31,7 @@ const NativeLink = styled('a')(({ theme }) => ({
   ...theme.applyDarkStyles({
     boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset`,
     '&:hover': {
-      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+      backgroundColor: alpha(theme.palette.primary[800], 0.2),
       borderColor: (theme.vars || theme).palette.primary[900],
     },
   }),
@@ -41,7 +41,7 @@ export default function DiamondSponsors() {
   const t = useTranslate();
 
   return (
-    <Stack direction="column" mt={2} spacing={1} useFlexGap>
+    <Stack direction="column" spacing={1} useFlexGap sx={{ mt: 2 }}>
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
@@ -52,40 +52,46 @@ export default function DiamondSponsors() {
       >
         <Box
           component="img"
-          height="25px"
-          width="116px"
           src="/static/sponsors/octopus-light.svg"
           alt="octopus"
           title="Repeatable, reliable deployments"
           loading="lazy"
-          sx={(theme) =>
-            theme.applyDarkStyles({
-              content: `url(/static/sponsors/octopus-dark.svg)`,
-            })
-          }
+          sx={[
+            {
+              height: '25px',
+              width: '116px',
+            },
+            (theme) =>
+              theme.applyDarkStyles({
+                content: `url(/static/sponsors/octopus-dark.svg)`,
+              }),
+          ]}
         />
       </NativeLink>
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
         data-ga-event-label="doit.com"
-        href="https://www.doit.com/flexsave/?utm_source=materialui&utm_medium=referral"
+        href="https://www.doit.com/?utm_source=materialui&utm_medium=referral"
         rel="noopener sponsored"
         target="_blank"
       >
         <Box
           component="img"
-          height="29px"
-          width="70px"
           src="/static/sponsors/doit-light.svg"
           alt="doit"
           title="Management Platform for Google Cloud and AWS"
           loading="lazy"
-          sx={(theme) =>
-            theme.applyDarkStyles({
-              content: `url(/static/sponsors/doit-dark.svg)`,
-            })
-          }
+          sx={[
+            {
+              height: '29px',
+              width: '70px',
+            },
+            (theme) =>
+              theme.applyDarkStyles({
+                content: `url(/static/sponsors/doit-dark.svg)`,
+              }),
+          ]}
         />
       </NativeLink>
       <NativeLink
@@ -98,17 +104,20 @@ export default function DiamondSponsors() {
       >
         <Box
           component="img"
-          height="27px"
-          width="90px"
           src="/static/sponsors/marblism-light.svg"
           alt="marblism"
           title="AI web app generation"
           loading="lazy"
-          sx={(theme) =>
-            theme.applyDarkStyles({
-              content: `url(/static/sponsors/marblism-dark.svg)`,
-            })
-          }
+          sx={[
+            {
+              height: '27px',
+              width: '90px',
+            },
+            (theme) =>
+              theme.applyDarkStyles({
+                content: `url(/static/sponsors/marblism-dark.svg)`,
+              }),
+          ]}
         />
       </NativeLink>
       <Link
@@ -138,7 +147,7 @@ export default function DiamondSponsors() {
           }),
         })}
       >
-        <Typography variant="caption" fontWeight="semiBold" textAlign="center">
+        <Typography variant="caption" sx={{ fontWeight: 'semiBold', textAlign: 'center' }}>
           {t('becomeADiamondSponsor')}
         </Typography>
         {/* <Typography variant="caption" fontWeight="regular" color="text.secondary">
