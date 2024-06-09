@@ -104,10 +104,10 @@ export default function Templates() {
               }}
             />
             <Box sx={{ p: 2, pt: 1.5 }}>
-              <Typography component="h3" variant="body1" fontWeight="semiBold">
+              <Typography component="h3" variant="body1" sx={{ fontWeight: 'semiBold' }}>
                 {layout.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary" mb={2}>
+              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
                 {layout.description}
               </Typography>
               <Box

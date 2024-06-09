@@ -69,14 +69,7 @@ const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
 function DotIcon() {
   return (
     <Box
-      sx={{
-        width: 6,
-        height: 6,
-        borderRadius: '50%',
-        bgcolor: 'warning.main',
-        zIndex: 1,
-        mr: 1,
-      }}
+      sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: 'warning.main', zIndex: 1, mr: 1 }}
     />
   );
 }
@@ -142,23 +135,9 @@ function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps
     Icon = DotIcon;
   }
   return (
-    <TreeItem2Label
-      {...other}
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <TreeItem2Label {...other} sx={{ display: 'flex', alignItems: 'center' }}>
       {Icon && (
-        <Box
-          component={Icon}
-          className="labelIcon"
-          sx={{
-            mr: 1,
-            fontSize: '1rem',
-            color,
-          }}
-        />
+        <Box component={Icon} className="labelIcon" sx={{ mr: 1, fontSize: '1rem', color }} />
       )}
 
       <Typography

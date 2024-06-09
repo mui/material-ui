@@ -56,20 +56,12 @@ export default function TableUsage() {
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Typography
             level="body-xs"
-            justifyContent="center"
-            textAlign="center"
-            sx={{ mb: 2 }}
+            sx={{ justifyContent: 'center', textAlign: 'center', mb: 2 }}
           >
             The table is scrollable.
           </Typography>
           <Sheet variant="outlined" sx={{ p: 2, borderRadius: 'sm' }}>
-            <Sheet
-              sx={{
-                height: 200,
-                overflow: 'auto',
-                borderRadius: 0,
-              }}
-            >
+            <Sheet sx={{ height: 200, overflow: 'auto', borderRadius: 0 }}>
               <Table {...props}>
                 <thead>
                   <tr>

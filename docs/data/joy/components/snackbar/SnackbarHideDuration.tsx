@@ -32,7 +32,7 @@ export default function SnackbarHideDuration() {
   };
   return (
     <div>
-      <Stack spacing={2} direction="row" alignItems="center">
+      <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
         <FormControl disabled={open} sx={{ display: 'grid', columnGap: 1 }}>
           <FormLabel sx={{ gridColumn: 'span 2' }}>
             Auto Hide Duration (ms)

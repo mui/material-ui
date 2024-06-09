@@ -114,11 +114,7 @@ export default function CustomizedInputsStyled() {
     <Box
       component="form"
       noValidate
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: { sm: '1fr 1fr' },
-        gap: 2,
-      }}
+      sx={{ display: 'grid', gridTemplateColumns: { sm: '1fr 1fr' }, gap: 2 }}
     >
       <FormControl variant="standard">
         <InputLabel shrink htmlFor="bootstrap-input">
