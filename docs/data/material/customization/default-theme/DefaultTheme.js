@@ -64,11 +64,13 @@ const StyledSwitch = styled(Switch)(({ theme }) => [
     },
   },
 ]);
+
 function DefaultTheme() {
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
   const t = useTranslate();
   const [darkTheme, setDarkTheme] = React.useState(false);
+
   React.useEffect(() => {
     let expandPath;
     decodeURI(document.location.search.slice(1))
@@ -79,9 +81,11 @@ function DefaultTheme() {
           expandPath = value;
         }
       });
+
     if (!expandPath) {
       return;
     }
+
     setExpandPaths(
       expandPath
         .replace('$.', '')
@@ -93,11 +97,13 @@ function DefaultTheme() {
         }, []),
     );
   }, []);
+
   const data = React.useMemo(() => {
     return createTheme({
       palette: { mode: darkTheme ? 'dark' : 'light' },
     });
   }, [darkTheme]);
+
   const allNodeIds = useItemIdsLazy(data);
   React.useDebugValue(allNodeIds);
   React.useEffect(() => {
