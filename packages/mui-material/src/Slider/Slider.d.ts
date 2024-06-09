@@ -281,7 +281,7 @@ export interface SliderTypeMap<
 }
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactElement<any>;
+  children: React.ReactElement<unknown>;
   index: number;
   open: boolean;
   value: number;
@@ -306,11 +306,11 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * Demos:
  *
- * - [Slider](https://mui.com/material-ui/react-slider/)
+ * - [Slider](https://next.mui.com/material-ui/react-slider/)
  *
  * API:
  *
- * - [Slider API](https://mui.com/material-ui/api/slider/)
+ * - [Slider API](https://next.mui.com/material-ui/api/slider/)
  */
 declare const Slider: OverridableComponent<SliderTypeMap>;
 

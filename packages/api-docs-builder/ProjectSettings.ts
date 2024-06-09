@@ -99,4 +99,8 @@ export interface ProjectSettings {
    * Determines if a given slot or state is a global state
    */
   isGlobalClassName: (slotOrState: string) => boolean;
+  /**
+   * Determines the base API URL for generated JSDocs
+   */
+  baseApiUrl?: string;
 }

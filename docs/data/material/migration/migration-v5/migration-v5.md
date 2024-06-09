@@ -53,3 +53,33 @@ This results in a reduction of the `@mui/material` package size by 2.5MB or 25% 
 
 Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended.
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
+
+### Chip
+
+The Chip component's behavior has been updated to match the standard behavior of other components like buttons.
+Previously, the Chip component lost focus when the escape button was pressed, which differed from how other button-like components work.
+This issue has been resolved, and the chip component retains focus as expected.
+
+You can provide a custom `onKeyUp` handler to implement the previous behavior.
+
+```js
+import * as React from 'react';
+import Chip from '@mui/material/Chip';
+
+export default function ChipExample() {
+  const chipRef = React.useRef(null);
+  const keyUpHandler = (event) => {
+    if (event.key === 'Escape' && chipRef.current) {
+      chipRef.current.blur();
+    }
+  };
+  return (
+    <Chip
+      label="Chip Outlined"
+      variant="outlined"
+      ref={chipRef}
+      onKeyUp={keyUpHandler}
+    />
+  );
+}
+```
