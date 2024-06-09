@@ -6,7 +6,10 @@ import refType from '@mui/utils/refType';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { styled, Theme, useThemeProps } from '../styles';
+import { Theme } from '../styles';
+import { styled, createUseThemeProps } from '../zero-styled';
+
+const useThemeProps = createUseThemeProps('MuiPopper');
 
 export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
   /**
