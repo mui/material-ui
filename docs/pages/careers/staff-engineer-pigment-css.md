@@ -46,7 +46,7 @@ We recently released an early alpha version, [introduced at React Conf 2024](htt
 
 This is just the beginning, though.
 There's so much to do to make Pigment CSS a reliable and mature option for the future of Material UI and for many developers looking for a next-generation CSS-in-JS styling engine.
-We're well-positioned to make this happen, so we're looking for a talented developer to join the team and help us get further beyond!
+We're well-positioned to make this happen, so we're looking for a talented engineer to join the team and help us get further beyond!
 
 ### Why this is interesting
 
