@@ -17,9 +17,7 @@ function handleClick(event) {
 
     // We reach a tracking element, no need to look higher in the dom tree.
     if (category) {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: category,
+      window.gtag('event', category, {
         eventAction: element.getAttribute('data-ga-event-action'),
         eventLabel: element.getAttribute('data-ga-event-label'),
       });
@@ -33,12 +31,20 @@ function handleClick(event) {
 let bound = false;
 
 export default function GoogleAnalytics() {
+  const timeout = React.useRef();
+
   React.useEffect(() => {
     // Wait for the title to be updated.
-    setTimeout(() => {
+    // React fires useEffect twice in dev mode
+    clearTimeout(timeout.current);
+    timeout.current = setTimeout(() => {
       const { canonical } = pathnameToLanguage(window.location.pathname);
-      window.ga('set', { page: canonical });
-      window.ga('send', { hitType: 'pageview' });
+
+      // https://developers.google.com/analytics/devguides/collection/ga4/views?client_type=gtag
+      window.gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: canonical,
+      });
     });
 
     if (bound) {

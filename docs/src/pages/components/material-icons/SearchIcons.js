@@ -424,9 +424,7 @@ export default function SearchIcons() {
 
             // Keep track of the no results so we can add synonyms in the future.
             if (value.length >= 4 && results.length === 0) {
-              window.ga('send', {
-                hitType: 'event',
-                eventCategory: 'material-icons',
+              window.gtag('event', 'material-icons', {
                 eventAction: 'no-results',
                 eventLabel: value,
               });
