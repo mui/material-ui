@@ -788,8 +788,8 @@ importers:
         specifier: ^6.23.1
         version: 6.23.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-runner:
-        specifier: ^1.0.3
-        version: 1.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^1.0.5
+        version: 1.0.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-simple-code-editor:
         specifier: ^0.13.1
         version: 0.13.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -10603,8 +10603,8 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
-  react-runner@1.0.3:
-    resolution: {integrity: sha512-KyAzNzSVdrBc4A7aGW3FD0wVuujfgcBlyIGF0QVicJu0ucMpLYyTHE+PgBu82Iq698TPKRH+eEi6Mrq/e7OffA==}
+  react-runner@1.0.5:
+    resolution: {integrity: sha512-eCIybRpssp6ffjqXqId024esO9UP2lV838Lvm3fC7VgMQ/dQHhR0jJwOY2IPrYD3AaM/bcvMikmASIRZqNUHsw==}
     peerDependencies:
       react: ^16.0.0 || ^17 || ^18
       react-dom: ^16.0.0 || ^17 || ^18
@@ -22579,7 +22579,7 @@ snapshots:
       '@remix-run/router': 1.16.1
       react: 18.2.0
 
-  react-runner@1.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-runner@1.0.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
