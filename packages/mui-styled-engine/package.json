@@ -63,8 +63,11 @@
     },
     "@emotion/styled": {
       "optional": true
-    }
-  },
+    },
+    "peerDependencies": {
+    "@svgr/core": "workspace:*"
+  }
+},
   "sideEffects": false,
   "publishConfig": {
     "access": "public",
