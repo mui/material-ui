@@ -101,10 +101,11 @@ We're looking for someone with strong core JavaScript skills. More important tha
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**.
   If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
-- **Avoid monolithic deliverables**.
-  You scope and stage your work into well-defined milestones to ship.
+- **Leadership skills**.
+  You will help build and collaborate with the community.
+  You will guide and mentor contributors, steering the community in the right direction.
 - **Past work with front-end infrastructure**.
-  Perhaps you've written a Babel plugin, or even worked on a problem similar to the ones Pigment CSS aims to address.
+  Perhaps you've written a Babel plugin or even worked on a problem similar to the ones Pigment CSS aims to address.
   It would be great if you could address this in your cover letter!
 
 ### Nice to have (but not required)
