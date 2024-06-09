@@ -31,7 +31,7 @@ const openRolesData = [
       {
         title: 'Staff Engineer — Pigment CSS',
         description:
-          'Research, build, document, and ship high-quality zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
+          'Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
         url: '/careers/staff-engineer-pigment-css/',
       },
     ],
