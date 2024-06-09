@@ -50,20 +50,18 @@ We're well-positioned to make this happen, so we're looking for a talented devel
 
 ### Why this is interesting
 
-Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+The core components that will depend on this library are widely used, you will receive a lot of feedback on your work.
+The community has high expectations, they will push you to do better, every day.
 
-The core components that will depend on this library are widely used, you will receive a lot of feedback on your work. The community has high expectations, they will push you to do better, every day.
-The [results of the latest survey](https://mui.com/blog/2021-developer-survey-results/) can give you a great sense of where we will need to push the open-source library in the coming months.
+Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 ## The role
 
-### What you'll do on a day-to-day basis
-
-Depending on the day, you'll:
+### Key responsibilities
 
 - **Build**. You will provide solutions for integrating the library with various bundlers and frameworks. You will build new features and improve the DX of the library.
 - **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community. Your time will often be way better spent doing this than fixing the problems yourself.
-- **Shape the product**. You will be laser-focused on the end goal. It's not about solving technical challenges but about the problem solved for the users.
+- **Shape the product**. You will be laser-focused on the end goal. It's not about solving technical challenges but about the problems solved for the users.
 - **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace, align the team on "one way" of doing things and make sure engineers follow the conventions.
 - **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
 
@@ -71,7 +69,7 @@ Depending on the day, you'll:
 
 - **You'll be at the cutting edge of application development** — working on one of the fastest-growing CSS-in-JS libraries on the market.
 - **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
-- **Your role will be key to making MUI the go-to UI solution** for building applications, websites, and design systems that does not have to trade performance for a great developer expirience.
+- **Your role will be key to making MUI the go-to UI solution** for building applications, websites, and design systems that does not have to trade performance for a great developer experience.
 
 ### The worst parts of this job
 
@@ -102,7 +100,7 @@ We're looking for someone with strong core JavaScript skills. More important tha
 - **Ready and willing to ask and answer questions**.
   If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
 - **Leadership skills**.
-  You will help build and collaborate with the community.
+  You will help build the community and collaborate with it.
   You will guide and mentor contributors, steering the community in the right direction.
 - **Past work with front-end infrastructure**.
   Perhaps you've written a Babel plugin or even worked on a problem similar to the ones Pigment CSS aims to address.
@@ -113,12 +111,12 @@ We're looking for someone with strong core JavaScript skills. More important tha
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
-- **You have contributed code to some CSS-in-JS library**. A history of contributing to some CSS-in-JS library is a plus.
+- **You have contributed code to a CSS-in-JS library**. A history of contributing to a CSS-in-JS library is a plus.
 
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
