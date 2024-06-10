@@ -6,9 +6,7 @@ export default function TextFieldHiddenLabel() {
   return (
     <Stack
       component="form"
-      sx={{
-        width: '25ch',
-      }}
+      sx={{ width: '25ch' }}
       spacing={2}
       noValidate
       autoComplete="off"

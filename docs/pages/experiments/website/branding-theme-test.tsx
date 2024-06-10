@@ -52,6 +52,9 @@ export default function BrandingThemeTest() {
             <IconButton color="info">
               <GitHubIcon fontSize="small" />
             </IconButton>
+            <IconButton>
+              <GitHubIcon fontSize="small" />
+            </IconButton>
           </Stack>
         </Section>
         <Divider />

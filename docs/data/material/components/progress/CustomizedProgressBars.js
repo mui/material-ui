@@ -25,10 +25,12 @@ function FacebookCircularProgress(props) {
     <Box sx={{ position: 'relative' }}>
       <CircularProgress
         variant="determinate"
-        sx={{
-          color: (theme) =>
-            theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-        }}
+        sx={(theme) => ({
+          color: theme.palette.grey[800],
+          ...theme.applyStyles('light', {
+            color: theme.palette.grey[200],
+          }),
+        })}
         size={40}
         thickness={4}
         {...props}
@@ -37,15 +39,18 @@ function FacebookCircularProgress(props) {
       <CircularProgress
         variant="indeterminate"
         disableShrink
-        sx={{
-          color: (theme) => (theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8'),
+        sx={(theme) => ({
+          color: '#308fe8',
           animationDuration: '550ms',
           position: 'absolute',
           left: 0,
           [`& .${circularProgressClasses.circle}`]: {
             strokeLinecap: 'round',
           },
-        }}
+          ...theme.applyStyles('light', {
+            color: '#1a90ff',
+          }),
+        })}
         size={40}
         thickness={4}
         {...props}
@@ -71,7 +76,6 @@ function GradientCircularProgress() {
     </React.Fragment>
   );
 }
-
 export default function CustomizedProgressBars() {
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>

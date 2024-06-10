@@ -68,14 +68,17 @@ function Navbar({ mode, toggleColorMode }) {
       <Toolbar variant="regular">
         <Stack
           direction="row"
-          gap={1}
-          alignItems="center"
-          justifyContent={{ xs: 'flex-end', md: 'space-between' }}
-          flexGrow={1}
-          sx={{ width: '100%', display: { xs: 'none', md: 'flex' } }}
+          sx={{
+            gap: 1,
+            alignItems: 'center',
+            justifyContent: { xs: 'flex-end', md: 'space-between' },
+            flexGrow: 1,
+            width: '100%',
+            display: { xs: 'none', md: 'flex' },
+          }}
         >
           <NavbarBreadcrumbs />
-          <Stack direction="row" gap={1}>
+          <Stack direction="row" sx={{ gap: 1 }}>
             <MenuButton showBadge>
               <NotificationsRoundedIcon />
             </MenuButton>
@@ -85,10 +88,13 @@ function Navbar({ mode, toggleColorMode }) {
         </Stack>
         <Stack
           direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          flexGrow={1}
-          sx={{ width: '100%', display: { sm: 'flex', md: 'none' } }}
+          sx={{
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexGrow: 1,
+            width: '100%',
+            display: { sm: 'flex', md: 'none' },
+          }}
         >
           <NavbarBreadcrumbs />
           <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
