@@ -153,17 +153,15 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     childProps.onExited = onExited;
   }
 
-  const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const backdropSlotProps = slotProps.backdrop ?? componentsProps?.backdrop;
-
   const externalForwardedProps = {
     slots: {
-      root: slots.root ?? components.Root,
-      backdrop: slots.backdrop ?? components.Backdrop,
+      root: components.Root,
+      backdrop: components.Backdrop,
+      ...slots,
     },
     slotProps: {
-      root: slotProps.root ?? componentsProps.root,
-      backdrop: backdropSlotProps,
+      ...componentsProps,
+      ...slotProps,
     },
   };
 
@@ -178,7 +176,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     ownerState,
     className: clsx(
       className,
-      rootSlotProps?.className,
       classes?.root,
       !ownerState.open && ownerState.exited && classes?.hidden,
     ),
@@ -201,7 +198,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         },
       });
     },
-    className: clsx(backdropSlotProps?.className, BackdropProps?.className, classes?.backdrop),
+    className: clsx(BackdropProps?.className, classes?.backdrop),
     ownerState,
   });
 
