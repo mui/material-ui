@@ -141,6 +141,7 @@ const DividerRoot = styled('div', {
         '&::before, &::after': {
           content: '""',
           alignSelf: 'center',
+          border: 0,
         },
       },
     },
