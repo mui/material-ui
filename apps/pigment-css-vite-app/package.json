@@ -25,8 +25,8 @@
     "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.24.6",
-    "@babel/preset-typescript": "^7.24.6",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
     "@pigment-css/vite-plugin": "^0.0.12",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.3.0",
