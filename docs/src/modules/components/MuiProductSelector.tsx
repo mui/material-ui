@@ -7,10 +7,13 @@ import ROUTES from 'docs/src/route';
 import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
+import SvgToolpadLogo from 'docs/src/icons/SvgToolpadLogo';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
+import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
+import WebRoundedIcon from '@mui/icons-material/WebRounded';
 
 const iconStyles = (theme) => ({
   fontSize: theme.typography.pxToRem(14),
@@ -105,7 +108,7 @@ const coreProducts = [
     id: 'joy-ui',
     name: 'Joy UI',
     description: 'Beautiful foudational components.',
-    icon: <SvgMuiLogomark width={14} height={14} />,
+    icon: <WebRoundedIcon sx={iconStyles} />,
     href: ROUTES.joyDocs,
   },
   {
@@ -118,8 +121,8 @@ const coreProducts = [
   {
     id: 'system',
     name: 'MUI System',
-    description: 'Ready-to-use foundational components.',
-    icon: <SvgBaseUiLogo width={14} height={14} />,
+    description: 'A set of CSS utilities.',
+    icon: <StyleRoundedIcon sx={iconStyles} />,
     href: ROUTES.systemDocs,
   },
 ];
@@ -128,7 +131,7 @@ const advancedProducts = [
   {
     id: 'x-data-grid',
     name: 'Data Grid',
-    description: 'Bla bla bla bla description here.',
+    description: 'A fast and extendable data table.',
     icon: <BackupTableRoundedIcon sx={iconStyles} />,
     href: ROUTES.dataGridOverview,
   },
@@ -165,7 +168,6 @@ export default function MuiProductSelector() {
         role="none"
         sx={{ p: 1, borderBottom: '1px solid', borderColor: 'divider' }}
       >
-        {/* <NavLabel>Libraries</NavLabel> */}
         <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '4px' }}>
           {coreProducts.map((product) => (
             <ProductItem
@@ -203,11 +205,10 @@ export default function MuiProductSelector() {
         role="none"
         sx={{ p: 1, borderBottom: '1px solid', borderColor: 'divider' }}
       >
-        {/* <NavLabel>What do I put here?</NavLabel> */}
         <ProductItem
           name="Toolpad"
           href={ROUTES.toolpadStudioDocs}
-          icon={<SvgMuiLogomark width={14} height={14} />}
+          icon={<SvgToolpadLogo width={14} height={14} />}
           description="A self-hosted, low-code internal tool builder."
           // active={pageContext.productId === product.id}
         />
