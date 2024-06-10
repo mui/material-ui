@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Components, SvgIconProps } from '@mui/material';
+import { Components } from '@mui/material';
 import { alpha, Theme } from '@mui/material/styles';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
-import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { gray, brand } from '../themePrimitives';
 
 export const inputsCustomizations: Components<Theme> = {
@@ -111,61 +110,6 @@ export const inputsCustomizations: Components<Theme> = {
       notchedOutline: {
         border: 'none',
       },
-    },
-  },
-  MuiSelect: {
-    defaultProps: {
-      IconComponent: React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
-        <UnfoldMoreRoundedIcon {...props} ref={ref} />
-      )),
-    },
-    styleOverrides: {
-      root: ({ theme }) => ({
-        '&.MuiFilledInput-root': {
-          borderRadius: theme.shape.borderRadius,
-          border: `1px solid ${theme.palette.divider}`,
-          backgroundColor: theme.palette.background.paper,
-          boxShadow: `inset 0 2px 0 hsl(220, 0%, 100%), inset 0 -2px 0 ${gray[100]}`,
-          '&:hover': {
-            borderColor: gray[300],
-          },
-          '&:focus-visible': {
-            outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
-            outlineOffset: '2px',
-          },
-          '&:before, &:after': {
-            display: 'none',
-          },
-        },
-        '& .MuiSelect-select': {
-          display: 'flex',
-          alignItems: 'center',
-          padding: theme.spacing(1, 2),
-        },
-        ...theme.applyStyles('dark', {
-          '&.MuiFilledInput-root': {
-            borderRadius: theme.shape.borderRadius,
-            border: `1px solid ${theme.palette.divider}`,
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: `inset 0 2px 0 ${alpha(gray[700], 0.3)}, inset 0 -2px 0 hsl(220, 0%, 0%)`,
-            '&:hover': {
-              borderColor: gray[600],
-            },
-            '&:focus-visible': {
-              outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
-              outlineOffset: '2px',
-            },
-            '&:before, &:after': {
-              display: 'none',
-            },
-          },
-          '& .MuiSelect-select': {
-            display: 'flex',
-            alignItems: 'center',
-            padding: theme.spacing(1, 2),
-          },
-        }),
-      }),
     },
   },
   MuiInputAdornment: {

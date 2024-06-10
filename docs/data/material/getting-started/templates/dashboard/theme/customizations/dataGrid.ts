@@ -21,9 +21,7 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
           background: 'hsl(0, 0%, 100%)',
         },
         '& .MuiMenuItem-root': {
-          borderRadius: theme.shape.borderRadius,
-          margin: '0 6px',
-          padding: '6px 8px',
+          margin: '0 4px',
         },
         '& .MuiListItemIcon-root': { marginRight: 0 },
         '& .MuiMenu-list': {
