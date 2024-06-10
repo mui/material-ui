@@ -299,7 +299,14 @@ export default function migrateToVariants(j, styles) {
     style.params.forEach((param) => {
       if (param.type === 'ObjectPattern') {
         param.properties.forEach((prop) => {
-          parameters.add(prop.key.name);
+          if (prop.type === 'ObjectProperty') {
+            if (prop.value.type === 'Identifier') {
+              parameters.add(prop.value.name);
+            }
+            if (prop.value.type === 'AssignmentPattern') {
+              parameters.add(prop.value.left.name);
+            }
+          }
         });
       }
       if (param.type === 'Identifier') {
