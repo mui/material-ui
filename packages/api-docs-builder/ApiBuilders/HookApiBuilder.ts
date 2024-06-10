@@ -192,10 +192,6 @@ async function annotateHookDefinition(
     },
 
     ExportNamedDeclaration(babelPath) {
-      if (!api.filename.includes('mui-base')) {
-        return;
-      }
-
       let node: babel.Node = babelPath.node;
 
       if (babel.types.isTSDeclareFunction(node.declaration)) {
