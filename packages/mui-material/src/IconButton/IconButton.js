@@ -48,7 +48,6 @@ const IconButtonRoot = styled(ButtonBase, {
     fontSize: theme.typography.pxToRem(24),
     padding: 8,
     borderRadius: '50%',
-    overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
     color: (theme.vars || theme).palette.action.active,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
@@ -104,7 +103,7 @@ const IconButtonRoot = styled(ButtonBase, {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value.main) // check all the used fields in the style below
+          .filter(([, value]) => value && value.main) // check all the used fields in the style below
           .map(([color]) => ({
             props: { color },
             style: {
@@ -112,7 +111,7 @@ const IconButtonRoot = styled(ButtonBase, {
             },
           })),
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value.main) // check all the used fields in the style below
+          .filter(([, value]) => value && value.main) // check all the used fields in the style below
           .map(([color]) => ({
             props: { color, disableRipple: false },
             style: {

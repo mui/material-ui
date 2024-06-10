@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme,
-  createTheme,
-} from '@mui/material/styles';
+import { CssVarsProvider, extendTheme, createTheme } from '@mui/material/styles';
 import { cyan } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';

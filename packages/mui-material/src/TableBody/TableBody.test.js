@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import TableBody, { tableBodyClasses as classes } from '@mui/material/TableBody';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import describeConformance from '../../test/describeConformance';

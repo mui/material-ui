@@ -73,14 +73,7 @@ function ColorToken({ name, value }: { name: string; value: string }) {
     <div>
       <Box
         ref={ref}
-        sx={{
-          borderRadius: 'sm',
-          bgcolor: value,
-          width: 64,
-          height: 64,
-          mb: 1,
-          boxShadow: 'sm',
-        }}
+        sx={{ borderRadius: 'sm', bgcolor: value, width: 64, height: 64, mb: 1, boxShadow: 'sm' }}
       />
       <Typography level="body-xs">{name}</Typography>
       <Typography level="body-xs">{color}</Typography>

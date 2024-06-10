@@ -78,11 +78,7 @@ export default function ExampleTextareaComment() {
             <Button sx={{ ml: 'auto' }}>Send</Button>
           </Box>
         }
-        sx={{
-          minWidth: 300,
-          fontWeight,
-          fontStyle: italic ? 'italic' : 'initial',
-        }}
+        sx={{ minWidth: 300, fontWeight, fontStyle: italic ? 'italic' : 'initial' }}
       />
     </FormControl>
   );

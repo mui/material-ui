@@ -358,11 +358,11 @@ export interface AutocompleteProps<
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Autocomplete](https://next.mui.com/material-ui/react-autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
+ * - [Autocomplete API](https://next.mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
   Value,
@@ -372,4 +372,4 @@ export default function Autocomplete<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >(
   props: AutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-): JSX.Element;
+): React.JSX.Element;

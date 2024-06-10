@@ -56,11 +56,11 @@ export default function SponsorCard(props: {
         slotProps={{ img: { loading: 'lazy' } }}
       />
       <Box sx={{ ml: 2 }}>
-        <Typography variant="body2" fontWeight="bold">
+        <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
           {item.name}{' '}
           <LaunchRounded color="primary" sx={{ fontSize: 14, verticalAlign: 'middle', ml: 0.5 }} />
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {item.description}
         </Typography>
       </Box>

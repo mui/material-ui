@@ -176,15 +176,6 @@ const appList = [
     dateAdded: '2018-01-24',
   },
   {
-    title: 'LocalMonero',
-    description:
-      'A safe and easy-to-use person-to-person platform to allow anyone ' +
-      'to trade their local currency for Monero, anywhere.',
-    image: 'localmonero.jpg',
-    link: 'https://localmonero.co/?rc=ogps',
-    dateAdded: '2018-01-04',
-  },
-  {
     title: 'LessWrong',
     description: 'LessWrong is a community blog devoted to the art of human rationality.',
     image: 'lesswrong.jpg',
@@ -417,9 +408,9 @@ const appList = [
     dateAdded: '2019-03-25',
   },
   {
-    title: 'refine FineFoods demo',
+    title: 'Refine Foods demo',
     description: 'A full-featured Admin panel app',
-    image: 'refine-finefoods.png',
+    image: 'refine-foods.jpeg',
     link: 'https://example.mui.admin.refine.dev/',
     source: 'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
     stars: 2415,
@@ -458,7 +449,7 @@ export default function Showcase() {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
-        <Typography variant="body2" color="text.secondary" fontWeight="semiBold">
+        <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 'semiBold' }}>
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'Sort by:'}
         </Typography>
@@ -523,8 +514,8 @@ export default function Showcase() {
                     <Typography
                       component="h2"
                       variant="body1"
-                      fontWeight="semiBold"
                       sx={{
+                        fontWeight: 'semiBold',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
@@ -541,15 +532,19 @@ export default function Showcase() {
                         </IconButton>
                       ) : null}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" flexGrow={1}>
+                    <Typography variant="body2" sx={{ color: 'text.secondary', flexGrow: 1 }}>
                       {app.description}
                     </Typography>
                     <Typography
                       variant="caption"
-                      fontWeight="semiBold"
-                      color="text.secondary"
-                      mt={1}
-                      sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+                      sx={{
+                        fontWeight: 'semiBold',
+                        color: 'text.secondary',
+                        mt: 1,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 0.5,
+                      }}
                     >
                       <CalendarMonthRoundedIcon sx={{ fontSize: 17, opacity: 0.8 }} />
                       {app.dateAdded}

@@ -54,7 +54,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main)
+        .filter(([, value]) => value && value.main)
         .map(([color]) => ({
           props: { color },
           style: {
@@ -290,8 +290,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
