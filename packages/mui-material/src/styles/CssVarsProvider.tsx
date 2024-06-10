@@ -1,4 +1,3 @@
-'use client';
 import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
