@@ -447,7 +447,7 @@ importers:
         version: 7.24.7(@babel/core@7.24.7)
       '@pigment-css/vite-plugin':
         specifier: ^0.0.12
-        version: 0.0.12(@types/react@18.2.55)(react@18.2.0)(vite@5.2.12(@types/node@18.19.34)(terser@5.29.2))
+        version: 0.0.12(@types/react@18.2.55)(react@18.2.0)(vite@5.2.13(@types/node@18.19.34)(terser@5.29.2))
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -456,7 +456,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.3.0
-        version: 4.3.0(vite@5.2.12(@types/node@18.19.34)(terser@5.29.2))
+        version: 4.3.0(vite@5.2.13(@types/node@18.19.34)(terser@5.29.2))
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
@@ -464,11 +464,11 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       vite:
-        specifier: 5.2.12
-        version: 5.2.12(@types/node@18.19.34)(terser@5.29.2)
+        specifier: 5.2.13
+        version: 5.2.13(@types/node@18.19.34)(terser@5.29.2)
       vite-plugin-pages:
         specifier: ^0.32.2
-        version: 0.32.2(react-router@6.23.1(react@18.2.0))(vite@5.2.12(@types/node@18.19.34)(terser@5.29.2))
+        version: 0.32.2(react-router@6.23.1(react@18.2.0))(vite@5.2.13(@types/node@18.19.34)(terser@5.29.2))
 
   benchmark:
     dependencies:
@@ -12014,8 +12014,8 @@ packages:
       vue-router:
         optional: true
 
-  vite@5.2.12:
-    resolution: {integrity: sha512-/gC8GxzxMK5ntBwb48pR32GGhENnjtY30G4A0jemunsBkiEZFw60s8InGpN8gkhHEkjnRK1aSAxeQgwvFhUHAA==}
+  vite@5.2.13:
+    resolution: {integrity: sha512-SSq1noJfY9pR3I1TUENL3rQYDQCFqgD+lM6fTRAM8Nv6Lsg5hDLaXkjETVeBt+7vZBCMoibD+6IWnT2mJ+Zb/A==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -15116,7 +15116,7 @@ snapshots:
       - react
       - supports-color
 
-  '@pigment-css/vite-plugin@0.0.12(@types/react@18.2.55)(react@18.2.0)(vite@5.2.12(@types/node@18.19.34)(terser@5.29.2))':
+  '@pigment-css/vite-plugin@0.0.12(@types/react@18.2.55)(react@18.2.0)(vite@5.2.13(@types/node@18.19.34)(terser@5.29.2))':
     dependencies:
       '@babel/core': 7.24.7
       '@babel/preset-typescript': 7.24.7(@babel/core@7.24.7)
@@ -15124,7 +15124,7 @@ snapshots:
       '@wyw-in-js/shared': 0.5.3
       '@wyw-in-js/transform': 0.5.3
       babel-plugin-define-var: 0.1.0
-      vite: 5.2.12(@types/node@18.19.34)(terser@5.29.2)
+      vite: 5.2.13(@types/node@18.19.34)(terser@5.29.2)
     transitivePeerDependencies:
       - '@types/react'
       - react
@@ -16219,14 +16219,14 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitejs/plugin-react@4.3.0(vite@5.2.12(@types/node@18.19.34)(terser@5.29.2))':
+  '@vitejs/plugin-react@4.3.0(vite@5.2.13(@types/node@18.19.34)(terser@5.29.2))':
     dependencies:
       '@babel/core': 7.24.7
       '@babel/plugin-transform-react-jsx-self': 7.24.6(@babel/core@7.24.7)
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.7)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.2.12(@types/node@18.19.34)(terser@5.29.2)
+      vite: 5.2.13(@types/node@18.19.34)(terser@5.29.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -24354,7 +24354,7 @@ snapshots:
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
 
-  vite-plugin-pages@0.32.2(react-router@6.23.1(react@18.2.0))(vite@5.2.12(@types/node@18.19.34)(terser@5.29.2)):
+  vite-plugin-pages@0.32.2(react-router@6.23.1(react@18.2.0))(vite@5.2.13(@types/node@18.19.34)(terser@5.29.2)):
     dependencies:
       '@types/debug': 4.1.12
       debug: 4.3.4(supports-color@8.1.1)
@@ -24364,14 +24364,14 @@ snapshots:
       json5: 2.2.3
       local-pkg: 0.5.0
       picocolors: 1.0.1
-      vite: 5.2.12(@types/node@18.19.34)(terser@5.29.2)
+      vite: 5.2.13(@types/node@18.19.34)(terser@5.29.2)
       yaml: 2.4.2
     optionalDependencies:
       react-router: 6.23.1(react@18.2.0)
     transitivePeerDependencies:
       - supports-color
 
-  vite@5.2.12(@types/node@18.19.34)(terser@5.29.2):
+  vite@5.2.13(@types/node@18.19.34)(terser@5.29.2):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
