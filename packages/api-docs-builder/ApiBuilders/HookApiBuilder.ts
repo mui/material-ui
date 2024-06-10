@@ -192,7 +192,7 @@ async function annotateHookDefinition(
     },
 
     ExportNamedDeclaration(babelPath) {
-      let node = babelPath.node;
+      let node: babel.Node = babelPath.node;
 
       if (babel.types.isTSDeclareFunction(node.declaration)) {
         // export function useHook() in .d.ts
