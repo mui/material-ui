@@ -142,11 +142,15 @@ function Analytics() {
 
   const codeVariant = usePersistCodeVariant();
   React.useEffect(() => {
-    window.ga('set', 'dimension1', codeVariant);
+    window.gtag('set', 'user_properties', {
+      codeVariant,
+    });
   }, [codeVariant]);
 
   React.useEffect(() => {
-    window.ga('set', 'dimension2', options.userLanguage);
+    window.gtag('set', 'user_properties', {
+      userLanguage: options.userLanguage,
+    });
   }, [options.userLanguage]);
 
   React.useEffect(() => {
@@ -160,7 +164,9 @@ function Analytics() {
      * Adjusted to track 3 or more different ratios
      */
     function trackDevicePixelRation() {
-      window.ga('set', 'dimension3', Math.round(window.devicePixelRatio * 10) / 10);
+      window.gtag('set', 'user_properties', {
+        devicePixelRatio: Math.round(window.devicePixelRatio * 10) / 10,
+      });
 
       matchMedia = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
       // Need to setup again.

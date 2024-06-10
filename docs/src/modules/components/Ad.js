@@ -76,8 +76,7 @@ const inHouseAds = [
   },
   {
     name: 'themes',
-    link:
-      'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
+    link: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
     img: '/static/ads-in-house/themes.png',
     description:
       '<b>Premium Themes</b>. Kickstart your application development with a ready-made theme.',
@@ -194,9 +193,7 @@ function Ad(props) {
     }
 
     const delay = setTimeout(() => {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'ad',
+      window.gtag('event', 'ad', {
         eventAction: 'display',
         eventLabel,
       });
