@@ -1,17 +1,12 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
-// import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-// import Chip from '@mui/material/Chip';
-// import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-// import IconImage from 'docs/src/components/icon/IconImage';
-import ROUTES from 'docs/src/route';
 import { Link } from '@mui/docs/Link';
+import ROUTES from 'docs/src/route';
 import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
-
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
@@ -44,34 +39,43 @@ function ProductItem({ active, href, description, name, icon }: ProductItemProps
     <Box
       component={Link}
       href={href}
-      sx={{
+      sx={(theme) => ({
         p: 1,
         pl: '6px',
         display: 'flex',
-        // flexDirection: 'column',
         alignItems: 'start',
         gap: '8px',
         flexGrow: 1,
-        backgroundColor: active ? 'rgba(15, 10, 222, 0.02)' : undefined,
-        borderRadius: '8px',
+        backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : undefined,
         border: '1px solid',
         borderColor: active ? 'primary.100' : 'transparent',
+        borderRadius: '8px',
         transition: '100ms ease-in background-color, border',
         '&:hover': {
-          backgroundColor: 'grey.50',
+          backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : 'grey.50',
           borderColor: 'divider',
         },
-      }}
+        ...theme.applyDarkStyles({
+          backgroundColor: active ? alpha(theme.palette.primary[900], 0.2) : undefined,
+          borderColor: active ? alpha(theme.palette.primary[300], 0.2) : 'transparent',
+          '&:hover': {
+            backgroundColor: active
+              ? alpha(theme.palette.primary[900], 0.3)
+              : alpha(theme.palette.primaryDark[700], 0.5),
+            borderColor: 'divider',
+          },
+        }),
+      })}
     >
       <Box
         sx={{
-          height: 21,
+          height: 21, // match the Typography component's line height
           width: 21,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           '& svg': {
-            ml: '0 !important',
+            ml: '0 !important', // to override the margin-left Link adds
           },
         }}
       >
