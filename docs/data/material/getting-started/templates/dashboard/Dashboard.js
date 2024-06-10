@@ -3,7 +3,7 @@ import * as React from 'react';
 import { createTheme, ThemeProvider, alpha } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import getDashboardTheme from './getDashboardTheme';
+import getDashboardTheme from './theme/getDashboardTheme';
 import ToggleCustomTheme from './internals/components/ToggleCustomTheme';
 import Copyright from './internals/components/Copyright';
 import Navbar from './components/Navbar';

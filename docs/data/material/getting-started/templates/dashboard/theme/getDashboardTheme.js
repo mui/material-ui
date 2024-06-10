@@ -1,18 +1,12 @@
 import * as React from 'react';
-import type {} from '@mui/material/themeCssVarsAugmentation';
-import { ThemeOptions, alpha, Theme } from '@mui/material/styles';
-import { PaletteMode, SvgIconProps } from '@mui/material';
-import type {} from '@mui/x-date-pickers/themeAugmentation';
-import type {} from '@mui/x-charts/themeAugmentation';
-import type {} from '@mui/x-data-grid/themeAugmentation';
-import type {} from '@mui/x-tree-view/themeAugmentation';
+import { alpha } from '@mui/material/styles';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { brand, getDesignTokens, gray, green, red } from './themePrimitives';
 
-export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
+export default function getDashboardTheme(mode) {
   return {
     ...getDesignTokens(mode),
     components: {
@@ -889,7 +883,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               fill: gray[500],
               fontWeight: 500,
             },
-            ...(theme as Omit<Theme, 'components'>).applyStyles('dark', {
+            ...theme.applyStyles('dark', {
               '& .MuiChartsAxis-line': {
                 stroke: gray[700],
               },
@@ -915,7 +909,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
             border: `1px solid ${theme.palette.divider}`,
             borderRadius: theme.shape.borderRadius,
             background: 'hsl(0, 0%, 100%)',
-            ...(theme as Omit<Theme, 'components'>).applyStyles('dark', {
+            ...theme.applyStyles('dark', {
               background: gray[900],
             }),
           }),
@@ -938,7 +932,7 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
               strokeDasharray: '4 2',
               strokeWidth: 0.8,
             },
-            ...(theme as Omit<Theme, 'components'>).applyStyles('dark', {
+            ...theme.applyStyles('dark', {
               '& .MuiChartsGrid-line': {
                 stroke: gray[700],
                 strokeDasharray: '4 2',
@@ -1118,9 +1112,9 @@ export default function getDashboardTheme(mode: PaletteMode): ThemeOptions {
       },
       MuiSelect: {
         defaultProps: {
-          IconComponent: React.forwardRef<SVGSVGElement, SvgIconProps>(
-            (props, ref) => <UnfoldMoreRoundedIcon {...props} ref={ref} />,
-          ),
+          IconComponent: React.forwardRef((props, ref) => (
+            <UnfoldMoreRoundedIcon {...props} ref={ref} />
+          )),
         },
         styleOverrides: {
           root: ({ theme }) => ({

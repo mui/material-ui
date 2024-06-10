@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { BarChart } from '@mui/x-charts/BarChart';
-import { gray } from '../themePrimitives';
+import { gray } from '../theme/themePrimitives';
 
 const colorPaletteLight = [gray[700], gray[500], gray[300]];
 const colorPalette = (mode) =>
