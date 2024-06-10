@@ -199,7 +199,7 @@ async function annotateHookDefinition(
         if (node.declaration.id?.name !== fileName) {
           return;
         }
-      } else if (!node.declaration) {
+      } else if (node.declaration == null) {
         // export { useHook };
 
         node.specifiers.forEach((specifier) => {
