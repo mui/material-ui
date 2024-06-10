@@ -6,13 +6,15 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 export default function AppFrameBanner() {
-  const pageContext = React.useContext(PageContext);
-  const productName = convertProductIdToName(pageContext) || 'MUI';
-  const message = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;
-
   if (!FEATURE_TOGGLE.enable_docsnav_banner) {
     return null;
   }
+
+  // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+  // eslint-disable-next-line react-hooks/rules-of-hooks -- FEATURE_TOGGLE never changes
+  const pageContext = React.useContext(PageContext);
+  const productName = convertProductIdToName(pageContext) || 'MUI';
+  const message = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;
 
   if (process.env.NODE_ENV !== 'production') {
     if (message.length > 100) {
