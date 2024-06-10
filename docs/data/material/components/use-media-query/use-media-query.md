@@ -25,7 +25,7 @@ The media query string can be any valid CSS media query, for example [`'(prefers
 
 ⚠️ You can't use `'print'` per browsers limitation, for example [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Using Material UI's breakpoint helpers
+## Using breakpoint helpers
 
 You can use Material UI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
 
