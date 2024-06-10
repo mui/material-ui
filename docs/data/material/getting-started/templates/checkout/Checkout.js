@@ -132,13 +132,7 @@ export default function Checkout() {
             gap: 4,
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'end',
-              height: 150,
-            }}
-          >
+          <Box sx={{ display: 'flex', alignItems: 'end', height: 150 }}>
             <Button
               startIcon={<ArrowBackRoundedIcon />}
               component="a"
@@ -220,17 +214,11 @@ export default function Checkout() {
               <Stepper
                 id="desktop-stepper"
                 activeStep={activeStep}
-                sx={{
-                  width: '100%',
-                  height: 40,
-                }}
+                sx={{ width: '100%', height: 40 }}
               >
                 {steps.map((label) => (
                   <Step
-                    sx={{
-                      ':first-child': { pl: 0 },
-                      ':last-child': { pr: 0 },
-                    }}
+                    sx={{ ':first-child': { pl: 0 }, ':last-child': { pr: 0 } }}
                     key={label}
                   >
                     <StepLabel>{label}</StepLabel>
@@ -239,12 +227,7 @@ export default function Checkout() {
               </Stepper>
             </Box>
           </Box>
-          <Card
-            sx={{
-              display: { xs: 'flex', md: 'none' },
-              width: '100%',
-            }}
-          >
+          <Card sx={{ display: { xs: 'flex', md: 'none' }, width: '100%' }}>
             <CardContent
               sx={{
                 display: 'flex',
@@ -303,17 +286,14 @@ export default function Checkout() {
               <Stack spacing={2} useFlexGap>
                 <Typography variant="h1">📦</Typography>
                 <Typography variant="h5">Thank you for your order!</Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant="body1" sx={{ color: 'text.secondary' }}>
                   Your order number is
                   <strong>&nbsp;#140396</strong>. We have emailed your order
                   confirmation and will update you once its shipped.
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{
-                    alignSelf: 'start',
-                    width: { xs: '100%', sm: 'auto' },
-                  }}
+                  sx={{ alignSelf: 'start', width: { xs: '100%', sm: 'auto' } }}
                 >
                   Go to my orders
                 </Button>
@@ -339,9 +319,7 @@ export default function Checkout() {
                       startIcon={<ChevronLeftRoundedIcon />}
                       onClick={handleBack}
                       variant="text"
-                      sx={{
-                        display: { xs: 'none', sm: 'flex' },
-                      }}
+                      sx={{ display: { xs: 'none', sm: 'flex' } }}
                     >
                       Previous
                     </Button>
@@ -353,9 +331,7 @@ export default function Checkout() {
                       onClick={handleBack}
                       variant="outlined"
                       fullWidth
-                      sx={{
-                        display: { xs: 'flex', sm: 'none' },
-                      }}
+                      sx={{ display: { xs: 'flex', sm: 'none' } }}
                     >
                       Previous
                     </Button>
@@ -365,9 +341,7 @@ export default function Checkout() {
                     variant="contained"
                     endIcon={<ChevronRightRoundedIcon />}
                     onClick={handleNext}
-                    sx={{
-                      width: { xs: '100%', sm: 'fit-content' },
-                    }}
+                    sx={{ width: { xs: '100%', sm: 'fit-content' } }}
                   >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>

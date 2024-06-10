@@ -63,7 +63,7 @@ const Item = styled(
         marginTop: theme.spacing(1),
         textTransform: 'uppercase',
         letterSpacing: '.1rem',
-        fontWeight: theme.typography.fontWeightBold,
+        fontWeight: theme.typography.fontWeightSemiBold,
         fontSize: theme.typography.pxToRem(11),
         '&::before': {
           content: '""',
@@ -144,7 +144,7 @@ const Item = styled(
     theme.applyDarkStyles({
       ...color,
       '&::before': {
-        background: alpha(theme.palette.primaryDark[500], 0.3),
+        background: (theme.vars || theme).palette.primaryDark[700],
       },
       '&.app-drawer-active': {
         color: (theme.vars || theme).palette.primary[300],
@@ -159,7 +159,7 @@ const Item = styled(
       },
       ...(subheader && {
         '&::before': {
-          background: alpha(theme.palette.primaryDark[700], 0.6),
+          background: (theme.vars || theme).palette.primaryDark[700],
         },
         '&::after': {
           background: alpha(theme.palette.primaryDark[700], 0.8),

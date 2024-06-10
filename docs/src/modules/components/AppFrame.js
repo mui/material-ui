@@ -22,7 +22,7 @@ import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
-import MuiLogoMenu from 'docs/src/components/action/MuiLogoMenu';
+import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 
 const nProgressStart = debounce(() => {
@@ -160,7 +160,7 @@ export default function AppFrame(props) {
   const closeDrawer = React.useCallback(() => setMobileOpen(false), []);
   const openDrawer = React.useCallback(() => setMobileOpen(true), []);
 
-  const { activePage } = React.useContext(PageContext);
+  const { activePage, productIdentifier } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
@@ -181,7 +181,7 @@ export default function AppFrame(props) {
             },
           }}
         />
-        <Stack direction="row" alignItems="center" sx={{ position: 'relative', width: '100%' }}>
+        <Stack direction="row" sx={{ alignItems: 'center', position: 'relative', width: '100%' }}>
           <NavIconButton
             edge="start"
             color="primary"
@@ -194,7 +194,12 @@ export default function AppFrame(props) {
             <SvgHamburgerMenu />
           </NavIconButton>
           <Box sx={{ display: { md: 'flex', lg: 'none' } }}>
-            <MuiLogoMenu marginLeft />
+            <LogoWithCopyMenu
+              logo={productIdentifier.logo}
+              logoSvgString={productIdentifier.logoSvg}
+              wordmarkSvgString={productIdentifier.wordmarkSvg}
+              marginLeft
+            />
           </Box>
           <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
             <BannerComponent />

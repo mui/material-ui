@@ -16,18 +16,22 @@ export default function TeamStatistics() {
           <Typography
             component="p"
             variant="h4"
-            fontWeight="bold"
-            sx={(theme) => ({
-              textAlign: { xs: 'left', sm: 'center' },
-              color: 'primary.main',
-              ...theme.applyDarkStyles({
-                color: 'primary.200',
+            sx={[
+              {
+                fontWeight: 'bold',
+              },
+              (theme) => ({
+                textAlign: { xs: 'left', sm: 'center' },
+                color: 'primary.main',
+                ...theme.applyDarkStyles({
+                  color: 'primary.200',
+                }),
               }),
-            })}
+            ]}
           >
             {item.number}
           </Typography>
-          <Typography color="text.secondary" sx={{ textAlign: { xs: 'left', sm: 'center' } }}>
+          <Typography sx={{ color: 'text.secondary', textAlign: { xs: 'left', sm: 'center' } }}>
             {item.metadata}
           </Typography>
         </Box>

@@ -24,9 +24,7 @@ export default function DividerInCard() {
         variant="outlined"
         sx={{ width: 400, maxWidth: '100%', gap: 1.5 }}
       >
-        <Typography fontSize="lg" fontWeight="md">
-          Headline
-        </Typography>
+        <Typography sx={{ fontSize: 'lg', fontWeight: 'md' }}>Headline</Typography>
         <Divider />
         <Box sx={{ display: orientation === 'horizontal' ? 'block' : 'contents' }}>
           <Typography level="body-sm">

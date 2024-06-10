@@ -79,7 +79,6 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
         marginLeft: 'auto',
         boxSizing: 'border-box',
         marginRight: 'auto',
-        display: 'block', // Fix IE11 layout when used with main.
         ...(!ownerState.disableGutters && {
           paddingLeft: theme.spacing(2),
           paddingRight: theme.spacing(2),
