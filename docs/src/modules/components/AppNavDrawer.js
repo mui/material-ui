@@ -2,13 +2,18 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, ThemeProvider } from '@mui/material/styles';
+import { styled, alpha, ThemeProvider } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Fade from '@mui/material/Fade';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
@@ -53,57 +58,84 @@ const customButtonStyles = (theme) => ({
 });
 
 function ProductDrawerButton(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
 
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleEventDelegation = (event) => {
-    // Assert whether an 'a' tag resides in the parent of the clicked element through which the event bubbles out.
-    const isLinkInParentTree = Boolean(event.target.closest('a'));
-    // If the element clicked is link or just inside of a link element then close the menu.
-    if (isLinkInParentTree) {
-      handleClose();
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
     }
+    setOpen(false);
   };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  }
 
   return (
     <React.Fragment>
       <Button
         size="small"
         id="mui-product-selector"
+        ref={anchorRef}
         aria-haspopup="true"
         aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
+        onClick={handleToggle}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
         sx={customButtonStyles}
       >
         {props.productName}
       </Button>
-      <Menu
-        id="mui-product-menu"
-        anchorEl={anchorEl}
+      <Popper
         open={open}
-        onClick={handleEventDelegation}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'mui-product-selector',
-        }}
-        PaperProps={{
-          sx: {
-            width: { xs: 340, sm: 'auto' },
-            p: 0,
-          },
-        }}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        placement="bottom-start"
+        disablePortal
+        transition
+        style={{ zIndex: 1200 }}
       >
-        <MuiProductSelector />
-      </Menu>
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={250}>
+            <Paper
+              variant="outlined"
+              sx={(theme) => ({
+                mt: 1,
+                minWidth: 600,
+                overflow: 'clip',
+                boxShadow: `0px 4px 16px ${alpha(theme.palette.grey[200], 0.8)}`,
+                '& ul': {
+                  margin: 0,
+                  padding: 0,
+                  listStyle: 'none',
+                },
+                ...theme.applyDarkStyles({
+                  bgcolor: 'primaryDark.900',
+                  boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.8)}`,
+                }),
+              })}
+            >
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList
+                  autoFocusItem={open}
+                  id="composition-menu"
+                  aria-labelledby="composition-button"
+                  onKeyDown={handleListKeyDown}
+                >
+                  <MuiProductSelector />
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Fade>
+        )}
+      </Popper>
     </React.Fragment>
   );
 }

@@ -217,11 +217,7 @@ export default function MuiProductSelector() {
           ))}
         </Box>
       </Box>
-      <Box
-        component="li"
-        role="none"
-        sx={{ p: 1, borderBottom: '1px solid', borderColor: 'divider' }}
-      >
+      <Box component="li" role="none" sx={{ p: 1 }}>
         <ProductItem
           name="Toolpad"
           href={ROUTES.toolpadStudioDocs}
