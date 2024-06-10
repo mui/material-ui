@@ -160,14 +160,7 @@ const openRolesData = [
   },
   {
     title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Advocate / Content Engineer',
-        description:
-          'You will strategize and implement educational initiatives from end to end to help developers build better UIs, faster.',
-        url: '/careers/developer-advocate/',
-      },
-    ],
+    roles: [],
   },
 ];
 
