@@ -92,7 +92,7 @@
     "@googleapis/sheets": "^7.0.1",
     "@netlify/functions": "^2.7.0",
     "@slack/bolt": "^3.18.0",
-    "execa": "^9.1.0",
+    "execa": "^9.2.0",
     "google-auth-library": "^9.10.0"
   },
   "devDependencies": {
