@@ -8,10 +8,11 @@ export default function Header() {
     <Stack
       direction="row"
       sx={{
+        width: '100%',
         alignItems: { xs: 'flex-start', md: 'center' },
         justifyContent: 'space-between',
-        px: 1,
         pt: 3,
+        maxWidth: { sm: '100%', md: '1700px' },
       }}
       spacing={2}
     >

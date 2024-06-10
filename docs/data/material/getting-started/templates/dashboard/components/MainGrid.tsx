@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import ChartUserByCountry from './ChartUserByCountry';
 import CustomizedTreeView from './CustomizedTreeView';
@@ -35,7 +36,7 @@ const data: StatCardProps[] = [
 
 export default function MainGrid() {
   return (
-    <React.Fragment>
+    <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
       {/* cards */}
 
       <Grid container spacing={2} columns={12}>
@@ -69,6 +70,6 @@ export default function MainGrid() {
           </Stack>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </Box>
   );
 }

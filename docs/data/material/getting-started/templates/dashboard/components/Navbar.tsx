@@ -72,7 +72,6 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
               justifyContent: { xs: 'flex-end', md: 'space-between' },
               flexGrow: 1,
               width: '100%',
-              pr: 2,
               maxWidth: { sm: '100%', md: '1700px' },
             }}
           >
