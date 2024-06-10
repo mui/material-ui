@@ -3,6 +3,7 @@ import { PaletteMode } from '@mui/material';
 import { createTheme, ThemeProvider, alpha } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import getDashboardTheme from './theme/getDashboardTheme';
 import ToggleCustomTheme from './internals/components/ToggleCustomTheme';
 import Copyright from './internals/components/Copyright';
@@ -28,34 +29,32 @@ export default function Dashboard() {
   return (
     <ThemeProvider theme={showCustomTheme ? dashboardTheme : defaultTheme}>
       <CssBaseline />
-      <Box sx={{ display: 'flex' }}>
-        <Navbar mode={mode} toggleColorMode={toggleColorMode} />
+      <Box
+        sx={(theme) => ({
+          display: 'flex',
+          backgroundColor: alpha(theme.palette.background.paper, 0.4),
+          height: '100vh',
+          overflow: 'auto',
+        })}
+      >
         <SideMenu />
-        <Box
+        <Navbar mode={mode} toggleColorMode={toggleColorMode} />
+        {/* Main content */}
+        <Stack
           component="main"
-          sx={(theme) => ({
-            backgroundColor: alpha(theme.palette.background.paper, 0.4),
+          sx={{
             flexGrow: 1,
-            height: '100vh',
-            overflow: 'auto',
-          })}
+            mx: 3,
+            py: 8,
+            alignItems: 'center',
+          }}
         >
-          {/* Main content */}
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              mx: 3,
-              py: 8,
-              gap: 2,
-              maxWidth: { sm: '100%', md: '1500px' },
-            }}
-          >
+          <Stack spacing={2} sx={{ maxWidth: { sm: '100%', md: '1700px' } }}>
             <Header />
             <MainGrid />
             <Copyright sx={{ my: 4 }} />
-          </Box>
-        </Box>
+          </Stack>
+        </Stack>
         <ToggleCustomTheme
           showCustomTheme={showCustomTheme}
           toggleCustomTheme={toggleCustomTheme}

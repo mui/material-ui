@@ -10,9 +10,10 @@ export default function Header() {
       sx={{
         alignItems: { xs: 'flex-start', md: 'center' },
         justifyContent: 'space-between',
-        gap: 2,
-        mt: 2,
+        px: 1,
+        pt: 3,
       }}
+      spacing={2}
     >
       <NavbarBreadcrumbs />
       <CustomDatePicker />

@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import MuiToolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
-
 import ToggleColorMode from './ToggleColorMode';
 import SideNav from './SideNav';
 import MenuButton from './MenuButton';
@@ -40,6 +39,8 @@ const Toolbar = styled(MuiToolbar)({
 
 export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
   const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -61,61 +62,63 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
         maxHeight: 64,
       })}
     >
-      <Toolbar variant="regular">
-        <Stack
-          direction="row"
-          sx={{
-            gap: 1,
-            alignItems: 'center',
-            justifyContent: { xs: 'flex-end', md: 'space-between' },
-            flexGrow: 1,
-            width: '100%',
-            display: { xs: 'none', md: 'flex' },
-            maxWidth: { sm: '100%', md: '1500px' },
-          }}
-        >
-          <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
-            <CustomIcon />
-            <Typography variant="h5" component="h1" color="text.primary">
-              Dashboard
-            </Typography>
-          </Stack>
+      <Toolbar variant="regular" sx={{ alignItems: 'center' }}>
+        {isDesktop ? (
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{
+              alignItems: 'center',
+              justifyContent: { xs: 'flex-end', md: 'space-between' },
+              flexGrow: 1,
+              width: '100%',
+              pr: 2,
+              maxWidth: { sm: '100%', md: '1700px' },
+            }}
+          >
+            <Stack direction="row" spacing={1} sx={{ justifyContent: 'center' }}>
+              <CustomIcon />
+              <Typography variant="h5" component="h1" color="text.primary">
+                Dashboard
+              </Typography>
+            </Stack>
 
-          <Stack direction="row" sx={{ gap: 1 }}>
-            <Search />
-            <MenuButton showBadge aria-label="Open notifications">
-              <NotificationsRoundedIcon />
+            <Stack direction="row" sx={{ gap: 1 }}>
+              <Search />
+              <MenuButton showBadge aria-label="Open notifications">
+                <NotificationsRoundedIcon />
+              </MenuButton>
+              <OptionsMenu />
+              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            </Stack>
+          </Stack>
+        ) : (
+          <Stack
+            direction="row"
+            sx={{
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexGrow: 1,
+              width: '100%',
+            }}
+          >
+            <Stack direction="row" spacing={1} sx={{ justifyContent: 'center' }}>
+              <CustomIcon />
+              <Typography variant="h4" component="h1" color="text.primary">
+                Dashboard
+              </Typography>
+            </Stack>
+            <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
+              <MenuRoundedIcon />
             </MenuButton>
-            <OptionsMenu />
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            <SideNav
+              open={open}
+              toggleDrawer={toggleDrawer}
+              mode={mode}
+              toggleColorMode={toggleColorMode}
+            />
           </Stack>
-        </Stack>
-        <Stack
-          direction="row"
-          sx={{
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexGrow: 1,
-            width: '100%',
-            display: { sm: 'flex', md: 'none' },
-          }}
-        >
-          <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
-            <CustomIcon />
-            <Typography variant="h4" component="h1" color="text.primary">
-              Dashboard
-            </Typography>
-          </Stack>
-          <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
-            <MenuRoundedIcon />
-          </MenuButton>
-          <SideNav
-            open={open}
-            toggleDrawer={toggleDrawer}
-            mode={mode}
-            toggleColorMode={toggleColorMode}
-          />
-        </Stack>
+        )}
       </Toolbar>
     </AppBar>
   );
