@@ -195,3 +195,4 @@ const StyledComponent = styled('button')(({ theme }) => ({
 - `defaultMode?: 'light' | 'dark' | 'system'`: - Application's default mode before React renders the tree (`light` by default)
 - `modeStorageKey?: string`: - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme
+- `nonce?: string` - Optional nonce passed to the injected script tag, used to allow-list the next-themes script in your CSP
