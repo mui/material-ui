@@ -2,13 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { extendSxProp } from '@mui/system/styleFunctionSx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, createUseThemeProps, internal_createExtendSxProp } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
 
 const useThemeProps = createUseThemeProps('MuiTypography');
+const extendSxProp = internal_createExtendSxProp();
 
 const useUtilityClasses = (ownerState) => {
   const { align, gutterBottom, noWrap, paragraph, variant, classes } = ownerState;
