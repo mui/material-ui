@@ -23,7 +23,7 @@ Add `dir="rtl"` to the app's root `<html>` tag to set the global text direction:
 If your React app doesn't control the root `<html>`, use the JavaScript API before the component tree is rendered, as a workaround:
 
 ```js
-document.dir = 'rtl';
+document.documentElement.setAttribute('dir', 'rtl');
 ```
 
 #### Locally
