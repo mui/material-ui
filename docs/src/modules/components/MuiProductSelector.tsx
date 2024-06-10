@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import Box, { BoxProps } from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
@@ -166,29 +166,28 @@ export default function MuiProductSelector() {
       <Box
         component="li"
         role="none"
-        sx={{ p: 1, borderBottom: '1px solid', borderColor: 'divider' }}
+        sx={{
+          p: 1,
+          display: 'grid',
+          gridTemplateColumns: {
+            xs: 'repeat(1, minmax(0, 1fr))',
+            sm: 'repeat(2, minmax(0, 1fr))',
+          },
+          gap: '4px',
+          borderBottom: '1px solid',
+          borderColor: 'divider',
+        }}
       >
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: {
-              xs: 'repeat(1, minmax(0, 1fr))',
-              sm: 'repeat(2, minmax(0, 1fr))',
-            },
-            gap: '4px',
-          }}
-        >
-          {coreProducts.map((product) => (
-            <ProductItem
-              key={product.name}
-              name={product.name}
-              description={product.description}
-              href={product.href}
-              icon={product.icon}
-              active={pageContext.productId === product.id}
-            />
-          ))}
-        </Box>
+        {coreProducts.map((product) => (
+          <ProductItem
+            key={product.name}
+            name={product.name}
+            description={product.description}
+            href={product.href}
+            icon={product.icon}
+            active={pageContext.productId === product.id}
+          />
+        ))}
       </Box>
       <Box
         component="li"
