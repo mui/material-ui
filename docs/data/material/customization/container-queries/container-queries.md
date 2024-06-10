@@ -1,4 +1,4 @@
-# Container Queries
+# Container queries
 
 <p class="description">Material UI provides a utility function for creating CSS container queries based on theme breakpoints.</p>
 
@@ -11,11 +11,11 @@ The value can be unitless (in which case it'll be rendered in pixels), a string,
 theme.containerQueries.up('sm'); // => '@container (min-width: 600px)'
 ```
 
+{{"demo": "BasicContainerQueries.js"}}
+
 :::info
 One of the ancestors must have the CSS container type specified.
 :::
-
-{{"demo": "BasicContainerQueries.js"}}
 
 ### Named containment contexts
 
@@ -32,25 +32,11 @@ When adding styles using the `sx` prop, use the `@<size>` or `@<size>/<name>` no
 - `<size>`: a width or a breakpoint key.
 - `<name>` (optional): a named containment context.
 
-For example:
-
-```js
-<Card
-  sx={{
-    display: 'flex',
-    flexDirection: {
-      '@': 'column', // @container (min-width: 0px)
-      '@250': 'row', // @container (min-width: 250px)
-    },
-  }}
-/>
-```
-
 {{"demo": "SxPropContainerQueries.js"}}
 
 ### Caveats
 
-- The `@` prefix with unitless value renders as `px`, so `@500` is equivalent to `500px`—but `@500px` is incorrect syntax and won't render correctly.
+- The `@` prefix with a unitless value renders as `px`, so `@500` is equivalent to `500px`—but `@500px` is incorrect syntax and won't render correctly.
 - `@` with no number renders as `0px`.
 - Container queries must share the same units (the sizes can be defined in any order), as shown below:
 
