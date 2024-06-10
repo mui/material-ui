@@ -38,18 +38,16 @@ export default function MainGrid() {
   return (
     <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
       {/* cards */}
-
       <Grid container spacing={2} columns={12}>
         {data.map((card, index) => (
-          <Grid xs={12} sm={6} md={3} lg={3}>
-            <StatCard key={index} {...card} />
+          <Grid key={index} xs={6} sm={3} md={2} lg={2.25}>
+            <StatCard {...card} />
           </Grid>
         ))}
         <Grid xs={12} sm={6} md={3} lg={3}>
           <HighlightedCard />
         </Grid>
       </Grid>
-
       <Grid
         container
         spacing={2}

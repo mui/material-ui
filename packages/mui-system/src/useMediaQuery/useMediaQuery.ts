@@ -72,27 +72,20 @@ function useMediaQueryOld(
   });
 
   useEnhancedEffect(() => {
-    let active = true;
-
     if (!matchMedia) {
       return undefined;
     }
 
     const queryList = matchMedia!(query);
     const updateMatch = () => {
-      // Workaround Safari wrong implementation of matchMedia
-      // TODO can we remove it?
-      // https://github.com/mui/material-ui/pull/17315#issuecomment-528286677
-      if (active) {
-        setMatch(queryList.matches);
-      }
+      setMatch(queryList.matches);
     };
+
     updateMatch();
-    // TODO: Use `addEventListener` once support for Safari < 14 is dropped
-    queryList.addListener(updateMatch);
+    queryList.addEventListener('change', updateMatch);
+
     return () => {
-      active = false;
-      queryList.removeListener(updateMatch);
+      queryList.removeEventListener('change', updateMatch);
     };
   }, [query, matchMedia]);
 
@@ -131,10 +124,9 @@ function useMediaQueryNew(
     return [
       () => mediaQueryList.matches,
       (notify: () => void) => {
-        // TODO: Use `addEventListener` once support for Safari < 14 is dropped
-        mediaQueryList.addListener(notify);
+        mediaQueryList.addEventListener('change', notify);
         return () => {
-          mediaQueryList.removeListener(notify);
+          mediaQueryList.removeEventListener('change', notify);
         };
       },
     ];
