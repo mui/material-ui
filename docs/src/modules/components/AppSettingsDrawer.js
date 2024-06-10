@@ -94,12 +94,12 @@ function ToggleVarTheme(props) {
 
 ToggleTheme.propTypes = {
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.oneOf(['light', 'system', 'dark']).isRequired,
+  value: PropTypes.oneOf(['light', 'system', 'dark']),
 };
 
 ToggleVarTheme.propTypes = {
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.oneOf(['light', 'system', 'dark']).isRequired,
+  value: PropTypes.oneOf(['light', 'system', 'dark']),
 };
 
 export default function AppSettingsDrawer(props) {

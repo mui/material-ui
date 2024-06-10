@@ -480,7 +480,11 @@ export function getThemedComponents(): ThemeOptions {
               '& * a': {
                 // !important is used here to override the anchor tag color coming from MarkdownElement
                 color: `${(theme.vars || theme).palette.success[900]} !important`,
-                textDecorationColor: `${alpha(theme.palette.success.main, 0.4)} !important`,
+                textDecorationColor: `${
+                  theme.vars
+                    ? `rgba(${theme.vars.palette.success.mainChannel} / 0.4)`
+                    : alpha(theme.palette.success.main, 0.4)
+                } !important`,
                 '&:hover': {
                   textDecorationColor: `${(theme.vars || theme).palette.success[900]} !important`,
                 },
