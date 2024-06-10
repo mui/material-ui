@@ -15,9 +15,9 @@ import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
 
-const iconStyles = (theme) => ({
-  fontSize: theme.typography.pxToRem(14),
-  color: (theme.vars || theme).palette.primary.main,
+const iconStyles = () => ({
+  fontSize: '.875rem',
+  color: 'primary.main',
 });
 
 const NavLabel = styled(Typography)(({ theme }) => ({
@@ -32,7 +32,7 @@ const NavLabel = styled(Typography)(({ theme }) => ({
 interface ProductItemProps {
   active?: boolean;
   description?: string;
-  href?: string;
+  href: string;
   icon?: React.ReactNode;
   name: string;
 }
