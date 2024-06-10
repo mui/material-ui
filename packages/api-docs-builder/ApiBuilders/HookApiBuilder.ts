@@ -192,14 +192,14 @@ async function annotateHookDefinition(
     },
 
     ExportNamedDeclaration(babelPath) {
-      let node: babel.Node = babelPath.node;
+      let node = babelPath.node;
 
       if (babel.types.isTSDeclareFunction(node.declaration)) {
         // export function useHook() in .d.ts
         if (node.declaration.id?.name !== fileName) {
           return;
         }
-      } else if (node.declaration == null) {
+      } else if (!node.declaration) {
         // export { useHook };
 
         node.specifiers.forEach((specifier) => {

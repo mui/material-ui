@@ -101,6 +101,7 @@
     "@babel/cli": "^7.24.7",
     "@babel/core": "^7.24.7",
     "@babel/node": "^7.24.7",
+    "@babel/parser": "^7.24.7",
     "@babel/plugin-transform-react-constant-elements": "^7.24.7",
     "@babel/plugin-transform-runtime": "^7.24.7",
     "@babel/preset-env": "^7.24.7",

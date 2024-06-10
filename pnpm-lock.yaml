@@ -53,6 +53,9 @@ importers:
       '@babel/node':
         specifier: ^7.24.7
         version: 7.24.7(@babel/core@7.24.7)
+      '@babel/parser':
+        specifier: ^7.24.7
+        version: 7.24.7
       '@babel/plugin-transform-react-constant-elements':
         specifier: ^7.24.7
         version: 7.24.7(@babel/core@7.24.7)
