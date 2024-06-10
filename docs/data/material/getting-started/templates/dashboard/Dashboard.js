@@ -36,8 +36,10 @@ export default function Dashboard() {
         <Box
           component="main"
           sx={(theme) => ({
+            flexGrow: 1,
+            position: 'relative',
+            height: 'calc(100vh - 64px)',
             backgroundColor: alpha(theme.palette.background.paper, 0.4),
-            height: '100vh',
             overflow: 'auto',
           })}
         >
