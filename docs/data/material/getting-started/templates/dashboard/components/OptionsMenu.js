@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
@@ -6,7 +7,6 @@ import { MenuItem as MuiMenuItem } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import MenuButton from './MenuButton';
-import { styled } from '@mui/material/styles';
 
 const MenuItem = styled(MuiMenuItem)({
   margin: '2px 0',
