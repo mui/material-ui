@@ -168,7 +168,16 @@ export default function MuiProductSelector() {
         role="none"
         sx={{ p: 1, borderBottom: '1px solid', borderColor: 'divider' }}
       >
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '4px' }}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: 'repeat(1, minmax(0, 1fr))',
+              sm: 'repeat(2, minmax(0, 1fr))',
+            },
+            gap: '4px',
+          }}
+        >
           {coreProducts.map((product) => (
             <ProductItem
               key={product.name}
@@ -187,7 +196,16 @@ export default function MuiProductSelector() {
         sx={{ p: 1, borderBottom: '1px solid', borderColor: 'divider' }}
       >
         <NavLabel>MUI X Components</NavLabel>
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '4px' }}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: 'repeat(1, minmax(0, 1fr))',
+              sm: 'repeat(2, minmax(0, 1fr))',
+            },
+            gap: '4px',
+          }}
+        >
           {advancedProducts.map((product) => (
             <ProductItem
               key={product.name}
