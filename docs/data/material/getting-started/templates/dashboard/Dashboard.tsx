@@ -37,6 +37,7 @@ export default function Dashboard() {
           component="main"
           sx={(theme) => ({
             flexGrow: 1,
+            top: '64px',
             position: 'relative',
             height: 'calc(100vh - 64px)',
             backgroundColor: alpha(theme.palette.background.paper, 0.4),
