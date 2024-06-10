@@ -39,7 +39,7 @@ module.exports = function setKarmaConfig(config) {
       'karma-chrome-launcher',
       'karma-sourcemap-loader',
       'karma-webpack',
-      '@mui-internal/test-utils/KarmaReporterReactProfiler',
+      '@mui/internal-test-utils/KarmaReporterReactProfiler',
     ],
     /**
      * possible values:

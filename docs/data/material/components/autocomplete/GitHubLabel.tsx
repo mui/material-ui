@@ -164,13 +164,14 @@ export default function GitHubLabel() {
         <ClickAwayListener onClickAway={handleClose}>
           <div>
             <Box
-              sx={{
-                borderBottom: `1px solid ${
-                  theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
-                }`,
+              sx={(t) => ({
+                borderBottom: `1px solid ${'#30363d'}`,
                 padding: '8px 10px',
                 fontWeight: 600,
-              }}
+                ...t.applyStyles('light', {
+                  borderBottom: `1px solid ${'#eaecef'}`,
+                }),
+              })}
             >
               Apply labels to this pull request
             </Box>
@@ -222,13 +223,15 @@ export default function GitHubLabel() {
                     style={{ backgroundColor: option.color }}
                   />
                   <Box
-                    sx={{
+                    sx={(t) => ({
                       flexGrow: 1,
                       '& span': {
-                        color:
-                          theme.palette.mode === 'light' ? '#586069' : '#8b949e',
+                        color: '#8b949e',
+                        ...t.applyStyles('light', {
+                          color: '#586069',
+                        }),
                       },
-                    }}
+                    })}
                   >
                     {option.name}
                     <br />

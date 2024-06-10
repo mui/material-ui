@@ -36,7 +36,7 @@ export default function CardLayers3d() {
           borderColor: '#000',
         }}
       >
-        <Typography level="h2" fontSize="lg" textColor="#000">
+        <Typography level="h2" textColor="#000" sx={{ fontSize: 'lg' }}>
           Card
         </Typography>
         <CardCover
@@ -48,7 +48,7 @@ export default function CardLayers3d() {
             backdropFilter: 'blur(1px)',
           }}
         >
-          <Typography level="h2" fontSize="lg" textColor="#fff">
+          <Typography level="h2" textColor="#fff" sx={{ fontSize: 'lg' }}>
             Card Cover
           </Typography>
         </CardCover>
@@ -62,7 +62,7 @@ export default function CardLayers3d() {
             backdropFilter: 'blur(1px)',
           }}
         >
-          <Typography level="h2" fontSize="lg" textColor="#fff" m={2}>
+          <Typography level="h2" textColor="#fff" sx={{ fontSize: 'lg', m: 2 }}>
             Card Content
           </Typography>
         </CardContent>

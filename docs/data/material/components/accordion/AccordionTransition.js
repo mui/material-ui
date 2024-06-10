@@ -20,10 +20,30 @@ export default function AccordionTransition() {
         onChange={handleExpansion}
         slots={{ transition: Fade }}
         slotProps={{ transition: { timeout: 400 } }}
-        sx={{
-          '& .MuiAccordion-region': { height: expanded ? 'auto' : 0 },
-          '& .MuiAccordionDetails-root': { display: expanded ? 'block' : 'none' },
-        }}
+        sx={[
+          expanded
+            ? {
+                '& .MuiAccordion-region': {
+                  height: 'auto',
+                },
+              }
+            : {
+                '& .MuiAccordion-region': {
+                  height: 0,
+                },
+              },
+          expanded
+            ? {
+                '& .MuiAccordionDetails-root': {
+                  display: 'block',
+                },
+              }
+            : {
+                '& .MuiAccordionDetails-root': {
+                  display: 'none',
+                },
+              },
+        ]}
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

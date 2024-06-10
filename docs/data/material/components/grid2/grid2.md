@@ -9,10 +9,10 @@ materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 
 <p class="description">The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
-
 The `Grid` component works well for a layout with a known number of columns.
 The columns can be configured with multiple breakpoints to specify the column span of each child.
+
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## What's changed
 
@@ -112,7 +112,6 @@ Responsive values are supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all other [MUI System props](#system-props)
 
 ## Auto-layout
 

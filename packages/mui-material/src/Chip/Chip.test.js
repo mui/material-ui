@@ -8,7 +8,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
 import { ThemeProvider, createTheme, hexToRgb, extendTheme } from '@mui/material/styles';
@@ -444,20 +444,6 @@ describe('<Chip />', () => {
 
       expect(handleKeydown.callCount).to.equal(1);
       expect(handleKeydown.firstCall.returnValue).to.equal('p');
-    });
-
-    it('should unfocus when a esc key is pressed', () => {
-      const handleBlur = spy();
-      const { getByRole } = render(<Chip onBlur={handleBlur} onClick={() => {}} />);
-      const chip = getByRole('button');
-      act(() => {
-        chip.focus();
-      });
-
-      fireEvent.keyUp(chip, { key: 'Escape' });
-
-      expect(handleBlur.callCount).to.equal(1);
-      expect(chip).not.toHaveFocus();
     });
 
     it('should call onClick when `space` is released ', () => {

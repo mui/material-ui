@@ -38,12 +38,7 @@ function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
   });
 
   return (
-    <Box
-      sx={{
-        gridRow: 1,
-        gridColumn: 2,
-      }}
-    >
+    <Box sx={{ gridRow: 1, gridColumn: 2 }}>
       <List
         sx={{
           display: 'flex',

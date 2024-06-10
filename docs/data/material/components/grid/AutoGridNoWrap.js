@@ -20,14 +20,8 @@ const message = `Truncation should be conditionally applicable on this long line
 export default function AutoGridNoWrap() {
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
-      <StyledPaper
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
-        <Grid container flexWrap="nowrap" spacing={2}>
+      <StyledPaper sx={{ my: 1, mx: 'auto', p: 2 }}>
+        <Grid container spacing={2} sx={{ flexWrap: 'nowrap' }}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
@@ -36,14 +30,8 @@ export default function AutoGridNoWrap() {
           </Grid>
         </Grid>
       </StyledPaper>
-      <StyledPaper
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
-        <Grid container flexWrap="nowrap" spacing={2}>
+      <StyledPaper sx={{ my: 1, mx: 'auto', p: 2 }}>
+        <Grid container spacing={2} sx={{ flexWrap: 'nowrap' }}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
@@ -52,14 +40,8 @@ export default function AutoGridNoWrap() {
           </Grid>
         </Grid>
       </StyledPaper>
-      <StyledPaper
-        sx={{
-          my: 1,
-          mx: 'auto',
-          p: 2,
-        }}
-      >
-        <Grid container flexWrap="nowrap" spacing={2}>
+      <StyledPaper sx={{ my: 1, mx: 'auto', p: 2 }}>
+        <Grid container spacing={2} sx={{ flexWrap: 'nowrap' }}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
