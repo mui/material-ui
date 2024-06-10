@@ -329,7 +329,7 @@ export default function sxV6(file, api, options) {
               j.logicalExpression(
                 data.node.argument.operator,
                 data.node.argument.left,
-                data.node.argument.right,
+                data.buildStyle(data.node.argument.right),
               ),
             );
             if (data.deleteSelf) {
