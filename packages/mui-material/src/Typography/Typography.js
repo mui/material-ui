@@ -226,7 +226,7 @@ Typography.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
-   * @deprecated use the `component` prop instead.
+   * @deprecated use the `component` prop instead, or use variant="body2" to get the same behavior.
    */
   paragraph: PropTypes.bool,
   /**
