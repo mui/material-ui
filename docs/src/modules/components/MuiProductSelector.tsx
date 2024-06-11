@@ -47,7 +47,7 @@ interface ProductItemProps {
   name: string;
 }
 
-function ProductItem({ active, chip, href, description, name, icon }: ProductItemProps) {
+function ProductItem({ active, chip, description, href, icon, name }: ProductItemProps) {
   return (
     <Box
       component={Link}

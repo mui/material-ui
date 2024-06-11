@@ -110,7 +110,7 @@ function ProductDrawerButton(props) {
                 mt: 1,
                 minWidth: { xs: '100%', sm: 600 },
                 overflow: 'clip',
-                boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.15)}`,
+                boxShadow: `0 4px 16px ${alpha(theme.palette.common.black, 0.15)}`,
                 '& ul': {
                   margin: 0,
                   padding: 0,
