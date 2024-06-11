@@ -134,17 +134,14 @@ function Feedback({
             src={profile.avatarSrc}
             alt={`${profile.name}'s profile picture`}
             slotProps={{ img: { loading: 'lazy' } }}
-            sx={{
-              width: 36,
-              height: 36,
-            }}
+            sx={{ width: 36, height: 36 }}
           />
         </Box>
         <div>
-          <Typography variant="body2" fontWeight="semiBold" color="text.primary">
+          <Typography variant="body2" sx={{ fontWeight: 'semiBold', color: 'text.primary' }}>
             {profile.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {profile.role}
           </Typography>
         </div>

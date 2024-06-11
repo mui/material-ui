@@ -65,7 +65,7 @@ function createTheme(options = {}, ...args) {
     const traverse = (node, component) => {
       let key;
 
-      // eslint-disable-next-line guard-for-in, no-restricted-syntax
+      // eslint-disable-next-line guard-for-in
       for (key in node) {
         const child = node[key];
         if (stateClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {

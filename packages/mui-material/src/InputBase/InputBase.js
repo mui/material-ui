@@ -11,11 +11,10 @@ import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, createUseThemeProps, globalCss } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
@@ -184,12 +183,9 @@ export const InputBaseInput = styled('input', {
     display: 'block',
     // Make the flex item shrink with Firefox
     minWidth: 0,
-    width: '100%', // Fix IE11 width issue
-    animationName: 'mui-auto-fill-cancel',
-    animationDuration: '10ms',
+    flexGrow: 1,
     '&::-webkit-input-placeholder': placeholder,
     '&::-moz-placeholder': placeholder, // Firefox 19+
-    '&:-ms-input-placeholder': placeholder, // IE11
     '&::-ms-input-placeholder': placeholder, // Edge
     '&:focus': {
       outline: 0,
@@ -206,22 +202,27 @@ export const InputBaseInput = styled('input', {
     [`label[data-shrink=false] + .${inputBaseClasses.formControl} &`]: {
       '&::-webkit-input-placeholder': placeholderHidden,
       '&::-moz-placeholder': placeholderHidden, // Firefox 19+
-      '&:-ms-input-placeholder': placeholderHidden, // IE11
       '&::-ms-input-placeholder': placeholderHidden, // Edge
       '&:focus::-webkit-input-placeholder': placeholderVisible,
       '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
-      '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
       '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
     [`&.${inputBaseClasses.disabled}`]: {
       opacity: 1, // Reset iOS opacity
       WebkitTextFillColor: (theme.vars || theme).palette.text.disabled, // Fix opacity Safari bug
     },
-    '&:-webkit-autofill': {
-      animationDuration: '5000s',
-      animationName: 'mui-auto-fill',
-    },
     variants: [
+      {
+        props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
+        style: {
+          animationName: 'mui-auto-fill-cancel',
+          animationDuration: '10ms',
+          '&:-webkit-autofill': {
+            animationDuration: '5000s',
+            animationName: 'mui-auto-fill',
+          },
+        },
+      },
       {
         props: {
           size: 'small',
@@ -251,14 +252,10 @@ export const InputBaseInput = styled('input', {
   };
 });
 
-const inputGlobalStyles = (
-  <GlobalStyles
-    styles={{
-      '@keyframes mui-auto-fill': { from: { display: 'block' } },
-      '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
-    }}
-  />
-);
+const InputGlobalStyles = globalCss({
+  '@keyframes mui-auto-fill': { from: { display: 'block' } },
+  '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
+});
 
 /**
  * `InputBase` contains as few styles as possible.
@@ -390,13 +387,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   }, [value, checkDirty, isControlled]);
 
   const handleFocus = (event) => {
-    // Fix a bug with IE11 where the focus/blur events are triggered
-    // while the component is disabled.
-    if (fcs.disabled) {
-      event.stopPropagation();
-      return;
-    }
-
     if (onFocus) {
       onFocus(event);
     }
@@ -535,7 +525,12 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   return (
     <React.Fragment>
-      {!disableInjectingGlobalStyles && inputGlobalStyles}
+      {!disableInjectingGlobalStyles && typeof InputGlobalStyles === 'function' && (
+        // For Emotion/Styled-components, InputGlobalStyles will be a function
+        // For Pigment CSS, this has no effect because the InputGlobalStyles will be null.
+        <InputGlobalStyles />
+      )}
+
       <Root
         {...rootProps}
         ref={ref}

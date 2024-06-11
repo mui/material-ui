@@ -105,5 +105,29 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    describe('should not delete line breaks', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-line-break.actual.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-line-break.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-line-break.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-line-break.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
   });
 });

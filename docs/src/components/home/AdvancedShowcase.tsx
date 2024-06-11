@@ -1702,9 +1702,13 @@ export default function DataTable() {
           <XGridGlobalStyles />
           <Typography
             variant="body2"
-            color="text.primary"
-            fontWeight="semiBold"
-            sx={{ position: 'relative', textAlign: 'center', py: 1.5 }}
+            sx={{
+              color: 'text.primary',
+              fontWeight: 'semiBold',
+              position: 'relative',
+              textAlign: 'center',
+              py: 1.5,
+            }}
           >
             Trades, October 2020
           </Typography>

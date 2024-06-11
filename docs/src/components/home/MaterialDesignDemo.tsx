@@ -61,13 +61,7 @@ export default function MaterialDesignDemo(props: CardProps) {
               label={active ? 'Active' : 'Inactive'}
               color={active ? 'success' : 'default'}
               size="small"
-              sx={{
-                width: 'fit-content',
-                fontSize: 12,
-                height: 20,
-                px: 0,
-                zIndex: 2,
-              }}
+              sx={{ width: 'fit-content', fontSize: 12, height: 20, px: 0, zIndex: 2 }}
             />
             <Rating name="Rating component" defaultValue={4} size="small" />
           </Stack3>
