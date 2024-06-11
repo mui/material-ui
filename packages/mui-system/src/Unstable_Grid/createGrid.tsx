@@ -57,12 +57,6 @@ export default function createGrid(
     componentName = 'MuiGrid',
   } = options;
 
-  const GridOverflowContext = React.createContext<boolean | undefined>(undefined);
-
-  if (process.env.NODE_ENV !== 'production') {
-    GridOverflowContext.displayName = 'GridOverflowContext';
-  }
-
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
     const { container, direction, spacing, wrap, gridSize } = ownerState;
     const slots = {
@@ -95,7 +89,6 @@ export default function createGrid(
     const theme = useTheme();
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'> & GridOwnerState; // `color` type conflicts with html color attribute.
-    const overflow = React.useContext(GridOverflowContext);
     const {
       className,
       children,
@@ -107,15 +100,9 @@ export default function createGrid(
       spacing: spacingProp = 0,
       rowSpacing: rowSpacingProp = spacingProp,
       columnSpacing: columnSpacingProp = spacingProp,
-      disableEqualOverflow: themeDisableEqualOverflow,
       unstable_level: level = 0,
       ...rest
     } = props;
-    // Because `disableEqualOverflow` can be set from the theme's defaultProps, the **nested** grid should look at the instance props instead.
-    let disableEqualOverflow = themeDisableEqualOverflow;
-    if (level && themeDisableEqualOverflow !== undefined) {
-      disableEqualOverflow = inProps.disableEqualOverflow;
-    }
     // collect breakpoints related props because they can be customized from the theme.
     const gridSize = {} as GridOwnerState['gridSize'];
     const gridOffset = {} as GridOwnerState['gridOffset'];
@@ -149,13 +136,11 @@ export default function createGrid(
       columnSpacing,
       gridSize,
       gridOffset,
-      disableEqualOverflow: disableEqualOverflow ?? overflow ?? false, // use context value if exists.
-      parentDisableEqualOverflow: overflow, // for nested grid
     };
 
     const classes = useUtilityClasses(ownerState, theme);
 
-    let result = (
+    return (
       <GridRoot
         ref={ref}
         as={component}
@@ -173,19 +158,6 @@ export default function createGrid(
         })}
       </GridRoot>
     );
-
-    if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {
-      // There are 2 possibilities that should wrap with the GridOverflowContext to communicate with the nested grids:
-      // 1. It is the root grid with `disableEqualOverflow`.
-      // 2. It is a nested grid with different `disableEqualOverflow` from the context.
-      result = (
-        <GridOverflowContext.Provider value={disableEqualOverflow}>
-          {result}
-        </GridOverflowContext.Provider>
-      );
-    }
-
-    return result;
   }) as OverridableComponent<GridTypeMap>;
 
   Grid.propTypes /* remove-proptypes */ = {
@@ -209,7 +181,6 @@ export default function createGrid(
       PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
       PropTypes.object,
     ]),
-    disableEqualOverflow: PropTypes.bool,
     lg: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
     lgOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
     md: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
