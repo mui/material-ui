@@ -10,7 +10,7 @@ import Switch from '@mui/material/Switch';
 import IncreaseIcon from '@mui/icons-material/AddCircleOutline';
 import DecreaseIcon from '@mui/icons-material/RemoveCircleOutline';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 const minSpacing = 0;
 const maxSpacing = 20;
@@ -75,7 +75,7 @@ export default function DensityTool() {
           label={t('useHighDensity')}
         />
       </Grid>
-      <Grid container item alignItems="center" spacing={2}>
+      <Grid container item spacing={2} sx={{ alignItems: 'center' }}>
         <Grid item>
           <Typography id="input-slider" gutterBottom>
             {t('spacingUnit')}

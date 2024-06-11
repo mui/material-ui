@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AccordionSummary, { accordionSummaryClasses as classes } from '@mui/joy/AccordionSummary';
+import describeConformance from '../../test/describeConformance';
 
 describe('<AccordionSummary />', () => {
   const { render } = createRenderer();

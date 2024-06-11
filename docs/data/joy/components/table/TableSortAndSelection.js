@@ -65,22 +65,6 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 const headCells = [
   {
     id: 'name',
@@ -153,7 +137,6 @@ function EnhancedTableHead(props) {
                 textColor={active ? 'primary.plainColor' : undefined}
                 component="button"
                 onClick={createSortHandler(headCell.id)}
-                fontWeight="lg"
                 startDecorator={
                   headCell.numeric ? (
                     <ArrowDownwardIcon sx={{ opacity: active ? 1 : 0 }} />
@@ -165,6 +148,7 @@ function EnhancedTableHead(props) {
                   ) : null
                 }
                 sx={{
+                  fontWeight: 'lg',
                   '& svg': {
                     transition: '0.2s',
                     transform:
@@ -348,7 +332,8 @@ export default function TableSortAndSelection() {
           rowCount={rows.length}
         />
         <tbody>
-          {stableSort(rows, getComparator(order, orderBy))
+          {[...rows]
+            .sort(getComparator(order, orderBy))
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row, index) => {
               const isItemSelected = isSelected(row.name);
@@ -424,7 +409,7 @@ export default function TableSortAndSelection() {
                     <Option value={25}>25</Option>
                   </Select>
                 </FormControl>
-                <Typography textAlign="center" sx={{ minWidth: 80 }}>
+                <Typography sx={{ textAlign: 'center', minWidth: 80 }}>
                   {labelDisplayedRows({
                     from: rows.length === 0 ? 0 : page * rowsPerPage + 1,
                     to: getLabelDisplayedRowsTo(),

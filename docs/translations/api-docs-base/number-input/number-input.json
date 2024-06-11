@@ -9,7 +9,7 @@
     },
     "endAdornment": { "description": "Trailing adornment for this input." },
     "error": {
-      "description": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute on the input and the <code>Mui-error</code> class on the root element."
+      "description": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute on the input and the <code>baseui--error</code> class on the root element."
     },
     "id": { "description": "The id of the <code>input</code> element." },
     "max": { "description": "The maximum value." },
@@ -83,9 +83,9 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "input": "The component that renders the input.",
+    "decrementButton": "The component that renders the decrement button.",
     "incrementButton": "The component that renders the increment button.",
-    "decrementButton": "The component that renders the decrement button."
+    "input": "The component that renders the input.",
+    "root": "The component that renders the root."
   }
 }

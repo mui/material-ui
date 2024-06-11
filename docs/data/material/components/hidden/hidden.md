@@ -9,10 +9,10 @@ githubLabel: 'component: Hidden'
 # Hidden
 
 :::error
-The Hidden component was deprecated in Material UI v5.
+The Hidden component was deprecated in Material UI v5.
 To learn more, see [the Hidden section](/material-ui/migration/v5-component-changes/#hidden) of the migration docs.
 :::
 
 <p class="description"></p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}

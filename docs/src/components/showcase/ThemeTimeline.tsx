@@ -21,11 +21,12 @@ export default function BasicTimeline() {
           pb: 1,
           display: 'flex',
           alignItems: 'flex-start',
+          borderColor: 'grey.200',
           boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
             borderColor: 'primaryDark.700',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
           }),
         })}
       >
@@ -42,16 +43,19 @@ export default function BasicTimeline() {
             borderRadius: 0.3,
             bgcolor: 'primary.50',
             color: 'primary.600',
+            border: '1px solid',
+            borderColor: 'primary.100',
             ...theme.applyDarkStyles({
               bgcolor: 'primary.900',
               color: 'primary.50',
+              borderColor: 'primary.800',
             }),
           })}
         >
           1
         </Box>
         <Box sx={{ ml: 2, flex: 1 }}>
-          <Typography variant="body2" color="text.primary" gutterBottom>
+          <Typography variant="body2" gutterBottom sx={{ color: 'text.primary' }}>
             Install one of our production-ready libraries to get your next app started inevitably
             successful:
           </Typography>

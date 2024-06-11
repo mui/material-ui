@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 interface ComponentShowcaseCardProps {
   imgLoading?: 'eager';
@@ -58,8 +58,8 @@ export default function ComponentShowcaseCard(props: ComponentShowcaseCardProps)
           }),
         })}
       />
-      <Stack direction="row" justifyContent="space-between" sx={{ px: 2, py: 1.5 }}>
-        <Typography component="h2" variant="body2" fontWeight="semiBold">
+      <Stack direction="row" sx={{ justifyContent: 'space-between', px: 2, py: 1.5 }}>
+        <Typography component="h2" variant="body2" sx={{ fontWeight: 'semiBold' }}>
           {name}
         </Typography>
         <Stack direction="row" spacing={0.5} useFlexGap>

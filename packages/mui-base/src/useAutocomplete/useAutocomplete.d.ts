@@ -30,8 +30,8 @@ export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ?
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
   ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : DisableClearable extends true
-  ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
-  : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
+    ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+    : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
 
 export interface UseAutocompleteProps<
   Value,
@@ -341,11 +341,11 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/base-ui/react-autocomplete/#hook)
+ * - [Autocomplete](https://next.mui.com/base-ui/react-autocomplete/#hook)
  *
  * API:
  *
- * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
+ * - [useAutocomplete API](https://next.mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
  */
 export function useAutocomplete<
   Value,
@@ -411,7 +411,7 @@ export interface UseAutocompleteReturnValue<
    */
   getOptionProps: (
     renderedOption: UseAutocompleteRenderedOption<Value>,
-  ) => React.HTMLAttributes<HTMLLIElement>;
+  ) => React.HTMLAttributes<HTMLLIElement> & { key: any };
   /**
    * Id for the Autocomplete.
    */

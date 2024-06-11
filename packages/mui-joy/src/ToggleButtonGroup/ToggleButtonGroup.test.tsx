@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ToggleButtonGroup, { toggleButtonGroupClasses as classes } from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import Tooltip from '@mui/joy/Tooltip';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ToggleButtonGroup />', () => {
   const { render } = createRenderer();

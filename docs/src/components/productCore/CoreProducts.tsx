@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Section from 'docs/src/layouts/Section';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 
 // Note: All of the commented code will be put back in once logos for each Core product are done.
 
@@ -41,7 +41,14 @@ export default function CoreProducts() {
       <Grid container spacing={2}>
         {content.map(({ title, description, link }) => (
           <Grid key={title} item xs={12} md={6}>
-            <InfoCard link={link} title={title} description={description} />
+            <InfoCard
+              link={link}
+              title={title}
+              description={description}
+              titleProps={{
+                component: 'h2',
+              }}
+            />
           </Grid>
         ))}
       </Grid>

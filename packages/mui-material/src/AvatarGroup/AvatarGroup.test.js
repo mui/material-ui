@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup, { avatarGroupClasses as classes } from '@mui/material/AvatarGroup';
+import describeConformance from '../../test/describeConformance';
 
 describe('<AvatarGroup />', () => {
   const { render } = createRenderer();
@@ -20,15 +21,28 @@ describe('<AvatarGroup />', () => {
       muiName: 'MuiAvatarGroup',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { max: 10, spacing: 'small', variant: 'square' },
-      testLegacyComponentsProp: true,
+      slots: {
+        surplus: { expectedClassName: classes.avatar },
+      },
+      skip: ['componentsProp'],
+    }),
+  );
+
+  // test additionalAvatar slot separately
+  describeConformance(
+    <AvatarGroup max={2}>
+      <Avatar src="/fake.png" />
+      <Avatar src="/fake.png" />
+      <Avatar src="/fake.png" />
+    </AvatarGroup>,
+    () => ({
+      classes,
+      render,
+      muiName: 'MuiAvatarGroup',
       slots: {
         additionalAvatar: { expectedClassName: classes.avatar },
       },
-      skip: [
-        'componentsProp',
-        'slotsProp',
-        'slotPropsCallback', // not supported yet
-      ],
+      only: ['slotPropsProp'],
     }),
   );
 

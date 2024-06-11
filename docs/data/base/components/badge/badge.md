@@ -10,7 +10,7 @@ githubLabel: 'component: badge'
 
 <p class="description">The Badge component generates a small label that is attached to its child element.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -99,7 +99,7 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Badge content

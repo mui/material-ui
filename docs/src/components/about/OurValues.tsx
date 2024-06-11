@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
@@ -49,35 +49,28 @@ const values = [
 export default function OurValues() {
   return (
     <Section cozy>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
+      <SectionHeadline
+        overline="Our values"
+        title={
+          <Typography variant="h2">
+            The MUI <GradientText>team pact</GradientText>
+          </Typography>
+        }
+        description="They explain the behaviors and mindsets we actively encourage, discourage, and why. They serve as a guide toward better decision-making, results, and experiences at work."
+      />
+      <Button
+        component={Link}
+        noLinkStyle
+        href={ROUTES.handbook}
+        endIcon={<KeyboardArrowRightRounded fontSize="small" />}
+        variant="contained"
+        sx={{ width: { xs: '100%', sm: 'fit-content' } }}
       >
-        <SectionHeadline
-          overline="Our values"
-          title={
-            <Typography variant="h2">
-              The MUI <GradientText>team pact</GradientText>
-            </Typography>
-          }
-          description="They explain the behaviors and mindsets we actively encourage, discourage, and why. They serve as a guide toward better decision-making, results, and experiences at work."
-        />
-        <Button
-          component={Link}
-          noLinkStyle
-          href={ROUTES.handbook}
-          endIcon={<KeyboardArrowRightRounded fontSize="small" />}
-          variant="contained"
-          sx={{ width: { xs: '100%', sm: 'fit-content' } }}
-        >
-          View our handbook
-        </Button>
-      </Box>
+        View our handbook
+      </Button>
       <Grid container spacing={3} sx={{ mt: { xs: 1, sm: 2 } }}>
         {values.map(({ title, description, darkIcon, lightIcon, height, width }) => (
-          <Grid key={title} item xs={12} md={3}>
+          <Grid key={title} xs={12} md={3}>
             <Paper
               variant="outlined"
               sx={(theme) => ({
@@ -97,39 +90,47 @@ export default function OurValues() {
             >
               <Box sx={{ height: 94 }}>
                 <Box
-                  sx={(theme) => ({
-                    background: `${lightIcon}`,
-                    ...theme.applyDarkStyles({
-                      background: `${darkIcon}`,
+                  sx={[
+                    {
+                      width,
+                      height,
+                    },
+                    (theme) => ({
+                      background: `${lightIcon}`,
+                      ...theme.applyDarkStyles({
+                        background: `${darkIcon}`,
+                      }),
                     }),
-                  })}
-                  width={width}
-                  height={height}
+                  ]}
                 />
               </Box>
               <Box sx={{ flexGrow: 1 }}>
                 <Typography
-                  fontWeight="bold"
                   component="h3"
                   variant="body2"
-                  sx={(theme) => ({
-                    mb: 0.5,
-                    color: (theme.vars || theme).palette.text.primary,
-                    '&::first-letter': {
-                      mr: 0.1,
-                      fontSize: theme.typography.pxToRem(16),
-                      color: (theme.vars || theme).palette.primary.main,
+                  sx={[
+                    {
+                      fontWeight: 'bold',
                     },
-                    ...theme.applyDarkStyles({
+                    (theme) => ({
+                      mb: 0.5,
+                      color: (theme.vars || theme).palette.text.primary,
                       '&::first-letter': {
-                        color: (theme.vars || theme).palette.primary[400],
+                        mr: 0.1,
+                        fontSize: theme.typography.pxToRem(16),
+                        color: (theme.vars || theme).palette.primary.main,
                       },
+                      ...theme.applyDarkStyles({
+                        '&::first-letter': {
+                          color: (theme.vars || theme).palette.primary[400],
+                        },
+                      }),
                     }),
-                  })}
+                  ]}
                 >
                   {title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   {description}
                 </Typography>
               </Box>

@@ -42,8 +42,7 @@
     "strategy": {
       "type": { "name": "enum", "description": "'absolute'<br>&#124;&nbsp;'fixed'" },
       "default": "'absolute'"
-    },
-    "withTransition": { "type": { "name": "bool" }, "default": "false" }
+    }
   },
   "name": "Popup",
   "imports": [
@@ -55,19 +54,19 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": "MuiPopup-root"
+      "class": "base-Popup-root"
     }
   ],
   "classes": [
     {
       "key": "open",
-      "className": "Mui-open",
+      "className": "base--open",
       "description": "Class name applied to the root element when the popup is open.",
       "isGlobal": true
     }
   ],
   "spread": true,
-  "muiName": "MuiPopup",
+  "muiName": "Popup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Unstable_Popup/Popup.tsx",
   "inheritance": null,

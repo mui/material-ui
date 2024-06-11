@@ -13,7 +13,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 When activated, Tooltips display a text label identifying an element, such as a description of its function.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic tooltip
 
@@ -139,7 +139,7 @@ In order to work with Safari, you need at least one display block or flex item b
 {{"demo": "DisabledTooltips.js"}}
 
 :::warning
-If you're not wrapping a Material UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
+If you're not wrapping a Material UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
 :::
 
 ```jsx

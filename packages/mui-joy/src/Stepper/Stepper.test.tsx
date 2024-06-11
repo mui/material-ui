@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Stepper, { stepperClasses as classes } from '@mui/joy/Stepper';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Stepper />', () => {
   const { render } = createRenderer();

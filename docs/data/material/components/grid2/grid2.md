@@ -9,21 +9,21 @@ materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 
 <p class="description">The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
 The `Grid` component works well for a layout with a known number of columns.
 The columns can be configured with multiple breakpoints to specify the column span of each child.
+
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## What's changed
 
 We built the `Grid` component from scratch in order to:
 
-- Fix [known issues](https://github.com/mui/material-ui/pull/32746) introduced in Material UI v5.
+- Fix [known issues](https://github.com/mui/material-ui/pull/32746) introduced in Material UI v5.
 - Simplify the logic with CSS variables, removing the unnecessary `item` prop and reducing CSS specificity.
 - Introduce a proper fix for [preventing a scrollbar](#prevent-scrollbar) by switching between negative margin approaches.
 - Set negative margins of equal size on all sides of the grid container by default.
 
-Since the new implementation is considered a breaking change, we introduced it as `Unstable_Grid2` to gather feedbacks from the community before making it stable in the next major release of Material UI.
+Since the new implementation is considered a breaking change, we introduced it as `Unstable_Grid2` to gather feedbacks from the community before making it stable in the next major release of Material UI.
 
 We encourage everyone to try the new version of the `Grid` by visiting the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/).
 
@@ -52,7 +52,7 @@ The grid system is implemented with the `Grid` component:
 
 :::warning
 The `Grid` component is a _layout_ grid, not a _data_ grid.
-If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).
+If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).
 :::
 
 ## Fluid grids
@@ -112,7 +112,6 @@ Responsive values are supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all other [MUI System props](#system-props)
 
 ## Auto-layout
 
@@ -241,21 +240,6 @@ declare module '@mui/system' {
   }
 }
 ```
-
-## Disable the scrollbar
-
-If you use grid as a container in a small viewport, you might see a horizontal scrollbar because the negative margin is applied on all sides of the grid container.
-
-To disable this scrollbar, set the `disableEqualOverflow` prop to `true`.
-This removes the negative margins from the bottom and right sides of the grid to prevent overflow.
-
-The demo below shows how this works:
-
-{{"demo": "OverflowGrid.js", "bg": true}}
-
-:::warning
-You should avoid adding borders and backgrounds to the grid when `disableEqualOverflow` is `true` because the negative margin (applied only at the top and left sides) causes the grid to be visually misaligned.
-:::
 
 ## Customization
 

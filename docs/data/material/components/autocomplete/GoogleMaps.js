@@ -91,7 +91,6 @@ export default function GoogleMaps() {
 
   return (
     <Autocomplete
-      id="google-map-demo"
       sx={{ width: 300 }}
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
@@ -124,7 +123,7 @@ export default function GoogleMaps() {
 
         return (
           <li {...props}>
-            <Grid container alignItems="center">
+            <Grid container sx={{ alignItems: 'center' }}>
               <Grid item sx={{ display: 'flex', width: 44 }}>
                 <LocationOnIcon sx={{ color: 'text.secondary' }} />
               </Grid>
@@ -138,7 +137,7 @@ export default function GoogleMaps() {
                     {part.text}
                   </Box>
                 ))}
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   {option.structured_formatting.secondary_text}
                 </Typography>
               </Grid>

@@ -3,30 +3,31 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 interface SectionHeadlineProps {
+  alwaysCenter?: boolean;
   description?: React.ReactNode;
   id?: string;
-  overline?: React.ReactNode;
-  title: string | React.ReactElement;
-  alwaysCenter?: boolean;
   /**
    * For using with dark background.
    */
   inverted?: boolean;
+  overline?: React.ReactNode;
+  title: string | React.ReactElement<any>;
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
-  const { description, id, overline, title, alwaysCenter = false, inverted = false } = props;
+  const { alwaysCenter = false, description, id, inverted = false, overline, title } = props;
   return (
-    <Box sx={{ maxWidth: 500, m: alwaysCenter ? 'auto' : 'none' }}>
+    <Box sx={{ m: alwaysCenter ? 'auto' : 'none' }}>
       {overline && (
         <Typography
           id={id}
           component="h2"
           variant="body2"
-          fontWeight="bold"
-          color="primary.main"
           sx={{
+            fontWeight: 'bold',
+            color: 'primary.main',
             mb: 1,
+
             ...(alwaysCenter && {
               textAlign: 'center',
             }),
@@ -39,6 +40,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
         <Typography
           variant="h2"
           sx={(theme) => ({
+            maxWidth: 500,
             ...(inverted
               ? {
                   color: '#fff',
@@ -51,6 +53,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
                 }),
             ...(alwaysCenter && {
               textAlign: 'center',
+              maxWidth: '100%',
             }),
           })}
         >
@@ -59,7 +62,9 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
       ) : (
         React.cloneElement(title, {
           style: {
+            maxWidth: 500,
             ...(alwaysCenter && {
+              maxWidth: '100%',
               textAlign: 'center',
             }),
             ...(inverted && {
@@ -73,7 +78,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
           sx={(theme) => ({
             mt: 1,
             mb: 3,
-            maxWidth: 450,
+            maxWidth: 500,
             ...(inverted
               ? {
                   color: 'grey.400',
@@ -87,7 +92,6 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
             ...(alwaysCenter && {
               textAlign: 'center',
               mx: 'auto',
-              maxWidth: 600,
             }),
           })}
         >

@@ -1,6 +1,6 @@
 # Using CSS variables
 
-<p class="description">Learn how to use CSS variables to customize Joy UI components.</p>
+<p class="description">Learn how to use CSS variables to customize Joy UI components.</p>
 
 ## Introduction
 
@@ -15,11 +15,11 @@ function App() {
 ```
 
 Then you can apply styles based on CSS variables using the `theme.vars.*` notation.
-This notation is available to all styling APIs that Joy UI supports, including the `styled()` function and the `sx` prop.
+This notation is available to all styling APIs that Joy UI supports, including the `styled()` function and the `sx` prop.
 
 ## Styling APIs
 
-Use the `theme.vars.*` notation with any styling APIs supported by Joy UI:
+Use the `theme.vars.*` notation with any styling APIs supported by Joy UI:
 
 :::success
 Visit [the Approaches page](/joy-ui/customization/approaches/) to understand how to use the supported styling APIs.
@@ -113,7 +113,7 @@ You can't use `theme.vars` to create an inset shadow because the value refers to
 
 ## Adjust color opacity
 
-Use the automatically generated opacity channel tokens (`mainChannel`, `lightChannel` and `darkChannel`), together with the `rgba` color notation, to adjust color opacity in all [available palettes](/joy-ui/customization/theme-colors/#default-color-tokens) in Joy UI.
+Use the automatically generated opacity channel tokens (`mainChannel`, `lightChannel` and `darkChannel`), together with the `rgba` color notation, to adjust color opacity in all [available palettes](/joy-ui/customization/theme-colors/#default-color-tokens) in Joy UI.
 
 ```js
 const Div = styled('div')(({ theme }) => ({
@@ -122,7 +122,7 @@ const Div = styled('div')(({ theme }) => ({
 ```
 
 :::warning
-The format of the channel tokens uses a space as a separator (e.g., `61 131 246`), which means you have to use `/` to combine the channel token with an opacity value.
+The format of the channel tokens uses a space as a separator (for example `61 131 246`), which means you have to use `/` to combine the channel token with an opacity value.
 
 ```js
 `rgba(${theme.vars.palette.primary.mainChannel} / 0.2)`, //  ✅ correct
@@ -133,7 +133,7 @@ The format of the channel tokens uses a space as a separator (e.g., `61 131 246`
 
 ## Custom prefixes
 
-Every Joy UI CSS variable is prefixed with `joy` by default.
+Every Joy UI CSS variable is prefixed with `joy` by default.
 To change this prefix, use the `cssVarPrefix` property inside an `extendTheme` function on the `<CssVarsProvider />` component.
 
 ```jsx

@@ -138,10 +138,6 @@ export interface GridBaseProps extends Breakpoints {
    */
   direction?: ResponsiveStyleValue<GridDirection>;
   /**
-   * If `true`, the negative margin and padding are apply only to the top and left sides of the grid.
-   */
-  disableEqualOverflow?: boolean;
-  /**
    * @internal
    * The level of the grid starts from `0`
    * and increases when the grid nests inside another grid regardless of container or item.

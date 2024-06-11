@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
+import { SectionTitle } from '@mui/docs/SectionTitle';
 import ToggleDisplayOption, {
-  API_LAYOUT_STORAGE_KEYS,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import PropertiesList, { getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
@@ -47,14 +47,16 @@ export default function PropertiesSection(props) {
     showOptionalAbbr = false,
     title = 'api-docs.props',
     titleHash = 'props',
-    level: Level = 'h2',
+    level = 'h2',
     spreadHint,
     hooksParameters = false,
     hooksReturnValue = false,
+    defaultLayout,
+    layoutStorageKey,
   } = props;
   const t = useTranslate();
 
-  const [displayOption, setDisplayOption] = useApiPageOption(API_LAYOUT_STORAGE_KEYS.props);
+  const [displayOption, setDisplayOption] = useApiPageOption(layoutStorageKey, defaultLayout);
   const formatedProperties = Object.entries(properties)
     .filter(([, propData]) => propData.description !== '@ignore')
     .map(([propName, propData]) => {
@@ -102,6 +104,8 @@ export default function PropertiesSection(props) {
         requiresRef: propDescription?.requiresRef,
         isOptional,
         isRequired,
+        isProPlan: propData.isProPlan,
+        isPremiumPlan: propData.isPremiumPlan,
         isDeprecated,
         hooksParameters,
         hooksReturnValue,
@@ -118,20 +122,12 @@ export default function PropertiesSection(props) {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 1 }}>
-        <Level id={titleHash} style={{ flexGrow: 1 }}>
-          {t(title)}
-          <a
-            aria-labelledby={titleHash}
-            className="anchor-link"
-            href={`#${titleHash}`}
-            tabIndex={-1}
-          >
-            <svg>
-              <use xlinkHref="#anchor-link-icon" />
-            </svg>
-          </a>
-        </Level>
-        <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
+        <SectionTitle title={t(title)} hash={titleHash} level={level} />
+        <ToggleDisplayOption
+          displayOption={displayOption}
+          setDisplayOption={setDisplayOption}
+          sectionType="props"
+        />
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
       {displayOption === 'table' ? (
@@ -145,8 +141,10 @@ export default function PropertiesSection(props) {
 
 PropertiesSection.propTypes = {
   componentName: PropTypes.string,
+  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']).isRequired,
   hooksParameters: PropTypes.bool,
   hooksReturnValue: PropTypes.bool,
+  layoutStorageKey: PropTypes.string.isRequired,
   level: PropTypes.string,
   properties: PropTypes.object.isRequired,
   propertiesDescriptions: PropTypes.object.isRequired,

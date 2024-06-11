@@ -9,7 +9,7 @@ githubLabel: 'component: avatar'
 
 <p class="description">An avatar is a graphical representation of a user's identity.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -56,7 +56,7 @@ If an error occurs while loading the Avatar's image, it will fall back to the fo
 
 ### Variants
 
-The Avatar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
+The Avatar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "AvatarVariants.js"}}
 

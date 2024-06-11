@@ -10,11 +10,8 @@ import {
 } from '@mui/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
-// Give up on IE11 support for this feature
 function stripDiacritics(string) {
-  return typeof string.normalize !== 'undefined'
-    ? string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    : string;
+  return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
 export function createFilterOptions(config = {}) {
@@ -54,17 +51,6 @@ export function createFilterOptions(config = {}) {
 
     return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
   };
-}
-
-// To replace with .findIndex() once we stop IE11 support.
-function findIndex(array, comp) {
-  for (let i = 0; i < array.length; i += 1) {
-    if (comp(array[i])) {
-      return i;
-    }
-  }
-
-  return -1;
 }
 
 const defaultFilterOptions = createFilterOptions();
@@ -478,7 +464,7 @@ export function useAutocomplete(props) {
     },
   );
 
-  const checkHighlightedOptionExists = () => {
+  const getPreviousHighlightedOptionIndex = () => {
     const isSameValue = (value1, value2) => {
       const label1 = value1 ? getOptionLabel(value1) : '';
       const label2 = value2 ? getOptionLabel(value2) : '';
@@ -498,16 +484,12 @@ export function useAutocomplete(props) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
       if (previousHighlightedOption) {
-        const previousHighlightedOptionExists = filteredOptions.some((option) => {
+        return filteredOptions.findIndex((option) => {
           return getOptionLabel(option) === getOptionLabel(previousHighlightedOption);
         });
-
-        if (previousHighlightedOptionExists) {
-          return true;
-        }
       }
     }
-    return false;
+    return -1;
   };
 
   const syncHighlightedIndex = React.useCallback(() => {
@@ -516,8 +498,10 @@ export function useAutocomplete(props) {
     }
 
     // Check if the previously highlighted option still exists in the updated filtered options list and if the value and inputValue haven't changed
-    // If it exists and the value and the inputValue haven't changed, return, otherwise continue execution
-    if (checkHighlightedOptionExists()) {
+    // If it exists and the value and the inputValue haven't changed, just update its index, otherwise continue execution
+    const previousHighlightedOptionIndex = getPreviousHighlightedOptionIndex();
+    if (previousHighlightedOptionIndex !== -1) {
+      highlightedIndexRef.current = previousHighlightedOptionIndex;
       return;
     }
 
@@ -541,12 +525,12 @@ export function useAutocomplete(props) {
       if (
         multiple &&
         currentOption &&
-        findIndex(value, (val) => isOptionEqualToValue(currentOption, val)) !== -1
+        value.findIndex((val) => isOptionEqualToValue(currentOption, val)) !== -1
       ) {
         return;
       }
 
-      const itemIndex = findIndex(filteredOptions, (optionItem) =>
+      const itemIndex = filteredOptions.findIndex((optionItem) =>
         isOptionEqualToValue(optionItem, valueItem),
       );
       if (itemIndex === -1) {
@@ -600,7 +584,7 @@ export function useAutocomplete(props) {
             [
               `A textarea element was provided to ${componentName} where input was expected.`,
               `This is not a supported scenario but it may work under certain conditions.`,
-              `A textarea keyboard navigation may conflict with Autocomplete controls (e.g. enter and arrow keys).`,
+              `A textarea keyboard navigation may conflict with Autocomplete controls (for example enter and arrow keys).`,
               `Make sure to test keyboard navigation and add custom event handlers if necessary.`,
             ].join('\n'),
           );
@@ -687,7 +671,7 @@ export function useAutocomplete(props) {
         }
       }
 
-      const itemIndex = findIndex(newValue, (valueItem) => isOptionEqualToValue(option, valueItem));
+      const itemIndex = newValue.findIndex((valueItem) => isOptionEqualToValue(option, valueItem));
 
       if (itemIndex === -1) {
         newValue.push(option);
@@ -905,6 +889,7 @@ export function useAutocomplete(props) {
           }
           break;
         case 'Backspace':
+          // Remove the value on the left of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
@@ -915,6 +900,7 @@ export function useAutocomplete(props) {
           }
           break;
         case 'Delete':
+          // Remove the value on the right of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0 && focusedTag !== -1) {
             const index = focusedTag;
             const newValue = value.slice();

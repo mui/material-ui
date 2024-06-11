@@ -31,7 +31,7 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(props, r
 });
 
 export default function UseNumberInputCompact() {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState(null);
 
   return (
     <Layout>

@@ -34,10 +34,9 @@ const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(
         bgcolor: 'common.black',
         border: '1px solid',
         borderColor: 'primaryDark.700',
+        borderTop: 0,
         colorScheme: 'dark',
-        '* pre, code': {
-          bgcolor: 'common.black',
-        },
+        overflow: 'clip',
         ...props.sx,
       }}
     />

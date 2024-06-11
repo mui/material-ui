@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled, Box } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
@@ -87,7 +86,7 @@ function Select(props) {
   const slots = {
     root: StyledButton,
     listbox: Listbox,
-    popper: Popper,
+    popup: Popup,
     ...props.slots,
   };
 
@@ -102,7 +101,7 @@ Select.propTypes = {
    */
   slots: PropTypes.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.func,
+    popup: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
 };
@@ -210,7 +209,7 @@ const Listbox = styled('ul')(
   border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   box-shadow: 0px 2px 6px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
   };
@@ -258,7 +257,7 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;
 

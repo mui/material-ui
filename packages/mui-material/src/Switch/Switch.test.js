@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
 import FormControl from '@mui/material/FormControl';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Switch />', () => {
   const { render } = createRenderer();

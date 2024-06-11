@@ -39,8 +39,8 @@ function getAutoHeightDuration(height) {
 
   const constant = height / 36;
 
-  // https://www.wolframalpha.com/input/?i=(4+%2B+15+*+(x+%2F+36+)+**+0.25+%2B+(x+%2F+36)+%2F+5)+*+10
-  return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
+  // https://www.desmos.com/calculator/vbrp3ggqet
+  return Math.min(Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10), 3000);
 }
 
 export default function createTransitions(inputTransitions) {
@@ -64,9 +64,7 @@ export default function createTransitions(inputTransitions) {
 
     if (process.env.NODE_ENV !== 'production') {
       const isString = (value) => typeof value === 'string';
-      // IE11 support, replace with Number.isNaN
-      // eslint-disable-next-line no-restricted-globals
-      const isNumber = (value) => !isNaN(parseFloat(value));
+      const isNumber = (value) => !Number.isNaN(parseFloat(value));
       if (!isString(props) && !Array.isArray(props)) {
         console.error('MUI: Argument "props" must be a string or Array.');
       }

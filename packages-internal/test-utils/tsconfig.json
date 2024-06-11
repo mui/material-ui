@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "moduleResolution": "node",
+    "types": ["node"],
+    "strict": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react"
+  },
+  "include": ["./src/**/*"]
+}

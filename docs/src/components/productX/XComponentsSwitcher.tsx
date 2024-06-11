@@ -10,7 +10,7 @@ import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import { visuallyHidden } from '@mui/utils';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
@@ -32,6 +32,7 @@ function ComponentItem({
     <Box
       component="span"
       sx={{
+        flexGrow: 1,
         display: 'flex',
         p: 2,
         flexDirection: { xs: 'column', md: 'row' },
@@ -39,42 +40,38 @@ function ComponentItem({
         gap: 2.5,
       }}
     >
-      <div>{icon}</div>
+      {icon}
       <div>
         <Typography
           component="span"
-          color="text.primary"
           variant="body2"
-          fontWeight="bold"
-          display="block"
+          sx={{ color: 'text.primary', fontWeight: 'bold', display: 'block' }}
         >
           {name}
         </Typography>
         {description && (
           <Typography
             component="span"
-            color="text.secondary"
             variant="body2"
-            fontWeight="regular"
-            display="block"
             gutterBottom
+            sx={{ color: 'text.secondary', fontWeight: 'regular', display: 'block' }}
           >
             {description}
           </Typography>
         )}
         <Link
           href={href}
-          color="primary"
           variant="body2"
+          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+            event.stopPropagation();
+          }}
           sx={{
+            color: 'primary',
             display: 'inline-flex',
             alignItems: 'center',
             fontWeight: 'semiBold',
             '& > svg': { transition: '0.2s' },
             '&:hover > svg': { transform: 'translateX(2px)' },
-          }}
-          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-            event.stopPropagation();
           }}
         >
           <span>View the docs</span>{' '}
@@ -110,8 +107,8 @@ export default function XComponentsSwitcher(props: {
     />,
     <ComponentItem
       name="Charts"
-      description="A collection of data visualization graphs, including bar, line, pie, scatter, and more."
-      label="A collection of data visualization graphs, including bar, line, pie, scatter, and more."
+      description="Data visualization graphs, including bar, line, pie, scatter, and more."
+      label="Data visualization graphs, including bar, line, pie, scatter, and more."
       icon={<BarChartRoundedIcon />}
       href={ROUTES.chartsOverview}
     />,
@@ -126,12 +123,7 @@ export default function XComponentsSwitcher(props: {
   return (
     <React.Fragment>
       <Box
-        sx={{
-          display: { md: 'none' },
-          maxWidth: 'calc(100vw - 40px)',
-          minHeight: { xs: 200, sm: 166 },
-          '& > div': { pr: '32%' },
-        }}
+        sx={{ display: { md: 'none' }, maxWidth: 'calc(100vw - 40px)', '& > div': { pr: '32%' } }}
       >
         <SwipeableViews
           index={componentIndex}
@@ -156,7 +148,7 @@ export default function XComponentsSwitcher(props: {
           ))}
         </SwipeableViews>
       </Box>
-      <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
+      <Stack spacing={1} useFlexGap sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
         {componentElement.map((element, index) => (
           <Highlighter
             key={index}

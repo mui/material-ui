@@ -16,10 +16,10 @@ Steppers may display a transient feedback message after a step is saved.
 - **Types of Steps**: Editable, Non-editable, Mobile, Optional
 - **Types of Steppers**: Horizontal, Vertical, Linear, Non-linear
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 :::info
-This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
+This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
 ## Introduction
@@ -116,13 +116,6 @@ The mobile stepper supports three variants to display progress through the avail
 The current step and total number of steps are displayed as text.
 
 {{"demo": "TextMobileStepper.js", "bg": true}}
-
-### Text with carousel effect
-
-This demo uses
-[react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to create a carousel.
-
-{{"demo": "SwipeableTextMobileStepper.js", "bg": true}}
 
 ### Dots
 

@@ -13,8 +13,8 @@ export function Group({
     <Box
       {...props}
       sx={{
-        maxWidth: rowLayout ? 'none' : { md: 500 },
         overflow: 'auto',
+        maxWidth: rowLayout ? 'none' : { md: 500 },
         display: { xs: 'grid', sm: rowLayout ? 'flex' : 'grid' },
         justifyContent: { xs: 'start', sm: rowLayout ? 'center' : null },
         gap: 1,
@@ -72,14 +72,16 @@ export function Group({
 }
 
 export default function Item({
+  description,
   icon,
   title,
-  description,
+  smallerIconDistance = false,
   ...props
 }: {
+  description?: string;
   icon: React.ReactNode;
   title: string;
-  description?: string;
+  smallerIconDistance?: boolean;
 } & BoxProps) {
   return (
     <Box
@@ -87,36 +89,35 @@ export default function Item({
       component="span"
       sx={{
         p: 2,
+        pr: smallerIconDistance ? 3 : 2,
         display: 'flex',
-        alignItems: 'center',
+        flexDirection: { xs: 'column', sm: 'row' },
+        alignItems: { xs: 'start', sm: 'center' },
+        gap: { xs: 2, sm: 0.5 },
         ...props.sx,
       }}
     >
-      <Box component="span" sx={{ mr: 2, lineHeight: 0 }}>
+      <Box component="span" sx={{ mr: smallerIconDistance ? 1 : 2, lineHeight: 0 }}>
         {icon}
       </Box>
-      <span>
+      <Box sx={{ flexWrap: 'wrap' }}>
         <Typography
           component="span"
-          color="text.primary"
           variant="body2"
-          fontWeight="bold"
-          sx={{ display: 'block' }}
+          sx={{ color: 'text.primary', fontWeight: 'bold', display: 'block' }}
         >
           {title}
         </Typography>
         {description && (
           <Typography
             component="span"
-            color="text.secondary"
             variant="body2"
-            fontWeight="regular"
-            sx={{ mt: 0.5 }}
+            sx={{ color: 'text.secondary', fontWeight: 'regular', mt: 0.5 }}
           >
             {description}
           </Typography>
         )}
-      </span>
+      </Box>
     </Box>
   );
 }

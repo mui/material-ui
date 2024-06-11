@@ -1,6 +1,8 @@
 import { generateUtilityClass } from '../generateUtilityClass';
 import { generateUtilityClasses } from '../generateUtilityClasses';
 
+const COMPONENT_NAME = 'Popup';
+
 export interface PopupClasses {
   /** Class name applied to the root element. */
   root: string;
@@ -11,7 +13,7 @@ export interface PopupClasses {
 export type PopupClassKey = keyof PopupClasses;
 
 export function getPopupUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiPopup', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const popupClasses: PopupClasses = generateUtilityClasses('MuiPopup', ['root', 'open']);
+export const popupClasses: PopupClasses = generateUtilityClasses(COMPONENT_NAME, ['root', 'open']);

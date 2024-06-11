@@ -10,11 +10,11 @@ import { dropdownReducer } from './dropdownReducer';
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
+ * - [Menu](https://next.mui.com/base-ui/react-menu/#hooks)
  *
  * API:
  *
- * - [useDropdown API](https://mui.com/base-ui/react-menu/hooks-api/#use-dropdown)
+ * - [useDropdown API](https://next.mui.com/base-ui/react-menu/hooks-api/#use-dropdown)
  */
 export function useDropdown(parameters: UseDropdownParameters = {}) {
   const { defaultOpen, onOpenChange, open: openProp, componentName = 'useDropdown' } = parameters;
@@ -25,7 +25,10 @@ export function useDropdown(parameters: UseDropdownParameters = {}) {
   const handleStateChange: StateChangeCallback<DropdownState> = React.useCallback(
     (event, field, value, reason) => {
       if (field === 'open') {
-        onOpenChange?.(event as React.MouseEvent | React.KeyboardEvent | React.FocusEvent, value);
+        onOpenChange?.(
+          event as React.MouseEvent | React.KeyboardEvent | React.FocusEvent,
+          value as boolean,
+        );
       }
 
       lastActionType.current = reason;
@@ -40,7 +43,9 @@ export function useDropdown(parameters: UseDropdownParameters = {}) {
 
   const [state, dispatch] = useControllableReducer({
     controlledProps,
-    initialState: defaultOpen ? { open: true } : { open: false },
+    initialState: defaultOpen
+      ? { open: true, changeReason: null }
+      : { open: false, changeReason: null },
     onStateChange: handleStateChange,
     reducer: dropdownReducer,
     componentName,

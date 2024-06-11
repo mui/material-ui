@@ -1,11 +1,12 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import TabList from './TabList';
 import TabContext from '../TabContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('<TabList />', () => {
   const { render } = createRenderer();

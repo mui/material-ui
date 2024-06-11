@@ -194,7 +194,7 @@ export default function CustomizedSwitches() {
         control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
         label="iOS style"
       />
-      <Stack direction="row" spacing={1} alignItems="center">
+      <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
         <Typography>Off</Typography>
         <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
         <Typography>On</Typography>

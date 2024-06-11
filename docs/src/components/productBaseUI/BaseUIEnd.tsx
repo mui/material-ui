@@ -6,7 +6,7 @@ import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import CompareIcon from '@mui/icons-material/Compare';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import { GlowingIconContainer } from 'docs/src/components/action/InfoCard';
+import { GlowingIconContainer } from '@mui/docs/InfoCard';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -54,7 +54,7 @@ export default function BaseUIEnd() {
             <ListItem sx={{ p: 0, mb: 4, gap: 2.5 }}>
               <GlowingIconContainer icon={<CompareIcon color="primary" />} />
               <div>
-                <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
+                <Typography gutterBottom sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
                   Base UI vs. Material UI
                 </Typography>
                 <Typography>
@@ -66,7 +66,7 @@ export default function BaseUIEnd() {
             <ListItem sx={{ p: 0, gap: 2.5 }}>
               <GlowingIconContainer icon={<StyleRoundedIcon color="primary" />} />
               <div>
-                <Typography color="text.primary" fontWeight="semiBold" gutterBottom>
+                <Typography gutterBottom sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
                   Does it come with styles?
                 </Typography>
                 <Typography>

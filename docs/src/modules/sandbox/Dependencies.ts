@@ -1,6 +1,35 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
+const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
+const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
+
+/**
+ * WARNING: Always uses `latest` typings.
+ *
+ * Adds dependencies to @types packages only for packages that are not listed
+ * in packagesWithBundledTypes
+ *
+ * @param deps - list of dependency as `name => version`
+ */
+function addTypeDeps(deps: Record<string, string>): void {
+  const packagesWithDTPackage = Object.keys(deps)
+    .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
+    // All the MUI packages come with bundled types
+    .filter((name) => !muiNpmOrgs.some((org) => name.startsWith(org)));
+
+  packagesWithDTPackage.forEach((name) => {
+    let resolvedName = name;
+    // scoped package?
+    if (name.startsWith('@')) {
+      // https://github.com/DefinitelyTyped/DefinitelyTyped#what-about-scoped-packages
+      resolvedName = name.slice(1).replace('/', '__');
+    }
+
+    deps[`@types/${resolvedName}`] = 'latest';
+  });
+}
+
 export default function SandboxDependencies(
   demo: {
     raw: string;
@@ -12,33 +41,6 @@ export default function SandboxDependencies(
   const { commitRef } = options || {};
 
   /**
-   * WARNING: Always uses `latest` typings.
-   *
-   * Adds dependencies to @types packages only for packages that are not listed
-   * in packagesWithBundledTypes
-   *
-   * @param deps - list of dependency as `name => version`
-   */
-  function addTypeDeps(deps: Record<string, string>): void {
-    const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
-    const packagesWithDTPackage = Object.keys(deps)
-      .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
-      // All the MUI packages come with bundled types
-      .filter((name) => name.indexOf('@mui/') !== 0);
-
-    packagesWithDTPackage.forEach((name) => {
-      let resolvedName = name;
-      // scoped package?
-      if (name.startsWith('@')) {
-        // https://github.com/DefinitelyTyped/DefinitelyTyped#what-about-scoped-packages
-        resolvedName = name.slice(1).replace('/', '__');
-      }
-
-      deps[`@types/${resolvedName}`] = 'latest';
-    });
-  }
-
-  /**
    * @param packageName - The name of a package living inside this repository.
    * @return string - A valid version for a dependency entry in a package.json
    */
@@ -48,7 +50,7 @@ export default function SandboxDependencies(
       process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
       // #default-branch-switch
-      return 'latest';
+      return 'next';
     }
     const shortSha = commitRef.slice(0, 8);
     return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
@@ -78,7 +80,7 @@ export default function SandboxDependencies(
       }
 
       // TODO: consider if this configuration could be injected in a "cleaner" way.
-      if (muiDocConfig) {
+      if (muiDocConfig && muiDocConfig.csbIncludePeerDependencies) {
         newDeps = muiDocConfig.csbIncludePeerDependencies(newDeps, {
           versions,
         });
@@ -102,15 +104,13 @@ export default function SandboxDependencies(
       '@mui/private-classnames': getMuiPackageVersion('classnames'),
       '@mui/base': getMuiPackageVersion('base'),
       '@mui/utils': getMuiPackageVersion('utils'),
-      '@mui/material-next': getMuiPackageVersion('material-next'),
       '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
       '@mui/joy': getMuiPackageVersion('joy'),
     };
 
     // TODO: consider if this configuration could be injected in a "cleaner" way.
-    if (muiDocConfig) {
-      const muiCommitRef = process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined;
-      versions = muiDocConfig.csbGetVersions(versions, { muiCommitRef });
+    if (muiDocConfig && muiDocConfig.csbGetVersions) {
+      versions = muiDocConfig.csbGetVersions(versions, { muiCommitRef: commitRef });
     }
 
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
@@ -126,8 +126,8 @@ export default function SandboxDependencies(
         deps[name] = versions[name] ?? 'latest';
       }
 
-      if (muiDocConfig) {
-        const resolvedDep = muiDocConfig?.postProcessImport(fullName);
+      if (muiDocConfig && muiDocConfig.postProcessImport) {
+        const resolvedDep = muiDocConfig.postProcessImport(fullName);
         if (resolvedDep) {
           deps = { ...deps, ...resolvedDep };
         }

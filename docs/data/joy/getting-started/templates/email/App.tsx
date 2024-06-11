@@ -34,9 +34,9 @@ export default function EmailExample() {
       <Stack
         id="tab-bar"
         direction="row"
-        justifyContent="space-around"
         spacing={1}
         sx={{
+          justifyContent: 'space-around',
           display: { xs: 'flex', sm: 'none' },
           zIndex: '999',
           bottom: 0,
@@ -107,7 +107,7 @@ export default function EmailExample() {
             }}
           >
             <Box sx={{ alignItems: 'center', gap: 1 }}>
-              <Typography level="title-lg" textColor="text.secondary">
+              <Typography level="title-lg" textColor="text.secondary" component="h1">
                 My inbox
               </Typography>
               <Typography level="title-sm" textColor="text.tertiary">

@@ -10,7 +10,7 @@ unstyled: /base-ui/react-slider/
 
 <p class="description">Slider generates a background element that can be used for various purposes.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -33,6 +33,7 @@ export default function MyApp() {
 ### Steps
 
 Change the default step increments by setting a desired value to the `step` prop.
+Make sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divadable with the `step`.
 
 {{"demo": "StepsSlider.js"}}
 

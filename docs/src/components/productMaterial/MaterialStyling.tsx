@@ -1,9 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
+import DevicesOtherRoundedIcon from '@mui/icons-material/DevicesOtherRounded';
+import SwitchAccessShortcutRoundedIcon from '@mui/icons-material/SwitchAccessShortcutRounded';
 import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
+import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -11,72 +14,53 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
 <Card
   variant="outlined"
-  sx={{
-    p: 1,
-    boxShadow: '0 1px 3px rgba(0, 127, 255, 0.1)',
-    display: 'flex',
-    flexDirection: {
-      xs: 'column', // mobile
-      sm: 'row', // tablet and up
-    },
-  }}
+  sx={{ p: 2, display: 'flex', flexWrap: 'wrap', zIndex: 1 }}
 >
   <CardMedia
     component="img"
     width="100"
     height="100"
     alt="123 Main St, Phoenix, AZ cover"
-    src="/static/images/cards/real-estate.png"
-    sx={{
-      borderRadius: 0.5,
+    src="/images/real-estate.png"
+    sx={{    borderRadius: '6px',
       width: { xs: '100%', sm: 100 },
-      mr: { sm: 1.5 },
-      mb: { xs: 1.5, sm: 0 },
     }}
   />
   <Box sx={{ alignSelf: 'center', ml: 2 }}>
-    <Typography variant="body2" color="text.secondary" fontWeight="medium">
-      123 Main St, Phoenix, AZ
+    <Typography variant="body2" color="text.secondary" fontWeight="regular">
+      123 Main St, Phoenix, AZ, USA
     </Typography>
-    <Typography fontWeight="bold" noWrap>
+    <Typography fontWeight="bold" noWrap gutterBottom>
       $280k - $310k
     </Typography>
-    <Box
+    <Chip
+      size="small"
+      variant="outlined"
+      icon={<InfoRounded />}
+      label="Confidence score: 85%"
       sx={(theme) => ({
-        mt: 1,
-        py: 0.4,
-        pl: 0.5,
-        pr: 1,
-        typography: 'caption',
-        borderRadius: 10,
-        display: 'flex',
-        bgcolor: 'primary.50',
-        border: '1px solid',
-        borderColor: 'primary.100',
-        color: 'primary.700',
+        '.MuiChip-icon': { fontSize: 16, ml: '4px', color: 'success.500' },
+        bgcolor: 'success.50',
+        borderColor: 'success.100',
+        color: 'success.900',
         ...theme.applyDarkStyles({
           bgcolor: 'primaryDark.700',
-          color: 'primary.200',
-          borderColor: 'primary.900',
+          color: 'success.200',
+          borderColor: 'success.900',
         }),
       })}
-    >
-      <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} />
-      Confidence score: 85%
-    </Box>
+    />
   </Box>
 </Card>`;
 
-const startLine = [34, 25, 6];
-const endLine = [48, 30, 8];
-const scrollTo = [540, 320, 0];
+const startLine = [27, 16, 12];
+const endLine = [37, 21, 12];
+const scrollTo = [27, 10, 4];
 
 export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
@@ -152,67 +136,61 @@ export default function MaterialStyling() {
   const objectRef = React.useRef<HTMLDivElement | null>(null);
   const { dragging, getDragHandlers } = useResizeHandle(objectRef, { minWidth: '253px' });
   const infoRef = React.useRef<HTMLDivElement | null>(null);
-  function getSelectedProps(i: number) {
-    return {
-      selected: index === i,
-      sx: { '& svg': { opacity: index === i ? 1 : 0.5 } },
-    };
-  }
+
+  const getSelectedProps = (i: number) => ({
+    selected: index === i,
+    sx: { '& svg': { opacity: index === i ? 1 : 0.5 } },
+  });
+
   React.useEffect(() => {
-    if (infoRef.current) {
-      infoRef.current.scroll({ top: scrollTo[index], behavior: 'smooth' });
-    }
-    if (objectRef.current) {
-      objectRef.current.style.width = '100%';
-    }
+    // 18px line-height
+    // 16px margin-top
+    // 1px border-width
+    infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
+
+    objectRef.current!.style.width = '100%';
   }, [index]);
 
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Styling"
-              title={
-                <Typography variant="h2">
-                  Rapidly add and tweak any styles using <GradientText>CSS utilities</GradientText>
-                </Typography>
-              }
-              description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."
-            />
-          </Box>
-          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+        <Grid md={6} sx={{ minWidth: 0 }}>
+          <SectionHeadline
+            overline="Styling"
+            title={
+              <Typography variant="h2">
+                Rapidly add and tweak any styles using <GradientText>CSS utilities</GradientText>
+              </Typography>
+            }
+            description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."
+          />
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<StyleRoundedIcon color="primary" />}
                 title="Leverage the tokens from your theme"
                 description="Easily use the design tokens defined in your theme for any CSS property out there."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<SwitchAccessShortcutRoundedIcon color="primary" />}
                 title="No context switching"
                 description="The styling and component usage are both in the same place, right where you need them."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<DevicesOtherRoundedIcon color="primary" />}
                 title="Responsive styles right inside system prop"
                 description="An elegant API for writing CSS media queries that match your theme breakpoints."
               />
             </Highlighter>
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
-            <Frame.Demo
-              sx={{
-                overflow: 'auto',
-              }}
-            >
+            <Frame.Demo sx={{ overflow: 'auto' }}>
               <Box
                 ref={objectRef}
                 style={{ touchAction: dragging ? 'none' : 'auto' }}
@@ -262,10 +240,10 @@ export default function MaterialStyling() {
                         width: '1px',
                         bgcolor: 'grey.200',
                         position: 'absolute',
-                        left: 375,
+                        left: { xs: 335, sm: 375 },
                         height: '100%',
                         ...theme.applyDarkStyles({
-                          bgcolor: 'primaryDark.600',
+                          bgcolor: 'divider',
                         }),
                       })}
                     >
@@ -324,16 +302,9 @@ export default function MaterialStyling() {
                 overflow: 'auto',
               }}
             >
-              <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
-                <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <HighlightedCode
-                    copyButtonHidden
-                    component={MarkdownElement}
-                    code={code}
-                    language="jsx"
-                  />
-                </Box>
-                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
+              <Box sx={{ position: 'relative' }}>
+                <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+                <FlashCode startLine={startLine[index]} endLine={endLine[index]} />
               </Box>
             </Frame.Info>
           </Frame>

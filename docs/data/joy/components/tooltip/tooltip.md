@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 <p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -70,7 +70,7 @@ The `title` prop can receive a custom React element.
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
+Here are a few tips for ensuring an accessible link component, based on [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/):
 
 By default, the tooltip only labels its child element.
 This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label.

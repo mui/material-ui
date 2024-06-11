@@ -12,7 +12,7 @@ export interface IconPropsColorOverrides {}
 export interface IconOwnProps {
   /**
    * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
-   * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
+   * other base class that suits the icon font you're using (for example material-icons-rounded, fas, etc).
    * @default 'material-icons'
    */
   baseClassName?: string;
@@ -67,12 +67,12 @@ export interface IconTypeMap<
  *
  * Demos:
  *
- * - [Icons](https://mui.com/material-ui/icons/)
- * - [Material Icons](https://mui.com/material-ui/material-icons/)
+ * - [Icons](https://next.mui.com/material-ui/icons/)
+ * - [Material Icons](https://next.mui.com/material-ui/material-icons/)
  *
  * API:
  *
- * - [Icon API](https://mui.com/material-ui/api/icon/)
+ * - [Icon API](https://next.mui.com/material-ui/api/icon/)
  */
 declare const Icon: OverridableComponent<IconTypeMap> & { muiName: string };
 

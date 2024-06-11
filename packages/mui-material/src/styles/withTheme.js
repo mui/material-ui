@@ -1,4 +1,4 @@
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
 export default function withTheme() {
   throw new MuiError(

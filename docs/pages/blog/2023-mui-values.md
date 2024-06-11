@@ -4,12 +4,12 @@ description: After significant growth, we united as a team to rediscover the val
 date: 2023-09-26T00:00:00.000Z
 authors: ['mikailaread']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 ## Why we chose to revise our core values
 
-MUI was founded in 2014 to grow and serve a community—from developers to designers, our core mission has always been to enable others to create incredible user experiences with unrivaled speed and ease.
+Material UI was created in 2014 to grow and serve a community—from developers to designers, then MUI was founded in 2019, our core mission has always been to enable others to create incredible user experiences with unrivaled speed and ease.
 
 Along the way, we embraced certain core principles that guided our ways of working—how we think, act, and innovate have always been grounded in fulfilling the best interests of our community.
 

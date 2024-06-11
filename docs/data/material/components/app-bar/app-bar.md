@@ -14,7 +14,7 @@ The top App bar provides content and actions related to the current screen. It's
 
 It can transform into a contextual action bar or be used as a navbar.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic App bar
 
@@ -62,7 +62,7 @@ A prominent app bar.
 
 When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
 
-1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE11.
+1. You can use `position="sticky"` instead of fixed.
 2. You can render a second `<Toolbar />` component:
 
 ```jsx

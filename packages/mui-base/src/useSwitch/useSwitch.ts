@@ -12,11 +12,11 @@ import { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
  *
  * Demos:
  *
- * - [Switch](https://mui.com/base-ui/react-switch/#hook)
+ * - [Switch](https://next.mui.com/base-ui/react-switch/#hook)
  *
  * API:
  *
- * - [useSwitch API](https://mui.com/base-ui/react-switch/hooks-api/#use-switch)
+ * - [useSwitch API](https://next.mui.com/base-ui/react-switch/hooks-api/#use-switch)
  */
 export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
   const {
@@ -110,6 +110,8 @@ export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
     ref: handleInputRef,
     required,
     type: 'checkbox',
+    role: 'switch',
+    'aria-checked': checkedProp,
     ...otherProps,
     onChange: createHandleInputChange(otherProps),
     onFocus: createHandleFocus(otherProps),

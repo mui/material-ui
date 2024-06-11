@@ -21,7 +21,7 @@ export type NumberInputOwnProps = Omit<
    */
   endAdornment?: React.ReactNode;
   /**
-   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `baseui--error` class on the root element.
    */
   error?: boolean;
   /**

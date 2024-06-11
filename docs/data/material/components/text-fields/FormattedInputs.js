@@ -29,30 +29,29 @@ TextMaskCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(
-  props,
-  ref,
-) {
-  const { onChange, ...other } = props;
+const NumericFormatCustom = React.forwardRef(
+  function NumericFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
 
-  return (
-    <NumericFormat
-      {...other}
-      getInputRef={ref}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-      thousandSeparator
-      valueIsNumericString
-      prefix="$"
-    />
-  );
-});
+    return (
+      <NumericFormat
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        valueIsNumericString
+        prefix="$"
+      />
+    );
+  },
+);
 
 NumericFormatCustom.propTypes = {
   name: PropTypes.string.isRequired,
@@ -90,8 +89,10 @@ export default function FormattedInputs() {
         onChange={handleChange}
         name="numberformat"
         id="formatted-numberformat-input"
-        InputProps={{
-          inputComponent: NumericFormatCustom,
+        slotProps={{
+          input: {
+            inputComponent: NumericFormatCustom,
+          },
         }}
         variant="standard"
       />

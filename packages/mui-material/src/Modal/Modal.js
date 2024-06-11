@@ -2,16 +2,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
-import { useSlotProps } from '@mui/base';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import { useSlotProps } from '@mui/base/utils';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import Backdrop from '../Backdrop';
 import { getModalUtilityClass } from './modalClasses';
+
+const useThemeProps = createUseThemeProps('MuiModal');
 
 const useUtilityClasses = (ownerState) => {
   const { open, exited, classes } = ownerState;
@@ -32,17 +34,21 @@ const ModalRoot = styled('div', {
 
     return [styles.root, !ownerState.open && ownerState.exited && styles.hidden];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   position: 'fixed',
   zIndex: (theme.vars || theme).zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
   left: 0,
-  ...(!ownerState.open &&
-    ownerState.exited && {
-      visibility: 'hidden',
-    }),
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.open && ownerState.exited,
+      style: {
+        visibility: 'hidden',
+      },
+    },
+  ],
 }));
 
 const ModalBackdrop = styled(Backdrop, {
@@ -269,8 +275,7 @@ Modal.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -282,8 +287,7 @@ Modal.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
@@ -42,36 +42,31 @@ function ProductItem({
       <span>
         <Typography
           component="span"
-          color="text.primary"
           variant="body2"
-          fontWeight="bold"
-          display="block"
+          sx={{ color: 'text.primary', fontWeight: 'bold', display: 'block' }}
         >
           {name}
         </Typography>
         <Typography
           component="span"
-          color="text.secondary"
           variant="body2"
-          fontWeight="regular"
-          display="block"
-          sx={{ my: 0.5 }}
+          sx={{ color: 'text.secondary', fontWeight: 'regular', display: 'block', my: 0.5 }}
         >
           {description}
         </Typography>
         <Link
           href={href}
-          color="primary"
           variant="body2"
-          fontWeight="bold"
+          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+            event.stopPropagation();
+          }}
           sx={{
+            color: 'primary',
+            fontWeight: 'bold',
             display: 'inline-flex',
             alignItems: 'center',
             '& > svg': { transition: '0.2s' },
             '&:hover > svg': { transform: 'translateX(2px)' },
-          }}
-          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-            event.stopPropagation();
           }}
         >
           <span>Learn more</span>{' '}

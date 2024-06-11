@@ -77,6 +77,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
+    shiftStep = 10,
     scale = Identity,
     step = 1,
     tabIndex,
@@ -107,6 +108,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     orientation,
     scale,
     step,
+    shiftStep,
     track,
     valueLabelFormat,
   };
@@ -456,6 +458,11 @@ Slider.propTypes /* remove-proptypes */ = {
    * }
    */
   scale: PropTypes.func,
+  /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep: PropTypes.number,
   /**
    * The props used for each slot inside the Slider.
    * @default {}

@@ -45,22 +45,6 @@ function getComparator<Key extends keyof any>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
-function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 function formatSize(size: number) {
   const kb = size / 1000;
   if (kb < 1000) {
@@ -91,6 +75,7 @@ export default function BasicTable() {
       sx={[
         {
           maxWidth: 260,
+          borderColor: 'grey.200',
           boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           [`& .${tableCellClasses.root}`]: {
             borderColor: 'grey.200',
@@ -103,7 +88,7 @@ export default function BasicTable() {
           theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
             borderColor: 'primaryDark.700',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
             [`& .${tableCellClasses.root}`]: {
               borderColor: 'primaryDark.700',
             },
@@ -137,27 +122,31 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {stableSort(data, getComparator(order, orderBy)).map((row) => (
+          {[...data].sort(getComparator(order, orderBy)).map((row) => (
             <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <Folder fontSize="small" sx={{ color: 'primary.400' }} />
-                  <Typography fontSize={13} fontWeight={500} color="text.primary">
+                  <Typography sx={{ fontSize: 13, fontWeight: 500, color: 'text.primary' }}>
                     {row.name}
                   </Typography>
                 </Box>
               </TableCell>
               <TableCell align="right">
                 <Typography
-                  fontSize={13}
-                  fontWeight={600}
-                  sx={(theme: Theme) => ({
-                    mr: 1,
-                    color: 'success.700',
-                    ...theme.applyDarkStyles({
-                      color: 'success.500',
+                  sx={[
+                    {
+                      fontSize: 13,
+                      fontWeight: 'bold',
+                    },
+                    (theme: Theme) => ({
+                      mr: 1,
+                      color: 'success.800',
+                      ...theme.applyDarkStyles({
+                        color: 'success.500',
+                      }),
                     }),
-                  })}
+                  ]}
                 >
                   {formatSize(row.size)}
                 </Typography>

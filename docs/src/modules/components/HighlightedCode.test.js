@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { getDesignTokens } from 'docs/src/modules/brandingTheme';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { getDesignTokens } from '@mui/docs/branding';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 describe('HighlightedCode', () => {
   const { render } = createRenderer();

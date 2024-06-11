@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import ModalClose, { modalCloseClasses as classes } from '@mui/joy/ModalClose';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ModalClose />', () => {
   const { render } = createRenderer();

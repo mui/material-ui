@@ -115,6 +115,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     readOnly,
     value,
     inputId: id,
+    componentName: 'NumberInput',
   });
 
   const ownerState: NumberInputOwnerState = {
@@ -204,7 +205,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.any,
+  defaultValue: PropTypes.number,
   /**
    * If `true`, the component is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -215,7 +216,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `baseui--error` class on the root element.
    */
   error: PropTypes.bool,
   /**
@@ -306,6 +307,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
   step: PropTypes.number,
   /**
    * The current value. Use when the component is controlled.
+   * @default null
    */
   value: PropTypes.number,
 } as any;

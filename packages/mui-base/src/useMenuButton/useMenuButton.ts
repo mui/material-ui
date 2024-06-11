@@ -14,11 +14,11 @@ import { extractEventHandlers } from '../utils';
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
+ * - [Menu](https://next.mui.com/base-ui/react-menu/#hooks)
  *
  * API:
  *
- * - [useMenuButton API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-button)
+ * - [useMenuButton API](https://next.mui.com/base-ui/react-menu/hooks-api/#use-menu-button)
  */
 export function useMenuButton(parameters: UseMenuButtonParameters = {}): UseMenuButtonReturnValue {
   const { disabled = false, focusableWhenDisabled, rootRef: externalRef } = parameters;
@@ -80,7 +80,7 @@ export function useMenuButton(parameters: UseMenuButtonParameters = {}): UseMenu
     externalProps: ExternalProps = {} as ExternalProps,
   ) => {
     const externalEventHandlers = extractEventHandlers(externalProps);
-    const getCombinedProps = combineHooksSlotProps(getButtonRootProps, getOwnRootProps);
+    const getCombinedProps = combineHooksSlotProps(getOwnRootProps, getButtonRootProps);
 
     return {
       'aria-haspopup': 'menu' as const,

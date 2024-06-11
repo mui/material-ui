@@ -4,7 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 function components() {
   return [
@@ -175,8 +175,7 @@ export default function BaseUIComponents() {
             <Typography
               component="h2"
               variant="body2"
-              fontWeight="semiBold"
-              sx={{ px: 2, py: 1.5 }}
+              sx={{ fontWeight: 'semiBold', px: 2, py: 1.5 }}
             >
               {component.title}
             </Typography>

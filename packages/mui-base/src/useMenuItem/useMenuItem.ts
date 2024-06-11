@@ -26,7 +26,7 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
   popupId: '',
   registerPopup: () => {},
   registerTrigger: () => {},
-  state: { open: true },
+  state: { open: true, changeReason: null },
   triggerElement: null,
 };
 
@@ -34,14 +34,20 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
+ * - [Menu](https://next.mui.com/base-ui/react-menu/#hooks)
  *
  * API:
  *
- * - [useMenuItem API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-item)
+ * - [useMenuItem API](https://next.mui.com/base-ui/react-menu/hooks-api/#use-menu-item)
  */
 export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
-  const { disabled = false, id: idParam, rootRef: externalRef, label } = params;
+  const {
+    disabled = false,
+    id: idParam,
+    rootRef: externalRef,
+    label,
+    disableFocusOnHover = false,
+  } = params;
 
   const id = useId(idParam);
   const itemRef = React.useRef<HTMLElement>(null);
@@ -55,6 +61,7 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
 
   const { getRootProps: getListRootProps, highlighted } = useListItem({
     item: id,
+    handlePointerOverEvents: !disableFocusOnHover,
   });
 
   const { index, totalItemCount } = useCompoundItem(id ?? idGenerator, itemMetadata);

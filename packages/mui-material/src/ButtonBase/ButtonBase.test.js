@@ -3,7 +3,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
@@ -11,10 +10,11 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ButtonBase />', () => {
   const { render } = createRenderer();
@@ -901,9 +901,7 @@ describe('<ButtonBase />', () => {
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
 
-      // technically the second keydown should be fire with repeat: true
-      // but that isn't implemented in IE11 so we shouldn't mock it here either
-      fireEvent.keyDown(button, { key: 'Enter' });
+      fireEvent.keyDown(button, { key: 'Enter', repeat: true });
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
     });

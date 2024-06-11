@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
@@ -39,7 +39,7 @@ const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
 const DesignKits = dynamic(() => import('./DesignKits'));
 
-function ProductSuite() {
+export default function ProductSuite() {
   const [productIndex, setProductIndex] = React.useState(0);
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -49,17 +49,16 @@ function ProductSuite() {
   return (
     <Section bg="gradient" ref={ref}>
       <Grid container spacing={2}>
-        <Grid item md={6}>
+        <Grid md={6}>
           <SectionHeadline
             overline="Products"
             title={
-              <Typography variant="h2" sx={{ my: 1 }}>
+              <Typography variant="h2">
                 Every component you need is <GradientText>ready for production</GradientText>
               </Typography>
             }
             description="Build at an accelerated pace without sacrificing flexibility or control."
           />
-          <Box sx={{ mt: 4 }} />
           <ProductsSwitcher
             inView={inView}
             productIndex={productIndex}
@@ -67,12 +66,11 @@ function ProductSuite() {
           />
         </Grid>
         <Grid
-          item
           xs={12}
           md={6}
           sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
         >
-          {inView && (
+          {inView ? (
             <React.Fragment>
               <PrefetchStoreTemplateImages />
               <PrefetchDesignKitImages />
@@ -81,11 +79,11 @@ function ProductSuite() {
               {productIndex === 2 && <StoreTemplatesBanner />}
               {productIndex === 3 && <DesignKits />}
             </React.Fragment>
+          ) : (
+            <Box sx={{ height: { xs: 0, md: 803 } }} />
           )}
         </Grid>
       </Grid>
     </Section>
   );
 }
-
-export default ProductSuite;

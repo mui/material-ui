@@ -6,7 +6,6 @@ import {
   SelectRootSlotProps,
 } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
@@ -36,7 +35,7 @@ function Select<TValue extends {}, Multiple extends boolean = false>(
   const slots: SelectProps<TValue, Multiple>['slots'] = {
     root: Button,
     listbox: Listbox,
-    popper: Popper,
+    popup: Popup,
     ...props.slots,
   };
 
@@ -145,7 +144,7 @@ const Listbox = styled('ul')(
   min-width: 320px;
   border-radius: 12px;
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -196,7 +195,7 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;
 

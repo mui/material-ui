@@ -8,9 +8,9 @@ import { alpha } from '@mui/material/styles';
 interface HeroContainerProps {
   disableMobileHidden?: boolean;
   disableTabExclusion?: boolean;
-  left: React.ReactElement;
+  left: React.ReactElement<any>;
   linearGradient?: boolean;
-  right: React.ReactElement;
+  right: React.ReactElement<any>;
   rightSx?: BoxProps['sx'];
 }
 
@@ -55,7 +55,7 @@ export default function HeroContainer(props: HeroContainerProps) {
       sx={[
         (theme) => ({
           minWidth: '50vw',
-          minHeight: 500,
+          minHeight: { xs: 'auto', sm: 500 },
           height: 'calc(100vh - 120px)',
           maxHeight: { md: 700, xl: 850 },
           borderBottomLeftRadius: 12,
@@ -94,13 +94,13 @@ export default function HeroContainer(props: HeroContainerProps) {
       <Box sx={{ overflow: 'hidden' }}>
         <Container
           sx={{
-            minHeight: 500,
+            minHeight: { xs: 'auto', sm: 500 },
             height: { md: 'calc(100vh - 120px)' },
             maxHeight: { md: 700, xl: 850 },
             transition: '0.3s',
           }}
         >
-          <Grid container alignItems="center" sx={{ height: '100%', mx: 'auto' }}>
+          <Grid container sx={{ alignItems: 'center', height: '100%', mx: 'auto' }}>
             <Grid
               item
               xs={12}
@@ -138,14 +138,17 @@ export default function HeroContainer(props: HeroContainerProps) {
     <Box sx={{ overflow: 'hidden' }}>
       <Container
         sx={{
-          pt: { xs: 8, sm: 0 },
-          minHeight: 500,
+          pt: { xs: 8, md: 0 },
+          minHeight: { xs: 'auto', md: 500 },
           height: { md: 'calc(100vh - 120px)' },
           maxHeight: { md: 700, xl: 850 },
           transition: '0.3s',
         }}
       >
-        <Grid container alignItems="center" wrap="nowrap" sx={{ height: '100%', mx: 'auto' }}>
+        <Grid
+          container
+          sx={{ alignItems: 'center', flexWrap: 'nowrap', height: '100%', mx: 'auto' }}
+        >
           <Grid item md={7} lg={6} sx={{ m: 'auto' }}>
             {left}
           </Grid>

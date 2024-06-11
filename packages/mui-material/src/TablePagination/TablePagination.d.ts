@@ -114,7 +114,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * Use -1 for the value with a custom label to show all the rows.
    * @default [10, 25, 50, 100]
    */
-  rowsPerPageOptions?: Array<number | { value: number; label: string }>;
+  rowsPerPageOptions?: ReadonlyArray<number | { value: number; label: string }>;
   /**
    * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
    *
@@ -166,13 +166,13 @@ export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends R
  *
  * Demos:
  *
- * - [Pagination](https://mui.com/material-ui/react-pagination/)
- * - [Table](https://mui.com/material-ui/react-table/)
+ * - [Pagination](https://next.mui.com/material-ui/react-pagination/)
+ * - [Table](https://next.mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TablePagination API](https://mui.com/material-ui/api/table-pagination/)
- * - inherits [TableCell API](https://mui.com/material-ui/api/table-cell/)
+ * - [TablePagination API](https://next.mui.com/material-ui/api/table-pagination/)
+ * - inherits [TableCell API](https://next.mui.com/material-ui/api/table-cell/)
  */
 declare const TablePagination: OverridableComponent<
   TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>

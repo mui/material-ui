@@ -1,6 +1,8 @@
 import { generateUtilityClasses } from '../generateUtilityClasses';
 import { generateUtilityClass } from '../generateUtilityClass';
 
+const COMPONENT_NAME = 'Slider';
+
 export interface SliderClasses {
   /** Class name applied to the root element. */
   root: string;
@@ -39,10 +41,10 @@ export interface SliderClasses {
 export type SliderClassKey = keyof SliderClasses;
 
 export function getSliderUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSlider', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
+export const sliderClasses: SliderClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'active',
   'focusVisible',

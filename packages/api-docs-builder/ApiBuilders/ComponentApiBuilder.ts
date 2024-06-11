@@ -9,9 +9,10 @@ import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
-import { renderMarkdown } from '@mui/markdown';
-import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
-import { ProjectSettings } from '../ProjectSettings';
+import { renderMarkdown } from '@mui/internal-markdown';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
+import { parse as parseDoctrine, Annotation } from 'doctrine';
+import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
@@ -24,6 +25,7 @@ import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 import generateApiTranslations from '../utils/generateApiTranslation';
+import { sortAlphabetical } from '../utils/sortObjects';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -54,7 +56,7 @@ export interface ReactApi extends ReactDocgenApi {
   /**
    * If `true`, the component supports theme default props customization.
    * If `null`, we couldn't infer this information.
-   * If `undefined`, it's not applicable in this context, e.g. Base UI components.
+   * If `undefined`, it's not applicable in this context, for example Base UI components.
    */
   themeDefaultProps: boolean | undefined | null;
   /**
@@ -79,6 +81,7 @@ export interface ReactApi extends ReactDocgenApi {
   imports: string[];
   translations: {
     componentDescription: string;
+    deprecationInfo: string | undefined;
     propDescriptions: {
       [key: string]: {
         description: string;
@@ -102,6 +105,7 @@ export interface ReactApi extends ReactDocgenApi {
    * The folder used to store the API translation.
    */
   apiDocsTranslationFolder?: string;
+  deprecated: true | undefined;
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
@@ -146,8 +150,12 @@ export async function computeApiDescription(
  *  *
  *  * - [Icon API](https://mui.com/api/icon/)
  */
-async function annotateComponentDefinition(api: ReactApi) {
-  const HOST = 'https://mui.com';
+async function annotateComponentDefinition(
+  api: ReactApi,
+  componentJsdoc: Annotation,
+  projectSettings: ProjectSettings,
+) {
+  const HOST = projectSettings.baseApiUrl ?? 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
   const fileName = path.parse(api.filename).name;
@@ -282,7 +290,7 @@ async function annotateComponentDefinition(api: ReactApi) {
   }
 
   let inheritanceAPILink = null;
-  if (api.inheritance !== null) {
+  if (api.inheritance) {
     inheritanceAPILink = `[${api.inheritance.name} API](${
       api.inheritance.apiPathname.startsWith('http')
         ? api.inheritance.apiPathname
@@ -313,9 +321,17 @@ async function annotateComponentDefinition(api: ReactApi) {
       api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
     })`,
   );
-  if (api.inheritance !== null) {
+  if (api.inheritance) {
     markdownLines.push(`- inherits ${inheritanceAPILink}`);
   }
+
+  if (componentJsdoc.tags.length > 0) {
+    markdownLines.push('');
+  }
+
+  componentJsdoc.tags.forEach((tag) => {
+    markdownLines.push(`@${tag.title}${tag.name ? ` ${tag.name} -` : ''} ${tag.description}`);
+  });
 
   const jsdoc = `/**\n${markdownLines
     .map((line) => (line.length > 0 ? ` * ${line}` : ` *`))
@@ -353,11 +369,13 @@ function extractClassCondition(description: string) {
   return { description: renderMarkdown(description) };
 }
 
-const generateApiPage = (
+const generateApiPage = async (
   apiPagesDirectory: string,
   importTranslationPagesDirectory: string,
   reactApi: ReactApi,
+  sortingStrategies?: SortingStrategiesType,
   onlyJsonFile: boolean = false,
+  layoutConfigPath: string = '',
 ) => {
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   /**
@@ -397,24 +415,41 @@ const generateApiPage = (
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
+    deprecated: reactApi.deprecated,
   };
 
-  writePrettifiedFile(
+  const { classesSort = sortAlphabetical('key'), slotsSort = null } = {
+    ...sortingStrategies,
+  };
+
+  if (classesSort) {
+    pageContent.classes = [...pageContent.classes].sort(classesSort);
+  }
+  if (slotsSort && pageContent.slots) {
+    pageContent.slots = [...pageContent.slots].sort(slotsSort);
+  }
+
+  await writePrettifiedFile(
     path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 
   if (!onlyJsonFile) {
-    writePrettifiedFile(
+    await writePrettifiedFile(
       path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
       `import * as React from 'react';
   import ApiPage from 'docs/src/modules/components/ApiPage';
-  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';${
+    layoutConfigPath === ''
+      ? ''
+      : `
+  import layoutConfig from '${layoutConfigPath}';`
+  }
   import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
   export default function Page(props) {
     const { descriptions, pageContent } = props;
-    return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
   }
 
   Page.getInitialProps = () => {
@@ -435,9 +470,14 @@ const generateApiPage = (
   }
 };
 
-const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePropSettings) => {
+const attachTranslations = (
+  reactApi: ReactApi,
+  deprecationInfo: string | undefined,
+  settings?: CreateDescribeablePropSettings,
+) => {
   const translations: ReactApi['translations'] = {
     componentDescription: reactApi.description,
+    deprecationInfo: deprecationInfo ? renderMarkdown(deprecationInfo) : undefined,
     propDescriptions: {},
     classDescriptions: {},
   };
@@ -473,20 +513,26 @@ const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePro
    */
   if (reactApi.slots?.length > 0) {
     translations.slotDescriptions = {};
-    reactApi.slots.forEach((slot: Slot) => {
-      const { name, description } = slot;
-      translations.slotDescriptions![name] = description;
-    });
+    [...reactApi.slots]
+      .sort(sortAlphabetical('name')) // Sort to ensure consistency of object key order
+      .forEach((slot: Slot) => {
+        const { name, description } = slot;
+        translations.slotDescriptions![name] = renderMarkdown(description);
+      });
   }
 
   /**
    * CSS class descriptions and deprecations.
    */
+  [...reactApi.classes]
+    .sort(sortAlphabetical('key')) // Sort to ensure consistency of object key order
+    .forEach((classDefinition) => {
+      translations.classDescriptions[classDefinition.key] = {
+        ...extractClassCondition(classDefinition.description),
+        deprecationInfo: classDefinition.deprecationInfo,
+      };
+    });
   reactApi.classes.forEach((classDefinition, index) => {
-    translations.classDescriptions[classDefinition.key] = {
-      ...extractClassCondition(classDefinition.description),
-      deprecationInfo: classDefinition.deprecationInfo,
-    };
     delete reactApi.classes[index].deprecationInfo; // store deprecation info in translations only
   });
 
@@ -709,20 +755,33 @@ export default async function generateComponentApi(
     });
   }
 
+  if (!reactApi.props) {
+    reactApi.props = {};
+  }
+
+  const { getComponentImports = defaultGetComponentImports } = projectSettings;
+  const componentJsdoc = parseDoctrine(reactApi.description);
+
+  // We override `reactApi.description` with `componentJsdoc.description` because
+  // the former can include JSDoc tags that we don't want to render in the docs.
+  reactApi.description = componentJsdoc.description;
+
   // Ignore what we might have generated in `annotateComponentDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
 
-  const { getComponentImports = defaultGetComponentImports } = projectSettings;
   reactApi.filename = filename;
   reactApi.name = componentInfo.name;
   reactApi.imports = getComponentImports(componentInfo.name, filename);
   reactApi.muiName = componentInfo.muiName;
   reactApi.apiPathname = componentInfo.apiPathname;
   reactApi.EOL = EOL;
+  reactApi.slots = [];
+  reactApi.classes = [];
   reactApi.demos = componentInfo.getDemos();
+  reactApi.inheritance = null;
   if (reactApi.demos.length === 0) {
     throw new Error(
       'Unable to find demos. \n' +
@@ -738,24 +797,34 @@ export default async function generateComponentApi(
     reactApi.spread = testInfo.spread ?? spread;
     reactApi.themeDefaultProps = testInfo.themeDefaultProps;
     reactApi.inheritance = componentInfo.getInheritance(testInfo.inheritComponent);
-  } catch (e) {
+  } catch (error: any) {
+    console.error(error.message);
     if (project.name.includes('grid')) {
       // TODO: Use `describeConformance` for the DataGrid components
       reactApi.forwardsRefTo = 'GridRoot';
     }
   }
 
-  const { slots, classes } = parseSlotsAndClasses({
-    project,
-    componentName: reactApi.name,
-    muiName: reactApi.muiName,
-  });
+  if (!projectSettings.skipSlotsAndClasses) {
+    const { slots, classes } = parseSlotsAndClasses({
+      typescriptProject: project,
+      projectSettings,
+      componentName: reactApi.name,
+      muiName: reactApi.muiName,
+      slotInterfaceName: componentInfo.slotInterfaceName,
+    });
 
-  reactApi.slots = slots;
-  reactApi.classes = classes;
+    reactApi.slots = slots;
+    reactApi.classes = classes;
+  }
+
+  const deprecation = componentJsdoc.tags.find((tag) => tag.title === 'deprecated');
+  const deprecationInfo = deprecation?.description || undefined;
+
+  reactApi.deprecated = !!deprecation || undefined;
 
   attachPropsTable(reactApi, projectSettings.propsSettings);
-  attachTranslations(reactApi, projectSettings.propsSettings);
+  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);
@@ -768,18 +837,20 @@ export default async function generateComponentApi(
       generateJsonFileOnly,
     } = projectSettings;
 
-    generateApiTranslations(
+    await generateApiTranslations(
       path.join(process.cwd(), translationPagesDirectory),
       reactApi,
       projectSettings.translationLanguages,
     );
 
     // Once we have the tabs API in all projects, we can make this default
-    generateApiPage(
+    await generateApiPage(
       componentInfo.apiPagesDirectory,
       importTranslationPagesDirectory ?? translationPagesDirectory,
       reactApi,
+      projectSettings.sortingStrategies,
       generateJsonFileOnly,
+      componentInfo.layoutConfigPath,
     );
 
     if (
@@ -788,7 +859,7 @@ export default async function generateComponentApi(
         : !skipAnnotatingComponentDefinition
     ) {
       // Add comment about demo & api links (including inherited component) to the component file
-      await annotateComponentDefinition(reactApi);
+      await annotateComponentDefinition(reactApi, componentJsdoc, projectSettings);
     }
   }
 

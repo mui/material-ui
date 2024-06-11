@@ -5,15 +5,14 @@ import {
   StepDirection,
 } from './useNumberInput.types';
 import { NumberInputActionTypes } from './numberInputAction.types';
-import { clamp, isNumber } from './utils';
+import { clampStepwise, isNumber } from './utils';
 
-// extracted from handleValueChange
-function getClampedValues(rawValue: number | undefined, context: NumberInputActionContext) {
+function getClampedValues(rawValue: number | null, context: NumberInputActionContext) {
   const { min, max, step } = context;
 
-  const clampedValue = rawValue === undefined ? '' : clamp(rawValue, min, max, step);
+  const clampedValue = rawValue === null ? null : clampStepwise(rawValue, min, max, step);
 
-  const newInputValue = clampedValue === undefined ? '' : String(clampedValue);
+  const newInputValue = clampedValue === null ? '' : String(clampedValue);
 
   return {
     value: clampedValue,
@@ -38,8 +37,8 @@ function stepValue(
   }
 
   return {
-    up: min ?? 0,
-    down: max ?? 0,
+    up: min ?? 1,
+    down: max ?? -1,
   }[direction];
 }
 
@@ -54,7 +53,7 @@ function handleClamp<State extends NumberInputState>(
 
   const intermediateValue =
     numberValueAsString === '' || numberValueAsString === '-'
-      ? undefined
+      ? null
       : parseInt(numberValueAsString, 10);
 
   const clampedValues = getClampedValues(intermediateValue, context);
@@ -74,19 +73,14 @@ function handleInputChange<State extends NumberInputState>(
 
   const numberValueAsString = getInputValueAsString(inputValue);
 
-  if (numberValueAsString === '' || numberValueAsString === '-') {
+  if (
+    numberValueAsString.match(/^-?\d+?$/) ||
+    numberValueAsString === '' ||
+    numberValueAsString === '-'
+  ) {
     return {
       ...state,
       inputValue: numberValueAsString,
-      value: '',
-    };
-  }
-
-  if (numberValueAsString.match(/^-?\d+?$/)) {
-    return {
-      ...state,
-      inputValue: numberValueAsString,
-      value: parseInt(numberValueAsString, 10),
     };
   }
 
@@ -150,6 +144,11 @@ export function numberInputReducer(
       return handleToMinOrMax(state, context, 'max');
     case NumberInputActionTypes.decrementToMin:
       return handleToMinOrMax(state, context, 'min');
+    case NumberInputActionTypes.resetInputValue:
+      return {
+        ...state,
+        inputValue: String(state.value),
+      };
     default:
       return state;
   }

@@ -10,6 +10,10 @@ import {
   unstable_styleFunctionSx as styleFunctionSx,
   SxConfig,
 } from '@mui/system';
+import cssContainerQueries from '@mui/system/cssContainerQueries';
+import { unstable_applyStyles as applyStyles } from '@mui/system/createTheme';
+import { prepareTypographyVars } from '@mui/system/cssVars';
+import { createUnarySpacing } from '@mui/system/spacing';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
@@ -41,6 +45,22 @@ type Partial3Level<T> = {
       : T[K][J];
   };
 };
+
+function getSpacingVal(spacingInput: SpacingOptions | string | undefined) {
+  if (typeof spacingInput === 'number') {
+    return `${spacingInput}px`;
+  }
+  if (typeof spacingInput === 'string') {
+    return spacingInput;
+  }
+  if (typeof spacingInput === 'function') {
+    return getSpacingVal(spacingInput(1));
+  }
+  if (Array.isArray(spacingInput)) {
+    return spacingInput;
+  }
+  return '8px';
+}
 
 export type ColorSystemOptions = Partial3Level<
   MergeDefault<ColorSystem, { palette: PaletteOptions }>
@@ -80,6 +100,26 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  /**
+   * If provided, it will be used to create a selector for the color scheme.
+   * This is useful if you want to use class or data-* attributes to apply the color scheme.
+   *
+   * The callback receives the colorScheme with the possible values of:
+   * - undefined: the selector for tokens that are not color scheme dependent
+   * - string: the selector for the color scheme
+   *
+   * @example
+   * // class selector
+   * (colorScheme) => colorScheme !== 'light' ? `.theme-${colorScheme}` : ":root"
+   *
+   * @example
+   * // data-* attribute selector
+   * (colorScheme) => colorScheme !== 'light' ? `[data-theme="${colorScheme}"`] : ":root"
+   */
+  getSelector?: (
+    colorScheme: SupportedColorScheme | undefined,
+    css: Record<string, any>,
+  ) => string | Record<string, any>;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -93,6 +133,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     components: componentsInput,
     variants: variantsInput,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    getSelector,
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -344,6 +385,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       light: lightColorSystem,
       dark: darkColorSystem,
     },
+    font: {},
     fontSize,
     fontFamily,
     fontWeight,
@@ -520,8 +562,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ? deepmerge(defaultScales, scalesInput)
     : defaultScales;
 
-  const theme = {
+  let theme = {
     colorSchemes,
+    defaultColorScheme: 'light',
     ...mergedScales,
     breakpoints: createBreakpoints(breakpoints ?? {}),
     components: deepmerge(
@@ -563,8 +606,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ),
     cssVarPrefix,
     getCssVar,
-    spacing: createSpacing(spacing),
-  } as unknown as Theme; // Need type casting due to module augmentation inside the repo
+    spacing: getSpacingVal(spacing),
+    font: { ...prepareTypographyVars(mergedScales.typography), ...mergedScales.font },
+  } as unknown as Theme & { attribute: string; colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
+  theme = cssContainerQueries(theme);
 
   /**
    Color channels generation
@@ -609,15 +654,33 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
+    getSelector:
+      getSelector ||
+      ((colorScheme) => {
+        if (theme.defaultColorScheme === colorScheme) {
+          return `${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`;
+        }
+        if (colorScheme) {
+          return `[${theme.attribute}="${colorScheme}"]`;
+        }
+        return theme.colorSchemeSelector;
+      }),
   };
 
-  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, ThemeVars>(
-    // @ts-ignore property truDark is missing from colorSchemes
-    { colorSchemes, ...mergedScales },
+  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars<Theme, ThemeVars>(
+    theme,
     parserConfig,
   );
-  theme.vars = themeVars;
-  theme.generateCssVars = generateCssVars;
+  theme.attribute = 'data-joy-color-scheme';
+  theme.colorSchemeSelector = ':root';
+  theme.vars = vars;
+  theme.generateThemeVars = generateThemeVars;
+  theme.generateStyleSheets = generateStyleSheets;
+  theme.generateSpacing = function generateSpacing() {
+    return createSpacing(spacing, createUnarySpacing(this));
+  };
+  theme.spacing = theme.generateSpacing();
+  theme.typography = mergedScales.typography as any; // cast to `any` to avoid internal module augmentation in the repo.
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,
@@ -629,9 +692,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     });
   };
   theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) =>
-    colorScheme === 'light'
-      ? '&'
-      : `&[data-joy-color-scheme="${colorScheme}"], [data-joy-color-scheme="${colorScheme}"] &`;
+    `[${theme.attribute}="${colorScheme}"] &`;
 
   const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
   theme.variants = deepmerge(
@@ -656,12 +717,17 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     variantsInput,
   );
 
+  Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
+    // @ts-ignore
+    theme[key] = value;
+  });
   theme.palette = {
     ...theme.colorSchemes.light.palette,
     colorScheme: 'light',
   };
 
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
+  theme.applyStyles = applyStyles;
 
   return theme;
 }

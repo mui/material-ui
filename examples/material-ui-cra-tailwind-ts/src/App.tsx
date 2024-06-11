@@ -8,7 +8,13 @@ import ProTip from './ProTip';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
+    <Typography
+      variant="body2"
+      align="center"
+      sx={{
+        color: 'text.secondary',
+      }}
+    >
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -23,7 +29,7 @@ export default function App() {
   return (
     <Container maxWidth="sm">
       <div className="my-4">
-        <Typography variant="h4" component="h1" gutterBottom>
+        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
           Material UI Create React App example with Tailwind CSS in TypeScript
         </Typography>
         <Slider

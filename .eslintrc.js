@@ -1,8 +1,8 @@
 const path = require('path');
 const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
 
-const forbidTopLevelMessage = [
-  'Prefer one level nested imports to avoid bundling everything in dev mode',
+const OneLevelImportMessage = [
+  'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
   'See https://github.com/mui/material-ui/pull/24147 for the kind of win it can unlock.',
 ].join('\n');
 // This only applies to packages published from this monorepo.
@@ -11,6 +11,8 @@ const forbidCreateStylesMessage =
   'Use `MuiStyles<ClassKey, Props>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
   '`createStyles` will lead to inlined, at-compile-time-resolved type-imports. ' +
   'See https://github.com/microsoft/TypeScript/issues/36097#issuecomment-578324386 for more information';
+
+const ENABLE_REACT_COMPILER_PLUGIN = false;
 
 module.exports = {
   root: true, // So parent files don't get applied
@@ -35,6 +37,7 @@ module.exports = {
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
     'eslint-plugin-filenames',
+    ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
   ],
   settings: {
     'import/resolver': {
@@ -65,7 +68,20 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: ['@mui/*/*/*'],
+        patterns: [
+          {
+            group: [
+              '@mui/*/*/*',
+              '@pigment-css/*/*/*',
+              '@base_ui/*/*/*',
+              // Allow any import depth with any internal packages
+              '!@mui/internal-*/**',
+              // TODO delete, @mui/docs should be @mui/internal-docs
+              '!@mui/docs/**',
+            ],
+            message: OneLevelImportMessage,
+          },
+        ],
       },
     ],
     'no-continue': 'off',
@@ -164,7 +180,7 @@ module.exports = {
     'react/state-in-constructor': 'off',
     // stylistic opinion. For conditional assignment we want it outside, otherwise as static
     'react/static-property-placement': 'off',
-    // noopener is enough, no IE 11 support
+    // noopener is enough
     // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md#rule-options
     'react/jsx-no-target-blank': ['error', { allowReferrer: true }],
 
@@ -206,6 +222,7 @@ module.exports = {
 
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     'lines-around-directive': 'off',
+    ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'error' } : {}),
   },
   overrides: [
     {
@@ -286,7 +303,7 @@ module.exports = {
     },
     // Next.js entry points pages
     {
-      files: ['docs/pages/**/*.js'],
+      files: ['docs/pages/**/*{.tsx,.js}'],
       rules: {
         'react/prop-types': 'off',
       },
@@ -331,23 +348,6 @@ module.exports = {
         'import/export': 'off', // Not sure why it doesn't work
       },
     },
-    {
-      files: ['*.tsx'],
-      excludedFiles: '*.spec.tsx',
-      rules: {
-        // WARNING: If updated, make sure these rules are merged with `no-restricted-imports` (#ts-source-files)
-        'no-restricted-imports': [
-          'error',
-          {
-            patterns: [
-              // Allow deeper imports for TypeScript types. TODO remove
-              '@mui/*/*/*/*',
-            ],
-          },
-        ],
-      },
-    },
-    // Files used for generating TypeScript declaration files (#ts-source-files)
     {
       files: ['packages/*/src/**/*.tsx'],
       excludedFiles: '*.spec.tsx',
@@ -413,7 +413,7 @@ module.exports = {
       },
     },
     {
-      files: ['packages/typescript-to-proptypes/src/**/*.ts'],
+      files: ['packages-internal/scripts/typescript-to-proptypes/src/**/*.ts'],
       rules: {
         // Working with flags is common in TypeScript compiler
         'no-bitwise': 'off',
@@ -429,11 +429,11 @@ module.exports = {
             paths: [
               {
                 name: '@mui/material',
-                message: forbidTopLevelMessage,
+                message: OneLevelImportMessage,
               },
               {
                 name: '@mui/lab',
-                message: forbidTopLevelMessage,
+                message: OneLevelImportMessage,
               },
             ],
           },
@@ -465,7 +465,7 @@ module.exports = {
       },
     },
     {
-      files: ['scripts/**/*.mjs', 'packages/**/*.mjs'],
+      files: ['**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
       },
@@ -475,6 +475,38 @@ module.exports = {
       rules: {
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
+        ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'off' } : {}),
+      },
+    },
+    {
+      /**
+       * Examples are for demonstration purposes and should not be considered a part of the library.
+       * They don't contain ESLint setup, so we don't want them to contain ESLint directives
+       * We do, however, want to keep the rules in place to ensure the examples are following
+       * a reasonably similar code style as the library.
+       */
+      files: ['examples/**/*'],
+      rules: {
+        'no-console': 'off',
+        'no-underscore-dangle': 'off',
+        'import/no-unresolved': 'off',
+        'import/namespace': 'off',
+        'import/extensions': 'off',
+        'import/named': 'off',
+        'import/no-duplicates': 'off',
+        'import/no-named-as-default': 'off',
+        'import/default': 'off',
+        'import/no-named-as-default-member': 'off',
+        'import/order': 'off',
+        // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
+        'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
+      },
+    },
+    {
+      // TODO, move rule to be global, propagate: https://github.com/mui/material-ui/issues/42169
+      files: ['examples/pigment-css-remix-ts/**/*'],
+      rules: {
+        'react/react-in-jsx-scope': 'off',
       },
     },
   ],

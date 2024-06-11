@@ -60,7 +60,7 @@ const Modal = styled(BaseModal)`
   justify-content: center;
   background-color: rgba(0 0 0 / 0.4);
 
-  &.MuiModal-hidden {
+  &.base-Modal-hidden {
     visibility: hidden;
   }
 `;

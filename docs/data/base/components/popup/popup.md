@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 <p class="description">The Popup component is a utility that lets you display content in tooltips and popovers.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -22,7 +22,7 @@ It relies on the third-party [Floating UI](https://floating-ui.com/) library for
 {{"demo": "UnstyledPopupIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 :::info
-The Popup component, once stable, is intended to replace the [Popper](/base-ui/react-popper/) component, which will be phased out in a future release of Base UI.
+The Popup component, once stable, is intended to replace the [Popper](/base-ui/react-popper/) component, which will be phased out in a future release of Base UI.
 :::
 
 ## Component
@@ -61,7 +61,7 @@ Try changing this value to `top` in the interactive demo below to see how it wor
 ### Transitions
 
 You can animate the opening and closing of the Popup using CSS transitions, CSS animations, or third-party animation libraries.
-It supports the API described on the [Base UI Transitions](/base-ui/react-transitions/) page.
+It supports the API described on the [Base UI Transitions](/base-ui/react-transitions/) page.
 
 ### Disable portal
 

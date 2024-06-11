@@ -6,7 +6,7 @@ import { alpha } from '@mui/material/styles';
 import Section from 'docs/src/layouts/Section';
 
 function Placeholder() {
-  return <Box sx={{ height: { xs: 587, sm: 303, md: 289 } }} />;
+  return <Box sx={{ height: { xs: 616 - 48 * 2, sm: 438 - 80 * 2, md: 461 - 96 * 2 } }} />;
 }
 const StartToday = dynamic(() => import('./StartToday'), { loading: Placeholder });
 

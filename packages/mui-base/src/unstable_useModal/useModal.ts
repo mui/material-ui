@@ -30,11 +30,11 @@ const defaultManager = new ModalManager();
  *
  * Demos:
  *
- * - [Modal](https://mui.com/base-ui/react-modal/#hook)
+ * - [Modal](https://next.mui.com/base-ui/react-modal/#hook)
  *
  * API:
  *
- * - [useModal API](https://mui.com/base-ui/react-modal/hooks-api/#use-modal)
+ * - [useModal API](https://next.mui.com/base-ui/react-modal/hooks-api/#use-modal)
  */
 export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
@@ -54,7 +54,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   // @ts-ignore internal logic
   const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
-  const mountNodeRef = React.useRef<null | HTMLElement>(null);
+  const mountNodeRef = React.useRef<HTMLElement | null>(null);
   const modalRef = React.useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = React.useState(!open);

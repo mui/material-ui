@@ -1,16 +1,17 @@
 {
-  "name": "test-project",
+  "name": "envinfo-test-project",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.3",
-    "@mui/joy": "^5.0.0-beta.21",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/base": "5.0.0-beta.30",
+    "@mui/joy": "5.0.0-beta.22",
+    "@mui/material": "5.15.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.46"
+    "@types/react": "^18.2.55"
   }
 }

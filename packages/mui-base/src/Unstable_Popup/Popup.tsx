@@ -16,10 +16,10 @@ import {
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { Portal } from '../Portal';
-import { useSlotProps } from '../utils';
+import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
-import { PopupOwnerState, PopupProps } from './Popup.types';
+import { PopupOwnerState, PopupProps, PopupRootSlotProps, PopupTypeMap } from './Popup.types';
 import { useTransitionTrigger, TransitionContext } from '../useTransition';
 import { PopupContext, PopupContextValue } from './PopupContext';
 
@@ -72,7 +72,6 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     slotProps = {},
     slots = {},
     strategy = 'absolute',
-    withTransition = false,
     ...other
   } = props;
 
@@ -113,7 +112,6 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     placement,
     finalPlacement,
     strategy,
-    withTransition,
   };
 
   const { contextValue, hasExited: hasTransitionExited } = useTransitionTrigger(open);
@@ -122,7 +120,7 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
   const classes = useUtilityClasses(ownerState);
 
   const Root = slots?.root ?? 'div';
-  const rootProps = useSlotProps({
+  const rootProps: WithOptionalOwnerState<PopupRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
@@ -156,7 +154,7 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
       </PopupContext.Provider>
     </Portal>
   );
-});
+}) as PolymorphicComponent<PopupTypeMap>;
 
 Popup.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -195,7 +193,7 @@ Popup.propTypes /* remove-proptypes */ = {
   disablePortal: PropTypes.bool,
   /**
    * If `true`, the popup will exist in the DOM even if it's closed.
-   * Its visibility will be controlled by the `display` CSS property.
+   * Its visibility will be controlled by the `visibility` CSS property.
    *
    * Otherwise, a closed popup will be removed from the DOM.
    *
@@ -285,15 +283,6 @@ Popup.propTypes /* remove-proptypes */ = {
    * @see https://floating-ui.com/docs/computePosition#strategy
    */
   strategy: PropTypes.oneOf(['absolute', 'fixed']),
-  /**
-   * If `true`, the popup will not disappear immediately when it needs to be closed
-   * but wait until the exit transition has finished.
-   * In such a case, a function form of `children` must be used and `onExited`
-   * callback function must be called when the transition or animation finish.
-   *
-   * @default false
-   */
-  withTransition: PropTypes.bool,
 } as any;
 
 export { Popup };

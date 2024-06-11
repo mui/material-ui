@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, fireEvent, act } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent, act } from '@mui/internal-test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/joy/Snackbar';
 import { ThemeProvider } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <Snackbar />', () => {
   const { render: clientRender, clock } = createRenderer({ clock: 'fake' });
@@ -18,7 +19,7 @@ describe('Joy <Snackbar />', () => {
    * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
    * React bug: https://github.com/facebook/react/issues/20074
    */
-  function render(...args: [React.ReactElement]) {
+  function render(...args: [React.ReactElement<any>]) {
     const result = clientRender(...args);
     clock.tick(0);
     return result;

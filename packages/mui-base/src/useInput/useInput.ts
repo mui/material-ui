@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
@@ -14,11 +14,11 @@ import {
  *
  * Demos:
  *
- * - [Input](https://mui.com/base-ui/react-input/#hook)
+ * - [Input](https://next.mui.com/base-ui/react-input/#hook)
  *
  * API:
  *
- * - [useInput API](https://mui.com/base-ui/react-input/hooks-api/#use-input)
+ * - [useInput API](https://next.mui.com/base-ui/react-input/hooks-api/#use-input)
  */
 export function useInput(parameters: UseInputParameters = {}): UseInputReturnValue {
   const {

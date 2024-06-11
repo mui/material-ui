@@ -24,8 +24,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -39,8 +38,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -210,7 +208,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   >;
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps?: TransitionProps;
 }
@@ -219,10 +217,10 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
  *
  * Demos:
  *
- * - [Tooltip](https://mui.com/material-ui/react-tooltip/)
+ * - [Tooltip](https://next.mui.com/material-ui/react-tooltip/)
  *
  * API:
  *
- * - [Tooltip API](https://mui.com/material-ui/api/tooltip/)
+ * - [Tooltip API](https://next.mui.com/material-ui/api/tooltip/)
  */
-export default function Tooltip(props: TooltipProps): JSX.Element;
+export default function Tooltip(props: TooltipProps): React.JSX.Element;

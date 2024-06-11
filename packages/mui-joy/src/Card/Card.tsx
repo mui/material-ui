@@ -32,73 +32,74 @@ const useUtilityClasses = (ownerState: CardOwnerState) => {
   return composeClasses(slots, getCardUtilityClass, {});
 };
 
-export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(
-  ({ theme, ownerState }) => {
-    const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
-      'p',
-      'padding',
-      'borderRadius',
-    ]);
-    return [
-      {
-        '--Icon-color':
-          ownerState.color !== 'neutral' || ownerState.variant === 'solid'
-            ? 'currentColor'
-            : theme.vars.palette.text.icon,
-        // a context variable for any child component
-        '--Card-childRadius':
-          'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
-        // AspectRatio integration
-        '--AspectRatio-radius': 'var(--Card-childRadius)',
-        // Link integration
-        '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
-        // Link, Radio, Checkbox integration
-        '--unstable_actionRadius': 'var(--Card-radius)',
-        // CardCover integration
-        '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
-        // CardOverflow integration
-        '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
-        '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
-        // Divider integration
-        '--Divider-inset': 'calc(-1 * var(--Card-padding))',
-        ...(ownerState.size === 'sm' && {
-          '--Card-radius': theme.vars.radius.sm,
-          '--Card-padding': '0.625rem',
-          gap: '0.5rem',
-        }),
-        ...(ownerState.size === 'md' && {
-          '--Card-radius': theme.vars.radius.md,
-          '--Card-padding': '1rem',
-          gap: '0.75rem 1rem',
-        }),
-        ...(ownerState.size === 'lg' && {
-          '--Card-radius': theme.vars.radius.lg,
-          '--Card-padding': '1.5rem',
-          gap: '1rem 1.5rem',
-        }),
-        padding: 'var(--Card-padding)',
-        borderRadius: 'var(--Card-radius)',
-        backgroundColor: theme.vars.palette.background.surface,
-        position: 'relative',
-        display: 'flex',
-        flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-        ...theme.typography[`body-${ownerState.size!}`],
-        ...(ownerState.variant === 'solid' &&
-          ownerState.color &&
-          ownerState.invertedColors &&
-          applySolidInversion(ownerState.color)(theme)),
-        ...(ownerState.variant === 'soft' &&
-          ownerState.color &&
-          ownerState.invertedColors &&
-          applySoftInversion(ownerState.color)(theme)),
-        ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-      } as const,
-      p !== undefined && { '--Card-padding': p },
-      padding !== undefined && { '--Card-padding': padding },
-      borderRadius !== undefined && { '--Card-radius': borderRadius },
-    ];
-  },
-);
+export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(({
+  theme,
+  ownerState,
+}) => {
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
+  return [
+    {
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
+      // a context variable for any child component
+      '--Card-childRadius':
+        'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
+      // AspectRatio integration
+      '--AspectRatio-radius': 'var(--Card-childRadius)',
+      // Link integration
+      '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
+      // Link, Radio, Checkbox integration
+      '--unstable_actionRadius': 'var(--Card-radius)',
+      // CardCover integration
+      '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
+      // CardOverflow integration
+      '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
+      '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
+      // Divider integration
+      '--Divider-inset': 'calc(-1 * var(--Card-padding))',
+      ...(ownerState.size === 'sm' && {
+        '--Card-radius': theme.vars.radius.sm,
+        '--Card-padding': '0.625rem',
+        gap: '0.5rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Card-radius': theme.vars.radius.md,
+        '--Card-padding': '1rem',
+        gap: '0.75rem 1rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Card-radius': theme.vars.radius.lg,
+        '--Card-padding': '1.5rem',
+        gap: '1rem 1.5rem',
+      }),
+      padding: 'var(--Card-padding)',
+      borderRadius: 'var(--Card-radius)',
+      backgroundColor: theme.vars.palette.background.surface,
+      position: 'relative',
+      display: 'flex',
+      flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+      ...theme.typography[`body-${ownerState.size!}`],
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
+      ...(ownerState.variant === 'soft' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    } as const,
+    p !== undefined && { '--Card-padding': p },
+    padding !== undefined && { '--Card-padding': padding },
+    borderRadius !== undefined && { '--Card-radius': borderRadius },
+  ];
+});
 
 const CardRoot = styled(StyledCardRoot, {
   name: 'JoyCard',

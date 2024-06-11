@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 
 <p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -32,10 +32,10 @@ import { Switch } from '@mui/base/Switch';
 The Switch component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
 
 ```html
-<span class="MuiSwitch-root">
-  <span class="MuiSwitch-track"></span>
-  <span class="MuiSwitch-thumb"></span>
-  <input type="checkbox" class="MuiSwitch-input" />
+<span class="base-Switch-root">
+  <span class="base-Switch-track"></span>
+  <span class="base-Switch-thumb"></span>
+  <input type="checkbox" class="base-Switch-input" />
 </span>
 ```
 

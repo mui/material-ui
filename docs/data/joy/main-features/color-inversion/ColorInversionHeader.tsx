@@ -60,9 +60,7 @@ export default function ColorInversionHeader() {
       <Box sx={{ flex: 1, display: 'flex', gap: 1, px: 2 }}>
         <Dropdown>
           <MenuButton
-            sx={{
-              '--Button-radius': '1.5rem',
-            }}
+            sx={{ '--Button-radius': '1.5rem' }}
             variant="outlined"
             endDecorator={<KeyboardArrowDownIcon />}
           >
@@ -96,7 +94,7 @@ export default function ColorInversionHeader() {
                 sx={{
                   ml: 'auto',
                   bgcolor: (theme) =>
-                    `rgba(${theme.vars.palette.primary.mainChannel} / 0.1)`,
+                    `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`,
                 }}
               >
                 Beta

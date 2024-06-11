@@ -91,7 +91,7 @@ export interface CheckboxProps
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */
-  size?: OverridableStringUnion<'small' | 'medium', CheckboxPropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium' | 'large', CheckboxPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -107,12 +107,12 @@ export interface CheckboxProps
  *
  * Demos:
  *
- * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
- * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
+ * - [Checkbox](https://next.mui.com/material-ui/react-checkbox/)
+ * - [Transfer List](https://next.mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *
- * - [Checkbox API](https://mui.com/material-ui/api/checkbox/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [Checkbox API](https://next.mui.com/material-ui/api/checkbox/)
+ * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
  */
-export default function Checkbox(props: CheckboxProps): JSX.Element;
+export default function Checkbox(props: CheckboxProps): React.JSX.Element;

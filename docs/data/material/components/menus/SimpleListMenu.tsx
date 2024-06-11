@@ -1,6 +1,6 @@
 import * as React from 'react';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -39,8 +39,7 @@ export default function SimpleListMenu() {
         aria-label="Device settings"
         sx={{ bgcolor: 'background.paper' }}
       >
-        <ListItem
-          button
+        <ListItemButton
           id="lock-button"
           aria-haspopup="listbox"
           aria-controls="lock-menu"
@@ -52,7 +51,7 @@ export default function SimpleListMenu() {
             primary="When device is locked"
             secondary={options[selectedIndex]}
           />
-        </ListItem>
+        </ListItemButton>
       </List>
       <Menu
         id="lock-menu"

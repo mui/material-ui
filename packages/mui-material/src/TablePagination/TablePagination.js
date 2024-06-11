@@ -2,10 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { isHostComponent } from '@mui/base/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled, createUseThemeProps } from '../zero-styled';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
 import Select from '../Select';
@@ -14,6 +15,8 @@ import Toolbar from '../Toolbar';
 import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
+
+const useThemeProps = createUseThemeProps('MuiTablePagination');
 
 const TablePaginationRoot = styled(TableCell, {
   name: 'MuiTablePagination',

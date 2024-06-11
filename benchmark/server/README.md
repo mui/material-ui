@@ -1,4 +1,4 @@
-# MUI benchmark
+# Benchmark
 
 ## `@mui/material`
 

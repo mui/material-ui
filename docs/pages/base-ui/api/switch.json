@@ -36,55 +36,55 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": "MuiSwitch-root"
+      "class": "base-Switch-root"
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": "MuiSwitch-input"
+      "class": "base-Switch-input"
     },
     {
       "name": "thumb",
       "description": "The component that renders the thumb.",
       "default": "'span'",
-      "class": "MuiSwitch-thumb"
+      "class": "base-Switch-thumb"
     },
     {
       "name": "track",
       "description": "The component that renders the track.",
       "default": "'span'",
-      "class": "MuiSwitch-track"
+      "class": "base-Switch-track"
     }
   ],
   "classes": [
     {
       "key": "checked",
-      "className": "Mui-checked",
+      "className": "base--checked",
       "description": "State class applied to the root element if the switch is checked",
       "isGlobal": true
     },
     {
       "key": "disabled",
-      "className": "Mui-disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root element if the switch is disabled",
       "isGlobal": true
     },
     {
       "key": "focusVisible",
-      "className": "Mui-focusVisible",
+      "className": "base--focusVisible",
       "description": "State class applied to the root element if the switch has visible focus",
       "isGlobal": true
     },
     {
       "key": "readOnly",
-      "className": "Mui-readOnly",
+      "className": "base--readOnly",
       "description": "Class applied to the root element if the switch is read-only",
       "isGlobal": true
     }
   ],
   "spread": true,
-  "muiName": "MuiSwitch",
+  "muiName": "Switch",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/Switch/Switch.tsx",
   "inheritance": null,
