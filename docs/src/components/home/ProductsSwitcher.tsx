@@ -44,7 +44,7 @@ function ProductItem({
         <span>{icon}</span>
         <span>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography color="text.primary" variant="body2" fontWeight="bold">
+            <Typography color="text.primary" variant="body2" fontWeight="semiBold">
               {name}
             </Typography>
             {chip}

@@ -39,7 +39,7 @@ const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
 });
 
 const ToolpadShowcase = dynamic(() => import('./ToolpadShowcase'), {
-  loading: createLoading({ height: 674 }),
+  loading: createLoading({ height: 625 }),
 });
 
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));

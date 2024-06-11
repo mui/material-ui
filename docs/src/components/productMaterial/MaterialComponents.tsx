@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, alpha } from '@mui/material/styles';
+import { CssVarsProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
@@ -285,14 +285,6 @@ export default function MaterialComponents() {
               </CssVarsProvider>
             </Frame.Demo>
             <Frame.Info data-mui-color-scheme="dark" sx={{ p: 0 }}>
-              {/* <MoreInfoBox
-                title="Own the styling!"
-                description="You can also start by using Googles Material Design."
-                primaryBtnLabel="Start with Material UI"
-                primaryBtnHref={ROUTES.productCore}
-                secondaryBtnLabel="Learn more about the Core libraries"
-                secondaryBtnHref={ROUTES.productCore}
-              /> */}
               <MaterialVsCustomToggle customized={customized} setCustomized={setCustomized} />
               <ShowcaseCodeWrapper maxHeight={demo === 'Table' ? 220 : 350} hasDesignToggle>
                 <HighlightedCode copyButtonHidden plainStyle code={CODES[demo]} language="jsx" />
