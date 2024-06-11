@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { alpha, darken, styled } from '@mui/material/styles';
+import useForkRef from '@mui/utils/useForkRef';
 import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../branding';
 
 const Root = styled('div')(
@@ -136,6 +137,7 @@ const Root = styled('div')(
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
+        userSelect: 'text',
       },
       '& .anchor-icon': {
         // To prevent the link to get the focus.
@@ -802,6 +804,19 @@ const Root = styled('div')(
   }),
 );
 
+function handleHeaderClick(event: Event) {
+  const selection = document.getSelection();
+
+  if (selection === null) {
+    return;
+  }
+
+  if (selection.type === 'Range') {
+    // Disable the <a> behavior to be able to select text.
+    event.preventDefault();
+  }
+}
+
 export interface MarkdownElementProps {
   className?: string;
   renderedMarkdown?: string;
@@ -810,6 +825,19 @@ export interface MarkdownElementProps {
 export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
   function MarkdownElement(props, ref) {
     const { className, renderedMarkdown, ...other } = props;
+    const rootRef = React.useRef<HTMLElement>(null);
+    const handleRef = useForkRef(rootRef, ref);
+
+    React.useEffect(() => {
+      const elements = rootRef.current!.getElementsByClassName('title-link-to-anchor');
+
+      for (let i = 0; i < elements.length; i += 1) {
+        // More reliable than `-webkit-user-drag` (https://caniuse.com/webkit-user-drag)
+        elements[i].setAttribute('draggable', 'false');
+        elements[i].addEventListener('click', handleHeaderClick);
+      }
+    }, []);
+
     const more: React.ComponentProps<typeof Root> = {};
 
     if (typeof renderedMarkdown === 'string') {
@@ -818,6 +846,8 @@ export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementP
       more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
     }
 
-    return <Root className={clsx('markdown-body', className)} {...more} {...other} ref={ref} />;
+    return (
+      <Root className={clsx('markdown-body', className)} {...more} {...other} ref={handleRef} />
+    );
   },
 );

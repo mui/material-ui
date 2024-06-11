@@ -11,6 +11,15 @@ In the `package.json` file, change the package version from `latest` to `next`.
 +"@mui/material": "next",
 ```
 
+If you are one of these packages, be sure to change the version to `next` too:
+
+- `@mui/icons-material`
+- `@mui/system`
+- `@mui/lab`
+- `@mui/material-nextjs`
+- `@mui/styled-engine-sc`
+- `@mui/utils`
+
 Using `next` ensures your project always uses the latest v6 alpha release.
 Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-alpha.0`.
 
@@ -24,7 +33,7 @@ Apart from the support for Pigment CSS, the v6 release provides a stable API for
 
 Additionally, the v6 release does not include major breaking changes. Instead, they are deprecated to bring more consistent developer experience which can be migrated using our codemods.
 
-Last but not least, the v6 release includes new features such as container queries and theme utility for styling across color schemes.
+Last but not least, the v6 release includes new features such as container queries, theme utility for styling across color schemes, and ability to adopt Pigment CSS, a zero-runtime styling engine.
 
 ## Supported browsers and Node versions
 
@@ -53,10 +62,6 @@ If you need to support IE 11, you can use Material UI v5's [legacy bundle](ht
 
 The minimum supported version of React is v17.0.0 (the same as v5).
 
-:::warning
-This is not a final decision. It might change before the stable release.
-:::
-
 ### Update TypeScript
 
 The minimum supported version of TypeScript has been increased from v3.5 to 4.1.
@@ -76,52 +81,6 @@ If your project includes these packages, you'll need to update them:
 :::warning
 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
-
-## New features and improvements
-
-### Container queries
-
-[CSS Container Quries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) lets you apply styles based on the size of the container, rather than the viewport.
-
-The `theme` object now includes a field `containerQueries` which can be used to define container queries similar to `theme.breakpoints`.
-
-```js
-import { styled } from '@mui/material/styles';
-
-const MyComponent = styled('div')(({ theme }) => ({
-  [theme.containerQueries.up('sm')]: {
-    backgroundColor: 'red',
-  },
-}));
-```
-
-or using the `sx` prop shorthand:
-
-```js
-<Card sx={{
-  display: 'flex',
-  '@300px': {
-    flexDirection: 'column',
-  }
-}}>
-```
-
-<!-- TODO: add link to the docs -->
-
-To learn more about using container queries, check out the [Container Queries documentation](/system/container-queries/).
-
-## Stabilized APIs
-
-### CssVarsProvider and extendTheme
-
-The `CssVarsProvider` and `extendTheme` APIs are now stable. If you are using them in v5, you can now use them without the prefix.
-
-```diff
-- import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-+ import { extendTheme, CssVarsProvider } from '@mui/material/styles';
-```
-
-To learn more about using CSS theme variables, check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/).
 
 ## Breaking changes
 
@@ -168,6 +127,79 @@ export default function ChipExample() {
 }
 ```
 
+### Grid v2 (Unstable_Grid)
+
+The spacing mechanism was reworked to use the `gap` CSS property.
+This maps better with current layout practices and removes the need for using React Context.
+It brings some breaking changes described in the following sections.
+
+#### The Grid is contained inside parent's padding
+
+Previously, the Grid overflowed its parent.
+In v6, this is fixed:
+
+<img src="/static/material-ui/migration-v5/grid-overflow-change.png" style="width: 814px;" alt="Before and after of the Grid no longer overflowing its parent in v6." width="1628" height="400" />
+
+This removes the need for the `disableEqualOverflow` prop, so you can remove it:
+
+```diff
+- <Grid disableEqualOverflow />
++ <Grid />
+```
+
+#### Spacing is no longer considered inside the Grid item's box
+
+Previously, the Grid items included spacing in it's box.
+In v6, this is fixed:
+
+<img src="/static/material-ui/migration-v5/grid-spacing-change.png" style="width: 814px;" alt="Before and after of the Grid items no longer including spacing in their box." width="1628" height="400" />
+
+:::warning
+Both of these changes might slightly affect your layout.
+Note that the items' position doesn't change.
+We recommend adopting this new behavior and **not trying to replicate the old one**, as this is a more predictable and modern approach.
+:::
+
+## Stabilized APIs
+
+### CssVarsProvider and extendTheme
+
+The `CssVarsProvider` and `extendTheme` APIs are now stable. If you are using them in v5, you can now use them without the prefix.
+
+```diff
+- import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
++ import { extendTheme, CssVarsProvider } from '@mui/material/styles';
+```
+
+To learn more about using CSS theme variables, check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/).
+
+### Specific mode styles
+
+The `theme.applyStyles` is a new utility for creating style for a specific mode.
+It's designed to replace the use of `theme.palette.mode` when applying light or dark styles.
+
+```diff
+ const MyComponent = styled('button')(({ theme }) => ({
+   padding: '0.5rem 1rem',
+   border: '1px solid,
+-  borderColor: theme.palette.mode === 'dark' ? '#fff' : '#000',
++  borderColor: '#000',
++  ...theme.applyStyles('dark', {
++    borderColor: '#fff',
++  })
+ }))
+```
+
+Use these codemods to migrate your project to `theme.applyStyles`:
+
+```bash
+npx @mui/codemod@next v6.0.0/styled <path/to/folder-or-file>
+npx @mui/codemod@next v6.0.0/sx-prop <path/to/folder-or-file>
+npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme-file>
+```
+
+> Run `v6.0.0/theme-v6` against the file that contains the custom `styleOverrides`. Ignore this codemod if you don't have a custom theme.
+
 ## Deprecations
 
 ### Components and classes
@@ -189,6 +221,27 @@ Or do it manually like the example below:
 - <Button mr={2}>...</Button>
 + <Button sx={{ mr: 2 }}>...</Button>
 ```
+
+### Theme component variants
+
+Theme component variants has been merged with the theme style overrides by targeting the `root` slot of the component:
+
+```diff
+ createTheme({
+   components: {
+     MuiButton: {
+-      variants: [ ... ],
++      styleOverrides: {
++        root: {
++          variants: [ ... ]
++        }
++      }
+     }
+   }
+ })
+```
+
+This reduces the API surface and let you define variants in other slots of the component.
 
 ## Pigment CSS integration (optional)
 
