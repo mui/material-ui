@@ -85,7 +85,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
   height: 'auto',
-  padingBottom: theme.spacing(12),
+  paddingBottom: theme.spacing(12),
   backgroundImage:
     theme.palette.mode === 'light'
       ? 'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))'
