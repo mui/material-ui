@@ -1,47 +1,15 @@
 import * as React from 'react';
-import { alpha, keyframes, styled } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Popover from '@mui/material/Popover';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import ShowcaseContainer, { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import ROUTES from 'docs/src/route';
 
-const tabs = [
-  {
-    code: `
-apiVersion: v1
-kind: page
-spec:
-  title: Default page
-  alias:
-    - CZndx3v
-  content:
-    - component: DataGrid
-      name: dataGrid
-      props:
-        dataProviderId: dataProvider.ts:default
-        columns:
-        - field: firstname
-          type: string
-        - field: lastname
-          type: string
-        rowsSource: dataProvider
-    - component: codeComponent.CustomComponent
-      name: mapCustom
-  `,
-    language: 'yaml',
-    tab: 'page.yaml',
-    position: {
-      top: '55%',
-      left: '7.5%',
-    },
-    popoverContent:
-      'Configure your app locally in yaml files. Then, changes in the visual editor are synced to the files, and vice versa. Version control them however you want.',
-  },
-  {
-    code: `
+const tabOneCode = `
 import { createDataProvider } from "@toolpad/studio/server";
 import db from "../db";
 
@@ -51,18 +19,32 @@ export default createDataProvider({
       records: await db.query("SELECT * FROM USERS"),
     };
   },
-});`,
-    language: 'tsx',
-    tab: 'dataProvider.ts',
-    position: {
-      top: '20%',
-      left: '60%',
-    },
-    popoverContent:
-      'Write serverless functions that have access to your project code. Use your own ORM, database connections, and server-side secrets. Toolpad handles linking your data with UI components.',
-  },
-  {
-    code: `
+});
+`;
+
+const tabTwoCode = `
+apiVersion: v1
+kind: page
+spec:
+  title: Default page
+  alias:
+  - CZndx3v
+  content:
+  - component: DataGrid
+    name: dataGrid
+    props:
+      dataProviderId: dataProvider.ts:default
+      columns:
+      - field: firstname
+        type: string
+      - field: lastname
+        type: string
+      rowsSource: dataProvider
+  - component: codeComponent.CustomComponent
+    name: mapCustom
+`;
+
+const tabThreeCode = `
 import * as React from "react";
 import { createComponent } from "@toolpad/studio/browser";
 import * as L from "leaflet";
@@ -77,88 +59,103 @@ function Leaflet({ lat, long, zoom }: LeafletProps) {
 export default createComponent(Leaflet, {
   argTypes: {
     lat: { type: "number", }
-});
-    `,
-    language: 'tsx',
-    tab: 'mapComponent.tsx',
-    position: {
-      top: '64%',
-      left: '70%',
-    },
-    popoverContent:
-      'Use your own React components and compose them with drag and drop in the canvas. Use Toolpad Sutido to edit them visually.',
+})
+  `;
+
+const tabsCustomStyles = {
+  minHeight: '26px',
+  p: 0,
+  borderBottom: '1px solid',
+  borderColor: 'divider',
+  '& .MuiTabs-flexContainer': {
+    p: 1,
+    gap: '6px',
   },
-];
-
-const PulsingButton = styled('button')(({ theme }) => {
-  const pulse = keyframes`
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 ${alpha(theme.palette.primary.main, 0.7)};
-  }
-  70% {
-    transform: scale(1.1);
-    box-shadow: 0 0 0 4px ${alpha(theme.palette.primary.main, 0)};
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 ${alpha(theme.palette.primary.main, 0)};
-  }
-`;
-
-  return {
-    position: 'absolute',
-    width: 16,
-    height: 16,
-    borderRadius: '50%',
-    backgroundColor: alpha(theme.palette.primary[200], 0.5),
-    border: `2px solid ${theme.palette.primary[300]}`,
-    // backgroundColor: theme.palette.primary.main,
-    // border: 'none',
-    cursor: 'pointer',
-    animation: `${pulse} 2s infinite`,
-    transition: theme.transitions.create('background-color'),
+  '& .MuiTab-root': {
+    minHeight: '26px',
+    minWidth: 'fit-content',
+    p: '6px',
+    borderRadius: '6px',
+    fontSize: '.75rem',
+    fontWeight: 'medium',
+    lineHeight: 1,
     '&:hover': {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: 'primaryDark.700',
     },
-  };
-});
+  },
+  '& .MuiTabs-indicator': {
+    height: '1px',
+    opacity: '60%',
+  },
+  '& .Mui-selected': {
+    color: 'primary.300',
+  },
+};
 
-interface PopoverContent {
-  anchorEl: HTMLElement | null;
-  content: string;
+interface ImageProps {
+  alt: string;
+  index: number;
+  src: string;
+  value: number;
 }
 
+function Image({ alt, index, src, value }: ImageProps) {
+  return (
+    <Box
+      component="img"
+      hidden={value !== index}
+      src={src}
+      alt={alt}
+      loading="lazy"
+      height={260}
+      sx={{
+        width: { xs: 'auto', sm: '100%' },
+        objectFit: 'cover',
+        objectPosition: 'right',
+      }}
+    />
+  );
+}
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function CustomTabPanel({ children, value, index, ...other }: TabPanelProps) {
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`toolpad-showcase-tabpanel-${index}`}
+      aria-labelledby={`toolpad-showcase-${index}`}
+      {...other}
+    >
+      {value === index && <React.Fragment>{children}</React.Fragment>}
+    </div>
+  );
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `toolpad-showcase-tab-${index}`,
+    'aria-controls': `toolpad-showcase-tab-${index}`,
+  };
+}
+
+const tabsCodeInfo = [
+  { code: tabOneCode, language: 'tsx' },
+  { code: tabTwoCode, language: 'yaml' },
+  { code: tabThreeCode, language: 'tsx' },
+];
+
 export default function ToolpadShowcase() {
-  const [popoverState, setPopoverState] = React.useState<PopoverContent>({
-    anchorEl: null,
-    content: '',
-  });
+  const [value, setValue] = React.useState(0);
 
-  const [codeState, setCodeState] = React.useState<string>(tabs[0].code);
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>, index: number) => {
-    setPopoverState({ anchorEl: event.currentTarget, content: tabs[index].popoverContent });
-    setCodeState(tabs[index].code);
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
   };
-
-  const handleClose = () => {
-    setPopoverState({ anchorEl: null, content: '' });
-  };
-
-  const firstButtonRef = React.useRef<HTMLButtonElement | null>(null);
-
-  React.useEffect(() => {
-    if (firstButtonRef.current) {
-      setPopoverState({
-        anchorEl: firstButtonRef.current,
-        content: tabs[0].popoverContent,
-      });
-    }
-  }, []);
-
-  const open = Boolean(popoverState.anchorEl);
-  const id = open ? 'simple-popover' : undefined;
 
   return (
     <ShowcaseContainer
@@ -167,60 +164,56 @@ export default function ToolpadShowcase() {
           variant="outlined"
           sx={(theme) => ({
             width: '100%',
+            height: 260,
             overflow: 'clip',
-            boxShadow: `0 4px 8px ${alpha(theme.palette.primaryDark[300], 0.3)}`,
-            bgcolor: '#fff',
-            border: '1px solid',
+            boxShadow: `0 4px 8px ${alpha(theme.palette.common.black, 0.1)}`,
             borderColor: 'grey.200',
             borderRadius: '8px',
-            ...theme.applyDarkStyles({
-              bgcolor: 'primaryDark.800',
-              boxShadow: `0 4px 8px ${alpha(theme.palette.common.black, 0.3)}`,
-            }),
           })}
         >
-          <Box sx={{ height: 300 }}>
-            <Box
-              component="img"
-              src="/static/branding/toolpad/hero-2.png"
-              alt="Toolpad user management app"
-              loading="lazy"
-              height={400}
-              sx={{
-                width: { xs: 'auto', sm: '100%' },
-                objectFit: 'cover',
-                objectPosition: 'left',
-                mt: '-1px',
-              }}
-            />
-            {tabs.map((tab, index) => (
-              <PulsingButton
-                key={index}
-                ref={index === 0 ? firstButtonRef : null}
-                style={tab.position}
-                onClick={(e) => handleClick(e, index)}
-              />
-            ))}
-          </Box>
-          <Popover
-            id={id}
-            open={open}
-            anchorEl={popoverState.anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            sx={{ mt: '4px' }}
-          >
-            <Box sx={{ p: 1.5, maxWidth: 250, fontSize: '.75rem' }}>{popoverState.content}</Box>
-          </Popover>
+          <Image
+            index={0}
+            value={value}
+            src="/static/branding/toolpad/toolpad-homepage-1-ex.png"
+            alt="Toolpad user management app"
+          />
+          {/* <Image
+            index={1}
+            value={value}
+            src="/static/branding/toolpad/toolpad-homepage-1-ex.png" // change the source
+            alt="Toolpad user management app"
+          /> */}
+          {/* <Image
+            index={2}
+            value={value}
+            src="/static/branding/toolpad/toolpad-homepage-1-ex.png" // change the source
+            alt="Toolpad user management app"
+          /> */}
         </Paper>
       }
       code={
         <React.Fragment>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="Toolpad showcase"
+            sx={tabsCustomStyles}
+          >
+            <Tab label="Serverless functions" {...a11yProps(0)} />
+            <Tab label="yaml files" {...a11yProps(1)} />
+            <Tab label="React components" {...a11yProps(2)} />
+          </Tabs>
           <ShowcaseCodeWrapper maxHeight={280}>
-            <HighlightedCode copyButtonHidden code={codeState} language="jsx" plainStyle />
+            {tabsCodeInfo.map((tab, index) => (
+              <CustomTabPanel key={index} value={value} index={index}>
+                <HighlightedCode
+                  copyButtonHidden
+                  code={tab.code}
+                  language={tab.language}
+                  plainStyle
+                />
+              </CustomTabPanel>
+            ))}
           </ShowcaseCodeWrapper>
           <MoreInfoBox
             primaryBtnLabel="Start using Toolpad"

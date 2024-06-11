@@ -88,7 +88,7 @@ export default function MoreInfoBox({
         flexDirection: { xs: 'column', sm: 'row' },
         gap: { xs: 1.5, sm: 1 },
         borderTop: '1px solid',
-        borderColor: 'primaryDark.700',
+        borderColor: 'divider',
         zIndex: 3,
         ...props.sx,
       }}
