@@ -78,7 +78,7 @@ export default theme;`);
       breakpoints: theme.breakpoints,
       transitions: theme.transitions,
     });
-    expect(result).to.equal(`import createBreakpoints from '@mui/system/createBreakpoints';
+    expect(result).to.equal(`import { createBreakpoints } from '@mui/system';
 import { createTransitions } from '@mui/material/styles';
 
 const theme = {
@@ -128,7 +128,7 @@ export default theme;`);
   it('works with framework toRuntimeSource', () => {
     const theme = { palette: { primary: { main: '#ff5252' } }, toRuntimeSource: stringifyTheme };
     expect(theme.toRuntimeSource.call(theme, theme)).to
-      .equal(`import createBreakpoints from '@mui/system/createBreakpoints';
+      .equal(`import { createBreakpoints } from '@mui/system';
 import { createTransitions } from '@mui/material/styles';
 
 const theme = {
