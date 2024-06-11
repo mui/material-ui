@@ -186,6 +186,11 @@ export default function migrateToVariants(j, styles) {
   const objectToArrowFunction = getObjectToArrowFunction(j);
 
   /**
+   * A map of used variable with its original name
+   */
+  const parameterMap = {};
+
+  /**
    *
    * @param {import('jscodeshift').Identifier | import('jscodeshift').BinaryExpression | import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression} node
    */
@@ -216,6 +221,19 @@ export default function migrateToVariants(j, styles) {
     return result;
   }
 
+  function resolveParamName(name) {
+    if (typeof name !== 'string') {
+      if (name.type === 'Identifier' && parameterMap[name.name]) {
+        if (parameterMap[name.name].includes('-')) {
+          return j.stringLiteral(parameterMap[name.name]);
+        }
+        return { ...name, name: parameterMap[name.name] };
+      }
+      return name;
+    }
+    return parameterMap[name] || name;
+  }
+
   /**
    *
    * @param {import('jscodeshift').LogicalExpression | import('jscodeshift').BinaryExpression | import('jscodeshift').UnaryExpression | import('jscodeshift').MemberExpression} node
@@ -227,25 +245,27 @@ export default function migrateToVariants(j, styles) {
     let tempNode = { ...node };
     function assignProperties(_node) {
       if (_node.type === 'BinaryExpression') {
-        variables.add(getObjectKey(_node.left).name);
+        variables.add(resolveParamName(getObjectKey(_node.left).name));
         if (_node.operator === '===') {
-          properties.push(j.objectProperty(getIdentifierKey(_node.left), _node.right));
+          properties.push(
+            j.objectProperty(resolveParamName(getIdentifierKey(_node.left)), _node.right),
+          );
         } else {
           isAllEqual = false;
         }
       }
       if (_node.type === 'MemberExpression' || _node.type === 'Identifier') {
         isAllEqual = false;
-        variables.add(getObjectKey(_node).name);
+        variables.add(resolveParamName(getObjectKey(_node).name));
       }
       if (_node.type === 'UnaryExpression') {
         isAllEqual = false;
         if (_node.argument.type === 'UnaryExpression') {
           // handle `!!variable`
-          variables.add(getObjectKey(_node.argument.argument).name);
+          variables.add(resolveParamName(getObjectKey(_node.argument.argument).name));
         } else {
           // handle `!variable`
-          variables.add(getObjectKey(_node.argument).name);
+          variables.add(resolveParamName(getObjectKey(_node.argument).name));
         }
       }
     }
@@ -285,7 +305,7 @@ export default function migrateToVariants(j, styles) {
       currentProps.type === 'ObjectExpression' ? objectToArrowFunction(currentProps) : currentProps;
     const variables = new Set();
     [...parentArrow.params[0].properties, ...currentArrow.params[0].properties].forEach((param) => {
-      variables.add(param.key.name);
+      variables.add(resolveParamName(param.key.name));
     });
     return buildArrowFunctionAST(
       variables,
@@ -299,7 +319,24 @@ export default function migrateToVariants(j, styles) {
     style.params.forEach((param) => {
       if (param.type === 'ObjectPattern') {
         param.properties.forEach((prop) => {
-          parameters.add(prop.key.name);
+          if (prop.type === 'ObjectProperty') {
+            let paramName;
+            if (prop.value.type === 'Identifier') {
+              paramName = prop.value.name;
+            }
+            if (prop.value.type === 'AssignmentPattern') {
+              paramName = prop.value.left.name;
+            }
+            if (paramName) {
+              parameters.add(paramName);
+              if (prop.key.type === 'Identifier') {
+                parameterMap[paramName] = prop.key.name;
+              }
+              if (prop.key.type === 'StringLiteral') {
+                parameterMap[paramName] = prop.key.value;
+              }
+            }
+          }
         });
       }
       if (param.type === 'Identifier') {
