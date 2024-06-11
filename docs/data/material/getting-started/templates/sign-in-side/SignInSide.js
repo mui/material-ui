@@ -84,12 +84,14 @@ export default function SignInSide() {
           },
           (theme) => ({
             backgroundImage:
-              theme.palette.mode === 'light'
-                ? 'radial-gradient(ellipse at 70% 51%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))'
-                : 'radial-gradient(at 70% 51%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+              'radial-gradient(ellipse at 70% 51%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
             backgroundSize: 'cover',
             height: { xs: 'auto', md: '100dvh' },
             pb: { xs: 12, sm: 0 },
+            ...theme.applyStyles('dark', {
+              backgroundImage:
+                'radial-gradient(at 70% 51%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+            }),
           }),
         ]}
       >

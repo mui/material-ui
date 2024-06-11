@@ -57,20 +57,22 @@ export default function ShadowThemeViewer() {
       <Sheet
         variant="solid"
         color="success"
-        sx={{
-          position: 'absolute',
-          left: '50%',
-          bottom: 0,
-          transform: `translateX(-50%) translateY(${
-            isCopied ? '-0.5rem' : 'calc(100% + 0.5rem)'
-          })`,
-          transition: '0.3s',
-          p: 0.5,
-          px: 0.75,
-          borderRadius: 'xs',
-          boxShadow: 'sm',
-          zIndex: 1,
-        }}
+        sx={[
+          {
+            position: 'absolute',
+            left: '50%',
+            bottom: 0,
+            transition: '0.3s',
+            p: 0.5,
+            px: 0.75,
+            borderRadius: 'xs',
+            boxShadow: 'sm',
+            zIndex: 1,
+          },
+          isCopied
+            ? { transform: `translateX(-50%) translateY(-0.5rem)` }
+            : { transform: `translateX(-50%) translateY(calc(100% + 0.5rem))` },
+        ]}
       >
         <Typography level="body-xs" textColor="inherit" startDecorator={<Check />}>
           Copied
