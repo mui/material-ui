@@ -81,7 +81,7 @@ const ToggleButton = styled('button')(({
   ...theme.variants.plain.neutral,
   variants: [{
     props: {
-      pressed: 'false'
+      "aria-pressed": 'false'
     },
     style: {
       '&:hover': theme.variants.plainHover.neutral,
@@ -89,7 +89,7 @@ const ToggleButton = styled('button')(({
     }
   }, {
     props: {
-      pressed: 'true'
+      "aria-pressed": 'true'
     },
     style: {
       color: theme.vars.palette.danger.plainColor,
