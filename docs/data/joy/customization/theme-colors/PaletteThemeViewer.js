@@ -18,7 +18,6 @@ const traverseObject = (palette) => {
   const result = {};
   const traverse = (object, parts = []) => {
     if (object && typeof object === 'object') {
-      // eslint-disable-next-line no-restricted-syntax
       for (const key of Object.keys(object)) {
         traverse(object[key], [...parts, key]);
       }
