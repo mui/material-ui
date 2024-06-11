@@ -49,7 +49,7 @@ export default function Dashboard() {
             sx={{
               alignItems: 'center',
               mx: 3,
-              py: 8,
+              pb: 10,
             }}
           >
             <Header />

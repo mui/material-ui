@@ -40,7 +40,7 @@ export default function MainGrid() {
       {/* cards */}
       <Grid container spacing={2} columns={12}>
         {data.map((card, index) => (
-          <Grid key={index} xs={6} sm={3} md={2} lg={2.25}>
+          <Grid key={index} xs={12} sm={6} md={3} lg={3}>
             <StatCard {...card} />
           </Grid>
         ))}
