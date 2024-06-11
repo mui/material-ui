@@ -72,8 +72,8 @@ describe('<Typography />', () => {
       expect(getByText(/hello/i).tagName).to.equal('SPAN');
     });
 
-    it('should render a p with a paragraph', () => {
-      const { getByText } = render(<Typography paragraph>Hello</Typography>);
+    it('should render a p', () => {
+      const { getByText } = render(<Typography component="p">Hello</Typography>);
 
       expect(getByText(/hello/i).tagName).to.equal('P');
     });
