@@ -1,9 +1,9 @@
 import * as React from 'react';
+import NextLink from 'next/link';
 import { styled, alpha, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
-import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
@@ -50,7 +50,8 @@ interface ProductItemProps {
 function ProductItem({ active, chip, description, href, icon, name }: ProductItemProps) {
   return (
     <Box
-      component={Link}
+      component={NextLink} // using the Next link directly here as it accepts, as opposed to the docs Link, passing role="menuitem"
+      role="menuitem"
       href={href}
       sx={(theme) => ({
         p: 1,
@@ -64,9 +65,14 @@ function ProductItem({ active, chip, description, href, icon, name }: ProductIte
         borderColor: active ? 'primary.100' : 'transparent',
         borderRadius: '8px',
         transition: '100ms ease-in background-color, border',
+        textDecorationLine: 'none',
         '&:hover': {
           backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : 'grey.50',
           borderColor: 'divider',
+        },
+        '&:focus-visible': {
+          outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+          outlineOffset: '2px',
         },
         ...theme.applyDarkStyles({
           backgroundColor: active ? alpha(theme.palette.primary[900], 0.2) : undefined,
