@@ -56,48 +56,114 @@ Each component is composed of several different parts.
 These parts correspond to classes that are available to the component—see the **CSS** section of the component's API page for a detailed list.
 You can use these classes inside the `styleOverrides` key to modify the corresponding parts of the component.
 
+### Overrides based on props
+
+Each slot of the component's `styleOverrides` support a key of `variants`. Variants are sets of overrides when the specified props are matched.
+
+The definitions are specified in an array with sensitive order, so make sure that the styles that should win are specified last.
+
 ```js
 const theme = createTheme({
   components: {
     MuiButton: {
       styleOverrides: {
-        root: ({ ownerState }) => ({
-          ...(ownerState.variant === 'contained' &&
-            ownerState.color === 'primary' && {
-              backgroundColor: '#202020',
-              color: '#fff',
-            }),
-        }),
+        root: {
+          variants: [
+            {
+              props: { variant: 'dashed' },
+              style: {
+                textTransform: 'none',
+                border: `2px dashed ${blue[500]}`,
+              },
+            },
+            {
+              props: { variant: 'dashed', color: 'secondary' },
+              style: {
+                border: `4px dashed ${red[500]}`,
+              },
+            },
+          ],
+        },
       },
     },
   },
 });
 ```
 
-### Overrides based on props
+If you're using TypeScript, you'll need to specify your new variants/colors, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
-You can pass a callback as a value in each slot of the component's `styleOverrides` to apply styles based on props.
+<!-- Tested with packages/mui-material/test/typescript/augmentation/themeComponents.spec.ts -->
 
-The `ownerState` prop is a combination of public props that you pass to the component + internal state of the component.
+```tsx
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    dashed: true;
+  }
+}
+```
+
+{{"demo": "GlobalThemeVariants.js"}}
+
+The variant `props` can also be defined as a callback.
+This is useful if you want to apply styles when using negation in the condition.
+In other words, applying a different style if a particular property doesn't have a specific value.
 
 ```js
-const finalTheme = createTheme({
+const theme = createTheme({
   components: {
-    MuiSlider: {
+    MuiButton: {
       styleOverrides: {
-        valueLabel: ({ ownerState, theme }) => ({
-          ...(ownerState.orientation === 'vertical' && {
-            backgroundColor: 'transparent',
-            color: theme.palette.grey[500],
-          }),
-        }),
+        root: {
+          variants: [
+            {
+              props: (props) =>
+                props.variant === 'dashed' && props.color !== 'secondary',
+              style: {
+                textTransform: 'none',
+                border: `2px dashed ${blue[500]}`,
+              },
+            },
+          ],
+        },
       },
     },
   },
 });
 ```
 
-{{"demo": "GlobalThemeOverrideCallback.js"}}
+#### Slot ownerState callback
+
+Using callback to access slot's `ownerState` has been deprecated. Consider migrating to `variants` using the codemod below:
+
+```bash
+npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme>
+```
+
+```diff
+ const finalTheme = createTheme({
+   components: {
+     MuiSlider: {
+       styleOverrides: {
+-        valueLabel: ({ ownerState, theme }) => ({
+-          ...(ownerState.orientation === 'vertical' && {
+-            backgroundColor: 'transparent',
+-            color: theme.palette.grey[500],
+-          }),
+-        }),
++        valueLabel: {
++          variants: [
++            props: { orientation: 'vertical' },
++            style: ({ theme }) => ({
++              backgroundColor: 'transparent',
++              color: theme.palette.grey[500],
++            }),
++          ],
++        }
+       },
+     },
+   },
+ });
+```
 
 ### The `sx` syntax (experimental)
 
@@ -142,77 +208,6 @@ const finalTheme = createTheme({
 ### Specificity
 
 If you use the theming approach to customize the components, you'll still be able to override them using the `sx` prop as it has a higher CSS specificity, even if you're using the experimental `sx` syntax within the theme.
-
-## Creating new component variants
-
-You can use the `variants` key in the theme's `components` section to create new variants to Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-
-The definitions are specified in an array, under the component's name. For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
-
-```js
-const theme = createTheme({
-  components: {
-    MuiButton: {
-      variants: [
-        {
-          props: { variant: 'dashed' },
-          style: {
-            textTransform: 'none',
-            border: `2px dashed ${blue[500]}`,
-          },
-        },
-        {
-          props: { variant: 'dashed', color: 'secondary' },
-          style: {
-            border: `4px dashed ${red[500]}`,
-          },
-        },
-      ],
-    },
-  },
-});
-```
-
-If you're using TypeScript, you'll need to specify your new variants/colors, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
-
-<!-- Tested with packages/mui-material/test/typescript/augmentation/themeComponents.spec.ts -->
-
-```tsx
-declare module '@mui/material/Button' {
-  interface ButtonPropsVariantOverrides {
-    dashed: true;
-  }
-}
-```
-
-{{"demo": "GlobalThemeVariants.js"}}
-
-The variant `props` can also be defined as a callback.
-This is useful if you want to apply styles when using negation in the condition.
-In other words, applying a different style if a particular property doesn't have a specific value.
-
-:::info
-This feature is available from version 5.15.2.
-:::
-
-```js
-const theme = createTheme({
-  components: {
-    MuiButton: {
-      variants: [
-        {
-          props: (props) =>
-            props.variant === 'dashed' && props.color !== 'secondary',
-          style: {
-            textTransform: 'none',
-            border: `2px dashed ${blue[500]}`,
-          },
-        },
-      ],
-    },
-  },
-});
-```
 
 ## Theme variables
 

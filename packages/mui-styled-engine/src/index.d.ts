@@ -61,10 +61,10 @@ export interface CSSObject
     CSSPseudos,
     Omit<CSSOthersObject, 'variants'> {}
 
-interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
+interface CSSObjectWithVariants<Props extends { theme: any }> extends Omit<CSSObject, 'variants'> {
   variants: Array<{
     props: Props | ((props: Props) => boolean);
-    style: CSSObject;
+    style: CSSObject | ((args: { theme: Props['theme'] }) => CSSObject);
   }>;
 }
 
@@ -94,13 +94,14 @@ export type InterpolationPrimitive =
 
 export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation;
 
-export interface FunctionInterpolation<Props> {
+export interface FunctionInterpolation<Props extends { theme: any }> {
   (props: Props): Interpolation<Props>;
 }
 
-export interface ArrayInterpolation<Props> extends ReadonlyArray<Interpolation<Props>> {}
+export interface ArrayInterpolation<Props extends { theme: any }>
+  extends ReadonlyArray<Interpolation<Props>> {}
 
-export type Interpolation<Props> =
+export type Interpolation<Props extends { theme: any }> =
   | InterpolationPrimitive
   | CSSObjectWithVariants<Props>
   | ArrayInterpolation<Props>

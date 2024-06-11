@@ -107,22 +107,22 @@ export interface CSSObject
     CSSPseudos,
     Omit<CSSOthersObject, 'variants'> {}
 
-interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
+interface CSSObjectWithVariants<Props extends { theme: any }> extends Omit<CSSObject, 'variants'> {
   variants: Array<{
     props: Props | ((props: Props) => boolean);
-    style: CSSObject;
+    style: CSSObject | ((args: { theme: Props['theme'] }) => CSSObject);
   }>;
 }
 
 export type FalseyValue = undefined | null | false;
-export type Interpolation<P> =
+export type Interpolation<P extends { theme: any }> =
   | InterpolationValue
   | CSSObjectWithVariants<P>
   | InterpolationFunction<P>
   | FlattenInterpolation<P>;
 // cannot be made a self-referential interface, breaks WithPropNested
 // see https://github.com/microsoft/TypeScript/issues/34796
-export type FlattenInterpolation<P> = ReadonlyArray<Interpolation<P>>;
+export type FlattenInterpolation<P extends { theme: any }> = ReadonlyArray<Interpolation<P>>;
 export type InterpolationValue =
   | string
   | number
@@ -135,7 +135,7 @@ export type SimpleInterpolation = InterpolationValue | FlattenSimpleInterpolatio
 export type CSSInterpolation = SimpleInterpolation;
 export type FlattenSimpleInterpolation = ReadonlyArray<SimpleInterpolation>;
 
-export type InterpolationFunction<P> = (props: P) => Interpolation<P>;
+export type InterpolationFunction<P extends { theme: any }> = (props: P) => Interpolation<P>;
 
 // abuse Pick to strip the call signature from ForwardRefExoticComponent
 type ForwardRefExoticBase<P> = PickU<
