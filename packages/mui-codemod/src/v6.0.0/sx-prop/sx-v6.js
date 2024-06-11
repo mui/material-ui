@@ -13,13 +13,17 @@ import {
  * @param {import('jscodeshift').MemberExpression | import('jscodeshift').Identifier} node
  */
 function getCssVarName(node) {
-  if (node.type === 'MemberExpression') {
-    return `--${getObjectKey(node)?.name}-${node.property.name}`;
+  let varName = '-';
+  while (node.type === 'MemberExpression') {
+    varName += `-${node.object?.name || node.property?.name || 'unknown'}`;
+    if (node.object.type === 'MemberExpression') {
+      node = node.object;
+    } else {
+      node = node.property;
+    }
   }
-  if (node.type === 'Identifier') {
-    return `--${node.name}`;
-  }
-  return '';
+  varName += `-${node.name || 'unknown'}`;
+  return varName;
 }
 
 /**
@@ -325,7 +329,7 @@ export default function sxV6(file, api, options) {
               j.logicalExpression(
                 data.node.argument.operator,
                 data.node.argument.left,
-                data.node.argument.right,
+                data.buildStyle(data.node.argument.right),
               ),
             );
             if (data.deleteSelf) {

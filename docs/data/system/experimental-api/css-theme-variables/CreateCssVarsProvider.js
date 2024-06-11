@@ -90,7 +90,10 @@ const WrapperDiv = styled('div')(({ theme }) => ({
   minHeight: 100,
   padding: 20,
   color: theme.vars.palette.text.default,
-  backgroundColor: theme.palette.mode === 'dark' ? '#111' : '#fff',
+  backgroundColor: '#fff',
+  '[data-system-demo-color-scheme="dark"] &': {
+    backgroundColor: '#111',
+  },
 }));
 
 function App() {

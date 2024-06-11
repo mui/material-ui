@@ -6,19 +6,25 @@ function Item(props) {
   const { sx, ...other } = props;
   return (
     <Box
-      sx={{
-        p: 1,
-        m: 1,
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : 'grey.100'),
-        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800'),
-        border: '1px solid',
-        borderColor: (theme) =>
-          theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-        borderRadius: 2,
-        fontSize: '0.875rem',
-        fontWeight: '700',
-        ...sx,
-      }}
+      sx={[
+        (theme) => ({
+          p: 1,
+          m: 1,
+          bgcolor: 'grey.100',
+          color: 'grey.800',
+          border: '1px solid',
+          borderColor: 'grey.300',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...other}
     />
   );
