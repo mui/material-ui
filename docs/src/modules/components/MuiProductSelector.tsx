@@ -110,18 +110,18 @@ const coreProducts = [
     href: ROUTES.materialDocs,
   },
   {
-    id: 'joy-ui',
-    name: 'Joy UI',
-    description: 'Beautiful foudational components.',
-    icon: <WebRoundedIcon sx={iconStyles} />,
-    href: ROUTES.joyDocs,
-  },
-  {
     id: 'base-ui',
     name: 'Base UI',
     description: 'Unstyled components and hooks.',
     icon: <SvgBaseUiLogo width={14} height={14} />,
     href: ROUTES.baseDocs,
+  },
+  {
+    id: 'joy-ui',
+    name: 'Joy UI',
+    description: 'Beautiful foudational components.',
+    icon: <WebRoundedIcon sx={iconStyles} />,
+    href: ROUTES.joyDocs,
   },
   {
     id: 'system',
