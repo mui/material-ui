@@ -12,9 +12,9 @@ import StepperContext from './StepperContext';
 const useThemeProps = createUseThemeProps('MuiStepper');
 
 const useUtilityClasses = (ownerState) => {
-  const { orientation, alternativeLabel, classes } = ownerState;
+  const { orientation, nonLinear, alternativeLabel, classes } = ownerState;
   const slots = {
-    root: ['root', orientation, alternativeLabel && 'alternativeLabel'],
+    root: ['root', orientation, nonLinear && 'nonLinear', alternativeLabel && 'alternativeLabel'],
   };
 
   return composeClasses(slots, getStepperUtilityClass, classes);
@@ -74,6 +74,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
 
   const ownerState = {
     ...props,
+    nonLinear,
     alternativeLabel,
     orientation,
     component,
