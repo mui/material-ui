@@ -24,7 +24,7 @@ export function AppearingInfoBox({
         background: ({ palette }) => alpha(palette.common.black, 0.9),
         zIndex: 3,
         borderTop: '1px solid',
-        borderColor: hidden || !appeared ? 'transparent' : 'divider',
+        borderColor: hidden || !appeared ? 'transparent' : 'primaryDark.700',
         transform: hidden || !appeared ? 'translateY(100%)' : 'translateY(0)',
         transition: '0.2s',
         ...props.sx,
@@ -42,6 +42,7 @@ export function AppearingInfoBox({
           bottom: '100%',
           transform: hidden || !appeared ? 'translateY(-10px)' : 'translateY(50%)',
           opacity: appeared ? 1 : 0,
+          color: '#FFF',
           backgroundColor: 'primary.500',
           '&:hover': {
             backgroundColor: 'primary.800',

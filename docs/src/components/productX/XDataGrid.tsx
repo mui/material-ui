@@ -200,9 +200,8 @@ export default function XDataGrid() {
                 content={
                   <React.Fragment>
                     <Typography
-                      color="text.primary"
                       variant="body2"
-                      sx={{ fontWeight: 'medium', mb: '4px' }}
+                      sx={{ color: 'grey.50', fontWeight: 'medium', mb: '4px' }}
                     >
                       {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}
                       {demo === DEMOS[4] && 'Multi-column filtering is a paid feature!'}
