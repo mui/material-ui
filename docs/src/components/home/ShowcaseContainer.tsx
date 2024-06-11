@@ -5,14 +5,16 @@ import NoSsr from '@mui/material/NoSsr';
 import Frame from 'docs/src/components/action/Frame';
 
 export function ShowcaseCodeWrapper({
-  hasDesignToggle,
   children,
+  clip,
+  hasDesignToggle,
   maxHeight,
   sx,
 }: {
-  hasDesignToggle?: boolean;
+  clip?: boolean;
   children: React.ReactNode;
-  maxHeight: number;
+  hasDesignToggle?: boolean;
+  maxHeight: number | string;
   sx?: BoxProps['sx'];
 }) {
   return (
@@ -23,7 +25,7 @@ export function ShowcaseCodeWrapper({
         maxHeight: { xs: 'auto', sm: maxHeight },
         position: 'relative',
         display: 'flex',
-        overflow: 'auto',
+        overflow: clip ? 'clip' : 'auto',
         flexGrow: 1,
         '&::-webkit-scrollbar': {
           display: 'none',

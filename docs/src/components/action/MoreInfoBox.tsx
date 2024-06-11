@@ -9,32 +9,29 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 
 export function AppearingInfoBox({
   appeared,
-  stylingContent,
+  content,
   ...props
-}: { appeared: boolean; stylingContent?: React.ReactElement<any> } & BoxProps) {
+}: { appeared: boolean; content?: React.ReactNode } & BoxProps) {
   const [hidden, setHidden] = React.useState(false);
   return (
     <Box
-      data-mui-color-scheme="dark"
       {...props}
       sx={{
-        p: 2,
         position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        background: ({ palette }) => alpha(palette.common.black, 0.8),
-        backdropFilter: 'blur(8px)',
+        bottom: 8,
+        left: 8,
+        right: 8,
+        background: ({ palette }) => alpha(palette.common.black, 0.9),
         zIndex: 3,
         borderTop: '1px solid',
-        borderColor: 'divider',
-        borderRadius: '0 0 12px 12px',
+        borderColor: hidden || !appeared ? 'transparent' : 'divider',
         transform: hidden || !appeared ? 'translateY(100%)' : 'translateY(0)',
-        transition: '0.3s',
+        transition: '0.2s',
         ...props.sx,
       }}
     >
       <IconButton
+        size="small"
         aria-label={hidden ? 'show' : 'hide'}
         onClick={() => setHidden((bool) => !bool)}
         sx={{
@@ -45,9 +42,9 @@ export function AppearingInfoBox({
           bottom: '100%',
           transform: hidden || !appeared ? 'translateY(-10px)' : 'translateY(50%)',
           opacity: appeared ? 1 : 0,
-          bgcolor: 'primary.600',
-          '&:hover, &.Mui-focused': {
-            bgcolor: 'primary.700',
+          backgroundColor: 'primary.500',
+          '&:hover': {
+            backgroundColor: 'primary.800',
           },
         }}
       >
@@ -57,7 +54,7 @@ export function AppearingInfoBox({
           <KeyboardArrowDownRounded fontSize="small" />
         )}
       </IconButton>
-      {stylingContent}
+      <Box sx={{ p: 1 }}>{content}</Box>
     </Box>
   );
 }
