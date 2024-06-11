@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -31,13 +32,14 @@ const NavLabel = styled(Typography)(({ theme }) => ({
 
 interface ProductItemProps {
   active?: boolean;
+  chip?: React.ReactNode;
   description?: string;
   href: string;
   icon?: React.ReactNode;
   name: string;
 }
 
-function ProductItem({ active, href, description, name, icon }: ProductItemProps) {
+function ProductItem({ active, chip, href, description, name, icon }: ProductItemProps) {
   return (
     <Box
       component={Link}
@@ -85,9 +87,12 @@ function ProductItem({ active, href, description, name, icon }: ProductItemProps
         {icon}
       </Box>
       <div>
-        <Typography color="text.primary" variant="body2" fontWeight="semiBold">
-          {name}
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <Typography color="text.primary" variant="body2" fontWeight="semiBold">
+            {name}
+          </Typography>
+          {chip}
+        </Box>
         <Typography color="text.secondary" fontSize=".813rem">
           {description}
         </Typography>
@@ -223,7 +228,25 @@ export default function MuiProductSelector() {
           href={ROUTES.toolpadStudioDocs}
           icon={<SvgToolpadLogo width={14} height={14} />}
           description="A self-hosted, low-code internal tool builder."
-          // active={pageContext.productId === product.id}
+          active={pageContext.productId === 'toolpad-core'}
+          chip={
+            <Chip
+              label="Beta"
+              size="small"
+              color="primary"
+              variant="outlined"
+              sx={{
+                fontSize: '.625rem',
+                fontWeight: 'semiBold',
+                textTransform: 'uppercase',
+                letterSpacing: '.04rem',
+                height: '16px',
+                '& .MuiChip-label': {
+                  px: '4px',
+                },
+              }}
+            />
+          }
         />
       </Box>
     </React.Fragment>
