@@ -31,7 +31,7 @@ The biggest highlight in v6 is the opt-in support for Pigment CSS which enable s
 
 Apart from the support for Pigment CSS, the v6 release provides a stable API for adopting CSS variables which open more customization possibilities and offers a more enjoyable developer experience.
 
-Additionally, the v6 release does not include major breaking changes. Instead, they are deprecated to bring more consistent developer experience which can be migrated using our codemods.
+Additionally, the v6 release does not include major breaking changes, apart from the browser support & node.js version bump. Instead, they are deprecated to bring more consistent developer experience which can be migrated using our codemods.
 
 Last but not least, the v6 release includes new features such as container queries, theme utility for styling across color schemes, and ability to adopt Pigment CSS, a zero-runtime styling engine.
 
