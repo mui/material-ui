@@ -17,8 +17,7 @@ Alternatively, you can also target and fix it to a specific version, for example
 ## Supported browsers
 
 The targets of the default bundle have changed in v6.
-
-The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"`.
+The exact versions will be pinned on release from the browserslist query: `"> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"`.
 
 The stable bundle supports the following minimum versions:
 
@@ -32,9 +31,11 @@ The stable bundle supports the following minimum versions:
 
 ### Removed support for IE 11
 
-Support for IE 11 is completely removed, by dropping the legacy bundle and all IE 11 related code.
-This allows us to decrease bundle size and keep the scope manageable.
-If you need to support IE 11, you can use Material UI v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle), but it won't get updates or bug fixes.
+Support for IE 11－that is, the legacy bundle and all IE 11-related code－is completely removed.
+This decreases Material UI's bundle size and eases future development.
+
+If you need to support IE 11, you can use v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
+However, note that it won't get updates or bug fixes.
 
 ## Breaking changes
 
@@ -56,11 +57,10 @@ For alternative installation methods, refer to the [CDN documentation](/material
 
 ### Chip
 
-The Chip component's behavior has been updated to match the standard behavior of other components like buttons.
 Previously, the Chip component lost focus when the escape button was pressed, which differed from how other button-like components work.
-This issue has been resolved, and the chip component retains focus as expected.
+This issue has been resolved, and the Chip component retains focus as expected.
 
-You can provide a custom `onKeyUp` handler to implement the previous behavior.
+If you still want to use the previous behavior, add a `onKeyUp` handler, as demonstrated below:
 
 ```js
 import * as React from 'react';
@@ -97,7 +97,7 @@ In v6, this is fixed:
 
 <img src="/static/material-ui/migration-v5/grid-overflow-change.png" style="width: 814px;" alt="Before and after of the Grid no longer overflowing its parent in v6." width="1628" height="400" />
 
-This removes the need for the `disableEqualOverflow` prop, so you can remove it:
+This removes the need for the `disableEqualOverflow` prop:
 
 ```diff
  <Grid
