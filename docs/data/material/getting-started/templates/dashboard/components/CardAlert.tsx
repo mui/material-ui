@@ -16,7 +16,7 @@ export default function CardAlert() {
         <Typography color="text.secondary" variant="body2" sx={{ mb: 2 }}>
           Enjoy 10% off when renewing your plan today.
         </Typography>
-        <Button variant="outlined" size="small" fullWidth>
+        <Button variant="contained" size="small" fullWidth>
           Get the discount
         </Button>
       </CardContent>

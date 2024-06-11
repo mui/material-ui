@@ -21,6 +21,8 @@ import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
 import MenuButton from './MenuButton';
 import ToggleColorMode from './ToggleColorMode';
+import MenuContent from './MenuContent';
+import CardAlert from './CardAlert';
 
 interface SideNavProps {
   open: boolean | undefined;
@@ -46,22 +48,14 @@ export default function SideNav({
   toggleColorMode,
 }: SideNavProps) {
   return (
-    <Drawer
-      anchor="right"
-      open={open}
-      onClose={toggleDrawer(false)}
-      sx={(theme) => ({ zIndex: theme.zIndex.drawer + 2 })} // Increase the z-index due to the Navbar
-    >
+    <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
       <Stack
         sx={{
+          maxWidth: '70dvw',
           gap: 2,
-          minWidth: '80dvw',
-          p: 3,
-          backgroundColor: 'background.paper',
-          flexGrow: 1,
         }}
       >
-        <Stack direction="row" sx={{ gap: 1 }}>
+        <Stack direction="row" sx={{ p: 2, pb: 0, gap: 1 }}>
           <Stack direction="row" sx={{ gap: 1, alignItems: 'center', flexGrow: 1 }}>
             <Avatar
               sizes="small"
@@ -78,6 +72,8 @@ export default function SideNav({
           </MenuButton>
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
+        <Divider />
+        <MenuContent />
         <Stack sx={{ gap: 2 }}>
           <Divider />
           <List>
@@ -100,11 +96,12 @@ export default function SideNav({
             ))}
           </List>
         </Stack>
-        <Stack>
+        <Stack sx={{ p: 2 }}>
           <Button variant="outlined" fullWidth startIcon={<LogoutRoundedIcon />}>
             Logout
           </Button>
         </Stack>
+        <CardAlert />
       </Stack>
     </Drawer>
   );
