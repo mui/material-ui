@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
@@ -19,6 +19,14 @@ import WebRoundedIcon from '@mui/icons-material/WebRounded';
 const iconStyles = () => ({
   fontSize: '.875rem',
   color: 'primary.main',
+});
+
+const logoColor = (theme: Theme) => ({
+  '& path': {
+    ...theme.applyDarkStyles({
+      fill: (theme.vars || theme).palette.primary[400],
+    }),
+  },
 });
 
 const NavLabel = styled(Typography)(({ theme }) => ({
@@ -74,7 +82,7 @@ function ProductItem({ active, chip, href, description, name, icon }: ProductIte
     >
       <Box
         sx={{
-          height: 21, // match the Typography component's line height
+          height: 21, // match the Typography line-height
           width: 21,
           display: 'flex',
           alignItems: 'center',
@@ -106,14 +114,14 @@ const coreProducts = [
     id: 'material-ui',
     name: 'Material UI',
     description: 'Ready-to-use foundational components.',
-    icon: <SvgMuiLogomark width={14} height={14} />,
+    icon: <SvgMuiLogomark width={14} height={14} sx={logoColor} />,
     href: ROUTES.materialDocs,
   },
   {
     id: 'base-ui',
     name: 'Base UI',
     description: 'Unstyled components and hooks.',
-    icon: <SvgBaseUiLogo width={14} height={14} />,
+    icon: <SvgBaseUiLogo width={14} height={14} sx={logoColor} />,
     href: ROUTES.baseDocs,
   },
   {
@@ -226,7 +234,7 @@ export default function MuiProductSelector() {
         <ProductItem
           name="Toolpad"
           href={ROUTES.toolpadStudioDocs}
-          icon={<SvgToolpadLogo width={14} height={14} />}
+          icon={<SvgToolpadLogo width={14} height={14} sx={logoColor} />}
           description="A self-hosted, low-code internal tool builder."
           active={pageContext.productId === 'toolpad-core'}
           chip={
