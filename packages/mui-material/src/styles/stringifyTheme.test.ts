@@ -9,7 +9,7 @@ describe('StringifyTheme', () => {
       breakpoints: theme.breakpoints,
       transitions: theme.transitions,
     });
-    expect(result).to.equal(`import createBreakpoints from '@mui/system/createBreakpoints';
+    expect(result).to.equal(`import { createBreakpoints } from '@mui/system';
 import { createTransitions } from '@mui/material/styles';
 
 const theme = {
