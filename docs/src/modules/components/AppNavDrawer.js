@@ -124,8 +124,8 @@ function ProductDrawerButton(props) {
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   autoFocusItem={open}
-                  id="composition-menu"
-                  aria-labelledby="composition-button"
+                  id="mui-product-menu"
+                  aria-labelledby="mui-product-selector"
                   onKeyDown={handleListKeyDown}
                 >
                   <MuiProductSelector />
