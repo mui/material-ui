@@ -16,7 +16,7 @@
       "type": { "name": "bool" },
       "default": "false",
       "deprecated": true,
-      "deprecationInfo": "use the <code>component</code> prop instead."
+      "deprecationInfo": "use the <code>component</code> prop instead, or use variant=&quot;body2&quot; to get the same behavior."
     },
     "sx": {
       "type": {
