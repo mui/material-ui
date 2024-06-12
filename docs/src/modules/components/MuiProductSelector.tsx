@@ -19,9 +19,9 @@ import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
 
-const iconStyles = () => ({
+const iconStyles = (theme: Theme) => ({
   fontSize: '.875rem',
-  color: 'primary.main',
+  color: (theme.vars || theme).palette.primary.main,
 });
 
 const logoColor = (theme: Theme) => ({
@@ -83,9 +83,8 @@ function ProductItem({
             backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : 'grey.50',
             borderColor: 'divider',
           },
-          '&:focus-visible': {
-            outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-            outlineOffset: '2px',
+          '&.Mui-focusVisible': {
+            backgroundColor: active ? (theme.vars || theme).palette.primary[50] : 'transparent',
           },
           ...theme.applyDarkStyles({
             backgroundColor: active ? alpha(theme.palette.primary[900], 0.2) : undefined,
@@ -94,7 +93,9 @@ function ProductItem({
               backgroundColor: active
                 ? alpha(theme.palette.primary[900], 0.3)
                 : alpha(theme.palette.primaryDark[700], 0.5),
-              borderColor: 'divider',
+            },
+            '&.Mui-focusVisible': {
+              backgroundColor: active ? alpha(theme.palette.primary[900], 0.5) : 'transparent',
             },
           }),
         }),
@@ -212,8 +213,6 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           sm: 'repeat(2, minmax(0, 1fr))',
         },
         gap: '4px',
-        borderBottom: '1px solid',
-        borderColor: 'divider',
       }}
     >
       {coreProducts.map((product) => (
