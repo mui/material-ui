@@ -373,13 +373,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@pigment-css/nextjs-plugin':
-<<<<<<< HEAD
-        specifier: ^0.0.12
-        version: 0.0.12(@types/react@18.2.55)(next@14.2.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
-=======
         specifier: ^0.0.14
         version: 0.0.14(@types/react@18.2.55)(next@14.2.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
->>>>>>> bac1aeb0a904b3572a34390f69931311e125ebbc
       '@types/node':
         specifier: ^18.19.34
         version: 18.19.34
@@ -15077,15 +15072,9 @@ snapshots:
 
   '@opentelemetry/semantic-conventions@1.24.1': {}
 
-<<<<<<< HEAD
-  '@pigment-css/nextjs-plugin@0.0.12(@types/react@18.2.55)(next@14.2.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@pigment-css/unplugin': 0.0.12(@types/react@18.2.55)(react@18.2.0)
-=======
   '@pigment-css/nextjs-plugin@0.0.14(@types/react@18.2.55)(next@14.2.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@pigment-css/unplugin': 0.0.14(@types/react@18.2.55)(react@18.2.0)
->>>>>>> bac1aeb0a904b3572a34390f69931311e125ebbc
       next: 14.2.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
