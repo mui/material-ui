@@ -17,7 +17,7 @@ A big thanks to the 18 contributors who made this release possible.
 - &#8203;<!-- 10 -->Change React.ReactElement type from `any` to `unknown` (#42473) @sai6855
 - &#8203;<!-- 09 -->Integrate `extendSxProp` adapter (#42543) @siriwatknp
 - &#8203;<!-- 08 -->[Tab] Fix applying `iconWrapper` styles from theme and update its description (#42549) @sai6855
-- &#8203;<!-- 08 -->[pigment-css] Add `stringifyTheme` for Pigment CSS integration (#42476) @siriwatknp
+- &#8203;<!-- 08 -->[pigment-css] Add `stringifyTheme` for Pigment CSS integration (#42476) @siriwatknp
 
 ### `@mui/system@6.0.0-alpha.11`
 
