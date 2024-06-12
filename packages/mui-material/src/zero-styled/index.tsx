@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { extendSxProp } from '@mui/system/styleFunctionSx';
 import useThemeProps from '../styles/useThemeProps';
+import useTheme from '../styles/useTheme';
 import GlobalStyles, { GlobalStylesProps } from '../GlobalStyles';
 
 export { css, keyframes } from '@mui/system';
@@ -22,3 +23,5 @@ export function createUseThemeProps(name: string) {
 export function internal_createExtendSxProp() {
   return extendSxProp;
 }
+
+export { useTheme };
