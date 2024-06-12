@@ -194,12 +194,16 @@ const advancedProducts = [
   },
 ];
 
-export default function MuiProductSelector(props: MenuListProps) {
+const MuiProductSelector = React.forwardRef(function MuiProductSelector(
+  props: MenuListProps,
+  forwardedRef: React.ForwardedRef<HTMLUListElement>,
+) {
   const pageContext = React.useContext(PageContext);
 
   return (
     <MenuList
       {...props}
+      ref={forwardedRef}
       sx={{
         p: 1,
         display: 'grid',
@@ -296,4 +300,6 @@ export default function MuiProductSelector(props: MenuListProps) {
       />
     </MenuList>
   );
-}
+});
+
+export default MuiProductSelector;

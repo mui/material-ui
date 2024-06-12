@@ -73,7 +73,10 @@ function ProductDrawerButton(props) {
   };
 
   function handleListKeyDown(event) {
-    if (event.key === 'Escape') {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
       setOpen(false);
     }
   }
