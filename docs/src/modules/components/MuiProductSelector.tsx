@@ -196,14 +196,15 @@ const advancedProducts = [
 ];
 
 const MuiProductSelector = React.forwardRef(function MuiProductSelector(
-  props: MenuListProps,
-  forwardedRef: React.ForwardedRef<HTMLUListElement>,
+  props: MenuListProps<'div'>,
+  forwardedRef: React.ForwardedRef<HTMLDivElement>,
 ) {
   const pageContext = React.useContext(PageContext);
 
   return (
     <MenuList
       {...props}
+      component="div"
       ref={forwardedRef}
       sx={{
         p: 1,
