@@ -111,25 +111,18 @@ function ProductDrawerButton(props) {
                 minWidth: { xs: '100%', sm: 600 },
                 overflow: 'clip',
                 boxShadow: `0 4px 16px ${alpha(theme.palette.common.black, 0.15)}`,
-                '& ul': {
-                  margin: 0,
-                  padding: 0,
-                  listStyle: 'none',
-                },
                 ...theme.applyDarkStyles({
                   bgcolor: 'primaryDark.900',
                 }),
               })}
             >
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
+                <MuiProductSelector
                   autoFocusItem={open}
                   id="mui-product-menu"
                   aria-labelledby="mui-product-selector"
                   onKeyDown={handleListKeyDown}
-                >
-                  <MuiProductSelector />
-                </MenuList>
+                />
               </ClickAwayListener>
             </Paper>
           </Fade>

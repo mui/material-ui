@@ -4,6 +4,9 @@ import { styled, alpha, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
+import MenuList, { MenuListProps } from '@mui/material/MenuList';
+import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import ROUTES from 'docs/src/route';
 import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
@@ -38,7 +41,7 @@ const NavLabel = styled(Typography)(({ theme }) => ({
   color: (theme.vars || theme).palette.text.tertiary,
 }));
 
-interface ProductItemProps {
+interface ProductItemProps extends MenuItemProps {
   active?: boolean;
   chip?: React.ReactNode;
   description?: string;
@@ -47,44 +50,58 @@ interface ProductItemProps {
   name: string;
 }
 
-function ProductItem({ active, chip, description, href, icon, name }: ProductItemProps) {
+function ProductItem({
+  active,
+  chip,
+  description,
+  href,
+  icon,
+  name,
+  sx = [],
+  ...other
+}: ProductItemProps) {
   return (
-    <Box
+    <MenuItem
       component={NextLink} // using the Next link directly here as it accepts, as opposed to the docs Link, passing role="menuitem"
       role="menuitem"
       href={href}
-      sx={(theme) => ({
-        p: 1,
-        pl: '6px',
-        display: 'flex',
-        alignItems: 'start',
-        gap: '8px',
-        flexGrow: 1,
-        backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : undefined,
-        border: '1px solid',
-        borderColor: active ? 'primary.100' : 'transparent',
-        borderRadius: '8px',
-        transition: '100ms ease-in background-color, border',
-        textDecorationLine: 'none',
-        '&:hover': {
-          backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : 'grey.50',
-          borderColor: 'divider',
-        },
-        '&:focus-visible': {
-          outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-          outlineOffset: '2px',
-        },
-        ...theme.applyDarkStyles({
-          backgroundColor: active ? alpha(theme.palette.primary[900], 0.2) : undefined,
-          borderColor: active ? alpha(theme.palette.primary[300], 0.2) : 'transparent',
+      sx={[
+        (theme) => ({
+          p: 1,
+          pl: '6px',
+          display: 'flex',
+          alignItems: 'start',
+          gap: '8px',
+          flexGrow: 1,
+          backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : undefined,
+          border: '1px solid',
+          borderColor: active ? 'primary.100' : 'transparent',
+          borderRadius: '8px',
+          transition: '100ms ease-in background-color, border',
+          textDecorationLine: 'none',
           '&:hover': {
-            backgroundColor: active
-              ? alpha(theme.palette.primary[900], 0.3)
-              : alpha(theme.palette.primaryDark[700], 0.5),
+            backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : 'grey.50',
             borderColor: 'divider',
           },
+          '&:focus-visible': {
+            outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+            outlineOffset: '2px',
+          },
+          ...theme.applyDarkStyles({
+            backgroundColor: active ? alpha(theme.palette.primary[900], 0.2) : undefined,
+            borderColor: active ? alpha(theme.palette.primary[300], 0.2) : 'transparent',
+            '&:hover': {
+              backgroundColor: active
+                ? alpha(theme.palette.primary[900], 0.3)
+                : alpha(theme.palette.primaryDark[700], 0.5),
+              borderColor: 'divider',
+            },
+          }),
         }),
-      })}
+        // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+      {...other}
     >
       <Box
         sx={{
@@ -111,7 +128,7 @@ function ProductItem({ active, chip, description, href, icon, name }: ProductIte
           {description}
         </Typography>
       </div>
-    </Box>
+    </MenuItem>
   );
 }
 
@@ -177,92 +194,106 @@ const advancedProducts = [
   },
 ];
 
-export default function MuiProductSelector() {
+export default function MuiProductSelector(props: MenuListProps) {
   const pageContext = React.useContext(PageContext);
 
   return (
-    <React.Fragment>
+    <MenuList
+      {...props}
+      sx={{
+        p: 1,
+        display: 'grid',
+        gridTemplateColumns: {
+          xs: 'repeat(1, minmax(0, 1fr))',
+          sm: 'repeat(2, minmax(0, 1fr))',
+        },
+        gap: '4px',
+        borderBottom: '1px solid',
+        borderColor: 'divider',
+      }}
+    >
+      {coreProducts.map((product) => (
+        <ProductItem
+          key={product.name}
+          name={product.name}
+          description={product.description}
+          href={product.href}
+          icon={product.icon}
+          active={pageContext.productId === product.id}
+        />
+      ))}
+      <Divider
+        sx={{
+          mx: -1,
+          gridColumn: {
+            xs: '1 / span 1',
+            sm: '1 / span 2',
+          },
+        }}
+      />
       <Box
-        component="li"
+        key="X components"
         role="none"
         sx={{
-          p: 1,
-          display: 'grid',
-          gridTemplateColumns: {
-            xs: 'repeat(1, minmax(0, 1fr))',
-            sm: 'repeat(2, minmax(0, 1fr))',
+          gridColumn: {
+            xs: '1 / span 1',
+            sm: '1 / span 2',
           },
-          gap: '4px',
-          borderBottom: '1px solid',
-          borderColor: 'divider',
         }}
       >
-        {coreProducts.map((product) => (
-          <ProductItem
-            key={product.name}
-            name={product.name}
-            description={product.description}
-            href={product.href}
-            icon={product.icon}
-            active={pageContext.productId === product.id}
-          />
-        ))}
-      </Box>
-      <Box
-        component="li"
-        role="none"
-        sx={{ p: 1, borderBottom: '1px solid', borderColor: 'divider' }}
-      >
         <NavLabel>MUI X Components</NavLabel>
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: {
-              xs: 'repeat(1, minmax(0, 1fr))',
-              sm: 'repeat(2, minmax(0, 1fr))',
-            },
-            gap: '4px',
-          }}
-        >
-          {advancedProducts.map((product) => (
-            <ProductItem
-              key={product.name}
-              name={product.name}
-              description={product.description}
-              icon={product.icon}
-              href={product.href}
-              active={pageContext.productId === product.id}
-            />
-          ))}
-        </Box>
       </Box>
-      <Box component="li" role="none" sx={{ p: 1 }}>
+      {advancedProducts.map((product) => (
         <ProductItem
-          name="Toolpad"
-          href={ROUTES.toolpadStudioDocs}
-          icon={<SvgToolpadLogo width={14} height={14} sx={logoColor} />}
-          description="A self-hosted, low-code internal tool builder."
-          active={pageContext.productId === 'toolpad-core'}
-          chip={
-            <Chip
-              label="Beta"
-              size="small"
-              color="primary"
-              variant="outlined"
-              sx={{
-                fontSize: '.625rem',
-                fontWeight: 'semiBold',
-                textTransform: 'uppercase',
-                letterSpacing: '.04rem',
-                height: '16px',
-                '& .MuiChip-label': {
-                  px: '4px',
-                },
-              }}
-            />
-          }
+          key={product.name}
+          name={product.name}
+          description={product.description}
+          icon={product.icon}
+          href={product.href}
+          active={pageContext.productId === product.id}
         />
-      </Box>
-    </React.Fragment>
+      ))}
+      <Divider
+        sx={{
+          mx: -1,
+          gridColumn: {
+            xs: '1 / span 1',
+            sm: '1 / span 2',
+          },
+        }}
+      />
+      <ProductItem
+        key="Toolpad"
+        name="Toolpad"
+        href={ROUTES.toolpadStudioDocs}
+        icon={<SvgToolpadLogo width={14} height={14} sx={logoColor} />}
+        description="A self-hosted, low-code internal tool builder."
+        active={pageContext.productId === 'toolpad-core'}
+        chip={
+          <Chip
+            label="Beta"
+            size="small"
+            color="primary"
+            variant="outlined"
+            sx={{
+              fontSize: '.625rem',
+              fontWeight: 'semiBold',
+              textTransform: 'uppercase',
+              letterSpacing: '.04rem',
+              height: '16px',
+              '& .MuiChip-label': {
+                px: '4px',
+              },
+            }}
+          />
+        }
+        sx={{
+          gridColumn: {
+            xs: '1 / span 1',
+            sm: '1 / span 2',
+          },
+        }}
+      />
+    </MenuList>
   );
 }
