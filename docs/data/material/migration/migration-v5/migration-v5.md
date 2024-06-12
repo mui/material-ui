@@ -83,3 +83,37 @@ export default function ChipExample() {
   );
 }
 ```
+
+### Grid v2 (Unstable_Grid)
+
+The spacing mechanism was reworked to use the `gap` CSS property.
+This maps better with current layout practices and removes the need for using React Context.
+It brings some breaking changes described in the following sections.
+
+#### The Grid is contained inside parent's padding
+
+Previously, the Grid overflowed its parent.
+In v6, this is fixed:
+
+<img src="/static/material-ui/migration-v5/grid-overflow-change.png" style="width: 814px;" alt="Before and after of the Grid no longer overflowing its parent in v6." width="1628" height="400" />
+
+This removes the need for the `disableEqualOverflow` prop, so you can remove it:
+
+```diff
+ <Grid
+-   disableEqualOverflow
+ />
+```
+
+#### Spacing is no longer considered inside the Grid item's box
+
+Previously, the Grid items included spacing in it's box.
+In v6, this is fixed:
+
+<img src="/static/material-ui/migration-v5/grid-spacing-change.png" style="width: 814px;" alt="Before and after of the Grid items no longer including spacing in their box." width="1628" height="400" />
+
+:::warning
+Both of these changes might slightly affect your layout.
+Note that the items' position doesn't change.
+We recommend adopting this new behavior and **not trying to replicate the old one**, as this is a more predictable and modern approach.
+:::

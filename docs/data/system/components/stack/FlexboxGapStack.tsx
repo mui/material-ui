@@ -4,11 +4,14 @@ import Box from '@mui/system/Box';
 import { styled } from '@mui/system';
 
 const Item = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#262B32' : '#fff',
+  backgroundColor: '#fff',
   padding: theme.spacing(1),
   textAlign: 'center',
   borderRadius: 4,
   flexGrow: 1,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#262B32',
+  }),
 }));
 
 export default function FlexboxGapStack() {

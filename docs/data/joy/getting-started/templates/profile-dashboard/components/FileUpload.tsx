@@ -50,10 +50,8 @@ export default function FileUpload(
             value={progress}
             determinate
             sx={[
-              {
-                ...(progress >= 100 && {
-                  color: 'var(--joy-palette-success-solidBg)',
-                }),
+              progress >= 100 && {
+                color: 'var(--joy-palette-success-solidBg)',
               },
             ]}
           />
