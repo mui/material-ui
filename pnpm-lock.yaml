@@ -373,8 +373,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@pigment-css/nextjs-plugin':
-        specifier: ^0.0.13
-        version: 0.0.13(@types/react@18.2.55)(next@14.2.3(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        specifier: ^0.0.14
+        version: 0.0.14(@types/react@18.2.55)(next@14.2.3(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       '@types/node':
         specifier: ^18.19.34
         version: 18.19.34
@@ -4589,8 +4589,8 @@ packages:
     resolution: {integrity: sha512-VkliWlS4/+GHLLW7J/rVBA00uXus1SWvwFvcUDxDwmFxYfg/2VI6ekwdXS28cjI8Qz2ky2BzG8OUHo+WeYIWqw==}
     engines: {node: '>=14'}
 
-  '@pigment-css/nextjs-plugin@0.0.13':
-    resolution: {integrity: sha512-+nJQAgTLuXCuZgXcfpD5DCcPLhDUsNumoNVG8vjk/ERDGXJHnyk648XJtMP1ZevMYG7OU+M4cLGP5qOsLmrasg==}
+  '@pigment-css/nextjs-plugin@0.0.14':
+    resolution: {integrity: sha512-aGRpUnXrJi7jbdHddh1cVeVXeiYvglXQQhpzxJ1grr1f9RovGcyuEx3zADgEG3nZB1TGL6t2zdOUvgz4bCWIyQ==}
     peerDependencies:
       next: ^12.0.0 || ^13.0.0 || ^14.0.0
 
@@ -4599,8 +4599,8 @@ packages:
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
 
-  '@pigment-css/unplugin@0.0.13':
-    resolution: {integrity: sha512-RaacE5hk0jfKH2XmmVw7+fX0c1VqEMBC2vJ8c/ga48yQLbEYqYouCWGCrl6z190Xl+1cyhoFCxl5rAwTyiusVg==}
+  '@pigment-css/unplugin@0.0.14':
+    resolution: {integrity: sha512-oRAHxBiK7sZ8njZukJQJJdLJ2m26641S2GpnKbKLKV6KQa3TgdsZY34jzEG8iyWB4fBbW9JbLfloSruFncoSrg==}
 
   '@pigment-css/vite-plugin@0.0.13':
     resolution: {integrity: sha512-O6O82vzuyOeqCG8sDbETik7g8ZbR53NVlYvFLDvrB1kxZ0k9dAhV5VCgi1hac+FHPwSsV7bQ+dg1pcMz40l2xA==}
@@ -15066,9 +15066,9 @@ snapshots:
 
   '@opentelemetry/semantic-conventions@1.24.1': {}
 
-  '@pigment-css/nextjs-plugin@0.0.13(@types/react@18.2.55)(next@14.2.3(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)':
+  '@pigment-css/nextjs-plugin@0.0.14(@types/react@18.2.55)(next@14.2.3(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@pigment-css/unplugin': 0.0.13(@types/react@18.2.55)(react@18.2.0)
+      '@pigment-css/unplugin': 0.0.14(@types/react@18.2.55)(react@18.2.0)
       next: 14.2.3(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
@@ -15103,7 +15103,7 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@pigment-css/unplugin@0.0.13(@types/react@18.2.55)(react@18.2.0)':
+  '@pigment-css/unplugin@0.0.14(@types/react@18.2.55)(react@18.2.0)':
     dependencies:
       '@babel/core': 7.24.7
       '@pigment-css/react': 0.0.13(@types/react@18.2.55)(react@18.2.0)
