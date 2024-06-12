@@ -18,7 +18,7 @@ We're a company of 31+ people as of late 2023, and we're growing.
 ## The products
 
 MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS-in-JS library, that is a replacement of the current styling engine that uses emotion/styled-components under the hood.
+Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS-in-JS styling engine.
 We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
@@ -48,28 +48,22 @@ This is just the beginning, though.
 There's so much to do to make Pigment CSS a reliable and mature option for the future of Material UI and for many developers looking for a next-generation CSS-in-JS styling engine.
 We're well-positioned to make this happen, so we're looking for a talented engineer to join the team and help us get further beyond!
 
-### Why this is interesting
-
-The core components that will depend on this library are widely used, you will receive a lot of feedback on your work.
-The community has high expectations, they will push you to do better, every day.
-
-Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 ## The role
 
 ### Key responsibilities
 
-- **Build**. You will provide solutions for integrating the library with various bundlers and frameworks. You will build new features and improve the DX of the library.
-- **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community. Your time will often be way better spent doing this than fixing the problems yourself.
-- **Shape the product**. You will be laser-focused on the end goal. It's not about solving technical challenges but about the problems solved for the users.
-- **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace, align the team on "one way" of doing things and make sure engineers follow the conventions.
+- **Build**. You will help Pigment CSS mature by integrating it with various bundlers and frameworks, building new features, and improving DX.
+- **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community. 
+- **Influence the product strategy.** You will be empowered to help design and shape a roadmap that solves real developer problems.
+- **Keep technical debt in check**. You will ensure we can keep shipping features at a reasonable pace while aligning the team on "the right way" of doing things.
 - **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
 
 ### The best parts of this job
 
-- **You'll be at the cutting edge of application development** — working on one of the fastest-growing CSS-in-JS libraries on the market.
-- **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
-- **Your role will be key to making MUI the go-to UI solution** for building applications, websites, and design systems that does not have to trade performance for a great developer experience.
+- **You'll be at the cutting edge of application development** working on one of the fastest-growing CSS-in-JS libraries on the market.
+- **You'll be part of an active, open, friendly community** of developers who are excited about building awesome applications.
+- **Your role will be key to making MUI's libraries the go-to UI solutions** for building applications, websites, and design systems that do not have to trade performance for a great developer experience.
 
 ### The worst parts of this job
 
@@ -79,39 +73,32 @@ Our products empower React developers to build awesome applications faster – w
   It's fun, rewarding work, but it can be very challenging.
 - **We move quickly but don't sacrifice quality**.
   We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
-- **MUI has a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
+- **MUI has large codebases**. You may bang your head against the wall at times and then write tests to assist future you.
   The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
 - **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
 
 ## Who we're looking for
 
-We're looking for someone with strong core JavaScript skills. More important than specific technical skills though is that you're a strong problem solver who loves to learn. Details matter to you.
+We're looking for someone with strong core JavaScript skills. More important than specific technical skills, though, is that you're a strong problem solver who loves to learn. Details matter to you.
 
 ### Required
 
 - **Expertise in the modern JavaScript ecosystem**.
-  Pigment CSS is built on the shoulders of giants, you need to use technologies such as TypeScript, Node.js, Babel, Rust, or SWC.
-- **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
-- **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
+  You'll use technologies such as TypeScript, Node.js, Babel, Rust, or SWC. We'd appreciate it if you've already written a Babel plugin or something similar.
+- **A track record of solving real-world user problems**. If you have a knack for solving problems at the root cause and shipping beautiful user interfaces with intuitive APIs, we want you on our team.
 - **Strong written and verbal communication skills**.
-  As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
+  As part of the team, you'll interface directly and indirectly with community members and enterprise customers, as well as contribute to internal and external documentation. 
 - **Ability to dive into complex problems**.
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
-- **Ready and willing to ask and answer questions**.
-  If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
+- **Willingness to ask and answer questions**.
+  You're comfortable saying you're unsure and asking for help. You'll also reach out out to assist others. We thrive through continuous learning—first-time mistakes are celebrated, not blamed.
 - **Leadership skills**.
-  You will help build the community and collaborate with it.
   You will guide and mentor contributors, steering the community in the right direction.
-- **Past work with front-end infrastructure**.
-  Perhaps you've written a Babel plugin or even worked on a problem similar to the ones Pigment CSS aims to address.
-  It would be great if you could address this in your cover letter!
 
 ### Nice to have (but not required)
 
-- **You've maintained an active repository before**.
-  Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
-  Previous experience with highly active repository workflows is a definite plus for this role.
-- **You have contributed code to a CSS-in-JS library**. A history of contributing to a CSS-in-JS library is a plus.
+- **You've maintained an active repository before**, regardless of whether it was open-source or private, that saw contributions from multiple teams.
+- **You've contributed to a CSS-in-JS library** in the past.
 
 ## Benefits and compensation
 
