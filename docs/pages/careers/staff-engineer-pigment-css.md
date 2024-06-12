@@ -52,7 +52,7 @@ We're well-positioned to make this happen, so we're looking for a talented engin
 
 ### Key responsibilities
 
-- **Build**. You will help Pigment CSS mature by integrating it with various bundlers and frameworks, building new features, and improving DX.
+- **Build**. You will help Pigment CSS mature by integrating it with various bundlers and frameworks, building new features, and improving DX.
 - **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community.
 - **Influence the product strategy.** You will be empowered to help design and shape a roadmap that solves real developer problems.
 - **Keep technical debt in check**. You will ensure we can keep shipping features at a reasonable pace while aligning the team on "the right way" of doing things.
