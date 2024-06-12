@@ -38,7 +38,6 @@ async function main() {
   // approximate pnpm lerna --concurrency 7
   const tsconfigPathsChunks = chunk(tsconfigPaths, 7);
 
-  // eslint-disable-next-line no-restricted-syntax
   for await (const tsconfigPathsChunk of tsconfigPathsChunks) {
     await Promise.all(
       tsconfigPathsChunk.map(async (tsconfigPath) => {

@@ -6,9 +6,8 @@ import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, createUseThemeProps, useTheme } from '../zero-styled';
 import getOverlayAlpha from '../styles/getOverlayAlpha';
-import useTheme from '../styles/useTheme';
 import { getPaperUtilityClass } from './paperClasses';
 
 const useThemeProps = createUseThemeProps('MuiPaper');
