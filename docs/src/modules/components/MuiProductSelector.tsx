@@ -111,9 +111,6 @@ function ProductItem({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          '& svg': {
-            ml: '0 !important', // to override the margin-left Link adds
-          },
         }}
       >
         {icon}
