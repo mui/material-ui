@@ -9,9 +9,8 @@ import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
-import useTheme from '../styles/useTheme';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, createUseThemeProps, useTheme } from '../zero-styled';
 import { getDrawerUtilityClass } from './drawerClasses';
 
 const useThemeProps = createUseThemeProps('MuiDrawer');
