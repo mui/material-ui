@@ -35,7 +35,7 @@ interface InfoProps {
 export default function Info({ totalPrice }: InfoProps) {
   return (
     <React.Fragment>
-      <Typography variant="subtitle2" color="text.secondary">
+      <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
         Total
       </Typography>
       <Typography variant="h4" gutterBottom>
@@ -49,7 +49,7 @@ export default function Info({ totalPrice }: InfoProps) {
               primary={product.name}
               secondary={product.desc}
             />
-            <Typography variant="body1" fontWeight="medium">
+            <Typography variant="body1" sx={{ fontWeight: 'medium' }}>
               {product.price}
             </Typography>
           </ListItem>

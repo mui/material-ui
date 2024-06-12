@@ -52,3 +52,19 @@
     backgroundImage: `url(${post.image})`,
   }}
 ></Paper>;
+
+<Chip
+  size="sm"
+  variant="outlined"
+  color={colors[data.role]}
+  sx={{
+    ml: 'auto',
+    borderRadius: '2px',
+    minHeight: '20px',
+    paddingInline: '4px',
+    fontSize: 'xs',
+    bgcolor: `${colors[data.role]}.softBg`,
+  }}
+>
+  {data.role}
+</Chip>;

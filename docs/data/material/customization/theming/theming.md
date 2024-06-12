@@ -118,7 +118,6 @@ You can extend the outer theme by providing a function:
 ## CSS variables provider
 
 The `CssVarsProvider` is built on top of the `ThemeProvider` with extra features like theme CSS variables generation, built-in color scheme synchronization with the user's system preference, and more.
-The `CssVarsProvider` is built on top of the `ThemeProvider` with extra features like theme CSS variables generation, built-in color scheme synchronization, user's system preference, and more.
 
 To start using the `CssVarsProvider`, check out the [basic usage guide](/material-ui/customization/css-theme-variables/usage/). If you are using the `ThemeProvider`, read the [migration guide](/material-ui/migration/migration-css-theme-variables/).
 

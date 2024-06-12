@@ -11,8 +11,7 @@ import Paper from '../Paper';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
-import useTheme from '../styles/useTheme';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, createUseThemeProps, useTheme } from '../zero-styled';
 
 const useThemeProps = createUseThemeProps('MuiDialog');
 
@@ -117,7 +116,6 @@ const DialogPaper = styled(Paper, {
 })(({ theme }) => ({
   margin: 32,
   position: 'relative',
-  overflowY: 'auto', // Fix IE11 issue, to remove at some point.
   '@media print': {
     overflowY: 'visible',
     boxShadow: 'none',
@@ -140,7 +138,6 @@ const DialogPaper = styled(Paper, {
       style: {
         display: 'inline-block',
         verticalAlign: 'middle',
-        textAlign: 'left', // 'initial' doesn't work on IE11
       },
     },
     {

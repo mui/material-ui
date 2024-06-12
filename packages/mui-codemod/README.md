@@ -393,6 +393,26 @@ npx @mui/codemod@next deprecations/avatar-group-props <path>
 
 ```diff
  <Backdrop
+-  components={{ Root: CustomRoot }}
++  slots={{ root: CustomRoot }}
+-  componentsProps={{ root: { testid: 'test-id' } }}
++  slotProps={{ root: { testid: 'test-id' } }}
+ />
+```
+
+```diff
+ MuiBackdrop: {
+   defaultProps: {
+-    components: { Root: CustomRoot }
++    slots: { root: CustomRoot },
+-    componentsProps: { root: { testid: 'root-id' } }
++    slotProps: { root: { testid: 'root-id' } },
+  },
+ },
+```
+
+```diff
+ <Backdrop
 -    TransitionComponent={CustomTransition}
 +    slots={{ transition: CustomTransition }}
  />
@@ -1146,6 +1166,32 @@ npx @mui/codemod@next deprecations/input-base-props <path>
 
 ```bash
 npx @mui/codemod@next deprecations/input-props <path>
+```
+
+#### `modal-props`
+
+```diff
+ <Modal
+-  components={{ Root: CustomRoot, Backdrop: CustomBackdrop }}
++  slots={{ root: CustomRoot, backdrop: CustomBackdrop }}
+-  componentsProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
++  slotProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
+ />
+```
+
+```diff
+ MuiModal: {
+   defaultProps: {
+-    components: { Root: CustomRoot, Backdrop: CustomBackdrop }
++    slots: { root: CustomRoot, backdrop: CustomBackdrop },
+-    componentsProps: { root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' }}
++    slotProps: { root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } },
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/modal-props <path>
 ```
 
 #### `pagination-item-classes`
