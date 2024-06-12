@@ -41,9 +41,6 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformButtonGroupClasses(file, api, options);
   file.source = transformChipClasses(file, api, options);
   file.source = transformCircularProgressClasses(file, api, options);
-  file.source = transformSpeedDialProps(file, api, options);
-  file.source = transformTableSortLabelClasses(file, api, options);
-  file.source = transformTextFieldProps(file, api, options);
   file.source = transformDividerProps(file, api, options);
   file.source = transformFilledInputProps(file, api, options);
   file.source = transformFormControlLabelProps(file, api, options);
@@ -56,6 +53,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformSpeedDialProps(file, api, options);
   file.source = transformStepConnectorClasses(file, api, options);
   file.source = transformStepLabelProps(file, api, options);
+  file.source = transformTableSortLabelClasses(file, api, options);
   file.source = transformTextFieldProps(file, api, options);
   file.source = transformToggleButtonGroupClasses(file, api, options);
 
