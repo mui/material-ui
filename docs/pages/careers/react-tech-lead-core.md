@@ -71,7 +71,7 @@ You will extend the [React Engineer](https://mui-org.notion.site/Software-Engine
   - Push for consistency, follow what's going on in the other teams.
 - **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace, align the team on "one way" of doing things and make sure engineers follow the conventions.
 - **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
-- **Improve the engineers' DX**. You will make sure that the code infrastructure the engineers used is solid and allows for a great developer experience.
+- **Improve DX**. You make sure that the code infrastructure the team uses is solid and allows for a great developer experience. Your improvements impact the performance of the whole team.
 
 ### The best parts of this job
 
