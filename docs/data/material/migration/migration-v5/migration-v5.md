@@ -202,7 +202,10 @@ npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme-file>
 
 ## Deprecations
 
-### Components and classes
+### Components props
+
+The `components` and `componentsProps` props have been deprecated for the analogous `slots` and `slotProps`.
+This brings consistency between the components.
 
 For more details on each component, check out the [deprecations page](/material-ui/migration/migrating-from-deprecated-apis/).
 
