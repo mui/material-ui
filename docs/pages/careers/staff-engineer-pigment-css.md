@@ -48,13 +48,12 @@ This is just the beginning, though.
 There's so much to do to make Pigment CSS a reliable and mature option for the future of Material UI and for many developers looking for a next-generation CSS-in-JS styling engine.
 We're well-positioned to make this happen, so we're looking for a talented engineer to join the team and help us get further beyond!
 
-
 ## The role
 
 ### Key responsibilities
 
 - **Build**. You will help Pigment CSS mature by integrating it with various bundlers and frameworks, building new features, and improving DX.
-- **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community. 
+- **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community.
 - **Influence the product strategy.** You will be empowered to help design and shape a roadmap that solves real developer problems.
 - **Keep technical debt in check**. You will ensure we can keep shipping features at a reasonable pace while aligning the team on "the right way" of doing things.
 - **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
@@ -87,7 +86,7 @@ We're looking for someone with strong core JavaScript skills. More important tha
   You'll use technologies such as TypeScript, Node.js, Babel, Rust, or SWC. We'd appreciate it if you've already written a Babel plugin or something similar.
 - **A track record of solving real-world user problems**. If you have a knack for solving problems at the root cause and shipping beautiful user interfaces with intuitive APIs, we want you on our team.
 - **Strong written and verbal communication skills**.
-  As part of the team, you'll interface directly and indirectly with community members and enterprise customers, as well as contribute to internal and external documentation. 
+  As part of the team, you'll interface directly and indirectly with community members and enterprise customers, as well as contribute to internal and external documentation.
 - **Ability to dive into complex problems**.
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Willingness to ask and answer questions**.
