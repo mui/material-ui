@@ -1,5 +1,46 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.20
+
+<!-- generated comparing v5.15.19..master -->
+
+_Jun 12, 2024_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@5.15.20`
+
+- &#8203;<!-- 17 -->[Autocomplete] Shouldn't resize when hovering (@ZeeshanTamboli) (#42535) @ZeeshanTamboli
+- &#8203;<!-- 07 -->[Tab] Fix applying `iconWrapper` styles from theme and update its description (@sai6855) (#42570) @sai6855
+
+### `@mui/utils@5.15.15`
+
+- &#8203;<!-- 06 -->Allow passing `NaN` as `defaultValue` to `useControlled` (@iammminzzy) (#42571) @iammminzzy
+- &#8203;<!-- 17 -->Fix GitHub-reported prototype pollution vulnerability in `deepmerge` (#41652) (#42608) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 16 -->[docs] Add Pigment CSS and Base UI logos SVGs (#42513) @danilo-leal
+- &#8203;<!-- 15 -->[docs] Update twitter.com to x.com @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Simplify Example projects page @oliviertassinari
+- &#8203;<!-- 13 -->[material-ui] Add docs for complementary stepper components (@anle9650) (#42613) @anle9650
+- &#8203;<!-- 12 -->[docs] Add changelog section to the design kits page (@danilo-leal) (#42463) @danilo-leal
+- &#8203;<!-- 11 -->[material-ui] Fix sentence in the All components page (@danilo-leal) (#42462) @danilo-leal
+- &#8203;<!-- 10 -->[material-ui] Update Figma design kit doc redirect link (@danilo-leal) (#42456) @danilo-leal
+- &#8203;<!-- 09 -->[system] Add "dynamic values" section to sx prop page (@aarongarciah) (#42453) @aarongarciah
+
+### Core
+
+- &#8203;<!-- 18 -->[website] Move the `React Engineer - X` role to future roles (#42532) @DanailH
+- &#8203;<!-- 08 -->[examples] Remove Pigment CSS examples (#42538) @sai6855
+- &#8203;<!-- 05 -->[website] Close Developer Advocate / Content Engineer role @oliviertassinari
+- &#8203;<!-- 04 -->[website] Update DoiT description and link in Sponsors section (@erezstmn-doit) (#42511) @erezstmn-doit
+- &#8203;<!-- 03 -->[website] Clean up the docs-infra job ad (@danilo-leal) (#42509) @danilo-leal
+- &#8203;<!-- 02 -->[website] Open the Docs-infra engineer role (@danilo-leal) (#42496) @danilo-leal
+- &#8203;<!-- 01 -->[website] Fix locationCountry in about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @anle9650, @DanailH, @danilo-leal, @erezstmn-doit, @iammminzzy, @oliviertassinari, @sai6855, @ZeeshanTamboli
+
 ## v5.15.19
 
 <!-- generated comparing v5.15.18..master -->
