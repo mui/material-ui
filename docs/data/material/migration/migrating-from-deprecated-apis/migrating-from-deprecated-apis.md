@@ -1242,6 +1242,12 @@ The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
  />;
 ```
 
+## LoadingButton
+
+### Contents wrapped in a <span>
+
+The `children` passed to the LoadingButton component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
+
 ## Modal
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#modal-props) below to migrate the code as described in the following sections:
