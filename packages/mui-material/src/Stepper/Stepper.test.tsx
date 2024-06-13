@@ -5,7 +5,7 @@ import Step, { StepProps, stepClasses } from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import StepContent, { stepContentClasses } from '@mui/material/StepContent';
-import Stepper, { stepperClasses as classes, stepperClasses } from '@mui/material/Stepper';
+import Stepper, { stepperClasses as classes } from '@mui/material/Stepper';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Stepper />', () => {
@@ -268,11 +268,11 @@ describe('<Stepper />', () => {
       </Stepper>,
     );
 
-    const stepper = container.querySelector(`.${stepperClasses.root}`);
-    expect(stepper).to.have.class(stepperClasses.nonLinear)
+    const stepper = container.querySelector(`.${classes.root}`);
+    expect(stepper).to.have.class(classes.nonLinear)
 
     setProps({ alternativeLabel: true });
 
-    expect(stepper).to.have.class(stepperClasses.nonLinear)
+    expect(stepper).to.have.class(classes.nonLinear)
   });
 });
