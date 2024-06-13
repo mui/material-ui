@@ -9,6 +9,7 @@ import exactProp from '@mui/utils/exactProp';
 import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import useThemeWithoutDefault from '../useThemeWithoutDefault';
 import RtlProvider from '../RtlProvider';
+import PropsProvider from '../PropsProvider';
 
 const EMPTY_THEME = {};
 
@@ -67,7 +68,9 @@ function ThemeProvider(props) {
   return (
     <MuiThemeProvider theme={privateTheme}>
       <StyledEngineThemeContext.Provider value={engineTheme}>
-        <RtlProvider value={rtlValue}>{children}</RtlProvider>
+        <RtlProvider value={rtlValue}>
+          <PropsProvider value={engineTheme?.components}>{children}</PropsProvider>
+        </RtlProvider>
       </StyledEngineThemeContext.Provider>
     </MuiThemeProvider>
   );
