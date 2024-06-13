@@ -17,7 +17,7 @@ Tables display information in a way that's easy to scan, so that users can look 
 - Navigation
 - Tools to query and manipulate data
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic table
 
@@ -32,11 +32,6 @@ This constraint makes building rich data tables challenging.
 
 The [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
-
-:::info
-The demo below uses the MUI X Data Grid v7, which is currently in beta.
-Visit [the documentation](https://next.mui.com/x/react-data-grid/) to learn more about it.
-:::
 
 {{"demo": "DataTable.js", "bg": "inline"}}
 

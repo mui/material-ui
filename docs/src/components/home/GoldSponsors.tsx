@@ -76,23 +76,27 @@ export default function GoldSponsors() {
       <Typography
         component="h3"
         variant="h6"
-        fontWeight="bold"
-        sx={(theme) => ({
-          mt: 4,
-          mb: 1.5,
-          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.warning[500]} 50%, ${
-            (theme.vars || theme).palette.warning[700]
-          } 100%)`,
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          ...theme.applyDarkStyles({
-            background: `linear-gradient(90deg, ${
-              (theme.vars || theme).palette.warning[400]
-            } 50%, ${(theme.vars || theme).palette.warning[700]} 100%)`,
+        sx={[
+          {
+            fontWeight: 'bold',
+          },
+          (theme) => ({
+            mt: 4,
+            mb: 1.5,
+            background: `linear-gradient(90deg, ${(theme.vars || theme).palette.warning[500]} 50%, ${
+              (theme.vars || theme).palette.warning[700]
+            } 100%)`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
+            ...theme.applyDarkStyles({
+              background: `linear-gradient(90deg, ${
+                (theme.vars || theme).palette.warning[400]
+              } 50%, ${(theme.vars || theme).palette.warning[700]} 100%)`,
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }),
           }),
-        })}
+        ]}
       >
         Gold
       </Typography>
@@ -125,10 +129,10 @@ export default function GoldSponsors() {
               <AddRounded />
             </IconButton>
             <div>
-              <Typography variant="body2" color="text.primary" fontWeight="bold">
+              <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
                 Become a sponsor
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 Find out how{' '}
                 <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener">
                   you can support MUI.

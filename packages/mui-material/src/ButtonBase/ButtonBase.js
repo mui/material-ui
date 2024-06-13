@@ -219,20 +219,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     return component && component !== 'button' && !(button.tagName === 'A' && button.href);
   };
 
-  /**
-   * IE11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
-   */
-  const keydownRef = React.useRef(false);
   const handleKeyDown = useEventCallback((event) => {
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (
-      focusRipple &&
-      !keydownRef.current &&
-      focusVisible &&
-      rippleRef.current &&
-      event.key === ' '
-    ) {
-      keydownRef.current = true;
+    if (focusRipple && !event.repeat && focusVisible && rippleRef.current && event.key === ' ') {
       rippleRef.current.stop(event, () => {
         rippleRef.current.start(event);
       });
@@ -270,7 +259,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       focusVisible &&
       !event.defaultPrevented
     ) {
-      keydownRef.current = false;
       rippleRef.current.stop(event, () => {
         rippleRef.current.pulsate(event);
       });

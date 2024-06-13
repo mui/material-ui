@@ -11,11 +11,17 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    backgroundColor: theme.palette.grey[200],
+    ...theme.applyStyles('dark', {
+      backgroundColor: theme.palette.grey[800],
+    }),
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+    backgroundColor: '#1a90ff',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#308fe8',
+    }),
   },
 }));
 
@@ -25,10 +31,12 @@ function FacebookCircularProgress(props) {
     <Box sx={{ position: 'relative' }}>
       <CircularProgress
         variant="determinate"
-        sx={{
-          color: (theme) =>
-            theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-        }}
+        sx={(theme) => ({
+          color: theme.palette.grey[200],
+          ...theme.applyStyles('dark', {
+            color: theme.palette.grey[800],
+          }),
+        })}
         size={40}
         thickness={4}
         {...props}
@@ -37,15 +45,18 @@ function FacebookCircularProgress(props) {
       <CircularProgress
         variant="indeterminate"
         disableShrink
-        sx={{
-          color: (theme) => (theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8'),
+        sx={(theme) => ({
+          color: '#1a90ff',
           animationDuration: '550ms',
           position: 'absolute',
           left: 0,
           [`& .${circularProgressClasses.circle}`]: {
             strokeLinecap: 'round',
           },
-        }}
+          ...theme.applyStyles('dark', {
+            color: '#308fe8',
+          }),
+        })}
         size={40}
         thickness={4}
         {...props}
@@ -71,7 +82,6 @@ function GradientCircularProgress() {
     </React.Fragment>
   );
 }
-
 export default function CustomizedProgressBars() {
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>

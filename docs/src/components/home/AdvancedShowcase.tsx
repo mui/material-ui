@@ -5,8 +5,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
 import EditProgress from 'docs/src/components/x-grid/EditProgress';
@@ -1700,9 +1699,13 @@ export default function DataTable() {
           <XGridGlobalStyles />
           <Typography
             variant="body2"
-            color="text.primary"
-            fontWeight="semiBold"
-            sx={{ position: 'relative', textAlign: 'center', py: 1.5 }}
+            sx={{
+              color: 'text.primary',
+              fontWeight: 'semiBold',
+              position: 'relative',
+              textAlign: 'center',
+              py: 1.5,
+            }}
           >
             Trades, October 2020
           </Typography>
@@ -1728,12 +1731,7 @@ export default function DataTable() {
             },
           }}
         >
-          <HighlightedCode
-            copyButtonHidden
-            component={MarkdownElement}
-            code={code}
-            language="jsx"
-          />
+          <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
         </Box>
       }
     />

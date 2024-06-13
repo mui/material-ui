@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, createUseThemeProps } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
+
+const useThemeProps = createUseThemeProps('MuiTableSortLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, direction, active } = ownerState;
@@ -61,7 +62,7 @@ const TableSortLabelIcon = styled('span', {
 
     return [styles.icon, styles[`iconDirection${capitalize(ownerState.direction)}`]];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   fontSize: 18,
   marginRight: 4,
   marginLeft: 4,
@@ -70,12 +71,24 @@ const TableSortLabelIcon = styled('span', {
     duration: theme.transitions.duration.shorter,
   }),
   userSelect: 'none',
-  ...(ownerState.direction === 'desc' && {
-    transform: 'rotate(0deg)',
-  }),
-  ...(ownerState.direction === 'asc' && {
-    transform: 'rotate(180deg)',
-  }),
+  variants: [
+    {
+      props: {
+        direction: 'desc',
+      },
+      style: {
+        transform: 'rotate(0deg)',
+      },
+    },
+    {
+      props: {
+        direction: 'asc',
+      },
+      style: {
+        transform: 'rotate(180deg)',
+      },
+    },
+  ],
 }));
 
 /**

@@ -12,7 +12,7 @@ authors:
     'danilo-leal',
     'mbrookes',
   ]
-card: true
+manualCard: true
 tags: ['Product', 'Material UI']
 ---
 
@@ -165,7 +165,7 @@ For instance, you can add one unit of vertical margin with:
 
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
 
-Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
+Developers already seem to [love it](https://x.com/AnsonLowZF/status/1397034690771443715).
 You can find a [side-by-side comparison](https://mui.com/system/getting-started/usage/#why-use-mui-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
 Some developers use `sx` for everything, others only in simple cases.
 
@@ -477,7 +477,7 @@ Although each product has its unique vision and mission statements, they complem
   - Vision: Create the last UI component library developers will ever need. High quality, consistent, feature-rich, and covering the most frequent/challenging use-cases.
   - Mission: Make building rich, data-intensive, dynamic apps a breeze.
 
-MUI Core has a positive cash flow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
+MUI Core has a positive cash flow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://www.tldrlegal.com/license/mit-license) license model works great for it.
 
 However, none of these revenue sources would scale with the outcome and amount of work required for MUI X.
 It's why we are using an [open core license model](https://en.m.wikipedia.org/wiki/Open-core_model) for this new product.

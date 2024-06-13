@@ -8,14 +8,7 @@ function valueText(value: number) {
 
 export default function SliderSizes() {
   return (
-    <Box
-      sx={{
-        width: 300,
-        display: 'flex',
-        gap: 2,
-        flexWrap: 'wrap',
-      }}
-    >
+    <Box sx={{ width: 300, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
       <Slider
         size="sm"
         aria-labelledby="color-primary-slider"

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import { act, createMount, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createMount, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import {
   Unstable_NumberInput as NumberInput,
   numberInputClasses,

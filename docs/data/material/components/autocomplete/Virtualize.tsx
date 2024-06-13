@@ -56,9 +56,9 @@ const ListboxComponent = React.forwardRef<
   React.HTMLAttributes<HTMLElement>
 >(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData: React.ReactElement[] = [];
-  (children as React.ReactElement[]).forEach(
-    (item: React.ReactElement & { children?: React.ReactElement[] }) => {
+  const itemData: React.ReactElement<any>[] = [];
+  (children as React.ReactElement<any>[]).forEach(
+    (item: React.ReactElement<any> & { children?: React.ReactElement<any>[] }) => {
       itemData.push(item);
       itemData.push(...(item.children || []));
     },
@@ -71,7 +71,7 @@ const ListboxComponent = React.forwardRef<
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  const getChildSize = (child: React.ReactElement) => {
+  const getChildSize = (child: React.ReactElement<any>) => {
     if (child.hasOwnProperty('group')) {
       return 48;
     }
@@ -138,11 +138,8 @@ const OPTIONS = Array.from(new Array(10000))
 export default function Virtualize() {
   return (
     <Autocomplete
-      id="virtualize-demo"
       sx={{ width: 300 }}
       disableListWrap
-      PopperComponent={StyledPopper}
-      ListboxComponent={ListboxComponent}
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
@@ -150,6 +147,10 @@ export default function Virtualize() {
         [props, option, state.index] as React.ReactNode
       }
       renderGroup={(params) => params as any}
+      slots={{
+        popper: StyledPopper,
+        listbox: ListboxComponent,
+      }}
     />
   );
 }

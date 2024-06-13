@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
+import { Card as MuiCard } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
 import FormLabel from '@mui/material/FormLabel';
@@ -11,8 +11,29 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import { styled } from '@mui/material/styles';
+
 import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
+
+const Card = styled(MuiCard)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignSelf: 'center',
+  gap: theme.spacing(4),
+  width: '100%',
+  padding: theme.spacing(2),
+  boxShadow:
+    'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(4),
+    width: '450px',
+  },
+  ...theme.applyStyles('dark', {
+    boxShadow:
+      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
+  }),
+}));
 
 export default function SignInCard() {
   const [emailError, setEmailError] = React.useState(false);
@@ -66,20 +87,7 @@ export default function SignInCard() {
   };
 
   return (
-    <Card
-      sx={(theme) => ({
-        display: 'flex',
-        flexDirection: 'column',
-        alignSelf: 'center',
-        width: { xs: '100%', sm: '450px' },
-        p: { xs: 2, sm: 4 },
-        gap: 2,
-        boxShadow:
-          theme.palette.mode === 'light'
-            ? 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px'
-            : 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
-      })}
-    >
+    <Card>
       <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
         <SitemarkIcon />
       </Box>
@@ -94,12 +102,7 @@ export default function SignInCard() {
         component="form"
         onSubmit={handleSubmit}
         noValidate
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          gap: 2,
-        }}
+        sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
       >
         <FormControl>
           <FormLabel htmlFor="email">Email</FormLabel>
@@ -120,12 +123,7 @@ export default function SignInCard() {
           />
         </FormControl>
         <FormControl>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <FormLabel htmlFor="password">Password</FormLabel>
             <Link
               component="button"

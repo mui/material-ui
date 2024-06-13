@@ -9,6 +9,29 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import { visuallyHidden } from '@mui/utils';
+import { styled } from '@mui/material/styles';
+
+const StyledBox = styled('div')(({ theme }) => ({
+  alignSelf: 'center',
+  width: '100%',
+  height: 400,
+  marginTop: theme.spacing(8),
+  borderRadius: theme.shape.borderRadius,
+  outline: '1px solid',
+  boxShadow: '0 0 12px 8px hsla(220, 25%, 80%, 0.2)',
+  backgroundImage: `url(${'/static/images/templates/templates-images/hero-light.png'})`,
+  outlineColor: 'hsla(220, 25%, 80%, 0.5)',
+  backgroundSize: 'cover',
+  [theme.breakpoints.up('sm')]: {
+    marginTop: theme.spacing(10),
+    height: 700,
+  },
+  ...theme.applyStyles('dark', {
+    boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
+    backgroundImage: `url(${'/static/images/templates/templates-images/hero-dark.png'})`,
+    outlineColor: 'hsla(210, 100%, 80%, 0.1)',
+  }),
+}));
 
 export default function Hero() {
   return (
@@ -16,11 +39,13 @@ export default function Hero() {
       id="hero"
       sx={(theme) => ({
         width: '100%',
-        backgroundImage:
-          theme.palette.mode === 'light'
-            ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 90%), transparent)'
-            : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 16%), transparent)',
         backgroundRepeat: 'no-repeat',
+        backgroundImage:
+          'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 90%), transparent)',
+        ...theme.applyStyles('dark', {
+          backgroundImage:
+            'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 16%), transparent)',
+        }),
       })}
     >
       <Container
@@ -34,9 +59,8 @@ export default function Hero() {
       >
         <Stack
           spacing={2}
-          alignItems="center"
           useFlexGap
-          sx={{ width: { xs: '100%', sm: '70%' } }}
+          sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}
         >
           <Typography
             variant="h1"
@@ -51,19 +75,23 @@ export default function Hero() {
             <Typography
               component="span"
               variant="h1"
-              sx={{
+              sx={(theme) => ({
                 fontSize: 'inherit',
-                color: (theme) =>
-                  theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
-              }}
+                color: 'primary.main',
+                ...theme.applyStyles('dark', {
+                  color: 'primary.light',
+                }),
+              })}
             >
               products
             </Typography>
           </Typography>
           <Typography
-            textAlign="center"
-            color="text.secondary"
-            sx={{ width: { sm: '100%', md: '80%' } }}
+            sx={{
+              textAlign: 'center',
+              color: 'text.secondary',
+              width: { sm: '100%', md: '80%' },
+            }}
           >
             Explore our cutting-edge dashboard, delivering high-quality solutions
             tailored to your needs. Elevate your experience with top-tier features
@@ -85,16 +113,18 @@ export default function Hero() {
               variant="outlined"
               aria-label="Enter your email address"
               placeholder="Your email address"
-              inputProps={{
-                autocomplete: 'off',
-                ariaLabel: 'Enter your email address',
+              slotProps={{
+                htmlInput: {
+                  autoComplete: 'off',
+                  'aria-label': 'Enter your email address',
+                },
               }}
             />
             <Button variant="contained" color="primary">
               Start now
             </Button>
           </Stack>
-          <Typography variant="caption" textAlign="center">
+          <Typography variant="caption" sx={{ textAlign: 'center' }}>
             By clicking &quot;Start now&quot; you agree to our&nbsp;
             <Link href="#" color="primary">
               Terms & Conditions
@@ -102,30 +132,7 @@ export default function Hero() {
             .
           </Typography>
         </Stack>
-        <Box
-          id="image"
-          sx={(theme) => ({
-            mt: { xs: 8, sm: 10 },
-            alignSelf: 'center',
-            height: { xs: 200, sm: 700 },
-            width: '100%',
-            backgroundImage:
-              theme.palette.mode === 'light'
-                ? 'url("/static/images/templates/templates-images/hero-light.png")'
-                : 'url("/static/images/templates/templates-images/hero-dark.png")',
-            backgroundSize: 'cover',
-            borderRadius: '12px',
-            outline: '1px solid',
-            outlineColor:
-              theme.palette.mode === 'light'
-                ? 'hsla(220, 25%, 80%, 0.5)'
-                : 'hsla(210, 100%, 80%, 0.1)',
-            boxShadow:
-              theme.palette.mode === 'light'
-                ? '0 0 12px 8px hsla(220, 25%, 80%, 0.2)'
-                : '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
-          })}
-        />
+        <StyledBox id="image" />
       </Container>
     </Box>
   );

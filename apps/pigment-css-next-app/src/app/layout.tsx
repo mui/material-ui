@@ -24,6 +24,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           background-color: ${({ theme: t }) => t.vars.palette.background.default};
           color: ${({ theme: t }) => t.vars.palette.text.primary};
           background-image: url('@/assets/mui.svg');
+          background-repeat: no-repeat;
+          background-position: 1rem 1rem;
         `}`}
       >
         <AppRouterCacheProvider>

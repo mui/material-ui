@@ -10,7 +10,7 @@ materialDesign: https://m2.material.io/design/typography/the-type-system.html
 
 <p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Roboto font
 
@@ -120,12 +120,15 @@ const theme = createTheme({
 
 ### System props
 
-As a CSS utility component, the Typography component supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
-For example, here's how you'd add a margin-top:
+:::info
+System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
 
-```jsx
-<Typography mt={2}>
+```diff
+- <Typography mt={2} />
++ <Typography sx={{ mt: 2 }} />
 ```
+
+:::
 
 ## Accessibility
 

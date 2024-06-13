@@ -7,7 +7,7 @@ import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
 
 import { BrandingProvider } from '@mui/docs/branding';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 export default function InteractiveGrid() {
   const [direction, setDirection] = React.useState('row');
@@ -18,8 +18,10 @@ export default function InteractiveGrid() {
 <Grid
   container
   direction="${direction}"
-  justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
@@ -27,12 +29,10 @@ export default function InteractiveGrid() {
     <Grid sx={{ flexGrow: 1 }} container>
       <Grid xs={12}>
         <Grid
-          sx={{ height: 300, pt: 2, pb: 2 }}
           container
           spacing={2}
-          alignItems={alignItems}
           direction={direction}
-          justifyContent={justifyContent}
+          sx={{ alignItems, justifyContent, height: 300, pt: 2, pb: 2 }}
         >
           {[0, 1, 2].map((value) => (
             <Grid key={value}>

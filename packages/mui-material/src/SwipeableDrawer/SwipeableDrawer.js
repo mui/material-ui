@@ -3,7 +3,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
-import useThemeProps from '@mui/system/useThemeProps';
 import { NoSsr } from '@mui/base';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import useForkRef from '../utils/useForkRef';
@@ -11,9 +10,11 @@ import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import useTheme from '../styles/useTheme';
+import { createUseThemeProps, useTheme } from '../zero-styled';
 import { getTransitionProps } from '../transitions/utils';
 import SwipeArea from './SwipeArea';
+
+const useThemeProps = createUseThemeProps('MuiSwipeableDrawer');
 
 // This value is closed to what browsers are using internally to
 // trigger a native scroll.

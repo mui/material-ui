@@ -11,16 +11,24 @@ interface FormFeedbackProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Root = styled('div', {
   shouldForwardProp: (prop) => prop !== 'error' && prop !== 'success',
-})<FormFeedbackProps>(({ theme, error, success }) => ({
+})<FormFeedbackProps>(({ theme }) => ({
   padding: theme.spacing(2),
-  ...(error && {
-    backgroundColor: theme.palette.error.light,
-    color: theme.palette.error.dark,
-  }),
-  ...(success && {
-    backgroundColor: theme.palette.success.light,
-    color: theme.palette.success.dark,
-  }),
+  variants: [
+    {
+      props: ({ error }) => error,
+      style: {
+        backgroundColor: theme.palette.error.light,
+        color: theme.palette.error.dark,
+      },
+    },
+    {
+      props: ({ success }) => success,
+      style: {
+        backgroundColor: theme.palette.success.light,
+        color: theme.palette.success.dark,
+      },
+    },
+  ],
 }));
 
 export default function FormFeedback(props: FormFeedbackProps) {

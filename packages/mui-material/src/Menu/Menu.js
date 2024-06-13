@@ -9,9 +9,11 @@ import HTMLElementType from '@mui/utils/HTMLElementType';
 import { useRtl } from '@mui/system/RtlProvider';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { getMenuUtilityClass } from './menuClasses';
+
+const useThemeProps = createUseThemeProps('MuiMenu');
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -283,9 +285,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   PopoverClasses: PropTypes.object,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -294,7 +294,6 @@ Menu.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
    * @default {}
    */
   slots: PropTypes.shape({

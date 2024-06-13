@@ -5,18 +5,24 @@ function Item(props: BoxProps) {
   const { sx, ...other } = props;
   return (
     <Box
-      sx={{
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
-        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800'),
-        border: '1px solid',
-        borderColor: (theme) =>
-          theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-        p: 1,
-        borderRadius: 2,
-        fontSize: '0.875rem',
-        fontWeight: '700',
-        ...sx,
-      }}
+      sx={[
+        (theme) => ({
+          bgcolor: '#fff',
+          color: 'grey.800',
+          border: '1px solid',
+          borderColor: 'grey.300',
+          p: 1,
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...other}
     />
   );
@@ -25,13 +31,7 @@ function Item(props: BoxProps) {
 export default function Gap() {
   return (
     <div style={{ width: '100%' }}>
-      <Box
-        sx={{
-          display: 'grid',
-          gap: 1,
-          gridTemplateColumns: 'repeat(2, 1fr)',
-        }}
-      >
+      <Box sx={{ display: 'grid', gap: 1, gridTemplateColumns: 'repeat(2, 1fr)' }}>
         <Item>1</Item>
         <Item>2</Item>
         <Item>3</Item>

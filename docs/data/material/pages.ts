@@ -184,9 +184,24 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/typography' },
           { pathname: '/material-ui/customization/spacing' },
           { pathname: '/material-ui/customization/breakpoints' },
+          {
+            pathname: '/material-ui/customization/container-queries',
+            newFeature: true,
+          },
           { pathname: '/material-ui/customization/density' },
           { pathname: '/material-ui/customization/z-index', title: 'z-index' },
           { pathname: '/material-ui/customization/transitions' },
+        ],
+      },
+      {
+        pathname: '/material-ui/customization/css-variables',
+        subheader: '/material-ui/customization/css-variables',
+        children: [
+          { pathname: '/material-ui/customization/css-theme-variables/overview' },
+          { pathname: '/material-ui/customization/css-theme-variables/usage' },
+          {
+            pathname: '/material-ui/customization/css-theme-variables/configuration',
+          },
         ],
       },
     ],
@@ -238,19 +253,6 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/experimental-api/classname-generator',
         title: 'ClassName generator',
       },
-      {
-        pathname: '/material-ui/experimental-api/css-theme-variables',
-        subheader: 'CSS theme variables',
-        children: [
-          { pathname: '/material-ui/experimental-api/css-theme-variables/overview' },
-          { pathname: '/material-ui/experimental-api/css-theme-variables/usage' },
-          { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
-          {
-            pathname: '/material-ui/experimental-api/css-theme-variables/migration',
-            title: 'Migrating to CSS variables',
-          },
-        ],
-      },
     ],
   },
   {
@@ -276,6 +278,10 @@ const pages: MuiPage[] = [
           {
             pathname: '/material-ui/migration/migration-v5',
             title: 'Migrating to v6',
+          },
+          {
+            pathname: '/material-ui/migration/migration-css-theme-variables',
+            title: 'Migrating to CSS theme variables',
           },
         ],
       },
@@ -320,11 +326,25 @@ const pages: MuiPage[] = [
     children: [
       { pathname: '/material-ui/discover-more/showcase' },
       { pathname: '/material-ui/discover-more/related-projects' },
-      { pathname: '/material-ui/discover-more/design-kits' },
       { pathname: '/material-ui/discover-more/roadmap' },
       { pathname: '/material-ui/discover-more/backers', title: 'Sponsors and Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
+    ],
+  },
+  {
+    pathname: '/material-ui/design-resources',
+    title: 'Design resources',
+    children: [
+      {
+        pathname: '/material-ui/design-resources/material-ui-for-figma',
+        title: 'Figma Design Kit',
+      },
+      {
+        pathname: '/material-ui/design-resources/material-ui-sync',
+        title: 'Figma Sync plugin',
+        beta: true,
+      },
     ],
   },
   {

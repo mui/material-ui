@@ -8,13 +8,16 @@ import Radio from '@mui/material/Radio';
 import Grid from '@mui/system/Unstable_Grid';
 import Stack, { StackProps } from '@mui/system/Stack';
 import { styled } from '@mui/system';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 const Item = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#262B32' : '#fff',
+  backgroundColor: '#fff',
   padding: theme.spacing(1),
   textAlign: 'center',
   borderRadius: 4,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#262B32',
+  }),
 }));
 
 export default function InteractiveStack() {
@@ -26,9 +29,11 @@ export default function InteractiveStack() {
   const jsx = `
 <Stack
   direction="${direction}"
-  justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
   spacing={${spacing}}
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
@@ -36,20 +41,11 @@ export default function InteractiveStack() {
     <Stack sx={{ flexGrow: 1 }}>
       <Stack
         direction={direction}
-        justifyContent={justifyContent}
-        alignItems={alignItems}
         spacing={spacing}
-        sx={{ height: 240 }}
+        sx={{ justifyContent, alignItems, height: 240 }}
       >
         {[0, 1, 2].map((value) => (
-          <Item
-            key={value}
-            sx={{
-              p: 2,
-              pt: value + 1,
-              pb: value + 1,
-            }}
-          >
+          <Item key={value} sx={{ p: 2, pt: value + 1, pb: value + 1 }}>
             {`Item ${value + 1}`}
           </Item>
         ))}

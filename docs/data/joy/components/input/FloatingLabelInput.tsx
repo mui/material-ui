@@ -56,7 +56,7 @@ const StyledLabel = styled('label')(({ theme }) => ({
 
 const InnerInput = React.forwardRef<
   HTMLInputElement,
-  JSX.IntrinsicElements['input']
+  React.JSX.IntrinsicElements['input']
 >(function InnerInput(props, ref) {
   const id = React.useId();
   return (
@@ -73,10 +73,7 @@ export default function FloatingLabelInput() {
       endDecorator={<CheckCircleOutlined />}
       slots={{ input: InnerInput }}
       slotProps={{ input: { placeholder: 'A placeholder', type: 'password' } }}
-      sx={{
-        '--Input-minHeight': '56px',
-        '--Input-radius': '6px',
-      }}
+      sx={{ '--Input-minHeight': '56px', '--Input-radius': '6px' }}
     />
   );
 }
