@@ -1673,3 +1673,13 @@ The SpeedDial's `TransitionProps` prop was deprecated in favor of `slotProps.tra
 +  slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```
+
+## useMediaQuery
+
+### Removed types
+
+The following deprecated types were removed:
+
+- `MuiMediaQueryList`: use `MediaQueryList` (from lib.dom.d.ts) instead.
+- `MuiMediaQueryListEvent`: use `MediaQueryListEvent` (from lib.dom.d.ts) instead.
+- `MuiMediaQueryListListener`: use `(event: MediaQueryListEvent) => void` instead.
