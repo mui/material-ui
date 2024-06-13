@@ -7,7 +7,6 @@ export default function FullBorderedGrid() {
     <Box sx={{ flexGrow: 1, p: 2 }}>
       <Grid
         container
-        spacing={2}
         sx={{
           '--Grid-borderWidth': '1px',
           borderTop: 'var(--Grid-borderWidth) solid',

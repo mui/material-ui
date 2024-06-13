@@ -12,9 +12,6 @@
     "direction": {
       "description": "Defines the <code>flex-direction</code> style property. It is applied for all screen sizes."
     },
-    "disableEqualOverflow": {
-      "description": "If <code>true</code>, the negative margin and padding are apply only to the top and left sides of the grid."
-    },
     "lg": {
       "description": "If a number, it sets the number of columns the grid item uses. It can&#39;t be greater than the total number of columns of the container (12 by default). If &#39;auto&#39;, the grid item&#39;s width matches its content. If false, the prop is ignored. If true, the grid item&#39;s width grows to use the space available in the grid container. The value is applied for the <code>lg</code> breakpoint and wider screens if not overridden."
     },

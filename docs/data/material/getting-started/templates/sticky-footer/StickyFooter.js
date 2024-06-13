@@ -39,15 +39,15 @@ export default function StickyFooter() {
         </Container>
         <Box
           component="footer"
-          sx={{
+          sx={(theme) => ({
             py: 3,
             px: 2,
             mt: 'auto',
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[200]
-                : theme.palette.grey[800],
-          }}
+            backgroundColor: theme.palette.grey[200],
+            ...theme.applyStyles('dark', {
+              backgroundColor: theme.palette.grey[800],
+            }),
+          })}
         >
           <Container maxWidth="sm">
             <Typography variant="body1">
