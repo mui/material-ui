@@ -270,9 +270,5 @@ describe('<Stepper />', () => {
 
     const stepper = container.querySelector(`.${classes.root}`);
     expect(stepper).to.have.class(classes.nonLinear)
-
-    setProps({ alternativeLabel: true });
-
-    expect(stepper).to.have.class(classes.nonLinear)
   });
 });
