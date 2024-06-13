@@ -49,14 +49,14 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
   return (
     <AppBar
       position="fixed"
-      sx={(theme) => ({
+      sx={(internalTheme) => ({
         boxShadow: 0,
         bgcolor: 'background.default',
         backgroundImage: 'none',
         alignItems: 'center',
         outline: '1px solid',
-        outlineColor: theme.palette.divider,
-        zIndex: theme.zIndex.drawer - 1,
+        outlineColor: internalTheme.palette.divider,
+        zIndex: internalTheme.zIndex.drawer - 1,
         left: { xs: 0, md: 240 },
         width: { xs: '100dvw', md: `calc(100% - 240px)` },
         maxHeight: 64,

@@ -94,49 +94,46 @@ export const menuComponentsCustomizations: Components<Theme> = {
     },
     styleOverrides: {
       root: ({ theme }) => ({
-        '&.MuiFilledInput-root': {
+        borderRadius: theme.shape.borderRadius,
+        border: `1px solid ${theme.palette.divider}`,
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: `inset 0 2px 0 hsl(220, 0%, 100%), inset 0 -2px 0 ${gray[100]}`,
+        '&:hover': {
+          borderColor: gray[300],
+        },
+        '&.Mui-focused': {
+          outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
+          outlineOffset: '2px',
+        },
+        '&:before, &:after': {
+          display: 'none',
+        },
+
+        ...theme.applyStyles('dark', {
           borderRadius: theme.shape.borderRadius,
           border: `1px solid ${theme.palette.divider}`,
           backgroundColor: theme.palette.background.paper,
-          boxShadow: `inset 0 2px 0 hsl(220, 0%, 100%), inset 0 -2px 0 ${gray[100]}`,
+          boxShadow: `inset 0 2px 0 ${alpha(gray[700], 0.3)}, inset 0 -2px 0 hsl(220, 0%, 0%)`,
           '&:hover': {
-            borderColor: gray[300],
+            borderColor: gray[600],
           },
-          '&:focus-visible': {
+          '&.Mui-focused': {
             outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
             outlineOffset: '2px',
           },
           '&:before, &:after': {
             display: 'none',
           },
-        },
-        '& .MuiSelect-select': {
+        }),
+      }),
+      select: ({ theme }) => ({
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing(1, 2),
+        ...theme.applyStyles('dark', {
           display: 'flex',
           alignItems: 'center',
           padding: theme.spacing(1, 2),
-        },
-        ...theme.applyStyles('dark', {
-          '&.MuiFilledInput-root': {
-            borderRadius: theme.shape.borderRadius,
-            border: `1px solid ${theme.palette.divider}`,
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: `inset 0 2px 0 ${alpha(gray[700], 0.3)}, inset 0 -2px 0 hsl(220, 0%, 0%)`,
-            '&:hover': {
-              borderColor: gray[600],
-            },
-            '&:focus-visible': {
-              outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
-              outlineOffset: '2px',
-            },
-            '&:before, &:after': {
-              display: 'none',
-            },
-          },
-          '& .MuiSelect-select': {
-            display: 'flex',
-            alignItems: 'center',
-            padding: theme.spacing(1, 2),
-          },
         }),
       }),
     },
