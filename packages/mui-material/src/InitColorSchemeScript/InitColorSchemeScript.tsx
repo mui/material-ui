@@ -1,3 +1,4 @@
+import * as React from 'react';
 import SystemInitColorSchemeScript from '@mui/system/InitColorSchemeScript';
 
 export const defaultConfig = {
