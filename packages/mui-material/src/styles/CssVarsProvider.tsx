@@ -1,36 +1,38 @@
+'use client';
 import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
 import extendTheme, { SupportedColorScheme, CssVarsTheme } from './extendTheme';
 import createTypography from './createTypography';
 import THEME_ID from './identifier';
+import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 const defaultTheme = extendTheme();
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript, InitColorSchemeScript } =
-  createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
-    themeId: THEME_ID,
-    theme: defaultTheme,
-    attribute: 'data-mui-color-scheme',
-    modeStorageKey: 'mui-mode',
-    colorSchemeStorageKey: 'mui-color-scheme',
-    defaultColorScheme: {
-      light: 'light',
-      dark: 'dark',
-    },
-    resolveTheme: (theme) => {
-      const newTheme = {
-        ...theme,
-        typography: createTypography(theme.palette, theme.typography),
-      };
+const { CssVarsProvider, useColorScheme } = createCssVarsProvider<
+  SupportedColorScheme,
+  typeof THEME_ID
+>({
+  themeId: THEME_ID,
+  theme: defaultTheme,
+  ...defaultConfig,
+  defaultColorScheme: {
+    light: defaultConfig.defaultLightColorScheme,
+    dark: defaultConfig.defaultDarkColorScheme,
+  },
+  resolveTheme: (theme) => {
+    const newTheme = {
+      ...theme,
+      typography: createTypography(theme.palette, theme.typography),
+    };
 
-      newTheme.unstable_sx = function sx(props: SxProps<CssVarsTheme>) {
-        return styleFunctionSx({ sx: props, theme: this });
-      };
+    newTheme.unstable_sx = function sx(props: SxProps<CssVarsTheme>) {
+      return styleFunctionSx({ sx: props, theme: this });
+    };
 
-      return newTheme;
-    },
-  });
+    return newTheme;
+  },
+});
 
 let warnedOnce = false;
 
@@ -51,10 +53,4 @@ function Experimental_CssVarsProvider(props: any) {
   return <CssVarsProvider {...props} />;
 }
 
-export {
-  useColorScheme,
-  getInitColorSchemeScript,
-  CssVarsProvider,
-  Experimental_CssVarsProvider,
-  InitColorSchemeScript,
-};
+export { useColorScheme, CssVarsProvider, Experimental_CssVarsProvider };

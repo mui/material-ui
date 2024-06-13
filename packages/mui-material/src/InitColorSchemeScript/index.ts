@@ -1,1 +1,1 @@
-export { InitColorSchemeScript as default } from '../styles/CssVarsProvider';
+export { default } from './InitColorSchemeScript';

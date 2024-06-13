@@ -1,10 +1,13 @@
+/**
+ * Split this component for RSC import
+ */
 import * as React from 'react';
 
 export const DEFAULT_MODE_STORAGE_KEY = 'mode';
 export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'color-scheme';
 export const DEFAULT_ATTRIBUTE = 'data-color-scheme';
 
-export interface GetInitColorSchemeScriptOptions {
+export interface InitColorSchemeScriptProps {
   /**
    * The mode to be used for the first visit
    * @default 'light'
@@ -40,11 +43,13 @@ export interface GetInitColorSchemeScriptOptions {
    * @default 'data-color-scheme'
    */
   attribute?: string;
-  /** Nonce string to pass to the inline script for CSP headers */
+  /**
+   * Nonce string to pass to the inline script for CSP headers
+   */
   nonce?: string | undefined;
 }
 
-export default function getInitColorSchemeScript(options?: GetInitColorSchemeScriptOptions) {
+export default function InitColorSchemeScript(options?: InitColorSchemeScriptProps) {
   const {
     defaultMode = 'light',
     defaultLightColorScheme = 'light',

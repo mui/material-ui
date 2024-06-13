@@ -23,7 +23,7 @@ const PROJECTS: Project[] = [
     name: 'material',
     rootPath: path.join(process.cwd(), 'packages/mui-material'),
     ignorePaths: [
-      'packages/mui-material/src/styles/CssVarsProvider.tsx', // no need 'use client' because of `styles/index` export
+      'packages/mui-material/src/InitColorSchemeScript.tsx', // RSC compatible
     ],
   },
   {
@@ -33,6 +33,9 @@ const PROJECTS: Project[] = [
   {
     name: 'system',
     rootPath: path.join(process.cwd(), 'packages/mui-system'),
+    ignorePaths: [
+      'packages/mui-system/src/InitColorSchemeScript.tsx', // no need 'use client' because of `styles/index` export
+    ],
   },
   {
     name: 'styled-engine',
