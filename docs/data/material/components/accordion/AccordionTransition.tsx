@@ -26,19 +26,14 @@ export default function AccordionTransition() {
                 '& .MuiAccordion-region': {
                   height: 'auto',
                 },
-              }
-            : {
-                '& .MuiAccordion-region': {
-                  height: 0,
-                },
-              },
-          expanded
-            ? {
                 '& .MuiAccordionDetails-root': {
                   display: 'block',
                 },
               }
             : {
+                '& .MuiAccordion-region': {
+                  height: 0,
+                },
                 '& .MuiAccordionDetails-root': {
                   display: 'none',
                 },

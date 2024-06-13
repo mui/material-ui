@@ -73,10 +73,12 @@ const adBodyInlineStyles = (theme) => {
         marginLeft: 4,
         content: '"Get started"',
         // Style taken from the Link component & MarkdownElement.
-        color:
-          theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[300],
+        color: theme.palette.primary[600],
         textDecoration: 'underline',
         textDecorationColor: alpha(theme.palette.primary.main, 0.4),
+        ...theme.applyStyles('dark', {
+          color: theme.palette.primary[300],
+        }),
       },
     },
     poweredby: {
