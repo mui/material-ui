@@ -30,7 +30,7 @@ const PROJECTS: Project[] = [
     name: 'joy',
     rootPath: path.join(process.cwd(), 'packages/mui-joy'),
     ignorePaths: [
-      'packages/mui-system/src/InitColorSchemeScript/InitColorSchemeScript.tsx', // no need 'use client' because of `styles/index` export
+      'packages/mui-joy/src/InitColorSchemeScript/InitColorSchemeScript.tsx', // no need 'use client' because of `styles/index` export
     ],
   },
   {
