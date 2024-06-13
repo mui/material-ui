@@ -70,10 +70,7 @@ export default function FloatingLabelInput() {
       endDecorator={<CheckCircleOutlined />}
       slots={{ input: InnerInput }}
       slotProps={{ input: { placeholder: 'A placeholder', type: 'password' } }}
-      sx={{
-        '--Input-minHeight': '56px',
-        '--Input-radius': '6px',
-      }}
+      sx={{ '--Input-minHeight': '56px', '--Input-radius': '6px' }}
     />
   );
 }

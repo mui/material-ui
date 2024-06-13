@@ -60,9 +60,14 @@ export default function RentalCard(props: RentalCardProps) {
         >
           <img alt="" src={image} />
           <Stack
-            alignItems="center"
             direction="row"
-            sx={{ position: 'absolute', top: 0, width: '100%', p: 1 }}
+            sx={{
+              alignItems: 'center',
+              position: 'absolute',
+              top: 0,
+              width: '100%',
+              p: 1,
+            }}
           >
             {rareFind && (
               <Chip
@@ -95,8 +100,7 @@ export default function RentalCard(props: RentalCardProps) {
         <Stack
           spacing={1}
           direction="row"
-          justifyContent="space-between"
-          alignItems="flex-start"
+          sx={{ justifyContent: 'space-between', alignItems: 'flex-start' }}
         >
           <div>
             <Typography level="body-sm">{category}</Typography>
@@ -116,10 +120,7 @@ export default function RentalCard(props: RentalCardProps) {
             size="sm"
             color={isLiked ? 'danger' : 'neutral'}
             onClick={() => setIsLiked((prev) => !prev)}
-            sx={{
-              display: { xs: 'none', sm: 'flex' },
-              borderRadius: '50%',
-            }}
+            sx={{ display: { xs: 'none', sm: 'flex' }, borderRadius: '50%' }}
           >
             <FavoriteRoundedIcon />
           </IconButton>
@@ -128,8 +129,7 @@ export default function RentalCard(props: RentalCardProps) {
           spacing="0.25rem 1rem"
           direction="row"
           useFlexGap
-          flexWrap="wrap"
-          sx={{ my: 0.25 }}
+          sx={{ flexWrap: 'wrap', my: 0.25 }}
         >
           <Typography level="body-xs" startDecorator={<FmdGoodRoundedIcon />}>
             Collingwood VIC

@@ -82,7 +82,7 @@ function renderFAQItem(index: number, defaultExpanded?: boolean) {
       <AccordionSummary
         expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
       >
-        <Typography variant="body2" fontWeight="bold" component="h3">
+        <Typography variant="body2" component="h3" sx={{ fontWeight: 'bold' }}>
           {faq.summary}
         </Typography>
       </AccordionSummary>
@@ -90,8 +90,7 @@ function renderFAQItem(index: number, defaultExpanded?: boolean) {
         <Typography
           component="div"
           variant="body2"
-          color="text.secondary"
-          sx={{ '& ul': { pl: 2 } }}
+          sx={{ color: 'text.secondary', '& ul': { pl: 2 } }}
         >
           {faq.detail}
         </Typography>
@@ -126,11 +125,11 @@ export default function CareersFaq() {
             })}
           >
             <Box sx={{ textAlign: 'left' }}>
-              <Typography variant="body2" color="text.primary" fontWeight="bold">
+              <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
                 Got any questions unanswered or need more help?
               </Typography>
             </Box>
-            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" sx={{ color: 'text.secondary', my: 1, textAlign: 'left' }}>
               We&apos;re here to help you with any other question you have about our hiring process.
             </Typography>
             <Link href="mailto:job@mui.com" variant="body2">

@@ -161,22 +161,9 @@ export default function BaseUIComponents() {
             </Frame.Demo>
             <Frame.Info
               data-mui-color-scheme="dark"
-              sx={{
-                p: 0,
-                pt: 5,
-                height: 360,
-                position: 'relative',
-              }}
+              sx={{ p: 0, pt: 5, height: 360, position: 'relative' }}
             >
-              <Box
-                sx={{
-                  overflow: 'auto',
-                  pt: 2,
-                  pb: 1,
-                  px: 2,
-                  height: '100%',
-                }}
-              >
+              <Box sx={{ overflow: 'auto', pt: 2, pb: 1, px: 2, height: '100%' }}>
                 <HighlightedCode
                   copyButtonHidden
                   plainStyle

@@ -165,7 +165,7 @@ For instance, you can add one unit of vertical margin with:
 
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
 
-Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
+Developers already seem to [love it](https://x.com/AnsonLowZF/status/1397034690771443715).
 You can find a [side-by-side comparison](https://mui.com/system/getting-started/usage/#why-use-mui-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
 Some developers use `sx` for everything, others only in simple cases.
 

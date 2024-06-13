@@ -12,7 +12,7 @@ function HomeIcon(props) {
 
 export default function SvgIconsSize() {
   return (
-    <Stack direction="row" spacing={3} alignItems="flex-end">
+    <Stack direction="row" spacing={3} sx={{ alignItems: 'flex-end' }}>
       <HomeIcon fontSize="small" />
       <HomeIcon />
       <HomeIcon fontSize="large" />

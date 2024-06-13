@@ -162,11 +162,11 @@ export interface GridTypeMap<
  *
  * Demos:
  *
- * - [Grid](https://mui.com/material-ui/react-grid/)
+ * - [Grid](https://next.mui.com/material-ui/react-grid/)
  *
  * API:
  *
- * - [Grid API](https://mui.com/material-ui/api/grid/)
+ * - [Grid API](https://next.mui.com/material-ui/api/grid/)
  */
 declare const Grid: OverridableComponent<GridTypeMap>;
 

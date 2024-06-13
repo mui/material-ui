@@ -12,14 +12,15 @@ const DIAMONDs = [
   {
     src: '/static/sponsors/octopus-square.svg',
     name: 'Octopus Deploy',
-    description: 'A unified DevOps automation platform for your team',
+    description: 'A unified DevOps automation platform for your team.',
     href: 'https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
-    description: 'Management platform for Google Cloud and AWS',
-    href: 'https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    description:
+      'Delivers technology and cloud expertise to buy, optimize and manage public cloud.',
+    href: 'https://www.doit.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: '/static/sponsors/marblism-square.svg',
@@ -42,16 +43,20 @@ export default function DiamondSponsors() {
       <Typography
         component="h3"
         variant="h6"
-        fontWeight="bold"
-        sx={(theme) => ({
-          mt: 4,
-          mb: 1.5,
-          background: `linear-gradient(45deg, ${(theme.vars || theme).palette.primary[400]} 50%, ${
-            (theme.vars || theme).palette.primary[800]
-          } 100%)`,
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-        })}
+        sx={[
+          {
+            fontWeight: 'bold',
+          },
+          (theme) => ({
+            mt: 4,
+            mb: 1.5,
+            background: `linear-gradient(45deg, ${(theme.vars || theme).palette.primary[400]} 50%, ${
+              (theme.vars || theme).palette.primary[800]
+            } 100%)`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }),
+        ]}
       >
         Diamond
       </Typography>
@@ -92,10 +97,10 @@ export default function DiamondSponsors() {
                 <AddRounded />
               </IconButton>
               <div>
-                <Typography variant="body2" color="text.primary" fontWeight="bold">
+                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
                   Become our sponsor!
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   To join us, contact us at{' '}
                   <Link href="mailto:sales@mui.com" target="_blank" rel="noopener">
                     sales@mui.com

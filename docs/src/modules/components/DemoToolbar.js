@@ -717,7 +717,7 @@ export default function DemoToolbar(props) {
 DemoToolbar.propTypes = {
   codeOpen: PropTypes.bool.isRequired,
   codeVariant: PropTypes.string.isRequired,
-  copyButtonOnClick: PropTypes.object.isRequired,
+  copyButtonOnClick: PropTypes.func.isRequired,
   copyIcon: PropTypes.object.isRequired,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
