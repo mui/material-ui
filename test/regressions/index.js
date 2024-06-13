@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
+import { Globals } from '@react-spring/web';
 import TestViewer from './TestViewer';
+
+// Skip charts annimation for screen shots
+Globals.assign({
+  skipAnimation: true,
+});
 
 // Get all the fixtures specifically written for preventing visual regressions.
 const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
