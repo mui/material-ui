@@ -5,8 +5,11 @@ import styled from '@mui/system/styled';
 
 const Item = styled('div')(({ theme }) => ({
   border: '1px solid',
-  borderColor: theme.palette.mode === 'dark' ? '#444d58' : '#ced7e0',
+  borderColor: '#ced7e0',
   borderRadius: '4px',
+  ...theme.applyStyles('dark', {
+    borderColor: '#444d58',
+  }),
 }));
 
 export default function NestedGrid() {

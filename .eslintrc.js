@@ -1,5 +1,4 @@
 const path = require('path');
-const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
 
 const OneLevelImportMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
@@ -11,6 +10,8 @@ const forbidCreateStylesMessage =
   'Use `MuiStyles<ClassKey, Props>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
   '`createStyles` will lead to inlined, at-compile-time-resolved type-imports. ' +
   'See https://github.com/microsoft/TypeScript/issues/36097#issuecomment-578324386 for more information';
+
+const ENABLE_REACT_COMPILER_PLUGIN = false;
 
 module.exports = {
   root: true, // So parent files don't get applied
@@ -35,6 +36,7 @@ module.exports = {
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
     'eslint-plugin-filenames',
+    ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
   ],
   settings: {
     'import/resolver': {
@@ -182,8 +184,7 @@ module.exports = {
     'react/jsx-no-target-blank': ['error', { allowReferrer: true }],
 
     'no-restricted-syntax': [
-      // See https://github.com/eslint/eslint/issues/9192 for why it's needed
-      ...baseStyleRules['no-restricted-syntax'],
+      'error',
       {
         message:
           "Do not import default or named exports from React. Use a namespace import (import * as React from 'react';) instead.",
@@ -219,6 +220,7 @@ module.exports = {
 
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     'lines-around-directive': 'off',
+    ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'error' } : {}),
   },
   overrides: [
     {
@@ -471,6 +473,7 @@ module.exports = {
       rules: {
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
+        ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'off' } : {}),
       },
     },
     {

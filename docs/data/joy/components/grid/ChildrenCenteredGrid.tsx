@@ -9,7 +9,6 @@ export default function ChildrenCenteredGrid() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid
         container
-        spacing={2}
         sx={{
           '--Grid-borderWidth': '1px',
           borderTop: 'var(--Grid-borderWidth) solid',
