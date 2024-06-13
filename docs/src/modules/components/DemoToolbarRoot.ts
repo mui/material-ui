@@ -7,19 +7,19 @@ interface DemoToolbarRootProps {
 
 const DemoToolbarRoot = styled('div', {
   shouldForwardProp: (prop) => prop !== 'demoOptions' && prop !== 'openDemoSource',
-})<DemoToolbarRootProps>(({ theme, demoOptions, openDemoSource }) => [
+})<DemoToolbarRootProps>(({ theme }) => [
   {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       top: 0,
       maxHeight: 50,
       display: 'block',
-      marginTop: demoOptions.bg === 'inline' ? theme.spacing(1) : -1,
+      marginTop: -1,
       padding: theme.spacing(0.5, 1),
       border: `1px solid ${(theme.vars || theme).palette.divider}`,
-      borderTopWidth: demoOptions.bg === 'inline' ? 1 : 0,
+      borderTopWidth: 0,
       backgroundColor: alpha(theme.palette.grey[50], 0.2),
-      borderRadius: openDemoSource ? 0 : '0 0 12px 12px',
+      borderRadius: '0 0 12px 12px',
       transition: theme.transitions.create('border-radius'),
       ...(theme.direction === 'rtl' && {
         left: theme.spacing(1),
@@ -28,6 +28,21 @@ const DemoToolbarRoot = styled('div', {
         right: theme.spacing(1),
       }),
     },
+    variants: [
+      {
+        props: ({ demoOptions }) => demoOptions.bg === 'inline',
+        style: {
+          marginTop: theme.spacing(1),
+          borderTopWidth: 1,
+        },
+      },
+      {
+        props: ({ openDemoSource }) => openDemoSource,
+        style: {
+          borderRadius: 0,
+        },
+      },
+    ],
   },
   theme.applyDarkStyles({
     [theme.breakpoints.up('sm')]: {
@@ -35,5 +50,4 @@ const DemoToolbarRoot = styled('div', {
     },
   }),
 ]);
-
 export default DemoToolbarRoot;
