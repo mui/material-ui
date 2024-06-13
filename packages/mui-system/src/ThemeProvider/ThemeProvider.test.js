@@ -16,7 +16,9 @@ describe('ThemeProvider', () => {
     let engineTheme;
 
     function Test() {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- privateTheme is required outside the component
       privateTheme = usePrivateTheme();
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- engineTheme is required outside the component
       engineTheme = useEngineTheme();
 
       return null;
