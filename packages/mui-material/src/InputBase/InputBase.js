@@ -529,6 +529,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         // For Pigment CSS, this has no effect because the InputGlobalStyles will be null.
         <InputGlobalStyles />
       )}
+
       <Root
         {...rootProps}
         ref={ref}
