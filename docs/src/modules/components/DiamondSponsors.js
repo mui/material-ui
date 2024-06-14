@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -13,26 +14,24 @@ const NativeLink = styled('a')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: 12,
-  border: '1px solid',
-  borderColor: (theme.vars || theme).palette.divider,
-  transition: theme.transitions.create(['color', 'border-color']),
-  boxShadow: `${alpha(theme.palette.grey[100], 0.3)} 0 -2px 0 inset`,
+  border: '3px solid transparent',
+  transition: theme.transitions.create(['background-color']),
+  '&:first-of-type': {
+    borderRadius: '11px 11px 0 0', // concentric border-radius
+  },
   '&:hover': {
     backgroundColor: (theme.vars || theme).palette.grey[50],
   },
   '&:focus-visible': {
-    outline: `3px solid ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
-    outlineOffset: '2px',
+    outline: 'none',
+    borderColor: alpha((theme.vars || theme).palette.primary[500], 0.5),
   },
   '& img': {
     display: 'inline-block',
   },
   ...theme.applyDarkStyles({
-    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset`,
     '&:hover': {
-      backgroundColor: alpha(theme.palette.primary[800], 0.2),
-      borderColor: (theme.vars || theme).palette.primary[900],
+      backgroundColor: alpha(theme.palette.primary[900], 0.1),
     },
   }),
 }));
@@ -41,7 +40,16 @@ export default function DiamondSponsors() {
   const t = useTranslate();
 
   return (
-    <Stack direction="column" spacing={1} useFlexGap sx={{ mt: 2 }}>
+    <Stack
+      direction="column"
+      sx={{
+        mt: 2,
+        borderRadius: '12px',
+        border: '1px solid',
+        borderColor: 'divider',
+        overflow: 'clip',
+      }}
+    >
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
@@ -68,6 +76,7 @@ export default function DiamondSponsors() {
           ]}
         />
       </NativeLink>
+      <Divider />
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
@@ -94,6 +103,7 @@ export default function DiamondSponsors() {
           ]}
         />
       </NativeLink>
+      <Divider />
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
@@ -120,39 +130,37 @@ export default function DiamondSponsors() {
           ]}
         />
       </NativeLink>
+      <Divider />
       <Link
         href="/material-ui/discover-more/backers/#diamond-sponsors"
         sx={(theme) => ({
-          p: 1.5,
+          height: 45,
           width: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: 1,
-          border: '1px dashed',
-          transition: theme.transitions.create(['color', 'border-color', 'background-color']),
-          backgroundColor: alpha(theme.palette.grey[50], 0.5),
-          borderColor: (theme.vars || theme).palette.grey[300],
+          border: '3px solid transparent',
+          borderRadius: '0 0 11px 11px',
+          outline: 'none !important', // override styles coming from the branding theme
+          backgroundColor: alpha(theme.palette.primary[50], 0.5),
+          transition: theme.transitions.create(['color', 'background-color']),
           '&:hover': {
-            backgroundColor: alpha(theme.palette.primary[100], 0.5),
-            borderColor: (theme.vars || theme).palette.primary[300],
+            backgroundColor: (theme.vars || theme).palette.primary[50],
+          },
+          '&:focus-visible': {
+            border: `3px solid ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
           },
           ...theme.applyDarkStyles({
             backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
-            borderColor: (theme.vars || theme).palette.primaryDark[700],
             '&:hover': {
-              backgroundColor: alpha(theme.palette.primary[700], 0.2),
-              borderColor: (theme.vars || theme).palette.primary[800],
+              backgroundColor: alpha(theme.palette.primary[700], 0.1),
             },
           }),
         })}
       >
-        <Typography variant="caption" sx={{ fontWeight: 'semiBold', textAlign: 'center' }}>
+        <Typography variant="caption" sx={{ fontWeight: 'medium' }}>
           {t('becomeADiamondSponsor')}
         </Typography>
-        {/* <Typography variant="caption" fontWeight="regular" color="text.secondary">
-              {t('diamondSponsorVacancies')}
-            </Typography> */}
       </Link>
     </Stack>
   );
