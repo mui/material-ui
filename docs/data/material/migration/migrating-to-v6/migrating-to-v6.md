@@ -230,7 +230,14 @@ Or do it manually like the example below:
 
 ### Theme component variants
 
-Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component:
+Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
+Update the theme file using the codemod:
+
+```bash
+npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme>
+```
+
+Or do it manually like the example below:
 
 ```diff
  createTheme({
