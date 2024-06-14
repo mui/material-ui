@@ -29,6 +29,7 @@ const StepperRoot = styled('div', {
       styles.root,
       styles[ownerState.orientation],
       ownerState.alternativeLabel && styles.alternativeLabel,
+      ownerState.nonLinear && styles.nonLinear
     ];
   },
 })({
