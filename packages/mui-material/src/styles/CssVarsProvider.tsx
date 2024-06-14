@@ -12,21 +12,23 @@ import experimental_extendTheme, {
 import createTypography from './createTypography';
 import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 import THEME_ID from './identifier';
+import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 const defaultTheme = experimental_extendTheme();
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  SupportedColorScheme,
-  typeof THEME_ID
->({
+const {
+  CssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
+} = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
   themeId: THEME_ID,
   theme: defaultTheme,
-  attribute: 'data-mui-color-scheme',
-  modeStorageKey: 'mui-mode',
-  colorSchemeStorageKey: 'mui-color-scheme',
+  attribute: defaultConfig.attribute,
+  colorSchemeStorageKey: defaultConfig.colorSchemeStorageKey,
+  modeStorageKey: defaultConfig.modeStorageKey,
   defaultColorScheme: {
-    light: 'light',
-    dark: 'dark',
+    light: defaultConfig.defaultLightColorScheme,
+    dark: defaultConfig.defaultDarkColorScheme,
   },
   resolveTheme: (theme) => {
     const newTheme = {
