@@ -1,7 +1,7 @@
 'use client';
 import { Popper as BasePopper, PopperProps as BasePopperProps } from '@mui/base/Popper';
-import { Direction, SxProps } from '@mui/system';
-import useTheme from '@mui/system/useThemeWithoutDefault';
+import { SxProps } from '@mui/system';
+import { useRtl } from '@mui/system/RtlProvider';
 import refType from '@mui/utils/refType';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
@@ -62,7 +62,7 @@ const Popper = React.forwardRef(function Popper(
   inProps: PopperProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const theme = useTheme<{ direction?: Direction }>();
+  const isRtl = useRtl();
   const props = useThemeProps({
     props: inProps,
     name: 'MuiPopper',
@@ -104,7 +104,7 @@ const Popper = React.forwardRef(function Popper(
   return (
     <PopperRoot
       as={component}
-      direction={theme?.direction}
+      direction={isRtl ? 'rtl' : 'ltr'}
       slots={{ root: RootComponent }}
       slotProps={slotProps ?? componentsProps}
       {...otherProps}
