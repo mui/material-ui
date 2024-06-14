@@ -7,7 +7,7 @@ import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from
 const Root = styled('div')(
   ({ theme }) => ({
     ...lightTheme.typography.body1,
-    lineHeight: 1.6, // Increased compared to the 1.5 default to make the docs easier to read.
+    lineHeight: 1.625, // Rounds up to 26px－increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     '& :focus-visible': {
       outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
@@ -21,7 +21,7 @@ const Root = styled('div')(
       lineHeight: 1.5, // Developers like when the code is dense.
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
-      backgroundColor: 'hsl(210, 35%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
+      backgroundColor: 'hsl(210, 25%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
       color: 'hsl(60, 30%, 96%)',
       colorScheme: 'dark',
       borderRadius: `var(--muidocs-shape-borderRadius, ${
@@ -284,8 +284,8 @@ const Root = styled('div')(
     },
     '& .MuiCallout-root': {
       display: 'flex',
-      gap: 12,
-      padding: '16px',
+      gap: '8px',
+      padding: '12px',
       margin: '16px 0',
       border: '1px solid',
       color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
@@ -293,36 +293,49 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
-      '& > code': {
+      '& .MuiCallout-content': {
+        minWidth: 0, // Allows content to shrink. Useful when callout contains code block
+        flexGrow: 1,
+      },
+      '& code': {
         height: 'fit-content',
         backgroundColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
         borderColor: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
       },
-      '& .MuiCallout-content': {
-        minWidth: 0, // Allows content to shrink. Useful when callout contains code block
-        flexGrow: 1,
+      '& p': {
+        marginBottom: '8px',
         '& > p:last-child, & > ul:last-child': {
           // Avoid margin on last child
           marginBottom: 0,
-        },
-        '& .MuiCode-root': {
-          '& > pre': {
-            margin: 0,
-            marginTop: 4,
-          },
         },
         '& > ul': {
           // Because of the gap left by the icon, we visually need less padding
           paddingLeft: 22,
         },
       },
-      '& > svg': {
-        marginTop: 2,
-        width: 20,
-        height: 20,
-        flexShrink: 0,
+      '& .MuiCode-root': {
+        '& pre': {
+          margin: '4px 0 0 0',
+          borderRadius: '12px 12px 6px 12px',
+          borderColor: alpha(lightTheme.palette.primaryDark[600], 0.6),
+          '& code': {
+            backgroundColor: 'transparent',
+          },
+        },
       },
-      '& > ul, & > p': {
+      '& .MuiCallout-icon-container': {
+        width: 26, // to match text's line-height
+        height: 26,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+        '& svg': {
+          width: 18,
+          height: 18,
+        },
+      },
+      '& ul, & p': {
         '&:last-child': {
           margin: 0,
         },
@@ -337,7 +350,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
         },
-        '& > svg': {
+        '& svg': {
           fill: `var(--muidocs-palette-error-500, ${lightTheme.palette.error[600]})`,
         },
         '& a': {
@@ -355,7 +368,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-primary-800, ${lightTheme.palette.primary[800]})`,
         },
-        '& > svg': {
+        '& svg': {
           fill: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         },
       },
@@ -366,7 +379,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
         },
-        '& > svg': {
+        '& svg': {
           fill: `var(--muidocs-palette-success-600, ${lightTheme.palette.success[600]})`,
         },
         '& a': {
@@ -384,7 +397,7 @@ const Root = styled('div')(
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
         },
-        '& > svg': {
+        '& svg': {
           fill: `var(--muidocs-palette-warning-600, ${lightTheme.palette.warning[600]})`,
         },
         '& a': {
@@ -714,8 +727,7 @@ const Root = styled('div')(
       },
       '& .MuiCallout-root': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        '& > code': {
-          height: 'fit-content',
+        '& code': {
           backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
           borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         },
@@ -726,7 +738,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-error-300, ${darkTheme.palette.error[300]})`,
           },
-          '& > svg': {
+          '& svg': {
             fill: `var(--muidocs-palette-error-500, ${darkTheme.palette.error[500]})`,
           },
           '& a': {
@@ -740,7 +752,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },
-          '& > svg': {
+          '& svg': {
             fill: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
           },
         },
@@ -751,7 +763,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
           },
-          '& > svg': {
+          '& svg': {
             fill: `var(--muidocs-palette-success-500, ${darkTheme.palette.success[500]})`,
           },
           '& a': {
@@ -765,7 +777,7 @@ const Root = styled('div')(
           '& strong': {
             color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
           },
-          '& > svg': {
+          '& svg': {
             fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
           },
           '& a': {
