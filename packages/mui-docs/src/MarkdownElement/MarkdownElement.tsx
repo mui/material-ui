@@ -316,7 +316,8 @@ const Root = styled('div')(
       '& .MuiCode-root': {
         '& pre': {
           margin: '4px 0 0 0',
-          borderRadius: '8px',
+          borderRadius: '12px 12px 6px 12px',
+          borderColor: alpha(lightTheme.palette.primaryDark[600], 0.6),
           '& code': {
             backgroundColor: 'transparent',
           },
