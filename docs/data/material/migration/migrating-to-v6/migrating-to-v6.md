@@ -11,7 +11,7 @@ In the `package.json` file, change the package version from `latest` to `next`.
 +"@mui/material": "next",
 ```
 
-If you are one of these packages, be sure to change the version to `next` too:
+Optionally, if you are using one of these packages, be sure to change the version to `next` too:
 
 - `@mui/icons-material`
 - `@mui/system`
@@ -25,15 +25,17 @@ Alternatively, you can also target and fix it to a specific version, for example
 
 ## Why you should migrate
 
-Material UI v6 includes many bug fixes and improvements over v5.
+Material UI v6's biggest highlight is the inclusion of Pigment CSS, a next-gen zero-runtime CSS-in-JS library, as an opt-in styling engine.
+Using it will make your project compatible with React Server Components and reduce its bundle size due to the styles extraction, avoiding client-side recalculation.
 
-The biggest highlight in v6 is the opt-in support for Pigment CSS which enable styles extraction that get rid of style recalculation and reduce bundle size.
+Aside from that, the CSS variables API for Material UI is now stable in v6.
+Relying on CSS variables allows for more intricate customization possibilities and better overall DX.
 
-Apart from the support for Pigment CSS, the v6 release provides a stable API for adopting CSS variables which open more customization possibilities and offers a more enjoyable developer experience.
+A major feedback we've learned from the v5 cycle is to reduce the number of breaking changes to the smallest.
+Material UI v6 does exactly that: minimal breaking changes, including only browser support updates and a Node.js version bump.
+These updates can, for the most part, be migrated automatically via codemods.
 
-Additionally, the v6 release does not include major breaking changes, apart from the browser support & node.js version bump. Instead, they are deprecated to bring more consistent developer experience which can be migrated using our codemods.
-
-Last but not least, the v6 release includes new features such as container queries, theme utility for styling across color schemes, and ability to adopt Pigment CSS, a zero-runtime styling engine.
+Last but not least, Material UI v6 also includes new features, such as container queries and a theme utility for styling different color schemes.
 
 ## Supported browsers and Node versions
 
@@ -43,7 +45,7 @@ The exact versions will be pinned on release from the browserslist query `"> 0.5
 
 <!-- #stable-snapshot -->
 
-- Node 18 (up from 12)
+- Node.js 18 (up from 12)
 - Chrome 109 (up from 90)
 - Edge 121 (up from 91)
 - Firefox 115 (up from 78)
@@ -70,7 +72,7 @@ The minimum supported version of TypeScript has been increased from v3.5 to 4.1.
 We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (that is packages published on npm under the `@types` namespace).
 
 We will not change the minimum supported version in a minor version of Material UI.
-However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
+However, we recommend not using a TypeScript version older than the lowest supported version by DefinitelyTyped.
 :::
 
 If your project includes these packages, you'll need to update them:
@@ -164,14 +166,15 @@ We recommend adopting this new behavior and **not trying to replicate the old on
 
 ### CssVarsProvider and extendTheme
 
-The `CssVarsProvider` and `extendTheme` APIs are now stable. If you are using them in v5, you can now use them without the prefix.
+The `CssVarsProvider` and `extendTheme` APIs are now stable.
+If you already use them in v5, you can now drop the experimental prefix.
 
 ```diff
 - import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 + import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 ```
 
-To learn more about using CSS theme variables, check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/).
+Check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/) to learn more about it.
 
 ### Specific mode styles
 
@@ -211,7 +214,7 @@ For more details on each component, check out the [deprecations page](/material-
 
 ### System props
 
-System props are deprecated in `Box`, `Typography`, `Link`, `Grid`, and `Stack` components.
+System props, such as `mt={*}`, `bgcolor={*}`, and others, are deprecated in the Box, Typography, Link, Grid, and Stack components.
 Move all system props into the `sx` prop by using the codemod below:
 
 ```bash
@@ -227,7 +230,7 @@ Or do it manually like the example below:
 
 ### Theme component variants
 
-Theme component variants has been merged with the theme style overrides by targeting the `root` slot of the component:
+Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component:
 
 ```diff
  createTheme({
@@ -244,7 +247,7 @@ Theme component variants has been merged with the theme style overrides by targe
  })
 ```
 
-This reduces the API surface and let you define variants in other slots of the component.
+This reduces the API surface and lets you define variants in other slots of the component.
 
 ## Pigment CSS integration (optional)
 
