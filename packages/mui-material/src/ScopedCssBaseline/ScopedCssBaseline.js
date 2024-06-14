@@ -3,10 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled, createUseThemeProps } from '../zero-styled';
 import { html, body } from '../CssBaseline/CssBaseline';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
+
+const useThemeProps = createUseThemeProps('MuiScopedCssBaseline');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -22,9 +23,9 @@ const ScopedCssBaselineRoot = styled('div', {
   name: 'MuiScopedCssBaseline',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const colorSchemeStyles = {};
-  if (ownerState.enableColorScheme && theme.colorSchemes) {
+  if (theme.colorSchemes) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
       colorSchemeStyles[`&${theme.getColorSchemeSelector(key).replace(/\s*&/, '')}`] = {
         colorScheme: scheme.palette?.mode,
@@ -32,7 +33,7 @@ const ScopedCssBaselineRoot = styled('div', {
     });
   }
   return {
-    ...html(theme, ownerState.enableColorScheme),
+    ...html(theme, false),
     ...body(theme),
     '& *, & *::before, & *::after': {
       boxSizing: 'inherit',
@@ -40,7 +41,12 @@ const ScopedCssBaselineRoot = styled('div', {
     '& strong, & b': {
       fontWeight: theme.typography.fontWeightBold,
     },
-    ...colorSchemeStyles,
+    variants: [
+      {
+        props: { enableColorScheme: true },
+        style: theme.vars ? colorSchemeStyles : { colorScheme: theme.palette.mode },
+      },
+    ],
   };
 });
 

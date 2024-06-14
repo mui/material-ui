@@ -8,7 +8,7 @@ const useThemeProps = createUseThemeProps('MuiCssBaseline');
 // `ecs` stands for enableColorScheme. This is internal logic to make it work with Pigment CSS, so shorter is better.
 const SELECTOR = 'mui-ecs';
 
-export const html = (theme) => ({
+export const html = (theme, enableColorScheme) => ({
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
   MozOsxFontSmoothing: 'grayscale', // Antialiasing.
   // Change from `box-sizing: content-box` so that `width`
@@ -17,7 +17,8 @@ export const html = (theme) => ({
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
   // When used under CssVarsProvider, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
-  ...(!theme.vars && { [`&:has(.${SELECTOR})`]: { colorScheme: theme.palette.mode } }),
+  ...(enableColorScheme &&
+    !theme.vars && { [`&:has(.${SELECTOR})`]: { colorScheme: theme.palette.mode } }),
 });
 
 export const body = (theme) => ({
@@ -42,7 +43,7 @@ export const styles = (theme) => {
     });
   }
   let defaultStyles = {
-    html: html(theme),
+    html: html(theme, true),
     '*, *::before, *::after': {
       boxSizing: 'inherit',
     },
@@ -80,7 +81,7 @@ function CssBaseline(inProps) {
   return (
     <React.Fragment>
       <GlobalStyles />
-      <span className={enableColorScheme ? SELECTOR : ''} style={{ display: 'none' }} />
+      {enableColorScheme && <span className={SELECTOR} style={{ display: 'none' }} />}
       {children}
     </React.Fragment>
   );
