@@ -18,15 +18,12 @@ import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 const Popper = styled(MuiPopper, {
   shouldForwardProp: (prop) => prop !== 'arrow',
-})(({ theme, arrow }) => ({
+})(({ theme }) => ({
   zIndex: 1,
   '& > div': {
     position: 'relative',
   },
   '&[data-popper-placement*="bottom"]': {
-    '& > div': {
-      marginTop: arrow ? 2 : 0,
-    },
     '& .MuiPopper-arrow': {
       top: 0,
       left: 0,
@@ -40,9 +37,6 @@ const Popper = styled(MuiPopper, {
     },
   },
   '&[data-popper-placement*="top"]': {
-    '& > div': {
-      marginBottom: arrow ? 2 : 0,
-    },
     '& .MuiPopper-arrow': {
       bottom: 0,
       left: 0,
@@ -56,9 +50,6 @@ const Popper = styled(MuiPopper, {
     },
   },
   '&[data-popper-placement*="right"]': {
-    '& > div': {
-      marginLeft: arrow ? 2 : 0,
-    },
     '& .MuiPopper-arrow': {
       left: 0,
       marginLeft: '-0.9em',
@@ -71,9 +62,6 @@ const Popper = styled(MuiPopper, {
     },
   },
   '&[data-popper-placement*="left"]': {
-    '& > div': {
-      marginRight: arrow ? 2 : 0,
-    },
     '& .MuiPopper-arrow': {
       right: 0,
       marginRight: '-0.9em',
@@ -85,6 +73,88 @@ const Popper = styled(MuiPopper, {
       },
     },
   },
+  variants: [
+    {
+      props: ({ arrow }) => arrow,
+      style: {
+        '&[data-popper-placement*="bottom"]': {
+          '& > div': {
+            marginTop: 2,
+          },
+        },
+      },
+    },
+    {
+      props: ({ arrow }) => !arrow,
+      style: {
+        '&[data-popper-placement*="bottom"]': {
+          '& > div': {
+            marginTop: 0,
+          },
+        },
+      },
+    },
+    {
+      props: ({ arrow }) => arrow,
+      style: {
+        '&[data-popper-placement*="top"]': {
+          '& > div': {
+            marginBottom: 2,
+          },
+        },
+      },
+    },
+    {
+      props: ({ arrow }) => !arrow,
+      style: {
+        '&[data-popper-placement*="top"]': {
+          '& > div': {
+            marginBottom: 0,
+          },
+        },
+      },
+    },
+    {
+      props: ({ arrow }) => arrow,
+      style: {
+        '&[data-popper-placement*="right"]': {
+          '& > div': {
+            marginLeft: 2,
+          },
+        },
+      },
+    },
+    {
+      props: ({ arrow }) => !arrow,
+      style: {
+        '&[data-popper-placement*="right"]': {
+          '& > div': {
+            marginLeft: 0,
+          },
+        },
+      },
+    },
+    {
+      props: ({ arrow }) => arrow,
+      style: {
+        '&[data-popper-placement*="left"]': {
+          '& > div': {
+            marginRight: 2,
+          },
+        },
+      },
+    },
+    {
+      props: ({ arrow }) => !arrow,
+      style: {
+        '&[data-popper-placement*="left"]': {
+          '& > div': {
+            marginRight: 0,
+          },
+        },
+      },
+    },
+  ],
 }));
 
 const Arrow = styled('div')({

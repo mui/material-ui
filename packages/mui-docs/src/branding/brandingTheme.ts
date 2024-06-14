@@ -933,7 +933,7 @@ export function getThemedComponents(): ThemeOptions {
           root: ({ theme }) => ({
             display: 'inline-flex',
             alignItems: 'center',
-            fontWeight: theme.typography.fontWeightSemiBold,
+            fontWeight: theme.typography.fontWeightMedium,
             '&.MuiTypography-body1 > svg': {
               marginTop: 2,
             },

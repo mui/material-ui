@@ -10,8 +10,7 @@ import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import useTheme from '../styles/useTheme';
-import { createUseThemeProps } from '../zero-styled';
+import { createUseThemeProps, useTheme } from '../zero-styled';
 import { getTransitionProps } from '../transitions/utils';
 import SwipeArea from './SwipeArea';
 
