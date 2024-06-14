@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0-alpha.10",
+  "version": "6.0.0-alpha.11",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -118,7 +118,7 @@
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "^14.2.3",
     "@octokit/rest": "^20.1.1",
-    "@pigment-css/react": "^0.0.12",
+    "@pigment-css/react": "^0.0.13",
     "@playwright/test": "1.44.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
@@ -145,7 +145,6 @@
     "enzyme": "^3.11.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-webpack": "^0.13.8",

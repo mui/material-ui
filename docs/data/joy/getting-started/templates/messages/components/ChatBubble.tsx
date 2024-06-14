@@ -35,13 +35,15 @@ export default function ChatBubble(props: ChatBubbleProps) {
       {attachment ? (
         <Sheet
           variant="outlined"
-          sx={{
-            px: 1.75,
-            py: 1.25,
-            borderRadius: 'lg',
-            borderTopRightRadius: isSent ? 0 : 'lg',
-            borderTopLeftRadius: isSent ? 'lg' : 0,
-          }}
+          sx={[
+            {
+              px: 1.75,
+              py: 1.25,
+              borderRadius: 'lg',
+            },
+            isSent ? { borderTopRightRadius: 0 } : { borderTopRightRadius: 'lg' },
+            isSent ? { borderTopLeftRadius: 'lg' } : { borderTopLeftRadius: 0 },
+          ]}
         >
           <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
             <Avatar color="primary" size="lg">
@@ -62,23 +64,45 @@ export default function ChatBubble(props: ChatBubbleProps) {
           <Sheet
             color={isSent ? 'primary' : 'neutral'}
             variant={isSent ? 'solid' : 'soft'}
-            sx={{
-              p: 1.25,
-              borderRadius: 'lg',
-              borderTopRightRadius: isSent ? 0 : 'lg',
-              borderTopLeftRadius: isSent ? 'lg' : 0,
-              backgroundColor: isSent
-                ? 'var(--joy-palette-primary-solidBg)'
-                : 'background.body',
-            }}
+            sx={[
+              {
+                p: 1.25,
+                borderRadius: 'lg',
+              },
+              isSent
+                ? {
+                    borderTopRightRadius: 0,
+                  }
+                : {
+                    borderTopRightRadius: 'lg',
+                  },
+              isSent
+                ? {
+                    borderTopLeftRadius: 'lg',
+                  }
+                : {
+                    borderTopLeftRadius: 0,
+                  },
+              isSent
+                ? {
+                    backgroundColor: 'var(--joy-palette-primary-solidBg)',
+                  }
+                : {
+                    backgroundColor: 'background.body',
+                  },
+            ]}
           >
             <Typography
               level="body-sm"
-              sx={{
-                color: isSent
-                  ? 'var(--joy-palette-common-white)'
-                  : 'var(--joy-palette-text-primary)',
-              }}
+              sx={[
+                isSent
+                  ? {
+                      color: 'var(--joy-palette-common-white)',
+                    }
+                  : {
+                      color: 'var(--joy-palette-text-primary)',
+                    },
+              ]}
             >
               {content}
             </Typography>
@@ -92,16 +116,6 @@ export default function ChatBubble(props: ChatBubbleProps) {
                 position: 'absolute',
                 top: '50%',
                 p: 1.5,
-
-                ...(isSent
-                  ? {
-                      left: 0,
-                      transform: 'translate(-100%, -50%)',
-                    }
-                  : {
-                      right: 0,
-                      transform: 'translate(100%, -50%)',
-                    }),
               }}
             >
               <IconButton
