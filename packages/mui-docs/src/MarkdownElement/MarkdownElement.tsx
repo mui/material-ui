@@ -7,7 +7,7 @@ import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from
 const Root = styled('div')(
   ({ theme }) => ({
     ...lightTheme.typography.body1,
-    // lineHeight: 1.625, // Rounds up to 26px－increased compared to the 1.5 default to make the docs easier to read.
+    lineHeight: 1.625, // Rounds up to 26px－increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     '& :focus-visible': {
       outline: `3px solid ${alpha(lightTheme.palette.primary[500], 0.5)}`,
