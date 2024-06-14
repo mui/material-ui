@@ -51,9 +51,9 @@ export interface ConformanceOptions {
    *
    * It must either:
    * - Be a string that is a valid HTML tag, or
-   * - Contain at least one DOM which has `data-testid="custom"`
+   * - A component that spread props to the underlying rendered element.
    *
-   * If not provided, the default 'em' element is used
+   * If not provided, the default 'em' element is used.
    */
   testComponentPropWith?: string | React.ElementType;
   testDeepOverrides?: SlotTestOverride | SlotTestOverride[];
@@ -128,17 +128,23 @@ export function testComponentProp(
         throwMissingPropError('render');
       }
 
-      if (typeof component === 'string') {
-        const testId = randomStringValue();
+      const testId = randomStringValue();
 
+      if (typeof component === 'string') {
         const { getByTestId } = render(
           React.cloneElement(element, { component, 'data-testid': testId }),
         );
         expect(getByTestId(testId)).not.to.equal(null);
         expect(getByTestId(testId).nodeName.toLowerCase()).to.eq(component);
       } else {
-        const { getByTestId } = render(React.cloneElement(element, { component }));
-        expect(getByTestId('custom')).not.to.equal(null);
+        const componentWithTestId = (props: {}) =>
+          React.createElement(component, { ...props, 'data-testid': testId });
+        const { getByTestId } = render(
+          React.cloneElement(element, {
+            component: componentWithTestId,
+          }),
+        );
+        expect(getByTestId(testId)).not.to.equal(null);
       }
     });
   });
