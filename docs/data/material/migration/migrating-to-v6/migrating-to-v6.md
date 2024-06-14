@@ -25,7 +25,7 @@ Alternatively, you can also target and fix it to a specific version, for example
 
 ## Why you should migrate
 
-Material UI v6's biggest highlight is the inclusion of Pigment CSS, a next-gen zero-runtime CSS-in-JS library, as an opt-in styling engine.
+Material UI v6's biggest highlight is the inclusion of Pigment CSS, a next-gen zero-runtime CSS-in-JS library, as an opt-in styling engine.
 Using it will make your project compatible with React Server Components and reduce its bundle size due to the styles extraction, avoiding client-side recalculation.
 
 Aside from that, the CSS variables API for Material UI is now stable in v6.
@@ -249,7 +249,7 @@ Custom component variants defined in the theme are now merged with the theme sty
 
 This reduces the API surface and lets you define variants in other slots of the component.
 
-## Pigment CSS integration (optional)
+## Pigment CSS integration (optional)
 
 :::info
 ⏳ This section is under construction
