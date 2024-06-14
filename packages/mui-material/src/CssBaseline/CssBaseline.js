@@ -1,10 +1,14 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useThemeProps from '../styles/useThemeProps';
-import GlobalStyles from '../GlobalStyles';
+import { createUseThemeProps, globalCss } from '../zero-styled';
 
-export const html = (theme, enableColorScheme) => ({
+const useThemeProps = createUseThemeProps('MuiCssBaseline');
+
+// `ecs` stands for enableColorScheme. This is internal logic to make it work with Pigment CSS, so shorter is better.
+const SELECTOR = 'mui-ecs';
+
+export const html = (theme) => ({
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
   MozOsxFontSmoothing: 'grayscale', // Antialiasing.
   // Change from `box-sizing: content-box` so that `width`
@@ -13,7 +17,7 @@ export const html = (theme, enableColorScheme) => ({
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
   // When used under CssVarsProvider, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
-  ...(enableColorScheme && !theme.vars && { colorScheme: theme.palette.mode }),
+  ...(!theme.vars && { [`&:has(.${SELECTOR})`]: { colorScheme: theme.palette.mode } }),
 });
 
 export const body = (theme) => ({
@@ -26,17 +30,19 @@ export const body = (theme) => ({
   },
 });
 
-export const styles = (theme, enableColorScheme = false) => {
+export const styles = (theme) => {
   const colorSchemeStyles = {};
-  if (enableColorScheme && theme.colorSchemes) {
+  if (theme.colorSchemes) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
       colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
-        colorScheme: scheme.palette?.mode,
+        [`&:has(.${SELECTOR})`]: {
+          colorScheme: scheme.palette?.mode,
+        },
       };
     });
   }
   let defaultStyles = {
-    html: html(theme, enableColorScheme),
+    html: html(theme),
     '*, *::before, *::after': {
       boxSizing: 'inherit',
     },
@@ -63,6 +69,8 @@ export const styles = (theme, enableColorScheme = false) => {
   return defaultStyles;
 };
 
+const GlobalStyles = globalCss(({ theme }) => styles(theme));
+
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
@@ -71,7 +79,8 @@ function CssBaseline(inProps) {
   const { children, enableColorScheme = false } = props;
   return (
     <React.Fragment>
-      <GlobalStyles styles={(theme) => styles(theme, enableColorScheme)} />
+      <GlobalStyles />
+      <span className={enableColorScheme ? SELECTOR : ''} style={{ display: 'none' }} />
       {children}
     </React.Fragment>
   );

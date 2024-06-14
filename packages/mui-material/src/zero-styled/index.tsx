@@ -2,15 +2,18 @@ import * as React from 'react';
 import { extendSxProp } from '@mui/system/styleFunctionSx';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
-import GlobalStyles, { GlobalStylesProps } from '../GlobalStyles';
+import GlobalStyles from '../GlobalStyles';
 
 export { css, keyframes } from '@mui/system';
 
 export { default as styled } from '../styles/styled';
 
-export function globalCss(styles: GlobalStylesProps['styles']) {
+export function globalCss(styles: any) {
   return function GlobalStylesWrapper() {
-    return <GlobalStyles styles={styles} />;
+    return (
+      // Pigment CSS `globalCss` support callback with theme inside an object but `GlobalStyles` support theme as a callback value.
+      <GlobalStyles styles={typeof styles === 'function' ? (theme) => styles({ theme }) : styles} />
+    );
   };
 }
 
