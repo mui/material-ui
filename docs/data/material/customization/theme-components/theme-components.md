@@ -52,15 +52,40 @@ const theme = createTheme({
 
 {{"demo": "GlobalThemeOverride.js"}}
 
-Each component is composed of several different parts.
-These parts correspond to classes that are available to the component—see the **CSS** section of the component's API page for a detailed list.
-You can use these classes inside the `styleOverrides` key to modify the corresponding parts of the component.
+Each component is composed of several different slots.
+These slots correspond to classes that are available to the component—see the **CSS** section of the component's API page for a detailed list.
+You can use these classes inside the `styleOverrides` key to modify the corresponding slots of the component.
 
 ### Overrides based on props
 
-Each slot of the component's `styleOverrides` support a key of `variants`. Variants are sets of overrides when the specified props are matched.
+Each slot of the component's `styleOverrides` supports a `variants` key. Variants are sets of overrides applied to the slot when the specified props match.
 
-The definitions are specified in an array with sensitive order, so make sure that the styles that should win are specified last.
+The definitions are specified in an array. Make sure the styles that should take precedence are listed last.
+
+**Example 1**: Overriding styles based on existing props. To increase the border thickness of the `outlined` Card, use this following snippet:
+
+```js
+const theme = createTheme({
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          variants: [
+            {
+              props: { variant: 'outlined' },
+              style: {
+                borderWidth: '3px',
+              },
+            },
+          ],
+        },
+      },
+    },
+  },
+});
+```
+
+**Example 2**: Overriding styles based on new values. If your project needs a new Button's variant, use the following snippet:
 
 ```js
 const theme = createTheme({
@@ -70,12 +95,30 @@ const theme = createTheme({
         root: {
           variants: [
             {
+              // `dashed` is an example value, it can be any name.
               props: { variant: 'dashed' },
               style: {
                 textTransform: 'none',
                 border: `2px dashed ${blue[500]}`,
               },
             },
+          ],
+        },
+      },
+    },
+  },
+});
+```
+
+**Example 3**: Overriding styles based on existing and new props. To override styles when the Button's variant is `dashed` (a new variant) and color is `secondary` (an existing color), use this following snippet:
+
+```js
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          variants: [
             {
               props: { variant: 'dashed', color: 'secondary' },
               style: {
@@ -104,9 +147,7 @@ declare module '@mui/material/Button' {
 
 {{"demo": "GlobalThemeVariants.js"}}
 
-The variant `props` can also be defined as a callback.
-This is useful if you want to apply styles when using negation in the condition.
-In other words, applying a different style if a particular property doesn't have a specific value.
+The variant `props` can also be defined as a callback, allowing you to apply styles based on conditions. This is useful for styling when a property does not have a specific value.
 
 ```js
 const theme = createTheme({
@@ -133,37 +174,8 @@ const theme = createTheme({
 
 #### Slot ownerState callback
 
-Using callback to access slot's `ownerState` has been deprecated. Consider migrating to `variants` using the codemod below:
-
-```bash
-npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme>
-```
-
-```diff
- const finalTheme = createTheme({
-   components: {
-     MuiSlider: {
-       styleOverrides: {
--        valueLabel: ({ ownerState, theme }) => ({
--          ...(ownerState.orientation === 'vertical' && {
--            backgroundColor: 'transparent',
--            color: theme.palette.grey[500],
--          }),
--        }),
-+        valueLabel: {
-+          variants: [
-+            props: { orientation: 'vertical' },
-+            style: ({ theme }) => ({
-+              backgroundColor: 'transparent',
-+              color: theme.palette.grey[500],
-+            }),
-+          ],
-+        }
-       },
-     },
-   },
- });
-```
+Using callback to access slot's `ownerState` has been deprecated.
+Check out the [migration guide](/material-ui/material-ui/migration/migrating-to-v6/#theme-components-variants).
 
 ### The `sx` syntax (experimental)
 
