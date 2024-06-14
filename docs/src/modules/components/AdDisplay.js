@@ -1,15 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { adShape } from 'docs/src/modules/components/AdManager';
 import { GA_ADS_DISPLAY_RATIO } from 'docs/src/modules/constants';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 
-const Root = styled('span', { shouldForwardProp: (prop) => prop !== 'shape' })(({
-  theme,
-  shape,
-}) => {
-  const styles = adStylesObject[`body-${shape}`](theme);
+const InlineShape = styled('span')(({ theme }) => {
+  const styles = adStylesObject['body-inline'](theme);
+
+  return {
+    ...styles.root,
+    '& img': styles.img,
+    '& a, & a:hover': styles.a,
+    '& .AdDisplay-imageWrapper': styles.imgWrapper,
+    '& .AdDisplay-description': styles.description,
+    '& .AdDisplay-poweredby': styles.poweredby,
+  };
+});
+
+const ImageShape = styled('span')(({ theme }) => {
+  const styles = adStylesObject['body-image'](theme);
 
   return {
     ...styles.root,
@@ -36,9 +45,16 @@ export default function AdDisplay(props) {
     });
   }, [ad.label]);
 
+  let Root = 'span';
+  if (shape === 'inline') {
+    Root = InlineShape;
+  }
+  if (shape === 'image') {
+    Root = ImageShape;
+  }
   /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
-    <Root shape={shape === 'inline' ? 'inline' : adShape} className={className}>
+    <Root className={className}>
       <a
         href={ad.link}
         target="_blank"

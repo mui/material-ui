@@ -11,11 +11,10 @@ import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, createUseThemeProps, globalCss } from '../zero-styled';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
@@ -185,8 +184,6 @@ export const InputBaseInput = styled('input', {
     // Make the flex item shrink with Firefox
     minWidth: 0,
     flexGrow: 1,
-    animationName: 'mui-auto-fill-cancel',
-    animationDuration: '10ms',
     '&::-webkit-input-placeholder': placeholder,
     '&::-moz-placeholder': placeholder, // Firefox 19+
     '&::-ms-input-placeholder': placeholder, // Edge
@@ -214,11 +211,18 @@ export const InputBaseInput = styled('input', {
       opacity: 1, // Reset iOS opacity
       WebkitTextFillColor: (theme.vars || theme).palette.text.disabled, // Fix opacity Safari bug
     },
-    '&:-webkit-autofill': {
-      animationDuration: '5000s',
-      animationName: 'mui-auto-fill',
-    },
     variants: [
+      {
+        props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
+        style: {
+          animationName: 'mui-auto-fill-cancel',
+          animationDuration: '10ms',
+          '&:-webkit-autofill': {
+            animationDuration: '5000s',
+            animationName: 'mui-auto-fill',
+          },
+        },
+      },
       {
         props: {
           size: 'small',
@@ -248,14 +252,10 @@ export const InputBaseInput = styled('input', {
   };
 });
 
-const inputGlobalStyles = (
-  <GlobalStyles
-    styles={{
-      '@keyframes mui-auto-fill': { from: { display: 'block' } },
-      '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
-    }}
-  />
-);
+const InputGlobalStyles = globalCss({
+  '@keyframes mui-auto-fill': { from: { display: 'block' } },
+  '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
+});
 
 /**
  * `InputBase` contains as few styles as possible.
@@ -525,7 +525,12 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   return (
     <React.Fragment>
-      {!disableInjectingGlobalStyles && inputGlobalStyles}
+      {!disableInjectingGlobalStyles && typeof InputGlobalStyles === 'function' && (
+        // For Emotion/Styled-components, InputGlobalStyles will be a function
+        // For Pigment CSS, this has no effect because the InputGlobalStyles will be null.
+        <InputGlobalStyles />
+      )}
+
       <Root
         {...rootProps}
         ref={ref}
