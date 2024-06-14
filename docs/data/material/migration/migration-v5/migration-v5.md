@@ -123,3 +123,13 @@ We recommend adopting this new behavior and **not trying to replicate the old on
 #### Contents wrapped in a <span>
 
 The `children` passed to the LoadingButton component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
+
+### useMediaQuery
+
+#### Removed types
+
+The following deprecated types were removed:
+
+- `MuiMediaQueryList`: use `MediaQueryList` (from lib.dom.d.ts) instead.
+- `MuiMediaQueryListEvent`: use `MediaQueryListEvent` (from lib.dom.d.ts) instead.
+- `MuiMediaQueryListListener`: use `(event: MediaQueryListEvent) => void` instead.
