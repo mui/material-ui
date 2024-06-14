@@ -23,7 +23,9 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getSystemComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename) {
-    return filename.match(/(ThemeProvider|CssVarsProvider|GlobalStyles)/) !== null;
+    return (
+      filename.match(/(ThemeProvider|CssVarsProvider|GlobalStyles|InitColorSchemeScript)/) !== null
+    );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName: generateUtilityClass,
