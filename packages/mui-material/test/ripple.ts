@@ -23,6 +23,8 @@ export async function stopTouch(node: Element) {
 
 export async function startFocus(node: HTMLElement) {
   await act(async () => {
+    node.blur();
+    fireEvent.keyDown(document.body, { key: 'Tab' });
     node.focus();
     await delay(1);
   });

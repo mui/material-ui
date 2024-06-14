@@ -59,18 +59,18 @@ describe('<MenuItem />', () => {
     const events = ['click', 'mouseDown', 'mouseEnter', 'mouseLeave', 'mouseUp', 'touchEnd'];
 
     events.forEach((eventName) => {
-      it(`should fire ${eventName}`, () => {
+      it(`should fire ${eventName}`, async () => {
         const handlerName = `on${eventName[0].toUpperCase()}${eventName.slice(1)}`;
         const handler = spy();
         render(<MenuItem {...{ [handlerName]: handler }} />);
 
-        fireEvent[eventName](screen.getByRole('menuitem'));
+        await act(async () => fireEvent[eventName](screen.getByRole('menuitem')));
 
         expect(handler.callCount).to.equal(1);
       });
     });
 
-    it(`should fire focus, keydown, keyup and blur`, () => {
+    it(`should fire focus, keydown, keyup and blur`, async () => {
       const handleFocus = spy();
       const handleKeyDown = spy();
       const handleKeyUp = spy();
@@ -85,21 +85,21 @@ describe('<MenuItem />', () => {
       );
       const menuitem = screen.getByRole('menuitem');
 
-      act(() => {
+      await act(() => {
         menuitem.focus();
       });
 
       expect(handleFocus.callCount).to.equal(1);
 
-      fireEvent.keyDown(menuitem);
+      await act(async () => fireEvent.keyDown(menuitem));
 
       expect(handleKeyDown.callCount).to.equal(1);
 
-      fireEvent.keyUp(menuitem);
+      await act(async () => fireEvent.keyUp(menuitem));
 
       expect(handleKeyUp.callCount).to.equal(1);
 
-      menuitem.blur();
+      await act(async () => menuitem.blur());
 
       expect(handleKeyDown.callCount).to.equal(1);
     });

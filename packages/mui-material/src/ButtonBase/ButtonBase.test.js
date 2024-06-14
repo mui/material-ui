@@ -164,7 +164,7 @@ describe('<ButtonBase />', () => {
   });
 
   describe('event callbacks', () => {
-    it('should fire event callbacks', () => {
+    it('should fire event callbacks', async () => {
       const onClick = spy();
       const onBlur = spy();
       const onFocus = spy();
@@ -178,7 +178,7 @@ describe('<ButtonBase />', () => {
       const onTouchStart = spy();
       const onTouchEnd = spy();
 
-      const { getByText } = render(
+      const { getByText, user } = render(
         <ButtonBase
           onClick={onClick}
           onBlur={onBlur}
@@ -202,28 +202,28 @@ describe('<ButtonBase />', () => {
       if (typeof Touch !== 'undefined') {
         const touch = new Touch({ identifier: 0, target: button, clientX: 0, clientY: 0 });
 
-        fireEvent.touchStart(button, { touches: [touch] });
+        await act(async () => fireEvent.touchStart(button, { touches: [touch] }));
         expect(onTouchStart.callCount).to.equal(1);
 
-        fireEvent.touchEnd(button, { touches: [touch] });
+        await act(async () => fireEvent.touchEnd(button, { touches: [touch] }));
         expect(onTouchEnd.callCount).to.equal(1);
       }
 
       if (canFireDragEvents) {
-        fireEvent.dragEnd(button);
+        await act(async () => fireEvent.dragEnd(button));
         expect(onDragEnd.callCount).to.equal(1);
       }
 
-      fireEvent.mouseDown(button);
+      await act(async () => fireEvent.mouseDown(button));
       expect(onMouseDown.callCount).to.equal(1);
 
-      fireEvent.mouseUp(button);
+      await act(async () => fireEvent.mouseUp(button));
       expect(onMouseUp.callCount).to.equal(1);
 
-      fireEvent.contextMenu(button);
+      await act(async () => fireEvent.contextMenu(button));
       expect(onContextMenu.callCount).to.equal(1);
 
-      fireEvent.click(button);
+      await user.click(button);
       expect(onClick.callCount).to.equal(1);
 
       act(() => {
@@ -231,10 +231,10 @@ describe('<ButtonBase />', () => {
       });
       expect(onFocus.callCount).to.equal(1);
 
-      fireEvent.keyDown(button);
+      await act(async () => fireEvent.keyDown(button));
       expect(onKeyDown.callCount).to.equal(1);
 
-      fireEvent.keyUp(button);
+      await act(async () => fireEvent.keyUp(button));
       expect(onKeyUp.callCount).to.equal(1);
 
       act(() => {
@@ -242,7 +242,7 @@ describe('<ButtonBase />', () => {
       });
       expect(onBlur.callCount).to.equal(1);
 
-      fireEvent.mouseLeave(button);
+      await act(async () => fireEvent.mouseLeave(button));
       expect(onMouseLeave.callCount).to.equal(1);
     });
   });
