@@ -132,7 +132,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      await act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
 
@@ -175,7 +175,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      await act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
 
@@ -195,7 +195,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      await act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
 

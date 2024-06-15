@@ -85,7 +85,7 @@ describe('<MenuItem />', () => {
       );
       const menuitem = screen.getByRole('menuitem');
 
-      await act(() => {
+      await act(async () => {
         menuitem.focus();
       });
 

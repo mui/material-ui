@@ -87,7 +87,7 @@ describe('<Menu /> integration', () => {
     const { getByRole, getAllByRole } = render(<ButtonMenu />);
 
     const button = getByRole('button', { name: 'open menu' });
-    await act(() => {
+    await act(async () => {
       button.focus();
       button.click();
     });
@@ -99,7 +99,7 @@ describe('<Menu /> integration', () => {
     const { getAllByRole, getByRole } = render(<ButtonMenu />);
 
     const button = getByRole('button', { name: 'open menu' });
-    await act(() => {
+    await act(async () => {
       button.focus();
       button.click();
     });
@@ -128,7 +128,7 @@ describe('<Menu /> integration', () => {
     const { getAllByRole, getByRole } = render(<ButtonMenu selectedIndex={2} />);
 
     const button = getByRole('button', { name: 'open menu' });
-    await act(() => {
+    await act(async () => {
       button.focus();
       button.click();
     });
@@ -294,7 +294,7 @@ describe('<Menu /> integration', () => {
           <ButtonMenu selectedIndex={1} variant="selectedMenu" />,
         );
 
-        await act(() => {
+        await act(async () => {
           getByRole('button').focus();
           getByRole('button').click();
         });
@@ -312,7 +312,7 @@ describe('<Menu /> integration', () => {
     render(<ButtonMenu />);
 
     const trigger = screen.getByRole('button');
-    await act(() => {
+    await act(async () => {
       trigger.focus();
       trigger.click();
     });
@@ -327,7 +327,7 @@ describe('<Menu /> integration', () => {
   it('closes the menu when the backdrop is clicked', async () => {
     const { getByRole, getByTestId } = render(<ButtonMenu />);
     const button = getByRole('button');
-    await act(() => {
+    await act(async () => {
       button.focus();
       button.click();
     });

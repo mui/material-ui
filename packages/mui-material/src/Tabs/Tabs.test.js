@@ -469,7 +469,7 @@ describe('<Tabs />', () => {
       );
       const [, lastTab] = getAllByRole('tab');
 
-      await act(() => {
+      await act(async () => {
         lastTab.focus();
       });
 
@@ -487,7 +487,7 @@ describe('<Tabs />', () => {
       );
       const [firstTab] = getAllByRole('tab');
 
-      await act(() => {
+      await act(async () => {
         firstTab.focus();
       });
 
@@ -929,7 +929,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            await act(() => {
+            await act(async () => {
               firstTab.focus();
             });
 
@@ -959,7 +959,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            await act(() => {
+            await act(async () => {
               firstTab.focus();
             });
 
@@ -989,7 +989,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, secondTab] = getAllByRole('tab');
-            await act(() => {
+            await act(async () => {
               secondTab.focus();
             });
 
@@ -1019,7 +1019,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, secondTab] = getAllByRole('tab');
-            await act(() => {
+            await act(async () => {
               secondTab.focus();
             });
 
@@ -1048,7 +1048,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            await act(() => {
+            await act(async () => {
               lastTab.focus();
             });
 
@@ -1078,7 +1078,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            await act(() => {
+            await act(async () => {
               lastTab.focus();
             });
 
@@ -1108,7 +1108,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            await act(() => {
+            await act(async () => {
               lastTab.focus();
             });
 
@@ -1138,7 +1138,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [, secondTab, lastTab] = getAllByRole('tab');
-            await act(() => {
+            await act(async () => {
               secondTab.focus();
             });
 
@@ -1168,7 +1168,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [, secondTab, lastTab] = getAllByRole('tab');
-            await act(() => {
+            await act(async () => {
               secondTab.focus();
             });
 
@@ -1197,7 +1197,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            await act(() => {
+            await act(async () => {
               firstTab.focus();
             });
 
@@ -1224,7 +1224,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          await act(() => {
+          await act(async () => {
             lastTab.focus();
           });
 
@@ -1247,7 +1247,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          await act(() => {
+          await act(async () => {
             lastTab.focus();
           });
 
@@ -1270,7 +1270,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [, secondTab, lastTab] = getAllByRole('tab');
-          await act(() => {
+          await act(async () => {
             lastTab.focus();
           });
 
@@ -1294,7 +1294,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          await act(() => {
+          await act(async () => {
             firstTab.focus();
           });
 
@@ -1317,7 +1317,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          await act(() => {
+          await act(async () => {
             firstTab.focus();
           });
 
@@ -1340,7 +1340,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, secondTab] = getAllByRole('tab');
-          await act(() => {
+          await act(async () => {
             firstTab.focus();
           });
 

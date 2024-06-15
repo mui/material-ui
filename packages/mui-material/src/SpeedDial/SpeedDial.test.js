@@ -183,7 +183,7 @@ describe('<SpeedDial />', () => {
         </SpeedDial>,
       );
       const fab = getByRole('button');
-      await act(() => {
+      await act(async () => {
         fab.focus();
       });
       clock.tick();
@@ -207,7 +207,7 @@ describe('<SpeedDial />', () => {
       const fab = getByRole('button');
       const actions = getAllByRole('menuitem');
 
-      await act(() => {
+      await act(async () => {
         fab.focus();
       });
       clock.runAll();
@@ -276,7 +276,7 @@ describe('<SpeedDial />', () => {
           ))}
         </SpeedDial>,
       );
-      await act(() => {
+      await act(async () => {
         fabButton.focus();
       });
     };
