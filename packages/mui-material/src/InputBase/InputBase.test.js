@@ -190,10 +190,11 @@ describe('<InputBase />', () => {
     it('should inject onBlur and onFocus', () => {
       let injectedProps;
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
+        // TODO: uncomment eslint-disable-next-line react-compiler/react-compiler
+        // didn't find proper way to fix this.
         injectedProps = props;
         return <input ref={ref} {...props} />;
       });
-
       render(<InputBase inputComponent={MyInputBase} />);
       expect(typeof injectedProps.onBlur).to.equal('function');
       expect(typeof injectedProps.onFocus).to.equal('function');
