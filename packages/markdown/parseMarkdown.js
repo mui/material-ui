@@ -462,9 +462,11 @@ function createRender(context) {
             ${
               ['info', 'success', 'warning', 'error'].includes(token.severity)
                 ? [
+                    '<div class="MuiCallout-icon-container">',
                     '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
                     `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
                     '</svg>',
+                    '</div>',
                   ].join('\n')
                 : ''
             }

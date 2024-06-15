@@ -11,8 +11,7 @@ import Paper from '../Paper';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
-import useTheme from '../styles/useTheme';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, createUseThemeProps, useTheme } from '../zero-styled';
 
 const useThemeProps = createUseThemeProps('MuiDialog');
 

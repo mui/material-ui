@@ -5,21 +5,23 @@ import styleFunctionSx from '@mui/system/styleFunctionSx';
 import extendTheme, { SupportedColorScheme, CssVarsTheme } from './extendTheme';
 import createTypography from './createTypography';
 import THEME_ID from './identifier';
+import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 const defaultTheme = extendTheme();
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  SupportedColorScheme,
-  typeof THEME_ID
->({
+const {
+  CssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
+} = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
   themeId: THEME_ID,
   theme: defaultTheme,
-  attribute: 'data-mui-color-scheme',
-  modeStorageKey: 'mui-mode',
-  colorSchemeStorageKey: 'mui-color-scheme',
+  attribute: defaultConfig.attribute,
+  colorSchemeStorageKey: defaultConfig.colorSchemeStorageKey,
+  modeStorageKey: defaultConfig.modeStorageKey,
   defaultColorScheme: {
-    light: 'light',
-    dark: 'dark',
+    light: defaultConfig.defaultLightColorScheme,
+    dark: defaultConfig.defaultDarkColorScheme,
   },
   resolveTheme: (theme) => {
     const newTheme = {
@@ -37,6 +39,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
 
 let warnedOnce = false;
 
+// TODO: remove in v7
 // eslint-disable-next-line @typescript-eslint/naming-convention
 function Experimental_CssVarsProvider(props: any) {
   if (!warnedOnce) {
@@ -54,4 +57,23 @@ function Experimental_CssVarsProvider(props: any) {
   return <CssVarsProvider {...props} />;
 }
 
-export { useColorScheme, getInitColorSchemeScript, CssVarsProvider, Experimental_CssVarsProvider };
+let warnedInitScriptOnce = false;
+
+// TODO: remove in v7
+const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (params) => {
+  if (!warnedInitScriptOnce) {
+    console.warn(
+      [
+        'MUI: The getInitColorSchemeScript function has been deprecated.',
+        '',
+        "You should use `import InitColorSchemeScript from '@mui/material/InitColorSchemeScript'`",
+        'and replace the function call with `<InitColorSchemeScript />` instead.',
+      ].join('\n'),
+    );
+
+    warnedInitScriptOnce = true;
+  }
+  return deprecatedGetInitColorSchemeScript(params);
+};
+
+export { useColorScheme, CssVarsProvider, getInitColorSchemeScript, Experimental_CssVarsProvider };
