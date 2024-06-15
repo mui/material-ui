@@ -15,10 +15,7 @@ export default function transformer(file, api, options) {
       .filter((path) => path.node.source.value.match(/^@mui\/material\/Tab$/))
       .forEach((path) => {
         path.node.specifiers.forEach((specifier) => {
-          if (
-            specifier.type === 'ImportSpecifier' &&
-            specifier.imported.name === 'tabClasses'
-          ) {
+          if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'tabClasses') {
             const deprecatedAtomicClass = deprecatedClass.replace(
               `${deprecatedClass.split('-')[0]}-`,
               '',
@@ -35,12 +32,7 @@ export default function transformer(file, api, options) {
                     (expression) => expression === memberExpression.value,
                   );
                   const precedingTemplateElement = parent.quasis[memberExpressionIndex];
-                  const atomicClasses = replacementSelector
-                    .replaceAll('MuiTab-', '')
-                    .replaceAll(replacementSelectorPrefix, '')
-                    .replaceAll(' > ', '')
-                    .split('.')
-                    .filter(Boolean);
+                  const atomicClasses = ['icon'];
 
                   if (
                     precedingTemplateElement.value.raw.endsWith(
@@ -60,45 +52,6 @@ export default function transformer(file, api, options) {
                       ),
                     ];
                     parent.expressions.splice(...atomicClassesArgs);
-
-                    if (replacementSelector.includes(' > ')) {
-                      const quasisArgs = [
-                        memberExpressionIndex,
-                        1,
-                        j.templateElement(
-                          {
-                            raw: precedingTemplateElement.value.raw.replace(' ', ''),
-                            cooked: precedingTemplateElement.value.cooked.replace(' ', ''),
-                          },
-                          false,
-                        ),
-                        j.templateElement({ raw: ' > .', cooked: ' > .' }, false),
-                      ];
-
-                      if (atomicClasses.length === 3) {
-                        quasisArgs.splice(
-                          3,
-                          0,
-                          j.templateElement({ raw: '.', cooked: '.' }, false),
-                        );
-                      }
-
-                      parent.quasis.splice(...quasisArgs);
-                    } else {
-                      parent.quasis.splice(
-                        memberExpressionIndex,
-                        1,
-                        j.templateElement(
-                          {
-                            raw: precedingTemplateElement.value.raw,
-                            cooked: precedingTemplateElement.value.cooked,
-                          },
-                          false,
-                        ),
-
-                        j.templateElement({ raw: '.', cooked: '.' }, false),
-                      );
-                    }
                   }
                 }
               });
