@@ -71,7 +71,7 @@ We're well-positioned to make this happen, so we're looking for a talented engin
   It may even be in an area of the codebase you're unfamiliar with or don't have a ton of understanding about.
   It's fun, rewarding work, but it can be very challenging.
 - **We move quickly but don't sacrifice quality**.
-  We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
+  We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue is often enough. Our users quickly tell us when we haven't pushed it far enough.
 - **MUI has large codebases**. You may bang your head against the wall at times and then write tests to assist future you.
   The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
 - **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
