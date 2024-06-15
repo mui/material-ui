@@ -260,7 +260,7 @@ describe('<Stepper />', () => {
   });
 
   it('is applies non-linear styling', () => {
-    const { container, setProps } = render(
+    const { container } = render(
       <Stepper nonLinear activeStep={0}>
         <Step />
         <Step />
