@@ -19,6 +19,7 @@ import transformModalProps from '../modal-props';
 import transformOutlinedInputProps from '../outlined-input-props';
 import transformPaginationItemClasses from '../pagination-item-classes';
 import transformSpeedDialProps from '../speed-dial-props';
+import transformTableSortLabelClasses from '../table-sort-label-classes';
 import transformStepConnectorClasses from '../step-connector-classes';
 import transformStepLabelProps from '../step-label-props';
 import transformTextFieldProps from '../text-field-props';
@@ -52,6 +53,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformSpeedDialProps(file, api, options);
   file.source = transformStepConnectorClasses(file, api, options);
   file.source = transformStepLabelProps(file, api, options);
+  file.source = transformTableSortLabelClasses(file, api, options);
   file.source = transformTextFieldProps(file, api, options);
   file.source = transformToggleButtonGroupClasses(file, api, options);
 

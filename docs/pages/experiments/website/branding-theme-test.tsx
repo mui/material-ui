@@ -10,6 +10,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import Section from 'docs/src/layouts/Section';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { Link } from '@mui/docs/Link';
 
 export default function BrandingThemeTest() {
   return (
@@ -18,6 +19,12 @@ export default function BrandingThemeTest() {
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
       <main id="main-content">
         <Section>
+          <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mb: 4 }}>
+            <Link href="/">Link with no role</Link>
+            <Link href="/" role="menuitem">
+              Link role menuitem
+            </Link>
+          </Stack>
           <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content' }}>
             <Chip size="small" variant="outlined" color="primary" label="Hiring" />
             <Chip size="small" variant="outlined" color="info" label="Hiring" />

@@ -28,9 +28,11 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getMaterialUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
-    return filename.match(/(ThemeProvider|CssVarsProvider|Grid2)/) !== null;
+    return filename.match(/(ThemeProvider|CssVarsProvider|InitColorSchemeScript|Grid2)/) !== null;
   },
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName: generateUtilityClass,
   isGlobalClassName: isGlobalState,
+  // #default-branch-switch
+  baseApiUrl: 'https://next.mui.com',
 };

@@ -21,7 +21,7 @@ export default function Content() {
         sx={{ borderBottom: '1px solid rgba(0, 0, 0, 0.12)' }}
       >
         <Toolbar>
-          <Grid container spacing={2} alignItems="center">
+          <Grid container spacing={2} sx={{ alignItems: 'center' }}>
             <Grid item>
               <SearchIcon color="inherit" sx={{ display: 'block' }} />
             </Grid>
@@ -49,7 +49,7 @@ export default function Content() {
           </Grid>
         </Toolbar>
       </AppBar>
-      <Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
+      <Typography align="center" sx={{ color: 'text.secondary', my: 5, mx: 2 }}>
         No users for this project yet
       </Typography>
     </Paper>

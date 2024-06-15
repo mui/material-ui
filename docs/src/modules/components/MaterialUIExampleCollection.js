@@ -94,6 +94,12 @@ const examples = [
     link: 'https://github.com/marmelab/material-ui-react-admin',
     src: '/static/images/examples/reactadmin.svg',
   },
+  {
+    name: 'Refine',
+    label: 'View TypeScript',
+    link: 'https://github.com/refinedev/refine/tree/master/examples/with-material-ui-vite',
+    src: '/static/images/examples/refine.svg',
+  },
 ];
 
 export default function MaterialUIExampleCollection() {
@@ -123,20 +129,14 @@ export default function MaterialUIExampleCollection() {
                 : { children: example.src })}
             />
             <div>
-              <Typography fontWeight="medium" className="algolia-lvl3">
+              <Typography className="algolia-lvl3" sx={{ fontWeight: 'medium' }}>
                 {example.name}
               </Typography>
               <Box
                 data-ga-event-category="material-ui-example"
                 data-ga-event-label={example.name}
                 data-ga-event-action="click"
-                sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  alignItems: 'center',
-                  mt: 0.5,
-                  gap: 0.2,
-                }}
+                sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', mt: 0.5, gap: 0.2 }}
               >
                 <Link
                   href={example.link}
@@ -153,11 +153,7 @@ export default function MaterialUIExampleCollection() {
                   <React.Fragment>
                     <Typography
                       variant="caption"
-                      sx={{
-                        display: { xs: 'none', sm: 'block' },
-                        opacity: 0.1,
-                        mr: 1,
-                      }}
+                      sx={{ display: { xs: 'none', sm: 'block' }, opacity: 0.1, mr: 1 }}
                     >
                       /
                     </Typography>

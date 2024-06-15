@@ -150,8 +150,12 @@ export async function computeApiDescription(
  *  *
  *  * - [Icon API](https://mui.com/api/icon/)
  */
-async function annotateComponentDefinition(api: ReactApi, componentJsdoc: Annotation) {
-  const HOST = 'https://mui.com';
+async function annotateComponentDefinition(
+  api: ReactApi,
+  componentJsdoc: Annotation,
+  projectSettings: ProjectSettings,
+) {
+  const HOST = projectSettings.baseApiUrl ?? 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
   const fileName = path.parse(api.filename).name;
@@ -782,7 +786,7 @@ export default async function generateComponentApi(
     throw new Error(
       'Unable to find demos. \n' +
         `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
-        'Every public component should have a demo. ',
+        'Every public component should have a demo.\nFor internal component, add the name of the component to the `skipComponent` method of the product.',
     );
   }
 
@@ -855,7 +859,7 @@ export default async function generateComponentApi(
         : !skipAnnotatingComponentDefinition
     ) {
       // Add comment about demo & api links (including inherited component) to the component file
-      await annotateComponentDefinition(reactApi, componentJsdoc);
+      await annotateComponentDefinition(reactApi, componentJsdoc, projectSettings);
     }
   }
 

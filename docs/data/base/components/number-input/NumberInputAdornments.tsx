@@ -35,11 +35,7 @@ const NumberInput = React.forwardRef(function CustomNumberInput(
 export default function NumberInputAdornments() {
   return (
     <Box
-      sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row' },
-        gap: 2,
-      }}
+      sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}
     >
       <NumberInput
         startAdornment={

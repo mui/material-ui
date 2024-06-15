@@ -93,13 +93,15 @@ declare module 'react' {
 }
 
 const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
-  color: theme.palette.mode === 'light' ? theme.palette.grey[800] : theme.palette.grey[400],
+  color: theme.palette.grey[800],
   position: 'relative',
   [`& .${treeItemClasses.groupTransition}`]: {
     marginLeft: theme.spacing(3.5),
   },
+  ...theme.applyStyles('dark', {
+    color: theme.palette.grey[400],
+  }),
 })) as unknown as typeof TreeItem2Root;
-
 const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
   borderRadius: theme.spacing(0.5),
   marginBottom: theme.spacing(0.2),
@@ -113,10 +115,10 @@ const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
     top: '30px',
     height: 'calc(100% - 32px)',
     width: '1.5px',
-    backgroundColor:
-      theme.palette.mode === 'light'
-        ? (theme.vars || theme).palette.grey[100]
-        : (theme.vars || theme).palette.primaryDark[700],
+    backgroundColor: (theme.vars || theme).palette.grey[100],
+    ...theme.applyStyles('dark', {
+      backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+    }),
   },
 }));
 
@@ -142,13 +144,7 @@ interface CustomLabelProps {
 
 function CustomLabel({ icon: Icon, expandable, children, ...other }: CustomLabelProps) {
   return (
-    <TreeItem2Label
-      {...other}
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <TreeItem2Label {...other} sx={{ display: 'flex', alignItems: 'center' }}>
       {Icon && (
         <Box
           component={Icon}

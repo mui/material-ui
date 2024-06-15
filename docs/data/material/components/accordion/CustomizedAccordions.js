@@ -24,10 +24,7 @@ const AccordionSummary = styled((props) => (
     {...props}
   />
 ))(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === 'dark'
-      ? 'rgba(255, 255, 255, .05)'
-      : 'rgba(0, 0, 0, .03)',
+  backgroundColor: 'rgba(0, 0, 0, .03)',
   flexDirection: 'row-reverse',
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
     transform: 'rotate(90deg)',
@@ -35,6 +32,9 @@ const AccordionSummary = styled((props) => (
   '& .MuiAccordionSummary-content': {
     marginLeft: theme.spacing(1),
   },
+  ...theme.applyStyles('dark', {
+    backgroundColor: 'rgba(255, 255, 255, .05)',
+  }),
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({

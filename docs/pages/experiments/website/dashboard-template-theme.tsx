@@ -114,9 +114,7 @@ export default function DashboardTemplateTheme() {
       >
         <Stack
           direction={{ xs: 'column', md: 'row' }}
-          alignItems="flex-end"
-          justifyContent="space-between"
-          gap={2}
+          sx={{ alignItems: 'flex-end', justifyContent: 'space-between', gap: 2 }}
         >
           <Typography variant="h4" component="h1">
             Dashboard template theme
@@ -124,8 +122,8 @@ export default function DashboardTemplateTheme() {
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
         <Divider />
-        <Stack direction="column" gap={2}>
-          <Stack direction="row" gap={2} alignItems="center">
+        <Stack direction="column" sx={{ gap: 2 }}>
+          <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
             <Button variant="contained">Contained</Button>
             <Button variant="outlined">Outlined</Button>
             <Button variant="text">Text</Button>
@@ -139,7 +137,7 @@ export default function DashboardTemplateTheme() {
               Text
             </Button>
           </Stack>
-          <Stack direction="row" gap={2} alignItems="center">
+          <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
             <Button variant="contained" color="secondary">
               Contained
             </Button>
@@ -159,7 +157,7 @@ export default function DashboardTemplateTheme() {
               Text
             </Button>
           </Stack>
-          <Stack direction="row" gap={2} alignItems="center">
+          <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
             <IconButton>
               <NotificationsRoundedIcon />
             </IconButton>
@@ -168,18 +166,16 @@ export default function DashboardTemplateTheme() {
             </IconButton>
           </Stack>
         </Stack>
-        <Stack direction="row" gap={2}>
+        <Stack direction="row" sx={{ gap: 2 }}>
           <Card sx={{ width: 250 }}>
             <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
                 Word of the Day
               </Typography>
               <Typography variant="h5" component="div">
                 be•nev•o•lent
               </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
+              <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>adjective</Typography>
               <Typography variant="body2">
                 well meaning and kindly.
                 <br />
@@ -192,15 +188,13 @@ export default function DashboardTemplateTheme() {
           </Card>
           <Card variant="outlined" sx={{ width: 250 }}>
             <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
                 Word of the Day
               </Typography>
               <Typography variant="h5" component="div">
                 be•nev•o•lent
               </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
+              <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>adjective</Typography>
               <Typography variant="body2">
                 well meaning and kindly.
                 <br />
@@ -216,7 +210,7 @@ export default function DashboardTemplateTheme() {
         <Link href="/" sx={{ maxWidth: 'fit-content' }}>
           Link
         </Link>
-        <Stack direction="row" gap={2} alignItems="center">
+        <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
           <IconButton size="small" onClick={handleClick} sx={{ maxWidth: 'fit-content' }}>
             <MoreVertIcon />
           </IconButton>
@@ -238,11 +232,11 @@ export default function DashboardTemplateTheme() {
           </Menu>
           <CustomDatePicker />
         </Stack>
-        <Stack direction="row" gap={2} alignItems="center">
+        <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
           <OutlinedInput placeholder="Outlined input" />
           <OutlinedInput size="small" placeholder="Outlined input" />
         </Stack>
-        <Stack direction="row" gap={2} alignItems="center">
+        <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
           <Box
             sx={{
               height: 250,
