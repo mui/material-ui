@@ -26,8 +26,8 @@ importers:
   .:
     dependencies:
       '@googleapis/sheets':
-        specifier: ^7.0.1
-        version: 7.0.1(encoding@0.1.13)
+        specifier: ^8.0.0
+        version: 8.0.0(encoding@0.1.13)
       '@netlify/functions':
         specifier: ^2.7.0
         version: 2.7.0(@opentelemetry/api@1.8.0)
@@ -3600,8 +3600,8 @@ packages:
     resolution: {integrity: sha512-9KMSDtJ/sIov+5pcH+CAfiJXSiuYgN0KLKQFg0HHWR2DwcjGYkcbmhoZcWsaOWOqq4kihN1l7wX91UoRxxKKTQ==}
     engines: {node: '>=18.0.0'}
 
-  '@googleapis/sheets@7.0.1':
-    resolution: {integrity: sha512-n+ctnqtKd24Dd4X6yE2NSq47iodqxvaaRcxNdqLIkV+4GQs0u8UnF7Cj9Bqi8/sd9kdLZV70H5R7q/lzVEhpmw==}
+  '@googleapis/sheets@8.0.0':
+    resolution: {integrity: sha512-EwLC+bMLTz3n2EDJMhMdrNR+aTxDBPpcq3k6Ibc4eKrp8UbytNAEB0VgfQFOGJN7+BTCcjiojt08O/cwn+YnHg==}
     engines: {node: '>=12.0.0'}
 
   '@hapi/hoek@9.3.0':
@@ -13957,7 +13957,7 @@ snapshots:
       '@gitbeaker/core': 38.12.1
       '@gitbeaker/requester-utils': 38.12.1
 
-  '@googleapis/sheets@7.0.1(encoding@0.1.13)':
+  '@googleapis/sheets@8.0.0(encoding@0.1.13)':
     dependencies:
       googleapis-common: 7.0.0(encoding@0.1.13)
     transitivePeerDependencies:
