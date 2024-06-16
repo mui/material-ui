@@ -107,40 +107,71 @@ The alternative, array-based syntax JSS supports for space- and comma-separated 
 
 #### Replace array-based values with string-based values
 
-```diff
- const theme = createTheme({
-   components: {
-     MuiBox: {
+**Before**
+
+```jsx
+const theme = createTheme({
+  overrides: {
+    MuiBox: {
+      root: {
+        background: [
+          ['url(image1.png)', 'no-repeat', 'top'],
+          ['url(image2.png)', 'no-repeat', 'center'],
+          '!important'
+        ]
+      }
+    }
+  }
+});
+```
+
+**After**
+
+```jsx
+const theme = createTheme({
+  components: {
+    MuiBox: {
       styleOverrides: {
         root: {
--         background: [
--           ['url(image1.png)', 'no-repeat', 'top'],
--           ['url(image2.png)', 'no-repeat', 'center'],
--           '!important'
--         ]
-+         background: 'url(image1.png) no-repeat top, url(image2.png) no-repeat center !important'
+          background: 'url(image1.png) no-repeat top, url(image2.png) no-repeat center !important'
         }
       }
-     }
-   }
- });
+    }
+  }
+});
 ```
 
 Be sure to add units to numeric values as appropriate.
 
-```diff
- const theme = createTheme({
-   components: {
-     MuiOutlinedInput: {
-       styleOverrides: {
-         root: {
--          padding: [[5, 8, 6]]
-+          padding: '5px 8px 6px'
-         }
-       }
-     },
-   }
- });
+
+**Before**
+
+```jsx
+const theme = createTheme({
+  overrides: {
+    MuiOutlinedInput: {
+      root: {
+        padding: [[5, 8, 6]]
+      }
+    }
+  }
+});
+```
+
+**After**
+
+```jsx
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          padding: '5px 8px 6px'
+        }
+      }
+    }
+  }
+});
 ```
 
 ## ref
