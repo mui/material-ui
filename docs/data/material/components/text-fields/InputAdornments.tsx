@@ -22,7 +22,7 @@ export default function InputAdornments() {
   };
 
   const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+    event.preventDefault(); 
   };
 
   return (
