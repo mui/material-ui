@@ -1044,7 +1044,7 @@ export function useAutocomplete(props) {
     if (event.currentTarget.contains(event.target)) {
       event.preventDefault();
     }
-    
+
     if (!disabledProp && (inputValue === '' || !open)) {
       handlePopupIndicator(event);
     }
