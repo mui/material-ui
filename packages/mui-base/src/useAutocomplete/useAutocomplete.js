@@ -1040,6 +1040,11 @@ export function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
+    // Prevent focusing anywhere outside the Autocomplete if click input
+    if (event.currentTarget.contains(event.target)) {
+      event.preventDefault();
+    }
+    
     if (!disabledProp && (inputValue === '' || !open)) {
       handlePopupIndicator(event);
     }
