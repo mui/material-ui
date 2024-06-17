@@ -23,7 +23,11 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getSystemComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename) {
-    return filename.match(/(ThemeProvider|CssVarsProvider|PropsProvider|GlobalStyles)/) !== null;
+    return (
+      filename.match(
+        /(ThemeProvider|CssVarsProvider|PropsProvider|GlobalStyles|InitColorSchemeScript)/,
+      ) !== null
+    );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName: generateUtilityClass,

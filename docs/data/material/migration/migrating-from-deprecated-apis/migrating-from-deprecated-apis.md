@@ -1465,6 +1465,46 @@ Here's how to migrate:
   },
 ```
 
+## TableSortLabel
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#table-sort-label-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/table-sort-label-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `direction` prop and `icon` prop were removed.
+
+Here's how to migrate:
+
+```diff
+- .MuiTableSortLabel-iconDirectionDesc
++.MuiTableSortLabel-directionDesc > .MuiTableSortLabel-icon
+- .MuiTableSortLabel-iconDirectionAsc
++.MuiTableSortLabel-directionAsc > .MuiTableSortLabel-icon
+```
+
+```diff
+ import { tableSortLabelClasses } from '@mui/material/TableSortLabel';
+
+ MuiTableSortLabel: {
+   styleOverrides: {
+     root: {
+-      [`& .${tableSortLabelClasses.iconDirectionDesc}`]: {
++      [`&.${tableSortLabelClasses.directionDesc} > .${tableSortLabelClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${tableSortLabelClasses.iconDirectionAsc}`]: {
++      [`&.${tableSortLabelClasses.directionAsc} > .${tableSortLabelClasses.icon}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
 ## TextField
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following sections:
