@@ -161,7 +161,7 @@ const openRolesData = [
       {
         title: 'React Tech Lead — Core',
         description:
-          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
+          'You will lead the development of the Core products, positioning them as the industry standard for product teams while doubling their adoption.',
         url: '/careers/react-tech-lead-core/',
       },
     ],

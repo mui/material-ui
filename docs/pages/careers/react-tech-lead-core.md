@@ -18,7 +18,7 @@ We're a company of 31+ people as of late 2023, and we're growing.
 ## The products
 
 MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS-in-JS library, that is a replacement of the current styling engine using emotion/styled-components under the hood.
+Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS-in-JS library.
 We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
