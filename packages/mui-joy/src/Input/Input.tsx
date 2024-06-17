@@ -269,17 +269,15 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ...other
   } = useForwardedInput<InputProps>({ ...props, disabledInProp: inProps.disabled }, inputClasses);
 
-  if (process.env.NODE_ENV !== 'production') {
-    const registerEffect = formControl?.registerEffect;
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (registerEffect) {
-        return registerEffect();
-      }
+  const registerEffect = formControl?.registerEffect;
 
-      return undefined;
-    }, [registerEffect]);
-  }
+  React.useEffect(() => {
+    if (process.env.NODE_ENV !== 'production' && registerEffect) {
+      return registerEffect();
+    }
+
+    return undefined;
+  }, [registerEffect]);
 
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;

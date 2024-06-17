@@ -127,9 +127,8 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   };
 
   let registerEffect: undefined | (() => () => void);
+  const registeredInput = React.useRef(false);
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const registeredInput = React.useRef(false);
     registerEffect = () => {
       if (registeredInput.current) {
         console.error(

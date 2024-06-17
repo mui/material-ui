@@ -241,7 +241,9 @@ describe('extendTheme', () => {
 
       function Test() {
         const theme = useTheme();
-        styles = theme.unstable_sx({ bgcolor: 'primary.500' });
+        React.useEffect(() => {
+          styles = theme.unstable_sx({ bgcolor: 'primary.500' });
+        }, [theme]);
         return null;
       }
 
@@ -261,7 +263,9 @@ describe('extendTheme', () => {
 
       function Test() {
         const theme = useTheme();
-        styles = theme.unstable_sx({ borderRadius: 'md' });
+        React.useEffect(()=>{
+          styles = theme.unstable_sx({ borderRadius: 'md' });
+        }, [theme]);
         return null;
       }
 

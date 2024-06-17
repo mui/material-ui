@@ -278,17 +278,15 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   const formControl = React.useContext(FormControlContext);
 
-  if (process.env.NODE_ENV !== 'production') {
-    const registerEffect = formControl?.registerEffect;
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (registerEffect) {
-        return registerEffect();
-      }
+  const registerEffect = formControl?.registerEffect;
 
-      return undefined;
-    }, [registerEffect]);
-  }
+  React.useEffect(() => {
+    if (process.env.NODE_ENV !== 'production' && registerEffect) {
+      return registerEffect();
+    }
+
+    return undefined;
+  }, [registerEffect]);
 
   const id = useId(idOverride ?? formControl?.htmlFor);
   const radioGroup = React.useContext(RadioGroupContext);
