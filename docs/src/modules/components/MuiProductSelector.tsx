@@ -1,17 +1,16 @@
 import * as React from 'react';
-import NextLink from 'next/link';
-import { styled, alpha, Theme } from '@mui/material/styles';
+import { styled, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import MenuList, { MenuListProps } from '@mui/material/MenuList';
-import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import ROUTES from 'docs/src/route';
 import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
 import SvgToolpadLogo from 'docs/src/icons/SvgToolpadLogo';
+import ProductMenuItem from 'docs/src/components/action/ProductMenuItem';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
@@ -40,95 +39,6 @@ const NavLabel = styled(Typography)(({ theme }) => ({
   letterSpacing: '.1rem',
   color: (theme.vars || theme).palette.text.tertiary,
 }));
-
-interface ProductItemProps extends MenuItemProps {
-  active?: boolean;
-  chip?: React.ReactNode;
-  description?: string;
-  href: string;
-  icon?: React.ReactNode;
-  name: string;
-}
-
-function ProductItem({
-  active,
-  chip,
-  description,
-  href,
-  icon,
-  name,
-  sx = [],
-  ...other
-}: ProductItemProps) {
-  return (
-    <MenuItem
-      component={NextLink} // using the Next link directly here as it accepts, as opposed to the docs Link, passing role="menuitem"
-      role="menuitem"
-      href={href}
-      sx={[
-        (theme) => ({
-          p: 1,
-          pl: '6px',
-          display: 'flex',
-          alignItems: 'start',
-          gap: '8px',
-          flexGrow: 1,
-          backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : undefined,
-          border: '1px solid',
-          borderColor: active ? 'primary.100' : 'transparent',
-          borderRadius: '8px',
-          transition: '100ms ease-in background-color, border',
-          textDecorationLine: 'none',
-          '&:hover': {
-            backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : 'grey.50',
-            borderColor: 'divider',
-          },
-          '&.Mui-focusVisible': {
-            backgroundColor: active ? (theme.vars || theme).palette.primary[50] : 'transparent',
-          },
-          ...theme.applyDarkStyles({
-            backgroundColor: active ? alpha(theme.palette.primary[900], 0.2) : undefined,
-            borderColor: active ? alpha(theme.palette.primary[300], 0.2) : 'transparent',
-            '&:hover': {
-              backgroundColor: active
-                ? alpha(theme.palette.primary[900], 0.3)
-                : alpha(theme.palette.primaryDark[700], 0.5),
-            },
-            '&.Mui-focusVisible': {
-              backgroundColor: active ? alpha(theme.palette.primary[900], 0.5) : 'transparent',
-            },
-          }),
-        }),
-        // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-      {...other}
-    >
-      <Box
-        sx={{
-          height: 21, // match the Typography line-height
-          width: 21,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {icon}
-      </Box>
-      <div>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Typography color="text.primary" variant="body2" fontWeight="semiBold">
-            {name}
-          </Typography>
-          {chip}
-        </Box>
-        <Typography color="text.secondary" fontSize=".813rem">
-          {description}
-        </Typography>
-      </div>
-    </MenuItem>
-  );
-}
 
 const coreProducts = [
   {
@@ -214,13 +124,14 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
       }}
     >
       {coreProducts.map((product) => (
-        <ProductItem
+        <ProductMenuItem
           key={product.name}
           name={product.name}
           description={product.description}
           href={product.href}
           icon={product.icon}
           active={pageContext.productId === product.id}
+          docs
         />
       ))}
       <Divider
@@ -245,13 +156,14 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
         <NavLabel>MUI X Components</NavLabel>
       </Box>
       {advancedProducts.map((product) => (
-        <ProductItem
+        <ProductMenuItem
           key={product.name}
           name={product.name}
           description={product.description}
           icon={product.icon}
           href={product.href}
           active={pageContext.productId === product.id}
+          docs
         />
       ))}
       <Divider
@@ -263,13 +175,14 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           },
         }}
       />
-      <ProductItem
+      <ProductMenuItem
         key="Toolpad"
         name="Toolpad"
         href={ROUTES.toolpadStudioDocs}
         icon={<SvgToolpadLogo width={14} height={14} sx={logoColor} />}
         description="A self-hosted, low-code internal tool builder."
         active={pageContext.productId === 'toolpad-core'}
+        docs
         chip={
           <Chip
             label="Beta"
