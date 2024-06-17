@@ -25,7 +25,7 @@ Alternatively, you can also target and fix it to a specific version, for example
 
 ## Why you should migrate
 
-Material UI v6's biggest highlight is the introduction of Pigment CSS, a next-gen zero-runtime CSS-in-JS library, as an opt-in styling engine.
+Material UI v6's biggest highlight is the introduction of Pigment CSS, a next-gen zero-runtime CSS-in-JS library, as an opt-in styling engine.
 Using it will make your project compatible with React Server Components, as well as help reduce its bundle size due to styles being extracted at build time, avoiding client-side recalculation.
 As a lesson learned from v5, this major release introduces minimal breaking changes.
 Namely, browser support updates, a Node.js version bump, and the removal of the UMD bundle.
