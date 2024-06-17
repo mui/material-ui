@@ -266,7 +266,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
     return undefined;
   }, [registerEffect]);
-  
+
   const size = inProps.size ?? formControl?.size ?? sizeProp;
   const color = inProps.color ?? (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
 

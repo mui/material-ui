@@ -263,7 +263,7 @@ describe('extendTheme', () => {
 
       function Test() {
         const theme = useTheme();
-        React.useEffect(()=>{
+        React.useEffect(() => {
           styles = theme.unstable_sx({ borderRadius: 'md' });
         }, [theme]);
         return null;
