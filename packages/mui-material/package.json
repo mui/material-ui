@@ -80,7 +80,8 @@
     "@emotion/styled": "^11.3.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "@pigment-css/react": "https://pkg.csb.dev/mui/pigment-css/commit/17deb663/@pigment-css/react"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -90,6 +91,9 @@
       "optional": true
     },
     "@emotion/styled": {
+      "optional": true
+    },
+    "@pigment-css/react": {
       "optional": true
     }
   },

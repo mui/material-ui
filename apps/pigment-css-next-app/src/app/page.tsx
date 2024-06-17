@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { styled, css } from '@pigment-css/react';
+import StackPigment from '@mui/material/StackPigment';
 import styles from './page.module.css';
 
 const visuallyHidden = css({
@@ -93,6 +94,11 @@ export default function Home() {
   return (
     <Main>
       <div className={visuallyHidden}>I am invisible</div>
+      <StackPigment spacing={2}>
+        <div>test</div>
+        <div>test</div>
+        <div>test</div>
+      </StackPigment>
       <Description>
         <p>
           Get started by editing&nbsp;

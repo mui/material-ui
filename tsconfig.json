@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "Node16",
     // aligning with Node18 recommendation: https://www.npmjs.com/package/@tsconfig/node18
     "target": "es2022",
     "lib": ["es2020", "dom"],
     "jsx": "preserve",
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noEmit": true,
