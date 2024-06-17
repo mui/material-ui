@@ -145,6 +145,10 @@ export default function ChipExample() {
 }
 ```
 
+### LoadingButton
+
+The `children` passed to the LoadingButton component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
+
 ### Grid v2 (Unstable_Grid)
 
 The spacing mechanism was reworked to use the `gap` CSS property.
@@ -177,6 +181,14 @@ Both of these changes might slightly affect your layout.
 Note that the items' position doesn't change.
 We recommend adopting this new behavior and **not trying to replicate the old one**, as this is a more predictable and modern approach.
 :::
+
+### useMediaQuery
+
+The following deprecated types were removed:
+
+- `MuiMediaQueryList`: use `MediaQueryList` (from lib.dom.d.ts) instead.
+- `MuiMediaQueryListEvent`: use `MediaQueryListEvent` (from lib.dom.d.ts) instead.
+- `MuiMediaQueryListListener`: use `(event: MediaQueryListEvent) => void` instead.
 
 ## Stabilized APIs
 
