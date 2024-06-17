@@ -30,8 +30,9 @@ If you're using TypeScript and [lab components](/material-ui/about-the-lab/), ch
 
 ## Theme style overrides
 
-The theme's `styleOverrides` key makes it possible to potentially change every single style injected by Material UI into the DOM.
-This is useful if you want to apply a fully custom design system to Material UI's components.
+The theme's `styleOverrides` key makes it possible to potentially change the default styles of any Material UI component.
+
+The `styleOverrides` requires a slot name as a key (use `root` for targeting the outer-most element), and an object with CSS properties as a value. Nested CSS selectors are supported as a value too.
 
 ```js
 const theme = createTheme({
@@ -52,15 +53,15 @@ const theme = createTheme({
 
 {{"demo": "GlobalThemeOverride.js"}}
 
-Each component is composed of several different slots.
-These slots correspond to classes that are available to the component—see the **CSS** section of the component's API page for a detailed list.
-You can use these classes inside the `styleOverrides` key to modify the corresponding slots of the component.
+### Variants
 
-### Overrides based on props
+Most components support props that exist to change their design.
+For example, the Card component supports a `variant` prop where you can pick `outlined` as a value that adds a border.
 
-Each slot of the component's `styleOverrides` supports a `variants` key. Variants are sets of overrides applied to the slot when the specified props match.
+If you want to override styles from a specific prop, create `variants` of the specific slot that contains `props` and `style` keys. When the component's `props` matches, the `style` will be applied.
 
-The definitions are specified in an array. Make sure the styles that should take precedence are listed last.
+The override definition must specified in an array.
+Also, ensure that any styles that should take precedence are listed last.
 
 **Example 1**: Overriding styles based on existing props. To increase the border thickness of the `outlined` Card, use this following snippet:
 
@@ -85,7 +86,7 @@ const theme = createTheme({
 });
 ```
 
-**Example 2**: Overriding styles based on new values. If your project needs a new Button's variant, use the following snippet:
+**Example 2**: Adding styles based on new values. If your project needs a new Button's variant, use the following snippet:
 
 ```js
 const theme = createTheme({
