@@ -49,13 +49,13 @@ This release features some major highlights:
   - [Change of the package names](#change-of-the-package-names)
   - [Change of the styling solution](#change-of-the-styling-solution)
   - [Changes to the supported platforms](#changes-to-the-supported-platforms)
-- [Design kits](#design-kits)
+- [Design Kits](#design-kits)
 - [What's next?](#whats-next)
   - [A public roadmap](#a-public-roadmap)
   - [Unstyled components and hooks](#unstyled-components-and-hooks)
   - [Second design system](#second-design-system)
   - [MUI X](#mui-x)
-  - [Design kits](#design-kits-1)
+  - [Design Kits](#design-kits-1)
 - [Thank you](#thank-you)
 
 ## High-level goals for v5
@@ -660,7 +660,7 @@ This breaking change is an opportunity to drop the support of legacy upstream de
 
 These changes have allowed us to save [6 kB gzipped](https://github.com/mui/material-ui/pull/22814#issuecomment-700995216) on the `@mui/material` package.
 
-## Design kits
+## Design Kits
 
 We now have design kits for the MUI components available in the three main design tools out there: [Figma](https://mui.com/store/items/figma-react/), [Sketch](https://mui.com/store/items/sketch-react/), and [Adobe XD](https://mui.com/store/items/adobe-xd-react/). If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
 
@@ -754,7 +754,7 @@ We still have column pinning, tree data, grouping, pivoting, excel export, and m
 
 Once we would have grown the team and made enough progress, we will expand to a second component.
 
-### Design kits
+### Design Kits
 
 We plan to run extended research and surveys.
 We have already identified that accessibility is something leading companies care about.
