@@ -259,7 +259,7 @@ describe('<Stepper />', () => {
     expect(stepContent[1]).to.have.class(stepContentClasses.last);
   });
 
-  it('is applies non-linear styling', () => {
+  it('should apply non-linear class', () => {
     const { container } = render(
       <Stepper nonLinear activeStep={0}>
         <Step />
@@ -269,6 +269,6 @@ describe('<Stepper />', () => {
     );
 
     const stepper = container.querySelector(`.${classes.root}`);
-    expect(stepper).to.have.class(classes.nonLinear)
+    expect(stepper).to.have.class(classes.nonLinear);
   });
 });
