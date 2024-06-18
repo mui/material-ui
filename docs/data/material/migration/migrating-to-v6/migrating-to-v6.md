@@ -27,10 +27,11 @@ Alternatively, you can also target and fix it to a specific version, for example
 
 Material UI v6's biggest highlight is the introduction of Pigment CSS, a next-gen zero-runtime CSS-in-JS library, as an opt-in styling engine.
 Using it will make your project compatible with React Server Components, as well as help reduce its bundle size due to styles being extracted at build time, avoiding client-side recalculation.
+
 As a lesson learned from v5, this major release introduces minimal breaking changes.
 Namely, browser support updates, a Node.js version bump, and the removal of the UMD bundle.
-These reduced the Material UI package size by 2.5MB, 25% of the total size.
-These updates can be, for the most part, migrated automatically via codemods.
+These updates reduced the Material UI package size by 2.5MB, 25% of the total size, and can be, for the most part, migrated automatically via codemods.
+
 Aside from that, v6 also includes a few quality-of-life improvements regarding styling:
 
 - The `CssVarsProvider` API is now stable. That enables you to rely on CSS variables, allowing for more intricate and performant customization possibilities, along with improved overall developer experience.
@@ -119,9 +120,9 @@ For alternative installation methods, refer to the [CDN documentation](/material
 ### Chip
 
 Previously, the Chip component lost focus when the escape button was pressed, which differed from how other button-like components work.
-This issue has been resolved, and the chip component retains focus as expected.
+This issue has been resolved, and the Chip now retains focus as expected.
 
-If you want to retain the previous behavior, add a custom `onKeyUp` handler, as shown below:
+If you want to keep the previous behavior, add a custom `onKeyUp` handler, as shown below:
 
 ```js
 import * as React from 'react';
@@ -145,9 +146,9 @@ export default function ChipExample() {
 }
 ```
 
-### LoadingButton
+### Loading Button
 
-The `children` passed to the LoadingButton component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
+The `children` passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
 
 ### Grid v2 (Unstable_Grid)
 
