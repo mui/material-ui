@@ -67,7 +67,7 @@ const GOLDs = [
     src: 'https://images.opencollective.com/viralyft/b853d22/avatar/40.png',
     srcSet: 'https://images.opencollective.com/viralyft/b853d22/avatar/120.png 3x',
     name: 'Viralyft',
-    description: 'Boost social mdia following & get real results.',
+    description: 'Boost social media following & get real results.',
     href: 'https://viralyft.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
