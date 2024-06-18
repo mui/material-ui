@@ -4,27 +4,6 @@ import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import { getThemeProps } from '../useThemeProps';
 import useTheme from '../useThemeWithoutDefault';
 
-/**
- * @deprecated Not used internally. Use `MediaQueryListEvent` from lib.dom.d.ts instead.
- */
-export interface MuiMediaQueryListEvent {
-  matches: boolean;
-}
-
-/**
- * @deprecated Not used internally. Use `MediaQueryList` from lib.dom.d.ts instead.
- */
-export interface MuiMediaQueryList {
-  matches: boolean;
-  addListener: (listener: MuiMediaQueryListListener) => void;
-  removeListener: (listener: MuiMediaQueryListListener) => void;
-}
-
-/**
- * @deprecated Not used internally. Use `(event: MediaQueryListEvent) => void` instead.
- */
-export type MuiMediaQueryListListener = (event: MuiMediaQueryListEvent) => void;
-
 export interface UseMediaQueryOptions {
   /**
    * As `window.matchMedia()` is unavailable on the server,

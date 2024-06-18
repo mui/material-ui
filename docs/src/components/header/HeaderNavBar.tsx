@@ -342,16 +342,10 @@ export default function HeaderNavBar() {
                   variant="outlined"
                   sx={(theme) => ({
                     mt: 1,
-                    minWidth: 498,
                     overflow: 'hidden',
                     borderColor: 'grey.200',
                     bgcolor: 'background.paper',
                     boxShadow: `0px 4px 16px ${alpha(theme.palette.grey[200], 0.8)}`,
-                    '& ul': {
-                      margin: 0,
-                      padding: 0,
-                      listStyle: 'none',
-                    },
                     ...theme.applyDarkStyles({
                       borderColor: 'primaryDark.700',
                       bgcolor: 'primaryDark.900',
@@ -359,9 +353,7 @@ export default function HeaderNavBar() {
                     }),
                   })}
                 >
-                  <ul>
-                    <MuiProductSelector />
-                  </ul>
+                  <MuiProductSelector autoFocusItem={subMenuOpen === 'docs'} />
                 </Paper>
               </Fade>
             )}
