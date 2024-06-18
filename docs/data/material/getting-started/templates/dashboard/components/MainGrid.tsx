@@ -2,6 +2,7 @@ import * as React from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Copyright from '../internals/components/Copyright';
 import ChartUserByCountry from './ChartUserByCountry';
 import CustomizedTreeView from './CustomizedTreeView';
 import CustomizedDataGrid from './CustomizedDataGrid';
@@ -38,7 +39,12 @@ export default function MainGrid() {
   return (
     <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
       {/* cards */}
-      <Grid container spacing={2} columns={12} sx={{ mb: 1 }}>
+      <Grid
+        container
+        spacing={2}
+        columns={12}
+        sx={{ mb: (theme) => theme.spacing(2) }}
+      >
         {data.map((card, index) => (
           <Grid key={index} xs={12} sm={6} md={3} lg={3}>
             <StatCard {...card} />
@@ -65,6 +71,7 @@ export default function MainGrid() {
           <Stack spacing={2} direction={{ xs: 'column', sm: 'row', md: 'column' }}>
             <CustomizedTreeView />
             <ChartUserByCountry />
+            <Copyright sx={{ my: 4 }} />
           </Stack>
         </Grid>
       </Grid>

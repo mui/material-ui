@@ -149,4 +149,23 @@ export const otherComponentsCustomizations = {
       },
     },
   },
+  MuiIcon: {
+    defaultProps: {
+      fontSize: 'small',
+    },
+    styleOverrides: {
+      root: {
+        variants: [
+          {
+            props: {
+              fontSize: 'small',
+            },
+            style: {
+              fontSize: '1rem',
+            },
+          },
+        ],
+      },
+    },
+  },
 };

@@ -20,8 +20,8 @@ export const menuComponentsCustomizations = {
       root: ({ theme }) => ({
         padding: 4,
         '.MuiSvgIcon-root': {
-          width: '1.25rem',
-          height: '1.25rem',
+          width: '1rem',
+          height: '1rem',
           color: theme.palette.text.secondary,
         },
         '.MuiTypography-root': {
@@ -88,7 +88,7 @@ export const menuComponentsCustomizations = {
   MuiSelect: {
     defaultProps: {
       IconComponent: React.forwardRef((props, ref) => (
-        <UnfoldMoreRoundedIcon {...props} ref={ref} />
+        <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />
       )),
     },
     styleOverrides: {
@@ -96,13 +96,17 @@ export const menuComponentsCustomizations = {
         borderRadius: theme.shape.borderRadius,
         border: `1px solid ${theme.palette.divider}`,
         backgroundColor: theme.palette.background.paper,
-        boxShadow: `inset 0 2px 0 hsl(220, 0%, 100%), inset 0 -2px 0 ${gray[100]}`,
+        boxShadow: `inset 0 1px 0 1px hsla(220, 0%, 100%, 0.6), inset 0 -1px 0 1px hsla(220, 35%, 90%, 0.5)`,
         '&:hover': {
           borderColor: gray[300],
+          backgroundColor: theme.palette.background.paper,
+          boxShadow: 'none',
         },
         '&.Mui-focused': {
           outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
           outlineOffset: '2px',
+          boxShadow: 'none',
+          backgroundColor: gray[100],
         },
         '&:before, &:after': {
           display: 'none',
@@ -111,13 +115,17 @@ export const menuComponentsCustomizations = {
           borderRadius: theme.shape.borderRadius,
           border: `1px solid ${theme.palette.divider}`,
           backgroundColor: theme.palette.background.paper,
-          boxShadow: `inset 0 2px 0 ${alpha(gray[700], 0.3)}, inset 0 -2px 0 hsl(220, 0%, 0%)`,
+          boxShadow: `inset 0 1px 0 1px ${alpha(gray[700], 0.15)}, inset 0 -1px 0 1px hsla(220, 0%, 0%, 0.7)`,
           '&:hover': {
-            borderColor: gray[600],
+            borderColor: alpha(gray[700], 0.7),
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: 'none',
           },
           '&.Mui-focused': {
             outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
             outlineOffset: '2px',
+            boxShadow: 'none',
+            backgroundColor: gray[900],
           },
           '&:before, &:after': {
             display: 'none',

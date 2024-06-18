@@ -25,7 +25,6 @@ export const buttonsCustomizations: Components<Theme> = {
         boxShadow: 'none',
         borderRadius: theme.shape.borderRadius,
         textTransform: 'none',
-        '& .MuiSvgIcon-root': { width: '1.125rem', height: '1.125rem' },
         variants: [
           {
             props: {
@@ -229,7 +228,6 @@ export const buttonsCustomizations: Components<Theme> = {
         '&:active': {
           backgroundColor: gray[200],
         },
-        '& .MuiSvgIcon-root': { width: '1.125rem', height: '1.125rem' },
         ...theme.applyStyles('dark', {
           backgroundColor: gray[800],
           '&:hover': {
@@ -249,6 +247,7 @@ export const buttonsCustomizations: Components<Theme> = {
               width: '2rem',
               height: '2rem',
               padding: '0.25rem',
+              '& .MuiSvgIcon-root': { fontSize: '1rem' },
             },
           },
           {

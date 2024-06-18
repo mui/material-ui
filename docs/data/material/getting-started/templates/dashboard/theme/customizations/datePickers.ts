@@ -25,6 +25,7 @@ export const datePickersCustomizations: PickersProComponents<Theme> & PickerComp
   },
   MuiPickersArrowSwitcher: {
     styleOverrides: {
+      spacer: { width: 16 },
       button: ({ theme }) => ({
         color: theme.palette.grey[500],
         ...theme.applyStyles('dark', {
@@ -53,6 +54,7 @@ export const datePickersCustomizations: PickersProComponents<Theme> & PickerComp
         },
         '&.Mui-selected': {
           backgroundColor: gray[700],
+          fontWeight: theme.typography.fontWeightMedium,
         },
         '&:focus': {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,
@@ -61,12 +63,13 @@ export const datePickersCustomizations: PickersProComponents<Theme> & PickerComp
           '&.Mui-selected': { backgroundColor: gray[700] },
         },
         ...theme.applyStyles('dark', {
-          color: theme.palette.grey[500],
+          color: theme.palette.grey[300],
           '&:hover': {
             backgroundColor: theme.palette.action.hover,
           },
           '&.Mui-selected': {
             color: theme.palette.common.black,
+            fontWeight: theme.typography.fontWeightMedium,
             backgroundColor: gray[300],
           },
           '&:focus': {
@@ -92,6 +95,7 @@ export const datePickersCustomizations: PickersProComponents<Theme> & PickerComp
         },
         '&.Mui-selected': {
           backgroundColor: gray[700],
+          fontWeight: theme.typography.fontWeightMedium,
         },
         '&:focus': {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,
@@ -100,12 +104,13 @@ export const datePickersCustomizations: PickersProComponents<Theme> & PickerComp
           '&.Mui-selected': { backgroundColor: gray[700] },
         },
         ...theme.applyStyles('dark', {
-          color: theme.palette.grey[500],
+          color: theme.palette.grey[300],
           '&:hover': {
             backgroundColor: theme.palette.action.hover,
           },
           '&.Mui-selected': {
             color: theme.palette.common.black,
+            fontWeight: theme.typography.fontWeightMedium,
             backgroundColor: gray[300],
           },
           '&:focus': {
@@ -130,6 +135,7 @@ export const datePickersCustomizations: PickersProComponents<Theme> & PickerComp
         },
         '&.Mui-selected': {
           backgroundColor: gray[700],
+          fontWeight: theme.typography.fontWeightMedium,
         },
         '&:focus': {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,
@@ -138,12 +144,13 @@ export const datePickersCustomizations: PickersProComponents<Theme> & PickerComp
           '&.Mui-selected': { backgroundColor: gray[700] },
         },
         ...theme.applyStyles('dark', {
-          color: theme.palette.grey[500],
+          color: theme.palette.grey[300],
           '&:hover': {
             backgroundColor: theme.palette.action.hover,
           },
           '&.Mui-selected': {
             color: theme.palette.common.black,
+            fontWeight: theme.typography.fontWeightMedium,
             backgroundColor: gray[300],
           },
           '&:focus': {

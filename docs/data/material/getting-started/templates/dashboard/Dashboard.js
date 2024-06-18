@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import getDashboardTheme from './theme/getDashboardTheme';
 import ToggleCustomTheme from './internals/components/ToggleCustomTheme';
-import Copyright from './internals/components/Copyright';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import MainGrid from './components/MainGrid';
@@ -54,7 +53,6 @@ export default function Dashboard() {
           >
             <Header />
             <MainGrid />
-            <Copyright sx={{ my: 4 }} />
           </Stack>
         </Box>
         <ToggleCustomTheme

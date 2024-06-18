@@ -45,10 +45,10 @@ export const gray = {
   300: 'hsl(220, 25%, 80%)',
   400: 'hsl(220, 20%, 65%)',
   500: 'hsl(220, 20%, 42%)',
-  600: 'hsl(220, 25%, 35%)',
-  700: 'hsl(220, 25%, 25%)',
-  800: 'hsl(220, 65%, 6%)',
-  900: 'hsl(220, 80%, 3%)',
+  600: 'hsl(220, 15%, 35%)',
+  700: 'hsl(220, 10%, 25%)',
+  800: 'hsl(220, 50%, 6%)',
+  900: 'hsl(220, 55%, 3%)',
 };
 
 export const green = {
@@ -150,7 +150,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     grey: {
       ...gray,
     },
-    divider: mode === 'dark' ? alpha(gray[500], 0.3) : alpha(gray[300], 0.5),
+    divider: mode === 'dark' ? alpha(gray[700], 0.35) : alpha(gray[300], 0.5),
     background: {
       default: 'hsl(0, 0%, 99%)',
       paper: gray[50],
