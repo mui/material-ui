@@ -23,6 +23,7 @@ describe('<MenuList />', () => {
   const { render } = createRenderer();
 
   describeConformance(<MenuList />, () => ({
+    render,
     classes: {},
     inheritComponent: List,
     refInstanceof: window.HTMLUListElement,

@@ -23,6 +23,7 @@ describe('<Slide />', () => {
       <div />
     </Slide>,
     () => ({
+      render,
       classes: {},
       inheritComponent: Transition,
       refInstanceof: window.HTMLDivElement,

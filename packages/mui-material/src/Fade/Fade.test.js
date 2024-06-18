@@ -16,6 +16,7 @@ describe('<Fade />', () => {
   };
 
   describeConformance(<Fade {...defaultProps} />, () => ({
+    render,
     classes: {},
     inheritComponent: Transition,
     refInstanceof: window.HTMLDivElement,

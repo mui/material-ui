@@ -26,14 +26,6 @@ describe('<TableRow />', () => {
       );
       return { container: container.firstChild.firstChild, ...other };
     },
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(
-        <table>
-          <tbody>{node}</tbody>
-        </table>,
-      );
-      return wrapper.find('tbody').childAt(0);
-    },
     muiName: 'MuiTableRow',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableRowElement,

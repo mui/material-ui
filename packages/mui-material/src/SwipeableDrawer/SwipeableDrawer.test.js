@@ -63,6 +63,7 @@ describe('<SwipeableDrawer />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
+    render,
     classes: {},
     inheritComponent: Drawer,
     refInstanceof: window.HTMLDivElement,

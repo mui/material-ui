@@ -12,7 +12,6 @@ describe('<TabPanel />', () => {
     classes,
     inheritComponent: 'div',
     render: (node) => render(<TabContext value="0">{node}</TabContext>),
-    wrapMount: (mount) => (node) => mount(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiTabPanel',
     skip: [

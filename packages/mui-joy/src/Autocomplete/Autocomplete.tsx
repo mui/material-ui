@@ -632,9 +632,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     },
   });
 
-  const defaultRenderOption = (optionProps: any, option: unknown) => (
-    <SlotOption {...optionProps}>{getOptionLabel(option)}</SlotOption>
-  );
+  const defaultRenderOption = (optionProps: any, option: unknown) => {
+    const { key, ...rest } = optionProps;
+    return (
+      <SlotOption key={key} {...rest}>
+        {getOptionLabel(option)}
+      </SlotOption>
+    );
+  };
 
   const renderOption = renderOptionProp || defaultRenderOption;
 
