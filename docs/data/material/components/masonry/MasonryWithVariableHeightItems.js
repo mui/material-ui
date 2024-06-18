@@ -14,8 +14,11 @@ import Paper from '@mui/material/Paper';
 const heights = [150, 30, 90, 70, 90, 100, 150, 30, 50, 80];
 
 const StyledAccordion = styled(Accordion)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: '#fff',
   color: theme.palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
 }));
 
 export default function MasonryWithVariableHeightItems() {

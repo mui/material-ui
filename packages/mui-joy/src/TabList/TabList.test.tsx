@@ -21,7 +21,6 @@ describe('Joy <TabList />', () => {
     classes,
     inheritComponent: 'div',
     render: (node) => render(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
-    wrapMount: (mount) => (node) => mount(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
     ThemeProvider,
     muiName: 'JoyTabList',
     refInstanceof: window.HTMLDivElement,

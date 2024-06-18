@@ -146,3 +146,89 @@ function App() {
   );
 }
 ```
+
+## Styling in dark mode
+
+Use the `theme.applyStyles` utility to apply styles for a specific mode.
+
+We recommend using this function over checking `theme.palette.mode` to switch between styles as it has more benefits:
+
+- It works with or without `CssVarsProvider`. The function automatically switches between overriding object styles or injecting pseudo-classes based on the upper provider.
+- It lets you prevent [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651) when using with `CssVarsProvider`.
+- It can be used with [Pigment CSS](https://github.com/mui/material-ui/tree/master/packages/pigment-css-react), our in-house zero-runtime CSS-in-JS solution.
+- It is generally more readable and maintainable.
+- It is slightly more performant as it doesn't require to do style recalculation but the bundle size of SSR generated styles is larger.
+
+### Usage
+
+With the `**styled**` function:
+
+```jsx
+import { styled } from '@mui/material/styles';
+
+const MyComponent = styled('div')(({ theme }) => ({
+  color: '#fff',
+  backgroundColor: theme.palette.primary.main,
+  ...theme.applyStyles('dark', {
+    backgroundColor: theme.palette.secondary.main,
+  }),
+  '&:hover': {
+    boxShadow: theme.shadows[3],
+    backgroundColor: theme.palette.primary.dark,
+    ...theme.applyStyles('dark', {
+      backgroundColor: theme.palette.secondary.dark,
+    }),
+  },
+}));
+```
+
+With the `**sx**` prop:
+
+```jsx
+import Button from '@mui/material/Button';
+
+<Button
+  sx={[
+    (theme) => ({
+      color: '#fff',
+      backgroundColor: theme.palette.primary.main,
+      ...theme.applyStyles('dark', {
+        backgroundColor: theme.palette.secondary.main,
+      }),
+      '&:hover': {
+        boxShadow: theme.shadows[3],
+        backgroundColor: theme.palette.primary.dark,
+        ...theme.applyStyles('dark', {
+          backgroundColor: theme.palette.secondary.dark,
+        }),
+      },
+    }),
+  ]}
+>
+  Submit
+</Button>;
+```
+
+### Codemod
+
+We provide codemods to migrate your codebase from using `theme.palette.mode` to use `theme.applyStyles()`.
+You can run each codemod below or all of them at once.
+
+```bash
+npx @mui/codemod@next v6.0.0/styled <path/to/folder-or-file>
+npx @mui/codemod@next v6.0.0/sx-prop <path/to/folder-or-file>
+npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme-file>
+```
+
+> Run `v6.0.0/theme-v6` against the file that contains the custom `styleOverrides`. Ignore this codemod if you don't have a custom theme.
+
+### API
+
+`theme.applyStyles(mode, styles) => CSSObject`
+
+Apply styles for a specific mode.
+
+#### Arguments
+
+- `mode` (`'light' | 'dark'`) - The mode for which the styles should be applied.
+- `styles` (`CSSObject`) - An object which contains the styles to be applied for the specified mode.

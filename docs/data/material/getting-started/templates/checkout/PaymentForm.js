@@ -21,32 +21,38 @@ import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
 import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 
-const Card = styled(MuiCard)(({ theme, selected }) => ({
+const Card = styled(MuiCard)(({ theme }) => ({
   border: '1px solid',
   borderColor: theme.palette.divider,
   width: '100%',
   '&:hover': {
     background:
-      theme.palette.mode === 'light'
-        ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
-        : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
-    borderColor: theme.palette.mode === 'light' ? 'primary.light' : 'primary.dark',
-    boxShadow:
-      theme.palette.mode === 'light'
-        ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
-        : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
+      'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
+    borderColor: 'primary.light',
+    boxShadow: '0px 2px 8px hsla(0, 0%, 0%, 0.1)',
+    ...theme.applyStyles('dark', {
+      background:
+        'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+      borderColor: 'primary.dark',
+      boxShadow: '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
+    }),
   },
   [theme.breakpoints.up('md')]: {
     flexGrow: 1,
     maxWidth: `calc(50% - ${theme.spacing(1)})`,
   },
-  ...(selected && {
-    backgroundColor: theme.palette.action.selected,
-    borderColor:
-      theme.palette.mode === 'light'
-        ? theme.palette.primary.light
-        : theme.palette.primary.dark,
-  }),
+  variants: [
+    {
+      props: ({ selected }) => selected,
+      style: {
+        backgroundColor: theme.palette.action.selected,
+        borderColor: theme.palette.primary.light,
+        ...theme.applyStyles('dark', {
+          borderColor: theme.palette.primary.dark,
+        }),
+      },
+    },
+  ],
 }));
 
 const PaymentContainer = styled('div')(({ theme }) => ({
@@ -60,9 +66,7 @@ const PaymentContainer = styled('div')(({ theme }) => ({
   border: '1px solid ',
   borderColor: theme.palette.divider,
   background:
-    theme.palette.mode === 'light'
-      ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.3) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
-      : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+    'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.3) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
   boxShadow: '0px 4px 8px hsla(210, 0%, 0%, 0.05)',
   [theme.breakpoints.up('xs')]: {
     height: 300,
@@ -70,6 +74,10 @@ const PaymentContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
     height: 350,
   },
+  ...theme.applyStyles('dark', {
+    background:
+      'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+  }),
 }));
 
 const FormGrid = styled('div')(() => ({
@@ -139,12 +147,17 @@ export default function PaymentForm() {
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <CreditCardRoundedIcon
                   fontSize="small"
-                  sx={(theme) => ({
-                    color: theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
-                    ...(paymentType === 'creditCard' && {
-                      color: 'primary.main',
+                  sx={[
+                    (theme) => ({
+                      color: 'grey.400',
+                      ...theme.applyStyles('dark', {
+                        color: 'grey.600',
+                      }),
                     }),
-                  })}
+                    paymentType === 'creditCard' && {
+                      color: 'primary.main',
+                    },
+                  ]}
                 />
                 <Typography sx={{ fontWeight: 'medium' }}>Card</Typography>
               </CardContent>
@@ -165,12 +178,17 @@ export default function PaymentForm() {
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <AccountBalanceRoundedIcon
                   fontSize="small"
-                  sx={(theme) => ({
-                    color: theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
-                    ...(paymentType === 'bankTransfer' && {
-                      color: 'primary.main',
+                  sx={[
+                    (theme) => ({
+                      color: 'grey.400',
+                      ...theme.applyStyles('dark', {
+                        color: 'grey.600',
+                      }),
                     }),
-                  })}
+                    paymentType === 'bankTransfer' && {
+                      color: 'primary.main',
+                    },
+                  ]}
                 />
                 <Typography sx={{ fontWeight: 'medium' }}>Bank account</Typography>
               </CardContent>
