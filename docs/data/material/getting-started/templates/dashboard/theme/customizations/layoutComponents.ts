@@ -2,6 +2,7 @@ import { Components } from '@mui/material';
 import { alpha, Theme } from '@mui/material/styles';
 import { gray } from '../themePrimitives';
 
+/* eslint-disable import/prefer-default-export */
 export const layoutComponentsCustomizations: Components<Theme> = {
   MuiPaper: {
     defaultProps: {
