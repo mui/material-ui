@@ -1325,15 +1325,14 @@ describe('<Select />', () => {
     });
 
     // React renders twice in strict mode, so we expect twice the number of spy calls
-    expect(renderOption1Spy.callCount).to.equal(2); // '1' as focusVisible becomes true
 
     await userEvent.keyboard('{ArrowDown}'); // highlights '2'
-    expect(renderOption1Spy.callCount).to.equal(6); // '1' rerenders as it loses highlight
-    expect(renderOption2Spy.callCount).to.equal(4); // '2' rerenders as it receives highlight
+    expect(renderOption1Spy.callCount).to.equal(2); // '1' rerenders as it loses highlight
+    expect(renderOption2Spy.callCount).to.equal(2); // '2' rerenders as it receives highlight
 
     await userEvent.keyboard('{Enter}'); // selects '2'
-    expect(renderOption1Spy.callCount).to.equal(6);
-    expect(renderOption2Spy.callCount).to.equal(8);
+    expect(renderOption1Spy.callCount).to.equal(2);
+    expect(renderOption2Spy.callCount).to.equal(4);
 
     // neither the highlighted nor the selected state of these options changed,
     // so they don't need to rerender:

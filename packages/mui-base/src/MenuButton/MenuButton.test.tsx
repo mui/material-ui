@@ -81,13 +81,6 @@ describe('<MenuButton />', () => {
   });
 
   describe('prop: focusableWhenDisabled', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     it('has the aria-disabled instead of disabled attribute when disabled', () => {
       const { getByRole } = render(
         <DropdownContext.Provider value={testContext}>
@@ -138,13 +131,6 @@ describe('<MenuButton />', () => {
   });
 
   describe('keyboard navigation', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     [<MenuButton />, <MenuButton slots={{ root: 'span' }} />].forEach((buttonComponent) => {
       const buttonType = buttonComponent.props.slots?.root ? 'non-native' : 'native';
       ['ArrowUp', 'ArrowDown'].forEach((key) =>

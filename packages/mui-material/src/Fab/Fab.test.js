@@ -127,12 +127,7 @@ describe('<Fab />', () => {
     expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
 
-  it('should pass disableFocusRipple to ButtonBase', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
-
+  it('should pass disableFocusRipple to ButtonBase', async () => {
     const { getByRole } = render(
       <Fab
         TouchRippleProps={{

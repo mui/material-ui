@@ -75,7 +75,12 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', () => {
+    it('should add the focusVisible class when focused', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM crashes when matching :focus-visible
+        this.skip();
+      }
+
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 

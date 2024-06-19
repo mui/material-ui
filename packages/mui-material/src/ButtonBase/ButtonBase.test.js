@@ -163,13 +163,6 @@ describe('<ButtonBase />', () => {
   });
 
   describe('event callbacks', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     it('should fire event callbacks', () => {
       const onClick = spy();
       const onBlur = spy();
@@ -804,13 +797,6 @@ describe('<ButtonBase />', () => {
   });
 
   describe('event: focus', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     it('when disabled should be called onFocus', () => {
       const onFocusSpy = spy();
       const { getByRole } = render(
@@ -826,7 +812,12 @@ describe('<ButtonBase />', () => {
       expect(onFocusSpy.callCount).to.equal(1);
     });
 
-    it('has a focus-visible polyfill', () => {
+    it('has a focus-visible polyfill', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM crashes when matching :focus-visible
+        this.skip();
+      }
+
       const { getByText } = render(<ButtonBase>Hello</ButtonBase>);
       const button = getByText('Hello');
       simulatePointerDevice();
@@ -848,7 +839,12 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.class(classes.focusVisible);
     });
 
-    it('removes focus-visible if focus is re-targetted', () => {
+    it('removes focus-visible if focus is re-targetted', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM crashes when matching :focus-visible
+        this.skip();
+      }
+
       /**
        * @type {string[]}
        */
@@ -893,7 +889,12 @@ describe('<ButtonBase />', () => {
       expect(buttonBase).not.to.have.class(classes.focusVisible);
     });
 
-    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', () => {
+    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM crashes when matching :focus-visible
+        this.skip();
+      }
+
       const onFocusVisibleSpy = spy();
       const { getByRole } = render(
         <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy}>

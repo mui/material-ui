@@ -55,13 +55,6 @@ describe('<Link />', () => {
   });
 
   describe('event callbacks', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     it('should fire event callbacks', () => {
       const events = ['onBlur', 'onFocus'];
 

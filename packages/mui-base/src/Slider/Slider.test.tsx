@@ -154,12 +154,7 @@ describe('<Slider />', () => {
     ['range', [2, 1]],
   ] as Values;
   values.forEach(([valueLabel, value]) => {
-    it(`calls onChange even if the ${valueLabel} did not change`, function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-
+    it(`calls onChange even if the ${valueLabel} did not change`, () => {
       const handleChange = spy();
 
       render(
@@ -452,12 +447,7 @@ describe('<Slider />', () => {
     });
   });
 
-  it('should support Shift + Left Arrow / Right Arrow keys', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should support Shift + Left Arrow / Right Arrow keys', () => {
     const hanleChange = spy();
     const { getByTestId } = render(
       <Slider
@@ -490,12 +480,7 @@ describe('<Slider />', () => {
     expect(hanleChange.args[1][1]).to.deep.equal(20);
   });
 
-  it('should support Shift + Up Arrow / Down Arrow keys', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should support Shift + Up Arrow / Down Arrow keys', () => {
     const hanleChange = spy();
     const { getByTestId } = render(
       <Slider
@@ -528,12 +513,7 @@ describe('<Slider />', () => {
     expect(hanleChange.args[1][1]).to.deep.equal(20);
   });
 
-  it('should support PageUp / PageDown keys', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should support PageUp / PageDown keys', () => {
     const hanleChange = spy();
     const { getByTestId } = render(
       <Slider
@@ -566,12 +546,7 @@ describe('<Slider />', () => {
     expect(hanleChange.args[1][1]).to.deep.equal(20);
   });
 
-  it('should support Shift + Left Arrow / Right Arrow keys by taking acount step and shiftStep', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should support Shift + Left Arrow / Right Arrow keys by taking acount step and shiftStep', () => {
     const hanleChange = spy();
     const defaultValue = 20;
     const shiftStep = 15;
@@ -611,12 +586,7 @@ describe('<Slider />', () => {
     expect(input).to.have.attribute('aria-valuenow', `${defaultValue}`);
   });
 
-  it('should stop at max/min when using Shift + Left Arrow / Right Arrow keys', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should stop at max/min when using Shift + Left Arrow / Right Arrow keys', () => {
     const hanleChange = spy();
     const { getByTestId } = render(
       <Slider

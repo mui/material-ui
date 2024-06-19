@@ -8,13 +8,6 @@ describe('useButton', () => {
   const { render } = createRenderer();
 
   describe('state: active', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     describe('when using a button element', () => {
       it('is set when triggered by mouse', () => {
         function TestComponent() {
@@ -177,7 +170,12 @@ describe('useButton', () => {
         expect(handleClickExternal.callCount).to.equal(0);
       });
 
-      it('handles onFocusVisible and does not include it in the root props', () => {
+      it('handles onFocusVisible and does not include it in the root props', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // JSDOM crashes when matching :focus-visible
+          this.skip();
+        }
+
         interface WithFocusVisibleHandler {
           onFocusVisible: React.FocusEventHandler;
         }

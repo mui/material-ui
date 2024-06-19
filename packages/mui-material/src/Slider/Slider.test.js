@@ -71,12 +71,7 @@ describe('<Slider />', () => {
     }),
   );
 
-  it('should call handlers', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should call handlers', () => {
     const handleChange = spy();
     const handleChangeCommitted = spy();
 
@@ -111,12 +106,7 @@ describe('<Slider />', () => {
     expect(handleChangeCommitted.callCount).to.equal(2);
   });
 
-  it('should only listen to changes from the same touchpoint', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should only listen to changes from the same touchpoint', () => {
     const handleChange = spy();
     const handleChangeCommitted = spy();
     const { container } = render(
@@ -150,12 +140,7 @@ describe('<Slider />', () => {
     expect(handleChangeCommitted.callCount).to.equal(1);
   });
 
-  it('should hedge against a dropped mouseup event', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should hedge against a dropped mouseup event', () => {
     const handleChange = spy();
     const { container } = render(<Slider onChange={handleChange} value={0} />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -185,12 +170,7 @@ describe('<Slider />', () => {
     expect(handleChange.callCount).to.equal(2);
   });
 
-  it('should only fire onChange when the value changes', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should only fire onChange when the value changes', () => {
     const handleChange = spy();
     const { container } = render(<Slider defaultValue={20} onChange={handleChange} />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -243,13 +223,6 @@ describe('<Slider />', () => {
   });
 
   describe('prop: orientation', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     it('should render with the vertical classes', () => {
       const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);
       expect(container.firstChild).to.have.class(classes.vertical);
@@ -284,13 +257,6 @@ describe('<Slider />', () => {
   });
 
   describe('range', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     it('should support keyboard', () => {
       const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
       const [slider1, slider2] = getAllByRole('slider');
@@ -427,12 +393,7 @@ describe('<Slider />', () => {
     });
   });
 
-  it('should not break when initial value is out of range', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should not break when initial value is out of range', () => {
     const { container } = render(<Slider value={[19, 41]} min={20} max={40} />);
 
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -450,12 +411,7 @@ describe('<Slider />', () => {
     fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
   });
 
-  it('focuses the thumb on when touching', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('focuses the thumb on when touching', () => {
     const { getByRole } = render(<Slider value={0} min={20} max={40} />);
     const thumb = getByRole('slider');
 
@@ -465,13 +421,6 @@ describe('<Slider />', () => {
   });
 
   describe('prop: step', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     it('should handle a null step', () => {
       const { getByRole, container } = render(
         <Slider
@@ -740,12 +689,7 @@ describe('<Slider />', () => {
   });
 
   describe('aria-valuenow', () => {
-    it('should update the aria-valuenow', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-
+    it('should update the aria-valuenow', () => {
       const { getByRole } = render(<Slider defaultValue={50} />);
       const slider = getByRole('slider');
       act(() => {
@@ -770,12 +714,7 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('min', String(min));
     });
 
-    it('should use min as the step origin', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-
+    it('should use min as the step origin', () => {
       const min = 150;
       const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={min} />);
       const slider = getByRole('slider');
@@ -786,12 +725,7 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', String(min));
     });
 
-    it('should not go less than the min', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-
+    it('should not go less than the min', () => {
       const min = 150;
       const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={min} />);
       const slider = getByRole('slider');
@@ -814,12 +748,7 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('max', String(max));
     });
 
-    it('should not go more than the max', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-
+    it('should not go more than the max', () => {
       const max = 750;
       const { getByRole } = render(<Slider defaultValue={150} step={100} max={max} min={150} />);
       const slider = getByRole('slider');
@@ -831,12 +760,7 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', String(max));
     });
 
-    it('should reach right edge value', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-
+    it('should reach right edge value', () => {
       const { getByRole, container } = render(
         <Slider defaultValue={90} min={6} max={108} step={10} />,
       );
@@ -1005,13 +929,6 @@ describe('<Slider />', () => {
   });
 
   describe('rtl', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     it('should add direction css', () => {
       const { getByRole } = render(
         <ThemeProvider
@@ -1168,12 +1085,7 @@ describe('<Slider />', () => {
     expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(2);
   });
 
-  it('should pass "name" and "value" as part of the event.target for onChange', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should pass "name" and "value" as part of the event.target for onChange', () => {
     const handleChange = stub().callsFake((event) => event.target);
     const { getByRole } = render(
       <Slider onChange={handleChange} name="change-testing" value={3} />,
@@ -1218,12 +1130,7 @@ describe('<Slider />', () => {
     });
   });
 
-  it('should not override the event.target on touch events', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should not override the event.target on touch events', () => {
     const handleChange = spy();
     const handleNativeEvent = spy();
     const handleEvent = spy();
@@ -1261,12 +1168,7 @@ describe('<Slider />', () => {
     expect(handleEvent.firstCall.args[0]).to.have.property('target', slider);
   });
 
-  it('should not override the event.target on mouse events', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
-      this.skip();
-    }
-
+  it('should not override the event.target on mouse events', () => {
     const handleChange = spy();
     const handleNativeEvent = spy();
     const handleEvent = spy();
@@ -1304,13 +1206,6 @@ describe('<Slider />', () => {
   });
 
   describe('dragging state', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     it('should not apply class name for click modality', () => {
       const { container } = render(<Slider defaultValue={90} />);
 
@@ -1375,13 +1270,6 @@ describe('<Slider />', () => {
   });
 
   describe('prop: disableSwap', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
-        this.skip();
-      }
-    });
-
     it('should bound the value when using the keyboard', () => {
       const handleChange = spy();
       const { getAllByRole } = render(
