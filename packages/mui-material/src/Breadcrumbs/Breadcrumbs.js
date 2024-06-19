@@ -7,7 +7,7 @@ import integerPropType from '@mui/utils/integerPropType';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';

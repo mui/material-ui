@@ -11,7 +11,7 @@ import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuUtilityClass } from './menuClasses';
 
 const RTL_ORIGIN = {

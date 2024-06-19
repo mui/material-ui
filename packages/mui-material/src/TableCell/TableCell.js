@@ -8,7 +8,7 @@ import capitalize from '../utils/capitalize';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
 
 const useUtilityClasses = (ownerState) => {

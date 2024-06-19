@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
 import Fade from '../Fade';
 import { getBackdropUtilityClass } from './backdropClasses';

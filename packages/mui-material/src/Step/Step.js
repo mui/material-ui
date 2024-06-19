@@ -7,7 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from './StepContext';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepUtilityClass } from './stepClasses';
 
 const useUtilityClasses = (ownerState) => {

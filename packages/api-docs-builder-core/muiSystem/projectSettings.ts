@@ -25,7 +25,7 @@ export const projectSettings: ProjectSettings = {
   skipComponent(filename) {
     return (
       filename.match(
-        /(ThemeProvider|CssVarsProvider|PropsProvider|GlobalStyles|InitColorSchemeScript)/,
+        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|GlobalStyles|InitColorSchemeScript)/,
       ) !== null
     );
   },

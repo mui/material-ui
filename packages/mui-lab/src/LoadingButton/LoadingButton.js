@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { chainPropTypes } from '@mui/utils';
 import { capitalize, unstable_useId as useId } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useDefaultProps } from '@mui/material/PropsProvider';
+import { useDefaultProps } from '@mui/material/DefaultPropsProvider';
 import Button from '@mui/material/Button';
 import { ButtonGroupContext } from '@mui/material/ButtonGroup';
 import CircularProgress from '@mui/material/CircularProgress';

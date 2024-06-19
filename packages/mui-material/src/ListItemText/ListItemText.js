@@ -6,7 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 
 const useUtilityClasses = (ownerState) => {

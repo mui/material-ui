@@ -7,7 +7,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import ImageListContext from '../ImageList/ImageListContext';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import isMuiElement from '../utils/isMuiElement';
 import imageListItemClasses, { getImageListItemUtilityClass } from './imageListItemClasses';
 

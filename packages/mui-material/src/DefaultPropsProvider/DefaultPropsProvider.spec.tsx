@@ -1,21 +1,19 @@
 import * as React from 'react';
-import PropsProvider from '@mui/material/PropsProvider';
+import DefaultPropsProvider from '@mui/material/DefaultPropsProvider';
 
 function CustomComponent() {
   return null;
 }
 
-<PropsProvider
+<DefaultPropsProvider
   value={{
     MuiSelect: {
-      defaultProps: {
-        IconComponent: CustomComponent,
-      },
+      IconComponent: CustomComponent,
     },
   }}
 />;
 
-<PropsProvider
+<DefaultPropsProvider
   value={{
     // @ts-expect-error
     Random: {},

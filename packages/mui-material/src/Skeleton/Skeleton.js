@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import { keyframes, css, styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 
 const useUtilityClasses = (ownerState) => {

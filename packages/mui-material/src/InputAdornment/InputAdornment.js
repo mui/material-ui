@@ -8,7 +8,7 @@ import Typography from '../Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
 
 const overridesResolver = (props, styles) => {

@@ -14,7 +14,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { styled } from '../zero-styled';
 
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, indeterminate, color, size } = ownerState;

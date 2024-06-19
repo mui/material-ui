@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { darken, lighten } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';

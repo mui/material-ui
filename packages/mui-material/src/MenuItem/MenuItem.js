@@ -6,7 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';

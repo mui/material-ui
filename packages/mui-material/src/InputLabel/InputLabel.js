@@ -9,7 +9,7 @@ import FormLabel, { formLabelClasses } from '../FormLabel';
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
 const useUtilityClasses = (ownerState) => {

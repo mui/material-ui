@@ -13,7 +13,7 @@ import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
 import { styled, useTheme } from '../zero-styled';
 
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',

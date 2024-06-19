@@ -6,7 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 
 const useUtilityClasses = (ownerState) => {

@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';

@@ -7,7 +7,7 @@ import StepContext from '../Step/StepContext';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
 import useSlot from '../utils/useSlot';
 

@@ -1,20 +1,20 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import SystemPropsProvider, {
+import SystemDefaultPropsProvider, {
   useDefaultProps as useSystemDefaultProps,
-} from '@mui/system/PropsProvider';
+} from '@mui/system/DefaultPropsProvider';
 import type { ComponentsPropsList } from '../styles/props';
 
-function PropsProvider(
+function DefaultPropsProvider(
   props: React.PropsWithChildren<{
-    value: { [P in keyof ComponentsPropsList]?: { defaultProps: Partial<ComponentsPropsList[P]> } };
+    value: { [P in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[P]> };
   }>,
 ) {
-  return <SystemPropsProvider {...props} />;
+  return <SystemDefaultPropsProvider {...props} />;
 }
 
-PropsProvider.propTypes /* remove-proptypes */ = {
+DefaultPropsProvider.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -29,7 +29,7 @@ PropsProvider.propTypes /* remove-proptypes */ = {
   value: PropTypes.object.isRequired,
 } as any;
 
-export default PropsProvider;
+export default DefaultPropsProvider;
 
 export function useDefaultProps<Props extends Record<string, any>>(params: {
   props: Props;

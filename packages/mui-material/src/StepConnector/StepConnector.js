@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepConnectorUtilityClass } from './stepConnectorClasses';

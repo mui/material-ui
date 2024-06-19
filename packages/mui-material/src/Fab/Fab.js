@@ -9,7 +9,7 @@ import fabClasses, { getFabUtilityClass } from './fabClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;

@@ -7,7 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
 import { styled, useTheme } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
 import capitalize from '../utils/capitalize';

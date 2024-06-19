@@ -7,7 +7,7 @@ import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
 const useUtilityClasses = (ownerState) => {

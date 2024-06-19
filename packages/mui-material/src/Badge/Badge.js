@@ -7,7 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { useBadge } from '@mui/base/useBadge';
 import { useSlotProps } from '@mui/base/utils';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 

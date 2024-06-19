@@ -9,7 +9,7 @@ import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 
 const useUtilityClasses = (ownerState) => {

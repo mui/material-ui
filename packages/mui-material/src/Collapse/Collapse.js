@@ -7,7 +7,7 @@ import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled, useTheme } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
 import { useForkRef } from '../utils';

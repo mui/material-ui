@@ -6,7 +6,7 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useFormControl } from '../FormControl';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Stack from '../Stack';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';

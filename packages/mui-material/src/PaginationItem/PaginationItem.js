@@ -15,7 +15,7 @@ import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import useSlot from '../utils/useSlot';
 import { styled } from '../zero-styled';
 
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;

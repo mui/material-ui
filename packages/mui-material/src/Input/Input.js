@@ -7,7 +7,7 @@ import refType from '@mui/utils/refType';
 import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,

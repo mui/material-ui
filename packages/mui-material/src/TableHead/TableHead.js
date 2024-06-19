@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTableHeadUtilityClass } from './tableHeadClasses';
 
 const useUtilityClasses = (ownerState) => {

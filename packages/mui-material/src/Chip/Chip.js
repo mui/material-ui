@@ -10,7 +10,7 @@ import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
 const useUtilityClasses = (ownerState) => {

@@ -6,7 +6,7 @@ import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';

@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
 
 const useUtilityClasses = (ownerState) => {

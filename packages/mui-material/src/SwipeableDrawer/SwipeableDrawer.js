@@ -11,7 +11,7 @@ import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import { useTheme } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTransitionProps } from '../transitions/utils';
 import SwipeArea from './SwipeArea';
 

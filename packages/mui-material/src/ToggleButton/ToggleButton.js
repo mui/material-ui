@@ -9,7 +9,7 @@ import { alpha } from '@mui/system/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../PropsProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from '../ToggleButtonGroup/ToggleButtonGroupButtonContext';
