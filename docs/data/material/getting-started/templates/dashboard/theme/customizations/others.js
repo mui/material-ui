@@ -1,6 +1,7 @@
 import { alpha } from '@mui/material/styles';
 import { gray, red, brand, green } from '../themePrimitives';
 
+/* eslint-disable import/prefer-default-export */
 export const otherComponentsCustomizations = {
   MuiLink: {
     defaultProps: {

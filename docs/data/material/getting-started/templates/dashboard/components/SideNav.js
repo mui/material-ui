@@ -62,8 +62,8 @@ function SideNav({ open, toggleDrawer, mode, toggleColorMode }) {
           <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
         <Divider />
-        <MenuContent />
-        <Stack sx={{ gap: 2 }}>
+        <Stack>
+          <MenuContent />
           <Divider />
           <List>
             {accountsList.map((item, index) => (
