@@ -895,6 +895,7 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
       - test_unit:
           <<: *default-context
@@ -915,7 +916,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - next
     jobs:
       - test_unit:
           <<: *default-context
