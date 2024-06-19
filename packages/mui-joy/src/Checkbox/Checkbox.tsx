@@ -244,15 +244,18 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
 
-  const registerEffect = formControl?.registerEffect;
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
 
-  React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'production' && registerEffect) {
-      return registerEffect();
-    }
-
-    return undefined;
-  }, [registerEffect]);
+      return undefined;
+    }, [registerEffect]);
+  }
 
   const id = useId(idOverride ?? formControl?.htmlFor);
 

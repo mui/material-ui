@@ -241,9 +241,8 @@ describe('extendTheme', () => {
 
       function Test() {
         const theme = useTheme();
-        React.useEffect(() => {
-          styles = theme.unstable_sx({ bgcolor: 'primary.500' });
-        }, [theme]);
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- styles is required outside the component
+        styles = theme.unstable_sx({ bgcolor: 'primary.500' });
         return null;
       }
 
@@ -263,9 +262,7 @@ describe('extendTheme', () => {
 
       function Test() {
         const theme = useTheme();
-        React.useEffect(() => {
-          styles = theme.unstable_sx({ borderRadius: 'md' });
-        }, [theme]);
+        styles = theme.unstable_sx({ borderRadius: 'md' });
         return null;
       }
 
