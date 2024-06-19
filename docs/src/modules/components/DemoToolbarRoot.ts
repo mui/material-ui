@@ -32,14 +32,18 @@ const DemoToolbarRoot = styled('div', {
       {
         props: ({ demoOptions }) => demoOptions.bg === 'inline',
         style: {
-          marginTop: theme.spacing(1),
-          borderTopWidth: 1,
+          [theme.breakpoints.up('sm')]: {
+            marginTop: theme.spacing(1),
+            borderTopWidth: 1,
+          },
         },
       },
       {
         props: ({ openDemoSource }) => openDemoSource,
         style: {
-          borderRadius: 0,
+          [theme.breakpoints.up('sm')]: {
+            borderRadius: 0,
+          },
         },
       },
     ],
