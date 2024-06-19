@@ -361,6 +361,10 @@ export interface UseAutocompleteRenderedOption<Value> {
   index: number;
 }
 
+export type UseAutocompleteGetOptionPropsReturnValue = React.HTMLAttributes<HTMLLIElement> & {
+  key: any;
+};
+
 export interface UseAutocompleteReturnValue<
   Value,
   Multiple extends boolean | undefined = false,
@@ -411,7 +415,7 @@ export interface UseAutocompleteReturnValue<
    */
   getOptionProps: (
     renderedOption: UseAutocompleteRenderedOption<Value>,
-  ) => React.HTMLAttributes<HTMLLIElement> & { key: any };
+  ) => UseAutocompleteGetOptionPropsReturnValue;
   /**
    * Id for the Autocomplete.
    */

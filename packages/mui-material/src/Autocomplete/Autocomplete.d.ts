@@ -11,7 +11,7 @@ import {
   createFilterOptions,
   UseAutocompleteProps,
   AutocompleteFreeSoloValueMapping,
-  UseAutocompleteReturnValue,
+  UseAutocompleteGetOptionPropsReturnValue,
 } from '@mui/base';
 import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
@@ -326,12 +326,7 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    */
   renderOption?: (
-    props: UseAutocompleteReturnValue<
-      Value,
-      Multiple,
-      DisableClearable,
-      FreeSolo
-    >['getOptionProps'],
+    props: UseAutocompleteGetOptionPropsReturnValue,
     option: Value,
     state: AutocompleteRenderOptionState,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
