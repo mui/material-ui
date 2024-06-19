@@ -169,4 +169,11 @@ export const otherComponentsCustomizations = {
       },
     },
   },
+  MuiDrawer: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        backgroundColor: theme.palette.background.default,
+      }),
+    },
+  },
 };
