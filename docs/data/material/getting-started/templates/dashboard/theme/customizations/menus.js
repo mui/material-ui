@@ -96,12 +96,6 @@ export const menuComponentsCustomizations = {
           backgroundColor: theme.palette.background.paper,
           boxShadow: 'none',
         },
-        '&.Mui-focused': {
-          outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
-          outlineOffset: '2px',
-          boxShadow: 'none',
-          backgroundColor: gray[100],
-        },
         '&:before, &:after': {
           display: 'none',
         },
@@ -115,12 +109,6 @@ export const menuComponentsCustomizations = {
             backgroundColor: theme.palette.background.paper,
             boxShadow: 'none',
           },
-          '&.Mui-focused': {
-            outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
-            outlineOffset: '2px',
-            boxShadow: 'none',
-            backgroundColor: gray[900],
-          },
           '&:before, &:after': {
             display: 'none',
           },
@@ -130,10 +118,24 @@ export const menuComponentsCustomizations = {
         display: 'flex',
         alignItems: 'center',
         padding: theme.spacing(1, 2),
+        '&:focus-visible': {
+          borderRadius: theme.shape.borderRadius,
+          outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
+          outlineOffset: '2px',
+          boxShadow: 'none',
+          backgroundColor: gray[100],
+        },
         ...theme.applyStyles('dark', {
           display: 'flex',
           alignItems: 'center',
           padding: theme.spacing(1, 2),
+          '&.focus-visible': {
+            borderRadius: theme.shape.borderRadius,
+            outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
+            outlineOffset: '2px',
+            boxShadow: 'none',
+            backgroundColor: gray[900],
+          },
         }),
       }),
     },
