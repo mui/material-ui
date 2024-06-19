@@ -14,17 +14,21 @@ const NativeLink = styled('a')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  border: '3px solid transparent',
+  borderLeft: '1px solid',
+  borderRight: '1px solid',
+  borderBottom: 0,
+  borderColor: (theme.vars || theme).palette.divider,
   transition: theme.transitions.create(['background-color']),
   '&:first-of-type': {
-    borderRadius: '11px 11px 0 0', // concentric border-radius
+    borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+    borderRadius: '12px 12px 0 0',
   },
   '&:hover': {
     backgroundColor: (theme.vars || theme).palette.grey[50],
   },
   '&:focus-visible': {
-    outline: 'none',
-    borderColor: alpha((theme.vars || theme).palette.primary[500], 0.5),
+    outline: `3px solid ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
+    outlineOffset: '-3px',
   },
   '& img': {
     display: 'inline-block',
@@ -40,16 +44,7 @@ export default function DiamondSponsors() {
   const t = useTranslate();
 
   return (
-    <Stack
-      direction="column"
-      sx={{
-        mt: 2,
-        borderRadius: '12px',
-        border: '1px solid',
-        borderColor: 'divider',
-        overflow: 'clip',
-      }}
-    >
+    <Stack direction="column" sx={{ mt: 2 }}>
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
@@ -130,7 +125,6 @@ export default function DiamondSponsors() {
           ]}
         />
       </NativeLink>
-      <Divider />
       <Link
         href="/material-ui/discover-more/backers/#diamond-sponsors"
         sx={(theme) => ({
@@ -139,21 +133,24 @@ export default function DiamondSponsors() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          border: '3px solid transparent',
-          borderRadius: '0 0 11px 11px',
-          outline: 'none !important', // override styles coming from the branding theme
-          backgroundColor: alpha(theme.palette.primary[50], 0.5),
+          border: '1px dashed',
+          borderColor: (theme.vars || theme).palette.grey[300],
+          borderRadius: '0 0 12px 12px',
+          backgroundColor: alpha(theme.palette.primary[50], 0.4),
           transition: theme.transitions.create(['color', 'background-color']),
           '&:hover': {
             backgroundColor: (theme.vars || theme).palette.primary[50],
+            borderColor: (theme.vars || theme).palette.primary[200],
           },
           '&:focus-visible': {
-            border: `3px solid ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
+            outlineOffset: '-3px',
           },
           ...theme.applyDarkStyles({
-            backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
+            backgroundColor: alpha(theme.palette.primaryDark[700], 0.3),
+            borderColor: alpha(theme.palette.primaryDark[600], 0.5),
             '&:hover': {
               backgroundColor: alpha(theme.palette.primary[700], 0.1),
+              borderColor: alpha(theme.palette.primary[600], 0.4),
             },
           }),
         })}
