@@ -888,6 +888,10 @@ workflows:
       - test_profile:
           <<: *default-context
   react-17:
+    when:
+      or:
+        - equal: [react-17, << pipeline.parameters.workflow >>]
+        - equal: [scheduled_pipeline, << pipeline.trigger_source]
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -910,6 +914,10 @@ workflows:
           <<: *default-context
           react-version: ^17.0.0
   react-next:
+    when:
+      or:
+        - equal: [react-next, << pipeline.parameters.workflow >>]
+        - equal: [scheduled_pipeline, << pipeline.trigger_source]
     triggers:
       - schedule:
           cron: '0 0 * * *'
