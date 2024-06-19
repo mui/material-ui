@@ -108,7 +108,7 @@ commands:
             pnpm --version
       - run:
           name: Install js dependencies
-          command: pnpm install
+          command: pnpm install --frozen-lockfile
       - when:
           condition: << parameters.browsers >>
           steps:
