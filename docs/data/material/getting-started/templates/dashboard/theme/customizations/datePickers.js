@@ -1,6 +1,8 @@
 import { alpha } from '@mui/material/styles';
+
 import { gray, brand } from '../themePrimitives';
 
+/* eslint-disable import/prefer-default-export */
 export const datePickersCustomizations = {
   MuiPickersPopper: {
     styleOverrides: {
@@ -25,6 +27,7 @@ export const datePickersCustomizations = {
     styleOverrides: {
       spacer: { width: 16 },
       button: ({ theme }) => ({
+        backgroundColor: 'transparent',
         color: theme.palette.grey[500],
         ...theme.applyStyles('dark', {
           color: theme.palette.grey[400],

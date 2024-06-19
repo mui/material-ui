@@ -4,6 +4,7 @@ import { alpha } from '@mui/material/styles';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { gray } from '../themePrimitives';
 
+/* eslint-disable import/prefer-default-export */
 export const menuComponentsCustomizations = {
   MuiList: {
     styleOverrides: {
@@ -75,13 +76,6 @@ export const menuComponentsCustomizations = {
           boxShadow:
             'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
         }),
-      }),
-    },
-  },
-  MuiDrawer: {
-    styleOverrides: {
-      paper: ({ theme }) => ({
-        backgroundColor: theme.palette.background.default,
       }),
     },
   },

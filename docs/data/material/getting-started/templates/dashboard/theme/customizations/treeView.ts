@@ -1,6 +1,6 @@
 import { alpha, Theme } from '@mui/material/styles';
-import { gray, brand } from '../themePrimitives';
 import type { TreeViewComponents } from '@mui/x-tree-view/themeAugmentation';
+import { gray, brand } from '../themePrimitives';
 
 export const treeViewCustomizations: TreeViewComponents<Theme> = {
   MuiTreeItem2: {
@@ -15,15 +15,7 @@ export const treeViewCustomizations: TreeViewComponents<Theme> = {
           borderLeft: '1px solid',
           borderColor: theme.palette.divider,
         },
-      }),
-      content: ({ theme }) => ({
-        marginTop: theme.spacing(1),
-        padding: theme.spacing(0.5, 1),
-        overflow: 'clip',
-        '&:hover': {
-          backgroundColor: alpha(gray[300], 0.2),
-        },
-        '&.focused': {
+        '&:focus-visible .content': {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,
           outlineOffset: '2px',
           '&:hover': {
@@ -32,6 +24,15 @@ export const treeViewCustomizations: TreeViewComponents<Theme> = {
             outlineOffset: '2px',
           },
         },
+      }),
+      content: ({ theme }) => ({
+        marginTop: theme.spacing(1),
+        padding: theme.spacing(0.5, 1),
+        overflow: 'clip',
+        '&:hover': {
+          backgroundColor: alpha(gray[300], 0.2),
+        },
+
         '&.selected': {
           backgroundColor: alpha(gray[300], 0.4),
           '&:hover': {
@@ -58,3 +59,5 @@ export const treeViewCustomizations: TreeViewComponents<Theme> = {
     },
   },
 };
+
+export const test = [];

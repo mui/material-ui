@@ -1,5 +1,6 @@
 import { gray } from '../themePrimitives';
 
+/* eslint-disable import/prefer-default-export */
 export const chartsCustomizations = {
   MuiChartsAxis: {
     styleOverrides: {

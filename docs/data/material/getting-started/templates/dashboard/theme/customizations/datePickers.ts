@@ -1,8 +1,9 @@
 import { alpha, Theme } from '@mui/material/styles';
-import { gray, brand } from '../themePrimitives';
 import type { PickersProComponents } from '@mui/x-date-pickers-pro/themeAugmentation';
 import type { PickerComponents } from '@mui/x-date-pickers/themeAugmentation';
+import { gray, brand } from '../themePrimitives';
 
+/* eslint-disable import/prefer-default-export */
 export const datePickersCustomizations: PickersProComponents<Theme> & PickerComponents<Theme> = {
   MuiPickersPopper: {
     styleOverrides: {
@@ -27,6 +28,7 @@ export const datePickersCustomizations: PickersProComponents<Theme> & PickerComp
     styleOverrides: {
       spacer: { width: 16 },
       button: ({ theme }) => ({
+        backgroundColor: 'transparent',
         color: theme.palette.grey[500],
         ...theme.applyStyles('dark', {
           color: theme.palette.grey[400],
