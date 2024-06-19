@@ -618,7 +618,12 @@ describe('<Menu />', () => {
     });
   });
 
-  it('perf: does not rerender menu items unnecessarily', async () => {
+  it('perf: does not rerender menu items unnecessarily', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const renderItem1Spy = spy();
     const renderItem2Spy = spy();
     const renderItem3Spy = spy();
@@ -683,9 +688,10 @@ describe('<Menu />', () => {
     fireEvent.keyDown(menuItems[0], { key: 'ArrowDown' }); // highlights '2'
 
     // React renders twice in strict mode, so we expect twice the number of spy calls
+    // Also, useButton's focusVisible polyfill causes an extra render when focus is gained/lost.
 
-    expect(renderItem1Spy.callCount).to.equal(2); // '1' rerenders as it loses highlight
-    expect(renderItem2Spy.callCount).to.equal(2); // '2' rerenders as it receives highlight
+    expect(renderItem1Spy.callCount).to.equal(4); // '1' rerenders as it loses highlight
+    expect(renderItem2Spy.callCount).to.equal(4); // '2' rerenders as it receives highlight
 
     // neither the highlighted nor the selected state of these options changed,
     // so they don't need to rerender:
