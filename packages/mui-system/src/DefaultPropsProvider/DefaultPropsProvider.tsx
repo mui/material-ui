@@ -41,12 +41,16 @@ function getThemeProps<
   }
   const config = theme.components[name];
 
-  const defaultProps =
-    !config.defaultProps && !config.styleOverrides && !config.variants
-      ? config
-      : config.defaultProps;
+  if (config.defaultProps) {
+    // compatible with v5 signature
+    return resolveProps(config.defaultProps, props);
+  }
 
-  return resolveProps(defaultProps, props);
+  if (!config.styleOverrides && !config.variants) {
+    // v6 signature, no property 'defaultProps'
+    return resolveProps(config as any, props);
+  }
+  return props;
 }
 
 export function useDefaultProps<Props>({ props, name }: { props: Props; name: string }) {
