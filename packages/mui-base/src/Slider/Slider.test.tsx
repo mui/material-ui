@@ -370,7 +370,7 @@ describe('<Slider />', () => {
 
     it('should provide focused state to the slotProps.thumb', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
 

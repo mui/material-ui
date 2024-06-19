@@ -104,7 +104,7 @@ describe('<Fab />', () => {
 
   it('should have a focusRipple by default', async function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
+      // JSDOM doesn't support :focus-visible
       this.skip();
     }
 

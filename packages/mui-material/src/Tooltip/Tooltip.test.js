@@ -475,7 +475,7 @@ describe('<Tooltip />', () => {
 
     it('should handle autoFocus + onFocus forwarding', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
 
@@ -509,7 +509,7 @@ describe('<Tooltip />', () => {
   describe('prop: delay', () => {
     before(function beforeCallback() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
     });
@@ -636,7 +636,7 @@ describe('<Tooltip />', () => {
 
     it(`should be transparent for the focus and blur event`, function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
 
@@ -887,7 +887,7 @@ describe('<Tooltip />', () => {
   describe('focus', () => {
     before(function beforeCallback() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
     });

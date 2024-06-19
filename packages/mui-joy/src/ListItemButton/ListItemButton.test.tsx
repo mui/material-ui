@@ -58,7 +58,7 @@ describe('Joy <ListItemButton />', () => {
   describe('prop: focusVisibleClassName', () => {
     it('should have focusVisible classes', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
 

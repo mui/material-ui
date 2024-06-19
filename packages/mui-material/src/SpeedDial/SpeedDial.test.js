@@ -198,7 +198,7 @@ describe('<SpeedDial />', () => {
 
     it('should reset the state of the tooltip when the speed dial is closed while it is open', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
 

@@ -584,7 +584,7 @@ describe('<Button />', () => {
 
   it('should have a focusRipple by default', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
+      // JSDOM doesn't support :focus-visible
       this.skip();
     }
 
@@ -605,7 +605,7 @@ describe('<Button />', () => {
 
   it('can disable the focusRipple', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM crashes when matching :focus-visible
+      // JSDOM doesn't support :focus-visible
       this.skip();
     }
 

@@ -249,7 +249,7 @@ describe('<ButtonBase />', () => {
   describe('ripple', () => {
     before(function beforeCallback() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
     });
@@ -608,7 +608,7 @@ describe('<ButtonBase />', () => {
   describe('focusRipple', () => {
     before(function beforeCallback() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
     });
@@ -741,7 +741,7 @@ describe('<ButtonBase />', () => {
 
     it('should reset the focused state', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
 
@@ -814,7 +814,7 @@ describe('<ButtonBase />', () => {
 
     it('has a focus-visible polyfill', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
 
@@ -841,7 +841,7 @@ describe('<ButtonBase />', () => {
 
     it('removes focus-visible if focus is re-targetted', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
 
@@ -891,7 +891,7 @@ describe('<ButtonBase />', () => {
 
     it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
 
@@ -921,7 +921,7 @@ describe('<ButtonBase />', () => {
   describe('event: keydown', () => {
     before(function beforeCallback() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
     });
@@ -1166,7 +1166,7 @@ describe('<ButtonBase />', () => {
   describe('prop: action', () => {
     before(function beforeCallback() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
     });

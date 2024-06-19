@@ -73,7 +73,7 @@ describe('useSwitch', () => {
 
     it('should call focus event handlers if focus events are fired', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM crashes when matching :focus-visible
+        // JSDOM doesn't support :focus-visible
         this.skip();
       }
 
