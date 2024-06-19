@@ -553,19 +553,26 @@ export default function migrateToVariants(j, styles) {
             };
             variants.push(buildObjectAST(variant));
 
-            // create another variant with inverted condition
-            let props2 = buildProps(inverseBinaryExpression(data.node.test));
-            if (data.props) {
-              props2 = mergeProps(data.props, props2);
-            }
-            const styleVal2 = data.buildStyle(data.node.alternate);
-            const variant2 = {
-              props: props2,
-              style: styleVal2,
-            };
-            variants.push(buildObjectAST(variant2));
-            if (data.parentNode?.type === 'ObjectExpression') {
-              removeProperty(data.parentNode, data.node);
+            if (
+              data.node.consequent.type === 'ObjectExpression' &&
+              data.node.alternate.type === 'ObjectExpression'
+            ) {
+              // create another variant with inverted condition
+              let props2 = buildProps(inverseBinaryExpression(data.node.test));
+              if (data.props) {
+                props2 = mergeProps(data.props, props2);
+              }
+              const styleVal2 = data.buildStyle(data.node.alternate);
+              const variant2 = {
+                props: props2,
+                style: styleVal2,
+              };
+              variants.push(buildObjectAST(variant2));
+              if (data.parentNode?.type === 'ObjectExpression') {
+                removeProperty(data.parentNode, data.node);
+              }
+            } else {
+              data.replaceValue?.(data.node.alternate);
             }
           }
           if (
