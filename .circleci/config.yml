@@ -891,7 +891,7 @@ workflows:
     when:
       or:
         - equal: [react-17, << pipeline.parameters.workflow >>]
-        - equal: [scheduled_pipeline, << pipeline.trigger_source]
+        - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -917,7 +917,7 @@ workflows:
     when:
       or:
         - equal: [react-next, << pipeline.parameters.workflow >>]
-        - equal: [scheduled_pipeline, << pipeline.trigger_source]
+        - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
     triggers:
       - schedule:
           cron: '0 0 * * *'
