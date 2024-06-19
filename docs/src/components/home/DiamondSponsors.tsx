@@ -18,8 +18,7 @@ const DIAMONDs = [
   {
     src: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
-    description:
-      'Delivers technology and cloud expertise to buy, optimize and manage public cloud.',
+    description: 'Technology and cloud expertise to buy, optimize and manage public cloud.',
     href: 'https://www.doit.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -45,7 +44,7 @@ export default function DiamondSponsors() {
         variant="h6"
         sx={[
           {
-            fontWeight: 'bold',
+            fontWeight: 'semiBold',
           },
           (theme) => ({
             mt: 4,
@@ -97,7 +96,7 @@ export default function DiamondSponsors() {
                 <AddRounded />
               </IconButton>
               <div>
-                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
+                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
                   Become our sponsor!
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
