@@ -1,5 +1,9 @@
 import * as React from 'react';
+import clsx from 'clsx';
+// @ts-ignore
 import Stack from '@pigment-css/react/Stack';
+import composeClasses from '@mui/utils/composeClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import { ResponsiveStyleValue, SxProps } from '@mui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createTheme';
@@ -45,8 +49,17 @@ export type StackProps<
   component?: React.ElementType;
 };
 
-const PigmentStack = React.forwardRef(function PigmentStack(props, ref) {
-  return <Stack {...props} ref={ref} />;
+const useUtilityClasses = () => {
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, (slot) => generateUtilityClass('MuiStack', slot), {});
+};
+
+const PigmentStack = React.forwardRef(function PigmentStack({ className, ...props }, ref) {
+  const classes = useUtilityClasses();
+  return <Stack className={clsx(classes.root, className)} {...props} ref={ref} />;
 }) as OverridableComponent<StackTypeMap>;
 
 export default PigmentStack;
