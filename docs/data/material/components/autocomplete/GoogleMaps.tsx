@@ -144,7 +144,7 @@ export default function GoogleMaps() {
           option.structured_formatting.main_text,
           matches.map((match: any) => [match.offset, match.offset + match.length]),
         );
-        const {key, ...nonKeyProps} = props as any;
+        const { key, ...nonKeyProps } = props;
         return (
           <li key={key} {...nonKeyProps}>
             <Grid container sx={{ alignItems: 'center' }}>
