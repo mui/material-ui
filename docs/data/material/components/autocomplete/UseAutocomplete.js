@@ -64,7 +64,7 @@ export default function UseAutocomplete() {
       {groupedOptions.length > 0 ? (
         <Listbox {...getListboxProps()}>
           {groupedOptions.map((option, index) => {
-            const { key, ...optionProps } = { ...getOptionProps({ option, index }) };
+            const { key, ...optionProps } = getOptionProps({ option, index });
             return (
               <li key={key} {...optionProps}>
                 {option.title}
