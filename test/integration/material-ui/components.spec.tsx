@@ -221,7 +221,7 @@ function CardTest() {
           be-nev-o-lent
         </Typography>
         <Typography variant="body1">adjective</Typography>
-        <Typography component="p">
+        <Typography>
           well meaning and kindly.
           <br />a benevolent smile
         </Typography>
@@ -245,7 +245,7 @@ function CardMediaTest() {
         <img src="image/src.png" alt="Contemplative Reptile" />
       </CardMedia>
       <CardContent>
-        <Typography component="p">
+        <Typography>
           This impressive paella is a perfect party dish and a fun meal to cook together with your
           guests. Add 1 cup of frozen peas along with the mussels, if you like.
         </Typography>
