@@ -888,8 +888,8 @@ importers:
         specifier: ^1.25.0
         version: 1.25.0
       marked:
-        specifier: ^5.1.2
-        version: 5.1.2
+        specifier: ^13.0.0
+        version: 13.0.0
       playwright:
         specifier: ^1.44.1
         version: 1.44.1
@@ -1252,8 +1252,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       marked:
-        specifier: ^5.1.2
-        version: 5.1.2
+        specifier: ^13.0.0
+        version: 13.0.0
       prismjs:
         specifier: ^1.29.0
         version: 1.29.0
@@ -9119,9 +9119,9 @@ packages:
     resolution: {integrity: sha512-qwGyuyKwjkEMOJ10XN6OTKNOVYvOIi35RNvDLNxTof5s8UmyGHlCdpngRHoRGNvQVGuxO3BJ7uNSgdeX166WXw==}
     engines: {node: '>=18'}
 
-  marked@5.1.2:
-    resolution: {integrity: sha512-ahRPGXJpjMjwSOlBoTMZAK7ATXkli5qCPxZ21TG44rx1KEo44bii4ekgTDQPNRQ4Kh7JMb9Ub1PVk1NxRSsorg==}
-    engines: {node: '>= 16'}
+  marked@13.0.0:
+    resolution: {integrity: sha512-VTeDCd9txf4KLLljUZ0nljE/Incb9SrWuueE44QVuU0pkOdh4sfCeW1Z6lPcxyDRSVY6rm8db/0OPaN75RNUmw==}
+    engines: {node: '>= 18'}
     hasBin: true
 
   marky@1.2.5:
@@ -20881,7 +20881,7 @@ snapshots:
       markdown-it: 14.1.0
       markdownlint-micromark: 0.1.9
 
-  marked@5.1.2: {}
+  marked@13.0.0: {}
 
   marky@1.2.5: {}
 
