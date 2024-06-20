@@ -16,7 +16,7 @@
       "type": { "name": "bool" },
       "default": "false",
       "deprecated": true,
-      "deprecationInfo": "use the <code>component</code> prop instead, or use variant=&quot;body2&quot; to get the same behavior."
+      "deprecationInfo": "Use <code>sx</code> to apply a bottom margin, or use the <code>component</code> prop if you want to change the rendered component"
     },
     "sx": {
       "type": {
