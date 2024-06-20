@@ -1603,12 +1603,11 @@ There is no codemod to manage this change.
 
 ### paragraph
 
-The Typography's prop `paragraph` was deprecated in favor of `component="p"`. set `margin-bottom` manually to match existing behavior:
+The Typography's prop `paragraph` was deprecated in favor of setting `margin-bottom` using the sx props:
 
 ```diff
  <Typography
 -  paragraph
-+  component="p"
 +  sx={{ marginBottom: "16px" }}
  />
 ```
