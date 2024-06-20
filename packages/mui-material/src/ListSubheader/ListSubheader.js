@@ -3,11 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
-
-const useThemeProps = createUseThemeProps('MuiListSubheader');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, color, disableGutters, inset, disableSticky } = ownerState;
@@ -90,7 +89,7 @@ const ListSubheaderRoot = styled('li', {
 }));
 
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListSubheader' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListSubheader' });
   const {
     className,
     color = 'default',

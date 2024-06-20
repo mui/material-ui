@@ -173,7 +173,7 @@
     "markdownlint-cli2": "^0.13.0",
     "mocha": "^10.4.0",
     "nx": "^19.3.0",
-    "nyc": "^15.1.0",
+    "nyc": "^17.0.0",
     "piscina": "^4.5.1",
     "postcss-styled-syntax": "^0.6.4",
     "prettier": "^3.3.2",
