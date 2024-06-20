@@ -9,7 +9,6 @@ import {
   SlotTestingOptions,
   describeRef,
   randomStringValue,
-  testClassName,
   testComponentProp,
   testReactTestRenderer,
 } from '@mui/internal-test-utils';
@@ -266,6 +265,25 @@ function testSlotPropsProp(
       expect(getByTestId('custom')).to.have.class(slotOptions.expectedClassName);
       expect(getByTestId('custom')).to.have.class(slotProps[slotName].className);
     });
+  });
+}
+
+function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+  it('applies the className to the root component', async () => {
+    const { render } = getOptions();
+
+    if (!render) {
+      throwMissingPropError('render');
+    }
+
+    const className = randomStringValue();
+    const testId = randomStringValue();
+
+    const { getByTestId } = await render(
+      React.cloneElement(element, { className, 'data-testid': testId }),
+    );
+
+    expect(getByTestId(testId)).to.have.class(className);
   });
 }
 

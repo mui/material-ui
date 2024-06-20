@@ -49,14 +49,14 @@ export default function CustomAnimatedSnackbar() {
         onClose={handleClose}
         autoHideDuration={4000}
         animationDuration={animationDuration}
-        sx={{
-          ...(open && {
+        sx={[
+          open && {
             animation: `${inAnimation} ${animationDuration}ms forwards`,
-          }),
-          ...(!open && {
+          },
+          !open && {
             animation: `${outAnimation} ${animationDuration}ms forwards`,
-          }),
-        }}
+          },
+        ]}
       >
         I love this animation!
       </Snackbar>

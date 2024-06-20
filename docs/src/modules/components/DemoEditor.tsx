@@ -16,7 +16,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       maxHeight: 'min(68vh, 1000px)',
       overflow: 'auto',
       marginTop: -1,
-      backgroundColor: 'hsl(210, 35%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
+      backgroundColor: 'hsl(210, 25%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
       border: 0,
       colorScheme: 'dark',
       '&:hover': {

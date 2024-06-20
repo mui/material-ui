@@ -9,12 +9,10 @@ import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
-import useTheme from '../styles/useTheme';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDrawerUtilityClass } from './drawerClasses';
-
-const useThemeProps = createUseThemeProps('MuiDrawer');
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -181,7 +179,7 @@ export function getAnchor({ direction }, anchor) {
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDrawer' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDrawer' });
   const theme = useTheme();
   const isRtl = useRtl();
   const defaultTransitionDuration = {

@@ -78,7 +78,7 @@ export default function GoldSponsors() {
         variant="h6"
         sx={[
           {
-            fontWeight: 'bold',
+            fontWeight: 'semiBold',
           },
           (theme) => ({
             mt: 4,
@@ -129,7 +129,7 @@ export default function GoldSponsors() {
               <AddRounded />
             </IconButton>
             <div>
-              <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
+              <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
                 Become a sponsor
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>

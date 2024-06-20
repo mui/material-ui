@@ -22,12 +22,6 @@ describe('<MenuButton />', () => {
   describeConformance(<MenuButton />, () => ({
     classes,
     inheritComponent: 'button',
-    wrapMount: (mount) => (node: React.ReactNode) => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
-      );
-      return wrapper.childAt(0);
-    },
     muiName: 'JoyMenuButton',
     refInstanceof: window.HTMLButtonElement,
     render: (node) => {

@@ -1510,6 +1510,71 @@ CSS transforms:
 npx @mui/codemod@next deprecations/step-connector-classes <path>
 ```
 
+#### `tab-classes`
+
+JS transforms:
+
+```diff
+ import { tabClasses } from '@mui/material/Tab';
+
+ MuiTab: {
+   styleOverrides: {
+     root: {
+-      [`& .${tabClasses.iconWrapper}`]: {
++      [`& .${tabClasses.icon}`]: {
+         color: 'red',
+        },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiTab-iconWrapper
++ .MuiTab-icon
+```
+
+```bash
+npx @mui/codemod@next deprecations/tab-classes <path>
+```
+
+#### `table-sort-label-classes`
+
+JS transforms:
+
+```diff
+ import { tableSortLabelClasses } from '@mui/material/TableSortLabel';
+
+ MuiTableSortLabel: {
+   styleOverrides: {
+     root: {
+-      [`& .${tableSortLabelClasses.iconDirectionDesc}`]: {
++      [`&.${tableSortLabelClasses.directionDesc} > .${tableSortLabelClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${tableSortLabelClasses.iconDirectionAsc}`]: {
++      [`&.${tableSortLabelClasses.directionAsc} > .${tableSortLabelClasses.icon}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiTableSortLabel-iconDirectionDesc
++.MuiTableSortLabel-directionDesc > .MuiTableSortLabel-icon
+- .MuiTableSortLabel-iconDirectionAsc
++.MuiTableSortLabel-directionAsc > .MuiTableSortLabel-icon
+```
+
+```bash
+npx @mui/codemod@next deprecations/table-sort-label-classes <path>
+```
+
 ### v6.0.0
 
 #### `sx-prop`

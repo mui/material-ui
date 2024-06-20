@@ -1,5 +1,81 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.11
+
+<!-- generated comparing v6.0.0-alpha.10..next -->
+
+_Jun 11, 2024_
+
+A big thanks to the 18 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.11`
+
+- &#8203;<!-- 38 -->[Autocomplete] Shouldn't resize when hovering (#42452) @ZeeshanTamboli
+- &#8203;<!-- 37 -->[Chip] Fix focus issue related with the Escape event (#41578) @shrilsharma
+- &#8203;<!-- 12 -->[Grid] Fix support for CSS variables (#42574) @oliviertassinari
+- &#8203;<!-- 11 -->[InputBase] Use `globalCss` for Pigment integration (#42431) @siriwatknp
+- &#8203;<!-- 10 -->Change React.ReactElement type from `any` to `unknown` (#42473) @sai6855
+- &#8203;<!-- 09 -->Integrate `extendSxProp` adapter (#42543) @siriwatknp
+- &#8203;<!-- 08 -->[Tab] Fix applying `iconWrapper` styles from theme and update its description (#42549) @sai6855
+- &#8203;<!-- 08 -->[pigment-css] Add `stringifyTheme` for Pigment CSS integration (#42476) @siriwatknp
+
+### `@mui/system@6.0.0-alpha.11`
+
+- &#8203;<!-- 11 -->[Grid] Remove `disableEqualOverflow` by using `gap` (#42526) @DiegoAndai
+- &#8203;<!-- 07 -->[useMediaQuery] Drop Safari < 14 support (#42464) @aarongarciah
+
+### `@mui/utils@6.0.0-alpha.11`
+
+- &#8203;<!-- 04 -->Allow passing `NaN` as `defaultValue` to `useControlled` (#41559) @iammminzzy
+
+### `@mui/codemod@6.0.0-alpha.11`
+
+- &#8203;<!-- 39 -->Improve styled and sx prop transformation (#42598) @siriwatknp
+- &#8203;<!-- 36 -->Support more cases for sx-prop transformation (#42527) @siriwatknp
+
+### `@mui/private-theming@6.0.0-alpha.11`
+
+- &#8203;<!-- 09 -->Fix issues reported by react compiler in `mui-private-theming` components (#42619) @sai6855
+
+### Docs
+
+- &#8203;<!-- 31 -->Add `theme.applyStyles` and migrate docs (#42498) @siriwatknp
+- &#8203;<!-- 29 -->Fix dashboard template console error (#42594) @oliviertassinari
+- &#8203;<!-- 28 -->Migrate system props to `sx` prop (#42475) @siriwatknp
+- &#8203;<!-- 27 -->[material-ui]Fix duplicated sentence (#42521) @alexfauquette
+- &#8203;<!-- 22 -->[Grid] Fix docs spacing (#42573) @oliviertassinari
+- &#8203;<!-- 21 -->[joy-ui] Add Next.js App Router instructions on how to prevent flickering (#42514) @devnyxie
+- &#8203;<!-- 20 -->[joy-ui] Fix HTML tag without preformatting (#42525) @jacobmoshipco
+- &#8203;<!-- 19 -->[material-ui] Add docs for complementary stepper components (#41900) @anle9650
+- &#8203;<!-- 18 -->[material-ui] Fix typo on Sign-in/Sign-up templates (#42605) @zanivan
+- &#8203;<!-- 17 -->[material-ui] Add container queries docs (#42434) @siriwatknp
+- &#8203;<!-- 16 -->[material-ui] Fix ESLint error in Stepper demo (#42559) @aarongarciah
+- &#8203;<!-- 15 -->[material-ui] Shorten useMediaQuery subheading (#42561) @aarongarciah
+- &#8203;<!-- 14 -->[material-ui] Add a Refine example project (#42461) @necatiozmen
+
+### Core
+
+- &#8203;<!-- 39 -->[website] Move the `React Engineer - X` role to future roles (#42532) @DanailH
+- &#8203;<!-- 35 -->[core] Allow `for..of` loops (#42600) @michaldudak
+- &#8203;<!-- 34 -->[core] Add comment about Object.js @oliviertassinari
+- &#8203;<!-- 33 -->[core] Disable eslint-plugin-react-compiler for Base (#42563) @aarongarciah
+- &#8203;<!-- 33 -->[core] Group Pigment CSS dependencies (#42174) @siriwatknp
+- &#8203;<!-- 32 -->[core] Configure eslint-plugin-react-compiler (#42555) @aarongarciah
+- &#8203;<!-- 31 -->[core] Skip charts animation for visual regression test (#42530) @alexfauquette
+- &#8203;<!-- 26 -->[docs-infra] Simplify click header (#42593) @oliviertassinari
+- &#8203;<!-- 25 -->[docs-infra] Add configurable jsdoc host variable (#42472) @tonygravell
+- &#8203;<!-- 25 -->[docs-infra] Add the Base UI logo with copy functionality (#42446) @danilo-leal
+- &#8203;<!-- 24 -->[docs-infra] Prevent link anchor when selecting text (#41994) @alexfauquette
+- &#8203;<!-- 23 -->[docs-infra] Add the Base UI logo with copy functionality (#42446) @danilo-leal
+- &#8203;<!-- 13 -->[examples] Remove Pigment CSS examples (#42471) @sai6855
+- &#8203;<!-- 06 -->[test] Restore pnpm tc command (#42572) @oliviertassinari
+- &#8203;<!-- 05 -->[test] Restore testing internal packages (#42519) @michaldudak
+- &#8203;<!-- 03 -->[website] Close Developer Advocate / Content Engineer role @oliviertassinari
+- &#8203;<!-- 02 -->[website] Remove blank line @oliviertassinari
+- &#8203;<!-- 01 -->[website] Fix mobile layout shift @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @anle9650, @DanailH, @danilo-leal, @devnyxie, @DiegoAndai, @iammminzzy, @jacobmoshipco, @michaldudak, @necatiozmen, @oliviertassinari, @sai6855, @shrilsharma, @siriwatknp, @tonygravell, @zanivan, @ZeeshanTamboli
+
 ## v6.0.0-alpha.10
 
 <!-- generated comparing v6.0.0-alpha.9..next -->

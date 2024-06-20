@@ -56,18 +56,40 @@ interface StyledTextProps {
 
 const StyledText = styled('text', {
   shouldForwardProp: (prop) => prop !== 'variant',
-})<StyledTextProps>(({ theme, variant }) => ({
+})<StyledTextProps>(({ theme }) => ({
   textAnchor: 'middle',
   dominantBaseline: 'central',
   fill: theme.palette.text.secondary,
-  fontSize:
-    variant === 'primary'
-      ? theme.typography.h5.fontSize
-      : theme.typography.body2.fontSize,
-  fontWeight:
-    variant === 'primary'
-      ? theme.typography.h5.fontWeight
-      : theme.typography.body2.fontWeight,
+  variants: [
+    {
+      props: {
+        variant: 'primary',
+      },
+      style: {
+        fontSize: theme.typography.h5.fontSize,
+      },
+    },
+    {
+      props: ({ variant }) => variant !== 'primary',
+      style: {
+        fontSize: theme.typography.body2.fontSize,
+      },
+    },
+    {
+      props: {
+        variant: 'primary',
+      },
+      style: {
+        fontWeight: theme.typography.h5.fontWeight,
+      },
+    },
+    {
+      props: ({ variant }) => variant !== 'primary',
+      style: {
+        fontWeight: theme.typography.body2.fontWeight,
+      },
+    },
+  ],
 }));
 
 interface PieCenterLabelProps {
