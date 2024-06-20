@@ -74,7 +74,7 @@ export default function OurValues() {
             <Paper
               variant="outlined"
               sx={(theme) => ({
-                p: 4,
+                p: 2.5,
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
@@ -110,14 +110,12 @@ export default function OurValues() {
                   variant="body2"
                   sx={[
                     {
-                      fontWeight: 'bold',
+                      fontWeight: 'semiBold',
                     },
                     (theme) => ({
                       mb: 0.5,
                       color: (theme.vars || theme).palette.text.primary,
                       '&::first-letter': {
-                        mr: 0.1,
-                        fontSize: theme.typography.pxToRem(16),
                         color: (theme.vars || theme).palette.primary.main,
                       },
                       ...theme.applyDarkStyles({
