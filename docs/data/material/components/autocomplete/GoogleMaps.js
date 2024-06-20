@@ -120,9 +120,9 @@ export default function GoogleMaps() {
           option.structured_formatting.main_text,
           matches.map((match) => [match.offset, match.offset + match.length]),
         );
-        const { key, ...nonKeyProps } = props;
+        const { key, ...optionProps } = props;
         return (
-          <li key={key} {...nonKeyProps}>
+          <li key={key} {...optionProps}>
             <Grid container sx={{ alignItems: 'center' }}>
               <Grid item sx={{ display: 'flex', width: 44 }}>
                 <LocationOnIcon sx={{ color: 'text.secondary' }} />
