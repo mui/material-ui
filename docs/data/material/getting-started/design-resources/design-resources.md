@@ -2,7 +2,7 @@
 
 <p class="description">Be more efficient designing and developing with the same library.</p>
 
-## Design kits
+## Design Kits
 
 Material UI component designs are available for Figma, Sketch, and Adobe XD, providing accurate representations using shared terminology for all states, variants, and permutations of each component.
 

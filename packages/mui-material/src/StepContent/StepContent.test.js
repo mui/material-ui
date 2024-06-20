@@ -13,22 +13,6 @@ describe('<StepContent />', () => {
   describeConformance(<StepContent />, () => ({
     classes,
     inheritComponent: 'div',
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(
-        <Stepper orientation="vertical">
-          <Step>{node}</Step>
-        </Stepper>,
-      );
-      // `wrapper.find(Step)` tree.
-      // "->" indicates the path we want
-      // "n:" indicates the index
-      // <ForwardRef(Step)>
-      // ->   0: <MuiStepRoot>
-      //        0: <Noop /> // from Emotion
-      // ->     1: <div className="MuiStep-root">
-      // ->       0: <MuiStepContentRoot />
-      return wrapper.find(Step).childAt(0).childAt(1).childAt(0);
-    },
     muiName: 'MuiStepContent',
     refInstanceof: window.HTMLDivElement,
     render: (node) => {
