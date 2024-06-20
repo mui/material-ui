@@ -9,7 +9,7 @@
     "clean": "rimraf .next"
   },
   "dependencies": {
-    "@pigment-css/react": "^0.0.13",
+    "@pigment-css/react": "https://pkg.csb.dev/mui/pigment-css/commit/59a9ad43/@pigment-css/react",
     "@mui/utils": "workspace:^",
     "@mui/base": "workspace:^",
     "@mui/lab": "workspace:^",
@@ -24,7 +24,7 @@
     "next": "latest"
   },
   "devDependencies": {
-    "@pigment-css/nextjs-plugin": "^0.0.14",
+    "@pigment-css/nextjs-plugin": "https://pkg.csb.dev/mui/pigment-css/commit/59a9ad43/@pigment-css/nextjs-plugin",
     "@types/node": "^20.5.7",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.3.0",

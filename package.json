@@ -118,7 +118,7 @@
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "^14.2.4",
     "@octokit/rest": "^20.1.1",
-    "@pigment-css/react": "^0.0.13",
+    "@pigment-css/react": "https://pkg.csb.dev/mui/pigment-css/commit/59a9ad43/@pigment-css/react",
     "@playwright/test": "1.44.1",
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
