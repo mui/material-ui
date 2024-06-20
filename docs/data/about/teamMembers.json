@@ -323,5 +323,13 @@
     "locationCountry": "gb",
     "about": "Astrology ♊️, learning 📚 and designing stuff 🎨",
     "github": "nikitaa24"
+  },
+  {
+    "name": "Armin Mehinovic",
+    "title": "React Engineer - X",
+    "location": "Amsterdam, Netherlands",
+    "locationCountry": "nl",
+    "about": "♟️ Chess, 🛠️ Small DIY projects and learning about space 🌌",
+    "github": "arminmeh"
   }
 ]

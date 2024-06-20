@@ -1510,6 +1510,35 @@ CSS transforms:
 npx @mui/codemod@next deprecations/step-connector-classes <path>
 ```
 
+#### `tab-classes`
+
+JS transforms:
+
+```diff
+ import { tabClasses } from '@mui/material/Tab';
+
+ MuiTab: {
+   styleOverrides: {
+     root: {
+-      [`& .${tabClasses.iconWrapper}`]: {
++      [`& .${tabClasses.icon}`]: {
+         color: 'red',
+        },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiTab-iconWrapper
++ .MuiTab-icon
+```
+
+```bash
+npx @mui/codemod@next deprecations/tab-classes <path>
+```
+
 #### `table-sort-label-classes`
 
 JS transforms:
