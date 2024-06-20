@@ -1,13 +1,14 @@
 /* eslint-disable no-eval */
+import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
-import getInitColorSchemeScript, {
+import InitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-} from './getInitColorSchemeScript';
+} from './InitColorSchemeScript';
 
-describe('getInitColorSchemeScript', () => {
+describe('InitColorSchemeScript', () => {
   const { render } = createRenderer();
   let originalMatchmedia;
   let storage = {};
@@ -40,7 +41,7 @@ describe('getInitColorSchemeScript', () => {
     storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
     storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'foo';
 
-    const { container } = render(getInitColorSchemeScript());
+    const { container } = render(<InitColorSchemeScript />);
     eval(container.firstChild.textContent);
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('foo');
   });
@@ -50,11 +51,11 @@ describe('getInitColorSchemeScript', () => {
     storage[`mui-bar-color-scheme-light`] = 'flash';
 
     const { container } = render(
-      getInitColorSchemeScript({
-        modeStorageKey: 'mui-foo-mode',
-        colorSchemeStorageKey: 'mui-bar-color-scheme',
-        attribute: 'data-mui-baz-scheme',
-      }),
+      <InitColorSchemeScript
+        modeStorageKey="mui-foo-mode"
+        colorSchemeStorageKey="mui-bar-color-scheme"
+        attribute="data-mui-baz-scheme"
+      />,
     );
     eval(container.firstChild.textContent);
     expect(document.documentElement.getAttribute('data-mui-baz-scheme')).to.equal('flash');
@@ -64,7 +65,7 @@ describe('getInitColorSchemeScript', () => {
     storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
     storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'bar';
 
-    const { container } = render(getInitColorSchemeScript());
+    const { container } = render(<InitColorSchemeScript />);
     eval(container.firstChild.textContent);
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('bar');
   });
@@ -74,7 +75,7 @@ describe('getInitColorSchemeScript', () => {
     storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'dim';
     window.matchMedia = createMatchMedia(true);
 
-    const { container } = render(getInitColorSchemeScript());
+    const { container } = render(<InitColorSchemeScript />);
     eval(container.firstChild.textContent);
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dim');
   });
@@ -84,17 +85,13 @@ describe('getInitColorSchemeScript', () => {
     storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'bright';
     window.matchMedia = createMatchMedia(false);
 
-    const { container } = render(getInitColorSchemeScript());
+    const { container } = render(<InitColorSchemeScript />);
     eval(container.firstChild.textContent);
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('bright');
   });
 
   it('defaultMode: `dark`', () => {
-    const { container } = render(
-      getInitColorSchemeScript({
-        defaultMode: 'dark',
-      }),
-    );
+    const { container } = render(<InitColorSchemeScript defaultMode="dark" />);
     eval(container.firstChild.textContent);
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dark');
   });
@@ -104,10 +101,7 @@ describe('getInitColorSchemeScript', () => {
       window.matchMedia = createMatchMedia(true);
 
       const { container } = render(
-        getInitColorSchemeScript({
-          defaultMode: 'system',
-          defaultDarkColorScheme: 'trueDark',
-        }),
+        <InitColorSchemeScript defaultMode="system" defaultDarkColorScheme="trueDark" />,
       );
       eval(container.firstChild.textContent);
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('trueDark');
@@ -117,10 +111,7 @@ describe('getInitColorSchemeScript', () => {
       window.matchMedia = createMatchMedia(false);
 
       const { container } = render(
-        getInitColorSchemeScript({
-          defaultMode: 'system',
-          defaultLightColorScheme: 'yellow',
-        }),
+        <InitColorSchemeScript defaultMode="system" defaultLightColorScheme="yellow" />,
       );
       eval(container.firstChild.textContent);
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('yellow');

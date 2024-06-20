@@ -5,11 +5,10 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
-
-const useThemeProps = createUseThemeProps('MuiTab');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = ownerState;
@@ -24,7 +23,7 @@ const useUtilityClasses = (ownerState) => {
       selected && 'selected',
       disabled && 'disabled',
     ],
-    iconWrapper: ['iconWrapper'],
+    icon: ['iconWrapper', 'icon'],
   };
 
   return composeClasses(slots, getTabUtilityClass, classes);
@@ -44,6 +43,9 @@ const TabRoot = styled(ButtonBase, {
       ownerState.wrapped && styles.wrapped,
       {
         [`& .${tabClasses.iconWrapper}`]: styles.iconWrapper,
+      },
+      {
+        [`& .${tabClasses.icon}`]: styles.icon,
       },
     ];
   },
@@ -89,7 +91,7 @@ const TabRoot = styled(ButtonBase, {
       props: ({ ownerState, iconPosition }) =>
         ownerState.icon && ownerState.label && iconPosition === 'top',
       style: {
-        [`& > .${tabClasses.iconWrapper}`]: {
+        [`& > .${tabClasses.icon}`]: {
           marginBottom: 6,
         },
       },
@@ -98,7 +100,7 @@ const TabRoot = styled(ButtonBase, {
       props: ({ ownerState, iconPosition }) =>
         ownerState.icon && ownerState.label && iconPosition === 'bottom',
       style: {
-        [`& > .${tabClasses.iconWrapper}`]: {
+        [`& > .${tabClasses.icon}`]: {
           marginTop: 6,
         },
       },
@@ -107,7 +109,7 @@ const TabRoot = styled(ButtonBase, {
       props: ({ ownerState, iconPosition }) =>
         ownerState.icon && ownerState.label && iconPosition === 'start',
       style: {
-        [`& > .${tabClasses.iconWrapper}`]: {
+        [`& > .${tabClasses.icon}`]: {
           marginRight: theme.spacing(1),
         },
       },
@@ -116,7 +118,7 @@ const TabRoot = styled(ButtonBase, {
       props: ({ ownerState, iconPosition }) =>
         ownerState.icon && ownerState.label && iconPosition === 'end',
       style: {
-        [`& > .${tabClasses.iconWrapper}`]: {
+        [`& > .${tabClasses.icon}`]: {
           marginLeft: theme.spacing(1),
         },
       },
@@ -183,7 +185,7 @@ const TabRoot = styled(ButtonBase, {
 }));
 
 const Tab = React.forwardRef(function Tab(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTab' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTab' });
   const {
     className,
     disabled = false,
@@ -226,7 +228,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   const icon =
     iconProp && label && React.isValidElement(iconProp)
       ? React.cloneElement(iconProp, {
-          className: clsx(classes.iconWrapper, iconProp.props.className),
+          className: clsx(classes.icon, iconProp.props.className),
         })
       : iconProp;
   const handleClick = (event) => {

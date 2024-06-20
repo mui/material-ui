@@ -116,7 +116,7 @@ export default function ProductsSwitcher(props: {
     <ProductItem
       label="by going to the design-kits page"
       icon={<IconImage name="product-designkits" />}
-      name="Design kits"
+      name="Design Kits"
       description="Bring our components to your favorite design tool."
       href={ROUTES.productDesignKits}
     />,
