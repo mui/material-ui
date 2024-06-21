@@ -114,7 +114,7 @@ export default function Templates() {
                   opacity: 1,
                 },
                 '&:hover img': {
-                  filter: 'brightness(0.7)',
+                  filter: 'brightness(0.5)',
                   transition: 'filter 0.5s',
                 },
               }}
@@ -133,6 +133,7 @@ export default function Templates() {
               <Button
                 variant="contained"
                 color="secondary"
+                size="small"
                 sx={{
                   position: 'absolute',
                   top: '50%',
