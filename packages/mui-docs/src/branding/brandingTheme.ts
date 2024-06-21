@@ -1,4 +1,4 @@
-import type { CSSObject } from '@mui/system';
+import { borderColor, type CSSObject } from '@mui/system';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
@@ -618,6 +618,23 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
               }),
+            ...(ownerState.variant === 'contained' &&
+              ownerState.color === 'secondary' && {
+                color: 'hsl(0, 0%, 0%)',
+                backgroundColor: (theme.vars || theme).palette.grey[100],
+                boxShadow: `hsla(0, 0%, 100%, 0.5) 0 2px 0 inset, ${theme.palette.grey[300]} 0 -2px 0 inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.grey[200],
+                },
+                ...theme.applyDarkStyles({
+                  color: 'hsl(0, 0%, 100%)',
+                  backgroundColor: (theme.vars || theme).palette.grey[800],
+                  boxShadow: `${alpha(theme.palette.grey[700], 0.5)} 0 2px 0 inset, ${alpha(theme.palette.grey[900], 0.5)} 0 -2px 0 inset, ${alpha(theme.palette.common.black, 0.1)} 0 2px 4px 0`,
+                  '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette.grey[900],
+                  },
+                }),
+              }),
             ...(ownerState.variant === 'text' &&
               ownerState.color === 'secondary' && {
                 color: (theme.vars || theme).palette.text.secondary,
@@ -1155,6 +1172,28 @@ export function getThemedComponents(): ThemeOptions {
           iconFilled: {
             top: 'calc(50% - .25em)',
           },
+          root: ({ theme }) => ({
+            borderRadius: 10,
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: `inset 0 2px 0 1px hsla(220, 0%, 100%, 0.6), inset 0 -1px 0 2px hsla(220, 35%, 90%, 0.5)`,
+            '&:hover': {
+              backgroundColor: theme.palette.background.paper,
+              boxShadow: 'none',
+            },
+            '&:before, &:after': {
+              display: 'none',
+            },
+            ...theme.applyDarkStyles({
+              boxShadow: `inset 0 2px 0 1px ${alpha(grey[700], 0.15)}, inset 0 -2px 0 1px hsla(220, 0%, 0%, 0.7)`,
+            }),
+          }),
+          select: ({ theme }) => ({
+            display: 'flex',
+            alignItems: 'center',
+            padding: theme.spacing(0, 2),
+            fontSize: theme.typography.pxToRem(14),
+            fontWeight: 500,
+          }),
         },
       },
       MuiTab: {
