@@ -15,6 +15,7 @@ describe('<Zoom />', () => {
       <div />
     </Zoom>,
     () => ({
+      render,
       classes: {},
       inheritComponent: Transition,
       refInstanceof: window.HTMLDivElement,

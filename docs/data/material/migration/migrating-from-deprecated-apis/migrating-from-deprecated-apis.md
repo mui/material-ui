@@ -1465,6 +1465,39 @@ Here's how to migrate:
   },
 ```
 
+## Tab
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tab-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/tab-classes <path>
+```
+
+### Composed CSS classes
+
+The `iconWrapper` class is removed.
+
+Here's how to migrate:
+
+```diff
+- .MuiTab-iconWrapper
++ .MuiTab-icon
+```
+
+```diff
+ import { tabClasses } from '@mui/material/Tab';
+
+ MuiTab: {
+   styleOverrides: {
+     root: {
+-      [`& .${tabClasses.iconWrapper}`]: {
++      [`& .${tabClasses.icon}`]: {
+         color: 'red',
+        },
+   },
+ },
+```
+
 ## TableSortLabel
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#table-sort-label-classes) below to migrate the code as described in the following sections:

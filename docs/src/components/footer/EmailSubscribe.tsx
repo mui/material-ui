@@ -87,12 +87,12 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
       </FormLabel>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
           mt: 1,
-          gap: 1,
           width: { xs: '100%', sm: 'auto' },
           maxWidth: { xs: '100%', sm: 320 },
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: 1,
         }}
       >
         <InputBase
@@ -110,23 +110,22 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
               minWidth: 220,
               borderRadius: '8px',
               border: '1px solid',
-              borderColor: 'grey.200',
+              borderColor: 'grey.300',
               bgcolor: '#FFF',
               boxShadow: `inset 0 1px 2px ${
                 (theme.vars || theme).palette.grey[50]
               }, 0 2px .5px ${alpha(theme.palette.grey[100], 0.5)}`,
               '&:hover': {
-                borderColor: 'grey.300',
+                borderColor: 'grey.400',
                 boxShadow: `inset 0 1px 2px ${(theme.vars || theme).palette.grey[100]}`,
               },
               [`&.${inputBaseClasses.focused}`]: {
-                boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary[200]}`,
+                boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.5)}`,
                 borderColor: 'primary.500',
               },
               [`& .${inputBaseClasses.input}`]: {
                 borderRadius: theme.shape.borderRadius,
-                py: 1,
-                px: 1.5,
+                px: 1,
               },
             }),
             (theme) =>
@@ -141,13 +140,12 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
                   boxShadow: `inset 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
                 },
                 [`&.${inputBaseClasses.focused}`]: {
-                  boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary[800]}`,
                   borderColor: 'primary.400',
                 },
               }),
           ]}
         />
-        <Button variant="outlined" disabled={form.status === 'loading'} type="submit">
+        <Button variant="outlined" size="small" disabled={form.status === 'loading'} type="submit">
           Subscribe
         </Button>
       </Box>

@@ -6,14 +6,13 @@ import { alpha } from '@mui/system/colorManipulator';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
-import { styled, createUseThemeProps, useTheme } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import getTextDecoration, { colorTransformations } from './getTextDecoration';
-
-const useThemeProps = createUseThemeProps('MuiLink');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, component, focusVisible, underline } = ownerState;
@@ -124,7 +123,7 @@ const LinkRoot = styled(Typography, {
 });
 
 const Link = React.forwardRef(function Link(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiLink',
   });
