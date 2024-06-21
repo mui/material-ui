@@ -197,8 +197,8 @@
     },
     "getOptionProps": {
       "type": {
-        "name": "(renderedOption: UseAutocompleteRenderedOption&lt;Value&gt;) =&gt; UseAutocompleteGetOptionPropsReturnValue",
-        "description": "(renderedOption: UseAutocompleteRenderedOption&lt;Value&gt;) =&gt; UseAutocompleteGetOptionPropsReturnValue"
+        "name": "(renderedOption: UseAutocompleteRenderedOption&lt;Value&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt; &amp; { key: any }",
+        "description": "(renderedOption: UseAutocompleteRenderedOption&lt;Value&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt; &amp; { key: any }"
       },
       "required": true
     },
