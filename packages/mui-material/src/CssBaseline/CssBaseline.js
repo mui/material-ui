@@ -129,6 +129,7 @@ function CssBaseline(inProps) {
       {!isDynamicSupport && !enableColorScheme && (
         <span className={SELECTOR} style={{ display: 'none' }} />
       )}
+
       {children}
     </React.Fragment>
   );
