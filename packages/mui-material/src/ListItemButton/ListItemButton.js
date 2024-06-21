@@ -4,15 +4,14 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
-
-const useThemeProps = createUseThemeProps('MuiListItemButton');
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -144,7 +143,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
 }));
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemButton' });
   const {
     alignItems = 'center',
     autoFocus = false,

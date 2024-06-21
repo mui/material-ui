@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Interpolation } from '@mui/system';
 import { extendSxProp } from '@mui/system/styleFunctionSx';
 import { Theme } from '../styles/createTheme';
-import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
 import GlobalStyles, { GlobalStylesProps } from '../GlobalStyles';
 
@@ -23,11 +22,6 @@ export function globalCss(styles: Interpolation<{ theme: Theme }>) {
       />
     );
   };
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function createUseThemeProps(name: string) {
-  return useThemeProps;
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention

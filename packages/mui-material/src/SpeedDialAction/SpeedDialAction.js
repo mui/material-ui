@@ -5,13 +5,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
 import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
-
-const useThemeProps = createUseThemeProps('MuiSpeedDialAction');
 
 const useUtilityClasses = (ownerState) => {
   const { open, tooltipPlacement, classes } = ownerState;
@@ -137,7 +136,7 @@ const SpeedDialActionStaticTooltipLabel = styled('span', {
 }));
 
 const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDialAction' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialAction' });
   const {
     className,
     delay = 0,
