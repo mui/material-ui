@@ -418,7 +418,7 @@ module.exports = {
       },
     },
     {
-      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
+      files: ['packages/**/*{.ts,.tsx,.js}'],
       excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
       rules: {
         'no-restricted-imports': [
