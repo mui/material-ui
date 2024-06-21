@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import * as React from 'react';
 import { styled, alpha, Theme } from '@mui/material/styles';
 import { unstable_debounce as debounce } from '@mui/utils';
@@ -108,11 +107,12 @@ export default function HeaderNavBar() {
 
     if (subMenuOpen === 'products') {
       menuItem = productsMenuRef.current!;
-    } else if (subMenuOpen === 'docs') {
-      menuItem = docsMenuRef.current!;
     } else {
       return;
     }
+
+    const columns = 2;
+    const totalItems = PRODUCT_IDS.length;
 
     if (event.key === 'ArrowDown' && subMenuOpen === 'products') {
       event.preventDefault();
@@ -120,10 +120,7 @@ export default function HeaderNavBar() {
         if (prevValue === null) {
           return 0;
         }
-        if (prevValue === PRODUCT_IDS.length - 1) {
-          return 0;
-        }
-        return prevValue + 1;
+        return (prevValue + columns) % totalItems;
       });
     }
     if (event.key === 'ArrowUp' && subMenuOpen === 'products') {
@@ -132,10 +129,25 @@ export default function HeaderNavBar() {
         if (prevValue === null) {
           return 0;
         }
-        if (prevValue === 0) {
-          return PRODUCT_IDS.length - 1;
+        return (prevValue - columns + totalItems) % totalItems;
+      });
+    }
+    if (event.key === 'ArrowRight' && subMenuOpen === 'products') {
+      event.preventDefault();
+      setSubMenuIndex((prevValue) => {
+        if (prevValue === null) {
+          return 0;
         }
-        return prevValue - 1;
+        return (prevValue + 1) % totalItems;
+      });
+    }
+    if (event.key === 'ArrowLeft' && subMenuOpen === 'products') {
+      event.preventDefault();
+      setSubMenuIndex((prevValue) => {
+        if (prevValue === null) {
+          return 0;
+        }
+        return (prevValue - 1 + totalItems) % totalItems;
       });
     }
     if (event.key === 'Escape' || event.key === 'Tab') {
@@ -146,7 +158,7 @@ export default function HeaderNavBar() {
   }
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setSubMenuOpen((prevOpen) => !prevOpen);
   };
 
   const handleClose = (event) => {
@@ -209,6 +221,7 @@ export default function HeaderNavBar() {
                     boxShadow: `0 4px 16px ${alpha(theme.palette.common.black, 0.15)}`,
                     ...theme.applyDarkStyles({
                       bgcolor: 'primaryDark.900',
+                      boxShadow: `0 4px 16px ${alpha(theme.palette.common.black, 0.8)}`,
                     }),
                   })}
                 >
@@ -284,7 +297,7 @@ export default function HeaderNavBar() {
                         href={ROUTES.joyDocs}
                         icon={<IconImage name="product-core" />}
                         name="Joy UI"
-                        description="Beautiful foudational React components."
+                        description="Beautiful foundational React components."
                       />
                       <ProductMenuItem
                         id={PRODUCT_IDS[6]}
