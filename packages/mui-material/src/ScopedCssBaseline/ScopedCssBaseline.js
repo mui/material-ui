@@ -3,11 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { html, body } from '../CssBaseline/CssBaseline';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
-
-const useThemeProps = createUseThemeProps('MuiScopedCssBaseline');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -58,7 +57,7 @@ const ScopedCssBaselineRoot = styled('div', {
 });
 
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiScopedCssBaseline' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiScopedCssBaseline' });
   const { className, component = 'div', enableColorScheme, ...other } = props;
 
   const ownerState = {

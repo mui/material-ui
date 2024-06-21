@@ -1,9 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createUseThemeProps, globalCss } from '../zero-styled';
-
-const useThemeProps = createUseThemeProps('MuiCssBaseline');
+import { globalCss } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 // to determine if the global styles are static or dynamic
 const isDynamicSupport = typeof globalCss({}) === 'function';
@@ -119,7 +118,7 @@ const GlobalStyles = globalCss(
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
 function CssBaseline(inProps) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCssBaseline' });
   const { children, enableColorScheme = false } = props;
   return (
     <React.Fragment>

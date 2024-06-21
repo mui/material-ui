@@ -7,9 +7,8 @@ import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { Theme } from '../styles';
-import { styled, createUseThemeProps } from '../zero-styled';
-
-const useThemeProps = createUseThemeProps('MuiPopper');
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
   /**
@@ -63,7 +62,7 @@ const Popper = React.forwardRef(function Popper(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const isRtl = useRtl();
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiPopper',
   });
