@@ -436,7 +436,7 @@ module.exports = {
             ],
           },
         ],
-        'import/no-cycle': ['error', { ignoreExternal: true }],
+        'import/no-cycle': ['error', { ignoreExternal: false }],
       },
     },
     {
