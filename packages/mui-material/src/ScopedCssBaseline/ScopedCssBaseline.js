@@ -27,9 +27,16 @@ const ScopedCssBaselineRoot = styled('div', {
   const colorSchemeStyles = {};
   if (theme.colorSchemes) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-      colorSchemeStyles[`&${theme.getColorSchemeSelector(key).replace(/\s*&/, '')}`] = {
-        colorScheme: scheme.palette?.mode,
-      };
+      const selector = theme.getColorSchemeSelector(key);
+      if (selector.startsWith('@')) {
+        colorSchemeStyles[selector] = {
+          colorScheme: scheme.palette?.mode,
+        };
+      } else {
+        colorSchemeStyles[`&${selector.replace(/\s*&/, '')}`] = {
+          colorScheme: scheme.palette?.mode,
+        };
+      }
     });
   }
   return {

@@ -5,8 +5,8 @@ import { createUseThemeProps, globalCss } from '../zero-styled';
 
 const useThemeProps = createUseThemeProps('MuiCssBaseline');
 
-// `ecs` stands for enableColorScheme. This is internal logic to make it work with Pigment CSS, so shorter is better.
-const SELECTOR = 'mui-ecs';
+// to determine if the global styles are static or dynamic
+const isDynamicSupport = typeof globalCss({}) === 'function';
 
 export const html = (theme, enableColorScheme) => ({
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
@@ -17,8 +17,7 @@ export const html = (theme, enableColorScheme) => ({
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
   // When used under CssVarsProvider, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
-  ...(enableColorScheme &&
-    !theme.vars && { [`&:has(.${SELECTOR})`]: { colorScheme: theme.palette.mode } }),
+  ...(enableColorScheme && !theme.vars && { colorScheme: theme.palette.mode }),
 });
 
 export const body = (theme) => ({
@@ -31,19 +30,28 @@ export const body = (theme) => ({
   },
 });
 
-export const styles = (theme) => {
+export const styles = (theme, enableColorScheme = false) => {
   const colorSchemeStyles = {};
-  if (theme.colorSchemes) {
+  if (enableColorScheme && theme.colorSchemes) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-      colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
-        [`&:has(.${SELECTOR})`]: {
+      const selector = theme.getColorSchemeSelector(key);
+      if (selector.startsWith('@')) {
+        // for @media (prefers-color-scheme), we need to target :root
+        colorSchemeStyles[selector] = {
+          ':root': {
+            colorScheme: scheme.palette?.mode,
+          },
+        };
+      } else {
+        // else, it's likely that the selector already target an element with a class or data attribute
+        colorSchemeStyles[selector.replace(/\s*&/, '')] = {
           colorScheme: scheme.palette?.mode,
-        },
-      };
+        };
+      }
     });
   }
   let defaultStyles = {
-    html: html(theme, true),
+    html: html(theme, enableColorScheme),
     '*, *::before, *::after': {
       boxSizing: 'inherit',
     },
@@ -70,7 +78,42 @@ export const styles = (theme) => {
   return defaultStyles;
 };
 
-const GlobalStyles = globalCss(({ theme }) => styles(theme));
+// `ecs` stands for enableColorScheme. This is internal logic to make it work with Pigment CSS, so shorter is better.
+const SELECTOR = 'mui-ecs';
+const staticStyles = (theme) => {
+  const result = styles(theme, false);
+  const baseStyles = Array.isArray(result) ? result[0] : result;
+  if (!theme.vars && baseStyles) {
+    baseStyles.html[`:root:has(${SELECTOR})`] = { colorScheme: theme.palette.mode };
+  }
+  if (theme.colorSchemes) {
+    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+      const selector = theme.getColorSchemeSelector(key);
+      if (selector.startsWith('@')) {
+        // for @media (prefers-color-scheme), we need to target :root
+        baseStyles[selector] = {
+          [`:root:has(.${SELECTOR})`]: {
+            colorScheme: scheme.palette?.mode,
+          },
+        };
+      } else {
+        // else, it's likely that the selector already target an element with a class or data attribute
+        baseStyles[selector.replace(/\s*&/, '')] = {
+          [`&:has(.${SELECTOR})`]: {
+            colorScheme: scheme.palette?.mode,
+          },
+        };
+      }
+    });
+  }
+  return result;
+};
+
+const GlobalStyles = globalCss(
+  isDynamicSupport
+    ? ({ theme, enableColorScheme }) => styles(theme, enableColorScheme)
+    : ({ theme }) => staticStyles(theme),
+);
 
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
@@ -80,8 +123,13 @@ function CssBaseline(inProps) {
   const { children, enableColorScheme = false } = props;
   return (
     <React.Fragment>
-      <GlobalStyles />
-      {enableColorScheme && <span className={SELECTOR} style={{ display: 'none' }} />}
+      {/* Emotion */}
+      {isDynamicSupport && <GlobalStyles enableColorScheme={enableColorScheme} />}
+
+      {/* Pigment CSS */}
+      {!isDynamicSupport && enableColorScheme && (
+        <span className={SELECTOR} style={{ display: 'none' }} />
+      )}
       {children}
     </React.Fragment>
   );
