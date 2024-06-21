@@ -5,7 +5,6 @@ export { default as describeConformance } from './describeConformance';
 export * from './describeConformance';
 export { default as createDescribe } from './createDescribe';
 export * from './createRenderer';
-export { default as createMount } from './createMount';
 export {
   default as focusVisible,
   simulatePointerDevice,
