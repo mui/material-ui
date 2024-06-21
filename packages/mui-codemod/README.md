@@ -329,9 +329,9 @@ npx @mui/codemod@next deprecations/autocomplete-props <path>
 ```diff
  <AvatarGroup
 -  componentsProps={{
--    additionalAvatar: { color: 'red' }
+-    additionalAvatar: { color: 'red' },
 +  slotProps={{
-+    surplus: { color: 'red' }
++    surplus: { color: 'red' },
    }}
  />
 ```
@@ -339,8 +339,8 @@ npx @mui/codemod@next deprecations/autocomplete-props <path>
 ```diff
  <AvatarGroup
    slotProps={{
--    additionalAvatar: { color: 'red' }
-+    surplus: { color: 'red' }
+-    additionalAvatar: { color: 'red' },
++    surplus: { color: 'red' },
    }}
  />
 ```
@@ -349,9 +349,9 @@ npx @mui/codemod@next deprecations/autocomplete-props <path>
  MuiAvatarGroup: {
    defaultProps: {
 -    componentsProps: {
--      additionalAvatar: { color: 'red' }
+-      additionalAvatar: { color: 'red' },
 +    slotProps: {
-+      surplus: { color: 'red' }
++      surplus: { color: 'red' },
      },
    },
  },
@@ -361,8 +361,8 @@ npx @mui/codemod@next deprecations/autocomplete-props <path>
  MuiAvatarGroup: {
    defaultProps: {
      slotProps: {
--      additionalAvatar: { color: 'red' }
-+      surplus: { color: 'red' }
+-      additionalAvatar: { color: 'red' },
++      surplus: { color: 'red' },
      },
    },
  },
