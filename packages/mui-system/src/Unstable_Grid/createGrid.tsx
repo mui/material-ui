@@ -24,7 +24,6 @@ import {
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
 import { GridTypeMap, GridOwnerState, GridProps } from './GridProps';
-import type { Breakpoint } from '../createTheme';
 
 const defaultTheme = createTheme();
 
@@ -58,14 +57,14 @@ export default function createGrid(
   } = options;
 
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
-    const { container, direction, spacing, wrap, gridSize } = ownerState;
+    const { container, direction, spacing, wrap, size } = ownerState;
     const slots = {
       root: [
         'root',
         container && 'container',
         wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
         ...generateDirectionClasses(direction),
-        ...generateSizeClassNames(gridSize),
+        ...generateSizeClassNames(size, theme.breakpoints),
         ...(container ? generateSpacingClassNames(spacing, theme.breakpoints.keys[0]) : []),
       ],
     };
@@ -97,26 +96,14 @@ export default function createGrid(
       component = 'div',
       direction = 'row',
       wrap = 'wrap',
+      size = {},
+      offset = {},
       spacing: spacingProp = 0,
       rowSpacing: rowSpacingProp = spacingProp,
       columnSpacing: columnSpacingProp = spacingProp,
       unstable_level: level = 0,
       ...rest
     } = props;
-    // collect breakpoints related props because they can be customized from the theme.
-    const gridSize = {} as GridOwnerState['gridSize'];
-    const gridOffset = {} as GridOwnerState['gridOffset'];
-    const other: Record<string, any> = {};
-
-    Object.entries(rest).forEach(([key, val]) => {
-      if (theme.breakpoints.values[key as Breakpoint] !== undefined) {
-        gridSize[key as Breakpoint] = val;
-      } else if (theme.breakpoints.values[key.replace('Offset', '') as Breakpoint] !== undefined) {
-        gridOffset[key.replace('Offset', '') as Breakpoint] = val;
-      } else {
-        other[key] = val;
-      }
-    });
 
     const columns = inProps.columns ?? (level ? undefined : columnsProp);
     const spacing = inProps.spacing ?? (level ? undefined : spacingProp);
@@ -134,8 +121,8 @@ export default function createGrid(
       spacing,
       rowSpacing,
       columnSpacing,
-      gridSize,
-      gridOffset,
+      size,
+      offset,
     };
 
     const classes = useUtilityClasses(ownerState, theme);
@@ -146,7 +133,7 @@ export default function createGrid(
         as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
-        {...other}
+        {...rest}
       >
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {
@@ -181,18 +168,22 @@ export default function createGrid(
       PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
       PropTypes.object,
     ]),
-    lg: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    lgOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-    md: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    mdOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+    offset: PropTypes.oneOfType([
+      PropTypes.oneOf(['auto', PropTypes.number]),
+      PropTypes.arrayOf(PropTypes.oneOf(['auto', PropTypes.number])),
+      PropTypes.object,
+    ]),
     rowSpacing: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
       PropTypes.number,
       PropTypes.object,
       PropTypes.string,
     ]),
-    sm: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    smOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+    size: PropTypes.oneOfType([
+      PropTypes.oneOf(['auto', 'grow', PropTypes.number, false]),
+      PropTypes.arrayOf(PropTypes.oneOf(['auto', 'grow', PropTypes.number, false])),
+      PropTypes.object,
+    ]),
     spacing: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
       PropTypes.number,
@@ -205,10 +196,6 @@ export default function createGrid(
       PropTypes.object,
     ]),
     wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
-    xl: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    xlOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-    xs: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    xsOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   };
 
   // @ts-ignore internal logic for nested grid

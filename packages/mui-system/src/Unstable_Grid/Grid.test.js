@@ -34,7 +34,7 @@ describe('System <Grid />', () => {
   describe('prop: xs', () => {
     it('should apply the flex-grow class', () => {
       const { container } = render(<Grid xs />);
-      expect(container.firstChild).to.have.class(classes['grid-xs-true']);
+      expect(container.firstChild).to.have.class(classes['grid-xs-grow']);
     });
 
     it('should apply the flex size class', () => {
@@ -220,8 +220,6 @@ describe('System <Grid />', () => {
 
       // The grid should not have class for `lg` prop
       expect(container.firstChild).not.to.have.class('MuiGrid-grid-lg-5');
-      // The `lg` prop is treated as native props that spread to DOM
-      expect(container.firstChild).to.have.attribute('lg', '5');
     });
 
     it('should apply the custom breakpoint spacing class', () => {
