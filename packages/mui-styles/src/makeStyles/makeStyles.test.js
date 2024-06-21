@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
-import { act } from 'react-dom/test-utils';
 import { createRenderer, screen, renderHook, fireEvent } from '@mui/internal-test-utils';
 import { createTheme } from '@mui/material/styles';
 import createGenerateClassName from '../createGenerateClassName';
@@ -536,9 +535,7 @@ describe('makeStyles', () => {
   background-color: black;
 }`);
 
-      act(() => {
-        fireEvent.change(screen.getByLabelText('color'), { target: { value: 'blue' } });
-      });
+      fireEvent.change(screen.getByLabelText('color'), { target: { value: 'blue' } });
 
       expect(sheetsRegistry.toString()).to.equal(
         `.makeStyles-root-4 {
@@ -547,10 +544,8 @@ describe('makeStyles', () => {
 }`,
       );
 
-      act(() => {
-        fireEvent.change(screen.getByLabelText('background-color'), {
-          target: { value: 'green' },
-        });
+      fireEvent.change(screen.getByLabelText('background-color'), {
+        target: { value: 'green' },
       });
 
       expect(sheetsRegistry.toString()).to.equal(
