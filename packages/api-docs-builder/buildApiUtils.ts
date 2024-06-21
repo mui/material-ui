@@ -7,6 +7,8 @@ import { getLineFeed } from '@mui/internal-docs-utils';
 import { replaceComponentLinks } from './utils/replaceUrl';
 import { TypeScriptProject } from './utils/createTypeScriptProject';
 
+export type { ComponentInfo, HookInfo } from './types/utils.types';
+
 /**
  * TODO: this should really be fixed in findPagesMarkdown().
  * Plus replaceComponentLinks() shouldn't exist in the first place,
