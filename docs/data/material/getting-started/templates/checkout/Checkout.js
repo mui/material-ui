@@ -74,7 +74,6 @@ ToggleCustomTheme.propTypes = {
 };
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
-
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -87,30 +86,24 @@ function getStepContent(step) {
       throw new Error('Unknown step');
   }
 }
-
 export default function Checkout() {
   const [mode, setMode] = React.useState('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const checkoutTheme = createTheme(getCheckoutTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
   const [activeStep, setActiveStep] = React.useState(0);
-
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
-
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
   };
-
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
-
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
   return (
     <ThemeProvider theme={showCustomTheme ? checkoutTheme : defaultTheme}>
       <CssBaseline />
@@ -132,13 +125,7 @@ export default function Checkout() {
             gap: 4,
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'end',
-              height: 150,
-            }}
-          >
+          <Box sx={{ display: 'flex', alignItems: 'end', height: 150 }}>
             <Button
               startIcon={<ArrowBackRoundedIcon />}
               component="a"
@@ -220,17 +207,11 @@ export default function Checkout() {
               <Stepper
                 id="desktop-stepper"
                 activeStep={activeStep}
-                sx={{
-                  width: '100%',
-                  height: 40,
-                }}
+                sx={{ width: '100%', height: 40 }}
               >
                 {steps.map((label) => (
                   <Step
-                    sx={{
-                      ':first-child': { pl: 0 },
-                      ':last-child': { pr: 0 },
-                    }}
+                    sx={{ ':first-child': { pl: 0 }, ':last-child': { pr: 0 } }}
                     key={label}
                   >
                     <StepLabel>{label}</StepLabel>
@@ -239,12 +220,7 @@ export default function Checkout() {
               </Stepper>
             </Box>
           </Box>
-          <Card
-            sx={{
-              display: { xs: 'flex', md: 'none' },
-              width: '100%',
-            }}
-          >
+          <Card sx={{ display: { xs: 'flex', md: 'none' }, width: '100%' }}>
             <CardContent
               sx={{
                 display: 'flex',
@@ -303,17 +279,14 @@ export default function Checkout() {
               <Stack spacing={2} useFlexGap>
                 <Typography variant="h1">📦</Typography>
                 <Typography variant="h5">Thank you for your order!</Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant="body1" sx={{ color: 'text.secondary' }}>
                   Your order number is
                   <strong>&nbsp;#140396</strong>. We have emailed your order
                   confirmation and will update you once its shipped.
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{
-                    alignSelf: 'start',
-                    width: { xs: '100%', sm: 'auto' },
-                  }}
+                  sx={{ alignSelf: 'start', width: { xs: '100%', sm: 'auto' } }}
                 >
                   Go to my orders
                 </Button>
@@ -322,26 +295,28 @@ export default function Checkout() {
               <React.Fragment>
                 {getStepContent(activeStep)}
                 <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: { xs: 'column-reverse', sm: 'row' },
-                    justifyContent: activeStep !== 0 ? 'space-between' : 'flex-end',
-                    alignItems: 'end',
-                    flexGrow: 1,
-                    gap: 1,
-                    pb: { xs: 12, sm: 0 },
-                    mt: { xs: 2, sm: 0 },
-                    mb: '60px',
-                  }}
+                  sx={[
+                    {
+                      display: 'flex',
+                      flexDirection: { xs: 'column-reverse', sm: 'row' },
+                      alignItems: 'end',
+                      flexGrow: 1,
+                      gap: 1,
+                      pb: { xs: 12, sm: 0 },
+                      mt: { xs: 2, sm: 0 },
+                      mb: '60px',
+                    },
+                    activeStep !== 0
+                      ? { justifyContent: 'space-between' }
+                      : { justifyContent: 'flex-end' },
+                  ]}
                 >
                   {activeStep !== 0 && (
                     <Button
                       startIcon={<ChevronLeftRoundedIcon />}
                       onClick={handleBack}
                       variant="text"
-                      sx={{
-                        display: { xs: 'none', sm: 'flex' },
-                      }}
+                      sx={{ display: { xs: 'none', sm: 'flex' } }}
                     >
                       Previous
                     </Button>
@@ -353,9 +328,7 @@ export default function Checkout() {
                       onClick={handleBack}
                       variant="outlined"
                       fullWidth
-                      sx={{
-                        display: { xs: 'flex', sm: 'none' },
-                      }}
+                      sx={{ display: { xs: 'flex', sm: 'none' } }}
                     >
                       Previous
                     </Button>
@@ -365,9 +338,7 @@ export default function Checkout() {
                     variant="contained"
                     endIcon={<ChevronRightRoundedIcon />}
                     onClick={handleNext}
-                    sx={{
-                      width: { xs: '100%', sm: 'fit-content' },
-                    }}
+                    sx={{ width: { xs: '100%', sm: 'fit-content' } }}
                   >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>

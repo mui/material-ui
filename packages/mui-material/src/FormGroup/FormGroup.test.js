@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import FormGroup, { formGroupClasses as classes } from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
 import describeConformance from '../../test/describeConformance';

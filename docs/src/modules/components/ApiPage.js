@@ -3,16 +3,17 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
-import AdGuest from 'docs/src/modules/components/AdGuest';
 import Alert from '@mui/material/Alert';
+import AdGuest from 'docs/src/modules/components/AdGuest';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
-import { alpha } from '@mui/material/styles';
+import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
+import { SectionTitle } from '@mui/docs/SectionTitle';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import { BrandingProvider } from '@mui/docs/branding';
 import PropertiesSection, {
   getPropsToC,
 } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
@@ -47,21 +48,9 @@ export function getTranslatedHeader(t, header) {
 }
 
 function Heading(props) {
-  const { hash, level: Level = 'h2' } = props;
+  const { hash, level = 'h2' } = props;
   const t = useTranslate();
-
-  return (
-    <Level id={hash}>
-      <a aria-labelledby={hash} className="title-link-to-anchor" href={`#${hash}`} tabIndex={-1}>
-        {getTranslatedHeader(t, hash)}
-        <span className="anchor-icon">
-          <svg>
-            <use xlinkHref="#anchor-link-icon" />
-          </svg>
-        </span>
-      </a>
-    </Level>
-  );
+  return <SectionTitle title={getTranslatedHeader(t, hash)} hash={hash} level={level} />;
 }
 
 Heading.propTypes = {
@@ -83,6 +72,7 @@ export default function ApiPage(props) {
   const {
     cssComponent,
     demos,
+    deprecated,
     filename,
     forwardsRefTo,
     inheritance,
@@ -115,6 +105,7 @@ export default function ApiPage(props) {
     componentDescription,
     componentDescriptionToc = [],
     classDescriptions,
+    deprecationInfo,
     propDescriptions,
     slotDescriptions,
   } = descriptions[userLanguage];
@@ -191,6 +182,19 @@ export default function ApiPage(props) {
     >
       <MarkdownElement>
         <h1>{pageContent.name} API</h1>
+        {deprecated ? (
+          <Alert
+            severity="warning"
+            icon={<WarningRoundedIcon fontSize="small" />}
+            sx={{ mt: 1.5, mb: 3 }}
+          >
+            <span
+              dangerouslySetInnerHTML={{
+                __html: deprecationInfo || t('api-docs.defaultDeprecationMessage'),
+              }}
+            />
+          </Alert>
+        ) : null}
         <Typography variant="h5" component="p" className="description" gutterBottom>
           {description}
           {disableAd ? null : (
@@ -202,46 +206,7 @@ export default function ApiPage(props) {
           )}
         </Typography>
         <Heading hash="demos" />
-        <Alert
-          severity="success"
-          variant="outlined"
-          icon={<VerifiedRoundedIcon sx={{ fontSize: 20 }} />}
-          sx={[
-            (theme) => ({
-              mt: 1.5,
-              pt: 1,
-              px: 2,
-              pb: 0,
-              fontSize: theme.typography.pxToRem(16),
-              backgroundColor: (theme.vars || theme).palette.success[50],
-              borderColor: (theme.vars || theme).palette.success[100],
-              '& .MuiAlert-message': {
-                '& * p': {
-                  color: (theme.vars || theme).palette.text.primary,
-                  mb: 1,
-                },
-                '& * a': {
-                  fontWeight: theme.typography.fontWeightMedium,
-                  color: (theme.vars || theme).palette.success[900],
-                  textDecorationColor: alpha(theme.palette.success[600], 0.3),
-                },
-              },
-              ...theme.applyDarkStyles({
-                backgroundColor: alpha(theme.palette.success[700], 0.12),
-                borderColor: alpha(theme.palette.success[400], 0.1),
-                '& .MuiAlert-message': {
-                  ul: {
-                    pl: 3,
-                  },
-                  '& * a': {
-                    color: (theme.vars || theme).palette.success[100],
-                    textDecorationColor: alpha(theme.palette.success[100], 0.3),
-                  },
-                },
-              }),
-            }),
-          ]}
-        >
+        <Alert severity="success" icon={<VerifiedRoundedIcon fontSize="small" />}>
           <span
             dangerouslySetInnerHTML={{
               __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>

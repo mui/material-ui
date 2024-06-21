@@ -193,7 +193,7 @@ export interface AutocompleteProps<
   closeText?: string;
   /**
    * The props used for each slot inside.
-   * @default {}
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
@@ -358,11 +358,11 @@ export interface AutocompleteProps<
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Autocomplete](https://next.mui.com/material-ui/react-autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
+ * - [Autocomplete API](https://next.mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
   Value,
@@ -372,4 +372,4 @@ export default function Autocomplete<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >(
   props: AutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-): JSX.Element;
+): React.JSX.Element;

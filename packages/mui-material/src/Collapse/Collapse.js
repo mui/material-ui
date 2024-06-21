@@ -6,10 +6,9 @@ import { Transition } from 'react-transition-group';
 import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, createUseThemeProps, useTheme } from '../zero-styled';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
-import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
 import { getCollapseUtilityClass } from './collapseClasses';
 

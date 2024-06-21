@@ -1,5 +1,6 @@
 import movePropIntoSlots from '../utils/movePropIntoSlots';
 import movePropIntoSlotProps from '../utils/movePropIntoSlotProps';
+import replaceComponentsWithSlots from '../utils/replaceComponentsWithSlots';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -44,6 +45,8 @@ export default function transformer(file, api, options) {
     propName: 'ChipProps',
     slotName: 'chip',
   });
+
+  replaceComponentsWithSlots(j, { root, componentName: 'Autocomplete' });
 
   return root.toSource(printOptions);
 }

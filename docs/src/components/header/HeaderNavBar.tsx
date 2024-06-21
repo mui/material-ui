@@ -75,12 +75,12 @@ const PRODUCT_IDS = [
 ];
 
 type ProductSubMenuProps = {
-  icon: React.ReactElement;
+  icon: React.ReactElement<any>;
   name: React.ReactNode;
   description: React.ReactNode;
   chip?: React.ReactNode;
   href: string;
-} & Omit<JSX.IntrinsicElements['a'], 'ref'>;
+} & Omit<React.JSX.IntrinsicElements['a'], 'ref'>;
 
 const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
   function ProductSubMenu({ icon, name, description, chip, href, ...props }, ref) {
@@ -112,10 +112,10 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
       >
         <Box sx={{ px: 2 }}>{icon}</Box>
         <Box sx={{ flexGrow: 1 }}>
-          <Typography color="text.primary" variant="body2" fontWeight="bold">
+          <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
             {name}
           </Typography>
-          <Typography color="text.secondary" variant="body2">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {description}
           </Typography>
         </Box>
@@ -342,16 +342,10 @@ export default function HeaderNavBar() {
                   variant="outlined"
                   sx={(theme) => ({
                     mt: 1,
-                    minWidth: 498,
                     overflow: 'hidden',
                     borderColor: 'grey.200',
                     bgcolor: 'background.paper',
                     boxShadow: `0px 4px 16px ${alpha(theme.palette.grey[200], 0.8)}`,
-                    '& ul': {
-                      margin: 0,
-                      padding: 0,
-                      listStyle: 'none',
-                    },
                     ...theme.applyDarkStyles({
                       borderColor: 'primaryDark.700',
                       bgcolor: 'primaryDark.900',
@@ -359,9 +353,7 @@ export default function HeaderNavBar() {
                     }),
                   })}
                 >
-                  <ul>
-                    <MuiProductSelector />
-                  </ul>
+                  <MuiProductSelector autoFocusItem={subMenuOpen === 'docs'} />
                 </Paper>
               </Fade>
             )}
