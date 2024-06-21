@@ -90,7 +90,7 @@
     "nx_test_unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'packages-internal/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'"
   },
   "dependencies": {
-    "@googleapis/sheets": "^7.0.1",
+    "@googleapis/sheets": "^8.0.0",
     "@netlify/functions": "^2.7.0",
     "@slack/bolt": "^3.18.0",
     "execa": "^9.2.0",
@@ -173,7 +173,7 @@
     "markdownlint-cli2": "^0.13.0",
     "mocha": "^10.4.0",
     "nx": "^19.3.0",
-    "nyc": "^15.1.0",
+    "nyc": "^17.0.0",
     "piscina": "^4.5.1",
     "postcss-styled-syntax": "^0.6.4",
     "prettier": "^3.3.2",
@@ -192,9 +192,9 @@
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@9.2.0",
+  "packageManager": "pnpm@9.4.0",
   "engines": {
-    "pnpm": "9.2.0"
+    "pnpm": "9.4.0"
   },
   "resolutions": {
     "@babel/core": "^7.24.7",

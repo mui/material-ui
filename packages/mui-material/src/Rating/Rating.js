@@ -16,11 +16,10 @@ import {
 } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
-
-const useThemeProps = createUseThemeProps('MuiRating');
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
@@ -331,7 +330,7 @@ function defaultLabelText(value) {
 }
 
 const Rating = React.forwardRef(function Rating(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiRating', props: inProps });
+  const props = useDefaultProps({ name: 'MuiRating', props: inProps });
   const {
     className,
     defaultValue = null,
