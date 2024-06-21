@@ -92,14 +92,14 @@ const staticStyles = (theme) => {
       if (selector.startsWith('@')) {
         // for @media (prefers-color-scheme), we need to target :root
         baseStyles[selector] = {
-          [`:root:has(.${SELECTOR})`]: {
+          [`:root:not(:has(.${SELECTOR}))`]: {
             colorScheme: scheme.palette?.mode,
           },
         };
       } else {
         // else, it's likely that the selector already target an element with a class or data attribute
         baseStyles[selector.replace(/\s*&/, '')] = {
-          [`&:has(.${SELECTOR})`]: {
+          [`&:not(:has(.${SELECTOR}))`]: {
             colorScheme: scheme.palette?.mode,
           },
         };
@@ -127,7 +127,7 @@ function CssBaseline(inProps) {
       {isDynamicSupport && <GlobalStyles enableColorScheme={enableColorScheme} />}
 
       {/* Pigment CSS */}
-      {!isDynamicSupport && enableColorScheme && (
+      {!isDynamicSupport && !enableColorScheme && (
         <span className={SELECTOR} style={{ display: 'none' }} />
       )}
       {children}
