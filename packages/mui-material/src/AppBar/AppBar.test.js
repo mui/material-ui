@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
 import Paper from '@mui/material/Paper';
-import { ThemeProvider, createTheme, CssVarsProvider } from '@mui/material/styles';
+import { ThemeProvider, CssVarsProvider, hexToRgb } from '@mui/material/styles';
+import defaultTheme from '../styles/defaultTheme';
 import describeConformance from '../../test/describeConformance';
 
 describe('<AppBar />', () => {
@@ -70,7 +71,7 @@ describe('<AppBar />', () => {
     }
 
     render(
-      <ThemeProvider theme={createTheme()}>
+      <ThemeProvider theme={defaultTheme}>
         <AppBar data-testid="root" color="inherit">
           Hello World
         </AppBar>
@@ -78,7 +79,9 @@ describe('<AppBar />', () => {
     );
 
     const appBar = screen.getByTestId('root');
-    expect(appBar).toHaveComputedStyle({ backgroundColor: 'rgb(255, 255, 255)' });
+    expect(appBar).toHaveComputedStyle({
+      backgroundColor: hexToRgb(defaultTheme.palette.background.paper),
+    });
   });
 
   it('should inherit Paper background color with CssVarsProvider', function test() {
@@ -95,6 +98,8 @@ describe('<AppBar />', () => {
     );
 
     const appBar = screen.getByTestId('root');
-    expect(appBar).toHaveComputedStyle({ backgroundColor: 'rgb(255, 255, 255)' });
+    expect(appBar).toHaveComputedStyle({
+      backgroundColor: hexToRgb(defaultTheme.palette.background.paper),
+    });
   });
 });
