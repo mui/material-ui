@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createRenderer, screen } from '@mui-internal/test-utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
 import Paper from '@mui/material/Paper';
-import { ThemeProvider, CssVarsProvider, hexToRgb } from '@mui/material/styles';
+import { ThemeProvider, Experimental_CssVarsProvider as CssVarsProvider, hexToRgb } from '@mui/material/styles';
 import defaultTheme from '../styles/defaultTheme';
 import describeConformance from '../../test/describeConformance';
 
