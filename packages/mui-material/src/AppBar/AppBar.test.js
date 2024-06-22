@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
 import Paper from '@mui/material/Paper';
+import { ThemeProvider, createTheme, CssVarsProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<AppBar />', () => {
@@ -61,5 +62,39 @@ describe('<AppBar />', () => {
       const appBar = container.firstChild;
       expect(appBar).to.have.class('mui-fixed');
     });
+  });
+
+  it('should inherit Paper background color with ThemeProvider', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    render(
+      <ThemeProvider theme={createTheme()}>
+        <AppBar data-testid="root" color="inherit">
+          Hello World
+        </AppBar>
+      </ThemeProvider>,
+    );
+
+    const appBar = screen.getByTestId('root');
+    expect(appBar).toHaveComputedStyle({ backgroundColor: 'rgb(255, 255, 255)' });
+  });
+
+  it('should inherit Paper background color with CssVarsProvider', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    render(
+      <CssVarsProvider>
+        <AppBar data-testid="root" color="inherit">
+          Hello World
+        </AppBar>
+      </CssVarsProvider>,
+    );
+
+    const appBar = screen.getByTestId('root');
+    expect(appBar).toHaveComputedStyle({ backgroundColor: 'rgb(255, 255, 255)' });
   });
 });
