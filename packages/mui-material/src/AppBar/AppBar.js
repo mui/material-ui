@@ -123,14 +123,16 @@ const AppBarRoot = styled(Paper, {
         },
       })),
     {
-      props: { enableColorOnDark: true },
+      props: (props) =>
+        props.enableColorOnDark === true && !['inherit', 'transparent'].includes(props.color),
       style: {
         backgroundColor: 'var(--AppBar-background)',
         color: 'var(--AppBar-color)',
       },
     },
     {
-      props: { enableColorOnDark: false },
+      props: (props) =>
+        props.enableColorOnDark === false && !['inherit', 'transparent'].includes(props.color),
       style: {
         backgroundColor: 'var(--AppBar-background)',
         color: 'var(--AppBar-color)',
