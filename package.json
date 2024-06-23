@@ -141,7 +141,7 @@
     "concurrently": "^8.2.2",
     "cpy-cli": "^5.0.0",
     "cross-env": "^7.0.3",
-    "danger": "^12.3.1",
+    "danger": "^12.3.3",
     "enzyme": "^3.11.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",

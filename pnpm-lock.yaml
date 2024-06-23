@@ -174,8 +174,8 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
       danger:
-        specifier: ^12.3.1
-        version: 12.3.1(encoding@0.1.13)
+        specifier: ^12.3.3
+        version: 12.3.3(encoding@0.1.13)
       enzyme:
         specifier: ^3.11.0
         version: 3.11.0
@@ -6709,8 +6709,8 @@ packages:
   damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
 
-  danger@12.3.1:
-    resolution: {integrity: sha512-K5ydQs6fTl6+iAWZJ5Fk238YmGMGnDx/5ZD7ZBTK4NgztAxXIupWVEYUACFy/lUpvih6EDKocn12OF1MS3UsLQ==}
+  danger@12.3.3:
+    resolution: {integrity: sha512-nZKzpgXN21rr4dwa6bFhM7G2JEa79dZRJiT3RVRSyi4yk1/hgZ2f8HDGoa7tMladTmu8WjJFyE3LpBIihh+aDw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -17824,7 +17824,7 @@ snapshots:
 
   damerau-levenshtein@1.0.8: {}
 
-  danger@12.3.1(encoding@0.1.13):
+  danger@12.3.3(encoding@0.1.13):
     dependencies:
       '@gitbeaker/rest': 38.12.1
       '@octokit/rest': 18.12.0(encoding@0.1.13)
