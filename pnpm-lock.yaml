@@ -32,8 +32,8 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0(@opentelemetry/api@1.8.0)
       '@slack/bolt':
-        specifier: ^3.18.0
-        version: 3.18.0
+        specifier: ^3.19.0
+        version: 3.19.0
       execa:
         specifier: ^9.2.0
         version: 9.2.0
@@ -4931,8 +4931,8 @@ packages:
   '@sinonjs/text-encoding@0.7.2':
     resolution: {integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==}
 
-  '@slack/bolt@3.18.0':
-    resolution: {integrity: sha512-A7bDi5kY50fS6/nsmURkQdO3iMxD8aX/rA+m1UXEM2ue2z4KijeQtx2sOZ4YkJQ/h7BsgTQM0CYh3qqmo+m5sQ==}
+  '@slack/bolt@3.19.0':
+    resolution: {integrity: sha512-P5Yup/PbO8sE5xsuqkBkpSPkxEkfWZ6yo5ZlmBGxRhhoU1usUSU2w0bgZoiDX4WFm7ZX+3x2Dyf4VMa9kzfmVQ==}
     engines: {node: '>=12.13.0', npm: '>=6.12.0'}
 
   '@slack/logger@3.0.0':
@@ -15631,7 +15631,7 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.2': {}
 
-  '@slack/bolt@3.18.0':
+  '@slack/bolt@3.19.0':
     dependencies:
       '@slack/logger': 4.0.0
       '@slack/oauth': 2.6.2
