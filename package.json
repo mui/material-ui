@@ -123,7 +123,7 @@
     "@types/enzyme": "^3.10.18",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.5",
-    "@types/mocha": "^10.0.6",
+    "@types/mocha": "^10.0.7",
     "@types/node": "^18.19.34",
     "@types/react": "^18.2.55",
     "@types/yargs": "^17.0.32",
