@@ -190,6 +190,8 @@ const AutocompleteRoot = styled('div', {
     flexGrow: 1,
     textOverflow: 'ellipsis',
     opacity: 0,
+  },
+  [`& .${autocompleteClasses.tag} ~ .${autocompleteClasses.input}`]: {
     pointerEvents: 'none',
   },
   variants: [
