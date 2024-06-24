@@ -1,14 +1,15 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 // @ts-ignore
 import Stack from '@pigment-css/react/Stack';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import { ResponsiveStyleValue, SxProps } from '@mui/system';
-import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createTheme';
 
-export interface StackOwnProps {
+export interface PigmentStackOwnProps {
   /**
    * The content of the component.
    */
@@ -34,18 +35,18 @@ export interface StackOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface StackTypeMap<
+export interface PigmentStackTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & StackOwnProps;
+  props: AdditionalProps & PigmentStackOwnProps;
   defaultComponent: RootComponent;
 }
 
-export type StackProps<
-  RootComponent extends React.ElementType = StackTypeMap['defaultComponent'],
+export type PigmentStackProps<
+  RootComponent extends React.ElementType = PigmentStackTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<StackTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+> = OverrideProps<PigmentStackTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
 };
 
@@ -56,10 +57,66 @@ const useUtilityClasses = () => {
 
   return composeClasses(slots, (slot) => generateUtilityClass('MuiStack', slot), {});
 };
-
+/**
+ *
+ * Demos:
+ *
+ * - [Stack](https://next.mui.com/material-ui/react-stack/)
+ *
+ * API:
+ *
+ * - [PigmentStack API](https://next.mui.com/material-ui/api/pigment-stack/)
+ */
 const PigmentStack = React.forwardRef(function PigmentStack({ className, ...props }, ref) {
   const classes = useUtilityClasses();
   return <Stack className={clsx(classes.root, className)} {...props} ref={ref} />;
-}) as OverridableComponent<StackTypeMap>;
+}) as OverridableComponent<PigmentStackTypeMap>;
+
+PigmentStack.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * Defines the `flex-direction` style property.
+   * It is applied for all screen sizes.
+   * @default 'column'
+   */
+  direction: PropTypes.oneOfType([
+    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
+    PropTypes.object,
+  ]),
+  /**
+   * Add an element between each child.
+   */
+  divider: PropTypes.node,
+  /**
+   * Defines the space between immediate children.
+   * @default 0
+   */
+  spacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
+  /**
+   * The system prop, which allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+} as any;
 
 export default PigmentStack;
