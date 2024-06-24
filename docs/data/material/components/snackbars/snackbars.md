@@ -86,22 +86,6 @@ This demo shows how to display multiple Snackbars without stacking them by using
 
 {{"demo": "ConsecutiveSnackbars.js"}}
 
-## Third-party integrations
-
-### notistack
-
-![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Star)
-![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
-
-With an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) lets you vertically stack multiple Snackbars without having to handle their open and close states.
-Even though this is discouraged in the Material Design guidelines, it is still a common pattern.
-
-{{"demo": "IntegrationNotistack.js", "defaultCodeOpen": false}}
-
-:::warning
-Note that notistack prevents Snackbars from being [closed by pressing <kbd class="key">Escape</kbd>](#accessibility).
-:::
-
 ## Accessibility
 
 The user should be able to dismiss Snackbars by pressing <kbd class="key">Escape</kbd>. If there are multiple instances appearing at the same time and you want <kbd class="key">Escape</kbd> to dismiss only the oldest one that's currently open, call `event.preventDefault` in the `onClose` prop.

@@ -137,7 +137,6 @@ const blacklist = [
   'docs-components-snackbars/CustomizedSnackbars.png', // Redundant
   'docs-components-snackbars/DirectionSnackbar.png', // Needs interaction
   'docs-components-snackbars/FabIntegrationSnackbar.png', // Needs interaction
-  'docs-components-snackbars/IntegrationNotistack.png', // Needs interaction
   'docs-components-snackbars/PositionedSnackbar.png', // Needs interaction
   'docs-components-snackbars/SimpleSnackbar.png', // Needs interaction
   'docs-components-snackbars/TransitionsSnackbar.png', // Needs interaction

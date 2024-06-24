@@ -63,7 +63,6 @@ export default withDocsInfra({
         (ctx, callback) => {
           const { request } = ctx;
           const hasDependencyOnRepoPackages = [
-            'notistack',
             '@mui/x-data-grid',
             '@mui/x-data-grid-pro',
             '@mui/x-date-pickers',
