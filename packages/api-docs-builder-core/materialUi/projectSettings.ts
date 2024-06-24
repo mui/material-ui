@@ -16,7 +16,12 @@ export const projectSettings: ProjectSettings = {
     {
       name: 'material',
       rootPath: path.join(process.cwd(), 'packages/mui-material'),
-      entryPointPath: 'src/index.d.ts',
+      entryPointPath: [
+        'src/index.d.ts',
+        'src/PigmentStack/PigmentStack.tsx',
+        'src/PigmentContainer/PigmentContainer.tsx',
+        'src/PigmentHidden/PigmentHidden.tsx',
+      ],
     },
     {
       name: 'lab',
