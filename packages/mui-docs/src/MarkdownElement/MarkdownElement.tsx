@@ -121,6 +121,43 @@ const Root = styled('div')(
         marginBottom: 6,
       },
     },
+    '& a[target="_blank"]::after': {
+      content: '""',
+      maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' focusable='false' aria-hidden='true' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z'%3E%3C/path%3E%3C/svg%3E")`,
+      display: 'inline-flex',
+      width: '1em',
+      height: '1em',
+      color: 'inherit',
+      backgroundColor: 'currentColor',
+      transform: 'translate(0, 2px)',
+      transition: 'transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1)', // bounce effect
+      opacity: 0.8,
+    },
+    '& a[target="_blank"]:hover::after': {
+      opacity: 1,
+      transform: 'translate(1px, 0)',
+    },
+    '& a.remove-link-arrow::after': {
+      // Allows to remove link arrows for images
+      display: 'none',
+    },
+    '& .Ad-root a::after': {
+      // Remove link arrow for ads
+      display: 'none',
+    },
+    '& a': {
+      // Style taken from the Link component
+      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
+      fontWeight: theme.typography.fontWeightMedium,
+      textDecoration: 'underline',
+      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
+      '&:hover': {
+        textDecorationColor: 'inherit',
+      },
+    },
+    '& a code': {
+      color: darken(lightTheme.palette.primary.main, 0.2),
+    },
     '& h1, & h2, & h3, & h4': {
       display: 'flex',
       alignItems: 'center',
@@ -134,6 +171,8 @@ const Root = styled('div')(
       '& .title-link-to-anchor': {
         color: 'inherit',
         textDecoration: 'none',
+        boxShadow: 'none',
+        fontWeight: 'inherit',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
@@ -144,12 +183,6 @@ const Root = styled('div')(
         display: 'inline-flex',
         alignItems: 'center',
         visibility: 'hidden',
-      },
-      '& a:not(.title-link-to-anchor):hover': {
-        color: 'currentColor',
-        border: 'none',
-        boxShadow: '0 1px 0 0 currentColor',
-        textDecoration: 'none',
       },
       '& .anchor-icon, & .comment-link': {
         padding: 0,
@@ -409,46 +442,6 @@ const Root = styled('div')(
         },
       },
     },
-    '& a[target="_blank"]::after': {
-      content: '""',
-      maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' focusable='false' aria-hidden='true' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z'%3E%3C/path%3E%3C/svg%3E")`,
-      display: 'inline-flex',
-      width: '1em',
-      height: '1em',
-      color: 'inherit',
-      backgroundColor: 'currentColor',
-      transform: 'translate(0, 2px)',
-      transition: 'transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1)', // bounce effect
-      opacity: 0.8,
-    },
-    '& a[target="_blank"]:hover::after': {
-      opacity: 1,
-      transform: 'translate(1px, 0)',
-    },
-    '& a.remove-link-arrow::after': {
-      // Allows to remove link arrows for images
-      display: 'none',
-    },
-    '& .Ad-root a::after': {
-      // Remove link arrow for ads
-      display: 'none',
-    },
-    '& a:not(.title-link-to-anchor), & a:not(.title-link-to-anchor) code': {
-      // Style taken from the Link component
-      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
-      fontWeight: theme.typography.fontWeightMedium,
-      textDecoration: 'underline',
-      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
-      '&:hover': {
-        textDecorationColor: 'inherit',
-      },
-    },
-    '& a code': {
-      color: darken(lightTheme.palette.primary.main, 0.04),
-    },
-    '& a:not(.title-link-to-anchor) code': {
-      color: darken(lightTheme.palette.primary.main, 0.2),
-    },
     '& img, & video': {
       // Use !important so that inline style on <img> or <video> can't win.
       // This avoid horizontal overflows on mobile.
@@ -676,23 +669,27 @@ const Root = styled('div')(
       '& hr': {
         backgroundColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
+      '& a': {
+        color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
+      },
+      '& a code': {
+        color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
+      },
       '& h1, & h2, & h3, & h4, & h5': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
-      },
-      '& p, & ul, & ol': {
-        color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
-      },
-      '& h1, & h2, & h3, & h4': {
-        '&:hover .anchor-icon, & .comment-link': {
+        '& .anchor-icon, & .comment-link': {
           color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
           backgroundColor: alpha(darkTheme.palette.primaryDark[700], 0.5),
           '&:hover': {
+            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
             borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
             backgroundColor: alpha(darkTheme.palette.primary[900], 0.6),
-            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
           },
         },
+      },
+      '& p, & ul, & ol': {
+        color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
       },
       '& h1 code, & h2 code, & h3 code': {
         color: `var(--muidocs-palette-grey-100, ${darkTheme.palette.grey[100]})`,
@@ -784,12 +781,6 @@ const Root = styled('div')(
             color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
           },
         },
-      },
-      '& a:not(.title-link-to-anchor), & a:not(.title-link-to-anchor) code': {
-        color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
-      },
-      '& a:not(.title-link-to-anchor) code': {
-        color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
       },
       '& kbd.key': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
