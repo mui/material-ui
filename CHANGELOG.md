@@ -13,8 +13,8 @@ A big thanks to the 17 contributors who made this release possible.
 - Add `InitColorSchemeScript` for Next.js App Router (#42247) @siriwatknp
 - [Autocomplete] Fix renderOption props type (#42689) @DiegoAndai
 - [Autocomplete] Fix React 18.3 key spread warnings in Autocomplete demos (#42691) @aarongarciah
-- Support Pigment CSS for `CssBaseline`, `ScopedCssBaseline` and `Popper` (#42640) @siriwatknp
-- Add `DefaultPropsProvider` for Pigment CSS integration (#42638) @siriwatknp
+- Support Pigment CSS for `CssBaseline`, `ScopedCssBaseline` and `Popper` (#42640) @siriwatknp
+- Add `DefaultPropsProvider` for Pigment CSS integration (#42638) @siriwatknp
 - [Stepper] Generate class for nonLinear prop (#42620) @alexismo
 - [Tab] Fix failing test (#42686) @aarongarciah
 - [Tab] Deprecate iconWrapper class for icon class (#42647) @sai6855
@@ -63,7 +63,7 @@ A big thanks to the 17 contributors who made this release possible.
 - [test] Fix tests on CI (#42670) @michaldudak
 - [test] Fix issues reported by react-compiler in test packages (#42626) @sai6855
 - [website] Add Armin to the team members (#42679) @arminmeh
-- [website] Open Staff Engineer role for Pigment CSS (#42531) @mnajdova
+- [website] Open Staff Engineer role for Pigment CSS (#42531) @mnajdova
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @alexismo, @anuujj, @arminmeh, @BartJanvanAssen, @Danielkhakbaz, @danilo-leal, @DiegoAndai, @Janpot, @LukasTy, @michaldudak, @Mini-ghost, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp
 
