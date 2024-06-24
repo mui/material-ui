@@ -33,6 +33,7 @@ A big thanks to the 17 contributors who made this release possible.
 ### `@mui/joy@5.0.0-beta.45`
 
 - Fix issues reported by the React Compiler (#42671) @anuujj
+- [Autocomplete] Fix React spread key warning (#42741) @aarongarciah
 
 ### `@mui/lab@6.0.0-alpha.12`
 
@@ -52,6 +53,8 @@ A big thanks to the 17 contributors who made this release possible.
 - [code-infra] Try disabling animations when taking screenshots (#42537) @Janpot
 - [code-infra] Fix benchmark package (#42553) @Janpot
 - [core] Replace enzyme in describeConformance (#42447) @DiegoAndai
+- [docs-infra] Fix layout shift demo toolbar (#42743) @oliviertassinari
+- [docs-infra] Fix visual look of in-house ad (#42735) @oliviertassinari
 - [docs-infra] Add stray design polish (#42646) @danilo-leal
 - [docs-infra] Fix wrong migration (#42675) @siriwatknp
 - [docs-infra] Fine tune markdown elements design (#42643) @danilo-leal
