@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemClasses } from './listItemClasses';
 
@@ -16,13 +15,6 @@ export interface ListItemBaseProps {
    * @default 'center'
    */
   alignItems?: 'flex-start' | 'center';
-  /**
-   * If `true`, the list item is focused during the first mount.
-   * Focus will also be triggered if the value changes from false to true.
-   * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-   */
-  autoFocus?: boolean;
   /**
    * The content of the component if a `ListItemSecondaryAction` is used it must
    * be the last child.
@@ -51,12 +43,6 @@ export interface ListItemBaseProps {
    */
   dense?: boolean;
   /**
-   * If `true`, the component is disabled.
-   * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-   */
-  disabled?: boolean;
-  /**
    * If `true`, the left and right padding is removed.
    * @default false
    */
@@ -75,12 +61,6 @@ export interface ListItemBaseProps {
    * The element to display at the end of ListItem.
    */
   secondaryAction?: React.ReactNode;
-  /**
-   * Use to apply selected styling.
-   * @default false
-   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-   */
-  selected?: boolean;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -143,35 +123,7 @@ export interface ListItemTypeMap<AdditionalProps, RootComponent extends React.El
  *
  * - [ListItem API](https://next.mui.com/material-ui/api/list-item/)
  */
-declare const ListItem: ExtendButtonBase<
-  ListItemTypeMap<
-    {
-      /**
-       * If `true`, the list item is a button (using `ButtonBase`). Props intended
-       * for `ButtonBase` can then be applied to `ListItem`.
-       * @default false
-       * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-       *
-       */
-      button: true;
-    },
-    'div'
-  >
-> &
-  OverridableComponent<
-    ListItemTypeMap<
-      {
-        /**
-         * If `true`, the list item is a button (using `ButtonBase`). Props intended
-         * for `ButtonBase` can then be applied to `ListItem`.
-         * @default false
-         * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
-         */
-        button?: false;
-      },
-      'li'
-    >
-  >;
+declare const ListItem: OverridableComponent<ListItemTypeMap<{}, 'li'>>;
 
 export type ListItemProps<
   RootComponent extends React.ElementType = 'li',

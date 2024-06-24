@@ -2,12 +2,6 @@
   "componentDescription": "Uses an additional container component if `ListItemSecondaryAction` is the last child.",
   "propDescriptions": {
     "alignItems": { "description": "Defines the <code>align-items</code> style property." },
-    "autoFocus": {
-      "description": "If <code>true</code>, the list item is focused during the first mount. Focus will also be triggered if the value changes from false to true."
-    },
-    "button": {
-      "description": "If <code>true</code>, the list item is a button (using <code>ButtonBase</code>). Props intended for <code>ButtonBase</code> can then be applied to <code>ListItem</code>."
-    },
     "children": {
       "description": "The content of the component if a <code>ListItemSecondaryAction</code> is used it must be the last child."
     },
@@ -27,7 +21,6 @@
     "dense": {
       "description": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used. The prop defaults to the value inherited from the parent List component."
     },
-    "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "disableGutters": {
       "description": "If <code>true</code>, the left and right padding is removed."
     },
@@ -36,7 +29,6 @@
       "description": "If <code>true</code>, a 1px light border is added to the bottom of the list item."
     },
     "secondaryAction": { "description": "The element to display at the end of ListItem." },
-    "selected": { "description": "Use to apply selected styling." },
     "slotProps": {
       "description": "The extra props for the slot components. You can override the existing props or add new ones."
     },
@@ -51,11 +43,6 @@
       "nodeName": "the component element",
       "conditions": "<code>alignItems=\"flex-start\"</code>"
     },
-    "button": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the inner <code>component</code> element",
-      "conditions": "<code>button={true}</code>"
-    },
     "container": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the container element",
@@ -66,20 +53,10 @@
       "nodeName": "the component element",
       "conditions": "dense"
     },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the inner <code>component</code> element",
-      "conditions": "<code>disabled={true}</code>"
-    },
     "divider": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the inner <code>component</code> element",
       "conditions": "<code>divider={true}</code>"
-    },
-    "focusVisible": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the <code>component</code>&#39;s <code>focusVisibleClassName</code> prop",
-      "conditions": "<code>button={true}</code>"
     },
     "gutters": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
@@ -99,11 +76,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the component element",
       "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
-    },
-    "selected": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>selected={true}</code>"
     }
   }
 }
