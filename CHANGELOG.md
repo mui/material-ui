@@ -1,5 +1,74 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.12
+
+<!-- generated comparing v6.0.0-alpha.11..next -->
+
+_Jun 24, 2024_
+
+A big thanks to the 17 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.12`
+
+- Add `InitColorSchemeScript` for Next.js App Router (#42247) @siriwatknp
+- [Autocomplete] Fix renderOption props type (#42689) @DiegoAndai
+- [Autocomplete] Fix React 18.3 key spread warnings in Autocomplete demos (#42691) @aarongarciah
+- Support Pigment CSS for `CssBaseline`, `ScopedCssBaseline` and `Popper` (#42640) @siriwatknp
+- Add `DefaultPropsProvider` for Pigment CSS integration (#42638) @siriwatknp
+- [Stepper] Generate class for nonLinear prop (#42620) @alexismo
+- [Tab] Fix failing test (#42686) @aarongarciah
+- [Tab] Deprecate iconWrapper class for icon class (#42647) @sai6855
+- [TableSortLabel] Deprecate composed classes (#42281) @sai6855
+- [usePagination] Update pagination `siblingsEnd` calculation logic (#42667) @Mini-ghost
+
+### `@mui/codemod@6.0.0-alpha.12`
+
+- Support dynamic props styled transformation (#42683) @siriwatknp
+
+### `@mui/system@6.0.0-alpha.12`
+
+- Fix issues reported by react compiler in `mui-system` package (#42637) @sai6855
+- [useMediaQuery] Remove deprecated types (#42560) @aarongarciah
+
+### `@mui/joy@5.0.0-beta.45`
+
+- Fix issues reported by the React Compiler (#42671) @anuujj
+- [Autocomplete] Fix React spread key warning (#42741) @aarongarciah
+
+### `@mui/lab@6.0.0-alpha.12`
+
+- [LoadingButton] Apply wrapping element to prevent React crash on Google page translation (#35198) @BartJanvanAssen
+
+### Docs
+
+- Fix git diff format in migration to v6 (#42711) @oliviertassinari
+- Use new email for sponsoring @oliviertassinari
+- Fix 301 links (#42697) @alexfauquette
+- Normalize the capitalization of Design Kit @oliviertassinari
+- Recommend setting HTML attribute instead of DOM property for RTL (#42599) @aarongarciah
+- [material-ui][Select] Fix the `SelectAutoWidth` demo menu item value (#42648) @Danielkhakbaz
+
+### Core
+
+- [code-infra] Try disabling animations when taking screenshots (#42537) @Janpot
+- [code-infra] Fix benchmark package (#42553) @Janpot
+- [core] Replace enzyme in describeConformance (#42447) @DiegoAndai
+- [docs-infra] Fix layout shift demo toolbar (#42743) @oliviertassinari
+- [docs-infra] Fix visual look of in-house ad (#42735) @oliviertassinari
+- [docs-infra] Add stray design polish (#42646) @danilo-leal
+- [docs-infra] Fix wrong migration (#42675) @siriwatknp
+- [docs-infra] Fine tune markdown elements design (#42643) @danilo-leal
+- [docs-infra] Revamp the product switcher design (#42603) @danilo-leal
+- [docs-infra] Allow Link component to receive the `role` attribute (#42629) @danilo-leal
+- [infra] Add support donation button (#42499) @oliviertassinari
+- [infra] Raise `tsconfig`/`tsc` target to `es2022` (#42645) @LukasTy
+- [test] Fix tests on CI (#42670) @michaldudak
+- [test] Fix issues reported by react-compiler in test packages (#42626) @sai6855
+- [website] Add Armin to the team members (#42679) @arminmeh
+- [website] Open Staff Engineer role for Pigment CSS (#42531) @mnajdova
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @alexismo, @anuujj, @arminmeh, @BartJanvanAssen, @Danielkhakbaz, @danilo-leal, @DiegoAndai, @Janpot, @LukasTy, @michaldudak, @Mini-ghost, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp
+
 ## v6.0.0-alpha.11
 
 <!-- generated comparing v6.0.0-alpha.10..next -->

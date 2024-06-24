@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import { css } from '@pigment-css/react';
 import { Inter } from 'next/font/google';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import '@pigment-css/react/styles.css';
 import theme from './theme';
 
@@ -19,20 +17,9 @@ export const metadata: Metadata = {
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} ${css`
-          background-color: ${({ theme: t }) => t.vars.palette.background.default};
-          color: ${({ theme: t }) => t.vars.palette.text.primary};
-          background-image: url('@/assets/mui.svg');
-          background-repeat: no-repeat;
-          background-position: 1rem 1rem;
-        `}`}
-      >
+      <body className={`${inter.className}`}>
         <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {props.children}
-          </ThemeProvider>
+          <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

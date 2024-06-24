@@ -241,6 +241,7 @@ describe('extendTheme', () => {
 
       function Test() {
         const theme = useTheme();
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- styles is required outside the component
         styles = theme.unstable_sx({ bgcolor: 'primary.500' });
         return null;
       }
