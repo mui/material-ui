@@ -59,7 +59,6 @@ A big thanks to the 17 contributors who made this release possible.
 - [docs-infra] Allow Link component to receive the `role` attribute (#42629) @danilo-leal
 - [infra] Add support donation button (#42499) @oliviertassinari
 - [infra] Raise `tsconfig`/`tsc` target to `es2022` (#42645) @LukasTy
-- [joy-ui] Fix issues reported by the React Compiler (#42671) @anuujj
 - [test] Fix tests on CI (#42670) @michaldudak
 - [test] Fix issues reported by react-compiler in test packages (#42626) @sai6855
 - [website] Add Armin to the team members (#42679) @arminmeh
