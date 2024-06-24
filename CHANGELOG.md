@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## v6.0.0-alpha.12
+
 <!-- generated comparing v6.0.0-alpha.11..next -->
+
 _Jun 24, 2024_
 
 A big thanks to the 17 contributors who made this release possible.
@@ -49,7 +51,7 @@ A big thanks to the 17 contributors who made this release possible.
 
 - [code-infra] Try disabling animations when taking screenshots (#42537) @Janpot
 - [code-infra] Fix benchmark package (#42553) @Janpot
-- [core] Replace enzyme in  describeConformance (#42447) @DiegoAndai
+- [core] Replace enzyme in describeConformance (#42447) @DiegoAndai
 - [docs-infra] Add stray design polish (#42646) @danilo-leal
 - [docs-infra] Fix wrong migration (#42675) @siriwatknp
 - [docs-infra] Fine tune markdown elements design (#42643) @danilo-leal
