@@ -9,12 +9,12 @@ ruleTester.run('mui-name-matches-component-name', rule, {
         inProps: StaticDateRangePickerProps<TDate>,
         ref: React.Ref<HTMLDivElement>,
       ) {
-        const props = useThemeProps({ props: inProps, name: 'MuiStaticDateRangePicker' });
+        const props = useDefaultProps({ props: inProps, name: 'MuiStaticDateRangePicker' });
       });
     `,
     `
       function CssBaseline(inProps) {
-        useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
+        useDefaultProps({ props: inProps, name: 'MuiCssBaseline' });
       }
     `,
     `
@@ -32,7 +32,7 @@ ruleTester.run('mui-name-matches-component-name', rule, {
           ];
         },
       }),
-      useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiContainer' }),
+      useDefaultProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiContainer' }),
     });
     `,
     `
@@ -42,11 +42,8 @@ ruleTester.run('mui-name-matches-component-name', rule, {
         overridesResolver: (props, styles) => styles.root,
       }),
       componentName: 'MuiGrid2',
-      useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiGrid2' }),
+      useDefaultProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiGrid2' }),
     }) as OverridableComponent<Grid2TypeMap>;
-    `,
-    `
-    const useThemeProps = createUseThemeProps('MuiBadge');
     `,
     {
       code: `
@@ -62,7 +59,7 @@ ruleTester.run('mui-name-matches-component-name', rule, {
     {
       code: `
         function useDatePickerDefaultizedProps(props, name) {
-          useThemeProps({ props, name });
+          useDefaultProps({ props, name });
         }
       `,
       options: [{ customHooks: ['useDatePickerDefaultizedProps'] }],
@@ -75,7 +72,7 @@ ruleTester.run('mui-name-matches-component-name', rule, {
           inProps: StaticDateRangePickerProps<TDate>,
           ref: React.Ref<HTMLDivElement>,
         ) {
-          const props = useThemeProps({ props: inProps, name: 'MuiPickersDateRangePicker' });
+          const props = useDefaultProps({ props: inProps, name: 'MuiPickersDateRangePicker' });
         });
       `,
       errors: [
@@ -87,7 +84,7 @@ ruleTester.run('mui-name-matches-component-name', rule, {
       ],
     },
     {
-      code: 'useThemeProps({ props: inProps })',
+      code: 'useDefaultProps({ props: inProps })',
       errors: [
         {
           message: 'Unable to find `name` property. Did you forget to pass `name`?',
@@ -96,7 +93,7 @@ ruleTester.run('mui-name-matches-component-name', rule, {
       ],
     },
     {
-      code: 'useThemeProps({ props: inProps, name })',
+      code: 'useDefaultProps({ props: inProps, name })',
       errors: [
         {
           message:
@@ -106,7 +103,7 @@ ruleTester.run('mui-name-matches-component-name', rule, {
       ],
     },
     {
-      code: "useThemeProps({ props: inProps, name: 'MuiPickersDateRangePicker' })",
+      code: "useDefaultProps({ props: inProps, name: 'MuiPickersDateRangePicker' })",
       errors: [{ message: 'Unable to find component for this call.', type: 'CallExpression' }],
     },
     {
@@ -142,38 +139,6 @@ ruleTester.run('mui-name-matches-component-name', rule, {
           message:
             "Expected `name` to be 'MuiStaticDateRangePicker' but instead got 'MuiPickersDateRangePicker'.",
           type: 'Literal',
-        },
-      ],
-    },
-    {
-      code: `
-        const useThemeProps = createUseThemeProps();
-
-        const Badge = React.forwardRef(function Badge(inProps, ref) {
-          const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
-        });
-      `,
-      errors: [
-        {
-          message:
-            'Unable to resolve `name`. Please hardcode the `name` i.e. use a string literal.',
-          type: 'CallExpression',
-        },
-      ],
-    },
-    {
-      code: `
-        const useThemeProps = createUseThemeProps({ name: 'MuiBadge' });
-
-        const Badge = React.forwardRef(function Badge(inProps, ref) {
-          const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
-        });
-      `,
-      errors: [
-        {
-          message:
-            'Unable to resolve `name`. Please hardcode the `name` i.e. use a string literal.',
-          type: 'ObjectExpression',
         },
       ],
     },

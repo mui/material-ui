@@ -69,8 +69,8 @@ import Chip from '@mui/material/Chip';
 export default function ChipExample() {
   const chipRef = React.useRef(null);
   const keyUpHandler = (event) => {
-    if (event.key === 'Escape' && chipRef.current) {
-      chipRef.current.blur();
+    if (event.key === 'Escape') {
+      chipRef.current!.blur();
     }
   };
   return (
@@ -101,7 +101,7 @@ This removes the need for the `disableEqualOverflow` prop, so you can remove it:
 
 ```diff
  <Grid
--   disableEqualOverflow
+-  disableEqualOverflow
  />
 ```
 

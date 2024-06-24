@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import ListContext from '../List/ListContext';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
-
-const useThemeProps = createUseThemeProps('MuiListItemAvatar');
 
 const useUtilityClasses = (ownerState) => {
   const { alignItems, classes } = ownerState;
@@ -46,7 +45,7 @@ const ListItemAvatarRoot = styled('div', {
  * A simple wrapper to apply `List` styles to an `Avatar`.
  */
 const ListItemAvatar = React.forwardRef(function ListItemAvatar(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiListItemAvatar',
   });
