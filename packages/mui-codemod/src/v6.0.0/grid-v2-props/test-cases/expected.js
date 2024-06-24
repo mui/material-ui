@@ -55,3 +55,14 @@ import { Grid as GridF } from '@mui/joy';
     xs: 2,
     sm: "auto"
   }} />;
+
+// Transforms spread props
+<GridA
+  size={{
+    xs: 2,
+    sm: 4
+  }}
+  offset={{
+    xs: 0,
+    sm: 2
+  }} />;

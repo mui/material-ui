@@ -30,3 +30,6 @@ import { Grid as GridF } from '@mui/joy';
 
 // Transforms all the possible offset values
 <GridA xsOffset={2} smOffset="auto" />;
+
+// Transforms spread props
+<GridA {...{ xs: 2, sm: 4, xsOffset: 0, smOffset: 2 }} />;

@@ -61,6 +61,15 @@ export default function gridV2Props(file, api, options) {
     .forEach((el) => {
       const size = j.objectExpression([]);
 
+      const spreadProps = [];
+      const attributesToPrune = [];
+
+      el.node.openingElement.attributes.forEach((attr) => {
+        if (attr.type === 'JSXSpreadAttribute') {
+          spreadProps.push(attr);
+        }
+      });
+
       const breakpointNodes = j(el)
         .find(j.JSXAttribute)
         .filter(
@@ -68,9 +77,7 @@ export default function gridV2Props(file, api, options) {
             path.parent.parent.node === el.node && breakpoints.includes(path.node.name.name),
         );
 
-      const breakpointNodesArray = breakpointNodes.nodes() || [];
-
-      breakpointNodesArray.forEach((node) => {
+      breakpointNodes.nodes().forEach((node) => {
         const breakpoint = node.name.name;
         const nodeValue = node.value;
         let value;
@@ -88,6 +95,25 @@ export default function gridV2Props(file, api, options) {
         }
 
         size.properties.push(j.property('init', j.identifier(breakpoint), value));
+      });
+
+      spreadProps.forEach((spreadProp) => {
+        const spreadPropArgument = spreadProp.argument;
+        if (spreadPropArgument.type === 'ObjectExpression') {
+          const propertiesToPrune = [];
+          spreadPropArgument.properties.forEach((property) => {
+            if (breakpoints.includes(property.key.name)) {
+              size.properties.push(j.property('init', property.key, property.value));
+              propertiesToPrune.push(property.key.name);
+            }
+          });
+          spreadPropArgument.properties = spreadPropArgument.properties.filter(
+            (prop) => !propertiesToPrune.includes(prop.key.name),
+          );
+          if (spreadPropArgument.properties.length === 0) {
+            attributesToPrune.push(spreadProp);
+          }
+        }
       });
 
       if (size.properties.length) {
@@ -115,17 +141,36 @@ export default function gridV2Props(file, api, options) {
         .filter(
           (path) =>
             path.parent.parent.node === el.node &&
+            path.node.name.name.endsWith('Offset') &&
             breakpoints.includes(path.node.name.name.replace('Offset', '')),
         );
 
-      const offsetNodesArray = offsetNodes.nodes() || [];
-
-      offsetNodesArray.forEach((node) => {
+      offsetNodes.nodes().forEach((node) => {
         const breakpoint = node.name.name.replace('Offset', '');
         const value =
           node.value.type === 'JSXExpressionContainer' ? node.value.expression : node.value;
 
         offset.properties.push(j.property('init', j.identifier(breakpoint), value));
+      });
+
+      spreadProps.forEach((spreadProp) => {
+        const spreadPropArgument = spreadProp.argument;
+        if (spreadPropArgument.type === 'ObjectExpression') {
+          const propertiesToPrune = [];
+          spreadPropArgument.properties.forEach((property) => {
+            const breakpoint = property.key.name.replace('Offset', '');
+            if (property.key.name.endsWith('Offset') && breakpoints.includes(breakpoint)) {
+              offset.properties.push(j.property('init', j.identifier(breakpoint), property.value));
+              propertiesToPrune.push(property.key.name);
+            }
+          });
+          spreadPropArgument.properties = spreadPropArgument.properties.filter(
+            (prop) => !propertiesToPrune.includes(prop.key.name),
+          );
+          if (spreadPropArgument.properties.length === 0) {
+            attributesToPrune.push(spreadProp);
+          }
+        }
       });
 
       if (offset.properties.length) {
@@ -146,6 +191,10 @@ export default function gridV2Props(file, api, options) {
 
       el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
         (attr) => !breakpoints.includes(attr?.name?.name.replace('Offset', '')),
+      );
+
+      el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
+        (attr) => !attributesToPrune.includes(attr),
       );
     });
 
