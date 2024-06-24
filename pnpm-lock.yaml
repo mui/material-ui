@@ -105,8 +105,8 @@ importers:
         specifier: ^20.1.1
         version: 20.1.1
       '@pigment-css/react':
-        specifier: ^0.0.13
-        version: 0.0.13(@types/react@18.2.55)(react@18.2.0)
+        specifier: ^0.0.15
+        version: 0.0.15(@types/react@18.2.55)(react@18.2.0)
       '@playwright/test':
         specifier: 1.44.1
         version: 1.44.1
@@ -327,8 +327,8 @@ importers:
   apps/local-ui-lib:
     dependencies:
       '@pigment-css/react':
-        specifier: ^0.0.13
-        version: 0.0.13(@types/react@18.2.55)(react@18.2.0)
+        specifier: ^0.0.15
+        version: 0.0.15(@types/react@18.2.55)(react@18.2.0)
 
   apps/pigment-css-next-app:
     dependencies:
@@ -357,8 +357,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/mui-utils/build
       '@pigment-css/react':
-        specifier: ^0.0.13
-        version: 0.0.13(@types/react@18.2.55)(react@18.2.0)
+        specifier: ^0.0.15
+        version: 0.0.15(@types/react@18.2.55)(react@18.2.0)
       local-ui-lib:
         specifier: workspace:^
         version: link:../local-ui-lib
@@ -373,8 +373,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@pigment-css/nextjs-plugin':
-        specifier: ^0.0.14
-        version: 0.0.14(@types/react@18.2.55)(next@14.2.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        specifier: ^0.0.15
+        version: 0.0.15(@types/react@18.2.55)(next@14.2.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       '@types/node':
         specifier: ^18.19.39
         version: 18.19.39
@@ -412,8 +412,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/mui-utils/build
       '@pigment-css/react':
-        specifier: ^0.0.13
-        version: 0.0.13(@types/react@18.2.55)(react@18.2.0)
+        specifier: ^0.0.15
+        version: 0.0.15(@types/react@18.2.55)(react@18.2.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -443,8 +443,8 @@ importers:
         specifier: ^7.24.7
         version: 7.24.7(@babel/core@7.24.7)
       '@pigment-css/vite-plugin':
-        specifier: ^0.0.13
-        version: 0.0.13(@types/react@18.2.55)(react@18.2.0)(vite@5.3.1(@types/node@18.19.39)(terser@5.29.2))
+        specifier: ^0.0.15
+        version: 0.0.15(@types/react@18.2.55)(react@18.2.0)(vite@5.3.1(@types/node@18.19.39)(terser@5.29.2))
       '@types/react':
         specifier: 18.2.55
         version: 18.2.55
@@ -1735,6 +1735,9 @@ importers:
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
+      '@pigment-css/react':
+        specifier: ^0.0.15
+        version: 0.0.15(@types/react@18.2.55)(react@18.2.0)
       '@types/react-transition-group':
         specifier: ^4.4.10
         version: 4.4.10
@@ -4655,21 +4658,21 @@ packages:
     resolution: {integrity: sha512-ZDjMJJQRlyk8A1KZFCc+bCbsyrn1wTwdNt56F7twdfUfnHUZUq77/WfONCj8p72NZOyP7pNTdUWSTYC3GTbuuQ==}
     engines: {node: '>=14'}
 
-  '@pigment-css/nextjs-plugin@0.0.14':
-    resolution: {integrity: sha512-aGRpUnXrJi7jbdHddh1cVeVXeiYvglXQQhpzxJ1grr1f9RovGcyuEx3zADgEG3nZB1TGL6t2zdOUvgz4bCWIyQ==}
+  '@pigment-css/nextjs-plugin@0.0.15':
+    resolution: {integrity: sha512-JBA7Rlre3WBA6gchqh0J/cT1kPGCZLX8AeFRW3ZeuGHWA7GTnzc3KIC8oFsNJmCUhA/mA0u/cwyQiigAizvtNA==}
     peerDependencies:
       next: ^12.0.0 || ^13.0.0 || ^14.0.0
 
-  '@pigment-css/react@0.0.13':
-    resolution: {integrity: sha512-oMFp4u9nLbDpRqvm9o65v0ZgectslIT0Z5k6nz0qhU8vU0ifNAXuKlfe5kD5UOfHcqaEHvy7+6uvoj/YAzdFBw==}
+  '@pigment-css/react@0.0.15':
+    resolution: {integrity: sha512-wuVGLEfGq7HHT5EJI6TyyikytH7TQNuJEOenCLfOn5xCuHKRr9CkOsF8cj3o6Bhj8Jerp/yz932QSpMNsJ0Z4g==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
 
-  '@pigment-css/unplugin@0.0.14':
-    resolution: {integrity: sha512-oRAHxBiK7sZ8njZukJQJJdLJ2m26641S2GpnKbKLKV6KQa3TgdsZY34jzEG8iyWB4fBbW9JbLfloSruFncoSrg==}
+  '@pigment-css/unplugin@0.0.15':
+    resolution: {integrity: sha512-N4710o5+4y4mG4gUcsOTJPEt/rAhh1jMT8kFN6FHNw4/QJKhDCSZJuPaqmOj0LXjYbp1HDf4ddIVP8KrbGcF8A==}
 
-  '@pigment-css/vite-plugin@0.0.13':
-    resolution: {integrity: sha512-O6O82vzuyOeqCG8sDbETik7g8ZbR53NVlYvFLDvrB1kxZ0k9dAhV5VCgi1hac+FHPwSsV7bQ+dg1pcMz40l2xA==}
+  '@pigment-css/vite-plugin@0.0.15':
+    resolution: {integrity: sha512-EfN5TezBqQBWnhlViA76iFCnGv0IVfvRWx/eOMo37Tao85L7AQqxgCOpJAFXfb8H8Y9EpRNlglzBTTFLR1Qo3g==}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0
 
@@ -15425,16 +15428,16 @@ snapshots:
 
   '@opentelemetry/semantic-conventions@1.25.1': {}
 
-  '@pigment-css/nextjs-plugin@0.0.14(@types/react@18.2.55)(next@14.2.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)':
+  '@pigment-css/nextjs-plugin@0.0.15(@types/react@18.2.55)(next@14.2.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@pigment-css/unplugin': 0.0.14(@types/react@18.2.55)(react@18.2.0)
+      '@pigment-css/unplugin': 0.0.15(@types/react@18.2.55)(react@18.2.0)
       next: 14.2.4(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(@playwright/test@1.44.1)(babel-plugin-macros@3.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
       - react
       - supports-color
 
-  '@pigment-css/react@0.0.13(@types/react@18.2.55)(react@18.2.0)':
+  '@pigment-css/react@0.0.15(@types/react@18.2.55)(react@18.2.0)':
     dependencies:
       '@babel/core': 7.24.7
       '@babel/helper-module-imports': 7.24.7
@@ -15462,10 +15465,10 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@pigment-css/unplugin@0.0.14(@types/react@18.2.55)(react@18.2.0)':
+  '@pigment-css/unplugin@0.0.15(@types/react@18.2.55)(react@18.2.0)':
     dependencies:
       '@babel/core': 7.24.7
-      '@pigment-css/react': 0.0.13(@types/react@18.2.55)(react@18.2.0)
+      '@pigment-css/react': 0.0.15(@types/react@18.2.55)(react@18.2.0)
       '@wyw-in-js/shared': 0.5.3
       '@wyw-in-js/transform': 0.5.3
       babel-plugin-define-var: 0.1.0
@@ -15475,11 +15478,11 @@ snapshots:
       - react
       - supports-color
 
-  '@pigment-css/vite-plugin@0.0.13(@types/react@18.2.55)(react@18.2.0)(vite@5.3.1(@types/node@18.19.39)(terser@5.29.2))':
+  '@pigment-css/vite-plugin@0.0.15(@types/react@18.2.55)(react@18.2.0)(vite@5.3.1(@types/node@18.19.39)(terser@5.29.2))':
     dependencies:
       '@babel/core': 7.24.7
       '@babel/preset-typescript': 7.24.7(@babel/core@7.24.7)
-      '@pigment-css/react': 0.0.13(@types/react@18.2.55)(react@18.2.0)
+      '@pigment-css/react': 0.0.15(@types/react@18.2.55)(react@18.2.0)
       '@wyw-in-js/shared': 0.5.3
       '@wyw-in-js/transform': 0.5.3
       babel-plugin-define-var: 0.1.0

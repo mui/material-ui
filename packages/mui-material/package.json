@@ -78,7 +78,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@pigment-css/react": "https://pkg.csb.dev/mui/pigment-css/commit/59a9ad43/@pigment-css/react",
+    "@pigment-css/react": "^0.0.15",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
