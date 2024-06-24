@@ -263,7 +263,12 @@ describe('useAutocomplete', () => {
           {groupedOptions.length > 0 ? (
             <ul {...getListboxProps()}>
               {groupedOptions.map((option, index) => {
-                return <li {...getOptionProps({ option, index })}>{option}</li>;
+                const { key, ...optionProps } = getOptionProps({ option, index });
+                return (
+                  <li key={key} {...optionProps}>
+                    {option}
+                  </li>
+                );
               })}
             </ul>
           ) : null}
