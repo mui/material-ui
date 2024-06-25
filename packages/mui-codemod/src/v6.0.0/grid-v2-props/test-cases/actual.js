@@ -1,7 +1,7 @@
 import GridA from '@mui/material/Unstable_Grid2';
 import GridB from '@mui/system/Unstable_Grid';
 import GridC from '@mui/joy/Grid';
-import { Unstable_Grid2 as GridD } from '@mui/material';
+import { Unstable_Grid2 as GridD, Grid as GridV1 } from '@mui/material';
 import { Unstable_Grid as GridE } from '@mui/system';
 import { Grid as GridF } from '@mui/joy';
 
@@ -33,3 +33,6 @@ import { Grid as GridF } from '@mui/joy';
 
 // Transforms spread props
 <GridA {...{ xs: 2, sm: 4, xsOffset: 0, smOffset: 2 }} />;
+
+// Doesn't transform Grid v1
+<GridV1 xs={2} />;

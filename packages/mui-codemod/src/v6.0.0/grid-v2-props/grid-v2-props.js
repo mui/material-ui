@@ -43,7 +43,7 @@ export default function gridV2Props(file, api, options) {
     .forEach((decl) => {
       decl.node.specifiers.forEach((spec) => {
         if (spec.type === 'ImportSpecifier') {
-          if (possibleNamedImports[decl.node.source.value].includes(spec.imported.name)) {
+          if (possibleNamedImports[decl.node.source.value] === spec.imported.name) {
             gridLocalNames.push(spec.local.name);
           }
         }
