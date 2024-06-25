@@ -7,6 +7,11 @@ import { SxProps } from '@mui/system';
 import Grid from '@pigment-css/react/Grid';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import {
+  generateDirectionClasses,
+  generateSizeClassNames,
+  generateSpacingClassNames,
+} from '@mui/system/Unstable_Grid/gridGenerator';
 import { Breakpoint, Theme } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
@@ -113,9 +118,26 @@ export type GridProps<
 > = OverrideProps<GridTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 const useUtilityClasses = (ownerState: GridBaseProps) => {
-  const { container } = ownerState;
+  const { container, direction, size, spacing } = ownerState;
+  let gridSize = {};
+  if (size) {
+    if (Array.isArray(size)) {
+      size.forEach((value, index) => {
+        gridSize = { ...gridSize, [index]: value };
+      });
+    }
+    if (typeof size === 'object') {
+      gridSize = size;
+    }
+  }
   const slots = {
-    root: ['root', container && 'container'],
+    root: [
+      'root',
+      container && 'container',
+      ...generateDirectionClasses(direction),
+      ...generateSizeClassNames(gridSize),
+      ...(container ? generateSpacingClassNames(spacing) : []),
+    ],
   };
 
   return composeClasses(slots, (slot: string) => generateUtilityClass('MuiGrid2', slot), {});
