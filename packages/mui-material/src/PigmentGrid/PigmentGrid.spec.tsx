@@ -3,6 +3,7 @@ import Grid from '@mui/material/PigmentGrid';
 
 <Grid size={2} />;
 <Grid size={{ xs: 6, sm: 4, md: 3 }} />;
+<Grid size={{ xs: 'auto', sm: 'grow', md: null }} />;
 
 // @ts-expect-error `size` is not a valid prop
 <Grid size={{ monitor: 3 }} />;
