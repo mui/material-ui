@@ -7,6 +7,7 @@ import Input from '@mui/material/Input';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { isMuiElement } from '@mui/material/utils';
 import { createTheme } from '@mui/material/styles';
+import { unstable_nested } from '@mui/private-theming';
 import StylesProvider from '../StylesProvider';
 import createGenerateClassName from '../createGenerateClassName';
 import ThemeProvider from '../ThemeProvider';
@@ -364,13 +365,13 @@ describe('withStyles', () => {
         propsTheme = props.theme;
         return null;
       });
-      const theme = {};
+      const theme = { [unstable_nested]: false };
       render(
         <ThemeProvider theme={theme}>
           <StyledComponent />
         </ThemeProvider>,
       );
-      expect(propsTheme).to.equal(theme);
+      expect(propsTheme).to.deep.equal(theme);
     });
   });
 });

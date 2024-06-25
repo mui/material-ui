@@ -32,7 +32,6 @@ describe('Joy <Tab />', () => {
     classes,
     inheritComponent: 'button',
     render: (node) => render(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
-    wrapMount: (mount) => (node) => mount(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
     ThemeProvider,
     muiName: 'JoyTab',
     refInstanceof: window.HTMLButtonElement,
