@@ -6,8 +6,10 @@ import { OverridableComponent, OverrideProps } from '@mui/types';
 import Stack from '@pigment-css/react/Stack';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
-import { ResponsiveStyleValue, SxProps } from '@mui/system';
-import { Theme } from '../styles/createTheme';
+import { SxProps } from '@mui/system';
+import { Breakpoint, Theme } from '../styles';
+
+type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
 export interface PigmentStackOwnProps {
   /**
