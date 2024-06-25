@@ -33,17 +33,17 @@ describe('System <Grid />', () => {
 
   describe('prop: xs', () => {
     it('should apply the flex-grow class', () => {
-      const { container } = render(<Grid xs />);
+      const { container } = render(<Grid size="grow" />);
       expect(container.firstChild).to.have.class(classes['grid-xs-grow']);
     });
 
     it('should apply the flex size class', () => {
-      const { container } = render(<Grid xs={3} />);
+      const { container } = render(<Grid size={3} />);
       expect(container.firstChild).to.have.class(classes['grid-xs-3']);
     });
 
     it('should apply the flex auto class', () => {
-      const { container } = render(<Grid xs="auto" />);
+      const { container } = render(<Grid size="auto" />);
       expect(container.firstChild).to.have.class(classes['grid-xs-auto']);
     });
 
@@ -55,10 +55,10 @@ describe('System <Grid />', () => {
 
       render(
         <Grid container>
-          <Grid container xs="auto" data-testid="auto">
+          <Grid container data-testid="auto" size="auto">
             <div style={{ width: '300px' }} />
           </Grid>
-          <Grid xs={11} />
+          <Grid size={11} />
         </Grid>,
       );
       expect(screen.getByTestId('auto')).toHaveComputedStyle({
@@ -210,7 +210,13 @@ describe('System <Grid />', () => {
           })}
         >
           {/* `lg` is to mimic mistake, it is not a breakpoint anymore */}
-          <Grid mobile={2} tablet={3} laptop="auto" lg={5} />
+          <Grid
+            size={{
+              mobile: 2,
+              tablet: 3,
+              laptop: 'auto',
+            }}
+          />
         </ThemeProvider>,
       );
 
