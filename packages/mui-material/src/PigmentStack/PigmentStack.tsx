@@ -95,7 +95,13 @@ PigmentStack.propTypes /* remove-proptypes */ = {
   direction: PropTypes.oneOfType([
     PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
     PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
-    PropTypes.object,
+    PropTypes.shape({
+      lg: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+      md: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+      sm: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+      xl: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+      xs: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+    }),
   ]),
   /**
    * Add an element between each child.
@@ -108,7 +114,13 @@ PigmentStack.propTypes /* remove-proptypes */ = {
   spacing: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     PropTypes.number,
-    PropTypes.object,
+    PropTypes.shape({
+      lg: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      md: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      sm: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xl: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xs: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    }),
     PropTypes.string,
   ]),
   /**
