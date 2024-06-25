@@ -16,16 +16,16 @@ export const brand = {
 };
 
 export const gray = {
-  50: 'hsl(220, 60%, 97%)',
-  100: 'hsl(220, 35%, 94%)',
-  200: 'hsl(220, 35%, 88%)',
-  300: 'hsl(220, 25%, 80%)',
+  50: 'hsl(220, 35%, 97%)',
+  100: 'hsl(220, 30%, 94%)',
+  200: 'hsl(220, 20%, 88%)',
+  300: 'hsl(220, 20%, 80%)',
   400: 'hsl(220, 20%, 65%)',
   500: 'hsl(220, 20%, 42%)',
-  600: 'hsl(220, 15%, 35%)',
-  700: 'hsl(220, 10%, 25%)',
-  800: 'hsl(220, 50%, 6%)',
-  900: 'hsl(220, 55%, 3%)',
+  600: 'hsl(220, 20%, 35%)',
+  700: 'hsl(220, 20%, 25%)',
+  800: 'hsl(220, 30%, 6%)',
+  900: 'hsl(220, 35%, 3%)',
 };
 
 export const green = {
@@ -127,11 +127,11 @@ export const getDesignTokens = (mode) => ({
     grey: {
       ...gray,
     },
-    divider: mode === 'dark' ? alpha(gray[700], 0.35) : alpha(gray[300], 0.5),
+    divider: mode === 'dark' ? alpha(gray[700], 0.6) : alpha(gray[300], 0.4),
     background: {
       default: 'hsl(0, 0%, 99%)',
-      paper: gray[50],
-      ...(mode === 'dark' && { default: gray[900], paper: gray[800] }),
+      paper: 'hsl(220, 35%, 97%)',
+      ...(mode === 'dark' && { default: gray[900], paper: 'hsl(220, 30%, 7%)' }),
     },
     text: {
       primary: gray[800],
@@ -143,8 +143,8 @@ export const getDesignTokens = (mode) => ({
       hover: alpha(gray[300], 0.2),
       selected: `${alpha(gray[300], 0.4)}`,
       ...(mode === 'dark' && {
-        hover: alpha(gray[500], 0.2),
-        selected: alpha(gray[500], 0.4),
+        hover: alpha(gray[600], 0.2),
+        selected: alpha(gray[600], 0.3),
       }),
     },
   },
@@ -198,6 +198,6 @@ export const getDesignTokens = (mode) => ({
     },
   },
   shape: {
-    borderRadius: 6,
+    borderRadius: 8,
   },
 });

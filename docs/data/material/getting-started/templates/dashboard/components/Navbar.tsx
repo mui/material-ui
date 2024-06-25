@@ -50,25 +50,20 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
     <AppBar
       position="fixed"
       sx={(internalTheme) => ({
+        display: { xs: 'auto', md: 'none' },
         boxShadow: 0,
-        bgcolor: 'background.default',
+        bgcolor: 'background.paper',
         backgroundImage: 'none',
-        alignItems: 'center',
-        outline: '1px solid',
-        outlineColor: internalTheme.palette.divider,
-        zIndex: internalTheme.zIndex.drawer - 1,
-        left: { xs: 0, md: 240 },
-        width: { xs: '100dvw', md: `calc(100% - 240px)` },
-        maxHeight: 64,
+        borderBottom: '1px solid',
+        borderColor: 'divider',
       })}
     >
-      <Toolbar variant="regular" sx={{ alignItems: 'center' }}>
+      <Toolbar variant="regular">
         {isDesktop ? (
           <Stack
             direction="row"
             spacing={1}
             sx={{
-              alignItems: 'center',
               justifyContent: { xs: 'flex-end', md: 'space-between' },
               flexGrow: 1,
               width: '100%',
@@ -134,6 +129,7 @@ export function CustomIcon() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: 'center',
         backgroundImage:
           'linear-gradient(135deg, hsl(210, 98%, 60%) 0%, hsl(210, 100%, 35%) 100%)',
         color: 'hsla(210, 100%, 95%, 0.9)',

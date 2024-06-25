@@ -19,7 +19,6 @@ export const menuComponentsCustomizations: Components<Theme> = {
   MuiListItem: {
     styleOverrides: {
       root: ({ theme }) => ({
-        padding: 4,
         '.MuiSvgIcon-root': {
           width: '1rem',
           height: '1rem',
@@ -29,12 +28,14 @@ export const menuComponentsCustomizations: Components<Theme> = {
           fontWeight: 500,
         },
         '.MuiButtonBase-root': {
+          display: 'flex',
+          gap: 8,
           padding: '2px 8px',
           borderRadius: theme.shape.borderRadius,
           opacity: 0.7,
           '&.Mui-selected': {
             opacity: 1,
-            backgroundColor: theme.palette.action.selected,
+            backgroundColor: alpha(theme.palette.action.selected, 0.3),
             '.MuiSvgIcon-root': {
               color: theme.palette.text.primary,
             },
@@ -43,11 +44,34 @@ export const menuComponentsCustomizations: Components<Theme> = {
       }),
     },
   },
+  MuiListItemText: {
+    styleOverrides: {
+      primary: ({ theme }) => ({
+        fontSize: theme.typography.body2.fontSize,
+        lineHeight: theme.typography.body2.lineHeight,
+      }),
+      secondary: ({ theme }) => ({
+        fontSize: theme.typography.caption.fontSize,
+        lineHeight: theme.typography.caption.lineHeight,
+      }),
+    },
+  },
+  MuiListSubheader: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        backgroundColor: 'transparent',
+        padding: '4px 8px',
+        opacity: 0.7,
+        fontSize: theme.typography.caption.fontSize,
+        fontWeight: 500,
+        lineHeight: theme.typography.caption.lineHeight,
+      }),
+    },
+  },
   MuiListItemIcon: {
     styleOverrides: {
       root: {
         minWidth: 0,
-        marginRight: 8,
       },
     },
   },
@@ -61,17 +85,20 @@ export const menuComponentsCustomizations: Components<Theme> = {
   },
   MuiMenu: {
     styleOverrides: {
-      list: { gap: '4px', '& .MuiDivider-root': { margin: '0 -8px' } },
+      list: { gap: '0px', '& .MuiDivider-root': { margin: '0 -8px' } },
       paper: ({ theme }) => ({
         marginTop: '4px',
-        padding: '0 4px',
         borderRadius: theme.shape.borderRadius,
         border: `1px solid ${theme.palette.divider}`,
         backgroundImage: 'none',
         background: 'hsl(0, 0%, 100%)',
         boxShadow:
           'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
-
+        '.MuiButtonBase-root': {
+          '&.Mui-selected': {
+            backgroundColor: alpha(theme.palette.action.selected, 0.3),
+          },
+        },
         ...theme.applyStyles('dark', {
           background: gray[900],
           boxShadow:
@@ -112,7 +139,6 @@ export const menuComponentsCustomizations: Components<Theme> = {
             backgroundColor: theme.palette.background.paper,
             boxShadow: 'none',
           },
-
           '&:before, &:after': {
             display: 'none',
           },
@@ -132,12 +158,7 @@ export const menuComponentsCustomizations: Components<Theme> = {
         ...theme.applyStyles('dark', {
           display: 'flex',
           alignItems: 'center',
-          padding: theme.spacing(1, 2),
-          '&.focus-visible': {
-            borderRadius: theme.shape.borderRadius,
-            outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
-            outlineOffset: '2px',
-            boxShadow: 'none',
+          '&:focus-visible': {
             backgroundColor: gray[900],
           },
         }),

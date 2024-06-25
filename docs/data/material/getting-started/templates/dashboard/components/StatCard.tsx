@@ -91,6 +91,8 @@ export default function StatCard({
               colors={[chartColor]}
               data={data}
               area
+              showHighlight={true}
+              showTooltip={true}
               sx={{
                 [`& .${areaElementClasses.root}`]: {
                   fill: `url(#area-gradient-${value})`,

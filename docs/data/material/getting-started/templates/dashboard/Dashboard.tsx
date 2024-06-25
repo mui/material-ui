@@ -29,17 +29,18 @@ export default function Dashboard() {
     <ThemeProvider theme={showCustomTheme ? dashboardTheme : defaultTheme}>
       <CssBaseline />
       <Box sx={{ display: 'flex' }}>
-        <Navbar mode={mode} toggleColorMode={toggleColorMode} />
         <SideMenu />
+        <Navbar mode={mode} toggleColorMode={toggleColorMode} />
         {/* Main content */}
         <Box
           component="main"
           sx={(theme) => ({
+            position: { sm: 'relative', md: '' },
+            top: { sm: '48px', md: '0' },
+            height: { sm: 'calc(100vh - 48px)', md: '100vh' },
             flexGrow: 1,
-            top: '64px',
-            position: 'relative',
-            height: 'calc(100vh - 64px)',
-            backgroundColor: alpha(theme.palette.background.paper, 0.4),
+            pt: 2,
+            backgroundColor: alpha(theme.palette.background.default, 1),
             overflow: 'auto',
           })}
         >
@@ -51,7 +52,7 @@ export default function Dashboard() {
               pb: 10,
             }}
           >
-            <Header />
+            <Header mode={mode} toggleColorMode={toggleColorMode} />
             <MainGrid />
           </Stack>
         </Box>

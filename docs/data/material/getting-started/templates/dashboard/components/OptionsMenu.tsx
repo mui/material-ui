@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import { MenuItem as MuiMenuItem } from '@mui/material';
-import Typography from '@mui/material/Typography';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemButton from '@mui/material/ListItemButton';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import MenuButton from './MenuButton';
 
@@ -23,7 +26,11 @@ export default function OptionsMenu() {
   };
   return (
     <React.Fragment>
-      <MenuButton aria-label="Open menu" onClick={handleClick}>
+      <MenuButton
+        aria-label="Open menu"
+        onClick={handleClick}
+        sx={{ borderColor: 'transparent' }}
+      >
         <MoreVertRoundedIcon />
       </MenuButton>
       <Menu
@@ -40,24 +47,20 @@ export default function OptionsMenu() {
           },
         }}
       >
-        <MenuItem>
-          <Avatar
-            sizes="small"
-            alt="Riley Carter"
-            src="/static/images/avatar/7.jpg"
-            sx={{ width: 24, height: 24, mr: 1 }}
-          />
-          <Typography component="p" variant="subtitle2">
-            Riley Carter
-          </Typography>
-        </MenuItem>
-        <Divider />
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>Add another account</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <Divider />
+        <ListItem disablePadding sx={{ display: 'block' }}>
+          <ListItemButton onClick={handleClose}>
+            <ListItemText>Logout</ListItemText>
+            <ListItemIcon>
+              <LogoutRoundedIcon fontSize="small" />
+            </ListItemIcon>
+          </ListItemButton>
+        </ListItem>
       </Menu>
     </React.Fragment>
   );

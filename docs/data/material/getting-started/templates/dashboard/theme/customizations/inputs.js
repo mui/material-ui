@@ -46,7 +46,7 @@ export const inputsCustomizations = {
           },
         },
         ...theme.applyStyles('dark', {
-          borderColor: alpha(gray[700], 0.5),
+          borderColor: alpha(gray[700], 0.8),
           boxShadow: '0 0 0 1.5px hsl(210, 0%, 0%) inset',
           backgroundColor: alpha(gray[900], 0.8),
           '&:hover': {

@@ -5,9 +5,11 @@ import { columns, rows } from '../internals/data/gridData';
 export default function CustomizedDataGrid() {
   return (
     <DataGrid
+      autoHeight
       checkboxSelection
       rows={rows}
       columns={columns}
+      rowHeight={40}
       getRowClassName={(params) =>
         params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
       }

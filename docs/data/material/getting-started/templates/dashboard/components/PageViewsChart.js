@@ -57,7 +57,7 @@ export default function PageViewsChart() {
   const colorPalette = mode === 'dark' ? colorPaletteDark : colorPaletteLight;
 
   return (
-    <Card variant="outlined" sx={{ height: 400, width: '100%' }}>
+    <Card variant="outlined" sx={{ width: '100%' }}>
       <CardContent>
         <Typography component="h2" variant="subtitle2" gutterBottom>
           Sessions
@@ -115,8 +115,8 @@ export default function PageViewsChart() {
               ],
             },
           ]}
-          height={320}
-          margin={{ left: 50, right: 0, top: 60, bottom: 30 }}
+          height={250}
+          margin={{ left: -1, right: 0, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}
           sx={{
             '& .MuiAreaElement-series-organic': {
@@ -131,11 +131,7 @@ export default function PageViewsChart() {
           }}
           slotProps={{
             legend: {
-              labelStyle: { fontSize: 14 },
-              itemMarkWidth: 10,
-              itemMarkHeight: 10,
-              itemGap: 24,
-              position: { vertical: 'top', horizontal: 'right' },
+              hidden: true,
             },
           }}
         >

@@ -17,67 +17,41 @@ export default function PageViewsBarChart() {
           Page views and downloads
         </Typography>
         <BarChart
-          borderRadius={6}
+          borderRadius={4}
           colors={colorPalette}
           xAxis={[
             {
               scaleType: 'band',
               categoryGapRatio: 0.5,
-              data: [
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec',
-              ],
+              data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
             },
           ]}
           series={[
             {
               id: 'page-views',
               label: 'Page views',
-              data: [
-                2234, 3872, 2998, 4125, 3357, 2789, 4412, 2005, 4829, 3147, 4361,
-                2526,
-              ],
+              data: [2234, 3872, 2998, 4125, 3357, 2789],
               stack: 'A',
             },
             {
               id: 'downloads',
               label: 'Downloads',
-              data: [
-                3098, 4215, 2384, 2101, 4752, 3593, 2837, 4914, 2468, 3279, 4530,
-                3782,
-              ],
+              data: [3098, 4215, 2384, 2101, 4752, 3593],
               stack: 'A',
             },
             {
               id: 'conversions',
               label: 'Conversions',
-              data: [
-                4051, 2275, 3129, 4693, 3904, 2038, 4315, 2641, 3482, 4976, 2803,
-                3620,
-              ],
+              data: [4051, 2275, 3129, 4693, 3904, 2038],
               stack: 'A',
             },
           ]}
-          height={320}
-          margin={{ left: 50, right: 0, top: 60, bottom: 30 }}
+          height={250}
+          margin={{ left: -1, right: 0, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}
           slotProps={{
             legend: {
-              position: { vertical: 'top', horizontal: 'right' },
-              itemMarkWidth: 10,
-              itemMarkHeight: 10,
-              itemGap: 24,
-              labelStyle: { fontSize: 14 },
+              hidden: true,
             },
           }}
         />

@@ -8,7 +8,7 @@ export const dataGridCustomizations = {
     styleOverrides: {
       root: ({ theme }) => ({
         borderColor: theme.palette.divider,
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.paper,
       }),
       cell: ({ theme }) => ({ borderTopColor: theme.palette.divider }),
       menu: ({ theme }) => ({
@@ -17,9 +17,6 @@ export const dataGridCustomizations = {
         backgroundImage: 'none',
         boxShadow:
           'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
-        '& .MuiPaper-root': {
-          background: 'hsl(0, 0%, 100%)',
-        },
         '& .MuiMenuItem-root': {
           margin: '0 4px',
         },
@@ -28,9 +25,6 @@ export const dataGridCustomizations = {
           '& .MuiDivider-root': { margin: '0 -8px' },
         },
         ...theme.applyStyles('dark', {
-          '& .MuiPaper-root': {
-            background: gray[900],
-          },
           boxShadow:
             'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
         }),
@@ -38,26 +32,22 @@ export const dataGridCustomizations = {
       row: ({ theme }) => ({
         '&:last-of-type': { borderBottom: `1px solid ${theme.palette.divider}` },
         '&:hover': {
-          background: alpha(theme.palette.primary.main, 0.1),
+          backgroundColor: theme.palette.action.hover,
         },
         '&.Mui-selected': {
-          background: theme.palette.grey[100],
+          background: theme.palette.action.selected,
           '&:hover': {
-            background: alpha(theme.palette.primary.main, 0.2),
+            backgroundColor: theme.palette.action.hover,
           },
         },
-        ...theme.applyStyles('dark', {
-          '&.Mui-selected': {
-            background: theme.palette.grey[800],
-          },
-        }),
+        //...theme.applyStyles('dark', {}),
       }),
       iconButtonContainer: ({ theme }) => ({
         '& .MuiIconButton-root': {
           border: 'none',
           backgroundColor: 'transparent',
           '&:hover': {
-            backgroundColor: gray[100],
+            backgroundColor: alpha(theme.palette.action.selected, 0.3),
           },
           '&:active': {
             backgroundColor: gray[200],
