@@ -134,7 +134,7 @@ Your organization logo will be prominently featured:
 - the [README.md](https://github.com/mui/material-ui#sponsors) (80k+ unique visitors/month)
 - the [Diamond sponsor list](#diamond-sponsors)
 
-Please contact us at sales@mui.com before subscribing to this tier to get preliminary approval.
+Please contact us at sponsoring@mui.com before subscribing to this tier to get preliminary approval.
 
 ### Gold
 
