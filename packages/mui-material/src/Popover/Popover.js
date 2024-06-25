@@ -9,7 +9,8 @@ import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
@@ -19,8 +20,6 @@ import Modal from '../Modal';
 import PaperBase from '../Paper';
 import { getPopoverUtilityClass } from './popoverClasses';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiPopover');
 
 export function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -96,7 +95,7 @@ export const PopoverPaper = styled(PaperBase, {
 });
 
 const Popover = React.forwardRef(function Popover(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPopover' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPopover' });
   const {
     action,
     anchorEl,
