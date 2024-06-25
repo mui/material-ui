@@ -142,7 +142,16 @@ const useUtilityClasses = (ownerState: GridBaseProps) => {
 
   return composeClasses(slots, (slot: string) => generateUtilityClass('MuiGrid2', slot), {});
 };
-
+/**
+ *
+ * Demos:
+ *
+ * - [Grid version 2](https://next.mui.com/material-ui/react-grid2/)
+ *
+ * API:
+ *
+ * - [PigmentGrid API](https://next.mui.com/material-ui/api/pigment-grid/)
+ */
 const PigmentGrid = React.forwardRef(function PigmentGrid(inProps, ref) {
   const props = useDefaultProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

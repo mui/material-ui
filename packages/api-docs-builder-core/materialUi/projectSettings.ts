@@ -21,6 +21,7 @@ export const projectSettings: ProjectSettings = {
         'src/PigmentStack/PigmentStack.tsx',
         'src/PigmentContainer/PigmentContainer.tsx',
         'src/PigmentHidden/PigmentHidden.tsx',
+        'src/PigmentGrid/PigmentGrid.tsx',
       ],
     },
     {
@@ -35,7 +36,7 @@ export const projectSettings: ProjectSettings = {
   skipComponent(filename: string) {
     return (
       filename.match(
-        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|InitColorSchemeScript|Grid2|PigmentGrid)/,
+        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|InitColorSchemeScript|Grid2)/,
       ) !== null
     );
   },
