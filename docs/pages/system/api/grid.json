@@ -23,7 +23,7 @@
     "offset": {
       "type": {
         "name": "union",
-        "description": "'auto'<br>&#124;&nbsp;PropTypes.number<br>&#124;&nbsp;Array&lt;'auto'<br>&#124;&nbsp;PropTypes.number&gt;<br>&#124;&nbsp;object"
+        "description": "string<br>&#124;&nbsp;number<br>&#124;&nbsp;Array&lt;string<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;object"
       }
     },
     "rowSpacing": {
@@ -35,7 +35,7 @@
     "size": {
       "type": {
         "name": "union",
-        "description": "'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;false<br>&#124;&nbsp;PropTypes.number<br>&#124;&nbsp;Array&lt;'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;false<br>&#124;&nbsp;PropTypes.number&gt;<br>&#124;&nbsp;object"
+        "description": "string<br>&#124;&nbsp;bool<br>&#124;&nbsp;number<br>&#124;&nbsp;Array&lt;string<br>&#124;&nbsp;bool<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;object"
       }
     },
     "spacing": {
