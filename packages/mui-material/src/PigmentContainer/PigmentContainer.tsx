@@ -1,4 +1,3 @@
-'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -11,7 +10,6 @@ import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import { SxProps, Breakpoint } from '@mui/system';
 import { Theme } from '../styles';
 import { ContainerClasses } from '../Container/containerClasses';
-import { useDefaultProps } from '../DefaultPropsProvider';
 
 export interface PigmentContainerOwnProps {
   children?: React.ReactNode;
@@ -84,10 +82,10 @@ const useUtilityClasses = (ownerState: PigmentContainerOwnProps) => {
  *
  * - [PigmentContainer API](https://next.mui.com/material-ui/api/pigment-container/)
  */
-const PigmentContainer = React.forwardRef(function PigmentContainer(inProps, ref) {
-  // eslint-disable-next-line material-ui/mui-name-matches-component-name
-  const props = useDefaultProps({ props: inProps, name: 'MuiContainer' });
-  const { className, disableGutters = false, fixed = false, maxWidth = 'lg', ...other } = props;
+const PigmentContainer = React.forwardRef(function PigmentContainer(
+  { className, disableGutters = false, fixed = false, maxWidth = 'lg', ...props },
+  ref,
+) {
   const ownerState = {
     ...props,
     disableGutters,
@@ -97,12 +95,13 @@ const PigmentContainer = React.forwardRef(function PigmentContainer(inProps, ref
   const classes = useUtilityClasses(ownerState);
   return (
     <Container
-      ref={ref}
       className={clsx(classes.root, className)}
       disableGutters={disableGutters}
       fixed={fixed}
       maxWidth={maxWidth}
-      {...other}
+      {...props}
+      // @ts-ignore
+      ref={ref}
     />
   );
 }) as OverridableComponent<PigmentContainerTypeMap>;
