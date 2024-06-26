@@ -60,7 +60,7 @@ const Root = styled('div')(({ theme }) => [
 function DemoTooltip(props) {
   return (
     <Tooltip
-      componentsProps={{
+      slotProps={{
         popper: {
           sx: {
             zIndex: (theme) => theme.zIndex.appBar - 1,
