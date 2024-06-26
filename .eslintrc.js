@@ -436,6 +436,8 @@ module.exports = {
             ],
           },
         ],
+        // TODO: Consider setting back to `ignoreExternal: true` when the expected behavior is fixed:
+        // https://github.com/import-js/eslint-plugin-import/issues/2348#issuecomment-1587320057
         'import/no-cycle': ['error', { ignoreExternal: false }],
       },
     },
