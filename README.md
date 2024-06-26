@@ -7,8 +7,7 @@
 
 **Material UI** contains foundational React UI component libraries for shipping new features faster:
 
-- [Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
-
+- [Material UI](https://mui.com/material-ui/) is a comprehensive library of components that implements Google's [Material Design](https://m2.material.io/design/introduction/) system.
 - [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
 
 <div align="center">
@@ -42,15 +41,13 @@ Visit [https://mui.com/material-ui/](https://mui.com/material-ui/) to view the f
 
 </details>
 
-**Note:** `@next` only points to pre-releases.
-Use `@latest` for the latest stable release.
+**Note:** `@next` only points to pre-releases. Use `@latest` for the latest stable release.
 
 ### Joy UI
 
 Visit [https://mui.com/joy-ui/getting-started/](https://mui.com/joy-ui/getting-started/) to view the full documentation.
 
-**Note**: Joy UI is still in beta.
-We are adding new components regularly and you're welcome to contribute!
+**Note**: Joy UI is still in beta. We are adding new components regularly and you're welcome to contribute!
 
 ## Sponsors
 
@@ -62,7 +59,7 @@ We are adding new components regularly and you're welcome to contribute!
 <a href="https://www.marblism.com/?utm_source=mui" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/marblism-square.svg" alt="marblism" title="AI web app generation" loading="lazy" /></a>
 </p>
 
-Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
+Diamond sponsors are those who have pledged $1,500/month or more to MUI.
 
 ### Gold 🏆
 
@@ -75,11 +72,11 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   <a href="https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://rxdb.info/files/logo/logo_text.svg" alt="RxDB" title="RxDB: Local-first JavaScript database." loading="lazy" /></a>
   <a href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=288" alt="text-em-all.com" title="Text-em-all: Mass text messaging and automated calling." height="96" width="96" loading="lazy"></a>
   <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="MegaFamous: Buy Instagram followers and likes." loading="lazy" /></a>
-  <a href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
+  <a href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy"></a>
   <a href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/288.png" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" /></a>
 </p>
 
-Gold sponsors are those who have pledged \$500/month or more to MUI.
+Gold sponsors are those who have pledged $500/month or more to MUI.
 
 ### More backers
 
@@ -101,8 +98,7 @@ You can find complete templates and themes in the [MUI Store](https://mui.com/s
 
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.
 
-Contributing is about more than just issues and pull requests!
-There are many other ways to [support Material UI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
+Contributing is about more than just issues and pull requests! There are many other ways to [support Material UI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
 
 ## Changelog
 
@@ -114,8 +110,7 @@ Future plans and high-priority features and enhancements can be found in the [ro
 
 ## License
 
-This project is licensed under the terms of the
-[MIT license](/LICENSE).
+This project is licensed under the terms of the [MIT license](/LICENSE).
 
 ## Security
 
