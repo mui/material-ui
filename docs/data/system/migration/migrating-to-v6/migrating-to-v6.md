@@ -37,7 +37,7 @@ You can follow progress on https://github.com/mui/material-ui/issues/30671.
 
 ### Grid
 
-The `Grid` component was updated to match the API of the new Pigment CSS Grid component, to allow interoperability between the two:
+The `Grid` component was updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
 
 - The previous size and offset props were replaced with the `size` and `offset` props
 - The spacing mechanism was reworked to use the `gap` CSS property.
