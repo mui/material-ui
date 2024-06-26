@@ -62,8 +62,9 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the offset value for the type `item` components.
    */
   offset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['auto', PropTypes.number]),
-    PropTypes.arrayOf(PropTypes.oneOf(['auto', PropTypes.number])),
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     PropTypes.object,
   ]),
   /**
@@ -80,8 +81,10 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the size of the the type `item` components.
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['auto', 'grow', false, PropTypes.number]),
-    PropTypes.arrayOf(PropTypes.oneOf(['auto', 'grow', false, PropTypes.number])),
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number])),
     PropTypes.object,
   ]),
   /**

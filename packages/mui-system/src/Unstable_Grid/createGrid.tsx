@@ -169,8 +169,9 @@ export default function createGrid(
       PropTypes.object,
     ]),
     offset: PropTypes.oneOfType([
-      PropTypes.oneOf(['auto', PropTypes.number]),
-      PropTypes.arrayOf(PropTypes.oneOf(['auto', PropTypes.number])),
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
       PropTypes.object,
     ]),
     rowSpacing: PropTypes.oneOfType([
@@ -180,8 +181,10 @@ export default function createGrid(
       PropTypes.string,
     ]),
     size: PropTypes.oneOfType([
-      PropTypes.oneOf(['auto', 'grow', PropTypes.number, false]),
-      PropTypes.arrayOf(PropTypes.oneOf(['auto', 'grow', PropTypes.number, false])),
+      PropTypes.string,
+      PropTypes.bool,
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number])),
       PropTypes.object,
     ]),
     spacing: PropTypes.oneOfType([
