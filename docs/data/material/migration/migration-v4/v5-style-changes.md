@@ -117,11 +117,11 @@ const theme = createTheme({
         background: [
           ['url(image1.png)', 'no-repeat', 'top'],
           ['url(image2.png)', 'no-repeat', 'center'],
-          '!important'
-        ]
-      }
-    }
-  }
+          '!important',
+        ],
+      },
+    },
+  },
 });
 ```
 
@@ -133,16 +133,16 @@ const theme = createTheme({
     MuiBox: {
       styleOverrides: {
         root: {
-          background: 'url(image1.png) no-repeat top, url(image2.png) no-repeat center !important'
-        }
-      }
-    }
-  }
+          background:
+            'url(image1.png) no-repeat top, url(image2.png) no-repeat center !important',
+        },
+      },
+    },
+  },
 });
 ```
 
 Be sure to add units to numeric values as appropriate.
-
 
 **Before**
 
@@ -151,10 +151,10 @@ const theme = createTheme({
   overrides: {
     MuiOutlinedInput: {
       root: {
-        padding: [[5, 8, 6]]
-      }
-    }
-  }
+        padding: [[5, 8, 6]],
+      },
+    },
+  },
 });
 ```
 
@@ -166,11 +166,11 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          padding: '5px 8px 6px'
-        }
-      }
-    }
-  }
+          padding: '5px 8px 6px',
+        },
+      },
+    },
+  },
 });
 ```
 
