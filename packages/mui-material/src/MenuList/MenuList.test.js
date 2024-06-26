@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Divider from '@mui/material/Divider';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
@@ -23,6 +23,7 @@ describe('<MenuList />', () => {
   const { render } = createRenderer();
 
   describeConformance(<MenuList />, () => ({
+    render,
     classes: {},
     inheritComponent: List,
     refInstanceof: window.HTMLUListElement,

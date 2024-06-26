@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { fireEvent, createRenderer } from '@mui-internal/test-utils';
+import { fireEvent, createRenderer } from '@mui/internal-test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -44,16 +44,6 @@ describe('<TablePagination />', () => {
           </table>,
         );
         return { container: container.firstChild.firstChild.firstChild, ...other };
-      },
-      wrapMount: (mount) => (node) => {
-        const wrapper = mount(
-          <table>
-            <tbody>
-              <tr>{node}</tr>
-            </tbody>
-          </table>,
-        );
-        return wrapper.find('tr').childAt(0);
       },
       muiName: 'MuiTablePagination',
       refInstanceof: window.HTMLTableCellElement,

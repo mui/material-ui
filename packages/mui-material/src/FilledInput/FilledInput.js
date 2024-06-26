@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -14,14 +15,22 @@ import {
   InputBaseRoot,
   InputBaseInput,
 } from '../InputBase/InputBase';
-
-const useThemeProps = createUseThemeProps('MuiFilledInput');
+import { capitalize } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disableUnderline } = ownerState;
+  const { classes, disableUnderline, startAdornment, endAdornment, size, hiddenLabel, multiline } =
+    ownerState;
 
   const slots = {
-    root: ['root', !disableUnderline && 'underline'],
+    root: [
+      'root',
+      !disableUnderline && 'underline',
+      startAdornment && 'adornedStart',
+      endAdornment && 'adornedEnd',
+      size === 'small' && `size${capitalize(size)}`,
+      hiddenLabel && 'hiddenLabel',
+      multiline && 'multiline',
+    ],
     input: ['input'],
   };
 
@@ -79,7 +88,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
           '&::after': {
             left: 0,
             bottom: 0,
-            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
             content: '""',
             position: 'absolute',
             right: 0,
@@ -108,7 +116,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
             }`,
             left: 0,
             bottom: 0,
-            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
             content: '"\\00a0"',
             position: 'absolute',
             right: 0,
@@ -126,7 +133,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main) // check all the used fields in the style below
+        .filter(([, value]) => value && value.main) // check all the used fields in the style below
         .map(([color]) => ({
           props: {
             disableUnderline: false,
@@ -262,7 +269,7 @@ const FilledInputInput = styled(InputBaseInput, {
 }));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFilledInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFilledInput' });
 
   const {
     disableUnderline = false,
@@ -345,8 +352,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -358,8 +364,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

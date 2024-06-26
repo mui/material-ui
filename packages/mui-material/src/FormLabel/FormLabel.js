@@ -6,10 +6,9 @@ import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
-
-const useThemeProps = createUseThemeProps('MuiFormLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, color, focused, disabled, error, filled, required } = ownerState;
@@ -47,7 +46,7 @@ export const FormLabelRoot = styled('label', {
   position: 'relative',
   variants: [
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main)
+      .filter(([, value]) => value && value.main)
       .map(([color]) => ({
         props: { color },
         style: {
@@ -81,7 +80,7 @@ const AsteriskComponent = styled('span', {
 }));
 
 const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormLabel' });
   const {
     children,
     className,

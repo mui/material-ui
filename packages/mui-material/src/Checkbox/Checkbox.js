@@ -12,9 +12,9 @@ import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckB
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
-import { createUseThemeProps, styled } from '../zero-styled';
+import { styled } from '../zero-styled';
 
-const useThemeProps = createUseThemeProps('MuiCheckbox');
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, indeterminate, color, size } = ownerState;
@@ -64,7 +64,7 @@ const CheckboxRoot = styled(SwitchBase, {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
+      .filter(([, palette]) => palette && palette.main)
       .map(([color]) => ({
         props: { color, disableRipple: false },
         style: {
@@ -76,7 +76,7 @@ const CheckboxRoot = styled(SwitchBase, {
         },
       })),
     ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
+      .filter(([, palette]) => palette && palette.main)
       .map(([color]) => ({
         props: { color },
         style: {
@@ -108,7 +108,7 @@ const defaultIcon = <CheckBoxOutlineBlankIcon />;
 const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
 
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
     color = 'primary',

@@ -8,8 +8,8 @@ import { appendOwnerState } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
-import { styled, createUseThemeProps } from '../zero-styled';
-import useTheme from '../styles/useTheme';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
@@ -19,8 +19,6 @@ import useId from '../utils/useId';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
 import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
-
-const useThemeProps = createUseThemeProps('MuiTooltip');
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -306,7 +304,7 @@ function composeEventHandler(handler, eventHandler) {
 
 // TODO v6: Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children: childrenProp,
@@ -802,8 +800,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -817,8 +814,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */

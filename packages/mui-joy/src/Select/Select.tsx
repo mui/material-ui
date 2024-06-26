@@ -375,6 +375,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -626,12 +627,12 @@ interface SelectComponent {
       component: C;
       multiple?: Multiple;
     } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, C>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   <OptionValue extends {}, Multiple extends boolean = false>(
     props: {
       multiple?: Multiple;
     } & DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   propTypes?: any;
 }
 

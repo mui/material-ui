@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  createMount,
   createRenderer,
   fireEvent,
   act,
@@ -10,7 +9,7 @@ import {
   MuiRenderResult,
   RenderOptions,
   flushMicrotasks,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import userEvent from '@testing-library/user-event';
 import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
 import { SelectOption } from '@mui/base/useOption';
@@ -23,7 +22,6 @@ import { describeConformanceUnstyled } from '../../test/describeConformanceUnsty
 // userEvent.setup() requires Safari 14 or up to work
 
 describe('<Select />', () => {
-  const mount = createMount();
   const { render: internalRender } = createRenderer();
 
   async function render(
@@ -46,7 +44,6 @@ describe('<Select />', () => {
   describeConformanceUnstyled(componentToTest, () => ({
     inheritComponent: 'button',
     render,
-    mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
     slots: {

@@ -9,10 +9,9 @@ import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
-
-const useThemeProps = createUseThemeProps('MuiChip');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
@@ -164,7 +163,7 @@ const ChipRoot = styled('div', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.contrastText)
+        .filter(([, value]) => value && value.main && value.contrastText)
         .map(([color]) => {
           return {
             props: { color },
@@ -212,7 +211,7 @@ const ChipRoot = styled('div', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.dark)
+        .filter(([, value]) => value && value.dark)
         .map(([color]) => {
           return {
             props: { color, onDelete: true },
@@ -251,7 +250,7 @@ const ChipRoot = styled('div', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.dark)
+        .filter(([, value]) => value && value.dark)
         .map(([color]) => ({
           props: { color, clickable: true },
           style: {
@@ -296,7 +295,7 @@ const ChipRoot = styled('div', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main) // no need to check for mainChannel as it's calculated from main
+        .filter(([, value]) => value && value.main) // no need to check for mainChannel as it's calculated from main
         .map(([color]) => ({
           props: { variant: 'outlined', color },
           style: {
@@ -378,7 +377,7 @@ function isDeleteKeyboardEvent(keyboardEvent) {
  * Chips represent complex entities in small blocks, such as a contact.
  */
 const Chip = React.forwardRef(function Chip(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiChip' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiChip' });
   const {
     avatar: avatarProp,
     className,
@@ -429,8 +428,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     if (event.currentTarget === event.target) {
       if (onDelete && isDeleteKeyboardEvent(event)) {
         onDelete(event);
-      } else if (event.key === 'Escape' && chipRef.current) {
-        chipRef.current.blur();
       }
     }
 

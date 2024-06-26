@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
@@ -26,7 +26,7 @@ function Wrapper({ children }: { children: React.ReactNode }) {
 
 describe('Joy <MenuItem />', () => {
   const { render: baseRender } = createRenderer();
-  const render = (element: JSX.Element, options = {}) =>
+  const render = (element: React.JSX.Element, options = {}) =>
     baseRender(element, {
       wrapper: Wrapper as React.JSXElementConstructor<{ children?: React.ReactNode }>,
       ...options,
@@ -36,10 +36,6 @@ describe('Joy <MenuItem />', () => {
     classes,
     inheritComponent: ListItemButton,
     render: (node) => render(<MenuProvider value={testContext}>{node}</MenuProvider>),
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(<MenuProvider value={testContext}>{node}</MenuProvider>);
-      return wrapper.childAt(0);
-    },
     ThemeProvider,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'a',

@@ -12,9 +12,9 @@ import createChainedFunction from '../utils/createChainedFunction';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
 
-const useThemeProps = createUseThemeProps('MuiRadio');
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, color, size } = ownerState;
@@ -59,7 +59,7 @@ const RadioRoot = styled(SwitchBase, {
       },
     },
     ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
+      .filter(([, palette]) => palette && palette.main)
       .map(([color]) => ({
         props: { color, disableRipple: false },
         style: {
@@ -71,7 +71,7 @@ const RadioRoot = styled(SwitchBase, {
         },
       })),
     ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
+      .filter(([, palette]) => palette && palette.main)
       .map(([color]) => ({
         props: { color },
         style: {
@@ -108,7 +108,7 @@ const defaultCheckedIcon = <RadioButtonIcon checked />;
 const defaultIcon = <RadioButtonIcon />;
 
 const Radio = React.forwardRef(function Radio(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiRadio' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiRadio' });
   const {
     checked: checkedProp,
     checkedIcon = defaultCheckedIcon,

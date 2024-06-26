@@ -7,7 +7,8 @@ import NotchedOutline from './NotchedOutline';
 import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -15,8 +16,6 @@ import InputBase, {
   InputBaseRoot,
   InputBaseInput,
 } from '../InputBase/InputBase';
-
-const useThemeProps = createUseThemeProps('MuiOutlinedInput');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -54,7 +53,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main)
+        .filter(([, value]) => value && value.main)
         .map(([color]) => ({
           props: { color },
           style: {
@@ -181,7 +180,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
 }));
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiOutlinedInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiOutlinedInput' });
   const {
     components = {},
     fullWidth = false,
@@ -290,8 +289,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

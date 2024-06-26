@@ -9,11 +9,10 @@ import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import composeClasses from '@mui/utils/composeClasses';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Backdrop from '../Backdrop';
 import { getModalUtilityClass } from './modalClasses';
-
-const useThemeProps = createUseThemeProps('MuiModal');
 
 const useUtilityClasses = (ownerState) => {
   const { open, exited, classes } = ownerState;
@@ -75,7 +74,7 @@ const ModalBackdrop = styled(Backdrop, {
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 const Modal = React.forwardRef(function Modal(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiModal', props: inProps });
+  const props = useDefaultProps({ name: 'MuiModal', props: inProps });
   const {
     BackdropComponent = ModalBackdrop,
     BackdropProps,
@@ -275,8 +274,7 @@ Modal.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -288,8 +286,7 @@ Modal.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

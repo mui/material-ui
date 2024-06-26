@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';

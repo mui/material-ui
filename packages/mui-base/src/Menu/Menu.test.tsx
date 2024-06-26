@@ -2,14 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  createMount,
   createRenderer,
   fireEvent,
   act,
   MuiRenderResult,
   RenderOptions,
   flushMicrotasks,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { Menu, menuClasses } from '@mui/base/Menu';
 import { MenuItem, MenuItemRootSlotProps } from '@mui/base/MenuItem';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
@@ -27,7 +26,6 @@ const testContext: DropdownContextValue = {
 };
 
 describe('<Menu />', () => {
-  const mount = createMount();
   const { render: internalRender } = createRenderer();
 
   async function render(
@@ -45,12 +43,6 @@ describe('<Menu />', () => {
       return render(
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
       );
-    },
-    mount: (node: React.ReactNode) => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
-      );
-      return wrapper.childAt(0);
     },
     refInstanceof: window.HTMLDivElement,
     slots: {

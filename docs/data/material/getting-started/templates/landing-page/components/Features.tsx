@@ -47,19 +47,24 @@ interface ChipProps {
   selected?: boolean;
 }
 
-const Chip = styled(MuiChip)<ChipProps>(({ theme, selected }) => ({
-  ...(selected && {
-    borderColor:
-      theme.palette.mode === 'light'
-        ? theme.palette.primary.light
-        : theme.palette.primary.dark,
-    background:
-      'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
-    color: 'hsl(0, 0%, 100%)',
-    '& .MuiChip-label': {
-      color: 'hsl(0, 0%, 100%)',
+const Chip = styled(MuiChip)<ChipProps>(({ theme }) => ({
+  variants: [
+    {
+      props: ({ selected }) => selected,
+      style: {
+        background:
+          'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
+        color: 'hsl(0, 0%, 100%)',
+        borderColor: theme.palette.primary.light,
+        '& .MuiChip-label': {
+          color: 'hsl(0, 0%, 100%)',
+        },
+        ...theme.applyStyles('dark', {
+          borderColor: theme.palette.primary.dark,
+        }),
+      },
     },
-  }),
+  ],
 }));
 
 export default function Features() {
@@ -76,20 +81,19 @@ export default function Features() {
       <Grid container spacing={6}>
         <Grid item xs={12} md={6}>
           <div>
-            <Typography component="h2" variant="h4" color="text.primary">
+            <Typography component="h2" variant="h4" sx={{ color: 'text.primary' }}>
               Product features
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
-              sx={{ mb: { xs: 2, sm: 4 } }}
+              sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
             >
               Provide a brief overview of the key features of the product. For
               example, you could list the number of features, their types or
               benefits, and add-ons.
             </Typography>
           </div>
-          <Grid container item gap={1} sx={{ display: { xs: 'auto', sm: 'none' } }}>
+          <Grid container item sx={{ gap: 1, display: { xs: 'auto', sm: 'none' } }}>
             {items.map(({ title }, index) => (
               <Chip
                 key={index}
@@ -101,34 +105,40 @@ export default function Features() {
           </Grid>
           <Card
             variant="outlined"
-            sx={{
-              display: { xs: 'auto', sm: 'none' },
-              mt: 4,
-            }}
+            sx={{ display: { xs: 'auto', sm: 'none' }, mt: 4 }}
           >
             <Box
-              sx={{
-                backgroundImage: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? items[selectedItemIndex].imageLight
-                    : items[selectedItemIndex].imageDark,
+              sx={(theme) => ({
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 minHeight: 280,
-              }}
+                backgroundImage: 'var(--items-imageLight)',
+                ...theme.applyStyles('dark', {
+                  backgroundImage: 'var(--items-imageDark)',
+                }),
+              })}
+              style={
+                {
+                  '--items-imageLight': items[selectedItemIndex].imageLight,
+                  '--items-imageDark': items[selectedItemIndex].imageDark,
+                } as any
+              }
             />
             <Box sx={{ px: 2, pb: 2 }}>
-              <Typography color="text.primary" fontWeight="medium" gutterBottom>
+              <Typography
+                gutterBottom
+                sx={{ color: 'text.primary', fontWeight: 'medium' }}
+              >
                 {selectedFeature.title}
               </Typography>
-              <Typography color="text.secondary" variant="body2" sx={{ mb: 1.5 }}>
+              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1.5 }}>
                 {selectedFeature.description}
               </Typography>
               <Link
                 color="primary"
                 variant="body2"
-                fontWeight="bold"
                 sx={{
+                  fontWeight: 'bold',
                   display: 'inline-flex',
                   alignItems: 'center',
                   '& > svg': { transition: '0.2s' },
@@ -145,44 +155,48 @@ export default function Features() {
           </Card>
           <Stack
             direction="column"
-            justifyContent="center"
-            alignItems="flex-start"
             spacing={2}
             useFlexGap
-            sx={{ width: '100%', display: { xs: 'none', sm: 'flex' } }}
+            sx={{
+              justifyContent: 'center',
+              alignItems: 'flex-start',
+              width: '100%',
+              display: { xs: 'none', sm: 'flex' },
+            }}
           >
             {items.map(({ icon, title, description }, index) => (
               <Card
                 key={index}
                 component={Button}
                 onClick={() => handleItemClick(index)}
-                sx={(theme) => ({
-                  p: 3,
-                  height: 'fit-content',
-                  width: '100%',
-                  background: 'none',
-                  ...(selectedItemIndex === index && {
-                    backgroundColor: 'action.selected',
-                    borderColor:
-                      theme.palette.mode === 'light'
-                        ? 'primary.light'
-                        : 'primary.dark',
+                sx={[
+                  (theme) => ({
+                    p: 3,
+                    height: 'fit-content',
+                    width: '100%',
+                    background: 'none',
+                    '&:hover': {
+                      background:
+                        'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
+                      borderColor: 'primary.light',
+                      boxShadow: '0px 2px 8px hsla(0, 0%, 0%, 0.1)',
+                      ...theme.applyStyles('dark', {
+                        background:
+                          'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
+                        borderColor: 'primary.dark',
+                        boxShadow: '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
+                      }),
+                    },
                   }),
-                  '&:hover': {
-                    background:
-                      theme.palette.mode === 'light'
-                        ? 'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)'
-                        : 'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
-                    borderColor:
-                      theme.palette.mode === 'light'
-                        ? 'primary.light'
-                        : 'primary.dark',
-                    boxShadow:
-                      theme.palette.mode === 'light'
-                        ? '0px 2px 8px hsla(0, 0%, 0%, 0.1)'
-                        : '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
-                  },
-                })}
+                  selectedItemIndex === index &&
+                    ((theme) => ({
+                      backgroundColor: 'action.selected',
+                      borderColor: 'primary.light',
+                      ...theme.applyStyles('dark', {
+                        borderColor: 'primary.dark',
+                      }),
+                    })),
+                ]}
               >
                 <Box
                   sx={{
@@ -195,43 +209,45 @@ export default function Features() {
                   }}
                 >
                   <Box
-                    sx={(theme) => ({
-                      color:
-                        theme.palette.mode === 'light' ? 'grey.400' : 'grey.600',
-                      ...(selectedItemIndex === index && {
-                        color: 'primary.main',
+                    sx={[
+                      (theme) => ({
+                        color: 'grey.400',
+                        ...theme.applyStyles('dark', {
+                          color: 'grey.600',
+                        }),
                       }),
-                    })}
+                      selectedItemIndex === index && {
+                        color: 'primary.main',
+                      },
+                    ]}
                   >
                     {icon}
                   </Box>
                   <div>
                     <Typography
-                      color="text.primary"
-                      fontWeight="medium"
                       gutterBottom
+                      sx={{ color: 'text.primary', fontWeight: 'medium' }}
                     >
                       {title}
                     </Typography>
                     <Typography
-                      color="text.secondary"
                       variant="body2"
-                      sx={{ mb: 1.5 }}
+                      sx={{ color: 'text.secondary', mb: 1.5 }}
                     >
                       {description}
                     </Typography>
                     <Link
                       color="primary"
                       variant="body2"
-                      fontWeight="bold"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                      }}
                       sx={{
+                        fontWeight: 'bold',
                         display: 'inline-flex',
                         alignItems: 'center',
                         '& > svg': { transition: '0.2s' },
                         '&:hover > svg': { transform: 'translateX(2px)' },
-                      }}
-                      onClick={(event) => {
-                        event.stopPropagation();
                       }}
                     >
                       <span>Learn more</span>
@@ -262,16 +278,22 @@ export default function Features() {
             }}
           >
             <Box
-              sx={{
+              sx={(theme) => ({
                 m: 'auto',
                 width: 420,
                 height: 500,
                 backgroundSize: 'contain',
-                backgroundImage: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? items[selectedItemIndex].imageLight
-                    : items[selectedItemIndex].imageDark,
-              }}
+                backgroundImage: 'var(--items-imageLight)',
+                ...theme.applyStyles('dark', {
+                  backgroundImage: 'var(--items-imageDark)',
+                }),
+              })}
+              style={
+                {
+                  '--items-imageLight': items[selectedItemIndex].imageLight,
+                  '--items-imageDark': items[selectedItemIndex].imageDark,
+                } as any
+              }
             />
           </Card>
         </Grid>

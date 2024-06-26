@@ -8,10 +8,9 @@ import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
-
-const useThemeProps = createUseThemeProps('MuiInputLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, formControl, size, shrink, disableAnimation, variant, required } = ownerState;
@@ -172,7 +171,7 @@ const InputLabelRoot = styled(FormLabel, {
 }));
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
+  const props = useDefaultProps({ name: 'MuiInputLabel', props: inProps });
   const {
     disableAnimation = false,
     margin,
@@ -211,10 +210,10 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   return (
     <InputLabelRoot
       data-shrink={shrink}
-      ownerState={ownerState}
       ref={ref}
       className={clsx(classes.root, className)}
       {...other}
+      ownerState={ownerState}
       classes={classes}
     />
   );

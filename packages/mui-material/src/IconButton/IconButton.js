@@ -5,12 +5,11 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
-
-const useThemeProps = createUseThemeProps('MuiIconButton');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, color, edge, size } = ownerState;
@@ -48,7 +47,6 @@ const IconButtonRoot = styled(ButtonBase, {
     fontSize: theme.typography.pxToRem(24),
     padding: 8,
     borderRadius: '50%',
-    overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
     color: (theme.vars || theme).palette.action.active,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
@@ -104,7 +102,7 @@ const IconButtonRoot = styled(ButtonBase, {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value.main) // check all the used fields in the style below
+          .filter(([, value]) => value && value.main) // check all the used fields in the style below
           .map(([color]) => ({
             props: { color },
             style: {
@@ -112,7 +110,7 @@ const IconButtonRoot = styled(ButtonBase, {
             },
           })),
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value.main) // check all the used fields in the style below
+          .filter(([, value]) => value && value.main) // check all the used fields in the style below
           .map(([color]) => ({
             props: { color, disableRipple: false },
             style: {
@@ -158,7 +156,7 @@ const IconButtonRoot = styled(ButtonBase, {
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiIconButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiIconButton' });
   const {
     edge = false,
     children,

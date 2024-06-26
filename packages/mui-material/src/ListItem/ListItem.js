@@ -7,7 +7,8 @@ import composeClasses from '@mui/utils/composeClasses';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import { alpha } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -16,8 +17,6 @@ import ListContext from '../List/ListContext';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
-
-const useThemeProps = createUseThemeProps('MuiListItem');
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -205,7 +204,7 @@ const ListItemContainer = styled('li', {
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItem' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItem' });
   const {
     alignItems = 'center',
     autoFocus = false,
@@ -255,7 +254,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const children = React.Children.toArray(childrenProp);
 
-  // v4 implementation, deprecated in v5, will be removed in v6
+  // v4 implementation, deprecated in v6, will be removed in v7
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
@@ -298,7 +297,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     Component = ButtonBase;
   }
 
-  // v4 implementation, deprecated in v5, will be removed in v6
+  // v4 implementation, deprecated in v6, will be removed in v7
   if (hasSecondaryAction) {
     // Use div by default.
     Component = !componentProps.component && !componentProp ? 'div' : Component;
@@ -423,9 +422,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   components: PropTypes.shape({
@@ -435,9 +432,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-   *
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -446,13 +441,13 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
-   * @deprecated
+   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerComponent: elementTypeAcceptingRef,
   /**
    * Props applied to the container component if used.
    * @default {}
-   * @deprecated
+   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerProps: PropTypes.object,
   /**
@@ -500,8 +495,6 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -509,8 +502,6 @@ ListItem.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
    *
    * @default {}
    */

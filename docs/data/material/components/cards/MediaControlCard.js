@@ -20,7 +20,11 @@ export default function MediaControlCard() {
           <Typography component="div" variant="h5">
             Live From Space
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
+          <Typography
+            variant="subtitle1"
+            component="div"
+            sx={{ color: 'text.secondary' }}
+          >
             Mac Miller
           </Typography>
         </CardContent>

@@ -16,11 +16,18 @@ describe('cssContainerQueries', () => {
   });
 
   it('should return true if the shorthand is a container query', () => {
+    expect(isCqShorthand(['xs', 'sm', 'md'], '@')).to.equal(true);
     expect(isCqShorthand(['xs', 'sm', 'md'], '@xs')).to.equal(true);
     expect(isCqShorthand(['xs', 'sm', 'md'], '@xs/sidebar')).to.equal(true);
     expect(isCqShorthand(['xs', 'sm', 'md'], '@md')).to.equal(true);
     expect(isCqShorthand(['xs', 'sm', 'md'], '@200')).to.equal(true);
     expect(isCqShorthand(['xs', 'sm', 'md'], '@15.5rem')).to.equal(true);
+  });
+
+  it('should handle `@` without a breakpoint', () => {
+    const theme = createTheme();
+
+    expect(getContainerQuery(theme, '@')).to.equal('@container (min-width:0px)');
   });
 
   it('should have `up`, `down`, `between`, `only`, and `not` functions', () => {
@@ -37,7 +44,7 @@ describe('cssContainerQueries', () => {
     expect(theme.containerQueries.not('xs')).to.equal('@container (min-width:600px)');
     expect(theme.containerQueries.not('xl')).to.equal('@container (max-width:1535.95px)');
     expect(theme.containerQueries.not('md')).to.equal(
-      '@container (width<900px) and (width>1199.95px)',
+      '@container (width<900px) or (width>1199.95px)',
     );
   });
 
@@ -63,7 +70,7 @@ describe('cssContainerQueries', () => {
       '@container sidebar (max-width:1535.95px)',
     );
     expect(theme.containerQueries('sidebar').not('sm')).to.equal(
-      '@container sidebar (width<600px) and (width>899.95px)',
+      '@container sidebar (width<600px) or (width>899.95px)',
     );
   });
 

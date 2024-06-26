@@ -26,6 +26,10 @@ The Material UI design kit is available in the [community (free) version](https
 Start by extracting the `.zip` archive which contains the `.fig` files.
 Then you can either follow [Figma's import guide](https://help.figma.com/hc/en-us/articles/360041003114-Import-files-to-the-file-browser) or [add it to your team library](https://help.figma.com/hc/en-us/articles/360041051154-Guide-to-libraries-in-Figma).
 
+### Changelog
+
+Visit [the Releases tab on GitHub](https://github.com/mui/mui-design-kits/releases?q=figma&expanded=true) to keep track of new design kit versions.
+
 ## Theme
 
 ### Local variables
@@ -58,7 +62,7 @@ The design kit uses Figma's local variables to let you toggle the variable mode 
 
 ### Editing the main components
 
-You can use the [Similayer](https://www.figma.com/community/plugin/735733267883397781/Similayer) plugin to select multiple components at once that share some property.
+You can use the [Similayer](https://www.figma.com/community/plugin/735733267883397781/similayer) plugin to select multiple components at once that share some property.
 
 <iframe width="100%" height="490" src="https://www.youtube.com/embed/eHBk0FbS0P8?si=QbOiMU2F1yvGB6s8" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 

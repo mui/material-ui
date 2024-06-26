@@ -111,11 +111,11 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
  *
  * Demos:
  *
- * - [Dialog](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://next.mui.com/material-ui/react-dialog/)
  *
  * API:
  *
- * - [Dialog API](https://mui.com/material-ui/api/dialog/)
- * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
+ * - [Dialog API](https://next.mui.com/material-ui/api/dialog/)
+ * - inherits [Modal API](https://next.mui.com/material-ui/api/modal/)
  */
-export default function Dialog(props: DialogProps): JSX.Element;
+export default function Dialog(props: DialogProps): React.JSX.Element;

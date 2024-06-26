@@ -165,7 +165,7 @@ interface JoyUsageDemoProps<ComponentProps> {
    * A function to override the code block result.
    */
   getCodeBlock?: (code: string, props: ComponentProps) => string;
-  renderDemo: (props: ComponentProps) => React.ReactElement;
+  renderDemo: (props: ComponentProps) => React.ReactElement<any>;
 }
 
 export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
@@ -221,14 +221,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           },
         })}
       >
-        <Box
-          sx={{
-            flexGrow: 1,
-            m: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
+        <Box sx={{ flexGrow: 1, m: 'auto', display: 'flex', alignItems: 'center' }}>
           {renderDemo(demoProps)}
         </Box>
         <BrandingProvider mode="dark">
@@ -269,8 +262,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           <Typography
             id="usage-props"
             component="h3"
-            fontWeight="lg"
-            sx={{ scrollMarginTop: 160, fontFamily: 'General Sans' }}
+            sx={{ fontWeight: 'lg', scrollMarginTop: 160, fontFamily: 'General Sans' }}
           >
             Playground
           </Typography>

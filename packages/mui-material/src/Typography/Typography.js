@@ -2,13 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { extendSxProp } from '@mui/system/styleFunctionSx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, internal_createExtendSxProp } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
 
-const useThemeProps = createUseThemeProps('MuiTypography');
+const extendSxProp = internal_createExtendSxProp();
 
 const useUtilityClasses = (ownerState) => {
   const { align, gutterBottom, noWrap, paragraph, variant, classes } = ownerState;
@@ -63,7 +63,7 @@ export const TypographyRoot = styled('span', {
         style: value,
       })),
     ...Object.entries(theme.palette)
-      .filter(([, value]) => value.main)
+      .filter(([, value]) => value && value.main)
       .map(([color]) => ({
         props: { color },
         style: {
@@ -127,7 +127,7 @@ const colorTransformations = {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const { color, ...themeProps } = useThemeProps({ props: inProps, name: 'MuiTypography' });
+  const { color, ...themeProps } = useDefaultProps({ props: inProps, name: 'MuiTypography' });
   const textColor = colorTransformations[color];
   const props = extendSxProp({
     ...themeProps,

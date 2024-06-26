@@ -51,6 +51,7 @@ RFTextField.propTypes = {
    * It will be a [`FilledInput`](/material-ui/api/filled-input/),
    * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
    * component depending on the `variant` prop value.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps: PropTypes.object,
   meta: PropTypes.shape({
