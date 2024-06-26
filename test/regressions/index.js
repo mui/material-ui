@@ -59,7 +59,7 @@ const blacklist = [
   'docs-getting-started-templates-dashboard-components/Search.png',
   'docs-getting-started-templates-dashboard-components/ToggleColorMode.png',
   'docs-getting-started-templates-dashboard-internals-components', // No public components
-  'docs-getting-started-templates-dashboard-components/SideNav.png', // No public components
+  'docs-getting-started-templates-dashboard-components/SideMenuMobile.png', // No public components
   'docs-getting-started-templates-dashboard-components/PageViewsBarChart.png', // No public components
   'docs-getting-started-templates-dashboard-components/StatCard.png', // No public components
   'docs-getting-started-templates-sign-in-side/CustomIcons.png', // Theme file

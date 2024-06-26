@@ -50,7 +50,8 @@ export default function SideMenu() {
         sx={{
           gap: 1,
           alignItems: 'center',
-          p: 1.5,
+          justifyContent: 'space-between',
+          p: 2,
           borderTop: '1px solid',
           borderColor: 'divider',
         }}
@@ -59,13 +60,13 @@ export default function SideMenu() {
           sizes="small"
           alt="Riley Carter"
           src="/static/images/avatar/7.jpg"
-          sx={{ width: 24, height: 24 }}
+          sx={{ width: 32, height: 32 }}
         />
         <div>
           <Typography fontWeight={500} variant="body2">
             Riley Carter
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="caption" color="text.secondary">
             rileycarter@email.com
           </Typography>
         </div>

@@ -3,10 +3,8 @@ import { styled } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import { MenuItem as MuiMenuItem } from '@mui/material';
-import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemButton from '@mui/material/ListItemButton';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import MenuButton from './MenuButton';
@@ -53,14 +51,14 @@ export default function OptionsMenu() {
         <MenuItem onClick={handleClose}>Add another account</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <Divider />
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton onClick={handleClose}>
-            <ListItemText>Logout</ListItemText>
-            <ListItemIcon>
-              <LogoutRoundedIcon fontSize="small" />
-            </ListItemIcon>
-          </ListItemButton>
-        </ListItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemText>Logout</ListItemText>
+          <ListItemIcon
+            sx={{ '&.MuiListItemIcon-root': { minWidth: 0, opacity: 0.7 } }}
+          >
+            <LogoutRoundedIcon fontSize="small" />
+          </ListItemIcon>
+        </MenuItem>
       </Menu>
     </React.Fragment>
   );

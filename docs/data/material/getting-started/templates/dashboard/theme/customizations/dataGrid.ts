@@ -9,7 +9,13 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
     styleOverrides: {
       root: ({ theme }) => ({
         borderColor: theme.palette.divider,
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: theme.palette.background.default,
+        '& .MuiDataGrid-columnHeader': {
+          backgroundColor: theme.palette.background.paper,
+        },
+        '& .MuiDataGrid-footerContainer': {
+          backgroundColor: theme.palette.background.paper,
+        },
       }),
       cell: ({ theme }) => ({ borderTopColor: theme.palette.divider }),
       menu: ({ theme }) => ({
@@ -41,7 +47,6 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
             backgroundColor: theme.palette.action.hover,
           },
         },
-        //...theme.applyStyles('dark', {}),
       }),
       iconButtonContainer: ({ theme }) => ({
         '& .MuiIconButton-root': {

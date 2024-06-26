@@ -12,7 +12,7 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import ToggleColorMode from './ToggleColorMode';
-import SideNav from './SideNav';
+import SideMenuMobile from './SideMenuMobile';
 import MenuButton from './MenuButton';
 import OptionsMenu from './OptionsMenu';
 import Search from './Search';
@@ -45,14 +45,14 @@ function Navbar({ mode, toggleColorMode }) {
   return (
     <AppBar
       position="fixed"
-      sx={(internalTheme) => ({
+      sx={{
         display: { xs: 'auto', md: 'none' },
         boxShadow: 0,
         bgcolor: 'background.paper',
         backgroundImage: 'none',
         borderBottom: '1px solid',
         borderColor: 'divider',
-      })}
+      }}
     >
       <Toolbar variant="regular">
         {isDesktop ? (
@@ -101,7 +101,7 @@ function Navbar({ mode, toggleColorMode }) {
             <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
               <MenuRoundedIcon />
             </MenuButton>
-            <SideNav
+            <SideMenuMobile
               open={open}
               toggleDrawer={toggleDrawer}
               mode={mode}

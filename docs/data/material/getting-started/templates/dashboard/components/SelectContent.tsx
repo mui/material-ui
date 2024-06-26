@@ -5,10 +5,8 @@ import {
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
-import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
@@ -88,15 +86,15 @@ export default function SelectContent() {
           </ListItemAvatar>
           <ListItemText primary="Sitemark-Admin" secondary="Web app" />
         </MenuItem>
+
         <Divider />
-        <ListItem value={40} disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <AddRoundedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add product" />
-          </ListItemButton>
-        </ListItem>
+
+        <MenuItem value={40}>
+          <ListItemIcon>
+            <AddRoundedIcon />
+          </ListItemIcon>
+          <ListItemText primary="Add product" secondary="Web app" />
+        </MenuItem>
       </Select>
     </Box>
   );

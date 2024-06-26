@@ -5,19 +5,9 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import ContactPageRoundedIcon from '@mui/icons-material/ContactPageRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
 import MenuButton from './MenuButton';
@@ -25,19 +15,19 @@ import ToggleColorMode from './ToggleColorMode';
 import MenuContent from './MenuContent';
 import CardAlert from './CardAlert';
 
-const accountsList = [
-  { label: 'Profile', icon: <AccountCircleRoundedIcon sx={{ fontSize: 20 }} /> },
-  { label: 'My account', icon: <ContactPageRoundedIcon sx={{ fontSize: 20 }} /> },
-];
-
-const settingsList = [
-  { label: 'Add account', icon: <AddRoundedIcon sx={{ fontSize: 20 }} /> },
-  { label: 'Settings', icon: <SettingsRoundedIcon sx={{ fontSize: 20 }} /> },
-];
-
-function SideNav({ open, toggleDrawer, mode, toggleColorMode }) {
+function SideMenuMobile({ open, toggleDrawer, mode, toggleColorMode }) {
   return (
-    <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={toggleDrawer(false)}
+      sx={{
+        '& .MuiDrawer-paper': {
+          backgroundImage: 'none',
+          backgroundColor: 'background.paper',
+        },
+      }}
+    >
       <Stack
         sx={{
           maxWidth: '70dvw',
@@ -65,25 +55,6 @@ function SideNav({ open, toggleDrawer, mode, toggleColorMode }) {
         <Stack>
           <MenuContent />
           <Divider />
-          <List>
-            {accountsList.map((item, index) => (
-              <ListItem key={index}>
-                <ListItemButton>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.label} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-
-            {settingsList.map((item, index) => (
-              <ListItem key={index}>
-                <ListItemButton>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.label} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
         </Stack>
         <Stack sx={{ p: 2 }}>
           <Button variant="outlined" fullWidth startIcon={<LogoutRoundedIcon />}>
@@ -96,11 +67,11 @@ function SideNav({ open, toggleDrawer, mode, toggleColorMode }) {
   );
 }
 
-SideNav.propTypes = {
+SideMenuMobile.propTypes = {
   mode: PropTypes.oneOf(['dark', 'light']).isRequired,
   open: PropTypes.bool,
   toggleColorMode: PropTypes.func.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
 };
 
-export default SideNav;
+export default SideMenuMobile;

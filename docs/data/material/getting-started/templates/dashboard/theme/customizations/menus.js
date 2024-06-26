@@ -39,6 +39,15 @@ export const menuComponentsCustomizations = {
             '.MuiSvgIcon-root': {
               color: theme.palette.text.primary,
             },
+            '&.Mui-focusVisible': {
+              backgroundColor: alpha(theme.palette.action.selected, 0.3),
+            },
+            '&:hover': {
+              backgroundColor: alpha(theme.palette.action.selected, 0.5),
+            },
+          },
+          '&.Mui-focusVisible': {
+            backgroundColor: 'transparent',
           },
         },
       }),
@@ -48,6 +57,7 @@ export const menuComponentsCustomizations = {
     styleOverrides: {
       primary: ({ theme }) => ({
         fontSize: theme.typography.body2.fontSize,
+        fontWeight: 500,
         lineHeight: theme.typography.body2.lineHeight,
       }),
       secondary: ({ theme }) => ({
@@ -80,6 +90,14 @@ export const menuComponentsCustomizations = {
       root: ({ theme }) => ({
         borderRadius: theme.shape.borderRadius,
         padding: '6px 8px',
+        '&.Mui-focusVisible': {
+          backgroundColor: 'transparent',
+        },
+        '&.Mui-selected': {
+          '&.Mui-focusVisible': {
+            backgroundColor: alpha(theme.palette.action.selected, 0.3),
+          },
+        },
       }),
     },
   },
@@ -146,13 +164,6 @@ export const menuComponentsCustomizations = {
         display: 'flex',
         alignItems: 'center',
         padding: theme.spacing(1, 2),
-        '&:focus-visible': {
-          borderRadius: theme.shape.borderRadius,
-          outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
-          outlineOffset: '2px',
-          boxShadow: 'none',
-          backgroundColor: gray[100],
-        },
         ...theme.applyStyles('dark', {
           display: 'flex',
           alignItems: 'center',

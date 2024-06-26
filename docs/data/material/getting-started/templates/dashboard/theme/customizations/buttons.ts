@@ -107,7 +107,8 @@ export const buttonsCustomizations: Components<Theme> = {
             },
             style: {
               color: theme.palette.text.primary,
-              border: `1px solid ${theme.palette.divider}`,
+              border: '1px solid',
+              borderColor: gray[200],
               backgroundColor: alpha(gray[50], 0.3),
               '&:hover': {
                 backgroundColor: gray[100],
@@ -118,6 +119,8 @@ export const buttonsCustomizations: Components<Theme> = {
               },
               ...theme.applyStyles('dark', {
                 backgroundColor: gray[800],
+                borderColor: gray[700],
+
                 '&:hover': {
                   backgroundColor: gray[900],
                   borderColor: gray[600],
@@ -220,7 +223,8 @@ export const buttonsCustomizations: Components<Theme> = {
         fontWeight: theme.typography.fontWeightMedium,
         letterSpacing: 0,
         color: theme.palette.text.primary,
-        border: `1px solid ${theme.palette.divider}`,
+        border: '1px solid ',
+        borderColor: gray[200],
         backgroundColor: alpha(gray[50], 0.3),
         '&:hover': {
           backgroundColor: gray[100],
@@ -231,6 +235,7 @@ export const buttonsCustomizations: Components<Theme> = {
         },
         ...theme.applyStyles('dark', {
           backgroundColor: gray[800],
+          borderColor: gray[700],
           '&:hover': {
             backgroundColor: gray[900],
             borderColor: gray[600],

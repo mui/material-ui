@@ -41,6 +41,9 @@ export const otherComponentsCustomizations: Components<Theme> = {
     },
   },
   MuiChip: {
+    defaultProps: {
+      size: 'small',
+    },
     styleOverrides: {
       root: ({ theme }) => ({
         border: '1px solid',
@@ -123,6 +126,15 @@ export const otherComponentsCustomizations: Components<Theme> = {
                   color: red[300],
                 },
               }),
+            },
+          },
+          {
+            props: { size: 'small' },
+            style: {
+              maxHeight: 20,
+              '& .MuiChip-label': {
+                fontSize: theme.typography.caption.fontSize,
+              },
             },
           },
         ],
