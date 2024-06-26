@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -8,6 +9,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import { SxProps } from '@mui/system';
 import { Breakpoint, Theme } from '../styles';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
@@ -69,9 +71,12 @@ const useUtilityClasses = () => {
  *
  * - [PigmentStack API](https://next.mui.com/material-ui/api/pigment-stack/)
  */
-const PigmentStack = React.forwardRef(function PigmentStack({ className, ...props }, ref) {
+const PigmentStack = React.forwardRef(function PigmentStack(inProps, ref) {
+  // eslint-disable-next-line material-ui/mui-name-matches-component-name
+  const props = useDefaultProps({ props: inProps, name: 'MuiStack' });
+  const { className, ...other } = props;
   const classes = useUtilityClasses();
-  return <Stack className={clsx(classes.root, className)} {...props} ref={ref} />;
+  return <Stack ref={ref} className={clsx(classes.root, className)} {...other} />;
 }) as OverridableComponent<PigmentStackTypeMap>;
 
 PigmentStack.propTypes /* remove-proptypes */ = {
