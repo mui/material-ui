@@ -13,7 +13,6 @@ import {
   generateSpacingClassNames,
 } from '@mui/system/Unstable_Grid/gridGenerator';
 import { Breakpoint, Theme } from '../styles';
-import { useDefaultProps } from '../DefaultPropsProvider';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
@@ -152,17 +151,12 @@ const useUtilityClasses = (ownerState: GridBaseProps) => {
  *
  * - [PigmentGrid API](https://next.mui.com/material-ui/api/pigment-grid/)
  */
-const PigmentGrid = React.forwardRef(function PigmentGrid(inProps, ref) {
-  const props = useDefaultProps<typeof inProps & { component?: React.ElementType }>({
-    props: inProps,
-    // eslint-disable-next-line material-ui/mui-name-matches-component-name
-    name: 'MuiGrid2',
-  });
-  const { className, component, ...other } = props;
+const PigmentGrid = React.forwardRef(function PigmentGrid(props, ref) {
+  const { className, ...other } = props;
 
   const classes = useUtilityClasses(props);
 
-  return <Grid ref={ref} as={component} className={clsx(classes.root, className)} {...other} />;
+  return <Grid ref={ref} className={clsx(classes.root, className)} {...other} />;
 }) as OverridableComponent<GridTypeMap>;
 
 PigmentGrid.propTypes /* remove-proptypes */ = {
