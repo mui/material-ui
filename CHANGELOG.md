@@ -19,8 +19,9 @@ A big thanks to the 7 contributors who made this release possible.
 - Fix 301 links (@alexfauquette) (#42700) @alexfauquette
 - [material-ui][Select] Fix the `SelectAutoWidth` demo menu item value (@Danielkhakbaz) (#42696) @Danielkhakbaz
 
-### COre
+### Core
 
+- [core] Cherry pick pnpm updates (#42763) @DiegoAndai
 - [website] Add Armin to the team members (@arminmeh) (#42681) @arminmeh
 - [website] Open Staff Engineer role for Pigment CSS (@mnajdova) (#42669) @mnajdova
 
