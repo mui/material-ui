@@ -1013,8 +1013,8 @@ describe('<Select />', () => {
       expect(select).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('should have the aria-controls attribute', () => {
-      render(
+    it('should have the aria-controls attribute', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1033,8 +1033,8 @@ describe('<Select />', () => {
       expect(select).to.have.attribute('aria-controls', listboxId!);
     });
 
-    it('should have the correct tabindex attribute', () => {
-      render(
+    it('should have the correct tabindex attribute', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
