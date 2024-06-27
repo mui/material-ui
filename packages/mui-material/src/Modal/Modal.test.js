@@ -44,7 +44,6 @@ describe('<Modal />', () => {
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
         'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
-        'slotPropsCallback', // not supported yet
       ],
     }),
   );

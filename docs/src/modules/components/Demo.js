@@ -45,7 +45,7 @@ function DemoToolbarFallback() {
   const t = useTranslate();
 
   // Sync with styles from DemoToolbar, we can't import the styles
-  return <Box sx={{ height: 40 }} aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
+  return <Box sx={{ height: 42 }} aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
 function getDemoName(location) {
