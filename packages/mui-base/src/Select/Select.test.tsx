@@ -998,8 +998,8 @@ describe('<Select />', () => {
       expect(screen.getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
     });
 
-    it('should have the aria-expanded attribute set to true when the listbox is open', () => {
-      render(
+    it('should have the aria-expanded attribute set to true when the listbox is open', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
