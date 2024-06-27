@@ -1,5 +1,44 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.13
+
+<!-- generated comparing v6.0.0-alpha.12..next -->
+
+_Jun 27, 2024_
+
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added layout components for Pigment CSS integration (#42693) @siriwatknp
+
+### `@mui/material@6.0.0-alpha.13`
+
+- [Autocomplete] Fix more React 18.3 key spread warnings in demos (#42639) @wbt
+- [Container][Grid][Stack][Hidden] Export Pigment CSS layout components (#42693) @siriwatknp
+- [Text Field] when click password visibility button, text caret position change to very front. (#42595) @appleSimple
+- [Modal] migrate useSlotProps to useSLot (#42150) @sai6855
+
+### `@mui/styles@6.0.0-alpha.13`
+
+- [styles][withStyles] Expect React defaultProps warning in test (#42752) @aarongarciah
+
+### Docs
+
+- Fix link in CONTRIBUTING.md (#42755) @Janpot
+- Add documentation on migrating JSS's alternative, array-based syntax to syntax supported by Emotion (#42053) @cjl750
+- Fix type error in virtualized table demo (#42757) @aarongarciah
+- Add first batch of v6 migration (#42242) @siriwatknp
+- Fix quotes on font-family dedeclaration in the Landing Page template theme (#42748) @joetats
+
+### Core
+
+- [code-infra] Refactor eslint `import/no-cycle` rule (#42705) @LukasTy
+- [core] Target direct version for prerelease (#42768) @siriwatknp
+- [test] Remove enzyme (#42706) @aarongarciah
+- [test] Remove createMount test util (#42703) @aarongarciah
+- [website] Add Ale to team (#42764) @alelthomas
+
+All contributors of this release in alphabetical order: @aarongarciah, @alelthomas, @appleSimple, @cjl750, @Janpot, @joetats, @LukasTy, @sai6855, @siriwatknp, @wbt
+
 ## v6.0.0-alpha.12
 
 <!-- generated comparing v6.0.0-alpha.11..next -->
