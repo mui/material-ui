@@ -23,7 +23,7 @@ A big thanks to the 7 contributors who made this release possible.
 
 - [core] Cherry pick pnpm updates (#42763) @DiegoAndai
 - [website] Add Armin to the team members (@arminmeh) (#42681) @arminmeh
-- [website] Open Staff Engineer role for Pigment CSS (@mnajdova) (#42669) @mnajdova
+- [website] Open Staff Engineer role for Pigment CSS (@mnajdova) (#42669) @mnajdova
 
 All contributors of this release in alphabetical order: @alexfauquette, @alexismo, @arminmeh, @Danielkhakbaz, @DiegoAndai, @mnajdova, @oliviertassinari
 
