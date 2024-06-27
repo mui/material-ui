@@ -21,6 +21,10 @@ export default function InputAdornments() {
     event.preventDefault();
   };
 
+  const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       <div>
@@ -56,6 +60,7 @@ export default function InputAdornments() {
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
                   edge="end"
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -108,6 +113,7 @@ export default function InputAdornments() {
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
                   edge="end"
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -158,6 +164,7 @@ export default function InputAdornments() {
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>

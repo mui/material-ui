@@ -6,18 +6,12 @@ import { TypeScriptProject } from './createTypeScriptProject';
 import { getPropsFromComponentNode } from './getPropsFromComponentNode';
 import resolveExportSpecifier from './resolveExportSpecifier';
 import { ProjectSettings } from '../ProjectSettings';
+import { Slot } from '../types/utils.types';
 
 interface ClassInfo {
   description: string;
   isDeprecated?: true;
   deprecationInfo?: string;
-}
-
-export interface Slot {
-  class: string | null;
-  name: string;
-  description: string;
-  default?: string;
 }
 
 /**

@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { createMount, createRenderer } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { TabPanel, tabPanelClasses } from '@mui/base/TabPanel';
 import { TabsProvider, TabsProviderValue } from '../useTabs';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<TabPanel />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   const tabsProviderDefaultValue: TabsProviderValue = {
@@ -30,10 +29,6 @@ describe('<TabPanel />', () => {
       );
 
       return { container, ...other };
-    },
-    mount: (node: any) => {
-      const wrapper = mount(<TabsProvider value={tabsProviderDefaultValue}>{node}</TabsProvider>);
-      return wrapper.childAt(0);
     },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',
