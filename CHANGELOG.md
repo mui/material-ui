@@ -8,18 +8,18 @@ _Jun 27, 2024_
 
 A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
 
-- 🚀 Added layout components for Pigment CSS integration (#42693) @siriwatknp
+- 🚀 Added layout components for Pigment CSS integration (#42693) @siriwatknp
 
 ### `@mui/material@6.0.0-alpha.13`
 
 - [Autocomplete] Fix more React 18.3 key spread warnings in demos (#42639) @wbt
-- [Container][Grid][Stack][Hidden] Export Pigment CSS layout components (#42693) @siriwatknp
+- [Container][Grid][Stack][Hidden] Export Pigment CSS layout components (#42693) @siriwatknp
 - [Text Field] when click password visibility button, text caret position change to very front. (#42595) @appleSimple
 - [Modal] migrate useSlotProps to useSLot (#42150) @sai6855
 
 ### `@mui/styles@6.0.0-alpha.13`
 
-- [styles][withStyles] Expect React defaultProps warning in test (#42752) @aarongarciah
+- [withStyles] Expect React defaultProps warning in test (#42752) @aarongarciah
 
 ### Docs
 
