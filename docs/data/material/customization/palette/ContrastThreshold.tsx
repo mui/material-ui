@@ -16,12 +16,12 @@ function ContrastShowcase(props: { title: string }) {
   const theme = useTheme();
 
   return (
-    <Stack gap={1} alignItems="center">
+    <Stack sx={{ gap: 1, alignItems: 'center' }}>
       <span>
         <b>{title}</b>
       </span>
       <span>{theme.palette.contrastThreshold}:1</span>
-      <Stack direction="row" gap={1}>
+      <Stack direction="row" sx={{ gap: 1 }}>
         <Button variant="contained" color="warning">
           Warning
         </Button>
@@ -32,7 +32,7 @@ function ContrastShowcase(props: { title: string }) {
 
 export default function ContrastThreshold() {
   return (
-    <Stack direction="row" gap={4}>
+    <Stack direction="row" sx={{ gap: 4 }}>
       <ThemeProvider theme={defaultContrastThresholdTheme}>
         <ContrastShowcase title="Default contrast threshold" />
       </ThemeProvider>

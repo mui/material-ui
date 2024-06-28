@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { extendTheme, useTheme, CssVarsProvider, styled } from '@mui/joy/styles';
 
 describe('extendTheme', () => {
@@ -16,6 +16,7 @@ describe('extendTheme', () => {
         'colorSchemes',
         'defaultColorScheme',
         'focus',
+        'font',
         'fontSize',
         'fontFamily',
         'fontWeight',
@@ -51,6 +52,7 @@ describe('extendTheme', () => {
       'radius',
       'shadow',
       'focus',
+      'font',
       'fontFamily',
       'fontSize',
       'fontWeight',
@@ -153,6 +155,47 @@ describe('extendTheme', () => {
     });
   });
 
+  describe('typography', () => {
+    it('produce typography token by default', () => {
+      const theme = extendTheme();
+      expect(Object.keys(theme.vars.font)).to.deep.equal([
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'title-lg',
+        'title-md',
+        'title-sm',
+        'body-lg',
+        'body-md',
+        'body-sm',
+        'body-xs',
+      ]);
+    });
+
+    it('access font vars', () => {
+      const theme = extendTheme();
+      expect(
+        theme.unstable_sx({
+          font: 'h1',
+        }),
+      ).to.deep.equal({
+        font: 'var(--joy-font-h1, var(--joy-fontWeight-xl, 700) var(--joy-fontSize-xl4, 2.25rem)/var(--joy-lineHeight-xs, 1.33334) var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol")))',
+      });
+    });
+
+    it('use provided value if no font', () => {
+      const theme = extendTheme();
+      expect(
+        theme.unstable_sx({
+          font: 'var(--custom-font)',
+        }),
+      ).to.deep.equal({
+        font: 'var(--custom-font)',
+      });
+    });
+  });
+
   describe('theme.unstable_sx', () => {
     const { render } = createRenderer();
 
@@ -198,6 +241,7 @@ describe('extendTheme', () => {
 
       function Test() {
         const theme = useTheme();
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- styles is required outside the component
         styles = theme.unstable_sx({ bgcolor: 'primary.500' });
         return null;
       }

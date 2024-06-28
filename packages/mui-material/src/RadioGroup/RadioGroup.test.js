@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import FormGroup from '@mui/material/FormGroup';
 import Radio from '@mui/material/Radio';
 import RadioGroup, { useRadioGroup, radioGroupClasses as classes } from '@mui/material/RadioGroup';
@@ -12,6 +12,7 @@ describe('<RadioGroup />', () => {
   const { render } = createRenderer();
 
   describeConformance(<RadioGroup value="" />, () => ({
+    render,
     classes: {},
     inheritComponent: FormGroup,
     refInstanceof: window.HTMLDivElement,

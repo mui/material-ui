@@ -18,20 +18,20 @@ const theme = createTheme({
 export default function AddingColorTokens() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack direction="row" gap={1}>
-        <Stack alignItems="center">
+      <Stack direction="row" sx={{ gap: 1 }}>
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">light</Typography>
           <Box sx={{ bgcolor: `primary.light`, width: 40, height: 20 }} />
         </Stack>
-        <Stack alignItems="center">
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">main</Typography>
           <Box sx={{ bgcolor: `primary.main`, width: 40, height: 20 }} />
         </Stack>
-        <Stack alignItems="center">
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">dark</Typography>
           <Box sx={{ bgcolor: `primary.dark`, width: 40, height: 20 }} />
         </Stack>
-        <Stack alignItems="center">
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">darker</Typography>
           <Box sx={{ bgcolor: `primary.darker`, width: 40, height: 20 }} />
         </Stack>

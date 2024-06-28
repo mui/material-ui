@@ -3,12 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import { getAppBarUtilityClass } from './appBarClasses';
-
-const useThemeProps = createUseThemeProps('MuiAppBar');
 
 const useUtilityClasses = (ownerState) => {
   const { color, position, classes } = ownerState;
@@ -114,13 +113,9 @@ const AppBarRoot = styled(Paper, {
         }),
       },
     },
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter(
-        (key) =>
-          (theme.vars ?? theme).palette[key].main &&
-          (theme.vars ?? theme).palette[key].contrastText,
-      )
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main && palette.contrastText)
+      .map(([color]) => ({
         props: { color },
         style: {
           '--AppBar-background': (theme.vars ?? theme).palette[color].main,
@@ -165,7 +160,7 @@ const AppBarRoot = styled(Paper, {
 }));
 
 const AppBar = React.forwardRef(function AppBar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAppBar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAppBar' });
   const {
     className,
     color = 'primary',

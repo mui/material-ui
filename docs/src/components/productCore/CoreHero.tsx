@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-
 import IconImage from 'docs/src/components/icon/IconImage';
 
 export default function CoreHero() {
@@ -13,7 +12,7 @@ export default function CoreHero() {
       <SectionHeadline
         alwaysCenter
         overline={
-          <Stack direction="row" justifyContent="center" alignItems="center">
+          <Stack direction="row" sx={{ justifyContent: 'center', alignItems: 'center' }}>
             <IconImage loading="eager" width={28} height={28} name="product-core" sx={{ mr: 1 }} />{' '}
             MUI Core
           </Stack>

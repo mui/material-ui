@@ -4,8 +4,8 @@ import {
   Theme,
   ThemeOptions,
   alpha,
-  experimental_extendTheme as extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
+  extendTheme,
+  CssVarsProvider,
 } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
@@ -125,7 +125,7 @@ function Demo({
 }: {
   name: string;
   theme: Theme | undefined;
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   control?: { prop: string; values: Array<string>; defaultValue?: string };
 }) {
   const [propValue, setPropValue] = React.useState(
@@ -180,7 +180,7 @@ function Demo({
           })}
         </CssVarsProvider>
       </Box>
-      <Typography fontWeight="semiBold" variant="body2">
+      <Typography variant="body2" sx={{ fontWeight: 'semiBold' }}>
         {name}
       </Typography>
     </Box>
@@ -536,14 +536,7 @@ export default function MaterialDesignComponents() {
   const theme = customized ? customTheme : undefined;
   return (
     <div>
-      <Box
-        sx={{
-          mt: { xs: 2, md: 2 },
-          mb: 4,
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
+      <Box sx={{ mt: { xs: 2, md: 2 }, mb: 4, display: 'flex', justifyContent: 'center' }}>
         <StyledChip
           size="small"
           label="Custom theme"
@@ -665,13 +658,12 @@ export default function MaterialDesignComponents() {
             alignItems: 'center',
           }}
         >
-          <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+          <Typography variant="body2" sx={{ fontWeight: 'bold', mb: 0.5 }}>
             Want to see more?
           </Typography>
           <Typography
             variant="body2"
-            color="text.secondary"
-            sx={{ mb: 0.5, maxWidth: 250, mx: 'auto' }}
+            sx={{ color: 'text.secondary', mb: 0.5, maxWidth: 250, mx: 'auto' }}
           >
             Check out the docs for details of the complete library.
           </Typography>

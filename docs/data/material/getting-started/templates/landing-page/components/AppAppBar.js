@@ -40,12 +40,7 @@ function AppAppBar({ mode, toggleColorMode }) {
   return (
     <AppBar
       position="fixed"
-      sx={{
-        boxShadow: 0,
-        bgcolor: 'transparent',
-        backgroundImage: 'none',
-        mt: 2,
-      }}
+      sx={{ boxShadow: 0, bgcolor: 'transparent', backgroundImage: 'none', mt: 2 }}
     >
       <Container maxWidth="lg">
         <Toolbar
@@ -56,28 +51,21 @@ function AppAppBar({ mode, toggleColorMode }) {
             justifyContent: 'space-between',
             flexShrink: 0,
             borderRadius: '999px',
-            bgcolor:
-              theme.palette.mode === 'light'
-                ? 'hsla(220, 60%, 99%, 0.6)'
-                : 'hsla(220, 0%, 0%, 0.7)',
             backdropFilter: 'blur(24px)',
             maxHeight: 40,
             border: '1px solid',
             borderColor: 'divider',
+            bgcolor: 'hsla(220, 60%, 99%, 0.6)',
             boxShadow:
-              theme.palette.mode === 'light'
-                ? '0 1px 2px hsla(210, 0%, 0%, 0.05), 0 2px 12px hsla(210, 100%, 80%, 0.5)'
-                : '0 1px 2px hsla(210, 0%, 0%, 0.5), 0 2px 12px hsla(210, 100%, 25%, 0.3)',
+              '0 1px 2px hsla(210, 0%, 0%, 0.05), 0 2px 12px hsla(210, 100%, 80%, 0.5)',
+            ...theme.applyStyles('dark', {
+              bgcolor: 'hsla(220, 0%, 0%, 0.7)',
+              boxShadow:
+                '0 1px 2px hsla(210, 0%, 0%, 0.5), 0 2px 12px hsla(210, 100%, 25%, 0.3)',
+            }),
           })}
         >
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: 'flex',
-              alignItems: 'center',
-              px: 0,
-            }}
-          >
+          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Sitemark />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button
@@ -131,24 +119,10 @@ function AppAppBar({ mode, toggleColorMode }) {
             }}
           >
             <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-            <Button
-              color="primary"
-              variant="text"
-              size="small"
-              component="a"
-              href="/material-ui/getting-started/templates/sign-in/"
-              target="_blank"
-            >
+            <Button color="primary" variant="text" size="small">
               Sign in
             </Button>
-            <Button
-              color="primary"
-              variant="contained"
-              size="small"
-              component="a"
-              href="/material-ui/getting-started/templates/sign-up/"
-              target="_blank"
-            >
+            <Button color="primary" variant="contained" size="small">
               Sign up
             </Button>
           </Box>
@@ -157,12 +131,7 @@ function AppAppBar({ mode, toggleColorMode }) {
               <MenuIcon />
             </IconButton>
             <Drawer anchor="top" open={open} onClose={toggleDrawer(false)}>
-              <Box
-                sx={{
-                  p: 2,
-                  backgroundColor: 'background.default',
-                }}
-              >
+              <Box sx={{ p: 2, backgroundColor: 'background.default' }}>
                 <Box
                   sx={{
                     display: 'flex',
@@ -190,26 +159,12 @@ function AppAppBar({ mode, toggleColorMode }) {
                 </MenuItem>
                 <MenuItem onClick={() => scrollToSection('faq')}>FAQ</MenuItem>
                 <MenuItem>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    component="a"
-                    href="/material-ui/getting-started/templates/sign-up/"
-                    target="_blank"
-                    fullWidth
-                  >
+                  <Button color="primary" variant="contained" fullWidth>
                     Sign up
                   </Button>
                 </MenuItem>
                 <MenuItem>
-                  <Button
-                    color="primary"
-                    variant="outlined"
-                    component="a"
-                    href="/material-ui/getting-started/templates/sign-in/"
-                    target="_blank"
-                    fullWidth
-                  >
+                  <Button color="primary" variant="outlined" fullWidth>
                     Sign in
                   </Button>
                 </MenuItem>

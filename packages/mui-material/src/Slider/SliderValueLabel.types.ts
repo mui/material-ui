@@ -1,5 +1,5 @@
 export interface SliderValueLabelProps {
-  children?: React.ReactElement;
+  children?: React.ReactElement<any>;
   className?: string;
   style?: React.CSSProperties;
   /**

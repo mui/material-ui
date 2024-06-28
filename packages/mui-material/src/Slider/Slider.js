@@ -8,14 +8,13 @@ import composeClasses from '@mui/utils/composeClasses';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
-
-const useThemeProps = createUseThemeProps('MuiSlider');
 
 function Identity(x) {
   return x;
@@ -59,9 +58,9 @@ export const SliderRoot = styled('span', {
     },
   },
   variants: [
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter((key) => (theme.vars ?? theme).palette[key].main)
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main)
+      .map(([color]) => ({
         props: { color },
         style: {
           color: (theme.vars || theme).palette[color].main,
@@ -201,9 +200,9 @@ export const SliderTrack = styled('span', {
           display: 'none',
         },
       },
-      ...Object.keys((theme.vars ?? theme).palette)
-        .filter((key) => (theme.vars ?? theme).palette[key].main)
-        .map((color) => ({
+      ...Object.entries(theme.palette)
+        .filter(([, palette]) => palette && palette.main)
+        .map(([color]) => ({
           props: { color, track: 'inverted' },
           style: {
             ...(theme.vars
@@ -301,9 +300,9 @@ export const SliderThumb = styled('span', {
         transform: 'translate(-50%, 50%)',
       },
     },
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter((key) => (theme.vars ?? theme).palette[key].main)
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main)
+      .map(([color]) => ({
         props: { color },
         style: {
           [`&:hover, &.${sliderClasses.focusVisible}`]: {
@@ -321,7 +320,7 @@ export const SliderThumb = styled('span', {
           [`&.${sliderClasses.active}`]: {
             ...(theme.vars
               ? {
-                  boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)}`,
+                  boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
                 }
               : {
                   boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[color].main, 0.16)}`,
@@ -531,7 +530,7 @@ const useUtilityClasses = (ownerState) => {
 const Forward = ({ children }) => children;
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
-  const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
+  const props = useDefaultProps({ props: inputProps, name: 'MuiSlider' });
 
   const isRtl = useRtl();
 
@@ -890,7 +889,7 @@ Slider.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -908,7 +907,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

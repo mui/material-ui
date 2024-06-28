@@ -6,13 +6,15 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
-import useThemeProps from '../styles/useThemeProps';
 import RadioButtonIcon from './RadioButtonIcon';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
-import styled, { rootShouldForwardProp } from '../styles/styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled } from '../zero-styled';
+
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, color, size } = ownerState;
@@ -40,36 +42,57 @@ const RadioRoot = styled(SwitchBase, {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
-  ...(!ownerState.disableRipple && {
-    '&:hover': {
-      backgroundColor: theme.vars
-        ? `rgba(${
-            ownerState.color === 'default'
-              ? theme.vars.palette.action.activeChannel
-              : theme.vars.palette[ownerState.color].mainChannel
-          } / ${theme.vars.palette.action.hoverOpacity})`
-        : alpha(
-            ownerState.color === 'default'
-              ? theme.palette.action.active
-              : theme.palette[ownerState.color].main,
-            theme.palette.action.hoverOpacity,
-          ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-  }),
-  ...(ownerState.color !== 'default' && {
-    [`&.${radioClasses.checked}`]: {
-      color: (theme.vars || theme).palette[ownerState.color].main,
-    },
-  }),
   [`&.${radioClasses.disabled}`]: {
     color: (theme.vars || theme).palette.action.disabled,
   },
+  variants: [
+    {
+      props: { color: 'default', disableRipple: false },
+      style: {
+        '&:hover': {
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+        },
+      },
+    },
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main)
+      .map(([color]) => ({
+        props: { color, disableRipple: false },
+        style: {
+          '&:hover': {
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+              : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+          },
+        },
+      })),
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          [`&.${radioClasses.checked}`]: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        },
+      })),
+    {
+      // Should be last to override other colors
+      props: { disableRipple: false },
+      style: {
+        // Reset on touch devices, it doesn't add specificity
+        '&:hover': {
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
+        },
+      },
+    },
+  ],
 }));
 
 function areEqualValues(a, b) {
@@ -85,7 +108,7 @@ const defaultCheckedIcon = <RadioButtonIcon checked />;
 const defaultIcon = <RadioButtonIcon />;
 
 const Radio = React.forwardRef(function Radio(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiRadio' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiRadio' });
   const {
     checked: checkedProp,
     checkedIcon = defaultCheckedIcon,
@@ -95,10 +118,12 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onChange: onChangeProp,
     size = 'medium',
     className,
+    disableRipple = false,
     ...other
   } = props;
   const ownerState = {
     ...props,
+    disableRipple,
     color,
     size,
   };

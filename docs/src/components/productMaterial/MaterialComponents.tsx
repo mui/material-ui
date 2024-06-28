@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider, alpha } from '@mui/material/styles';
+import { CssVarsProvider, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button, { buttonClasses } from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -29,8 +29,8 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import ROUTES from 'docs/src/route';
 
@@ -118,7 +118,7 @@ export default function MaterialComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
             overline="Component library"
             title={
@@ -137,7 +137,7 @@ export default function MaterialComponents() {
             <More href={ROUTES.components} />
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
               <CssVarsProvider theme={customized ? customTheme : undefined}>
@@ -166,9 +166,8 @@ export default function MaterialComponents() {
                 )}
                 {demo === 'Text field' && (
                   <Stack
-                    justifyContent="center"
                     spacing={2}
-                    sx={{ p: 2, width: '50%', margin: 'auto' }}
+                    sx={{ justifyContent: 'center', p: 2, width: '50%', margin: 'auto' }}
                   >
                     <TextField variant="standard" label="Username" />
                     <TextField variant="outlined" label="Email" type="email" />
@@ -239,10 +238,8 @@ export default function MaterialComponents() {
                 )}
                 {demo === 'Tooltip' && (
                   <Stack
-                    alignItems="center"
-                    justifyContent="center"
                     spacing={1}
-                    sx={{ minHeight: 100, py: 2 }}
+                    sx={{ alignItems: 'center', justifyContent: 'center', minHeight: 100, py: 2 }}
                   >
                     <Tooltip
                       title="Appears on hover"
@@ -250,7 +247,7 @@ export default function MaterialComponents() {
                       placement="top"
                       slotProps={{ popper: { disablePortal: true } }}
                     >
-                      <Typography color="text.secondary">Top</Typography>
+                      <Typography sx={{ color: 'text.secondary' }}>Top</Typography>
                     </Tooltip>
                     <Box sx={{ '& > *': { display: 'inline-block' } }}>
                       <Tooltip
@@ -260,7 +257,7 @@ export default function MaterialComponents() {
                         open
                         slotProps={{ popper: { disablePortal: true } }}
                       >
-                        <Typography color="text.secondary">Left</Typography>
+                        <Typography sx={{ color: 'text.secondary' }}>Left</Typography>
                       </Tooltip>
                       <Box sx={{ display: 'inline-block', width: 80 }} />
                       <Tooltip
@@ -269,7 +266,7 @@ export default function MaterialComponents() {
                         placement="right"
                         slotProps={{ popper: { disablePortal: true } }}
                       >
-                        <Typography color="text.secondary">Right</Typography>
+                        <Typography sx={{ color: 'text.secondary' }}>Right</Typography>
                       </Tooltip>
                     </Box>
                     <Tooltip
@@ -278,7 +275,7 @@ export default function MaterialComponents() {
                       placement="bottom"
                       slotProps={{ popper: { disablePortal: true } }}
                     >
-                      <Typography color="text.secondary">Bottom</Typography>
+                      <Typography sx={{ color: 'text.secondary' }}>Bottom</Typography>
                     </Tooltip>
                   </Stack>
                 )}
@@ -290,27 +287,13 @@ export default function MaterialComponents() {
                 minHeight: 220,
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
-                overflow: 'hidden',
                 p: 0,
                 pt: 5,
               }}
             >
               <StylingInfo appeared={customized} />
-              <Box
-                sx={{
-                  overflow: 'auto',
-                  pt: 2,
-                  pb: 1,
-                  px: 2,
-                  height: '100%',
-                }}
-              >
-                <HighlightedCode
-                  copyButtonHidden
-                  component={MarkdownElement}
-                  code={CODES[demo]}
-                  language="jsx"
-                />
+              <Box sx={{ overflow: 'auto', pt: 2, pb: 1, px: 2, height: '100%' }}>
+                <HighlightedCode copyButtonHidden plainStyle code={CODES[demo]} language="jsx" />
               </Box>
               <Box
                 sx={(theme) => ({

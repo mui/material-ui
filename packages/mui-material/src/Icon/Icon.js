@@ -3,9 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getIconUtilityClass } from './iconClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -34,7 +34,7 @@ const IconRoot = styled('span', {
       styles[`fontSize${capitalize(ownerState.fontSize)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   userSelect: 'none',
   width: '1em',
   height: '1em',
@@ -44,28 +44,76 @@ const IconRoot = styled('span', {
   display: 'inline-block', // allow overflow hidden to take action
   textAlign: 'center', // support non-square icon
   flexShrink: 0,
-  fontSize: {
-    inherit: 'inherit',
-    small: theme.typography.pxToRem(20),
-    medium: theme.typography.pxToRem(24),
-    large: theme.typography.pxToRem(36),
-  }[ownerState.fontSize],
-  // TODO v5 deprecate, v6 remove for sx
-  color: {
-    primary: (theme.vars || theme).palette.primary.main,
-    secondary: (theme.vars || theme).palette.secondary.main,
-    info: (theme.vars || theme).palette.info.main,
-    success: (theme.vars || theme).palette.success.main,
-    warning: (theme.vars || theme).palette.warning.main,
-    action: (theme.vars || theme).palette.action.active,
-    error: (theme.vars || theme).palette.error.main,
-    disabled: (theme.vars || theme).palette.action.disabled,
-    inherit: undefined,
-  }[ownerState.color],
+  variants: [
+    {
+      props: {
+        fontSize: 'inherit',
+      },
+      style: {
+        fontSize: 'inherit',
+      },
+    },
+    {
+      props: {
+        fontSize: 'small',
+      },
+      style: {
+        fontSize: theme.typography.pxToRem(20),
+      },
+    },
+    {
+      props: {
+        fontSize: 'medium',
+      },
+      style: {
+        fontSize: theme.typography.pxToRem(24),
+      },
+    },
+    {
+      props: {
+        fontSize: 'large',
+      },
+      style: {
+        fontSize: theme.typography.pxToRem(36),
+      },
+    },
+    {
+      props: {
+        color: 'action',
+      },
+      style: {
+        color: (theme.vars || theme).palette.action.active,
+      },
+    },
+    {
+      props: {
+        color: 'disabled',
+      },
+      style: {
+        color: (theme.vars || theme).palette.action.disabled,
+      },
+    },
+    {
+      props: {
+        color: 'inherit',
+      },
+      style: {
+        color: undefined,
+      },
+    },
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main)
+      .map(([color]) => ({
+        props: { color },
+        style: {
+          color: (theme.vars || theme).palette[color].main,
+        },
+      })),
+  ],
 }));
 
 const Icon = React.forwardRef(function Icon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiIcon' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiIcon' });
   const {
     baseClassName = 'material-icons',
     className,
@@ -170,6 +218,8 @@ Icon.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-Icon.muiName = 'Icon';
+if (Icon) {
+  Icon.muiName = 'Icon';
+}
 
 export default Icon;

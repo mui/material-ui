@@ -1,19 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createMount, createRenderer, fireEvent, screen, act } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent, screen, act } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { Input, inputClasses, InputOwnerState } from '@mui/base/Input';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Input />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<Input />, () => ({
     inheritComponent: 'div',
     render,
-    mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',
     slots: {

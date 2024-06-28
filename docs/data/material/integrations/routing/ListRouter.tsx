@@ -33,7 +33,7 @@ function Router(props: { children?: React.ReactNode }) {
 }
 
 interface ListItemLinkProps {
-  icon?: React.ReactElement;
+  icon?: React.ReactElement<any>;
   primary: string;
   to: string;
 }
@@ -60,7 +60,7 @@ function ListItemLink(props: ListItemLinkProps) {
 function Content() {
   const location = useLocation();
   return (
-    <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
+    <Typography variant="body2" sx={{ color: 'text.secondary', pb: 2 }}>
       Current route: {location.pathname}
     </Typography>
   );

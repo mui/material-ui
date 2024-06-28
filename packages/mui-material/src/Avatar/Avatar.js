@@ -3,12 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiAvatar');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, colorDefault } = ownerState;
@@ -143,7 +142,7 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }) {
 }
 
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAvatar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAvatar' });
   const {
     alt,
     children: childrenProp,
@@ -172,6 +171,8 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     component,
     variant,
   };
+  // This issue explains why this is required: https://github.com/mui/material-ui/issues/42184
+  delete ownerState.ownerState;
 
   const classes = useUtilityClasses(ownerState);
 
@@ -201,10 +202,10 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   return (
     <AvatarRoot
       as={component}
-      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      ownerState={ownerState}
     >
       {children}
     </AvatarRoot>
@@ -242,7 +243,7 @@ Avatar.propTypes /* remove-proptypes */ = {
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
-   * @deprecated Use `slotProps.img` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated Use `slotProps.img` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   imgProps: PropTypes.object,
   /**

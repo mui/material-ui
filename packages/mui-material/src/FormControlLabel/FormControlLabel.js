@@ -5,7 +5,8 @@ import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useFormControl } from '../FormControl';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Stack from '../Stack';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
@@ -13,8 +14,7 @@ import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
 import formControlState from '../FormControl/formControlState';
-
-const useThemeProps = createUseThemeProps('MuiFormControlLabel');
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, labelPlacement, error, required } = ownerState;
@@ -107,7 +107,7 @@ const AsteriskComponent = styled('span', {
  * Use this component if you want to display an extra label.
  */
 const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormControlLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormControlLabel' });
   const {
     checked,
     className,
@@ -121,6 +121,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     name,
     onChange,
     required: requiredProp,
+    slots = {},
     slotProps = {},
     value,
     ...other
@@ -158,18 +159,30 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
 
   const classes = useUtilityClasses(ownerState);
 
-  const typographySlotProps = slotProps.typography ?? componentsProps.typography;
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
+
+  const [TypographySlot, typographySlotProps] = useSlot('typography', {
+    elementType: Typography,
+    externalForwardedProps,
+    ownerState,
+  });
 
   let label = labelProp;
   if (label != null && label.type !== Typography && !disableTypography) {
     label = (
-      <Typography
+      <TypographySlot
         component="span"
         {...typographySlotProps}
         className={clsx(classes.label, typographySlotProps?.className)}
       >
         {label}
-      </Typography>
+      </TypographySlot>
     );
   }
 
@@ -215,6 +228,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     typography: PropTypes.object,
@@ -264,7 +278,14 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    typography: PropTypes.object,
+    typography: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    typography: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

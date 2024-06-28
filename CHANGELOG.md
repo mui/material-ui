@@ -1,5 +1,608 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.13
+
+<!-- generated comparing v6.0.0-alpha.12..next -->
+
+_Jun 27, 2024_
+
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added layout components for Pigment CSS integration (#42693) @siriwatknp
+
+### `@mui/material@6.0.0-alpha.13`
+
+- [Autocomplete] Fix more React 18.3 key spread warnings in demos (#42639) @wbt
+- [Container][Grid][Stack][Hidden] Export Pigment CSS layout components (#42693) @siriwatknp
+- [Text Field] when click password visibility button, text caret position change to very front. (#42595) @appleSimple
+- [Modal] migrate useSlotProps to useSLot (#42150) @sai6855
+
+### `@mui/styles@6.0.0-alpha.13`
+
+- [withStyles] Expect React defaultProps warning in test (#42752) @aarongarciah
+
+### Docs
+
+- Fix link in CONTRIBUTING.md (#42755) @Janpot
+- Add documentation on migrating JSS's alternative, array-based syntax to syntax supported by Emotion (#42053) @cjl750
+- Fix type error in virtualized table demo (#42757) @aarongarciah
+- Add first batch of v6 migration (#42242) @siriwatknp
+- Fix quotes on font-family dedeclaration in the Landing Page template theme (#42748) @joetats
+
+### Core
+
+- [code-infra] Refactor eslint `import/no-cycle` rule (#42705) @LukasTy
+- [core] Target direct version for prerelease (#42768) @siriwatknp
+- [test] Remove enzyme (#42706) @aarongarciah
+- [test] Remove createMount test util (#42703) @aarongarciah
+- [website] Add Ale to team (#42764) @alelthomas
+
+All contributors of this release in alphabetical order: @aarongarciah, @alelthomas, @appleSimple, @cjl750, @Janpot, @joetats, @LukasTy, @sai6855, @siriwatknp, @wbt
+
+## v6.0.0-alpha.12
+
+<!-- generated comparing v6.0.0-alpha.11..next -->
+
+_Jun 24, 2024_
+
+A big thanks to the 17 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.12`
+
+- Add `InitColorSchemeScript` for Next.js App Router (#42247) @siriwatknp
+- [Autocomplete] Fix renderOption props type (#42689) @DiegoAndai
+- [Autocomplete] Fix React 18.3 key spread warnings in Autocomplete demos (#42691) @aarongarciah
+- Support Pigment CSS for `CssBaseline`, `ScopedCssBaseline` and `Popper` (#42640) @siriwatknp
+- Add `DefaultPropsProvider` for Pigment CSS integration (#42638) @siriwatknp
+- [Stepper] Generate class for nonLinear prop (#42620) @alexismo
+- [Tab] Fix failing test (#42686) @aarongarciah
+- [Tab] Deprecate iconWrapper class for icon class (#42647) @sai6855
+- [TableSortLabel] Deprecate composed classes (#42281) @sai6855
+- [usePagination] Update pagination `siblingsEnd` calculation logic (#42667) @Mini-ghost
+
+### `@mui/codemod@6.0.0-alpha.12`
+
+- Support dynamic props styled transformation (#42683) @siriwatknp
+
+### `@mui/system@6.0.0-alpha.12`
+
+- Fix issues reported by react compiler in `mui-system` package (#42637) @sai6855
+- [useMediaQuery] Remove deprecated types (#42560) @aarongarciah
+
+### `@mui/joy@5.0.0-beta.45`
+
+- Fix issues reported by the React Compiler (#42671) @anuujj
+- [Autocomplete] Fix React spread key warning (#42741) @aarongarciah
+
+### `@mui/lab@6.0.0-alpha.12`
+
+- [LoadingButton] Apply wrapping element to prevent React crash on Google page translation (#35198) @BartJanvanAssen
+
+### Docs
+
+- Fix git diff format in migration to v6 (#42711) @oliviertassinari
+- Use new email for sponsoring @oliviertassinari
+- Fix 301 links (#42697) @alexfauquette
+- Normalize the capitalization of Design Kit @oliviertassinari
+- Recommend setting HTML attribute instead of DOM property for RTL (#42599) @aarongarciah
+- [material-ui][Select] Fix the `SelectAutoWidth` demo menu item value (#42648) @Danielkhakbaz
+
+### Core
+
+- [code-infra] Try disabling animations when taking screenshots (#42537) @Janpot
+- [code-infra] Fix benchmark package (#42553) @Janpot
+- [core] Replace enzyme in describeConformance (#42447) @DiegoAndai
+- [docs-infra] Fix layout shift demo toolbar (#42743) @oliviertassinari
+- [docs-infra] Fix visual look of in-house ad (#42735) @oliviertassinari
+- [docs-infra] Add stray design polish (#42646) @danilo-leal
+- [docs-infra] Fix wrong migration (#42675) @siriwatknp
+- [docs-infra] Fine tune markdown elements design (#42643) @danilo-leal
+- [docs-infra] Revamp the product switcher design (#42603) @danilo-leal
+- [docs-infra] Allow Link component to receive the `role` attribute (#42629) @danilo-leal
+- [infra] Add support donation button (#42499) @oliviertassinari
+- [infra] Raise `tsconfig`/`tsc` target to `es2022` (#42645) @LukasTy
+- [test] Fix tests on CI (#42670) @michaldudak
+- [test] Fix issues reported by react-compiler in test packages (#42626) @sai6855
+- [website] Add Armin to the team members (#42679) @arminmeh
+- [website] Open Staff Engineer role for Pigment CSS (#42531) @mnajdova
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @alexismo, @anuujj, @arminmeh, @BartJanvanAssen, @Danielkhakbaz, @danilo-leal, @DiegoAndai, @Janpot, @LukasTy, @michaldudak, @Mini-ghost, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp
+
+## v6.0.0-alpha.11
+
+<!-- generated comparing v6.0.0-alpha.10..next -->
+
+_Jun 11, 2024_
+
+A big thanks to the 18 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.11`
+
+- &#8203;<!-- 38 -->[Autocomplete] Shouldn't resize when hovering (#42452) @ZeeshanTamboli
+- &#8203;<!-- 37 -->[Chip] Fix focus issue related with the Escape event (#41578) @shrilsharma
+- &#8203;<!-- 12 -->[Grid] Fix support for CSS variables (#42574) @oliviertassinari
+- &#8203;<!-- 11 -->[InputBase] Use `globalCss` for Pigment integration (#42431) @siriwatknp
+- &#8203;<!-- 10 -->Change React.ReactElement type from `any` to `unknown` (#42473) @sai6855
+- &#8203;<!-- 09 -->Integrate `extendSxProp` adapter (#42543) @siriwatknp
+- &#8203;<!-- 08 -->[Tab] Fix applying `iconWrapper` styles from theme and update its description (#42549) @sai6855
+- &#8203;<!-- 08 -->[pigment-css] Add `stringifyTheme` for Pigment CSS integration (#42476) @siriwatknp
+
+### `@mui/system@6.0.0-alpha.11`
+
+- &#8203;<!-- 11 -->[Grid] Remove `disableEqualOverflow` by using `gap` (#42526) @DiegoAndai
+- &#8203;<!-- 07 -->[useMediaQuery] Drop Safari < 14 support (#42464) @aarongarciah
+
+### `@mui/utils@6.0.0-alpha.11`
+
+- &#8203;<!-- 04 -->Allow passing `NaN` as `defaultValue` to `useControlled` (#41559) @iammminzzy
+
+### `@mui/codemod@6.0.0-alpha.11`
+
+- &#8203;<!-- 39 -->Improve styled and sx prop transformation (#42598) @siriwatknp
+- &#8203;<!-- 36 -->Support more cases for sx-prop transformation (#42527) @siriwatknp
+
+### `@mui/private-theming@6.0.0-alpha.11`
+
+- &#8203;<!-- 09 -->Fix issues reported by react compiler in `mui-private-theming` components (#42619) @sai6855
+
+### Docs
+
+- &#8203;<!-- 31 -->Add `theme.applyStyles` and migrate docs (#42498) @siriwatknp
+- &#8203;<!-- 29 -->Fix dashboard template console error (#42594) @oliviertassinari
+- &#8203;<!-- 28 -->Migrate system props to `sx` prop (#42475) @siriwatknp
+- &#8203;<!-- 27 -->[material-ui]Fix duplicated sentence (#42521) @alexfauquette
+- &#8203;<!-- 22 -->[Grid] Fix docs spacing (#42573) @oliviertassinari
+- &#8203;<!-- 21 -->[joy-ui] Add Next.js App Router instructions on how to prevent flickering (#42514) @devnyxie
+- &#8203;<!-- 20 -->[joy-ui] Fix HTML tag without preformatting (#42525) @jacobmoshipco
+- &#8203;<!-- 19 -->[material-ui] Add docs for complementary stepper components (#41900) @anle9650
+- &#8203;<!-- 18 -->[material-ui] Fix typo on Sign-in/Sign-up templates (#42605) @zanivan
+- &#8203;<!-- 17 -->[material-ui] Add container queries docs (#42434) @siriwatknp
+- &#8203;<!-- 16 -->[material-ui] Fix ESLint error in Stepper demo (#42559) @aarongarciah
+- &#8203;<!-- 15 -->[material-ui] Shorten useMediaQuery subheading (#42561) @aarongarciah
+- &#8203;<!-- 14 -->[material-ui] Add a Refine example project (#42461) @necatiozmen
+
+### Core
+
+- &#8203;<!-- 39 -->[website] Move the `React Engineer - X` role to future roles (#42532) @DanailH
+- &#8203;<!-- 35 -->[core] Allow `for..of` loops (#42600) @michaldudak
+- &#8203;<!-- 34 -->[core] Add comment about Object.js @oliviertassinari
+- &#8203;<!-- 33 -->[core] Disable eslint-plugin-react-compiler for Base (#42563) @aarongarciah
+- &#8203;<!-- 33 -->[core] Group Pigment CSS dependencies (#42174) @siriwatknp
+- &#8203;<!-- 32 -->[core] Configure eslint-plugin-react-compiler (#42555) @aarongarciah
+- &#8203;<!-- 31 -->[core] Skip charts animation for visual regression test (#42530) @alexfauquette
+- &#8203;<!-- 26 -->[docs-infra] Simplify click header (#42593) @oliviertassinari
+- &#8203;<!-- 25 -->[docs-infra] Add configurable jsdoc host variable (#42472) @tonygravell
+- &#8203;<!-- 25 -->[docs-infra] Add the Base UI logo with copy functionality (#42446) @danilo-leal
+- &#8203;<!-- 24 -->[docs-infra] Prevent link anchor when selecting text (#41994) @alexfauquette
+- &#8203;<!-- 23 -->[docs-infra] Add the Base UI logo with copy functionality (#42446) @danilo-leal
+- &#8203;<!-- 13 -->[examples] Remove Pigment CSS examples (#42471) @sai6855
+- &#8203;<!-- 06 -->[test] Restore pnpm tc command (#42572) @oliviertassinari
+- &#8203;<!-- 05 -->[test] Restore testing internal packages (#42519) @michaldudak
+- &#8203;<!-- 03 -->[website] Close Developer Advocate / Content Engineer role @oliviertassinari
+- &#8203;<!-- 02 -->[website] Remove blank line @oliviertassinari
+- &#8203;<!-- 01 -->[website] Fix mobile layout shift @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @anle9650, @DanailH, @danilo-leal, @devnyxie, @DiegoAndai, @iammminzzy, @jacobmoshipco, @michaldudak, @necatiozmen, @oliviertassinari, @sai6855, @shrilsharma, @siriwatknp, @tonygravell, @zanivan, @ZeeshanTamboli
+
+## v6.0.0-alpha.10
+
+<!-- generated comparing v6.0.0-alpha.9..next -->
+
+_Jun 4, 2024_
+
+A big thanks to the 7 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.10`
+
+- &#8203;<!-- 26 -->[Backdrop] Deprecate `components` and `componentsProps` (#42468) @DiegoAndai
+- &#8203;<!-- 25 -->[Collapse] Bound max transition time (#42390) @oliviertassinari
+- &#8203;<!-- 12 -->[FilledInput] Remove unapplied classes from filledInputClasses interface and add missing classes to root (#42082) @sai6855
+- &#8203;<!-- 11 -->[InputBase] Deprecate components and componentProps props for v6 (#42093) @ChronicusUA
+- &#8203;<!-- 10 -->Remove remaining IE11 code (#42283) @DiegoAndai
+- &#8203;<!-- 09 -->[Modal] Deprecate `components` and `componentsProps` (#42469) @DiegoAndai
+- &#8203;<!-- 08 -->[Popover] Migrate useSlotProps to useSlot (#42369) @sai6855
+- &#8203;<!-- 07 -->[useMediaQuery] Remove unused useMediaQueryTheme (#42367) @aarongarciah
+
+### `@mui/system@6.0.0-alpha.10`
+
+- &#8203;<!-- 06 -->Remove IE11 code (#42436) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 23 -->Reflect Base UI and MUI System in a different repository @oliviertassinari
+- &#8203;<!-- 22 -->Update twitter.com to x.com @oliviertassinari
+- &#8203;<!-- 21 -->Simplify Example projects page @oliviertassinari
+- &#8203;<!-- 17 -->[icons] Update README and docs page (#41938) @danilo-leal
+- &#8203;<!-- 16 -->[material-ui] Add changelog section to the design kits page (#42449) @danilo-leal
+- &#8203;<!-- 15 -->[material-ui] Fix sentence in the All components page (#42336) @danilo-leal
+- &#8203;<!-- 14 -->[material-ui] Update Figma design kit doc redirect link (#42448) @danilo-leal
+- &#8203;<!-- 13 -->[system] Add "dynamic values" section to sx prop page (#42239) @aarongarciah
+
+### Core
+
+- &#8203;<!-- 20 -->[docs-infra] Update the OG card image design (#42470) @danilo-leal
+- &#8203;<!-- 19 -->[docs-infra] Add small design polish (#42455) @danilo-leal
+- &#8203;<!-- 18 -->[docs-infra] Update the Material logo + add copy functionality (#42435) @danilo-leal
+- &#8203;<!-- 05 -->[website] Update DoiT description and link in Sponsors section (#42505) @erezstmn-doit
+- &#8203;<!-- 04 -->[website] Clean up the docs-infra job ad (#42504) @danilo-leal
+- &#8203;<!-- 03 -->[website] Fix FlashCode position (#42139) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Open Docs-infra engineer role (#42101) @danilo-leal
+- &#8203;<!-- 01 -->[website] Fix locationCountry in about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @ChronicusUA, @danilo-leal, @DiegoAndai, @erezstmn-doit, @oliviertassinari, @sai6855
+
+## v6.0.0-alpha.9
+
+<!-- generated comparing v6.0.0-alpha.8..next -->
+
+_May 29, 2024_
+
+A big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 `CssVarsProvider` and `extendTheme` are now stable (#42246) @siriwatknp
+
+### `@mui/material@6.0.0-alpha.9`
+
+- &#8203;<!-- 49 -->[AlertTitle] Enable extending Typography props (#42269) @lucasgmelo
+- &#8203;<!-- 48 -->[AvatarGroup] deprecate `componentsProps` for v6 (#42122) @lhilgert9
+- &#8203;<!-- 15 -->[Grid] Deprecate `wrap` prop (#42363) @fedirjh
+- &#8203;<!-- 14 -->[ListItem] Document `*Component` and `*Props` props deprecations (#42263) @aarongarciah
+- &#8203;<!-- 13 -->[ListItem] Deprecate ListItem's components and componentsProps (#42219) @aarongarciah
+- &#8203;<!-- 12 -->[ListItemSecondaryAction] Deprecate component (#42251) @aarongarciah
+- &#8203;<!-- 11 -->Stabilize `CssVarsProvider` and `extendTheme` (#42246) @siriwatknp
+- &#8203;<!-- 10 -->[Popper] Deprecate components and componentProps props for v6 (#42111) @ChronicusUA
+- &#8203;<!-- 09 -->[responsiveFontSizes] Handled undefined variants (#42412) @brijeshb42
+- &#8203;<!-- 08 -->[Slider] Fix wrong CSS value (#42370) @mnajdova
+- &#8203;<!-- 07 -->[Tooltip] Deprecate components and componentProps props for v6 (#42107) @ChronicusUA
+
+### `@mui/system@6.0.0-alpha.9`
+
+- &#8203;<!-- 34 -->[createStyled] Intercept `ownerState` coming from `props` and `ownerState` (#42358) @DiegoAndai
+
+### `@mui/codemod@6.0.0-alpha.9`
+
+- &#8203;<!-- 41 -->Add `sx` prop for v6 migration (#42153) @siriwatknp
+- &#8203;<!-- 40 -->Add codemod for removing system props (#42282) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 33 -->Remove unused images (#42324) @danilo-leal
+- &#8203;<!-- 32 -->Add Pigment CSS and Base UI logos SVGs (#42322) @danilo-leal
+- &#8203;<!-- 22 -->[joy-ui] Fix template responsiveness (#42422) @j4marcos
+- &#8203;<!-- 21 -->[material-ui] Add the Pashto locale (#42244) @sayoubiaf
+- &#8203;<!-- 20 -->[material-ui] Remove duplicate Design Kits page (#42338) @danilo-leal
+- &#8203;<!-- 19 -->[material-ui] Document callback to access theme in GlobalStyles (#42257) @aarongarciah
+- &#8203;<!-- 18 -->[material-ui] Add minor modifications to the Vertical stepper demo (#42342) @mihilt
+- &#8203;<!-- 17 -->[material-ui][Tabs] Improve the Basic Tabs demo (#42374) @MatheusEli
+- &#8203;<!-- 16 -->[pigment-css] Polish redirection mention @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 47 -->[blog] Add fixes and clean ups to the Blog page (#42311) @danilo-leal
+- &#8203;<!-- 46 -->[blog] Add the "Product" tag to the Pigment CSS post (#42365) @danilo-leal
+- &#8203;<!-- 45 -->[code-infra] Simplify .stylelintrc.js @oliviertassinari
+- &#8203;<!-- 44 -->[code-infra] Fix stylelint locally (#42411) @oliviertassinari
+- &#8203;<!-- 43 -->[code-infra] Run corepack enable on all CI jobs (#42331) @Janpot
+- &#8203;<!-- 42 -->[code-infra] Create examples eslint rule (#42170) @oliviertassinari
+- &#8203;<!-- 39 -->[core] Apply React 19 type changes that don't require upcoming `@types/` packages (#42346) @DiegoAndai
+- &#8203;<!-- 38 -->[core] Remove `react-swipeable-views-utils` package from docs (#42378) @ZeeshanTamboli
+- &#8203;<!-- 37 -->[core] Update `@testing-library/react` and `@testing-library/dom` packages (#42349) @ZeeshanTamboli
+- &#8203;<!-- 36 -->[core] Remove `@types/prettier` package (#42339) @ZeeshanTamboli
+- &#8203;<!-- 35 -->[core] Remove `WyW-in-JS` from Renovate config (#42335) @ZeeshanTamboli
+- &#8203;<!-- 31 -->[docs-infra] Split feedback channels per product (#42413) @alexfauquette
+- &#8203;<!-- 30 -->[docs-infra] Avoid cryptic errors when tests don't exist (#42356) @Janpot
+- &#8203;<!-- 29 -->[docs-infra] Make menu styles consistent (#42387) @danilo-leal
+- &#8203;<!-- 28 -->[docs-infra] Display deprecation messages in API pages (#42352) @aarongarciah
+- &#8203;<!-- 27 -->[docs-infra] Standardize API pages Alert styles (#42386) @danilo-leal
+- &#8203;<!-- 26 -->[docs-infra] Fix Toolpad Core API links (#42362) @apedroferreira
+- &#8203;<!-- 25 -->[docs-infra] Tigthen up the header design (#42180) @danilo-leal
+- &#8203;<!-- 24 -->[docs-infra] Add Toolpad to muiNpmOrgs for codesandbox demos (#42316) @Janpot
+- &#8203;<!-- 23 -->[docs-infra] Allow JSDoc tags (#42337) @aarongarciah
+- &#8203;<!-- 06 -->[test] Remove `userAgent` override in `jsdom` env (#42344) @cherniavskii
+- &#8203;<!-- 05 -->[utils] Fix GitHub-reported prototype pollution vulnerability in `deepmerge` (#41652) @tjcouch-sil
+- &#8203;<!-- 04 -->[website] Add Nikita to the about page (#42418) @nikitaa24
+- &#8203;<!-- 03 -->[website] Fix hero spacing changes applying at the wrong breakpoint (#42341) @KenanYusuf
+- &#8203;<!-- 02 -->[website] Adds Kenan Yusuf to about page (#42317) @KenanYusuf
+- &#8203;<!-- 01 -->[website] Improve about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @apedroferreira, @brijeshb42, @cherniavskii, @ChronicusUA, @danilo-leal, @DiegoAndai, @fedirjh, @j4marcos, @Janpot, @KenanYusuf, @lhilgert9, @lucasgmelo, @MatheusEli, @mihilt, @mnajdova, @nikitaa24, @oliviertassinari, @sayoubiaf, @siriwatknp, @tjcouch-sil, @ZeeshanTamboli
+
+## v6.0.0-alpha.8
+
+<!-- generated comparing v6.0.0-alpha.7..next -->
+
+_May 21, 2024_
+
+A big thanks to the 7 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@6.0.0-alpha.7`
+
+- &#8203;<!-- 04 -->[material-ui] Filter only valid theme palette for generating styles (#42147) @siriwatknp
+- &#8203;<!-- 03 -->[material-ui] Remove UMD bundle (#42172) @ZeeshanTamboli
+- &#8203;<!-- 02 -->[material-ui][TextField] Deprecate `*Props` props (#42062) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 08 -->[docs] Remove Base UI from the README (#42307) @danilo-leal
+- &#8203;<!-- 07 -->[docs][material-ui] Fix typo in style interoperability with Tailwind CSS docs (#42279) @ZeeshanTamboli
+- &#8203;<!-- 06 -->[docs][material-ui] Add supported browsers section to migration guide (#42194) @DiegoAndai
+- &#8203;<!-- 05 -->[docs][material-ui][Pagination] Clarify pagination `page` prop API (#42220) @Mandar-Pandya
+
+### Core
+
+- &#8203;<!-- 12 -->[blog] Update blog post OG image (#42270) @danilo-leal
+- &#8203;<!-- 11 -->[blog] Update Pigment CSS post (#42266) @danilo-leal
+- &#8203;<!-- 10 -->[docs] Remove LocalMonero (#42224) @oliviertassinari
+- &#8203;<!-- 08 -->[docs-infra] Fix keyboard navigation on page tabs (#42152) @danilo-leal
+- &#8203;<!-- 10 -->[code-infra] Remove raw-loader (#42275) @Janpot
+- &#8203;<!-- 09 -->[core] Remove outdated Babel plugins (#42140) @ZeeshanTamboli
+- &#8203;<!-- 12 -->[core] Fix a few more key spread issues (#42168) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Avoid duplicate simple vs. rich (#42100) @oliviertassinari
+
+All contributors of this release in alphabetical order: @danilo-leal, @DiegoAndai, @Janpot, @Mandar-Pandya, @oliviertassinari, @siriwatknp, @ZeeshanTamboli
+
+## v6.0.0-alpha.7
+
+<!-- generated comparing v6.0.0-alpha.6..next -->
+
+_May 16, 2024_
+
+A big thanks to the 14 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.7`
+
+- &#8203;<!-- 23 -->[Autocomplete] Deprecate `componentsProps` props (#42179) @lhilgert9
+- &#8203;<!-- 22 -->[Autocomplete] Improve design when there's a start adornment for small autocomplete (#41781) @TahaRhidouani
+- &#8203;<!-- 21 -->[Autocomplete] deprecate `*Component` and `*Props` for v6 (#41875) @lhilgert9
+- &#8203;<!-- 19 -->[CircularProgress] Deprecate composed classes (#42076) @sai6855
+- &#8203;<!-- 05 -->[ToggleButtonGroup] Add missing `selected` class in ToggleButtonGroupClasses type (#42243) @tarunrajput
+
+### `@mui/codemod@6.0.0-alpha.6`
+
+- &#8203;<!-- 18 -->[Divider] Only apply codemod if light prop is present (#42098) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 13 -->Fix 301 to Figma @oliviertassinari
+- &#8203;<!-- 12 -->Fix use of deprecated React API (#42118) @oliviertassinari
+- &#8203;<!-- 11 -->Remove the Base notification (#42191) @danilo-leal
+- &#8203;<!-- 07 -->[material-ui] Improve descriptions for deprecated props (#42221) @aarongarciah
+- &#8203;<!-- 06 -->[material-ui] Fix typo in composition docs (#42195) @aarongarciah
+
+### Core
+
+- &#8203;<!-- 20 -->[blog] Introducing Pigment CSS blog post (#42198) @samuelsycamore
+- &#8203;<!-- 17 -->[core] Remove confusing comment @oliviertassinari
+- &#8203;<!-- 16 -->[core] Match other repositories and convention @oliviertassinari
+- &#8203;<!-- 15 -->[core] Fix React 18.3 warnings about spreading keys in the Material UI `Autocomplete` component (#42099) @heath-freenome
+- &#8203;<!-- 14 -->[core] Remove unecessary quotes @oliviertassinari
+- &#8203;<!-- 10 -->[docs-infra] Share code for section title (#42236) @alexfauquette
+- &#8203;<!-- 09 -->[docs-infra] Limit the copy button to the visible code block (#42115) @danilo-leal
+- &#8203;<!-- 08 -->[docs-infra] Make select components with two capital letters (#42004) @alexfauquette
+- &#8203;<!-- 08 -->[docs-infra][toolpad] Fix Page title and SERP title mismatch (#41919) @bharatkashyap
+- &#8203;<!-- 05 -->[website] Add redirection for talk @oliviertassinari
+- &#8203;<!-- 04 -->[website] Adds Arthur Balduini team info (#42193) @arthurbalduini
+- &#8203;<!-- 03 -->[website] Update the role template file (#42192) @danilo-leal
+- &#8203;<!-- 02 -->[website] Update MUI X deps and migrate TreeView demos to v7 API (#42149) @noraleonte
+- &#8203;<!-- 01 -->[website] Fix pricing casing (#42178) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @arthurbalduini, @bharatkashyap, @danilo-leal, @DiegoAndai, @heath-freenome, @lhilgert9, @noraleonte, @oliviertassinari, @sai6855, @samuelsycamore, @TahaRhidouani, @tarunrajput
+
+## v6.0.0-alpha.6
+
+<!-- generated comparing v6.0.0-alpha.5..next -->
+
+_May 8, 2024_
+
+A big thanks to the 10 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.6`
+
+- [Chip] Add colorDefault class to chipClasses (#42067) @sai6855
+- Migrate components to support CSS extraction (#42001) @siriwatknp
+- [SpeedDial] Deprecate TransitionComponent (#40698) @harry-whorlow
+
+### `@mui/codemod@6.0.0-alpha.6`
+
+- Add `theme-v6` migration (#42056) @siriwatknp
+
+### `@mui/icons-material@6.0.0-alpha.6`
+
+- Add the Emergency icon (#42080) @danilo-leal
+
+### Docs
+
+- [autocomplete] Fix duplicate autocomplete id (#42086) @oliviertassinari
+- Fix SEO redirection issues @oliviertassinari
+- [material-ui] Fix broken link (#42142) @aarongarciah
+- [material-ui][docs] Fix link on the Sync page (#42088) @danilo-leal
+
+### Core
+
+- [blog] Shorten title to fit @oliviertassinari
+- [blog] Update Sync post OG image (#42114) @danilo-leal
+- [blog] A few tweaks in introducing-sync-plugin (#42092) @oliviertassinari
+- [code-infra] Add canary release scripts (#41949) @michaldudak
+- [code-infra] Move ComponentLinkHeader to @mui/docs (#42061) @Janpot
+- [code-infra] Bump node image used by CI in docker (#42079) @LukasTy
+- [core] Restrict import path with ESLint (#41970) @oliviertassinari
+- [docs-infra] Add design and formatting improvements (#42063) @danilo-leal
+- [docs-infra] Fix HTML structure violations (#42085) @oliviertassinari
+- [website] Componentize a few Careers page sections (#42102) @danilo-leal
+- [website] Refine the InfoCard design (#42116) @danilo-leal
+- [website] Fix home page slider's track position (#42141) @aarongarciah
+- [website] Closing the survey @oliviertassinari
+- [website] Remove Survey banner from website and Core docs (#42104) @joserodolfofreitas
+
+All contributors of this release in alphabetical order: @aarongarciah, @danilo-leal, @harry-whorlow, @Janpot, @joserodolfofreitas, @LukasTy, @michaldudak, @oliviertassinari, @sai6855, @siriwatknp
+
+## v6.0.0-alpha.5
+
+<!-- generated comparing v6.0.0-alpha.4..next -->
+
+_May 1, 2024_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.5`
+
+- [FormControlLabel] Deprecate `componentsProps` (#41767) @sai6855
+- [PaginationItem] Deprecate components prop (#41777) @sai6855
+- [SvgIcon] Convert to support CSS extraction (#41779) @aarongarciah
+
+### `@mui/base@5.0.0-beta.43`
+
+- [TextareaAutosize] Fix resizing instability (#41638) @ZeeshanTamboli
+
+### Docs
+
+- Fix small SEO issues @oliviertassinari
+- [material-ui] Fix minor spelling error in the "About the lab" page (#42073) @ryanhartwig
+- [material-ui] Update Figma plugin name (#41967) @danilo-leal
+- [material-ui][templates] Fix input props attributes in Landing Page template (#42013) @5-tom
+- [system] Update typo on the sx prop page (#42035) @bricker
+
+### Core
+
+- [docs-infra] Clean up branding theme file and improve font-face readibility (#42023) @danilo-leal
+- [docs-infra] Simplify docs demo (#42016) @oliviertassinari
+- [website] Add content about the Sync plugin in the Material UI page (#40515) @danilo-leal
+- [website] Sync career roles (#42058) @oliviertassinari
+- [website] Add Nadja on the about page (#42021) @mnajdova
+- [website] Fix code block design by changing the `MarkdownElement` import (#42022) @danilo-leal
+- [wesbite] Remove duplicate MarkdownElement component (#42028) @danilo-leal
+
+All contributors of this release in alphabetical order: @5-tom, @aarongarciah, @bricker, @danilo-leal, @mnajdova, @oliviertassinari, @ryanhartwig, @sai6855, @ZeeshanTamboli
+
+## v6.0.0-alpha.4
+
+<!-- generated comparing v6.0.0-alpha.3..next -->
+
+_Apr 24, 2024_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔥 Converted 3 more Material UI components to use Pigment CSS.
+- ℹ️ Pigment CSS now lives in [its own repository](https://github.com/mui/pigment-css)! From now on, all future development will happen there.
+
+### `@mui/material@6.0.0-alpha.4`
+
+- [Checkbox] Convert to support CSS extraction (#41957) @lhilgert9
+- [IconButton] Convert to support CSS extraction (#41850) @gijsbotje
+- [Radio] Convert to support CSS extraction (#41840) @lhilgert9
+- [Typography] Fix ownerState prop placement (#41903) @sai6855
+- Generate typography tokens (#41703) @siriwatknp
+- Move typography CSS variables to `font` (#42003) @siriwatknp
+- Fix getOverlayAlpha type (#41995) @oliviertassinari
+- Support CSS Extraction using codemod (#41935) @siriwatknp
+
+### `@mui/icons-material@6.0.0-alpha.4`
+
+- &#8203;<!-- 08 -->[icons] Update the icons package (#41937) @danilo-leal
+
+### Docs
+
+- [material-ui] Remove react-swipeable-views from demos as it's no longer maintained (#41912) @soler1212
+- [material-ui] Add dark theme thumbnails for templates (#41947) @zanivan
+- [material-ui] Remove links and interdependencies from free templates (#41941) @zanivan
+- [material-ui] Add missing backticks to HTML tag in the installation page (#41972) @Miguelrom
+- Fix 301 Toolpad links @oliviertassinari
+- Fix 301 image redirections @oliviertassinari
+
+### Core
+
+- pnpm docs:zipRules && vale sync @oliviertassinari
+- Remove @pigment-css/\* packages (#41965) @mnajdova
+- [code-infra] Move the HighlightedCode component to @mui/docs (#41859) @Janpot
+- [code-infra] Move the HighlightedCode component to @mui/docs (#41859) @Janpot
+- [code-infra] Make Babel config path configurable in API docs builder (#41999) @michaldudak
+- [docs-infra] Fix flex-shrink pro-plan (#41990) @oliviertassinari
+- [docs-infra] Allow more value uses of MUI (#41706) @oliviertassinari
+- [docs-infra] Move CPU to shared config (#41901) @oliviertassinari
+- [docs-infra] Improve Twitter OG:image (#41860) @oliviertassinari
+- [docs-infra] Adapt docs infra to Base UI docs needs (#41963) @michaldudak
+- [docs-infra] Add demo container design refinements (#41948) @danilo-leal
+- [docs-infra] Use the `getLayout` on the material demo pages (#41936) @alexfauquette
+- [test] Update browser versions in karma config (#42008) @ZeeshanTamboli
+- [website] Remove customer support agent role from website (#41969) @rluzists1
+- [website] Fix grid usage and add stray improvements (#41930) @danilo-leal
+
+All contributors of this release in alphabetical order: @alexfauquette, @danilo-leal, @gijsbotje, @Janpot, @lhilgert9, @michaldudak, @Miguelrom, @mnajdova, @oliviertassinari, @rluzists1, @sai6855, @siriwatknp, @soler1212, @zanivan, @ZeeshanTamboli
+
+## v6.0.0-alpha.3
+
+<!-- generated comparing v6.0.0-alpha.2..next -->
+
+_Apr 17, 2024_
+
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔥 Converted 5 more Material UI components to use Pigment CSS.
+- 🚀 Added container queries utility to the `@mui/system` package (#41674) @siriwatknp.
+
+### `@mui/material@6.0.0-alpha.3`
+
+- Convert `LinearProgress` to support Pigment CSS (#41816) @siriwatknp
+- [Dialog] Prevent onClick on the root element from being overwritten (#41881) @ryanburr
+- [FloatingActionButton] Convert to support CSS extraction (#41851) @gijsbotje
+- Convert `CircularProgress` to support Pigment CSS (#41776) @siriwatknp
+- [PaginationItem] Convert to support CSS extraction (#41848) @gijsbotje
+- [StepConnector] deprecate composed classes (#41740) @sai6855
+- [StepLabel] Deprecate `StepIconComponent`, `StepIconProps` (#41835) @sai6855
+- [ToggleButton] Convert to support CSS extraction (#41782) @lhilgert9
+- [ToggleButtonGroup] Deprecate composed classes (#41288) @sai6855
+- [Typography] Fix Typography inherit variant styles (#41308) @kealjones-wk
+
+### `@mui/system@6.0.0-alpha.3`
+
+- Add container queries utility (#41674) @siriwatknp
+
+### `@mui/codemod@6.0.0-alpha.3`
+
+- Add styled v6 transformation (#41743) @siriwatknp
+
+### `@mui/joy@5.0.0-beta.36`
+
+- [Button] Disable text highlighting (#41902) @mithun522
+
+### `@pigment-css/react@0.0.7`
+
+- Patch WyW's WeakRef usage (#41909) @DiegoAndai
+- Implement sx transform for system components (#41861) @brijeshb42
+
+### Docs
+
+- [material-ui] Add Connect-related content (#40848) @danilo-leal
+- [material-ui] Fix credit comment typo (#41872) @aarongarciah
+- [material-ui] Remove Data Grid v7 beta callout (#41839) @cherniavskii
+- [material-ui] Add stray design tweaks to free templates (#41696) @zanivan
+- [material-ui] Simplify components styling on templates (#41845) @zanivan
+- [material-ui][Button] Add `onChange` event handler to file upload example (#41863) @aarongarciah
+- [material-ui] Fix import statement in migration guide (#41852) @sai6855
+- Fix 301 redirection @oliviertassinari
+- Fix format git diff regression (#41882) @oliviertassinari
+- Fix small SEO issues @oliviertassinari
+- [pigment-css] Fix README typos (#41870) @MohammadShehadeh
+
+### Core
+
+- Begin removing IE 11-related code (#41709) @iammminzzy
+- [blog] Add post to introduce the Connect plugin (#41763) @danilo-leal
+- [code-infra] Fix require.context with aliases (#41682) @Janpot
+- [code-infra] Allow customizing hooks imports in API docs generator (#41828) @michaldudak
+- [codemod] Add utils for `*Component` and `*Props` props deprecations (#41685) @DiegoAndai
+- Replace bundle size reporter filter (#38979) @Janpot
+- [docs-infra] Make the whole header clickable (#39603) @MoazMirza-13
+- [docs-infra] Improve demo container and related components design (#41827) @danilo-leal
+- [docs-infra] Use edge function for card generation (#41188) (#41836) @alexfauquette
+- [docs-infra] Fix code block layout shift (#41917) @oliviertassinari
+- [docs-infra] Fine-tune the OG card image design (#41862) @danilo-leal
+- [docs-infra] Fix markdown version for material (#41908) @alexfauquette
+- [docs-infra] Support multiple tabs in demos (#40901) @bharatkashyap
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @brijeshb42, @cherniavskii, @danilo-leal, @DiegoAndai, @EyaOuenniche, @gijsbotje, @iammminzzy, @Janpot, @kealjones-wk, @lhilgert9, @magnimarels, @michaldudak, @mithun522, @mnajdova, @MoazMirza-13, @MohammadShehadeh, @oliviertassinari, @ryanburr, @sai6855, @siriwatknp, @zanivan
+
 ## v6.0.0-alpha.2
 
 <!-- generated comparing v6.0.0-alpha.1..next -->
@@ -8434,7 +9037,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 27 -->[core] Rename mui/core to mui/base (#29585) @michaldudak
 
-  Based on the results of the [poll](https://twitter.com/michaldudak/status/1452630484706635779) and our internal discussions, we decided to rename the `@mui/core` package to `@mui/base`. The main rationale for this is the fact that we use the term "Core" to refer to the core components product family, the one that includes Material Design components, unstyled components, System utilities, etc. Therefore, @mui/core was effectively a subset of MUI Core. This was confusing.
+  Based on the results of the [poll](https://x.com/michaldudak/status/1452630484706635779) and our internal discussions, we decided to rename the `@mui/core` package to `@mui/base`. The main rationale for this is the fact that we use the term "Core" to refer to the core components product family, the one that includes Material Design components, unstyled components, System utilities, etc. Therefore, @mui/core was effectively a subset of MUI Core. This was confusing.
 
   The new name better reflects the purpose of the package: it contains unstyled components, hooks, and utilities that serve as a **base** to build on.
 
@@ -12851,7 +13454,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
   ```
 
 - [Autocomplete] Remove `debug` in favor of `open` and dev tools (#23377) @eps1lon
-  There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools props.
+  There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://x.com/sulco/status/1305841873945272321), or React devtools props.
 
 #### Changes
 

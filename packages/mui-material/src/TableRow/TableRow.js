@@ -5,8 +5,8 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -57,7 +57,7 @@ const defaultComponent = 'tr';
  * based on the material table element parent (head, body, etc).
  */
 const TableRow = React.forwardRef(function TableRow(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableRow' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableRow' });
   const {
     className,
     component = defaultComponent,

@@ -8,11 +8,7 @@ import Info from '@mui/icons-material/Info';
 
 export default function ActionableList() {
   return (
-    <List
-      sx={{
-        maxWidth: 320,
-      }}
-    >
+    <List sx={{ maxWidth: 320 }}>
       <ListItem>
         <ListItemButton onClick={() => alert('You clicked')}>
           <ListItemDecorator>

@@ -26,9 +26,7 @@ export default function SelectTextFields() {
   return (
     <Box
       component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
+      sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
       noValidate
       autoComplete="off"
     >
@@ -51,8 +49,10 @@ export default function SelectTextFields() {
           select
           label="Native select"
           defaultValue="EUR"
-          SelectProps={{
-            native: true,
+          slotProps={{
+            select: {
+              native: true,
+            },
           }}
           helperText="Please select your currency"
         >
@@ -83,8 +83,10 @@ export default function SelectTextFields() {
           select
           label="Native select"
           defaultValue="EUR"
-          SelectProps={{
-            native: true,
+          slotProps={{
+            select: {
+              native: true,
+            },
           }}
           helperText="Please select your currency"
           variant="filled"
@@ -116,8 +118,10 @@ export default function SelectTextFields() {
           select
           label="Native select"
           defaultValue="EUR"
-          SelectProps={{
-            native: true,
+          slotProps={{
+            select: {
+              native: true,
+            },
           }}
           helperText="Please select your currency"
           variant="standard"

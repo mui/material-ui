@@ -9,13 +9,7 @@ import TabPanel from '@mui/joy/TabPanel';
 export default function TabsPageExample() {
   const [index, setIndex] = React.useState(0);
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        m: -2,
-        overflowX: 'hidden',
-      }}
-    >
+    <Box sx={{ flexGrow: 1, m: -2, overflowX: 'hidden' }}>
       <Tabs
         aria-label="Pipeline"
         value={index}

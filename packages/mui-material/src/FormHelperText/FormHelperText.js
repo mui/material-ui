@@ -5,10 +5,10 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
-import useThemeProps from '../styles/useThemeProps';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, contained, size, disabled, error, filled, focused, required } = ownerState;
@@ -41,7 +41,7 @@ const FormHelperTextRoot = styled('p', {
       ownerState.filled && styles.filled,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.caption,
   textAlign: 'left',
@@ -55,17 +55,27 @@ const FormHelperTextRoot = styled('p', {
   [`&.${formHelperTextClasses.error}`]: {
     color: (theme.vars || theme).palette.error.main,
   },
-  ...(ownerState.size === 'small' && {
-    marginTop: 4,
-  }),
-  ...(ownerState.contained && {
-    marginLeft: 14,
-    marginRight: 14,
-  }),
+  variants: [
+    {
+      props: {
+        size: 'small',
+      },
+      style: {
+        marginTop: 4,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.contained,
+      style: {
+        marginLeft: 14,
+        marginRight: 14,
+      },
+    },
+  ],
 }));
 
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormHelperText' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormHelperText' });
   const {
     children,
     className,
@@ -100,15 +110,18 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     required: fcs.required,
   };
 
+  // This issue explains why this is required: https://github.com/mui/material-ui/issues/42184
+  delete ownerState.ownerState;
+
   const classes = useUtilityClasses(ownerState);
 
   return (
     <FormHelperTextRoot
       as={component}
-      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      ownerState={ownerState}
     >
       {children === ' ' ? (
         // notranslate needed while Google Translate will not fix zero-width space issue

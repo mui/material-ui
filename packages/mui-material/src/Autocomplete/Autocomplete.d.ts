@@ -17,6 +17,7 @@ import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
 import { PaperProps } from '@mui/material/Paper';
 import { PopperProps } from '@mui/material/Popper';
 import { AutocompleteClasses } from './autocompleteClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export {
   AutocompleteChangeDetails,
@@ -84,6 +85,75 @@ export interface AutocompleteRenderInputParams {
 
 export interface AutocompletePropsSizeOverrides {}
 
+export interface AutocompleteSlots {
+  /**
+   * The component used to render the listbox.
+   * @default 'ul'
+   */
+  listbox?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  /**
+   * The component used to render the body of the popup.
+   * @default Paper
+   */
+  paper?: React.JSXElementConstructor<PaperProps>;
+  /**
+   * The component used to position the popup.
+   * @default Popper
+   */
+  popper?: React.JSXElementConstructor<PopperProps>;
+}
+
+export type AutocompleteSlotsAndSlotProps<
+  Value,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+> = CreateSlotsAndSlotProps<
+  AutocompleteSlots,
+  {
+    chip: SlotProps<
+      React.ElementType<Partial<ChipProps<ChipComponent>>>,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+    clearIndicator: SlotProps<
+      React.ElementType<Partial<IconButtonProps>>,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+    /**
+     * Props applied to the Listbox element.
+     */
+    listbox: SlotProps<
+      React.ElementType<
+        ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
+          sx?: SxProps<Theme>;
+          ref?: React.Ref<Element>;
+        }
+      >,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+
+    paper: SlotProps<
+      React.ElementType<Partial<PaperProps>>,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+    popper: SlotProps<
+      React.ElementType<Partial<PopperProps>>,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+    popupIndicator: SlotProps<
+      React.ElementType<Partial<IconButtonProps>>,
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+  }
+>;
+
 export interface AutocompleteProps<
   Value,
   Multiple extends boolean | undefined,
@@ -91,9 +161,11 @@ export interface AutocompleteProps<
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
-    StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
+    StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'>,
+    AutocompleteSlotsAndSlotProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   /**
    * Props applied to the [`Chip`](/material-ui/api/chip/) element.
+   * @deprecated Use `slotProps.chip` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ChipProps?: ChipProps<ChipComponent>;
   /**
@@ -121,7 +193,7 @@ export interface AutocompleteProps<
   closeText?: string;
   /**
    * The props used for each slot inside.
-   * @default {}
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
@@ -160,10 +232,12 @@ export interface AutocompleteProps<
   /**
    * The component used to render the listbox.
    * @default 'ul'
+   * @deprecated Use `slots.listbox` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * Props applied to the Listbox element.
+   * @deprecated Use `slotProps.listbox` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
     sx?: SxProps<Theme>;
@@ -208,11 +282,13 @@ export interface AutocompleteProps<
   /**
    * The component used to render the body of the popup.
    * @default Paper
+   * @deprecated Use `slots.paper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * The component used to position the popup.
    * @default Popper
+   * @deprecated Use `slots.popper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
@@ -249,7 +325,7 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    */
   renderOption?: (
-    props: React.HTMLAttributes<HTMLLIElement>,
+    props: React.HTMLAttributes<HTMLLIElement> & { key: any },
     option: Value,
     state: AutocompleteRenderOptionState,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
@@ -273,16 +349,6 @@ export interface AutocompleteProps<
    */
   size?: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
   /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  slotProps?: {
-    clearIndicator?: Partial<IconButtonProps>;
-    paper?: PaperProps;
-    popper?: Partial<PopperProps>;
-    popupIndicator?: Partial<IconButtonProps>;
-  };
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -292,11 +358,11 @@ export interface AutocompleteProps<
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Autocomplete](https://next.mui.com/material-ui/react-autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
+ * - [Autocomplete API](https://next.mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
   Value,
@@ -306,4 +372,4 @@ export default function Autocomplete<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >(
   props: AutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-): JSX.Element;
+): React.JSX.Element;

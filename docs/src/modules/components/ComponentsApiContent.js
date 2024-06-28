@@ -5,7 +5,8 @@ import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { SectionTitle } from '@mui/docs/SectionTitle';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
@@ -28,21 +29,10 @@ function getTranslatedHeader(t, header, text) {
 }
 
 function Heading(props) {
-  const { hash, text, level: Level = 'h2' } = props;
+  const { hash, text, level = 'h2' } = props;
   const t = useTranslate();
 
-  return (
-    <Level id={hash}>
-      <a aria-labelledby={hash} className="title-link-to-anchor" href={`#${hash}`} tabIndex={-1}>
-        {getTranslatedHeader(t, hash, text)}
-        <div className="anchor-icon">
-          <svg>
-            <use xlinkHref="#anchor-link-icon" />
-          </svg>
-        </div>
-      </a>
-    </Level>
-  );
+  return <SectionTitle title={getTranslatedHeader(t, hash, text)} hash={hash} level={level} />;
 }
 
 Heading.propTypes = {
@@ -150,7 +140,9 @@ export default function ComponentsApiContent(props) {
           <Heading hash={componentNameKebabCase} text={`${componentName} API`} />
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
-          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          {imports.length > 1 && (
+            <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          )}
           <PropertiesSection
             properties={componentProps}
             propertiesDescriptions={propDescriptions}

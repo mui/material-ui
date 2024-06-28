@@ -9,7 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import FaceIcon from '@mui/icons-material/Face';
 import DoneIcon from '@mui/icons-material/Done';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 function ChipsPlayground() {
   const [state, setState] = React.useState({
@@ -92,8 +92,8 @@ function ChipsPlayground() {
   return (
     <Grid container sx={{ flexGrow: 1 }}>
       <Grid item xs={12}>
-        <Grid container justifyContent="center" alignItems="center">
-          <Grid item sx={{ height: (theme) => theme.spacing(10) }}>
+        <Grid container sx={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Grid item sx={(theme) => ({ height: theme.spacing(10) })}>
             <Chip
               label="Chip Component"
               color={color}
@@ -258,5 +258,4 @@ function ChipsPlayground() {
     </Grid>
   );
 }
-
 export default ChipsPlayground;
