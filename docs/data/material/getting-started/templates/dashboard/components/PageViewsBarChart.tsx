@@ -5,13 +5,15 @@ import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { BarChart } from '@mui/x-charts/BarChart';
-import { gray } from '../theme/themePrimitives';
-
-const colorPaletteLight = [gray[700], gray[500], gray[300]];
-const colorPalette = (mode: 'light' | 'dark') =>
-  mode === 'dark' ? colorPaletteLight : colorPaletteLight;
+import { useTheme } from '@mui/material/styles';
 
 export default function PageViewsBarChart() {
+  const theme = useTheme();
+  const colorPalette = [
+    theme.palette.primary.dark,
+    theme.palette.primary.main,
+    theme.palette.primary.light,
+  ];
   return (
     <Card variant="outlined" sx={{ width: '100%' }}>
       <CardContent>
@@ -35,7 +37,7 @@ export default function PageViewsBarChart() {
           </Typography>
         </Stack>
         <BarChart
-          borderRadius={12}
+          borderRadius={8}
           colors={colorPalette}
           xAxis={
             [

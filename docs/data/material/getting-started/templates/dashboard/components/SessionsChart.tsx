@@ -35,20 +35,13 @@ function getDaysInMonth(month: number, year: number) {
 
 export default function SessionsChart() {
   const theme = useTheme();
-  const mode = theme.palette.mode;
   const data = getDaysInMonth(4, 2024);
 
-  const colorPaletteLight = [
-    theme.palette.grey[300],
-    theme.palette.grey[400],
-    theme.palette.grey[500],
+  const colorPalette = [
+    theme.palette.primary.light,
+    theme.palette.primary.main,
+    theme.palette.primary.dark,
   ];
-  const colorPaletteDark = [
-    theme.palette.grey[400],
-    theme.palette.grey[500],
-    theme.palette.grey[700],
-  ];
-  const colorPalette = mode === 'dark' ? colorPaletteDark : colorPaletteLight;
 
   return (
     <Card variant="outlined" sx={{ width: '100%' }}>
@@ -83,18 +76,18 @@ export default function SessionsChart() {
           ]}
           series={[
             {
-              id: 'organic',
-              label: 'Organic',
+              id: 'direct',
+              label: 'Direct',
               showMark: false,
               curve: 'linear',
               stack: 'total',
+              area: true,
               stackOrder: 'ascending',
               data: [
-                1000, 1500, 1200, 1700, 1300, 2000, 2400, 2200, 2600, 2800, 2500,
-                3000, 3400, 3700, 3200, 3900, 4100, 3500, 4300, 4500, 4000, 4700,
-                5000, 5200, 4800, 5400, 5600, 5900, 6100, 6300,
+                300, 900, 600, 1200, 1500, 1800, 2400, 2100, 2700, 3000, 1800, 3300,
+                3600, 3900, 4200, 4500, 3900, 4800, 5100, 5400, 4800, 5700, 6000,
+                6300, 6600, 6900, 7200, 7500, 7800, 8100,
               ],
-              area: true,
             },
             {
               id: 'referral',
@@ -111,18 +104,18 @@ export default function SessionsChart() {
               ],
             },
             {
-              id: 'direct',
-              label: 'Direct',
+              id: 'organic',
+              label: 'Organic',
               showMark: false,
               curve: 'linear',
               stack: 'total',
-              area: true,
               stackOrder: 'ascending',
               data: [
-                300, 900, 600, 1200, 1500, 1800, 2400, 2100, 2700, 3000, 1800, 3300,
-                3600, 3900, 4200, 4500, 3900, 4800, 5100, 5400, 4800, 5700, 6000,
-                6300, 6600, 6900, 7200, 7500, 7800, 8100,
+                1000, 1500, 1200, 1700, 1300, 2000, 2400, 2200, 2600, 2800, 2500,
+                3000, 3400, 3700, 3200, 3900, 4100, 3500, 4300, 4500, 4000, 4700,
+                5000, 5200, 4800, 5400, 5600, 5900, 6100, 6300,
               ],
+              area: true,
             },
           ]}
           height={250}
@@ -145,24 +138,9 @@ export default function SessionsChart() {
             },
           }}
         >
-          <AreaGradient
-            color={
-              mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[600]
-            }
-            id="organic"
-          />
-          <AreaGradient
-            color={
-              mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[600]
-            }
-            id="referral"
-          />
-          <AreaGradient
-            color={
-              mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
-            }
-            id="direct"
-          />
+          <AreaGradient color={theme.palette.primary.dark} id="organic" />
+          <AreaGradient color={theme.palette.primary.main} id="referral" />
+          <AreaGradient color={theme.palette.primary.light} id="direct" />
         </LineChart>
       </CardContent>
     </Card>
