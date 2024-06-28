@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.15.20..master -->
 
-_Jun 24, 2024_
+_Jun 28, 2024_
 
 A big thanks to the 7 contributors who made this release possible.
 
@@ -18,6 +18,9 @@ A big thanks to the 7 contributors who made this release possible.
 - Use new email for sponsoring @oliviertassinari
 - Fix 301 links (@alexfauquette) (#42700) @alexfauquette
 - [material-ui][Select] Fix the `SelectAutoWidth` demo menu item value (@Danielkhakbaz) (#42696) @Danielkhakbaz
+- [material-ui][Autocomplete] Fix more React 18.3 key spread warnings in demos (#42766) @wbt
+- [material-ui] Fix sign in side image (#42708) @zanivan
+- [website] Add Ale to team (#42769) @alelthomas
 
 ### Core
 
