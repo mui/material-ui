@@ -274,7 +274,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   React.useEffect(() => stopTouchInteraction, [stopTouchInteraction]);
 
-  const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpen = (event: React.SyntheticEvent<HTMLElement>) => {
     hystersisTimer.clear();
     hystersisOpen = true;
 
@@ -303,7 +303,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     });
   });
 
-  const handleMouseOver = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseOver = (event: React.SyntheticEvent<HTMLElement>) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -326,7 +326,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
-  const handleMouseLeave = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseLeave = (event: React.SyntheticEvent<HTMLElement>) => {
     enterTimer.clear();
     leaveTimer.start(leaveDelay, () => {
       handleClose(event);
@@ -336,14 +336,14 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   // We don't necessarily care about the focusVisible state (which is safe to access via ref anyway).
   // We just need to re-render the Tooltip if the focus-visible state changes.
   const [, setChildIsFocusVisible] = React.useState(false);
-  const handleBlur = (event: React.FocusEvent<HTMLElement> | React.MouseEvent<HTMLElement>) => {
-    if (!isFocusVisible(event.target as EventTarget & Element)) {
+  const handleBlur = (event: React.FocusEvent<HTMLElement>) => {
+    if (!isFocusVisible(event.target)) {
       setChildIsFocusVisible(false);
-      handleMouseLeave(event as React.MouseEvent<HTMLElement>);
+      handleMouseLeave(event);
     }
   };
 
-  const handleFocus = (event: React.FocusEvent<HTMLElement> | React.MouseEvent<HTMLElement>) => {
+  const handleFocus = (event: React.FocusEvent<HTMLElement>) => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
@@ -351,9 +351,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       setChildNode(event.currentTarget);
     }
 
-    if (!isFocusVisible(event.target as EventTarget & Element)) {
+    if (isFocusVisible(event.target)) {
       setChildIsFocusVisible(true);
-      handleMouseOver(event as React.MouseEvent<HTMLElement>);
+      handleMouseOver(event);
     }
   };
 

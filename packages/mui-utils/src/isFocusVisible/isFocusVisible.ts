@@ -1,7 +1,7 @@
 /**
  * Returns a boolean indicating if the event's target has :focus-visible
  */
-export default function isFocusVisible(element: EventTarget & Element): boolean {
+export default function isFocusVisible(element: Element): boolean {
   try {
     return element.matches(':focus-visible');
   } catch (error) {
