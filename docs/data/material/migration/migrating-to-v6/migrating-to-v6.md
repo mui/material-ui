@@ -288,22 +288,8 @@ This reduces the API surface and lets you define variants in other slots of the 
 
 ## Pigment CSS integration (optional)
 
-Pigment CSS lets you extract styles at build time, reducing the bundle size and avoiding client-side recalculation.
+Pigment CSS lets you extract styles at build time, reducing the bundle size and avoiding client-side recalculation compared to Emotion/Styled-components.
 
-### Opt-in to Pigment CSS
+Pigment CSS can work alongside Emotion/Styled-components, allowing you to migrate gradually.
 
-Install the Pigment CSS React package:
-
-<codeblock storageKey="package-manager">
-
-```bash npm
-npm install @pigment-css/react
-```
-
-```bash yarn
-yarn add @pigment-css/react
-```
-
-```bash pnpm
-pnpm add @pigment-css/react
-```
+Check out the [migrating to Pigment CSS guide](/material-ui/migration/migrating-to-pigment-css/) to learn more.
