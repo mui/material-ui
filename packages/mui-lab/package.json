@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "6.0.0-alpha.12",
+  "version": "6.0.0-alpha.13",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -42,9 +42,9 @@
   "dependencies": {
     "@babel/runtime": "^7.24.7",
     "@mui/base": "workspace:*",
-    "@mui/system": "workspace:^",
+    "@mui/system": "workspace:*",
     "@mui/types": "workspace:^",
-    "@mui/utils": "workspace:^",
+    "@mui/utils": "workspace:*",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1"
   },

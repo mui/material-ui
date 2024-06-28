@@ -42,7 +42,7 @@ Aside from that, v6 also includes a few quality-of-life improvements regarding s
 
 The targets of the default bundle have changed in v6.
 
-The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"`.
+The exact versions will be pinned on release from the browserslist query: `"> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"`.
 
 <!-- #stable-snapshot -->
 
@@ -55,9 +55,11 @@ The exact versions will be pinned on release from the browserslist query `"> 0.5
 
 ### Removed support for IE 11
 
-Support for IE 11 is completely removed, by dropping the legacy bundle and all IE 11 related code.
-This allows us to decrease bundle size and keep the scope manageable.
-If you need to support IE 11, you can use Material UI v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle), but it won't get updates or bug fixes.
+Support for IE 11－that is, the legacy bundle and all IE 11-related code－is completely removed.
+This decreases Material UI's bundle size and eases future development.
+
+If you need to support IE 11, you can use v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
+However, note that it won't get updates or bug fixes.
 
 ## Update React & TypeScript version
 

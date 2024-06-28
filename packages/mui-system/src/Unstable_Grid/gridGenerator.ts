@@ -116,7 +116,7 @@ export const generateGridColumnsStyles = ({ theme, ownerState }: Props) => {
   traverseBreakpoints<number>(theme.breakpoints, ownerState.columns, (appendStyle, value) => {
     appendStyle(styles, { [`--Grid-columns${appendLevel(ownerState.unstable_level)}`]: value });
   });
-  return styles;
+  return styles as Record<string, string | number | undefined>;
 };
 
 export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {

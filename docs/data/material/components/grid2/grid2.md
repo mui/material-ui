@@ -1,6 +1,7 @@
 ---
 productId: material-ui
 title: React Grid component
+components: PigmentGrid
 githubLabel: 'component: Grid'
 materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 ---
