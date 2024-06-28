@@ -1,5 +1,35 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.15.21
+
+<!-- generated comparing v5.15.20..master -->
+
+_Jun 28, 2024_
+
+A big thanks to the 7 contributors who made this release possible.
+
+### `@mui/material@5.15.21`
+
+- [Autocomplete] Fix renderOption props type (@DiegoAndai) (#42709) @DiegoAndai
+- [Stepper] Generate class for `nonLinear` prop (@alexismo) (#42677) @alexismo
+
+### Docs
+
+- Use new email for sponsoring @oliviertassinari
+- Fix 301 links (@alexfauquette) (#42700) @alexfauquette
+- [material-ui][Select] Fix the `SelectAutoWidth` demo menu item value (@Danielkhakbaz) (#42696) @Danielkhakbaz
+- [material-ui][Autocomplete] Fix more React 18.3 key spread warnings in demos (#42766) @wbt
+- [material-ui] Fix sign in side image (#42708) @zanivan
+- [website] Add Ale to team (#42769) @alelthomas
+
+### Core
+
+- [core] Cherry pick pnpm updates (#42763) @DiegoAndai
+- [website] Add Armin to the team members (@arminmeh) (#42681) @arminmeh
+- [website] Open Staff Engineer role for Pigment CSS (@mnajdova) (#42669) @mnajdova
+
+All contributors of this release in alphabetical order: @alexfauquette, @alexismo, @arminmeh, @Danielkhakbaz, @DiegoAndai, @mnajdova, @oliviertassinari
+
 ## v5.15.20
 
 <!-- generated comparing v5.15.19..master -->
