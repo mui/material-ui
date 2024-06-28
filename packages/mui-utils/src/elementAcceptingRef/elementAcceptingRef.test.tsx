@@ -26,7 +26,6 @@ describe('elementAcceptingRef', () => {
       function testAct() {
         checkPropType(element);
         if (shouldMount) {
-          // TODO: replace with React 18 implementation after https://github.com/testing-library/react-testing-library/issues/1216 is closed.
           render(
             <React.Suspense fallback={<p />}>
               {React.cloneElement(element, { ref: React.createRef() })}
