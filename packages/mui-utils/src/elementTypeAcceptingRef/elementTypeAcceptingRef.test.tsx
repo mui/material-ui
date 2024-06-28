@@ -1,11 +1,13 @@
 /* eslint-disable react/prefer-stateless-function */
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
+import { createRenderer, waitFor } from '@mui/internal-test-utils';
 import elementTypeAcceptingRef from './elementTypeAcceptingRef';
 
 describe('elementTypeAcceptingRef', () => {
+  const { render } = createRenderer();
+
   function checkPropType(elementType: any) {
     PropTypes.checkPropTypes(
       { component: elementTypeAcceptingRef },
@@ -20,97 +22,86 @@ describe('elementTypeAcceptingRef', () => {
   });
 
   describe('acceptance', () => {
-    let rootNode: HTMLElement;
-
-    function assertPass(Component: any, { failsOnMount = false, shouldMount = true } = {}) {
+    async function assertPass(Component: any, { failsOnMount = false, shouldMount = true } = {}) {
       function testAct() {
         checkPropType(Component);
         if (shouldMount) {
           // TODO: replace with React 18 implementation after https://github.com/testing-library/react-testing-library/issues/1216 is closed.
-          // eslint-disable-next-line react/no-deprecated
-          ReactDOM.render(
+          render(
             <React.Suspense fallback={<p />}>
               <Component ref={React.createRef()} />
             </React.Suspense>,
-            rootNode,
           );
         }
       }
 
-      if (failsOnMount) {
-        expect(testAct).toErrorDev('');
-      } else {
-        expect(testAct).not.toErrorDev();
-      }
+      await waitFor(() => {
+        if (failsOnMount) {
+          expect(testAct).toErrorDev('');
+        } else {
+          expect(testAct).not.toErrorDev();
+        }
+      });
     }
 
-    before(() => {
-      rootNode = document.createElement('div');
+    it('accepts nully values', async () => {
+      await assertPass(undefined, { shouldMount: false });
+      await assertPass(null, { shouldMount: false });
     });
 
-    afterEach(() => {
-      // eslint-disable-next-line react/no-deprecated
-      ReactDOM.unmountComponentAtNode(rootNode);
+    it('accepts host components', async () => {
+      await assertPass('div');
     });
 
-    it('accepts nully values', () => {
-      assertPass(undefined, { shouldMount: false });
-      assertPass(null, { shouldMount: false });
-    });
-
-    it('accepts host components', () => {
-      assertPass('div');
-    });
-
-    it('class components', () => {
+    it('class components', async () => {
       class Component extends React.Component {
         render() {
           return null;
         }
       }
 
-      assertPass(Component);
+      await assertPass(Component);
     });
 
-    it('accepts pure class components', () => {
+    it('accepts pure class components', async () => {
       class Component extends React.PureComponent {
         render() {
           return null;
         }
       }
 
-      assertPass(Component);
+      await assertPass(Component);
     });
 
-    it('accepts forwardRef', () => {
+    it('accepts forwardRef', async () => {
       const Component = React.forwardRef(() => null);
 
-      assertPass(Component);
+      await assertPass(Component);
     });
 
-    it('accepts memo', () => {
+    it('accepts memo', async () => {
       const Component = React.memo(React.forwardRef(() => null));
 
-      assertPass(Component);
+      await assertPass(Component);
     });
 
-    it('accepts lazy', () => {
+    it('accepts lazy', async () => {
       const Component = React.lazy(() =>
         Promise.resolve({
           default: React.forwardRef((props, ref) => <div ref={ref} {...props} />),
         }),
       );
 
-      assertPass(Component);
+      await assertPass(Component);
     });
 
-    it('technically allows other exotics like strict mode', () => {
-      assertPass(React.StrictMode);
+    it('technically allows other exotics like strict mode', async () => {
+      await assertPass(React.StrictMode);
     });
 
     // undesired behavior
-    it('accepts Fragment', () => {
-      assertPass(React.Fragment, { failsOnMount: true });
+    it('accepts Fragment', async () => {
+      await assertPass(React.Fragment, { failsOnMount: true });
     });
   });
 
