@@ -39,7 +39,6 @@ describe('<SpeedDial />', () => {
     skip: [
       'componentProp', // react-transition-group issue
       'componentsProp',
-      'reactTestRenderer',
     ],
   }));
 
