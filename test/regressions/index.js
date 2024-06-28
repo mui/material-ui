@@ -55,7 +55,7 @@ const blacklist = [
   'docs-getting-started-templates-dashboard-components/Navbar.png',
   'docs-getting-started-templates-dashboard-components/NavbarBreadcrumbs.png',
   'docs-getting-started-templates-dashboard-components/OptionsMenu.png',
-  'docs-getting-started-templates-dashboard-components/PageViewsChart.png',
+  'docs-getting-started-templates-dashboard-components/SessionsChart.png',
   'docs-getting-started-templates-dashboard-components/Search.png',
   'docs-getting-started-templates-dashboard-components/ToggleColorMode.png',
   'docs-getting-started-templates-dashboard-internals-components', // No public components

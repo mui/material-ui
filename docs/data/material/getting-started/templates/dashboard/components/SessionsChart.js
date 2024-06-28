@@ -1,11 +1,12 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { LineChart } from '@mui/x-charts/LineChart';
 
-function AreaGradient({ color, id }: { color: string; id: string }) {
+function AreaGradient({ color, id }) {
   return (
     <defs>
       <linearGradient id={id} x1="50%" y1="0%" x2="50%" y2="100%">
@@ -16,7 +17,12 @@ function AreaGradient({ color, id }: { color: string; id: string }) {
   );
 }
 
-function getDaysInMonth(month: number, year: number) {
+AreaGradient.propTypes = {
+  color: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+};
+
+function getDaysInMonth(month, year) {
   const date = new Date(year, month, 0);
   const monthName = date.toLocaleDateString('en-US', {
     month: 'short',
@@ -31,7 +37,7 @@ function getDaysInMonth(month: number, year: number) {
   return days;
 }
 
-export default function PageViewsChart() {
+export default function SessionsChart() {
   const theme = useTheme();
   const mode = theme.palette.mode;
   const data = getDaysInMonth(4, 2024);
@@ -41,11 +47,13 @@ export default function PageViewsChart() {
     theme.palette.grey[400],
     theme.palette.grey[500],
   ];
+
   const colorPaletteDark = [
     theme.palette.grey[400],
     theme.palette.grey[500],
     theme.palette.grey[700],
   ];
+
   const colorPalette = mode === 'dark' ? colorPaletteDark : colorPaletteLight;
 
   return (

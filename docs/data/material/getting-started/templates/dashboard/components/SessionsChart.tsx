@@ -1,12 +1,13 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 import { LineChart } from '@mui/x-charts/LineChart';
 
-function AreaGradient({ color, id }) {
+function AreaGradient({ color, id }: { color: string; id: string }) {
   return (
     <defs>
       <linearGradient id={id} x1="50%" y1="0%" x2="50%" y2="100%">
@@ -17,12 +18,7 @@ function AreaGradient({ color, id }) {
   );
 }
 
-AreaGradient.propTypes = {
-  color: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-};
-
-function getDaysInMonth(month, year) {
+function getDaysInMonth(month: number, year: number) {
   const date = new Date(year, month, 0);
   const monthName = date.toLocaleDateString('en-US', {
     month: 'short',
@@ -37,7 +33,7 @@ function getDaysInMonth(month, year) {
   return days;
 }
 
-export default function PageViewsChart() {
+export default function SessionsChart() {
   const theme = useTheme();
   const mode = theme.palette.mode;
   const data = getDaysInMonth(4, 2024);
@@ -47,13 +43,11 @@ export default function PageViewsChart() {
     theme.palette.grey[400],
     theme.palette.grey[500],
   ];
-
   const colorPaletteDark = [
     theme.palette.grey[400],
     theme.palette.grey[500],
     theme.palette.grey[700],
   ];
-
   const colorPalette = mode === 'dark' ? colorPaletteDark : colorPaletteLight;
 
   return (
@@ -62,6 +56,22 @@ export default function PageViewsChart() {
         <Typography component="h2" variant="subtitle2" gutterBottom>
           Sessions
         </Typography>
+        <Stack sx={{ justifyContent: 'space-between' }}>
+          <Stack
+            direction="row"
+            alignContent={{ xs: 'center', sm: 'flex-start' }}
+            alignItems="center"
+            gap={1}
+          >
+            <Typography variant="h4" component="p">
+              13,277
+            </Typography>
+            <Chip size="small" color="success" label="+35%" />
+          </Stack>
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+            Sessions per day for the last 30 days
+          </Typography>
+        </Stack>
         <LineChart
           colors={colorPalette}
           xAxis={[
@@ -80,9 +90,9 @@ export default function PageViewsChart() {
               stack: 'total',
               stackOrder: 'ascending',
               data: [
-                6234, 6087, 6421, 6312, 6190, 6400, 6357, 6029, 6173, 6482, 6215,
-                6051, 6338, 6142, 6018, 6247, 6463, 6371, 6060, 6100, 6389, 6203,
-                6497, 6036, 6156, 6470, 6269, 6091, 6445, 6121,
+                1000, 1500, 1200, 1700, 1300, 2000, 2400, 2200, 2600, 2800, 2500,
+                3000, 3400, 3700, 3200, 3900, 4100, 3500, 4300, 4500, 4000, 4700,
+                5000, 5200, 4800, 5400, 5600, 5900, 6100, 6300,
               ],
               area: true,
             },
@@ -95,9 +105,9 @@ export default function PageViewsChart() {
               area: true,
               stackOrder: 'ascending',
               data: [
-                4486, 4255, 4046, 4316, 4418, 4498, 4421, 4474, 4036, 4049, 4206,
-                4458, 4259, 4353, 4496, 4178, 4265, 4424, 4186, 4003, 4204, 4467,
-                4120, 4410, 4292, 4143, 4403, 4373, 4079, 4291,
+                500, 900, 700, 1400, 1100, 1700, 2300, 2000, 2600, 2900, 2300, 3200,
+                3500, 3800, 4100, 4400, 2900, 4700, 5000, 5300, 5600, 5900, 6200,
+                6500, 5600, 6800, 7100, 7400, 7700, 8000,
               ],
             },
             {
@@ -109,14 +119,14 @@ export default function PageViewsChart() {
               area: true,
               stackOrder: 'ascending',
               data: [
-                2238, 2172, 2305, 2140, 2135, 2100, 2465, 2053, 2342, 2494, 2497,
-                2277, 2356, 2012, 2309, 2301, 2029, 2028, 2129, 2324, 2152, 2235,
-                2430, 2027, 2168, 2111, 2235, 2166, 2309, 2268,
+                300, 900, 600, 1200, 1500, 1800, 2400, 2100, 2700, 3000, 1800, 3300,
+                3600, 3900, 4200, 4500, 3900, 4800, 5100, 5400, 4800, 5700, 6000,
+                6300, 6600, 6900, 7200, 7500, 7800, 8100,
               ],
             },
           ]}
           height={250}
-          margin={{ left: -1, right: 0, top: 20, bottom: 20 }}
+          margin={{ left: 50, right: 20, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}
           sx={{
             '& .MuiAreaElement-series-organic': {

@@ -9,7 +9,7 @@ import CustomizedTreeView from './CustomizedTreeView';
 import CustomizedDataGrid from './CustomizedDataGrid';
 import HighlightedCard from './HighlightedCard';
 import PageViewsBarChart from './PageViewsBarChart';
-import PageViewsChart from './PageViewsChart';
+import SessionsChart from './SessionsChart';
 import StatCard, { StatCardProps } from './StatCard';
 
 const data: StatCardProps[] = [
@@ -59,15 +59,15 @@ export default function MainGrid() {
         sx={{ mb: (theme) => theme.spacing(2) }}
       >
         {data.map((card, index) => (
-          <Grid key={index} xs={12} sm={6} md={3} lg={3}>
+          <Grid key={index} xs={12} sm={6} lg={3}>
             <StatCard {...card} />
           </Grid>
         ))}
-        <Grid xs={12} sm={6} md={3} lg={3}>
+        <Grid xs={12} sm={6} lg={3}>
           <HighlightedCard />
         </Grid>
         <Grid sm={12} md={6}>
-          <PageViewsChart />
+          <SessionsChart />
         </Grid>
         <Grid sm={12} md={6}>
           <PageViewsBarChart />

@@ -134,7 +134,8 @@ export const menuComponentsCustomizations: Components<Theme> = {
     styleOverrides: {
       root: ({ theme }) => ({
         borderRadius: theme.shape.borderRadius,
-        border: `1px solid ${theme.palette.divider}`,
+        border: '1px solid',
+        borderColor: gray[200],
         backgroundColor: theme.palette.background.paper,
         boxShadow: `inset 0 1px 0 1px hsla(220, 0%, 100%, 0.6), inset 0 -1px 0 1px hsla(220, 35%, 90%, 0.5)`,
         '&:hover': {
@@ -142,20 +143,27 @@ export const menuComponentsCustomizations: Components<Theme> = {
           backgroundColor: theme.palette.background.paper,
           boxShadow: 'none',
         },
-
+        '&.Mui-focused': {
+          outlineOffset: 0,
+          borderColor: gray[400],
+        },
         '&:before, &:after': {
           display: 'none',
         },
 
         ...theme.applyStyles('dark', {
           borderRadius: theme.shape.borderRadius,
-          border: `1px solid ${theme.palette.divider}`,
+          borderColor: gray[700],
           backgroundColor: theme.palette.background.paper,
           boxShadow: `inset 0 1px 0 1px ${alpha(gray[700], 0.15)}, inset 0 -1px 0 1px hsla(220, 0%, 0%, 0.7)`,
           '&:hover': {
             borderColor: alpha(gray[700], 0.7),
             backgroundColor: theme.palette.background.paper,
             boxShadow: 'none',
+          },
+          '&.Mui-focused': {
+            outlineOffset: 0,
+            borderColor: gray[900],
           },
           '&:before, &:after': {
             display: 'none',
