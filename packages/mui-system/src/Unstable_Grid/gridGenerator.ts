@@ -1,7 +1,7 @@
-import { Breakpoints, Breakpoint } from '../createTheme/createBreakpoints';
+import { Breakpoints } from '../createTheme/createBreakpoints';
 import { Spacing } from '../createTheme/createSpacing';
 import { ResponsiveStyleValue } from '../styleFunctionSx';
-import { GridDirection, GridOwnerState, GridSize } from './GridProps';
+import { GridDirection, GridOwnerState } from './GridProps';
 import { traverseBreakpoints } from './traverseBreakpoints';
 
 interface Props {
@@ -202,28 +202,13 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
   };
 };
 
-export const generateSizeClassNames = (size: GridOwnerState['size'], breakpoints: Breakpoints) => {
+export const generateSizeClassNames = (size: GridOwnerState['size']) => {
   const classNames: string[] = [];
-
-  function isValidSizeValue(val?: GridSize | null) {
-    return val !== null && val !== undefined && val !== false;
-  }
-
-  if (Array.isArray(size)) {
-    size.forEach((value, index) => {
-      if (isValidSizeValue(value) && breakpoints.keys[index]) {
-        classNames.push(`grid-${breakpoints.keys[index]}-${String(value)}`);
-      }
-    });
-  } else if (typeof size === 'object') {
-    Object.entries(size).forEach(([key, value]) => {
-      if (isValidSizeValue(value) && breakpoints.keys.includes(key as Breakpoint)) {
-        classNames.push(`grid-${key}-${String(value)}`);
-      }
-    });
-  } else if (isValidSizeValue(size)) {
-    classNames.push(`grid-xs-${String(size)}`);
-  }
+  Object.entries(size).forEach(([key, value]) => {
+    if (value !== false && value !== undefined) {
+      classNames.push(`grid-${key}-${String(value)}`);
+    }
+  });
 
   return classNames;
 };

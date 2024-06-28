@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import createTheme from '../createTheme/createTheme';
 import createSpacing from '../createTheme/createSpacing';
 import createBreakpoints from '../createTheme/createBreakpoints';
 import {
@@ -301,16 +300,13 @@ describe('grid generator', () => {
   describe('class names', () => {
     it('should generate correct grid size class names', () => {
       expect(
-        generateSizeClassNames(
-          {
-            xs: 'auto',
-            sm: 4,
-            md: false,
-            lg: undefined,
-            xl: true,
-          },
-          breakpoints,
-        ),
+        generateSizeClassNames({
+          xs: 'auto',
+          sm: 4,
+          md: false,
+          lg: undefined,
+          xl: true,
+        }),
       ).to.deep.equal(['grid-xs-auto', 'grid-sm-4', 'grid-xl-true']);
     });
 
@@ -330,23 +326,11 @@ describe('grid generator', () => {
     });
 
     it('should work with any breakpoint', () => {
-      const customBreakpointsTheme = createTheme({
-        breakpoints: {
-          values: {
-            mobile: 0,
-            tablet: 640,
-          },
-        },
-      });
-
       expect(
-        generateSizeClassNames(
-          {
-            mobile: 'auto',
-            tablet: 4,
-          },
-          customBreakpointsTheme.breakpoints,
-        ),
+        generateSizeClassNames({
+          mobile: 'auto',
+          tablet: 4,
+        }),
       ).to.deep.equal(['grid-mobile-auto', 'grid-tablet-4']);
 
       expect(generateSpacingClassNames(2, 'mobile')).to.deep.equal(['spacing-mobile-2']);

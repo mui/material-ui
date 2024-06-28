@@ -9,7 +9,7 @@ import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import useTheme from '../useTheme';
 import { extendSxProp } from '../styleFunctionSx';
-import createTheme from '../createTheme';
+import createTheme, { Breakpoint, Breakpoints } from '../createTheme';
 import {
   generateGridStyles,
   generateGridSizeStyles,
@@ -23,7 +23,7 @@ import {
   generateDirectionClasses,
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
-import { GridTypeMap, GridOwnerState, GridProps } from './GridProps';
+import { GridTypeMap, GridOwnerState, GridProps, GridOffset, GridSize } from './GridProps';
 
 const defaultTheme = createTheme();
 
@@ -64,13 +64,44 @@ export default function createGrid(
         container && 'container',
         wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
         ...generateDirectionClasses(direction),
-        ...generateSizeClassNames(size, theme.breakpoints),
+        ...generateSizeClassNames(size),
         ...(container ? generateSpacingClassNames(spacing, theme.breakpoints.keys[0]) : []),
       ],
     };
 
     return composeClasses(slots, (slot) => generateUtilityClass(componentName, slot), {});
   };
+
+  function parseResponsiveProp<T extends GridSize | GridOffset>(
+    propValue: T | null | (T | null)[] | { [key in Breakpoint]?: T | null },
+    breakpoints: Breakpoints,
+    shouldUseValue: (val: T) => boolean = () => true,
+  ): { [key in Breakpoint]: T } {
+    const parsedProp = {} as { [key in Breakpoint]: T };
+
+    if (propValue === null) {
+      return parsedProp;
+    }
+
+    if (Array.isArray(propValue)) {
+      propValue.forEach((value, index) => {
+        if (value !== null && shouldUseValue(value) && breakpoints.keys[index]) {
+          parsedProp[breakpoints.keys[index]] = value;
+        }
+      });
+    } else if (typeof propValue === 'object') {
+      Object.keys(propValue).forEach((key) => {
+        const value = propValue[key as Breakpoint];
+        if (value !== null && value !== undefined && shouldUseValue(value)) {
+          parsedProp[key as Breakpoint] = value;
+        }
+      });
+    } else {
+      parsedProp[breakpoints.keys[0]] = propValue;
+    }
+
+    return parsedProp;
+  }
 
   const GridRoot = createStyledComponent<{
     ownerState: GridOwnerState;
@@ -96,14 +127,16 @@ export default function createGrid(
       component = 'div',
       direction = 'row',
       wrap = 'wrap',
-      size = {},
-      offset = {},
+      size: sizeProp = {},
+      offset: offsetProp = {},
       spacing: spacingProp = 0,
       rowSpacing: rowSpacingProp = spacingProp,
       columnSpacing: columnSpacingProp = spacingProp,
       unstable_level: level = 0,
       ...rest
     } = props;
+    const size = parseResponsiveProp<GridSize>(sizeProp, theme.breakpoints, (val) => val !== false);
+    const offset = parseResponsiveProp<GridOffset>(offsetProp, theme.breakpoints);
 
     const columns = inProps.columns ?? (level ? undefined : columnsProp);
     const spacing = inProps.spacing ?? (level ? undefined : spacingProp);
