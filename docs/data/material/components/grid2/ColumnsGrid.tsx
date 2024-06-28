@@ -20,10 +20,10 @@ export default function ColumnsGrid() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} columns={16}>
         <Grid size={8}>
-          <Item>size=8</Item>
+          <Item>xs=8</Item>
         </Grid>
         <Grid size={8}>
-          <Item>size=8</Item>
+          <Item>xs=8</Item>
         </Grid>
       </Grid>
     </Box>

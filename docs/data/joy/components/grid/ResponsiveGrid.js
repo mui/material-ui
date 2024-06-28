@@ -25,7 +25,7 @@ export default function ResponsiveGrid() {
     >
       {Array.from(Array(6)).map((_, index) => (
         <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
-          <Item>{index + 1}</Item>
+          <Item>xs=2</Item>
         </Grid>
       ))}
     </Grid>
