@@ -415,10 +415,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }, [handleClose, open]);
 
   const handleUseRef = useForkRef(setChildNode, ref);
-  const handleFocusRef = useForkRef<Element>(handleUseRef);
   const handleRef = useForkRef(
     (children as unknown as { ref: React.Ref<HTMLElement> }).ref,
-    handleFocusRef,
+    handleUseRef,
   );
 
   // There is no point in displaying an empty tooltip.

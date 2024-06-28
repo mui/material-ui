@@ -5,7 +5,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
-  unstable_useForkRef as useForkRef,
   unstable_isFocusVisible as isFocusVisible,
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
@@ -217,7 +216,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
   const [focusVisible, setFocusVisible] = React.useState<boolean>(false);
-  const handleRef = useForkRef(ref) as React.Ref<HTMLAnchorElement>;
   const handleBlur = (event: React.FocusEvent<HTMLAnchorElement>) => {
     if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
@@ -255,7 +253,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       onBlur: handleBlur,
       onFocus: handleFocus,
     },
-    ref: handleRef,
+    ref,
     className: classes.root,
     elementType: LinkRoot,
     externalForwardedProps,
