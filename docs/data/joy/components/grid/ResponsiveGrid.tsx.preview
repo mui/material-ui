@@ -6,7 +6,7 @@
 >
   {Array.from(Array(6)).map((_, index) => (
     <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
-      <Item>xs=2</Item>
+      <Item>{index + 1}</Item>
     </Grid>
   ))}
 </Grid>

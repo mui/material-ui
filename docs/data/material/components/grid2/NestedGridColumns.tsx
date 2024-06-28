@@ -20,25 +20,25 @@ export default function NestedGridColumns() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} columns={24}>
         <Grid size={8}>
-          <Item>xs=8/24</Item>
+          <Item>size=8/24</Item>
         </Grid>
         <Grid container size={16}>
           <Grid size={12}>
-            <Item>nested xs=12/24</Item>
+            <Item>nested size=12/24</Item>
           </Grid>
           <Grid size={12}>
-            <Item>nested xs=12/24</Item>
+            <Item>nested size=12/24</Item>
           </Grid>
         </Grid>
         <Grid size={8}>
-          <Item>xs=8/24</Item>
+          <Item>size=8/24</Item>
         </Grid>
         <Grid container columns={12} size={16}>
           <Grid size={6}>
-            <Item>nested xs=6/12</Item>
+            <Item>nested size=6/12</Item>
           </Grid>
           <Grid size={6}>
-            <Item>nested xs=6/12</Item>
+            <Item>nested size=6/12</Item>
           </Grid>
         </Grid>
       </Grid>

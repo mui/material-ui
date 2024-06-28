@@ -19,10 +19,10 @@ export default function ColumnsGrid() {
   return (
     <Grid container spacing={2} columns={16} sx={{ flexGrow: 1 }}>
       <Grid size={8}>
-        <Item>xs=8</Item>
+        <Item>size=8</Item>
       </Grid>
       <Grid size={8}>
-        <Item>xs=8</Item>
+        <Item>size=8</Item>
       </Grid>
     </Grid>
   );
