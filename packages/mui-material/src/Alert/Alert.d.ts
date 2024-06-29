@@ -29,8 +29,16 @@ export interface AlertSlots {
 export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AlertSlots,
   {
-    closeButton: SlotProps<React.ElementType<IconButtonProps>, AlertCloseButtonSlotPropsOverrides, AlertOwnerState>;
-    closeIcon: SlotProps<React.ElementType<SvgIconProps>, AlertCloseIconSlotPropsOverrides, AlertOwnerState>;
+    closeButton: SlotProps<
+      React.ElementType<IconButtonProps>,
+      AlertCloseButtonSlotPropsOverrides,
+      AlertOwnerState
+    >;
+    closeIcon: SlotProps<
+      React.ElementType<SvgIconProps>,
+      AlertCloseIconSlotPropsOverrides,
+      AlertOwnerState
+    >;
   }
 >;
 
