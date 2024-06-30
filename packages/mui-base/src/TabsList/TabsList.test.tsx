@@ -35,10 +35,7 @@ describe('<TabsList />', () => {
         expectedClassName: tabsListClasses.root,
       },
     },
-    skip: [
-      'reactTestRenderer', // Need to be wrapped with TabsContext
-      'componentProp',
-    ],
+    skip: ['componentProp'],
   }));
 
   describe('accessibility attributes', () => {

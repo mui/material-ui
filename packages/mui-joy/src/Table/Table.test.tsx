@@ -25,7 +25,6 @@ describe('<Table />', () => {
       'componentProp',
       'mergeClassName',
       'propsSpread',
-      'reactTestRenderer',
       'refForwarding',
     ],
     slots: {

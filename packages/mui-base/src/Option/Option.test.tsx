@@ -38,9 +38,6 @@ describe('<Option />', () => {
         expectedClassName: optionClasses.root,
       },
     },
-    skip: [
-      'componentProp',
-      'reactTestRenderer', // Need to be wrapped in SelectContext
-    ],
+    skip: ['componentProp'],
   }));
 });
