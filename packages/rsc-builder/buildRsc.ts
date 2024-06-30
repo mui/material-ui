@@ -24,6 +24,9 @@ const PROJECTS: Project[] = [
     rootPath: path.join(process.cwd(), 'packages/mui-material'),
     ignorePaths: [
       'packages/mui-material/src/InitColorSchemeScript/InitColorSchemeScript.tsx', // RSC compatible
+      'packages/mui-material/src/PigmentContainer/PigmentContainer.tsx', // RSC compatible
+      'packages/mui-material/src/PigmentGrid/PigmentGrid.tsx', // RSC compatible
+      'packages/mui-material/src/PigmentStack/PigmentStack.tsx', // RSC compatible
     ],
   },
   {
