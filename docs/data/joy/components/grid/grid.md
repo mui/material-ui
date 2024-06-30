@@ -104,13 +104,15 @@ You can change the default number of columns (12) with the `columns` prop.
 
 ### System props
 
-As a CSS utility component, Grid supports all [MUI System properties](/system/properties/).
-You can use them as props directly on the component.
-For instance, a margin-top:
+:::info
+System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
 
-```jsx
-<Grid mt={2}>
+```diff
+- <Grid mt={2} />
++ <Grid sx={{ mt: 2 }} />
 ```
+
+:::
 
 ## Interactive demo
 

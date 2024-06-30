@@ -6,8 +6,8 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
-import { styled, createUseThemeProps } from '../zero-styled';
-import useTheme from '../styles/useTheme';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
 import capitalize from '../utils/capitalize';
@@ -16,8 +16,6 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import speedDialClasses, { getSpeedDialUtilityClass } from './speedDialClasses';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiSpeedDial');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, open, direction } = ownerState;
@@ -144,7 +142,7 @@ const SpeedDialActions = styled('div', {
 });
 
 const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDial' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDial' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,

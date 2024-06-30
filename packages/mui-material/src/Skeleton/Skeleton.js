@@ -4,10 +4,9 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
-import { keyframes, css, createUseThemeProps, styled } from '../zero-styled';
+import { keyframes, css, styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getSkeletonUtilityClass } from './skeletonClasses';
-
-const useThemeProps = createUseThemeProps('MuiSkeleton');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, animation, hasChildren, width, height } = ownerState;
@@ -109,9 +108,9 @@ const SkeletonRoot = styled('span', {
           height: 'auto',
           transformOrigin: '0 55%',
           transform: 'scale(1, 0.60)',
-          borderRadius: `${radiusValue}${radiusUnit}/${
-            Math.round((radiusValue / 0.6) * 10) / 10
-          }${radiusUnit}`,
+          borderRadius: `${radiusValue}${radiusUnit}/${Math.round((radiusValue / 0.6) * 10) / 10}${
+            radiusUnit
+          }`,
           '&:empty:before': {
             content: '"\\00a0"',
           },
@@ -200,7 +199,7 @@ const SkeletonRoot = styled('span', {
 });
 
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSkeleton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSkeleton' });
   const {
     animation = 'pulse',
     className,

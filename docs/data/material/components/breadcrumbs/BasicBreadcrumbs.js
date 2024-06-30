@@ -22,7 +22,7 @@ export default function BasicBreadcrumbs() {
         >
           Core
         </Link>
-        <Typography color="text.primary">Breadcrumbs</Typography>
+        <Typography sx={{ color: 'text.primary' }}>Breadcrumbs</Typography>
       </Breadcrumbs>
     </div>
   );

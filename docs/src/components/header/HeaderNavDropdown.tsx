@@ -232,7 +232,7 @@ export default function HeaderNavDropdown() {
                               />
                             ) : null}
                           </Box>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}
                           </Typography>
                         </Anchor>
@@ -283,7 +283,7 @@ export default function HeaderNavDropdown() {
                               />
                             ) : null}
                           </Box>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}
                           </Typography>
                         </Anchor>

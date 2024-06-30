@@ -5,14 +5,12 @@ import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useSnackbar } from '@mui/base/useSnackbar';
-import { styled, createUseThemeProps } from '../zero-styled';
-import useTheme from '../styles/useTheme';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 import { getSnackbarUtilityClass } from './snackbarClasses';
-
-const useThemeProps = createUseThemeProps('MuiSnackbar');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, anchorOrigin } = ownerState;
@@ -93,7 +91,7 @@ const SnackbarRoot = styled('div', {
 }));
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSnackbar' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,

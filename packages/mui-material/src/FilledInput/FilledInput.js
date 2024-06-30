@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -15,8 +16,6 @@ import {
   InputBaseInput,
 } from '../InputBase/InputBase';
 import { capitalize } from '../utils';
-
-const useThemeProps = createUseThemeProps('MuiFilledInput');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline, startAdornment, endAdornment, size, hiddenLabel, multiline } =
@@ -89,7 +88,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
           '&::after': {
             left: 0,
             bottom: 0,
-            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
             content: '""',
             position: 'absolute',
             right: 0,
@@ -118,7 +116,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
             }`,
             left: 0,
             bottom: 0,
-            // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
             content: '"\\00a0"',
             position: 'absolute',
             right: 0,
@@ -272,7 +269,7 @@ const FilledInputInput = styled(InputBaseInput, {
 }));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFilledInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFilledInput' });
 
   const {
     disableUnderline = false,

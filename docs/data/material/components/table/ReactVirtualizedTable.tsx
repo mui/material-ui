@@ -89,8 +89,10 @@ const VirtuosoTableComponents: TableComponents<Data> = {
   Table: (props) => (
     <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
   ),
-  TableHead,
-  TableRow: ({ item: _item, ...props }) => <TableRow {...props} />,
+  TableHead: React.forwardRef<HTMLTableSectionElement>((props, ref) => (
+    <TableHead {...props} ref={ref} />
+  )),
+  TableRow,
   TableBody: React.forwardRef<HTMLTableSectionElement>((props, ref) => (
     <TableBody {...props} ref={ref} />
   )),
@@ -105,9 +107,7 @@ function fixedHeaderContent() {
           variant="head"
           align={column.numeric || false ? 'right' : 'left'}
           style={{ width: column.width }}
-          sx={{
-            backgroundColor: 'background.paper',
-          }}
+          sx={{ backgroundColor: 'background.paper' }}
         >
           {column.label}
         </TableCell>

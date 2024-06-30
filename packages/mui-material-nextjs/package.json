@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "6.0.0-alpha.1",
+  "version": "6.0.0-alpha.13",
   "private": false,
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
@@ -36,7 +36,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.6"
+    "@babel/runtime": "^7.24.7"
   },
   "devDependencies": {
     "@emotion/cache": "^11.11.0",
@@ -49,7 +49,7 @@
   "peerDependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/server": "^11.11.0",
-    "@mui/material": "workspace:^",
+    "@mui/material": "workspace:*",
     "@types/react": "^17.0.0 || ^18.0.0",
     "next": "^13.0.0 || ^14.0.0",
     "react": "^17.0.0 || ^18.0.0"

@@ -100,10 +100,10 @@ export default function Testimonials() {
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
-        <Typography component="h2" variant="h4" color="text.primary">
+        <Typography component="h2" variant="h4" sx={{ color: 'text.primary' }}>
           Testimonials
         </Typography>
-        <Typography variant="body1" color="text.secondary">
+        <Typography variant="body1" sx={{ color: 'text.secondary' }}>
           See what our customers love about our products. Discover how we excel in
           efficiency, durability, and satisfaction. Join us for quality, innovation,
           and reliable support.
@@ -122,7 +122,7 @@ export default function Testimonials() {
               }}
             >
               <CardContent>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   {testimonial.testimonial}
                 </Typography>
               </CardContent>

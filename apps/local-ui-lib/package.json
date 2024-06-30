@@ -3,6 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@pigment-css/react": "^0.0.9"
+    "@pigment-css/react": "^0.0.16"
   }
 }

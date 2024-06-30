@@ -28,6 +28,13 @@ const Component = styled('div')(({
       }
     }, {
       props: {
+        edge: 'start'
+      },
+      style: {
+        marginLeft: -12,
+      }
+    }, {
+      props: {
         edge: 'start',
         size: 'small'
       },
@@ -35,14 +42,11 @@ const Component = styled('div')(({
         marginLeft: -3
       }
     }, {
-      props: (
-        {
-          edge,
-          ownerState
-        }
-      ) => edge === 'start' && ownerState.size !== 'small',
+      props: {
+        edge: 'end'
+      },
       style: {
-        marginLeft: -12
+        marginRight: -12,
       }
     }, {
       props: {
@@ -51,16 +55,6 @@ const Component = styled('div')(({
       },
       style: {
         marginRight: -3
-      }
-    }, {
-      props: (
-        {
-          edge,
-          ownerState
-        }
-      ) => edge === 'end' && ownerState.size !== 'small',
-      style: {
-        marginRight: -12
       }
     }, {
       props: (

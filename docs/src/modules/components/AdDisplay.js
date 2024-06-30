@@ -5,11 +5,21 @@ import { adShape } from 'docs/src/modules/components/AdManager';
 import { GA_ADS_DISPLAY_RATIO } from 'docs/src/modules/constants';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 
-const Root = styled('span', { shouldForwardProp: (prop) => prop !== 'shape' })(({
-  theme,
-  shape,
-}) => {
-  const styles = adStylesObject[`body-${shape}`](theme);
+const InlineShape = styled('span')(({ theme }) => {
+  const styles = adStylesObject['body-inline'](theme);
+
+  return {
+    ...styles.root,
+    '& img': styles.img,
+    '& a, & a:hover': styles.a,
+    '& .AdDisplay-imageWrapper': styles.imgWrapper,
+    '& .AdDisplay-description': styles.description,
+    '& .AdDisplay-poweredby': styles.poweredby,
+  };
+});
+
+const ImageShape = styled('span')(({ theme }) => {
+  const styles = adStylesObject['body-image'](theme);
 
   return {
     ...styles.root,
@@ -22,7 +32,7 @@ const Root = styled('span', { shouldForwardProp: (prop) => prop !== 'shape' })((
 });
 
 export default function AdDisplay(props) {
-  const { ad, className, shape = 'auto' } = props;
+  const { ad, className, shape: shapeProp = 'auto' } = props;
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
@@ -36,9 +46,19 @@ export default function AdDisplay(props) {
     });
   }, [ad.label]);
 
+  const shape = shapeProp === 'auto' ? adShape : shapeProp;
+
+  let Root;
+  if (shape === 'inline') {
+    Root = InlineShape;
+  }
+  if (shape === 'image') {
+    Root = ImageShape;
+  }
+
   /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
-    <Root shape={shape === 'inline' ? 'inline' : adShape} className={className}>
+    <Root className={className}>
       <a
         href={ad.link}
         target="_blank"

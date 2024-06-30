@@ -11,10 +11,9 @@ import Paper from '../Paper';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
-import useTheme from '../styles/useTheme';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
 
-const useThemeProps = createUseThemeProps('MuiDialog');
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
@@ -117,7 +116,6 @@ const DialogPaper = styled(Paper, {
 })(({ theme }) => ({
   margin: 32,
   position: 'relative',
-  overflowY: 'auto', // Fix IE11 issue, to remove at some point.
   '@media print': {
     overflowY: 'visible',
     boxShadow: 'none',
@@ -140,7 +138,7 @@ const DialogPaper = styled(Paper, {
       style: {
         display: 'inline-block',
         verticalAlign: 'middle',
-        textAlign: 'left', // 'initial' doesn't work on IE11
+        textAlign: 'initial',
       },
     },
     {
@@ -206,7 +204,7 @@ const DialogPaper = styled(Paper, {
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
 const Dialog = React.forwardRef(function Dialog(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDialog' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDialog' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,

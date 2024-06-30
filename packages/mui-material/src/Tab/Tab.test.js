@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import ButtonBase from '@mui/material/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Tab />', () => {
@@ -126,6 +127,7 @@ describe('<Tab />', () => {
       const { getByRole } = render(<Tab icon={<div className="test-icon" />} label="foo" />);
       const wrapper = getByRole('tab').children[0];
       expect(wrapper).to.have.class(classes.iconWrapper);
+      expect(wrapper).to.have.class(classes.icon);
       expect(wrapper).to.have.class('test-icon');
     });
 
@@ -165,6 +167,97 @@ describe('<Tab />', () => {
       expect(style).to.have.property('width', '80%');
       expect(style).to.have.property('color', 'red');
       expect(style).to.have.property('alignText', 'center');
+    });
+  });
+
+  it('should apply iconWrapper styles from theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiTab: {
+          styleOverrides: {
+            iconWrapper: {
+              backgroundColor: 'rgb(0, 0, 255)',
+            },
+          },
+        },
+      },
+    });
+
+    const { getByRole } = render(
+      <ThemeProvider theme={theme}>
+        <Tab icon={<div>hello</div>} label="icon" />
+      </ThemeProvider>,
+    );
+    const icon = getByRole('tab').querySelector(`.${classes.iconWrapper}`);
+    expect(icon).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 255)',
+    });
+  });
+
+  it('should apply icon styles from theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiTab: {
+          styleOverrides: {
+            icon: {
+              backgroundColor: 'rgb(0, 0, 255)',
+            },
+          },
+        },
+      },
+    });
+
+    const { getByRole } = render(
+      <ThemeProvider theme={theme}>
+        <Tab icon={<div>hello</div>} label="icon" />
+      </ThemeProvider>,
+    );
+    const icon = getByRole('tab').querySelector(`.${classes.icon}`);
+    expect(icon).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 255)',
+    });
+  });
+
+  it('icon styles should override iconWrapper styles from theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiTab: {
+          styleOverrides: {
+            iconWrapper: {
+              backgroundColor: 'rgb(255, 0, 0)',
+            },
+            icon: {
+              backgroundColor: 'rgb(0, 0, 255)',
+            },
+          },
+        },
+      },
+    });
+
+    const { getByRole } = render(
+      <ThemeProvider theme={theme}>
+        <Tab icon={<div>hello</div>} label="icon" />
+      </ThemeProvider>,
+    );
+    const icon = getByRole('tab').querySelector(`.${classes.icon}`);
+    const iconWrapper = getByRole('tab').querySelector(`.${classes.iconWrapper}`);
+    expect(iconWrapper).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 255)',
+    });
+    expect(icon).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 255)',
     });
   });
 });

@@ -320,8 +320,24 @@
     "name": "Nikita Ossei",
     "title": "Customer Support",
     "location": "London, United Kingdom",
-    "locationCountry": "uk",
+    "locationCountry": "gb",
     "about": "Astrology ♊️, learning 📚 and designing stuff 🎨",
     "github": "nikitaa24"
+  },
+  {
+    "name": "Armin Mehinovic",
+    "title": "React Engineer - X",
+    "location": "Amsterdam, Netherlands",
+    "locationCountry": "nl",
+    "about": "♟️ Chess, 🛠️ Small DIY projects and learning about space 🌌",
+    "github": "arminmeh"
+  },
+  {
+    "name": "Alejandra Thomas",
+    "title": "Content Engineer",
+    "location": "New York, US",
+    "locationCountry": "us",
+    "about": "Books 📚, long coffee walks ☕️, and my cat 🐈‍⬛",
+    "github": "alelthomas"
   }
 ]

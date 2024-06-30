@@ -5,14 +5,13 @@ import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
-
-const useThemeProps = createUseThemeProps('MuiButtonBase');
 
 const useUtilityClasses = (ownerState) => {
   const { disabled, focusVisible, focusVisibleClassName, classes } = ownerState;
@@ -74,7 +73,7 @@ export const ButtonBaseRoot = styled('button', {
  * It contains a load of style reset and some focus/ripple logic.
  */
 const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiButtonBase' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiButtonBase' });
   const {
     action,
     centerRipple = false,
@@ -219,20 +218,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     return component && component !== 'button' && !(button.tagName === 'A' && button.href);
   };
 
-  /**
-   * IE11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
-   */
-  const keydownRef = React.useRef(false);
   const handleKeyDown = useEventCallback((event) => {
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (
-      focusRipple &&
-      !keydownRef.current &&
-      focusVisible &&
-      rippleRef.current &&
-      event.key === ' '
-    ) {
-      keydownRef.current = true;
+    if (focusRipple && !event.repeat && focusVisible && rippleRef.current && event.key === ' ') {
       rippleRef.current.stop(event, () => {
         rippleRef.current.start(event);
       });
@@ -270,7 +258,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       focusVisible &&
       !event.defaultPrevented
     ) {
-      keydownRef.current = false;
       rippleRef.current.stop(event, () => {
         rippleRef.current.pulsate(event);
       });

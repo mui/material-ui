@@ -18,7 +18,17 @@ import Container from '@mui/material/Container';
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant="body2"
+      align="center"
+      {...props}
+      sx={[
+        {
+          color: 'text.secondary',
+        },
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
+    >
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -106,7 +116,7 @@ export default function Pricing() {
         position="static"
         color="default"
         elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+        sx={(theme) => ({ borderBottom: `1px solid ${theme.palette.divider}` })}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
@@ -149,12 +159,17 @@ export default function Pricing() {
           component="h1"
           variant="h2"
           align="center"
-          color="text.primary"
           gutterBottom
+          sx={{ color: 'text.primary' }}
         >
           Pricing
         </Typography>
-        <Typography variant="h5" align="center" color="text.secondary" component="p">
+        <Typography
+          variant="h5"
+          align="center"
+          component="p"
+          sx={{ color: 'text.secondary' }}
+        >
           Quickly build an effective pricing table for your potential customers with
           this layout. It&apos;s built with default MUI components with little
           customization.
@@ -162,7 +177,7 @@ export default function Pricing() {
       </Container>
       {/* End hero unit */}
       <Container maxWidth="md" component="main">
-        <Grid container spacing={5} alignItems="flex-end">
+        <Grid container spacing={5} sx={{ alignItems: 'flex-end' }}>
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
             <Grid
@@ -181,12 +196,12 @@ export default function Pricing() {
                   subheaderTypographyProps={{
                     align: 'center',
                   }}
-                  sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? theme.palette.grey[200]
-                        : theme.palette.grey[700],
-                  }}
+                  sx={(theme) => ({
+                    backgroundColor: theme.palette.grey[200],
+                    ...theme.applyStyles('dark', {
+                      backgroundColor: theme.palette.grey[700],
+                    }),
+                  })}
                 />
                 <CardContent>
                   <Box
@@ -197,10 +212,14 @@ export default function Pricing() {
                       mb: 2,
                     }}
                   >
-                    <Typography component="h2" variant="h3" color="text.primary">
+                    <Typography
+                      component="h2"
+                      variant="h3"
+                      sx={{ color: 'text.primary' }}
+                    >
                       ${tier.price}
                     </Typography>
-                    <Typography variant="h6" color="text.secondary">
+                    <Typography variant="h6" sx={{ color: 'text.secondary' }}>
                       /mo
                     </Typography>
                   </Box>
@@ -231,16 +250,16 @@ export default function Pricing() {
       <Container
         maxWidth="md"
         component="footer"
-        sx={{
-          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+        sx={(theme) => ({
+          borderTop: `1px solid ${theme.palette.divider}`,
           mt: 8,
           py: [3, 6],
-        }}
+        })}
       >
-        <Grid container spacing={4} justifyContent="space-evenly">
+        <Grid container spacing={4} sx={{ justifyContent: 'space-evenly' }}>
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="text.primary" gutterBottom>
+              <Typography variant="h6" gutterBottom sx={{ color: 'text.primary' }}>
                 {footer.title}
               </Typography>
               <ul>

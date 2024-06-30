@@ -8,12 +8,11 @@ import kebabCase from 'lodash/kebabCase';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import type { Link } from 'mdast';
-import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
+import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { renderMarkdown } from '@mui/internal-markdown';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
-import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
+import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
@@ -23,90 +22,11 @@ import createDescribeableProp, {
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
+import parseSlotsAndClasses from '../utils/parseSlotsAndClasses';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';
-
-export type AdditionalPropsInfo = {
-  cssApi?: boolean;
-  sx?: boolean;
-  slotsApi?: boolean;
-  'joy-size'?: boolean;
-  'joy-color'?: boolean;
-  'joy-variant'?: boolean;
-};
-
-export type SeeMore = { description: string; link: { text: string; url: string } };
-
-export interface ReactApi extends ReactDocgenApi {
-  demos: ReturnType<ComponentInfo['getDemos']>;
-  EOL: string;
-  filename: string;
-  apiPathname: string;
-  forwardsRefTo: string | undefined;
-  inheritance: ReturnType<ComponentInfo['getInheritance']>;
-  /**
-   * react component name
-   * @example 'Accordion'
-   */
-  name: string;
-  muiName: string;
-  description: string;
-  spread: boolean | undefined;
-  /**
-   * If `true`, the component supports theme default props customization.
-   * If `null`, we couldn't infer this information.
-   * If `undefined`, it's not applicable in this context, for example Base UI components.
-   */
-  themeDefaultProps: boolean | undefined | null;
-  /**
-   * result of path.readFileSync from the `filename` in utf-8
-   */
-  src: string;
-  classes: ComponentClassDefinition[];
-  slots: Slot[];
-  propsTable: _.Dictionary<{
-    default: string | undefined;
-    required: boolean | undefined;
-    type: { name: string | undefined; description: string | undefined };
-    deprecated: true | undefined;
-    deprecationInfo: string | undefined;
-    signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
-    additionalInfo?: AdditionalPropsInfo;
-    seeMoreLink?: SeeMore['link'];
-  }>;
-  /**
-   * Different ways to import components
-   */
-  imports: string[];
-  translations: {
-    componentDescription: string;
-    deprecationInfo: string | undefined;
-    propDescriptions: {
-      [key: string]: {
-        description: string;
-        requiresRef?: boolean;
-        deprecated?: string;
-        typeDescriptions?: { [t: string]: string };
-        seeMoreText?: string;
-      };
-    };
-    classDescriptions: {
-      [key: string]: {
-        description: string;
-        conditions?: string;
-        nodeName?: string;
-        deprecationInfo?: string;
-      };
-    };
-    slotDescriptions?: { [key: string]: string };
-  };
-  /**
-   * The folder used to store the API translation.
-   */
-  apiDocsTranslationFolder?: string;
-  deprecated: true | undefined;
-}
+import { AdditionalPropsInfo, ComponentReactApi } from '../types/ApiBuilder.types';
+import { Slot, ComponentInfo } from '../types/utils.types';
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
 
@@ -118,7 +38,7 @@ const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
  * this method.
  */
 export async function computeApiDescription(
-  api: { description: ReactApi['description'] },
+  api: { description: ComponentReactApi['description'] },
   options: { host: string },
 ): Promise<string> {
   const { host } = options;
@@ -150,8 +70,12 @@ export async function computeApiDescription(
  *  *
  *  * - [Icon API](https://mui.com/api/icon/)
  */
-async function annotateComponentDefinition(api: ReactApi, componentJsdoc: Annotation) {
-  const HOST = 'https://mui.com';
+async function annotateComponentDefinition(
+  api: ComponentReactApi,
+  componentJsdoc: Annotation,
+  projectSettings: ProjectSettings,
+) {
+  const HOST = projectSettings.baseApiUrl ?? 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
   const fileName = path.parse(api.filename).name;
@@ -368,7 +292,7 @@ function extractClassCondition(description: string) {
 const generateApiPage = async (
   apiPagesDirectory: string,
   importTranslationPagesDirectory: string,
-  reactApi: ReactApi,
+  reactApi: ComponentReactApi,
   sortingStrategies?: SortingStrategiesType,
   onlyJsonFile: boolean = false,
   layoutConfigPath: string = '',
@@ -467,11 +391,11 @@ const generateApiPage = async (
 };
 
 const attachTranslations = (
-  reactApi: ReactApi,
+  reactApi: ComponentReactApi,
   deprecationInfo: string | undefined,
   settings?: CreateDescribeablePropSettings,
 ) => {
-  const translations: ReactApi['translations'] = {
+  const translations: ComponentReactApi['translations'] = {
     componentDescription: reactApi.description,
     deprecationInfo: deprecationInfo ? renderMarkdown(deprecationInfo) : undefined,
     propDescriptions: {},
@@ -535,10 +459,13 @@ const attachTranslations = (
   reactApi.translations = translations;
 };
 
-const attachPropsTable = (reactApi: ReactApi, settings?: CreateDescribeablePropSettings) => {
+const attachPropsTable = (
+  reactApi: ComponentReactApi,
+  settings?: CreateDescribeablePropSettings,
+) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
-  type Pair = [string, ReactApi['propsTable'][string]];
-  const componentProps: ReactApi['propsTable'] = _.fromPairs(
+  type Pair = [string, ComponentReactApi['propsTable'][string]];
+  const componentProps: ComponentReactApi['propsTable'] = _.fromPairs(
     Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {
@@ -595,7 +522,7 @@ const attachPropsTable = (reactApi: ReactApi, settings?: CreateDescribeablePropS
         }
       }
 
-      let signature: ReactApi['propsTable'][string]['signature'];
+      let signature: ComponentReactApi['propsTable'][string]['signature'];
       if (signatureType !== undefined) {
         signature = {
           type: signatureType,
@@ -695,7 +622,7 @@ export default async function generateComponentApi(
   }
 
   const filename = componentInfo.filename;
-  let reactApi: ReactApi;
+  let reactApi: ComponentReactApi;
 
   if (componentInfo.isSystemComponent) {
     try {
@@ -782,7 +709,7 @@ export default async function generateComponentApi(
     throw new Error(
       'Unable to find demos. \n' +
         `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
-        'Every public component should have a demo. ',
+        'Every public component should have a demo.\nFor internal component, add the name of the component to the `skipComponent` method of the product.',
     );
   }
 
@@ -855,7 +782,7 @@ export default async function generateComponentApi(
         : !skipAnnotatingComponentDefinition
     ) {
       // Add comment about demo & api links (including inherited component) to the component file
-      await annotateComponentDefinition(reactApi, componentJsdoc);
+      await annotateComponentDefinition(reactApi, componentJsdoc, projectSettings);
     }
   }
 

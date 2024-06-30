@@ -22,7 +22,7 @@ The grid system is implemented with the `Grid` component:
 - There are five default grid breakpoints: xs, sm, md, lg, and xl. If you need custom breakpoints, check out [custom breakpoints grid](#custom-breakpoints).
 - Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
 - It uses negative margin and padding technique to create [gap-like](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) between children.
-- It **does not** have the concept of rows. Meaning, you can't make the children span to multiple rows. If you need to do that, we recommend to use [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) instead.
+- It **does not** have the concept of rows. Meaning, you can't make the children span to multiple rows. If you need to do that, we recommend to use [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) instead.
 - It **does not** offer auto-placement children feature. It will try to fit the children one by one and if there is not enough space, the rest of the children will start on the next line and so on. If you need the auto-placement feature, we recommend to use [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Auto-placement_in_grid_layout) instead.
 
 :::warning
@@ -154,18 +154,6 @@ declare module '@mui/system' {
   }
 }
 ```
-
-## Prevent scrollbar
-
-If you use grid as a container in a small viewport, you might see a horizontal scrollbar because the negative margin is applied on all sides of the grid container.
-
-To prevent the scrollbar, set `disableEqualOverflow` prop to `true`. It will enable negative margin only on the top and left sides of the grid which remove overflow on the right-hand side.
-
-{{"demo": "OverflowGrid.js", "bg": true}}
-
-:::warning
-You should avoid adding borders or background to the grid when `disableEqualOverflow: true` because the negative margin (applied only at the top and left sides) makes the grid visually misaligned.
-:::
 
 ## Limitations
 

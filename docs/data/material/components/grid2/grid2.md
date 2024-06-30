@@ -1,6 +1,7 @@
 ---
 productId: material-ui
 title: React Grid component
+components: PigmentGrid
 githubLabel: 'component: Grid'
 materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 ---
@@ -9,10 +10,10 @@ materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 
 <p class="description">The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
-
 The `Grid` component works well for a layout with a known number of columns.
 The columns can be configured with multiple breakpoints to specify the column span of each child.
+
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 ## What's changed
 
@@ -47,7 +48,7 @@ The grid system is implemented with the `Grid` component:
 - There are five default grid breakpoints: xs, sm, md, lg, and xl. If you need custom breakpoints, check out [custom breakpoints grid](#custom-breakpoints).
 - You can give integer values for each breakpoint, to indicate how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
 - It uses negative margins and padding to create gaps between children, which behave similarly to [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
-- It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) if you need this functionality.
+- It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) if you need this functionality.
 - It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Auto-placement_in_grid_layout) instead.
 
 :::warning
@@ -112,7 +113,6 @@ Responsive values are supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all other [MUI System props](#system-props)
 
 ## Auto-layout
 
@@ -241,21 +241,6 @@ declare module '@mui/system' {
   }
 }
 ```
-
-## Disable the scrollbar
-
-If you use grid as a container in a small viewport, you might see a horizontal scrollbar because the negative margin is applied on all sides of the grid container.
-
-To disable this scrollbar, set the `disableEqualOverflow` prop to `true`.
-This removes the negative margins from the bottom and right sides of the grid to prevent overflow.
-
-The demo below shows how this works:
-
-{{"demo": "OverflowGrid.js", "bg": true}}
-
-:::warning
-You should avoid adding borders and backgrounds to the grid when `disableEqualOverflow` is `true` because the negative margin (applied only at the top and left sides) causes the grid to be visually misaligned.
-:::
 
 ## Customization
 

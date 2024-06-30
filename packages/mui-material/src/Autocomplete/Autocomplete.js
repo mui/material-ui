@@ -18,12 +18,11 @@ import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import filledInputClasses from '../FilledInput/filledInputClasses';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiAutocomplete');
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -87,6 +86,15 @@ const AutocompleteRoot = styled('div', {
     ];
   },
 })({
+  [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
+    visibility: 'visible',
+  },
+  /* Avoid double tap issue on iOS */
+  '@media (pointer: fine)': {
+    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+      visibility: 'visible',
+    },
+  },
   [`& .${autocompleteClasses.tag}`]: {
     margin: 3,
     maxWidth: 'calc(100% - 6px)',
@@ -101,23 +109,6 @@ const AutocompleteRoot = styled('div', {
     [`& .${autocompleteClasses.input}`]: {
       width: 0,
       minWidth: 30,
-    },
-  },
-  [`&.${autocompleteClasses.focused}`]: {
-    [`& .${autocompleteClasses.clearIndicator}`]: {
-      visibility: 'visible',
-    },
-    [`& .${autocompleteClasses.input}`]: {
-      minWidth: 0,
-    },
-  },
-  /* Avoid double tap issue on iOS */
-  '@media (pointer: fine)': {
-    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
-      visibility: 'visible',
-    },
-    [`&:hover .${autocompleteClasses.input}`]: {
-      minWidth: 0,
     },
   },
   [`& .${inputClasses.root}`]: {
@@ -419,7 +410,7 @@ const AutocompleteGroupUl = styled('ul', {
 export { createFilterOptions };
 
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAutocomplete' });
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {

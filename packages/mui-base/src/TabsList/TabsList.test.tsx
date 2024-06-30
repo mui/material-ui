@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { act, createMount, createRenderer } from '@mui/internal-test-utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import { Tab } from '@mui/base/Tab';
 import { Tabs, TabsContext } from '@mui/base/Tabs';
 import { TabsList, tabsListClasses } from '@mui/base/TabsList';
@@ -8,7 +8,6 @@ import { describeConformanceUnstyled } from '../../test/describeConformanceUnsty
 
 describe('<TabsList />', () => {
   const { render } = createRenderer();
-  const mount = createMount();
 
   describeConformanceUnstyled(<TabsList />, () => ({
     inheritComponent: 'div',
@@ -28,22 +27,6 @@ describe('<TabsList />', () => {
       );
 
       return { container, ...other };
-    },
-    mount: (node: any) => {
-      const wrapper = mount(
-        <TabsContext.Provider
-          value={{
-            value: '1',
-            onSelected: () => {},
-            registerTabIdLookup() {},
-            getTabId: () => '',
-            getTabPanelId: () => '',
-          }}
-        >
-          {node}
-        </TabsContext.Provider>,
-      );
-      return wrapper.childAt(0);
     },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',

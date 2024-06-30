@@ -103,3 +103,22 @@
     marginRight: '36px'
   }, open && { display: 'none' }]}
 />;
+
+<Step
+  key={step}
+  indicator={
+    <StepIndicator
+      variant={activeStep <= index ? 'soft' : 'solid'}
+      color={activeStep < index ? 'neutral' : 'primary'}
+    >
+      {activeStep <= index ? index + 1 : <Check />}
+    </StepIndicator>
+  }
+  sx={[activeStep > index && index !== 2 && {
+    '&:not([data-active])': {
+      '&::after': { bgcolor: 'primary.solidBg' }
+    }
+  }]}
+>
+  <StepButton onClick={() => setActiveStep(index)}>{step}</StepButton>
+</Step>;

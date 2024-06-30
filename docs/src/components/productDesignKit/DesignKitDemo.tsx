@@ -129,15 +129,8 @@ export function MaterialFigmaComponents({ fadeIn }: MaterialFigmaComponentsProps
 export function MaterialDesignKitInfo() {
   return (
     <Frame.Info data-mui-color-scheme="dark">
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 1,
-          mb: 0.5,
-        }}
-      >
-        <Typography variant="body2" fontWeight="semiBold">
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+        <Typography variant="body2" sx={{ fontWeight: 'semiBold' }}>
           Available in:
         </Typography>
         <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 20, height: 20 } }}>
@@ -154,7 +147,7 @@ export function MaterialDesignKitInfo() {
           />
         </Box>
       </Box>
-      <Typography variant="body2" color="text.secondary" mb={2}>
+      <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
         We frequently update them to stay up-to-date with the latest release.
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5 }}>
@@ -228,12 +221,7 @@ export default function DesignKitsDemo() {
         </Grid>
         <Grid xs={12} md={6}>
           <Frame>
-            <Frame.Demo
-              sx={{
-                overflow: 'clip',
-                height: { xs: 240, sm: 390 },
-              }}
-            >
+            <Frame.Demo sx={{ overflow: 'clip', height: { xs: 240, sm: 390 } }}>
               <MaterialFigmaComponents fadeIn={demo === 'Components'} />
               <Fade in={demo === 'Branding'} timeout={500}>
                 <Image

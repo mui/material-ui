@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import { act, createMount, createRenderer } from '@mui/internal-test-utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import { MenuButton, menuButtonClasses } from '@mui/base/MenuButton';
 import { DropdownContext, DropdownContextValue, DropdownActionTypes } from '@mui/base/useDropdown';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
@@ -21,7 +21,6 @@ const testContext: DropdownContextValue = {
 };
 
 describe('<MenuButton />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<MenuButton />, () => ({
@@ -30,12 +29,6 @@ describe('<MenuButton />', () => {
       return render(
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
       );
-    },
-    mount: (node: React.ReactNode) => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
-      );
-      return wrapper.childAt(0);
     },
     refInstanceof: window.HTMLButtonElement,
     slots: {

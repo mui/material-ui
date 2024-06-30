@@ -4,11 +4,10 @@ import integerPropType from '@mui/utils/integerPropType';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getImageListUtilityClass } from './imageListClasses';
 import ImageListContext from './ImageListContext';
-
-const useThemeProps = createUseThemeProps('MuiImageList');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant } = ownerState;
@@ -48,7 +47,7 @@ const ImageListRoot = styled('ul', {
 });
 
 const ImageList = React.forwardRef(function ImageList(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiImageList',
   });
@@ -69,20 +68,6 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
     () => ({ rowHeight, gap, variant }),
     [rowHeight, gap, variant],
   );
-
-  React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      // Detect Internet Explorer 8+
-      if (document !== undefined && 'objectFit' in document.documentElement.style === false) {
-        console.error(
-          [
-            'MUI: ImageList v5+ no longer natively supports Internet Explorer.',
-            'Use v4 of this component instead, or polyfill CSS object-fit.',
-          ].join('\n'),
-        );
-      }
-    }
-  }, []);
 
   const style =
     variant === 'masonry'

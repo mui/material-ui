@@ -184,6 +184,10 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/typography' },
           { pathname: '/material-ui/customization/spacing' },
           { pathname: '/material-ui/customization/breakpoints' },
+          {
+            pathname: '/material-ui/customization/container-queries',
+            newFeature: true,
+          },
           { pathname: '/material-ui/customization/density' },
           { pathname: '/material-ui/customization/z-index', title: 'z-index' },
           { pathname: '/material-ui/customization/transitions' },
@@ -256,10 +260,6 @@ const pages: MuiPage[] = [
     title: 'Migration',
     children: [
       {
-        pathname: '/material-ui/migration/migrating-from-deprecated-apis',
-        title: 'Migrating from deprecated APIs',
-      },
-      {
         pathname: '/material-ui/migration/migration-grid-v2',
         title: 'Migrating to Grid v2',
       },
@@ -272,8 +272,12 @@ const pages: MuiPage[] = [
         subheader: 'Upgrade to v6',
         children: [
           {
-            pathname: '/material-ui/migration/migration-v5',
-            title: 'Migrating to v6',
+            pathname: '/material-ui/migration/migrating-to-v6',
+            title: 'Migrating to v6: getting started',
+          },
+          {
+            pathname: '/material-ui/migration/migrating-from-deprecated-apis',
+            title: 'Migrating from deprecated APIs',
           },
           {
             pathname: '/material-ui/migration/migration-css-theme-variables',

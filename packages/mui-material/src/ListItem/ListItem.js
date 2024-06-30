@@ -7,7 +7,8 @@ import composeClasses from '@mui/utils/composeClasses';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import { alpha } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -16,8 +17,6 @@ import ListContext from '../List/ListContext';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
-
-const useThemeProps = createUseThemeProps('MuiListItem');
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -205,7 +204,7 @@ const ListItemContainer = styled('li', {
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItem' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItem' });
   const {
     alignItems = 'center',
     autoFocus = false,

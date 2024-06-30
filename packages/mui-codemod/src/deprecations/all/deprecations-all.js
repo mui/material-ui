@@ -15,12 +15,15 @@ import transformFormControlLabelProps from '../form-control-label-props';
 import transformGridProps from '../grid-props';
 import transformInputBaseProps from '../input-base-props';
 import transformInputProps from '../input-props';
+import transformModalProps from '../modal-props';
 import transformOutlinedInputProps from '../outlined-input-props';
 import transformPaginationItemClasses from '../pagination-item-classes';
 import transformSpeedDialProps from '../speed-dial-props';
+import transformTableSortLabelClasses from '../table-sort-label-classes';
 import transformStepConnectorClasses from '../step-connector-classes';
 import transformStepLabelProps from '../step-label-props';
 import transformTextFieldProps from '../text-field-props';
+import transformTabClasses from '../tab-classes';
 import transformToggleButtonGroupClasses from '../toggle-button-group-classes';
 
 /**
@@ -45,12 +48,15 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformGridProps(file, api, options);
   file.source = transformInputBaseProps(file, api, options);
   file.source = transformInputProps(file, api, options);
+  file.source = transformModalProps(file, api, options);
   file.source = transformOutlinedInputProps(file, api, options);
   file.source = transformPaginationItemClasses(file, api, options);
   file.source = transformSpeedDialProps(file, api, options);
   file.source = transformStepConnectorClasses(file, api, options);
   file.source = transformStepLabelProps(file, api, options);
+  file.source = transformTableSortLabelClasses(file, api, options);
   file.source = transformTextFieldProps(file, api, options);
+  file.source = transformTabClasses(file, api, options);
   file.source = transformToggleButtonGroupClasses(file, api, options);
 
   return file.source;
