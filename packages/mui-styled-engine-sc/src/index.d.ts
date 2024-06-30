@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as CSS from 'csstype';
 import * as hoistNonReactStatics from 'hoist-non-react-statics';
+import { DefaultTheme } from 'styled-components';
 
 type WithOptionalTheme<P extends { theme?: T | undefined }, T> = OmitU<P, 'theme'> & {
   theme?: T | undefined;
@@ -264,6 +265,26 @@ export interface ThemedStyledFunctionBase<
     ...rest: Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>>
   ): StyledComponent<C, T, O & U, A>;
 }
+
+type RuleSet<Props> = Interpolation<Props>[];
+
+declare function css(
+  styles:
+    | TemplateStringsArray
+    | CSSObject
+    | InterpolationFunction<ThemedStyledProps<object, DefaultTheme>>,
+  ...interpolations: Interpolation<ThemedStyledProps<object, DefaultTheme>>[]
+): RuleSet<object>;
+
+declare function css<Props extends object>(
+  styles:
+    | TemplateStringsArray
+    | CSSObject
+    | InterpolationFunction<ThemedStyledProps<Props, DefaultTheme>>,
+  ...interpolations: Interpolation<ThemedStyledProps<Props, DefaultTheme>>[]
+): RuleSet<Props>;
+
+export { css };
 
 // same as ThemedStyledFunction in styled-components, but without attrs, and withConfig
 export interface ThemedStyledFunction<
