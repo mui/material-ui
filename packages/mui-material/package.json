@@ -57,7 +57,7 @@
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
     "@popperjs/core": "^2.11.8",
-    "@testing-library/dom": "^10.1.0",
+    "@testing-library/dom": "^10.2.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/chai": "^4.3.16",
     "@types/prop-types": "^15.7.12",
