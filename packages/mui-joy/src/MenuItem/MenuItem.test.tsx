@@ -42,7 +42,7 @@ describe('Joy <MenuItem />', () => {
     muiName: 'JoyMenuItem',
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
-    skip: ['propsSpread', 'componentsProp', 'classesRoot', 'reactTestRenderer'],
+    skip: ['propsSpread', 'componentsProp', 'classesRoot'],
     slots: {
       root: {
         expectedClassName: classes.root,

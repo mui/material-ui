@@ -10,7 +10,6 @@ import {
   describeRef,
   randomStringValue,
   testComponentProp,
-  testReactTestRenderer,
 } from '@mui/internal-test-utils';
 import { ClassNameConfigurator } from '@mui/base/utils';
 
@@ -408,7 +407,6 @@ const fullSuite = {
   slotPropsCallbacks: testSlotPropsCallbacks,
   mergeClassName: testClassName,
   propsSpread: testPropForwarding,
-  reactTestRenderer: testReactTestRenderer,
   refForwarding: describeRef,
   ownerStatePropagation: testOwnerStatePropagation,
   disableClassGeneration: testDisablingClassGeneration,
