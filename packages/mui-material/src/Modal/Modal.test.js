@@ -43,7 +43,6 @@ describe('<Modal />', () => {
         'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
-        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
   );
