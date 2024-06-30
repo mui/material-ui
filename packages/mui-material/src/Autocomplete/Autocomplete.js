@@ -191,9 +191,6 @@ const AutocompleteRoot = styled('div', {
     textOverflow: 'ellipsis',
     opacity: 0,
   },
-  [`& .${autocompleteClasses.tag} ~ .${autocompleteClasses.input}`]: {
-    pointerEvents: 'none',
-  },
   variants: [
     {
       props: { fullWidth: true },
@@ -727,11 +724,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
-            onClick: (event) => {
-              if (event.target === event.currentTarget) {
-                handleInputMouseDown(event);
-              }
-            },
+            onMouseDown: (event) => handleInputMouseDown(event),
             ...((hasClearIcon || hasPopupIcon) && {
               endAdornment: (
                 <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
