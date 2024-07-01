@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.3.16",
-    "chai": "^4.4.1"
+    "chai": "^5.1.1"
   },
   "publishConfig": {
     "access": "public"

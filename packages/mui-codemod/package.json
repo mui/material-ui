@@ -42,7 +42,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.16",
     "@types/jscodeshift": "0.11.11",
-    "chai": "^4.4.1"
+    "chai": "^5.1.1"
   },
   "sideEffects": false,
   "publishConfig": {
