@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Badge from '@mui/material/Badge';
-import { badgeClasses } from '@mui/material/Badge';
+import Badge, { badgeClasses } from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 
 function MenuButton({ showBadge = false, ...props }) {

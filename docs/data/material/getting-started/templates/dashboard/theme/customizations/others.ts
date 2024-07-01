@@ -1,8 +1,8 @@
 import { Components } from '@mui/material';
 import { Theme, alpha } from '@mui/material/styles';
-import { gray, red, brand, green } from '../themePrimitives';
 import { chipClasses } from '@mui/material/Chip';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import { gray, red, brand, green } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const otherComponentsCustomizations: Components<Theme> = {

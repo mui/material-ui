@@ -1,12 +1,12 @@
 import { alpha } from '@mui/material/styles';
 
-import { gray } from '../themePrimitives';
 import { menuItemClasses } from '@mui/material/MenuItem';
 import { listItemIconClasses } from '@mui/material/ListItemIcon';
 import { menuClasses } from '@mui/material/Menu';
 import { dividerClasses } from '@mui/material/Divider';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { gridClasses } from '@mui/x-data-grid';
+import { gray } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const dataGridCustomizations = {

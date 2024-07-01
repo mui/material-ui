@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Badge from '@mui/material/Badge';
-import { badgeClasses } from '@mui/material/Badge';
+import Badge, { badgeClasses } from '@mui/material/Badge';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
 interface StyledMenuButtonProps extends IconButtonProps {

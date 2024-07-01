@@ -1,7 +1,7 @@
 import { Components } from '@mui/material';
 import { alpha, Theme } from '@mui/material/styles';
-import { gray, brand } from '../themePrimitives';
 import { svgIconClasses } from '@mui/material/SvgIcon';
+import { gray, brand } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const buttonsCustomizations: Components<Theme> = {

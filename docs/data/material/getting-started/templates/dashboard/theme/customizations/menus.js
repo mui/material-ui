@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import { alpha } from '@mui/material/styles';
-import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
-import { gray } from '../themePrimitives';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { typographyClasses } from '@mui/material/Typography';
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { dividerClasses } from '@mui/material/Divider';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import { gray } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const menuComponentsCustomizations = {

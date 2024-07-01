@@ -1,7 +1,7 @@
 import { alpha } from '@mui/material/styles';
 
-import { gray, brand } from '../themePrimitives';
 import { menuItemClasses } from '@mui/material/MenuItem';
+import { gray, brand } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const datePickersCustomizations = {
