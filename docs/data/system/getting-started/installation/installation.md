@@ -14,12 +14,12 @@ Run one of the following commands to add MUI System to your project:
 npm install @mui/system@next @emotion/react @emotion/styled
 ```
 
-```bash yarn
-yarn add @mui/system@next @emotion/react @emotion/styled
-```
-
 ```bash pnpm
 pnpm add @mui/system@next @emotion/react @emotion/styled
+```
+
+```bash yarn
+yarn add @mui/system@next @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -53,12 +53,12 @@ The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Re
 npm install @mui/system@next @mui/styled-engine-sc@next styled-components
 ```
 
-```bash yarn
-yarn add @mui/system@next @mui/styled-engine-sc@next styled-components
-```
-
 ```bash pnpm
 pnpm add @mui/system@next @mui/styled-engine-sc@next styled-components
+```
+
+```bash yarn
+yarn add @mui/system@next @mui/styled-engine-sc@next styled-components
 ```
 
 </codeblock>

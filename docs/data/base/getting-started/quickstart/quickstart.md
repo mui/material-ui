@@ -22,12 +22,12 @@ The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Re
 npm install @mui/base@next
 ```
 
-```bash yarn
-yarn add @mui/base@next
-```
-
 ```bash pnpm
 pnpm add @mui/base@next
+```
+
+```bash yarn
+yarn add @mui/base@next
 ```
 
 </codeblock>
