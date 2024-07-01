@@ -137,6 +137,8 @@ const DividerRoot = styled('div', {
         whiteSpace: 'nowrap',
         textAlign: 'center',
         border: 0,
+        borderTopStyle: 'solid',
+        borderLeftStyle: 'solid',
         '&::before, &::after': {
           content: '""',
           alignSelf: 'center',
@@ -149,6 +151,7 @@ const DividerRoot = styled('div', {
         '&::before, &::after': {
           width: '100%',
           borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderTopStyle: 'inherit',
         },
       },
     },
@@ -159,6 +162,7 @@ const DividerRoot = styled('div', {
         '&::before, &::after': {
           height: '100%',
           borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderLeftStyle: 'inherit',
         },
       },
     },
