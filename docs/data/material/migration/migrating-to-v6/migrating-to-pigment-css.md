@@ -173,6 +173,8 @@ export default defineConfig({
 
 </codeblock>
 
+If your theme contains default props for components, check out the [Default props provider](#default-props-provider) section.
+
 ### Removing owner state
 
 Since Pigment CSS is a build-time extraction tool, it does not support owner state through callbacks. Here is an example that will throw an error at build time:
@@ -249,6 +251,58 @@ const theme = extendTheme({
 
 </codeblock>
 
+### Default props provider
+
+Use `DefaultPropsProvider` in your main application file and move all the component default props to it:
+
+<codeblock>
+
+```diff next.config|vite.config
+ import { extendTheme } from '@mui/material';
+
+ const customTheme = extendTheme({
+   // ...other tokens.
+   components: {
+     MuiButtonBase: {
+-      defaultProps: {
+-        disableRipple: true,
+-      },
+     },
+     MuiSelect: {
+-      defaultProps: {
+-        IconComponent: DropdownIcon,
+-      },
+     }
+   }
+ });
+```
+
+```diff App.tsx
++ import DefaultPropsProvider from '@mui/material/DefaultPropsProvider';
+
+  function App() {
+    return (
++     <DefaultPropsProvider value={{
++       MuiButtonBase: {
++         disableRipple: true,
++       },
++       MuiSelect: {
++         IconComponent: DropdownIcon,
++       },
++     }}>
+        {/* Your app */}
++     </DefaultPropsProvider>
+    );
+  }
+```
+
+</codeblock>
+
+Once theme is configured correctly to the plugin, Material UI components will start using Pigment CSS for styling.
+
+However, there are exception to the layout components including `Box`, `Container`, `Grid`, `Hidden`, and `Stack`. These components need to be replaced with Pigment CSS layout components instead.
+Check out the [Migrate layout components](#migrate-layout-components) section for more details.
+
 ## Migrating dynamic styles
 
 ### sx prop
@@ -258,6 +312,8 @@ Run the following codemod:
 ```bash
 npx @mui/codemod@next v6.0.0/sx-prop path/to/folder
 ```
+
+The scenarios below are not covered by the codemod, you have to manually update them:
 
 <!-- Add manual case -->
 
@@ -306,11 +362,20 @@ If a value depends on a variable, you need to move it to a CSS variable inside i
 
 ### styled
 
-Run the following codemod:
+If you have a custom components that are using `styled` from `@mui/material/styles`, change the import source to `@mui/material-pigment-css`:
+
+```diff
+- import { styled } from '@mui/material/styles';
++ import { styled } from '@mui/material-pigment-css';
+```
+
+Then, run the following codemod:
 
 ```bash
 npx @mui/codemod@next v6.0.0/styled path/to/folder
 ```
+
+The scenarios below are not covered by the codemod, you have to manually update them:
 
 #### Dynamic styles based on props
 
@@ -366,3 +431,54 @@ export default FlashCode;
 ```
 
 </codeblock>
+
+## Migrate layout components
+
+Material UI v6 provides a separate set of layout components, including `Grid`, `Container`, and `Stack`, that are compatible with Pigment CSS.
+
+```diff
+- import Container from '@mui/material/Container';
++ import Container from '@mui/material/PigmentContainer';
+
+- import Grid from '@mui/material/Grid';
++ import Grid from '@mui/material/PigmentGrid';
+
+- import Stack from '@mui/material/Stack';
++ import Stack from '@mui/material/PigmentStack';
+
+- import Hidden from '@mui/material/Hidden';
++ import Hidden from '@mui/material/PigmentHidden';
+```
+
+For Box component, you can remove the import and use the HTML element directly.
+
+```diff
+- import Box from '@mui/material/Box';
+
+ function CustomCard() {
+   return (
+-    <Box sx={{ display: 'flex' }}>
+-      <Box component="img" src="..." sx={{ width: 24, height: 24 }}>
+-      ...
+-    </Box>
++    <div style={{ display: 'flex' }}>
++      <img src="..." style={{ width: 24, height: 24 }}>
++      ...
++    </div>
+   )
+ }
+```
+
+For **TypeScript** users, you need to extend the `HTMLAttributes` interface to support the `sx` prop. Add the following code to a file that is included in your `tsconfig.json`:
+
+```ts
+import type { Theme, SxProps } from '@mui/material/styles';
+
+declare global {
+  namespace React {
+    interface HTMLAttributes<T> {
+      sx?: SxProps<Theme>;
+    }
+  }
+}
+```
