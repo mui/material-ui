@@ -28,7 +28,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 
 import Head from 'docs/src/modules/components/Head';
-import getDashboardTheme from 'docs/data/material/getting-started/templates/dashboard/getDashboardTheme';
+import getDashboardTheme from 'docs/data/material/getting-started/templates/dashboard/theme/getDashboardTheme';
 import CustomDatePicker from 'docs/data/material/getting-started/templates/dashboard/components/CustomDatePicker';
 
 interface ToggleColorModeProps {

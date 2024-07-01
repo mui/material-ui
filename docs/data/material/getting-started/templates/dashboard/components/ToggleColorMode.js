@@ -7,11 +7,7 @@ import MenuButton from './MenuButton';
 
 function ToggleColorMode({ mode, toggleColorMode }) {
   return (
-    <MenuButton
-      onClick={toggleColorMode}
-      size="small"
-      aria-label="button to toggle theme"
-    >
+    <MenuButton onClick={toggleColorMode} size="small" aria-label="Toggle theme">
       {mode === 'dark' ? (
         <WbSunnyRoundedIcon fontSize="small" />
       ) : (

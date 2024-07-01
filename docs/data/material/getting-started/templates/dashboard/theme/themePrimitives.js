@@ -1,27 +1,4 @@
-import { PaletteMode } from '@mui/material';
 import { createTheme, alpha } from '@mui/material/styles';
-
-declare module '@mui/material/Paper' {
-  interface PaperPropsVariantOverrides {
-    highlighted: true;
-  }
-}
-declare module '@mui/material/styles/createPalette' {
-  interface ColorRange {
-    50: string;
-    100: string;
-    200: string;
-    300: string;
-    400: string;
-    500: string;
-    600: string;
-    700: string;
-    800: string;
-    900: string;
-  }
-
-  interface PaletteColor extends ColorRange {}
-}
 
 const customTheme = createTheme();
 
@@ -39,16 +16,16 @@ export const brand = {
 };
 
 export const gray = {
-  50: 'hsl(220, 60%, 97%)',
-  100: 'hsl(220, 35%, 94%)',
-  200: 'hsl(220, 35%, 88%)',
-  300: 'hsl(220, 25%, 80%)',
+  50: 'hsl(220, 35%, 97%)',
+  100: 'hsl(220, 30%, 94%)',
+  200: 'hsl(220, 20%, 88%)',
+  300: 'hsl(220, 20%, 80%)',
   400: 'hsl(220, 20%, 65%)',
   500: 'hsl(220, 20%, 42%)',
-  600: 'hsl(220, 25%, 35%)',
-  700: 'hsl(220, 25%, 25%)',
-  800: 'hsl(220, 25%, 10%)',
-  900: 'hsl(220, 30%, 5%)',
+  600: 'hsl(220, 20%, 35%)',
+  700: 'hsl(220, 20%, 25%)',
+  800: 'hsl(220, 30%, 6%)',
+  900: 'hsl(220, 35%, 3%)',
 };
 
 export const green = {
@@ -90,19 +67,19 @@ export const red = {
   900: 'hsl(0, 93%, 6%)',
 };
 
-export const getDesignTokens = (mode: PaletteMode) => ({
+export const getDesignTokens = (mode) => ({
   palette: {
     mode,
     primary: {
       light: brand[200],
-      main: brand[500],
-      dark: brand[800],
+      main: brand[400],
+      dark: brand[700],
       contrastText: brand[50],
       ...(mode === 'dark' && {
         contrastText: brand[50],
         light: brand[300],
         main: brand[400],
-        dark: brand[800],
+        dark: brand[700],
       }),
     },
     info: {
@@ -150,11 +127,11 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     grey: {
       ...gray,
     },
-    divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
+    divider: mode === 'dark' ? alpha(gray[700], 0.6) : alpha(gray[300], 0.4),
     background: {
-      default: gray[50],
-      paper: gray[100],
-      ...(mode === 'dark' && { default: gray[900], paper: gray[800] }),
+      default: 'hsl(0, 0%, 99%)',
+      paper: 'hsl(220, 35%, 97%)',
+      ...(mode === 'dark' && { default: gray[900], paper: 'hsl(220, 30%, 7%)' }),
     },
     text: {
       primary: gray[800],
@@ -164,10 +141,10 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     },
     action: {
       hover: alpha(gray[300], 0.2),
-      selected: `${alpha(brand[200], 0.2)}`,
+      selected: `${alpha(gray[300], 0.4)}`,
       ...(mode === 'dark' && {
-        hover: alpha(gray[500], 0.2),
-        selected: alpha(brand[800], 0.2),
+        hover: alpha(gray[600], 0.2),
+        selected: alpha(gray[600], 0.3),
       }),
     },
   },
@@ -221,6 +198,6 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     },
   },
   shape: {
-    borderRadius: 10,
+    borderRadius: 8,
   },
 });

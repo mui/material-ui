@@ -5,16 +5,19 @@ import { columns, rows } from '../internals/data/gridData';
 export default function CustomizedDataGrid() {
   return (
     <DataGrid
+      autoHeight
       checkboxSelection
       rows={rows}
       columns={columns}
+      rowHeight={40}
+      columnHeaderHeight={40}
       getRowClassName={(params) =>
         params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
       }
       initialState={{
-        pagination: { paginationModel: { pageSize: 10 } },
+        pagination: { paginationModel: { pageSize: 20 } },
       }}
-      pageSizeOptions={[10, 25, 50]}
+      pageSizeOptions={[10, 20, 50]}
       disableColumnResize
     />
   );

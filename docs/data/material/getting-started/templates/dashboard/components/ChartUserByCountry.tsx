@@ -115,15 +115,18 @@ function PieCenterLabel({ primaryText, secondaryText }: PieCenterLabelProps) {
 }
 
 const colors = [
-  'hsl(220, 25%, 65%)',
-  'hsl(220, 25%, 45%)',
-  'hsl(220, 25%, 30%)',
-  'hsl(220, 25%, 20%)',
+  'hsl(220, 20%, 65%)',
+  'hsl(220, 20%, 42%)',
+  'hsl(220, 20%, 35%)',
+  'hsl(220, 20%, 25%)',
 ];
 
 export default function ChartUserByCountry() {
   return (
-    <Card variant="outlined" sx={{ pb: '8px' }}>
+    <Card
+      variant="outlined"
+      sx={{ display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}
+    >
       <CardContent>
         <Typography component="h2" variant="subtitle2">
           Users by country
@@ -180,6 +183,7 @@ export default function ChartUserByCountry() {
               </Stack>
               <LinearProgress
                 variant="determinate"
+                aria-label="Number of users by country"
                 value={country.value}
                 sx={{
                   [`& .${linearProgressClasses.bar}`]: {

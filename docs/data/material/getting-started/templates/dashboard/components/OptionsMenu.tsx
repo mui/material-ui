@@ -1,11 +1,18 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
+import { styled } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
+import { MenuItem as MuiMenuItem } from '@mui/material';
+import { paperClasses } from '@mui/material/Paper';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import MenuButton from './MenuButton';
+
+const MenuItem = styled(MuiMenuItem)({
+  margin: '2px 0',
+});
 
 export default function OptionsMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -18,7 +25,11 @@ export default function OptionsMenu() {
   };
   return (
     <React.Fragment>
-      <MenuButton onClick={handleClick}>
+      <MenuButton
+        aria-label="Open menu"
+        onClick={handleClick}
+        sx={{ borderColor: 'transparent' }}
+      >
         <MoreVertRoundedIcon />
       </MenuButton>
       <Menu
@@ -29,25 +40,28 @@ export default function OptionsMenu() {
         onClick={handleClose}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        sx={{
+          [`& .${paperClasses.root}`]: {
+            padding: 0,
+          },
+        }}
       >
-        <MenuItem sx={{ mt: 1 }}>
-          <Avatar
-            sizes="small"
-            alt="Riley Carter"
-            src="/static/images/avatar/7.jpg"
-            sx={{ width: 24, height: 24, mr: 1 }}
-          />
-          <Typography component="p" variant="subtitle2">
-            Riley Carter
-          </Typography>
-        </MenuItem>
-        <Divider />
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>Add another account</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <Divider />
+        <MenuItem onClick={handleClose}>
+          <ListItemText>Logout</ListItemText>
+          <ListItemIcon
+            sx={{
+              [`& .${listItemIconClasses.root}`]: { minWidth: 0, opacity: 0.7 },
+            }}
+          >
+            <LogoutRoundedIcon fontSize="small" />
+          </ListItemIcon>
+        </MenuItem>
       </Menu>
     </React.Fragment>
   );
