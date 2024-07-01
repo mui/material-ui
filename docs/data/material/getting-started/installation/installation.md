@@ -49,15 +49,15 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material @mui/styled-engine-sc styled-components
+npm install @mui/material@next @mui/styled-engine-sc styled-components
 ```
 
 ```bash yarn
-yarn add @mui/material @mui/styled-engine-sc styled-components
+yarn add @mui/material@next @mui/styled-engine-sc styled-components
 ```
 
 ```bash pnpm
-pnpm add @mui/material @mui/styled-engine-sc styled-components
+pnpm add @mui/material@next @mui/styled-engine-sc styled-components
 ```
 
 </codeblock>
@@ -127,15 +127,15 @@ You can do so with npm, or with the Google Web Fonts CDN.
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/icons-material
+npm install @mui/icons-material@next
 ```
 
 ```bash yarn
-yarn add @mui/icons-material
+yarn add @mui/icons-material@next
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material
+pnpm add @mui/icons-material@next
 ```
 
 </codeblock>
