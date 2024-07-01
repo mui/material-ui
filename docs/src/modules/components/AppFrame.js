@@ -10,7 +10,6 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
-import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import NProgressBar from '@mui/docs/NProgressBar';
 import { debounce } from '@mui/material/utils';
@@ -171,7 +170,6 @@ export default function AppFrame(props) {
   const t = useTranslate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [settingsOpen, setSettingsOpen] = React.useState(false);
 
   const closeDrawer = React.useCallback(() => setMobileOpen(false), []);
   const openDrawer = React.useCallback(() => setMobileOpen(true), []);
@@ -233,11 +231,7 @@ export default function AppFrame(props) {
               </IconButton>
             </Tooltip>
             <Notifications />
-            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="primary" size="small" onClick={() => setSettingsOpen(true)}>
-                <SettingsIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
+            <AppSettingsDrawer />
           </Stack>
         </Stack>
       </StyledAppBar>
@@ -248,7 +242,6 @@ export default function AppFrame(props) {
         mobileOpen={mobileOpen}
       />
       {children}
-      <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
     </RootDiv>
   );
 }
