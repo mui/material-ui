@@ -59,7 +59,7 @@ describe('<Select />', () => {
         testWithElement: 'span',
       },
     },
-    skip: ['componentProp', 'reactTestRenderer'],
+    skip: ['componentProp'],
   }));
 
   describe('selected option rendering', () => {
@@ -998,8 +998,8 @@ describe('<Select />', () => {
       expect(screen.getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
     });
 
-    it('should have the aria-expanded attribute set to true when the listbox is open', () => {
-      render(
+    it('should have the aria-expanded attribute set to true when the listbox is open', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1013,8 +1013,8 @@ describe('<Select />', () => {
       expect(select).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('should have the aria-controls attribute', () => {
-      render(
+    it('should have the aria-controls attribute', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1033,8 +1033,8 @@ describe('<Select />', () => {
       expect(select).to.have.attribute('aria-controls', listboxId!);
     });
 
-    it('should have the correct tabindex attribute', () => {
-      render(
+    it('should have the correct tabindex attribute', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,

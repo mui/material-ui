@@ -29,10 +29,6 @@ export { default as unstable_useTimeout, Timeout as unstable_Timeout } from './u
 export { default as unstable_useOnMount } from './useOnMount';
 export { default as unstable_useIsFocusVisible } from './useIsFocusVisible';
 export { default as unstable_getScrollbarSize } from './getScrollbarSize';
-export {
-  detectScrollType as unstable_detectScrollType,
-  getNormalizedScrollLeft as unstable_getNormalizedScrollLeft,
-} from './scrollLeft';
 export { default as usePreviousProps } from './usePreviousProps';
 export { default as getValidReactChildren } from './getValidReactChildren';
 export { default as visuallyHidden } from './visuallyHidden';
