@@ -54,6 +54,12 @@ function CssBaseline(props: CssBaselineProps) {
             'strong, b': {
               fontWeight: theme.vars.fontWeight.lg,
             },
+            a: {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[500],
+            },
             body: {
               margin: 0, // Remove the margin in all browsers.
               color: theme.vars.palette.text.primary,
