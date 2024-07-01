@@ -5,6 +5,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import MuiToolbar from '@mui/material/Toolbar';
+import { tabsClasses } from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
@@ -25,7 +26,7 @@ const Toolbar = styled(MuiToolbar)({
   justifyContent: 'center',
   gap: '12px',
   flexShrink: 0,
-  '& .MuiTabs-flexContainer': {
+  [`& ${tabsClasses.flexContainer}`]: {
     gap: '8px',
     p: '8px',
     pb: 0,
@@ -59,7 +60,6 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
             alignItems: 'center',
             flexGrow: 1,
             width: '100%',
-            backgroundColor: 'red',
           }}
         >
           <Stack direction="row" spacing={1} sx={{ justifyContent: 'center' }}>

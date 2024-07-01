@@ -9,6 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListSubheader from '@mui/material/ListSubheader';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { selectClasses } from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 import { styled } from '@mui/material/styles';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
@@ -48,7 +49,11 @@ export default function SelectContent() {
         fullWidth
         sx={{
           maxHeight: 56,
-          '& .MuiSelect-select': { display: 'flex', alignItems: 'center', pl: 1 },
+          [`& .${selectClasses.select}`]: {
+            display: 'flex',
+            alignItems: 'center',
+            pl: 1,
+          },
         }}
       >
         <ListSubheader>Production</ListSubheader>

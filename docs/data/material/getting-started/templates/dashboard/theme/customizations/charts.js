@@ -1,28 +1,25 @@
 import { gray } from '../themePrimitives';
+import { axisClasses, legendClasses, chartsGridClasses } from '@mui/x-charts';
 
 /* eslint-disable import/prefer-default-export */
 export const chartsCustomizations = {
   MuiChartsAxis: {
     styleOverrides: {
       root: ({ theme }) => ({
-        '& .MuiChartsAxis-line': {
+        [`& .${axisClasses.line}`]: {
           stroke: gray[300],
         },
-        '& .MuiChartsAxis-tick': {
-          stroke: gray[300],
-        },
-        '& .MuiChartsAxis-tickLabel': {
+        [`& .${axisClasses.tick}`]: { stroke: gray[300] },
+        [`& .${axisClasses.tickLabel}`]: {
           fill: gray[500],
           fontWeight: 500,
         },
         ...theme.applyStyles('dark', {
-          '& .MuiChartsAxis-line': {
+          [`& .${axisClasses.line}`]: {
             stroke: gray[700],
           },
-          '& .MuiChartsAxis-tick': {
-            stroke: gray[700],
-          },
-          '& .MuiChartsAxis-tickLabel': {
+          [`& .${axisClasses.tick}`]: { stroke: gray[700] },
+          [`& .${axisClasses.tickLabel}`]: {
             fill: gray[300],
             fontWeight: 500,
           },
@@ -50,7 +47,7 @@ export const chartsCustomizations = {
   MuiChartsLegend: {
     styleOverrides: {
       root: {
-        '& .MuiChartsLegend-mark': {
+        [`& .${legendClasses.mark}`]: {
           ry: 6,
         },
       },
@@ -59,13 +56,13 @@ export const chartsCustomizations = {
   MuiChartsGrid: {
     styleOverrides: {
       root: ({ theme }) => ({
-        '& .MuiChartsGrid-line': {
+        [`& .${chartsGridClasses.line}`]: {
           stroke: gray[200],
           strokeDasharray: '4 2',
           strokeWidth: 0.8,
         },
         ...theme.applyStyles('dark', {
-          '& .MuiChartsGrid-line': {
+          [`& .${chartsGridClasses.line}`]: {
             stroke: gray[700],
             strokeDasharray: '4 2',
             strokeWidth: 0.8,

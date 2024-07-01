@@ -4,6 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
+import { drawerClasses } from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
@@ -33,7 +34,7 @@ export default function SideMenuMobile({
       open={open}
       onClose={toggleDrawer(false)}
       sx={{
-        '& .MuiDrawer-paper': {
+        [`& .${drawerClasses.paper}`]: {
           backgroundImage: 'none',
           backgroundColor: 'background.paper',
         },

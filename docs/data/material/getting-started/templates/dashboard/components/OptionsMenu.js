@@ -3,8 +3,10 @@ import { styled } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import { MenuItem as MuiMenuItem } from '@mui/material';
+import { paperClasses } from '@mui/material/Paper';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import { listItemIconClasses } from '@mui/material/ListItemIcon';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import MenuButton from './MenuButton';
@@ -40,7 +42,7 @@ export default function OptionsMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         sx={{
-          '& .MuiPaper-root': {
+          [`& .${paperClasses.root}`]: {
             padding: 0,
           },
         }}
@@ -54,7 +56,9 @@ export default function OptionsMenu() {
         <MenuItem onClick={handleClose}>
           <ListItemText>Logout</ListItemText>
           <ListItemIcon
-            sx={{ '&.MuiListItemIcon-root': { minWidth: 0, opacity: 0.7 } }}
+            sx={{
+              [`& .${listItemIconClasses.root}`]: { minWidth: 0, opacity: 0.7 },
+            }}
           >
             <LogoutRoundedIcon fontSize="small" />
           </ListItemIcon>

@@ -1,5 +1,7 @@
 import { alpha } from '@mui/material/styles';
 import { gray, red, brand, green } from '../themePrimitives';
+import { chipClasses } from '@mui/material/Chip';
+import { iconButtonClasses } from '@mui/material/IconButton';
 
 /* eslint-disable import/prefer-default-export */
 export const otherComponentsCustomizations = {
@@ -47,7 +49,7 @@ export const otherComponentsCustomizations = {
       root: ({ theme }) => ({
         border: '1px solid',
         borderRadius: '999px',
-        '& .MuiChip-label': {
+        [`& .${chipClasses.label}`]: {
           padding: '0 4px',
           fontWeight: 600,
         },
@@ -59,19 +61,19 @@ export const otherComponentsCustomizations = {
             style: {
               borderColor: gray[200],
               backgroundColor: gray[100],
-              '& .MuiChip-label': {
+              [`& .${chipClasses.label}`]: {
                 color: gray[500],
               },
-              '& .MuiChip-icon': {
+              [`& .${chipClasses.icon}`]: {
                 color: gray[500],
               },
               ...theme.applyStyles('dark', {
                 borderColor: gray[700],
                 backgroundColor: gray[800],
-                '& .MuiChip-label': {
+                [`& .${chipClasses.label}`]: {
                   color: gray[300],
                 },
-                '& .MuiChip-icon': {
+                [`& .${chipClasses.icon}`]: {
                   color: gray[300],
                 },
               }),
@@ -84,19 +86,19 @@ export const otherComponentsCustomizations = {
             style: {
               borderColor: green[200],
               backgroundColor: green[50],
-              '& .MuiChip-label': {
+              [`& .${chipClasses.label}`]: {
                 color: green[500],
               },
-              '& .MuiChip-icon': {
+              [`& .${chipClasses.icon}`]: {
                 color: green[500],
               },
               ...theme.applyStyles('dark', {
                 borderColor: green[800],
                 backgroundColor: green[900],
-                '& .MuiChip-label': {
+                [`& .${chipClasses.label}`]: {
                   color: green[300],
                 },
-                '& .MuiChip-icon': {
+                [`& .${chipClasses.icon}`]: {
                   color: green[300],
                 },
               }),
@@ -109,19 +111,19 @@ export const otherComponentsCustomizations = {
             style: {
               borderColor: red[100],
               backgroundColor: red[50],
-              '& .MuiChip-label': {
+              [`& .${chipClasses.label}`]: {
                 color: red[500],
               },
-              '& .MuiChip-icon': {
+              [`& .${chipClasses.icon}`]: {
                 color: red[500],
               },
               ...theme.applyStyles('dark', {
                 borderColor: red[800],
                 backgroundColor: red[900],
-                '& .MuiChip-label': {
+                [`& .${chipClasses.label}`]: {
                   color: red[200],
                 },
-                '& .MuiChip-icon': {
+                [`& .${chipClasses.icon}`]: {
                   color: red[300],
                 },
               }),
@@ -131,7 +133,7 @@ export const otherComponentsCustomizations = {
             props: { size: 'small' },
             style: {
               maxHeight: 20,
-              '& .MuiChip-label': {
+              [`& .${chipClasses.label}`]: {
                 fontSize: theme.typography.caption.fontSize,
               },
             },
@@ -158,7 +160,11 @@ export const otherComponentsCustomizations = {
         display: 'flex',
         gap: 8,
         marginRight: 6,
-        '& .MuiIconButton-root': { minWidth: 0, width: 36, height: 36 },
+        [`& .${iconButtonClasses.root}`]: {
+          minWidth: 0,
+          width: 36,
+          height: 36,
+        },
       },
     },
   },

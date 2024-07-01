@@ -1,6 +1,7 @@
 import { Components } from '@mui/material';
 import { alpha, Theme } from '@mui/material/styles';
 import { gray, brand } from '../themePrimitives';
+import { svgIconClasses } from '@mui/material/SvgIcon';
 
 /* eslint-disable import/prefer-default-export */
 export const buttonsCustomizations: Components<Theme> = {
@@ -253,7 +254,7 @@ export const buttonsCustomizations: Components<Theme> = {
               width: '2rem',
               height: '2rem',
               padding: '0.25rem',
-              '& .MuiSvgIcon-root': { fontSize: '1rem' },
+              [`& .${svgIconClasses.root}`]: { fontSize: '1rem' },
             },
           },
           {

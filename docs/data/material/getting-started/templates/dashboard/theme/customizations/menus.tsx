@@ -3,6 +3,10 @@ import { Components, SvgIconProps } from '@mui/material';
 import { Theme, alpha } from '@mui/material/styles';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { gray } from '../themePrimitives';
+import { svgIconClasses } from '@mui/material/SvgIcon';
+import { typographyClasses } from '@mui/material/Typography';
+import { buttonBaseClasses } from '@mui/material/ButtonBase';
+import { dividerClasses } from '@mui/material/Divider';
 
 /* eslint-disable import/prefer-default-export */
 export const menuComponentsCustomizations: Components<Theme> = {
@@ -19,15 +23,15 @@ export const menuComponentsCustomizations: Components<Theme> = {
   MuiListItem: {
     styleOverrides: {
       root: ({ theme }) => ({
-        '.MuiSvgIcon-root': {
+        [`& .${svgIconClasses.root}`]: {
           width: '1rem',
           height: '1rem',
           color: theme.palette.text.secondary,
         },
-        '.MuiTypography-root': {
+        [`& .${typographyClasses.root}`]: {
           fontWeight: 500,
         },
-        '.MuiButtonBase-root': {
+        [`& .${buttonBaseClasses.root}`]: {
           display: 'flex',
           gap: 8,
           padding: '2px 8px',
@@ -36,7 +40,7 @@ export const menuComponentsCustomizations: Components<Theme> = {
           '&.Mui-selected': {
             opacity: 1,
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
-            '.MuiSvgIcon-root': {
+            [`& .${svgIconClasses.root}`]: {
               color: theme.palette.text.primary,
             },
             '&.Mui-focusVisible': {
@@ -103,7 +107,12 @@ export const menuComponentsCustomizations: Components<Theme> = {
   },
   MuiMenu: {
     styleOverrides: {
-      list: { gap: '0px', '& .MuiDivider-root': { margin: '0 -8px' } },
+      list: {
+        gap: '0px',
+        [`&.${dividerClasses.root}`]: {
+          margin: '0 -8px',
+        },
+      },
       paper: ({ theme }) => ({
         marginTop: '4px',
         borderRadius: theme.shape.borderRadius,
@@ -112,7 +121,7 @@ export const menuComponentsCustomizations: Components<Theme> = {
         background: 'hsl(0, 0%, 100%)',
         boxShadow:
           'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
-        '.MuiButtonBase-root': {
+        [`& .${buttonBaseClasses.root}`]: {
           '&.Mui-selected': {
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
           },

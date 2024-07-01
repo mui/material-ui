@@ -1,6 +1,7 @@
 import { alpha } from '@mui/material/styles';
 
 import { gray, brand } from '../themePrimitives';
+import { menuItemClasses } from '@mui/material/MenuItem';
 
 /* eslint-disable import/prefer-default-export */
 export const datePickersCustomizations = {
@@ -14,7 +15,10 @@ export const datePickersCustomizations = {
         background: 'hsl(0, 0%, 100%)',
         boxShadow:
           'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
-        '& .MuiMenuItem-root': { borderRadius: 6, margin: '0 6px' },
+        [`& .${menuItemClasses.root}`]: {
+          borderRadius: 6,
+          margin: '0 6px',
+        },
         ...theme.applyStyles('dark', {
           background: gray[900],
           boxShadow:

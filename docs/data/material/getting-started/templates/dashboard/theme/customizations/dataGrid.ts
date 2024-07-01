@@ -2,6 +2,12 @@ import { alpha, Theme } from '@mui/material/styles';
 import type { DataGridProComponents } from '@mui/x-data-grid-pro/themeAugmentation';
 import type { DataGridComponents } from '@mui/x-data-grid/themeAugmentation';
 import { gray } from '../themePrimitives';
+import { menuItemClasses } from '@mui/material/MenuItem';
+import { listItemIconClasses } from '@mui/material/ListItemIcon';
+import { menuClasses } from '@mui/material/Menu';
+import { dividerClasses } from '@mui/material/Divider';
+import { iconButtonClasses } from '@mui/material/IconButton';
+import { gridClasses } from '@mui/x-data-grid';
 
 /* eslint-disable import/prefer-default-export */
 export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComponents<Theme> = {
@@ -10,10 +16,10 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
       root: ({ theme }) => ({
         borderColor: theme.palette.divider,
         backgroundColor: theme.palette.background.default,
-        '& .MuiDataGrid-columnHeader': {
+        [`& .${gridClasses.columnHeader}`]: {
           backgroundColor: theme.palette.background.paper,
         },
-        '& .MuiDataGrid-footerContainer': {
+        [`& .${gridClasses.footerContainer}`]: {
           backgroundColor: theme.palette.background.paper,
         },
       }),
@@ -24,12 +30,16 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
         backgroundImage: 'none',
         boxShadow:
           'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
-        '& .MuiMenuItem-root': {
+        [`& .${menuItemClasses.root}`]: {
           margin: '0 4px',
         },
-        '& .MuiListItemIcon-root': { marginRight: 0 },
-        '& .MuiMenu-list': {
-          '& .MuiDivider-root': { margin: '0 -8px' },
+        [`& .${listItemIconClasses.root}`]: {
+          marginRight: 0,
+        },
+        [`& .${menuClasses.list}`]: {
+          [`& .${dividerClasses.root}`]: {
+            margin: '0 -8px',
+          },
         },
         ...theme.applyStyles('dark', {
           boxShadow:
@@ -49,7 +59,7 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
         },
       }),
       iconButtonContainer: ({ theme }) => ({
-        '& .MuiIconButton-root': {
+        [`& .${iconButtonClasses.root}`]: {
           border: 'none',
           backgroundColor: 'transparent',
           '&:hover': {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import MuiDrawer from '@mui/material/Drawer';
+import { drawerClasses } from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
@@ -17,7 +18,7 @@ const Drawer = styled(MuiDrawer)({
   width: drawerWidth,
   flexShrink: 0,
   boxSizing: 'border-box',
-  '& .MuiDrawer-paper': {
+  [`& .${drawerClasses.paper}`]: {
     width: drawerWidth,
     boxSizing: 'border-box',
   },
@@ -29,7 +30,7 @@ export default function SideMenu() {
       variant="permanent"
       sx={{
         display: { xs: 'none', md: 'block' },
-        '& .MuiDrawer-paper': {
+        [`& .${drawerClasses.paper}`]: {
           backgroundColor: 'background.paper',
         },
       }}

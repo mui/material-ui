@@ -58,9 +58,11 @@ export default function SessionsChart() {
         <Stack sx={{ justifyContent: 'space-between' }}>
           <Stack
             direction="row"
-            alignContent={{ xs: 'center', sm: 'flex-start' }}
-            alignItems="center"
-            gap={1}
+            sx={{
+              alignContent: { xs: 'center', sm: 'flex-start' },
+              alignItems: 'center',
+              gap: 1,
+            }}
           >
             <Typography variant="h4" component="p">
               13,277
