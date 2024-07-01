@@ -49,39 +49,31 @@ export default function MainGrid() {
   return (
     <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
       {/* cards */}
-      <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
-        Overview
-      </Typography>
+      <Grid container spacing={2} columns={12}>
+        {data.map((card, index) => (
+          <Grid key={index} size={{ xs: 6, sm: 3, md: 2, lg: 2.25 }}>
+            <StatCard {...card} />
+          </Grid>
+        ))}
+        <Grid size={{ xs: 12, md: 4, lg: 3 }}>
+          <HighlightedCard />
+        </Grid>
+      </Grid>
       <Grid
         container
         spacing={2}
         columns={12}
         sx={{ mb: (theme) => theme.spacing(2) }}
       >
-        {data.map((card, index) => (
-          <Grid key={index} xs={12} sm={6} lg={3}>
-            <StatCard {...card} />
-          </Grid>
-        ))}
-        <Grid xs={12} sm={6} lg={3}>
-          <HighlightedCard />
+        <Grid size={{ xs: 12, md: 8, lg: 9 }}>
+          <Stack spacing={2}>
+            <PageViewsBarChart />
+            <SessionsChart />
+            <CustomizedDataGrid />
+          </Stack>
         </Grid>
-        <Grid sm={12} md={6}>
-          <SessionsChart />
-        </Grid>
-        <Grid sm={12} md={6}>
-          <PageViewsBarChart />
-        </Grid>
-      </Grid>
-      <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
-        Details
-      </Typography>
-      <Grid container spacing={2} columns={12}>
-        <Grid md={12} lg={9}>
-          <CustomizedDataGrid />
-        </Grid>
-        <Grid xs={12} lg={3}>
-          <Stack gap={2} direction={{ xs: 'column', sm: 'row', lg: 'column' }}>
+        <Grid size={{ xs: 12, md: 4, lg: 3 }}>
+          <Stack spacing={2} direction={{ xs: 'column', sm: 'row', md: 'column' }}>
             <CustomizedTreeView />
             <ChartUserByCountry />
           </Stack>

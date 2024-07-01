@@ -49,7 +49,7 @@ export default function ProductSuite() {
   return (
     <Section bg="gradient" ref={ref}>
       <Grid container spacing={2}>
-        <Grid md={6}>
+        <Grid size={{ md: 6 }}>
           <SectionHeadline
             overline="Products"
             title={
@@ -66,9 +66,8 @@ export default function ProductSuite() {
           />
         </Grid>
         <Grid
-          xs={12}
-          md={6}
           sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
+          size={{ xs: 12, md: 6 }}
         >
           {inView ? (
             <React.Fragment>

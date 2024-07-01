@@ -7,13 +7,8 @@ import visuallyHidden from '@mui/utils/visuallyHidden';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
-import {
-  capitalize,
-  useForkRef,
-  useIsFocusVisible,
-  useControlled,
-  unstable_useId as useId,
-} from '../utils';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import { capitalize, useForkRef, useControlled, unstable_useId as useId } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
 import { styled } from '../zero-styled';
@@ -377,16 +372,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     value = focus;
   }
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   const rootRef = React.useRef();
-  const handleRef = useForkRef(focusVisibleRef, rootRef, ref);
+  const handleRef = useForkRef(rootRef, ref);
 
   const handleMouseMove = (event) => {
     if (onMouseMove) {
@@ -475,8 +464,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   };
 
   const handleFocus = (event) => {
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event.target)) {
       setFocusVisible(true);
     }
 
@@ -492,8 +480,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       return;
     }
 
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
     }
 

@@ -34,7 +34,12 @@ describe('<Tab />', () => {
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
-  it('should have a focusRipple by default', () => {
+  it('should have a focusRipple by default', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const { container, getByRole } = render(
       <Tab TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
     );
