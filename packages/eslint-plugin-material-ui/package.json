@@ -10,10 +10,10 @@
   "devDependencies": {
     "@types/eslint": "^8.56.10",
     "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^8.57.0"
+    "eslint": "^9.6.0"
   },
   "peerDependencies": {
-    "eslint": "^8.47.0"
+    "eslint": "^8.47.0 || ^9.0.0"
   },
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js'"
