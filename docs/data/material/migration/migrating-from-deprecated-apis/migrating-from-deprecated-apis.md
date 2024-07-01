@@ -1501,7 +1501,6 @@ The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ## Typography
 
-
 ### paragraph
 
 The Typography's `paragraph` prop was deprecated in favor of using the `component` prop. The `16px` of margin-bottom that was automatically added to the element when using `paragraph` must be manually handled now.
