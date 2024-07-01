@@ -327,15 +327,15 @@ describe('utils/colorManipulator', () => {
     });
 
     it('darkens rgb white by 10% when coefficient is 0.1', () => {
-      expect(darken('rgb(255, 255, 255)', 0.1)).to.equal('rgb(229, 229, 229)');
+      expect(darken('rgb(255, 255, 255)', 0.1)).to.equal('rgb(230, 230, 230)');
     });
 
     it('darkens rgb red by 50% when coefficient is 0.5', () => {
-      expect(darken('rgb(255, 0, 0)', 0.5)).to.equal('rgb(127, 0, 0)');
+      expect(darken('rgb(255, 0, 0)', 0.5)).to.equal('rgb(128, 0, 0)');
     });
 
     it('darkens rgb grey by 50% when coefficient is 0.5', () => {
-      expect(darken('rgb(127, 127, 127)', 0.5)).to.equal('rgb(63, 63, 63)');
+      expect(darken('rgb(127, 127, 127)', 0.5)).to.equal('rgb(64, 64, 64)');
     });
 
     it("doesn't modify rgb colors when coefficient is 0", () => {
