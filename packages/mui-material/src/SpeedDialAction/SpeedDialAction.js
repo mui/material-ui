@@ -247,7 +247,7 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
    */
   delay: PropTypes.number,
   /**
-   * Props applied to the [`Fab`](/material-ui/api/fab/) component.
+   * Props applied to the [`Fab`](https://next.mui.com/material-ui/api/fab/) component.
    * @default {}
    */
   FabProps: PropTypes.object,
@@ -273,7 +273,7 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * `classes` prop applied to the [`Tooltip`](/material-ui/api/tooltip/) element.
+   * `classes` prop applied to the [`Tooltip`](https://next.mui.com/material-ui/api/tooltip/) element.
    */
   TooltipClasses: PropTypes.object,
   /**

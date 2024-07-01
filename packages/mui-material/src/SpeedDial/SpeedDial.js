@@ -470,7 +470,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
-   * Props applied to the [`Fab`](/material-ui/api/fab/) element.
+   * Props applied to the [`Fab`](https://next.mui.com/material-ui/api/fab/) element.
    * @default {}
    */
   FabProps: PropTypes.object,
@@ -550,9 +550,9 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://next.mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
-   * * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   * * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -574,7 +574,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](https://next.mui.com/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionProps: PropTypes.object,
 };

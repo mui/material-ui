@@ -155,7 +155,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
-   * Props applied to the [`Popper`](/material-ui/api/popper/) element.
+   * Props applied to the [`Popper`](https://next.mui.com/material-ui/api/popper/) element.
    * @default {}
    */
   PopperProps?: Partial<PopperProps>;
@@ -200,7 +200,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   title: React.ReactNode;
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://next.mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<

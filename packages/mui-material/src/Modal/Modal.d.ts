@@ -43,7 +43,7 @@ export interface ModalOwnProps {
    */
   BackdropComponent?: React.ElementType<BackdropProps>;
   /**
-   * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](https://next.mui.com/material-ui/api/backdrop/) element.
    * @deprecated Use `slotProps.backdrop` instead.
    */
   BackdropProps?: Partial<BackdropProps>;

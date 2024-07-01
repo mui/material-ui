@@ -918,7 +918,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   PopperComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Popper`](/material-ui/api/popper/) element.
+   * Props applied to the [`Popper`](https://next.mui.com/material-ui/api/popper/) element.
    * @default {}
    */
   PopperProps: PropTypes.object,
@@ -963,7 +963,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   title: PropTypes.node,
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://next.mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
