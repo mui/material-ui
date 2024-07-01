@@ -8,6 +8,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 function createLoading(sx: BoxProps['sx']) {
   return function Loading() {
@@ -80,18 +81,23 @@ export default function Hero() {
     <HeroContainer
       linearGradient
       left={
-        <Box sx={{ textAlign: { xs: 'center', md: 'left' }, maxWidth: 500 }}>
-          <Typography variant="h1" sx={{ mb: 1 }}>
-            <GradientText>Move faster</GradientText> <br />
-            with intuitive React UI tools
-          </Typography>
-          <Typography sx={{ color: 'text.secondary', mb: 3 }}>
-            MUI offers a comprehensive suite of free UI tools to help you ship new features faster.
-            Start with Material UI, our fully-loaded component library, or bring your own design
-            system to our production-ready components.
-          </Typography>
-          <GetStartedButtons primaryLabel="Discover the Core libraries" primaryUrl="/core/" />
-        </Box>
+        <React.Fragment>
+          <SectionHeadline
+            title={
+              <Typography variant="h1">
+                A <GradientText>comprehensive ecosystem</GradientText> of React UI libraries
+              </Typography>
+            }
+            description="MUI offers an extensive suite of free UI libraries to help you ship new features and products faster. Quickly start with styled, production-ready Material UI components or explore our other products for alternative use cases."
+          />
+          <GetStartedButtons
+            primaryLabel="View all products"
+            primaryUrl="#product-suite"
+            secondaryLabel="Start with Material UI"
+            secondaryUrl="/material-ui/getting-started/"
+            sx={{ '& .primary-button-chevron': { display: 'none' } }}
+          />
+        </React.Fragment>
       }
       rightSx={{
         p: 4,
