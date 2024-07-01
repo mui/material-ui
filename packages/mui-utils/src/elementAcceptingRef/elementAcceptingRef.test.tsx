@@ -22,62 +22,56 @@ describe('elementAcceptingRef', () => {
   });
 
   describe('acceptance when not required', () => {
-    async function assertPass(element: any, { shouldMount = true } = {}) {
+    function assertPass(element: any, { shouldMount = true } = {}) {
       function testAct() {
         checkPropType(element);
         if (shouldMount) {
-          render(
-            <React.Suspense fallback={<p />}>
-              {React.cloneElement(element, { ref: React.createRef() })}
-            </React.Suspense>,
-          );
+          render(React.cloneElement(element, { ref: React.createRef() }));
         }
       }
 
-      await waitFor(() => {
-        expect(testAct).not.toErrorDev();
-      });
+      expect(testAct).not.toErrorDev();
     }
 
-    it('accepts nully values', async () => {
-      await assertPass(undefined, { shouldMount: false });
-      await assertPass(null, { shouldMount: false });
+    it('accepts nully values', () => {
+      assertPass(undefined, { shouldMount: false });
+      assertPass(null, { shouldMount: false });
     });
 
-    it('accepts host components', async () => {
-      await assertPass(<div />);
+    it('accepts host components', () => {
+      assertPass(<div />);
     });
 
-    it('class components', async () => {
+    it('class components', () => {
       class Component extends React.Component {
         render() {
           return null;
         }
       }
 
-      await assertPass(<Component />);
+      assertPass(<Component />);
     });
 
-    it('accepts pure class components', async () => {
+    it('accepts pure class components', () => {
       class Component extends React.PureComponent {
         render() {
           return null;
         }
       }
 
-      await assertPass(<Component />);
+      assertPass(<Component />);
     });
 
-    it('accepts forwardRef', async () => {
+    it('accepts forwardRef', () => {
       const Component = React.forwardRef(() => null);
 
-      await assertPass(<Component />);
+      assertPass(<Component />);
     });
 
-    it('accepts memo', async () => {
+    it('accepts memo', () => {
       const Component = React.memo(React.forwardRef(() => null));
 
-      await assertPass(<Component />);
+      assertPass(<Component />);
     });
 
     it('accepts lazy', async () => {
@@ -87,17 +81,31 @@ describe('elementAcceptingRef', () => {
         }),
       );
 
-      await assertPass(<Component />);
+      function testAct() {
+        checkPropType(<Component />);
+        render(
+          React.cloneElement(
+            <React.Suspense fallback={<p />}>
+              <Component />
+            </React.Suspense>,
+            { ref: React.createRef() },
+          ),
+        );
+      }
+
+      await waitFor(() => {
+        expect(testAct).not.toErrorDev();
+      });
     });
 
-    it('technically allows other exotics like strict mode', async () => {
-      await assertPass(<React.StrictMode />);
+    it('technically allows other exotics like strict mode', () => {
+      assertPass(<React.StrictMode />);
     });
 
     // undesired behavior
-    it('accepts Fragment', async () => {
+    it('accepts Fragment', () => {
       // eslint-disable-next-line react/jsx-no-useless-fragment
-      await assertPass(<React.Fragment />);
+      assertPass(<React.Fragment />);
     });
   });
 
