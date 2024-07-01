@@ -326,7 +326,8 @@ const defaultIcon = <Star fontSize="inherit" />;
 const defaultEmptyIcon = <StarBorder fontSize="inherit" />;
 
 function defaultLabelText(value) {
-  return `${value} Star${value !== 1 ? 's' : ''}`;
+  const _value = value || 0;
+  return `${_value} Star${_value > 1 ? 's' : ''}`;
 }
 
 const Rating = React.forwardRef(function Rating(inProps, ref) {
@@ -683,7 +684,8 @@ Rating.propTypes /* remove-proptypes */ = {
    * @param {number} value The rating label's value to format.
    * @returns {string}
    * @default function defaultLabelText(value) {
-   *   return `${value} Star${value !== 1 ? 's' : ''}`;
+   *    const _value = value || 0;
+   *    return `${_value} Star${_value > 1 ? 's' : ''}`;
    * }
    */
   getLabelText: PropTypes.func,
