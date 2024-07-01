@@ -35,7 +35,7 @@ export default function FeaturedPost(props: FeaturedPostProps) {
             >
               {post.date}
             </Typography>
-            <Typography variant="subtitle1" sx={{ marginBottom: '16px' }}>
+            <Typography variant="subtitle1" sx={{ marginBottom: 16 }}>
               {post.description}
             </Typography>
             <Typography variant="subtitle1" color="primary">
