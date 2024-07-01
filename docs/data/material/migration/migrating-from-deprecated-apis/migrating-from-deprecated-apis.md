@@ -1597,6 +1597,19 @@ The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
  />
 ```
 
+## Typography
+
+### paragraph
+
+The Typography's `paragraph` prop was deprecated in favor of using the `component` prop. The `16px` of margin-bottom that was automatically added to the element when using `paragraph` must be manually handled now.
+
+```diff
+ <Typography
+-  paragraph
++  component="p"
+ />
+```
+
 ## StepLabel
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-label-props) below to migrate the code as described in the following sections:

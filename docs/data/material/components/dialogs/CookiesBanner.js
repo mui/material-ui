@@ -32,13 +32,13 @@ export default function CookiesBanner() {
       </AppBar>
       <Container component="main" sx={{ pt: 3 }}>
         <Toolbar />
-        <Typography paragraph>
+        <Typography sx={{ marginBottom: 2 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
           imperdiet.
         </Typography>
-        <Typography paragraph>
+        <Typography sx={{ marginBottom: 2 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
