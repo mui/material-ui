@@ -113,6 +113,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const collapsedIconSlotProps = useSlotProps({
     elementType: slots.CollapsedIcon,
     externalSlotProps: slotProps.collapsedIcon,
+    onClick: slotProps.onClick,
     ownerState,
   });
 
@@ -152,7 +153,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
         key="ellipsis"
         slots={{ CollapsedIcon: slots.CollapsedIcon }}
         slotProps={{ collapsedIcon: collapsedIconSlotProps }}
-        onClick={handleClickExpand}
+        onClick={collapsedIconSlotProps.onClick || handleClickExpand}
       />,
       ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
     ];
@@ -254,14 +255,14 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    */
   separator: PropTypes.node,
   /**
-   * The props used for each slot inside the Breadcumb.
+   * The props used for each slot inside the Breadcrumb.
    * @default {}
    */
   slotProps: PropTypes.shape({
     collapsedIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Breadcumb.
+   * The components used for each slot inside the Breadcrumb.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
