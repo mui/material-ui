@@ -259,13 +259,11 @@ describe('breakpoints', () => {
         },
       );
       expect(result).to.deep.equal({
-        '@media (min-width:0px)': {
-          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-          fontSize: '0.875rem',
-          letterSpacing: '0.01071em',
-          fontWeight: 400,
-          lineHeight: 1.43,
-        },
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontSize: '0.875rem',
+        letterSpacing: '0.01071em',
+        fontWeight: 400,
+        lineHeight: 1.43,
       });
     });
   });

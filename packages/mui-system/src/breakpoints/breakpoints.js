@@ -121,10 +121,20 @@ export function createEmptyBreakpointObject(breakpointsInput = {}) {
 
 export function removeUnusedBreakpoints(breakpointKeys, style) {
   return breakpointKeys.reduce((acc, key) => {
+    const zeroMediaQueryRgx = /^@media\s\(min-width:\s?[0]([a-zA-Z]{2,3})\)$/;
     const breakpointOutput = acc[key];
     const isBreakpointUnused = !breakpointOutput || Object.keys(breakpointOutput).length === 0;
     if (isBreakpointUnused) {
       delete acc[key];
+    } else if (zeroMediaQueryRgx.test(key)) {
+      const zeroMediaValues = acc[key];
+      delete acc[key];
+      // Zero media query is always at the top, so it's safe to assume that there are no keys before
+      // it and we can directly spread zero media query styles before other media queries.
+      acc = {
+        ...zeroMediaValues,
+        ...acc,
+      };
     }
     return acc;
   }, style);
