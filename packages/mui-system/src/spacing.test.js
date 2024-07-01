@@ -35,6 +35,14 @@ describe('system spacing', () => {
           p: 2,
         });
         expect(output3).to.deep.equal({ padding: 4 });
+
+        const output4 = spacing({
+          theme: {
+            spacing: (x) => ({ med: 2 }[x]),
+          },
+          p: 'med',
+        });
+        expect(output4).to.deep.equal({ padding: 2 });
       });
     });
 
@@ -219,6 +227,14 @@ describe('system spacing', () => {
           m: 2,
         });
         expect(output3).to.deep.equal({ margin: 4 });
+
+        const output4 = margin({
+          theme: {
+            spacing: (x) => ({ med: 2 }[x]),
+          },
+          m: 'med',
+        });
+        expect(output4).to.deep.equal({ margin: 2 });
       });
     });
 
@@ -403,6 +419,14 @@ describe('system spacing', () => {
           p: 2,
         });
         expect(output3).to.deep.equal({ padding: 4 });
+
+        const output4 = padding({
+          theme: {
+            spacing: (x) => ({ med: 2 }[x]),
+          },
+          p: 'med',
+        });
+        expect(output4).to.deep.equal({ padding: 2 });
       });
     });
 
