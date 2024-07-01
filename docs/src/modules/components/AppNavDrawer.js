@@ -193,6 +193,7 @@ function PersistScroll(props) {
     }
 
     return () => {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- useEnhancedEffect uses useEffect under the hood
       savedScrollTop[slot] = scrollContainer.scrollTop;
     };
   }, [enabled, slot]);

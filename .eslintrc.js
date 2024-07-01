@@ -476,7 +476,7 @@ module.exports = {
       rules: {
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
-        ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'off' } : {}),
+        'react-compiler/react-compiler': 'off',
       },
     },
     {
