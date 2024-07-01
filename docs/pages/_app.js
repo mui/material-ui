@@ -185,7 +185,7 @@ function AppWrapper(props) {
           },
           {
             text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
+            href: `https://mui.com${languagePrefix}/material-ui/getting-started/versions/`,
           },
         ],
       };
@@ -215,7 +215,7 @@ function AppWrapper(props) {
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
             text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
+            href: `https://mui.com${languagePrefix}/material-ui/getting-started/versions/`,
           },
         ],
       };
@@ -243,7 +243,7 @@ function AppWrapper(props) {
           { text: `v${materialPkgJson.version}`, current: true },
           {
             text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
+            href: `https://mui.com${languagePrefix}/material-ui/getting-started/versions/`,
           },
         ],
       };
