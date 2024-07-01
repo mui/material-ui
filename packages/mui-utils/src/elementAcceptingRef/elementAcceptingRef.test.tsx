@@ -84,12 +84,9 @@ describe('elementAcceptingRef', () => {
       function testAct() {
         checkPropType(<Component />);
         render(
-          React.cloneElement(
-            <React.Suspense fallback={<p />}>
-              <Component />
-            </React.Suspense>,
-            { ref: React.createRef() },
-          ),
+          <React.Suspense fallback={<p />}>
+            {React.cloneElement(<Component />, { ref: React.createRef() })}
+          </React.Suspense>,
         );
       }
 
