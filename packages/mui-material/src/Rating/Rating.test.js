@@ -225,6 +225,12 @@ describe('<Rating />', () => {
       expect(screen.getByRole('img')).toHaveAccessibleName('Stars: 2');
     });
 
+    it('can be labelled with getLabelText when non set value', () => {
+      render(<Rating readOnly />);
+
+      expect(screen.getByRole('img')).toHaveAccessibleName('0 Heart');
+    });
+
     it('should have readOnly class applied', () => {
       render(<Rating readOnly value={2} />);
 
