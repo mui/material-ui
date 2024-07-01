@@ -1109,7 +1109,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.click(ref.current);
+      fireEvent.mouseDown(ref.current);
       expect(handleOpen.callCount).to.equal(1);
     });
 
