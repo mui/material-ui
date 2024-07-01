@@ -441,13 +441,11 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
-   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerComponent: elementTypeAcceptingRef,
   /**
    * Props applied to the container component if used.
    * @default {}
-   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerProps: PropTypes.object,
   /**
