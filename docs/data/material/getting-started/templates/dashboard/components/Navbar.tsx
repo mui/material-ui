@@ -72,7 +72,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
           >
             <Stack direction="row" spacing={1} sx={{ justifyContent: 'center' }}>
               <CustomIcon />
-              <Typography variant="h5" component="h1" color="text.primary">
+              <Typography variant="h5" component="h1" sx={{ color: 'text.primary' }}>
                 Dashboard
               </Typography>
             </Stack>
@@ -98,7 +98,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
           >
             <Stack direction="row" spacing={1} sx={{ justifyContent: 'center' }}>
               <CustomIcon />
-              <Typography variant="h4" component="h1" color="text.primary">
+              <Typography variant="h4" component="h1" sx={{ color: 'text.primary' }}>
                 Dashboard
               </Typography>
             </Stack>

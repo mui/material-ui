@@ -63,10 +63,10 @@ export default function SideMenu() {
           sx={{ width: 32, height: 32 }}
         />
         <div>
-          <Typography fontWeight={500} variant="body2">
+          <Typography variant="body2" sx={{ fontWeight: 500 }}>
             Riley Carter
           </Typography>
-          <Typography variant="caption" color="text.secondary">
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
             rileycarter@email.com
           </Typography>
         </div>

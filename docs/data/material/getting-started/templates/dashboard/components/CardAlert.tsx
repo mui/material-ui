@@ -10,10 +10,10 @@ export default function CardAlert() {
     <Card variant="outlined" sx={{ m: 1.5, p: 1.5 }}>
       <CardContent>
         <AutoAwesomeRoundedIcon fontSize="small" />
-        <Typography fontWeight="600" gutterBottom>
+        <Typography gutterBottom sx={{ fontWeight: 600 }}>
           Plan about to expire
         </Typography>
-        <Typography color="text.secondary" variant="body2" sx={{ mb: 2 }}>
+        <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
           Enjoy 10% off when renewing your plan today.
         </Typography>
         <Button variant="contained" size="small" fullWidth>

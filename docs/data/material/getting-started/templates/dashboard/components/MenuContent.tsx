@@ -28,7 +28,7 @@ const secondaryListItems = [
 
 export default function MenuContent() {
   return (
-    <Stack justifyContent="space-between" sx={{ flexGrow: 1, p: 1 }}>
+    <Stack sx={{ flexGrow: 1, p: 1, justifyContent: 'space-between' }}>
       <List dense>
         {mainListItems.map((item, index) => (
           <ListItem key={index} disablePadding sx={{ display: 'block' }}>
