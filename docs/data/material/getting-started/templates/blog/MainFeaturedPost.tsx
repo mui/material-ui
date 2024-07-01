@@ -60,7 +60,7 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
             <Typography component="h1" variant="h3" color="inherit" gutterBottom>
               {post.title}
             </Typography>
-            <Typography variant="h5" color="inherit" sx={{ marginBottom: 16 }}>
+            <Typography variant="h5" color="inherit" sx={{ marginBottom: 2 }}>
               {post.description}
             </Typography>
             <Link variant="subtitle1" href="#">
