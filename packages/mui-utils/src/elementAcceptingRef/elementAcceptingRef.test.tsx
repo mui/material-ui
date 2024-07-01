@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, waitFor } from '@mui/internal-test-utils';
+import { createRenderer, waitFor } from '@mui-internal/test-utils';
 import elementAcceptingRef from './elementAcceptingRef';
 
 describe('elementAcceptingRef', () => {
