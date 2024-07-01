@@ -8,6 +8,7 @@ import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, inset, primary, secondary, dense } = ownerState;
@@ -69,6 +70,8 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
     primaryTypographyProps,
     secondary: secondaryProp,
     secondaryTypographyProps,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { dense } = React.useContext(ListContext);
@@ -87,31 +90,51 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      primary: primaryTypographyProps,
+      secondary: secondaryTypographyProps,
+      ...slotProps,
+    },
+  };
+
+  const [PrimarySlot, primarySlotProps] = useSlot('primary', {
+    elementType: Typography,
+    externalForwardedProps,
+    ownerState,
+  });
+  const [SecondarySlot, secondarySlotProps] = useSlot('secondary', {
+    elementType: Typography,
+    externalForwardedProps,
+    ownerState,
+  });
+
   if (primary != null && primary.type !== Typography && !disableTypography) {
     primary = (
-      <Typography
+      <PrimarySlot
         variant={dense ? 'body2' : 'body1'}
         className={classes.primary}
-        component={primaryTypographyProps?.variant ? undefined : 'span'}
+        component={primarySlotProps?.variant ? undefined : 'span'}
         display="block"
-        {...primaryTypographyProps}
+        {...primarySlotProps}
       >
         {primary}
-      </Typography>
+      </PrimarySlot>
     );
   }
 
   if (secondary != null && secondary.type !== Typography && !disableTypography) {
     secondary = (
-      <Typography
+      <SecondarySlot
         variant="body2"
         className={classes.secondary}
         color="text.secondary"
         display="block"
-        {...secondaryTypographyProps}
+        {...secondarySlotProps}
       >
         {secondary}
-      </Typography>
+      </SecondarySlot>
     );
   }
 
@@ -166,6 +189,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the primary typography component
    * (as long as disableTypography is not `true`).
+   * @deprecated Use `slotProps.primary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   primaryTypographyProps: PropTypes.object,
   /**
@@ -175,8 +199,25 @@ ListItemText.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the secondary typography component
    * (as long as disableTypography is not `true`).
+   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   secondaryTypographyProps: PropTypes.object,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    primary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    secondary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    primary: PropTypes.elementType,
+    secondary: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
