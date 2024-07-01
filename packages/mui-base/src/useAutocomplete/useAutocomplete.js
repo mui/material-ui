@@ -104,6 +104,7 @@ export function useAutocomplete(props) {
     readOnly = false,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
+    suppressTextareaWarning
   } = props;
 
   const id = useId(idProp);
@@ -580,14 +581,16 @@ export function useAutocomplete(props) {
     React.useEffect(() => {
       if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
         if (inputRef.current && inputRef.current.nodeName === 'TEXTAREA') {
-          console.warn(
-            [
-              `A textarea element was provided to ${componentName} where input was expected.`,
-              `This is not a supported scenario but it may work under certain conditions.`,
-              `A textarea keyboard navigation may conflict with Autocomplete controls (for example enter and arrow keys).`,
-              `Make sure to test keyboard navigation and add custom event handlers if necessary.`,
-            ].join('\n'),
-          );
+          if(!suppressTextareaWarning) {
+            console.warn(
+              [
+                `A textarea element was provided to ${componentName} where input was expected.`,
+                `This is not a supported scenario but it may work under certain conditions.`,
+                `A textarea keyboard navigation may conflict with Autocomplete controls (for example enter and arrow keys).`,
+                `Make sure to test keyboard navigation and add custom event handlers if necessary.`,
+              ].join('\n'),
+            );
+          }
         } else {
           console.error(
             [
