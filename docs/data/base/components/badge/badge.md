@@ -14,6 +14,8 @@ githubLabel: 'component: badge'
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [2.2 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 A badge is a small descriptor for UI elements.

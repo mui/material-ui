@@ -15,6 +15,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [3.1 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 The Switch component provides users with a switch for toggling between two mutually exclusive states.

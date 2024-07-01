@@ -14,6 +14,8 @@ githubLabel: 'component: number input'
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [4.3 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 A number input is a UI element that accepts numeric values from the user.

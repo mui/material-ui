@@ -14,6 +14,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
+- 📦 [4.5 kB gzipped](https://bundlephobia.com/package/@mui/base).
+
 ## Introduction
 
 An autocomplete component is an enhanced text input that shows a list of suggested options as users type and lets them select an option from the list.
