@@ -347,6 +347,8 @@ This reduces the API surface and lets you define variants in other slots of the 
 
 ## Pigment CSS integration (optional)
 
-:::info
-⏳ This section is under construction
-:::
+Pigment CSS lets you extract styles at build time, reducing the bundle size and avoiding client-side recalculation compared to Emotion/Styled-components.
+
+Pigment CSS can work alongside Emotion/Styled-components, allowing you to migrate gradually.
+
+Check out the [migrating to Pigment CSS guide](/material-ui/migration/migrating-to-pigment-css/) to learn more.
