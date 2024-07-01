@@ -2,8 +2,7 @@ import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 
 export default <
     T extends {
-      attribute: string;
-      colorSchemeSelector: string;
+      strategy?: 'media' | string;
       colorSchemes?: Record<string, any>;
       defaultColorScheme?: string;
       cssVarPrefix?: string;
@@ -19,15 +18,30 @@ export default <
           excludedVariables[cssVar] = css[cssVar];
           delete css[cssVar];
         });
-        return {
-          [`[${theme.attribute}="${String(colorScheme)}"]`]: excludedVariables,
-          [theme.colorSchemeSelector!]: css,
-        };
+        if (theme.strategy === 'media') {
+          return {
+            ':root': css,
+            '@media (prefers-color-scheme: dark) { :root': excludedVariables,
+          };
+        }
+        if (theme.strategy) {
+          return {
+            [theme.strategy.replace('%s', colorScheme)]: excludedVariables,
+            ':root': css,
+          };
+        }
+        return { ':root': { ...css, ...excludedVariables } };
       }
-      return `${theme.colorSchemeSelector}, [${theme.attribute}="${String(colorScheme)}"]`;
+      if (theme.strategy && theme.strategy !== 'media') {
+        return theme.strategy.replace('%s', String(colorScheme));
+      }
+    } else if (colorScheme) {
+      if (theme.strategy === 'media') {
+        return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
+      }
+      if (theme.strategy) {
+        return theme.strategy.replace('%s', String(colorScheme));
+      }
     }
-    if (colorScheme) {
-      return `[${theme.attribute}="${String(colorScheme)}"]`;
-    }
-    return theme.colorSchemeSelector;
+    return ':root';
   };

@@ -89,58 +89,92 @@ const silent = (fn) => {
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
+function getOpacity(mode) {
+  return {
+    inputPlaceholder: mode === 'dark' ? 0.5 : 0.42,
+    inputUnderline: mode === 'dark' ? 0.7 : 0.42,
+    switchTrackDisabled: mode === 'dark' ? 0.2 : 0.12,
+    switchTrack: mode === 'dark' ? 0.3 : 0.38,
+  };
+}
+function getOverlays(mode) {
+  return mode === 'dark' ? defaultDarkOverlays : [];
+}
+
+/**
+ * A default `extendTheme` comes with a single color scheme, either `light` or `dark` based on the `defaultColorScheme`.
+ * This is better suited for apps that only need a single color scheme.
+ *
+ * To enable multi color schemes, a `strategy` must be provided to explicitly define how the color schemes will change.
+ */
 export default function extendTheme(options = {}, ...args) {
   const {
+    defaultColorScheme = 'light',
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    getSelector,
+    strategy,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
-  const { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
+  let lightPalette;
+  let darkPalette;
+
+  const colorSchemes = { ...colorSchemesInput };
+  const defaultMode = defaultColorScheme === 'dark' ? 'dark' : 'light';
+  const { palette: defaultPalette, ...muiTheme } = createThemeWithoutVars({
     ...input,
-    ...(colorSchemesInput.light && { palette: colorSchemesInput.light?.palette }),
+    palette: { mode: defaultMode, ...colorSchemesInput[defaultColorScheme]?.palette },
   });
-  const { palette: darkPalette } = createThemeWithoutVars({
-    palette: { mode: 'dark', ...colorSchemesInput.dark?.palette },
-  });
+  colorSchemes[defaultColorScheme] = {
+    ...colorSchemesInput[defaultColorScheme],
+    palette: defaultPalette,
+    opacity: {
+      ...getOpacity(defaultPalette.mode),
+      ...colorSchemesInput[defaultColorScheme]?.opacity,
+    },
+    overlays: colorSchemesInput[defaultColorScheme]?.overlays || getOverlays(defaultPalette.mode),
+  };
+  if (defaultMode === 'light') {
+    lightPalette = defaultPalette;
+  }
+  if (defaultMode === 'dark') {
+    darkPalette = defaultPalette;
+  }
+
+  if (strategy) {
+    const oppositeColorScheme = defaultColorScheme === 'dark' ? 'light' : 'dark';
+    const { palette: oppositePalette } = createThemeWithoutVars({
+      palette: { mode: oppositeColorScheme, ...colorSchemesInput[oppositeColorScheme]?.palette },
+    });
+    colorSchemes[oppositeColorScheme] = {
+      ...colorSchemesInput[oppositeColorScheme],
+      palette: oppositePalette,
+      opacity: {
+        ...getOpacity(oppositeColorScheme),
+        ...colorSchemesInput[oppositeColorScheme]?.opacity,
+      },
+      overlays:
+        colorSchemesInput[oppositeColorScheme]?.overlays || getOverlays(oppositeColorScheme),
+    };
+    if (oppositeColorScheme === 'light') {
+      lightPalette = defaultPalette;
+    }
+    if (oppositeColorScheme === 'dark') {
+      darkPalette = defaultPalette;
+    }
+  }
 
   let theme = {
-    defaultColorScheme: 'light',
+    defaultColorScheme,
     ...muiTheme,
     cssVarPrefix,
     getCssVar,
-    colorSchemes: {
-      ...colorSchemesInput,
-      light: {
-        ...colorSchemesInput.light,
-        palette: lightPalette,
-        opacity: {
-          inputPlaceholder: 0.42,
-          inputUnderline: 0.42,
-          switchTrackDisabled: 0.12,
-          switchTrack: 0.38,
-          ...colorSchemesInput.light?.opacity,
-        },
-        overlays: colorSchemesInput.light?.overlays || [],
-      },
-      dark: {
-        ...colorSchemesInput.dark,
-        palette: darkPalette,
-        opacity: {
-          inputPlaceholder: 0.5,
-          inputUnderline: 0.7,
-          switchTrackDisabled: 0.2,
-          switchTrack: 0.3,
-          ...colorSchemesInput.dark?.opacity,
-        },
-        overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
-      },
-    },
+    colorSchemes,
     font: { ...prepareTypographyVars(muiTheme.typography), ...muiTheme.font },
     spacing: getSpacingVal(input.spacing),
+    strategy,
   };
 
   Object.keys(theme.colorSchemes).forEach((key) => {
@@ -154,10 +188,11 @@ export default function extendTheme(options = {}, ...args) {
     };
 
     // attach black & white channels to common node
-    if (key === 'light') {
+    if (palette.mode === 'light') {
       setColor(palette.common, 'background', '#fff');
       setColor(palette.common, 'onBackground', '#000');
-    } else {
+    }
+    if (palette.mode === 'dark') {
       setColor(palette.common, 'background', '#000');
       setColor(palette.common, 'onBackground', '#fff');
     }
@@ -181,7 +216,7 @@ export default function extendTheme(options = {}, ...args) {
       'TableCell',
       'Tooltip',
     ]);
-    if (key === 'light') {
+    if (palette.mode === 'light') {
       setColor(palette.Alert, 'errorColor', safeDarken(palette.error.light, 0.6));
       setColor(palette.Alert, 'infoColor', safeDarken(palette.info.light, 0.6));
       setColor(palette.Alert, 'successColor', safeDarken(palette.success.light, 0.6));
@@ -269,7 +304,8 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Switch, 'warningDisabledColor', safeLighten(palette.warning.main, 0.62));
       setColor(palette.TableCell, 'border', safeLighten(safeAlpha(palette.divider, 1), 0.88));
       setColor(palette.Tooltip, 'bg', safeAlpha(palette.grey[700], 0.92));
-    } else {
+    }
+    if (palette.mode === 'dark') {
       setColor(palette.Alert, 'errorColor', safeLighten(palette.error.light, 0.6));
       setColor(palette.Alert, 'infoColor', safeLighten(palette.info.light, 0.6));
       setColor(palette.Alert, 'successColor', safeLighten(palette.success.light, 0.6));
@@ -420,11 +456,9 @@ export default function extendTheme(options = {}, ...args) {
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
-    getSelector: getSelector || defaultGetSelector(theme),
+    getSelector: defaultGetSelector(theme),
   };
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
-  theme.attribute = 'data-mui-color-scheme';
-  theme.colorSchemeSelector = ':root';
   theme.vars = vars;
   Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
     theme[key] = value;
@@ -434,7 +468,16 @@ export default function extendTheme(options = {}, ...args) {
   theme.generateSpacing = function generateSpacing() {
     return createSpacing(input.spacing, createUnarySpacing(this));
   };
-  theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;
+  theme.getColorSchemeSelector = (colorScheme) => {
+    if (strategy === 'media') {
+      return `@media (prefers-color-scheme: ${colorScheme})`;
+    }
+    if (strategy) {
+      const selector = strategy.replace('%s', colorScheme);
+      return `:where(${selector}, ${selector} *)`;
+    }
+    return '&';
+  };
   theme.spacing = theme.generateSpacing();
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
