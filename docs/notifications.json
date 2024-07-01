@@ -8,5 +8,11 @@
     "id": 81,
     "title": "Introducing MUI X v7",
     "text": "The new version is packed with new components, exciting features, improved usability, and developer experience. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v7\" href=\"https://mui.com/blog/mui-x-v7/\">announcement blog post</a>."
+  },
+  {
+    "id": 82,
+    "title": "Toolpad Core RFCs are open",
+    "productId": ["toolpad-core", "toolpad-studio", "x-data-grid"],
+    "text": "RFCs for Toolpad Core, a framework to build full-stack apps fast, are open. Share your feedback <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"toolpad-core-rfcs\" href=\"https://github.com/mui/mui-toolpad/issues/3315\">on the discussion</a> and shape the future of the project."
   }
 ]
