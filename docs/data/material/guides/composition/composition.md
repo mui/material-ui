@@ -89,13 +89,12 @@ import { Link, LinkProps } from 'react-router-dom';
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
-  const CustomLink = React.useMemo(
-    () =>
-      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(
-        function Link(linkProps, ref) {
-          return <Link ref={ref} to={to} {...linkProps} />;
-        },
-      ),
+  const CustomLink = React.useCallback(
+    React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(
+      function Link(linkProps, ref) {
+        return <Link ref={ref} to={to} {...linkProps} />;
+      },
+    ),
     [to],
   );
 
