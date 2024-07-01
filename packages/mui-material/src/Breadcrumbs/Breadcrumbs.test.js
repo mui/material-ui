@@ -82,6 +82,37 @@ describe('<Breadcrumbs />', () => {
     expect(getAllByRole('listitem', { hidden: false })).to.have.length(9);
   });
 
+  it('should not expand if onClick of `CollapsedIcon` is provided', () => {
+    const { getAllByRole, getByRole } = render(
+      <Breadcrumbs
+        slots={{
+          CollapsedIcon: FirstPageIcon,
+        }}
+        slotProps={{
+          collapsedIcon: {
+            onClick: () => {},
+          },
+        }}
+      >
+        <span>first</span>
+        <span>second</span>
+        <span>third</span>
+        <span>fourth</span>
+        <span>fifth</span>
+        <span>sixth</span>
+        <span>seventh</span>
+        <span>eighth</span>
+        <span>ninth</span>
+      </Breadcrumbs>,
+    );
+
+    act(() => {
+      getByRole('button').click();
+    });
+
+    expect(getAllByRole('listitem', { hidden: false })).to.have.length(3);
+  });
+
   it('should warn about invalid input', () => {
     expect(() => {
       render(
