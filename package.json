@@ -120,7 +120,7 @@
     "@pigment-css/react": "^0.0.16",
     "@playwright/test": "1.44.1",
     "@types/fs-extra": "^11.0.4",
-    "@types/lodash": "^4.17.5",
+    "@types/lodash": "^4.17.6",
     "@types/mocha": "^10.0.7",
     "@types/node": "^18.19.39",
     "@types/react": "^18.2.55",
