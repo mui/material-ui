@@ -72,7 +72,7 @@ export default function BaseUIComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Unstyled components"
             title={
@@ -92,7 +92,7 @@ export default function BaseUIComponents() {
             <More href={ROUTES.baseComponents} />
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame
             sx={[
               {
