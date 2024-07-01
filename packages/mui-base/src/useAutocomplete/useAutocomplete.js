@@ -476,7 +476,7 @@ export function useAutocomplete(props) {
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
       previousProps.inputValue === inputValue &&
-      (multiple
+      (multiple && previousProps.value
         ? value.length === previousProps.value.length &&
           previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
         : isSameValue(previousProps.value, value))
