@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "6.0.0-alpha.11",
+  "version": "6.0.0-alpha.13",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -67,7 +67,7 @@
     "yargs": "^17.7.2"
   },
   "peerDependencies": {
-    "@mui/material": "workspace:^",
+    "@mui/material": "workspace:*",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },

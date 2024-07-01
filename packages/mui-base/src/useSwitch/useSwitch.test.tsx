@@ -71,7 +71,12 @@ describe('useSwitch', () => {
       expect(handleChange.callCount).to.equal(1);
     });
 
-    it('should call focus event handlers if focus events are fired', () => {
+    it('should call focus event handlers if focus events are fired', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const handleBlur = spy();
       const handleFocus = spy();
       const handleFocusVisible = spy();
