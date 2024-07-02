@@ -1,9 +1,6 @@
 {
-  "name": "@mui-internal/tests",
-  "version": "5.0.0",
-  "private": true,
-  "scripts": {
-    "typescript": "tsc -p tsconfig.json"
+  "dependencies": {
+    "@react-spring/web": "^9.7.3"
   },
   "devDependencies": {
     "@babel/runtime": "^7.24.7",
@@ -20,8 +17,8 @@
     "@playwright/test": "1.45.0",
     "@testing-library/dom": "^10.2.0",
     "@types/chai": "^4.3.16",
-    "@types/react": "^18.2.55",
-    "@types/react-is": "^18.3.0",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-is": "npm:types-react@19.0.0-rc.1",
     "@types/sinon": "^17.0.3",
     "chai": "^4.4.1",
     "docs": "workspace:^",
@@ -31,9 +28,9 @@
     "lodash": "^4.17.21",
     "playwright": "^1.45.0",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-is": "^18.2.0",
+    "react": "19.0.0-rc-100dfd7dab-20240701",
+    "react-dom": "19.0.0-rc-100dfd7dab-20240701",
+    "react-is": "19.0.0-rc-100dfd7dab-20240701",
     "react-router-dom": "^6.23.1",
     "sinon": "^16.1.3",
     "styled-components": "^6.1.11",
@@ -44,7 +41,10 @@
     "webpack": "^5.92.1",
     "yargs": "^17.7.2"
   },
-  "dependencies": {
-    "@react-spring/web": "^9.7.3"
-  }
+  "name": "@mui-internal/tests",
+  "private": true,
+  "scripts": {
+    "typescript": "tsc -p tsconfig.json"
+  },
+  "version": "5.0.0"
 }
