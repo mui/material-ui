@@ -43,7 +43,7 @@
     "@types/prop-types": "^15.7.12",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^18.3.1"
+    "react-is": "19.0.0-rc-100dfd7dab-20240701"
   },
   "devDependencies": {
     "@mui/internal-babel-macros": "workspace:^",
@@ -52,18 +52,18 @@
     "@types/chai": "^4.3.17",
     "@types/mocha": "^10.0.7",
     "@types/node": "^18.19.44",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@types/react-is": "^18.3.0",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@types/react-is": "npm:types-react-is@19.0.0-rc.1",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "19.0.0-rc-100dfd7dab-20240701",
+    "react-dom": "19.0.0-rc-100dfd7dab-20240701",
     "sinon": "^16.1.3"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
