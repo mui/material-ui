@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { styled, css } from '@pigment-css/react';
+import { styled, css } from '@mui/material-pigment-css';
 import PigmentStack from '@mui/material/PigmentStack';
 import PigmentContainer from '@mui/material/PigmentContainer';
 import PigmentHidden from '@mui/material/PigmentHidden';
