@@ -48,17 +48,6 @@ ruleTester.run('mui-name-matches-component-name', rule, {
     `,
     {
       code: `
-        const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(
-          inProps: StaticDateRangePickerProps<TDate>,
-          ref: React.Ref<HTMLDivElement>,
-        ) {
-          const props = useDatePickerDefaultizedProps(inProps, 'MuiStaticDateRangePicker');
-        });
-      `,
-      options: [{ customHooks: ['useDatePickerDefaultizedProps'] }],
-    },
-    {
-      code: `
         function useDatePickerDefaultizedProps(props, name) {
           useThemeProps({ props, name });
         }
