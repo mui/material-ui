@@ -13,10 +13,10 @@ export const menuComponentsCustomizations: Components<Theme> = {
   MuiList: {
     styleOverrides: {
       root: {
+        padding: '8px',
         display: 'flex',
         flexDirection: 'column',
         gap: 0,
-        padding: '4px',
       },
     },
   },
@@ -182,7 +182,6 @@ export const menuComponentsCustomizations: Components<Theme> = {
       select: ({ theme }) => ({
         display: 'flex',
         alignItems: 'center',
-        padding: theme.spacing(1, 2),
         ...theme.applyStyles('dark', {
           display: 'flex',
           alignItems: 'center',
