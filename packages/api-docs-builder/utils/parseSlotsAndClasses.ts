@@ -129,11 +129,14 @@ function extractClassesFromProps(
   componentName: string,
   muiName: string,
 ): ComponentClassDefinition[] | null {
+  const unstableName = `Unstable_${componentName}`;
   const exportedSymbol =
-    typescriptProject.exports[componentName] ??
-    typescriptProject.exports[`Unstable_${componentName}`];
+    typescriptProject.exports[componentName] ?? typescriptProject.exports[unstableName];
+
   if (!exportedSymbol) {
-    throw new Error(`No exported component for the componentName "${componentName}"`);
+    throw new Error(
+      `No export found in "${typescriptProject.rootPath}" for component "${componentName}" or "${unstableName}".`,
+    );
   }
 
   const localeSymbol = resolveExportSpecifier(exportedSymbol, typescriptProject);
