@@ -36,7 +36,7 @@ describe('<Tab />', () => {
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
-  it('should have a focusRipple', async function() {
+  it('should have a focusRipple', async function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       // JSDOM doesn't support :focus-visible
       this.skip();

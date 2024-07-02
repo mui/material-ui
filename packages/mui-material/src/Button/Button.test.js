@@ -583,7 +583,7 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.disableElevation);
   });
 
-  it('should have a focusRipple', async function() {
+  it('should have a focusRipple', async function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       // JSDOM doesn't support :focus-visible
       this.skip();
@@ -602,7 +602,7 @@ describe('<Button />', () => {
     expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
 
-  it('can disable the focusRipple', async function() {
+  it('can disable the focusRipple', async function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       // JSDOM doesn't support :focus-visible
       this.skip();
