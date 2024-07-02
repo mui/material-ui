@@ -9,7 +9,6 @@ interface ProductItemProps extends MenuItemProps {
   active?: boolean;
   chip?: React.ReactNode;
   description?: string;
-  docs?: boolean;
   href: string;
   icon?: React.ReactNode;
   id?: string;
@@ -20,7 +19,6 @@ export default function ProductItem({
   active,
   chip,
   description,
-  docs,
   href,
   icon,
   id,
@@ -39,7 +37,7 @@ export default function ProductItem({
           p: 1,
           pl: '6px',
           display: 'flex',
-          alignItems: docs ? 'start' : 'center',
+          alignItems: 'center',
           gap: '8px',
           flexGrow: 1,
           backgroundColor: active ? alpha(theme.palette.primary[50], 0.8) : undefined,
@@ -75,11 +73,12 @@ export default function ProductItem({
     >
       <Box
         sx={{
-          height: docs ? 21 : 36,
-          width: docs ? 21 : 36,
+          height: 36,
+          width: 36,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          flexShrink: 0,
         }}
       >
         {icon}

@@ -110,11 +110,12 @@ function ProductDrawerButton(props) {
               variant="outlined"
               sx={(theme) => ({
                 mt: 1,
-                minWidth: { xs: '100%', sm: 600 },
+                minWidth: { xs: '100%', sm: 320 },
                 overflow: 'clip',
                 boxShadow: `0 4px 16px ${alpha(theme.palette.common.black, 0.15)}`,
                 ...theme.applyDarkStyles({
                   bgcolor: 'primaryDark.900',
+                  boxShadow: `0 4px 16px ${alpha(theme.palette.common.black, 0.8)}`,
                 }),
               })}
             >

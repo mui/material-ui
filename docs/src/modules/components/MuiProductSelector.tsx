@@ -19,7 +19,7 @@ import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
 
 const iconStyles = (theme: Theme) => ({
-  fontSize: '.875rem',
+  fontSize: '1.125rem',
   color: (theme.vars || theme).palette.primary.main,
 });
 
@@ -45,14 +45,14 @@ const coreProducts = [
     id: 'material-ui',
     name: 'Material UI',
     description: 'Ready-to-use foundational components.',
-    icon: <SvgMuiLogomark width={14} height={14} sx={logoColor} />,
+    icon: <SvgMuiLogomark width={18} height={18} sx={logoColor} />,
     href: ROUTES.materialDocs,
   },
   {
     id: 'base-ui',
     name: 'Base UI',
     description: 'Unstyled components and hooks.',
-    icon: <SvgBaseUiLogo width={14} height={14} sx={logoColor} />,
+    icon: <SvgBaseUiLogo width={18} height={18} sx={logoColor} />,
     href: ROUTES.baseDocs,
   },
   {
@@ -115,11 +115,8 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
       ref={forwardedRef}
       sx={{
         p: 1,
-        display: 'grid',
-        gridTemplateColumns: {
-          xs: 'repeat(1, minmax(0, 1fr))',
-          sm: 'repeat(2, minmax(0, 1fr))',
-        },
+        display: 'flex',
+        flexDirection: 'column',
         gap: '4px',
       }}
     >
@@ -131,28 +128,10 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           href={product.href}
           icon={product.icon}
           active={pageContext.productId === product.id}
-          docs
         />
       ))}
-      <Divider
-        sx={{
-          mx: -1,
-          gridColumn: {
-            xs: '1 / span 1',
-            sm: '1 / span 2',
-          },
-        }}
-      />
-      <Box
-        key="X components"
-        role="none"
-        sx={{
-          gridColumn: {
-            xs: '1 / span 1',
-            sm: '1 / span 2',
-          },
-        }}
-      >
+      <Divider sx={{ mx: -1 }} />
+      <Box key="X components" role="none">
         <NavLabel>MUI X Components</NavLabel>
       </Box>
       {advancedProducts.map((product) => (
@@ -163,26 +142,16 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           icon={product.icon}
           href={product.href}
           active={pageContext.productId === product.id}
-          docs
         />
       ))}
-      <Divider
-        sx={{
-          mx: -1,
-          gridColumn: {
-            xs: '1 / span 1',
-            sm: '1 / span 2',
-          },
-        }}
-      />
+      <Divider sx={{ mx: -1 }} />
       <ProductMenuItem
         key="Toolpad"
         name="Toolpad"
         href={ROUTES.toolpadStudioDocs}
-        icon={<SvgToolpadLogo width={14} height={14} sx={logoColor} />}
+        icon={<SvgToolpadLogo width={18} height={18} sx={logoColor} />}
         description="A self-hosted, low-code internal tool builder."
         active={pageContext.productId === 'toolpad-core'}
-        docs
         chip={
           <Chip
             label="Beta"
@@ -201,12 +170,6 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
             }}
           />
         }
-        sx={{
-          gridColumn: {
-            xs: '1 / span 1',
-            sm: '1 / span 2',
-          },
-        }}
       />
     </MenuList>
   );
