@@ -5,6 +5,7 @@ import { listItemIconClasses } from '@mui/material/ListItemIcon';
 import { menuClasses } from '@mui/material/Menu';
 import { dividerClasses } from '@mui/material/Divider';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import { checkboxClasses } from '@mui/material/Checkbox';
 import { gridClasses } from '@mui/x-data-grid';
 import { gray } from '../themePrimitives';
 
@@ -20,6 +21,22 @@ export const dataGridCustomizations = {
         },
         [`& .${gridClasses.footerContainer}`]: {
           backgroundColor: theme.palette.background.paper,
+        },
+        [`&. ${checkboxClasses.root}`]: {
+          padding: theme.spacing(1),
+          '& > svg': {
+            fontSize: '1.5rem',
+          },
+        },
+        '& .MuiTablePagination-root': {
+          marginRight: theme.spacing(1),
+          '& .MuiIconButton-root': {
+            maxHeight: 32,
+            maxWidth: 32,
+            '& > svg': {
+              fontSize: '1rem',
+            },
+          },
         },
       }),
       cell: ({ theme }) => ({ borderTopColor: theme.palette.divider }),
@@ -76,6 +93,15 @@ export const dataGridCustomizations = {
               backgroundColor: gray[900],
             },
           }),
+        },
+      }),
+      baseCheckbox: ({ theme }) => ({
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.primary[400]
+            : theme.palette.primary[600],
+        '&.Mui-checked': {
+          color: theme.palette.primary.main,
         },
       }),
       menuIconButton: ({ theme }) => ({

@@ -6,6 +6,7 @@ import { listItemIconClasses } from '@mui/material/ListItemIcon';
 import { menuClasses } from '@mui/material/Menu';
 import { dividerClasses } from '@mui/material/Divider';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import { checkboxClasses } from '@mui/material/Checkbox';
 import { gridClasses } from '@mui/x-data-grid';
 import { gray } from '../themePrimitives';
 
@@ -21,6 +22,12 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
         },
         [`& .${gridClasses.footerContainer}`]: {
           backgroundColor: theme.palette.background.paper,
+        },
+        [`&. ${checkboxClasses.root}`]: {
+          padding: theme.spacing(1),
+          '& > svg': {
+            fontSize: '1.5rem',
+          },
         },
       }),
       cell: ({ theme }) => ({ borderTopColor: theme.palette.divider }),
