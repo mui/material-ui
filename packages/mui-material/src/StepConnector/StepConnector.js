@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepConnectorUtilityClass } from './stepConnectorClasses';
-
-const useThemeProps = createUseThemeProps('MuiStepConnector');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, alternativeLabel, active, completed, disabled } = ownerState;
@@ -98,7 +97,7 @@ const StepConnectorLine = styled('span', {
 });
 
 const StepConnector = React.forwardRef(function StepConnector(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepConnector' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepConnector' });
   const { className, ...other } = props;
 
   const { alternativeLabel, orientation = 'horizontal' } = React.useContext(StepperContext);

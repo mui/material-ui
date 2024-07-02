@@ -333,7 +333,7 @@ function renderToString(
   };
 }
 
-interface Clock {
+export interface Clock {
   /**
    * Runs all timers until there are no more remaining.
    * WARNING: This may cause an infinite loop if a timeout constantly schedules another timeout.
@@ -363,7 +363,7 @@ interface Clock {
   restore(): void;
 }
 
-type ClockConfig = undefined | number | Date;
+export type ClockConfig = undefined | number | Date;
 
 function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
   let clock: ReturnType<typeof useFakeTimers> | null = null;
@@ -436,7 +436,7 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
   };
 }
 
-interface Renderer {
+export interface Renderer {
   clock: Clock;
   render(element: React.ReactElement<any>, options?: RenderOptions): MuiRenderResult;
   renderToString(

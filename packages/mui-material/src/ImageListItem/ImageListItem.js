@@ -6,11 +6,10 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import ImageListContext from '../ImageList/ImageListContext';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import isMuiElement from '../utils/isMuiElement';
 import imageListItemClasses, { getImageListItemUtilityClass } from './imageListItemClasses';
-
-const useThemeProps = createUseThemeProps('MuiImageListItem');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant } = ownerState;
@@ -82,7 +81,7 @@ const ImageListItemRoot = styled('li', {
 });
 
 const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiImageListItem',
   });

@@ -241,6 +241,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {

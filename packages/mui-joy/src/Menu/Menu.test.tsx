@@ -31,12 +31,6 @@ describe('Joy <Menu />', () => {
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
       );
     },
-    wrapMount: (mount) => (node: React.ReactNode) => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
-      );
-      return wrapper.childAt(0);
-    },
     ThemeProvider,
     muiName: 'JoyMenu',
     refInstanceof: window.HTMLUListElement,
@@ -48,7 +42,6 @@ describe('Joy <Menu />', () => {
       'classesRoot',
       'componentProp',
       'componentsProp',
-      'reactTestRenderer', // react-transition-group issue
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));

@@ -8,19 +8,17 @@ import { appendOwnerState } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
-import { styled, createUseThemeProps } from '../zero-styled';
-import useTheme from '../styles/useTheme';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useId from '../utils/useId';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
 import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
-
-const useThemeProps = createUseThemeProps('MuiTooltip');
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -306,7 +304,7 @@ function composeEventHandler(handler, eventHandler) {
 
 // TODO v6: Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children: childrenProp,
@@ -468,18 +466,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     });
   };
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
-  // We don't necessarily care about the focusVisible state (which is safe to access via ref anyway).
-  // We just need to re-render the Tooltip if the focus-visible state changes.
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event.target)) {
       setChildIsFocusVisible(false);
       handleMouseLeave(event);
     }
@@ -493,8 +482,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       setChildNode(event.currentTarget);
     }
 
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event.target)) {
       setChildIsFocusVisible(true);
       handleMouseOver(event);
     }
@@ -557,7 +545,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
-  const handleRef = useForkRef(children.ref, focusVisibleRef, setChildNode, ref);
+  const handleRef = useForkRef(children.ref, setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
   // So we exclude all falsy values, except 0, which is valid.

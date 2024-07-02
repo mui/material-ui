@@ -118,7 +118,7 @@ export default function MaterialComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Component library"
             title={
@@ -137,7 +137,7 @@ export default function MaterialComponents() {
             <More href={ROUTES.components} />
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
               <CssVarsProvider theme={customized ? customTheme : undefined}>

@@ -120,7 +120,7 @@ export default function XDataGrid() {
   return (
     <Section cozy>
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Data Grid"
             title={
@@ -140,7 +140,7 @@ export default function XDataGrid() {
             <More href={ROUTES.dataGridFeatures} />
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Paper
             id="data-grid-demo"
             variant="outlined"

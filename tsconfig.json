@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "target": "es5",
+    // aligning with Node18 recommendation: https://www.npmjs.com/package/@tsconfig/node18
+    "target": "es2022",
     "lib": ["es2020", "dom"],
     "jsx": "preserve",
     "moduleResolution": "node",

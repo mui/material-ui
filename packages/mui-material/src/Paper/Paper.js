@@ -6,12 +6,10 @@ import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import getOverlayAlpha from '../styles/getOverlayAlpha';
-import useTheme from '../styles/useTheme';
 import { getPaperUtilityClass } from './paperClasses';
-
-const useThemeProps = createUseThemeProps('MuiPaper');
 
 const useUtilityClasses = (ownerState) => {
   const { square, elevation, variant, classes } = ownerState;
@@ -73,7 +71,7 @@ const PaperRoot = styled('div', {
 }));
 
 const Paper = React.forwardRef(function Paper(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPaper' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPaper' });
   const theme = useTheme();
 
   const {

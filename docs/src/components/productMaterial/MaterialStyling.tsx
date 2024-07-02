@@ -155,7 +155,7 @@ export default function MaterialStyling() {
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Styling"
             title={
@@ -189,7 +189,7 @@ export default function MaterialStyling() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo sx={{ overflow: 'auto' }}>
               <Box
