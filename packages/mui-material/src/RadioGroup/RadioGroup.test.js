@@ -120,7 +120,7 @@ describe('<RadioGroup />', () => {
   });
 
   describe('imperative focus()', () => {
-    it('should focus the first non-disabled radio', () => {
+    it('should focus the first non-disabled radio', async () => {
       const actionsRef = React.createRef();
       const oneRadioOnFocus = spy();
 
@@ -132,7 +132,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
 
@@ -162,7 +162,7 @@ describe('<RadioGroup />', () => {
       expect(twoRadioOnFocus.callCount).to.equal(0);
     });
 
-    it('should focus the selected radio', () => {
+    it('should focus the selected radio', async () => {
       const actionsRef = React.createRef();
       const twoRadioOnFocus = spy();
 
@@ -175,14 +175,14 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
 
       expect(twoRadioOnFocus.callCount).to.equal(1);
     });
 
-    it('should focus the non-disabled radio rather than the disabled selected radio', () => {
+    it('should focus the non-disabled radio rather than the disabled selected radio', async () => {
       const actionsRef = React.createRef();
       const threeRadioOnFocus = spy();
 
@@ -195,7 +195,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
 

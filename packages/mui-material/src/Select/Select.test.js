@@ -95,7 +95,7 @@ describe('<Select />', () => {
     expect(container.querySelector('input')).to.have.attribute('aria-hidden', 'true');
   });
 
-  it('should ignore onBlur when the menu opens', () => {
+  it('should ignore onBlur when the menu opens', async () => {
     // mousedown calls focus while click opens moving the focus to an item
     // this means the trigger is blurred immediately
     const handleBlur = spy();
@@ -116,12 +116,12 @@ describe('<Select />', () => {
     );
     const trigger = getByRole('combobox');
 
-    fireEvent.mouseDown(trigger);
+    await act(async () => fireEvent.mouseDown(trigger));
 
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).not.to.equal(null);
 
-    act(() => {
+    await act(async () => {
       const options = getAllByRole('option');
       fireEvent.mouseDown(options[0]);
       options[0].click();

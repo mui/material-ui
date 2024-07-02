@@ -15,6 +15,7 @@ import {
   within,
   RenderResult,
 } from '@testing-library/react/pure';
+import { userEvent } from '@testing-library/user-event';
 import { useFakeTimers } from 'sinon';
 
 interface Interaction {
@@ -268,6 +269,7 @@ interface ServerRenderConfiguration extends RenderConfiguration {
 export type RenderOptions = Partial<RenderConfiguration>;
 
 export interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
+  user: ReturnType<typeof userEvent.setup>;
   forceUpdate(): void;
   /**
    * convenience helper. Better than repeating all props.
@@ -296,6 +298,7 @@ function render(
   );
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
+    user: userEvent.setup(),
     forceUpdate() {
       traceSync('forceUpdate', () =>
         testingLibraryRenderResult.rerender(
