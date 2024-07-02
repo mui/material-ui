@@ -75,7 +75,6 @@ export const menuComponentsCustomizations: Components<Theme> = {
       root: ({ theme }) => ({
         backgroundColor: 'transparent',
         padding: '4px 8px',
-        opacity: 0.7,
         fontSize: theme.typography.caption.fontSize,
         fontWeight: 500,
         lineHeight: theme.typography.caption.lineHeight,
