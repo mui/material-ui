@@ -105,7 +105,9 @@ function getOverlays(mode) {
  * A default `extendTheme` comes with a single color scheme, either `light` or `dark` based on the `defaultColorScheme`.
  * This is better suited for apps that only need a single color scheme.
  *
- * To enable multi color schemes, a `strategy` must be provided to explicitly define how the color schemes will change.
+ * To enable built-in `light` and `dark` color schemes, either:
+ * 1. provide a `strategy` to define how the color schemes will change.
+ * 2. provide `colorSchemes.dark` will set `strategy: 'media'` by default.
  */
 export default function extendTheme(options = {}, ...args) {
   const {
@@ -113,7 +115,7 @@ export default function extendTheme(options = {}, ...args) {
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    strategy,
+    strategy: strategyInput,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -143,8 +145,10 @@ export default function extendTheme(options = {}, ...args) {
     darkPalette = defaultPalette;
   }
 
+  const oppositeColorScheme = defaultColorScheme === 'dark' ? 'light' : 'dark';
+  const strategy =
+    strategyInput || (colorSchemesInput[oppositeColorScheme] ? 'media' : strategyInput);
   if (strategy) {
-    const oppositeColorScheme = defaultColorScheme === 'dark' ? 'light' : 'dark';
     const { palette: oppositePalette } = createThemeWithoutVars({
       palette: { mode: oppositeColorScheme, ...colorSchemesInput[oppositeColorScheme]?.palette },
     });
@@ -159,10 +163,10 @@ export default function extendTheme(options = {}, ...args) {
         colorSchemesInput[oppositeColorScheme]?.overlays || getOverlays(oppositeColorScheme),
     };
     if (oppositeColorScheme === 'light') {
-      lightPalette = defaultPalette;
+      lightPalette = oppositePalette;
     }
     if (oppositeColorScheme === 'dark') {
-      darkPalette = defaultPalette;
+      darkPalette = oppositePalette;
     }
   }
 
@@ -473,8 +477,7 @@ export default function extendTheme(options = {}, ...args) {
       return `@media (prefers-color-scheme: ${colorScheme})`;
     }
     if (strategy) {
-      const selector = strategy.replace('%s', colorScheme);
-      return `:where(${selector}, ${selector} *)`;
+      return strategy.replace('%s', colorScheme);
     }
     return '&';
   };

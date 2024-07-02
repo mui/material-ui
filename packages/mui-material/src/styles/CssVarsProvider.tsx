@@ -60,7 +60,7 @@ function Experimental_CssVarsProvider(props: any) {
 let warnedInitScriptOnce = false;
 
 // TODO: remove in v7
-const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (params) => {
+const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (params: any) => {
   if (!warnedInitScriptOnce) {
     console.warn(
       [

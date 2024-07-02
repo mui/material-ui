@@ -516,7 +516,11 @@ export function buildTheme(): ThemeOptions {
 
 const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
+const defaultTheme = extendTheme({
+  strategy: '[data-mui-color-scheme="%s"]',
+});
 export const customTheme = extendTheme({
+  strategy: '[data-mui-color-scheme="%s"]',
   cssVarPrefix: 'muidocs',
   colorSchemes: {
     light: {
@@ -533,7 +537,7 @@ export const customTheme = extendTheme({
 export default function MaterialDesignComponents() {
   const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
   const [customized, setCustomized] = React.useState(false);
-  const theme = customized ? customTheme : undefined;
+  const theme = customized ? customTheme : defaultTheme;
   return (
     <div>
       <Box sx={{ mt: { xs: 2, md: 2 }, mb: 4, display: 'flex', justifyContent: 'center' }}>

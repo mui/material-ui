@@ -17,6 +17,7 @@ const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('
 const { palette: darkPalette } = getDesignTokens('dark');
 
 const theme = extendTheme({
+  strategy: '[data-mui-color-scheme="%s"]',
   cssVarPrefix: 'muidocs',
   colorSchemes: {
     light: {
