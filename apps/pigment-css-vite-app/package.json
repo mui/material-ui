@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@pigment-css/react": "^0.0.16",
+    "@mui/material-pigment-css": "workspace:^",
     "@mui/utils": "workspace:^",
     "@mui/base": "workspace:^",
     "@mui/icons-material": "workspace:^",

@@ -3,8 +3,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import fs from 'fs/promises';
 import path from 'path';
-import { css } from '@pigment-css/react';
-import Box from '@pigment-css/react/Box';
+import { css } from '@mui/material-pigment-css';
 
 export default async function MaterialUIPage() {
   const rootPaths = await fs.readdir(path.join(process.cwd(), `src/app/material-ui`));
@@ -12,8 +11,8 @@ export default async function MaterialUIPage() {
     <div>
       <h1>Material UI Components</h1>
       <nav>
-        <Box
-          as="ul"
+        <ul
+          // @ts-ignore
           sx={{
             margin: 0,
             marginBlock: '1rem',
@@ -39,7 +38,7 @@ export default async function MaterialUIPage() {
                 </Link>
               </li>
             ))}
-        </Box>
+        </ul>
       </nav>
     </div>
   );
