@@ -33,17 +33,6 @@ export default function createCssVarsProvider(options) {
     resolveTheme,
   } = options;
 
-  if (
-    !defaultTheme.colorSchemes ||
-    (typeof designSystemColorScheme === 'string' &&
-      !defaultTheme.colorSchemes[designSystemColorScheme]) ||
-    (typeof designSystemColorScheme === 'object' &&
-      !defaultTheme.colorSchemes[designSystemColorScheme?.light]) ||
-    (typeof designSystemColorScheme === 'object' &&
-      !defaultTheme.colorSchemes[designSystemColorScheme?.dark])
-  ) {
-    console.error(`MUI: \`${designSystemColorScheme}\` does not exist in \`theme.colorSchemes\`.`);
-  }
   const ColorSchemeContext = React.createContext(undefined);
 
   if (process.env.NODE_ENV !== 'production') {
@@ -56,6 +45,20 @@ export default function createCssVarsProvider(options) {
       throw new MuiError('MUI: `useColorScheme` must be called under <CssVarsProvider />');
     }
     return value;
+  };
+
+  const useAllColorSchemes = (colorSchemes = {}) => {
+    const allColorSchemes = Object.keys(colorSchemes);
+    const ref = React.useRef(allColorSchemes);
+    const signal = React.useRef(0);
+    if (
+      ref.current.length !== allColorSchemes.length ||
+      ref.current.some((v, index) => v !== allColorSchemes[index])
+    ) {
+      signal.current += 1;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return React.useMemo(() => ref.current, [signal.current]);
   };
 
   function CssVarsProvider(props) {
@@ -71,7 +74,6 @@ export default function createCssVarsProvider(options) {
       storageWindow = typeof window === 'undefined' ? undefined : window,
       documentNode = typeof document === 'undefined' ? undefined : document,
       colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
-      colorSchemeSelector = ':root',
       disableNestedContext = false,
       disableStyleSheetGeneration = false,
     } = props;
@@ -87,7 +89,7 @@ export default function createCssVarsProvider(options) {
       cssVarPrefix,
       ...restThemeProp
     } = scopedTheme || themeProp;
-    const allColorSchemes = Object.keys(colorSchemes);
+    const allColorSchemes = useAllColorSchemes(colorSchemes);
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
@@ -177,32 +179,32 @@ export default function createCssVarsProvider(options) {
         }
       }
     });
-    const resolvedDefaultColorScheme = (() => {
-      if (typeof defaultColorScheme === 'string') {
-        return defaultColorScheme;
-      }
-      if (defaultMode === 'dark') {
-        return defaultColorScheme.dark;
-      }
-      return defaultColorScheme.light;
-    })();
-    themeProp.defaultColorScheme = resolvedDefaultColorScheme;
-    themeProp.colorSchemeSelector = colorSchemeSelector;
-    themeProp.attribute = attribute;
 
-    if (!theme.getColorSchemeSelector) {
-      theme.getColorSchemeSelector = (targetColorScheme) =>
-        `[${attribute}="${targetColorScheme}"] &`;
-    }
-
+    const strategy = restThemeProp.strategy || attribute;
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
     React.useEffect(() => {
-      if (colorScheme && colorSchemeNode) {
-        // attaches attribute to <html> because the css variables are attached to :root (html)
-        colorSchemeNode.setAttribute(attribute, colorScheme);
+      if (colorScheme && colorSchemeNode && strategy && strategy !== 'media') {
+        const selector = strategy.replace('%s', colorScheme);
+        if (selector.startsWith('.')) {
+          colorSchemeNode.classList.remove(
+            ...allColorSchemes.map((scheme) => strategy.substr(1).replace('%s', scheme)),
+          );
+          colorSchemeNode.classList.add(selector.substr(1));
+        } else if (selector.startsWith('#')) {
+          colorSchemeNode.setAttribute('id', selector.substr(1));
+        } else {
+          const matches = selector.match(/\[([^\]]+)\]/);
+          if (matches) {
+            const [attr, value] = matches[1].split('=');
+            // attaches attribute to <html> because the css variables are attached to :root (html)
+            colorSchemeNode.setAttribute(attr, value || '');
+          } else {
+            colorSchemeNode.setAttribute(selector, colorScheme);
+          }
+        }
       }
-    }, [colorScheme, attribute, colorSchemeNode]);
+    }, [colorScheme, strategy, colorSchemeNode, allColorSchemes]);
 
     // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
     // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
@@ -299,10 +301,6 @@ export default function createCssVarsProvider(options) {
      * The node used to attach the color-scheme attribute
      */
     colorSchemeNode: PropTypes.any,
-    /**
-     * The CSS selector for attaching the generated custom properties
-     */
-    colorSchemeSelector: PropTypes.string,
     /**
      * localStorage key used to store `colorScheme`
      */
