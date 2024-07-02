@@ -396,6 +396,9 @@ importers:
       '@mui/material':
         specifier: workspace:^
         version: link:../../packages/mui-material/build
+      '@mui/material-pigment-css':
+        specifier: workspace:^
+        version: link:../../packages/mui-material-pigment-css/build
       '@mui/system':
         specifier: workspace:^
         version: link:../../packages/mui-system/build
@@ -1825,6 +1828,13 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
+    publishDirectory: build
+
+  packages/mui-material-pigment-css:
+    dependencies:
+      '@pigment-css/react':
+        specifier: ^0.0.16
+        version: 0.0.16(@types/react@18.2.55)(react@18.2.0)
     publishDirectory: build
 
   packages/mui-private-theming:
