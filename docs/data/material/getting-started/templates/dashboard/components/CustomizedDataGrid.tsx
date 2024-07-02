@@ -17,7 +17,15 @@ export default function CustomizedDataGrid() {
       }}
       pageSizeOptions={[10, 20, 50]}
       disableColumnResize
-      density="compact"
+      sx={{
+        overflow: 'clip',
+        '& .MuiTablePagination-actions': {
+          '& .MuiIconButton-root': {
+            width: 32,
+            height: 32,
+          },
+        },
+      }}
     />
   );
 }

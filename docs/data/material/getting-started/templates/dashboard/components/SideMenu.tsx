@@ -48,10 +48,9 @@ export default function SideMenu() {
       <Stack
         direction="row"
         sx={{
+          p: 2,
           gap: 1,
           alignItems: 'center',
-          justifyContent: 'space-between',
-          p: 2,
           borderTop: '1px solid',
           borderColor: 'divider',
         }}
@@ -60,16 +59,16 @@ export default function SideMenu() {
           sizes="small"
           alt="Riley Carter"
           src="/static/images/avatar/7.jpg"
-          sx={{ width: 32, height: 32 }}
+          sx={{ width: 36, height: 36 }}
         />
-        <div>
-          <Typography variant="body2" sx={{ fontWeight: 500 }}>
+        <Box sx={{ mr: 'auto' }}>
+          <Typography variant="body2" sx={{ fontWeight: 500, lineHeight: '16px' }}>
             Riley Carter
           </Typography>
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            rileycarter@email.com
+            riley@email.com
           </Typography>
-        </div>
+        </Box>
         <OptionsMenu />
       </Stack>
     </Drawer>
