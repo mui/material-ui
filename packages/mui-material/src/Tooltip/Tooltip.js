@@ -544,8 +544,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleClose, open]);
-console.log(children)
-  const handleRef = useForkRef(children.ref, setChildNode, ref);
+
+  const handleRef = useForkRef(children.props.ref ?? children.ref, setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
   // So we exclude all falsy values, except 0, which is valid.
