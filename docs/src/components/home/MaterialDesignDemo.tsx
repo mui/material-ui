@@ -45,7 +45,7 @@ const Switch = withPointer(MuiSwitch, { id: 'switch', name: 'Switch' });
 export default function MaterialDesignDemo(props: CardProps) {
   const [active, setActive] = React.useState(true);
   return (
-    <Card {...props} sx={{ p: 2 }}>
+    <Card {...props} variant="outlined" sx={{ p: 2 }}>
       <CardMedia
         component="img"
         alt="Yosemite National Park"

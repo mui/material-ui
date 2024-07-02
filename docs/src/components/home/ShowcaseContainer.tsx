@@ -4,13 +4,49 @@ import Fade from '@mui/material/Fade';
 import NoSsr from '@mui/material/NoSsr';
 import Frame from 'docs/src/components/action/Frame';
 
-export default function ShowcaseContainer({
-  preview,
-  code,
+export function ShowcaseCodeWrapper({
+  children,
+  clip,
+  hasDesignToggle,
+  maxHeight,
   sx,
 }: {
-  preview?: React.ReactNode;
+  clip?: boolean;
+  children: React.ReactNode;
+  hasDesignToggle?: boolean;
+  maxHeight: number | string;
+  sx?: BoxProps['sx'];
+}) {
+  return (
+    <Box
+      sx={{
+        p: 2,
+        pt: hasDesignToggle ? 7 : 2,
+        maxHeight: { xs: 'auto', sm: maxHeight },
+        position: 'relative',
+        display: 'flex',
+        overflow: clip ? 'clip' : 'auto',
+        flexGrow: 1,
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
+        ...sx,
+      }}
+    >
+      {children}
+    </Box>
+  );
+}
+
+export default function ShowcaseContainer({
+  code,
+  noPadding,
+  preview,
+  sx,
+}: {
   code?: React.ReactNode;
+  noPadding?: boolean;
+  preview?: React.ReactNode;
   sx?: BoxProps['sx'];
 }) {
   return (
@@ -33,19 +69,21 @@ export default function ShowcaseContainer({
       >
         <Frame.Demo
           sx={{
-            display: 'flex',
+            p: noPadding ? 0 : 2,
+            minHeight: 220,
             position: 'relative',
+            display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            minHeight: 220,
-            p: 2,
           }}
         >
           {preview}
         </Frame.Demo>
-        <Frame.Info data-mui-color-scheme="dark" sx={{ p: 2, borderTop: 0 }}>
-          <NoSsr>{code}</NoSsr>
-        </Frame.Info>
+        {code ? (
+          <Frame.Info data-mui-color-scheme="dark" sx={{ p: 0 }}>
+            <NoSsr>{code}</NoSsr>
+          </Frame.Info>
+        ) : null}
       </Box>
     </Fade>
   );
