@@ -3,14 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import AccordionContext from '../Accordion/AccordionContext';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
-
-const useThemeProps = createUseThemeProps('MuiAccordionSummary');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, expanded, disabled, disableGutters } = ownerState;
@@ -101,7 +100,7 @@ const AccordionSummaryExpandIconWrapper = styled('div', {
 }));
 
 const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAccordionSummary' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAccordionSummary' });
   const { children, className, expandIcon, focusVisibleClassName, onClick, ...other } = props;
 
   const { disabled = false, disableGutters, expanded, toggle } = React.useContext(AccordionContext);

@@ -731,14 +731,16 @@ describe('createCssVarsProvider', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: createCssVarsTheme({
           colorSchemes: { light: { fontSize: 16 } },
-          components: 'any',
+          components: {
+            foo: 'bar',
+          },
         }),
         defaultColorScheme: 'light',
       });
       function Text() {
         const theme = useTheme();
 
-        return <div data-testid={`text`}>{theme.vars.components}</div>;
+        return <div data-testid={`text`}>{theme.vars.components?.foo}</div>;
       }
       render(
         <CssVarsProvider>
@@ -746,7 +748,7 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('text').textContent).not.to.equal('var(--components)');
+      expect(screen.getByTestId('text').textContent).not.to.equal('var(--components-foo)');
     });
 
     it('`defaultMode` is specified', () => {

@@ -7,7 +7,7 @@ import { alpha } from '@mui/system/colorManipulator';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
 import ButtonGroupButtonContext from './ButtonGroupButtonContext';
@@ -199,7 +199,7 @@ const ButtonGroupRoot = styled('div', {
 }));
 
 const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiButtonGroup' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiButtonGroup' });
   const {
     children,
     className,

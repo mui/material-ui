@@ -10,7 +10,7 @@ import { useRtl } from '@mui/system/RtlProvider';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuUtilityClass } from './menuClasses';
 
 const RTL_ORIGIN = {
@@ -65,7 +65,7 @@ const MenuMenuList = styled(MenuList, {
 });
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMenu' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenu' });
 
   const {
     autoFocus = true,

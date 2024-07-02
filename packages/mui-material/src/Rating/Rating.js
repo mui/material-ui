@@ -16,7 +16,7 @@ import {
 } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 
@@ -296,7 +296,7 @@ function defaultLabelText(value) {
 }
 
 const Rating = React.forwardRef(function Rating(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiRating', props: inProps });
+  const props = useDefaultProps({ name: 'MuiRating', props: inProps });
   const {
     className,
     defaultValue = null,

@@ -8,7 +8,7 @@ import { darken, lighten } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 
 const TRANSITION_DURATION = 4; // seconds
@@ -267,7 +267,7 @@ const LinearProgressBar2 = styled('span', {
  * attribute to `true` on that region until it has finished loading.
  */
 const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiLinearProgress' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiLinearProgress' });
   const {
     className,
     color = 'primary',

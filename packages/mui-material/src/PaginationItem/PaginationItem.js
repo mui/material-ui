@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
@@ -260,7 +260,7 @@ const PaginationItemPageIcon = styled('div', {
 }));
 
 const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPaginationItem' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPaginationItem' });
   const {
     className,
     color = 'standard',

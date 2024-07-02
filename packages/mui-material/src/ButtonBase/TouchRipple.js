@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { keyframes } from '@mui/system';
 import useTimeout from '@mui/utils/useTimeout';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
 
@@ -120,7 +120,7 @@ export const TouchRippleRipple = styled(Ripple, {
  * TODO v5: Make private
  */
 const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTouchRipple' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTouchRipple' });
 
   const { center: centerProp = false, classes = {}, className, ...other } = props;
   const [ripples, setRipples] = React.useState([]);

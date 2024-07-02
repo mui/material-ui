@@ -6,7 +6,7 @@ import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from './StepContext';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getStepUtilityClass } from './stepClasses';
 
@@ -45,7 +45,7 @@ const StepRoot = styled('div', {
 }));
 
 const Step = React.forwardRef(function Step(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStep' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStep' });
   const {
     active: activeProp,
     children,

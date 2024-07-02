@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import integerPropType from '@mui/utils/integerPropType';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
@@ -52,7 +52,7 @@ function defaultGetAriaLabel(type, page, selected) {
 }
 
 const Pagination = React.forwardRef(function Pagination(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPagination' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPagination' });
   const {
     boundaryCount = 1,
     className,

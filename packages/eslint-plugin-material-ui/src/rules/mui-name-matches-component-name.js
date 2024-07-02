@@ -78,7 +78,8 @@ const rule = {
         }
 
         let nameLiteral = null;
-        const isUseThemePropsCall = node.callee.name === 'useThemeProps';
+        const isUseThemePropsCall =
+          node.callee.name === 'useThemeProps' || node.callee.name === 'useDefaultProps';
         if (isUseThemePropsCall) {
           let isCalledFromCustomHook = false;
           let parent = node.parent;

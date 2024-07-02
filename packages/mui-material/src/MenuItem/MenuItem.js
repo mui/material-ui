@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -147,7 +147,7 @@ const MenuItemRoot = styled(ButtonBase, {
 }));
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenuItem' });
   const {
     autoFocus = false,
     component = 'li',

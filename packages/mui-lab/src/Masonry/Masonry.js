@@ -1,7 +1,8 @@
 'use client';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import * as ReactDOM from 'react-dom';
-import { styled, useThemeProps } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
+import { useDefaultProps } from '@mui/material/DefaultPropsProvider';
 import {
   createUnarySpacing,
   getValue,
@@ -171,7 +172,7 @@ const MasonryRoot = styled('div', {
 })(getStyle);
 
 const Masonry = React.forwardRef(function Masonry(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiMasonry',
   });

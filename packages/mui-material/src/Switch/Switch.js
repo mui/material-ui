@@ -8,10 +8,9 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
-
-const useThemeProps = createUseThemeProps('MuiSwitch');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, edge, size, color, checked, disabled } = ownerState;
@@ -216,7 +215,7 @@ const SwitchThumb = styled('span', {
 }));
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSwitch' });
   const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
 
   const ownerState = {

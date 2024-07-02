@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import capitalize from '../utils/capitalize';
@@ -78,7 +78,7 @@ const FormControlRoot = styled('div', {
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  */
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormControl' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormControl' });
   const {
     children,
     className,
