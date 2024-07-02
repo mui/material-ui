@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import * as React from 'react';
 import { styled, alpha, Theme } from '@mui/material/styles';
 import { unstable_debounce as debounce } from '@mui/utils';
@@ -89,12 +90,10 @@ const logoColor = (theme: Theme) => ({
 });
 
 export default function HeaderNavBar() {
-  // const [subMenuOpen, setSubMenuOpen] = React.useState<null | 'products' | 'docs'>(null);
   const [subMenuOpen, setSubMenuOpen] = React.useState(false);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const navRef = React.useRef<HTMLUListElement | null>(null);
   const productsMenuRef = React.useRef<HTMLButtonElement>(null);
-  // const docsMenuRef = React.useRef<HTMLButtonElement>(null);
 
   React.useEffect(() => {
     if (typeof subMenuIndex === 'number') {
@@ -105,7 +104,7 @@ export default function HeaderNavBar() {
   function handleKeyDown(event: React.KeyboardEvent) {
     let menuItem;
 
-    if (subMenuOpen === 'products') {
+    if (subMenuOpen) {
       menuItem = productsMenuRef.current!;
     } else {
       return;
@@ -114,7 +113,7 @@ export default function HeaderNavBar() {
     const columns = 2;
     const totalItems = PRODUCT_IDS.length;
 
-    if (event.key === 'ArrowDown' && subMenuOpen === 'products') {
+    if (event.key === 'ArrowDown' && subMenuOpen) {
       event.preventDefault();
       setSubMenuIndex((prevValue) => {
         if (prevValue === null) {
@@ -123,7 +122,7 @@ export default function HeaderNavBar() {
         return (prevValue + columns) % totalItems;
       });
     }
-    if (event.key === 'ArrowUp' && subMenuOpen === 'products') {
+    if (event.key === 'ArrowUp' && subMenuOpen) {
       event.preventDefault();
       setSubMenuIndex((prevValue) => {
         if (prevValue === null) {
@@ -132,7 +131,7 @@ export default function HeaderNavBar() {
         return (prevValue - columns + totalItems) % totalItems;
       });
     }
-    if (event.key === 'ArrowRight' && subMenuOpen === 'products') {
+    if (event.key === 'ArrowRight' && subMenuOpen) {
       event.preventDefault();
       setSubMenuIndex((prevValue) => {
         if (prevValue === null) {
@@ -141,7 +140,7 @@ export default function HeaderNavBar() {
         return (prevValue + 1) % totalItems;
       });
     }
-    if (event.key === 'ArrowLeft' && subMenuOpen === 'products') {
+    if (event.key === 'ArrowLeft' && subMenuOpen) {
       event.preventDefault();
       setSubMenuIndex((prevValue) => {
         if (prevValue === null) {
@@ -152,7 +151,7 @@ export default function HeaderNavBar() {
     }
     if (event.key === 'Escape' || event.key === 'Tab') {
       menuItem.focus();
-      setSubMenuOpen(null);
+      setSubMenuOpen(false);
       setSubMenuIndex(null);
     }
   }
@@ -161,7 +160,7 @@ export default function HeaderNavBar() {
     setSubMenuOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: any) => {
     if (productsMenuRef.current && productsMenuRef.current.contains(event.target)) {
       return;
     }
@@ -173,9 +172,9 @@ export default function HeaderNavBar() {
     [setSubMenuOpen],
   );
 
-  const setSubMenuOpenUndebounce = (value: typeof subMenuOpen) => () => {
+  const setSubMenuOpenUndebounce = () => () => {
     setSubMenuOpenDebounced.clear();
-    setSubMenuOpen(value);
+    setSubMenuOpen(true);
   };
 
   React.useEffect(() => {
@@ -188,10 +187,10 @@ export default function HeaderNavBar() {
     <Navigation>
       <ul ref={navRef} onKeyDown={handleKeyDown}>
         <li
-          onMouseEnter={setSubMenuOpenUndebounce('products')}
-          onFocus={setSubMenuOpenUndebounce('products')}
-          onMouseLeave={() => setSubMenuOpenDebounced(null)}
-          onBlur={setSubMenuOpenUndebounce(null)}
+          onMouseEnter={setSubMenuOpenUndebounce()}
+          onFocus={setSubMenuOpenUndebounce()}
+          onMouseLeave={() => setSubMenuOpenDebounced(false)}
+          onBlur={() => setSubMenuOpenUndebounce()}
         >
           <ButtonBase
             ref={productsMenuRef}
