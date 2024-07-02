@@ -5,7 +5,7 @@
     "id": {
       "description": "The id of the tab. If not provided, it will be automatically generated."
     },
-    "onChange": { "description": "If <code>true</code>, the tab will be disabled." },
+    "onChange": { "description": "Callback invoked when new value is being set." },
     "onClick": { "description": "Callback fired when the tab is clicked." },
     "rootRef": { "description": "Ref to the root slot&#39;s DOM element." },
     "value": {

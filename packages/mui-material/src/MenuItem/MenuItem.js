@@ -5,7 +5,8 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -14,8 +15,6 @@ import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
-
-const useThemeProps = createUseThemeProps('MuiMenuItem');
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -163,7 +162,7 @@ const MenuItemRoot = styled(ButtonBase, {
 }));
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenuItem' });
   const {
     autoFocus = false,
     component = 'li',

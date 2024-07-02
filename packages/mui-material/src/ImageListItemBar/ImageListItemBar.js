@@ -3,11 +3,10 @@ import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getImageListItemBarUtilityClass } from './imageListItemBarClasses';
-
-const useThemeProps = createUseThemeProps('MuiImageListItemBar');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, position, actionIcon, actionPosition } = ownerState;
@@ -172,7 +171,7 @@ const ImageListItemBarActionIcon = styled('div', {
 });
 
 const ImageListItemBar = React.forwardRef(function ImageListItemBar(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiImageListItemBar',
   });
