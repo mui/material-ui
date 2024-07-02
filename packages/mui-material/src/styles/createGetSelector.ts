@@ -11,6 +11,11 @@ export default <
     theme: T,
   ) =>
   (colorScheme: keyof T['colorSchemes'] | undefined, css: Record<string, any>) => {
+    let strategy = theme.strategy;
+    if (theme.strategy?.startsWith('data-') && !theme.strategy.includes('%s')) {
+      // 'data-mui-color-scheme' -> '[data-mui-color-scheme="%s"]'
+      strategy = `[${theme.strategy}="%s"]`;
+    }
     if (theme.defaultColorScheme === colorScheme) {
       if (colorScheme === 'dark') {
         const excludedVariables: typeof css = {};
@@ -18,29 +23,29 @@ export default <
           excludedVariables[cssVar] = css[cssVar];
           delete css[cssVar];
         });
-        if (theme.strategy === 'media') {
+        if (strategy === 'media') {
           return {
             ':root': css,
             '@media (prefers-color-scheme: dark) { :root': excludedVariables,
           };
         }
-        if (theme.strategy) {
+        if (strategy) {
           return {
-            [theme.strategy.replace('%s', colorScheme)]: excludedVariables,
+            [strategy.replace('%s', colorScheme)]: excludedVariables,
             ':root': css,
           };
         }
         return { ':root': { ...css, ...excludedVariables } };
       }
-      if (theme.strategy && theme.strategy !== 'media') {
-        return theme.strategy.replace('%s', String(colorScheme));
+      if (strategy && strategy !== 'media') {
+        return strategy.replace('%s', String(colorScheme));
       }
     } else if (colorScheme) {
-      if (theme.strategy === 'media') {
+      if (strategy === 'media') {
         return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
       }
-      if (theme.strategy) {
-        return theme.strategy.replace('%s', String(colorScheme));
+      if (strategy) {
+        return strategy.replace('%s', String(colorScheme));
       }
     }
     return ':root';

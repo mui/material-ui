@@ -19,6 +19,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
 import defaultGetSelector from './createGetSelector';
+import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
@@ -115,7 +116,7 @@ export default function extendTheme(options = {}, ...args) {
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    strategy,
+    strategy: strategyInput,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -146,7 +147,11 @@ export default function extendTheme(options = {}, ...args) {
   }
 
   const oppositeColorScheme = defaultColorScheme === 'dark' ? 'light' : 'dark';
-  if (strategy || colorSchemesInput[oppositeColorScheme]) {
+  const strategy =
+    strategyInput || colorSchemesInput[oppositeColorScheme]
+      ? `${defaultConfig.attribute}`
+      : undefined;
+  if (strategy) {
     const { palette: oppositePalette } = createThemeWithoutVars({
       palette: { mode: oppositeColorScheme, ...colorSchemesInput[oppositeColorScheme]?.palette },
     });
@@ -475,6 +480,9 @@ export default function extendTheme(options = {}, ...args) {
       return `@media (prefers-color-scheme: ${colorScheme})`;
     }
     if (strategy) {
+      if (strategy.startsWith('data-') && !strategy.includes('%s')) {
+        return `[${strategy}="${colorScheme}"]`;
+      }
       return strategy.replace('%s', colorScheme);
     }
     return '&';
