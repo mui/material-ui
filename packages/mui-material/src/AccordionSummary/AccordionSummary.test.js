@@ -98,7 +98,12 @@ describe('<AccordionSummary />', () => {
     expect(handleChange.callCount).to.equal(1);
   });
 
-  it('calls onFocusVisible if focused visibly', () => {
+  it('calls onFocusVisible if focused visibly', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const handleFocusVisible = spy();
     const { getByRole } = render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
     // simulate pointer device

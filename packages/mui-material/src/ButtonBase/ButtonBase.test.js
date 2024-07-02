@@ -248,6 +248,13 @@ describe('<ButtonBase />', () => {
   });
 
   describe('ripple', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     describe('interactions', () => {
       it('should not have a focus ripple by default', () => {
         const { getByRole } = render(
@@ -605,6 +612,13 @@ describe('<ButtonBase />', () => {
   });
 
   describe('focusRipple', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('should pulsate the ripple when focusVisible', async () => {
       const { getByRole } = render(
         <ButtonBase
@@ -732,7 +746,12 @@ describe('<ButtonBase />', () => {
       expect(getByText('Hello')).to.have.property('disabled', true);
     });
 
-    it('should reset the focused state', () => {
+    it('should reset the focused state', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { getByText, setProps } = render(<ButtonBase>Hello</ButtonBase>);
       const button = getByText('Hello');
       simulatePointerDevice();
@@ -800,7 +819,12 @@ describe('<ButtonBase />', () => {
       expect(onFocusSpy.callCount).to.equal(1);
     });
 
-    it('has a focus-visible polyfill', () => {
+    it('has a focus-visible polyfill', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { getByText } = render(<ButtonBase>Hello</ButtonBase>);
       const button = getByText('Hello');
       simulatePointerDevice();
@@ -822,7 +846,12 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.class(classes.focusVisible);
     });
 
-    it('removes focus-visible if focus is re-targetted', () => {
+    it('removes focus-visible if focus is re-targetted', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       /**
        * @type {string[]}
        */
@@ -867,7 +896,12 @@ describe('<ButtonBase />', () => {
       expect(buttonBase).not.to.have.class(classes.focusVisible);
     });
 
-    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', () => {
+    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const onFocusVisibleSpy = spy();
       const { getByRole } = render(
         <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy}>
@@ -892,6 +926,13 @@ describe('<ButtonBase />', () => {
   });
 
   describe('event: keydown', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('ripples on repeated keydowns', async () => {
       const { container, getByText } = render(
         <ButtonBase focusRipple TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
@@ -1135,6 +1176,13 @@ describe('<ButtonBase />', () => {
   });
 
   describe('prop: action', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('should be able to focus visible the button', () => {
       /**
        * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions>}

@@ -583,7 +583,12 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.disableElevation);
   });
 
-  it('should have a focusRipple', async () => {
+  it('should have a focusRipple', async function() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const { getByRole } = render(
       <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
         Hello World
@@ -597,7 +602,12 @@ describe('<Button />', () => {
     expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
 
-  it('can disable the focusRipple', async () => {
+  it('can disable the focusRipple', async function() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const { getByRole } = render(
       <Button
         disableFocusRipple

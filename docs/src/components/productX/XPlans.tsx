@@ -38,7 +38,7 @@ export default function XPlans2() {
   return (
     <Section cozy>
       <Grid container spacing={2} alignItems="center">
-        <Grid md={6}>
+        <Grid size={{ md: 6 }}>
           <SectionHeadline
             overline="Plans"
             title={
@@ -55,7 +55,7 @@ export default function XPlans2() {
             secondaryUrl={ROUTES.xLicensing}
           />
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Stack spacing={2} useFlexGap>
             {content.map(({ icon, title, description, link }) => (
               <InfoCard title={title} icon={icon} description={description} link={link} />
