@@ -40,7 +40,7 @@ spec:
       - field: lastname
         type: string
       rowsSource: dataProvider
-  - component: codeComponent.CustomComponent
+  - component: code~omponent.CustomComponent
     name: mapCustom
 `;
 
@@ -159,40 +159,9 @@ export default function ToolpadShowcase() {
 
   return (
     <ShowcaseContainer
+      noPadding
       preview={
-        <Paper
-          variant="outlined"
-          sx={(theme) => ({
-            width: '100%',
-            height: 260,
-            overflow: 'clip',
-            boxShadow: `0 4px 8px ${alpha(theme.palette.common.black, 0.1)}`,
-            borderColor: 'grey.200',
-            borderRadius: '8px',
-          })}
-        >
-          <Image
-            index={0}
-            value={value}
-            src="/static/branding/toolpad/toolpad-homepage-1-ex.png"
-            alt="Toolpad user management app"
-          />
-          {/* <Image
-            index={1}
-            value={value}
-            src="/static/branding/toolpad/toolpad-homepage-1-ex.png" // change the source
-            alt="Toolpad user management app"
-          /> */}
-          {/* <Image
-            index={2}
-            value={value}
-            src="/static/branding/toolpad/toolpad-homepage-1-ex.png" // change the source
-            alt="Toolpad user management app"
-          /> */}
-        </Paper>
-      }
-      code={
-        <React.Fragment>
+        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -203,6 +172,47 @@ export default function ToolpadShowcase() {
             <Tab label="yaml files" {...a11yProps(1)} />
             <Tab label="React components" {...a11yProps(2)} />
           </Tabs>
+          <Box sx={{ p: 2 }}>
+            <Paper
+              variant="outlined"
+              sx={(theme) => ({
+                width: '100%',
+                height: 260,
+                overflow: 'clip',
+                boxShadow: `0 4px 8px ${alpha(theme.palette.common.black, 0.1)}`,
+                borderColor: 'grey.200',
+                borderRadius: '8px',
+              })}
+            >
+              <Image
+                index={0}
+                value={value}
+                src="/static/branding/toolpad/toolpad-homepage-1-ex.png"
+                alt="Toolpad user management app"
+              />
+              {/* <Image
+            index={1}
+            value={value}
+            src="/static/branding/toolpad/toolpad-homepage-1-ex.png" // change the source
+            alt="Toolpad user management app"
+          /> */}
+              {/* <Image
+            index={2}
+            value={value}
+            src="/static/branding/toolpad/toolpad-homepage-1-ex.png" // change the source
+            alt="Toolpad user management app"
+          /> */}
+            </Paper>
+          </Box>
+        </Box>
+      }
+      code={
+        <React.Fragment>
+          <p>
+            Your application configuration is stored locally in yaml files. Changes in the visual
+            editor are synced to the files, and vice versa. You can version control them however you
+            want
+          </p>
           <ShowcaseCodeWrapper maxHeight={280}>
             {tabsCodeInfo.map((tab, index) => (
               <CustomTabPanel key={index} value={value} index={index}>

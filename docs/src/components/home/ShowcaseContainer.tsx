@@ -39,12 +39,14 @@ export function ShowcaseCodeWrapper({
 }
 
 export default function ShowcaseContainer({
-  preview,
   code,
+  noPadding,
+  preview,
   sx,
 }: {
-  preview?: React.ReactNode;
   code?: React.ReactNode;
+  noPadding?: boolean;
+  preview?: React.ReactNode;
   sx?: BoxProps['sx'];
 }) {
   return (
@@ -67,12 +69,12 @@ export default function ShowcaseContainer({
       >
         <Frame.Demo
           sx={{
-            display: 'flex',
+            p: noPadding ? 0 : 2,
+            minHeight: 220,
             position: 'relative',
+            display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            minHeight: 220,
-            p: 2,
           }}
         >
           {preview}
