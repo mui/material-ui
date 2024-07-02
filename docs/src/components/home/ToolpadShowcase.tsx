@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -145,9 +146,23 @@ function a11yProps(index: number) {
 }
 
 const tabsCodeInfo = [
-  { code: tabOneCode, language: 'tsx' },
-  { code: tabTwoCode, language: 'yaml' },
-  { code: tabThreeCode, language: 'tsx' },
+  {
+    code: tabOneCode,
+    language: 'tsx',
+    description:
+      'Write serverless functions that access your project’s code, and let Toolpad handle linking your data with the UI.',
+  },
+  {
+    code: tabTwoCode,
+    language: 'yaml',
+    description:
+      'Store your app configuration locally in yaml files. Changes in Toolpad are automatically synced to the files, and vice-versa.',
+  },
+  {
+    code: tabThreeCode,
+    language: 'tsx',
+    description: 'Compose your UI with drag and drop using your own React components.',
+  },
 ];
 
 export default function ToolpadShowcase() {
@@ -161,7 +176,7 @@ export default function ToolpadShowcase() {
     <ShowcaseContainer
       noPadding
       preview={
-        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -208,14 +223,21 @@ export default function ToolpadShowcase() {
       }
       code={
         <React.Fragment>
-          <p>
-            Your application configuration is stored locally in yaml files. Changes in the visual
-            editor are synced to the files, and vice versa. You can version control them however you
-            want
-          </p>
-          <ShowcaseCodeWrapper maxHeight={280}>
+          <ShowcaseCodeWrapper maxHeight={250}>
             {tabsCodeInfo.map((tab, index) => (
               <CustomTabPanel key={index} value={value} index={index}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    pb: 1.5,
+                    mb: 1.5,
+                    borderBottom: '1px solid',
+                    borderColor: 'divider',
+                    color: 'grey.400',
+                  }}
+                >
+                  {tab.description}
+                </Typography>
                 <HighlightedCode
                   copyButtonHidden
                   code={tab.code}
