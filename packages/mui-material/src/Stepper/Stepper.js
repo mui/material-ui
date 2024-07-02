@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';

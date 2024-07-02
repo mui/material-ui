@@ -76,17 +76,17 @@ export default function NotchedOutline(props) {
     withLabel,
   };
   return (
-    (<NotchedOutlineRoot aria-hidden className={className} ownerState={ownerState} {...other}>
+    <NotchedOutlineRoot aria-hidden className={className} ownerState={ownerState} {...other}>
       <NotchedOutlineLegend ownerState={ownerState}>
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
         {withLabel ? (
           <span>{label}</span>
         ) : (
           // notranslate needed while Google Translate will not fix zero-width space issue
-          (<span className="notranslate">​</span>)
+          <span className="notranslate">​</span>
         )}
       </NotchedOutlineLegend>
-    </NotchedOutlineRoot>)
+    </NotchedOutlineRoot>
   );
 }
 

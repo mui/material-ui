@@ -8,7 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
 import getOverlayAlpha from '../styles/getOverlayAlpha';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useTheme from '../styles/useTheme';
 import { getPaperUtilityClass } from './paperClasses';
 

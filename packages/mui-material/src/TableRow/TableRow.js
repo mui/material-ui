@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getFormGroupUtilityClass } from './formGroupClasses';
 import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';

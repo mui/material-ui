@@ -6,7 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 

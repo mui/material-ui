@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { keyframes } from '@mui/system';
 import useTimeout from '@mui/utils/useTimeout';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
 

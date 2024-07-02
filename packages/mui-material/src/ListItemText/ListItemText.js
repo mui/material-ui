@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 

@@ -14,7 +14,7 @@ import InputBase, {
   InputBaseRoot,
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;

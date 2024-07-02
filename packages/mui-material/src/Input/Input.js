@@ -6,7 +6,7 @@ import deepmerge from '@mui/utils/deepmerge';
 import refType from '@mui/utils/refType';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,

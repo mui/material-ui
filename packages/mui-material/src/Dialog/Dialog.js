@@ -8,7 +8,7 @@ import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
 import Fade from '../Fade';
 import Paper from '../Paper';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';

@@ -8,7 +8,7 @@ import { darken, lighten } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 
 const TRANSITION_DURATION = 4; // seconds

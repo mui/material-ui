@@ -10,7 +10,7 @@ import Slide from '../Slide';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import useTheme from '../styles/useTheme';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getDrawerUtilityClass } from './drawerClasses';
 

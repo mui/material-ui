@@ -6,7 +6,7 @@ import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
@@ -340,7 +340,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    (<ButtonBaseRoot
+    <ButtonBaseRoot
       as={ComponentProp}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
@@ -366,9 +366,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       {children}
       {enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
-        (<TouchRipple ref={handleRippleRef} center={centerRipple} {...TouchRippleProps} />)
+        <TouchRipple ref={handleRippleRef} center={centerRipple} {...TouchRippleProps} />
       ) : null}
-    </ButtonBaseRoot>)
+    </ButtonBaseRoot>
   );
 });
 

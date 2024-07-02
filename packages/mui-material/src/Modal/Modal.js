@@ -10,7 +10,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Backdrop from '../Backdrop';
 import { getModalUtilityClass } from './modalClasses';
 

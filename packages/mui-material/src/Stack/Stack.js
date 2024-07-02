@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import { createStack } from '@mui/system';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const Stack = createStack({
   createStyledComponent: styled('div', {

@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import ListContext from '../List/ListContext';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
 
 const useUtilityClasses = (ownerState) => {

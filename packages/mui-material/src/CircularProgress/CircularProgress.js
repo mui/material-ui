@@ -6,7 +6,7 @@ import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { keyframes, css } from '@mui/system';
 import capitalize from '../utils/capitalize';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 

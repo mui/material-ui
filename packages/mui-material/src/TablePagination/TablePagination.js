@@ -7,7 +7,7 @@ import chainPropTypes from '@mui/utils/chainPropTypes';
 import { isHostComponent } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
 import Select from '../Select';

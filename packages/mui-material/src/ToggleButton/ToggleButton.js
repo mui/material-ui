@@ -8,7 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';

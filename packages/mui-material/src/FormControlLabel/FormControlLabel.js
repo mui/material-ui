@@ -9,7 +9,7 @@ import Stack from '../Stack';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';

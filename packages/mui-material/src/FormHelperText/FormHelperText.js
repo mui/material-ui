@@ -8,7 +8,7 @@ import useFormControl from '../FormControl/useFormControl';
 import styled from '../styles/styled';
 import capitalize from '../utils/capitalize';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, contained, size, disabled, error, filled, focused, required } = ownerState;
@@ -103,7 +103,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    (<FormHelperTextRoot
+    <FormHelperTextRoot
       as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
@@ -112,11 +112,11 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     >
       {children === ' ' ? (
         // notranslate needed while Google Translate will not fix zero-width space issue
-        (<span className="notranslate">​</span>)
+        <span className="notranslate">​</span>
       ) : (
         children
       )}
-    </FormHelperTextRoot>)
+    </FormHelperTextRoot>
   );
 });
 

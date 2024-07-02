@@ -7,7 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
 

@@ -16,7 +16,7 @@ import {
 } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 

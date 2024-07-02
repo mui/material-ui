@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createContainer } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const Container = createContainer({
   createStyledComponent: styled('div', {

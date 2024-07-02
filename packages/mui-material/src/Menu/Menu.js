@@ -10,7 +10,7 @@ import { useRtl } from '@mui/system/RtlProvider';
 import MenuList from '../MenuList';
 import Popover, { PopoverPaper } from '../Popover';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuUtilityClass } from './menuClasses';
 
 const RTL_ORIGIN = {

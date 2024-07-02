@@ -9,7 +9,7 @@ import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
 import styled from '../styles/styled';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -113,7 +113,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    (<FormControlContext.Provider value={null}>
+    <FormControlContext.Provider value={null}>
       <InputAdornmentRoot
         as={component}
         ownerState={ownerState}
@@ -128,13 +128,13 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
             {/* To have the correct vertical alignment baseline */}
             {position === 'start' ? (
               /* notranslate needed while Google Translate will not fix zero-width space issue */
-              (<span className="notranslate">​</span>)
+              <span className="notranslate">​</span>
             ) : null}
             {children}
           </React.Fragment>
         )}
       </InputAdornmentRoot>
-    </FormControlContext.Provider>)
+    </FormControlContext.Provider>
   );
 });
 

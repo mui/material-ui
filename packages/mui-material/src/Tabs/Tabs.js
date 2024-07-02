@@ -8,7 +8,7 @@ import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
 import styled from '../styles/styled';
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useTheme from '../styles/useTheme';
 import debounce from '../utils/debounce';
 import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';

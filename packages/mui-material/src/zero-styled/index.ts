@@ -1,4 +1,4 @@
-import { useDefaultProps } from "../DefaultPropsProvider";
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 export { default as styled } from '../styles/styled';
 
