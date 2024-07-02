@@ -11,7 +11,7 @@ export type ThemedProps<Theme, Name extends keyof any> = Theme extends {
   ? Props
   : {};
 
-export default function useDefaultProps<
+export default function useThemeProps<
   Theme extends ThemeWithProps,
   Props,
   Name extends keyof any,

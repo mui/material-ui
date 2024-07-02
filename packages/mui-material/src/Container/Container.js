@@ -20,7 +20,7 @@ const Container = createContainer({
       ];
     },
   }),
-  useDefaultProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiContainer' }),
+  useThemeProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiContainer' }),
 });
 
 Container.propTypes /* remove-proptypes */ = {

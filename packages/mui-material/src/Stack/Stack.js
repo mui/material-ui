@@ -10,7 +10,7 @@ const Stack = createStack({
     slot: 'Root',
     overridesResolver: (props, styles) => styles.root,
   }),
-  useDefaultProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiStack' }),
+  useThemeProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiStack' }),
 });
 
 Stack.propTypes /* remove-proptypes */ = {

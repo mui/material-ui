@@ -1,8 +1,8 @@
-import { Theme, useDefaultProps } from '@mui/material/styles';
+import { Theme, useThemeProps } from '@mui/material/styles';
 import { SliderProps } from '@mui/material/Slider';
 
 function ThemedComponent() {
-  const props = useDefaultProps<Theme, SliderProps, 'MuiSlider'>({
+  const props = useThemeProps<Theme, SliderProps, 'MuiSlider'>({
     props: { color: 'primary' },
     name: 'MuiSlider',
   });
