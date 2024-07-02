@@ -52,23 +52,23 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.13",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
     "next": "^14.2.14",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "19.0.0-rc-0751fac7-20241002",
+    "react-dom": "19.0.0-rc-0751fac7-20241002",
     "sinon": "^18.0.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
