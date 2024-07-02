@@ -5,6 +5,8 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import { PaletteMode } from '@mui/material';
+import ToggleColorMode from './ToggleColorMode';
 
 interface HeaderProps {
   sections: ReadonlyArray<{
@@ -12,13 +14,15 @@ interface HeaderProps {
     url: string;
   }>;
   title: string;
+  mode: PaletteMode;
+  toggleColorMode: () => void;
 }
 
 export default function Header(props: HeaderProps) {
-  const { sections, title } = props;
+  const { sections, title, mode, toggleColorMode } = props;
 
   return (
-    <React.Fragment>
+    <>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Button size="small">Subscribe</Button>
         <Typography
@@ -37,6 +41,7 @@ export default function Header(props: HeaderProps) {
         <Button variant="outlined" size="small">
           Sign up
         </Button>
+        <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
       </Toolbar>
       <Toolbar
         component="nav"
@@ -56,6 +61,6 @@ export default function Header(props: HeaderProps) {
           </Link>
         ))}
       </Toolbar>
-    </React.Fragment>
+    </>
   );
 }
