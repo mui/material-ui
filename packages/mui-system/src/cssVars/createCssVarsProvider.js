@@ -186,16 +186,20 @@ export default function createCssVarsProvider(options) {
         const selector = strategy.replace('%s', colorScheme);
         if (selector.startsWith('.')) {
           colorSchemeNode.classList.remove(
-            ...allColorSchemes.map((scheme) => strategy.substr(1).replace('%s', scheme)),
+            ...allColorSchemes.map((scheme) => strategy.substring(1).replace('%s', scheme)),
           );
-          colorSchemeNode.classList.add(selector.substr(1));
-        } else if (selector.startsWith('#')) {
-          colorSchemeNode.setAttribute('id', selector.substr(1));
+          colorSchemeNode.classList.add(selector.substring(1));
         } else {
           const matches = selector.match(/\[([^\]]+)\]/);
           if (matches) {
             const [attr, value] = matches[1].split('=');
-            // attaches attribute to <html> because the css variables are attached to :root (html)
+            if (!value) {
+              // for attributes like `data-theme-dark`, `data-theme-light`
+              // remove all the existing data attributes before setting the new one
+              allColorSchemes.forEach((scheme) => {
+                colorSchemeNode.removeAttribute(attr.replace(colorScheme, scheme));
+              });
+            }
             colorSchemeNode.setAttribute(attr, value ? value.replace(/"|'/g, '') : '');
           } else {
             colorSchemeNode.setAttribute(selector, colorScheme);

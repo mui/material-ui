@@ -41,6 +41,9 @@ export interface InitColorSchemeScriptProps {
   /**
    * DOM attribute for applying color scheme
    * @default 'data-color-scheme'
+   *
+   * @example '.mode-%s' // for class based color scheme
+   * @example '[data-mode-%s]' // for data-attribute without '='
    */
   attribute?: string;
   /**
@@ -60,6 +63,25 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
     colorSchemeNode = 'document.documentElement',
     nonce,
   } = options || {};
+  let setter = '';
+  if (attribute.startsWith('.')) {
+    const selector = attribute.substring(1);
+    setter = `${colorSchemeNode}.classList.remove('${selector}'.replace('%s', light), '${selector}'.replace('%s', dark));
+      ${colorSchemeNode}.classList.add('${selector}'.replace('%s', colorScheme));`;
+  }
+  const matches = attribute.match(/\[([^\]]+)\]/);
+  if (matches) {
+    const [attr, value] = matches[1].split('=');
+    if (!value) {
+      setter = `${colorSchemeNode}.removeAttribute('${attr}'.replace('%s', light));
+      ${colorSchemeNode}.removeAttribute('${attr}'.replace('%s', dark));`;
+    }
+    setter += `
+      ${colorSchemeNode}.setAttribute(${attr}, ${value ? `'${value}'.replace('%s', colorScheme)` : ''});`;
+  } else {
+    setter = `${colorSchemeNode}.setAttribute('${attribute}', colorScheme);`;
+  }
+
   return (
     <script
       key="mui-color-scheme-init"
@@ -71,23 +93,25 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
 try {
   var mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
   var colorScheme = '';
+  var dark = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
+  var light = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
   if (mode === 'system') {
     // handle system mode
     var mql = window.matchMedia('(prefers-color-scheme: dark)');
     if (mql.matches) {
-      colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
+      colorScheme = dark
     } else {
-      colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
+      colorScheme = light
     }
   }
   if (mode === 'light') {
-    colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
+    colorScheme = light;
   }
   if (mode === 'dark') {
-    colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
+    colorScheme = dark;
   }
   if (colorScheme) {
-    ${colorSchemeNode}.setAttribute('${attribute}', colorScheme);
+    ${setter}
   }
 } catch(e){}})();`,
       }}
