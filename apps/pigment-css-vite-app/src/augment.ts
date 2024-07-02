@@ -1,7 +1,7 @@
 import type { extendTheme } from '@mui/material/styles';
-import '@pigment-css/react/theme';
+import '@mui/material-pigment-css';
 
-declare module '@pigment-css/react/theme' {
+declare module '@mui/material-pigment-css/theme' {
   export interface ThemeArgs {
     theme: ReturnType<typeof extendTheme> & {
       applyDarkStyles<T>(obj: T): Record<string, T>;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/PigmentGrid';
-import { styled } from '@pigment-css/react';
+import { styled } from '@mui/material-pigment-css';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',

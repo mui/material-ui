@@ -1,4 +1,4 @@
-import { generateAtomics } from '@pigment-css/react';
+import { generateAtomics } from '@mui/material-pigment-css';
 
 const atomics = generateAtomics(({ theme }) => ({
   conditions: Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
