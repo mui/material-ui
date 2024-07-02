@@ -1747,10 +1747,10 @@ importers:
         version: 2.11.8
       '@testing-library/dom':
         specifier: ^10.2.0
-        version: 10.3.0
+        version: 10.2.0
       '@testing-library/user-event':
         specifier: ^14.5.2
-        version: 14.5.2(@testing-library/dom@10.3.0)
+        version: 14.5.2(@testing-library/dom@10.2.0)
       '@types/chai':
         specifier: ^4.3.16
         version: 4.3.16
@@ -2244,7 +2244,7 @@ importers:
         version: 1.45.0
       '@testing-library/dom':
         specifier: ^10.2.0
-        version: 10.3.0
+        version: 10.2.0
       '@types/chai':
         specifier: ^4.3.16
         version: 4.3.16
