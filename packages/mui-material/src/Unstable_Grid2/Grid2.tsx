@@ -12,7 +12,7 @@ const Grid2 = createGrid2({
     overridesResolver: (props, styles) => styles.root,
   }),
   componentName: 'MuiGrid2',
-  useDefaultProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiGrid2' }),
+  useThemeProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiGrid2' }),
 }) as OverridableComponent<Grid2TypeMap>;
 
 Grid2.propTypes /* remove-proptypes */ = {
