@@ -23,7 +23,7 @@ import autocompleteClasses, { getAutocompleteUtilityClass } from './autocomplete
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 
-const useThemeProps = createUseThemeProps('MuiAutocomplete');
+const useDefaultProps = createUseThemeProps('MuiAutocomplete');
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -411,7 +411,7 @@ const AutocompleteGroupUl = styled('ul', {
 export { createFilterOptions };
 
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAutocomplete' });
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {

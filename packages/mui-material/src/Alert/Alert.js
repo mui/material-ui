@@ -16,7 +16,7 @@ import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
 
-const useThemeProps = createUseThemeProps('MuiAlert');
+const useDefaultProps = createUseThemeProps('MuiAlert');
 
 const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
@@ -157,7 +157,7 @@ const defaultIconMapping = {
 };
 
 const Alert = React.forwardRef(function Alert(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAlert' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAlert' });
   const {
     action,
     children,

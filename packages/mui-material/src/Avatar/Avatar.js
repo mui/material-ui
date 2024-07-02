@@ -8,7 +8,7 @@ import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import useSlot from '../utils/useSlot';
 
-const useThemeProps = createUseThemeProps('MuiAvatar');
+const useDefaultProps = createUseThemeProps('MuiAvatar');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, colorDefault } = ownerState;
@@ -143,7 +143,7 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }) {
 }
 
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAvatar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAvatar' });
   const {
     alt,
     children: childrenProp,

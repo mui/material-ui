@@ -15,7 +15,7 @@ import capitalize from '../utils/capitalize';
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 
-const useThemeProps = createUseThemeProps('MuiSlider');
+const useDefaultProps = createUseThemeProps('MuiSlider');
 
 function Identity(x) {
   return x;
@@ -531,7 +531,7 @@ const useUtilityClasses = (ownerState) => {
 const Forward = ({ children }) => children;
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
-  const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
+  const props = useDefaultProps({ props: inputProps, name: 'MuiSlider' });
 
   const isRtl = useRtl();
 
@@ -717,7 +717,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   });
 
   return (
-    <RootSlot {...rootProps}>
+    (<RootSlot {...rootProps}>
       <RailSlot {...railProps} />
       <TrackSlot {...trackProps} />
       {marks
@@ -781,7 +781,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 
         return (
           /* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure. */
-          <ValueLabelComponent
+          (<ValueLabelComponent
             key={index}
             {...(!isHostComponent(ValueLabelComponent) && {
               valueLabelFormat,
@@ -821,10 +821,10 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
                 {...inputSliderProps}
               />
             </ThumbSlot>
-          </ValueLabelComponent>
+          </ValueLabelComponent>)
         );
       })}
-    </RootSlot>
+    </RootSlot>)
   );
 });
 

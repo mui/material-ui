@@ -6,7 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { styled, createUseThemeProps } from '../zero-styled';
 import { getAccordionActionsUtilityClass } from './accordionActionsClasses';
 
-const useThemeProps = createUseThemeProps('MuiAccordionActions');
+const useDefaultProps = createUseThemeProps('MuiAccordionActions');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableSpacing } = ownerState;
@@ -44,7 +44,7 @@ const AccordionActionsRoot = styled('div', {
 });
 
 const AccordionActions = React.forwardRef(function AccordionActions(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAccordionActions' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAccordionActions' });
   const { className, disableSpacing = false, ...other } = props;
   const ownerState = { ...props, disableSpacing };
 

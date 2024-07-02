@@ -13,7 +13,7 @@ import useControlled from '../utils/useControlled';
 import useSlot from '../utils/useSlot';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
 
-const useThemeProps = createUseThemeProps('MuiAccordion');
+const useDefaultProps = createUseThemeProps('MuiAccordion');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, square, expanded, disabled, disableGutters } = ownerState;
@@ -126,7 +126,7 @@ const AccordionRoot = styled(Paper, {
 );
 
 const Accordion = React.forwardRef(function Accordion(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAccordion' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAccordion' });
   const {
     children: childrenProp,
     className,

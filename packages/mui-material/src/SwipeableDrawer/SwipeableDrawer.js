@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
-import useThemeProps from '@mui/system/useThemeProps';
+import { useDefaultProps } from "../DefaultPropsProvider";
 import { NoSsr } from '@mui/base';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import useForkRef from '../utils/useForkRef';
@@ -135,7 +135,7 @@ function computeHasNativeHandler({ domTreeShapes, start, current, anchor }) {
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiSwipeableDrawer', props: inProps });
+  const props = useDefaultProps({ name: 'MuiSwipeableDrawer', props: inProps });
   const theme = useTheme();
   const transitionDurationDefault = {
     enter: theme.transitions.duration.enteringScreen,

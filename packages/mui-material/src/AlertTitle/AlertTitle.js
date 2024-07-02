@@ -7,7 +7,7 @@ import { styled, createUseThemeProps } from '../zero-styled';
 import Typography from '../Typography';
 import { getAlertTitleUtilityClass } from './alertTitleClasses';
 
-const useThemeProps = createUseThemeProps('MuiAlertTitle');
+const useDefaultProps = createUseThemeProps('MuiAlertTitle');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -31,7 +31,7 @@ const AlertTitleRoot = styled(Typography, {
 });
 
 const AlertTitle = React.forwardRef(function AlertTitle(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiAlertTitle',
   });

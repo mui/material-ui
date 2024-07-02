@@ -13,7 +13,7 @@ import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
-const useThemeProps = createUseThemeProps('MuiBadge');
+const useDefaultProps = createUseThemeProps('MuiBadge');
 
 const useUtilityClasses = (ownerState) => {
   const { color, anchorOrigin, invisible, overlap, variant, classes = {} } = ownerState;
@@ -244,7 +244,7 @@ const BadgeBadge = styled('span', {
 }));
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });
   const {
     anchorOrigin: anchorOriginProp = {
       vertical: 'top',

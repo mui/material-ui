@@ -11,7 +11,7 @@ import SwitchBase from '../internal/SwitchBase';
 import { styled, createUseThemeProps } from '../zero-styled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 
-const useThemeProps = createUseThemeProps('MuiSwitch');
+const useDefaultProps = createUseThemeProps('MuiSwitch');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, edge, size, color, checked, disabled } = ownerState;
@@ -216,7 +216,7 @@ const SwitchThumb = styled('span', {
 }));
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSwitch' });
   const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
 
   const ownerState = {
