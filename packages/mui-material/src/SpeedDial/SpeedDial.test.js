@@ -195,7 +195,12 @@ describe('<SpeedDial />', () => {
       expect(fab).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
+    it('should reset the state of the tooltip when the speed dial is closed while it is open', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const handleOpen = spy();
       const { queryByRole, getByRole, getAllByRole } = render(
         <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>

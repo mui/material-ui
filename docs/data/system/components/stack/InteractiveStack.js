@@ -52,7 +52,7 @@ export default function InteractiveStack() {
       </Stack>
       <Paper sx={{ p: 2 }}>
         <Grid container spacing={3}>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">direction</FormLabel>
               <RadioGroup
@@ -83,7 +83,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">alignItems</FormLabel>
               <RadioGroup
@@ -123,7 +123,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">justifyContent</FormLabel>
               <RadioGroup
@@ -168,7 +168,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">spacing</FormLabel>
               <RadioGroup

@@ -6,7 +6,7 @@ import { SxConfig, SxProps } from '../styleFunctionSx';
 import { ApplyStyles } from './applyStyles';
 import { CssContainerQueries } from '../cssContainerQueries';
 
-export { Breakpoint, BreakpointOverrides } from './createBreakpoints';
+export { Breakpoint, Breakpoints, BreakpointOverrides } from './createBreakpoints';
 
 export type Direction = 'ltr' | 'rtl';
 

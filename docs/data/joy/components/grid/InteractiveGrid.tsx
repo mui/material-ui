@@ -43,7 +43,7 @@ export default function InteractiveGrid() {
 
   return (
     <Grid sx={{ flexGrow: 1 }} container>
-      <Grid xs={12}>
+      <Grid size={12}>
         <Grid
           container
           spacing={2}
@@ -66,10 +66,10 @@ export default function InteractiveGrid() {
           ))}
         </Grid>
       </Grid>
-      <Grid xs={12}>
+      <Grid size={12}>
         <Sheet sx={{ p: 2 }}>
           <Grid container spacing={3}>
-            <Grid xs={12}>
+            <Grid size={12}>
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>direction</FormLabel>
                 <RadioGroup
@@ -91,7 +91,7 @@ export default function InteractiveGrid() {
                 </RadioGroup>
               </FormControl>
             </Grid>
-            <Grid xs={12}>
+            <Grid size={12}>
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>justifyContent</FormLabel>
                 <RadioGroup
@@ -115,7 +115,7 @@ export default function InteractiveGrid() {
                 </RadioGroup>
               </FormControl>
             </Grid>
-            <Grid xs={12}>
+            <Grid size={12}>
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>alignItems</FormLabel>
                 <RadioGroup
@@ -141,7 +141,7 @@ export default function InteractiveGrid() {
           </Grid>
         </Sheet>
       </Grid>
-      <Grid xs={12}>
+      <Grid size={12}>
         <BrandingProvider mode="dark">
           <HighlightedCode code={jsx} language="jsx" />
         </BrandingProvider>
