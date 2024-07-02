@@ -74,15 +74,15 @@ export class LazyRipple {
   /* Ripple API */
 
   start(...args: Parameters<TouchRippleActions['start']>) {
-    this.mount().then(() => this.ref.current!.start(...args));
+    this.mount().then(() => this.ref.current?.start(...args));
   }
 
   stop(...args: Parameters<TouchRippleActions['stop']>) {
-    this.mount().then(() => this.ref.current!.stop(...args));
+    this.mount().then(() => this.ref.current?.stop(...args));
   }
 
   pulsate(...args: Parameters<TouchRippleActions['pulsate']>) {
-    this.mount().then(() => this.ref.current!.pulsate(...args));
+    this.mount().then(() => this.ref.current?.pulsate(...args));
   }
 }
 
