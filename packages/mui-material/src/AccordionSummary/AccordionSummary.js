@@ -1,16 +1,15 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from "../DefaultPropsProvider";
 import ButtonBase from '../ButtonBase';
 import AccordionContext from '../Accordion/AccordionContext';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
-
-const useDefaultProps = createUseThemeProps('MuiAccordionSummary');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, expanded, disabled, disableGutters } = ownerState;

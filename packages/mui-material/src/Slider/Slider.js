@@ -1,4 +1,4 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -8,14 +8,13 @@ import composeClasses from '@mui/utils/composeClasses';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from "../DefaultPropsProvider";
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
-
-const useDefaultProps = createUseThemeProps('MuiSlider');
 
 function Identity(x) {
   return x;

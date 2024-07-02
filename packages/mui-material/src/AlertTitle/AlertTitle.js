@@ -1,13 +1,12 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from "../DefaultPropsProvider";
 import Typography from '../Typography';
 import { getAlertTitleUtilityClass } from './alertTitleClasses';
-
-const useDefaultProps = createUseThemeProps('MuiAlertTitle');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
