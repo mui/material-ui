@@ -5,7 +5,6 @@ import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import ThemeProvider from '../ThemeProvider';
 import InitColorSchemeScript, {
-  DEFAULT_ATTRIBUTE,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
 } from '../InitColorSchemeScript/InitColorSchemeScript';
@@ -24,7 +23,6 @@ export default function createCssVarsProvider(options) {
      * It should also ideally have a vars object created using `prepareCssVars`.
      */
     theme: defaultTheme = {},
-    attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
     modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey: defaultColorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     defaultMode: designSystemMode = 'light',
@@ -55,6 +53,7 @@ export default function createCssVarsProvider(options) {
       ref.current.length !== allColorSchemes.length ||
       ref.current.some((v, index) => v !== allColorSchemes[index])
     ) {
+      ref.current = allColorSchemes;
       signal.current += 1;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,7 +66,6 @@ export default function createCssVarsProvider(options) {
       theme: themeProp = defaultTheme,
       modeStorageKey = defaultModeStorageKey,
       colorSchemeStorageKey = defaultColorSchemeStorageKey,
-      attribute = defaultAttribute,
       defaultMode = designSystemMode,
       defaultColorScheme = designSystemColorScheme,
       disableTransitionOnChange = designSystemTransitionOnChange,
@@ -180,9 +178,9 @@ export default function createCssVarsProvider(options) {
       }
     });
 
-    const strategy = restThemeProp.strategy || attribute;
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
+    const strategy = restThemeProp.strategy;
     React.useEffect(() => {
       if (colorScheme && colorSchemeNode && strategy && strategy !== 'media') {
         const selector = strategy.replace('%s', colorScheme);
@@ -198,7 +196,7 @@ export default function createCssVarsProvider(options) {
           if (matches) {
             const [attr, value] = matches[1].split('=');
             // attaches attribute to <html> because the css variables are attached to :root (html)
-            colorSchemeNode.setAttribute(attr, value || '');
+            colorSchemeNode.setAttribute(attr, value ? value.replace(/"|'/g, '') : '');
           } else {
             colorSchemeNode.setAttribute(selector, colorScheme);
           }
@@ -290,10 +288,6 @@ export default function createCssVarsProvider(options) {
 
   CssVarsProvider.propTypes = {
     /**
-     * The body attribute name to attach colorScheme.
-     */
-    attribute: PropTypes.string,
-    /**
      * The component tree.
      */
     children: PropTypes.node,
@@ -357,7 +351,6 @@ export default function createCssVarsProvider(options) {
 
   const getInitColorSchemeScript = (params) =>
     InitColorSchemeScript({
-      attribute: defaultAttribute,
       colorSchemeStorageKey: defaultColorSchemeStorageKey,
       defaultMode: designSystemMode,
       defaultLightColorScheme,

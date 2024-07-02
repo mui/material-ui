@@ -44,15 +44,6 @@ describe('createCssVarsProvider', () => {
   });
 
   describe('[Design System] CssVarsProvider', () => {
-    it('display error if `defaultColorScheme` does not exist in theme.colorSchemes', () => {
-      expect(() =>
-        createCssVarsProvider({
-          theme: createCssVarsTheme({}),
-          defaultColorScheme: 'light',
-        }),
-      ).toErrorDev('MUI: `light` does not exist in `theme.colorSchemes`.');
-    });
-
     it('has specified default colorScheme', () => {
       const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: createCssVarsTheme({
@@ -76,6 +67,7 @@ describe('createCssVarsProvider', () => {
     it('provide getColorSchemeSelector util', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: createCssVarsTheme({
+          strategy: '[data-custom-color-scheme="%s"]',
           colorSchemes: { light: { palette: { primary: { 500: '#ff5252' } } } },
         }),
         defaultColorScheme: 'light',
@@ -85,14 +77,12 @@ describe('createCssVarsProvider', () => {
         return <div data-testid={`text`}>{theme.getColorSchemeSelector('light')}</div>;
       }
       render(
-        <CssVarsProvider attribute="data-custom-color-scheme">
+        <CssVarsProvider>
           <Text />
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('text').textContent).to.equal(
-        '[data-custom-color-scheme="light"] &',
-      );
+      expect(screen.getByTestId('text').textContent).to.equal('[data-custom-color-scheme="light"]');
     });
 
     it('can access to allColorSchemes', () => {

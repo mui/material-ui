@@ -115,7 +115,7 @@ export default function extendTheme(options = {}, ...args) {
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    strategy: strategyInput,
+    strategy,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -146,9 +146,7 @@ export default function extendTheme(options = {}, ...args) {
   }
 
   const oppositeColorScheme = defaultColorScheme === 'dark' ? 'light' : 'dark';
-  const strategy =
-    strategyInput || (colorSchemesInput[oppositeColorScheme] ? 'media' : strategyInput);
-  if (strategy) {
+  if (strategy || colorSchemesInput[oppositeColorScheme]) {
     const { palette: oppositePalette } = createThemeWithoutVars({
       palette: { mode: oppositeColorScheme, ...colorSchemesInput[oppositeColorScheme]?.palette },
     });
