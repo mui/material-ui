@@ -194,11 +194,16 @@ const Root = styled('div')(
         marginLeft: 8,
         height: 26,
         width: 26,
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.grey[50]})`,
         color: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
-        border: '1px solid',
-        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+        backgroundColor: 'transparent',
+        border: '1px solid transparent',
         borderRadius: 8,
+        transition: theme.transitions.create(
+          ['visibility', 'background-color', 'color', 'border-color'],
+          {
+            duration: theme.transitions.duration.shortest,
+          },
+        ),
         '&:hover': {
           backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
           borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
@@ -218,7 +223,7 @@ const Root = styled('div')(
       '& .comment-link': {
         display: 'none', // So we can have the comment button opt-in.
         marginLeft: 'auto',
-        transition: theme.transitions.create('opacity', {
+        transition: theme.transitions.create(['background-color', 'color', 'border-color'], {
           duration: theme.transitions.duration.shortest,
         }),
         '& svg': {
@@ -547,7 +552,6 @@ const Root = styled('div')(
       display: 'inline-flex',
       flexDirection: 'row-reverse',
       alignItems: 'center',
-      height: 24,
       padding: theme.spacing(0.5),
       paddingBottom: '5px', // optical alignment
       fontFamily: lightTheme.typography.fontFamily,
@@ -678,9 +682,7 @@ const Root = styled('div')(
       '& h1, & h2, & h3, & h4, & h5': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
         '& .anchor-icon, & .comment-link': {
-          color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[300]})`,
-          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-          backgroundColor: alpha(darkTheme.palette.primaryDark[700], 0.5),
+          color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primaryDark[400]})`,
           '&:hover': {
             color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
             borderColor: `var(--muidocs-palette-primary-900, ${darkTheme.palette.primary[900]})`,
