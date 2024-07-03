@@ -45,6 +45,25 @@ const {
   excludeVariablesFromRoot,
 });
 
+let warnedInitScriptOnce = false;
+
+// TODO: remove in v7
+const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (params) => {
+  if (!warnedInitScriptOnce) {
+    console.warn(
+      [
+        'MUI: The getInitColorSchemeScript function has been deprecated.',
+        '',
+        "You should use `import InitColorSchemeScript from '@mui/material/InitColorSchemeScript'`",
+        'and replace the function call with `<InitColorSchemeScript />` instead.',
+      ].join('\n'),
+    );
+
+    warnedInitScriptOnce = true;
+  }
+  return deprecatedGetInitColorSchemeScript(params);
+};
+
 export {
   useColorScheme,
   getInitColorSchemeScript,
