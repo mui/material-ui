@@ -9,14 +9,13 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@pigment-css/react": "^0.0.16",
     "@mui/utils": "workspace:^",
     "@mui/base": "workspace:^",
     "@mui/icons-material": "workspace:^",
     "@mui/lab": "workspace:^",
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
-    "@pigment-css/react": "^0.0.13",
+    "@pigment-css/react": "^0.0.16",
     "clsx": "^2.1.1",
     "local-ui-lib": "workspace:^",
     "react": "^18.3.1",
