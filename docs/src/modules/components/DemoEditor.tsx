@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { NoSsr } from '@mui/base/NoSsr';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import prism from '@mui/internal-markdown/prism';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import { CodeCopyButton } from '@mui/docs/CodeCopy';
 import { useTranslate } from '@mui/docs/i18n';
 import { useCodeCopy } from '@mui/docs/CodeCopy';

@@ -8,7 +8,7 @@ import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
 
