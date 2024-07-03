@@ -8,6 +8,7 @@ import { dividerClasses } from '@mui/material/Divider';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { checkboxClasses } from '@mui/material/Checkbox';
 import { gridClasses } from '@mui/x-data-grid';
+import { tablePaginationClasses } from '@mui/material/TablePagination';
 import { gray } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
@@ -15,6 +16,7 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
   MuiDataGrid: {
     styleOverrides: {
       root: ({ theme }) => ({
+        overflow: 'clip',
         borderColor: theme.palette.divider,
         backgroundColor: theme.palette.background.default,
         [`& .${gridClasses.columnHeader}`]: {
@@ -23,10 +25,20 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
         [`& .${gridClasses.footerContainer}`]: {
           backgroundColor: theme.palette.background.paper,
         },
-        [`&. ${checkboxClasses.root}`]: {
-          padding: theme.spacing(1),
+        [`& .${checkboxClasses.root}`]: {
+          padding: theme.spacing(0.5),
           '& > svg': {
-            fontSize: '1.5rem',
+            fontSize: '1rem',
+          },
+        },
+        [`& .${tablePaginationClasses.root}`]: {
+          marginRight: theme.spacing(1),
+          '& .MuiIconButton-root': {
+            maxHeight: 32,
+            maxWidth: 32,
+            '& > svg': {
+              fontSize: '1rem',
+            },
           },
         },
       }),

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Divider from '@mui/material/Divider';
+import Divider, { dividerClasses } from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import { MenuItem as MuiMenuItem } from '@mui/material';
 import { paperClasses } from '@mui/material/Paper';
+import { listClasses } from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
@@ -41,8 +42,14 @@ export default function OptionsMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         sx={{
+          [`& .${listClasses.root}`]: {
+            padding: '4px',
+          },
           [`& .${paperClasses.root}`]: {
             padding: 0,
+          },
+          [`& .${dividerClasses.root}`]: {
+            margin: '4px -4px',
           },
         }}
       >
@@ -52,13 +59,17 @@ export default function OptionsMenu() {
         <MenuItem onClick={handleClose}>Add another account</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem
+          onClick={handleClose}
+          sx={{
+            [`& .${listItemIconClasses.root}`]: {
+              ml: 'auto',
+              minWidth: 0,
+            },
+          }}
+        >
           <ListItemText>Logout</ListItemText>
-          <ListItemIcon
-            sx={{
-              [`& .${listItemIconClasses.root}`]: { minWidth: 0, opacity: 0.7 },
-            }}
-          >
+          <ListItemIcon>
             <LogoutRoundedIcon fontSize="small" />
           </ListItemIcon>
         </MenuItem>

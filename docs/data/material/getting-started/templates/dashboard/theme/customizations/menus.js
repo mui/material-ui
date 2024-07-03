@@ -13,10 +13,10 @@ export const menuComponentsCustomizations = {
   MuiList: {
     styleOverrides: {
       root: {
+        padding: '8px',
         display: 'flex',
         flexDirection: 'column',
         gap: 0,
-        padding: '4px',
       },
     },
   },
@@ -75,7 +75,6 @@ export const menuComponentsCustomizations = {
       root: ({ theme }) => ({
         backgroundColor: 'transparent',
         padding: '4px 8px',
-        opacity: 0.7,
         fontSize: theme.typography.caption.fontSize,
         fontWeight: 500,
         lineHeight: theme.typography.caption.lineHeight,
@@ -181,7 +180,6 @@ export const menuComponentsCustomizations = {
       select: ({ theme }) => ({
         display: 'flex',
         alignItems: 'center',
-        padding: theme.spacing(1, 2),
         ...theme.applyStyles('dark', {
           display: 'flex',
           alignItems: 'center',

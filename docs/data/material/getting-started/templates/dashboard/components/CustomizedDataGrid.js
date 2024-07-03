@@ -9,8 +9,6 @@ export default function CustomizedDataGrid() {
       checkboxSelection
       rows={rows}
       columns={columns}
-      rowHeight={40}
-      columnHeaderHeight={40}
       getRowClassName={(params) =>
         params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
       }
@@ -19,6 +17,7 @@ export default function CustomizedDataGrid() {
       }}
       pageSizeOptions={[10, 20, 50]}
       disableColumnResize
+      density="compact"
     />
   );
 }

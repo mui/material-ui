@@ -163,8 +163,8 @@ export const getDesignTokens = (mode: PaletteMode) => ({
       ...(mode === 'dark' && { primary: 'hsl(0, 0%, 100%)', secondary: gray[400] }),
     },
     action: {
-      hover: alpha(gray[300], 0.2),
-      selected: `${alpha(gray[300], 0.4)}`,
+      hover: alpha(gray[200], 0.2),
+      selected: `${alpha(gray[200], 0.3)}`,
       ...(mode === 'dark' && {
         hover: alpha(gray[600], 0.2),
         selected: alpha(gray[600], 0.3),
