@@ -256,7 +256,7 @@ describe('compound components', () => {
 
       function Child() {
         const ref = React.useRef<HTMLLIElement>(null);
-        const { id } = useCompoundItem<string, { ref: React.RefObject<HTMLLIElement> }>(
+        const { id } = useCompoundItem<string, { ref: React.RefObject<HTMLLIElement | null> }>(
           idGenerator,
           React.useMemo(() => ({ ref }), []),
         );
