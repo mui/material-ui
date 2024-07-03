@@ -18,12 +18,11 @@ import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import filledInputClasses from '../FilledInput/filledInputClasses';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
-
-const useThemeProps = createUseThemeProps('MuiAutocomplete');
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -411,7 +410,7 @@ const AutocompleteGroupUl = styled('ul', {
 export { createFilterOptions };
 
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAutocomplete' });
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {

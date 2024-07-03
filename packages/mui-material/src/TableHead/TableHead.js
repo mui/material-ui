@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getTableHeadUtilityClass } from './tableHeadClasses';
 
@@ -33,7 +33,7 @@ const tablelvl2 = {
 const defaultComponent = 'thead';
 
 const TableHead = React.forwardRef(function TableHead(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableHead' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableHead' });
   const { className, component = defaultComponent, ...other } = props;
 
   const ownerState = {

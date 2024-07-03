@@ -11,7 +11,7 @@ import Input from '../Input';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
@@ -35,7 +35,7 @@ const StyledOutlinedInput = styled(OutlinedInput, styledRootConfig)('');
 const StyledFilledInput = styled(FilledInput, styledRootConfig)('');
 
 const Select = React.forwardRef(function Select(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiSelect', props: inProps });
+  const props = useDefaultProps({ name: 'MuiSelect', props: inProps });
   const {
     autoWidth = false,
     children,

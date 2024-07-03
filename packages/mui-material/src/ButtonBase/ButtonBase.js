@@ -6,7 +6,7 @@ import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
@@ -73,7 +73,7 @@ export const ButtonBaseRoot = styled('button', {
  * It contains a load of style reset and some focus/ripple logic.
  */
 const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiButtonBase' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiButtonBase' });
   const {
     action,
     centerRipple = false,

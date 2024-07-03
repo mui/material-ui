@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import TableContext from './TableContext';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getTableUtilityClass } from './tableClasses';
 
@@ -46,7 +46,7 @@ const TableRoot = styled('table', {
 const defaultComponent = 'table';
 
 const Table = React.forwardRef(function Table(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTable' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTable' });
   const {
     className,
     component = defaultComponent,

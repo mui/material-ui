@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Paper from '../Paper';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
 
@@ -69,7 +69,7 @@ const SnackbarContentAction = styled('div', {
 });
 
 const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSnackbarContent' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSnackbarContent' });
   const { action, className, message, role = 'alert', ...other } = props;
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);

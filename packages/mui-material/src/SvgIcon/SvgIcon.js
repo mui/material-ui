@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getSvgIconUtilityClass } from './svgIconClasses';
 
@@ -63,7 +63,7 @@ const SvgIconRoot = styled('svg', {
 }));
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSvgIcon' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSvgIcon' });
   const {
     children,
     className,

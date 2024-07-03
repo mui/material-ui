@@ -7,7 +7,7 @@ import { darken, alpha, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
 
@@ -115,7 +115,7 @@ const TableCellRoot = styled('td', {
  * or otherwise a `<td>` element.
  */
 const TableCell = React.forwardRef(function TableCell(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableCell' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableCell' });
   const {
     align = 'inherit',
     className,

@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import GlobalStyles from '../GlobalStyles';
 
 export const html = (theme, enableColorScheme) => ({
@@ -67,7 +67,7 @@ export const styles = (theme, enableColorScheme = false) => {
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
 function CssBaseline(inProps) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCssBaseline' });
   const { children, enableColorScheme = false } = props;
   return (
     <React.Fragment>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getCardMediaUtilityClass } from './cardMediaClasses';
 
@@ -45,7 +45,7 @@ const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 const IMAGE_COMPONENTS = ['picture', 'img'];
 
 const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCardMedia' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCardMedia' });
   const { children, className, component = 'div', image, src, style, ...other } = props;
 
   const isMediaComponent = MEDIA_COMPONENTS.indexOf(component) !== -1;

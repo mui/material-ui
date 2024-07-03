@@ -10,7 +10,7 @@ import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 
@@ -85,7 +85,7 @@ const defaultIcon = <CheckBoxOutlineBlankIcon />;
 const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
 
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
     color = 'primary',

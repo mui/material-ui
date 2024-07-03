@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getCardActionsUtilityClass } from './cardActionsClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -37,7 +37,7 @@ const CardActionsRoot = styled('div', {
 }));
 
 const CardActions = React.forwardRef(function CardActions(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiCardActions',
   });
