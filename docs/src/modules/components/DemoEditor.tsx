@@ -5,9 +5,8 @@ import { NoSsr } from '@mui/base/NoSsr';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import prism from '@mui/internal-markdown/prism';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import { CodeCopyButton } from '@mui/docs/CodeCopy';
+import { CodeCopyButton, useCodeCopy } from '@mui/docs/CodeCopy';
 import { useTranslate } from '@mui/docs/i18n';
-import { useCodeCopy } from '@mui/docs/CodeCopy';
 import { blueDark } from '@mui/docs/branding';
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
