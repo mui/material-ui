@@ -10,7 +10,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { Link } from '@mui/docs/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 const StyledDiv = styled('div')(({ theme }) => ({
   flex: '1 0 100%',
