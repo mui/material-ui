@@ -773,7 +773,7 @@ export default async function generateComponentApi(
     throw new Error(
       'Unable to find demos. \n' +
         `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
-        'Every public component should have a demo. ',
+        'Every public component should have a demo.\nFor internal component, add the name of the component to the `skipComponent` method of the product.',
     );
   }
 
