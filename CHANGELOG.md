@@ -1,5 +1,39 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.14
+
+<!-- generated comparing v6.0.0-alpha.13..next -->
+
+_Jul 3, 2024_
+
+A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ Updated Grid v2 to match PigmentGrid (#42742) @DiegoAndai
+
+### `@mui/material@v6.0.0-alpha.14`
+
+- [Alert] Add ability to override slot props (#42787) @alexey-kozlenkov
+- [Dialog] Revert incorrect textAlign style removal (#42778) @DiegoAndai
+- [Grid] Update Grid props to match PigmentGrid (#42742) @DiegoAndai
+- [theme] Support `CssVarsTheme` in `responsiveFontSizes` return type (#42786) @jxdp
+
+### Docs
+
+- [material-ui] Add some writing tweaks to v6 migration page (#42623) @danilo-leal
+- [base-ui] Fix wrong description for `UseTabParameters.onChange` (#42749) @ohgree
+- Fix 301 MDN redirections @oliviertassinari
+
+### Core
+
+- [core] Remove useIsFocusVisible util (#42467) @DiegoAndai
+- [core] Remove react-test-renderer (#42784) @aarongarciah
+- [core][mui-utils] Remove remaining IE11 references (#42777) @DiegoAndai
+- [docs-infra] Add batch of design polish (#42823) @danilo-leal
+- [test][mui-utils] Remove usages of deprecated react-dom APIs (#42780) @aarongarciah
+- [test][joy-ui][Autocomplete] Fix spread key error in test (#42775) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @danilo-leal, @DiegoAndai, @jxdp, @ohgree, @oliviertassinari
+
 ## v6.0.0-alpha.13
 
 <!-- generated comparing v6.0.0-alpha.12..next -->
