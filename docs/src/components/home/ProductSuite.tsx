@@ -31,11 +31,11 @@ function createLoading(sx: BoxProps['sx']) {
 }
 
 const CoreShowcase = dynamic(() => import('./CoreShowcase'), {
-  loading: createLoading({ height: 660 }),
+  loading: createLoading({ height: 630 }),
 });
 
 const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
-  loading: createLoading({ height: 660 }),
+  loading: createLoading({ height: 630 }),
 });
 
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
