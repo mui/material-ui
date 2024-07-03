@@ -121,7 +121,7 @@ If you try to render your UI based on the server, before mounting on the client,
 
 ### Avoiding screen flickering
 
-To [prevent the UI from flickering](/joy-ui/main-features/dark-mode-optimization/#the-problem-flickering-on-first-load), apply `<InitColorSchemeScript />` before the main application script－it varies across frameworks:
+To [prevent the UI from flickering](/joy-ui/main-features/dark-mode-optimization/#the-problem-flickering-on-first-load), add the `<InitColorSchemeScript />` component before the `<CssVarsProvider />` component:
 
 ### Next.js App Router
 
