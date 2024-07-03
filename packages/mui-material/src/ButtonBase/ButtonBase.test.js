@@ -1187,7 +1187,7 @@ describe('<ButtonBase />', () => {
 
     it('should be able to focus visible the button', async () => {
       /**
-       * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions>}
+       * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions  | null>}
        */
       const buttonActionsRef = React.createRef();
       const { getByText } = render(
