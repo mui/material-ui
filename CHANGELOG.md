@@ -1,13 +1,14 @@
 # [Versions](https://mui.com/versions/)
 
-
 ## v5.16.0
+
 <!-- generated comparing v5.15.21..master -->
+
 _Jul 3, 2024_
 
 A big thanks to the 5 contributors who made this release possible. Here are some highlights ✨:
 
-TODO INSERT HIGHLIGHTS
+- 🚀 Added `InitColorSchemeScript` for Next.js App Router (#42829) @siriwatknp
 
 ### `@mui/material@5.16.0`
 
