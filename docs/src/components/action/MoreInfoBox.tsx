@@ -9,9 +9,9 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 
 export function AppearingInfoBox({
   appeared,
-  content,
+  children,
   ...props
-}: { appeared: boolean; content?: React.ReactNode } & BoxProps) {
+}: { appeared: boolean; children: React.ReactNode } & BoxProps) {
   const [hidden, setHidden] = React.useState(false);
   return (
     <Box
@@ -21,8 +21,9 @@ export function AppearingInfoBox({
         bottom: 8,
         left: 8,
         right: 8,
-        background: ({ palette }) => alpha(palette.common.black, 0.9),
         zIndex: 3,
+        mx: -1,
+        background: ({ palette }) => alpha(palette.common.black, 0.9),
         borderTop: '1px solid',
         borderColor: hidden || !appeared ? 'transparent' : 'primaryDark.700',
         transform: hidden || !appeared ? 'translateY(100%)' : 'translateY(0)',
@@ -55,7 +56,7 @@ export function AppearingInfoBox({
           <KeyboardArrowDownRounded fontSize="small" />
         )}
       </IconButton>
-      <Box sx={{ p: 1 }}>{content}</Box>
+      <Box sx={{ px: 2, py: 1.5 }}>{children}</Box>
     </Box>
   );
 }

@@ -195,25 +195,22 @@ export default function XDataGrid() {
             <ShowcaseCodeWrapper maxHeight="100%" clip>
               <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
               {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: 1 }} />}
-              <AppearingInfoBox
-                appeared={demo === DEMOS[3] || demo === DEMOS[4]}
-                content={
-                  <React.Fragment>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: 'grey.50', fontWeight: 'medium', mb: '4px' }}
-                    >
-                      {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}
-                      {demo === DEMOS[4] && 'Multi-column filtering is a paid feature!'}
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'grey.300' }}>
-                      The Data Grid and all other MUI X components are available on free and paid
-                      plans. Find more details about each plan and its features are on{' '}
-                      <Link href={ROUTES.pricing}>the pricing page</Link>.
-                    </Typography>
-                  </React.Fragment>
-                }
-              />
+              <AppearingInfoBox appeared={demo === DEMOS[3] || demo === DEMOS[4]}>
+                <React.Fragment>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: 'grey.50', fontWeight: 'medium', mb: '4px' }}
+                  >
+                    {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}
+                    {demo === DEMOS[4] && 'Multi-column filtering is a paid feature!'}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'grey.300' }}>
+                    The Data Grid and all other MUI X components are available on free and paid
+                    plans. Find more details about each plan and its features are on{' '}
+                    <Link href={ROUTES.pricing}>the pricing page</Link>.
+                  </Typography>
+                </React.Fragment>
+              </AppearingInfoBox>
             </ShowcaseCodeWrapper>
           </Frame.Info>
         </Grid>
