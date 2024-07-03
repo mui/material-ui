@@ -289,7 +289,7 @@ function App() {
 }
 ```
 
-For a server-side application, provide the same value to [`InitColorSchemeScript`](/material-ui/customization/css-theme-variables/usage/#server-side-rendering):
+For a server-side application, provide the same value to [`InitColorSchemeScript`](/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering):
 
 ```js
 <InitColorSchemeScript defaultMode="dark" />
