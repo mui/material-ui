@@ -52,7 +52,7 @@ export default function ProductSuite() {
   return (
     <Section bg="gradient" ref={ref} cozy>
       <Grid container spacing={2}>
-        <Grid size={{ md: 6 }}>
+        <Grid size={{ md: 6 }} sx={{ minHeight: { md: 630 } }}>
           <SectionHeadline
             overline="Products"
             title={
