@@ -8,7 +8,7 @@ import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
 import Fade from '../Fade';
 import Paper from '../Paper';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
@@ -163,7 +163,7 @@ const DialogPaper = styled(Paper, {
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
 const Dialog = React.forwardRef(function Dialog(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDialog' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDialog' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,

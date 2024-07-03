@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import { createStack } from '@mui/system';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const Stack = createStack({
   createStyledComponent: styled('div', {
@@ -10,7 +10,7 @@ const Stack = createStack({
     slot: 'Root',
     overridesResolver: (props, styles) => styles.root,
   }),
-  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiStack' }),
+  useThemeProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiStack' }),
 });
 
 Stack.propTypes /* remove-proptypes */ = {

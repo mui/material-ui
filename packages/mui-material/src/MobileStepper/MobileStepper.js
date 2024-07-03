@@ -7,7 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
 
@@ -103,7 +103,7 @@ const MobileStepperProgress = styled(LinearProgress, {
 }));
 
 const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMobileStepper' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiMobileStepper' });
   const {
     activeStep = 0,
     backButton,

@@ -6,14 +6,13 @@ import usePreviousProps from '@mui/utils/usePreviousProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { useBadge } from '@mui/base/useBadge';
 import { useSlotProps } from '@mui/base/utils';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
-
-const useThemeProps = createUseThemeProps('MuiBadge');
 
 const useUtilityClasses = (ownerState) => {
   const { color, anchorOrigin, invisible, overlap, variant, classes = {} } = ownerState;
@@ -244,7 +243,7 @@ const BadgeBadge = styled('span', {
 }));
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });
   const {
     anchorOrigin: anchorOriginProp = {
       vertical: 'top',

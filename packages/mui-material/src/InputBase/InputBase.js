@@ -12,7 +12,7 @@ import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -242,7 +242,7 @@ const inputGlobalStyles = (
  * It contains a load of style reset and some state logic.
  */
 const InputBase = React.forwardRef(function InputBase(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiInputBase' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiInputBase' });
   const {
     'aria-describedby': ariaDescribedby,
     autoComplete,

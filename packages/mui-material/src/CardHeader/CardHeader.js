@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
 
@@ -68,7 +68,7 @@ const CardHeaderContent = styled('div', {
 });
 
 const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCardHeader' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCardHeader' });
   const {
     action,
     avatar,

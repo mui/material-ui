@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getListItemIconUtilityClass } from './listItemIconClasses';
 import ListContext from '../List/ListContext';
 
@@ -40,7 +40,7 @@ const ListItemIconRoot = styled('div', {
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
 const ListItemIcon = React.forwardRef(function ListItemIcon(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiListItemIcon',
   });

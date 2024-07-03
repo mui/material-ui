@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { chainPropTypes } from '@mui/utils';
 import { capitalize, unstable_useId as useId } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { styled, useThemeProps } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
+import { useDefaultProps } from '@mui/material/DefaultPropsProvider';
 import Button from '@mui/material/Button';
 import { ButtonGroupContext } from '@mui/material/ButtonGroup';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -140,7 +141,7 @@ const LoadingButtonLoadingIndicator = styled('span', {
 const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
   const contextProps = React.useContext(ButtonGroupContext);
   const resolvedProps = resolveProps(contextProps, inProps);
-  const props = useThemeProps({ props: resolvedProps, name: 'MuiLoadingButton' });
+  const props = useDefaultProps({ props: resolvedProps, name: 'MuiLoadingButton' });
   const {
     children,
     disabled = false,

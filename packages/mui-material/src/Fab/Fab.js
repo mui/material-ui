@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
@@ -138,7 +138,7 @@ const FabRoot = styled(ButtonBase, {
 );
 
 const Fab = React.forwardRef(function Fab(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFab' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFab' });
   const {
     children,
     className,
