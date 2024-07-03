@@ -1,12 +1,13 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import Autocomplete from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import parse from 'autosuggest-highlight/parse';
 import { debounce } from '@mui/material/utils';
+import match from 'autosuggest-highlight/match';
+import parse from 'autosuggest-highlight/parse';
+import * as React from 'react';
 
 // This key was created specifically for the demo in mui.com.
 // You need to create a new one for your application.
@@ -138,13 +139,9 @@ export default function GoogleMaps() {
       )}
       renderOption={(props, option) => {
         const { key, ...optionProps } = props;
-        const matches =
-          option.structured_formatting.main_text_matched_substrings || [];
+        const matches = match(option.structured_formatting.main_text, inputValue);
+        const parts = parse(option.structured_formatting.main_text, matches);
 
-        const parts = parse(
-          option.structured_formatting.main_text,
-          matches.map((match: any) => [match.offset, match.offset + match.length]),
-        );
         return (
           <li key={key} {...optionProps}>
             <Grid container sx={{ alignItems: 'center' }}>
