@@ -17,6 +17,7 @@
     "@mui/material": "workspace:^",
     "@mui/material-nextjs": "workspace:^",
     "@mui/system": "workspace:^",
+    "@emotion/cache": "latest",
     "local-ui-lib": "workspace:^",
     "next": "latest",
     "react": "^18.3.1",

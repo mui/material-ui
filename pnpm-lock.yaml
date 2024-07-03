@@ -323,6 +323,9 @@ importers:
 
   apps/pigment-css-next-app:
     dependencies:
+      '@emotion/cache':
+        specifier: latest
+        version: 11.11.0
       '@mui/base':
         specifier: workspace:^
         version: link:../../packages/mui-base/build
