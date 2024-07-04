@@ -10,7 +10,7 @@ export default function SnackbarHideDuration() {
   const [open, setOpen] = React.useState(false);
   const [duration, setDuration] = React.useState();
   const [left, setLeft] = React.useState();
-  const timer = React.useRef();
+  const timer = React.useRef(undefined);
   const countdown = () => {
     timer.current = window.setInterval(() => {
       setLeft((prev) => (prev === undefined ? prev : Math.max(0, prev - 100)));
