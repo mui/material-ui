@@ -102,7 +102,12 @@ describe('<Fab />', () => {
     expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
-  it('should have a focusRipple by default', async () => {
+  it('should have a focusRipple by default', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const { getByRole } = render(
       <Fab
         TouchRippleProps={{

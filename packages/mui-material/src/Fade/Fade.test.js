@@ -16,6 +16,7 @@ describe('<Fade />', () => {
   };
 
   describeConformance(<Fade {...defaultProps} />, () => ({
+    render,
     classes: {},
     inheritComponent: Transition,
     refInstanceof: window.HTMLDivElement,
@@ -25,9 +26,6 @@ describe('<Fade />', () => {
       'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
-      // TODO: really?
-      // react-transition-group issue
-      'reactTestRenderer',
     ],
   }));
 

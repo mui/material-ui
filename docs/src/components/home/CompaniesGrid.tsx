@@ -189,15 +189,13 @@ export default function CompaniesGrid({ data }: { data: Array<IconImageProps> })
       {data.map((imgProps) => (
         <Grid
           key={imgProps.name}
-          xs={6}
-          sm={4}
-          md={2}
           sx={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             objectFit: 'contain',
           }}
+          size={{ xs: 6, sm: 4, md: 2 }}
         >
           <IconImage alt={imgProps.alt} loading="eager" {...imgProps} />
         </Grid>

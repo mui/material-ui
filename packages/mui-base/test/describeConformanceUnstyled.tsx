@@ -9,9 +9,7 @@ import {
   SlotTestingOptions,
   describeRef,
   randomStringValue,
-  testClassName,
   testComponentProp,
-  testReactTestRenderer,
 } from '@mui/internal-test-utils';
 import { ClassNameConfigurator } from '@mui/base/utils';
 
@@ -269,6 +267,25 @@ function testSlotPropsProp(
   });
 }
 
+function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+  it('applies the className to the root component', async () => {
+    const { render } = getOptions();
+
+    if (!render) {
+      throwMissingPropError('render');
+    }
+
+    const className = randomStringValue();
+    const testId = randomStringValue();
+
+    const { getByTestId } = await render(
+      React.cloneElement(element, { className, 'data-testid': testId }),
+    );
+
+    expect(getByTestId(testId)).to.have.class(className);
+  });
+}
+
 interface TestOwnerState {
   'data-testid'?: string;
 }
@@ -390,7 +407,6 @@ const fullSuite = {
   slotPropsCallbacks: testSlotPropsCallbacks,
   mergeClassName: testClassName,
   propsSpread: testPropForwarding,
-  reactTestRenderer: testReactTestRenderer,
   refForwarding: describeRef,
   ownerStatePropagation: testOwnerStatePropagation,
   disableClassGeneration: testDisablingClassGeneration,

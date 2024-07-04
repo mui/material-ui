@@ -15,7 +15,7 @@ It also covers what we aim to achieve in the months ahead.
 - [Product](#product)
   - [MUI Core](#mui-core)
   - [MUI X](#mui-x)
-  - [Design kits](#design-kits)
+  - [Design Kits](#design-kits)
 - [Company](#company)
 - [Our roadmap intent for Q4 2021](#our-roadmap-intent-for-q4-2021)
 
@@ -126,7 +126,7 @@ The date picker sits at the border between the core component and advanced compo
 - Last but not least, we have resumed the work on [key missing features](https://github.com/mui/mui-x/issues?q=is%3Aopen+label%3A%22linked+in+docs%22+sort%3Areactions-%2B1-desc).
   Print export and tree data are in the pipeline.
 
-### Design kits
+### Design Kits
 
 We introduced a brand new [product page](/design-kits/) this quarter to better present the design kits.
 
@@ -223,7 +223,7 @@ No plans. We probably won't progress its development this quarter.
 However, we are growing the team.
 We plan to resume work on it in Q1 2022, starting with the equivalent of one full-time developer.
 
-### Design kits
+### Design Kits
 
 We will release a v5 for Sketch and Adobe XD, as we have already done for Figma.
 While the visual difference between MUI Core v4 and v5 is not major, we still need to sync the design components.

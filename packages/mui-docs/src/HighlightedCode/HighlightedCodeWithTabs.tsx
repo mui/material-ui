@@ -259,11 +259,11 @@ export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contain
     ],
     ...theme.unstable_sx({
       height: 26,
-      p: '0 8px 2px 8px',
+      p: '2px 8px',
       bgcolor: 'transparent',
       lineHeight: 1.2,
       outline: 'none',
-      minWidth: 52,
+      minWidth: 45,
       cursor: 'pointer',
       borderRadius: 99,
       position: 'relative',
@@ -320,7 +320,7 @@ export function HighlightedCodeWithTabs(
       {tabs.map(({ tab, language, code }) => (
         <CodeTabPanel ownerState={ownerState} key={tab} value={tab}>
           <HighlightedCode
-            // @ts-ignore
+            // @ts-expect-error
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
           />

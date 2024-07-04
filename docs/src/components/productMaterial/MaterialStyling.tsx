@@ -101,7 +101,10 @@ export const useResizeHandle = (
       if (target.current && dragging && clientX) {
         const objectRect = target.current.getBoundingClientRect();
         const newWidth = clientX - objectRect.left + dragOffset;
-        target.current.style.width = `clamp(${minWidth}, ${Math.floor(newWidth)}px, ${maxWidth})`;
+        target.current.style.setProperty(
+          'width',
+          `clamp(${minWidth}, ${Math.floor(newWidth)}px, ${maxWidth})`,
+        );
       }
     }
     function stopResize() {
@@ -148,13 +151,13 @@ export default function MaterialStyling() {
     // 1px border-width
     infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
 
-    objectRef.current!.style.width = '100%';
+    objectRef.current!.style.setProperty('width', '100%');
   }, [index]);
 
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Styling"
             title={
@@ -188,7 +191,7 @@ export default function MaterialStyling() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo sx={{ overflow: 'auto' }}>
               <Box

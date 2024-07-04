@@ -23,6 +23,7 @@ describe('<Slide />', () => {
       <div />
     </Slide>,
     () => ({
+      render,
       classes: {},
       inheritComponent: Transition,
       refInstanceof: window.HTMLDivElement,
@@ -32,8 +33,6 @@ describe('<Slide />', () => {
         'themeDefaultProps',
         'themeStyleOverrides',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
       ],
     }),
   );
