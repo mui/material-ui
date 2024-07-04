@@ -5,8 +5,8 @@ import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import JoyInitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
+import { getInitColorSchemeScript as getMuiInitColorSchemeScript } from '@mui/material/styles';
+import { getInitColorSchemeScript as getJoyInitColorSchemeScript } from '@mui/joy/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from '@mui/docs/branding';
@@ -173,8 +173,8 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <MuiInitColorSchemeScript defaultMode="system" />
-          <JoyInitColorSchemeScript defaultMode="system" />
+          {getMuiInitColorSchemeScript({ defaultMode: 'system' })}
+          {getJoyInitColorSchemeScript({ defaultMode: 'system' })}
           <Main />
           <script
             // eslint-disable-next-line react/no-danger
