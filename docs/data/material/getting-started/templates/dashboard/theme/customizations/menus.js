@@ -40,20 +40,20 @@ export const menuComponentsCustomizations = {
           padding: '2px 8px',
           borderRadius: theme.shape.borderRadius,
           opacity: 0.7,
-          [`& .${listItemClasses.selected}`]: {
+          [`&.${listItemClasses.selected}`]: {
             opacity: 1,
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
             [`& .${svgIconClasses.root}`]: {
               color: theme.palette.text.primary,
             },
-            [`& .${listItemClasses.focusVisible}`]: {
+            [`&.${listItemClasses.focusVisible}`]: {
               backgroundColor: alpha(theme.palette.action.selected, 0.3),
             },
             '&:hover': {
               backgroundColor: alpha(theme.palette.action.selected, 0.5),
             },
           },
-          [`& .${listItemClasses.focusVisible}`]: {
+          [`&.${listItemClasses.focusVisible}`]: {
             backgroundColor: 'transparent',
           },
         },
@@ -96,11 +96,11 @@ export const menuComponentsCustomizations = {
       root: ({ theme }) => ({
         borderRadius: theme.shape.borderRadius,
         padding: '6px 8px',
-        [`& .${menuItemClasses.focusVisible}`]: {
+        [`&.${menuItemClasses.focusVisible}`]: {
           backgroundColor: 'transparent',
         },
-        [`& .${menuItemClasses.selected}`]: {
-          [`& .${menuItemClasses.focusVisible}`]: {
+        [`&.${menuItemClasses.selected}`]: {
+          [`&.${menuItemClasses.focusVisible}`]: {
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
           },
         },
