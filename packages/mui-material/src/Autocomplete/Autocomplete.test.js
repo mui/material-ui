@@ -2571,6 +2571,89 @@ describe('<Autocomplete />', () => {
       expect(handleInputChange.args[2][1]).to.equal(options[1].name);
       expect(handleInputChange.args[2][2]).to.equal('reset');
     });
+
+    it('provides a reason on clear', () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+
+      render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          defaultValue={options[0]}
+        />,
+      );
+      fireEvent.click(screen.getByLabelText('Clear'));
+
+      expect(handleInputChange.lastCall.args[1]).to.equal('');
+      expect(handleInputChange.lastCall.args[2]).to.equal('clear');
+    });
+
+    it('provides a reason on blur', () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+
+      render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          clearOnBlur
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      fireEvent.change(textbox, { target: { value: options[0].name } });
+      fireEvent.blur(textbox);
+
+      expect(handleInputChange.lastCall.args[1]).to.equal('');
+      expect(handleInputChange.lastCall.args[2]).to.equal('blur');
+    });
+
+    it('provides a reason on select option', () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+
+      render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.click(screen.getByLabelText('Open'));
+      fireEvent.click(screen.getByRole('option', { name: options[0].name }));
+
+      expect(handleInputChange.lastCall.args[1]).to.equal(options[0].name);
+      expect(handleInputChange.lastCall.args[2]).to.equal('selectOption');
+    });
+
+    it('provides a reason on remove option', () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+
+      render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          defaultValue={options}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      fireEvent.change(textbox, { target: { value: options[0].name } });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+
+      expect(handleInputChange.lastCall.args[1]).to.equal('');
+      expect(handleInputChange.lastCall.args[2]).to.equal('removeOption');
+    });
   });
 
   describe('prop: blurOnSelect', () => {
