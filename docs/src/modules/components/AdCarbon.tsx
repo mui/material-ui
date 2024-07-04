@@ -4,6 +4,15 @@ import loadScript from 'docs/src/modules/utils/loadScript';
 import AdDisplay from 'docs/src/modules/components/AdDisplay';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 
+type CarbonAd = {
+  pixel: string;
+  timestamp: string;
+  statimp: string;
+  statlink: string;
+  image: string;
+  company: string;
+  description: string;
+};
 const CarbonRoot = styled('span')(({ theme }) => {
   const styles = adStylesObject['body-image'](theme);
 
@@ -18,7 +27,6 @@ const CarbonRoot = styled('span')(({ theme }) => {
       display: 'none',
     },
     '& #carbonads': {
-      display: 'block',
       ...styles.root,
       '& .carbon-img': styles.imgWrapper,
       '& img': styles.img,
@@ -54,8 +62,8 @@ function AdCarbonImage() {
   return <CarbonRoot ref={ref} />;
 }
 
-export function AdCarbonInline(props) {
-  const [ad, setAd] = React.useState(null);
+export function AdCarbonInline() {
+  const [ad, setAd] = React.useState<CarbonAd | null>(null);
 
   React.useEffect(() => {
     let active = true;
@@ -79,8 +87,8 @@ export function AdCarbonInline(props) {
         const data = await response.json();
         // Inspired by https://github.com/Semantic-Org/Semantic-UI-React/blob/2c7134128925dd831de85011e3eb0ec382ba7f73/docs/src/components/CarbonAd/CarbonAdNative.js#L9
         const sanitizedAd = data.ads
-          .filter((item) => Object.keys(item).length > 0)
-          .filter((item) => item.statlink)
+          .filter((item: any) => Object.keys(item).length > 0)
+          .filter((item: any) => item.statlink)
           .filter(Boolean)[0];
 
         if (!sanitizedAd) {
@@ -117,7 +125,6 @@ export function AdCarbonInline(props) {
             />
           ))}
       <AdDisplay
-        {...props}
         className="carbonads"
         shape="inline"
         ad={{
@@ -131,7 +138,7 @@ export function AdCarbonInline(props) {
       />
     </React.Fragment>
   ) : (
-    <div {...props} style={{ minHeight: 52 }} />
+    <div style={{ minHeight: 52 }} />
   );
 }
 

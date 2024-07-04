@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import Portal from '@mui/material/Portal';
 import { AdContext } from 'docs/src/modules/components/AdManager';
 
-export default function AdGuest(props) {
+interface AdGuestProps {
+  /**
+   * The querySelector use to target the element which will include the ad.
+   */
+  classSelector?: string;
+  children?: React.ReactNode | undefined;
+}
+
+export default function AdGuest(props: AdGuestProps) {
   const { classSelector = '.description', children } = props;
   const ad = React.useContext(AdContext);
 
@@ -16,10 +24,12 @@ export default function AdGuest(props) {
       container={() => {
         const element = document.querySelector(classSelector);
 
-        if (ad.element === element) {
-          element.classList.add('ad');
-        } else {
-          element.classList.remove('ad');
+        if (element) {
+          if (ad.element === element) {
+            element.classList.add('ad');
+          } else {
+            element.classList.remove('ad');
+          }
         }
 
         return ad.element;

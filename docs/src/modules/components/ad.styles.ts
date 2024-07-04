@@ -1,7 +1,7 @@
-import { alpha } from '@mui/material/styles';
+import { alpha, Theme } from '@mui/material/styles';
 import { adShape } from 'docs/src/modules/components/AdManager';
 
-const adBodyImageStyles = (theme) => ({
+const adBodyImageStyles = (theme: Theme) => ({
   root: {
     display: 'block',
     overflow: 'hidden',
@@ -44,7 +44,7 @@ const adBodyImageStyles = (theme) => ({
   },
 });
 
-const adBodyInlineStyles = (theme) => {
+const adBodyInlineStyles = (theme: Theme) => {
   const baseline = adBodyImageStyles(theme);
 
   return {
