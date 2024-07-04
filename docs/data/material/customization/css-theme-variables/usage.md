@@ -21,68 +21,57 @@ The variables are flattened and prefixed with `--mui` by default:
 }
 ```
 
-The following demo uses `--md-demo` as a prefix for the variables:
-
-{{"demo": "CssVarsBasic.js", "defaultCodeOpen": true}}
-
 :::info
 The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
 
 If you have an existing theme, you can migrate to CSS theme variables by following the [migration guide](/material-ui/migration/migration-css-theme-variables/).
 :::
 
-## Toggle between light and dark mode
+## Dark mode
 
-The `useColorScheme` hook lets you read and update the user-selected mode:
+To generate dark CSS variables, extend the default theme by providing a `strategy` option.
+The example below uses `"media"` ([prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)) as the strategy:
 
-```jsx
-import { CssVarsProvider, useColorScheme } from '@mui/material/styles';
+<codeblock>
 
-// ModeSwitcher is an example interface for toggling between modes.
-// Material UI does not provide the toggle interface—you have to build it yourself.
-const ModeSwitcher = () => {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
+```jsx JSX
+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    // for server-side rendering
-    // learn more at https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
-    return null;
-  }
-
-  return (
-    <Button
-      variant="outlined"
-      onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
-      }}
-    >
-      {mode === 'light' ? 'Dark' : 'Light'}
-    </Button>
-  );
-};
+const theme = extendTheme({
+  strategy: 'media',
+});
 
 function App() {
-  return (
-    <CssVarsProvider>
-      <ModeSwitcher />
-    </CssVarsProvider>
-  );
+  return <CssVarsProvider theme={theme}>{/* ...you app */}</CssVarsProvider>;
 }
 ```
+
+```css CSS
+/* generated global stylesheet */
+
+:root {
+  --mui-palette-primary-main: #1976d2;
+  /* ...other variables */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mui-palette-primary-main: #90caf9;
+    /* ...other variables */
+  }
+}
+```
+
+</codeblock>
+
+<!-- TODO: fix the link -->
+
+If you want to customize the selector instead of using `prefers-color-scheme`, check out the [advanced configuration](/material-ui/customization/css-theme-variables/configuration/#advanced-configuration).
 
 ## Using theme variables
 
 All of these variables are accessible in an object in the theme called `vars`.
-The structure of this object is nearly identical to the theme structure, the only difference is that the values represent CSS variables.
+The structure of this object is a serializable theme structure with the values represent CSS variables.
 
 - `theme.vars` (recommended): an object that refers to the CSS theme variables.
 
@@ -96,8 +85,13 @@ The structure of this object is nearly identical to the theme structure, the onl
   For **TypeScript**, the typings are not enabled by default.
   Follow the [TypeScript setup](#typescript) to enable the typings.
 
-  :::warning
-  Make sure that the components accessing `theme.vars.*` are rendered under the new provider, otherwise you will get a `TypeError`.
+  :::success
+  If the components need to render outside of the `CssVarsProvider`, add fallback to the theme object.
+
+  ```js
+  backgroundColor: (theme.vars || theme).palette.primary.main;
+  ```
+
   :::
 
 - **Native CSS**: if you can't access the theme object, for example in a pure CSS file, you can use [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) directly:
@@ -113,11 +107,61 @@ The structure of this object is nearly identical to the theme structure, the onl
   If you have set up a [custom prefix](/material-ui/customization/css-theme-variables/configuration/#changing-variable-prefixes), make sure to replace the default `--mui`.
   :::
 
-## Server-side rendering
+## Applying dark styles
 
-Place `<InitColorSchemeScript />` before the `<Main />` tag to prevent the dark-mode SSR flickering during the hydration phase.
+To customize styles for dark mode, use `theme.applyStyles` function.
+This utility function will take care of applying the right selector based on the strategy configuration.
 
-### Next.js App Router
+The example below shows how to customize the Card component for dark mode:
+
+```js
+import Card from '@mui/material/Card';
+
+<Card sx={theme => ({
+  backgroundColor: theme.vars.palette.background.default,
+  ...theme.applyStyles('dark', {
+    boxShadow: 'none',
+  })
+})}>
+```
+
+## Prevent SSR flickering
+
+To prevent the dark-mode SSR flickering during the hydration phase, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
+If you have such a condition, replace it with the [`theme.applyStyles`](#appling-dark-styles) function:
+
+```diff
+import Card from '@mui/material/Card';
+
+function App() {
+  return (
+    <Card
+      sx={(theme) => ({
+-        backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
+-        '&:hover': {
+-          backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#f5f5f5',
+-        },
++        backgroundColor: '#fff',
++        '&:hover': {
++          backgroundColor: '#f5f5f5',
++          ...theme.applyStyles('dark', {
++            backgroundColor: '#333',
++          }),
++        },
++        ...theme.applyStyles('dark', {
++          backgroundColor: '#000',
++        }),
+      })}
+    />
+  );
+}
+```
+
+Next, if you have a custom strategy that is **not** `"media"`, add the `InitColorSchemeScript` component based on the framework that you are using:
+
+### Next.js
+
+#### App Router
 
 Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file:
 
@@ -136,7 +180,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-### Next.js Pages Router
+#### Pages Router
 
 Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
 
@@ -174,25 +218,3 @@ const StyledComponent = styled('button')(({ theme }) => ({
   color: theme.vars.palette.primary.main,
 }));
 ```
-
-## API
-
-### `<CssVarsProvider>` &nbsp;props
-
-- `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
-- `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
-- `theme: ThemeInput` - the theme provided to React's context
-- `modeStorageKey?: string` - localStorage key used to store application `mode`
-- `attribute?: string` - DOM attribute for applying color scheme
-
-### `useColorScheme: () => ColorSchemeContextValue`
-
-- `mode: string` - The user's selected mode
-- `setMode: mode => {…}` - Function for setting the `mode`. The `mode` is saved to internal state and local storage; if `mode` is null, it will be reset to the default mode
-
-### `<InitColorSchemeScript>` &nbsp;props
-
-- `defaultMode?: 'light' | 'dark' | 'system'`: - Application's default mode before React renders the tree (`light` by default)
-- `modeStorageKey?: string`: - localStorage key used to store application `mode`
-- `attribute?: string` - DOM attribute for applying color scheme
-- `nonce?: string` - Optional nonce passed to the injected script tag, used to allow-list the next-themes script in your CSP

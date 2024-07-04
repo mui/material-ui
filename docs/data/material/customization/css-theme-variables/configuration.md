@@ -2,6 +2,18 @@
 
 <p class="description">A guide for configuring CSS theme variables in Material UI.</p>
 
+## Customizing the prefix
+
+The following demo uses `--md-demo` as a prefix for the variables:
+
+{{"demo": "CssVarsBasic.js", "defaultCodeOpen": true}}
+
+If you want to remove the prefix, use an empty string:
+
+```jsx
+const theme = extendTheme({ cssVarPrefix: '' });
+```
+
 ## Theming
 
 `extendTheme` is an API that extends the default theme. It returns a theme that can only be used by the `CssVarsProvider`.
@@ -295,3 +307,51 @@ For a server-side application, provide the same value to [`InitColorSchemeScript
 :::warning
 In development, make sure to clear local storage and refresh the page after you configure the `defaultMode`.
 :::
+
+## Toggle between light and dark mode
+
+The `useColorScheme` hook lets you read and update the user-selected mode:
+
+```jsx
+import { CssVarsProvider, useColorScheme } from '@mui/material/styles';
+
+// ModeSwitcher is an example interface for toggling between modes.
+// Material UI does not provide the toggle interface—you have to build it yourself.
+const ModeSwitcher = () => {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // for server-side rendering
+    // learn more at https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
+    return null;
+  }
+
+  return (
+    <Button
+      variant="outlined"
+      onClick={() => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+      }}
+    >
+      {mode === 'light' ? 'Dark' : 'Light'}
+    </Button>
+  );
+};
+
+function App() {
+  return (
+    <CssVarsProvider>
+      <ModeSwitcher />
+    </CssVarsProvider>
+  );
+}
+```
