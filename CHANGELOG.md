@@ -6,7 +6,7 @@
 
 _Jul 3, 2024_
 
-A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
 
 - ✨ Updated Grid v2 to match PigmentGrid (#42742) @DiegoAndai
 
@@ -28,11 +28,14 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 - [core] Remove useIsFocusVisible util (#42467) @DiegoAndai
 - [core] Remove react-test-renderer (#42784) @aarongarciah
 - [core][mui-utils] Remove remaining IE11 references (#42777) @DiegoAndai
+- [code-infra] Move `HighlightedCode` test into `@mui/docs` package (#42835) @LukasTy
+- [code-infra] Cleanup `@mui/docs` usage and legacy re-exports (#42833) @LukasTy
+- [docs-infra] Fix React Compiler ESLint issues in website components (#42566) @aarongarciah
 - [docs-infra] Add batch of design polish (#42823) @danilo-leal
 - [test][mui-utils] Remove usages of deprecated react-dom APIs (#42780) @aarongarciah
 - [test][joy-ui][Autocomplete] Fix spread key error in test (#42775) @aarongarciah
 
-All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @danilo-leal, @DiegoAndai, @jxdp, @ohgree, @oliviertassinari
+All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @danilo-leal, @DiegoAndai, @jxdp, @LukasTy, @ohgree, @oliviertassinari, @renovate[bot], @siriwatknp
 
 ## v6.0.0-alpha.13
 
