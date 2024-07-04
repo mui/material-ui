@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButtonGroup, {
+  toggleButtonGroupClasses,
+} from '@mui/material/ToggleButtonGroup';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
 interface ToggleCustomThemeProps {
@@ -32,7 +34,7 @@ export default function ToggleCustomTheme({
         aria-label="Platform"
         sx={{
           backgroundColor: 'background.default',
-          '& .Mui-selected': {
+          [`& .${toggleButtonGroupClasses.selected}`]: {
             pointerEvents: 'none',
           },
         }}

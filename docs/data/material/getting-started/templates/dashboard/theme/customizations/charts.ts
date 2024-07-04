@@ -40,7 +40,7 @@ export const chartsCustomizations: ChartsComponents<Theme> = {
         border: `1px solid ${theme.palette.divider}`,
         borderRadius: theme.shape.borderRadius,
         background: 'hsl(0, 0%, 100%)',
-        ...(theme as Omit<Theme, 'components'>).applyStyles('dark', {
+        ...theme.applyStyles('dark', {
           background: gray[900],
         }),
       }),
@@ -63,7 +63,7 @@ export const chartsCustomizations: ChartsComponents<Theme> = {
           strokeDasharray: '4 2',
           strokeWidth: 0.8,
         },
-        ...(theme as Omit<Theme, 'components'>).applyStyles('dark', {
+        ...theme.applyStyles('dark', {
           [`& .${chartsGridClasses.line}`]: {
             stroke: gray[700],
             strokeDasharray: '4 2',
