@@ -62,7 +62,7 @@ export const datePickersCustomizations = {
         '&:hover': {
           backgroundColor: theme.palette.action.hover,
         },
-        [`& .${pickersMonthClasses.selected}`]: {
+        [`&.${pickersMonthClasses.selected}`]: {
           backgroundColor: gray[700],
           fontWeight: theme.typography.fontWeightMedium,
         },
@@ -70,14 +70,14 @@ export const datePickersCustomizations = {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,
           outlineOffset: '2px',
           backgroundColor: 'transparent',
-          [`& .${pickersMonthClasses.selected}`]: { backgroundColor: gray[700] },
+          [`&.${pickersMonthClasses.selected}`]: { backgroundColor: gray[700] },
         },
         ...theme.applyStyles('dark', {
           color: theme.palette.grey[300],
           '&:hover': {
             backgroundColor: theme.palette.action.hover,
           },
-          [`& .${pickersMonthClasses.selected}`]: {
+          [`&.${pickersMonthClasses.selected}`]: {
             color: theme.palette.common.black,
             fontWeight: theme.typography.fontWeightMedium,
             backgroundColor: gray[300],
@@ -86,7 +86,7 @@ export const datePickersCustomizations = {
             outline: `3px solid ${alpha(brand[500], 0.5)}`,
             outlineOffset: '2px',
             backgroundColor: 'transparent',
-            [`& .${pickersMonthClasses.selected}`]: { backgroundColor: gray[300] },
+            [`&.${pickersMonthClasses.selected}`]: { backgroundColor: gray[300] },
           },
         }),
       }),
@@ -103,7 +103,7 @@ export const datePickersCustomizations = {
         '&:hover': {
           backgroundColor: theme.palette.action.hover,
         },
-        [`.${pickersYearClasses.selected}`]: {
+        [`&.${pickersYearClasses.selected}`]: {
           backgroundColor: gray[700],
           fontWeight: theme.typography.fontWeightMedium,
         },
@@ -111,14 +111,14 @@ export const datePickersCustomizations = {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,
           outlineOffset: '2px',
           backgroundColor: 'transparent',
-          [`.${pickersYearClasses.selected}`]: { backgroundColor: gray[700] },
+          [`&.${pickersYearClasses.selected}`]: { backgroundColor: gray[700] },
         },
         ...theme.applyStyles('dark', {
           color: theme.palette.grey[300],
           '&:hover': {
             backgroundColor: theme.palette.action.hover,
           },
-          [`.${pickersYearClasses.selected}`]: {
+          [`&.${pickersYearClasses.selected}`]: {
             color: theme.palette.common.black,
             fontWeight: theme.typography.fontWeightMedium,
             backgroundColor: gray[300],
@@ -127,7 +127,7 @@ export const datePickersCustomizations = {
             outline: `3px solid ${alpha(brand[500], 0.5)}`,
             outlineOffset: '2px',
             backgroundColor: 'transparent',
-            [`.${pickersYearClasses.selected}`]: { backgroundColor: gray[300] },
+            [`&.${pickersYearClasses.selected}`]: { backgroundColor: gray[300] },
           },
         }),
       }),
