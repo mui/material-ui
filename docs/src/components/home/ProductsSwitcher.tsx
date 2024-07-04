@@ -44,7 +44,18 @@ function ProductItem({
           gap: 2.5,
         }}
       >
-        <span>{icon}</span>
+        <Box
+          sx={{
+            height: 32,
+            width: 32,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+          }}
+        >
+          {icon}
+        </Box>
         <span>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Typography color="text.primary" variant="body2" fontWeight="semiBold">
@@ -77,17 +88,17 @@ export default function ProductsSwitcher(props: {
     <ProductItem
       name="MUI X"
       description="Advanced components for complex use cases."
-      icon={<IconImage name="product-advanced" />}
+      icon={<IconImage name="product-advanced" height={32} width={32} />}
     />,
     <ProductItem
       name="Templates"
       description="Professionally built UIs to jumpstart your next project."
-      icon={<IconImage name="product-templates" />}
+      icon={<IconImage name="product-templates" height={32} width={32} />}
     />,
     <ProductItem
       name="Design kits"
       description="The core components available on your favorite design tool."
-      icon={<IconImage name="product-designkits" />}
+      icon={<IconImage name="product-designkits" height={32} width={32} />}
     />,
   ];
   return (
