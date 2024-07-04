@@ -119,6 +119,18 @@ This results in a reduction of the `@mui/material` package size by 2.5MB or 25% 
 Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended.
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
+### Autocomplete
+
+#### New reason values added to onInputChange
+
+Three new possible values have been added to the `reason` argument in the `onInputChange` callback of the Autocomplete component:
+
+- `"blur"`: like `"reset"` but triggered when the focus is moved off the input. `clearOnBlur` must be `true`. Before, it was treated as `"reset"`.
+- `"selectOption"`: triggered when the input value changes after an option has been selected. Before, it was treated as `"reset"`.
+- `"removeOption"`: triggered in multiple selection when a chip gets removed due to the corresponding option being selected. Before, it was treated as `"reset"`.
+
+These are added on top of the existing ones: `"input"`, `"reset"`, or `"clear"`.
+
 ### Chip
 
 Previously, the Chip component lost focus when the escape button was pressed, which differed from how other button-like components work.
