@@ -38,6 +38,11 @@ describe('extendTheme', () => {
     expect(typeof theme.colorSchemes).to.equal('object');
   });
 
+  it('should have "media" strategy', () => {
+    const theme = extendTheme({ strategy: 'media' });
+    expect(theme.strategy).to.equal('media');
+  });
+
   it('should have the custom color schemes', () => {
     const theme = extendTheme({
       colorSchemes: {
@@ -681,8 +686,8 @@ describe('extendTheme', () => {
     it('should use class selector for styling', () => {
       const theme = extendTheme({ strategy: '.mode-%s' });
 
-      expect(theme.getColorSchemeSelector('light')).to.equal(':where(.mode-light, .mode-light *)');
-      expect(theme.getColorSchemeSelector('dark')).to.equal(':where(.mode-dark, .mode-dark *)');
+      expect(theme.getColorSchemeSelector('light')).to.equal('.mode-light');
+      expect(theme.getColorSchemeSelector('dark')).to.equal('.mode-dark');
     });
 
     it('should use data attribute selector', () => {
@@ -697,12 +702,8 @@ describe('extendTheme', () => {
     it('should use data attribute for styling', () => {
       const theme = extendTheme({ strategy: '[data-theme-%s]' });
 
-      expect(theme.getColorSchemeSelector('light')).to.equal(
-        ':where([data-theme-light], [data-theme-light] *)',
-      );
-      expect(theme.getColorSchemeSelector('dark')).to.equal(
-        ':where([data-theme-dark], [data-theme-dark] *)',
-      );
+      expect(theme.getColorSchemeSelector('light')).to.equal('[data-theme-light]');
+      expect(theme.getColorSchemeSelector('dark')).to.equal('[data-theme-dark]');
     });
   });
 });

@@ -148,9 +148,8 @@ export default function extendTheme(options = {}, ...args) {
 
   const oppositeColorScheme = defaultColorScheme === 'dark' ? 'light' : 'dark';
   const strategy =
-    strategyInput || colorSchemesInput[oppositeColorScheme]
-      ? `${defaultConfig.attribute}`
-      : undefined;
+    strategyInput ||
+    (colorSchemesInput[oppositeColorScheme] ? `${defaultConfig.attribute}` : undefined);
   if (strategy) {
     const { palette: oppositePalette } = createThemeWithoutVars({
       palette: { mode: oppositeColorScheme, ...colorSchemesInput[oppositeColorScheme]?.palette },
