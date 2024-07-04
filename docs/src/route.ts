@@ -14,6 +14,7 @@ const ROUTES = {
   // Material UI doc pages
   materialDocs: '/material-ui/getting-started/',
   materialIcons: '/material-ui/material-icons/',
+  materialAllComponents: '/material-ui/all-components/',
   freeTemplates: '/material-ui/getting-started/templates/',
   components: '/material-ui/getting-started/supported-components/',
   customization: '/material-ui/customization/how-to-customize/',

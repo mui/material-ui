@@ -133,9 +133,9 @@ export default function CoreShowcase() {
           </ShowcaseCodeWrapper>
           <MoreInfoBox
             primaryBtnLabel="Start with Material UI"
-            primaryBtnHref={ROUTES.productCore}
-            secondaryBtnLabel="Learn more about other OSS libraries"
-            secondaryBtnHref={ROUTES.productCore}
+            primaryBtnHref={ROUTES.materialDocs}
+            secondaryBtnLabel="View all components"
+            secondaryBtnHref={ROUTES.materialAllComponents}
           />
         </React.Fragment>
       }

@@ -1725,8 +1725,8 @@ export default function DataTable() {
           </ShowcaseCodeWrapper>
           <MoreInfoBox
             primaryBtnLabel="Start with the Data Grid"
-            primaryBtnHref={ROUTES.productAdvanced}
-            secondaryBtnLabel="Learn more about the advanced components"
+            primaryBtnHref={ROUTES.dataGridOverview}
+            secondaryBtnLabel="Learn more about MUI X"
             secondaryBtnHref={ROUTES.productAdvanced}
           />
         </React.Fragment>
