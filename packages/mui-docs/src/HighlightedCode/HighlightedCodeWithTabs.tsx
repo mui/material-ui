@@ -320,7 +320,6 @@ export function HighlightedCodeWithTabs(
       {tabs.map(({ tab, language, code }) => (
         <CodeTabPanel ownerState={ownerState} key={tab} value={tab}>
           <HighlightedCode
-            // @ts-expect-error
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
           />
