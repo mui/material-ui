@@ -191,7 +191,7 @@ export function ThemeProvider(props) {
   }, [calculatedMode]);
 
   useEnhancedEffect(() => {
-    document.body.dir = direction;
+    document.body.setAttribute('dir', direction);
   }, [direction]);
 
   useEnhancedEffect(() => {
