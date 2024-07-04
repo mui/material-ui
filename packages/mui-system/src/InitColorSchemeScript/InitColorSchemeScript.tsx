@@ -66,20 +66,20 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
   let setter = '';
   if (attribute.startsWith('.')) {
     const selector = attribute.substring(1);
-    setter = `${colorSchemeNode}.classList.remove('${selector}'.replace('%s', light), '${selector}'.replace('%s', dark));
+    setter += `${colorSchemeNode}.classList.remove('${selector}'.replace('%s', light), '${selector}'.replace('%s', dark));
       ${colorSchemeNode}.classList.add('${selector}'.replace('%s', colorScheme));`;
   }
   const matches = attribute.match(/\[([^\]]+)\]/);
   if (matches) {
     const [attr, value] = matches[1].split('=');
     if (!value) {
-      setter = `${colorSchemeNode}.removeAttribute('${attr}'.replace('%s', light));
+      setter += `${colorSchemeNode}.removeAttribute('${attr}'.replace('%s', light));
       ${colorSchemeNode}.removeAttribute('${attr}'.replace('%s', dark));`;
     }
     setter += `
-      ${colorSchemeNode}.setAttribute('${attr}', ${value ? `'${value}'.replace('%s', colorScheme)` : '""'});`;
+      ${colorSchemeNode}.setAttribute('${attr}'.replace('%s', colorScheme), ${value ? `${value}.replace('%s', colorScheme)` : '""'});`;
   } else {
-    setter = `${colorSchemeNode}.setAttribute('${attribute}', colorScheme);`;
+    setter += `${colorSchemeNode}.setAttribute('${attribute}', colorScheme);`;
   }
 
   return (
