@@ -16,11 +16,10 @@ import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 const defaultTheme = experimental_extendTheme();
 
-const {
-  CssVarsProvider,
-  useColorScheme,
-  getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
-} = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
+const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
+  SupportedColorScheme,
+  typeof THEME_ID
+>({
   themeId: THEME_ID,
   theme: defaultTheme,
   attribute: defaultConfig.attribute,
@@ -44,25 +43,6 @@ const {
   },
   excludeVariablesFromRoot,
 });
-
-let warnedInitScriptOnce = false;
-
-// TODO: remove in v7
-const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (params) => {
-  if (!warnedInitScriptOnce) {
-    console.warn(
-      [
-        'MUI: The getInitColorSchemeScript function has been deprecated.',
-        '',
-        "You should use `import InitColorSchemeScript from '@mui/material/InitColorSchemeScript'`",
-        'and replace the function call with `<InitColorSchemeScript />` instead.',
-      ].join('\n'),
-    );
-
-    warnedInitScriptOnce = true;
-  }
-  return deprecatedGetInitColorSchemeScript(params);
-};
 
 export {
   useColorScheme,

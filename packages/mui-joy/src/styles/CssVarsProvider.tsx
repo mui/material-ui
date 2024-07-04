@@ -9,11 +9,10 @@ import type { SupportedColorScheme } from './types';
 import THEME_ID from './identifier';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
-const {
-  CssVarsProvider,
-  useColorScheme,
-  getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
-} = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
+const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
+  SupportedColorScheme,
+  typeof THEME_ID
+>({
   themeId: THEME_ID,
   theme: defaultTheme,
   attribute: defaultConfig.attribute,
@@ -24,23 +23,5 @@ const {
     dark: defaultConfig.defaultDarkColorScheme,
   },
 });
-
-let warnedInitScriptOnce = false;
-
-const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (params) => {
-  if (!warnedInitScriptOnce) {
-    console.warn(
-      [
-        'MUI: The getInitColorSchemeScript function has been deprecated.',
-        '',
-        "You should use `import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript'`",
-        'and replace the function call with `<InitColorSchemeScript />` instead.',
-      ].join('\n'),
-    );
-
-    warnedInitScriptOnce = true;
-  }
-  return deprecatedGetInitColorSchemeScript(params);
-};
 
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
