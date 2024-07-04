@@ -77,7 +77,7 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
       ${colorSchemeNode}.removeAttribute('${attr}'.replace('%s', dark));`;
     }
     setter += `
-      ${colorSchemeNode}.setAttribute(${attr}, ${value ? `'${value}'.replace('%s', colorScheme)` : ''});`;
+      ${colorSchemeNode}.setAttribute('${attr}', ${value ? `'${value}'.replace('%s', colorScheme)` : '""'});`;
   } else {
     setter = `${colorSchemeNode}.setAttribute('${attribute}', colorScheme);`;
   }
