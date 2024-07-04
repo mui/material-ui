@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { alpha } from '@mui/material/styles';
+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
@@ -78,9 +79,8 @@ export const inputsCustomizations = {
         '&:hover': {
           borderColor: gray[400],
         },
-        '&.Mui-focused': {
+        [`&.${outlinedInputClasses.focused}`]: {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,
-          outlineOffset: '2px',
           borderColor: brand[400],
         },
         ...theme.applyStyles('dark', {

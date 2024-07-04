@@ -1,5 +1,8 @@
 import { alpha } from '@mui/material/styles';
 import { svgIconClasses } from '@mui/material/SvgIcon';
+import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
+import { toggleButtonClasses } from '@mui/material/ToggleButton';
+import { tabClasses } from '@mui/material/Tab';
 import { gray, brand } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
@@ -274,11 +277,11 @@ export const buttonsCustomizations = {
       root: ({ theme }) => ({
         borderRadius: '10px',
         boxShadow: `0 4px 16px ${alpha(gray[400], 0.2)}`,
-        '& .Mui-selected': {
+        [`& .${toggleButtonGroupClasses.selected}`]: {
           color: brand[500],
         },
         ...theme.applyStyles('dark', {
-          '& .Mui-selected': {
+          [`& .${toggleButtonGroupClasses.selected}`]: {
             color: '#fff',
           },
           boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
@@ -296,7 +299,9 @@ export const buttonsCustomizations = {
         ...theme.applyStyles('dark', {
           color: gray[400],
           boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
-          '&.Mui-selected': { color: brand[300] },
+          [`&.${toggleButtonClasses.selected}`]: {
+            color: brand[300],
+          },
         }),
       }),
     },
@@ -329,7 +334,7 @@ export const buttonsCustomizations = {
           backgroundColor: gray[100],
           borderColor: gray[200],
         },
-        '&.Mui-selected': {
+        [`&.${tabClasses.selected}`]: {
           color: gray[900],
         },
         ...theme.applyStyles('dark', {
@@ -338,7 +343,7 @@ export const buttonsCustomizations = {
             backgroundColor: gray[800],
             borderColor: gray[700],
           },
-          '&.Mui-selected': {
+          [`&.${tabClasses.selected}`]: {
             color: '#fff',
           },
         }),

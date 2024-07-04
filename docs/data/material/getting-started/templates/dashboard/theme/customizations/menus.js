@@ -5,6 +5,9 @@ import { svgIconClasses } from '@mui/material/SvgIcon';
 import { typographyClasses } from '@mui/material/Typography';
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { dividerClasses } from '@mui/material/Divider';
+import { listItemClasses } from '@mui/material/ListItem';
+import { menuItemClasses } from '@mui/material/MenuItem';
+import { selectClasses } from '@mui/material/Select';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { gray } from '../themePrimitives';
 
@@ -37,20 +40,20 @@ export const menuComponentsCustomizations = {
           padding: '2px 8px',
           borderRadius: theme.shape.borderRadius,
           opacity: 0.7,
-          '&.Mui-selected': {
+          [`& .${listItemClasses.selected}`]: {
             opacity: 1,
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
             [`& .${svgIconClasses.root}`]: {
               color: theme.palette.text.primary,
             },
-            '&.Mui-focusVisible': {
+            [`& .${listItemClasses.focusVisible}`]: {
               backgroundColor: alpha(theme.palette.action.selected, 0.3),
             },
             '&:hover': {
               backgroundColor: alpha(theme.palette.action.selected, 0.5),
             },
           },
-          '&.Mui-focusVisible': {
+          [`& .${listItemClasses.focusVisible}`]: {
             backgroundColor: 'transparent',
           },
         },
@@ -93,11 +96,11 @@ export const menuComponentsCustomizations = {
       root: ({ theme }) => ({
         borderRadius: theme.shape.borderRadius,
         padding: '6px 8px',
-        '&.Mui-focusVisible': {
+        [`& .${menuItemClasses.focusVisible}`]: {
           backgroundColor: 'transparent',
         },
-        '&.Mui-selected': {
-          '&.Mui-focusVisible': {
+        [`& .${menuItemClasses.selected}`]: {
+          [`& .${menuItemClasses.focusVisible}`]: {
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
           },
         },
@@ -151,7 +154,7 @@ export const menuComponentsCustomizations = {
           backgroundColor: theme.palette.background.paper,
           boxShadow: 'none',
         },
-        '&.Mui-focused': {
+        [`&.${selectClasses.focused}`]: {
           outlineOffset: 0,
           borderColor: gray[400],
         },
@@ -168,7 +171,7 @@ export const menuComponentsCustomizations = {
             backgroundColor: theme.palette.background.paper,
             boxShadow: 'none',
           },
-          '&.Mui-focused': {
+          [`&.${selectClasses.focused}`]: {
             outlineOffset: 0,
             borderColor: gray[900],
           },
