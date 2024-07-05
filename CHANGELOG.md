@@ -1,5 +1,33 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.16.0
+
+<!-- generated comparing v5.15.21..master -->
+
+_Jul 5, 2024_
+
+A big thanks to the 5 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added `InitColorSchemeScript` for Next.js App Router (#42829) @siriwatknp
+
+### `@mui/material@5.16.0`
+
+- [Alert] Add ability to override slot props (@alexey-kozlenkov) (#42808) @alexey-kozlenkov
+- Add `InitColorSchemeScript` for Next.js App Router (#42829) @siriwatknp
+- Add `DefaultPropsProvider` (#42820) @siriwatknp
+- Support `CssVarsTheme` in `responsiveFontSizes` return type (@jxdp) (#42806) @jxdp
+- Remove warning from `getInitColorSchemeScript` (#42838) @siriwatknp
+
+### Docs
+
+- [docs] Fix 301 MDN redirections @oliviertassinari
+
+### Core
+
+- [mui-utils][test] Remove usages of deprecated react-dom APIs (@aarongarciah) (#42813) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @jxdp, @oliviertassinari, @siriwatknp
+
 ## v5.15.21
 
 <!-- generated comparing v5.15.20..master -->
