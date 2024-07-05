@@ -54,7 +54,7 @@ export interface CreateCssVarsProviderResult<
           Identifier,
           {
             cssVarPrefix?: string;
-            colorSchemes: Record<ColorScheme, { mode: 'light' | 'dark' }>;
+            colorSchemes: Record<ColorScheme, Record<string, any>>;
             strategy?: 'media' | string;
           }
         >;
