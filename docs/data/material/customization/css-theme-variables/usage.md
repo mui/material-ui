@@ -27,10 +27,25 @@ The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/cust
 If you have an existing theme, you can migrate to CSS theme variables by following the [migration guide](/material-ui/migration/migration-css-theme-variables/).
 :::
 
-## Dark mode
+## Dark mode only application
 
-To generate dark CSS variables, extend the default theme by providing a `strategy` option.
-The example below uses `"media"` ([prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)) as the strategy:
+To switch the default light to dark palette, set the `defaultColorScheme: 'dark'` to the `extendTheme`. Material UI will generate the dark palette instead.
+
+```jsx
+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
+
+const theme = extendTheme({
+  defaultColorScheme: 'dark',
+});
+
+function App() {
+  return <CssVarsProvider theme={theme}>{/* ...you app */}</CssVarsProvider>;
+}
+```
+
+## System preferences
+
+To support both light and dark modes based on the user's system preferences, set the `strategy: 'media'` to the `extendTheme`. Material UI will generate both light and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
 
 <codeblock>
 
@@ -110,24 +125,27 @@ The structure of this object is a serializable theme structure with the values r
 ## Applying dark styles
 
 To customize styles for dark mode, use `theme.applyStyles` function.
-This utility function will take care of applying the right selector based on the strategy configuration.
+This utility function will take care of applying the right selector based on the selected strategy.
 
 The example below shows how to customize the Card component for dark mode:
 
 ```js
 import Card from '@mui/material/Card';
 
-<Card sx={theme => ({
-  backgroundColor: theme.vars.palette.background.default,
-  ...theme.applyStyles('dark', {
-    boxShadow: 'none',
-  })
-})}>
+<Card
+  sx={(theme) => ({
+    backgroundColor: theme.vars.palette.background.default,
+    ...theme.applyStyles('dark', {
+      boxShadow: 'none', // remove the box shadow in dark mode
+    }),
+  })}
+/>;
 ```
 
 ## Prevent SSR flickering
 
 To prevent the dark-mode SSR flickering during the hydration phase, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
+
 If you have such a condition, replace it with the [`theme.applyStyles`](#appling-dark-styles) function:
 
 ```diff
