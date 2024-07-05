@@ -294,6 +294,12 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    */
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
   /**
+   * If `true`, the CSS color-scheme will not be set.
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * @default false
+   */
+  disableCssColorScheme?: boolean;
+  /**
    * The strategy to generate CSS variables
    *
    * @example 'media'

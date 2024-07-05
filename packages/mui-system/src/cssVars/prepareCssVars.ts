@@ -11,9 +11,11 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
   theme: T,
   {
     getSelector,
+    disableCssColorScheme,
     ...parserConfig
   }: {
     prefix?: string;
+    disableCssColorScheme?: boolean;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
     getSelector?: (
       colorScheme: keyof T['colorSchemes'] | undefined,
@@ -71,7 +73,9 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
       insertStyleSheet(
         getSelector?.(colorScheme as keyof T['colorSchemes'], { ...css }) ||
           `[${theme.attribute || 'data-color-scheme'}="${colorScheme}"]`,
-        css,
+        disableCssColorScheme
+          ? css
+          : { colorScheme: colorSchemes[colorScheme]?.palette?.mode, ...css },
       );
     }
 
@@ -79,7 +83,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
       insertStyleSheet(
         getSelector?.(key as keyof T['colorSchemes'], { ...css }) ||
           `[${theme.attribute || 'data-color-scheme'}="${key}"]`,
-        css,
+        disableCssColorScheme ? css : { colorScheme: colorSchemes[key]?.palette?.mode, ...css },
       );
     });
 

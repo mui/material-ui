@@ -113,6 +113,7 @@ function getOverlays(mode) {
 export default function extendTheme(options = {}, ...args) {
   const {
     defaultColorScheme = 'light',
+    disableCssColorScheme = false,
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
@@ -461,6 +462,7 @@ export default function extendTheme(options = {}, ...args) {
 
   const parserConfig = {
     prefix: cssVarPrefix,
+    disableCssColorScheme,
     shouldSkipGeneratingVar,
     getSelector: defaultGetSelector(theme),
   };
@@ -476,7 +478,8 @@ export default function extendTheme(options = {}, ...args) {
   };
   theme.getColorSchemeSelector = (colorScheme) => {
     if (strategy === 'media') {
-      return `@media (prefers-color-scheme: ${colorScheme})`;
+      const mode = colorSchemes[colorScheme]?.palette?.mode || 'light';
+      return `@media (prefers-color-scheme: ${mode})`;
     }
     if (strategy) {
       if (strategy.startsWith('data-') && !strategy.includes('%s')) {
