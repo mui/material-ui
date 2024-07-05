@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.15.21..master -->
 
-_Jul 3, 2024_
+_Jul 5, 2024_
 
 A big thanks to the 5 contributors who made this release possible. Here are some highlights ✨:
 
