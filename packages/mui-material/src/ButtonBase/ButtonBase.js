@@ -10,7 +10,7 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
-import useLazyRipple from '../useTouchRipple/useLazyRipple';
+import useLazyRipple from '../useLazyRipple';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
