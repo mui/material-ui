@@ -17,10 +17,11 @@ describe('<Grow />', () => {
   };
 
   describeConformance(
-    <Grow in>
+    <Grow in appear={false}>
       <div />
     </Grow>,
     () => ({
+      render,
       classes: {},
       inheritComponent: Transition,
       refInstanceof: window.HTMLDivElement,

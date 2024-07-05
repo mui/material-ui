@@ -19,10 +19,6 @@ describe('<TableFooter />', () => {
       const { container, ...other } = render(<table>{node}</table>);
       return { container: container.firstChild, ...other };
     },
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(<table>{node}</table>);
-      return wrapper.find('table').childAt(0);
-    },
     muiName: 'MuiTableFooter',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableSectionElement,

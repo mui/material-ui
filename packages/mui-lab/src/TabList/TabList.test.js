@@ -19,10 +19,6 @@ describe('<TabList />', () => {
      * @param {React.ReactNode} node
      */
     render: (node) => render(<TabContext value="0">{node}</TabContext>),
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(<TabContext value="0">{node}</TabContext>);
-      return wrapper.childAt(0);
-    },
     refInstanceof: window.HTMLDivElement,
     // TODO: no idea why reactTestRenderer fails
     skip: [
