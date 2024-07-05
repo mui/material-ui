@@ -10,7 +10,6 @@
     "packages/mui-core-downloads-tracker",
     "packages/mui-docs",
     "packages/mui-icons-material",
-    "packages/mui-joy",
     "packages/mui-lab",
     "packages/mui-material-nextjs",
     "packages/mui-material",
@@ -36,7 +35,6 @@
     "@mui/internal-docs-utils": "packages-internal/docs-utils",
     "@mui/internal-markdown": "packages/markdown",
     "@mui/internal-scripts": "packages-internal/scripts",
-    "@mui/joy": "packages/mui-joy/build",
     "@mui/lab": "packages/mui-lab/build",
     "@mui/material-nextjs": "packages/mui-material-nextjs/build",
     "@mui/material": "packages/mui-material/build",
@@ -48,10 +46,6 @@
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build"
   },
-  "sandboxes": [
-    "/examples/material-ui-cra-ts",
-    "/examples/joy-ui-cra-ts",
-    "/examples/base-ui-cra-ts"
-  ],
+  "sandboxes": ["/examples/material-ui-cra-ts", "/examples/base-ui-cra-ts"],
   "silent": true
 }
