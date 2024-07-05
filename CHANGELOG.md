@@ -16,6 +16,7 @@ A big thanks to the 5 contributors who made this release possible. Here are some
 - Add `InitColorSchemeScript` for Next.js App Router (#42829) @siriwatknp
 - Add `DefaultPropsProvider` (#42820) @siriwatknp
 - Support `CssVarsTheme` in `responsiveFontSizes` return type (@jxdp) (#42806) @jxdp
+- Remove warning from `getInitColorSchemeScript` (#42838) @siriwatknp
 
 ### Docs
 
