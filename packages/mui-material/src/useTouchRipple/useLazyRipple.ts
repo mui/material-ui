@@ -51,12 +51,10 @@ export class LazyRipple {
 
   mountEffect = () => {
     if (this.shouldMount && !this.didMount) {
-      Promise.resolve().then(() => {
-        if (this.ref.current !== null) {
-          this.didMount = true;
-          this.mounted!.resolve();
-        }
-      });
+      if (this.ref.current !== null) {
+        this.didMount = true;
+        this.mounted!.resolve();
+      }
     }
   };
 
