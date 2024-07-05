@@ -46,6 +46,17 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
 
 export {
   useColorScheme,
+  /**
+   * @deprecated use `InitColorSchemeScript` instead
+   *
+   * ```diff
+   * - import { getInitColorSchemeScript } from '@mui/material/styles';
+   * + import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+   *
+   * - getInitColorSchemeScript();
+   * + <InitColorSchemeScript />;
+   * ```
+   */
   getInitColorSchemeScript,
   CssVarsProvider as Experimental_CssVarsProvider,
 };

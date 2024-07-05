@@ -24,4 +24,19 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   },
 });
 
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
+export {
+  CssVarsProvider,
+  useColorScheme,
+  /**
+   * @deprecated use `InitColorSchemeScript` instead
+   *
+   * ```diff
+   * - import { getInitColorSchemeScript } from '@mui/joy/styles';
+   * + import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
+   *
+   * - getInitColorSchemeScript();
+   * + <InitColorSchemeScript />;
+   * ```
+   */
+  getInitColorSchemeScript,
+};
