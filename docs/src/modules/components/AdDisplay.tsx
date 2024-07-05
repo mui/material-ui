@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { adShape } from 'docs/src/modules/components/AdManager';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
+import { useTranslate } from '@mui/docs/i18n';
 
 const InlineShape = styled('span')(({ theme }) => {
   const styles = adStylesObject['body-inline'](theme);
@@ -46,6 +47,7 @@ interface AdDisplayProps {
 
 export default function AdDisplay(props: AdDisplayProps) {
   const { ad, className, shape: shapeProp = 'auto' } = props;
+  const t = useTranslate();
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
@@ -63,7 +65,7 @@ export default function AdDisplay(props: AdDisplayProps) {
 
   const Root = shape === 'image' ? ImageShape : InlineShape;
 
-  /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
+  /* eslint-disable react/no-danger */
   return (
     <Root className={className}>
       <a
@@ -86,10 +88,12 @@ export default function AdDisplay(props: AdDisplayProps) {
           dangerouslySetInnerHTML={{ __html: ad.description }}
         />
       </a>
-      <span className="AdDisplay-poweredby">ad by {ad.poweredby}</span>
+      <span className="AdDisplay-poweredby">
+        {t('adPublisher').replace('{{publisher}}', ad.poweredby)}
+      </span>
     </Root>
   );
-  /* eslint-enable material-ui/no-hardcoded-labels, react/no-danger */
+  /* eslint-enable react/no-danger */
 }
 
 AdDisplay.propTypes = {
