@@ -37,9 +37,6 @@ export default <
         }
         return { ':root': { ...css, ...excludedVariables } };
       }
-      if (strategy && strategy !== 'media') {
-        return strategy.replace('%s', String(colorScheme));
-      }
     } else if (colorScheme) {
       if (strategy === 'media') {
         return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;

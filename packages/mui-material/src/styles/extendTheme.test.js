@@ -705,7 +705,7 @@ describe('extendTheme', () => {
       const theme = extendTheme({ strategy: '.mode-%s' });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
-        '.mode-light',
+        ':root',
         '.mode-dark',
       ]);
     });
@@ -721,7 +721,7 @@ describe('extendTheme', () => {
       const theme = extendTheme({ strategy: '[data-theme-%s]' });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
-        '[data-theme-light]',
+        ':root',
         '[data-theme-dark]',
       ]);
     });
