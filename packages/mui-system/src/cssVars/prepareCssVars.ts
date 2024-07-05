@@ -70,22 +70,26 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     if (defaultSchemeVal) {
       // default color scheme has to come before other color schemes
       const { css } = defaultSchemeVal;
-      const finalCss = !disableCssColorScheme
-        ? { colorScheme: colorSchemes[colorScheme]?.palette?.mode, ...css }
-        : { ...css };
+      const cssColorSheme = colorSchemes[colorScheme]?.palette?.mode;
+      const finalCss =
+        !disableCssColorScheme && cssColorSheme
+          ? { colorScheme: cssColorSheme, ...css }
+          : { ...css };
       insertStyleSheet(
-        getSelector?.(colorScheme as keyof T['colorSchemes'], finalCss) ||
+        getSelector?.(colorScheme as keyof T['colorSchemes'], { ...finalCss }) ||
           `[${theme.attribute || 'data-color-scheme'}="${colorScheme}"]`,
         finalCss,
       );
     }
 
     Object.entries(rest).forEach(([key, { css }]) => {
-      const finalCss = !disableCssColorScheme
-        ? { colorScheme: colorSchemes[key]?.palette?.mode, ...css }
-        : { ...css };
+      const cssColorSheme = colorSchemes[key]?.palette?.mode;
+      const finalCss =
+        !disableCssColorScheme && cssColorSheme
+          ? { colorScheme: cssColorSheme, ...css }
+          : { ...css };
       insertStyleSheet(
-        getSelector?.(key as keyof T['colorSchemes'], finalCss) ||
+        getSelector?.(key as keyof T['colorSchemes'], { ...finalCss }) ||
           `[${theme.attribute || 'data-color-scheme'}="${key}"]`,
         finalCss,
       );
