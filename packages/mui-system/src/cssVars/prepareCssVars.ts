@@ -70,20 +70,24 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     if (defaultSchemeVal) {
       // default color scheme has to come before other color schemes
       const { css } = defaultSchemeVal;
+      if (!disableCssColorScheme) {
+        css.colorScheme = colorSchemes[colorScheme]?.palette?.mode;
+      }
       insertStyleSheet(
         getSelector?.(colorScheme as keyof T['colorSchemes'], { ...css }) ||
           `[${theme.attribute || 'data-color-scheme'}="${colorScheme}"]`,
-        disableCssColorScheme
-          ? css
-          : { colorScheme: colorSchemes[colorScheme]?.palette?.mode, ...css },
+        css,
       );
     }
 
     Object.entries(rest).forEach(([key, { css }]) => {
+      if (!disableCssColorScheme) {
+        css.colorScheme = colorSchemes[key]?.palette?.mode;
+      }
       insertStyleSheet(
         getSelector?.(key as keyof T['colorSchemes'], { ...css }) ||
           `[${theme.attribute || 'data-color-scheme'}="${key}"]`,
-        disableCssColorScheme ? css : { colorScheme: colorSchemes[key]?.palette?.mode, ...css },
+        css,
       );
     });
 

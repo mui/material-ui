@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import sinon from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { CssVarsProvider, extendTheme } from '@mui/material/styles';
@@ -41,6 +42,32 @@ describe('extendTheme', () => {
   it('should have "media" strategy', () => {
     const theme = extendTheme({ strategy: 'media' });
     expect(theme.strategy).to.equal('media');
+  });
+
+  it('should have CSS color-scheme by default', () => {
+    const theme = extendTheme();
+    sinon.assert.match(theme.generateStyleSheets()[1], {
+      ':root': {
+        colorScheme: 'light',
+      },
+    });
+  });
+
+  it('should have CSS color-scheme: dark', () => {
+    const theme = extendTheme({ defaultColorScheme: 'dark' });
+    sinon.assert.match(theme.generateStyleSheets()[1], {
+      ':root': {
+        colorScheme: 'dark',
+      },
+    });
+  });
+
+  it('disableCssColorScheme should remove CSS color-scheme', () => {
+    const theme = extendTheme({ disableCssColorScheme: true });
+    expect(theme.generateStyleSheets()[1][':root'].colorScheme).to.equal(undefined);
+
+    const theme2 = extendTheme({ defaultColorScheme: 'dark', disableCssColorScheme: true });
+    expect(theme2.generateStyleSheets()[1][':root'].colorScheme).to.equal(undefined);
   });
 
   it('should have the custom color schemes', () => {
