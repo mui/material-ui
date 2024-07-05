@@ -43,8 +43,7 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
   ) {
     return useEventCallback((event: React.SyntheticEvent) => {
       if (!skipRippleAction) {
-        const action = ripple[rippleAction] as TouchRippleActions[typeof rippleAction];
-        action(event);
+        ripple[rippleAction](event);
       }
 
       return true;
