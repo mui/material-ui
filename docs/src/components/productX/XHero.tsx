@@ -78,11 +78,10 @@ export default function XHero() {
     [],
   );
 
-  let rowGroupingCounter = 0;
+  const rowGroupingCounterRef = React.useRef(0);
   const isGroupExpandedByDefault = React.useCallback(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    rowGroupingCounter += 1;
-    return rowGroupingCounter === 3;
+    rowGroupingCounterRef.current += 1;
+    return rowGroupingCounterRef.current === 3;
   }, []);
 
   return (

@@ -1,5 +1,57 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.14
+
+<!-- generated comparing v6.0.0-alpha.13..next -->
+
+_Jul 3, 2024_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ Updated Grid v2 to match PigmentGrid (#42742) @DiegoAndai
+
+### `@mui/material@v6.0.0-alpha.14`
+
+#### BREAKING CHANGES
+
+- [Grid] Update Grid props to match PigmentGrid (#42742) @DiegoAndai
+
+  Use the codemod below to migrate the props:
+
+  ```bash
+  npx @mui/codemod@next v6.0.0/grid-v2-props /path/to/folder
+  ```
+
+#### Changes
+
+- [Alert] Add ability to override slot props (#42787) @alexey-kozlenkov
+- [Dialog] Revert incorrect textAlign style removal (#42778) @DiegoAndai
+- [theme] Support `CssVarsTheme` in `responsiveFontSizes` return type (#42786) @jxdp
+
+### Docs
+
+- [material-ui] Add some writing tweaks to v6 migration page (#42623) @danilo-leal
+- [material-ui] Fix issues reported by react-compiler in docs folder (#42830) @sai6855
+- [material-ui] Add some writing tweaks to v6 migration page (#42623) @danilo-leal
+- [base-ui] Fix wrong description for `UseTabParameters.onChange` (#42749) @ohgree
+- Fix 301 MDN redirections @oliviertassinari
+
+### Core
+
+- [core] Bump React to 18.3.1 (#42047) @renovate[bot]
+- [core] Revert lint for `useThemeProps` (#42817) @siriwatknp
+- [core] Remove useIsFocusVisible util (#42467) @DiegoAndai
+- [core] Remove react-test-renderer (#42784) @aarongarciah
+- [core][mui-utils] Remove remaining IE11 references (#42777) @DiegoAndai
+- [code-infra] Move `HighlightedCode` test into `@mui/docs` package (#42835) @LukasTy
+- [code-infra] Cleanup `@mui/docs` usage and legacy re-exports (#42833) @LukasTy
+- [docs-infra] Fix React Compiler ESLint issues in website components (#42566) @aarongarciah
+- [docs-infra] Add batch of design polish (#42823) @danilo-leal
+- [test][mui-utils] Remove usages of deprecated react-dom APIs (#42780) @aarongarciah
+- [test][joy-ui][Autocomplete] Fix spread key error in test (#42775) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @danilo-leal, @DiegoAndai, @Janpot, @jxdp, @LukasTy, @ohgree, @oliviertassinari, @renovate[bot], @sai6855, @siriwatknp
+
 ## v6.0.0-alpha.13
 
 <!-- generated comparing v6.0.0-alpha.12..next -->

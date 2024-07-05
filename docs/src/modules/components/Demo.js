@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode, CodeTab, CodeTabList } from '@mui/docs/HighlightedCode';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
@@ -28,7 +28,6 @@ import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
 import { BrandingProvider, blue, blueDark, grey } from '@mui/docs/branding';
-import { CodeTab, CodeTabList } from 'docs/src/modules/components/HighlightedCodeWithTabs';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews

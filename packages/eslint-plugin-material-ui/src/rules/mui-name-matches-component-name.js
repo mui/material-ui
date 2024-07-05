@@ -69,7 +69,8 @@ const rule = {
     return {
       CallExpression(node) {
         let nameLiteral = null;
-        const isUseDefaultPropsCall = node.callee.name === 'useDefaultProps';
+        const isUseDefaultPropsCall =
+          node.callee.name === 'useDefaultProps' || node.callee.name === 'useThemeProps';
         if (isUseDefaultPropsCall) {
           let isCalledFromCustomHook = false;
           let parent = node.parent;
