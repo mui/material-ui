@@ -6,7 +6,7 @@
 
 _Jul 3, 2024_
 
-A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
 - ✨ Updated Grid v2 to match PigmentGrid (#42742) @DiegoAndai
 
@@ -31,11 +31,15 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 ### Docs
 
 - [material-ui] Add some writing tweaks to v6 migration page (#42623) @danilo-leal
+- [material-ui] Fix issues reported by react-compiler in docs folder (#42830) @sai6855
+- [material-ui] Add some writing tweaks to v6 migration page (#42623) @danilo-leal
 - [base-ui] Fix wrong description for `UseTabParameters.onChange` (#42749) @ohgree
 - Fix 301 MDN redirections @oliviertassinari
 
 ### Core
 
+- [core] Bump React to 18.3.1 (#42047) @renovate[bot]
+- [core] Revert lint for `useThemeProps` (#42817) @siriwatknp
 - [core] Remove useIsFocusVisible util (#42467) @DiegoAndai
 - [core] Remove react-test-renderer (#42784) @aarongarciah
 - [core][mui-utils] Remove remaining IE11 references (#42777) @DiegoAndai
@@ -46,7 +50,7 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 - [test][mui-utils] Remove usages of deprecated react-dom APIs (#42780) @aarongarciah
 - [test][joy-ui][Autocomplete] Fix spread key error in test (#42775) @aarongarciah
 
-All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @danilo-leal, @DiegoAndai, @jxdp, @LukasTy, @ohgree, @oliviertassinari, @renovate[bot], @siriwatknp
+All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @danilo-leal, @DiegoAndai, @Janpot, @jxdp, @LukasTy, @ohgree, @oliviertassinari, @renovate[bot], @sai6855, @siriwatknp
 
 ## v6.0.0-alpha.13
 
