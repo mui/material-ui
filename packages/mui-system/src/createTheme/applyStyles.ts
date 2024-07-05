@@ -72,7 +72,7 @@ export default function applyStyles<K extends string>(key: K, styles: CSSObject)
   if (theme.vars && typeof theme.getColorSchemeSelector === 'function') {
     // If CssVarsProvider is used as a provider, returns '*:where({selector}) &'
     let selector = theme.getColorSchemeSelector(key);
-    if (!selector.startsWith('@')) {
+    if (selector !== '&' && !selector.includes('@media')) {
       // '*' is required as a workaround for Emotion issue (https://github.com/emotion-js/emotion/issues/2836)
       selector = `*:where(${selector.replace(/\s*&$/, '')}) &`;
     }

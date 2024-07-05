@@ -1,6 +1,6 @@
 import * as React from 'react';
 import InitColorSchemeScript from '../InitColorSchemeScript';
-import { Mode, Result } from './useCurrentColorScheme';
+import { Result } from './useCurrentColorScheme';
 
 export interface ColorSchemeContextValue<SupportedColorScheme extends string>
   extends Result<SupportedColorScheme> {
@@ -30,10 +30,10 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
   /**
-   * Design system default mode
-   * @default 'light'
+   * If `true`, the color scheme will be set based on the system preference.
+   * @default false
    */
-  defaultMode?: Mode;
+  enableSystem?: boolean;
   /**
    * Disable CSS transitions when switching between modes or color schemes
    * @default false
@@ -54,7 +54,7 @@ export interface CreateCssVarsProviderResult<
           Identifier,
           {
             cssVarPrefix?: string;
-            colorSchemes: Record<ColorScheme, Record<string, any>>;
+            colorSchemes: Record<ColorScheme, { mode: 'light' | 'dark' }>;
             strategy?: 'media' | string;
           }
         >;

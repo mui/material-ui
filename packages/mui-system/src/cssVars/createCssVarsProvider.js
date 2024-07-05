@@ -66,9 +66,9 @@ export default function createCssVarsProvider(options) {
       theme: themeProp = defaultTheme,
       modeStorageKey = defaultModeStorageKey,
       colorSchemeStorageKey = defaultColorSchemeStorageKey,
-      defaultMode = designSystemMode,
       defaultColorScheme = designSystemColorScheme,
       disableTransitionOnChange = designSystemTransitionOnChange,
+      enableSystem = false,
       storageWindow = typeof window === 'undefined' ? undefined : window,
       documentNode = typeof document === 'undefined' ? undefined : document,
       colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
@@ -92,6 +92,10 @@ export default function createCssVarsProvider(options) {
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
+    const defaultMode =
+      enableSystem || restThemeProp.strategy === 'media'
+        ? 'system'
+        : colorSchemes[restThemeProp.defaultColorScheme]?.mode || designSystemMode;
 
     // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
     const {
@@ -120,27 +124,8 @@ export default function createCssVarsProvider(options) {
       colorScheme = ctx.colorScheme;
     }
 
-    const calculatedMode = (() => {
-      if (mode) {
-        return mode;
-      }
-      // This scope occurs on the server
-      if (defaultMode === 'system') {
-        return designSystemMode;
-      }
-      return defaultMode;
-    })();
-    const calculatedColorScheme = (() => {
-      if (!colorScheme) {
-        // This scope occurs on the server
-        if (calculatedMode === 'dark') {
-          return defaultDarkColorScheme;
-        }
-        // use light color scheme, if default mode is 'light' | 'system'
-        return defaultLightColorScheme;
-      }
-      return colorScheme;
-    })();
+    // `colorScheme` is undefined on the server
+    const calculatedColorScheme = colorScheme || restThemeProp.defaultColorScheme;
 
     // 2. get the `vars` object that refers to the CSS custom properties
     const themeVars = restThemeProp.generateThemeVars?.() || restThemeProp.vars;
@@ -308,10 +293,6 @@ export default function createCssVarsProvider(options) {
      */
     defaultColorScheme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     /**
-     * The initial mode used.
-     */
-    defaultMode: PropTypes.string,
-    /**
      * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
      */
     disableNestedContext: PropTypes.bool,
@@ -329,6 +310,11 @@ export default function createCssVarsProvider(options) {
      * The document to attach the attribute to.
      */
     documentNode: PropTypes.any,
+    /**
+     * If `true`, the color scheme will be set based on the system preference.
+     * @default false
+     */
+    enableSystem: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */
