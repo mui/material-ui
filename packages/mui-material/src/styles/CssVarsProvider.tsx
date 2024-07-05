@@ -16,10 +16,11 @@ import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 const defaultTheme = experimental_extendTheme();
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  SupportedColorScheme,
-  typeof THEME_ID
->({
+const {
+  CssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript: getInitColorSchemeScriptSystem,
+} = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
   themeId: THEME_ID,
   theme: defaultTheme,
   attribute: defaultConfig.attribute,
@@ -44,19 +45,16 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   excludeVariablesFromRoot,
 });
 
-export {
-  useColorScheme,
-  /**
-   * @deprecated use `InitColorSchemeScript` instead
-   *
-   * ```diff
-   * - import { getInitColorSchemeScript } from '@mui/material/styles';
-   * + import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-   *
-   * - getInitColorSchemeScript();
-   * + <InitColorSchemeScript />;
-   * ```
-   */
-  getInitColorSchemeScript,
-  CssVarsProvider as Experimental_CssVarsProvider,
-};
+/**
+ * @deprecated Use `InitColorSchemeScript` instead
+ * ```diff
+ * - import { getInitColorSchemeScript } from '@mui/material/styles';
+ * + import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+ *
+ * - getInitColorSchemeScript();
+ * + <InitColorSchemeScript />;
+ * ```
+ */
+export const getInitColorSchemeScript = getInitColorSchemeScriptSystem;
+
+export { useColorScheme, CssVarsProvider as Experimental_CssVarsProvider };
