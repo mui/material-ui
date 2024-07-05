@@ -12,9 +12,20 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 
 ### `@mui/material@v6.0.0-alpha.14`
 
+#### BREAKING CHANGES
+
+- [Grid] Update Grid props to match PigmentGrid (#42742) @DiegoAndai
+
+  Use the codemod below to migrate the props:
+
+  ```bash
+  npx @mui/codemod@next v6.0.0/grid-v2-props /path/to/folder
+  ```
+
+#### Changes
+
 - [Alert] Add ability to override slot props (#42787) @alexey-kozlenkov
 - [Dialog] Revert incorrect textAlign style removal (#42778) @DiegoAndai
-- [Grid] Update Grid props to match PigmentGrid (#42742) @DiegoAndai
 - [theme] Support `CssVarsTheme` in `responsiveFontSizes` return type (#42786) @jxdp
 
 ### Docs
