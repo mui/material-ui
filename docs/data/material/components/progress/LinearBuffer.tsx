@@ -6,16 +6,16 @@ export default function LinearBuffer() {
   const [progress, setProgress] = React.useState(0);
   const [buffer, setBuffer] = React.useState(10);
 
-  const bufferRef = React.useRef(() => {});  
+  const bufferRef = React.useRef(() => {});
   React.useEffect(() => {
     bufferRef.current = () => {
       if (buffer < 100) {
-          const newBuffer = buffer + 1 + Math.random() * 10;
-          setBuffer(newBuffer > 100 ? 100 : newBuffer);
+        const newBuffer = buffer + 1 + Math.random() * 10;
+        setBuffer(newBuffer > 100 ? 100 : newBuffer);
       }
     };
   });
-  
+
   const progressRef = React.useRef(() => {});
   React.useEffect(() => {
     progressRef.current = () => {
@@ -27,8 +27,8 @@ export default function LinearBuffer() {
       }
     };
   });
-  
-    React.useEffect(() => {
+
+  React.useEffect(() => {
     const timer = setInterval(() => {
       bufferRef.current();
     }, 500);

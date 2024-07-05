@@ -10,8 +10,8 @@ export default function LinearBuffer() {
   React.useEffect(() => {
     bufferRef.current = () => {
       if (buffer < 100) {
-          const newBuffer = buffer + 1 + Math.random() * 10;
-          setBuffer(newBuffer > 100 ? 100 : newBuffer);
+        const newBuffer = buffer + 1 + Math.random() * 10;
+        setBuffer(newBuffer > 100 ? 100 : newBuffer);
       }
     };
   });
@@ -28,7 +28,7 @@ export default function LinearBuffer() {
     };
   });
 
-    React.useEffect(() => {
+  React.useEffect(() => {
     const timer = setInterval(() => {
       bufferRef.current();
     }, 500);
