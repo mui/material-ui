@@ -95,7 +95,7 @@ export default function createCssVarsProvider(options) {
     const defaultMode =
       enableSystem || restThemeProp.strategy === 'media'
         ? 'system'
-        : colorSchemes[restThemeProp.defaultColorScheme]?.mode || designSystemMode;
+        : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode || designSystemMode;
 
     // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
     const {
