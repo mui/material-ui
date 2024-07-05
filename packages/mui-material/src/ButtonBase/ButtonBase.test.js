@@ -696,8 +696,6 @@ describe('<ButtonBase />', () => {
       );
       const button = getByRole('button');
 
-      // XXX: failing on firefox
-
       simulatePointerDevice();
       await ripple.startFocus(button);
       expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
