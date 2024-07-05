@@ -407,13 +407,13 @@ describe('createCssVarsProvider', () => {
     it('use custom attribute', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: createCssVarsTheme({
+          strategy: 'data-foo-bar',
           colorSchemes: { light: {} },
         }),
         defaultColorScheme: 'light',
       });
-      const customAttribute = 'data-foo-bar';
 
-      render(<CssVarsProvider attribute={customAttribute} />);
+      render(<CssVarsProvider />);
 
       expect(document.documentElement.getAttribute('data-foo-bar')).to.equal('light');
     });
@@ -749,14 +749,38 @@ describe('createCssVarsProvider', () => {
         theme: createCssVarsTheme({
           colorSchemes: { light: {}, dark: {} },
         }),
-        defaultColorScheme: 'light',
+        defaultMode: 'dark',
+        defaultColorScheme: { light: 'light', dark: 'dark' },
       });
       function Text() {
         const { mode } = useColorScheme();
         return <div>{mode}</div>;
       }
       const { container } = render(
-        <CssVarsProvider defaultMode="dark">
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+      expect(container.firstChild.textContent).to.equal('dark');
+    });
+
+    it('`defaultMode` should use colorSchemes.palette.mode', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+        theme: createCssVarsTheme({
+          defaultColorScheme: 'contrast',
+          colorSchemes: {
+            paper: { palette: { mode: 'light' } },
+            contrast: { palette: { mode: 'dark' } },
+          },
+        }),
+        defaultColorScheme: { paper: 'light', contrast: 'dark' },
+      });
+      function Text() {
+        const { mode } = useColorScheme();
+        return <div>{mode}</div>;
+      }
+      const { container } = render(
+        <CssVarsProvider>
           <Text />
         </CssVarsProvider>,
       );
