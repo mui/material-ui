@@ -122,9 +122,6 @@ export default function extendTheme(options = {}, ...args) {
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
-  let lightPalette;
-  let darkPalette;
-
   const colorSchemes = { ...colorSchemesInput };
   const defaultMode = defaultColorScheme === 'dark' ? 'dark' : 'light';
   const { palette: defaultPalette, ...muiTheme } = createThemeWithoutVars({
@@ -140,12 +137,6 @@ export default function extendTheme(options = {}, ...args) {
     },
     overlays: colorSchemesInput[defaultColorScheme]?.overlays || getOverlays(defaultPalette.mode),
   };
-  if (defaultMode === 'light') {
-    lightPalette = defaultPalette;
-  }
-  if (defaultMode === 'dark') {
-    darkPalette = defaultPalette;
-  }
 
   const oppositeColorScheme = defaultColorScheme === 'dark' ? 'light' : 'dark';
   const strategy =
@@ -165,12 +156,6 @@ export default function extendTheme(options = {}, ...args) {
       overlays:
         colorSchemesInput[oppositeColorScheme]?.overlays || getOverlays(oppositeColorScheme),
     };
-    if (oppositeColorScheme === 'light') {
-      lightPalette = oppositePalette;
-    }
-    if (oppositeColorScheme === 'dark') {
-      darkPalette = oppositePalette;
-    }
   }
 
   let theme = {
@@ -235,22 +220,22 @@ export default function extendTheme(options = {}, ...args) {
       setColor(
         palette.Alert,
         'errorFilledColor',
-        silent(() => lightPalette.getContrastText(palette.error.main)),
+        silent(() => palette.getContrastText(palette.error.main)),
       );
       setColor(
         palette.Alert,
         'infoFilledColor',
-        silent(() => lightPalette.getContrastText(palette.info.main)),
+        silent(() => palette.getContrastText(palette.info.main)),
       );
       setColor(
         palette.Alert,
         'successFilledColor',
-        silent(() => lightPalette.getContrastText(palette.success.main)),
+        silent(() => palette.getContrastText(palette.success.main)),
       );
       setColor(
         palette.Alert,
         'warningFilledColor',
-        silent(() => lightPalette.getContrastText(palette.warning.main)),
+        silent(() => palette.getContrastText(palette.warning.main)),
       );
       setColor(palette.Alert, 'errorStandardBg', safeLighten(palette.error.light, 0.9));
       setColor(palette.Alert, 'infoStandardBg', safeLighten(palette.info.light, 0.9));
@@ -292,7 +277,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(
         palette.SnackbarContent,
         'color',
-        silent(() => lightPalette.getContrastText(snackbarContentBackground)),
+        silent(() => palette.getContrastText(snackbarContentBackground)),
       );
       setColor(
         palette.SpeedDialAction,
@@ -324,22 +309,22 @@ export default function extendTheme(options = {}, ...args) {
       setColor(
         palette.Alert,
         'errorFilledColor',
-        silent(() => darkPalette.getContrastText(palette.error.dark)),
+        silent(() => palette.getContrastText(palette.error.dark)),
       );
       setColor(
         palette.Alert,
         'infoFilledColor',
-        silent(() => darkPalette.getContrastText(palette.info.dark)),
+        silent(() => palette.getContrastText(palette.info.dark)),
       );
       setColor(
         palette.Alert,
         'successFilledColor',
-        silent(() => darkPalette.getContrastText(palette.success.dark)),
+        silent(() => palette.getContrastText(palette.success.dark)),
       );
       setColor(
         palette.Alert,
         'warningFilledColor',
-        silent(() => darkPalette.getContrastText(palette.warning.dark)),
+        silent(() => palette.getContrastText(palette.warning.dark)),
       );
       setColor(palette.Alert, 'errorStandardBg', safeDarken(palette.error.light, 0.9));
       setColor(palette.Alert, 'infoStandardBg', safeDarken(palette.info.light, 0.9));
@@ -383,7 +368,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(
         palette.SnackbarContent,
         'color',
-        silent(() => darkPalette.getContrastText(snackbarContentBackground)),
+        silent(() => palette.getContrastText(snackbarContentBackground)),
       );
       setColor(
         palette.SpeedDialAction,

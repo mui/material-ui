@@ -20,7 +20,6 @@ export {
   TypeAction,
   TypeBackground,
 } from './createPalette';
-export { default as createPalette } from './createPalette';
 export { default as createStyles } from './createStyles';
 export {
   Typography as TypographyVariants,
