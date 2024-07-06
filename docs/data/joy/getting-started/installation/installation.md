@@ -17,12 +17,12 @@ The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Re
 npm install @mui/joy@next @emotion/react @emotion/styled
 ```
 
-```bash yarn
-yarn add @mui/joy@next @emotion/react @emotion/styled
-```
-
 ```bash pnpm
 pnpm add @mui/joy@next @emotion/react @emotion/styled
+```
+
+```bash yarn
+yarn add @mui/joy@next @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -55,12 +55,12 @@ Run one of the following commands to add Inter through Fontsource to your Joy U
 npm install @fontsource/inter
 ```
 
-```bash yarn
-yarn add @fontsource/inter
-```
-
 ```bash pnpm
 pnpm add @fontsource/inter
+```
+
+```bash yarn
+yarn add @fontsource/inter
 ```
 
 </codeblock>

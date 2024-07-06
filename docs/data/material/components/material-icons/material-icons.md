@@ -30,12 +30,12 @@ The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Re
 npm install @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
 ```
 
-```bash yarn
-yarn add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
-```
-
 ```bash pnpm
 pnpm add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
+```
+
+```bash yarn
+yarn add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
 ```
 
 </codeblock>

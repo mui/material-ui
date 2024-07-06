@@ -68,12 +68,12 @@ Install the [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-pl
 npm install stylis stylis-plugin-rtl
 ```
 
-```bash yarn
-yarn add stylis stylis-plugin-rtl
-```
-
 ```bash pnpm
 pnpm add stylis stylis-plugin-rtl
+```
+
+```bash yarn
+yarn add stylis stylis-plugin-rtl
 ```
 
 </codeblock>

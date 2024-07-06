@@ -18,12 +18,12 @@ The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Re
 npm install @mui/material@next @emotion/react @emotion/styled
 ```
 
-```bash yarn
-yarn add @mui/material@next @emotion/react @emotion/styled
-```
-
 ```bash pnpm
 pnpm add @mui/material@next @emotion/react @emotion/styled
+```
+
+```bash yarn
+yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -52,12 +52,12 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
-```bash yarn
-yarn add @mui/material @mui/styled-engine-sc styled-components
-```
-
 ```bash pnpm
 pnpm add @mui/material @mui/styled-engine-sc styled-components
+```
+
+```bash yarn
+yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
 </codeblock>
@@ -83,12 +83,12 @@ Add it to your project via Fontsource, or with the Google Fonts CDN.
 npm install @fontsource/roboto
 ```
 
-```bash yarn
-yarn add @fontsource/roboto
-```
-
 ```bash pnpm
 pnpm add @fontsource/roboto
+```
+
+```bash yarn
+yarn add @fontsource/roboto
 ```
 
 </codeblock>
@@ -130,12 +130,12 @@ You can do so with npm, or with the Google Web Fonts CDN.
 npm install @mui/icons-material
 ```
 
-```bash yarn
-yarn add @mui/icons-material
-```
-
 ```bash pnpm
 pnpm add @mui/icons-material
+```
+
+```bash yarn
+yarn add @mui/icons-material
 ```
 
 </codeblock>

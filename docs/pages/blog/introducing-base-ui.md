@@ -104,12 +104,12 @@ Give Base UI a try today by running one of the following commands:
 npm install @mui/base
 ```
 
-```bash yarn
-yarn add @mui/base
-```
-
 ```bash pnpm
 pnpm add @mui/base
+```
+
+```bash yarn
+yarn add @mui/base
 ```
 
 </codeblock>

@@ -23,12 +23,12 @@ The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Re
 npm install @mui/material-nextjs@next @emotion/cache
 ```
 
-```bash yarn
-yarn add @mui/material-nextjs@next @emotion/cache
-```
-
 ```bash pnpm
 pnpm add @mui/material-nextjs@next @emotion/cache
+```
+
+```bash yarn
+yarn add @mui/material-nextjs@next @emotion/cache
 ```
 
 </codeblock>
@@ -165,12 +165,12 @@ Then, run one of the following commands to install the dependencies:
 npm install @mui/material-nextjs @emotion/cache @emotion/server
 ```
 
-```bash yarn
-yarn add @mui/material-nextjs @emotion/cache @emotion/server
-```
-
 ```bash pnpm
 pnpm add @mui/material-nextjs @emotion/cache @emotion/server
+```
+
+```bash yarn
+yarn add @mui/material-nextjs @emotion/cache @emotion/server
 ```
 
 </codeblock>
