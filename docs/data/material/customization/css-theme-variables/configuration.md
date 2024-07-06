@@ -2,219 +2,7 @@
 
 <p class="description">A guide for configuring CSS theme variables in Material UI.</p>
 
-## Customizing the prefix
-
-The following demo uses `--md-demo` as a prefix for the variables:
-
-{{"demo": "CssVarsBasic.js", "defaultCodeOpen": true}}
-
-If you want to remove the prefix, use an empty string:
-
-```jsx
-const theme = extendTheme({ cssVarPrefix: '' });
-```
-
-## Theming
-
-`extendTheme` is an API that extends the default theme. It returns a theme that can only be used by the `CssVarsProvider`.
-
-```js
-import { CssVarsProvider, extendTheme } from '@mui/material/styles';
-
-const theme = extendTheme();
-// ...custom theme
-
-function App() {
-  return <CssVarsProvider theme={theme}>...</CssVarsProvider>;
-}
-```
-
-:::warning
-`extendTheme` is not the same as [`createTheme`](/material-ui/customization/theming/#createtheme-options-args-theme).
-Do not use them interchangeably.
-
-- `createTheme()` returns a theme for `ThemeProvider`.
-- `extendTheme()` returns a theme for `CssVarsProvider`.
-
-  :::
-
-### Color schemes
-
-The major difference from the default approach is in palette customization.
-With the `extendTheme` API, you can specify the palette for all color schemes at once (`light` and `dark` are built in) under the `colorSchemes` node.
-
-Here's an example of how to customize the `primary` palette:
-
-```js
-import { pink } from '@mui/material/colors';
-
-const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          main: pink[600],
-        },
-      },
-    },
-    dark: {
-      palette: {
-        primary: {
-          main: pink[400],
-        },
-      },
-    },
-  },
-});
-```
-
-### Components
-
-[Component customization](/material-ui/customization/theme-components/) remains the same as the default approach.
-We recommend using the value from `theme.vars.*` whenever possible for a better debugging experience:
-
-```js
-const theme = extendTheme({
-  components: {
-    MuiChip: {
-      styleOverrides: {
-        root: ({ theme, ownerState }) => ({
-          ...(ownerState.variant === 'outlined' &&
-            ownerState.color === 'primary' && {
-              // this is the same as writing:
-              // backgroundColor: 'var(--mui-palette-background-paper)',
-              backgroundColor: theme.vars.palette.background.paper,
-            }),
-        }),
-      },
-    },
-  },
-});
-```
-
-### Channel tokens
-
-A channel token is a variable that consists of [color space channels](https://www.w3.org/TR/css-color-4/#color-syntax) but without the alpha component. The value of a channel token is separated by a space, for example `12 223 31`, which can be combined with the [color functions](https://www.w3.org/TR/css-color-4/#color-functions) to create a translucent color.
-
-The `extendTheme()` automatically generates channel tokens that are likely to be used frequently from the theme palette. Those colors are suffixed with `Channel`, for example:
-
-```js
-const theme = extendTheme();
-const light = theme.colorSchemes.light;
-
-console.log(light.palette.primary.mainChannel); // '25 118 210'
-// This token is generated from `theme.colorSchemes.light.palette.primary.main`.
-```
-
-You can use the channel tokens to create a translucent color like this:
-
-```js
-const theme = extendTheme({
-  components: {
-    MuiChip: {
-      styleOverrides: {
-        root: ({ theme, ownerState }) => ({
-          ...(ownerState.variant === 'outlined' &&
-            ownerState.color === 'primary' && {
-              backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`,
-            }),
-        }),
-      },
-    },
-  },
-});
-```
-
-:::warning
-Don't use a comma (`,`) as a separator because the channel colors use empty spaces to define [transparency](https://www.w3.org/TR/css-color-4/#transparency):
-
-```js
-`rgba(${theme.vars.palette.primary.mainChannel}, 0.12)`, // 🚫 this does not work
-`rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, // ✅ always use `/`
-```
-
-:::
-
-## Adding new theme tokens
-
-You can add other key-value pairs to the theme input which will be generated as a part of the CSS theme variables:
-
-```js
-const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        // The best part is that you can refer to the variables wherever you like 🤩
-        gradient:
-          'linear-gradient(to left, var(--mui-palette-primary-main), var(--mui-palette-primary-dark))',
-        border: {
-          subtle: 'var(--mui-palette-neutral-200)',
-        },
-      },
-    },
-    dark: {
-      palette: {
-        gradient:
-          'linear-gradient(to left, var(--mui-palette-primary-light), var(--mui-palette-primary-main))',
-        border: {
-          subtle: 'var(--mui-palette-neutral-600)',
-        },
-      },
-    },
-  },
-});
-
-function App() {
-  return <CssVarsProvider theme={theme}>...</CssVarsProvider>;
-}
-```
-
-Then, you can access those variables from the `theme.vars` object:
-
-```js
-const Divider = styled('hr')(({ theme }) => ({
-  height: 1,
-  border: '1px solid',
-  borderColor: theme.vars.palette.border.subtle,
-  backgroundColor: theme.vars.palette.gradient,
-}));
-```
-
-Or use `var()` to refer to the CSS variable directly:
-
-```css
-/* global.css */
-.external-section {
-  background-color: var(--mui-palette-gradient);
-}
-```
-
-:::warning
-If you're using a [custom prefix](/material-ui/customization/css-theme-variables/configuration/#changing-variable-prefixes), make sure to replace the default `--mui`.
-:::
-
-### TypeScript
-
-You must augment the theme palette to avoid type errors:
-
-```ts
-declare module '@mui/material/styles' {
-  interface PaletteOptions {
-    gradient: string;
-    border: {
-      subtle: string;
-    };
-  }
-  interface Palette {
-    gradient: string;
-    border: {
-      subtle: string;
-    };
-  }
-}
-```
-
-## Changing variable prefixes
+## Customizing variable prefix
 
 To change the default variable prefix (`--mui`), provide a string to `cssVarPrefix` property, as shown below:
 
@@ -234,90 +22,56 @@ const theme = extendTheme({ cssVarPrefix: '' });
 // --palette-primary-main: ...;
 ```
 
-## Custom styles per mode
+## Toggling dark mode manually
 
-To customize the style without creating new tokens, you can use the `theme.getColorSchemeSelector` utility:
+To support toggling between light and dark modes manually, set the `strategy` with a custom selector.
 
-```js
-const Button = styled('button')(({ theme }) => ({
-  // in default mode.
-  backgroundColor: theme.vars.palette.primary.main,
-  color: '#fff',
-  '&:hover': {
-    backgroundColor: theme.vars.palette.primary.dark,
-  },
+Choose one of the following strategies:
 
-  // in dark mode.
-  [theme.getColorSchemeSelector('dark')]: {
-    backgroundColor: theme.vars.palette.primary.dark,
-    color: theme.vars.palette.primary.main,
-    '&:hover': {
-      color: '#fff',
-      backgroundColor: theme.vars.palette.primary.dark,
-    },
-  },
-}));
-```
+<codeblock>
 
-:::info
-Using this utility is equivalent to writing a plain string `'[data-mui-color-scheme="dark"] &'` if you don't have a custom configuration.
-:::
-
-## Force a specific color scheme
-
-Specify `data-mui-color-scheme="dark"` to any DOM node to force the children components to appear as if they are in dark mode.
-
-```js
-<div data-mui-color-scheme="dark">
-  <Paper sx={{ p: 2 }}>
-    <TextField label="Email" type="email" margin="normal" />
-    <TextField label="Password" type="password" margin="normal" />
-    <Button>Sign in</Button>
-  </Paper>
-</div>
-```
-
-## Dark color scheme application
-
-For an application that only has a dark mode, set the default mode to `dark`:
-
-```js
-const theme = extendTheme({
-  // ...
+```js class
+extendTheme({
+  strategy: '.mode-%s',
 });
+```
 
-// remove the `light` color scheme to optimize the HTML size for server-side application
-delete theme.colorSchemes.light;
+```js data-attribute
+extendTheme({
+  strategy: '[data-mode-%s]',
+});
+```
 
-function App() {
+</codeblock>
+
+Then, use `useColorScheme` hook to switch between modes:
+
+<codeblock>
+
+```jsx client-side-app
+import { useColorScheme } from '@mui/material/styles';
+
+function ModeSwitcher() {
+  const { mode, setMode } = useColorScheme();
+
   return (
-    <CssVarsProvider theme={theme} defaultMode="dark">
-      ...
-    </CssVarsProvider>
+    <select
+      value={mode}
+      onChange={(event) => {
+        setMode(event.target.value);
+      }}
+    >
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
   );
 }
 ```
 
-For a server-side application, provide the same value to [`InitColorSchemeScript`](/material-ui/customization/css-theme-variables/usage/#server-side-rendering):
+```jsx server-side-app
+import { useColorScheme } from '@mui/material/styles';
 
-```js
-<InitColorSchemeScript defaultMode="dark" />
-```
-
-:::warning
-In development, make sure to clear local storage and refresh the page after you configure the `defaultMode`.
-:::
-
-## Toggle between light and dark mode
-
-The `useColorScheme` hook lets you read and update the user-selected mode:
-
-```jsx
-import { CssVarsProvider, useColorScheme } from '@mui/material/styles';
-
-// ModeSwitcher is an example interface for toggling between modes.
-// Material UI does not provide the toggle interface—you have to build it yourself.
-const ModeSwitcher = () => {
+function ModeSwitcher() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -332,26 +86,258 @@ const ModeSwitcher = () => {
   }
 
   return (
-    <Button
-      variant="outlined"
-      onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
+    <select
+      value={mode}
+      onChange={(event) => {
+        setMode(event.target.value);
       }}
     >
-      {mode === 'light' ? 'Dark' : 'Light'}
-    </Button>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
   );
-};
+}
+```
+
+</codeblock>
+
+### Preventing SSR flickering
+
+For SSR (server-side rendering) applications, Material UI can not detected user-selected mode on the server, causing the screen to flicker from light to dark during the hydration phase on the client.
+
+To prevent the issue, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
+
+If you have such a condition, replace it with the [`theme.applyStyles`](#appling-dark-styles) function:
+
+```diff
+import Card from '@mui/material/Card';
 
 function App() {
   return (
-    <CssVarsProvider>
-      <ModeSwitcher />
+    <Card
+      sx={(theme) => ({
+-        backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
+-        '&:hover': {
+-          backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#f5f5f5',
+-        },
++        backgroundColor: '#fff',
++        '&:hover': {
++          backgroundColor: '#f5f5f5',
++          ...theme.applyStyles('dark', {
++            backgroundColor: '#333',
++          }),
++        },
++        ...theme.applyStyles('dark', {
++          backgroundColor: '#000',
++        }),
+      })}
+    />
+  );
+}
+```
+
+Next, if you have a custom strategy that is **not** `media`, add the `InitColorSchemeScript` component based on the framework that you are using:
+
+:::success
+The `attribute` has to be the same as the one you set in the `strategy` property:
+
+```js
+<InitColorSchemeScript attribute="{strategy}" />
+```
+
+:::
+
+#### Next.js App Router
+
+Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file:
+
+```jsx title="app/layout.js"
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        {/* must come before the <main> element */}
+        <InitColorSchemeScript attribute=".mode-%s" />
+        <main>{children}</main>
+      </body>
+    </html>
+  );
+}
+```
+
+#### Next.js Pages Router
+
+Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
+
+```jsx title="pages/_document.js"
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+
+export default class MyDocument extends Document {
+  render() {
+    return (
+      <Html data-color-scheme="light">
+        <Head>...</Head>
+        <body>
+          {/* must come before the <Main> element */}
+          <InitColorSchemeScript attribute=".mode-%s" />
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+```
+
+#### Gatsby
+
+Place the script in your [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
+
+```jsx
+import * as React from 'react';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+
+export function onRenderBody({ setPreBodyComponents }) {
+  setPreBodyComponents([<InitColorSchemeScript attribute=".mode-%s" />]);
+}
+```
+
+### Supporting system preference and manual selection
+
+To support system preference together with manual toggle, set `enableSystem` on the `CssVarsProvider`:
+
+```jsx
+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
+
+const theme = extendTheme({
+  strategy: '.mode-%s',
+});
+
+function App() {
+  return (
+    <CssVarsProvider theme={theme} enableSystem>
+      {/* your application */}
     </CssVarsProvider>
   );
 }
 ```
+
+Material UI will automatically switch between light and dark modes based on the user's system preference.
+
+:::warning
+In development, make sure to clear local storage and refresh the page after you configure the `enableSystem` prop.
+:::
+
+You can switch between `light`, `dark`, and `system` modes using the `useColorScheme` hook:
+
+<codeblock>
+
+```jsx client-side-app
+import { useColorScheme } from '@mui/material/styles';
+
+function ModeSwitcher() {
+  const { mode, setMode } = useColorScheme();
+
+  return (
+    <select
+      value={mode}
+      onChange={(event) => {
+        setMode(event.target.value);
+      }}
+    >
+      <option value="system">System</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  );
+}
+```
+
+```jsx server-side-app
+import { useColorScheme } from '@mui/material/styles';
+
+function ModeSwitcher() {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // for server-side rendering
+    // learn more at https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
+    return null;
+  }
+
+  return (
+    <select
+      value={mode}
+      onChange={(event) => {
+        setMode(event.target.value);
+      }}
+    >
+      <option value="system">System</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  );
+}
+```
+
+</codeblock>
+
+## Forcing a specific color scheme
+
+To force a specific color scheme for some part of your application, set the selector to the component or HTML element directly.
+
+In the example below, all the components inside the `div` will always be dark:
+
+<codeblock>
+
+```js class
+// if the strategy is '.mode-%s'
+<div className=".mode-dark">
+  <Paper sx={{ p: 2 }}>
+    <TextField label="Email" type="email" margin="normal" />
+    <TextField label="Password" type="password" margin="normal" />
+    <Button>Sign in</Button>
+  </Paper>
+  {/* other components */}
+</div>
+```
+
+```js data-attribute
+// if the strategy is '[data-mode-%s]'
+<div data-mode-dark>
+  <Paper sx={{ p: 2 }}>
+    <TextField label="Email" type="email" margin="normal" />
+    <TextField label="Password" type="password" margin="normal" />
+    <Button>Sign in</Button>
+  </Paper>
+  {/* other components */}
+</div>
+```
+
+</codeblock>
+
+## Disabling CSS color scheme
+
+By default, the `CssVarsProvider` attach [CSS color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. If you want to disable it, set the `disableCssColorScheme` to `false`:
+
+```js
+<CssVarsProvider disableCssColorScheme />
+```
+
+## Instant transition between modes
+
+To disable CSS transition when switching between modes, set the `disableTransitionOnChange` to `true`:
+
+```js
+<CssVarsProvider disableTransitionOnChange />
+```
+
+<!-- add a demo -->

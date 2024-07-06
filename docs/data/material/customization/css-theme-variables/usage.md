@@ -118,14 +118,10 @@ The structure of this object is a serializable theme structure with the values r
   }
   ```
 
-  :::warning
-  If you have set up a [custom prefix](/material-ui/customization/css-theme-variables/configuration/#changing-variable-prefixes), make sure to replace the default `--mui`.
-  :::
-
 ## Applying dark styles
 
 To customize styles for dark mode, use `theme.applyStyles` function.
-This utility function will take care of applying the right selector based on the selected strategy.
+This utility function will apply the right selector based on the selected strategy.
 
 The example below shows how to customize the Card component for dark mode:
 
@@ -142,85 +138,209 @@ import Card from '@mui/material/Card';
 />;
 ```
 
-## Prevent SSR flickering
+## Theming
 
-To prevent the dark-mode SSR flickering during the hydration phase, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
+:::warning
+`extendTheme` is not the same as [`createTheme`](/material-ui/customization/theming/#createtheme-options-args-theme).
+Do not use them interchangeably.
 
-If you have such a condition, replace it with the [`theme.applyStyles`](#appling-dark-styles) function:
+- `createTheme()` returns a theme for `ThemeProvider`.
+- `extendTheme()` returns a theme for `CssVarsProvider`.
 
-```diff
-import Card from '@mui/material/Card';
+:::
+
+The major difference from the [`createTheme`](/material-ui/customization/theming/#createtheme-options-args-theme) approach is in palette customization.
+With the `extendTheme` API, you can specify the palette for `light` and `dark` color schemes at once. The rest of the theme structure remains the same.
+
+Here are examples of customizing each part of the theme:
+
+<codeblock>
+
+```js color-schemes
+import { pink } from '@mui/material/colors';
+
+extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: pink[600],
+        },
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          main: pink[400],
+        },
+      },
+    },
+  },
+});
+```
+
+```js typography
+extendTheme({
+  typography: {
+    fontFamily: '"Inter", "sans-serif"',
+    h1: {
+      fontSize: customTheme.typography.pxToRem(60),
+      fontWeight: 600,
+      lineHeight: 1.2,
+      letterSpacing: -0.5,
+    },
+    h2: {
+      fontSize: customTheme.typography.pxToRem(48),
+      fontWeight: 600,
+      lineHeight: 1.2,
+    },
+  },
+});
+```
+
+```js spacing
+extendTheme({
+  spacing: '0.5rem',
+});
+```
+
+```js shape
+extendTheme({
+  shape: {
+    borderRadius: 12,
+  },
+});
+```
+
+```js components
+extendTheme({
+  components: {
+    MuiChip: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          variants: [
+            {
+              props: { variant: 'outlined', color: 'primary' },
+              style: {
+                backgroundColor: theme.vars.palette.background.paper,
+              },
+            },
+          ],
+        }),
+      },
+    },
+  },
+});
+```
+
+</codeblock>
+
+### Channel tokens
+
+A channel token is used for creating translucent color. It is a variable that consists of [color space channels](https://www.w3.org/TR/css-color-4/#color-syntax) but without the alpha component. The value of a channel token is separated by a space, for example `12 223 31`, which can be combined with the [color functions](https://www.w3.org/TR/css-color-4/#color-functions) to create a translucent color.
+
+The `extendTheme()` automatically generates channel tokens that are likely to be used frequently from the theme palette. Those colors are suffixed with `Channel`, for example:
+
+```js
+const theme = extendTheme();
+const light = theme.colorSchemes.light;
+
+console.log(light.palette.primary.mainChannel); // '25 118 210'
+// This token is generated from `theme.colorSchemes.light.palette.primary.main`.
+```
+
+You can use the channel tokens to create a translucent color like this:
+
+```js
+const theme = extendTheme({
+  components: {
+    MuiChip: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          variants: [
+            {
+              props: { variant: 'outlined', color: 'primary' },
+              style: {
+                backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`,
+              },
+            },
+          ],
+        }),
+      },
+    },
+  },
+});
+```
+
+:::warning
+Don't use a comma (`,`) as a separator because the channel colors use empty spaces to define [transparency](https://www.w3.org/TR/css-color-4/#transparency):
+
+```js
+`rgba(${theme.vars.palette.primary.mainChannel}, 0.12)`, // 🚫 this does not work
+`rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, // ✅ always use `/`
+```
+
+:::
+
+### Adding new theme tokens
+
+You can add other key-value pairs to the theme input which will be generated as a part of the CSS theme variables:
+
+```js
+const theme = extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        // The best part is that you can refer to the variables wherever you like 🤩
+        gradient:
+          'linear-gradient(to left, var(--mui-palette-primary-main), var(--mui-palette-primary-dark))',
+        border: {
+          subtle: 'var(--mui-palette-neutral-200)',
+        },
+      },
+    },
+    dark: {
+      palette: {
+        gradient:
+          'linear-gradient(to left, var(--mui-palette-primary-light), var(--mui-palette-primary-main))',
+        border: {
+          subtle: 'var(--mui-palette-neutral-600)',
+        },
+      },
+    },
+  },
+});
 
 function App() {
-  return (
-    <Card
-      sx={(theme) => ({
--        backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
--        '&:hover': {
--          backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#f5f5f5',
--        },
-+        backgroundColor: '#fff',
-+        '&:hover': {
-+          backgroundColor: '#f5f5f5',
-+          ...theme.applyStyles('dark', {
-+            backgroundColor: '#333',
-+          }),
-+        },
-+        ...theme.applyStyles('dark', {
-+          backgroundColor: '#000',
-+        }),
-      })}
-    />
-  );
+  return <CssVarsProvider theme={theme}>...</CssVarsProvider>;
 }
 ```
 
-Next, if you have a custom strategy that is **not** `"media"`, add the `InitColorSchemeScript` component based on the framework that you are using:
+Then, you can access those variables from the `theme.vars` object:
 
-### Next.js
+```js
+const Divider = styled('hr')(({ theme }) => ({
+  height: 1,
+  border: '1px solid',
+  borderColor: theme.vars.palette.border.subtle,
+  backgroundColor: theme.vars.palette.gradient,
+}));
+```
 
-#### App Router
+Or use `var()` to refer to the CSS variable directly:
 
-Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file:
-
-```jsx title="app/layout.js"
-import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>
-        <InitColorSchemeScript /> {/* must come before the <main> element */}
-        <main>{children}</main>
-      </body>
-    </html>
-  );
+```css
+/* global.css */
+.external-section {
+  background-color: var(--mui-palette-gradient);
 }
 ```
 
-#### Pages Router
+:::warning
+If you're using a [custom prefix](/material-ui/customization/css-theme-variables/configuration/#changing-variable-prefixes), make sure to replace the default `--mui`.
+:::
 
-Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
-
-```jsx title="pages/_document.js"
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-
-export default class MyDocument extends Document {
-  render() {
-    return (
-      <Html data-color-scheme="light">
-        <Head>...</Head>
-        <body>
-          <InitColorSchemeScript /> {/* must come before the <Main> element */}
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
-}
-```
+For **TypeScript**, you need to augment the [palette interfaces](#palette-interfaces).
 
 ## TypeScript
 
@@ -236,3 +356,28 @@ const StyledComponent = styled('button')(({ theme }) => ({
   color: theme.vars.palette.primary.main,
 }));
 ```
+
+### Palette interfaces
+
+To add new tokens to the theme palette, you need to augment the `PaletteOptions` and `Palette` interfaces:
+
+```ts
+declare module '@mui/material/styles' {
+  interface PaletteOptions {
+    gradient: string;
+    border: {
+      subtle: string;
+    };
+  }
+  interface Palette {
+    gradient: string;
+    border: {
+      subtle: string;
+    };
+  }
+}
+```
+
+## Next steps
+
+If you need to support system preference and manual selection, check out the [advanced configuration](/material-ui/customization/css-theme-variables/configuration/)

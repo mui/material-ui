@@ -205,6 +205,7 @@ const pages: MuiPage[] = [
           },
           {
             pathname: '/material-ui/customization/css-theme-variables/configuration',
+            title: 'Advanced configuration',
           },
         ],
       },
