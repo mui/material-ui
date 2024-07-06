@@ -21,6 +21,8 @@ const hiddenCssClasses = generateUtilityClasses('PrivateHiddenCss', [
   'onlySm',
   'xsDown',
   'xsUp',
+  'uwUp',
+  'uwDown',
   'onlyXs',
 ]);
 

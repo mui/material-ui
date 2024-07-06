@@ -13,6 +13,8 @@ export interface HiddenCssProps {
   xlUp?: boolean;
   xsDown?: boolean;
   xsUp?: boolean;
+  uwDown?: boolean;
+  uwUp?: boolean;
 }
 
 declare const HiddenCss: React.JSXElementConstructor<HiddenCssProps>;

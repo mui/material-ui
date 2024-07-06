@@ -166,6 +166,14 @@ HiddenCss.propTypes = {
   /**
    * If `true`, screens this size and down are hidden.
    */
+  uwDown: PropTypes.bool,
+  /**
+   * If `true`, screens this size and up are hidden.
+   */
+  uwUp: PropTypes.bool,
+  /**
+   * If `true`, screens this size and down are hidden.
+   */
   xlDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up are hidden.

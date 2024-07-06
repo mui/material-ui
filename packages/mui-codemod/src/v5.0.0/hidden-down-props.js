@@ -18,7 +18,8 @@ export default function transformer(file, api, options) {
       smDown: 'mdDown',
       mdDown: 'lgDown',
       lgDown: 'xlDown',
-      xlDown: 'xlDown',
+      xlDown: 'uwDown',
+      uwDown: 'uwDown',
     },
   }).toSource(printOptions);
 }

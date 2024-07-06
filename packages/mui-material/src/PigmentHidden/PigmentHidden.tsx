@@ -88,6 +88,16 @@ export interface HiddenProps {
    * @default false
    */
   xsUp?: boolean;
+  /**
+   * If `true`, component is hidden on screens below (but not including) this size.
+   * @default false
+   */
+  uwDown?: boolean;
+  /**
+   * If `true`, component is hidden on screens this size and above.
+   * @default false
+   */
+  uwUp?: boolean;
 }
 
 const useUtilityClasses = (ownerState: {
@@ -335,6 +345,16 @@ PigmentHidden.propTypes /* remove-proptypes */ = {
    * @default false
    */
   smUp: PropTypes.bool,
+  /**
+   * If `true`, component is hidden on screens below (but not including) this size.
+   * @default false
+   */
+  uwDown: PropTypes.bool,
+  /**
+   * If `true`, component is hidden on screens this size and above.
+   * @default false
+   */
+  uwUp: PropTypes.bool,
   /**
    * If `true`, component is hidden on screens below (but not including) this size.
    * @default false

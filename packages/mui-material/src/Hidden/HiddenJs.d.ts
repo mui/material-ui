@@ -14,6 +14,8 @@ export interface HiddenJsProps {
   xlUp?: boolean;
   xsDown?: boolean;
   xsUp?: boolean;
+  uwUp?: boolean;
+  uwDown?: boolean;
 }
 
 declare const HiddenJs: React.JSXElementConstructor<HiddenJsProps>;

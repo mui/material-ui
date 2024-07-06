@@ -22,6 +22,8 @@ function Hidden(props) {
     xlUp = false,
     xsDown = false,
     xsUp = false,
+    uwUp = false,
+    uwDown = false,
     ...other
   } = props;
 
@@ -38,6 +40,8 @@ function Hidden(props) {
         xlUp={xlUp}
         xsDown={xsDown}
         xsUp={xsUp}
+        uwUp={uwUp}
+        uwDown={uwDown}
         {...other}
       />
     );
@@ -124,6 +128,16 @@ Hidden.propTypes /* remove-proptypes */ = {
    * @default false
    */
   smUp: PropTypes.bool,
+  /**
+   * If `true`, component is hidden on screens below (but not including) this size.
+   * @default false
+   */
+  uwDown: PropTypes.bool,
+  /**
+   * If `true`, component is hidden on screens this size and above.
+   * @default false
+   */
+  uwUp: PropTypes.bool,
   /**
    * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
