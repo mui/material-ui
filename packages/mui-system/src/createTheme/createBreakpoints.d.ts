@@ -3,7 +3,7 @@ import { OverridableStringUnion } from '@mui/types';
 export interface BreakpointOverrides {}
 
 export type Breakpoint = OverridableStringUnion<
-  'xs' | 'sm' | 'md' | 'lg' | 'xl',
+  'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'uw',
   BreakpointOverrides
 >;
 export const keys: Breakpoint[];
@@ -25,6 +25,8 @@ export interface Breakpoints {
    *    lg: 1200,
    *    // extra-large
    *    xl: 1536,
+   *    // ultra-wide
+   *    uw: 2560,
    * }
    */
   values: { [key in Breakpoint]: number };

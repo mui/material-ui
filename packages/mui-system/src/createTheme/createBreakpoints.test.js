@@ -70,6 +70,10 @@ describe('createBreakpoints', () => {
       expect(breakpoints.down('xl')).to.equal('@media (max-width:1535.95px)');
     });
 
+    it('should work for uw', () => {
+      expect(breakpoints.down('uw')).to.equal('@media (max-width:2559.95px)');
+    });
+
     it('should work for custom breakpoints', () => {
       expect(customBreakpoints.down('laptop')).to.equal('@media (max-width:1023.95px)');
     });
@@ -93,8 +97,8 @@ describe('createBreakpoints', () => {
     });
 
     it('should work on largest breakpoints', () => {
-      expect(breakpoints.between('lg', 'xl')).to.equal(
-        '@media (min-width:1200px) and (max-width:1535.95px)',
+      expect(breakpoints.between('xl', 'uw')).to.equal(
+        '@media (min-width:1536px) and (max-width:2559.95px)',
       );
     });
 

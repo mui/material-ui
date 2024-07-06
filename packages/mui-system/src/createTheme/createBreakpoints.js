@@ -22,6 +22,7 @@ export default function createBreakpoints(breakpoints) {
       md: 900, // small laptop
       lg: 1200, // desktop
       xl: 1536, // large screen
+      uw: 2560, // ultra wide
     },
     unit = 'px',
     step = 5,

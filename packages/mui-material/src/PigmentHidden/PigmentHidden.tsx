@@ -297,7 +297,7 @@ PigmentHidden.propTypes /* remove-proptypes */ = {
    * For instance, you could be using the user-agent or the client-hints.
    * https://caniuse.com/#search=client%20hint
    */
-  initialWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
+  initialWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'uw', 'xl', 'xs']),
   /**
    * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
@@ -322,8 +322,8 @@ PigmentHidden.propTypes /* remove-proptypes */ = {
    * Hide the given breakpoint(s).
    */
   only: PropTypes.oneOfType([
-    PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
-    PropTypes.arrayOf(PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired),
+    PropTypes.oneOf(['lg', 'md', 'sm', 'uw', 'xl', 'xs']),
+    PropTypes.arrayOf(PropTypes.oneOf(['lg', 'md', 'sm', 'uw', 'xl', 'xs']).isRequired),
   ]),
   /**
    * If `true`, component is hidden on screens below (but not including) this size.

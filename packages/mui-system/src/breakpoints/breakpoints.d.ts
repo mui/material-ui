@@ -21,7 +21,7 @@ export function handleBreakpoints<Props>(
   styleFromPropValue: (value: any, breakpoint?: Breakpoint) => any,
 ): any;
 
-type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'uw';
 
 /**
  * @returns An enhanced stylefunction that considers breakpoints

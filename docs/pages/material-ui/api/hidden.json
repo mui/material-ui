@@ -8,7 +8,7 @@
     "initialWidth": {
       "type": {
         "name": "enum",
-        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'"
+        "description": "'uw'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'"
       }
     },
     "lgDown": { "type": { "name": "bool" }, "default": "false" },
@@ -18,7 +18,7 @@
     "only": {
       "type": {
         "name": "union",
-        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;Array&lt;'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'&gt;"
+        "description": "'uw'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;Array&lt;'uw'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'&gt;"
       }
     },
     "smDown": { "type": { "name": "bool" }, "default": "false" },

@@ -40,7 +40,7 @@
     "spacing": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, uw?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
       },
       "default": "0"
     },

@@ -363,6 +363,7 @@ declare module '@mui/material/styles' {
     md: false;
     lg: false;
     xl: false;
+    uw: false;
     tablet: true; // adds the `tablet` breakpoint
     laptop: true;
     desktop: true;
