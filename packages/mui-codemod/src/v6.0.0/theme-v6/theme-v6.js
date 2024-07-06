@@ -20,7 +20,7 @@ export default function themeV6(file, api, options) {
       args = [path.node];
     }
 
-    // 1. collecting styles that should be tranformed
+    // 1. collecting styles that should be transformed
     args.forEach((arg) => {
       if (
         arg.type === 'ArrowFunctionExpression' &&

@@ -24,7 +24,7 @@ describe('breakpoints', () => {
   it('should work', () => {
     const palette = breakpoints(textColor);
 
-    expect(palette.filterProps.length).to.equal(6);
+    expect(palette.filterProps.length).to.equal(7);
     expect(
       palette({
         color: 'red',
