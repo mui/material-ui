@@ -170,15 +170,14 @@ function getTheme(outerTheme, injectTheme) {
     resultTheme.spacing = outerTheme.spacing;
   }
 
-  if(injectTheme && Object.prototype.toString.call(injectTheme) === '[object Object]') {
+  if (injectTheme && Object.prototype.toString.call(injectTheme) === '[object Object]') {
     try {
       return deepmerge(resultTheme, injectTheme);
-    } catch(e) {
+    } catch (e) {
       return resultTheme;
     }
   }
   return resultTheme;
-
 }
 
 // TODO: Let demos decide whether they need JSS
@@ -215,11 +214,11 @@ function DemoSandbox(props) {
     window.jsx = jsx;
     window.React = React;
 
-    if(typeof window.getInjectTheme === 'function') {
+    if (typeof window.getInjectTheme === 'function') {
       const themeOptions = window.getInjectTheme();
       setInjectTheme(themeOptions);
     }
-  }, [])
+  }, []);
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
@@ -227,7 +226,9 @@ function DemoSandbox(props) {
         children
       ) : (
         <StylesProvider jss={jss}>
-          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme, injectTheme)}>{children}</ThemeProvider>
+          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme, injectTheme)}>
+            {children}
+          </ThemeProvider>
         </StylesProvider>
       )}
     </DemoErrorBoundary>
