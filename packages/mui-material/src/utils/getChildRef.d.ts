@@ -1,1 +1,1 @@
-export default function getChildRef(children: React.ReactElement): React.Ref<any> | null;
+export default function getChildRef(child: React.ReactElement): React.Ref<any> | null;
