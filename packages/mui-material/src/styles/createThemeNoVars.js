@@ -68,7 +68,7 @@ function createThemeNoVars(options = {}, ...args) {
       // eslint-disable-next-line guard-for-in
       for (key in node) {
         const child = node[key];
-        if (stateClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
+        if (stateClasses.includes(key) && Object.keys(child).length > 0) {
           if (process.env.NODE_ENV !== 'production') {
             const stateClass = generateUtilityClass('', key);
             console.error(

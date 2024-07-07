@@ -31,12 +31,12 @@ export function pageToTitle(page: Page): string | null {
   const name = path.replace(/.*\//, '').replace('react-', '').replace(/\..*/, '');
 
   // TODO remove post migration
-  if (path.indexOf('/api-docs/') !== -1) {
+  if (path.includes('/api-docs/')) {
     return pascalCase(name);
   }
 
   // TODO support more than React component API (PascalCase)
-  if (path.indexOf('/api/') !== -1) {
+  if (path.includes('/api/')) {
     return name.startsWith('use') ? camelCase(name) : pascalCase(name);
   }
 
@@ -87,7 +87,7 @@ export function pathnameToLanguage(pathname: string): {
   const userLanguageCandidate = pathname.substring(1, 3);
 
   if (
-    [...LANGUAGES, 'zh'].indexOf(userLanguageCandidate) !== -1 &&
+    [...LANGUAGES, 'zh'].includes(userLanguageCandidate) &&
     pathname.indexOf(`/${userLanguageCandidate}/`) === 0
   ) {
     userLanguage = userLanguageCandidate;
