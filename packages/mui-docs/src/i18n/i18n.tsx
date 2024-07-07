@@ -81,6 +81,14 @@ export function useSetUserLanguage() {
 
 const warnedOnce: Record<string, boolean> = {};
 
+const warn = (fullKey: string) => {
+  if (!warnedOnce[fullKey]) {
+    console.warn(`Missing translation for ${fullKey}`);
+
+    warnedOnce[fullKey] = true;
+  }
+};
+
 export interface TranslateOptions {
   ignoreWarning?: boolean;
 }
@@ -107,8 +115,7 @@ export function useTranslate() {
           const fullKey = `${userLanguage}:${key}`;
           // No warnings in CI env
           if (!ignoreWarning && !warnedOnce[fullKey] && typeof window !== 'undefined') {
-            console.error(`Missing translation for ${fullKey}`);
-            warnedOnce[fullKey] = true;
+            warn(fullKey);
           }
           return getPath(translations.en, key);
         }
