@@ -37,7 +37,7 @@
     "@babel/runtime": "^7.24.7",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
-    "@testing-library/dom": "^10.2.0",
+    "@testing-library/dom": "^10.3.1",
     "@testing-library/react": "^16.0.0",
     "chai": "^4.4.1",
     "chai-dom": "^1.12.0",
