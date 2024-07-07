@@ -81,7 +81,7 @@ function orderedPages(pages, current = []) {
 }
 
 async function postFeedback(data) {
-  const env = window.location.host.indexOf('mui.com') !== -1 ? 'prod' : 'dev';
+  const env = window.location.host.includes('mui.com')? 'prod' : 'dev';
   try {
     const response = await fetch(`${process.env.FEEDBACK_URL}/${env}/feedback`, {
       method: 'POST',

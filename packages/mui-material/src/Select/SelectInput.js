@@ -316,7 +316,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         'Enter',
       ];
 
-      if (validKeys.indexOf(event.key) !== -1) {
+      if (validKeys.includes(event.key)) {
         event.preventDefault();
         update(true, event);
       }

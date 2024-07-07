@@ -64,7 +64,7 @@ export default function IconImage(props: IconImageProps) {
   } else if (name.startsWith('pricing/x-plan-')) {
     defaultWidth = 13;
     defaultHeight = 15;
-  } else if (['pricing/yes', 'pricing/no', 'pricing/time'].indexOf(name) !== -1) {
+  } else if (['pricing/yes', 'pricing/no', 'pricing/time'].includes(name)) {
     defaultWidth = 18;
     defaultHeight = 18;
   }

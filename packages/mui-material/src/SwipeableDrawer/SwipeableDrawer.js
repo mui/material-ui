@@ -188,7 +188,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       const { mode = null, changeTransition = true } = options;
 
       const anchorRtl = getAnchor(theme, anchor);
-      const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(anchorRtl) !== -1 ? 1 : -1;
+      const rtlTranslateMultiplier = ['right', 'bottom'].includes(anchorRtl) ? 1 : -1;
       const horizontalSwipe = isHorizontal(anchor);
 
       const transform = horizontalSwipe
