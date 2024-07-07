@@ -15,6 +15,9 @@ import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
 import { getDesignTokens } from '@mui/docs/branding';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
+import { deepmerge } from '@mui/utils';
+import * as MUI from '@mui/material';
+import * as jsx from 'react/jsx-runtime';
 
 const iframeDefaultJoyTheme = extendTheme({
   cssVarPrefix: 'demo-iframe',
@@ -140,7 +143,7 @@ DemoIframe.propTypes = {
 };
 
 // Use the default Material UI theme for the demos
-function getTheme(outerTheme) {
+function getTheme(outerTheme, injectTheme) {
   const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
   const isCustomized =
     outerTheme.palette.primary?.main &&
@@ -166,7 +169,16 @@ function getTheme(outerTheme) {
   if (outerTheme.spacing) {
     resultTheme.spacing = outerTheme.spacing;
   }
+
+  if(injectTheme && Object.prototype.toString.call(injectTheme) === '[object Object]') {
+    try {
+      return deepmerge(resultTheme, injectTheme);
+    } catch(e) {
+      return resultTheme;
+    }
+  }
   return resultTheme;
+
 }
 
 // TODO: Let demos decide whether they need JSS
@@ -189,6 +201,7 @@ function DemoSandbox(props) {
     productId,
     ...other
   } = props;
+  const [injectTheme, setInjectTheme] = React.useState();
   const Sandbox = iframe ? DemoIframe : React.Fragment;
   const sandboxProps = iframe ? { name, productId, ...other } : {};
 
@@ -197,13 +210,24 @@ function DemoSandbox(props) {
   // `childrenProp` needs to be a child of `Sandbox` since the iframe implementation rely on `cloneElement`.
   const children = <Sandbox {...sandboxProps}>{childrenProp}</Sandbox>;
 
+  React.useEffect(() => {
+    window.MaterialMUI = MUI;
+    window.jsx = jsx;
+    window.React = React;
+
+    if(typeof window.getInjectTheme === 'function') {
+      const themeOptions = window.getInjectTheme();
+      setInjectTheme(themeOptions);
+    }
+  }, [])
+
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       {productId === 'joy-ui' ? (
         children
       ) : (
         <StylesProvider jss={jss}>
-          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>{children}</ThemeProvider>
+          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme, injectTheme)}>{children}</ThemeProvider>
         </StylesProvider>
       )}
     </DemoErrorBoundary>
