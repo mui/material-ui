@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import clipboardCopy from 'clipboard-copy';
 
-const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivElement | undefined>>({
-  current: undefined,
+const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivElement | null>>({
+  current: null,
 });
 
 /**
@@ -24,7 +24,7 @@ export function useCodeCopy(): React.HTMLAttributes<HTMLDivElement> {
     onMouseLeave: (event) => {
       if (rootNode.current === event.currentTarget) {
         (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
-        rootNode.current = undefined;
+        rootNode.current = null;
       }
     },
     onFocus: (event) => {
@@ -32,7 +32,7 @@ export function useCodeCopy(): React.HTMLAttributes<HTMLDivElement> {
     },
     onBlur: (event) => {
       if (rootNode.current === event.currentTarget) {
-        rootNode.current = undefined;
+        rootNode.current = null;
       }
     },
   };
@@ -66,7 +66,7 @@ function InitCodeCopy() {
         const handleMouseLeave = () => {
           if (rootNode.current === elm) {
             (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
-            rootNode.current = undefined;
+            rootNode.current = null;
           }
         };
         elm.addEventListener('mouseleave', handleMouseLeave);
@@ -82,7 +82,7 @@ function InitCodeCopy() {
         const handleFocusout = () => {
           // use `focusout` because it bubbles from the copy button
           if (rootNode.current === elm) {
-            rootNode.current = undefined;
+            rootNode.current = null;
           }
         };
         elm.addEventListener('focusout', handleFocusout);
@@ -157,7 +157,7 @@ interface CodeCopyProviderProps {
  * Any code block inside the tree can set the rootNode when mouse enter to leverage keyboard copy.
  */
 export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
-  const rootNode = React.useRef<HTMLDivElement | undefined>(undefined);
+  const rootNode = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     document.addEventListener('keydown', (event) => {
       if (!rootNode.current) {
