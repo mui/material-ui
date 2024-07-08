@@ -28,6 +28,7 @@ const CardMediaRoot = styled('div', {
     return [styles.root, isMediaComponent && styles.media, isImageComponent && styles.img];
   },
 })({
+  position: 'relative', // Ensure relative positioning
   display: 'block',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
@@ -47,6 +48,7 @@ const CardMediaRoot = styled('div', {
     },
   ],
 });
+
 
 const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 const IMAGE_COMPONENTS = ['picture', 'img'];
