@@ -964,6 +964,7 @@ workflows:
           filters:
             branches:
               only:
+                - master
                 - next
     jobs:
       - test_unit:
