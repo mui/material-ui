@@ -2237,9 +2237,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-      react-test-renderer:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
       sinon:
         specifier: ^15.2.0
         version: 15.2.0
@@ -2262,9 +2259,6 @@ importers:
       '@types/react-dom':
         specifier: 18.2.19
         version: 18.2.19
-      '@types/react-test-renderer':
-        specifier: ^18.0.7
-        version: 18.0.7
       '@types/sinon':
         specifier: ^10.0.20
         version: 10.0.20
@@ -5092,9 +5086,6 @@ packages:
 
   '@types/react-swipeable-views@0.13.5':
     resolution: {integrity: sha512-ni6WjO7gBq2xB2Y/ZiRdQOgjGOxIik5ow2s7xKieDq8DxsXTdV46jJslSBVK2yoIJHf6mG3uqNTwxwgzbXRRzg==}
-
-  '@types/react-test-renderer@18.0.7':
-    resolution: {integrity: sha512-1+ANPOWc6rB3IkSnElhjv6VLlKg2dSv/OWClUyZimbLsQyBn8Js9Vtdsi3UICJ2rIQ3k2la06dkB+C92QfhKmg==}
 
   '@types/react-transition-group@4.4.10':
     resolution: {integrity: sha512-hT/+s0VQs2ojCX823m60m5f0sL5idt9SO6Tj6Dg+rdphGPIeJbJ6CxvBYkgkGKrYeDjvIpKTR38UzmtHJOGW3Q==}
@@ -10677,11 +10668,6 @@ packages:
     peerDependencies:
       react: ^15.3.0 || ^16.0.0 || ^17.0.0
 
-  react-test-renderer@18.2.0:
-    resolution: {integrity: sha512-JWD+aQ0lh2gvh4NM3bBM42Kx+XybOxCpgYK7F8ugAlpaTSnWsX+39Z4XkOykGZAHrjwwTZT3x3KxswVWxHPUqA==}
-    peerDependencies:
-      react: ^18.2.0
-
   react-transition-group@4.4.5:
     resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
     peerDependencies:
@@ -15912,10 +15898,6 @@ snapshots:
       '@types/react-swipeable-views': 0.13.5
 
   '@types/react-swipeable-views@0.13.5':
-    dependencies:
-      '@types/react': 18.2.55
-
-  '@types/react-test-renderer@18.0.7':
     dependencies:
       '@types/react': 18.2.55
 
@@ -22758,13 +22740,6 @@ snapshots:
       react-swipeable-views-core: 0.14.0
       react-swipeable-views-utils: 0.14.0(react@18.2.0)
       warning: 4.0.3
-
-  react-test-renderer@18.2.0(react@18.2.0):
-    dependencies:
-      react: 18.2.0
-      react-is: 18.2.0
-      react-shallow-renderer: 16.15.0(react@18.2.0)
-      scheduler: 0.23.0
 
   react-transition-group@4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:

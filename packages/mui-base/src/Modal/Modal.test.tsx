@@ -29,10 +29,7 @@ describe('<Modal />', () => {
           expectedClassName: classes.root,
         },
       },
-      skip: [
-        'componentProp',
-        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
-      ],
+      skip: ['componentProp'],
     }),
   );
 

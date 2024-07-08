@@ -53,7 +53,7 @@ describe('<Menu />', () => {
         expectedClassName: menuClasses.listbox,
       },
     },
-    skip: ['reactTestRenderer', 'componentProp', 'slotsProp'],
+    skip: ['componentProp', 'slotsProp'],
   }));
 
   describe('after initialization', () => {

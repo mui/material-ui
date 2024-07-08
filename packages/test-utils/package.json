@@ -36,7 +36,6 @@
     "mocha": "^10.3.0",
     "playwright": "^1.42.1",
     "prop-types": "^15.8.1",
-    "react-test-renderer": "^18.2.0",
     "sinon": "^15.2.0"
   },
   "devDependencies": {
@@ -46,7 +45,6 @@
     "@types/prop-types": "^15.7.11",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
-    "@types/react-test-renderer": "^18.0.7",
     "@types/sinon": "^10.0.20",
     "typescript": "^5.3.3"
   },
