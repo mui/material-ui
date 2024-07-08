@@ -10,8 +10,17 @@ The CSS variables API relies on a provider called `CssVarsProvider` to inject st
 Once the `App` renders on the screen, you will see the CSS theme variables in the HTML `:root` stylesheet.
 The variables are flattened and prefixed with `--mui` by default:
 
-```css
-/* generated global stylesheet */
+<codeblock>
+
+```jsx App
+import { CssVarsProvider } from '@mui/material/styles';
+
+function App() {
+  return <CssVarsProvider>{/* ...you app */}</CssVarsProvider>;
+}
+```
+
+```css generated-stylesheet
 :root {
   --mui-palette-primary-main: #1976d2;
   --mui-palette-primary-light: #42a5f5;
@@ -20,6 +29,8 @@ The variables are flattened and prefixed with `--mui` by default:
   /* ...other variables */
 }
 ```
+
+</codeblock>
 
 :::info
 The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
