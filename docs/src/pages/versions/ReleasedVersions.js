@@ -32,7 +32,7 @@ function ReleasedVersions() {
               </TableCell>
               <TableCell>
                 {doc.version.length >= 6 &&
-                doc.version.includes('pre-release') ? (
+                !doc.version.includes('pre-release') ? (
                   <Link
                     variant="body2"
                     rel="nofollow"

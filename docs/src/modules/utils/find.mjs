@@ -44,8 +44,8 @@ export function findPages(
 
     if (
       options.front &&
-      pathname.includes('/components')&&
-      pathname.includes('/api-docs')
+      !pathname.includes('/components')&&
+      !pathname.includes('/api-docs')
     ) {
       return;
     }
