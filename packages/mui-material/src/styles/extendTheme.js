@@ -467,9 +467,9 @@ export default function extendTheme(options = {}, ...args) {
     }
     if (cssRule) {
       if (cssRule.startsWith('data-') && !cssRule.includes('%s')) {
-        return `[${cssRule}="${colorScheme}"]`;
+        return `[${cssRule}="${colorScheme}"] &`;
       }
-      return cssRule.replace('%s', colorScheme);
+      return `${cssRule.replace('%s', colorScheme)} &`;
     }
     return '&';
   };

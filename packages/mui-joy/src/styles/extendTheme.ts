@@ -666,7 +666,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
           return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
         }
         if (rule) {
-          return rule.replace('%s', String(colorScheme));
+          return `${rule.replace('%s', String(colorScheme))} &`;
         }
       }
       return ':root';

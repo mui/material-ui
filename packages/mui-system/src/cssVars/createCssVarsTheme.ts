@@ -27,7 +27,7 @@ function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, an
       return `@media (prefers-color-scheme: ${colorScheme})`;
     }
     if (cssRule) {
-      return cssRule.replace('%s', colorScheme);
+      return `${cssRule.replace('%s', colorScheme)} &`;
     }
     return '&';
   };

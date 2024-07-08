@@ -82,7 +82,9 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('text').textContent).to.equal('[data-custom-color-scheme="light"]');
+      expect(screen.getByTestId('text').textContent).to.equal(
+        '[data-custom-color-scheme="light"] &',
+      );
     });
 
     it('can access to allColorSchemes', () => {
