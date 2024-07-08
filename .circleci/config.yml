@@ -108,7 +108,16 @@ commands:
             pnpm --version
       - run:
           name: Install js dependencies
-          command: pnpm install --frozen-lockfile
+          command: |
+            echo "React version $REACT_VERSION"
+            if [[ $(git --no-pager diff HEAD) == "" ]];
+            then
+              echo "pnpm install"
+              pnpm install
+            else
+              echo "pnpm install --no-frozen-lockfile"
+              pnpm install --no-frozen-lockfile
+            fi
       - when:
           condition: << parameters.browsers >>
           steps:
