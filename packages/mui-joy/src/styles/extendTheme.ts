@@ -698,7 +698,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) => {
     const rule = theme.cssRule;
     if (rule === 'media') {
-      const mode = colorSchemes[colorScheme]?.palette?.mode || 'light';
+      const mode = colorSchemes[colorScheme as keyof typeof colorSchemes]?.palette?.mode || 'light';
       return `@media (prefers-color-scheme: ${mode})`;
     }
     if (rule) {
