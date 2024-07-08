@@ -3,9 +3,17 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
 import describeConformance from '../../test/describeConformance';
+import { styled } from '..';
 
 describe('<Divider />', () => {
   const { render } = createRenderer();
+  const StyledDivider = styled(Divider)(() => ({
+    '&::before': {
+      width: '4.75rem',
+      flex: '0 0 3.75rem',
+    },
+    borderStyle: `dashed`,
+  }));
 
   describeConformance(<Divider />, () => ({
     classes,
@@ -81,6 +89,30 @@ describe('<Divider />', () => {
           </Divider>,
         );
         expect(container.querySelectorAll(`.${classes.textAlignLeft}`).length).to.equal(0);
+      });
+    });
+
+    describe('styled border: borderStyle dashed', () => {
+      before(function beforeHook() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+      });
+
+      it('should set the border-style dashed in before and after pseudoclass', () => {
+        const { container } = render(<StyledDivider>content</StyledDivider>);
+        getComputedStyle(container.firstChild, '::before')
+          .getPropertyValue('border-top-style')
+          .should.equal('dashed');
+        getComputedStyle(container.firstChild, '::before')
+          .getPropertyValue('border-left-style')
+          .should.equal('dashed');
+        getComputedStyle(container.firstChild, '::after')
+          .getPropertyValue('border-top-style')
+          .should.equal('dashed');
+        getComputedStyle(container.firstChild, '::after')
+          .getPropertyValue('border-left-style')
+          .should.equal('dashed');
       });
     });
   });
