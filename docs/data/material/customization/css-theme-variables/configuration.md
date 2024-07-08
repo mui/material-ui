@@ -9,7 +9,7 @@ To change the default variable prefix (`--mui`), provide a string to `cssVarPref
 ```js
 const theme = extendTheme({ cssVarPrefix: 'any' });
 
-// the stylesheet will be like this:
+// generated stylesheet:
 // --any-palette-primary-main: ...;
 ```
 
@@ -18,13 +18,13 @@ To remove the prefix, use an empty string as a value:
 ```js
 const theme = extendTheme({ cssVarPrefix: '' });
 
-// the stylesheet will be like this:
+// generated stylesheet:
 // --palette-primary-main: ...;
 ```
 
 ## Toggling dark mode manually
 
-To support toggling between light and dark modes manually, set the `strategy` with a custom selector.
+To toggle between light and dark modes manually, set the `strategy` with a custom selector.
 
 Choose one of the following strategies:
 
@@ -59,6 +59,7 @@ function ModeSwitcher() {
       value={mode}
       onChange={(event) => {
         setMode(event.target.value);
+        // For TypeScript, cast `event.target.value as 'light' | 'dark'`:
       }}
     >
       <option value="light">Light</option>
@@ -90,6 +91,7 @@ function ModeSwitcher() {
       value={mode}
       onChange={(event) => {
         setMode(event.target.value);
+        // For TypeScript, cast `event.target.value as 'light' | 'dark'`:
       }}
     >
       <option value="light">Light</option>
@@ -142,7 +144,7 @@ Next, if you have a custom strategy that is **not** `media`, add the `InitColorS
 The `attribute` has to be the same as the one you set in the `strategy` property:
 
 ```js
-<InitColorSchemeScript attribute="{strategy}" />
+<InitColorSchemeScript attribute=".mode-%s" />
 ```
 
 :::
@@ -246,6 +248,7 @@ function ModeSwitcher() {
       value={mode}
       onChange={(event) => {
         setMode(event.target.value);
+        // For TypeScript, cast `event.target.value as 'light' | 'dark' | 'system'`:
       }}
     >
       <option value="system">System</option>
@@ -278,6 +281,7 @@ function ModeSwitcher() {
       value={mode}
       onChange={(event) => {
         setMode(event.target.value);
+        // For TypeScript, cast `event.target.value as 'light' | 'dark' | 'system'`:
       }}
     >
       <option value="system">System</option>
@@ -326,7 +330,7 @@ In the example below, all the components inside the `div` will always be dark:
 
 ## Disabling CSS color scheme
 
-By default, the `CssVarsProvider` attach [CSS color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. If you want to disable it, set the `disableCssColorScheme` to `false`:
+By default, the `CssVarsProvider` attach [CSS color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. If you want to disable it, use `disableCssColorScheme` prop:
 
 ```js
 <CssVarsProvider disableCssColorScheme />
@@ -334,10 +338,8 @@ By default, the `CssVarsProvider` attach [CSS color-scheme](https://developer.mo
 
 ## Instant transition between modes
 
-To disable CSS transition when switching between modes, set the `disableTransitionOnChange` to `true`:
+To disable CSS transition when switching between modes, use `disableTransitionOnChange` prop:
 
 ```js
 <CssVarsProvider disableTransitionOnChange />
 ```
-
-<!-- add a demo -->
