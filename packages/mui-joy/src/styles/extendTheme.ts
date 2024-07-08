@@ -649,10 +649,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   // ===============================================================
   // Create `theme.vars` that contain `var(--*)` as values
   // ===============================================================
-  const parserConfig = {
+  const parserConfig: Parameters<typeof prepareCssVars<Theme, ThemeVars>>[1] = {
     prefix: cssVarPrefix,
+    disableCssColorScheme: true,
     shouldSkipGeneratingVar,
-    getSelector: (colorScheme: string | undefined) => {
+    getSelector: (colorScheme) => {
       let rule = theme.cssRule;
       if (theme.cssRule?.startsWith('data-') && !theme.cssRule.includes('%s')) {
         // 'data-joy-color-scheme' -> '[data-joy-color-scheme="%s"]'
