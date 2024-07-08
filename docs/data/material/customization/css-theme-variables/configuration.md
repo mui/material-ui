@@ -112,12 +112,12 @@ To prevent the issue, you need to ensure that there is no usage of `theme.palett
 If you have such a condition, replace it with the [`theme.applyStyles`](#appling-dark-styles) function:
 
 ```diff
-import Card from '@mui/material/Card';
+ import Card from '@mui/material/Card';
 
-function App() {
-  return (
-    <Card
-      sx={(theme) => ({
+ function App() {
+   return (
+     <Card
+       sx={(theme) => ({
 -        backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
 -        '&:hover': {
 -          backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#f5f5f5',
@@ -132,10 +132,10 @@ function App() {
 +        ...theme.applyStyles('dark', {
 +          backgroundColor: '#000',
 +        }),
-      })}
-    />
-  );
-}
+       })}
+     />
+   );
+ }
 ```
 
 Next, if you have a custom strategy that is **not** `media`, add the `InitColorSchemeScript` component based on the framework that you are using:
