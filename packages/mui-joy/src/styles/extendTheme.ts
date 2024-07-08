@@ -666,7 +666,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
           return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
         }
         if (rule) {
-          return `${rule.replace('%s', String(colorScheme))} &`;
+          return rule.replace('%s', String(colorScheme));
         }
       }
       return ':root';
@@ -703,9 +703,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     }
     if (rule) {
       if (rule.startsWith('data-') && !rule.includes('%s')) {
-        return `[${rule}="${colorScheme}"]`;
+        return `[${rule}="${colorScheme}"] &`;
       }
-      return rule.replace('%s', colorScheme);
+      return `${rule.replace('%s', colorScheme)} &`;
     }
     return '&';
   };
