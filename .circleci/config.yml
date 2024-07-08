@@ -988,6 +988,7 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
       - test_types_next:
           <<: *default-context
