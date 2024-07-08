@@ -18,7 +18,7 @@
     "rowSpacing": {
       "description": "Defines the vertical space between the type <code>item</code> components. It overrides the value of the <code>spacing</code> prop."
     },
-    "size": { "description": "Defines the size of the type <code>item</code> components." },
+    "size": { "description": "Defines the size of the the type <code>item</code> components." },
     "spacing": {
       "description": "Defines the space between the type <code>item</code> components. It can only be used on a type <code>container</code> component."
     },
