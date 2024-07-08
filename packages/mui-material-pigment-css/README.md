@@ -1,3 +1,3 @@
-# Material Pigment CSS
+# Material Pigment CSS
 
-A wrapper over Pigment CSS that provides similar theming and styling APIs as @mui/system.
+A wrapper over Pigment CSS that provides similar theming and styling APIs as @mui/system.

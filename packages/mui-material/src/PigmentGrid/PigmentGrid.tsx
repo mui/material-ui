@@ -156,7 +156,7 @@ const PigmentGrid = React.forwardRef(function PigmentGrid(props, ref) {
 
   const classes = useUtilityClasses(props);
 
-  return <Grid ref={ref} className={clsx(classes.root, className)} {...other} />;
+  return <Grid ref={ref} className={clsx(classes.root, className)} {...(other as any)} />;
 }) as OverridableComponent<GridTypeMap>;
 
 PigmentGrid.propTypes /* remove-proptypes */ = {

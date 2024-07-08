@@ -40,7 +40,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@pigment-css/react": "^0.0.16"
+    "@pigment-css/react": "https://pkg.csb.dev/mui/pigment-css/commit/747b907d/@pigment-css/react"
   },
   "sideEffects": false,
   "publishConfig": {

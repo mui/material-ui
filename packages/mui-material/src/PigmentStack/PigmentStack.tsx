@@ -71,7 +71,7 @@ const useUtilityClasses = () => {
  */
 const PigmentStack = React.forwardRef(function PigmentStack({ className, ...props }, ref) {
   const classes = useUtilityClasses();
-  return <Stack ref={ref} className={clsx(classes.root, className)} {...props} />;
+  return <Stack ref={ref} className={clsx(classes.root, className)} {...(props as any)} />;
 }) as OverridableComponent<PigmentStackTypeMap>;
 
 PigmentStack.propTypes /* remove-proptypes */ = {
