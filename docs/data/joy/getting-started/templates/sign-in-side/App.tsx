@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme, useColorScheme } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
@@ -51,9 +51,11 @@ function ColorSchemeToggle(props: IconButtonProps) {
   );
 }
 
+const customTheme = extendTheme({ defaultColorScheme: 'dark' });
+
 export default function JoySignInSideTemplate() {
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
+    <CssVarsProvider theme={customTheme} disableTransitionOnChange>
       <CssBaseline />
       <GlobalStyles
         styles={{

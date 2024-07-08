@@ -1,5 +1,5 @@
 /**
- * @internal These variables should not appear in the :root stylesheet when the `defaultMode="dark"`
+ * @internal These variables should not appear in the :root stylesheet when the `defaultColorScheme="dark"`
  */
 const excludeVariablesFromRoot = (cssVarPrefix?: string) => [
   ...[...Array(24)].map(

@@ -45,28 +45,12 @@ export default function createCssVarsProvider(options) {
     return value;
   };
 
-  const useAllColorSchemes = (colorSchemes = {}) => {
-    const allColorSchemes = Object.keys(colorSchemes);
-    const ref = React.useRef(allColorSchemes);
-    const signal = React.useRef(0);
-    if (
-      ref.current.length !== allColorSchemes.length ||
-      ref.current.some((v, index) => v !== allColorSchemes[index])
-    ) {
-      ref.current = allColorSchemes;
-      signal.current += 1;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    return React.useMemo(() => ref.current, [signal.current]);
-  };
-
   function CssVarsProvider(props) {
     const {
       children,
       theme: themeProp = defaultTheme,
       modeStorageKey = defaultModeStorageKey,
       colorSchemeStorageKey = defaultColorSchemeStorageKey,
-      defaultMode: defaultModeInput, // TODO: remove this after migrating Joy UI
       defaultColorScheme = designSystemColorScheme,
       disableTransitionOnChange = designSystemTransitionOnChange,
       enableSystem = false,
@@ -88,16 +72,19 @@ export default function createCssVarsProvider(options) {
       cssVarPrefix,
       ...restThemeProp
     } = scopedTheme || themeProp;
-    const allColorSchemes = useAllColorSchemes(colorSchemes);
+    const joinedColorSchemes = Object.keys(colorSchemes).join(',');
+    const allColorSchemes = React.useMemo(
+      () => joinedColorSchemes.split(','),
+      [joinedColorSchemes],
+    );
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
     const defaultMode =
-      defaultModeInput ||
-      (enableSystem || restThemeProp.strategy === 'media'
+      enableSystem || restThemeProp.strategy === 'media'
         ? 'system'
-        : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode || designSystemMode);
+        : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode || designSystemMode;
 
     // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
     const {
@@ -127,10 +114,7 @@ export default function createCssVarsProvider(options) {
     }
 
     // `colorScheme` is undefined on the server
-    const calculatedColorScheme =
-      colorScheme ||
-      (defaultModeInput === 'system' ? designSystemMode : defaultModeInput) ||
-      restThemeProp.defaultColorScheme;
+    const calculatedColorScheme = colorScheme || restThemeProp.defaultColorScheme;
 
     // 2. get the `vars` object that refers to the CSS custom properties
     const themeVars = restThemeProp.generateThemeVars?.() || restThemeProp.vars;
@@ -167,19 +151,6 @@ export default function createCssVarsProvider(options) {
         }
       }
     });
-
-    if (defaultModeInput) {
-      const resolvedDefaultColorScheme = (() => {
-        if (typeof defaultColorScheme === 'string') {
-          return defaultColorScheme;
-        }
-        if (defaultModeInput === 'dark') {
-          return defaultColorScheme.dark;
-        }
-        return defaultColorScheme.light;
-      })();
-      themeProp.defaultColorScheme = resolvedDefaultColorScheme;
-    }
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
@@ -310,10 +281,6 @@ export default function createCssVarsProvider(options) {
      * The initial color scheme used.
      */
     defaultColorScheme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    /**
-     * @internal
-     */
-    defaultMode: PropTypes.string,
     /**
      * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
      */

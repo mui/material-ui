@@ -20,12 +20,12 @@ For server-side applications, check out the framework setup in [the section belo
 
 ## Matching device's preference
 
-Use `defaultMode: 'system'` to set your app's default mode to match the user's chosen preference on their device.
+Use `enableSystem` to set your app's default mode to enable the user's chosen preference on their device.
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
 
-<CssVarsProvider defaultMode="system">...</CssVarsProvider>;
+<CssVarsProvider enableSystem>...</CssVarsProvider>;
 ```
 
 For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `InitColorSchemeScript` component:

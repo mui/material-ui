@@ -96,11 +96,8 @@ const ModeToggle = () => {
 If you want to change the `defaultMode`, you have to specify the prop to both of the providers:
 
 ```js
-<MaterialCssVarsProvider
-  defaultMode="system"
-  theme={{ [MATERIAL_THEME_ID]: materialTheme }}
->
-  <JoyCssVarsProvider defaultMode="system">
+<MaterialCssVarsProvider enableSystem theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
+  <JoyCssVarsProvider enableSystem>
     <CssBaseline enableColorScheme />
     ...Material UI and Joy UI components
   </JoyCssVarsProvider>

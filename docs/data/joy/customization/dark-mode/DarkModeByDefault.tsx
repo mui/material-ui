@@ -6,13 +6,13 @@ import Typography from '@mui/joy/Typography';
 
 const theme = extendTheme({
   cssVarPrefix: 'demo',
+  defaultColorScheme: 'dark',
   strategy: '.demo_%s-mode-by-default',
 });
 
 export default function DarkModeByDefault() {
   return (
     <CssVarsProvider
-      defaultMode="dark"
       // the props below are specific to this demo,
       // you might not need them in your app.
       //
