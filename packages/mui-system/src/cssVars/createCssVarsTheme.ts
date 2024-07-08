@@ -7,33 +7,17 @@ interface Theme extends DefaultCssVarsTheme {
   shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
 }
 
-function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, any>>(theme: T) {
+function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, any>>({
+  cssRule = `[${DEFAULT_ATTRIBUTE}="%s"]`,
+  ...theme
+}: T) {
   const output: any = theme;
-  const cssRule = theme.cssRule || `[${DEFAULT_ATTRIBUTE}="%s"]`;
   const result = prepareCssVars<Omit<T, 'shouldSkipGeneratingVar' | 'cssVarPrefix'>, ThemeVars>(
     output,
     {
       ...theme,
       prefix: theme.cssVarPrefix,
-      getSelector: (colorScheme) => {
-        let rule = cssRule;
-        if (cssRule?.startsWith('data-') && !cssRule.includes('%s')) {
-          // 'data-joy-color-scheme' -> '[data-joy-color-scheme="%s"]'
-          rule = `[${cssRule}="%s"]`;
-        }
-        if (colorScheme) {
-          if (rule === 'media') {
-            if (theme.defaultColorScheme === colorScheme) {
-              return ':root';
-            }
-            return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
-          }
-          if (rule) {
-            return rule.replace('%s', String(colorScheme));
-          }
-        }
-        return ':root';
-      },
+      cssRule,
     },
   );
   output.vars = result.vars;

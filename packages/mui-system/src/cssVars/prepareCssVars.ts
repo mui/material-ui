@@ -2,19 +2,15 @@ import deepmerge from '@mui/utils/deepmerge';
 import cssVarsParser from './cssVarsParser';
 
 export interface DefaultCssVarsTheme {
-  attribute?: string;
   colorSchemes?: Record<string, any>;
   defaultColorScheme?: string;
 }
 
 function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<string, any>>(
   theme: T,
-  {
-    getSelector,
-    disableCssColorScheme,
-    ...parserConfig
-  }: {
+  parserConfig: {
     prefix?: string;
+    cssRule?: 'media' | string;
     disableCssColorScheme?: boolean;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
     getSelector?: (
@@ -23,6 +19,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     ) => string | Record<string, any>;
   } = {},
 ) {
+  const { getSelector = defaultGetSelector, disableCssColorScheme, cssRule } = parserConfig;
   // @ts-ignore - ignore components do not exist
   const { colorSchemes = {}, components, defaultColorScheme = 'light', ...otherTheme } = theme;
   const {
@@ -47,6 +44,27 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     colorSchemesMap[defaultColorScheme] = { css, vars };
   }
 
+  function defaultGetSelector(colorScheme: keyof T['colorSchemes'] | undefined) {
+    let rule = cssRule;
+    if (cssRule?.startsWith('data-') && !cssRule.includes('%s')) {
+      // 'data-joy-color-scheme' -> '[data-joy-color-scheme="%s"]'
+      rule = `[${cssRule}="%s"]`;
+    }
+    if (colorScheme) {
+      if (rule === 'media') {
+        if (theme.defaultColorScheme === colorScheme) {
+          return ':root';
+        }
+        const mode = colorSchemes[colorScheme as string]?.palette?.mode || colorScheme;
+        return `@media (prefers-color-scheme: ${mode}) { :root`;
+      }
+      if (rule) {
+        return rule.replace('%s', String(colorScheme));
+      }
+    }
+    return ':root';
+  }
+
   const generateThemeVars = () => {
     let vars = { ...rootVars };
     Object.entries(colorSchemesMap).forEach(([, { vars: schemeVars }]) => {
@@ -63,7 +81,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
         stylesheets.push(typeof selector === 'string' ? { [selector]: { ...css } } : selector);
       }
     }
-    insertStyleSheet(getSelector?.(undefined, { ...rootCss }) || ':root', rootCss);
+    insertStyleSheet(getSelector(undefined, { ...rootCss }), rootCss);
 
     const { [colorScheme]: defaultSchemeVal, ...rest } = colorSchemesMap;
 
@@ -76,8 +94,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
           ? { colorScheme: cssColorSheme, ...css }
           : { ...css };
       insertStyleSheet(
-        getSelector?.(colorScheme as keyof T['colorSchemes'], { ...finalCss }) ||
-          `[${theme.attribute || 'data-color-scheme'}="${colorScheme}"]`,
+        getSelector(colorScheme as keyof T['colorSchemes'], { ...finalCss }),
         finalCss,
       );
     }
@@ -88,11 +105,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
         !disableCssColorScheme && cssColorSheme
           ? { colorScheme: cssColorSheme, ...css }
           : { ...css };
-      insertStyleSheet(
-        getSelector?.(key as keyof T['colorSchemes'], { ...finalCss }) ||
-          `[${theme.attribute || 'data-color-scheme'}="${key}"]`,
-        finalCss,
-      );
+      insertStyleSheet(getSelector(key as keyof T['colorSchemes'], { ...finalCss }), finalCss);
     });
 
     return stylesheets;

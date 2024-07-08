@@ -651,27 +651,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   // ===============================================================
   const parserConfig: Parameters<typeof prepareCssVars<Theme, ThemeVars>>[1] = {
     prefix: cssVarPrefix,
+    cssRule,
     disableCssColorScheme: true,
     shouldSkipGeneratingVar,
-    getSelector: (colorScheme) => {
-      let rule = theme.cssRule;
-      if (theme.cssRule?.startsWith('data-') && !theme.cssRule.includes('%s')) {
-        // 'data-joy-color-scheme' -> '[data-joy-color-scheme="%s"]'
-        rule = `[${theme.cssRule}="%s"]`;
-      }
-      if (colorScheme) {
-        if (rule === 'media') {
-          if (theme.defaultColorScheme === colorScheme) {
-            return ':root';
-          }
-          return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
-        }
-        if (rule) {
-          return rule.replace('%s', String(colorScheme));
-        }
-      }
-      return ':root';
-    },
   };
 
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars<Theme, ThemeVars>(
@@ -697,16 +679,15 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     });
   };
   theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) => {
-    const rule = theme.cssRule;
-    if (rule === 'media') {
+    if (cssRule === 'media') {
       const mode = colorSchemes[colorScheme as keyof typeof colorSchemes]?.palette?.mode || 'light';
       return `@media (prefers-color-scheme: ${mode})`;
     }
-    if (rule) {
-      if (rule.startsWith('data-') && !rule.includes('%s')) {
-        return `[${rule}="${colorScheme}"] &`;
+    if (cssRule) {
+      if (cssRule.startsWith('data-') && !cssRule.includes('%s')) {
+        return `[${cssRule}="${colorScheme}"] &`;
       }
-      return `${rule.replace('%s', colorScheme)} &`;
+      return `${cssRule.replace('%s', colorScheme)} &`;
     }
     return '&';
   };
