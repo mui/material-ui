@@ -40,7 +40,7 @@ If you have an existing theme, you can migrate to CSS theme variables by followi
 
 ## Dark mode only application
 
-To switch the default light to dark palette, set the `defaultColorScheme: 'dark'` to the `extendTheme`. Material UI will generate the dark palette instead.
+To switch the default light to dark palette, set the `defaultColorScheme: 'dark'` to the `extendTheme`. Material UI will generate the dark palette instead.
 
 ```jsx
 import { CssVarsProvider, extendTheme } from '@mui/material/styles';
@@ -56,7 +56,7 @@ function App() {
 
 ## System preferences
 
-To support both light and dark modes based on the user's system preferences, set the `cssRule: 'media'` to the `extendTheme`. Material UI will generate both light and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+To support both light and dark modes based on the user's system preferences, set the `cssRule: 'media'` to the `extendTheme`. Material UI will generate both light and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
 
 <codeblock>
 

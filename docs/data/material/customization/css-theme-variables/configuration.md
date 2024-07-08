@@ -105,7 +105,7 @@ function ModeSwitcher() {
 
 ### Preventing SSR flickering
 
-For SSR (server-side rendering) applications, Material UI can not detected user-selected mode on the server, causing the screen to flicker from light to dark during the hydration phase on the client.
+For SSR (server-side rendering) applications, Material UI can not detected user-selected mode on the server, causing the screen to flicker from light to dark during the hydration phase on the client.
 
 To prevent the issue, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
 
@@ -227,7 +227,7 @@ function App() {
 }
 ```
 
-Material UI will automatically switch between light and dark modes based on the user's system preference.
+Material UI will automatically switch between light and dark modes based on the user's system preference.
 
 :::warning
 In development, make sure to clear local storage and refresh the page after you configure the `enableSystem` prop.
