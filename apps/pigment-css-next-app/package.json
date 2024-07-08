@@ -18,16 +18,16 @@
     "@mui/icons-material": "file:../../packages/mui-icons-material/build",
     "@emotion/cache": "latest",
     "local-ui-lib": "workspace:^",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "next": "latest"
+    "next": "latest",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@pigment-css/unplugin": "file:../../packages/pigment-css-unplugin",
     "@pigment-css/nextjs-plugin": "file:../../packages/pigment-css-nextjs-plugin",
     "@types/node": "^20.5.7",
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "eslint": "^8.56.0",
     "typescript": "^5.3.3"
   }
