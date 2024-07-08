@@ -74,6 +74,8 @@ describe('InitColorSchemeScript', () => {
     rerender(<InitColorSchemeScript attribute=".mode-%s" />);
     eval(container.firstChild.textContent);
     expect(document.documentElement.classList.value).to.equal('mode-bar');
+
+    document.documentElement.classList.remove('mode-bar'); // cleanup
   });
 
   it('should switch between light and dark with data-%s attribute', () => {
