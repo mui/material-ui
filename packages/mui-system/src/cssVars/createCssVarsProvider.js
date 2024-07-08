@@ -72,7 +72,9 @@ export default function createCssVarsProvider(options) {
       cssVarPrefix,
       ...restThemeProp
     } = scopedTheme || themeProp;
-    const joinedColorSchemes = Object.keys(colorSchemes).join(',');
+    const joinedColorSchemes = Object.keys(colorSchemes)
+      .filter((k) => !!colorSchemes[k])
+      .join(',');
     const allColorSchemes = React.useMemo(
       () => joinedColorSchemes.split(','),
       [joinedColorSchemes],
