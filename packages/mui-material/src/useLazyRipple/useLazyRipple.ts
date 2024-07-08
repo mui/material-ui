@@ -32,6 +32,20 @@ export class LazyRipple {
     return new LazyRipple();
   }
 
+  static use() {
+    /* eslint-disable */
+    const ripple = useLazyRef(LazyRipple.create).current;
+    const [shouldMount, setShouldMount] = React.useState(false);
+
+    ripple.shouldMount = shouldMount;
+    ripple.setShouldMount = setShouldMount;
+
+    React.useEffect(ripple.mountEffect, [shouldMount]);
+    /* eslint-enable */
+
+    return ripple;
+  }
+
   constructor() {
     this.ref = { current: null };
     this.mounted = null;
@@ -58,17 +72,6 @@ export class LazyRipple {
     }
   };
 
-  use() {
-    /* eslint-disable */
-    const [shouldMount, setShouldMount] = React.useState(false);
-
-    this.shouldMount = shouldMount;
-    this.setShouldMount = setShouldMount;
-
-    React.useEffect(this.mountEffect, [shouldMount]);
-    /* eslint-enable */
-  }
-
   /* Ripple API */
 
   start(...args: Parameters<TouchRippleActions['start']>) {
@@ -85,9 +88,7 @@ export class LazyRipple {
 }
 
 export default function useLazyRipple() {
-  const ripple = useLazyRef(LazyRipple.create).current;
-  ripple.use();
-  return ripple;
+  return LazyRipple.use();
 }
 
 function createControlledPromise(): ControlledPromise {
