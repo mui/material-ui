@@ -58,7 +58,7 @@ export class LazyRipple {
     }
   };
 
-  render() {
+  use() {
     /* eslint-disable */
     const [shouldMount, setShouldMount] = React.useState(false);
 
@@ -86,7 +86,7 @@ export class LazyRipple {
 
 export default function useLazyRipple() {
   const ripple = useLazyRef(LazyRipple.create).current;
-  ripple.render();
+  ripple.use();
   return ripple;
 }
 
