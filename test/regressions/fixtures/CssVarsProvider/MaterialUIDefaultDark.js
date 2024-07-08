@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
 
-const theme = extendTheme({ defaultColorScheme: 'dark', strategy: '.mode-%s' });
+const theme = extendTheme({ defaultColorScheme: 'dark', cssRule: '.mode-%s' });
 
 export default function MaterialUIDefaultDark() {
   const [, rerender] = React.useState(false);

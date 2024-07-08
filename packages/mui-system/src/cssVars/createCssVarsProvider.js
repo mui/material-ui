@@ -82,7 +82,7 @@ export default function createCssVarsProvider(options) {
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
     const defaultMode =
-      enableSystem || restThemeProp.strategy === 'media'
+      enableSystem || restThemeProp.cssRule === 'media'
         ? 'system'
         : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode || designSystemMode;
 
@@ -154,13 +154,13 @@ export default function createCssVarsProvider(options) {
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
-    const strategy = restThemeProp.strategy;
+    const cssRule = restThemeProp.cssRule;
     React.useEffect(() => {
-      if (colorScheme && colorSchemeNode && strategy && strategy !== 'media') {
-        const selector = strategy.replace('%s', colorScheme);
+      if (colorScheme && colorSchemeNode && cssRule && cssRule !== 'media') {
+        const selector = cssRule.replace('%s', colorScheme);
         if (selector.startsWith('.')) {
           colorSchemeNode.classList.remove(
-            ...allColorSchemes.map((scheme) => strategy.substring(1).replace('%s', scheme)),
+            ...allColorSchemes.map((scheme) => cssRule.substring(1).replace('%s', scheme)),
           );
           colorSchemeNode.classList.add(selector.substring(1));
         } else {
@@ -180,7 +180,7 @@ export default function createCssVarsProvider(options) {
           }
         }
       }
-    }, [colorScheme, strategy, colorSchemeNode, allColorSchemes]);
+    }, [colorScheme, cssRule, colorSchemeNode, allColorSchemes]);
 
     // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
     // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313

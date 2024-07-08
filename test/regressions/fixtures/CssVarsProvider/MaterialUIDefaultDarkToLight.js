@@ -13,7 +13,7 @@ function LightMode() {
   return null;
 }
 
-const theme = extendTheme({ defaultColorScheme: 'dark', strategy: '.mode-%s' });
+const theme = extendTheme({ defaultColorScheme: 'dark', cssRule: '.mode-%s' });
 
 export default function MaterialUIDefaultDark() {
   return (

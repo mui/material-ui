@@ -11,6 +11,7 @@ describe('defaultTheme', () => {
         'containerQueries',
         'components',
         'colorSchemes',
+        'cssRule',
         'focus',
         'font',
         'fontSize',
@@ -39,7 +40,6 @@ describe('defaultTheme', () => {
         'generateThemeVars',
         'generateSpacing',
         'applyStyles',
-        'strategy',
       ]).to.includes(field);
     });
   });

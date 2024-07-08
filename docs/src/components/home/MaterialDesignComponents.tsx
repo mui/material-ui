@@ -517,7 +517,7 @@ export function buildTheme(): ThemeOptions {
 const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
 const defaultTheme = extendTheme({
-  strategy: 'data-mui-color-scheme',
+  cssRule: 'data-mui-color-scheme',
 });
 export const customTheme = extendTheme({
   cssVarPrefix: 'muidocs',

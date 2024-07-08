@@ -311,7 +311,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    * @example '[data-mode-%s]'
    * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
    */
-  strategy?: 'media' | string;
+  cssRule?: 'media' | string;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.

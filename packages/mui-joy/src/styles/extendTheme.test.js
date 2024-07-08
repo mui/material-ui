@@ -13,6 +13,7 @@ describe('extendTheme', () => {
         'containerQueries',
         'components',
         'colorSchemes',
+        'cssRule',
         'defaultColorScheme',
         'focus',
         'font',
@@ -41,7 +42,6 @@ describe('extendTheme', () => {
         'generateThemeVars',
         'generateSpacing',
         'applyStyles',
-        'strategy',
       ]).to.includes(field);
     });
   });
@@ -281,7 +281,7 @@ describe('extendTheme', () => {
     it('applyStyles', () => {
       const attribute = 'data-custom-color-scheme';
       const customTheme2 = extendTheme({
-        strategy: attribute,
+        cssRule: attribute,
       });
       let darkStyles = {};
       const Test = styled('div')(({ theme }) => {

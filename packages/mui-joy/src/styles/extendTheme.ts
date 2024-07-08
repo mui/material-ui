@@ -84,6 +84,19 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    */
   cssVarPrefix?: string;
   /**
+   * The strategy to generate CSS variables
+   *
+   * @example 'media'
+   * Generate CSS variables using [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
+   *
+   * @example '.mode-%s'
+   * Generate CSS variables within a class .mode-light, .mode-dark
+   *
+   * @example '[data-mode-%s]'
+   * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
+   */
+  cssRule?: 'media' | string;
+  /**
    * @default 'light'
    */
   defaultColorScheme?: DefaultColorScheme | ExtendedColorScheme;
@@ -104,19 +117,6 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
-  /**
-   * The strategy to generate CSS variables
-   *
-   * @example 'media'
-   * Generate CSS variables using [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
-   *
-   * @example '.mode-%s'
-   * Generate CSS variables within a class .mode-light, .mode-dark
-   *
-   * @example '[data-mode-%s]'
-   * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
-   */
-  strategy?: 'media' | string;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -130,7 +130,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     components: componentsInput,
     variants: variantsInput,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    strategy: strategyInput = 'data-joy-color-scheme',
+    cssRule = 'data-joy-color-scheme',
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -560,7 +560,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     : defaultScales;
 
   let theme = {
-    strategy: strategyInput,
+    cssRule,
     colorSchemes,
     defaultColorScheme: 'light',
     ...mergedScales,
@@ -606,7 +606,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     getCssVar,
     spacing: getSpacingVal(spacing),
     font: { ...prepareTypographyVars(mergedScales.typography), ...mergedScales.font },
-  } as unknown as Theme & { attribute: string; strategy: string }; // Need type casting due to module augmentation inside the repo
+  } as unknown as Theme & { attribute: string; cssRule: string }; // Need type casting due to module augmentation inside the repo
   theme = cssContainerQueries(theme);
 
   /**
@@ -653,25 +653,20 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
     getSelector: (colorScheme: string | undefined) => {
-      let strategy = theme.strategy;
-      if (theme.strategy?.startsWith('data-') && !theme.strategy.includes('%s')) {
+      let rule = theme.cssRule;
+      if (theme.cssRule?.startsWith('data-') && !theme.cssRule.includes('%s')) {
         // 'data-joy-color-scheme' -> '[data-joy-color-scheme="%s"]'
-        strategy = `[${theme.strategy}="%s"]`;
+        rule = `[${theme.cssRule}="%s"]`;
       }
       if (colorScheme) {
-        if (theme.defaultColorScheme === colorScheme) {
-          if (strategy === 'media') {
+        if (rule === 'media') {
+          if (theme.defaultColorScheme === colorScheme) {
             return ':root';
           }
-          if (strategy) {
-            return strategy.replace('%s', colorScheme);
-          }
-        }
-        if (strategy === 'media') {
           return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
         }
-        if (strategy) {
-          return strategy.replace('%s', String(colorScheme));
+        if (rule) {
+          return rule.replace('%s', String(colorScheme));
         }
       }
       return ':root';
@@ -701,16 +696,16 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     });
   };
   theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) => {
-    const strategy = theme.strategy;
-    if (strategy === 'media') {
+    const rule = theme.cssRule;
+    if (rule === 'media') {
       const mode = colorSchemes[colorScheme]?.palette?.mode || 'light';
       return `@media (prefers-color-scheme: ${mode})`;
     }
-    if (strategy) {
-      if (strategy.startsWith('data-') && !strategy.includes('%s')) {
-        return `[${strategy}="${colorScheme}"]`;
+    if (rule) {
+      if (rule.startsWith('data-') && !rule.includes('%s')) {
+        return `[${rule}="${colorScheme}"]`;
       }
-      return strategy.replace('%s', colorScheme);
+      return rule.replace('%s', colorScheme);
     }
     return '&';
   };

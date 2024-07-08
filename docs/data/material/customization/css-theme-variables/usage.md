@@ -45,7 +45,7 @@ function App() {
 
 ## System preferences
 
-To support both light and dark modes based on the user's system preferences, set the `strategy: 'media'` to the `extendTheme`. Material UI will generate both light and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+To support both light and dark modes based on the user's system preferences, set the `cssRule: 'media'` to the `extendTheme`. Material UI will generate both light and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
 
 <codeblock>
 
@@ -53,7 +53,7 @@ To support both light and dark modes based on the user's system preferences, set
 import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 
 const theme = extendTheme({
-  strategy: 'media',
+  cssRule: 'media',
 });
 
 function App() {

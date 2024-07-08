@@ -32,13 +32,13 @@ Choose one of the following strategies:
 
 ```js class
 extendTheme({
-  strategy: '.mode-%s',
+  cssRule: '.mode-%s',
 });
 ```
 
 ```js data-attribute
 extendTheme({
-  strategy: '[data-mode-%s]',
+  cssRule: '[data-mode-%s]',
 });
 ```
 
@@ -215,7 +215,7 @@ To support system preference together with manual toggle, set `enableSystem` on 
 import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 
 const theme = extendTheme({
-  strategy: '.mode-%s',
+  cssRule: '.mode-%s',
 });
 
 function App() {

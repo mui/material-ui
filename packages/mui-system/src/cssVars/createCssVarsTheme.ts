@@ -3,7 +3,7 @@ import { DEFAULT_ATTRIBUTE } from '../InitColorSchemeScript/InitColorSchemeScrip
 
 interface Theme extends DefaultCssVarsTheme {
   cssVarPrefix?: string;
-  strategy?: 'media' | string;
+  cssRule?: 'media' | string;
   shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
 }
 
@@ -20,14 +20,14 @@ function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, an
   output.generateThemeVars = result.generateThemeVars;
   output.generateStyleSheets = result.generateStyleSheets;
 
-  const strategy = theme.strategy || `[${DEFAULT_ATTRIBUTE}="%s"]`;
-  output.strategy = strategy;
+  const cssRule = theme.cssRule || `[${DEFAULT_ATTRIBUTE}="%s"]`;
+  output.cssRule = cssRule;
   output.getColorSchemeSelector = (colorScheme: string) => {
-    if (strategy === 'media') {
+    if (cssRule === 'media') {
       return `@media (prefers-color-scheme: ${colorScheme})`;
     }
-    if (strategy) {
-      return strategy.replace('%s', colorScheme);
+    if (cssRule) {
+      return cssRule.replace('%s', colorScheme);
     }
     return '&';
   };

@@ -107,8 +107,8 @@ function getOverlays(mode) {
  * This is better suited for apps that only need a single color scheme.
  *
  * To enable built-in `light` and `dark` color schemes, either:
- * 1. provide a `strategy` to define how the color schemes will change.
- * 2. provide `colorSchemes.dark` will set `strategy: 'media'` by default.
+ * 1. provide a `cssRule` to define how the color schemes will change.
+ * 2. provide `colorSchemes.dark` will set `cssRule: 'media'` by default.
  */
 export default function extendTheme(options = {}, ...args) {
   const {
@@ -117,7 +117,7 @@ export default function extendTheme(options = {}, ...args) {
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    strategy: strategyInput,
+    cssRule,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -139,10 +139,9 @@ export default function extendTheme(options = {}, ...args) {
   };
 
   const oppositeColorScheme = defaultColorScheme === 'dark' ? 'light' : 'dark';
-  const strategy =
-    strategyInput ||
-    (colorSchemesInput[oppositeColorScheme] ? `${defaultConfig.attribute}` : undefined);
-  if (strategy) {
+  const rule =
+    cssRule || (colorSchemesInput[oppositeColorScheme] ? `${defaultConfig.attribute}` : undefined);
+  if (rule) {
     const { palette: oppositePalette } = createThemeWithoutVars({
       palette: { mode: oppositeColorScheme, ...colorSchemesInput[oppositeColorScheme]?.palette },
     });
@@ -162,11 +161,11 @@ export default function extendTheme(options = {}, ...args) {
     defaultColorScheme,
     ...muiTheme,
     cssVarPrefix,
+    cssRule,
     getCssVar,
     colorSchemes,
     font: { ...prepareTypographyVars(muiTheme.typography), ...muiTheme.font },
     spacing: getSpacingVal(input.spacing),
-    strategy,
   };
 
   Object.keys(theme.colorSchemes).forEach((key) => {
@@ -462,15 +461,15 @@ export default function extendTheme(options = {}, ...args) {
     return createSpacing(input.spacing, createUnarySpacing(this));
   };
   theme.getColorSchemeSelector = (colorScheme) => {
-    if (strategy === 'media') {
+    if (cssRule === 'media') {
       const mode = colorSchemes[colorScheme]?.palette?.mode || 'light';
       return `@media (prefers-color-scheme: ${mode})`;
     }
-    if (strategy) {
-      if (strategy.startsWith('data-') && !strategy.includes('%s')) {
-        return `[${strategy}="${colorScheme}"]`;
+    if (cssRule) {
+      if (cssRule.startsWith('data-') && !cssRule.includes('%s')) {
+        return `[${cssRule}="${colorScheme}"]`;
       }
-      return strategy.replace('%s', colorScheme);
+      return cssRule.replace('%s', colorScheme);
     }
     return '&';
   };
