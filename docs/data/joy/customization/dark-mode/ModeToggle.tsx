@@ -44,9 +44,6 @@ export default function ModeToggle() {
       // the element to apply [data-joy-color-scheme] attribute.
       colorSchemeNode={node || null}
       //
-      // the selector to apply the CSS theme variables stylesheet.
-      colorSchemeSelector="#mode-toggle"
-      //
       // the local storage key to use.
       modeStorageKey="mode-toggle-demo"
     >
@@ -58,6 +55,7 @@ export default function ModeToggle() {
           p: 2,
           m: -3,
           borderRadius: [0, 'sm'],
+          bgcolor: 'background.body',
         }}
       >
         <ModeSwitcher />

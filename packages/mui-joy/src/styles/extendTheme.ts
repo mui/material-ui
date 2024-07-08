@@ -83,6 +83,10 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    * // { ..., typography: { body1: { fontSize: 'var(--fontSize-md)' } }, ... }
    */
   cssVarPrefix?: string;
+  /**
+   * @default 'light'
+   */
+  defaultColorScheme?: DefaultColorScheme | ExtendedColorScheme;
   direction?: 'ltr' | 'rtl';
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystemOptions>;
@@ -654,7 +658,15 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         // 'data-joy-color-scheme' -> '[data-joy-color-scheme="%s"]'
         strategy = `[${theme.strategy}="%s"]`;
       }
-      if (colorScheme && theme.defaultColorScheme !== colorScheme) {
+      if (colorScheme) {
+        if (theme.defaultColorScheme === colorScheme) {
+          if (strategy === 'media') {
+            return ':root';
+          }
+          if (strategy) {
+            return strategy.replace('%s', colorScheme);
+          }
+        }
         if (strategy === 'media') {
           return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
         }

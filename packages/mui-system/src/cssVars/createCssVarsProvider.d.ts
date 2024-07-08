@@ -1,6 +1,6 @@
 import * as React from 'react';
 import InitColorSchemeScript from '../InitColorSchemeScript';
-import { Result } from './useCurrentColorScheme';
+import { Mode, Result } from './useCurrentColorScheme';
 
 export interface ColorSchemeContextValue<SupportedColorScheme extends string>
   extends Result<SupportedColorScheme> {
@@ -29,6 +29,10 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    * - provides object if the design system has default light & dark color schemes
    */
   defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
+  /**
+   * @internal
+   */
+  defaultMode?: Mode; // TODO: remove this after migrating Joy UI
   /**
    * If `true`, the color scheme will be set based on the system preference.
    * @default false
@@ -68,11 +72,6 @@ export interface CreateCssVarsProviderResult<
          * @default document
          */
         colorSchemeNode?: Element | null;
-        /**
-         * The CSS selector for attaching the generated custom properties
-         * @default ':root'
-         */
-        colorSchemeSelector?: string;
         /**
          * The window that attaches the 'storage' event listener
          * @default window

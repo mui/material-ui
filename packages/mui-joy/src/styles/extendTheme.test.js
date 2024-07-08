@@ -11,7 +11,6 @@ describe('extendTheme', () => {
         'attribute',
         'breakpoints',
         'containerQueries',
-        'colorSchemeSelector',
         'components',
         'colorSchemes',
         'defaultColorScheme',

@@ -4,7 +4,10 @@ import Sheet from '@mui/joy/Sheet';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
 
-const theme = extendTheme({ cssVarPrefix: 'demo' });
+const theme = extendTheme({
+  cssVarPrefix: 'demo',
+  strategy: '.demo_%s-mode-by-default',
+});
 
 export default function DarkModeByDefault() {
   return (
@@ -14,8 +17,7 @@ export default function DarkModeByDefault() {
       // you might not need them in your app.
       //
       theme={theme}
-      // the selector to apply CSS theme variables stylesheet.
-      colorSchemeSelector="#demo_dark-mode-by-default"
+      colorSchemeNode={null}
       //
       // the local storage key to use
       modeStorageKey="demo_dark-mode-by-default"
@@ -23,7 +25,7 @@ export default function DarkModeByDefault() {
       // set as root provider
       disableNestedContext
     >
-      <div id="demo_dark-mode-by-default">
+      <div className="demo_dark-mode-by-default">
         <Sheet sx={{ px: 3, py: 1.5, borderRadius: 'sm' }}>
           <Typography
             component="div"

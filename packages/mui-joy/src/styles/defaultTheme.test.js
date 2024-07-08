@@ -6,7 +6,6 @@ describe('defaultTheme', () => {
     Object.keys(defaultTheme).forEach((field) => {
       expect([
         'attribute',
-        'colorSchemeSelector',
         'defaultColorScheme',
         'breakpoints',
         'containerQueries',
@@ -40,6 +39,7 @@ describe('defaultTheme', () => {
         'generateThemeVars',
         'generateSpacing',
         'applyStyles',
+        'strategy',
       ]).to.includes(field);
     });
   });
