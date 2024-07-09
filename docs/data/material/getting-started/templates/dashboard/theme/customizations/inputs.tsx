@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Components } from '@mui/material';
+import { Components, inputBaseClasses } from '@mui/material';
 import { alpha, Theme } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
@@ -64,9 +64,14 @@ export const inputsCustomizations: Components<Theme> = {
   },
   MuiInputBase: {
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         border: 'none',
-      },
+        borderRadius: theme.shape.borderRadius,
+        [`&.${inputBaseClasses.focused}`]: {
+          outline: `3px solid ${alpha(brand[500], 0.5)}`,
+          borderColor: brand[400],
+        },
+      }),
     },
   },
   MuiOutlinedInput: {

@@ -10,6 +10,8 @@ export interface SelectClasses {
   multiple: string;
   /** Styles applied to the select component if `variant="filled"`. */
   filled: string;
+  /** Styles applied to the select component if it is focused. */
+  focused: string;
   /** Styles applied to the select component if `variant="outlined"`. */
   outlined: string;
   /** Styles applied to the select component if `variant="standard"`. */
