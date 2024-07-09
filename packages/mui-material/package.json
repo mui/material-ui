@@ -104,5 +104,18 @@
   },
   "engines": {
     "node": ">=12.0.0"
+  },
+  "pigment-css": {
+    "vite": {
+      "include": [
+        "prop-types",
+        "react-is",
+        "hoist-non-react-statics",
+        "react",
+        "react-dom",
+        "@emotion/react",
+        "@emotion/styled"
+      ]
+    }
   }
 }
