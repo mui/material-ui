@@ -610,7 +610,12 @@ describe('<Menu />', () => {
     });
   });
 
-  it('perf: does not rerender menu items unnecessarily', async () => {
+  it('perf: does not rerender menu items unnecessarily', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const renderItem1Spy = spy();
     const renderItem2Spy = spy();
     const renderItem3Spy = spy();

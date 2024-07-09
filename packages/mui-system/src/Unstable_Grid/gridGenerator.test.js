@@ -59,10 +59,10 @@ describe('grid generator', () => {
         generateGridSizeStyles({
           theme: { breakpoints },
           ownerState: {
-            gridSize: {
+            size: {
               xs: 'auto',
               sm: 6,
-              md: true,
+              md: 'grow',
               lg: 4,
               xl: 'auto',
             },
@@ -283,7 +283,7 @@ describe('grid generator', () => {
       expect(
         generateGridOffsetStyles({
           theme: { breakpoints, spacing },
-          ownerState: { gridOffset: { xs: 0, md: 5, lg: 'auto' } },
+          ownerState: { offset: { xs: 0, md: 5, lg: 'auto' } },
         }),
       ).to.deep.equal({
         marginLeft: '0px',

@@ -69,7 +69,7 @@ Check out all the possibilities in the [Date Pickers—Digital clock documentati
 ### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Filtering on column headers gives users the ability to quickly filter data without any additional menu.
-Use the the `unstable_headerFilters` prop to activate this feature.
+Use the `unstable_headerFilters` prop to activate this feature.
 
 The new filter fields are displayed below the headers, and are synchronized with the filter panel.
 If you prefer more simplicity, you can disable the default filter panel using the `disableColumnFilter` prop, and set filters to use only the default operator.

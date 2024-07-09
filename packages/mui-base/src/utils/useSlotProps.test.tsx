@@ -277,7 +277,7 @@ describe('useSlotProps', () => {
       ownerState,
     });
 
-    expect(externalSlotProps.callCount).to.not.equal(0);
+    expect(externalSlotProps.callCount).not.to.equal(0);
     expect(externalSlotProps.args[0][0]).to.deep.equal(ownerState);
   });
 

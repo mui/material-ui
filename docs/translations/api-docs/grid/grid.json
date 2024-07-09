@@ -12,44 +12,18 @@
     "direction": {
       "description": "Defines the <code>flex-direction</code> style property. It is applied for all screen sizes."
     },
-    "lg": {
-      "description": "If a number, it sets the number of columns the grid item uses. It can&#39;t be greater than the total number of columns of the container (12 by default). If &#39;auto&#39;, the grid item&#39;s width matches its content. If false, the prop is ignored. If true, the grid item&#39;s width grows to use the space available in the grid container. The value is applied for the <code>lg</code> breakpoint and wider screens if not overridden."
-    },
-    "lgOffset": {
-      "description": "If a number, it sets the margin-left equals to the number of columns the grid item uses. If &#39;auto&#39;, the grid item push itself to the right-end of the container. The value is applied for the <code>lg</code> breakpoint and wider screens if not overridden."
-    },
-    "md": {
-      "description": "If a number, it sets the number of columns the grid item uses. It can&#39;t be greater than the total number of columns of the container (12 by default). If &#39;auto&#39;, the grid item&#39;s width matches its content. If false, the prop is ignored. If true, the grid item&#39;s width grows to use the space available in the grid container. The value is applied for the <code>md</code> breakpoint and wider screens if not overridden."
-    },
-    "mdOffset": {
-      "description": "If a number, it sets the margin-left equals to the number of columns the grid item uses. If &#39;auto&#39;, the grid item push itself to the right-end of the container. The value is applied for the <code>md</code> breakpoint and wider screens if not overridden."
+    "offset": {
+      "description": "Defines the offset value for the type <code>item</code> components."
     },
     "rowSpacing": {
       "description": "Defines the vertical space between the type <code>item</code> components. It overrides the value of the <code>spacing</code> prop."
     },
-    "sm": {
-      "description": "If a number, it sets the number of columns the grid item uses. It can&#39;t be greater than the total number of columns of the container (12 by default). If &#39;auto&#39;, the grid item&#39;s width matches its content. If false, the prop is ignored. If true, the grid item&#39;s width grows to use the space available in the grid container. The value is applied for the <code>sm</code> breakpoint and wider screens if not overridden."
-    },
-    "smOffset": {
-      "description": "If a number, it sets the margin-left equals to the number of columns the grid item uses. If &#39;auto&#39;, the grid item push itself to the right-end of the container. The value is applied for the <code>sm</code> breakpoint and wider screens if not overridden."
-    },
+    "size": { "description": "Defines the size of the the type <code>item</code> components." },
     "spacing": {
       "description": "Defines the space between the type <code>item</code> components. It can only be used on a type <code>container</code> component."
     },
     "wrap": {
       "description": "Defines the <code>flex-wrap</code> style property. It&#39;s applied for all screen sizes."
-    },
-    "xl": {
-      "description": "If a number, it sets the number of columns the grid item uses. It can&#39;t be greater than the total number of columns of the container (12 by default). If &#39;auto&#39;, the grid item&#39;s width matches its content. If false, the prop is ignored. If true, the grid item&#39;s width grows to use the space available in the grid container. The value is applied for the <code>xl</code> breakpoint and wider screens if not overridden."
-    },
-    "xlOffset": {
-      "description": "If a number, it sets the margin-left equals to the number of columns the grid item uses. If &#39;auto&#39;, the grid item push itself to the right-end of the container. The value is applied for the <code>xl</code> breakpoint and wider screens if not overridden."
-    },
-    "xs": {
-      "description": "If a number, it sets the number of columns the grid item uses. It can&#39;t be greater than the total number of columns of the container (12 by default). If &#39;auto&#39;, the grid item&#39;s width matches its content. If false, the prop is ignored. If true, the grid item&#39;s width grows to use the space available in the grid container. The value is applied for all the screen sizes with the lowest priority."
-    },
-    "xsOffset": {
-      "description": "If a number, it sets the margin-left equals to the number of columns the grid item uses. If &#39;auto&#39;, the grid item push itself to the right-end of the container. The value is applied for the <code>xs</code> breakpoint and wider screens if not overridden."
     }
   },
   "classDescriptions": {

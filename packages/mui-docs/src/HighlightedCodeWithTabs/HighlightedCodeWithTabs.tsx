@@ -5,7 +5,7 @@ import { TabsList as TabsListBase } from '@mui/base/TabsList';
 import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
 import { Tab as TabBase } from '@mui/base/Tab';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
-import HighlightedCode from './HighlightedCode';
+import { HighlightedCode } from '../HighlightedCode';
 
 export const CodeTabList = styled(TabsListBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
@@ -259,11 +259,11 @@ export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contain
     ],
     ...theme.unstable_sx({
       height: 26,
-      p: '0 8px 2px 8px',
+      p: '2px 8px',
       bgcolor: 'transparent',
       lineHeight: 1.2,
       outline: 'none',
-      minWidth: 52,
+      minWidth: 45,
       cursor: 'pointer',
       borderRadius: 99,
       position: 'relative',
@@ -285,7 +285,7 @@ type TabsConfig = {
   tab: string;
 };
 
-export default function HighlightedCodeWithTabs(
+export function HighlightedCodeWithTabs(
   props: {
     tabs: Array<TabsConfig>;
     storageKey?: string;
@@ -320,7 +320,6 @@ export default function HighlightedCodeWithTabs(
       {tabs.map(({ tab, language, code }) => (
         <CodeTabPanel ownerState={ownerState} key={tab} value={tab}>
           <HighlightedCode
-            // @ts-ignore
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
           />
