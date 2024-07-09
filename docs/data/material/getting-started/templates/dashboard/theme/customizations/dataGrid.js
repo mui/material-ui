@@ -2,10 +2,9 @@ import { alpha } from '@mui/material/styles';
 
 import { menuItemClasses } from '@mui/material/MenuItem';
 import { listItemIconClasses } from '@mui/material/ListItemIcon';
-import { menuClasses } from '@mui/material/Menu';
-import { dividerClasses } from '@mui/material/Divider';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { checkboxClasses } from '@mui/material/Checkbox';
+import { listClasses } from '@mui/material/List';
 import { gridClasses } from '@mui/x-data-grid';
 import { tablePaginationClasses } from '@mui/material/TablePagination';
 import { gray } from '../themePrimitives';
@@ -15,6 +14,7 @@ export const dataGridCustomizations = {
   MuiDataGrid: {
     styleOverrides: {
       root: ({ theme }) => ({
+        '--DataGrid-overlayHeight': '300px',
         overflow: 'clip',
         borderColor: theme.palette.divider,
         backgroundColor: theme.palette.background.default,
@@ -54,10 +54,9 @@ export const dataGridCustomizations = {
         [`& .${listItemIconClasses.root}`]: {
           marginRight: 0,
         },
-        [`& .${menuClasses.list}`]: {
-          [`& .${dividerClasses.root}`]: {
-            margin: '0 -8px',
-          },
+        [`& .${listClasses.root}`]: {
+          paddingLeft: 0,
+          paddingRight: 0,
         },
         ...theme.applyStyles('dark', {
           boxShadow:
@@ -115,6 +114,13 @@ export const dataGridCustomizations = {
             backgroundColor: gray[900],
           },
         }),
+      }),
+      filterForm: ({ theme }) => ({
+        gap: theme.spacing(1),
+      }),
+      columnsManagementHeader: ({ theme }) => ({
+        paddingRight: theme.spacing(3),
+        paddingLeft: theme.spacing(3),
       }),
       columnHeaderTitleContainer: {
         flexGrow: 1,

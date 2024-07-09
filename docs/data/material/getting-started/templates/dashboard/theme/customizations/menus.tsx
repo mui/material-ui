@@ -180,6 +180,16 @@ export const menuComponentsCustomizations: Components<Theme> = {
             display: 'none',
           },
         }),
+        variants: [
+          {
+            props: {
+              variant: 'standard',
+            },
+            style: {
+              paddingLeft: 12,
+            },
+          },
+        ],
       }),
       select: ({ theme }) => ({
         display: 'flex',

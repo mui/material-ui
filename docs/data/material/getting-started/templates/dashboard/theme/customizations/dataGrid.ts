@@ -3,10 +3,9 @@ import type { DataGridProComponents } from '@mui/x-data-grid-pro/themeAugmentati
 import type { DataGridComponents } from '@mui/x-data-grid/themeAugmentation';
 import { menuItemClasses } from '@mui/material/MenuItem';
 import { listItemIconClasses } from '@mui/material/ListItemIcon';
-import { menuClasses } from '@mui/material/Menu';
-import { dividerClasses } from '@mui/material/Divider';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { checkboxClasses } from '@mui/material/Checkbox';
+import { listClasses } from '@mui/material/List';
 import { gridClasses } from '@mui/x-data-grid';
 import { tablePaginationClasses } from '@mui/material/TablePagination';
 import { gray } from '../themePrimitives';
@@ -16,6 +15,7 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
   MuiDataGrid: {
     styleOverrides: {
       root: ({ theme }) => ({
+        '--DataGrid-overlayHeight': '300px',
         overflow: 'clip',
         borderColor: theme.palette.divider,
         backgroundColor: theme.palette.background.default,
@@ -55,16 +55,16 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
         [`& .${listItemIconClasses.root}`]: {
           marginRight: 0,
         },
-        [`& .${menuClasses.list}`]: {
-          [`& .${dividerClasses.root}`]: {
-            margin: '0 -8px',
-          },
+        [`& .${listClasses.root}`]: {
+          paddingLeft: 0,
+          paddingRight: 0,
         },
         ...theme.applyStyles('dark', {
           boxShadow:
             'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
         }),
       }),
+
       row: ({ theme }) => ({
         '&:last-of-type': { borderBottom: `1px solid ${theme.palette.divider}` },
         '&:hover': {
@@ -116,6 +116,13 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
             backgroundColor: gray[900],
           },
         }),
+      }),
+      filterForm: ({ theme }) => ({
+        gap: theme.spacing(1),
+      }),
+      columnsManagementHeader: ({ theme }) => ({
+        paddingRight: theme.spacing(3),
+        paddingLeft: theme.spacing(3),
       }),
       columnHeaderTitleContainer: {
         flexGrow: 1,
