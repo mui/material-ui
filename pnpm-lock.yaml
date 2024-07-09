@@ -1830,6 +1830,9 @@ importers:
 
   packages/mui-material-pigment-css:
     dependencies:
+      '@mui/system':
+        specifier: workspace:^
+        version: link:../mui-system/build
       '@pigment-css/react':
         specifier: https://pkg.csb.dev/mui/pigment-css/commit/e96284a9/@pigment-css/react
         version: https://pkg.csb.dev/mui/pigment-css/commit/e96284a9/@pigment-css/react(@types/react@18.3.3)(react@18.3.1)

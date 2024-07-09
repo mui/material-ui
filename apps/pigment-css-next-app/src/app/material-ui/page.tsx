@@ -7,14 +7,13 @@ import { css } from '@mui/material-pigment-css';
 
 export default async function MaterialUIPage() {
   const rootPaths = (await fs.readdir(path.join(process.cwd(), `src/app/material-ui`))).filter(
-    (path) => !path.startsWith('.'),
+    (p) => !p.startsWith('.'),
   );
   return (
     <div>
       <h1>Material UI Components</h1>
       <nav>
         <ul
-          // @ts-ignore
           sx={{
             margin: 0,
             marginBlock: '1rem',

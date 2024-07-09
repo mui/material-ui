@@ -1,1 +1,3 @@
-export * from '@pigment-css/react/RtlProvider';
+'use client';
+
+export * from '@mui/system/RtlProvider';

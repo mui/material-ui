@@ -1,4 +1,3 @@
-import * as path from 'node:path';
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import reactPlugin from '@vitejs/plugin-react';
 import Pages from 'vite-plugin-pages';
