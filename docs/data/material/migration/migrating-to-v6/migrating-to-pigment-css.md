@@ -322,11 +322,6 @@ Use `DefaultPropsProvider` in your main application file and move all the compon
 
 </codeblock>
 
-Once theme is configured correctly to the plugin, Material UI components will start using Pigment CSS for styling.
-
-However, there are exception to the layout components including `Box`, `Container`, `Grid`, `Hidden`, and `Stack`. These components need to be replaced with Pigment CSS layout components instead.
-Check out the [Migrate layout components](#migrate-layout-components) section for more details.
-
 ## Migrating dynamic styles
 
 ### sx prop
