@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 // @ts-ignore
-import Stack from '@pigment-css/react/Stack';
+import Stack from '@mui/material-pigment-css/Stack';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import { SxProps } from '@mui/system';
