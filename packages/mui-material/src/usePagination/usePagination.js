@@ -135,7 +135,7 @@ export default function usePagination(props = {}) {
           selected: false,
           disabled:
             disabled ||
-            (!item.includes('ellipsis')&&
+            (!item.includes('ellipsis') &&
               (item === 'next' || item === 'last' ? page >= count : page <= 1)),
         };
   });

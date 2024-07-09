@@ -42,11 +42,7 @@ export function findPages(
       return;
     }
 
-    if (
-      options.front &&
-      !pathname.includes('/components')&&
-      !pathname.includes('/api-docs')
-    ) {
+    if (options.front && !pathname.includes('/components') && !pathname.includes('/api-docs')) {
       return;
     }
 
