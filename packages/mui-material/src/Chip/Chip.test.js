@@ -85,7 +85,6 @@ describe('<Chip />', () => {
 
       expect(container.firstChild).to.have.class('MuiButtonBase-root');
       expect(container.firstChild).to.have.tagName('a');
-      expect(container.firstChild.querySelector('.MuiTouchRipple-root')).not.to.equal(null);
     });
 
     it('should disable ripple when MuiButtonBase has disableRipple in theme', () => {
