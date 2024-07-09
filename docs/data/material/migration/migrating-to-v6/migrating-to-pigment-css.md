@@ -8,25 +8,25 @@ Before going through this guide, make sure you have Material UI v6 installed. I
 
 Pigment CSS can be used with one of the following frameworks:
 
-- [Next.js](https://nextjs.org/) with Webpack 5 (Turbo is not supported yet)
+- [Next.js App Router](https://nextjs.org/docs/app/) with Webpack 5 (Turbo is not supported yet)
 - [Vite](https://vitejs.dev/)
 
 ## Installation
 
-First, install the dependency:
+First, install the adapter package:
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @pigment-css/react
+npm install @mui/material-pigment-css
 ```
 
 ```bash yarn
-yarn add @pigment-css/react
+yarn add @mui/material-pigment-css
 ```
 
 ```bash pnpm
-pnpm add @pigment-css/react
+pnpm add @mui/material-pigment-css
 ```
 
 </codeblock>
@@ -53,7 +53,7 @@ pnpm add -D @pigment-css/nextjs-plugin
 
 </codeblock>
 
-Next, open Next.js config file and add the plugin:
+Then, open Next.js config file and add the plugin:
 
 <codeblock>
 
@@ -64,7 +64,12 @@ const nextConfig = {
   // ...Your nextjs config.
 };
 
-export default withPigment(nextConfig);
+/**
+ * @type {import('@pigment-css/nextjs-plugin').PigmentOptions}
+ */
+const pigmentConfig = {}; // we will refer to this later
+
+export default withPigment(nextConfig, pigmentConfig);
 ```
 
 ```js next.config.js
@@ -74,15 +79,19 @@ const nextConfig = {
   // ...Your nextjs config.
 };
 
-module.exports = withPigment(nextConfig);
+/**
+ * @type {import('@pigment-css/nextjs-plugin').PigmentOptions}
+ */
+const pigmentConfig = {}; // we will refer to this later
+
+module.exports = withPigment(nextConfig, pigmentConfig);
 ```
 
 </codeblock>
 
-Finally, import the stylesheet to your application.
+Finally, import the stylesheet at the top of the layout file.
 
 ```js title="app/layout.(js|tsx)"
-// ...other imports
 import '@pigment-css/react/styles.css';
 ```
 
@@ -112,68 +121,83 @@ Next, open vite config file, usually named `vite.config.js`, and add the plugin:
 import { defineConfig } from 'vite';
 import { pigment } from '@pigment-css/vite-plugin';
 
+const pigmentConfig = {}; // we will refer to this later
+
 export default defineConfig({
   plugins: [
-    pigment(),
+    pigment(pigmentConfig),
     // ... Your other plugins.
   ],
 });
 ```
 
-Finally, add the Pigment CSS stylesheet to your application.
+Finally, add the Pigment CSS stylesheet to the top of the main file.
 
 ```js title="src/main.(js|tsx)"
-// ...other imports
 import '@pigment-css/react/styles.css';
 ```
 
 ## Configuring the theme
 
 Integrating Pigment CSS with Material UI requires you to configure the theme to the plugin.
-The theme must be created from `extendTheme` utility from `@mui/material` package.
+Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
-<codeblock>
+```diff
++ import { extendTheme, stringifyTheme } from '@mui/material';
 
-```js next.config.mjs
-import { withPigment } from '@pigment-css/nextjs-plugin';
-import { extendTheme, stringifyTheme } from '@mui/material';
++ const customTheme = extendTheme();
++ customTheme.toRuntimeSource = stringifyTheme;
 
-const customTheme = extendTheme({
-  // ...Your Material UI theme.
-});
-customTheme.toRuntimeSource = stringifyTheme;
-
-const nextConfig = {
-  // ...Your nextjs config.
-};
-
-export default withPigment(nextConfig, {
-  theme: customTheme,
-});
++ const pigmentConfig = {
++   theme: customTheme,
++ };
 ```
 
-```js vite.config.js
-import { pigment } from '@pigment-css/vite-plugin';
-import { extendTheme, stringifyTheme } from '@mui/material';
+If you don't have a custom theme, you are ready to go. Start a development server by running:
 
-const customTheme = extendTheme({
-  // ...Your Material UI theme.
-});
-customTheme.toRuntimeSource = stringifyTheme;
+<codeblock storageKey="package-manager">
 
-export default defineConfig({
-  plugins: [
-    pigment({
-      theme: customTheme,
-    }),
-    // ... Your other plugins.
-  ],
-});
+```bash npm
+npm run dev
+```
+
+```bash yarn
+yarn dev
+```
+
+```bash pnpm
+pnpm dev
 ```
 
 </codeblock>
 
-If your theme contains default props for components, check out the [Default props provider](#default-props-provider) section.
+Open the browser and navigate to the localhost URL, you should see the app running with Pigment CSS.
+
+## How it works
+
+When a Pigment CSS plugin is configured through a framework bundler, it intercepts the styling APIs that Material UI uses and replaces them with those from Pigment CSS instead. Pigment CSS then extracts the styles at build time and injects them into the stylesheet.
+
+If you come from Material UI v5, using Pigment CSS will be a paradigm shift in terms of writing styles.
+Since Pigment CSS is a build-time extraction tool, it does not support dynamic styles that depend on the runtime variables, e.g. Pigment CSS will throw an error for the styles that depends on a state like the one below:
+
+```js
+import Card from '@mui/material/Card';
+
+function App() {
+  const [color, setColor] = useState('#000000');
+  return (
+    <Card
+      sx={{
+        color, // ❌ Pigment CSS cannot extract this style.
+      }}
+    />
+  );
+}
+```
+
+We recommend reading the rest of the guide below to learn about the new styling paradigm and patterns for creating dynamic styles.
+
+## Migrating custom theme
 
 ### Removing owner state
 
@@ -432,25 +456,40 @@ export default FlashCode;
 
 </codeblock>
 
-## Migrate layout components
+## Migrating layout components
 
-Material UI v6 provides a separate set of layout components, including `Grid`, `Container`, and `Stack`, that are compatible with Pigment CSS.
+To use layout components that are compatible with Pigment CSS, replace the following components with those from the adapter package:
 
 ```diff
 - import Container from '@mui/material/Container';
-+ import Container from '@mui/material/PigmentContainer';
++ import Container from '@mui/material-pigment-css/Container';
 
 - import Grid from '@mui/material/Grid';
-+ import Grid from '@mui/material/PigmentGrid';
++ import Grid from '@mui/material-pigment-css/Grid';
 
 - import Stack from '@mui/material/Stack';
-+ import Stack from '@mui/material/PigmentStack';
++ import Stack from '@mui/material-pigment-css/Stack';
 
 - import Hidden from '@mui/material/Hidden';
-+ import Hidden from '@mui/material/PigmentHidden';
++ import Hidden from '@mui/material-pigment-css/Hidden';
 ```
 
-For Box component, you can remove the import and use the HTML element directly.
+## Migrating Box component
+
+Choose one of the following approaches:
+
+### Continue using Box component
+
+Replace the `Box` component with the one from the adapter package:
+
+```diff
+- import Box from '@mui/material/Box';
++ import Box from '@mui/material-pigment-css/Box';
+```
+
+### Replace Box with HTML element
+
+Pigment CSS can extract the `sx` prop from any JSX element, so there is no need to use the Box component.
 
 ```diff
 - import Box from '@mui/material/Box';
