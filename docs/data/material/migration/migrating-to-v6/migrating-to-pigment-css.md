@@ -98,7 +98,7 @@ module.exports = withPigment(nextConfig, pigmentConfig);
 Finally, import the stylesheet at the top of the layout file.
 
 ```js title="app/layout.(js|tsx)"
-import '@pigment-css/react/styles.css';
+import '@mui/material-pigment-css/styles.css';
 ```
 
 ### Vite
@@ -140,7 +140,7 @@ export default defineConfig({
 Finally, add the Pigment CSS stylesheet to the top of the main file.
 
 ```js title="src/main.(js|tsx)"
-import '@pigment-css/react/styles.css';
+import '@mui/material-pigment-css/styles.css';
 ```
 
 ## Configuring the theme
