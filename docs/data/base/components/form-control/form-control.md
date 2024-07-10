@@ -72,7 +72,7 @@ Hooks _do not_ support [slot props](#custom-structure), but they do support [cus
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires a significantly different [structure](#anatomy).
 :::
 
 The demo below shows how to integrate this hook with its component counterpart:
