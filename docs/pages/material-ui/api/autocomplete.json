@@ -16,11 +16,7 @@
       },
       "default": "false"
     },
-    "ChipProps": {
-      "type": { "name": "object" },
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.chip</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
+    "ChipProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "clearIcon": { "type": { "name": "node" }, "default": "<ClearIcon fontSize=\"small\" />" },
     "clearOnBlur": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
@@ -97,17 +93,8 @@
       }
     },
     "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
-    "ListboxComponent": {
-      "type": { "name": "elementType" },
-      "default": "'ul'",
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slots.listbox</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
-    "ListboxProps": {
-      "type": { "name": "object" },
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.listbox</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
+    "ListboxComponent": { "type": { "name": "elementType" }, "default": "'ul'" },
+    "ListboxProps": { "type": { "name": "object" } },
     "loading": { "type": { "name": "bool" }, "default": "false" },
     "loadingText": { "type": { "name": "node" }, "default": "'Loading…'" },
     "multiple": { "type": { "name": "bool" }, "default": "false" },
@@ -150,18 +137,8 @@
     "open": { "type": { "name": "bool" } },
     "openOnFocus": { "type": { "name": "bool" }, "default": "false" },
     "openText": { "type": { "name": "string" }, "default": "'Open'" },
-    "PaperComponent": {
-      "type": { "name": "elementType" },
-      "default": "Paper",
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slots.paper</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
-    "PopperComponent": {
-      "type": { "name": "elementType" },
-      "default": "Popper",
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slots.popper</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
+    "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
+    "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
     "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
     "readOnly": { "type": { "name": "bool" }, "default": "false" },
     "renderGroup": {

@@ -22,16 +22,8 @@
       "type": { "name": "shape", "description": "{ label?: elementType, stepIcon?: elementType }" },
       "default": "{}"
     },
-    "StepIconComponent": {
-      "type": { "name": "elementType" },
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slots.stepIcon</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
-    "StepIconProps": {
-      "type": { "name": "object" },
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.stepIcon</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
+    "StepIconComponent": { "type": { "name": "elementType" } },
+    "StepIconProps": { "type": { "name": "object" } },
     "sx": {
       "type": {
         "name": "union",
