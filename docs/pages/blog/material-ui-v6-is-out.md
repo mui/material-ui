@@ -1,13 +1,22 @@
 ---
-title: Material UI v6 Sneak Peek
-description: Previewing all the major updates of Material UI v6.
+title: Material UI v6 is out 🎉
+description: We are so excited to announce the stable release of Material UI v6. It comes with Pigment CSS integration and a lot of improvements.
 date: 2024-07-01T00:00:00.000Z
-authors: ['siriwatknp']
+authors:
+  [
+    'aarongarciah',
+    'brijeshb42',
+    'diegoandai',
+    'mnajdova',
+    'samuelsycamore',
+    'siriwatknp',
+    'zanivan',
+  ]
 tags: ['Material UI', 'Product']
 manualCard: true
 ---
 
-Material UI v6 is now in beta! We're excited to share a sneak peek of all the upcoming major updates.
+Material UI v6 is now stable! We're excited to share all the updates.
 
 ## Opt-in CSS extraction via Pigment CSS
 
@@ -15,7 +24,7 @@ As you know, Material UI v5 uses Emotion as a default styling solution. As a run
 
 With Material UI v6, we're introducing an opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new open-source library, that will eliminate the overhead of style recalculation while preserving similar APIs that you are already familiar with.
 
-Since the integration is an opt-in feature, you can upgrade to v6 and continue using Emotion if you'd like. We will provide a migration guide to help you switch to Pigment CSS at your own pace.
+Since the integration is an opt-in feature, you can upgrade to v6 and continue using Emotion if you'd like. The link to the migration guide is at the end of the page.
 
 <!-- would be nice if we have a link to a prototype page -->
 <!-- a link to Next.js repo that render templates -->
@@ -25,16 +34,30 @@ Since the integration is an opt-in feature, you can upgrade to v6 and continue u
 Once integrated with Pigment CSS, Material UI v6 provides a separate set of layout components, including `Grid`, `Container`, and `Stack`, that are compatible with React Server Components.
 
 ```jsx
-import Grid from '@mui/material/PigmentGrid';
-import Container from '@mui/material/PigmentContainer';
-import Stack from '@mui/material/PigmentStack';
+import Box from '@mui/material-pigment-css/Box';
+import Grid from '@mui/material-pigment-css/Grid';
+import Container from '@mui/material-pigment-css/Container';
+import Stack from '@mui/material-pigment-css/Stack';
 ```
 
-<!-- A link to example repo? -->
+### Built-in sx prop support
+
+With Pigment CSS integration, all JSX elements support the `sx` prop out of the box.
+
+```diff
+- import Box from '@mui/material/Box';
+
+- <Box component="img" sx={{ padding: 2 }} />
++ <img sx={{ padding: 2 }} />
+```
+
+:::success
+Box component is **no** longer required to use the `sx` prop.
+:::
 
 ## CSS theme variables
 
-A new API that lets you turn your theme into CSS variables.
+The `CssVarsProvider` has been stablized with additional improvements and features.
 
 ```diff
 - import { ThemeProvider } from '@mui/material/styles';
@@ -54,9 +77,7 @@ With CSS variables, you can easily integrate your preferred styling solution wit
 }
 ```
 
-## Dark mode improvements
-
-### Simplified dark mode
+### Media prefers-color-scheme
 
 The new `extendTheme` lets you enable media [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) in one line:
 
@@ -90,7 +111,9 @@ function App({ children }) {
 
 </codeblock>
 
-If you have a custom selector for dark mode, for example, using data attributes, you can specify a custom value:
+### Toggle between modes
+
+To manually toggle between modes, you can specify a custom value:
 
 <codeblock>
 
@@ -203,3 +226,15 @@ We are upgrading the [free templates](https://mui.com/material-ui/getting-starte
 <!-- Add images -->
 
 ## Bundle size improvements
+
+## Next steps
+
+Ready to upgrade to Material UI v6? Check out the [migration guide](https://mui.com/guides/migration-v5/).
+
+You can also explore all the updates in more detail from the links below:
+
+- [Pigment CSS integration](/)
+- [Container Queries](/)
+- [CSS theme variables](/)
+- [Stabilized Grid v2](/)
+- [Free templates](/)
