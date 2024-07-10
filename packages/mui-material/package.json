@@ -113,8 +113,7 @@
         "hoist-non-react-statics",
         "react",
         "react-dom",
-        "@emotion/react",
-        "@emotion/styled"
+        "@emotion/react"
       ]
     }
   }
