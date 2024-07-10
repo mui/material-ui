@@ -1,6 +1,6 @@
 /* eslint-disable material-ui/no-empty-box */
 
-import { styled } from '@pigment-css/react';
+import { styled } from '@mui/material-pigment-css';
 import * as React from 'react';
 import { Box as MuiBox } from '../../components/Box';
 
