@@ -20,7 +20,16 @@ export default function FullBorderedGrid() {
         }}
       >
         {[...Array(6)].map((_, index) => (
-          <Grid key={index} {...{ xs: 12, sm: 6, md: 4, lg: 3 }} minHeight={160} />
+          <Grid
+            key={index}
+            minHeight={160}
+            size={{
+              xs: 12,
+              sm: 6,
+              md: 4,
+              lg: 3,
+            }}
+          />
         ))}
       </Grid>
     </Box>

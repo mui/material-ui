@@ -17,7 +17,8 @@ export default function ReactRunner(props: ReactRunnerProps) {
   let scope = scopeProp;
 
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- valid reason to disable the rules of hooks
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     scope = React.useMemo(() => {
       const handler = {
         get() {

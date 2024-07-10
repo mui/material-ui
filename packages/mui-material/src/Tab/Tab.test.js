@@ -1,11 +1,12 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, simulatePointerDevice } from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<Tab />', () => {
   const { render } = createRenderer();
@@ -20,48 +21,44 @@ describe('<Tab />', () => {
     skip: ['componentProp', 'componentsProp'],
   }));
 
-  it('should have a ripple by default', () => {
+  it('should have a ripple', async () => {
     const { container } = render(<Tab TouchRippleProps={{ className: 'touch-ripple' }} />);
-
+    await ripple.startTouch(container.querySelector('button'));
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
-  it('can disable the ripple', () => {
+  it('can disable the ripple', async () => {
     const { container } = render(
       <Tab disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />,
     );
 
+    await ripple.startTouch(container.querySelector('button'));
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
-  it('should have a focusRipple by default', () => {
-    const { container, getByRole } = render(
+  it('should have a focusRipple', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
+    const { container } = render(
       <Tab TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
     );
-    // simulate pointer device
-    fireEvent.pointerDown(document.body);
+    simulatePointerDevice();
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'Tab' });
-      // jsdom doesn't actually support tab focus, we need to do it manually
-      getByRole('tab').focus();
-    });
+    await ripple.startFocus(container.querySelector('button'));
 
     expect(container.querySelector('.focus-ripple')).not.to.equal(null);
   });
 
-  it('can disable the focusRipple', () => {
-    const { container, getByRole } = render(
+  it('can disable the focusRipple', async () => {
+    const { container } = render(
       <Tab disableFocusRipple TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
     );
-    // simulate pointer device
-    fireEvent.pointerDown(document.body);
+    simulatePointerDevice();
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'Tab' });
-      // jsdom doesn't actually support tab focus, we need to do it manually
-      getByRole('tab').focus();
-    });
+    await ripple.startFocus(container.querySelector('button'));
 
     expect(container.querySelector('.focus-ripple')).to.equal(null);
   });

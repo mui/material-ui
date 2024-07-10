@@ -14,6 +14,10 @@ export function simulatePointerDevice() {
   fireEvent.pointerDown(document.body);
 }
 
+export function simulateKeyboardDevice() {
+  fireEvent.keyDown(document.body, { key: 'TAB' });
+}
+
 /**
  * See https://bugs.chromium.org/p/chromium/issues/detail?id=1127875 for more details.
  */
