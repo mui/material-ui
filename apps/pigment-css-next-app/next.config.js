@@ -1,7 +1,7 @@
 /* eslint-env node */
 // eslint-ignore-next-line import/no-unresolved
 const { withPigment } = require('@pigment-css/nextjs-plugin');
-const { extendTheme, stringifyTheme } = require('@mui/material/styles');
+const { extendTheme } = require('@mui/material/styles');
 
 /**
  * @typedef {import('@pigment-css/nextjs-plugin').PigmentOptions} PigmentOptions
@@ -95,7 +95,6 @@ const theme = extendTheme({
 theme.getColorSchemeSelector = (colorScheme) => {
   return `@media (prefers-color-scheme: ${colorScheme})`;
 };
-theme.toRuntimeSource = stringifyTheme;
 
 /**
  * @type {PigmentOptions}

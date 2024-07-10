@@ -151,11 +151,8 @@ Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 ```diff
 + import { extendTheme, stringifyTheme } from '@mui/material';
 
-+ const customTheme = extendTheme();
-+ customTheme.toRuntimeSource = stringifyTheme;
-
 + const pigmentConfig = {
-+   theme: customTheme,
++   theme: extendTheme(),
 + };
 ```
 
