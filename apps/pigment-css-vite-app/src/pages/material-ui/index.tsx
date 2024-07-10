@@ -17,7 +17,6 @@ export default function MaterialIndex() {
         <h1>Material UI Components</h1>
         <nav>
           <ul
-            // @ts-ignore
             sx={{
               margin: 0,
               marginBlock: '1rem',
