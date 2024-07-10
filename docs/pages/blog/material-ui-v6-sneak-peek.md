@@ -11,11 +11,11 @@ Material UI v6 is now in beta! We're excited to share a sneak peek of all the up
 
 ## Opt-in CSS extraction via Pigment CSS
 
-As you know, Material UI v5 is using Emotion as a default styling solution. As a runtime CSS-in-JS library, it has several trade-offs such as slower performance and larger bundle size.
+As you know, Material UI v5 uses Emotion as a default styling solution. As a runtime CSS-in-JS library, it has several trade-offs such as slower performance and larger bundle size.
 
-With Material UI v6, we're introducing an opt-in integration with Pigment CSS, our new open-source library, that will eliminate the overhead of style recalculation while preserving similar APIs that you are already familiar with.
+With Material UI v6, we're introducing an opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new open-source library, that will eliminate the overhead of style recalculation while preserving similar APIs that you are already familiar with.
 
-Since the integration is an opt-in feature, you can upgrade to v6 and continue using Emotion if you'd like. We will provide a migration guide to help you switch to Pigment CSS at your pace.
+Since the integration is an opt-in feature, you can upgrade to v6 and continue using Emotion if you'd like. We will provide a migration guide to help you switch to Pigment CSS at your own pace.
 
 <!-- would be nice if we have a link to a prototype page -->
 <!-- a link to Next.js repo that render templates -->
@@ -41,9 +41,9 @@ A new API that lets you turn your theme into CSS variables.
 + import { CssVarsProvider } from '@mui/material/styles';
 ```
 
-Serializable values like palette, spacing, typography, etc. are converted to CSS variables and can be accessed from `theme.vars`.
+Serializable values like palette, spacing, typography, etc., are converted to CSS variables and can be accessed from `theme.vars`.
 
-With CSS variables, you can easily integrate your prefered styling solution with Material UI.
+With CSS variables, you can easily integrate your preferred styling solution with Material UI.
 
 ```css title="styles.css"
 .custom-card {
@@ -90,7 +90,7 @@ function App({ children }) {
 
 </codeblock>
 
-If you have a custom selector for dark mode, for example using data attributes, you can specify a custom value:
+If you have a custom selector for dark mode, for example, using data attributes, you can specify a custom value:
 
 <codeblock>
 
@@ -151,7 +151,7 @@ We will provide a codemod that migrates the code like an example below:
 
 We added support for [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) based on the existing `theme.breakpoints` API.
 
-This feature lets you define styles based on the width of the parent container instead of the viewport.
+This feature lets you define styles based on the parent container's width instead of the viewport.
 
 ```jsx
 const Component = styled('div')(({ theme }) => ({
@@ -185,6 +185,18 @@ It also works with the `sx` prop:
 ## Stabilized Grid v2
 
 ## Revamping the free templates
+
+Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
+
+<!-- First demo  -->
+
+### Custom syles
+
+The new custom styles we've added allow you to dive into the best approaches for customization or simply copy and paste some stylish elements.
+
+<!-- Second demo -->
+
+Stay tuned, as many more updates are coming in the upcoming months! We'd love to hear your feedback on which templates or sections you'd like to see next.
 
 We are upgrading the [free templates](https://mui.com/material-ui/getting-started/templates/) to make them look amazing for your next project.
 
