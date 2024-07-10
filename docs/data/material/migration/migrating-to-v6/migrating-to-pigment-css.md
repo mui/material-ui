@@ -1,18 +1,18 @@
 # Migrating to Pigment CSS
 
-<p class="description">This guide helps you integrate Pigment CSS with Material UI v6.</p>
+<p class="description">This guide helps you integrate Pigment CSS with Material UI v6.</p>
 
 Before going through this guide, make sure you have [migrated to Material UI v6](/material-ui/migration/migrating-to-v6/).
 
 ## Introduction
 
-The default styling engine of Material UI v6 is [Emotion](https://emotion.sh/docs/introduction). It lets you write styles in a CSS-in-JS fashion, which is great for dynamic styles that depend on states and props. However, it has some performance drawbacks when it comes to frequent re-renders because the style recalculation happens on the client side. It also does not fully support [React Server Components](https://react.dev/reference/rsc/server-components), a new rendering paradigm that renders components ahead of time on the server.
+The default styling engine of Material UI v6 is [Emotion](https://emotion.sh/docs/introduction). It lets you write styles in a CSS-in-JS fashion, which is great for dynamic styles that depend on states and props. However, it has some performance drawbacks when it comes to frequent re-renders because the style recalculation happens on the client side. It also does not fully support [React Server Components](https://react.dev/reference/rsc/server-components), a new rendering paradigm that renders components ahead of time on the server.
 
-Pigment CSS aims to solve these problems while keeping the same developer experience of writing styles in a CSS-in-JS fashion. It can work alongside Emotion to ease the migration process, but it is recommended to fully migrate to Pigment CSS in the end.
+Pigment CSS aims to solve these problems while keeping the same developer experience of writing styles in a CSS-in-JS fashion. It can work alongside Emotion to ease the migration process, but it is recommended to fully migrate to Pigment CSS in the end.
 
 ## Supported frameworks
 
-Pigment CSS can be used with one of the following frameworks:
+Pigment CSS can be used with one of the following frameworks:
 
 - [Next.js App Router](https://nextjs.org/docs/app/) with Webpack 5 (Turbo is not supported yet)
 - [Vite](https://vitejs.dev/)
@@ -150,7 +150,7 @@ export default defineConfig({
 });
 ```
 
-Finally, add the Pigment CSS stylesheet to the top of the main file.
+Finally, add the Pigment CSS stylesheet to the top of the main file.
 
 ```diff title="src/main.(js|tsx)"
  import * as React from 'react';
@@ -166,7 +166,7 @@ Finally, add the Pigment CSS stylesheet to the top of the main file.
 
 ## Configuring the theme
 
-Integrating Pigment CSS with Material UI requires you to configure the theme to the plugin.
+Integrating Pigment CSS with Material UI requires you to configure the theme to the plugin.
 Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
 ```diff
@@ -195,14 +195,14 @@ pnpm dev
 
 </codeblock>
 
-Open the browser and navigate to the localhost URL, you should see the app running with Pigment CSS.
+Open the browser and navigate to the localhost URL, you should see the app running with Pigment CSS.
 
 ## How it works
 
-When a Pigment CSS plugin is configured through a framework bundler, it intercepts the styling APIs that Material UI uses and replaces them with those from Pigment CSS instead. Pigment CSS then extracts the styles at build time and injects them into the stylesheet.
+When a Pigment CSS plugin is configured through a framework bundler, it intercepts the styling APIs that Material UI uses and replaces them with those from Pigment CSS instead. Pigment CSS then extracts the styles at build time and injects them into the stylesheet.
 
-If you come from Material UI v5, using Pigment CSS will be a paradigm shift in terms of writing styles.
-Since Pigment CSS is a build-time extraction tool, it does not support dynamic styles that depend on runtime variables. For example, Pigment CSS will throw an error for styles that depend on a state like the one below:
+If you come from Material UI v5, using Pigment CSS will be a paradigm shift in terms of writing styles.
+Since Pigment CSS is a build-time extraction tool, it does not support dynamic styles that depend on runtime variables. For example, Pigment CSS will throw an error for styles that depend on a state like the one below:
 
 ```js
 import Card from '@mui/material/Card';
@@ -212,7 +212,7 @@ function App() {
   return (
     <Card
       sx={{
-        color, // ❌ Pigment CSS cannot extract this style.
+        color, // ❌ Pigment CSS cannot extract this style.
       }}
     />
   );
@@ -225,7 +225,7 @@ We recommend reading the rest of the guide below to learn about the new styling 
 
 ### Removing owner state
 
-Since Pigment CSS is a build-time extraction tool, it does not support owner state through callbacks. Here is an example that will throw an error at build time:
+Since Pigment CSS is a build-time extraction tool, it does not support owner state through callbacks. Here is an example that will throw an error at build time:
 
 ```js
 const theme = extendTheme({
@@ -477,7 +477,7 @@ export default FlashCode;
 
 ## Migrating layout components
 
-To use layout components that are compatible with Pigment CSS, replace the following components with those from the adapter package:
+To use layout components that are compatible with Pigment CSS, replace the following components with those from the adapter package:
 
 ```diff
 - import Container from '@mui/material/Container';
@@ -508,7 +508,7 @@ Replace the `Box` component with the one from the adapter package:
 
 ### Replace Box with HTML element
 
-Pigment CSS can extract the `sx` prop from any JSX element, so there is no need to use the Box component.
+Pigment CSS can extract the `sx` prop from any JSX element, so there is no need to use the Box component.
 
 ```diff
 - import Box from '@mui/material/Box';
