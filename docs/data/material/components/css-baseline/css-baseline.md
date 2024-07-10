@@ -93,6 +93,17 @@ const theme = createTheme({
 
 Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces macOS to always show the scrollbar.
 
+### Color scheme
+
+This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property.
+To enable it, you can set `enableColorScheme=true` as follows:
+
+```jsx
+<ScopedCssBaseline enableColorScheme >
+  {/* The rest of your application using color-scheme*/}
+</ScopedCssBaseline>
+```
+
 ### Typography
 
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default).
