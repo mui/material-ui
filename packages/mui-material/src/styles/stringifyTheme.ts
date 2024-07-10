@@ -31,7 +31,7 @@ function isSerializable(val: any) {
  * });
  * ```
  */
-export default function stringifyTheme(baseTheme: Record<string, any> = {}) {
+export function stringifyTheme(baseTheme: Record<string, any> = {}) {
   const serializableTheme: Record<string, any> = { ...baseTheme };
 
   function serializeTheme(object: Record<string, any>) {

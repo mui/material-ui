@@ -19,7 +19,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
 import defaultGetSelector from './createGetSelector';
-import stringifyTheme from './stringifyTheme';
+import { stringifyTheme } from './stringifyTheme';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
