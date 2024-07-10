@@ -1,11 +1,11 @@
 import type { extendTheme } from '@mui/material/styles';
-import '@mui/material-pigment-css';
+import '@pigment-css/react/theme';
 
 type CustomTheme = ReturnType<typeof extendTheme> & {
   applyDarkStyles<T>(obj: T): Record<string, T>;
 };
-declare module '@mui/material-pigment-css/theme' {
-  export interface ThemeArgs {
+declare module '@pigment-css/react/theme' {
+  interface ThemeArgs {
     theme: CustomTheme;
   }
 }

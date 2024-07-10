@@ -8,9 +8,7 @@
     "noEmit": false,
     "emitDeclarationOnly": true,
     "outDir": "build",
-    "rootDir": "./src",
-    "moduleResolution": "Node16",
-    "module": "Node16"
+    "rootDir": "./src"
   },
   "include": ["./src/**/*.ts*"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
