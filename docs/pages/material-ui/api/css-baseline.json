@@ -1,8 +1,5 @@
 {
-  "props": {
-    "children": { "type": { "name": "node" } },
-    "enableColorScheme": { "type": { "name": "bool" }, "default": "false" }
-  },
+  "props": { "children": { "type": { "name": "node" } } },
   "name": "CssBaseline",
   "imports": [
     "import CssBaseline from '@mui/material/CssBaseline';",

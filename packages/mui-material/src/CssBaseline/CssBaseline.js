@@ -7,7 +7,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 // to determine if the global styles are static or dynamic
 const isDynamicSupport = typeof globalCss({}) === 'function';
 
-export const html = (theme, enableColorScheme) => ({
+export const html = (theme) => ({
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
   MozOsxFontSmoothing: 'grayscale', // Antialiasing.
   // Change from `box-sizing: content-box` so that `width`
@@ -16,7 +16,7 @@ export const html = (theme, enableColorScheme) => ({
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
   // When used under CssVarsProvider, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
-  ...(enableColorScheme && !theme.vars && { colorScheme: theme.palette.mode }),
+  ...(!theme.vars && { colorScheme: theme.palette.mode }),
 });
 
 export const body = (theme) => ({
@@ -29,9 +29,9 @@ export const body = (theme) => ({
   },
 });
 
-export const styles = (theme, enableColorScheme = false) => {
+export const styles = (theme) => {
   const colorSchemeStyles = {};
-  if (enableColorScheme && theme.colorSchemes) {
+  if (theme.colorSchemes) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
       const selector = theme.getColorSchemeSelector(key);
       if (selector.startsWith('@')) {
@@ -50,7 +50,7 @@ export const styles = (theme, enableColorScheme = false) => {
     });
   }
   let defaultStyles = {
-    html: html(theme, enableColorScheme),
+    html: html(theme),
     '*, *::before, *::after': {
       boxSizing: 'inherit',
     },
@@ -80,7 +80,7 @@ export const styles = (theme, enableColorScheme = false) => {
 // `ecs` stands for enableColorScheme. This is internal logic to make it work with Pigment CSS, so shorter is better.
 const SELECTOR = 'mui-ecs';
 const staticStyles = (theme) => {
-  const result = styles(theme, false);
+  const result = styles(theme);
   const baseStyles = Array.isArray(result) ? result[0] : result;
   if (!theme.vars && baseStyles) {
     baseStyles.html[`:root:has(${SELECTOR})`] = { colorScheme: theme.palette.mode };
@@ -109,9 +109,7 @@ const staticStyles = (theme) => {
 };
 
 const GlobalStyles = globalCss(
-  isDynamicSupport
-    ? ({ theme, enableColorScheme }) => styles(theme, enableColorScheme)
-    : ({ theme }) => staticStyles(theme),
+  isDynamicSupport ? ({ theme }) => styles(theme) : ({ theme }) => staticStyles(theme),
 );
 
 /**
@@ -119,16 +117,14 @@ const GlobalStyles = globalCss(
  */
 function CssBaseline(inProps) {
   const props = useDefaultProps({ props: inProps, name: 'MuiCssBaseline' });
-  const { children, enableColorScheme = false } = props;
+  const { children } = props;
   return (
     <React.Fragment>
       {/* Emotion */}
-      {isDynamicSupport && <GlobalStyles enableColorScheme={enableColorScheme} />}
+      {isDynamicSupport && <GlobalStyles />}
 
       {/* Pigment CSS */}
-      {!isDynamicSupport && !enableColorScheme && (
-        <span className={SELECTOR} style={{ display: 'none' }} />
-      )}
+      {!isDynamicSupport && <span className={SELECTOR} style={{ display: 'none' }} />}
 
       {children}
     </React.Fragment>
@@ -144,13 +140,6 @@ CssBaseline.propTypes /* remove-proptypes */ = {
    * You can wrap a node.
    */
   children: PropTypes.node,
-  /**
-   * Enable `color-scheme` CSS property to use `theme.palette.mode`.
-   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
-   * For browser support, check out https://caniuse.com/?search=color-scheme
-   * @default false
-   */
-  enableColorScheme: PropTypes.bool,
 };
 
 export default CssBaseline;

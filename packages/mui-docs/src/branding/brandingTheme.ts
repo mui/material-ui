@@ -1386,9 +1386,7 @@ export function getThemedComponents(): ThemeOptions {
         },
       },
       MuiCssBaseline: {
-        defaultProps: {
-          enableColorScheme: true,
-        },
+        defaultProps: {},
         styleOverrides: {
           html: {
             overflowY: 'scroll',
