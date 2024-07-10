@@ -8,7 +8,7 @@ _Jul 10, 2024_
 
 A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 This is the first v6 beta release! A huge thanks to everyone who helped to make this happen! The target date for a stable release is the 1st of August. The next two months will be used to polish v6, and ease the migration from v5. You can follow the [v6 stable milestone](https://github.com/mui/material-ui/milestone/42) for more details. It's encouraged to start new projects on v6.
+- 🎉 This is the first v6 beta release! A huge thanks to everyone who helped to make this happen! The target date for a stable release is the 28th of July. The next month will be used to polish v6, and ease the migration from v5. You can follow the [v6 stable milestone](https://github.com/mui/material-ui/milestone/42) for more details.
 - 🚀 All planned breaking changes are completed.
 
 ### `@mui/material@v6.0.0-beta.0`
