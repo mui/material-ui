@@ -1093,6 +1093,14 @@ The ListItem's `componentsProps` prop was deprecated in favor of `slotProps`:
  />
 ```
 
+### ContainerComponent
+
+The ListItem's `ContainerComponent` prop was deprecated in favor of `slots.root` or `component` instead.
+
+### ContainerProps
+
+The ListItem's `ContainerProps` prop was deprecated in favor of `slotProps.root` instead.
+
 ## ListItemSecondaryAction
 
 ### Deprecated component
