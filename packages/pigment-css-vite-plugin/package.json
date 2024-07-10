@@ -1,6 +1,6 @@
 {
   "name": "@pigment-css/vite-plugin",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",

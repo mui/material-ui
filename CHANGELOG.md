@@ -1,5 +1,36 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.16.1
+
+_Jul 10, 2024_
+
+A big thanks to the 3 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚛️ Material UI is now compatible with React 18.3.1
+
+### `@mui/joy@5.0.0-beta.48`
+
+- [Autocomplete] Fix React spread key warning (#42856) @aarongarciah
+
+### Docs
+
+- [material-ui] Fix React 18.3 key spread warnings in Autocomplete demos (#42854) @aarongarciah
+- [material-ui] Fix type error in virtualized table demo (#42852) @aarongarciah
+- Fix typos (@omahs) (#42888) @omahs
+- Fix 301 @oliviertassinari
+
+### Core
+
+- [core] Bump React to 18.3.1 (#42846) @aarongarciah
+- [core] Remove react-test-renderer (#42853) @aarongarciah
+- [core] Replace enzyme in describeConformance (#42847) @aarongarciah
+- [test] Remove enzyme (#42850) @aarongarciah
+- [test] Remove createMount test util (#42849) @aarongarciah
+- [base-ui] Fix React spread key warning in test (#42855) @aarongarciah
+- [styles][withStyles] Expect React defaultProps warning in test (#42752) (#42851) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @oliviertassinari, @omahs
+
 ## v5.16.0
 
 <!-- generated comparing v5.15.21..master -->
