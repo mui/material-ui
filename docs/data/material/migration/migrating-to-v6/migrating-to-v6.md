@@ -2,7 +2,7 @@
 
 <p class="description">This guide explains how and why to migrate from Material UI v5 to v6.</p>
 
-## Start using the alpha release
+## Start using the beta release
 
 In your `package.json` file, change the package version from `latest` to `next`.
 
@@ -20,8 +20,8 @@ Optionally, if you are using one of these packages, you can also change their ve
 - `@mui/styled-engine-sc`
 - `@mui/utils`
 
-Using `next` ensures your project always uses the latest v6 alpha release.
-Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-alpha.0`.
+Using `next` ensures your project always uses the latest v6 beta release.
+Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-beta.0`.
 
 ## Why you should migrate
 
@@ -347,6 +347,4 @@ This reduces the API surface and lets you define variants in other slots of the 
 
 ## Pigment CSS integration (optional)
 
-:::info
-⏳ This section is under construction
-:::
+Check out the [Pigment CSS migration page](/material-ui/migration/migrating-to-pigment-css/) to learn how to integrate it into your project.
