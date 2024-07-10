@@ -6,9 +6,10 @@ Before going through this guide, make sure you have [migrated to Material UI v6
 
 ## Introduction
 
-The default styling engine of Material UI v6 is [Emotion](https://emotion.sh/docs/introduction). It lets you write styles in a CSS-in-JS fashion, which is great for dynamic styles that depend on states and props. However, it has some performance drawbacks when it comes to frequent re-renders because the style recalculation happens on the client side. It also does not fully support [React Server Components](https://react.dev/reference/rsc/server-components), a new rendering paradigm that renders components ahead of time on the server.
+The default styling engine of Material UI v6 is [Emotion](https://emotion.sh/docs/introduction). It lets you write styles in a CSS-in-JS fashion, which is great for dynamic styles that depend on states and props. However, it has some performance drawbacks when it comes to frequent re-renders because the style recalculation happens on the client-side. It also does not fully support [React Server Components](https://react.dev/reference/rsc/server-components), a new rendering paradigm that renders components ahead of time on the server.
 
-Pigment CSS aims to solve these problems while keeping the same developer experience of writing styles in a CSS-in-JS fashion. It can work alongside Emotion to ease the migration process, but it is recommended to fully migrate to Pigment CSS in the end.
+Pigment CSS aims to solve these problems while keeping the same developer experience of writing styles in a CSS-in-JS fashion.
+It can work alongside Emotion to ease the migration process, but it is recommended to fully migrate to Pigment CSS in the end.
 
 ## Supported frameworks
 
@@ -19,7 +20,7 @@ Pigment CSS can be used with one of the following frameworks:
 
 ## Installation
 
-First, install the adapter package:
+First, install the Material UI wrapper package for Pigment CSS:
 
 <codeblock storageKey="package-manager">
 
@@ -202,7 +203,8 @@ Open the browser and navigate to the localhost URL, you should see the app runni
 When a Pigment CSS plugin is configured through a framework bundler, it intercepts the styling APIs that Material UI uses and replaces them with those from Pigment CSS instead. Pigment CSS then extracts the styles at build time and injects them into the stylesheet.
 
 If you come from Material UI v5, using Pigment CSS will be a paradigm shift in terms of writing styles.
-Since Pigment CSS is a build-time extraction tool, it does not support dynamic styles that depend on runtime variables. For example, Pigment CSS will throw an error for styles that depend on a state like the one below:
+Since Pigment CSS is a build-time extraction tool, it does not support dynamic styles that depend on runtime variables.
+For example, Pigment CSS will throw an error for styles that depend on a state like the one below:
 
 ```js
 import Card from '@mui/material/Card';
@@ -403,6 +405,30 @@ If a value depends on a variable, you need to move it to a CSS variable inside i
 
 </codeblock>
 
+#### Custom components
+
+With Pigment CSS, any JSX element can accept the `sx` prop so it is **no** longer needed to pass down the `sx` prop to Material UI components.
+
+```diff
+ import ButtonBase from '@mui/material/ButtonBase';
+
+ function ActiveButton({ sx, ...props }) {
+   return (
+     <ButtonBase
+       sx={[
+         {
+           '&:active': {
+             opacity: 0.5,
+           },
+         },
+-        ...Array.isArray(sx) ? sx : [sx],
+       ]}
+       {...props}
+     />
+   );
+ }
+```
+
 ### styled
 
 If you have custom components that are using `styled` from `@mui/material/styles`, change the import source to `@mui/material-pigment-css`:
@@ -493,11 +519,16 @@ To use layout components that are compatible with Pigment CSS, replace the foll
 + import Hidden from '@mui/material-pigment-css/Hidden';
 ```
 
+:::info
+`Grid` component from `@mui/material-pigment-css/Grid` has a different behavior compared to the default `Grid` component.
+It uses CSS `gap` instead of `margin` for spacing between items.
+:::
+
 ## Migrating Box component
 
 Choose one of the following approaches:
 
-### Continue using Box component
+### Continue using Box
 
 Replace the `Box` component with the one from the adapter package:
 
@@ -506,7 +537,7 @@ Replace the `Box` component with the one from the adapter package:
 + import Box from '@mui/material-pigment-css/Box';
 ```
 
-### Replace Box with HTML element
+### Use HTML element
 
 Pigment CSS can extract the `sx` prop from any JSX element, so there is no need to use the Box component.
 
@@ -540,3 +571,82 @@ declare global {
   }
 }
 ```
+
+## Migrate useTheme hook
+
+If you are using the `useTheme` hook, replace the import source:
+
+```diff
+- import { useTheme } from '@mui/material/styles';
++ import { useTheme } from '@mui/material-pigment-css';
+```
+
+:::info
+For Next.js App Router, `useTheme` hook only works with React Client Components.
+You need to add `'use client'` directive to the component that uses the hook.
+:::
+
+## Right-to-left support
+
+Update the config file with the following code to enable right-to-left support:
+
+```diff
+ const pigmentConfig = {
+   theme: extendTheme(),
++  css: {
++    // Specify your default CSS authoring direction
++    defaultDirection: 'ltr',
++    // Generate CSS for the opposite of the `defaultDirection`
++    // This is set to `false` by default
++    generateForBothDir: true,
++  },
+ }
+```
+
+### Migrating from theme direction
+
+If you are using the `theme.direction` in your component, wrap your application with `RtlProvider` and use the `useRtl` hook to get the direction instead:
+
+<codeblock>
+
+```diff app.tsx
++ import RtlProvider from '@mui/material-pigment-css/RtlProvider';
+
+ function App() {
++  const [rtl, setRtl] = React.useState(false);
+   return (
++    <RtlProvider value={rtl}>
+       {/* Your app */}
++    </RtlProvider>
+   )
+ }
+```
+
+```diff component.tsx
+- import { useTheme } from '@mui/material/styles';
++ import { useRtl } from '@mui/material-pigment-css/RtlProvider';
+
+ function App() {
+-  const theme = useTheme();
++  const isRtl = useRtl();
+
+   return (
+     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+       <IconButton aria-label="previous">
+-        {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
++        {isRtl ? <SkipNextIcon /> : <SkipPreviousIcon />}
+       </IconButton>
+       <IconButton aria-label="play/pause">
+         <PlayArrowIcon sx={{ height: 38, width: 38 }} />
+       </IconButton>
+       <IconButton aria-label="next">
+-        {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
++        {isRtl ? <SkipPreviousIcon /> : <SkipNextIcon />}
+       </IconButton>
+     </Box>
+   );
+ }
+
+```
+
+</codeblock>
