@@ -97,8 +97,21 @@ module.exports = withPigment(nextConfig, pigmentConfig);
 
 Finally, import the stylesheet at the top of the layout file.
 
-```js title="app/layout.(js|tsx)"
-import '@mui/material-pigment-css/styles.css';
+```diff title="app/layout.(js|tsx)"
+ import type { Metadata } from 'next';
+ import { Inter } from 'next/font/google';
+
++ import '@mui/material-pigment-css/styles.css';
+
+ export default function RootLayout(props) {
+   return (
+     <html lang="en">
+       <body className={`${inter.className}`}>
+         {props.children}
+       </body>
+     </html>
+   );
+ }
 ```
 
 ### Vite
@@ -139,8 +152,16 @@ export default defineConfig({
 
 Finally, add the Pigment CSS stylesheet to the top of the main file.
 
-```js title="src/main.(js|tsx)"
-import '@mui/material-pigment-css/styles.css';
+```diff title="src/main.(js|tsx)"
+ import * as React from 'react';
++ import '@mui/material-pigment-css/styles.css';
+ import App from './App';
+
+ ReactDOM.createRoot(document.getElementById('root')).render(
+   <React.StrictMode>
+     <App />
+   </React.StrictMode>,
+ );
 ```
 
 ## Configuring the theme
