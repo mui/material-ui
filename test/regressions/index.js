@@ -34,6 +34,16 @@ importRegressionFixtures.keys().forEach((path) => {
 
 const blacklist = [
   // The following components are tested by docs-getting-started-templates-dashboard-components/MainGrid.png
+  'docs-getting-started-templates-dashboard-theme-customizations/buttons.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/charts.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/dataGrid.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/datePickers.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/index.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/inputs.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/layoutComponents.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/menus.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/others.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/treeView.png',
   'docs-getting-started-templates-dashboard/Dashboard.png',
   'docs-getting-started-templates-dashboard-components/ChartUserByCountry.png',
   'docs-getting-started-templates-dashboard-components/CustomDatePicker.png',
@@ -45,11 +55,11 @@ const blacklist = [
   'docs-getting-started-templates-dashboard-components/Navbar.png',
   'docs-getting-started-templates-dashboard-components/NavbarBreadcrumbs.png',
   'docs-getting-started-templates-dashboard-components/OptionsMenu.png',
-  'docs-getting-started-templates-dashboard-components/PageViewsChart.png',
+  'docs-getting-started-templates-dashboard-components/SessionsChart.png',
   'docs-getting-started-templates-dashboard-components/Search.png',
   'docs-getting-started-templates-dashboard-components/ToggleColorMode.png',
   'docs-getting-started-templates-dashboard-internals-components', // No public components
-  'docs-getting-started-templates-dashboard-components/SideNav.png', // No public components
+  'docs-getting-started-templates-dashboard-components/SideMenuMobile.png', // No public components
   'docs-getting-started-templates-dashboard-components/PageViewsBarChart.png', // No public components
   'docs-getting-started-templates-dashboard-components/StatCard.png', // No public components
   'docs-getting-started-templates-sign-in-side/CustomIcons.png', // Theme file

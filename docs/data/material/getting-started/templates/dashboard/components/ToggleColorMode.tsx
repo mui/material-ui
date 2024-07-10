@@ -14,11 +14,7 @@ export default function ToggleColorMode({
   toggleColorMode,
 }: ToggleColorModeProps) {
   return (
-    <MenuButton
-      onClick={toggleColorMode}
-      size="small"
-      aria-label="button to toggle theme"
-    >
+    <MenuButton onClick={toggleColorMode} size="small" aria-label="Toggle theme">
       {mode === 'dark' ? (
         <WbSunnyRoundedIcon fontSize="small" />
       ) : (
