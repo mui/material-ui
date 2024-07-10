@@ -8,12 +8,14 @@ import {
   unstable_styleFunctionSx as styleFunctionSx,
   SxProps,
 } from '@mui/system';
-import THEME_ID from './identifier';
-import { SupportedColorScheme } from './extendThemeMD2';
-import createTypography from './createTypography';
-import excludeVariablesFromRoot from './excludeVariablesFromRoot';
-import { Theme } from './md3/Theme.types';
-import defaultTheme from './md3/defaultTheme';
+import {
+  THEME_ID,
+  SupportedColorScheme,
+  private_createTypography as createTypography,
+  private_excludeVariablesFromRoot as excludeVariablesFromRoot,
+} from '@mui/material/styles';
+import { Theme } from './Theme.types';
+import defaultTheme from './defaultTheme';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   SupportedColorScheme,
