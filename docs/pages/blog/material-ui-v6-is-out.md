@@ -211,13 +211,13 @@ It also works with the `sx` prop:
 
 Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
 
-<!-- First demo  -->
+{{"component": "components/blog/material-ui-v6-is-out/TemplateCarousel.js"}}
 
 ### Custom syles
 
 The new custom styles we've added allow you to dive into the best approaches for customization or simply copy and paste some stylish elements.
 
-<!-- Second demo -->
+{{"component": "components/blog/material-ui-v6-is-out/CustomThemeComparison.js"}}
 
 Stay tuned, as many more updates are coming in the upcoming months! We'd love to hear your feedback on which templates or sections you'd like to see next.
 
