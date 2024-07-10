@@ -344,6 +344,7 @@ export default function sxV6(file, api, options) {
               node: data.node.argument,
               parentNode: data.node,
             });
+            wrapSxInArray(data.node.argument);
             if (data.deleteSelf) {
               data.deleteSelf();
             } else {
