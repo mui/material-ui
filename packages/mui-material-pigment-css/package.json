@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@mui/system": "workspace:^",
-    "@pigment-css/react": "https://pkg.csb.dev/mui/pigment-css/commit/e96284a9/@pigment-css/react"
+    "@pigment-css/react": "0.0.17"
   },
   "sideEffects": false,
   "publishConfig": {
