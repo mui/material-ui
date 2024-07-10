@@ -1,1 +1,1 @@
-export { default } from './MaterialPigmentHidden';
+export { default } from './Hidden';

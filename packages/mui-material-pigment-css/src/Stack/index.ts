@@ -1,1 +1,1 @@
-export { default } from './MaterialPigmentStack';
+export { default } from './Stack';

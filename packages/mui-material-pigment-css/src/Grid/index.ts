@@ -1,1 +1,1 @@
-export { default } from './MaterialPigmentGrid';
+export { default } from './Grid';

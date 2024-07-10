@@ -1,1 +1,1 @@
-export { default } from './MaterialPigmentContainer';
+export { default } from './Container';

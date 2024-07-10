@@ -1,1 +1,1 @@
-export { default } from './MaterialPigmentBox';
+export { default } from './Box';

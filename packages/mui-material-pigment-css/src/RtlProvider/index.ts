@@ -1,1 +1,1 @@
-export * from './MaterialPigmentRtlProvider';
+export * from './RtlProvider';
