@@ -407,7 +407,7 @@ If a value depends on a variable, you need to move it to a CSS variable inside i
 
 #### Custom components
 
-With Pigment CSS, any JSX element can accept the `sx` prop so it is **no** longer needed to pass down the `sx` prop to Material UI components.
+With Pigment CSS, any JSX element can accept the `sx` prop so it is **no** longer needed to pass down the `sx` prop to Material UI components.
 
 ```diff
  import ButtonBase from '@mui/material/ButtonBase';
