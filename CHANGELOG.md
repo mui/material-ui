@@ -16,6 +16,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - Revert deprecation warnings for `*Components` and `*Props` for v6 (#42466) @lhilgert9
 - Performance: lazy Ripple (#41061) @romgrk
 - [AppBar] Fix inherit color is inconsistent between ThemeProvider and CssVarsProvider (#42714) @ZeeshanTamboli
+- [Autocomplete] Add new AutocompleteInputChangeReason (#37301) @binh1298
 
 ### `@mui/material-pigment-css@v6.0.0-beta.0`
 
