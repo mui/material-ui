@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import usePreviousProps from '@mui/utils/usePreviousProps';
 import composeClasses from '@mui/utils/composeClasses';
 import useBadge from './useBadge';
-import { useSlotProps } from '../utils/useSlotProps';
+import useSlotProps from '../utils/useSlotProps';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';

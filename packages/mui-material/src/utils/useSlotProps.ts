@@ -62,7 +62,7 @@ export type UseSlotPropsResult<
  *
  * @param parameters.getSlotProps - A function that returns the props to be passed to the slot component.
  */
-export function useSlotProps<
+function useSlotProps<
   ElementType extends React.ElementType,
   SlotProps,
   AdditionalProps,
@@ -110,3 +110,5 @@ export function useSlotProps<
 
   return props;
 }
+
+export default useSlotProps;
