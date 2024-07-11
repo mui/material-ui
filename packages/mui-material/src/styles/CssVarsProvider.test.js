@@ -327,7 +327,7 @@ describe('[Material UI] CssVarsProvider', () => {
     }
 
     const { getByTestId } = render(
-      <CssVarsProvider enableColorScheme enableSystem>
+      <CssVarsProvider>
         <Box
           data-testid="box-1"
           sx={{

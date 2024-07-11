@@ -53,7 +53,6 @@ export default function createCssVarsProvider(options) {
       colorSchemeStorageKey = defaultColorSchemeStorageKey,
       defaultColorScheme = designSystemColorScheme,
       disableTransitionOnChange = designSystemTransitionOnChange,
-      enableSystem = false,
       storageWindow = typeof window === 'undefined' ? undefined : window,
       documentNode = typeof document === 'undefined' ? undefined : document,
       colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
@@ -84,7 +83,7 @@ export default function createCssVarsProvider(options) {
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
     const defaultMode =
-      enableSystem || restThemeProp.colorSchemeSelector === 'media'
+      colorSchemes[defaultLightColorScheme] && colorSchemes[defaultDarkColorScheme]
         ? 'system'
         : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode || designSystemMode;
 
@@ -308,11 +307,6 @@ export default function createCssVarsProvider(options) {
      * The document to attach the attribute to.
      */
     documentNode: PropTypes.any,
-    /**
-     * If `true`, the color scheme will be set based on the system preference.
-     * @default false
-     */
-    enableSystem: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */

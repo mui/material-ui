@@ -30,11 +30,6 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
   /**
-   * If `true`, the color scheme will be set based on the system preference.
-   * @default false
-   */
-  enableSystem?: boolean;
-  /**
    * Disable CSS transitions when switching between modes or color schemes
    * @default false
    */

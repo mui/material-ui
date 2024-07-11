@@ -154,7 +154,7 @@ function TypographyScale() {
 
 export default function JoyStyleGuide() {
   return (
-    <CssVarsProvider enableSystem>
+    <CssVarsProvider>
       <Container>
         <Box
           sx={{
