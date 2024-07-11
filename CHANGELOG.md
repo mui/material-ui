@@ -4,9 +4,13 @@
 
 _Jul 11, 2024_
 
-A big thanks to the 3 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 4 contributors who made this release possible. Here are some highlights ✨:
 
 - ⚛️ Material UI is now compatible with React 18.3.1
+
+### `@mui/material@5.16.1`
+
+- [AppBar] Fix inherit color is inconsistent between ThemeProvider and CssVarsProvider (#42713) @ZeeshanTamboli
 
 ### `@mui/joy@5.0.0-beta.48`
 
@@ -29,7 +33,7 @@ A big thanks to the 3 contributors who made this release possible. Here are some
 - [base-ui] Fix React spread key warning in test (#42855) @aarongarciah
 - [styles][withStyles] Expect React defaultProps warning in test (#42752) (#42851) @aarongarciah
 
-All contributors of this release in alphabetical order: @aarongarciah, @oliviertassinari, @omahs
+All contributors of this release in alphabetical order: @aarongarciah, @oliviertassinari, @omahs, @ZeeshanTamboli
 
 ## v5.16.0
 
