@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useSnackbar } from '@mui/base/useSnackbar';
+import ClickAwayListener from '../ClickAwayListener';
 import { styled, useTheme } from '../zero-styled';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useDefaultProps } from '../DefaultPropsProvider';
