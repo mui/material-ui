@@ -12,7 +12,7 @@ The variables are flattened and prefixed with `--mui` by default:
 
 <codeblock>
 
-```jsx App
+```jsx JSX
 import { CssVarsProvider } from '@mui/material/styles';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 }
 ```
 
-```css generated-stylesheet
+```css CSS
 :root {
   --mui-palette-primary-main: #1976d2;
   --mui-palette-primary-light: #42a5f5;
@@ -40,13 +40,14 @@ If you have an existing theme, you can migrate to CSS theme variables by followi
 
 ## Dark mode only application
 
-To switch the default light to dark palette, set the `defaultColorScheme: 'dark'` to the `extendTheme`. Material UI will generate the dark palette instead.
+To switch the default light to dark palette, set `colorSchemes: { dark: true }` to the `extendTheme`.
+Material UI will generate the dark palette instead.
 
 ```jsx
 import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 
 const theme = extendTheme({
-  defaultColorScheme: 'dark',
+  colorSchemes: { dark: true },
 });
 
 function App() {
@@ -54,9 +55,10 @@ function App() {
 }
 ```
 
-## System preferences
+## Light and dark mode application
 
-To support both light and dark modes based on the user's system preferences, set the `colorSchemeSelector: 'media'` to the `extendTheme`. Material UI will generate both light and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+To support both light and dark modes, set `colorSchemes: { light: true, dark: true }` to the `extendTheme`.
+Material UI will generate both light and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
 
 <codeblock>
 
@@ -90,9 +92,27 @@ function App() {
 
 </codeblock>
 
-<!-- TODO: fix the link -->
-
 If you want to customize the selector instead of using `prefers-color-scheme`, check out the [advanced configuration](/material-ui/customization/css-theme-variables/configuration/#advanced-configuration).
+
+## Applying dark styles
+
+To customize styles for dark mode, use `theme.applyStyles` function.
+This utility function will return the right selector.
+
+The example below shows how to customize the Card component for dark mode:
+
+```js
+import Card from '@mui/material/Card';
+
+<Card
+  sx={(theme) => ({
+    backgroundColor: theme.vars.palette.background.default,
+    ...theme.applyStyles('dark', {
+      boxShadow: 'none', // remove the box shadow in dark mode
+    }),
+  })}
+/>;
+```
 
 ## Using theme variables
 
@@ -128,26 +148,6 @@ The structure of this object is a serializable theme structure with the values r
     background-color: var(--mui-palette-grey-50);
   }
   ```
-
-## Applying dark styles
-
-To customize styles for dark mode, use `theme.applyStyles` function.
-This utility function will apply the right selector based on the selected strategy.
-
-The example below shows how to customize the Card component for dark mode:
-
-```js
-import Card from '@mui/material/Card';
-
-<Card
-  sx={(theme) => ({
-    backgroundColor: theme.vars.palette.background.default,
-    ...theme.applyStyles('dark', {
-      boxShadow: 'none', // remove the box shadow in dark mode
-    }),
-  })}
-/>;
-```
 
 ## Theming
 

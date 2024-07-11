@@ -7,7 +7,7 @@
 To change the default variable prefix (`--mui`), provide a string to `cssVarPrefix` property, as shown below:
 
 ```js
-const theme = extendTheme({ cssVarPrefix: 'any' });
+extendTheme({ cssVarPrefix: 'any' });
 
 // generated stylesheet:
 // --any-palette-primary-main: ...;
@@ -16,7 +16,7 @@ const theme = extendTheme({ cssVarPrefix: 'any' });
 To remove the prefix, use an empty string as a value:
 
 ```js
-const theme = extendTheme({ cssVarPrefix: '' });
+extendTheme({ cssVarPrefix: '' });
 
 // generated stylesheet:
 // --palette-primary-main: ...;
@@ -24,20 +24,44 @@ const theme = extendTheme({ cssVarPrefix: '' });
 
 ## Toggling dark mode manually
 
-To toggle between light, dark and system modes manually, set the `colorSchemeSelector` with one of the following selectors:
+To toggle between modes manually, set the `colorSchemeSelector` with one of the following selectors:
 
 <codeblock>
 
 ```js class
+// The value must start with a dot (.) and contain a "%s" placeholder.
 extendTheme({
-  colorSchemeSelector: '.mode-%s',
-});
+  colorSchemes: { light: true, dark: true },
+  colorSchemeSelector: '.mode-%s' }
+);
+
+// CSS Result
+.mode-light { ... }
+.mode-dark { ... }
 ```
 
 ```js data-attribute
+// The value must be [data-*] with a "%s" placeholder.
 extendTheme({
-  colorSchemeSelector: '[data-mode-%s]',
+  colorSchemes: { light: true, dark: true },
+  colorSchemeSelector: '[data-mode-%s]' }
+);
+
+// CSS Result
+[data-mode-light] { ... }
+[data-mode-dark] { ... }
+```
+
+```js data-attribute(2)
+// The value must be data-*
+extendTheme({
+  colorSchemes: { light: true, dark: true },
+  colorSchemeSelector: 'data-mode'
 });
+
+// CSS Result
+[data-mode="light"] { ... }
+[data-mode="dark"] { ... }
 ```
 
 </codeblock>
@@ -103,6 +127,30 @@ function ModeSwitcher() {
 
 </codeblock>
 
+:::success
+The mode will be `system` by default to follow the user's preference.
+:::
+
+### Determining the system mode
+
+To determine if the system mode is `light` or `dark`, use the `systemMode` property:
+
+```js
+const { mode, systemMode } = useColorScheme();
+
+console.log(mode); // 'system'
+console.log(systemMode); // 'light' | 'dark'
+```
+
+However, if the mode is **not** `system`, the `systemMode` will be `undefined`.
+
+```js
+const { mode, systemMode } = useColorScheme();
+
+console.log(mode); // 'light' | 'dark'
+console.log(systemMode); // undefined
+```
+
 ### Preventing SSR flickering
 
 For SSR (server-side rendering) applications, Material UI can not detected user-selected mode on the server, causing the screen to flicker from light to dark during the hydration phase on the client.
@@ -138,10 +186,10 @@ If you have such a condition, replace it with the [`theme.applyStyles`](#appling
  }
 ```
 
-Next, if you have a custom strategy that is **not** `media`, add the `InitColorSchemeScript` component based on the framework that you are using:
+Next, if you have a custom selector that is **not** `media`, add the `InitColorSchemeScript` component based on the framework that you are using:
 
 :::success
-The `attribute` has to be the same as the one you set in the `strategy` property:
+The `attribute` has to be the same as the one you set in the `colorSchemeSelector` property:
 
 ```js
 <InitColorSchemeScript attribute=".mode-%s" />
@@ -149,7 +197,7 @@ The `attribute` has to be the same as the one you set in the `strategy` property
 
 :::
 
-#### Next.js App Router
+### Next.js App Router
 
 Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file:
 
@@ -169,7 +217,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-#### Next.js Pages Router
+### Next.js Pages Router
 
 Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
 
@@ -194,7 +242,7 @@ export default class MyDocument extends Document {
 }
 ```
 
-#### Gatsby
+### Gatsby
 
 Place the script in your [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
 
@@ -216,7 +264,7 @@ In the example below, all the components inside the `div` will always be dark:
 <codeblock>
 
 ```js class
-// if the strategy is '.mode-%s'
+// if the selector is '.mode-%s'
 <div className=".mode-dark">
   <Paper sx={{ p: 2 }}>
     <TextField label="Email" type="email" margin="normal" />
@@ -228,7 +276,7 @@ In the example below, all the components inside the `div` will always be dark:
 ```
 
 ```js data-attribute
-// if the strategy is '[data-mode-%s]'
+// if the selector is '[data-mode-%s]'
 <div data-mode-dark>
   <Paper sx={{ p: 2 }}>
     <TextField label="Email" type="email" margin="normal" />
@@ -243,13 +291,28 @@ In the example below, all the components inside the `div` will always be dark:
 
 ## Disabling CSS color scheme
 
-By default, the `CssVarsProvider` attach [CSS color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. If you want to disable it, use `disableCssColorScheme` prop:
+By default, the `extendTheme` attach [CSS color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. If you want to disable it, set `disableCssColorScheme` to `true`:
 
 ```js
-<CssVarsProvider disableCssColorScheme />
+extendTheme({
+  colorSchemes: { light: true, dark: true },
+  disableCssColorScheme: true,
+});
 ```
 
-## Instant transition between modes
+The generated CSS will not include the `color-scheme` property:
+
+```diff
+ @media (prefers-color-scheme: dark) {
+   :root {
+-    color-scheme: dark;
+     --mui-palette-primary-main: #90caf9;
+     ...
+   }
+ }
+```
+
+## Instant transition between color schemes
 
 To disable CSS transition when switching between modes, use `disableTransitionOnChange` prop:
 
