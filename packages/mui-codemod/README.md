@@ -1151,22 +1151,22 @@ JS transforms:
 CSS transforms:
 
 ```diff
--.MuiImageListItemBar-titleWrapBelow
+- .MuiImageListItemBar-titleWrapBelow
 +.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap
 ```
 
 ```diff
--.MuiImageListItemBar-titleWrapActionPosLeft
+- .MuiImageListItemBar-titleWrapActionPosLeft
 +.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap
 ```
 
 ```diff
--.MuiImageListItemBar-titleWrapActionPosRight
+- .MuiImageListItemBar-titleWrapActionPosRight
 +.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap
 ```
 
 ```diff
--.MuiImageListItemBar-actionIconActionPosLeft
+- .MuiImageListItemBar-actionIconActionPosLeft
 +.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon
 ```
 

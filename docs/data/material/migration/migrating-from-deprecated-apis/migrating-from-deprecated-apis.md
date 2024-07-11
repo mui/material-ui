@@ -1163,13 +1163,13 @@ The CSS classes that composed the following props were deprecated:
 Here's how to migrate:
 
 ```diff
--.MuiImageListItemBar-titleWrapBelow
+- .MuiImageListItemBar-titleWrapBelow
 +.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap
--.MuiImageListItemBar-titleWrapActionPosLeft
+- .MuiImageListItemBar-titleWrapActionPosLeft
 +.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap
--.MuiImageListItemBar-titleWrapActionPosRight
+- .MuiImageListItemBar-titleWrapActionPosRight
 +.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap
--.MuiImageListItemBar-actionIconActionPosLeft
+- .MuiImageListItemBar-actionIconActionPosLeft
 +.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon
 ```
 
