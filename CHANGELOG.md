@@ -6,7 +6,7 @@ _Jul 11, 2024_
 
 A big thanks to the 4 contributors who made this release possible. Here are some highlights ✨:
 
-- ⚛️ Material UI is now compatible with React 18.3.1
+- ⚛️ All packages, including Material UI, are now compatible with React 18.3.1
 
 ### `@mui/material@5.16.1`
 
