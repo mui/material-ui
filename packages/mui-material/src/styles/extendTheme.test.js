@@ -39,9 +39,9 @@ describe('extendTheme', () => {
     expect(typeof theme.colorSchemes).to.equal('object');
   });
 
-  it('should have "media" cssRule', () => {
-    const theme = extendTheme({ cssRule: 'media' });
-    expect(theme.cssRule).to.equal('media');
+  it('should have "media" colorSchemeSelector', () => {
+    const theme = extendTheme({ colorSchemeSelector: 'media' });
+    expect(theme.colorSchemeSelector).to.equal('media');
   });
 
   it('should have CSS color-scheme by default', () => {
@@ -672,9 +672,9 @@ describe('extendTheme', () => {
     });
   });
 
-  describe('cssRule', () => {
+  describe('colorSchemeSelector', () => {
     it('[media] should use prefers-color-scheme', () => {
-      const theme = extendTheme({ cssRule: 'media' });
+      const theme = extendTheme({ colorSchemeSelector: 'media' });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
         ':root',
@@ -683,7 +683,7 @@ describe('extendTheme', () => {
     });
 
     it('[media] should use prefers-color-scheme for styling', () => {
-      const theme = extendTheme({ cssRule: 'media' });
+      const theme = extendTheme({ colorSchemeSelector: 'media' });
 
       expect(theme.getColorSchemeSelector('light')).to.equal(
         '@media (prefers-color-scheme: light)',
@@ -692,7 +692,7 @@ describe('extendTheme', () => {
     });
 
     it('[media] should use prefers-color-scheme with dark as default', () => {
-      const theme = extendTheme({ defaultColorScheme: 'dark', cssRule: 'media' });
+      const theme = extendTheme({ defaultColorScheme: 'dark', colorSchemeSelector: 'media' });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
         ':root',
@@ -702,7 +702,7 @@ describe('extendTheme', () => {
     });
 
     it('should use class selector', () => {
-      const theme = extendTheme({ cssRule: '.mode-%s' });
+      const theme = extendTheme({ colorSchemeSelector: '.mode-%s' });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
         ':root',
@@ -711,14 +711,14 @@ describe('extendTheme', () => {
     });
 
     it('should use class selector for styling', () => {
-      const theme = extendTheme({ cssRule: '.mode-%s' });
+      const theme = extendTheme({ colorSchemeSelector: '.mode-%s' });
 
       expect(theme.getColorSchemeSelector('light')).to.equal('.mode-light &');
       expect(theme.getColorSchemeSelector('dark')).to.equal('.mode-dark &');
     });
 
     it('should use data attribute selector', () => {
-      const theme = extendTheme({ cssRule: '[data-theme-%s]' });
+      const theme = extendTheme({ colorSchemeSelector: '[data-theme-%s]' });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
         ':root',
@@ -727,7 +727,7 @@ describe('extendTheme', () => {
     });
 
     it('should use data attribute for styling', () => {
-      const theme = extendTheme({ cssRule: '[data-theme-%s]' });
+      const theme = extendTheme({ colorSchemeSelector: '[data-theme-%s]' });
 
       expect(theme.getColorSchemeSelector('light')).to.equal('[data-theme-light] &');
       expect(theme.getColorSchemeSelector('dark')).to.equal('[data-theme-dark] &');

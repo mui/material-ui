@@ -2,7 +2,7 @@ import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 
 export default <
     T extends {
-      cssRule?: 'media' | string;
+      colorSchemeSelector?: 'media' | string;
       colorSchemes?: Record<string, any>;
       defaultColorScheme?: string;
       cssVarPrefix?: string;
@@ -11,10 +11,13 @@ export default <
     theme: T,
   ) =>
   (colorScheme: keyof T['colorSchemes'] | undefined, css: Record<string, any>) => {
-    let rule = theme.cssRule;
-    if (theme.cssRule?.startsWith('data-') && !theme.cssRule.includes('%s')) {
+    let rule = theme.colorSchemeSelector;
+    if (
+      theme.colorSchemeSelector?.startsWith('data-') &&
+      !theme.colorSchemeSelector.includes('%s')
+    ) {
       // 'data-mui-color-scheme' -> '[data-mui-color-scheme="%s"]'
-      rule = `[${theme.cssRule}="%s"]`;
+      rule = `[${theme.colorSchemeSelector}="%s"]`;
     }
     if (theme.defaultColorScheme === colorScheme) {
       if (colorScheme === 'dark') {

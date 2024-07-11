@@ -3,12 +3,12 @@ import { DEFAULT_ATTRIBUTE } from '../InitColorSchemeScript/InitColorSchemeScrip
 
 interface Theme extends DefaultCssVarsTheme {
   cssVarPrefix?: string;
-  cssRule?: 'media' | string;
+  colorSchemeSelector?: 'media' | string;
   shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
 }
 
 function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, any>>({
-  cssRule = `[${DEFAULT_ATTRIBUTE}="%s"]`,
+  colorSchemeSelector = `[${DEFAULT_ATTRIBUTE}="%s"]`,
   ...theme
 }: T) {
   const output: any = theme;
@@ -17,19 +17,19 @@ function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, an
     {
       ...theme,
       prefix: theme.cssVarPrefix,
-      cssRule,
+      colorSchemeSelector,
     },
   );
   output.vars = result.vars;
   output.generateThemeVars = result.generateThemeVars;
   output.generateStyleSheets = result.generateStyleSheets;
-  output.cssRule = cssRule;
+  output.colorSchemeSelector = colorSchemeSelector;
   output.getColorSchemeSelector = (colorScheme: string) => {
-    if (cssRule === 'media') {
+    if (colorSchemeSelector === 'media') {
       return `@media (prefers-color-scheme: ${colorScheme})`;
     }
-    if (cssRule) {
-      return `${cssRule.replace('%s', colorScheme)} &`;
+    if (colorSchemeSelector) {
+      return `${colorSchemeSelector.replace('%s', colorScheme)} &`;
     }
     return '&';
   };

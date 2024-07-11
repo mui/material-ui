@@ -67,7 +67,7 @@ describe('createCssVarsProvider', () => {
     it('provide getColorSchemeSelector util', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: createCssVarsTheme({
-          cssRule: '[data-custom-color-scheme="%s"]',
+          colorSchemeSelector: '[data-custom-color-scheme="%s"]',
           colorSchemes: { light: { palette: { primary: { 500: '#ff5252' } } } },
         }),
         defaultColorScheme: 'light',
@@ -409,7 +409,7 @@ describe('createCssVarsProvider', () => {
     it('use custom attribute', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: createCssVarsTheme({
-          cssRule: 'data-foo-bar',
+          colorSchemeSelector: 'data-foo-bar',
           colorSchemes: { light: {} },
         }),
         defaultColorScheme: 'light',

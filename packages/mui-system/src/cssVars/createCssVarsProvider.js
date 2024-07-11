@@ -84,7 +84,7 @@ export default function createCssVarsProvider(options) {
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
     const defaultMode =
-      enableSystem || restThemeProp.cssRule === 'media'
+      enableSystem || restThemeProp.colorSchemeSelector === 'media'
         ? 'system'
         : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode || designSystemMode;
 
@@ -156,13 +156,20 @@ export default function createCssVarsProvider(options) {
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
-    const cssRule = restThemeProp.cssRule;
+    const colorSchemeSelector = restThemeProp.colorSchemeSelector;
     React.useEffect(() => {
-      if (colorScheme && colorSchemeNode && cssRule && cssRule !== 'media') {
-        const selector = cssRule.replace('%s', colorScheme);
+      if (
+        colorScheme &&
+        colorSchemeNode &&
+        colorSchemeSelector &&
+        colorSchemeSelector !== 'media'
+      ) {
+        const selector = colorSchemeSelector.replace('%s', colorScheme);
         if (selector.startsWith('.')) {
           colorSchemeNode.classList.remove(
-            ...allColorSchemes.map((scheme) => cssRule.substring(1).replace('%s', scheme)),
+            ...allColorSchemes.map((scheme) =>
+              colorSchemeSelector.substring(1).replace('%s', scheme),
+            ),
           );
           colorSchemeNode.classList.add(selector.substring(1));
         } else {
@@ -182,7 +189,7 @@ export default function createCssVarsProvider(options) {
           }
         }
       }
-    }, [colorScheme, cssRule, colorSchemeNode, allColorSchemes]);
+    }, [colorScheme, colorSchemeSelector, colorSchemeNode, allColorSchemes]);
 
     // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
     // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313

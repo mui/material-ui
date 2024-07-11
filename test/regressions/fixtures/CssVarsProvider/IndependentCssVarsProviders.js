@@ -27,7 +27,7 @@ const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
 
 const nestedTheme = createCssVarsTheme({
   cssVarPrefix: 'nested',
-  cssRule: '[data-nested-color-scheme="%s"]',
+  colorSchemeSelector: '[data-nested-color-scheme="%s"]',
   colorSchemes: {
     light: {
       background: {

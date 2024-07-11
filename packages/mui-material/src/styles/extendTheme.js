@@ -103,66 +103,73 @@ function getOverlays(mode) {
   return mode === 'dark' ? defaultDarkOverlays : [];
 }
 
+function attachBuiltInColorScheme(colorSchemes, input, colorScheme) {
+  const mode = colorScheme === 'dark' ? 'dark' : 'light';
+  const { palette, ...muiTheme } = createThemeWithoutVars({
+    palette: {
+      mode,
+      ...(typeof input === 'object' && input?.palette),
+    },
+  });
+  colorSchemes[colorScheme] = {
+    ...(typeof input === 'object' && input),
+    palette,
+    opacity: {
+      ...getOpacity(mode),
+      ...(typeof input === 'object' && input?.opacity),
+    },
+    overlays: (typeof input === 'object' ? input?.overlays : undefined) || getOverlays(mode),
+  };
+  return muiTheme;
+}
+
 /**
  * A default `extendTheme` comes with a single color scheme, either `light` or `dark` based on the `defaultColorScheme`.
  * This is better suited for apps that only need a single color scheme.
  *
  * To enable built-in `light` and `dark` color schemes, either:
- * 1. provide a `cssRule` to define how the color schemes will change.
- * 2. provide `colorSchemes.dark` will set `cssRule: 'media'` by default.
+ * 1. provide a `colorSchemeSelector` to define how the color schemes will change.
+ * 2. provide `colorSchemes.dark` will set `colorSchemeSelector: 'media'` by default.
  */
 export default function extendTheme(options = {}, ...args) {
   const {
     defaultColorScheme = 'light',
     disableCssColorScheme = false,
-    colorSchemes: colorSchemesInput = {},
+    colorSchemes: colorSchemesInput = { light: true },
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    cssRule,
+    colorSchemeSelector = colorSchemesInput.light && colorSchemesInput.dark ? 'media' : undefined,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
+  const {
+    [defaultColorScheme]: defaultColorSchemeInput,
+    light: builtInLight,
+    dark: builtInDark,
+    ...customColorSchemes
+  } = colorSchemesInput;
+  const colorSchemes = { ...customColorSchemes };
 
-  const colorSchemes = { ...colorSchemesInput };
-  const defaultMode = defaultColorScheme === 'dark' ? 'dark' : 'light';
-  const { palette: defaultPalette, ...muiTheme } = createThemeWithoutVars({
-    ...input,
-    palette: { mode: defaultMode, ...colorSchemesInput[defaultColorScheme]?.palette },
-  });
-  colorSchemes[defaultColorScheme] = {
-    ...colorSchemesInput[defaultColorScheme],
-    palette: defaultPalette,
-    opacity: {
-      ...getOpacity(defaultPalette.mode),
-      ...colorSchemesInput[defaultColorScheme]?.opacity,
-    },
-    overlays: colorSchemesInput[defaultColorScheme]?.overlays || getOverlays(defaultPalette.mode),
-  };
+  // Create the palette for the default color scheme, either `light`, `dark`, or custom color scheme.
+  const muiTheme = attachBuiltInColorScheme(
+    colorSchemes,
+    defaultColorSchemeInput,
+    defaultColorScheme,
+  );
 
-  const oppositeColorScheme = defaultColorScheme === 'dark' ? 'light' : 'dark';
-  const rule =
-    cssRule || (colorSchemesInput[oppositeColorScheme] ? `${defaultConfig.attribute}` : undefined);
-  if (rule) {
-    const { palette: oppositePalette } = createThemeWithoutVars({
-      palette: { mode: oppositeColorScheme, ...colorSchemesInput[oppositeColorScheme]?.palette },
-    });
-    colorSchemes[oppositeColorScheme] = {
-      ...colorSchemesInput[oppositeColorScheme],
-      palette: oppositePalette,
-      opacity: {
-        ...getOpacity(oppositeColorScheme),
-        ...colorSchemesInput[oppositeColorScheme]?.opacity,
-      },
-      overlays:
-        colorSchemesInput[oppositeColorScheme]?.overlays || getOverlays(oppositeColorScheme),
-    };
+  if (builtInLight && !colorSchemes.light) {
+    attachBuiltInColorScheme(colorSchemes, builtInLight, 'light');
+  }
+
+  if (builtInDark && !colorSchemes.dark) {
+    attachBuiltInColorScheme(colorSchemes, builtInDark, 'dark');
   }
 
   let theme = {
     defaultColorScheme,
     ...muiTheme,
     cssVarPrefix,
-    cssRule,
+    colorSchemeSelector,
     getCssVar,
     colorSchemes,
     font: { ...prepareTypographyVars(muiTheme.typography), ...muiTheme.font },
@@ -462,15 +469,15 @@ export default function extendTheme(options = {}, ...args) {
     return createSpacing(input.spacing, createUnarySpacing(this));
   };
   theme.getColorSchemeSelector = (colorScheme) => {
-    if (cssRule === 'media') {
+    if (colorSchemeSelector === 'media') {
       const mode = colorSchemes[colorScheme]?.palette?.mode || 'light';
       return `@media (prefers-color-scheme: ${mode})`;
     }
-    if (cssRule) {
-      if (cssRule.startsWith('data-') && !cssRule.includes('%s')) {
-        return `[${cssRule}="${colorScheme}"] &`;
+    if (colorSchemeSelector) {
+      if (colorSchemeSelector.startsWith('data-') && !colorSchemeSelector.includes('%s')) {
+        return `[${colorSchemeSelector}="${colorScheme}"] &`;
       }
-      return `${cssRule.replace('%s', colorScheme)} &`;
+      return `${colorSchemeSelector.replace('%s', colorScheme)} &`;
     }
     return '&';
   };

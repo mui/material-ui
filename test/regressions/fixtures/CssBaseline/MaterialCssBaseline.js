@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 
 const theme = extendTheme({
-  cssRule: '[data-mui-color-scheme="%s"]',
+  colorSchemeSelector: '[data-mui-color-scheme="%s"]',
   disableCssColorScheme: true,
 });
 

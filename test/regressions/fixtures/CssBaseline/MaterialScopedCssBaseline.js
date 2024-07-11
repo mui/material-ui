@@ -14,7 +14,7 @@ const ocean = createTheme({
 });
 
 const theme = extendTheme({
-  cssRule: '[data-mui-color-scheme="%s"]',
+  colorSchemeSelector: '[data-mui-color-scheme="%s"]',
   disableCssColorScheme: true,
   colorSchemes: {
     ocean: {

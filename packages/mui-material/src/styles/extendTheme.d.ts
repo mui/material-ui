@@ -292,13 +292,8 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
   /**
    * Color schemes configuration
    */
-  colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
-  /**
-   * If `true`, the CSS color-scheme will not be set.
-   * https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
-   * @default false
-   */
-  disableCssColorScheme?: boolean;
+  colorSchemes?: Partial<Record<DefaultColorScheme, boolean | ColorSystemOptions>> &
+    (ExtendedColorScheme extends string ? Record<ExtendedColorScheme, ColorSystemOptions> : {});
   /**
    * The strategy to generate CSS variables
    *
@@ -311,7 +306,13 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    * @example '[data-mode-%s]'
    * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
    */
-  cssRule?: 'media' | string;
+  colorSchemeSelector?: 'media' | string;
+  /**
+   * If `true`, the CSS color-scheme will not be set.
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * @default false
+   */
+  disableCssColorScheme?: boolean;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
@@ -430,6 +431,7 @@ export type ThemeCssVar = OverridableStringUnion<
  */
 export interface CssVarsTheme extends ColorSystem {
   colorSchemes: Record<SupportedColorScheme, ColorSystem>;
+  colorSchemeSelector: 'media' | string;
   cssVarPrefix: string;
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;

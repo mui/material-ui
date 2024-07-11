@@ -146,7 +146,7 @@ describe('prepareCssVars', () => {
           base: '1rem',
         },
       },
-      { cssRule: 'data-color-scheme' },
+      { colorSchemeSelector: 'data-color-scheme' },
     );
 
     const stylesheets = result.generateStyleSheets();

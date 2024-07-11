@@ -10,7 +10,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
   theme: T,
   parserConfig: {
     prefix?: string;
-    cssRule?: 'media' | string;
+    colorSchemeSelector?: 'media' | string;
     disableCssColorScheme?: boolean;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
     getSelector?: (
@@ -19,7 +19,11 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     ) => string | Record<string, any>;
   } = {},
 ) {
-  const { getSelector = defaultGetSelector, disableCssColorScheme, cssRule } = parserConfig;
+  const {
+    getSelector = defaultGetSelector,
+    disableCssColorScheme,
+    colorSchemeSelector,
+  } = parserConfig;
   // @ts-ignore - ignore components do not exist
   const { colorSchemes = {}, components, defaultColorScheme = 'light', ...otherTheme } = theme;
   const {
@@ -45,10 +49,10 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
   }
 
   function defaultGetSelector(colorScheme: keyof T['colorSchemes'] | undefined) {
-    let rule = cssRule;
-    if (cssRule?.startsWith('data-') && !cssRule.includes('%s')) {
+    let rule = colorSchemeSelector;
+    if (colorSchemeSelector?.startsWith('data-') && !colorSchemeSelector.includes('%s')) {
       // 'data-joy-color-scheme' -> '[data-joy-color-scheme="%s"]'
-      rule = `[${cssRule}="%s"]`;
+      rule = `[${colorSchemeSelector}="%s"]`;
     }
     if (colorScheme) {
       if (rule === 'media') {
