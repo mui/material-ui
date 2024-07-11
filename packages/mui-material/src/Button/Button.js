@@ -8,7 +8,7 @@ import { alpha } from '@mui/system/colorManipulator';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled, useTheme } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import ButtonBase, {buttonBaseClasses} from '../ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
@@ -366,7 +366,7 @@ export const ButtonRootMD3 = styled(ButtonBase, {
 })(({ ownerState, theme }) => {
   const tokens = theme.vars || theme;
 
-  const containerColor = { 
+  const containerColor = {
     elevated: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${tokens.sys.color.surface}`,
     filled: tokens.sys.color[ownerState.color ?? 'primary'],
     filledTonal: tokens.sys.color.secondaryContainer,
@@ -376,10 +376,7 @@ export const ButtonRootMD3 = styled(ButtonBase, {
 
   const labelTextColor = {
     elevated: tokens.sys.color.primary,
-    filled:
-      tokens.sys.color[
-        `on${capitalize(ownerState.color ?? 'primary')}`
-      ],
+    filled: tokens.sys.color[`on${capitalize(ownerState.color ?? 'primary')}`],
     filledTonal: tokens.sys.color.onSecondaryContainer,
     outlined: tokens.sys.color[ownerState.color ?? 'primary'],
     text: tokens.sys.color[ownerState.color ?? 'primary'],
@@ -656,7 +653,7 @@ const ButtonEndIconMD3 = styled('span', {
 const useIsMd3 = () => {
   const theme = useTheme();
   return !!theme.sys;
-}
+};
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`

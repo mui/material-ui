@@ -12,11 +12,7 @@ import {
 } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
-import {
-  SupportedColorScheme,
-  ColorSystem as MD2ColorSystem,
-  Overlays,
-} from './extendThemeMD2';
+import { SupportedColorScheme, ColorSystem as MD2ColorSystem, Overlays } from './extendThemeMD2';
 import defaultGetSelector from './createGetSelector';
 import defaultSxConfig from './md3/sxConfig';
 import { Theme, MD3Palettes, MD3ColorSchemeTokens, CssVarsThemeOptions } from './md3/Theme.types';

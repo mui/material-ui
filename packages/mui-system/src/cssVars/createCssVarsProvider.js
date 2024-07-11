@@ -80,7 +80,7 @@ export default function createCssVarsProvider(options) {
     const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
-    
+
     const scopedTheme = themeProp[themeId];
     const {
       colorSchemes = {},
@@ -88,7 +88,7 @@ export default function createCssVarsProvider(options) {
       cssVarPrefix,
       ...restThemeProp
     } = scopedTheme || themeProp;
-    console.log("Rest theme prop")
+    console.log('Rest theme prop');
     console.log(restThemeProp);
     const allColorSchemes = Object.keys(colorSchemes);
     const defaultLightColorScheme =
@@ -167,10 +167,7 @@ export default function createCssVarsProvider(options) {
         Object.keys(scheme).forEach((schemeKey) => {
           if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
             // shallow merge the 1st level structure of the theme.
-            theme[schemeKey] = deepmerge(
-              theme[schemeKey],
-              scheme[schemeKey],
-            );
+            theme[schemeKey] = deepmerge(theme[schemeKey], scheme[schemeKey]);
           } else {
             theme[schemeKey] = scheme[schemeKey];
           }

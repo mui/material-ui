@@ -13,14 +13,14 @@ export default function MD3Example() {
         <Button>Button</Button>
         <Button variant="elevated">Button</Button>
         <Button variant="filled">Button</Button>
-        <Button variant='outlined'>Button</Button>
+        <Button variant="outlined">Button</Button>
       </CssVarsProvider>
       <CssVarsProvider theme={md2}>
         <Button>Button</Button>
         <Button variant="contained">Button</Button>
         <Button variant="filled">Button</Button>
-        <Button variant='outlined'>Button</Button>
+        <Button variant="outlined">Button</Button>
       </CssVarsProvider>
     </>
-  )
+  );
 }
