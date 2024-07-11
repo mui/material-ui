@@ -29,7 +29,7 @@ import md3State from './md3/state';
 import { elevationLight, elevationDark } from './md3/elevation';
 import createMotions from './md3/motion';
 import md3shape from './md3/shape';
-import defaultShouldSkipGeneratingVar from './md3/shouldSkipGeneratingVar';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import { stringifyTheme } from './stringifyTheme';
 
 const defaultLightOverlays: Overlays = [...Array(25)].map(() => undefined) as Overlays;

@@ -1,32 +1,27 @@
 'use client';
-// do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// @ts-ignore
 import * as React from 'react';
-import {
-  unstable_createCssVarsProvider as createCssVarsProvider,
-  unstable_styleFunctionSx as styleFunctionSx,
-  SxProps,
-} from '@mui/system';
-import THEME_ID from './identifier';
-import { SupportedColorScheme } from './extendThemeMD2';
+import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
+import styleFunctionSx from '@mui/system/styleFunctionSx';
+import extendTheme, { SupportedColorScheme, CssVarsTheme } from './extendThemeMD2';
 import createTypography from './createTypography';
-import excludeVariablesFromRoot from './excludeVariablesFromRoot';
-import { Theme } from './md3/Theme.types';
-import defaultTheme from './md3/defaultTheme';
+import THEME_ID from './identifier';
+import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  SupportedColorScheme,
-  typeof THEME_ID
->({
+const defaultTheme = extendTheme();
+
+const {
+  CssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
+} = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
   themeId: THEME_ID,
   theme: defaultTheme,
-  attribute: 'data-mui-color-scheme',
-  modeStorageKey: 'mui-mode',
-  colorSchemeStorageKey: 'mui-color-scheme',
+  attribute: defaultConfig.attribute,
+  colorSchemeStorageKey: defaultConfig.colorSchemeStorageKey,
+  modeStorageKey: defaultConfig.modeStorageKey,
   defaultColorScheme: {
-    light: 'light',
-    dark: 'dark',
+    light: defaultConfig.defaultLightColorScheme,
+    dark: defaultConfig.defaultDarkColorScheme,
   },
   resolveTheme: (theme) => {
     const newTheme = {
@@ -34,12 +29,51 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
       typography: createTypography(theme.palette, theme.typography),
     };
 
-    newTheme.unstable_sx = function sx(props: SxProps<Theme>) {
+    newTheme.unstable_sx = function sx(props: SxProps<CssVarsTheme>) {
       return styleFunctionSx({ sx: props, theme: this });
     };
+
     return newTheme;
   },
-  excludeVariablesFromRoot,
 });
 
-export { useColorScheme, getInitColorSchemeScript, CssVarsProvider };
+let warnedOnce = false;
+
+// TODO: remove in v7
+// eslint-disable-next-line @typescript-eslint/naming-convention
+function Experimental_CssVarsProvider(props: any) {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'MUI: The Experimental_CssVarsProvider component has been stabilized.',
+        '',
+        "You should use `import { CssVarsProvider } from '@mui/material/styles'`",
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
+
+  return <CssVarsProvider {...props} />;
+}
+
+let warnedInitScriptOnce = false;
+
+// TODO: remove in v7
+const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (params) => {
+  if (!warnedInitScriptOnce) {
+    console.warn(
+      [
+        'MUI: The getInitColorSchemeScript function has been deprecated.',
+        '',
+        "You should use `import InitColorSchemeScript from '@mui/material/InitColorSchemeScript'`",
+        'and replace the function call with `<InitColorSchemeScript />` instead.',
+      ].join('\n'),
+    );
+
+    warnedInitScriptOnce = true;
+  }
+  return deprecatedGetInitColorSchemeScript(params);
+};
+
+export { useColorScheme, CssVarsProvider, getInitColorSchemeScript, Experimental_CssVarsProvider };
