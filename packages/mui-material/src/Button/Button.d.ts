@@ -78,7 +78,7 @@ export interface ButtonOwnProps {
    * The variant to use.
    * @default 'text'
    */
-  variant?: OverridableStringUnion<'text' | 'outlined' | 'contained', ButtonPropsVariantOverrides>;
+  variant?: OverridableStringUnion<'text' | 'outlined' | 'contained' | 'filled' | 'filledTonal' | 'elevated', ButtonPropsVariantOverrides>;
 }
 
 export type ButtonTypeMap<
