@@ -26,10 +26,10 @@ function ModeToggle() {
     <Button
       variant="soft"
       onClick={() => {
-        setMode(mode === 'light' ? 'dark' : 'light');
+        setMode(mode === 'system' ? 'dark' : 'light');
       }}
     >
-      {mode === 'light' ? 'Turn dark' : 'Turn light'}
+      {mode === 'system' ? 'Turn dark' : 'Turn light'}
     </Button>
   );
 }
