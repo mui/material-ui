@@ -25,7 +25,6 @@ export default function createCssVarsProvider(options) {
     theme: defaultTheme = {},
     modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey: defaultColorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-    defaultMode: designSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     disableTransitionOnChange: designSystemTransitionOnChange = false,
     resolveTheme,
@@ -85,7 +84,7 @@ export default function createCssVarsProvider(options) {
     const defaultMode =
       colorSchemes[defaultLightColorScheme] && colorSchemes[defaultDarkColorScheme]
         ? 'system'
-        : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode || designSystemMode;
+        : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode;
 
     // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
     const {
@@ -334,7 +333,6 @@ export default function createCssVarsProvider(options) {
   const getInitColorSchemeScript = (params) =>
     InitColorSchemeScript({
       colorSchemeStorageKey: defaultColorSchemeStorageKey,
-      defaultMode: designSystemMode,
       defaultLightColorScheme,
       defaultDarkColorScheme,
       modeStorageKey: defaultModeStorageKey,

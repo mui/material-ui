@@ -467,7 +467,7 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'light')).to.equal(
+      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system')).to.equal(
         true,
       );
 
@@ -746,12 +746,11 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('text').textContent).not.to.equal('var(--components-foo)');
     });
 
-    it('`defaultMode` is specified', () => {
+    it('`mode` is `system` by default if `colorSchemes` contains all the default', () => {
       const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: createCssVarsTheme({
           colorSchemes: { light: {}, dark: {} },
         }),
-        defaultMode: 'dark',
         defaultColorScheme: { light: 'light', dark: 'dark' },
       });
       function Text() {
@@ -763,19 +762,18 @@ describe('createCssVarsProvider', () => {
           <Text />
         </CssVarsProvider>,
       );
-      expect(container.firstChild.textContent).to.equal('dark');
+      expect(container.firstChild.textContent).to.equal('system');
     });
 
-    it('`defaultMode` should use colorSchemes.palette.mode', () => {
+    it('should use colorSchemes.palette.mode if `colorSchemes` does not contain all the default', () => {
       const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: createCssVarsTheme({
           defaultColorScheme: 'contrast',
           colorSchemes: {
-            paper: { palette: { mode: 'light' } },
             contrast: { palette: { mode: 'dark' } },
           },
         }),
-        defaultColorScheme: { paper: 'light', contrast: 'dark' },
+        defaultColorScheme: { light: 'paper', dark: 'contrast' },
       });
       function Text() {
         const { mode } = useColorScheme();
@@ -866,7 +864,9 @@ describe('createCssVarsProvider', () => {
 
       // state changes in nested provider should not affect the upper context
       // if `disableNestedContext` is true.
-      expect(getByTestId('outer')).to.have.text('light');
+      expect(getByTestId('outer')).to.have.text('system');
+
+      expect(getByTestId('inner')).to.have.text('dark');
     });
   });
 });
