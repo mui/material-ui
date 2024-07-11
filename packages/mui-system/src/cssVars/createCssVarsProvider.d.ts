@@ -50,7 +50,7 @@ export interface CreateCssVarsProviderResult<
           {
             cssVarPrefix?: string;
             colorSchemes: Record<ColorScheme, Record<string, any>>;
-            colorSchemeSelector?: 'media' | string;
+            colorSchemeSelector?: 'media' | 'class' | 'data' | string;
           }
         >;
         /**

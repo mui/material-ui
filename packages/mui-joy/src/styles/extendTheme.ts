@@ -12,7 +12,7 @@ import {
 } from '@mui/system';
 import cssContainerQueries from '@mui/system/cssContainerQueries';
 import { unstable_applyStyles as applyStyles } from '@mui/system/createTheme';
-import { prepareTypographyVars } from '@mui/system/cssVars';
+import { prepareTypographyVars, createGetColorSchemeSelector } from '@mui/system/cssVars';
 import { createUnarySpacing } from '@mui/system/spacing';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
@@ -95,7 +95,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    * @example '[data-mode-%s]'
    * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
    */
-  colorSchemeSelector?: 'media' | string;
+  colorSchemeSelector?: 'media' | 'class' | 'data' | string;
   /**
    * @default 'light'
    */
@@ -678,19 +678,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       theme: this,
     });
   };
-  theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) => {
-    if (colorSchemeSelector === 'media') {
-      const mode = colorSchemes[colorScheme as keyof typeof colorSchemes]?.palette?.mode || 'light';
-      return `@media (prefers-color-scheme: ${mode})`;
-    }
-    if (colorSchemeSelector) {
-      if (colorSchemeSelector.startsWith('data-') && !colorSchemeSelector.includes('%s')) {
-        return `[${colorSchemeSelector}="${colorScheme}"] &`;
-      }
-      return `${colorSchemeSelector.replace('%s', colorScheme)} &`;
-    }
-    return '&';
-  };
+  theme.getColorSchemeSelector = createGetColorSchemeSelector(colorSchemeSelector);
 
   const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
   theme.variants = deepmerge(

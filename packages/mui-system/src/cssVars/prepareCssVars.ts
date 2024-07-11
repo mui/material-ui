@@ -10,7 +10,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
   theme: T,
   parserConfig: {
     prefix?: string;
-    colorSchemeSelector?: 'media' | string;
+    colorSchemeSelector?: 'media' | 'class' | 'data' | string;
     disableCssColorScheme?: boolean;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
     getSelector?: (
@@ -22,7 +22,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
   const {
     getSelector = defaultGetSelector,
     disableCssColorScheme,
-    colorSchemeSelector,
+    colorSchemeSelector: selector,
   } = parserConfig;
   // @ts-ignore - ignore components do not exist
   const { colorSchemes = {}, components, defaultColorScheme = 'light', ...otherTheme } = theme;
@@ -49,10 +49,16 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
   }
 
   function defaultGetSelector(colorScheme: keyof T['colorSchemes'] | undefined) {
-    let rule = colorSchemeSelector;
-    if (colorSchemeSelector?.startsWith('data-') && !colorSchemeSelector.includes('%s')) {
+    let rule = selector;
+    if (selector === 'class') {
+      rule = '.%s';
+    }
+    if (selector === 'data') {
+      rule = '[data-%s]';
+    }
+    if (selector?.startsWith('data-') && !selector.includes('%s')) {
       // 'data-joy-color-scheme' -> '[data-joy-color-scheme="%s"]'
-      rule = `[${colorSchemeSelector}="%s"]`;
+      rule = `[${selector}="%s"]`;
     }
     if (colorScheme) {
       if (rule === 'media') {
@@ -80,9 +86,9 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
   const generateStyleSheets = () => {
     const stylesheets: Array<Record<string, any>> = [];
     const colorScheme = theme.defaultColorScheme || 'light';
-    function insertStyleSheet(selector: string | object, css: Record<string, string | number>) {
+    function insertStyleSheet(key: string | object, css: Record<string, string | number>) {
       if (Object.keys(css).length) {
-        stylesheets.push(typeof selector === 'string' ? { [selector]: { ...css } } : selector);
+        stylesheets.push(typeof key === 'string' ? { [key]: { ...css } } : key);
       }
     }
     insertStyleSheet(getSelector(undefined, { ...rootCss }), rootCss);

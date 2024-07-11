@@ -306,7 +306,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    * @example '[data-mode-%s]'
    * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
    */
-  colorSchemeSelector?: 'media' | string;
+  colorSchemeSelector?: 'media' | 'class' | 'data' | string;
   /**
    * If `true`, the CSS color-scheme will not be set.
    * https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
@@ -431,7 +431,7 @@ export type ThemeCssVar = OverridableStringUnion<
  */
 export interface CssVarsTheme extends ColorSystem {
   colorSchemes: Record<SupportedColorScheme, ColorSystem>;
-  colorSchemeSelector: 'media' | string;
+  colorSchemeSelector: 'media' | 'class' | 'data' | string;
   cssVarPrefix: string;
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;

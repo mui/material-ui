@@ -1,4 +1,5 @@
 import prepareCssVars, { DefaultCssVarsTheme } from './prepareCssVars';
+import { createGetColorSchemeSelector } from './getColorSchemeSelector';
 import { DEFAULT_ATTRIBUTE } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 interface Theme extends DefaultCssVarsTheme {
@@ -24,15 +25,7 @@ function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, an
   output.generateThemeVars = result.generateThemeVars;
   output.generateStyleSheets = result.generateStyleSheets;
   output.colorSchemeSelector = colorSchemeSelector;
-  output.getColorSchemeSelector = (colorScheme: string) => {
-    if (colorSchemeSelector === 'media') {
-      return `@media (prefers-color-scheme: ${colorScheme})`;
-    }
-    if (colorSchemeSelector) {
-      return `${colorSchemeSelector.replace('%s', colorScheme)} &`;
-    }
-    return '&';
-  };
+  output.getColorSchemeSelector = createGetColorSchemeSelector(colorSchemeSelector);
 
   return output as T & typeof result;
 }

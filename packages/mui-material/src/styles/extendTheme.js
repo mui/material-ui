@@ -1,7 +1,11 @@
 import deepmerge from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
-import { prepareCssVars, prepareTypographyVars } from '@mui/system/cssVars';
+import {
+  prepareCssVars,
+  prepareTypographyVars,
+  createGetColorSchemeSelector,
+} from '@mui/system/cssVars';
 import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
 } from '@mui/system/styleFunctionSx';
@@ -141,7 +145,9 @@ export default function extendTheme(options = {}, ...args) {
     disableCssColorScheme = false,
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    colorSchemeSelector = colorSchemesInput.light && colorSchemesInput.dark ? 'media' : undefined,
+    colorSchemeSelector: selector = colorSchemesInput.light && colorSchemesInput.dark
+      ? 'media'
+      : undefined,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -168,7 +174,7 @@ export default function extendTheme(options = {}, ...args) {
     defaultColorScheme,
     ...muiTheme,
     cssVarPrefix,
-    colorSchemeSelector,
+    colorSchemeSelector: selector,
     getCssVar,
     colorSchemes,
     font: { ...prepareTypographyVars(muiTheme.typography), ...muiTheme.font },
@@ -467,19 +473,7 @@ export default function extendTheme(options = {}, ...args) {
   theme.generateSpacing = function generateSpacing() {
     return createSpacing(input.spacing, createUnarySpacing(this));
   };
-  theme.getColorSchemeSelector = (colorScheme) => {
-    if (colorSchemeSelector === 'media') {
-      const mode = colorSchemes[colorScheme]?.palette?.mode || 'light';
-      return `@media (prefers-color-scheme: ${mode})`;
-    }
-    if (colorSchemeSelector) {
-      if (colorSchemeSelector.startsWith('data-') && !colorSchemeSelector.includes('%s')) {
-        return `[${colorSchemeSelector}="${colorScheme}"] &`;
-      }
-      return `${colorSchemeSelector.replace('%s', colorScheme)} &`;
-    }
-    return '&';
-  };
+  theme.getColorSchemeSelector = createGetColorSchemeSelector(selector);
   theme.spacing = theme.generateSpacing();
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
