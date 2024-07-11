@@ -409,7 +409,7 @@ export { default as useAutocomplete } from './useAutocomplete';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
-export { unstable_composeClasses } from '@mui/base/composeClasses';
+export { default as unstable_composeClasses } from './utils/composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
