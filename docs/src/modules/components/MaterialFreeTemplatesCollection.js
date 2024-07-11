@@ -98,9 +98,14 @@ export default function Templates() {
                 borderBottom: '1px solid',
                 borderColor: 'divider',
                 ...theme.applyStyles('dark', {
-                  content: `url(/static/screenshots${layout.href.replace(/\/$/, '')}-dark.jpg)`,
+                  content: 'var(--src)',
                 }),
               })}
+              style={{
+                '--src': layout.hasDarkMode
+                  ? `url(/static/screenshots${layout.href.replace(/\/$/, '')}-dark.jpg)`
+                  : `url(/static/screenshots${layout.href.replace(/\/$/, '')}.jpg)`,
+              }}
             />
             <Box sx={{ p: 2, pt: 1.5 }}>
               <Typography component="h3" variant="body1" sx={{ fontWeight: 'semiBold' }}>
