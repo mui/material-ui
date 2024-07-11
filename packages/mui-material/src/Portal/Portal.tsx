@@ -21,11 +21,11 @@ function getContainer(container: PortalProps['container']) {
  *
  * Demos:
  *
- * - [Portal](https://mui.com/base-ui/react-portal/)
+ * - [Portal](https://next.mui.com/material-ui/react-portal/)
  *
  * API:
  *
- * - [Portal API](https://mui.com/base-ui/react-portal/components-api/#portal)
+ * - [Portal API](https://next.mui.com/material-ui/api/portal/)
  */
 const Portal = React.forwardRef(function Portal(
   props: PortalProps,
