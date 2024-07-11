@@ -237,15 +237,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
 }) as PolymorphicComponent<PopperTooltipTypeMap>;
 
 /**
- * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
- *
- * Demos:
- *
- * - [Popper](https://mui.com/base-ui/react-popper/)
- *
- * API:
- *
- * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
+ * @ignore - internal component.
  */
 const Popper = React.forwardRef(function Popper<RootComponentType extends React.ElementType>(
   props: PopperProps<RootComponentType>,

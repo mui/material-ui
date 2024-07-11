@@ -69,4 +69,4 @@ if (process.env.NODE_ENV !== 'production') {
   (NoSsr as any)['propTypes' + ''] = exactProp(NoSsr.propTypes);
 }
 
-export { NoSsr };
+export default NoSsr;
