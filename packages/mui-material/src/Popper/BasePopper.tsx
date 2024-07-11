@@ -10,8 +10,8 @@ import {
 } from '@mui/utils';
 import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
 import PropTypes from 'prop-types';
-import composeClasses from '../utils/composeClasses';
-import { Portal } from '../Portal';
+import composeClasses from '@mui/utils/composeClasses';
+import Portal from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
 import { useSlotProps } from '../utils/useSlotProps';
 import { WithOptionalOwnerState } from '../utils/types';
@@ -66,12 +66,13 @@ function isVirtualElement(element: HTMLElement | VirtualElement): element is Vir
   return !isHTMLElement(element);
 }
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: any) => {
+  const { classes } = ownerState;
   const slots = {
     root: ['root'],
   };
 
-  return composeClasses(slots, getPopperUtilityClass);
+  return composeClasses(slots, getPopperUtilityClass, classes);
 };
 
 const defaultPopperOptions = {};
@@ -215,7 +216,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
     childProps.TransitionProps = TransitionProps;
   }
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(props);
   const Root = slots.root ?? 'div';
 
   const rootProps: WithOptionalOwnerState<PopperRootSlotProps> = useSlotProps({

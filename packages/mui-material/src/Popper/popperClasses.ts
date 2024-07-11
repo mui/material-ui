@@ -12,4 +12,6 @@ export function getPopperUtilityClass(slot: string): string {
   return generateUtilityClass('MuiPopper', slot);
 }
 
-export const popperClasses: PopperClasses = generateUtilityClasses('MuiPopper', ['root']);
+const popperClasses: PopperClasses = generateUtilityClasses('MuiPopper', ['root']);
+
+export default popperClasses;
