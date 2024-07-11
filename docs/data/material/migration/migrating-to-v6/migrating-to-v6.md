@@ -123,13 +123,14 @@ For alternative installation methods, refer to the [CDN documentation](/material
 
 #### New reason values added to onInputChange
 
-Three new possible values have been added to the `reason` argument in the `onInputChange` callback of the Autocomplete component:
+Three new possible values have been added to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
+These three were previously treated as `"reset"`, so if you are relying on that, you might need to adjust your code accordingly:
 
-- `"blur"`: like `"reset"` but triggered when the focus is moved off the input. `clearOnBlur` must be `true`. Before, it was treated as `"reset"`.
-- `"selectOption"`: triggered when the input value changes after an option has been selected. Before, it was treated as `"reset"`.
-- `"removeOption"`: triggered in multiple selection when a chip gets removed due to the corresponding option being selected. Before, it was treated as `"reset"`.
+- `"blur"`: like `"reset"` but triggered when the focus is moved off the input. `clearOnBlur` must be `true`.
+- `"selectOption"`: triggered when the input value changes after an option has been selected.
+- `"removeOption"`: triggered in multiple selection when a chip gets removed due to the corresponding option being selected.
 
-These are added on top of the existing ones: `"input"`, `"reset"`, or `"clear"`.
+These are added on top of the existing ones: `"input"`, `"reset"`, and `"clear"`.
 
 ### Chip
 
