@@ -13,7 +13,7 @@ describe('extendTheme', () => {
         'containerQueries',
         'components',
         'colorSchemes',
-        'cssRule',
+        'colorSchemeSelector',
         'defaultColorScheme',
         'focus',
         'font',
@@ -281,7 +281,7 @@ describe('extendTheme', () => {
     it('applyStyles', () => {
       const attribute = 'data-custom-color-scheme';
       const customTheme2 = extendTheme({
-        cssRule: attribute,
+        colorSchemeSelector: attribute,
       });
       let darkStyles = {};
       const Test = styled('div')(({ theme }) => {

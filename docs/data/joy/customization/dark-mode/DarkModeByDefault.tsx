@@ -7,7 +7,7 @@ import Typography from '@mui/joy/Typography';
 const theme = extendTheme({
   cssVarPrefix: 'demo',
   defaultColorScheme: 'dark',
-  cssRule: '.demo_%s-mode-by-default',
+  colorSchemeSelector: '.demo_%s-mode-by-default',
 });
 
 export default function DarkModeByDefault() {

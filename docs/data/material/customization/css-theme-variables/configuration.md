@@ -24,21 +24,19 @@ const theme = extendTheme({ cssVarPrefix: '' });
 
 ## Toggling dark mode manually
 
-To toggle between light and dark modes manually, set the `strategy` with a custom selector.
-
-Choose one of the following strategies:
+To toggle between light, dark and system modes manually, set the `colorSchemeSelector` with one of the following selectors:
 
 <codeblock>
 
 ```js class
 extendTheme({
-  cssRule: '.mode-%s',
+  colorSchemeSelector: '.mode-%s',
 });
 ```
 
 ```js data-attribute
 extendTheme({
-  cssRule: '[data-mode-%s]',
+  colorSchemeSelector: '[data-mode-%s]',
 });
 ```
 
@@ -59,9 +57,10 @@ function ModeSwitcher() {
       value={mode}
       onChange={(event) => {
         setMode(event.target.value);
-        // For TypeScript, cast `event.target.value as 'light' | 'dark'`:
+        // For TypeScript, cast `event.target.value as 'light' | 'dark' | 'system'`:
       }}
     >
+      <option value="system">System</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
     </select>
@@ -91,9 +90,10 @@ function ModeSwitcher() {
       value={mode}
       onChange={(event) => {
         setMode(event.target.value);
-        // For TypeScript, cast `event.target.value as 'light' | 'dark'`:
+        // For TypeScript, cast `event.target.value as 'light' | 'dark' | 'system'`:
       }}
     >
+      <option value="system">System</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
     </select>
@@ -206,93 +206,6 @@ export function onRenderBody({ setPreBodyComponents }) {
   setPreBodyComponents([<InitColorSchemeScript attribute=".mode-%s" />]);
 }
 ```
-
-### Supporting system preference and manual selection
-
-To support system preference together with manual toggle, set `enableSystem` on the `CssVarsProvider`:
-
-```jsx
-import { CssVarsProvider, extendTheme } from '@mui/material/styles';
-
-const theme = extendTheme({
-  cssRule: '.mode-%s',
-});
-
-function App() {
-  return (
-    <CssVarsProvider theme={theme} enableSystem>
-      {/* your application */}
-    </CssVarsProvider>
-  );
-}
-```
-
-Material UI will automatically switch between light and dark modes based on the user's system preference.
-
-:::warning
-In development, make sure to clear local storage and refresh the page after you configure the `enableSystem` prop.
-:::
-
-You can switch between `light`, `dark`, and `system` modes using the `useColorScheme` hook:
-
-<codeblock>
-
-```jsx client-side-app
-import { useColorScheme } from '@mui/material/styles';
-
-function ModeSwitcher() {
-  const { mode, setMode } = useColorScheme();
-
-  return (
-    <select
-      value={mode}
-      onChange={(event) => {
-        setMode(event.target.value);
-        // For TypeScript, cast `event.target.value as 'light' | 'dark' | 'system'`:
-      }}
-    >
-      <option value="system">System</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-    </select>
-  );
-}
-```
-
-```jsx server-side-app
-import { useColorScheme } from '@mui/material/styles';
-
-function ModeSwitcher() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    // for server-side rendering
-    // learn more at https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
-    return null;
-  }
-
-  return (
-    <select
-      value={mode}
-      onChange={(event) => {
-        setMode(event.target.value);
-        // For TypeScript, cast `event.target.value as 'light' | 'dark' | 'system'`:
-      }}
-    >
-      <option value="system">System</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-    </select>
-  );
-}
-```
-
-</codeblock>
 
 ## Forcing a specific color scheme
 

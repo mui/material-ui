@@ -95,7 +95,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    * @example '[data-mode-%s]'
    * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
    */
-  cssRule?: 'media' | string;
+  colorSchemeSelector?: 'media' | string;
   /**
    * @default 'light'
    */
@@ -130,7 +130,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     components: componentsInput,
     variants: variantsInput,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    cssRule = 'data-joy-color-scheme',
+    colorSchemeSelector = 'data-joy-color-scheme',
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -560,7 +560,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     : defaultScales;
 
   let theme = {
-    cssRule,
+    colorSchemeSelector,
     colorSchemes,
     defaultColorScheme: 'light',
     ...mergedScales,
@@ -606,7 +606,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     getCssVar,
     spacing: getSpacingVal(spacing),
     font: { ...prepareTypographyVars(mergedScales.typography), ...mergedScales.font },
-  } as unknown as Theme & { attribute: string; cssRule: string }; // Need type casting due to module augmentation inside the repo
+  } as unknown as Theme & { attribute: string; colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
   theme = cssContainerQueries(theme);
 
   /**
@@ -651,7 +651,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   // ===============================================================
   const parserConfig: Parameters<typeof prepareCssVars<Theme, ThemeVars>>[1] = {
     prefix: cssVarPrefix,
-    cssRule,
+    colorSchemeSelector,
     disableCssColorScheme: true,
     shouldSkipGeneratingVar,
   };
@@ -679,15 +679,15 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     });
   };
   theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) => {
-    if (cssRule === 'media') {
+    if (colorSchemeSelector === 'media') {
       const mode = colorSchemes[colorScheme as keyof typeof colorSchemes]?.palette?.mode || 'light';
       return `@media (prefers-color-scheme: ${mode})`;
     }
-    if (cssRule) {
-      if (cssRule.startsWith('data-') && !cssRule.includes('%s')) {
-        return `[${cssRule}="${colorScheme}"] &`;
+    if (colorSchemeSelector) {
+      if (colorSchemeSelector.startsWith('data-') && !colorSchemeSelector.includes('%s')) {
+        return `[${colorSchemeSelector}="${colorScheme}"] &`;
       }
-      return `${cssRule.replace('%s', colorScheme)} &`;
+      return `${colorSchemeSelector.replace('%s', colorScheme)} &`;
     }
     return '&';
   };

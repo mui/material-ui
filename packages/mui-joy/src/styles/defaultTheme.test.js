@@ -11,7 +11,7 @@ describe('defaultTheme', () => {
         'containerQueries',
         'components',
         'colorSchemes',
-        'cssRule',
+        'colorSchemeSelector',
         'focus',
         'font',
         'fontSize',
