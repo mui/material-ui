@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
-import Popper from '@mui/material/Popper';
+import Popper from '../Popper/BasePopper';
 import { styled } from '../styles';
 import { SlotProps } from './types';
 import useSlot from './useSlot';
