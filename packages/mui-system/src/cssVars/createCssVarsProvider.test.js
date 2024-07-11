@@ -588,50 +588,6 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('text-sm').textContent).to.equal('var(--fontSize-sm)');
     });
 
-    it('merge custom colorSchemes', () => {
-      const { CssVarsProvider } = createCssVarsProvider({
-        theme: createCssVarsTheme({
-          colorSchemes: {
-            light: {
-              palette: {
-                color: '#000000',
-              },
-            },
-          },
-        }),
-        defaultColorScheme: 'light',
-      });
-      function Swatch() {
-        const theme = useTheme();
-        return (
-          <div>
-            <div data-testid="swatch-color">{theme.vars.palette.color}</div>
-            <div data-testid="swatch-color-value">{theme.palette.color}</div>
-          </div>
-        );
-      }
-      const comfortColor = '#007FFF';
-      render(
-        <CssVarsProvider
-          defaultColorScheme="comfort"
-          theme={createCssVarsTheme({
-            colorSchemes: {
-              comfort: {
-                palette: {
-                  color: comfortColor,
-                },
-              },
-            },
-          })}
-        >
-          <Swatch />
-        </CssVarsProvider>,
-      );
-
-      expect(screen.getByTestId('swatch-color').textContent).to.equal('var(--palette-color)');
-      expect(screen.getByTestId('swatch-color-value').textContent).to.equal(comfortColor);
-    });
-
     it('extend palette property in colorSchemes', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: createCssVarsTheme({
@@ -785,47 +741,6 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
       expect(container.firstChild.textContent).to.equal('dark');
-    });
-
-    it('`defaultColorScheme` is specified as string', () => {
-      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
-        theme: createCssVarsTheme({
-          colorSchemes: { light: {} },
-        }),
-        defaultColorScheme: 'light',
-      });
-      function Text() {
-        const { colorScheme } = useColorScheme();
-        return <div>{colorScheme}</div>;
-      }
-      const { container } = render(
-        <CssVarsProvider theme={{ colorSchemes: { paper: {} } }} defaultColorScheme="paper">
-          <Text />
-        </CssVarsProvider>,
-      );
-      expect(container.firstChild.textContent).to.equal('paper');
-    });
-
-    it('`defaultColorScheme` is specified as object', () => {
-      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
-        theme: createCssVarsTheme({
-          colorSchemes: { light: {} },
-        }),
-        defaultColorScheme: 'light',
-      });
-      function Text() {
-        const { colorScheme } = useColorScheme();
-        return <div>{colorScheme}</div>;
-      }
-      const { container } = render(
-        <CssVarsProvider
-          theme={createCssVarsTheme({ colorSchemes: { paper: {} } })}
-          defaultColorScheme={{ light: 'paper' }}
-        >
-          <Text />
-        </CssVarsProvider>,
-      );
-      expect(container.firstChild.textContent).to.equal('paper');
     });
   });
 

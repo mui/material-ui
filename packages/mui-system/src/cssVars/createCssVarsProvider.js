@@ -25,8 +25,8 @@ export default function createCssVarsProvider(options) {
     theme: defaultTheme = {},
     modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey: defaultColorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-    defaultColorScheme: designSystemColorScheme,
     disableTransitionOnChange: designSystemTransitionOnChange = false,
+    defaultColorScheme,
     resolveTheme,
   } = options;
 
@@ -50,7 +50,6 @@ export default function createCssVarsProvider(options) {
       theme: themeProp = defaultTheme,
       modeStorageKey = defaultModeStorageKey,
       colorSchemeStorageKey = defaultColorSchemeStorageKey,
-      defaultColorScheme = designSystemColorScheme,
       disableTransitionOnChange = designSystemTransitionOnChange,
       storageWindow = typeof window === 'undefined' ? undefined : window,
       documentNode = typeof document === 'undefined' ? undefined : document,
@@ -285,10 +284,6 @@ export default function createCssVarsProvider(options) {
      */
     colorSchemeStorageKey: PropTypes.string,
     /**
-     * The initial color scheme used.
-     */
-    defaultColorScheme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    /**
      * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
      */
     disableNestedContext: PropTypes.bool,
@@ -322,13 +317,9 @@ export default function createCssVarsProvider(options) {
   };
 
   const defaultLightColorScheme =
-    typeof designSystemColorScheme === 'string'
-      ? designSystemColorScheme
-      : designSystemColorScheme.light;
+    typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
   const defaultDarkColorScheme =
-    typeof designSystemColorScheme === 'string'
-      ? designSystemColorScheme
-      : designSystemColorScheme.dark;
+    typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
 
   const getInitColorSchemeScript = (params) =>
     InitColorSchemeScript({
