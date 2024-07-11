@@ -1,5 +1,6 @@
 'use client';
-import { Popper as BasePopper, PopperProps as BasePopperProps } from '@mui/base/Popper';
+import { Popper as BasePopper } from './BasePopper';
+import { PopperProps as BasePopperProps } from './BasePopper.types'
 import { SxProps } from '@mui/system';
 import { useRtl } from '@mui/system/RtlProvider';
 import refType from '@mui/utils/refType';
