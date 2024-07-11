@@ -1,1 +1,1 @@
-export { Portal as default } from './Portal';
+export { default } from './Portal';

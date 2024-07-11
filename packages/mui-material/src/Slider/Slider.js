@@ -8,7 +8,7 @@ import { alpha, lighten, darken } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import { useSlider, valueToPercent } from './useSlider';
 import { useSlotProps } from '../utils/useSlotProps';
-import { isHostComponent } from '../utils/isHostComponent';
+import isHostComponent from '../utils/isHostComponent';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';

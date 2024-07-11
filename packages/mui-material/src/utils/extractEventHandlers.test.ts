@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { extractEventHandlers } from './extractEventHandlers';
+import extractEventHandlers from './extractEventHandlers';
 
 describe('extractEventHandlers', () => {
   it('extracts the fields starting with `on[A-Z]` and being a function', () => {

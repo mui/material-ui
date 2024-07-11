@@ -1,6 +1,6 @@
 type ItemComparer<Item> = (a: Item, b: Item) => boolean;
 
-export function areArraysEqual<Item>(
+function areArraysEqual<Item>(
   array1: ReadonlyArray<Item>,
   array2: ReadonlyArray<Item>,
   itemComparer: ItemComparer<Item> = (a, b) => a === b,
@@ -10,3 +10,5 @@ export function areArraysEqual<Item>(
     array1.every((value, index) => itemComparer(value, array2[index]))
   );
 }
+
+export default areArraysEqual;

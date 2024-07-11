@@ -5,7 +5,7 @@ import refType from '@mui/utils/refType';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { Popper as BasePopper } from './BasePopper';
+import BasePopper from './BasePopper';
 import { PopperProps as BasePopperProps } from './BasePopper.types';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';

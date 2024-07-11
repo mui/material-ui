@@ -7,7 +7,7 @@ import { EventHandlers } from './types';
  * @param object An object to extract event handlers from.
  * @param excludeKeys An array of keys to exclude from the returned object.
  */
-export function extractEventHandlers(
+function extractEventHandlers(
   object: Record<string, any> | undefined,
   excludeKeys: string[] = [],
 ): EventHandlers {
@@ -28,3 +28,5 @@ export function extractEventHandlers(
 
   return result;
 }
+
+export default extractEventHandlers;

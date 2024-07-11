@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
-import { isHostComponent } from './isHostComponent';
+import isHostComponent from './isHostComponent';
 
 /**
  * Type of the ownerState based on the type of an element it applies to.

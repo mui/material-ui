@@ -9,7 +9,7 @@ import {
   SnackbarCloseReason,
   UseSnackbarReturnValue,
 } from './useSnackbar.types';
-import { extractEventHandlers } from '../utils/extractEventHandlers';
+import extractEventHandlers from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 
 /**
@@ -23,7 +23,7 @@ import { EventHandlers } from '../utils/types';
  *
  * - [useSnackbar API](https://next.mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
  */
-export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
+function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
   const {
     autoHideDuration = null,
     disableWindowBlurListener = false,
@@ -162,3 +162,5 @@ export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbar
 
   return { getRootProps, onClickAway: handleClickAway };
 }
+
+export default useSnackbar;

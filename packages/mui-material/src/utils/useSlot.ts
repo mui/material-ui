@@ -3,8 +3,8 @@ import * as React from 'react';
 import { ClassValue } from 'clsx';
 import useForkRef from '@mui/utils/useForkRef';
 import { appendOwnerState } from './appendOwnerState';
-import { resolveComponentProps } from './resolveComponentProps';
-import { mergeSlotProps } from './mergeSlotProps';
+import resolveComponentProps from './resolveComponentProps';
+import mergeSlotProps from './mergeSlotProps';
 
 export type WithCommonProps<T> = T & {
   className?: string;

@@ -2,8 +2,8 @@ import * as React from 'react';
 import clsx, { ClassValue } from 'clsx';
 import { Simplify } from '@mui/types';
 import { EventHandlers } from './types';
-import { extractEventHandlers } from './extractEventHandlers';
-import { omitEventHandlers } from './omitEventHandlers';
+import extractEventHandlers from './extractEventHandlers';
+import omitEventHandlers from './omitEventHandlers';
 
 export type WithCommonProps<OtherProps> = OtherProps & {
   className?: string;
@@ -70,7 +70,7 @@ export type MergeSlotPropsResult<
  * @param parameters
  * @returns
  */
-export function mergeSlotProps<
+function mergeSlotProps<
   SlotProps,
   ExternalForwardedProps extends Record<string, unknown>,
   ExternalSlotProps extends Record<string, unknown>,
@@ -180,3 +180,5 @@ export function mergeSlotProps<
     internalRef: internalSlotProps.ref,
   };
 }
+
+export default mergeSlotProps;

@@ -536,4 +536,4 @@ Popper.propTypes /* remove-proptypes */ = {
   transition: PropTypes.bool,
 } as any;
 
-export { Popper };
+export default Popper;

@@ -7,7 +7,7 @@ import refType from '@mui/utils/refType';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import composeClasses from '@mui/utils/composeClasses';
 import TextareaAutosize from '../TextareaAutosize';
-import { isHostComponent } from '../utils/isHostComponent';
+import isHostComponent from '../utils/isHostComponent';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
