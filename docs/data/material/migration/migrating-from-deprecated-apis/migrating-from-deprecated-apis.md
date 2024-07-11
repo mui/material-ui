@@ -1144,6 +1144,62 @@ The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
  />;
 ```
 
+## ImageListItemBar
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#image-list-item-bar-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/image-list-item-bar-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the following props were deprecated:
+
+- `position` prop and `titleWrap` class
+- `actionPosition` prop and `titleWrap` class
+- `actionPosition` prop and `actionIcon` class
+
+Here's how to migrate:
+
+```diff
+-.MuiImageListItemBar-titleWrapBelow
++.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap
+-.MuiImageListItemBar-titleWrapActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap
+-.MuiImageListItemBar-titleWrapActionPosRight
++.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap
+-.MuiImageListItemBar-actionIconActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon
+```
+
+```diff
+ import { imageListItemBarClasses } from '@mui/material/ImageListItemBar';
+
+ MuiImageListItemBar: {
+   styleOverrides: {
+     root: {
+-      [`& .${imageListItemBarClasses.titleWrapBelow}`]: {
++      [`&.${imageListItemBarClasses.positionBelow} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosRight}`]: {
++      [`&.${imageListItemBarClasses.actionPositionRight} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.actionIconActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.actionIcon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
 ## Modal
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#modal-props) below to migrate the code as described in the following sections:
