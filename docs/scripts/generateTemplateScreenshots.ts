@@ -3,11 +3,25 @@ import path from 'path';
 import { chromium } from 'playwright';
 
 /**
+ * README
+ *
  * Usage:
  * - `yarn screenshot` to generate all screenshots
  * - `yarn screenshot material-ui` to generate all screenshots for Material-UI templates
  * - `yarn screenshot order-dashboard` to generate screenshots for file named `order-dashboard.tsx`
  * - `yarn screenshot material-ui dashboard` to generate screenshots for file named `dashboard.tsx` of Material UI templates
+ *
+ * Note:
+ * - The screenshot with `-dark` suffix is generated if the page has a button with id `toggle-mode`
+ *   <button id="toggle-mode" onClick={toggleMode}>Toggle Mode</button>
+ *
+ * - The screenshot with `-default` suffix is generated if the page has a button with id `toggle-default-theme`
+ *   <button id="toggle-default-theme" onClick={toggleDefaultTheme}>Toggle Default Theme</button>
+ *
+ * - The screenshot with `-default-dark` suffix is generated if the page has both buttons
+ *
+ * Debug:
+ * - Set `chromium.launch({ headless: false })` in line:50 to see the browser
  */
 
 const host = process.env.DEPLOY_PREVIEW || 'http://localhost:3000';
@@ -33,7 +47,7 @@ const names = new Set(process.argv.slice(2));
 (async () => {
   // eslint-disable-next-line no-console
   console.info('Host:', host);
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: true });
 
   await Promise.all(
     Object.entries(projects)
