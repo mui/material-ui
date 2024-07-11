@@ -1,2 +1,3 @@
-export { NoSsr as default } from '@mui/base/NoSsr';
-export * from '@mui/base/NoSsr';
+export { NoSsr as default } from './NoSsr';
+export * from './NoSsr';
+export * from './NoSsr.types';
