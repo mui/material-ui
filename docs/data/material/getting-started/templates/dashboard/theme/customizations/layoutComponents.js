@@ -3,11 +3,6 @@ import { gray } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const layoutComponentsCustomizations = {
-  MuiPaper: {
-    defaultProps: {
-      elevation: 0,
-    },
-  },
   MuiCard: {
     styleOverrides: {
       root: ({ theme }) => {

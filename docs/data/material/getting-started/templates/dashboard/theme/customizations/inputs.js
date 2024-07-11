@@ -74,6 +74,18 @@ export const inputsCustomizations = {
       }),
     },
   },
+  MuiInputLabel: {
+    styleOverrides: {
+      root: {
+        variants: [
+          {
+            props: { variant: 'outlined' },
+            style: { transform: 'scale(0.75)', position: 'unset' },
+          },
+        ],
+      },
+    },
+  },
   MuiOutlinedInput: {
     styleOverrides: {
       root: ({ theme }) => ({

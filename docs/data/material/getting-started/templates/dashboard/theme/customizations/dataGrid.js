@@ -1,3 +1,4 @@
+import { paperClasses } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 
 import { menuItemClasses } from '@mui/material/MenuItem';
@@ -44,10 +45,10 @@ export const dataGridCustomizations = {
       cell: ({ theme }) => ({ borderTopColor: theme.palette.divider }),
       menu: ({ theme }) => ({
         borderRadius: theme.shape.borderRadius,
-        border: `1px solid ${theme.palette.divider}`,
         backgroundImage: 'none',
-        boxShadow:
-          'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
+        [`& .${paperClasses.root}`]: {
+          border: `1px solid ${theme.palette.divider}`,
+        },
         [`& .${menuItemClasses.root}`]: {
           margin: '0 4px',
         },
@@ -58,10 +59,6 @@ export const dataGridCustomizations = {
           paddingLeft: 0,
           paddingRight: 0,
         },
-        ...theme.applyStyles('dark', {
-          boxShadow:
-            'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
-        }),
       }),
       row: ({ theme }) => ({
         '&:last-of-type': { borderBottom: `1px solid ${theme.palette.divider}` },
@@ -117,6 +114,7 @@ export const dataGridCustomizations = {
       }),
       filterForm: ({ theme }) => ({
         gap: theme.spacing(1),
+        alignItems: 'flex-end',
       }),
       columnsManagementHeader: ({ theme }) => ({
         paddingRight: theme.spacing(3),

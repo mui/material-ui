@@ -18,6 +18,32 @@ export default function CustomizedDataGrid() {
       pageSizeOptions={[10, 20, 50]}
       disableColumnResize
       density="compact"
+      slotProps={{
+        filterPanel: {
+          filterFormProps: {
+            logicOperatorInputProps: {
+              variant: 'outlined',
+              size: 'small',
+            },
+            columnInputProps: {
+              variant: 'outlined',
+              size: 'small',
+              sx: { mt: 'auto' },
+            },
+            operatorInputProps: {
+              variant: 'outlined',
+              size: 'small',
+              sx: { mt: 'auto' },
+            },
+            valueInputProps: {
+              InputComponentProps: {
+                variant: 'outlined',
+                size: 'small',
+              },
+            },
+          },
+        },
+      }}
     />
   );
 }
