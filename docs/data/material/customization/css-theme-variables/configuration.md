@@ -29,39 +29,37 @@ To toggle between modes manually, set the `colorSchemeSelector` with one of the 
 <codeblock>
 
 ```js class
-// The value must start with a dot (.) and contain a "%s" placeholder.
 extendTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: '.mode-%s' }
+  colorSchemeSelector: 'class' }
 );
 
 // CSS Result
-.mode-light { ... }
-.mode-dark { ... }
+.light { ... }
+.dark { ... }
 ```
 
-```js data-attribute
-// The value must be [data-*] with a "%s" placeholder.
+```js data
 extendTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: '[data-mode-%s]' }
+  colorSchemeSelector: 'data' }
 );
 
 // CSS Result
-[data-mode-light] { ... }
-[data-mode-dark] { ... }
+[data-light] { ... }
+[data-dark] { ... }
 ```
 
-```js data-attribute(2)
-// The value must be data-*
+```js string
+// The value must start with dot (.) for class or square brackets ([]) for data
 extendTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'data-mode'
+  colorSchemeSelector: '.theme-%s'
 });
 
 // CSS Result
-[data-mode="light"] { ... }
-[data-mode="dark"] { ... }
+.theme-light { ... }
+.theme-dark { ... }
 ```
 
 </codeblock>
