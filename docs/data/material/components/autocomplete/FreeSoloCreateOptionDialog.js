@@ -87,7 +87,14 @@ export default function FreeSoloCreateOptionDialog() {
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
-        renderOption={(props, option) => <li {...props}>{option.title}</li>}
+        renderOption={(props, option) => {
+          const { key, ...optionProps } = props;
+          return (
+            <li key={key} {...optionProps}>
+              {option.title}
+            </li>
+          );
+        }}
         sx={{ width: 300 }}
         freeSolo
         renderInput={(params) => <TextField {...params} label="Free solo dialog" />}

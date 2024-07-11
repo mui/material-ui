@@ -34,7 +34,14 @@ export default function CustomBreakpointsGrid() {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={{ mobile: 1, tablet: 2, laptop: 3 }}>
           {Array.from(Array(4)).map((_, index) => (
-            <Grid mobile={6} tablet={4} laptop={3} key={index}>
+            <Grid
+              key={index}
+              size={{
+                mobile: 6,
+                tablet: 4,
+                laptop: 3,
+              }}
+            >
               <Item>{index + 1}</Item>
             </Grid>
           ))}

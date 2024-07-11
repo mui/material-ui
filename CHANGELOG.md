@@ -1,5 +1,165 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-alpha.14
+
+<!-- generated comparing v6.0.0-alpha.13..next -->
+
+_Jul 3, 2024_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ Updated Grid v2 to match PigmentGrid (#42742) @DiegoAndai
+
+### `@mui/material@v6.0.0-alpha.14`
+
+#### BREAKING CHANGES
+
+- [Grid] Update Grid props to match PigmentGrid (#42742) @DiegoAndai
+
+  Use the codemod below to migrate the props:
+
+  ```bash
+  npx @mui/codemod@next v6.0.0/grid-v2-props /path/to/folder
+  ```
+
+#### Changes
+
+- [Alert] Add ability to override slot props (#42787) @alexey-kozlenkov
+- [Dialog] Revert incorrect textAlign style removal (#42778) @DiegoAndai
+- [theme] Support `CssVarsTheme` in `responsiveFontSizes` return type (#42786) @jxdp
+
+### Docs
+
+- [material-ui] Add some writing tweaks to v6 migration page (#42623) @danilo-leal
+- [material-ui] Fix issues reported by react-compiler in docs folder (#42830) @sai6855
+- [material-ui] Add some writing tweaks to v6 migration page (#42623) @danilo-leal
+- [base-ui] Fix wrong description for `UseTabParameters.onChange` (#42749) @ohgree
+- Fix 301 MDN redirections @oliviertassinari
+
+### Core
+
+- [core] Bump React to 18.3.1 (#42047) @renovate[bot]
+- [core] Revert lint for `useThemeProps` (#42817) @siriwatknp
+- [core] Remove useIsFocusVisible util (#42467) @DiegoAndai
+- [core] Remove react-test-renderer (#42784) @aarongarciah
+- [core][mui-utils] Remove remaining IE11 references (#42777) @DiegoAndai
+- [code-infra] Move `HighlightedCode` test into `@mui/docs` package (#42835) @LukasTy
+- [code-infra] Cleanup `@mui/docs` usage and legacy re-exports (#42833) @LukasTy
+- [docs-infra] Fix React Compiler ESLint issues in website components (#42566) @aarongarciah
+- [docs-infra] Add batch of design polish (#42823) @danilo-leal
+- [test][mui-utils] Remove usages of deprecated react-dom APIs (#42780) @aarongarciah
+- [test][joy-ui][Autocomplete] Fix spread key error in test (#42775) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @danilo-leal, @DiegoAndai, @Janpot, @jxdp, @LukasTy, @ohgree, @oliviertassinari, @renovate[bot], @sai6855, @siriwatknp
+
+## v6.0.0-alpha.13
+
+<!-- generated comparing v6.0.0-alpha.12..next -->
+
+_Jun 27, 2024_
+
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added layout components for Pigment CSS integration (#42693) @siriwatknp
+
+### `@mui/material@6.0.0-alpha.13`
+
+- [Autocomplete] Fix more React 18.3 key spread warnings in demos (#42639) @wbt
+- [Container][Grid][Stack][Hidden] Export Pigment CSS layout components (#42693) @siriwatknp
+- [Text Field] when click password visibility button, text caret position change to very front. (#42595) @appleSimple
+- [Modal] migrate useSlotProps to useSLot (#42150) @sai6855
+
+### `@mui/styles@6.0.0-alpha.13`
+
+- [withStyles] Expect React defaultProps warning in test (#42752) @aarongarciah
+
+### Docs
+
+- Fix link in CONTRIBUTING.md (#42755) @Janpot
+- Add documentation on migrating JSS's alternative, array-based syntax to syntax supported by Emotion (#42053) @cjl750
+- Fix type error in virtualized table demo (#42757) @aarongarciah
+- Add first batch of v6 migration (#42242) @siriwatknp
+- Fix quotes on font-family dedeclaration in the Landing Page template theme (#42748) @joetats
+
+### Core
+
+- [code-infra] Refactor eslint `import/no-cycle` rule (#42705) @LukasTy
+- [core] Target direct version for prerelease (#42768) @siriwatknp
+- [test] Remove enzyme (#42706) @aarongarciah
+- [test] Remove createMount test util (#42703) @aarongarciah
+- [website] Add Ale to team (#42764) @alelthomas
+
+All contributors of this release in alphabetical order: @aarongarciah, @alelthomas, @appleSimple, @cjl750, @Janpot, @joetats, @LukasTy, @sai6855, @siriwatknp, @wbt
+
+## v6.0.0-alpha.12
+
+<!-- generated comparing v6.0.0-alpha.11..next -->
+
+_Jun 24, 2024_
+
+A big thanks to the 17 contributors who made this release possible.
+
+### `@mui/material@6.0.0-alpha.12`
+
+- Add `InitColorSchemeScript` for Next.js App Router (#42247) @siriwatknp
+- [Autocomplete] Fix renderOption props type (#42689) @DiegoAndai
+- [Autocomplete] Fix React 18.3 key spread warnings in Autocomplete demos (#42691) @aarongarciah
+- Support Pigment CSS for `CssBaseline`, `ScopedCssBaseline` and `Popper` (#42640) @siriwatknp
+- Add `DefaultPropsProvider` for Pigment CSS integration (#42638) @siriwatknp
+- [Stepper] Generate class for nonLinear prop (#42620) @alexismo
+- [Tab] Fix failing test (#42686) @aarongarciah
+- [Tab] Deprecate iconWrapper class for icon class (#42647) @sai6855
+- [TableSortLabel] Deprecate composed classes (#42281) @sai6855
+- [usePagination] Update pagination `siblingsEnd` calculation logic (#42667) @Mini-ghost
+
+### `@mui/codemod@6.0.0-alpha.12`
+
+- Support dynamic props styled transformation (#42683) @siriwatknp
+
+### `@mui/system@6.0.0-alpha.12`
+
+- Fix issues reported by react compiler in `mui-system` package (#42637) @sai6855
+- [useMediaQuery] Remove deprecated types (#42560) @aarongarciah
+
+### `@mui/joy@5.0.0-beta.45`
+
+- Fix issues reported by the React Compiler (#42671) @anuujj
+- [Autocomplete] Fix React spread key warning (#42741) @aarongarciah
+
+### `@mui/lab@6.0.0-alpha.12`
+
+- [LoadingButton] Apply wrapping element to prevent React crash on Google page translation (#35198) @BartJanvanAssen
+
+### Docs
+
+- Fix git diff format in migration to v6 (#42711) @oliviertassinari
+- Use new email for sponsoring @oliviertassinari
+- Fix 301 links (#42697) @alexfauquette
+- Normalize the capitalization of Design Kit @oliviertassinari
+- Recommend setting HTML attribute instead of DOM property for RTL (#42599) @aarongarciah
+- [material-ui][Select] Fix the `SelectAutoWidth` demo menu item value (#42648) @Danielkhakbaz
+
+### Core
+
+- [code-infra] Try disabling animations when taking screenshots (#42537) @Janpot
+- [code-infra] Fix benchmark package (#42553) @Janpot
+- [core] Replace enzyme in describeConformance (#42447) @DiegoAndai
+- [docs-infra] Fix layout shift demo toolbar (#42743) @oliviertassinari
+- [docs-infra] Fix visual look of in-house ad (#42735) @oliviertassinari
+- [docs-infra] Add stray design polish (#42646) @danilo-leal
+- [docs-infra] Fix wrong migration (#42675) @siriwatknp
+- [docs-infra] Fine tune markdown elements design (#42643) @danilo-leal
+- [docs-infra] Revamp the product switcher design (#42603) @danilo-leal
+- [docs-infra] Allow Link component to receive the `role` attribute (#42629) @danilo-leal
+- [infra] Add support donation button (#42499) @oliviertassinari
+- [infra] Raise `tsconfig`/`tsc` target to `es2022` (#42645) @LukasTy
+- [test] Fix tests on CI (#42670) @michaldudak
+- [test] Fix issues reported by react-compiler in test packages (#42626) @sai6855
+- [website] Add Armin to the team members (#42679) @arminmeh
+- [website] Open Staff Engineer role for Pigment CSS (#42531) @mnajdova
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @alexismo, @anuujj, @arminmeh, @BartJanvanAssen, @Danielkhakbaz, @danilo-leal, @DiegoAndai, @Janpot, @LukasTy, @michaldudak, @Mini-ghost, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp
+
 ## v6.0.0-alpha.11
 
 <!-- generated comparing v6.0.0-alpha.10..next -->

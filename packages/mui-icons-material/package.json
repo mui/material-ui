@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "6.0.0-alpha.11",
+  "version": "6.0.0-alpha.14",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -52,7 +52,7 @@
     "@mui/internal-waterfall": "workspace:^",
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.16",
-    "@types/react": "^18.2.55",
+    "@types/react": "^18.3.3",
     "chai": "^4.4.1",
     "chalk": "^5.3.0",
     "cross-fetch": "^4.0.0",
@@ -60,14 +60,14 @@
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
     "mustache": "^4.2.0",
-    "react": "^18.2.0",
-    "rimraf": "^5.0.7",
+    "react": "^18.3.1",
+    "rimraf": "^5.0.8",
     "shx": "^0.3.4",
     "svgo": "^3.3.2",
     "yargs": "^17.7.2"
   },
   "peerDependencies": {
-    "@mui/material": "workspace:^",
+    "@mui/material": "workspace:*",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },

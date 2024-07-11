@@ -15,7 +15,7 @@ const DemoToolbarRoot = styled('div', {
       maxHeight: 50,
       display: 'block',
       marginTop: -1,
-      padding: theme.spacing(0.5, 1),
+      padding: theme.spacing('2px', 1),
       border: `1px solid ${(theme.vars || theme).palette.divider}`,
       borderTopWidth: 0,
       backgroundColor: alpha(theme.palette.grey[50], 0.2),
@@ -54,4 +54,5 @@ const DemoToolbarRoot = styled('div', {
     },
   }),
 ]);
+
 export default DemoToolbarRoot;

@@ -50,7 +50,7 @@ export default function GridsDiff() {
               alignItems="center"
               justifyContent="center"
               textAlign="center"
-              xs
+              size="grow"
             >
               ver.2 <br />
               All sides

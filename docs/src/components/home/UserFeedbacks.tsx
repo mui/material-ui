@@ -176,7 +176,7 @@ export default function UserFeedbacks() {
     >
       <MuiStatistics />
       {TESTIMONIALS.map((item) => (
-        <Grid key={item.profile.name} xs={12} sm={6}>
+        <Grid key={item.profile.name} size={{ xs: 12, sm: 6 }}>
           <Feedback {...item} />
         </Grid>
       ))}

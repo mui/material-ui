@@ -21,7 +21,7 @@
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "rimraf": "^5.0.7",
+    "rimraf": "^5.0.8",
     "typescript": "^5.4.5"
   },
   "publishConfig": {

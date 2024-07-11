@@ -14,5 +14,4 @@ export { default as unsupportedProp } from './unsupportedProp';
 export { default as useControlled } from './useControlled';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
-export { default as useIsFocusVisible } from './useIsFocusVisible';
 export { unstable_ClassNameGenerator } from '@mui/base/ClassNameGenerator';

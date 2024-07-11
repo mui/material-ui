@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Hidden component
 description: The Hidden component is deprecated, check out the migration guide for more details.
-components: Hidden
+components: Hidden, PigmentHidden
 githubLabel: 'component: Hidden'
 ---
 

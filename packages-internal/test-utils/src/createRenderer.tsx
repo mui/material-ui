@@ -15,6 +15,7 @@ import {
   within,
   RenderResult,
 } from '@testing-library/react/pure';
+import { userEvent } from '@testing-library/user-event';
 import { useFakeTimers } from 'sinon';
 
 interface Interaction {
@@ -268,6 +269,7 @@ interface ServerRenderConfiguration extends RenderConfiguration {
 export type RenderOptions = Partial<RenderConfiguration>;
 
 export interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
+  user: ReturnType<typeof userEvent.setup>;
   forceUpdate(): void;
   /**
    * convenience helper. Better than repeating all props.
@@ -296,6 +298,7 @@ function render(
   );
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
+    user: userEvent.setup(),
     forceUpdate() {
       traceSync('forceUpdate', () =>
         testingLibraryRenderResult.rerender(
@@ -333,7 +336,7 @@ function renderToString(
   };
 }
 
-interface Clock {
+export interface Clock {
   /**
    * Runs all timers until there are no more remaining.
    * WARNING: This may cause an infinite loop if a timeout constantly schedules another timeout.
@@ -363,7 +366,7 @@ interface Clock {
   restore(): void;
 }
 
-type ClockConfig = undefined | number | Date;
+export type ClockConfig = undefined | number | Date;
 
 function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
   let clock: ReturnType<typeof useFakeTimers> | null = null;
@@ -436,7 +439,7 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
   };
 }
 
-interface Renderer {
+export interface Renderer {
   clock: Clock;
   render(element: React.ReactElement<any>, options?: RenderOptions): MuiRenderResult;
   renderToString(

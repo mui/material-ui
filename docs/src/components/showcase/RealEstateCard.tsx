@@ -47,7 +47,7 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
           size="small"
           variant="outlined"
           icon={<InfoRounded />}
-          label="Confidence score: 85%"
+          label="Score: 85%"
           sx={(theme) => ({
             '.MuiChip-icon': { fontSize: 16, ml: '4px', color: 'success.500' },
             bgcolor: 'success.50',

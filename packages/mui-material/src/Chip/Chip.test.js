@@ -85,7 +85,6 @@ describe('<Chip />', () => {
 
       expect(container.firstChild).to.have.class('MuiButtonBase-root');
       expect(container.firstChild).to.have.tagName('a');
-      expect(container.firstChild.querySelector('.MuiTouchRipple-root')).not.to.equal(null);
     });
 
     it('should disable ripple when MuiButtonBase has disableRipple in theme', () => {
@@ -665,6 +664,13 @@ describe('<Chip />', () => {
   });
 
   describe('event: focus', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('has a focus-visible polyfill', () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);
