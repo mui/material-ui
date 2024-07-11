@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import { useAutocomplete, createFilterOptions } from '@mui/base';
+import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import Popper from '../Popper';
