@@ -119,6 +119,7 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
       }),
       filterForm: ({ theme }) => ({
         gap: theme.spacing(1),
+        alignItems: 'flex-end',
       }),
       columnsManagementHeader: ({ theme }) => ({
         paddingRight: theme.spacing(3),
