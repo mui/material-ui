@@ -672,9 +672,9 @@ describe('extendTheme', () => {
     });
   });
 
-  describe('colorSchemeSelector', () => {
-    it('[media] should use prefers-color-scheme', () => {
-      const theme = extendTheme({ colorSchemeSelector: 'media' });
+  describe('light and dark color schemes', () => {
+    it('should use prefers-color-scheme (`media`) by default', () => {
+      const theme = extendTheme({ colorSchemes: { light: true, dark: true } });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
         ':root',
@@ -683,7 +683,7 @@ describe('extendTheme', () => {
     });
 
     it('[media] should use prefers-color-scheme for styling', () => {
-      const theme = extendTheme({ colorSchemeSelector: 'media' });
+      const theme = extendTheme({ colorSchemes: { light: true, dark: true } });
 
       expect(theme.getColorSchemeSelector('light')).to.equal(
         '@media (prefers-color-scheme: light)',
@@ -692,7 +692,10 @@ describe('extendTheme', () => {
     });
 
     it('[media] should use prefers-color-scheme with dark as default', () => {
-      const theme = extendTheme({ defaultColorScheme: 'dark', colorSchemeSelector: 'media' });
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        defaultColorScheme: 'dark',
+      });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
         ':root',
@@ -702,7 +705,10 @@ describe('extendTheme', () => {
     });
 
     it('should use class selector', () => {
-      const theme = extendTheme({ colorSchemeSelector: '.mode-%s' });
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: '.mode-%s',
+      });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
         ':root',
@@ -711,14 +717,20 @@ describe('extendTheme', () => {
     });
 
     it('should use class selector for styling', () => {
-      const theme = extendTheme({ colorSchemeSelector: '.mode-%s' });
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: '.mode-%s',
+      });
 
       expect(theme.getColorSchemeSelector('light')).to.equal('.mode-light &');
       expect(theme.getColorSchemeSelector('dark')).to.equal('.mode-dark &');
     });
 
     it('should use data attribute selector', () => {
-      const theme = extendTheme({ colorSchemeSelector: '[data-theme-%s]' });
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: '[data-theme-%s]',
+      });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
         ':root',
@@ -727,7 +739,10 @@ describe('extendTheme', () => {
     });
 
     it('should use data attribute for styling', () => {
-      const theme = extendTheme({ colorSchemeSelector: '[data-theme-%s]' });
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: '[data-theme-%s]',
+      });
 
       expect(theme.getColorSchemeSelector('light')).to.equal('[data-theme-light] &');
       expect(theme.getColorSchemeSelector('dark')).to.equal('[data-theme-dark] &');

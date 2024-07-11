@@ -19,7 +19,6 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
 import defaultGetSelector from './createGetSelector';
-import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 import { stringifyTheme } from './stringifyTheme';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
@@ -103,22 +102,24 @@ function getOverlays(mode) {
   return mode === 'dark' ? defaultDarkOverlays : [];
 }
 
-function attachBuiltInColorScheme(colorSchemes, input, colorScheme) {
+function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
+  scheme = typeof scheme === 'boolean' ? {} : scheme;
   const mode = colorScheme === 'dark' ? 'dark' : 'light';
   const { palette, ...muiTheme } = createThemeWithoutVars({
+    ...restTheme,
     palette: {
       mode,
-      ...(typeof input === 'object' && input?.palette),
+      ...scheme?.palette,
     },
   });
   colorSchemes[colorScheme] = {
-    ...(typeof input === 'object' && input),
+    ...scheme,
     palette,
     opacity: {
       ...getOpacity(mode),
-      ...(typeof input === 'object' && input?.opacity),
+      ...scheme?.opacity,
     },
-    overlays: (typeof input === 'object' ? input?.overlays : undefined) || getOverlays(mode),
+    overlays: scheme?.overlays || getOverlays(mode),
   };
   return muiTheme;
 }
@@ -143,7 +144,7 @@ export default function extendTheme(options = {}, ...args) {
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
   const {
-    [defaultColorScheme]: defaultColorSchemeInput,
+    [defaultColorScheme]: defaultScheme,
     light: builtInLight,
     dark: builtInDark,
     ...customColorSchemes
@@ -151,18 +152,14 @@ export default function extendTheme(options = {}, ...args) {
   const colorSchemes = { ...customColorSchemes };
 
   // Create the palette for the default color scheme, either `light`, `dark`, or custom color scheme.
-  const muiTheme = attachBuiltInColorScheme(
-    colorSchemes,
-    defaultColorSchemeInput,
-    defaultColorScheme,
-  );
+  const muiTheme = attachColorScheme(colorSchemes, defaultScheme, input, defaultColorScheme);
 
   if (builtInLight && !colorSchemes.light) {
-    attachBuiltInColorScheme(colorSchemes, builtInLight, 'light');
+    attachColorScheme(colorSchemes, builtInLight, undefined, 'light');
   }
 
   if (builtInDark && !colorSchemes.dark) {
-    attachBuiltInColorScheme(colorSchemes, builtInDark, 'dark');
+    attachColorScheme(colorSchemes, builtInDark, undefined, 'dark');
   }
 
   let theme = {
