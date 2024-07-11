@@ -1,7 +1,15 @@
-.MuiTableSortLabel-root.MuiTableSortLabel-directionDesc > .MuiTableSortLabel-icon {
+.MuiImageListItemBar-root.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap {
   color: red;
 }
 
-.MuiTableSortLabel-root.MuiTableSortLabel-directionAsc > .MuiTableSortLabel-icon {
+.MuiImageListItemBar-root.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap {
+  color: red;
+}
+
+.MuiImageListItemBar-root.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap {
+  color: red;
+}
+
+.MuiImageListItemBar-root.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon {
   color: red;
 }

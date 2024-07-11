@@ -1,6 +1,11 @@
-import { tableSortLabelClasses } from '@mui/material/TableSortLabel';
+import { imageListItemBarClasses } from '@mui/material/ImageListItemBar';
 
-("&.MuiTableSortLabel-directionDesc > .MuiTableSortLabel-icon");
-("&.MuiTableSortLabel-directionAsc > .MuiTableSortLabel-icon");
-`&.${tableSortLabelClasses.directionDesc} > .${tableSortLabelClasses.icon}`;
-`&.${tableSortLabelClasses.directionAsc} > .${tableSortLabelClasses.icon}`;
+("&.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap");
+("&.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap");
+("&.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap");
+("&.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon");
+
+`&.${imageListItemBarClasses.positionBelow} > .${imageListItemBarClasses.titleWrap}`;
+`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.titleWrap}`;
+`&.${imageListItemBarClasses.actionPositionRight} > .${imageListItemBarClasses.titleWrap}`;
+`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.actionIcon}`;
