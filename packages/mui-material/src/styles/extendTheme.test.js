@@ -33,10 +33,12 @@ describe('extendTheme', () => {
     window.matchMedia = originalMatchmedia;
   });
 
-  it('should have a colorSchemes', () => {
+  it('should have a light colorScheme by default', () => {
     const theme = extendTheme();
     expect(typeof extendTheme).to.equal('function');
     expect(typeof theme.colorSchemes).to.equal('object');
+    expect(typeof theme.colorSchemes.light).to.equal('object');
+    expect(theme.colorSchemes.dark).to.equal(undefined);
   });
 
   it('should have "media" colorSchemeSelector', () => {

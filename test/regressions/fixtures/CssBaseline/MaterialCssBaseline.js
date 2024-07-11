@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 
 const theme = extendTheme({
+  colorSchemes: { light: true, dark: true },
   colorSchemeSelector: '[data-mui-color-scheme="%s"]',
   disableCssColorScheme: true,
 });

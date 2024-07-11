@@ -134,9 +134,11 @@ function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
  */
 export default function extendTheme(options = {}, ...args) {
   const {
-    defaultColorScheme = 'light',
-    disableCssColorScheme = false,
     colorSchemes: colorSchemesInput = { light: true },
+    defaultColorScheme = Object.keys(colorSchemesInput).length > 1
+      ? 'light'
+      : Object.keys(colorSchemesInput)[0],
+    disableCssColorScheme = false,
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
     colorSchemeSelector = colorSchemesInput.light && colorSchemesInput.dark ? 'media' : undefined,
