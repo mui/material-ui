@@ -154,6 +154,7 @@
     "eslint-plugin-react": "^7.34.4",
     "eslint-plugin-react-compiler": "0.0.0-experimental-0998c1e-20240625",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-testing-library": "^6.2.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "globby": "^14.0.2",
