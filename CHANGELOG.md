@@ -6,7 +6,7 @@
 
 _Jul 11, 2024_
 
-A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 This is the first v6 beta release! A huge thanks to everyone who helped to make this happen! The target date for a stable release is the 28th of July. The next month will be used to polish v6, and ease the migration from v5. You can follow the [v6 stable milestone](https://github.com/mui/material-ui/milestone/42) for more details.
 - 🚀 All planned breaking changes are completed.
@@ -15,6 +15,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 
 - Revert deprecation warnings for `*Components` and `*Props` for v6 (#42466) @lhilgert9
 - Performance: lazy Ripple (#41061) @romgrk
+- [AppBar] Fix inherit color is inconsistent between ThemeProvider and CssVarsProvider (#42714) @ZeeshanTamboli
 
 ### `@mui/material-pigment-css@v6.0.0-beta.0`
 
@@ -37,7 +38,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 - Fix split infinitive use in tests @oliviertassinari
 - [lab] Fix issues reported by react-compiler in mui-lab (#42880) @sai6855
 
-All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @DiegoAndai, @Janpot, @lhilgert9, @LukasTy, @mbrookes, @oliviertassinari, @omahs, @romgrk, @sai6855
+All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @DiegoAndai, @Janpot, @lhilgert9, @LukasTy, @mbrookes, @oliviertassinari, @omahs, @romgrk, @sai6855, @ZeeshanTamboli
 
 ## v6.0.0-alpha.14
 
