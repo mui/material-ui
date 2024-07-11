@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  createMount,
   createRenderer,
   fireEvent,
   act,
@@ -23,7 +22,6 @@ import { describeConformanceUnstyled } from '../../test/describeConformanceUnsty
 // userEvent.setup() requires Safari 14 or up to work
 
 describe('<Select />', () => {
-  const mount = createMount();
   const { render: internalRender } = createRenderer();
 
   async function render(
@@ -46,7 +44,6 @@ describe('<Select />', () => {
   describeConformanceUnstyled(componentToTest, () => ({
     inheritComponent: 'button',
     render,
-    mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
     slots: {
@@ -62,7 +59,7 @@ describe('<Select />', () => {
         testWithElement: 'span',
       },
     },
-    skip: ['componentProp', 'reactTestRenderer'],
+    skip: ['componentProp'],
   }));
 
   describe('selected option rendering', () => {

@@ -50,12 +50,7 @@ describe('Joy <Autocomplete />', () => {
     muiName: 'JoyAutocomplete',
     testDeepOverrides: { slotName: 'popupIndicator', slotClassName: classes.popupIndicator },
     testVariantProps: { size: 'lg' },
-    skip: [
-      'componentsProp',
-      'classesRoot',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
-    ],
+    skip: ['componentsProp', 'classesRoot'],
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -480,11 +475,14 @@ describe('Joy <Autocomplete />', () => {
           renderTags={(value, getTagProps) =>
             value
               .filter((x, index) => index === 1)
-              .map((option, index) => (
-                <Chip key={index} endDecorator={<ChipDelete {...getTagProps({ index })} />}>
-                  {option.title}
-                </Chip>
-              ))
+              .map((option, index) => {
+                const { key, ...tagProps } = getTagProps({ index });
+                return (
+                  <Chip key={index} endDecorator={<ChipDelete key={key} {...tagProps} />}>
+                    {option.title}
+                  </Chip>
+                );
+              })
           }
           onChange={handleChange}
           autoFocus

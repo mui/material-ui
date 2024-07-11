@@ -6,7 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useId from '@mui/utils/useId';
 import refType from '@mui/utils/refType';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -71,7 +71,7 @@ const TextFieldRoot = styled(FormControl, {
  * - using the underlying components directly as shown in the demos
  */
 const TextField = React.forwardRef(function TextField(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTextField' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTextField' });
   const {
     autoComplete,
     autoFocus = false,

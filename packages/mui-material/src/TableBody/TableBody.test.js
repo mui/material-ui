@@ -15,10 +15,6 @@ describe('<TableBody />', () => {
   describeConformance(<TableBody />, () => ({
     classes,
     inheritComponent: 'tbody',
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(<table>{node}</table>);
-      return wrapper.find('table').childAt(0);
-    },
     render: (node) => {
       const { container, ...other } = render(<table>{node}</table>);
       return { container: container.firstChild, ...other };

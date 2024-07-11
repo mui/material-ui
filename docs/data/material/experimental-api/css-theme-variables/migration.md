@@ -180,15 +180,15 @@ The `mode` is stored inside `CssVarsProvider` which handles local storage synchr
 
 ## 3. Prevent dark-mode flickering in server-side applications
 
-The `getInitColorSchemeScript()` API prevents dark-mode flickering by returning a script that must be run before React.
+The `InitColorSchemeScript` component prevents dark-mode flickering by returning a script that must be run before React.
 
 ### Next.js Pages Router
 
-Place the script before `<Main />` in your [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document):
+Place the component before `<Main />` in your [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document):
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { getInitColorSchemeScript } from '@mui/material/styles';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 export default class MyDocument extends Document {
   render() {
@@ -196,7 +196,7 @@ export default class MyDocument extends Document {
       <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
-          {getInitColorSchemeScript()}
+          <InitColorSchemeScript />
           <Main />
           <NextScript />
         </body>
@@ -212,10 +212,10 @@ Place the script in your [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/referen
 
 ```jsx
 import * as React from 'react';
-import { getInitColorSchemeScript } from '@mui/material/styles';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([getInitColorSchemeScript()]);
+  setPreBodyComponents([<InitColorSchemeScript />]);
 }
 ```
 

@@ -26,8 +26,9 @@ export const projectSettings: ProjectSettings = {
     // Container's demo isn't ready
     // GlobalStyles's demo isn't ready
     return (
-      filename.match(/(ThemeProvider|CssVarsProvider|Container|ColorInversion|GlobalStyles)/) !==
-      null
+      filename.match(
+        /(ThemeProvider|CssVarsProvider|Container|ColorInversion|GlobalStyles|InitColorSchemeScript)/,
+      ) !== null
     );
   },
   translationPagesDirectory: 'docs/translations/api-docs-joy',

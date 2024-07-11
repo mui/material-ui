@@ -58,8 +58,6 @@ describe('<Tooltip />', () => {
         'componentProp',
         'componentsProp',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
         'slotPropsCallback', // not supported yet
       ],
     }),

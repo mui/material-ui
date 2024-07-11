@@ -1,5 +1,63 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.16.0
+
+<!-- generated comparing v5.15.21..master -->
+
+_Jul 5, 2024_
+
+A big thanks to the 5 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added `InitColorSchemeScript` for Next.js App Router (#42829) @siriwatknp
+
+### `@mui/material@5.16.0`
+
+- [Alert] Add ability to override slot props (@alexey-kozlenkov) (#42808) @alexey-kozlenkov
+- Add `InitColorSchemeScript` for Next.js App Router (#42829) @siriwatknp
+- Add `DefaultPropsProvider` (#42820) @siriwatknp
+- Support `CssVarsTheme` in `responsiveFontSizes` return type (@jxdp) (#42806) @jxdp
+- Remove warning from `getInitColorSchemeScript` (#42838) @siriwatknp
+
+### Docs
+
+- [docs] Fix 301 MDN redirections @oliviertassinari
+
+### Core
+
+- [mui-utils][test] Remove usages of deprecated react-dom APIs (@aarongarciah) (#42813) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @jxdp, @oliviertassinari, @siriwatknp
+
+## v5.15.21
+
+<!-- generated comparing v5.15.20..master -->
+
+_Jun 28, 2024_
+
+A big thanks to the 7 contributors who made this release possible.
+
+### `@mui/material@5.15.21`
+
+- [Autocomplete] Fix renderOption props type (@DiegoAndai) (#42709) @DiegoAndai
+- [Stepper] Generate class for `nonLinear` prop (@alexismo) (#42677) @alexismo
+
+### Docs
+
+- Use new email for sponsoring @oliviertassinari
+- Fix 301 links (@alexfauquette) (#42700) @alexfauquette
+- [material-ui][Select] Fix the `SelectAutoWidth` demo menu item value (@Danielkhakbaz) (#42696) @Danielkhakbaz
+- [material-ui][Autocomplete] Fix more React 18.3 key spread warnings in demos (#42766) @wbt
+- [material-ui] Fix sign in side image (#42708) @zanivan
+- [website] Add Ale to team (#42769) @alelthomas
+
+### Core
+
+- [core] Cherry pick pnpm updates (#42763) @DiegoAndai
+- [website] Add Armin to the team members (@arminmeh) (#42681) @arminmeh
+- [website] Open Staff Engineer role for Pigment CSS (@mnajdova) (#42669) @mnajdova
+
+All contributors of this release in alphabetical order: @alexfauquette, @alexismo, @arminmeh, @Danielkhakbaz, @DiegoAndai, @mnajdova, @oliviertassinari
+
 ## v5.15.20
 
 <!-- generated comparing v5.15.19..master -->

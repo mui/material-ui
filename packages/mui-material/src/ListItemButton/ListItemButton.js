@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
@@ -126,7 +126,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
 }));
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemButton' });
   const {
     alignItems = 'center',
     autoFocus = false,

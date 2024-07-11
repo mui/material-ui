@@ -15,6 +15,7 @@ describe('<Zoom />', () => {
       <div />
     </Zoom>,
     () => ({
+      render,
       classes: {},
       inheritComponent: Transition,
       refInstanceof: window.HTMLDivElement,
@@ -24,8 +25,6 @@ describe('<Zoom />', () => {
         'themeDefaultProps',
         'themeStyleOverrides',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
       ],
     }),
   );

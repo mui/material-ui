@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 
@@ -52,7 +52,7 @@ const ListItemTextRoot = styled('div', {
 }));
 
 const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemText' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemText' });
   const {
     children,
     className,

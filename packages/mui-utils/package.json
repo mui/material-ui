@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "5.15.20",
+  "version": "5.16.0",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -40,9 +40,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.9",
-    "@types/prop-types": "^15.7.11",
+    "@types/prop-types": "^15.7.12",
     "prop-types": "^15.8.1",
-    "react-is": "^18.2.0"
+    "react-is": "^18.3.1"
   },
   "devDependencies": {
     "@mui-internal/test-utils": "workspace:^",
@@ -51,13 +51,13 @@
     "@types/chai": "^4.3.12",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.25",
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
-    "@types/react-is": "^18.2.4",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-is": "^18.3.0",
     "@types/sinon": "^10.0.20",
     "chai": "^4.4.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sinon": "^15.2.0"
   },
   "peerDependencies": {

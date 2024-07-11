@@ -36,17 +36,13 @@ describe('Joy <MenuItem />', () => {
     classes,
     inheritComponent: ListItemButton,
     render: (node) => render(<MenuProvider value={testContext}>{node}</MenuProvider>),
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(<MenuProvider value={testContext}>{node}</MenuProvider>);
-      return wrapper.childAt(0);
-    },
     ThemeProvider,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'a',
     muiName: 'JoyMenuItem',
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
-    skip: ['propsSpread', 'componentsProp', 'classesRoot', 'reactTestRenderer'],
+    skip: ['propsSpread', 'componentsProp', 'classesRoot'],
     slots: {
       root: {
         expectedClassName: classes.root,

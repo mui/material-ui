@@ -7,7 +7,7 @@ import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
@@ -99,7 +99,7 @@ const CollapseWrapperInner = styled('div', {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Collapse = React.forwardRef(function Collapse(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCollapse' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCollapse' });
   const {
     addEndListener,
     children,

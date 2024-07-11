@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import { act, createMount, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import {
   Unstable_NumberInput as NumberInput,
   numberInputClasses,
@@ -17,13 +17,11 @@ import { describeConformanceUnstyled } from '../../test/describeConformanceUnsty
 // userEvent.setup() requires Safari 14 or up to work
 
 describe('<NumberInput />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<NumberInput />, () => ({
     inheritComponent: 'div',
     render,
-    mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',
     slots: {

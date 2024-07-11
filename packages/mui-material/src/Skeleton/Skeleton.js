@@ -6,7 +6,7 @@ import { keyframes, css } from '@mui/system';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -150,7 +150,7 @@ const SkeletonRoot = styled('span', {
 );
 
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSkeleton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSkeleton' });
   const {
     animation = 'pulse',
     className,

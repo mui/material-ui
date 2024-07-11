@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
 
@@ -46,7 +46,7 @@ const ListRoot = styled('ul', {
 }));
 
 const List = React.forwardRef(function List(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiList' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiList' });
   const {
     children,
     className,

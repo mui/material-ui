@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, match } from 'sinon';
-import { act, createMount, createRenderer, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, screen } from '@mui-internal/test-utils';
 import PropTypes from 'prop-types';
-import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';
-import Paper from '@mui/material/Paper';
+import Paper, { paperClasses } from '@mui/material/Paper';
 import Popover, { popoverClasses as classes, PopoverPaper } from '@mui/material/Popover';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { getOffsetLeft, getOffsetTop } from './Popover';
@@ -46,7 +45,6 @@ const ReplacementPaper = styled(Paper, {
 
 describe('<Popover />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
-  const mount = createMount();
 
   describeConformance(<Popover anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
@@ -73,7 +71,6 @@ describe('<Popover />', () => {
       'themeDefaultProps', // portal, can't determine the root
       'themeStyleOverrides', // portal, can't determine the root
       'themeVariants',
-      'reactTestRenderer', // react-transition-group issue
       'slotPropsCallback', // not supported yet
     ],
   }));
@@ -317,21 +314,6 @@ describe('<Popover />', () => {
   });
 
   describe('paper', () => {
-    it('should have PopoverPaper as a child of Transition', () => {
-      const wrapper = mount(
-        <Popover
-          anchorEl={document.createElement('div')}
-          open
-          PaperProps={{ 'data-testid': 'paper' }}
-        >
-          <div />
-        </Popover>,
-      );
-
-      expect(wrapper.find(PopoverPaper)).to.have.lengthOf(1);
-      expect(screen.getByTestId('paper')).not.to.equal(null);
-    });
-
     it('should have the paper class', () => {
       render(
         <Popover
@@ -347,16 +329,21 @@ describe('<Popover />', () => {
     });
 
     it('should have a elevation prop passed down', () => {
-      const wrapper = mount(
-        <Popover anchorEl={document.createElement('div')} open>
+      const { setProps } = render(
+        <Popover
+          anchorEl={document.createElement('div')}
+          open
+          PaperProps={{ 'data-testid': 'paper' }}
+        >
           <div />
         </Popover>,
       );
 
-      expect(wrapper.find(PopoverPaper).props().elevation).to.equal(8);
+      expect(screen.getByTestId('paper')).to.have.class(paperClasses.elevation8);
 
-      wrapper.setProps({ elevation: 16 });
-      expect(wrapper.find(PopoverPaper).props().elevation).to.equal(16);
+      setProps({ slotProps: { paper: { 'data-testid': 'paper', elevation: 16 } } });
+
+      expect(screen.getByTestId('paper')).to.have.class(paperClasses.elevation16);
     });
   });
 
@@ -425,20 +412,19 @@ describe('<Popover />', () => {
       it('should have opacity 1 only after onEntering has been called', () => {
         const onEnteringSpy = spy();
         const paperRenderSpy = spy(PopoverPaper, 'render');
-
-        const wrapper = mount(
+        const { setProps } = render(
           <Popover
             anchorEl={document.createElement('div')}
-            open={false}
             TransitionProps={{
               onEntering: onEnteringSpy,
             }}
+            open={false}
           >
             <div />
           </Popover>,
         );
 
-        wrapper.setProps({ open: true });
+        setProps({ open: true });
 
         expect(
           paperRenderSpy
@@ -999,12 +985,20 @@ describe('<Popover />', () => {
 
   describe('prop: transitionDuration', () => {
     it('should apply the auto prop if supported', () => {
-      const wrapper = mount(
-        <Popover anchorEl={document.createElement('div')} open>
+      const TransitionComponent = React.forwardRef((props, ref) => (
+        <div data-testid="transition" data-timeout={props.timeout} ref={ref} tabIndex={-1} />
+      ));
+      TransitionComponent.muiSupportAuto = true;
+      render(
+        <Popover
+          anchorEl={document.createElement('div')}
+          open
+          TransitionComponent={TransitionComponent}
+        >
           <div />
         </Popover>,
       );
-      expect(wrapper.find(Grow).props().timeout).to.equal('auto');
+      expect(screen.getByTestId('transition')).to.have.attribute('data-timeout').equals('auto');
     });
 
     it('should not apply the auto prop if not supported', () => {
@@ -1054,19 +1048,21 @@ describe('<Popover />', () => {
         const slotPropsElevation = 12;
         const paperPropsElevation = 14;
 
-        const wrapper = mount(
+        render(
           <Popover
             anchorEl={document.createElement('div')}
             open
             PaperProps={{ elevation: paperPropsElevation }}
-            slotProps={{ paper: { elevation: slotPropsElevation } }}
+            slotProps={{ paper: { elevation: slotPropsElevation, 'data-testid': 'paper' } }}
           >
             <div />
           </Popover>,
         );
 
         expect(slotPropsElevation).not.to.equal(paperPropsElevation);
-        expect(wrapper.find(PopoverPaper).props().elevation).to.equal(slotPropsElevation);
+        expect(screen.getByTestId('paper')).to.have.class(
+          `${paperClasses[`elevation${slotPropsElevation}`]}`,
+        );
       });
 
       it('should position popover correctly when ref is provided', () => {

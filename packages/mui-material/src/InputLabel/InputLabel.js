@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
@@ -122,7 +122,7 @@ const InputLabelRoot = styled(FormLabel, {
 }));
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
+  const props = useDefaultProps({ name: 'MuiInputLabel', props: inProps });
   const {
     disableAnimation = false,
     margin,

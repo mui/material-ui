@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, createMount, screen, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, screen, fireEvent } from '@mui-internal/test-utils';
 import { Unstable_Popup as Popup, popupClasses, PopupProps } from '@mui/base/Unstable_Popup';
 import { PopupContext } from './PopupContext';
 import { useTransitionStateManager } from '../useTransition';
@@ -34,7 +34,6 @@ function FakeTransition(props: React.PropsWithChildren<{}>) {
 
 describe('<Popup />', () => {
   const { clock, render } = createRenderer();
-  const mount = createMount();
 
   // https://floating-ui.com/docs/react#testing
   async function waitForPosition() {
@@ -58,13 +57,8 @@ describe('<Popup />', () => {
 
       return result;
     },
-    mount,
     refInstanceof: window.HTMLDivElement,
-    skip: [
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
-      'componentProp',
-    ],
+    skip: ['componentProp'],
     slots: {
       root: {
         expectedClassName: popupClasses.root,

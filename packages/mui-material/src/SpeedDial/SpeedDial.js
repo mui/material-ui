@@ -7,7 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useTheme from '../styles/useTheme';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
@@ -115,7 +115,7 @@ const SpeedDialActions = styled('div', {
 }));
 
 const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDial' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDial' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,

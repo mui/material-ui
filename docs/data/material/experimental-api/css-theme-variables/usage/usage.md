@@ -116,15 +116,34 @@ The structure of this object is nearly identical to the theme structure, the onl
 
 ## Server-side rendering
 
-Place `getInitColorSchemeScript()` before the `<Main />` tag to prevent the dark-mode SSR flickering during the hydration phase.
+Place `<InitColorSchemeScript />` before the `<Main />` tag to prevent the dark-mode SSR flickering during the hydration phase.
+
+### Next.js App Router
+
+Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file:
+
+```jsx title="app/layout.js"
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <InitColorSchemeScript /> {/* must come before the <main> element */}
+        <main>{children}</main>
+      </body>
+    </html>
+  );
+}
+```
 
 ### Next.js Pages Router
 
 Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
 
-```jsx
+```jsx title="pages/_document.js"
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { getInitColorSchemeScript } from '@mui/material/styles';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 export default class MyDocument extends Document {
   render() {
@@ -132,7 +151,7 @@ export default class MyDocument extends Document {
       <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
-          {getInitColorSchemeScript()}
+          <InitColorSchemeScript /> {/* must come before the <Main> element */}
           <Main />
           <NextScript />
         </body>
@@ -159,7 +178,7 @@ const StyledComponent = styled('button')(({ theme }) => ({
 
 ## API
 
-### `<CssVarsProvider>` props
+### `<CssVarsProvider>` &nbsp;props
 
 - `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
@@ -172,10 +191,9 @@ const StyledComponent = styled('button')(({ theme }) => ({
 - `mode: string` - The user's selected mode
 - `setMode: mode => {…}` - Function for setting the `mode`. The `mode` is saved to internal state and local storage; if `mode` is null, it will be reset to the default mode
 
-### `getInitColorSchemeScript: (options) => React.ReactElement`
-
-**options**
+### `<InitColorSchemeScript>` &nbsp;props
 
 - `defaultMode?: 'light' | 'dark' | 'system'`: - Application's default mode before React renders the tree (`light` by default)
 - `modeStorageKey?: string`: - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme
+- `nonce?: string` - Optional nonce passed to the injected script tag, used to allow-list the next-themes script in your CSP

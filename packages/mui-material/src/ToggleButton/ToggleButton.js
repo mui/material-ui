@@ -8,7 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
@@ -121,7 +121,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
     { ...contextProps, selected: isValueSelected(inProps.value, contextValue) },
     inProps,
   );
-  const props = useThemeProps({ props: resolvedProps, name: 'MuiToggleButton' });
+  const props = useDefaultProps({ props: resolvedProps, name: 'MuiToggleButton' });
   const {
     children,
     className,

@@ -9,7 +9,7 @@ import Stack from '../Stack';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
@@ -91,7 +91,7 @@ const AsteriskComponent = styled('span', {
  * Use this component if you want to display an extra label.
  */
 const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormControlLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormControlLabel' });
   const {
     checked,
     className,

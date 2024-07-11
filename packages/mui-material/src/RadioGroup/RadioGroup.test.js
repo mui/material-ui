@@ -12,6 +12,7 @@ describe('<RadioGroup />', () => {
   const { render } = createRenderer();
 
   describeConformance(<RadioGroup value="" />, () => ({
+    render,
     classes: {},
     inheritComponent: FormGroup,
     refInstanceof: window.HTMLDivElement,

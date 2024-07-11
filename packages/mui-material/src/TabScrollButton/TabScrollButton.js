@@ -9,7 +9,7 @@ import { useRtl } from '@mui/system/RtlProvider';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import ButtonBase from '../ButtonBase';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import tabScrollButtonClasses, { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
 
@@ -48,7 +48,7 @@ const TabScrollButtonRoot = styled(ButtonBase, {
 }));
 
 const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTabScrollButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTabScrollButton' });
   const {
     className,
     slots = {},

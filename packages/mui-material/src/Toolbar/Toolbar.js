@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getToolbarUtilityClass } from './toolbarClasses';
 
@@ -46,7 +46,7 @@ const ToolbarRoot = styled('div', {
 );
 
 const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiToolbar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiToolbar' });
   const {
     className,
     component = 'div',

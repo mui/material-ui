@@ -32,16 +32,6 @@ describe('<TableCell />', () => {
       );
       return { container: container.firstChild.firstChild.firstChild, ...other };
     },
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(
-        <table>
-          <tbody>
-            <tr>{node}</tr>
-          </tbody>
-        </table>,
-      );
-      return wrapper.find('tr').childAt(0);
-    },
     muiName: 'MuiTableCell',
     testVariantProps: { variant: 'body' },
     refInstanceof: window.HTMLTableCellElement,

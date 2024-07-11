@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, createMount, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import {
   Slider,
   sliderClasses as classes,
@@ -31,14 +31,12 @@ describe('<Slider />', () => {
     }
   });
 
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<Slider value={0} />, () => ({
     classes,
     inheritComponent: 'span',
     render,
-    mount,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'div',
     slots: {

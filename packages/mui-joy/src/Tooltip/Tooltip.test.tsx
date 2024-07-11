@@ -50,8 +50,12 @@ describe('<Tooltip />', () => {
         'componentProp',
         'componentsProp',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
+        // Props are spread to root and children
+        // We cannot use the standard propsSpread test which relies on data-testid only on the root
+        'propsSpread',
+        // Props are spread to root and children
+        // We cannot use the standard mergeClassName test which relies on data-testid only on the root
+        'mergeClassName',
       ],
     }),
   );

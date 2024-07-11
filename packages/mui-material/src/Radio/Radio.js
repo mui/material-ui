@@ -6,7 +6,7 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import RadioButtonIcon from './RadioButtonIcon';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
@@ -85,7 +85,7 @@ const defaultCheckedIcon = <RadioButtonIcon checked />;
 const defaultIcon = <RadioButtonIcon />;
 
 const Radio = React.forwardRef(function Radio(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiRadio' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiRadio' });
   const {
     checked: checkedProp,
     checkedIcon = defaultCheckedIcon,

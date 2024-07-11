@@ -5,11 +5,11 @@ import deepmerge from '@mui/utils/deepmerge';
 import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import ThemeProvider from '../ThemeProvider';
-import systemGetInitColorSchemeScript, {
+import InitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
-} from './getInitColorSchemeScript';
+} from '../InitColorSchemeScript/InitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
 
 export const DISABLE_CSS_TRANSITION =
@@ -374,7 +374,7 @@ export default function createCssVarsProvider(options) {
       : designSystemColorScheme.dark;
 
   const getInitColorSchemeScript = (params) =>
-    systemGetInitColorSchemeScript({
+    InitColorSchemeScript({
       attribute: defaultAttribute,
       colorSchemeStorageKey: defaultColorSchemeStorageKey,
       defaultMode: designSystemMode,

@@ -11,6 +11,7 @@ describe('<NativeSelectInput />', () => {
   const { render } = createRenderer();
 
   describeConformance(<NativeSelectInput IconComponent="div" />, () => ({
+    render,
     only: ['refForwarding'],
     refInstanceof: window.HTMLSelectElement,
     muiName: 'MuiNativeSelectInput',

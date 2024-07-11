@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import SvgIcon from '../SvgIcon';
@@ -53,7 +53,7 @@ const StepIconText = styled('text', {
 }));
 
 const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepIcon' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepIcon' });
   const {
     active = false,
     className: classNameProp,

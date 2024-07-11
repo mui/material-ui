@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  createMount,
   createRenderer,
   fireEvent,
   act,
@@ -27,7 +26,6 @@ const testContext: DropdownContextValue = {
 };
 
 describe('<Menu />', () => {
-  const mount = createMount();
   const { render: internalRender } = createRenderer();
 
   async function render(
@@ -46,12 +44,6 @@ describe('<Menu />', () => {
         <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
       );
     },
-    mount: (node: React.ReactNode) => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
-      );
-      return wrapper.childAt(0);
-    },
     refInstanceof: window.HTMLDivElement,
     slots: {
       root: {
@@ -61,7 +53,7 @@ describe('<Menu />', () => {
         expectedClassName: menuClasses.listbox,
       },
     },
-    skip: ['reactTestRenderer', 'componentProp', 'slotsProp'],
+    skip: ['componentProp', 'slotsProp'],
   }));
 
   describe('after initialization', () => {
