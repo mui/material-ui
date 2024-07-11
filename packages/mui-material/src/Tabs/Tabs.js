@@ -4,7 +4,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
-import { useSlotProps } from '@mui/base/utils';
+import { useSlotProps } from '../utils/useSlotProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
 import { styled, useTheme } from '../zero-styled';
