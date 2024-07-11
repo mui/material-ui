@@ -99,7 +99,7 @@ export { default as withTheme } from './withTheme';
 
 export * from './CssVarsProvider';
 
-export { default as extendTheme } from './extendThemeMD3';
+export { default as extendTheme } from './extendTheme';
 
 export type {
   ColorSchemeOverrides,

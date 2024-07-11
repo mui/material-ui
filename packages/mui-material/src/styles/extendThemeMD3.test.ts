@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import { extendTheme, Theme } from '@mui/material/styles';
+import { Theme } from './md3/Theme.types';
+import extendTheme from './extendThemeMD3';
 
 describe('extendTheme', () => {
   it('should have default cssVarPrefix', () => {
