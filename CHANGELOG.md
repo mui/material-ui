@@ -2,7 +2,7 @@
 
 ## v5.16.1
 
-_Jul 10, 2024_
+_Jul 11, 2024_
 
 A big thanks to the 3 contributors who made this release possible. Here are some highlights ✨:
 
