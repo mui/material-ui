@@ -458,3 +458,5 @@ export interface UseAutocompleteReturnValue<
    */
   groupedOptions: Value[] | Array<AutocompleteGroupedOption<Value>>;
 }
+
+export default useAutocomplete;
