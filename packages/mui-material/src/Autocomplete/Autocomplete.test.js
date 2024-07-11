@@ -2525,10 +2525,10 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: onInputChange', () => {
-    it('provides a reason on input change', () => {
+    it('provides a reason on input change', async () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }];
-      render(
+      const { user } = render(
         <Autocomplete
           onInputChange={handleInputChange}
           options={options}
@@ -2536,16 +2536,17 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+
+      await user.type(document.activeElement, 'a');
+
       expect(handleInputChange.callCount).to.equal(1);
       expect(handleInputChange.args[0][1]).to.equal('a');
       expect(handleInputChange.args[0][2]).to.equal('input');
     });
 
-    it('provides a reason on select reset', () => {
+    it('provides a reason on select reset', async () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }, { name: 'bar' }];
-
       function MyComponent() {
         const [value, setValue] = React.useState(options[0]);
         return (
@@ -2558,25 +2559,24 @@ describe('<Autocomplete />', () => {
               renderInput={(params) => <TextField {...params} autoFocus />}
               value={value}
             />
-            <button onClick={() => setValue(options[1])}>Reset</button>
+            <button onClick={() => setValue(options[1])} type="button">
+              Reset
+            </button>
           </React.Fragment>
         );
       }
-      render(<MyComponent />);
-      const resetBtn = screen.getByText('Reset');
+      const { user } = render(<MyComponent />);
 
-      fireEvent.click(resetBtn);
+      await user.click(screen.getByText('Reset'));
 
-      expect(handleInputChange.callCount).to.equal(3);
-      expect(handleInputChange.args[2][1]).to.equal(options[1].name);
-      expect(handleInputChange.args[2][2]).to.equal('reset');
+      expect(handleInputChange.lastCall.args[1]).to.equal(options[1].name);
+      expect(handleInputChange.lastCall.args[2]).to.equal('reset');
     });
 
-    it('provides a reason on clear', () => {
+    it('provides a reason on clear', async () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }];
-
-      render(
+      const { user } = render(
         <Autocomplete
           onInputChange={handleInputChange}
           options={options}
@@ -2585,17 +2585,17 @@ describe('<Autocomplete />', () => {
           defaultValue={options[0]}
         />,
       );
-      fireEvent.click(screen.getByLabelText('Clear'));
+
+      await user.click(screen.getByLabelText('Clear'));
 
       expect(handleInputChange.lastCall.args[1]).to.equal('');
       expect(handleInputChange.lastCall.args[2]).to.equal('clear');
     });
 
-    it('provides a reason on blur', () => {
+    it('provides a reason on blur', async () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }];
-
-      render(
+      const { user } = render(
         <Autocomplete
           onInputChange={handleInputChange}
           options={options}
@@ -2604,19 +2604,18 @@ describe('<Autocomplete />', () => {
           clearOnBlur
         />,
       );
-      const textbox = screen.getByRole('combobox');
-      fireEvent.change(textbox, { target: { value: options[0].name } });
-      fireEvent.blur(textbox);
+
+      await user.type(screen.getByRole('combobox'), options[0].name);
+      await user.tab();
 
       expect(handleInputChange.lastCall.args[1]).to.equal('');
       expect(handleInputChange.lastCall.args[2]).to.equal('blur');
     });
 
-    it('provides a reason on select option', () => {
+    it('provides a reason on select option', async () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }];
-
-      render(
+      const { user } = render(
         <Autocomplete
           onInputChange={handleInputChange}
           options={options}
@@ -2624,18 +2623,18 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      fireEvent.click(screen.getByLabelText('Open'));
-      fireEvent.click(screen.getByRole('option', { name: options[0].name }));
+
+      await user.click(screen.getByLabelText('Open'));
+      await user.click(screen.getByRole('option', { name: options[0].name }));
 
       expect(handleInputChange.lastCall.args[1]).to.equal(options[0].name);
       expect(handleInputChange.lastCall.args[2]).to.equal('selectOption');
     });
 
-    it('provides a reason on remove option', () => {
+    it('provides a reason on remove option', async () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }];
-
-      render(
+      const { user } = render(
         <Autocomplete
           onInputChange={handleInputChange}
           options={options}
@@ -2645,11 +2644,8 @@ describe('<Autocomplete />', () => {
           multiple
         />,
       );
-      const textbox = screen.getByRole('combobox');
-      fireEvent.change(textbox, { target: { value: options[0].name } });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'Enter' });
+
+      await user.type(screen.getByRole('combobox'), `${options[0].name}{Enter}`);
 
       expect(handleInputChange.lastCall.args[1]).to.equal('');
       expect(handleInputChange.lastCall.args[2]).to.equal('removeOption');
