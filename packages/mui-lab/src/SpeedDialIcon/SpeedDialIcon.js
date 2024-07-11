@@ -4,10 +4,7 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedSpeedDialIcon(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -20,6 +17,13 @@ export default React.forwardRef(function DeprecatedSpeedDialIcon(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedSpeedDialIcon(props, ref) {
+  warn();
 
   return <SpeedDialIcon ref={ref} {...props} />;
 });

@@ -83,11 +83,11 @@ describe('<Menu /> integration', () => {
     expect(getByRole('menu', { hidden: true })).not.to.contain(document.activeElement);
   });
 
-  it('should focus the first item on open', () => {
+  it('should focus the first item on open', async () => {
     const { getByRole, getAllByRole } = render(<ButtonMenu />);
 
     const button = getByRole('button', { name: 'open menu' });
-    act(() => {
+    await act(async () => {
       button.focus();
       button.click();
     });
@@ -95,40 +95,40 @@ describe('<Menu /> integration', () => {
     expect(getAllByRole('menuitem')[0]).toHaveFocus();
   });
 
-  it('changes focus according to keyboard navigation', () => {
+  it('changes focus according to keyboard navigation', async () => {
     const { getAllByRole, getByRole } = render(<ButtonMenu />);
 
     const button = getByRole('button', { name: 'open menu' });
-    act(() => {
+    await act(async () => {
       button.focus();
       button.click();
     });
     const menuitems = getAllByRole('menuitem');
 
-    fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
+    await act(async () => fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' }));
     expect(menuitems[1]).toHaveFocus();
 
-    fireEvent.keyDown(menuitems[1], { key: 'ArrowUp' });
+    await act(async () => fireEvent.keyDown(menuitems[1], { key: 'ArrowUp' }));
     expect(menuitems[0]).toHaveFocus();
 
-    fireEvent.keyDown(menuitems[0], { key: 'ArrowUp' });
+    await act(async () => fireEvent.keyDown(menuitems[0], { key: 'ArrowUp' }));
     expect(menuitems[2]).toHaveFocus();
 
-    fireEvent.keyDown(menuitems[2], { key: 'Home' });
+    await act(async () => fireEvent.keyDown(menuitems[2], { key: 'Home' }));
     expect(menuitems[0]).toHaveFocus();
 
-    fireEvent.keyDown(menuitems[0], { key: 'End' });
+    await act(async () => fireEvent.keyDown(menuitems[0], { key: 'End' }));
     expect(menuitems[2]).toHaveFocus();
 
-    fireEvent.keyDown(menuitems[2], { key: 'ArrowRight' });
+    await act(async () => fireEvent.keyDown(menuitems[2], { key: 'ArrowRight' }));
     expect(menuitems[2], 'no change on unassociated keys').toHaveFocus();
   });
 
-  it('focuses the selected item when opening', () => {
+  it('focuses the selected item when opening', async () => {
     const { getAllByRole, getByRole } = render(<ButtonMenu selectedIndex={2} />);
 
     const button = getByRole('button', { name: 'open menu' });
-    act(() => {
+    await act(async () => {
       button.focus();
       button.click();
     });
@@ -289,12 +289,12 @@ describe('<Menu /> integration', () => {
 
     specify(
       '[variant=selectedMenu] focuses the selected item when opening when it was already mounted',
-      () => {
+      async () => {
         const { getAllByRole, getByRole } = render(
           <ButtonMenu selectedIndex={1} variant="selectedMenu" />,
         );
 
-        act(() => {
+        await act(async () => {
           getByRole('button').focus();
           getByRole('button').click();
         });
@@ -308,34 +308,31 @@ describe('<Menu /> integration', () => {
     );
   });
 
-  it('closes the menu when Tabbing while the list is active', () => {
+  it('closes the menu when Tabbing while the list is active', async () => {
     render(<ButtonMenu />);
 
     const trigger = screen.getByRole('button');
-    act(() => {
+    await act(async () => {
       trigger.focus();
       trigger.click();
     });
 
     // react-transition-group uses one commit per state transition so we need to wait a bit
-    fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
+    await act(async () => fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' }));
     clock.tick(0);
 
     expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();
   });
 
-  it('closes the menu when the backdrop is clicked', () => {
+  it('closes the menu when the backdrop is clicked', async () => {
     const { getByRole, getByTestId } = render(<ButtonMenu />);
     const button = getByRole('button');
-    act(() => {
+    await act(async () => {
       button.focus();
       button.click();
     });
 
-    act(() => {
-      getByTestId('Backdrop').click();
-    });
-    clock.tick(0);
+    await act(async () => getByTestId('Backdrop').click());
 
     expect(getByRole('menu', { hidden: true })).toBeInaccessible();
   });

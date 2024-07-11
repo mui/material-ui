@@ -20,6 +20,7 @@ import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
 import defaultGetSelector from './createGetSelector';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
+import { stringifyTheme } from './stringifyTheme';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
@@ -485,6 +486,7 @@ export default function extendTheme(options = {}, ...args) {
       theme: this,
     });
   };
+  theme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
 
   return theme;
 }
