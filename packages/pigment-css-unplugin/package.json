@@ -1,6 +1,7 @@
 {
   "name": "@pigment-css/unplugin",
   "version": "0.0.3",
+  "private": true,
   "main": "build/index.js",
   "module": "build/index.mjs",
   "types": "build/index.d.ts",
