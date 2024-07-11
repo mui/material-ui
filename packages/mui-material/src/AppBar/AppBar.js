@@ -126,7 +126,9 @@ const AppBarRoot = styled(Paper, {
                 theme.vars.palette[ownerState.color].contrastText,
               ),
         }),
-      backgroundColor: 'var(--AppBar-background)',
+      ...(!['inherit', 'transparent'].includes(ownerState.color) && {
+        backgroundColor: 'var(--AppBar-background)',
+      }),
       color: ownerState.color === 'inherit' ? 'inherit' : 'var(--AppBar-color)',
       ...(ownerState.color === 'transparent' && {
         backgroundImage: 'none',
