@@ -1,4 +1,4 @@
-import extendTheme from './extendThemeMD2';
+import extendTheme from './extendTheme';
 
 let warnedOnce = false;
 

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
-import extendTheme, { SupportedColorScheme, CssVarsTheme } from './extendThemeMD2';
+import extendTheme, { SupportedColorScheme, CssVarsTheme } from './extendTheme';
 import createTypography from './createTypography';
 import THEME_ID from './identifier';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';

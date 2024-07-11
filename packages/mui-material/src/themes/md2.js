@@ -1,1 +1,1 @@
-export { default as extendTheme } from '../styles/extendThemeMD2';
+export { default as extendTheme } from '../styles/extendTheme';

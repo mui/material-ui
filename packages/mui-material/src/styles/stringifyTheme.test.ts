@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { stringifyTheme } from './stringifyTheme';
-import extendTheme from './extendThemeMD2';
+import extendTheme from './extendTheme';
 
 describe('StringifyTheme', () => {
   it('should serialize the theme', () => {
