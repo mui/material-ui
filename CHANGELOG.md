@@ -22,6 +22,10 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 - Create a wrapper package over Pigment CSS (#42819) @brijeshb42
 
+### `@mui/base@5.0.0-beta.53`
+
+- [Autocomplete] Add new AutocompleteInputChangeReason (#37301) @binh1298
+
 ### Docs
 
 - Replace v6 "alpha" mentions with "beta" (#42895) @DiegoAndai
