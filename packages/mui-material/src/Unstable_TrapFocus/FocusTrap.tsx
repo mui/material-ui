@@ -124,7 +124,7 @@ function defaultIsEnabled(): boolean {
 /**
  * @ignore - internal component.
  */
-function FocusTrap(props: FocusTrapProps): React.JSX.Element {
+function FocusTrap(props: FocusTrapProps): JSX.Element {
   const {
     children,
     disableAutoFocus = false,

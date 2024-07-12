@@ -10,8 +10,11 @@ import {
 } from '@mui/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
+// Give up on IE11 support for this feature
 function stripDiacritics(string) {
-  return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  return typeof string.normalize !== 'undefined'
+    ? string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    : string;
 }
 
 export function createFilterOptions(config = {}) {
@@ -51,6 +54,17 @@ export function createFilterOptions(config = {}) {
 
     return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
   };
+}
+
+// To replace with .findIndex() once we stop IE11 support.
+function findIndex(array, comp) {
+  for (let i = 0; i < array.length; i += 1) {
+    if (comp(array[i])) {
+      return i;
+    }
+  }
+
+  return -1;
 }
 
 const defaultFilterOptions = createFilterOptions();
@@ -152,7 +166,7 @@ function useAutocomplete(props) {
   const [focused, setFocused] = React.useState(false);
 
   const resetInputValue = React.useCallback(
-    (event, newValue, reason) => {
+    (event, newValue) => {
       // retain current `inputValue` if new option isn't selected and `clearOnBlur` is false
       // When `multiple` is enabled, `newValue` is an array of all selected items including the newly selected item
       const isOptionSelected = multiple ? value.length < newValue.length : newValue !== null;
@@ -176,7 +190,7 @@ function useAutocomplete(props) {
       setInputValueState(newInputValue);
 
       if (onInputChange) {
-        onInputChange(event, newInputValue, reason);
+        onInputChange(event, newInputValue, 'reset');
       }
     },
     [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
@@ -236,7 +250,7 @@ function useAutocomplete(props) {
       return;
     }
 
-    resetInputValue(null, value, 'reset');
+    resetInputValue(null, value);
   }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
@@ -484,7 +498,7 @@ function useAutocomplete(props) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
       if (previousHighlightedOption) {
-        return filteredOptions.findIndex((option) => {
+        return findIndex(filteredOptions, (option) => {
           return getOptionLabel(option) === getOptionLabel(previousHighlightedOption);
         });
       }
@@ -525,12 +539,12 @@ function useAutocomplete(props) {
       if (
         multiple &&
         currentOption &&
-        value.findIndex((val) => isOptionEqualToValue(currentOption, val)) !== -1
+        findIndex(value, (val) => isOptionEqualToValue(currentOption, val)) !== -1
       ) {
         return;
       }
 
-      const itemIndex = filteredOptions.findIndex((optionItem) =>
+      const itemIndex = findIndex(filteredOptions, (optionItem) =>
         isOptionEqualToValue(optionItem, valueItem),
       );
       if (itemIndex === -1) {
@@ -671,7 +685,7 @@ function useAutocomplete(props) {
         }
       }
 
-      const itemIndex = newValue.findIndex((valueItem) => isOptionEqualToValue(option, valueItem));
+      const itemIndex = findIndex(newValue, (valueItem) => isOptionEqualToValue(option, valueItem));
 
       if (itemIndex === -1) {
         newValue.push(option);
@@ -681,7 +695,7 @@ function useAutocomplete(props) {
       }
     }
 
-    resetInputValue(event, newValue, reason);
+    resetInputValue(event, newValue);
 
     handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect && (!event || (!event.ctrlKey && !event.metaKey))) {
@@ -939,7 +953,7 @@ function useAutocomplete(props) {
     } else if (autoSelect && freeSolo && inputValue !== '') {
       selectNewValue(event, inputValue, 'blur', 'freeSolo');
     } else if (clearOnBlur) {
-      resetInputValue(event, value, 'blur');
+      resetInputValue(event, value);
     }
 
     handleClose(event, 'blur');

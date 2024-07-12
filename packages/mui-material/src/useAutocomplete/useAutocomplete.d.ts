@@ -257,7 +257,7 @@ export interface UseAutocompleteProps<
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange?: (
     event: React.SyntheticEvent,
@@ -329,13 +329,7 @@ export type AutocompleteCloseReason =
   | 'selectOption'
   | 'removeOption'
   | 'blur';
-export type AutocompleteInputChangeReason =
-  | 'input'
-  | 'reset'
-  | 'clear'
-  | 'blur'
-  | 'selectOption'
-  | 'removeOption';
+export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
 export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;
@@ -347,11 +341,11 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
  *
  * Demos:
  *
- * - [Autocomplete](https://next.mui.com/base-ui/react-autocomplete/#hook)
+ * - [Autocomplete](https://mui.com/base-ui/react-autocomplete/#hook)
  *
  * API:
  *
- * - [useAutocomplete API](https://next.mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
+ * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
  */
 export function useAutocomplete<
   Value,

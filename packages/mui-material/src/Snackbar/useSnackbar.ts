@@ -17,11 +17,11 @@ import { EventHandlers } from '../utils/types';
  *
  * Demos:
  *
- * - [Snackbar](https://next.mui.com/base-ui/react-snackbar/#hook)
+ * - [Snackbar](https://mui.com/base-ui/react-snackbar/#hook)
  *
  * API:
  *
- * - [useSnackbar API](https://next.mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
+ * - [useSnackbar API](https://mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
  */
 function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
   const {
@@ -44,7 +44,8 @@ function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnV
      */
     function handleKeyDown(nativeEvent: KeyboardEvent) {
       if (!nativeEvent.defaultPrevented) {
-        if (nativeEvent.key === 'Escape') {
+        // IE11, Edge (prior to using Blink?) use 'Esc'
+        if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
           // not calling `preventDefault` since we don't know if people may ignore this event e.g. a permanently open snackbar
           onClose?.(nativeEvent, 'escapeKeyDown');
         }

@@ -35,7 +35,7 @@ export interface ClickAwayListenerProps {
   /**
    * The wrapped element.
    */
-  children: React.ReactElement<any>;
+  children: React.ReactElement;
   /**
    * If `true`, the React tree is ignored and only the DOM tree is considered.
    * This prop changes how portaled elements are handled.
@@ -64,14 +64,14 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-Away Listener](https://next.mui.com/material-ui/react-click-away-listener/)
- * - [Menu](https://next.mui.com/material-ui/react-menu/)
+ * - [Click-Away Listener](https://mui.com/material-ui/react-click-away-listener/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://next.mui.com/material-ui/api/click-away-listener/)
+ * - [ClickAwayListener API](https://mui.com/material-ui/api/click-away-listener/)
  */
-function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
+function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
   const {
     children,
     disableReactTree = false,

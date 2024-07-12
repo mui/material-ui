@@ -10,7 +10,7 @@ import { DistributiveOmit, OverridableTypeMap } from '@mui/types';
 export type PolymorphicComponent<TypeMap extends OverridableTypeMap> = {
   <RootComponent extends React.ElementType = TypeMap['defaultComponent']>(
     props: PolymorphicProps<TypeMap, RootComponent>,
-  ): React.JSX.Element | null;
+  ): JSX.Element | null;
   propTypes?: any;
   displayName?: string | undefined;
 };
