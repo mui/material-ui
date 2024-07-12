@@ -5,9 +5,12 @@ import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
 
 const theme = extendTheme({
-  cssVarPrefix: 'demo',
   defaultColorScheme: 'dark',
-  colorSchemeSelector: '.demo_%s-mode-by-default',
+  // the props below are specific to this demo,
+  // you might not need them in your app.
+  //
+  cssVarPrefix: 'demo-default-dark',
+  colorSchemeSelector: '.demo_mode-by-default-%s',
 });
 
 export default function DarkModeByDefault() {
@@ -17,7 +20,6 @@ export default function DarkModeByDefault() {
       // you might not need them in your app.
       //
       theme={theme}
-      colorSchemeNode={null}
       //
       // the local storage key to use
       modeStorageKey="demo_dark-mode-by-default"
@@ -25,21 +27,19 @@ export default function DarkModeByDefault() {
       // set as root provider
       disableNestedContext
     >
-      <div className="demo_dark-mode-by-default">
-        <Sheet sx={{ px: 3, py: 1.5, borderRadius: 'sm' }}>
-          <Typography
-            component="div"
-            endDecorator={
-              <Chip variant="outlined" color="primary" size="sm">
-                Default
-              </Chip>
-            }
-            sx={{ fontSize: 'lg' }}
-          >
-            Dark mode
-          </Typography>
-        </Sheet>
-      </div>
+      <Sheet sx={{ px: 3, py: 1.5, borderRadius: 'sm' }}>
+        <Typography
+          component="div"
+          endDecorator={
+            <Chip variant="outlined" color="primary" size="sm">
+              Default
+            </Chip>
+          }
+          sx={{ fontSize: 'lg' }}
+        >
+          Dark mode
+        </Typography>
+      </Sheet>
     </CssVarsProvider>
   );
 }

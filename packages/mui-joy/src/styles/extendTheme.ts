@@ -606,7 +606,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     getCssVar,
     spacing: getSpacingVal(spacing),
     font: { ...prepareTypographyVars(mergedScales.typography), ...mergedScales.font },
-  } as unknown as Theme & { attribute: string; colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
+  } as unknown as Theme & { colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
   theme = cssContainerQueries(theme);
 
   /**

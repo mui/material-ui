@@ -4,35 +4,15 @@
 
 ## Set as default
 
-To set dark mode as the default for your app, add `defaultMode: 'dark'` to your `<CssVarsProvider>` wrapper component:
+To set dark mode as the default for your app, create a theme with `defaultColorScheme: 'dark'`:
 
 :::warning
-When you change the `defaultMode` to another value, you must clear the local storage for it to take effect.
+When you change the `defaultColorScheme` to another value, you must clear the local storage for it to take effect.
 :::
 
 {{"demo": "DarkModeByDefault.js"}}
 
-For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `InitColorSchemeScript` component:
-
-```js
-<InitColorSchemeScript defaultMode="dark" />
-```
-
-## Matching device's preference
-
-Use `enableSystem` to set your app's default mode to enable the user's chosen preference on their device.
-
-```jsx
-import { CssVarsProvider } from '@mui/joy/styles';
-
-<CssVarsProvider enableSystem>...</CssVarsProvider>;
-```
-
-For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `InitColorSchemeScript` component:
-
-```js
-<InitColorSchemeScript defaultMode="system" />
-```
+For server-side applications, check out the framework setup in [the section below](#server-side-rendering).
 
 ### Identify the system mode
 
@@ -58,25 +38,7 @@ The `useColorScheme()` hook only works with components nested inside of `<CssVar
 
 You can create a toggle component to give users the option to select between modes.
 
-In the example below, we're using a `Button` component that calls `setMode` from the `useColorSchemes()` hook to handle the mode toggling.
-
-```js
-import { useColorScheme } from '@mui/joy/styles';
-import Button from '@mui/joy/Button';
-
-function ModeToggle() {
-  const { mode, setMode } = useColorScheme();
-  return (
-    <Button
-      variant="outlined"
-      color="neutral"
-      onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
-    >
-      {mode === 'dark' ? 'Turn light' : 'Turn dark'}
-    </Button>
-  );
-}
-```
+In the example below, we're using a `Select` component that calls `setMode` from the `useColorSchemes()` hook to handle the mode switching.
 
 {{"demo": "ModeToggle.js"}}
 

@@ -8,6 +8,8 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 
 function ModeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -23,14 +25,17 @@ function ModeToggle() {
   }
 
   return (
-    <Button
-      variant="soft"
-      onClick={() => {
-        setMode(mode === 'system' ? 'dark' : 'light');
+    <Select
+      value={mode}
+      onChange={(event, newMode) => {
+        setMode(newMode);
       }}
+      sx={{ width: 'max-content' }}
     >
-      {mode === 'system' ? 'Turn dark' : 'Turn light'}
-    </Button>
+      <Option value="system">System</Option>
+      <Option value="light">Light</Option>
+      <Option value="dark">Dark</Option>
+    </Select>
   );
 }
 

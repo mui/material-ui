@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
-import { CssVarsProvider, useTheme } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme, useTheme } from '@mui/material/styles';
 
 describe('[Material UI] CssVarsProvider', () => {
   let originalMatchmedia;
@@ -57,7 +57,7 @@ describe('[Material UI] CssVarsProvider', () => {
       }
 
       render(
-        <CssVarsProvider>
+        <CssVarsProvider theme={extendTheme({ colorSchemes: { light: true, dark: true } })}>
           <Vars />
         </CssVarsProvider>,
       );
@@ -140,6 +140,7 @@ describe('[Material UI] CssVarsProvider', () => {
           primary: 'var(--mui-palette-text-primary)',
           secondary: 'var(--mui-palette-text-secondary)',
           disabled: 'var(--mui-palette-text-disabled)',
+          icon: 'var(--mui-palette-text-icon)',
           primaryChannel: 'var(--mui-palette-text-primaryChannel)',
           secondaryChannel: 'var(--mui-palette-text-secondaryChannel)',
         }),

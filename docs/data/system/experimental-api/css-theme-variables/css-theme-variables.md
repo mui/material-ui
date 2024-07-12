@@ -211,7 +211,7 @@ See the complete usage of `createCssVarsProvider` in [Material UI](https://gith
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
 - `theme: ThemeInput` - The theme provided to React's context. It should have these fields:
   - `colorSchemes: { [key: string]: ColorScheme }` - The color schemes for the application
-  - `colorSchemeSelector: 'media' | 'class' | 'data' | string`: - The strategy to use for applying the color scheme
+  - `colorSchemeSelector: 'media' | 'class' | 'data' | string`: - The method to apply CSS theme variables and component styles
   - `generateStyleSheets: () => Record<string, string>` - Function to generate CSS variables
   - `generateThemeVars: () => Record<string, any>` - Function to generate CSS variables reference for the `theme.vars`
 - `modeStorageKey?: string` - localStorage key used to store application `mode`
