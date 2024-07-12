@@ -37,7 +37,7 @@ const defaultManager = new ModalManager();
  *
  * - [useModal API](https://mui.com/base-ui/react-modal/hooks-api/#use-modal)
  */
-export function useModal(parameters: UseModalParameters): UseModalReturnValue {
+function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
     disableEscapeKeyDown = false,
