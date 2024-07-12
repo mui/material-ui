@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 import describeConformance from '../../test/describeConformance';

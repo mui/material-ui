@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, ErrorBoundary, act, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, screen, ErrorBoundary, act, fireEvent } from '@mui-internal/test-utils';
 import { spy } from 'sinon';
 import useAutocomplete, { createFilterOptions } from '@mui/material/useAutocomplete';
 

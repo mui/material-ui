@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
-import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, screen, waitFor, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 function getStyleValue(value: string) {
