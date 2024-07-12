@@ -10,6 +10,7 @@ import {
   visuallyHidden,
   clamp,
 } from '@mui/utils';
+import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
   Mark,
   UseSliderHiddenInputProps,
@@ -19,7 +20,6 @@ import {
   UseSliderThumbSlotProps,
 } from './useSlider.types';
 import { EventHandlers } from '../utils/types';
-import extractEventHandlers from '../utils/extractEventHandlers';
 import areArraysEqual from '../utils/areArraysEqual';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;

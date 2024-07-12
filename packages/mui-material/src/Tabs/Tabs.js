@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
-import useSlotProps from '../utils/useSlotProps';
+import useSlotProps from '@mui/utils/useSlotProps';
 import { styled, useTheme } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';

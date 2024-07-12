@@ -8,7 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import isFocusVisible from '@mui/utils/isFocusVisible';
-import { appendOwnerState } from '../utils/appendOwnerState';
+import appendOwnerState from '@mui/utils/appendOwnerState';
 import { styled, useTheme } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';

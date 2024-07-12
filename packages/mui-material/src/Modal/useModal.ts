@@ -6,8 +6,8 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_createChainedFunction as createChainedFunction,
 } from '@mui/utils';
+import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
-import extractEventHandlers from '../utils/extractEventHandlers';
 import { ModalManager, ariaHidden } from './ModalManager';
 import {
   UseModalParameters,

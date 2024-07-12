@@ -4,12 +4,12 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_useTimeout as useTimeout,
 } from '@mui/utils';
+import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
   UseSnackbarParameters,
   SnackbarCloseReason,
   UseSnackbarReturnValue,
 } from './useSnackbar.types';
-import extractEventHandlers from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 
 /**

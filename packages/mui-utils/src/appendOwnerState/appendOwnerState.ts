@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
-import isHostComponent from './isHostComponent';
+import isHostComponent from '../isHostComponent';
 
 /**
  * Type of the ownerState based on the type of an element it applies to.
@@ -31,7 +31,7 @@ export type AppendOwnerStateReturnType<
  * @param otherProps Props of the element.
  * @param ownerState
  */
-export function appendOwnerState<
+function appendOwnerState<
   ElementType extends React.ElementType,
   OtherProps extends Record<string, any>,
   OwnerState,
@@ -49,3 +49,5 @@ export function appendOwnerState<
     ownerState: { ...otherProps.ownerState, ...ownerState },
   } as AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState>;
 }
+
+export default appendOwnerState;

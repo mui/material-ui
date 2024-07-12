@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { appendOwnerState } from './appendOwnerState';
+import appendOwnerState from '@mui/utils/appendOwnerState';
 
 const ownerState = {
   className: 'bar',
