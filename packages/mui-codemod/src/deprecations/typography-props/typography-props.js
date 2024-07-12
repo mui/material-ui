@@ -29,9 +29,7 @@ export default function transformer(file, api, options) {
       },
     );
 
-    const isParagraphPropTruthy =
-      !!paragraphProp.value?.expression.value ||
-      paragraphProp.value?.expression.value === undefined;
+    const isParagraphPropTruthy = paragraphProp.value?.expression.value !== false;
 
     if (!isParagraphPropTruthy) {
       return;
@@ -80,8 +78,7 @@ export default function transformer(file, api, options) {
       (prop) => !['paragraph'].includes(prop?.key?.name),
     );
 
-    const isParagraphPropTruthy =
-      !!paragraphProp.value?.value || paragraphProp.value?.value === undefined;
+    const isParagraphPropTruthy = paragraphProp.value?.value !== false;
 
     if (!isParagraphPropTruthy) {
       return;
