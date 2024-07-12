@@ -152,7 +152,7 @@ function useAutocomplete(props) {
   const [focused, setFocused] = React.useState(false);
 
   const resetInputValue = React.useCallback(
-    (event, newValue) => {
+    (event, newValue, reason) => {
       // retain current `inputValue` if new option isn't selected and `clearOnBlur` is false
       // When `multiple` is enabled, `newValue` is an array of all selected items including the newly selected item
       const isOptionSelected = multiple ? value.length < newValue.length : newValue !== null;
@@ -176,7 +176,7 @@ function useAutocomplete(props) {
       setInputValueState(newInputValue);
 
       if (onInputChange) {
-        onInputChange(event, newInputValue, 'reset');
+        onInputChange(event, newInputValue, reason);
       }
     },
     [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
@@ -236,7 +236,7 @@ function useAutocomplete(props) {
       return;
     }
 
-    resetInputValue(null, value);
+    resetInputValue(null, value, 'reset');
   }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
@@ -681,7 +681,7 @@ function useAutocomplete(props) {
       }
     }
 
-    resetInputValue(event, newValue);
+    resetInputValue(event, newValue, reason);
 
     handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect && (!event || (!event.ctrlKey && !event.metaKey))) {
@@ -939,7 +939,7 @@ function useAutocomplete(props) {
     } else if (autoSelect && freeSolo && inputValue !== '') {
       selectNewValue(event, inputValue, 'blur', 'freeSolo');
     } else if (clearOnBlur) {
-      resetInputValue(event, value);
+      resetInputValue(event, value, 'blur');
     }
 
     handleClose(event, 'blur');
