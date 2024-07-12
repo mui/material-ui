@@ -1,1 +1,6 @@
-export { default, WithCommonProps, MergeSlotPropsParameters, MergeSlotPropsResult } from './mergeSlotProps';
+export {
+  default,
+  WithCommonProps,
+  MergeSlotPropsParameters,
+  MergeSlotPropsResult,
+} from './mergeSlotProps';

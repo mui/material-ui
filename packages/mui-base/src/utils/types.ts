@@ -1,1 +1,6 @@
-export type { EventHandlers, WithOptionalOwnerState, SlotComponentProps, SlotComponentPropsWithSlotState } from '@mui/utils';
+export type {
+  EventHandlers,
+  WithOptionalOwnerState,
+  SlotComponentProps,
+  SlotComponentPropsWithSlotState,
+} from '@mui/utils';

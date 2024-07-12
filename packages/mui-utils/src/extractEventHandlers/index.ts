@@ -1,1 +1,1 @@
-export { default } from "./extractEventHandlers";
+export { default } from './extractEventHandlers';

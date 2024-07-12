@@ -1,7 +1,12 @@
 import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/utils';
 
-export type { EventHandlers, WithOptionalOwnerState, SlotComponentProps, SlotComponentPropsWithSlotState } from '@mui/utils';
+export type {
+  EventHandlers,
+  WithOptionalOwnerState,
+  SlotComponentProps,
+  SlotComponentPropsWithSlotState,
+} from '@mui/utils';
 
 export type SlotCommonProps = {
   component?: React.ElementType;
@@ -13,7 +18,6 @@ export type SlotProps<
   TOverrides,
   TOwnerState,
 > = SlotComponentProps<TSlotComponent, SlotCommonProps & TOverrides, TOwnerState>;
-
 
 /**
  * Use the keys of `Slots` to make sure that K contains all of the keys
