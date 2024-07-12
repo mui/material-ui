@@ -1,1 +1,2 @@
-export { default, UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
+export { default } from './useSlotProps';
+export type { UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';

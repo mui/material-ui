@@ -1,1 +1,2 @@
-export { default, AppendOwnerStateReturnType } from './appendOwnerState';
+export { default } from './appendOwnerState';
+export type { AppendOwnerStateReturnType } from './appendOwnerState';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { appendOwnerState } from './appendOwnerState';
+import appendOwnerState from './appendOwnerState';
 
 const divProps = appendOwnerState('div', { otherProp: true }, { ownerStateProps: true });
 

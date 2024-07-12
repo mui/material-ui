@@ -41,11 +41,8 @@ export * from './generateUtilityClass';
 export { default as unstable_generateUtilityClasses } from './generateUtilityClasses';
 export { default as unstable_ClassNameGenerator } from './ClassNameGenerator';
 export { default as clamp } from './clamp';
-export {
-  default as unstable_useSlotProps,
-  UseSlotPropsParameters,
-  UseSlotPropsResult,
-} from './useSlotProps';
+export { default as unstable_useSlotProps } from './useSlotProps';
+export type { UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
 export { default as unstable_resolveComponentProps } from './resolveComponentProps';
 export { default as unstable_extractEventHandlers } from './extractEventHandlers';
 export * from './types';
