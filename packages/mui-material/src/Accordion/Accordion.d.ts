@@ -16,9 +16,15 @@ export interface AccordionSlots {
   transition?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
+  /**
+   * The component that renders the heading.
+   * @default 'div'
+   */
+  heading?: React.ElementType;
 }
 
 export interface AccordionTransitionSlotPropsOverrides {}
+export interface AccordionHeadingSlotPropsOverrides {}
 
 export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AccordionSlots,
@@ -26,6 +32,11 @@ export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     transition: SlotProps<
       React.ElementType<TransitionProps>,
       AccordionTransitionSlotPropsOverrides,
+      AccordionOwnerState
+    >;
+    heading: SlotProps<
+      React.ElementType<HTMLDivElement>,
+      AccordionHeadingSlotPropsOverrides,
       AccordionOwnerState
     >;
   }

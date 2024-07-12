@@ -25,6 +25,7 @@ const useUtilityClasses = (ownerState) => {
       disabled && 'disabled',
       !disableGutters && 'gutters',
     ],
+    heading: ['heading'],
     region: ['region'],
   };
 
@@ -39,6 +40,7 @@ const AccordionRoot = styled(Paper, {
 
     return [
       { [`& .${accordionClasses.region}`]: styles.region },
+      { [`& .${accordionClasses.heading}`]: styles.heading },
       styles.root,
       !ownerState.square && styles.rounded,
       !ownerState.disableGutters && styles.gutters,
@@ -179,12 +181,25 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
   const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
 
+  const externalForwardedProps = {
+    slots: backwardCompatibleSlots,
+    slotProps: backwardCompatibleSlotProps,
+  };
+
   const [TransitionSlot, transitionProps] = useSlot('transition', {
     elementType: Collapse,
-    externalForwardedProps: {
-      slots: backwardCompatibleSlots,
-      slotProps: backwardCompatibleSlotProps,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
+    elementType: 'div',
+    externalForwardedProps,
+    additionalProps: {
+      role: 'heading',
+      'aria-level': 3,
     },
+    className: classes.heading,
     ownerState,
   });
 
@@ -196,7 +211,9 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
       square={square}
       {...other}
     >
-      <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
+      <AccordionHeadingSlot {...accordionProps}>
+        <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
+      </AccordionHeadingSlot>
       <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
         <div
           aria-labelledby={summary.props.id}
