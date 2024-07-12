@@ -13,6 +13,21 @@ fn({
 fn({
   MuiTypography: {
     defaultProps: {
+      paragraph: false,
+    },
+  },
+});
+fn({
+  MuiTypography: {
+    defaultProps: {
+      paragraph: false,
+      className: "my-class",
+    },
+  },
+});
+fn({
+  MuiTypography: {
+    defaultProps: {
       paragraph: true,
     },
   },

@@ -76,16 +76,16 @@ export default function transformer(file, api, options) {
       return;
     }
 
+    defaultPropsObject.value.properties = defaultPropsObject.value.properties.filter(
+      (prop) => !['paragraph'].includes(prop?.key?.name),
+    );
+
     const isParagraphPropTruthy =
       !!paragraphProp.value?.value || paragraphProp.value?.value === undefined;
 
     if (!isParagraphPropTruthy) {
       return;
     }
-
-    defaultPropsObject.value.properties = defaultPropsObject.value.properties.filter(
-      (prop) => !['paragraph'].includes(prop?.key?.name),
-    );
 
     const sxIndex = defaultPropsObject.value.properties.findIndex((prop) => prop.key.name === 'sx');
 

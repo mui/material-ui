@@ -12,6 +12,18 @@ fn({
 });
 fn({
   MuiTypography: {
+    defaultProps: {},
+  },
+});
+fn({
+  MuiTypography: {
+    defaultProps: {
+      className: "my-class"
+    },
+  },
+});
+fn({
+  MuiTypography: {
     defaultProps: {
       sx: {
         marginBottom: "16px"
