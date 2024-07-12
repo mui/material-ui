@@ -132,7 +132,7 @@ describe('createBreakpoints', () => {
       );
     });
 
-    it('should invert u for uw', () => {
+    it('should invert up for uw', () => {
       expect(breakpoints.not('uw')).to.equal('@media (max-width:2559.95px)');
     });
 
