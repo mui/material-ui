@@ -207,6 +207,9 @@ const pages: MuiPage[] = [
             pathname: '/material-ui/customization/css-theme-variables/configuration',
             title: 'Advanced configuration',
           },
+          {
+            pathname: '/material-ui/customization/css-theme-variables/default-tokens-viewer',
+          },
         ],
       },
     ],
