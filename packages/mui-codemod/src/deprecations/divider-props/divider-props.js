@@ -29,8 +29,7 @@ export default function transformer(file, api, options) {
       },
     );
 
-    const isLightPropTruthy =
-      !!lightProp.value?.expression.value || lightProp.value?.expression.value === undefined;
+    const isLightPropTruthy = lightProp.value?.expression.value !== false;
 
     if (!isLightPropTruthy) {
       return;
@@ -77,7 +76,7 @@ export default function transformer(file, api, options) {
       (prop) => !['light'].includes(prop?.key?.name),
     );
 
-    const isLightPropTruthy = !!lightProp.value?.value || lightProp.value?.value === undefined;
+    const isLightPropTruthy = lightProp.value?.value !== false;
 
     if (!isLightPropTruthy) {
       return;
