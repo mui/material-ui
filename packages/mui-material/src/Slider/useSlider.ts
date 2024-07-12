@@ -6,7 +6,7 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_isFocusVisible as isFocusVisible,
+  unstable_useIsFocusVisible as useIsFocusVisible,
   visuallyHidden,
   clamp,
 } from '@mui/utils';
@@ -192,11 +192,11 @@ function doesSupportTouchActionNone() {
  *
  * Demos:
  *
- * - [Slider](https://next.mui.com/base-ui/react-slider/#hook)
+ * - [Slider](https://mui.com/base-ui/react-slider/#hook)
  *
  * API:
  *
- * - [useSlider API](https://next.mui.com/base-ui/react-slider/hooks-api/#use-slider)
+ * - [useSlider API](https://mui.com/base-ui/react-slider/hooks-api/#use-slider)
  */
 export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {
@@ -267,15 +267,23 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const marksValues = (marks as Mark[]).map((mark: Mark) => mark.value);
 
+  const {
+    isFocusVisibleRef,
+    onBlur: handleBlurVisible,
+    onFocus: handleFocusVisible,
+    ref: focusVisibleRef,
+  } = useIsFocusVisible();
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
   const sliderRef = React.useRef<HTMLSpanElement>();
-  const handleRef = useForkRef(ref, sliderRef);
+  const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
+  const handleRef = useForkRef(ref, handleFocusRef);
 
   const createHandleHiddenInputFocus =
     (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
       const index = Number(event.currentTarget.getAttribute('data-index'));
-      if (isFocusVisible(event.target)) {
+      handleFocusVisible(event);
+      if (isFocusVisibleRef.current === true) {
         setFocusedThumbIndex(index);
       }
       setOpen(index);
@@ -283,7 +291,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
   const createHandleHiddenInputBlur =
     (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
-      if (!isFocusVisible(event.target)) {
+      handleBlurVisible(event);
+      if (isFocusVisibleRef.current === false) {
         setFocusedThumbIndex(-1);
       }
       setOpen(-1);
