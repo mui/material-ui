@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "6.0.0-alpha.14",
+  "version": "6.0.0-beta.0",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The legacy JSS-based styling solution of Material UI.",

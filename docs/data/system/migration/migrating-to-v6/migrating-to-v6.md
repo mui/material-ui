@@ -2,7 +2,7 @@
 
 <p class="description">This guide explains how and why to migrate from MUI System v5 to v6.</p>
 
-## Start using the alpha release
+## Start using the beta release
 
 In the `package.json` file, change the package version from `latest` to `next`.
 
@@ -11,8 +11,8 @@ In the `package.json` file, change the package version from `latest` to `next`.
 +"@mui/system": "next",
 ```
 
-Using `next` ensures your project always uses the latest v6 alpha release.
-Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-alpha.0`.
+Using `next` ensures your project always uses the latest v6 beta release.
+Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-beta.0`.
 
 ## Breaking changes
 

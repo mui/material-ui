@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0-alpha.14",
+  "version": "6.0.0-beta.0",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -91,7 +91,7 @@
   },
   "dependencies": {
     "@googleapis/sheets": "^8.0.0",
-    "@netlify/functions": "^2.8.0",
+    "@netlify/functions": "^2.8.1",
     "@slack/bolt": "^3.19.0",
     "execa": "^9.3.0",
     "google-auth-library": "^9.11.0"
@@ -118,7 +118,7 @@
     "@next/eslint-plugin-next": "^14.2.4",
     "@octokit/rest": "^20.1.1",
     "@pigment-css/react": "^0.0.16",
-    "@playwright/test": "1.45.0",
+    "@playwright/test": "1.45.1",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.6",
     "@types/mocha": "^10.0.7",
@@ -156,7 +156,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
-    "globby": "^14.0.1",
+    "globby": "^14.0.2",
     "karma": "^6.4.3",
     "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.2.0",
@@ -165,18 +165,18 @@
     "karma-mocha": "^2.0.1",
     "karma-sourcemap-loader": "^0.4.0",
     "karma-webpack": "^5.0.0",
-    "lerna": "^8.1.5",
+    "lerna": "^8.1.6",
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.13.0",
-    "mocha": "^10.4.0",
-    "nx": "^19.3.2",
+    "mocha": "^10.6.0",
+    "nx": "^19.4.1",
     "nyc": "^17.0.0",
-    "piscina": "^4.5.1",
+    "piscina": "^4.6.1",
     "postcss-styled-syntax": "^0.6.4",
     "prettier": "^3.3.2",
     "pretty-quick": "^4.0.0",
     "process": "^0.11.10",
-    "rimraf": "^5.0.7",
+    "rimraf": "^5.0.8",
     "serve": "^14.2.3",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
@@ -208,7 +208,11 @@
     "@types/node": "^18.19.39",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "cross-fetch": "^4.0.0"
+    "cross-fetch": "^4.0.0",
+    "@pigment-css/react": "0.0.17",
+    "@pigment-css/unplugin": "0.0.17",
+    "@pigment-css/nextjs-plugin": "0.0.17",
+    "@pigment-css/vite-plugin": "0.0.17"
   },
   "nyc": {
     "include": [
