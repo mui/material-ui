@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import NoSsr from '../NoSsr';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import useForkRef from '../utils/useForkRef';
 import ownerDocument from '../utils/ownerDocument';
