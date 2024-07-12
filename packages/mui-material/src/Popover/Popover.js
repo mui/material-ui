@@ -8,6 +8,7 @@ import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
+import useSlotProps from '@mui/utils/useSlotProps';
 import isHostComponent from '../utils/isHostComponent';
 import styled from '../styles/styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
