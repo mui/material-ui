@@ -45,7 +45,9 @@ function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
           <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
           Custom theme
         </ToggleButton>
-        <ToggleButton value={false}>Material Design 2</ToggleButton>
+        <ToggleButton id="toggle-default-theme" value={false}>
+          Material Design 2
+        </ToggleButton>
       </ToggleButtonGroup>
     </Box>
   );
@@ -111,7 +113,11 @@ export default function SignInSide() {
           >
             Back
           </Button>
-          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+          <ToggleColorMode
+            id="toggle-mode"
+            mode={mode}
+            toggleColorMode={toggleColorMode}
+          />
         </Stack>
         <Stack
           direction={{ xs: 'column-reverse', md: 'row' }}

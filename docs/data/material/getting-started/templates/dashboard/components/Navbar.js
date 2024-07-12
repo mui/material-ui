@@ -83,7 +83,11 @@ function Navbar({ mode, toggleColorMode }) {
               <NotificationsRoundedIcon />
             </MenuButton>
             <OptionsMenu />
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            <ToggleColorMode
+              id="toggle-mode"
+              mode={mode}
+              toggleColorMode={toggleColorMode}
+            />
           </Stack>
         </Stack>
         <Stack
