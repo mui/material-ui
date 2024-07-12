@@ -30,7 +30,7 @@ export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AccordionSlots,
   {
     heading: SlotProps<
-      React.ElementType<HTMLDivElement>,
+      React.ElementType<React.HTMLProps<HTMLDivElement>>,
       AccordionHeadingSlotPropsOverrides,
       AccordionOwnerState
     >;
