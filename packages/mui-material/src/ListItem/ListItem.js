@@ -7,7 +7,7 @@ import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import { alpha } from '@mui/system/colorManipulator';
 import isHostComponent from '../utils/isHostComponent';
-import { styled } from '../zero-styled';
+import styled from '../styles/styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';

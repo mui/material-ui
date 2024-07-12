@@ -9,7 +9,7 @@ import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import isHostComponent from '../utils/isHostComponent';
-import { styled } from '../zero-styled';
+import styled from '../styles/styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';

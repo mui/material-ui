@@ -5,7 +5,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
 import useSnackbar from './useSnackbar';
 import ClickAwayListener from '../ClickAwayListener';
-import { styled, useTheme } from '../zero-styled';
+import { styled, useTheme } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';

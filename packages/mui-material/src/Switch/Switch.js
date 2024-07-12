@@ -8,7 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
-import { styled } from '../zero-styled';
+import styled from '../styles/styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 

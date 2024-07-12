@@ -8,7 +8,7 @@ import * as React from 'react';
 import BasePopper from './BasePopper';
 import { PopperProps as BasePopperProps } from './BasePopper.types';
 import { Theme } from '../styles';
-import { styled } from '../zero-styled';
+import styled from '../styles/styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 export interface PopperProps extends Omit<BasePopperProps, 'direction'> {

@@ -9,7 +9,7 @@ import { useRtl } from '@mui/system/RtlProvider';
 import useSlotProps from '@mui/utils/useSlotProps';
 import { useSlider, valueToPercent } from './useSlider';
 import isHostComponent from '../utils/isHostComponent';
-import { styled } from '../zero-styled';
+import styled from '../styles/styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
