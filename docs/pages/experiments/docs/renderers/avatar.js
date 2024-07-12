@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 
 export function renderAvatar(params) {
@@ -11,3 +12,5 @@ export function renderAvatar(params) {
     </Avatar>
   );
 }
+
+export default renderAvatar;

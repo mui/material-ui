@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, ListItemIcon, ListItemText, MenuItem, Select, Tooltip } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import { useGridApiContext } from '@mui/x-data-grid';
-import { INCOTERM_OPTIONS } from '@mui/x-data-grid-generator/services/static-data';
+import { INCOTERM_OPTIONS } from '@mui/x-data-grid-generator';
 
 const Incoterm = React.memo(function Incoterm(props) {
   const { value } = props;

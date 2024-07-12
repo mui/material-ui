@@ -9,12 +9,10 @@ import {
   randomName,
   randomRating,
   randomStatusOptions,
-} from '@mui/x-data-grid-generator';
-import {
   COUNTRY_ISO_OPTIONS_SORTED,
   INCOTERM_OPTIONS,
   STATUS_OPTIONS,
-} from '@mui/x-data-grid-generator/services/static-data';
+} from '@mui/x-data-grid-generator';
 import { DataGrid, gridStringOrNumberComparator } from '@mui/x-data-grid';
 import { renderAvatar } from './renderers/avatar';
 import { renderEmail } from './renderers/email';

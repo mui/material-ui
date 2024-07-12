@@ -30,3 +30,5 @@ export function renderEmail(params) {
     </DemoLink>
   );
 }
+
+export default renderEmail;

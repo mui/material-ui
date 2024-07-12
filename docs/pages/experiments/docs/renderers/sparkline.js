@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
 
 export function renderSparkline(params) {
@@ -7,3 +8,5 @@ export function renderSparkline(params) {
 
   return <SparkLineChart data={params.value} width={params.colDef.computedWidth} plotType="bar" />;
 }
+
+export default renderSparkline;
