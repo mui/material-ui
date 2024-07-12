@@ -38,15 +38,14 @@ Aside from that, v6 also includes a few quality-of-life improvements regarding s
 - Support for container queries within the theme.
 - A new theme utility for adding styles to specific color modes.
 
-## Supported browsers and Node versions
+## Supported browsers
 
-The targets of the default bundle have changed in v6.
+The browser targets of the default bundle have changed in v6.
 
 The exact versions will be pinned on release from the browserslist query: `"> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"`.
 
 <!-- #stable-snapshot -->
 
-- Node.js 18 (up from 12)
 - Chrome 109 (up from 90)
 - Edge 121 (up from 91)
 - Firefox 115 (up from 78)
