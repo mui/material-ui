@@ -1491,10 +1491,7 @@ importers:
         version: 11.11.4(@types/react@18.3.3)(react@18.3.1)
       '@emotion/styled':
         specifier: ^11.3.0
-        version: 11.11.0(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
-      '@mui/base':
-        specifier: workspace:*
-        version: link:../mui-base/build
+        version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
       '@mui/core-downloads-tracker':
         specifier: workspace:^
         version: link:../mui-core-downloads-tracker/build
@@ -1933,6 +1930,9 @@ importers:
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1

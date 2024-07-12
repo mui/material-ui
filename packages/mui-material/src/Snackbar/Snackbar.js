@@ -1,12 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import { useSnackbar } from '@mui/base/useSnackbar';
-import styled from '../styles/styled';
-import useTheme from '../styles/useTheme';
+import useSlotProps from '@mui/utils/useSlotProps';
+import useSnackbar from './useSnackbar';
+import ClickAwayListener from '../ClickAwayListener';
+import { styled, useTheme } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';

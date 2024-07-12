@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
-import { useSlotProps } from '@mui/base/utils';
-import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import composeClasses from '@mui/utils/composeClasses';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
 import styled from '../styles/styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Backdrop from '../Backdrop';
+import useModal from './useModal';
 import { getModalUtilityClass } from './modalClasses';
 
 const useUtilityClasses = (ownerState) => {

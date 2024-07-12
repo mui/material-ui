@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import {
-  useAutocomplete,
+import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
+import { PaperProps } from '@mui/material/Paper';
+import { PopperProps } from '@mui/material/Popper';
+import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
@@ -11,11 +14,7 @@ import {
   createFilterOptions,
   UseAutocompleteProps,
   AutocompleteFreeSoloValueMapping,
-} from '@mui/base';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
-import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
-import { PaperProps } from '@mui/material/Paper';
-import { PopperProps } from '@mui/material/Popper';
+} from '../useAutocomplete';
 import { AutocompleteClasses } from './autocompleteClasses';
 
 export {

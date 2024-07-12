@@ -1,12 +1,14 @@
 'use client';
-import { Popper as BasePopper, PopperProps as BasePopperProps } from '@mui/base/Popper';
-import { Direction, SxProps } from '@mui/system';
-import useTheme from '@mui/system/useThemeWithoutDefault';
+import { SxProps } from '@mui/system';
+import { useRtl } from '@mui/system/RtlProvider';
 import refType from '@mui/utils/refType';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { styled, Theme } from '../styles';
+import BasePopper from './BasePopper';
+import { PopperProps as BasePopperProps } from './BasePopper.types';
+import { Theme } from '../styles';
+import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
