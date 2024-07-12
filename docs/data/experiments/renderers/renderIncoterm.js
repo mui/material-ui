@@ -1,8 +1,16 @@
 import * as React from 'react';
-import { Box, ListItemIcon, ListItemText, MenuItem, Select, Tooltip } from '@mui/material';
+import {
+  Box,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Select,
+  Tooltip,
+} from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import { useGridApiContext } from '@mui/x-data-grid';
-import { INCOTERM_OPTIONS } from '@mui/x-data-grid-generator';
+// eslint-disable-next-line no-restricted-imports
+import { INCOTERM_OPTIONS } from '@mui/x-data-grid-generator/services/static-data';
 
 const Incoterm = React.memo(function Incoterm(props) {
   const { value } = props;
@@ -16,7 +24,9 @@ const Incoterm = React.memo(function Incoterm(props) {
   const code = valueStr.slice(0, valueStr.indexOf('(')).trim();
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+    <Box
+      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+    >
       <span>{code}</span>
       <Tooltip title={tooltip}>
         <InfoIcon sx={{ color: '#2196f3', alignSelf: 'center', ml: '8px' }} />
@@ -31,7 +41,10 @@ function EditIncoterm(props) {
   const apiRef = useGridApiContext();
 
   const handleChange = async (event) => {
-    await apiRef.current.setEditCellValue({ id, field, value: event.target.value }, event);
+    await apiRef.current.setEditCellValue(
+      { id, field, value: event.target.value },
+      event,
+    );
     apiRef.current.stopCellEditMode({ id, field });
   };
 

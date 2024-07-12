@@ -1,11 +1,23 @@
 import * as React from 'react';
-import { Chip, ListItemIcon, ListItemText, MenuItem, Select, styled } from '@mui/material';
+import {
+  Chip,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Select,
+  styled,
+} from '@mui/material';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import InfoIcon from '@mui/icons-material/Info';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import DoneIcon from '@mui/icons-material/Done';
-import { GridEditModes, useGridApiContext, useGridRootProps } from '@mui/x-data-grid';
-import { STATUS_OPTIONS } from '@mui/x-data-grid-generator';
+import {
+  GridEditModes,
+  useGridApiContext,
+  useGridRootProps,
+} from '@mui/x-data-grid';
+// eslint-disable-next-line no-restricted-imports
+import { STATUS_OPTIONS } from '@mui/x-data-grid-generator/services/static-data';
 
 const StyledChip = styled(Chip)(({ theme }) => ({
   justifyContent: 'left',
@@ -50,7 +62,13 @@ const Status = React.memo((props) => {
   }
 
   return (
-    <StyledChip className={status} icon={icon} size="small" label={label} variant="outlined" />
+    <StyledChip
+      className={status}
+      icon={icon}
+      size="small"
+      label={label}
+      variant="outlined"
+    />
   );
 });
 

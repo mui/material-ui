@@ -9,19 +9,31 @@ import {
   randomName,
   randomRating,
   randomStatusOptions,
+} from '@mui/x-data-grid-generator';
+// eslint-disable-next-line no-restricted-imports
+import {
   COUNTRY_ISO_OPTIONS_SORTED,
   INCOTERM_OPTIONS,
   STATUS_OPTIONS,
-} from '@mui/x-data-grid-generator';
+} from '@mui/x-data-grid-generator/services/static-data';
 import { DataGrid, gridStringOrNumberComparator } from '@mui/x-data-grid';
-import { renderAvatar } from './renderers/avatar';
-import { renderEmail } from './renderers/email';
-import { renderEditRating, renderRating } from './renderers/rating';
-import { renderCountry, renderEditCountry } from './renderers/country';
-import { renderSparkline } from './renderers/sparkline';
-import { renderEditProgress, renderProgress } from './renderers/progress';
-import { renderEditStatus, renderStatus } from './renderers/status';
-import { renderEditIncoterm, renderIncoterm } from './renderers/incoterm';
+import { renderAvatar } from '../../../data/experiments/renderers/renderAvatar';
+import { renderEmail } from '../../../data/experiments/renderers/renderEmail';
+import { renderEditRating, renderRating } from '../../../data/experiments/renderers/renderRating';
+import {
+  renderCountry,
+  renderEditCountry,
+} from '../../../data/experiments/renderers/renderCountry';
+import { renderSparkline } from '../../../data/experiments/renderers/renderSparkline';
+import {
+  renderEditProgress,
+  renderProgress,
+} from '../../../data/experiments/renderers/renderProgress';
+import { renderEditStatus, renderStatus } from '../../../data/experiments/renderers/renderStatus';
+import {
+  renderEditIncoterm,
+  renderIncoterm,
+} from '../../../data/experiments/renderers/renderIncoterm';
 
 const columns = [
   {

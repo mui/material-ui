@@ -6,7 +6,13 @@ export function renderSparkline(params) {
     return '';
   }
 
-  return <SparkLineChart data={params.value} width={params.colDef.computedWidth} plotType="bar" />;
+  return (
+    <SparkLineChart
+      data={params.value}
+      width={params.colDef.computedWidth}
+      plotType="bar"
+    />
+  );
 }
 
 export default renderSparkline;
