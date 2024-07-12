@@ -122,23 +122,44 @@ describe('<HiddenJs />', () => {
     });
 
     describe('only', () => {
-      isHidden(['lg', ['lg', 'xl', 'uw']], 'only', 'lg');
+      isHidden(['lg', ['lg', 'xl']], 'only', 'lg');
       isVisible(['xs', 'sm', 'md', 'xl', 'uw', ['xs', 'sm', 'md', 'xl', 'uw']], 'only', 'lg');
     });
   });
 
   describe('screen width: xl', () => {
     describe('up', () => {
-      isHidden(['xs', 'sm', 'md', 'lg', 'xl', 'uw'], 'Up', 'xl');
+      isHidden(['xs', 'sm', 'md', 'lg', 'xl'], 'Up', 'xl');
+      isVisible(['uw'], 'Up', 'xl');
     });
 
     describe('down', () => {
-      isVisible(['xs', 'sm', 'md', 'lg', 'xl', 'uw'], 'Down', 'xl');
+      isHidden(['uw'], 'Down', 'md');
+      isVisible(['xs', 'sm', 'md', 'lg', 'xl'], 'Down', 'xl');
     });
 
     describe('only', () => {
-      isHidden(['xl', 'uw', ['xl', 'uw', 'xs']], 'only', 'xl');
-      isVisible(['xs', 'sm', 'md', 'lg', ['xs', 'sm', 'md', 'lg']], 'only', 'xl');
+      isHidden(['xl', ['xl', 'uw']], 'only', 'xl');
+      isVisible(['xs', 'sm', 'md', 'lg', 'uw', ['xs', 'sm', 'md', 'lg', 'uw']], 'only', 'xl');
+    });
+  });
+
+  describe('screen width: uw', () => {
+    describe('up', () => {
+      // Everything up to and including uw is hidden
+      isHidden(['xs', 'sm', 'md', 'lg', 'xl', 'uw'], 'Up', 'uw');
+    });
+
+    describe('down', () => {
+      // Everything is visible since uw is the largest breakpoint
+      isVisible(['xs', 'sm', 'md', 'lg', 'xl'], 'Down', 'uw');
+    });
+
+    describe('only', () => {
+      // Only uw is hidden
+      isHidden(['uw', ['uw', 'xs']], 'only', 'uw');
+      // All other breakpoints are visible
+      isVisible(['xs', 'sm', 'md', 'lg', 'xl'], 'only', 'uw');
     });
   });
 });
