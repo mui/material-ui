@@ -173,3 +173,5 @@ export function renderProgress(params) {
 export function renderEditProgress(params) {
   return <EditProgress {...params} />;
 }
+
+export default renderProgress;

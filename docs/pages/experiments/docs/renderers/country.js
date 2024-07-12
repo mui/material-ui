@@ -118,3 +118,5 @@ export function renderCountry(params) {
 export function renderEditCountry(params) {
   return <EditCountry {...params} />;
 }
+
+export default renderCountry;

@@ -137,3 +137,5 @@ export function renderStatus(params) {
 export function renderEditStatus(params) {
   return <EditStatus {...params} />;
 }
+
+export default renderStatus;

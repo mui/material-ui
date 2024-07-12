@@ -82,3 +82,5 @@ export function renderIncoterm(params) {
 export function renderEditIncoterm(params) {
   return <EditIncoterm {...params} />;
 }
+
+export default renderIncoterm;

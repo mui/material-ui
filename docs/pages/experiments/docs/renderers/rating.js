@@ -86,3 +86,5 @@ export function renderRating(params) {
 export function renderEditRating(params) {
   return <EditRating {...params} />;
 }
+
+export default renderRating;
