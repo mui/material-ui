@@ -17,7 +17,8 @@ The font tokens are generated from `typography`:
 {{"component": "modules/material-ui/FontTokensViewer.js"}}
 
 :::success
-The font variables can be used with the CSS `font` property like this:
+Using font variable is an alternative way to `theme.typography` when you cannot access the theme in Javascript.
+The font variable should be used with the CSS `font` property like this:
 
 ```css
 .text {
