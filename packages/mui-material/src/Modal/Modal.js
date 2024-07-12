@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
+import useSlotProps from '@mui/utils/useSlotProps';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
 import styled from '../styles/styled';
