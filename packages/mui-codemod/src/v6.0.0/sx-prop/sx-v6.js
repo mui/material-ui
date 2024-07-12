@@ -362,16 +362,20 @@ export default function sxV6(file, api, options) {
           if (data.node.argument.type === 'CallExpression') {
             if (
               getObjectKey(data.node.argument.callee)?.name === 'theme' &&
-              data.node.argument.callee.property?.name?.startsWith('apply') &&
-              data.node.argument.arguments[0]?.type === 'ObjectExpression'
+              data.node.argument.callee.property?.name?.startsWith('apply')
             ) {
+              const objIndex = data.node.argument.arguments.findIndex(
+                (arg) => arg.type === 'ObjectExpression',
+              );
               recurseObjectExpression({
                 ...data,
-                node: data.node.argument.arguments[0],
+                node: data.node.argument.arguments[objIndex],
                 buildStyle: (styleExpression) => {
+                  const newArguments = [...data.node.argument.arguments];
+                  newArguments[objIndex] = styleExpression;
                   return j.arrowFunctionExpression([j.identifier('theme')], {
                     ...data.node.argument,
-                    arguments: [styleExpression],
+                    arguments: newArguments,
                   });
                 },
               });

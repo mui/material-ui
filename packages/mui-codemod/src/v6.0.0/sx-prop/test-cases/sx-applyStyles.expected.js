@@ -30,7 +30,12 @@
     transitionDuration: '150ms',
     // color: 'primary.300',
     overflow: 'auto',
-    ...theme.applyDarkStyles({}),
+    ...theme.applyDarkStyles({
+      color: 'primary.800'
+    }),
+    ...theme.applyStyles('light', {
+      color: 'primary.500'
+    }),
     '&.Mui-disabled': {
       opacity: 0.4,
     }
@@ -69,5 +74,7 @@
     boxShadow: `0px 1px 4px ${
       (theme.vars || theme).palette.primary[900]
     }, inset 0px 2px 4px ${(theme.vars || theme).palette.primaryDark[800]}`,
+  })), (!disableBorder || selected) && (theme => theme.applyStyles('light', {
+    borderColor: `${alpha(theme.palette.primary[300], 0.3)}`,
   })), ...(Array.isArray(sx) ? sx : [sx])]}
 />;

@@ -19,55 +19,72 @@
       props.onFocusVisible(event);
     }
   }}
-  sx={[(theme) => ({
-    justifyContent: 'flex-start',
-    textAlign: 'left',
-    alignItems: 'center',
-    borderRadius: 1,
-    height: '100%',
-    border: '1px solid transparent',
-    transitionProperty: 'all',
-    transitionDuration: '150ms',
-    // color: 'primary.300',
-    overflow: 'auto',
-    ...theme.applyDarkStyles({}),
-    '&.Mui-disabled': {
-      opacity: 0.4,
-    }
-  }), (!disableBorder || selected) && {
-    borderColor: 'grey.100',
-  }, selected && (theme => ({
-    bgcolor: `${alpha(theme.palette.primary[50], 0.5)}`,
-    borderColor: 'primary.300',
-    // color: 'primary.500',
-    boxShadow: `0px 1px 4px ${theme.palette.primary[200]}, inset 0px 2px 4px ${alpha(
-      theme.palette.primary[100],
-      0.5,
-    )}`
-  })), !selected && {
-    '&:hover, &:focus': {
-      bgcolor: 'primary.50',
-      borderColor: 'primary.100',
-      '@media (hover: none)': {
-        bgcolor: 'transparent',
+  sx={[
+    (theme) => ({
+      justifyContent: 'flex-start',
+      textAlign: 'left',
+      alignItems: 'center',
+      borderRadius: 1,
+      height: '100%',
+      border: '1px solid transparent',
+      transitionProperty: 'all',
+      transitionDuration: '150ms',
+      // color: 'primary.300',
+      overflow: 'auto',
+      ...((!disableBorder || selected) && {
+        borderColor: 'grey.100',
+      }),
+      ...(selected && {
+        bgcolor: `${alpha(theme.palette.primary[50], 0.5)}`,
+        borderColor: 'primary.300',
+        boxShadow: `0px 1px 4px ${theme.palette.primary[200]}, inset 0px 2px 4px ${alpha(
+          theme.palette.primary[100],
+          0.5,
+        )}`,
+        // color: 'primary.500',
+      }),
+      ...(!selected && {
+        '&:hover, &:focus': {
+          bgcolor: 'primary.50',
+          borderColor: 'primary.100',
+          '@media (hover: none)': {
+            bgcolor: 'transparent',
+          },
+        },
+      }),
+      ...theme.applyDarkStyles({
+        color: 'primary.800',
+        ...((!disableBorder || selected) && {
+          borderColor: `${alpha(theme.palette.primaryDark[600], 0.3)}`,
+        }),
+        ...(!selected && {
+          '&:hover, &:focus': {
+            bgcolor: `${alpha(theme.palette.primary[800], 0.1)}`,
+            borderColor: `${alpha(theme.palette.primary[500], 0.3)}`,
+            '@media (hover: none)': {
+              bgcolor: 'transparent',
+            },
+          },
+        }),
+        ...(selected && {
+          bgcolor: `${alpha(theme.palette.primary[800], 0.3)}`,
+          borderColor: 'primary.700',
+          // color: 'primary.300',
+          boxShadow: `0px 1px 4px ${
+            (theme.vars || theme).palette.primary[900]
+          }, inset 0px 2px 4px ${(theme.vars || theme).palette.primaryDark[800]}`,
+        }),
+      }),
+      ...theme.applyStyles('light', {
+        color: 'primary.500',
+        ...((!disableBorder || selected) && {
+          borderColor: `${alpha(theme.palette.primary[300], 0.3)}`,
+        }),
+      }),
+      '&.Mui-disabled': {
+        opacity: 0.4,
       },
-    },
-  }, (!disableBorder || selected) && (theme => theme.applyDarkStyles({
-    borderColor: `${alpha(theme.palette.primaryDark[600], 0.3)}`,
-  })), !selected && (theme => theme.applyDarkStyles({
-    '&:hover, &:focus': {
-      bgcolor: `${alpha(theme.palette.primary[800], 0.1)}`,
-      borderColor: `${alpha(theme.palette.primary[500], 0.3)}`,
-      '@media (hover: none)': {
-        bgcolor: 'transparent',
-      },
-    },
-  })), selected && (theme => theme.applyDarkStyles({
-    bgcolor: `${alpha(theme.palette.primary[800], 0.3)}`,
-    borderColor: 'primary.700',
-    // color: 'primary.300',
-    boxShadow: `0px 1px 4px ${
-      (theme.vars || theme).palette.primary[900]
-    }, inset 0px 2px 4px ${(theme.vars || theme).palette.primaryDark[800]}`,
-  })), ...(Array.isArray(sx) ? sx : [sx])]}
+    }),
+    ...(Array.isArray(sx) ? sx : [sx]),
+  ]}
 />;
