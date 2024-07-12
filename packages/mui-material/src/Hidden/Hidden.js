@@ -18,12 +18,12 @@ function Hidden(props) {
     mdUp = false,
     smDown = false,
     smUp = false,
+    uwDown = false,
+    uwUp = false,
     xlDown = false,
     xlUp = false,
     xsDown = false,
     xsUp = false,
-    uwUp = false,
-    uwDown = false,
     ...other
   } = props;
 
@@ -36,12 +36,12 @@ function Hidden(props) {
         mdUp={mdUp}
         smDown={smDown}
         smUp={smUp}
+        uwDown={uwDown}
+        uwUp={uwUp}
         xlDown={xlDown}
         xlUp={xlUp}
         xsDown={xsDown}
         xsUp={xsUp}
-        uwUp={uwUp}
-        uwDown={uwDown}
         {...other}
       />
     );
@@ -55,6 +55,8 @@ function Hidden(props) {
       mdUp={mdUp}
       smDown={smDown}
       smUp={smUp}
+      uwDown={uwDown}
+      uwUp={uwUp}
       xlDown={xlDown}
       xlUp={xlUp}
       xsDown={xsDown}

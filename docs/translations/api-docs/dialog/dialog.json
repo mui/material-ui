@@ -94,6 +94,11 @@
       "nodeName": "the Paper component",
       "conditions": "<code>maxWidth=\"sm\"</code>"
     },
+    "paperWidthUw": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>maxWidth=\"uw\"</code>"
+    },
     "paperWidthXl": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",

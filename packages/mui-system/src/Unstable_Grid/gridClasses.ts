@@ -47,6 +47,7 @@ const gridClasses: GridClasses = generateUtilityClasses('MuiGrid', [
   ...GRID_SIZES.map((size) => `grid-md-${size}` as const),
   ...GRID_SIZES.map((size) => `grid-lg-${size}` as const),
   ...GRID_SIZES.map((size) => `grid-xl-${size}` as const),
+  ...GRID_SIZES.map((size) => `grid-uw-${size}` as const),
 ]);
 
 export default gridClasses;

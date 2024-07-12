@@ -72,6 +72,16 @@ export interface HiddenProps {
    * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
+  uwDown?: boolean;
+  /**
+   * If `true`, component is hidden on screens this size and above.
+   * @default false
+   */
+  uwUp?: boolean;
+  /**
+   * If `true`, component is hidden on screens below (but not including) this size.
+   * @default false
+   */
   xlDown?: boolean;
   /**
    * If `true`, component is hidden on screens this size and above.
@@ -88,16 +98,6 @@ export interface HiddenProps {
    * @default false
    */
   xsUp?: boolean;
-  /**
-   * If `true`, component is hidden on screens below (but not including) this size.
-   * @default false
-   */
-  uwDown?: boolean;
-  /**
-   * If `true`, component is hidden on screens this size and above.
-   * @default false
-   */
-  uwUp?: boolean;
 }
 
 const useUtilityClasses = (ownerState: {
@@ -201,7 +201,7 @@ HiddenCss.propTypes /* remove-proptypes */ = {
    * For instance, you could be using the user-agent or the client-hints.
    * https://caniuse.com/#search=client%20hint
    */
-  initialWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
+  initialWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'uw', 'xl', 'xs']),
   /**
    * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
@@ -226,8 +226,8 @@ HiddenCss.propTypes /* remove-proptypes */ = {
    * Hide the given breakpoint(s).
    */
   only: PropTypes.oneOfType([
-    PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
-    PropTypes.arrayOf(PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired),
+    PropTypes.oneOf(['lg', 'md', 'sm', 'uw', 'xl', 'xs']),
+    PropTypes.arrayOf(PropTypes.oneOf(['lg', 'md', 'sm', 'uw', 'xl', 'xs']).isRequired),
   ]),
   /**
    * If `true`, component is hidden on screens below (but not including) this size.
@@ -243,12 +243,12 @@ HiddenCss.propTypes /* remove-proptypes */ = {
    * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
-  xlDown: PropTypes.bool,
+  uwDown: PropTypes.bool,
   /**
    * If `true`, component is hidden on screens this size and above.
    * @default false
    */
-  xlUp: PropTypes.bool,
+  uwUp: PropTypes.bool,
   /**
    * If `true`, component is hidden on screens below (but not including) this size.
    * @default false

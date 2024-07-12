@@ -1,6 +1,6 @@
 // Sorted ASC by size. That's important.
 // It can't be configured as it's used statically for propTypes.
-export const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl'];
+export const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl', 'uw'];
 
 const sortBreakpointsValues = (values) => {
   const breakpointsAsArray = Object.keys(values).map((key) => ({ key, val: values[key] })) || [];

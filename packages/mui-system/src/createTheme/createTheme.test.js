@@ -13,6 +13,7 @@ describe('createTheme', () => {
     md: 960,
     lg: 1280,
     xl: 1920,
+    uw: 2560,
   };
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
@@ -20,7 +21,7 @@ describe('createTheme', () => {
   const theme = createTheme({
     spacing: (val) => `${val * 10}px`,
     breakpoints: {
-      keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+      keys: ['xs', 'sm', 'md', 'lg', 'xl', 'uw'],
       values: breakpointsValues,
       up: (key) => {
         return `@media (min-width:${breakpointsValues[key]}px)`;

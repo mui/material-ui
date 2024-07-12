@@ -168,7 +168,7 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
     disableGutters: PropTypes.bool,
     fixed: PropTypes.bool,
     maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-      PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
+      PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'uw', false]),
       PropTypes.string,
     ]),
     sx: PropTypes.oneOfType([

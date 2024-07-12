@@ -17,7 +17,7 @@
     "maxWidth": {
       "type": {
         "name": "union",
-        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;false<br>&#124;&nbsp;string"
+        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'uw'<br>&#124;&nbsp;false<br>&#124;&nbsp;string"
       },
       "default": "'sm'"
     },
@@ -120,6 +120,12 @@
       "key": "paperWidthSm",
       "className": "MuiDialog-paperWidthSm",
       "description": "Styles applied to the Paper component if `maxWidth=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperWidthUw",
+      "className": "MuiDialog-paperWidthUw",
+      "description": "Styles applied to the Paper component if `maxWidth=\"uw\"`.",
       "isGlobal": false
     },
     {

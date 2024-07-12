@@ -18,6 +18,7 @@ const containerClasses: ContainerClasses = generateUtilityClasses('MuiContainer'
   'maxWidthMd',
   'maxWidthLg',
   'maxWidthXl',
+  'maxWidthUw',
 ]);
 
 export default containerClasses;
