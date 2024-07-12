@@ -186,12 +186,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     slotProps: backwardCompatibleSlotProps,
   };
 
-  const [TransitionSlot, transitionProps] = useSlot('transition', {
-    elementType: Collapse,
-    externalForwardedProps,
-    ownerState,
-  });
-
   const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
     elementType: 'div',
     externalForwardedProps,
@@ -200,6 +194,12 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
       'aria-level': 3,
     },
     className: classes.heading,
+    ownerState,
+  });
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Collapse,
+    externalForwardedProps,
     ownerState,
   });
 

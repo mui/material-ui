@@ -9,6 +9,11 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface AccordionSlots {
   /**
+   * The component that renders the heading.
+   * @default 'div'
+   */
+  heading?: React.ElementType;
+  /**
    * The component that renders the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
@@ -16,11 +21,6 @@ export interface AccordionSlots {
   transition?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
-  /**
-   * The component that renders the heading.
-   * @default 'div'
-   */
-  heading?: React.ElementType;
 }
 
 export interface AccordionTransitionSlotPropsOverrides {}
@@ -29,14 +29,14 @@ export interface AccordionHeadingSlotPropsOverrides {}
 export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AccordionSlots,
   {
-    transition: SlotProps<
-      React.ElementType<TransitionProps>,
-      AccordionTransitionSlotPropsOverrides,
-      AccordionOwnerState
-    >;
     heading: SlotProps<
       React.ElementType<HTMLDivElement>,
       AccordionHeadingSlotPropsOverrides,
+      AccordionOwnerState
+    >;
+    transition: SlotProps<
+      React.ElementType<TransitionProps>,
+      AccordionTransitionSlotPropsOverrides,
       AccordionOwnerState
     >;
   }
