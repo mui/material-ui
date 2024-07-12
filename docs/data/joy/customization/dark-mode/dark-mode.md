@@ -2,19 +2,23 @@
 
 <p class="description">Learn about the different methods for applying dark mode to a Joy UI app.</p>
 
-## Set as default
+## Media prefers-color-scheme
 
-To set dark mode as the default for your app, create a theme with `defaultColorScheme: 'dark'`:
+Create a theme with `colorSchemeSelector: 'media'` to use `@media (prefers-color-scheme)` instead of the default `data-joy-color-scheme` attribute.
 
-:::warning
-When you change the `defaultColorScheme` to another value, you must clear the local storage for it to take effect.
-:::
+```js
+import { extendTheme } from '@mui/joy/styles';
 
-{{"demo": "DarkModeByDefault.js"}}
+const theme = extendTheme({
+  colorSchemeSelector: 'media',
+});
 
-For server-side applications, check out the framework setup in [the section below](#server-side-rendering).
+function App() {
+  return <CssVarsProvider theme={theme}>...</CssVarsProvider>;
+}
+```
 
-### Identify the system mode
+## Identify the system mode
 
 Use the `useColorScheme` React hook to check if the user's preference is in light or dark mode:
 

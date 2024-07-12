@@ -16,6 +16,7 @@ function ModeSwitcher() {
   }
   return (
     <Select
+      variant="soft"
       value={mode}
       onChange={(event, newMode) => {
         setMode(newMode);
