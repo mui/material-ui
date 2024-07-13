@@ -1131,6 +1131,7 @@ export function useAutocomplete(props) {
       tabIndex: -1,
       type: 'button',
       onClick: handlePopupIndicator,
+      onMouseDown: (event) => event.stopPropagation(),
     }),
     getTagProps: ({ index }) => ({
       key: index,
