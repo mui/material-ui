@@ -48,7 +48,7 @@ export default function MaterialUIDesignResources() {
   return (
     <Grid container spacing={2}>
       {content.map(({ svg, title, link }) => (
-        <Grid key={title} xs={12} sm={4}>
+        <Grid key={title} size={{ xs: 12, sm: 4 }}>
           <InfoCard classNameTitle="algolia-lvl3" link={link} title={title} svg={svg} />
         </Grid>
       ))}

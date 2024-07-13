@@ -99,20 +99,26 @@ describe('<Divider />', () => {
         }
       });
 
-      it('should set the border-style dashed in before and after pseudoclass', () => {
-        const { container } = render(<StyledDivider>content</StyledDivider>);
-        getComputedStyle(container.firstChild, '::before')
-          .getPropertyValue('border-top-style')
-          .should.equal('dashed');
-        getComputedStyle(container.firstChild, '::before')
-          .getPropertyValue('border-left-style')
-          .should.equal('dashed');
-        getComputedStyle(container.firstChild, '::after')
-          .getPropertyValue('border-top-style')
-          .should.equal('dashed');
-        getComputedStyle(container.firstChild, '::after')
-          .getPropertyValue('border-left-style')
-          .should.equal('dashed');
+      it('should set the border-left-style dashed in before and after pseudoclass if orientation="vertical', () => {
+        const { container } = render(<StyledDivider orientation="vertical">content</StyledDivider>);
+        expect(
+          getComputedStyle(container.firstChild, '::before').getPropertyValue('border-left-style'),
+        ).to.equal('dashed');
+        expect(
+          getComputedStyle(container.firstChild, '::after').getPropertyValue('border-left-style'),
+        ).to.equal('dashed');
+      });
+
+      it('should set the border-top-style dashed in before and after pseudoclass if orientation="horizontal', () => {
+        const { container } = render(
+          <StyledDivider orientation="horizontal">content</StyledDivider>,
+        );
+        expect(
+          getComputedStyle(container.firstChild, '::before').getPropertyValue('border-top-style'),
+        ).to.equal('dashed');
+        expect(
+          getComputedStyle(container.firstChild, '::after').getPropertyValue('border-top-style'),
+        ).to.equal('dashed');
       });
     });
   });

@@ -260,10 +260,6 @@ const pages: MuiPage[] = [
     title: 'Migration',
     children: [
       {
-        pathname: '/material-ui/migration/migrating-from-deprecated-apis',
-        title: 'Migrating from deprecated APIs',
-      },
-      {
         pathname: '/material-ui/migration/migration-grid-v2',
         title: 'Migrating to Grid v2',
       },
@@ -276,12 +272,20 @@ const pages: MuiPage[] = [
         subheader: 'Upgrade to v6',
         children: [
           {
-            pathname: '/material-ui/migration/migration-v5',
-            title: 'Migrating to v6',
+            pathname: '/material-ui/migration/migrating-to-v6',
+            title: 'Migrating to v6: getting started',
+          },
+          {
+            pathname: '/material-ui/migration/migrating-from-deprecated-apis',
+            title: 'Migrating from deprecated APIs',
           },
           {
             pathname: '/material-ui/migration/migration-css-theme-variables',
             title: 'Migrating to CSS theme variables',
+          },
+          {
+            pathname: '/material-ui/migration/migrating-to-pigment-css',
+            title: 'Migrating to Pigment CSS',
           },
         ],
       },

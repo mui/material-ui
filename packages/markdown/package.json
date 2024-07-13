@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-markdown",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
   "main": "./index.js",
@@ -22,7 +22,7 @@
   "dependencies": {
     "@babel/runtime": "^7.24.7",
     "lodash": "^4.17.21",
-    "marked": "^13.0.0",
+    "marked": "^13.0.2",
     "prismjs": "^1.29.0"
   },
   "devDependencies": {

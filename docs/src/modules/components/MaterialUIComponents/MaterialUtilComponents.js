@@ -69,7 +69,7 @@ export default function MaterialUtilComponents() {
   return (
     <Grid container spacing={2}>
       {utilComponents.map(({ icon, title, link }) => (
-        <Grid key={title} xs={12} sm={4}>
+        <Grid key={title} size={{ xs: 12, sm: 4 }}>
           <InfoCard link={link} title={title} icon={icon} />
         </Grid>
       ))}

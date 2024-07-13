@@ -25,7 +25,7 @@ function PleaseDisableAdblock(props) {
       <Typography variant="body2" component="span" gutterBottom sx={{ display: 'block' }}>
         {t('adblock')}
       </Typography>
-      <Typography variant="body2" component="span" gutterBottom sx={{ display: 'block' }}>
+      <Typography variant="body2" component="span" sx={{ display: 'block' }}>
         {t('thanks')}{' '}
         <span role="img" aria-label={t('emojiLove')}>
           ❤️

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
+import { adShape } from 'docs/src/modules/components/AdManager';
 import { GA_ADS_DISPLAY_RATIO } from 'docs/src/modules/constants';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 
@@ -31,7 +32,7 @@ const ImageShape = styled('span')(({ theme }) => {
 });
 
 export default function AdDisplay(props) {
-  const { ad, className, shape = 'auto' } = props;
+  const { ad, className, shape: shapeProp = 'auto' } = props;
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
@@ -45,13 +46,16 @@ export default function AdDisplay(props) {
     });
   }, [ad.label]);
 
-  let Root = 'span';
+  const shape = shapeProp === 'auto' ? adShape : shapeProp;
+
+  let Root;
   if (shape === 'inline') {
     Root = InlineShape;
   }
   if (shape === 'image') {
     Root = ImageShape;
   }
+
   /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
     <Root className={className}>
