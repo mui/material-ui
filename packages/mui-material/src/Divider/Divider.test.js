@@ -108,6 +108,7 @@ describe('<Divider />', () => {
           getComputedStyle(container.firstChild, '::after').getPropertyValue('border-left-style'),
         ).to.equal('dashed');
       });
+
       it('should set the border-top-style dashed in before and after pseudoclass if orientation="horizontal', () => {
         const { container } = render(
           <StyledDivider orientation="horizontal">content</StyledDivider>,
