@@ -1,19 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
+import { styled } from '@mui/material/styles';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
 import describeConformance from '../../test/describeConformance';
-import { styled } from '..';
 
 describe('<Divider />', () => {
   const { render } = createRenderer();
-  const StyledDivider = styled(Divider)(() => ({
-    '&::before': {
-      width: '4.75rem',
-      flex: '0 0 3.75rem',
-    },
-    borderStyle: `dashed`,
-  }));
 
   describeConformance(<Divider />, () => ({
     classes,
@@ -92,14 +85,16 @@ describe('<Divider />', () => {
       });
     });
 
-    describe('styled border: borderStyle dashed', () => {
-      before(function beforeHook() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          this.skip();
-        }
-      });
+    describe('custom border style', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
 
-      it('should set the border-left-style dashed in before and after pseudoclass if orientation="vertical', () => {
+      const StyledDivider = styled(Divider)(() => ({
+        borderStyle: 'dashed',
+      }));
+
+      it('should set the dashed border-left-style in before and after pseudo-elements when orientation is vertical', () => {
         const { container } = render(<StyledDivider orientation="vertical">content</StyledDivider>);
         expect(
           getComputedStyle(container.firstChild, '::before').getPropertyValue('border-left-style'),
@@ -109,7 +104,7 @@ describe('<Divider />', () => {
         ).to.equal('dashed');
       });
 
-      it('should set the border-top-style dashed in before and after pseudoclass if orientation="horizontal', () => {
+      it('should set the dashed border-top-style in before and after pseudo-elements when orientation is horizontal', () => {
         const { container } = render(
           <StyledDivider orientation="horizontal">content</StyledDivider>,
         );
