@@ -86,9 +86,11 @@ describe('<Divider />', () => {
     });
 
     describe('custom border style', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+      before(function beforeHook() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+      });
 
       const StyledDivider = styled(Divider)(() => ({
         borderStyle: 'dashed',
