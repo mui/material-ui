@@ -413,6 +413,28 @@ describe('<Autocomplete />', () => {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
+
+    it('listbox stays open after opening', async () => {
+      const { getByRole } = render(
+        <Autocomplete
+          multiple
+          limitTags={2}
+          options={['one', 'two', 'three', 'four', 'five']}
+          defaultValue={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} variant="standard" />}
+        />,
+      );
+    
+      const combobox = getByRole('combobox');
+      fireEvent.mouseDown(combobox);
+    
+      const listbox = getByRole('listbox');
+      expect(listbox).to.exist;
+    
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    
+      expect(getByRole('listbox')).to.exist;
+    });
   });
 
   describe('prop: filterSelectedOptions', () => {
