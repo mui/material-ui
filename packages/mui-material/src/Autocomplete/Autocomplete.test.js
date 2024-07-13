@@ -424,15 +424,15 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} variant="standard" />}
         />,
       );
-    
+
       const combobox = getByRole('combobox');
       fireEvent.mouseDown(combobox);
-    
+
       const listbox = getByRole('listbox');
       expect(listbox).to.exist;
-    
-      await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       expect(getByRole('listbox')).to.exist;
     });
   });
