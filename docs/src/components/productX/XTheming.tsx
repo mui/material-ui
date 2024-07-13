@@ -97,7 +97,7 @@ export default function XTheming() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Theming"
             title={
@@ -124,7 +124,7 @@ export default function XTheming() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           {customized ? (
             <Paper
               id="data-grid-theming"

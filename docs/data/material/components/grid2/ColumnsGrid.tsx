@@ -19,11 +19,11 @@ export default function ColumnsGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} columns={16}>
-        <Grid xs={8}>
-          <Item>xs=8</Item>
+        <Grid size={8}>
+          <Item>size=8</Item>
         </Grid>
-        <Grid xs={8}>
-          <Item>xs=8</Item>
+        <Grid size={8}>
+          <Item>size=8</Item>
         </Grid>
       </Grid>
     </Box>

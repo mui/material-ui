@@ -1,5 +1,102 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-beta.0
+
+<!-- generated comparing v6.0.0-alpha.14..next -->
+
+_Jul 11, 2024_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- 🎉 This is the first v6 beta release! A huge thanks to everyone who helped to make this happen! The target date for a stable release is the 28th of July. The next month will be used to polish v6, and ease the migration from v5. You can follow the [v6 stable milestone](https://github.com/mui/material-ui/milestone/42) for more details.
+- 🚀 All planned breaking changes are completed.
+
+### `@mui/material@v6.0.0-beta.0`
+
+- Revert deprecation warnings for `*Components` and `*Props` for v6 (#42466) @lhilgert9
+- Performance: lazy Ripple (#41061) @romgrk
+- [AppBar] Fix inherit color is inconsistent between ThemeProvider and CssVarsProvider (#42714) @ZeeshanTamboli
+- [Autocomplete] Add new AutocompleteInputChangeReason (#37301) @binh1298
+
+### `@mui/material-pigment-css@v6.0.0-beta.0`
+
+- Create a wrapper package over Pigment CSS (#42819) @brijeshb42
+
+### `@mui/base@5.0.0-beta.53`
+
+- [Autocomplete] Add new AutocompleteInputChangeReason (#37301) @binh1298
+
+### Docs
+
+- Replace v6 "alpha" mentions with "beta" (#42895) @DiegoAndai
+- Fix typos (#42862) @omahs
+- Fix issues reported by react compiler in docs folder (#42881) @sai6855
+- Fix 301 @oliviertassinari
+- [LinearProgress] Fix buffer demo (#42858) @mbrookes
+- Adjust site to add Toolpad on the homepage (#38604) @bharatkashyap
+
+### Core
+
+- Fix imports in `Demo` component (#42857) @LukasTy
+- Use @mui/docs/HighlightedCodeWithTabs in markdown (#42841) @Janpot
+- Simpler pnpm dedupe error message to act on @oliviertassinari
+- Fix split infinitive use in tests @oliviertassinari
+- [lab] Fix issues reported by react-compiler in mui-lab (#42880) @sai6855
+
+All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @DiegoAndai, @Janpot, @lhilgert9, @LukasTy, @mbrookes, @oliviertassinari, @omahs, @romgrk, @sai6855, @ZeeshanTamboli
+
+## v6.0.0-alpha.14
+
+<!-- generated comparing v6.0.0-alpha.13..next -->
+
+_Jul 3, 2024_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ Updated Grid v2 to match PigmentGrid (#42742) @DiegoAndai
+
+### `@mui/material@v6.0.0-alpha.14`
+
+#### BREAKING CHANGES
+
+- [Grid] Update Grid props to match PigmentGrid (#42742) @DiegoAndai
+
+  Use the codemod below to migrate the props:
+
+  ```bash
+  npx @mui/codemod@next v6.0.0/grid-v2-props /path/to/folder
+  ```
+
+#### Changes
+
+- [Alert] Add ability to override slot props (#42787) @alexey-kozlenkov
+- [Dialog] Revert incorrect textAlign style removal (#42778) @DiegoAndai
+- [theme] Support `CssVarsTheme` in `responsiveFontSizes` return type (#42786) @jxdp
+
+### Docs
+
+- [material-ui] Add some writing tweaks to v6 migration page (#42623) @danilo-leal
+- [material-ui] Fix issues reported by react-compiler in docs folder (#42830) @sai6855
+- [material-ui] Add some writing tweaks to v6 migration page (#42623) @danilo-leal
+- [base-ui] Fix wrong description for `UseTabParameters.onChange` (#42749) @ohgree
+- Fix 301 MDN redirections @oliviertassinari
+
+### Core
+
+- [core] Bump React to 18.3.1 (#42047) @renovate[bot]
+- [core] Revert lint for `useThemeProps` (#42817) @siriwatknp
+- [core] Remove useIsFocusVisible util (#42467) @DiegoAndai
+- [core] Remove react-test-renderer (#42784) @aarongarciah
+- [core][mui-utils] Remove remaining IE11 references (#42777) @DiegoAndai
+- [code-infra] Move `HighlightedCode` test into `@mui/docs` package (#42835) @LukasTy
+- [code-infra] Cleanup `@mui/docs` usage and legacy re-exports (#42833) @LukasTy
+- [docs-infra] Fix React Compiler ESLint issues in website components (#42566) @aarongarciah
+- [docs-infra] Add batch of design polish (#42823) @danilo-leal
+- [test][mui-utils] Remove usages of deprecated react-dom APIs (#42780) @aarongarciah
+- [test][joy-ui][Autocomplete] Fix spread key error in test (#42775) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @danilo-leal, @DiegoAndai, @Janpot, @jxdp, @LukasTy, @ohgree, @oliviertassinari, @renovate[bot], @sai6855, @siriwatknp
+
 ## v6.0.0-alpha.13
 
 <!-- generated comparing v6.0.0-alpha.12..next -->

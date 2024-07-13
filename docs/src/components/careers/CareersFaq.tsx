@@ -106,11 +106,11 @@ export default function CareersFaq() {
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           {renderFAQItem(0, true)}
           {renderFAQItem(1)}
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           {renderFAQItem(2)}
           <Paper
             variant="outlined"

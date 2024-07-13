@@ -193,7 +193,7 @@ export default function DesignKitsDemo() {
   return (
     <Section bg="gradient" cozy>
       <Grid container spacing={2} alignItems="center">
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Design Kits"
             title={
@@ -219,7 +219,7 @@ export default function DesignKitsDemo() {
             />
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame>
             <Frame.Demo sx={{ overflow: 'clip', height: { xs: 240, sm: 390 } }}>
               <MaterialFigmaComponents fadeIn={demo === 'Components'} />

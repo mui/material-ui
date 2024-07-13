@@ -37,9 +37,8 @@ Fluid grids use columns that scale and resize content. A fluid grid's layout can
 
 In order to create a grid layout, you need a container. Use `container` prop to create a grid container that wraps the grid items (the `Grid` is always an item).
 
-Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
-
-A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
+Column widths are integer values between 1 and 12.
+For example, an item with `size={6}` occupies half of the grid container's width.
 
 {{"demo": "BasicGrid.js", "bg": true}}
 
@@ -47,7 +46,7 @@ A value given to a breakpoint applies to all the other breakpoints wider than it
 
 Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
 
-For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/material-ui/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
+For example, `size={{ xs: 12, sm: 6 }}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/material-ui/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
 
 {{"demo": "FullWidthGrid.js", "bg": true}}
 
@@ -75,11 +74,13 @@ For instance, we can implement the [recommended](https://m2.material.io/design/l
 
 Responsive values is supported by:
 
+- `size`
 - `columns`
 - `columnSpacing`
 - `direction`
 - `rowSpacing`
 - `spacing`
+- `offset`
 - all the [other props](#system-props) of MUI System
 
 ## Auto-layout
@@ -91,8 +92,7 @@ That also means you can set the width of one _item_ and the others will automati
 
 ### Variable width content
 
-Set one of the size breakpoint props to `"auto"` instead of `true` / a `number` to size
-a column based on the natural width of its content.
+Set one of the size breakpoint props to `"auto"` to size a column based on the width of its content.
 
 {{"demo": "VariableWidthGrid.js", "bg": true}}
 
@@ -110,9 +110,9 @@ You can change the default number of columns (12) with the `columns` prop.
 
 ## Offset
 
-Move the item to the right by using offset props which can be:
+Move the item to the right by using the `offset` prop which can be:
 
-- number, for example, `mdOffset={2}` - when used the item is moved to the right by 2 columns starts from `md` breakpoint and up.
+- number, for example, `offset={{ md: 2 }}` - when used the item is moved to the right by 2 columns starts from `md` breakpoint and up.
 - `"auto"` - when used, the item is moved to the right edge of the grid container.
 
 {{"demo": "OffsetGrid.js", "bg": true}}
@@ -124,18 +124,12 @@ If you specify custom breakpoints to the theme, you can use those names as grid 
 {{"demo": "CustomBreakpointsGrid.js", "bg": true}}
 
 :::info
-The custom breakpoints affect both the size and offset props:
-
-```diff
--<Grid xs={6} xsOffset={2}>
-+<Grid mobile={6} mobileOffset={2}>
-```
-
+Custom breakpoints affect all [responsive values](#responsive-values).
 :::
 
 ### TypeScript
 
-You have to set module augmentation on the theme breakpoints interface. The properties with `true` value will appear as `{key}`(size prop) and `{key}Offset`(offset prop).
+You have to set module augmentation on the theme breakpoints interface.
 
 ```ts
 declare module '@mui/system' {
@@ -159,7 +153,7 @@ declare module '@mui/system' {
 
 ### direction column and column-reverse
 
-The column width (`xs`, ..., `xl`) and offset props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
+The `size` and `offset` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
 
 They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers.
 If used, these props may have undesirable effects on the height of the `Grid` item elements.

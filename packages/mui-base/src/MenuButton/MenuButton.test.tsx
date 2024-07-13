@@ -37,7 +37,7 @@ describe('<MenuButton />', () => {
         testWithElement: null,
       },
     },
-    skip: ['componentProp', 'reactTestRenderer'],
+    skip: ['componentProp'],
   }));
 
   describe('prop: disabled', () => {

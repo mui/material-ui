@@ -39,7 +39,6 @@ describe('<SpeedDial />', () => {
     skip: [
       'componentProp', // react-transition-group issue
       'componentsProp',
-      'reactTestRenderer',
     ],
   }));
 
@@ -116,7 +115,7 @@ describe('<SpeedDial />', () => {
   });
 
   describe('prop: onKeyDown', () => {
-    it('should be called when a key is pressed', () => {
+    it('should be called when a key is pressed', async () => {
       const handleKeyDown = spy();
       const { getByRole } = render(
         <SpeedDial {...defaultProps} onKeyDown={handleKeyDown}>
@@ -124,11 +123,11 @@ describe('<SpeedDial />', () => {
         </SpeedDial>,
       );
       const buttonWrapper = getByRole('button', { expanded: true });
-      act(() => {
+      await act(async () => {
         fireEvent.keyDown(document.body, { key: 'TAB' });
         buttonWrapper.focus();
+        fireEvent.keyDown(buttonWrapper, { key: ' ' });
       });
-      fireEvent.keyDown(buttonWrapper, { key: ' ' });
       expect(handleKeyDown.callCount).to.equal(1);
       expect(handleKeyDown.args[0][0]).to.have.property('key', ' ');
     });
@@ -174,7 +173,7 @@ describe('<SpeedDial />', () => {
   });
 
   describe('keyboard', () => {
-    it('should open the speed dial and move to the first action without closing', () => {
+    it('should open the speed dial and move to the first action without closing', async () => {
       const handleOpen = spy();
       const { getByRole, getAllByRole } = render(
         <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
@@ -183,7 +182,7 @@ describe('<SpeedDial />', () => {
         </SpeedDial>,
       );
       const fab = getByRole('button');
-      act(() => {
+      await act(async () => {
         fab.focus();
       });
       clock.tick();
@@ -191,12 +190,17 @@ describe('<SpeedDial />', () => {
       expect(handleOpen.callCount).to.equal(1);
       const actions = getAllByRole('menuitem');
       expect(actions.length).to.equal(2);
-      fireEvent.keyDown(fab, { key: 'ArrowUp' });
+      await act(async () => fireEvent.keyDown(fab, { key: 'ArrowUp' }));
       expect(document.activeElement).to.equal(actions[0]);
       expect(fab).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
+    it('should reset the state of the tooltip when the speed dial is closed while it is open', async function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const handleOpen = spy();
       const { queryByRole, getByRole, getAllByRole } = render(
         <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
@@ -207,18 +211,18 @@ describe('<SpeedDial />', () => {
       const fab = getByRole('button');
       const actions = getAllByRole('menuitem');
 
-      act(() => {
+      await act(async () => {
         fab.focus();
       });
       clock.runAll();
 
       expect(fab).to.have.attribute('aria-expanded', 'true');
 
-      fireEvent.keyDown(fab, { key: 'ArrowUp' });
+      await act(async () => fireEvent.keyDown(fab, { key: 'ArrowUp' }));
       clock.runAll();
       expect(queryByRole('tooltip')).not.to.equal(null);
 
-      fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
+      await act(async () => fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' }));
       clock.runAll();
 
       expect(queryByRole('tooltip')).to.equal(null);
@@ -246,7 +250,7 @@ describe('<SpeedDial />', () => {
       return children;
     }
 
-    const renderSpeedDial = (direction = 'up', actionCount = 4) => {
+    const renderSpeedDial = async (direction = 'up', actionCount = 4) => {
       actionButtons = [];
       fabButton = undefined;
 
@@ -276,7 +280,7 @@ describe('<SpeedDial />', () => {
           ))}
         </SpeedDial>,
       );
-      act(() => {
+      await act(async () => {
         fabButton.focus();
       });
     };
@@ -300,21 +304,21 @@ describe('<SpeedDial />', () => {
       return expectedFocusedElement === document.activeElement;
     };
 
-    it('displays the actions on focus gain', () => {
-      renderSpeedDial();
+    it('displays the actions on focus gain', async () => {
+      await renderSpeedDial();
       expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
       expect(fabButton).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('considers arrow keys with the same initial orientation', () => {
-      renderSpeedDial();
-      fireEvent.keyDown(fabButton, { key: 'left' });
+    it('considers arrow keys with the same initial orientation', async () => {
+      await renderSpeedDial();
+      await act(async () => fireEvent.keyDown(fabButton, { key: 'left' }));
       expect(isActionFocused(0)).to.equal(true);
-      fireEvent.keyDown(getActionButton(0), { key: 'up' });
+      await act(async () => fireEvent.keyDown(getActionButton(0), { key: 'up' }));
       expect(isActionFocused(0)).to.equal(true);
-      fireEvent.keyDown(getActionButton(0), { key: 'left' });
+      await act(async () => fireEvent.keyDown(getActionButton(0), { key: 'left' }));
       expect(isActionFocused(1)).to.equal(true);
-      fireEvent.keyDown(getActionButton(1), { key: 'right' });
+      await act(async () => fireEvent.keyDown(getActionButton(1), { key: 'right' }));
       expect(isActionFocused(0)).to.equal(true);
     });
 
@@ -323,33 +327,37 @@ describe('<SpeedDial />', () => {
        * tests a combination of arrow keys on a focused SpeedDial
        */
       const itTestCombination = (dialDirection, keys, expected) => {
-        it(`start dir ${dialDirection} with keys ${keys.join(',')}`, () => {
+        it(`start dir ${dialDirection} with keys ${keys.join(',')}`, async () => {
           const [firstKey, ...combination] = keys;
           const [firstFocusedAction, ...foci] = expected;
 
-          renderSpeedDial(dialDirection);
+          await renderSpeedDial(dialDirection);
 
-          fireEvent.keyDown(fabButton, { key: firstKey });
+          await act(async () => fireEvent.keyDown(fabButton, { key: firstKey }));
           expect(isActionFocused(firstFocusedAction)).to.equal(
             true,
             `focused action initial ${firstKey} should be ${firstFocusedAction}`,
           );
 
-          combination.forEach((arrowKey, i) => {
+          for (let i = 0; i < combination.length; i += 1) {
+            const arrowKey = combination[i];
             const previousFocusedAction = foci[i - 1] || firstFocusedAction;
             const expectedFocusedAction = foci[i];
             const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
 
-            fireEvent.keyDown(getActionButton(previousFocusedAction), {
-              key: arrowKey,
-            });
+            // eslint-disable-next-line no-await-in-loop
+            await act(async () =>
+              fireEvent.keyDown(getActionButton(previousFocusedAction), {
+                key: arrowKey,
+              }),
+            );
             expect(isActionFocused(expectedFocusedAction)).to.equal(
               true,
               `focused action after ${combinationUntilNot.join(
                 ',',
               )} should be ${expectedFocusedAction}`,
             );
-          });
+          }
         });
       };
 

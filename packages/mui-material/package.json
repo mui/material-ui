@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "6.0.0-alpha.13",
+  "version": "6.0.0-beta.0",
   "private": false,
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.7",
-    "@mui/base": "workspace:*",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:*",
     "@mui/types": "workspace:^",
@@ -50,18 +49,18 @@
     "clsx": "^2.1.1",
     "csstype": "^3.1.3",
     "prop-types": "^15.8.1",
-    "react-is": "^18.2.0",
+    "react-is": "^18.3.1",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
     "@popperjs/core": "^2.11.8",
-    "@testing-library/dom": "^10.1.0",
+    "@testing-library/dom": "^10.3.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/chai": "^4.3.16",
     "@types/prop-types": "^15.7.12",
-    "@types/react": "^18.2.55",
+    "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/sinon": "^17.0.3",
     "chai": "^4.4.1",
@@ -69,16 +68,16 @@
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
-    "playwright": "^1.44.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1",
+    "playwright": "^1.45.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1",
     "sinon": "^16.1.3"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@pigment-css/react": "^0.0.16",
+    "@mui/material-pigment-css": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
@@ -93,7 +92,7 @@
     "@emotion/styled": {
       "optional": true
     },
-    "@pigment-css/react": {
+    "@mui/material-pigment-css": {
       "optional": true
     }
   },
@@ -104,5 +103,17 @@
   },
   "engines": {
     "node": ">=12.0.0"
+  },
+  "pigment-css": {
+    "vite": {
+      "include": [
+        "prop-types",
+        "react-is",
+        "hoist-non-react-statics",
+        "react",
+        "react-dom",
+        "@emotion/react"
+      ]
+    }
   }
 }

@@ -37,9 +37,6 @@ describe('<TabPanel />', () => {
         expectedClassName: tabPanelClasses.root,
       },
     },
-    skip: [
-      'reactTestRenderer', // Need to be wrapped with TabsContext
-      'componentProp',
-    ],
+    skip: ['componentProp'],
   }));
 });

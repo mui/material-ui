@@ -271,19 +271,19 @@ export default function PricingFAQ() {
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
-        <Grid xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
           {renderItem(3)}
         </Grid>
-        <Grid xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           {renderItem(4)}
           {renderItem(5)}
           {renderItem(6)}
           {renderItem(7)}
         </Grid>
-        <Grid xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Paper
             variant="outlined"
             sx={(theme) => ({

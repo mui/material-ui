@@ -42,7 +42,7 @@ describe('Joy <MenuItem />', () => {
     muiName: 'JoyMenuItem',
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
-    skip: ['propsSpread', 'componentsProp', 'classesRoot', 'reactTestRenderer'],
+    skip: ['propsSpread', 'componentsProp', 'classesRoot'],
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -92,18 +92,18 @@ describe('Joy <MenuItem />', () => {
     ];
 
     events.forEach((eventName) => {
-      it(`should fire ${eventName}`, () => {
+      it(`should fire ${eventName}`, async () => {
         const handlerName = `on${eventName[0].toUpperCase()}${eventName.slice(1)}`;
         const handler = spy();
         render(<MenuItem {...{ [handlerName]: handler }} />);
 
-        fireEvent[eventName](screen.getByRole('menuitem'));
+        await act(async () => fireEvent[eventName](screen.getByRole('menuitem')));
 
         expect(handler.callCount).to.equal(1);
       });
     });
 
-    it(`should fire focus, keydown, keyup and blur`, () => {
+    it(`should fire focus, keydown, keyup and blur`, async () => {
       const handleFocus = spy();
       const handleKeyDown = spy();
       const handleKeyUp = spy();
@@ -119,17 +119,17 @@ describe('Joy <MenuItem />', () => {
       );
       const menuitem = screen.getByRole('menuitem');
 
-      act(() => {
+      await act(async () => {
         menuitem.focus();
       });
 
       expect(handleFocus.callCount).to.equal(1);
 
-      fireEvent.keyDown(menuitem);
+      await act(async () => fireEvent.keyDown(menuitem));
 
       expect(handleKeyDown.callCount).to.equal(1);
 
-      fireEvent.keyUp(menuitem);
+      await act(async () => fireEvent.keyUp(menuitem));
 
       expect(handleKeyUp.callCount).to.equal(1);
 
