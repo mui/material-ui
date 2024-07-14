@@ -415,9 +415,11 @@ describe('<Autocomplete />', () => {
     });
 
     it('listbox stays open after opening', async () => {
+      const handleClose = spy();
       const { getByRole } = render(
         <Autocomplete
           multiple
+          onClose={handleClose}
           limitTags={2}
           options={['one', 'two', 'three', 'four', 'five']}
           defaultValue={['one', 'two', 'three']}
@@ -428,12 +430,11 @@ describe('<Autocomplete />', () => {
       const combobox = getByRole('combobox');
       fireEvent.mouseDown(combobox);
 
-      const listbox = getByRole('listbox');
-      expect(listbox).to.exist;
+      act(() => {
+        combobox.focus();
+      });
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      expect(getByRole('listbox')).to.exist;
+      expect(handleClose.callCount).to.equal(0);
     });
   });
 
