@@ -14,13 +14,7 @@ describe('<TabPanel />', () => {
     render: (node) => render(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiTabPanel',
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'reactTestRenderer',
-      'themeDefaultProps',
-      'themeVariants',
-    ],
+    skip: ['componentProp', 'componentsProp', 'themeDefaultProps', 'themeVariants'],
   }));
 
   it('renders a [role="tabpanel"] and mounts children', () => {
@@ -33,7 +27,7 @@ describe('<TabPanel />', () => {
     );
 
     expect(getByTestId('tabpanel')).to.have.attribute('role', 'tabpanel');
-    expect(queryByTestId('child')).to.not.equal(null);
+    expect(queryByTestId('child')).not.to.equal(null);
   });
 
   it('is [hidden] when TabPanel#value !== TabContext#value and does not mount children', () => {
@@ -59,7 +53,7 @@ describe('<TabPanel />', () => {
     );
 
     expect(getByTestId('tabpanel')).to.have.property('hidden', true);
-    expect(queryByTestId('child')).to.not.equal(null);
+    expect(queryByTestId('child')).not.to.equal(null);
   });
 
   it('is accessible when TabPanel#value === TabContext#value', () => {

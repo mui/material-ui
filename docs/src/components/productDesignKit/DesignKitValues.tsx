@@ -44,7 +44,7 @@ export default function DesignKitValues() {
       />
       <Grid container spacing={3} mt={4}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} xs={12} sm={6} md={4}>
+          <Grid key={title} size={{ xs: 12, sm: 6, md: 4 }}>
             <InfoCard title={title} icon={icon} description={description} />
           </Grid>
         ))}

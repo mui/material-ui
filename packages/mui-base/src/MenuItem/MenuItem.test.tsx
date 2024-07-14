@@ -37,9 +37,6 @@ describe('<MenuItem />', () => {
         expectedClassName: menuItemClasses.root,
       },
     },
-    skip: [
-      'componentProp',
-      'reactTestRenderer', // Need to be wrapped in MenuContext
-    ],
+    skip: ['componentProp'],
   }));
 });

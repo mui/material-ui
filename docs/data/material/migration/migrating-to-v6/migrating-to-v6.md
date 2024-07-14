@@ -2,7 +2,7 @@
 
 <p class="description">This guide explains how and why to migrate from Material UI v5 to v6.</p>
 
-## Start using the alpha release
+## Start using the beta release
 
 In your `package.json` file, change the package version from `latest` to `next`.
 
@@ -20,8 +20,8 @@ Optionally, if you are using one of these packages, you can also change their ve
 - `@mui/styled-engine-sc`
 - `@mui/utils`
 
-Using `next` ensures your project always uses the latest v6 alpha release.
-Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-alpha.0`.
+Using `next` ensures your project always uses the latest v6 beta release.
+Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-beta.0`.
 
 ## Why you should migrate
 
@@ -42,7 +42,7 @@ Aside from that, v6 also includes a few quality-of-life improvements regarding s
 
 The targets of the default bundle have changed in v6.
 
-The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"`.
+The exact versions will be pinned on release from the browserslist query: `"> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"`.
 
 <!-- #stable-snapshot -->
 
@@ -55,9 +55,11 @@ The exact versions will be pinned on release from the browserslist query `"> 0.5
 
 ### Removed support for IE 11
 
-Support for IE 11 is completely removed, by dropping the legacy bundle and all IE 11 related code.
-This allows us to decrease bundle size and keep the scope manageable.
-If you need to support IE 11, you can use Material UI v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle), but it won't get updates or bug fixes.
+Support for IE 11－that is, the legacy bundle and all IE 11-related code－is completely removed.
+This decreases Material UI's bundle size and eases future development.
+
+If you need to support IE 11, you can use v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
+However, note that it won't get updates or bug fixes.
 
 ## Update React & TypeScript version
 
@@ -117,6 +119,19 @@ This results in a reduction of the `@mui/material` package size by 2.5MB or 25% 
 Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended.
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
+### Autocomplete
+
+#### New reason values added to onInputChange
+
+Three new possible values have been added to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
+These three were previously treated as `"reset"`, so if you are relying on that, you might need to adjust your code accordingly:
+
+- `"blur"`: like `"reset"` but triggered when the focus is moved off the input. `clearOnBlur` must be `true`.
+- `"selectOption"`: triggered when the input value changes after an option has been selected.
+- `"removeOption"`: triggered in multiple selection when a chip gets removed due to the corresponding option being selected.
+
+These are added on top of the existing ones: `"input"`, `"reset"`, and `"clear"`.
+
 ### Chip
 
 Previously, the Chip component lost focus when the escape button was pressed, which differed from how other button-like components work.
@@ -152,9 +167,66 @@ The `children` passed to the Loading Button component is now wrapped in a `<span
 
 ### Grid v2 (Unstable_Grid)
 
-The spacing mechanism was reworked to use the `gap` CSS property.
-This maps better with current layout practices and removes the need for using React Context.
-It brings some breaking changes described in the following sections.
+The `Grid` v2 component was updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
+
+- The previous size and offset props were replaced with the `size` and `offset` props
+- The spacing mechanism was reworked to use the `gap` CSS property.
+
+This brings some breaking changes described in the following sections.
+
+#### Size and offset props
+
+Previously, the size and offset props were named corresponding to the theme's breakpoints.
+For the default theme this was:
+
+- Size: `xs`, `sm`, `md`, `lg`, `xl`
+- Offset: `xsOffset`, `smOffset`, `mdOffset`, `lgOffset`, `xlOffset`
+
+In v6, these props are renamed to `size` and `offset`:
+
+```diff
+  <Grid
+-   xs={12}
+-   sm={6}
+-   xsOffset={2}
+-   smOffset={3}
++   size={{ xs: 12, sm: 6 }}
++   offset={{ xs: 2, sm: 3 }}
+  />
+```
+
+Note that if the size or offset is the same for all breakpoints, you can use a single value:
+
+```diff
+- <Grid xs={6} xsOffset={2} >
++ <Grid size={6} offset={2} >
+```
+
+Besides that, the `true` value for the size prop was renamed to `"grow"`:
+
+```diff
+- <Grid xs />
++ <Grid size="grow" />
+```
+
+Use this codemod to migrate your project to the new size and offset props:
+
+```bash
+npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
+```
+
+If you have custom breakpoints, the change is the same:
+
+```diff
+- <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
++ <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
+```
+
+Which you can cover with the same codemod by providing the custom breakpoints as an argument:
+
+```bash
+npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshit='--muiBreakpoints=mobile,desktop'
+```
 
 #### Removal of the disableEqualOverflow prop
 
@@ -288,6 +360,4 @@ This reduces the API surface and lets you define variants in other slots of the 
 
 ## Pigment CSS integration (optional)
 
-:::info
-⏳ This section is under construction
-:::
+Check out the [Pigment CSS migration page](/material-ui/migration/migrating-to-pigment-css/) to learn how to integrate it into your project.

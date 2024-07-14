@@ -59,7 +59,7 @@ describe('<Select />', () => {
         testWithElement: 'span',
       },
     },
-    skip: ['componentProp', 'reactTestRenderer'],
+    skip: ['componentProp'],
   }));
 
   describe('selected option rendering', () => {
@@ -998,8 +998,8 @@ describe('<Select />', () => {
       expect(screen.getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
     });
 
-    it('should have the aria-expanded attribute set to true when the listbox is open', () => {
-      render(
+    it('should have the aria-expanded attribute set to true when the listbox is open', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1013,8 +1013,8 @@ describe('<Select />', () => {
       expect(select).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('should have the aria-controls attribute', () => {
-      render(
+    it('should have the aria-controls attribute', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1033,8 +1033,8 @@ describe('<Select />', () => {
       expect(select).to.have.attribute('aria-controls', listboxId!);
     });
 
-    it('should have the correct tabindex attribute', () => {
-      render(
+    it('should have the correct tabindex attribute', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1262,7 +1262,12 @@ describe('<Select />', () => {
     expect(selectButton).to.have.text('1, 2');
   });
 
-  it('perf: does not rerender options unnecessarily', async () => {
+  it('perf: does not rerender options unnecessarily', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const renderOption1Spy = spy();
     const renderOption2Spy = spy();
     const renderOption3Spy = spy();

@@ -17,7 +17,7 @@ import { getWorkspaceRoot } from './utils.mjs';
 const exec = promisify(childProcess.exec);
 
 // packages published from the react monorepo using the same version
-const reactPackageNames = ['react', 'react-dom', 'react-is', 'react-test-renderer', 'scheduler'];
+const reactPackageNames = ['react', 'react-dom', 'react-is', 'scheduler'];
 const devDependenciesPackageNames = ['@testing-library/react'];
 
 // if we need to support more versions we will need to add new mapping here

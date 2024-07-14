@@ -44,9 +44,6 @@ describe('<Tab />', () => {
         expectedClassName: tabClasses.root,
       },
     },
-    skip: [
-      'reactTestRenderer', // Need to be wrapped with TabsContext
-      'componentProp',
-    ],
+    skip: ['componentProp'],
   }));
 });

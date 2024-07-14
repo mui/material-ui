@@ -1759,6 +1759,36 @@ However, it has some **limitations**:
   }));
   ```
 
+#### `grid-v2-props`
+
+```bash
+npx @mui/codemod@next v6.0.0/grid-v2-props <path>
+```
+
+Updates the usage of the `Unstable_Grid` (Grid v2) component to have the same API as the `PigmentGrid`.
+
+```diff
+ <Grid
+-   xs={12}
+-   sm={6}
+-   xsOffset={2}
+-   smOffset={3}
++   size={{ xs: 12, sm: 6 }}
++   offset={{ xs: 2, sm: 3 }}
+ />
+```
+
+You can provide the theme breakpoints via options, for example, `--jscodeshift='--muiBreakpoints=mobile,desktop'`, to use your custom breakpoints in the transformation.
+
+```bash
+npx @mui/codemod@next v6.0.0/grid-v2-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+```
+
+```diff
+- <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
++ <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
+```
+
 ### v5.0.0
 
 #### `base-use-named-exports`
