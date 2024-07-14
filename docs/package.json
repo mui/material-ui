@@ -102,7 +102,7 @@
     "react-spring": "^9.7.3",
     "react-swipeable-views": "^0.14.0",
     "react-transition-group": "^4.4.5",
-    "react-virtuoso": "^4.7.11",
+    "react-virtuoso": "^4.7.12",
     "react-window": "^1.8.10",
     "rimraf": "^5.0.8",
     "styled-components": "^6.1.11",
