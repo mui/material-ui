@@ -19,9 +19,9 @@
     "link-check": "node ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.24.7",
-    "@babel/runtime": "^7.24.7",
-    "@babel/runtime-corejs2": "^7.24.7",
+    "@babel/core": "^7.24.8",
+    "@babel/runtime": "^7.24.8",
+    "@babel/runtime-corejs2": "^7.24.8",
     "@docsearch/react": "^3.6.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
