@@ -17,8 +17,8 @@ function createReactApp(demoData: DemoData) {
     ...(demoData.relativeModules &&
       // Transform the relative modules array into an object
       demoData.relativeModules.reduce(
-        (prev, curr) => ({
-          ...prev,
+        (acc, curr) => ({
+          ...acc,
           // Remove the `./` from the module path
           [`${curr.module.replace(/.\//g, '')}`]: curr.raw,
         }),
