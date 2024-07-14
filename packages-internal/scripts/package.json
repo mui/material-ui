@@ -47,7 +47,7 @@
     "@types/uuid": "^9.0.8",
     "chai": "^4.4.1",
     "fast-glob": "^3.3.2",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "rimraf": "^5.0.8"
   },
   "publishConfig": {

@@ -134,7 +134,7 @@
     "gm": "^1.25.0",
     "marked": "^13.0.2",
     "playwright": "^1.45.1",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "tailwindcss": "^3.4.4",
     "yargs": "^17.7.2"
   }
