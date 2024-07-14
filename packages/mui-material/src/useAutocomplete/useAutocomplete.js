@@ -609,7 +609,6 @@ function useAutocomplete(props) {
   }, [syncHighlightedIndex]);
 
   const handleOpen = (event) => {
-    console.log('handleOpen', event);
     if (open) {
       return;
     }
