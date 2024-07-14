@@ -176,7 +176,7 @@
     "prettier": "^3.3.2",
     "pretty-quick": "^4.0.0",
     "process": "^0.11.10",
-    "rimraf": "^5.0.8",
+    "rimraf": "^5.0.9",
     "serve": "^14.2.3",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
