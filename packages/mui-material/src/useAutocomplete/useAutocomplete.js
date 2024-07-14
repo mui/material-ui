@@ -248,17 +248,17 @@ function useAutocomplete(props) {
       );
 
       if (missingValue.length > 0) {
-        console.warn(
-          [
-            `MUI: The value provided to ${componentName} is invalid.`,
-            `None of the options match with \`${
-              missingValue.length > 1
-                ? JSON.stringify(missingValue)
-                : JSON.stringify(missingValue[0])
-            }\`.`,
-            'You can use the `isOptionEqualToValue` prop to customize the equality test.',
-          ].join('\n'),
-        );
+        // console.warn(
+        //   [
+        //     `MUI: The value provided to ${componentName} is invalid.`,
+        //     `None of the options match with \`${
+        //       missingValue.length > 1
+        //         ? JSON.stringify(missingValue)
+        //         : JSON.stringify(missingValue[0])
+        //     }\`.`,
+        //     'You can use the `isOptionEqualToValue` prop to customize the equality test.',
+        //   ].join('\n'),
+        // );
       }
     }
   }
@@ -609,6 +609,7 @@ function useAutocomplete(props) {
   }, [syncHighlightedIndex]);
 
   const handleOpen = (event) => {
+    console.log('handleOpen', event);
     if (open) {
       return;
     }
@@ -1042,6 +1043,7 @@ function useAutocomplete(props) {
   const handleInputMouseDown = (event) => {
     if (!disabledProp && (inputValue === '' || !open)) {
       handlePopupIndicator(event);
+      event.stopPropagation();
     }
   };
 
@@ -1130,6 +1132,7 @@ function useAutocomplete(props) {
       tabIndex: -1,
       type: 'button',
       onClick: handlePopupIndicator,
+      onMouseDown: (event) => event.stopPropagation(),
     }),
     getTagProps: ({ index }) => ({
       key: index,
