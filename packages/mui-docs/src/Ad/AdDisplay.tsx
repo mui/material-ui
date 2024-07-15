@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import { useTranslate } from '../i18n';
 import { adShape } from './AdManager';
 import { adStylesObject } from './ad.styles';
+import { useAdConfig } from './AdProvider';
 
 const InlineShape = styled('span')(({ theme }) => {
   const styles = adStylesObject['body-inline'](theme);
@@ -49,9 +50,11 @@ export default function AdDisplay(props: AdDisplayProps) {
   const { ad, className, shape: shapeProp = 'auto' } = props;
   const t = useTranslate();
 
+  const { GADisplayRatio } = useAdConfig();
+
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
-    if (Math.random() > ((process.env.GA_ADS_DISPLAY_RATIO ?? 0.1) as number) || !ad.label) {
+    if (Math.random() > (GADisplayRatio ?? 0.1) || !ad.label) {
       return;
     }
 

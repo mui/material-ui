@@ -7,6 +7,7 @@ import { useTranslate } from '../i18n';
 import AdCarbon from './AdCarbon';
 import AdInHouse from './AdInHouse';
 import { AdContext, adShape } from './AdManager';
+import { useAdConfig } from './AdProvider';
 
 function PleaseDisableAdblock() {
   const t = useTranslate();
@@ -197,9 +198,10 @@ export default function Ad() {
     };
   }, [checkAdblock]);
 
+  const { GADisplayRatio } = useAdConfig();
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
-    if (Math.random() > ((process.env.GA_ADS_DISPLAY_RATIO ?? 0.1) as number) || !eventLabel) {
+    if (Math.random() > (GADisplayRatio ?? 0.1) || !eventLabel) {
       return undefined;
     }
 
