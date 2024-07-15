@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
-githubLabel: "component: card"
+githubLabel: 'component: card'
 materialDesign: https://m2.material.io/components/cards
 ---
 
@@ -29,8 +29,8 @@ The Material UI Card component includes several complementary utility component
 ## Basics
 
 ```jsx
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 ```
 
 :::success
