@@ -179,6 +179,16 @@ export const menuComponentsCustomizations = {
             display: 'none',
           },
         }),
+        variants: [
+          {
+            props: {
+              variant: 'standard',
+            },
+            style: {
+              paddingLeft: 12,
+            },
+          },
+        ],
       }),
       select: ({ theme }) => ({
         display: 'flex',
