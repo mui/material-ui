@@ -114,7 +114,6 @@ const names = new Set(process.argv.slice(2));
             }, Promise.resolve()),
           );
         } catch (error) {
-          // eslint-disable-next-line no-console
           console.error(error);
         }
       }),
