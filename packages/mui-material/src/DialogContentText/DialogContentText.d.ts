@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SxProps } from '@mui/system';
+import { SxProps, Breakpoint } from '@mui/system';
 import { TypographyTypeMap } from '../Typography';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles';
@@ -13,7 +13,9 @@ export interface DialogContentTextOwnProps extends Omit<TypographyTypeMap['props
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> & {
+    typography?: string | Partial<Record<Breakpoint, DialogContentTextProps['variant']>>;
+  };
 }
 
 export interface DialogContentTextTypeMap<

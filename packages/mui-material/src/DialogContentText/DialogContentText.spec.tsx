@@ -39,6 +39,10 @@ const dialogContentTextTest = () => {
       <DialogContentText component={CustomComponent} prop1="1" />
       {/* @ts-expect-error */}
       <DialogContentText component={CustomComponent} prop1="1" prop2="12" />
+      <DialogContentText sx={{ typography: { xs: 'body1', sm: 'h2', md: 'h1', lg: 'body2' } }} />
+      {/* @ts-expect-error */}
+      <DialogContentText sx={{ typography: { xs: 'body 1', sm: 'h2', md: 'h1', lg: 'body1' } }} />
+
     </div>
   );
 };

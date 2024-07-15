@@ -327,9 +327,9 @@ Typography.propTypes /* remove-proptypes */ = {
     }),
     PropTypes.shape({
       '__@iterator@30306': PropTypes.func.isRequired,
-      '__@unscopables@34080': PropTypes.shape({
+      '__@unscopables@34081': PropTypes.shape({
         '__@iterator@30306': PropTypes.bool,
-        '__@unscopables@34080': PropTypes.bool,
+        '__@unscopables@34081': PropTypes.bool,
         at: PropTypes.bool,
         concat: PropTypes.bool,
         entries: PropTypes.bool,

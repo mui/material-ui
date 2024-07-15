@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SxProps } from '@mui/system';
+import { SxProps, Breakpoint } from '@mui/system';
 import { Theme, TypographyProps } from '..';
 import { AlertTitleClasses } from './alertTitleClasses';
 
@@ -15,7 +15,9 @@ export interface AlertTitleProps extends TypographyProps<'div'> {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> & {
+    typography?: string | Partial<Record<Breakpoint, TypographyProps['variant']>>;
+  };
 }
 
 /**
