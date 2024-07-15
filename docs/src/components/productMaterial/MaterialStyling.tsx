@@ -27,7 +27,8 @@ const code = `
     height="100"
     alt="123 Main St, Phoenix, AZ cover"
     src="/images/real-estate.png"
-    sx={{    borderRadius: '6px',
+    sx={{
+      borderRadius: '6px',
       width: { xs: '100%', sm: 100 },
     }}
   />
@@ -58,8 +59,8 @@ const code = `
   </Box>
 </Card>`;
 
-const startLine = [27, 16, 12];
-const endLine = [37, 21, 12];
+const startLine = [27, 15, 12];
+const endLine = [37, 20, 12];
 const scrollTo = [27, 10, 4];
 
 export const useResizeHandle = (
@@ -101,7 +102,10 @@ export const useResizeHandle = (
       if (target.current && dragging && clientX) {
         const objectRect = target.current.getBoundingClientRect();
         const newWidth = clientX - objectRect.left + dragOffset;
-        target.current.style.width = `clamp(${minWidth}, ${Math.floor(newWidth)}px, ${maxWidth})`;
+        target.current.style.setProperty(
+          'width',
+          `clamp(${minWidth}, ${Math.floor(newWidth)}px, ${maxWidth})`,
+        );
       }
     }
     function stopResize() {
@@ -148,7 +152,7 @@ export default function MaterialStyling() {
     // 1px border-width
     infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
 
-    objectRef.current!.style.width = '100%';
+    objectRef.current!.style.setProperty('width', '100%');
   }, [index]);
 
   return (

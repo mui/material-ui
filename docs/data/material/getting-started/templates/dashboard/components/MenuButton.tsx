@@ -2,14 +2,14 @@ import * as React from 'react';
 import Badge, { badgeClasses } from '@mui/material/Badge';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
-interface StyledMenuButtonProps extends IconButtonProps {
+export interface MenuButtonProps extends IconButtonProps {
   showBadge?: boolean;
 }
 
 export default function MenuButton({
   showBadge = false,
   ...props
-}: StyledMenuButtonProps) {
+}: MenuButtonProps) {
   return (
     <Badge
       color="error"

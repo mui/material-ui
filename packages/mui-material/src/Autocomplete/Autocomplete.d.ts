@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import {
-  useAutocomplete,
+import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
+import { PaperProps } from '@mui/material/Paper';
+import { PopperProps } from '@mui/material/Popper';
+import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
@@ -11,11 +14,7 @@ import {
   createFilterOptions,
   UseAutocompleteProps,
   AutocompleteFreeSoloValueMapping,
-} from '@mui/base';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
-import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
-import { PaperProps } from '@mui/material/Paper';
-import { PopperProps } from '@mui/material/Popper';
+} from '../useAutocomplete';
 import { AutocompleteClasses } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -165,7 +164,6 @@ export interface AutocompleteProps<
     AutocompleteSlotsAndSlotProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   /**
    * Props applied to the [`Chip`](/material-ui/api/chip/) element.
-   * @deprecated Use `slotProps.chip` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ChipProps?: ChipProps<ChipComponent>;
   /**
@@ -232,12 +230,10 @@ export interface AutocompleteProps<
   /**
    * The component used to render the listbox.
    * @default 'ul'
-   * @deprecated Use `slots.listbox` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * Props applied to the Listbox element.
-   * @deprecated Use `slotProps.listbox` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
     sx?: SxProps<Theme>;
@@ -282,13 +278,11 @@ export interface AutocompleteProps<
   /**
    * The component used to render the body of the popup.
    * @default Paper
-   * @deprecated Use `slots.paper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * The component used to position the popup.
    * @default Popper
-   * @deprecated Use `slots.popper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**

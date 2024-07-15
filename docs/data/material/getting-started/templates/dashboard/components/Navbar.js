@@ -3,31 +3,42 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import MuiToolbar from '@mui/material/Toolbar';
-import { tabsClasses } from '@mui/material/Tabs';
-import Typography from '@mui/material/Typography';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
-import SideMenuMobile from './SideMenuMobile';
+import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
+import ToggleColorMode from './ToggleColorMode';
+import SideNav from './SideNav';
 import MenuButton from './MenuButton';
+import NavbarBreadcrumbs from './NavbarBreadcrumbs';
+import OptionsMenu from './OptionsMenu';
 
 const Toolbar = styled(MuiToolbar)({
+  maxWidth: 1538,
   width: '100%',
-  padding: '12px',
+  padding: '16px 16px 0 16px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
   justifyContent: 'center',
   gap: '12px',
   flexShrink: 0,
-  [`& ${tabsClasses.flexContainer}`]: {
+  backdropFilter: 'blur(24px)',
+  '& .MuiTabs-flexContainer': {
     gap: '8px',
     p: '8px',
     pb: 0,
   },
 });
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 function Navbar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
@@ -36,19 +47,49 @@ function Navbar({ mode, toggleColorMode }) {
     setOpen(newOpen);
   };
 
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <AppBar
       position="fixed"
-      sx={{
-        display: { xs: 'auto', md: 'none' },
+      sx={(theme) => ({
         boxShadow: 0,
-        bgcolor: 'background.paper',
+        bgcolor: 'transparent',
         backgroundImage: 'none',
+        alignItems: 'center',
         borderBottom: '1px solid',
-        borderColor: 'divider',
-      }}
+        borderColor: theme.palette.divider,
+      })}
     >
       <Toolbar variant="regular">
+        <Stack
+          direction="row"
+          sx={{
+            gap: 1,
+            alignItems: 'center',
+            justifyContent: { xs: 'flex-end', md: 'space-between' },
+            flexGrow: 1,
+            width: '100%',
+            display: { xs: 'none', md: 'flex' },
+          }}
+        >
+          <NavbarBreadcrumbs />
+          <Stack direction="row" sx={{ gap: 1 }}>
+            <MenuButton showBadge>
+              <NotificationsRoundedIcon />
+            </MenuButton>
+            <OptionsMenu />
+            <ToggleColorMode
+              data-screenshot="toggle-mode"
+              mode={mode}
+              toggleColorMode={toggleColorMode}
+            />
+          </Stack>
+        </Stack>
         <Stack
           direction="row"
           sx={{
@@ -56,24 +97,25 @@ function Navbar({ mode, toggleColorMode }) {
             alignItems: 'center',
             flexGrow: 1,
             width: '100%',
+            display: { sm: 'flex', md: 'none' },
           }}
         >
-          <Stack direction="row" spacing={1} sx={{ justifyContent: 'center' }}>
-            <CustomIcon />
-            <Typography variant="h4" component="h1" sx={{ color: 'text.primary' }}>
-              Dashboard
-            </Typography>
-          </Stack>
+          <NavbarBreadcrumbs />
           <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
             <MenuRoundedIcon />
           </MenuButton>
-          <SideMenuMobile
+          <SideNav
             open={open}
             toggleDrawer={toggleDrawer}
             mode={mode}
             toggleColorMode={toggleColorMode}
           />
         </Stack>
+        <Tabs value={value} onChange={handleChange} aria-label="navbar tabs">
+          <Tab label="Home" {...a11yProps(0)} />
+          <Tab label="Analytics" {...a11yProps(1)} />
+          <Tab label="Clients" {...a11yProps(2)} />
+        </Tabs>
       </Toolbar>
     </AppBar>
   );
@@ -85,28 +127,3 @@ Navbar.propTypes = {
 };
 
 export default Navbar;
-
-export function CustomIcon() {
-  return (
-    <Box
-      sx={{
-        width: '1.5rem',
-        height: '1.5rem',
-        bgcolor: 'black',
-        borderRadius: '999px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        backgroundImage:
-          'linear-gradient(135deg, hsl(210, 98%, 60%) 0%, hsl(210, 100%, 35%) 100%)',
-        color: 'hsla(210, 100%, 95%, 0.9)',
-        border: '1px solid',
-        borderColor: 'hsl(210, 100%, 55%)',
-        boxShadow: 'inset 0 2px 5px rgba(255, 255, 255, 0.3)',
-      }}
-    >
-      <DashboardRoundedIcon color="inherit" sx={{ fontSize: '1rem' }} />
-    </Box>
-  );
-}

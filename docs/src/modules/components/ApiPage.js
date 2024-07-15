@@ -11,7 +11,7 @@ import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
 import { SectionTitle } from '@mui/docs/SectionTitle';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 import PropertiesSection, {
