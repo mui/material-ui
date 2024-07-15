@@ -834,6 +834,9 @@ importers:
       '@types/css-mediaquery':
         specifier: ^0.1.4
         version: 0.1.4
+      '@types/gtag.js':
+        specifier: ^0.0.20
+        version: 0.0.20
       '@types/json2mq':
         specifier: ^0.2.2
         version: 0.2.2
@@ -5112,6 +5115,9 @@ packages:
 
   '@types/fs-extra@11.0.4':
     resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
+
+  '@types/gtag.js@0.0.20':
+    resolution: {integrity: sha512-wwAbk3SA2QeU67unN7zPxjEHmPmlXwZXZvQEpbEUQuMCRGgKyE1m6XDuTUA9b6pCGb/GqJmdfMOY5LuDjJSbbg==}
 
   '@types/hoist-non-react-statics@3.3.5':
     resolution: {integrity: sha512-SbcrWzkKBw2cdwRTwQAswfpB9g9LJWfjtUeW/jvNwbhC8cpmmNYVePa+ncbUe0rGTQ7G3Ff6mYUN2VMfLVr+Sg==}
@@ -15727,6 +15733,8 @@ snapshots:
     dependencies:
       '@types/jsonfile': 6.1.1
       '@types/node': 18.19.39
+
+  '@types/gtag.js@0.0.20': {}
 
   '@types/hoist-non-react-statics@3.3.5':
     dependencies:
