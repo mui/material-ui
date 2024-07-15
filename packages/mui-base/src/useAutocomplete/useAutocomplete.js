@@ -1042,7 +1042,6 @@ export function useAutocomplete(props) {
   const handleInputMouseDown = (event) => {
     if (!disabledProp && (inputValue === '' || !open)) {
       handlePopupIndicator(event);
-      event.stopPropagation();
     }
   };
 
@@ -1131,7 +1130,6 @@ export function useAutocomplete(props) {
       tabIndex: -1,
       type: 'button',
       onClick: handlePopupIndicator,
-      onMouseDown: (event) => event.stopPropagation(),
     }),
     getTagProps: ({ index }) => ({
       key: index,
