@@ -1,7 +1,7 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import IconButton from '@mui/joy/IconButton';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function IconButtonVariables() {
   return (
@@ -15,7 +15,7 @@ export default function IconButtonVariables() {
       data={[
         {
           var: '--IconButton-size',
-          defaultValue: '40px',
+          defaultValue: '36px',
         },
       ]}
       renderDemo={(sx) => (

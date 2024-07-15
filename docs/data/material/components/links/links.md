@@ -9,7 +9,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 <p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic links
 
@@ -41,7 +41,7 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `Link` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/material-ui/guides/routing/#link).
+Here is a [more detailed guide](/material-ui/integrations/routing/#link).
 
 ## Accessibility
 

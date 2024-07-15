@@ -1,11 +1,11 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Box from '@mui/joy/Box';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function ButtonUsage() {
+export default function TableUsage() {
   return (
     <JoyUsageDemo
       componentName="Table"
@@ -55,21 +55,13 @@ export default function ButtonUsage() {
       renderDemo={(props) => (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Typography
-            level="body3"
-            justifyContent="center"
-            textAlign="center"
-            sx={{ mb: 2 }}
+            level="body-xs"
+            sx={{ justifyContent: 'center', textAlign: 'center', mb: 2 }}
           >
             The table is scrollable.
           </Typography>
           <Sheet variant="outlined" sx={{ p: 2, borderRadius: 'sm' }}>
-            <Sheet
-              sx={{
-                height: 200,
-                overflow: 'auto',
-                borderRadius: 0,
-              }}
-            >
+            <Sheet sx={{ height: 200, overflow: 'auto', borderRadius: 0 }}>
               <Table {...props}>
                 <thead>
                   <tr>

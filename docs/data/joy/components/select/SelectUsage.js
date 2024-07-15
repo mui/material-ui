@@ -39,12 +39,13 @@ export default function SelectUsage() {
         },
         {
           propName: 'children',
-          defaultValue: `<Option>...</Option>`,
+          defaultValue: '<Option>...</Option>',
         },
       ]}
       renderDemo={(props) => (
         <Select
           {...props}
+          defaultListboxOpen
           action={action}
           value={value}
           onChange={(e, newValue) => setValue(newValue)}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
-import TablePaginationActions from './TablePaginationActions';
+import { TablePaginationActions } from './TablePaginationActions';
 import { ItemAriaLabelType } from './common.types';
 
 export interface LabelDisplayedRowsArgs {
@@ -144,7 +144,7 @@ export interface TablePaginationOwnProps {
    * Use -1 for the value with a custom label to show all the rows.
    * @default [10, 25, 50, 100]
    */
-  rowsPerPageOptions?: Array<number | { value: number; label: string }>;
+  rowsPerPageOptions?: ReadonlyArray<number | { value: number; label: string }>;
   /**
    * Id of the select element within the pagination.
    */

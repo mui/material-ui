@@ -2,11 +2,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, colorDefault } = ownerState;
@@ -32,7 +33,7 @@ const AvatarRoot = styled('div', {
       ownerState.colorDefault && styles.colorDefault,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -46,23 +47,34 @@ const AvatarRoot = styled('div', {
   borderRadius: '50%',
   overflow: 'hidden',
   userSelect: 'none',
-  ...(ownerState.variant === 'rounded' && {
-    borderRadius: (theme.vars || theme).shape.borderRadius,
-  }),
-  ...(ownerState.variant === 'square' && {
-    borderRadius: 0,
-  }),
-  ...(ownerState.colorDefault && {
-    color: (theme.vars || theme).palette.background.default,
-    ...(theme.vars
-      ? {
-          backgroundColor: theme.vars.palette.Avatar.defaultBg,
-        }
-      : {
-          backgroundColor:
-            theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-        }),
-  }),
+  variants: [
+    {
+      props: { variant: 'rounded' },
+      style: {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+      },
+    },
+    {
+      props: { variant: 'square' },
+      style: {
+        borderRadius: 0,
+      },
+    },
+    {
+      props: { colorDefault: true },
+      style: {
+        color: (theme.vars || theme).palette.background.default,
+        ...(theme.vars
+          ? {
+              backgroundColor: theme.vars.palette.Avatar.defaultBg,
+            }
+          : {
+              backgroundColor: theme.palette.grey[400],
+              ...theme.applyStyles('dark', { backgroundColor: theme.palette.grey[600] }),
+            }),
+      },
+    },
+  ],
 }));
 
 const AvatarImg = styled('img', {
@@ -73,7 +85,7 @@ const AvatarImg = styled('img', {
   width: '100%',
   height: '100%',
   textAlign: 'center',
-  // Handle non-square image. The property isn't supported by IE11.
+  // Handle non-square image.
   objectFit: 'cover',
   // Hide alt text.
   color: 'transparent',
@@ -130,12 +142,14 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }) {
 }
 
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAvatar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAvatar' });
   const {
     alt,
     children: childrenProp,
     className,
     component = 'div',
+    slots = {},
+    slotProps = {},
     imgProps,
     sizes,
     src,
@@ -157,22 +171,27 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     component,
     variant,
   };
+  // This issue explains why this is required: https://github.com/mui/material-ui/issues/42184
+  delete ownerState.ownerState;
 
   const classes = useUtilityClasses(ownerState);
 
+  const [ImgSlot, imgSlotProps] = useSlot('img', {
+    className: classes.img,
+    elementType: AvatarImg,
+    externalForwardedProps: {
+      slots,
+      slotProps: { img: { ...imgProps, ...slotProps.img } },
+    },
+    additionalProps: { alt, src, srcSet, sizes },
+    ownerState,
+  });
+
   if (hasImgNotFailing) {
-    children = (
-      <AvatarImg
-        alt={alt}
-        src={src}
-        srcSet={srcSet}
-        sizes={sizes}
-        ownerState={ownerState}
-        className={classes.img}
-        {...imgProps}
-      />
-    );
-  } else if (childrenProp != null) {
+    children = <ImgSlot {...imgSlotProps} />;
+    // We only render valid children, non valid children are rendered with a fallback
+    // We consider that invalid children are all falsy values, except 0, which is valid.
+  } else if (!!childrenProp || childrenProp === 0) {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];
@@ -183,10 +202,10 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   return (
     <AvatarRoot
       as={component}
-      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      ownerState={ownerState}
     >
       {children}
     </AvatarRoot>
@@ -194,10 +213,10 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 });
 
 Avatar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.
@@ -230,6 +249,20 @@ Avatar.propTypes /* remove-proptypes */ = {
    * The `sizes` attribute for the `img` element.
    */
   sizes: PropTypes.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    img: PropTypes.elementType,
+  }),
   /**
    * The `src` attribute for the `img` element.
    */

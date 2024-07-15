@@ -3,11 +3,11 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Paper from '@mui/material/Paper';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import Stack from '@mui/material/Stack';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 export default function InteractiveStack() {
   const [direction, setDirection] = React.useState('row');
@@ -18,9 +18,11 @@ export default function InteractiveStack() {
   const jsx = `
 <Stack
   direction="${direction}"
-  justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
   spacing={${spacing}}
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
@@ -28,23 +30,23 @@ export default function InteractiveStack() {
     <Stack sx={{ flexGrow: 1 }}>
       <Stack
         direction={direction}
-        justifyContent={justifyContent}
-        alignItems={alignItems}
         spacing={spacing}
-        sx={{ height: 240 }}
+        sx={{ justifyContent, alignItems, height: 240 }}
       >
         {[0, 1, 2].map((value) => (
           <Paper
             key={value}
-            sx={{
+            sx={(theme) => ({
               p: 2,
               pt: value + 1,
               pb: value + 1,
               color: 'text.secondary',
               typography: 'body2',
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-            }}
+              backgroundColor: '#fff',
+              ...theme.applyStyles('dark', {
+                backgroundColor: '#1A2027',
+              }),
+            })}
           >
             {`Item ${value + 1}`}
           </Paper>

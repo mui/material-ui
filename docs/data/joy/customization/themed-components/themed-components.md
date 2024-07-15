@@ -8,12 +8,12 @@
 
 ## Component identifier
 
-If you've used [Material UI](/material-ui/customization/theme-components/) before, you are probably familiar with this technique.
+If you've used [Material UI](/material-ui/customization/theme-components/) before, you are probably familiar with this technique.
 To customize a specific component in the theme, specify the component identifier (`Joy{ComponentImportName}`) inside the `components` node.
 
 - Use `defaultProps` to change the default React props of the component.
 - Use `styleOverrides` to apply styles to each component slots.
-  - Every Joy UI component contains the `root` slot.
+  - Every Joy UI component contains the `root` slot.
 
 Visit the [`components.d.ts`](https://github.com/mui/material-ui/blob/-/packages/mui-joy/src/styles/components.d.ts) file to see all component identifiers.
 
@@ -101,9 +101,6 @@ extendTheme({
               '&:hover': {
                 color: '#fff',
               },
-              '&.Mui-disabled': {
-                opacity: 0.6,
-              },
             }),
         }),
       },
@@ -111,6 +108,32 @@ extendTheme({
   },
 });
 ```
+
+### Change styles based on state
+
+Joy UI components increase the CSS specificity of the styles when they are in a given state such as `selected`, `disabled`, `focusVisible`, etc.
+
+To override styles of a specific state, import the component's class selector using its name in camel-case followed by `Classes`.
+
+```js
+import { listItemButtonClasses } from '@mui/joy/ListItemButton';
+
+extendTheme({
+  components: {
+    JoyListItemButton: {
+      styleOverrides: {
+        root: {
+          [`&.${listItemButtonClasses.selected}`]: {
+            color: 'rgba(255 255 255 / 0.7)',
+          },
+        },
+      },
+    },
+  },
+});
+```
+
+The available states are: `active`, `checked`, `completed`, `disabled`, `error`, `expanded`, `focused`, `focusVisible`, `readOnly`, `required`, `selected`.
 
 ### Extend colors
 
@@ -148,7 +171,7 @@ Once these values are defined as above, you can make use of them directly on ins
 
 Module augmentation is required to pass the values to the `color` prop of the component.
 
-The interface format is `{ComponentName}PropsColorOverrides`, which is the same for all Joy UI components:
+The interface format is `{ComponentName}PropsColorOverrides`, which is the same for all Joy UI components:
 
 ```tsx
 // This part could be declared in your theme file
@@ -167,7 +190,7 @@ declare module '@mui/joy/Button' {
 ### Extend sizes
 
 The following code snippet illustrates how to provide additional sizes to a component beyond `sm`, `md`, and `lg`.
-We recommend following the established "t-shirt size" naming convention (e.g. `xs`, `xl`, `xxl`, etc.) to maintain consistency with all the other props.
+We recommend following the established "t-shirt size" naming convention (for example `xs`, `xl`, `xxl`, etc.) to maintain consistency with all the other props.
 
 The example below extends the Button sizes to include `xs` and `xl` values:
 
@@ -214,7 +237,7 @@ To learn how to extend variant properties, check out the [Extend variants](#exte
 
 Module augmentation is required to pass the values to the `size` prop of the component.
 
-The interface format is `{ComponentName}PropsSizeOverrides`, which is the same for all Joy UI components:
+The interface format is `{ComponentName}PropsSizeOverrides`, which is the same for all Joy UI components:
 
 ```tsx
 // This part could be declared in your theme file
@@ -267,7 +290,7 @@ Once the value is defined as above, you can make use of it directly on instances
 
 Module augmentation is required to pass the values to the `variant` prop of the component.
 
-The interface format is `{ComponentName}PropsSizeOverrides`, which is the same for all Joy UI components:
+The interface format is `{ComponentName}PropsSizeOverrides`, which is the same for all Joy UI components:
 
 ```tsx
 // This part could be declared in your theme file
@@ -285,7 +308,7 @@ declare module '@mui/joy/Sheet' {
 
 To specify different values than the ones defined in the default theme for each mode (light and dark), use the CSS attribute selector.
 
-Joy UI attaches a `data-*` attribute with the current color scheme to the DOM (HTML by default).
+Joy UI attaches a `data-*` attribute with the current color scheme to the DOM (HTML by default).
 You can use the `theme.getColorSchemeSelector` utility to change the component styles.
 
 The example below illustrate how you'd change the intensity of the `boxShadow` token in the light mode while removing it completely in the dark mode:

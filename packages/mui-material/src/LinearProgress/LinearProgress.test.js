@@ -3,10 +3,10 @@ import { expect } from 'chai';
 import {
   createRenderer,
   screen,
-  describeConformance,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui/internal-test-utils';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
+import describeConformance from '../../test/describeConformance';
 
 describe('<LinearProgress />', () => {
   const { render } = createRenderer();

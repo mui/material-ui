@@ -7,13 +7,13 @@ import { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
  *
  * Demos:
  *
- * - [Badge](https://mui.com/base-ui/react-badge/#hook)
+ * - [Badge](https://next.mui.com/base-ui/react-badge/#hook)
  *
  * API:
  *
- * - [useBadge API](https://mui.com/base-ui/react-badge/hooks-api/#use-badge)
+ * - [useBadge API](https://next.mui.com/base-ui/react-badge/hooks-api/#use-badge)
  */
-export default function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
+export function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
   const {
     badgeContent: badgeContentProp,
     invisible: invisibleProp = false,

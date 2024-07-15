@@ -4,23 +4,24 @@
 
 ## Bundle size matters
 
-Material UI's maintainers take bundle size very seriously. Size snapshots are taken
-on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot/)).
+Material UI's maintainers take bundle size very seriously. Size snapshots are taken
+on every commit for every package and critical parts of those packages.
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
 [detailed bundle size changes](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
 ## When and how to use tree-shaking?
 
-Tree-shaking Material UI works out of the box in modern frameworks.
-Material UI exposes its full API on the top-level `@mui` imports.
+Tree-shaking Material UI works out of the box in modern frameworks.
+Material UI exposes its full API on the top-level `@mui` imports.
 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@mui/material';
 ```
 
-⚠️ The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler
-that doesn't support tree-shaking.
+:::warning
+The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler that doesn't support tree-shaking.
+:::
 
 ## Development environment
 
@@ -82,7 +83,7 @@ import TabIndicator from '@mui/material/Tabs/TabIndicator';
 //                                           ^^^^^^^^^^^^ 3rd level
 ```
 
-If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/latest/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@mui` packages:
+If you're using ESLint you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/latest/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@mui` packages:
 
 ```json
 {
@@ -185,10 +186,10 @@ Modify your `package.json` commands:
 ```diff
    "scripts": {
 -    "start": "react-scripts start",
-+    "start": "react-app-rewired start",
 -    "build": "react-scripts build",
-+    "build": "react-app-rewired build",
 -    "test": "react-scripts test",
++    "start": "react-app-rewired start",
++    "build": "react-app-rewired build",
 +    "test": "react-app-rewired test",
      "eject": "react-scripts eject"
   }
@@ -209,22 +210,47 @@ It will perform the following diffs:
 
 ## Available bundles
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/material-ui/getting-started/supported-platforms/).
+### Default bundle
 
-⚠️ Developers are **strongly discouraged** to import from any of the other bundles directly.
-Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles.
-Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+The packages published on npm are **transpiled** with [Babel](https://github.com/babel/babel), optimized for performance with the [supported platforms](/material-ui/getting-started/supported-platforms/).
+
+A [modern bundle](#modern-bundle) is also available.
+
+### How to use custom bundles?
+
+:::error
+You are strongly discouraged to:
+
+- Import from any of the custom bundles directly. Do not do this:
+
+  ```js
+  import { Button } from '@mui/material/legacy';
+  ```
+
+  You have no guarantee that the dependencies also use legacy or modern bundles, leading to module duplication in your JavaScript files.
+
+- Import from any of the undocumented files or folders. Do not do this:
+
+  ```js
+  import { Button } from '@mui/material/esm';
+  ```
+
+  You have no guarantee that these imports will continue to work from one version to the next.
+
+  :::
+
+A great way to use these bundles is to configure bundler aliases, for example with [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
 
 ```js
 {
   resolve: {
     alias: {
-      '@mui/base': '@mui/base/legacy',
-      '@mui/lab': '@mui/lab/legacy',
       '@mui/material': '@mui/material/legacy',
       '@mui/styled-engine': '@mui/styled-engine/legacy',
       '@mui/system': '@mui/system/legacy',
+      '@mui/base': '@mui/base/legacy',
       '@mui/utils': '@mui/utils/legacy',
+      '@mui/lab': '@mui/lab/legacy',
     }
   }
 }
@@ -235,9 +261,3 @@ Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.ali
 The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/).
 It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
 This can be used to make separate bundles targeting different browsers.
-
-### Legacy bundle
-
-If you need to support IE 11 you cannot use the default or modern bundle without transpilation.
-However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/).
-You don't need any additional polyfills.

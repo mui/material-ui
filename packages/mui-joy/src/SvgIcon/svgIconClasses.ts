@@ -11,8 +11,6 @@ export interface SvgIconClasses {
   colorNeutral: string;
   /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
@@ -35,10 +33,12 @@ export interface SvgIconClasses {
   fontSizeXl3: string;
   /** Class name applied to the root element if `fontSize="xl4"`. */
   fontSizeXl4: string;
-  /** Class name applied to the root element if `fontSize="xl5"`. */
-  fontSizeXl5: string;
-  /** Class name applied to the root element if `fontSize="xl6"`. */
-  fontSizeXl6: string;
+  /** Class name applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Class name applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Class name applied to the root element if `size="lg"`. */
+  sizeLg: string;
 }
 
 export type SvgIconClassKey = keyof SvgIconClasses;
@@ -53,7 +53,6 @@ const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'fontSizeInherit',
@@ -65,8 +64,9 @@ const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
   'fontSizeXl2',
   'fontSizeXl3',
   'fontSizeXl4',
-  'fontSizeXl5',
-  'fontSizeXl6',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
 ]);
 
 export default svgIconClasses;

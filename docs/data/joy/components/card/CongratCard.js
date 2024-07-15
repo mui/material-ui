@@ -38,11 +38,11 @@ export default function CongratCard() {
           }}
         >
           <div>
-            <BakeryDiningIcon sx={{ fontSize: '4rem' }} />
+            <BakeryDiningIcon color="warning" sx={{ fontSize: '4rem' }} />
           </div>
         </AspectRatio>
       </CardOverflow>
-      <Typography level="h2" fontSize="xl" sx={{ mt: 'calc(var(--icon-size) / 2)' }}>
+      <Typography level="title-lg" sx={{ mt: 'calc(var(--icon-size) / 2)' }}>
         🎊 Congrats Julia 🎊
       </Typography>
       <CardContent sx={{ maxWidth: '40ch' }}>

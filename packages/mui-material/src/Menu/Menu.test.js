@@ -3,20 +3,18 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import {
   createRenderer,
-  createMount,
-  describeConformance,
   screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { MenuPaper } from './Menu';
+import describeConformance from '../../test/describeConformance';
+import { paperClasses } from '../Paper';
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
-  const mount = createMount();
 
   describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
@@ -24,6 +22,14 @@ describe('<Menu />', () => {
     render,
     muiName: 'MuiMenu',
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      paper: {
+        expectedClassName: classes.paper,
+      },
+    },
     testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'menu' },
@@ -31,7 +37,6 @@ describe('<Menu />', () => {
       'rootClass', // portal, can't determine the root
       'componentProp',
       'componentsProp',
-      'reactTestRenderer', // react-transition-group issue
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));
@@ -133,8 +138,9 @@ describe('<Menu />', () => {
   describe('prop: PaperProps', () => {
     it('should be passed to the paper component', () => {
       const customElevation = 12;
-      const customClasses = { rounded: { borderRadius: 12 } };
-      const wrapper = mount(
+      const customClasses = { rounded: 'custom-rounded' };
+
+      render(
         <Menu
           anchorEl={document.createElement('div')}
           open
@@ -146,8 +152,8 @@ describe('<Menu />', () => {
         />,
       );
 
-      expect(wrapper.find(MenuPaper).props().elevation).to.equal(customElevation);
-      expect(wrapper.find(MenuPaper).props().classes).to.contain(customClasses);
+      expect(screen.getByTestId('paper')).to.have.class(paperClasses.elevation12);
+      expect(screen.getByTestId('paper')).to.have.class(customClasses.rounded);
     });
   });
 
@@ -373,15 +379,20 @@ describe('<Menu />', () => {
     });
   });
 
-  describe('paper', () => {
-    it('should use MenuPaper component', () => {
-      const wrapper = mount(
-        <Menu anchorEl={document.createElement('div')} open>
+  describe('slots', () => {
+    it('should merge slots with existing values', () => {
+      render(
+        <Menu
+          slots={{ root: 'span' }}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
+          anchorEl={document.createElement('div')}
+          open
+        >
           <div />
         </Menu>,
       );
 
-      expect(wrapper.find(MenuPaper)).to.have.length(1);
+      expect(screen.getByTestId('paper')).to.have.length(1);
     });
   });
 });

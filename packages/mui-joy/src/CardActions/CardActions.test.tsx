@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import CardActions, { cardActionsClasses as classes } from '@mui/joy/CardActions';
+import describeConformance from '../../test/describeConformance';
 
 describe('<CardActions />', () => {
   const { render } = createRenderer();

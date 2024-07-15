@@ -1,0 +1,76 @@
+{
+  "name": "@mui/material-nextjs",
+  "version": "6.0.0-alpha.13",
+  "private": false,
+  "author": "MUI Team",
+  "description": "Collection of utilities for integration between Material UI and Next.js.",
+  "keywords": [
+    "react",
+    "next",
+    "material-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-material-nextjs"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://mui.com/material-ui/guides/nextjs/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "scripts": {
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
+    "build:modern": "node ../../scripts/build.mjs modern",
+    "build:node": "node ../../scripts/build.mjs node",
+    "build:stable": "node ../../scripts/build.mjs stable",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:types": "node ../../scripts/buildTypes.mjs",
+    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
+    "release": "pnpm build && pnpm publish",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material-nextjs/**/*.test.{js,ts,tsx}'",
+    "typescript": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.24.7"
+  },
+  "devDependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/server": "^11.11.0",
+    "@types/react": "^18.3.3",
+    "next": "13.5.1",
+    "react": "^18.3.1"
+  },
+  "peerDependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/server": "^11.11.0",
+    "@mui/material": "workspace:*",
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "next": "^13.0.0 || ^14.0.0",
+    "react": "^17.0.0 || ^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "@emotion/cache": {
+      "optional": true
+    },
+    "@emotion/server": {
+      "optional": true
+    }
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

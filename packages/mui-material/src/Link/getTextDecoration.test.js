@@ -1,26 +1,24 @@
 import { expect } from 'chai';
-import { createTheme, experimental_extendTheme as extendTheme } from '../styles';
+import { createTheme, extendTheme } from '../styles';
 import getTextDecoration from './getTextDecoration';
 
 describe('getTextDecoration', () => {
   describe('without theme.vars', () => {
     const theme = createTheme();
+
     it('deprecated color', () => {
-      expect(getTextDecoration({ theme, ownerState: { color: 'primary' } })).to.equal(
-        'rgba(25, 118, 210, 0.4)',
-      );
       expect(getTextDecoration({ theme, ownerState: { color: 'textPrimary' } })).to.equal(
         'rgba(0, 0, 0, 0.4)',
-      );
-      expect(getTextDecoration({ theme, ownerState: { color: 'secondary' } })).to.equal(
-        'rgba(156, 39, 176, 0.4)',
       );
       expect(getTextDecoration({ theme, ownerState: { color: 'textSecondary' } })).to.equal(
         'rgba(0, 0, 0, 0.4)',
       );
-      expect(getTextDecoration({ theme, ownerState: { color: 'error' } })).to.equal(
-        'rgba(211, 47, 47, 0.4)',
-      );
+      expect(getTextDecoration({ theme, ownerState: { color: 'primary' } })).to.equal(null);
+      expect(getTextDecoration({ theme, ownerState: { color: 'secondary' } })).to.equal(null);
+      expect(getTextDecoration({ theme, ownerState: { color: 'error' } })).to.equal(null);
+      expect(getTextDecoration({ theme, ownerState: { color: 'info' } })).to.equal(null);
+      expect(getTextDecoration({ theme, ownerState: { color: 'success' } })).to.equal(null);
+      expect(getTextDecoration({ theme, ownerState: { color: 'warning' } })).to.equal(null);
     });
 
     it('system color', () => {
@@ -77,21 +75,18 @@ describe('getTextDecoration', () => {
     };
     // in the application, the value will be CSS variable: `rgba(var(--the-color-channel) / 0.4)`
     it('deprecated color', () => {
-      expect(getTextDecoration({ theme, ownerState: { color: 'primary' } })).to.equal(
-        'rgba(var(--palette-primary-mainChannel) / 0.4)',
-      );
       expect(getTextDecoration({ theme, ownerState: { color: 'textPrimary' } })).to.equal(
         'rgba(var(--palette-text-primaryChannel) / 0.4)',
-      );
-      expect(getTextDecoration({ theme, ownerState: { color: 'secondary' } })).to.equal(
-        'rgba(var(--palette-secondary-mainChannel) / 0.4)',
       );
       expect(getTextDecoration({ theme, ownerState: { color: 'textSecondary' } })).to.equal(
         'rgba(var(--palette-text-secondaryChannel) / 0.4)',
       );
-      expect(getTextDecoration({ theme, ownerState: { color: 'error' } })).to.equal(
-        'rgba(var(--palette-error-mainChannel) / 0.4)',
-      );
+      expect(getTextDecoration({ theme, ownerState: { color: 'primary' } })).to.equal(null);
+      expect(getTextDecoration({ theme, ownerState: { color: 'secondary' } })).to.equal(null);
+      expect(getTextDecoration({ theme, ownerState: { color: 'error' } })).to.equal(null);
+      expect(getTextDecoration({ theme, ownerState: { color: 'info' } })).to.equal(null);
+      expect(getTextDecoration({ theme, ownerState: { color: 'success' } })).to.equal(null);
+      expect(getTextDecoration({ theme, ownerState: { color: 'warning' } })).to.equal(null);
     });
 
     it('system color', () => {

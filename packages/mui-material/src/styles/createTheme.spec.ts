@@ -66,6 +66,13 @@ const theme = createTheme();
 {
   createTheme({
     components: {
+      MuiPopper: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'red',
+          },
+        },
+      },
       MuiFormControlLabel: {
         styleOverrides: {
           root: {
@@ -141,6 +148,13 @@ const theme = createTheme();
           },
         },
       },
+      MuiRadioGroup: {
+        styleOverrides: {
+          row: {
+            justifyContent: 'space-between',
+          },
+        },
+      },
     },
   });
 }
@@ -176,6 +190,44 @@ const theme = createTheme();
                 fontFamily: t.typography.fontFamily,
               };
             },
+          },
+        ],
+        styleOverrides: {
+          root: {
+            variants: [
+              {
+                props: { variant: 'contained' },
+                style: {
+                  backdropFilter: 'none',
+                },
+              },
+            ],
+          },
+          endIcon: ({ theme: t }) => ({
+            backgroundColor: t.vars.palette.primary.main,
+            variants: [
+              {
+                props: ({ ownerState }) => ownerState.color === 'primary',
+              },
+            ],
+          }),
+        },
+      },
+    },
+  });
+}
+
+// props callback in variants
+{
+  createTheme({
+    components: {
+      MuiButton: {
+        variants: [
+          {
+            props: (props) => props.color !== 'secondary',
+            style: ({ theme: { palette } }) => ({
+              backgroundColor: palette.grey[500],
+            }),
           },
         ],
       },

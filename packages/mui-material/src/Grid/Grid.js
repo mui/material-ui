@@ -13,22 +13,17 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  unstable_extendSxProp as extendSxProp,
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { extendSxProp } from '@mui/system/styleFunctionSx';
+import composeClasses from '@mui/utils/composeClasses';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
 import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
-
-function getOffset(val) {
-  const parse = parseFloat(val);
-  return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
-}
 
 export function generateGrid({ theme, ownerState }) {
   let size;
@@ -78,7 +73,7 @@ export function generateGrid({ theme, ownerState }) {
       if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
         const themeSpacing = theme.spacing(ownerState.columnSpacing);
         if (themeSpacing !== '0px') {
-          const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
+          const fullWidth = `calc(${width} + ${themeSpacing})`;
           more = {
             flexBasis: fullWidth,
             maxWidth: fullWidth,
@@ -175,9 +170,9 @@ export function generateRowGap({ theme, ownerState }) {
 
       if (themeSpacing !== '0px') {
         return {
-          marginTop: `-${getOffset(themeSpacing)}`,
+          marginTop: theme.spacing(-propValue),
           [`& > .${gridClasses.item}`]: {
-            paddingTop: getOffset(themeSpacing),
+            paddingTop: themeSpacing,
           },
         };
       }
@@ -219,11 +214,12 @@ export function generateColumnGap({ theme, ownerState }) {
     styles = handleBreakpoints({ theme }, columnSpacingValues, (propValue, breakpoint) => {
       const themeSpacing = theme.spacing(propValue);
       if (themeSpacing !== '0px') {
+        const negativeValue = theme.spacing(-propValue);
         return {
-          width: `calc(100% + ${getOffset(themeSpacing)})`,
-          marginLeft: `-${getOffset(themeSpacing)}`,
+          width: `calc(100% + ${themeSpacing})`,
+          marginLeft: negativeValue,
           [`& > .${gridClasses.item}`]: {
-            paddingLeft: getOffset(themeSpacing),
+            paddingLeft: themeSpacing,
           },
         };
       }
@@ -470,10 +466,10 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 });
 
 Grid.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -595,6 +591,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
+   * @deprecated Use `flexWrap` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
   /**

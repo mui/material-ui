@@ -1,17 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
-import {
-  act,
-  createRenderer,
-  fireEvent,
-  describeConformance,
-  describeJoyColorInversion,
-} from 'test/utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import { ThemeProvider, TypographySystem } from '@mui/joy/styles';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import describeConformance from '../../test/describeConformance';
 
 function focusVisible(element: HTMLAnchorElement | null) {
   act(() => {
@@ -46,8 +41,6 @@ describe('<Link />', () => {
     }),
   );
 
-  describeJoyColorInversion(<Link href="/" variant="soft" />, { muiName: 'JoyLink', classes });
-
   it('should render children', () => {
     const { queryByText } = render(<Link href="/">Home</Link>);
 
@@ -58,10 +51,13 @@ describe('<Link />', () => {
     it('should fire event callbacks', () => {
       const events = ['onBlur', 'onFocus'];
 
-      const handlers = events.reduce((result, n) => {
-        result[n] = spy();
-        return result;
-      }, {} as Record<string, SinonSpy>);
+      const handlers = events.reduce(
+        (result, n) => {
+          result[n] = spy();
+          return result;
+        },
+        {} as Record<string, SinonSpy>,
+      );
 
       const { container } = render(
         <Link href="/" {...handlers}>
@@ -79,7 +75,12 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', () => {
+    it('should add the focusVisible class when focused', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 
@@ -137,7 +138,7 @@ describe('<Link />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorPrimary);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" color={color}>
@@ -160,10 +161,24 @@ describe('<Link />', () => {
         </Link>,
       );
 
-      expect(getByTestId('root')).have.class(classes.body1);
+      expect(getByTestId('root')).have.class(classes['body-md']);
     });
 
-    (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'] as const).forEach((level) => {
+    (
+      [
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'title-lg',
+        'title-md',
+        'title-sm',
+        'body-lg',
+        'body-md',
+        'body-sm',
+        'body-xs',
+      ] as const
+    ).forEach((level) => {
       it(`should render ${level}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" level={level as keyof TypographySystem}>

@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs-joy/modal-overflow',
     false,
-    /modal-overflow.*.json$/,
+    /\.\/modal-overflow.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

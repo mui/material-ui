@@ -3,11 +3,11 @@
     "aria-label": { "type": { "name": "custom", "description": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
     "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
-        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },
@@ -16,22 +16,35 @@
         "name": "shape",
         "description": "{ Input?: elementType, Mark?: elementType, MarkLabel?: elementType, Rail?: elementType, Root?: elementType, Thumb?: elementType, Track?: elementType, ValueLabel?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": {
         "name": "shape",
         "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: func<br>&#124;&nbsp;{ children?: element, className?: string, open?: bool, style?: object, value?: number, valueLabelDisplay?: 'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on' } }"
       },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableSwap": { "type": { "name": "bool" }, "default": "false" },
-    "getAriaLabel": { "type": { "name": "func" } },
-    "getAriaValueText": { "type": { "name": "func" } },
+    "getAriaLabel": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(index: number) => string", "describedArgs": ["index"] }
+    },
+    "getAriaValueText": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: number, index: number) => string",
+        "describedArgs": ["value", "index"]
+      }
+    },
     "marks": {
       "type": {
         "name": "union",
@@ -42,13 +55,30 @@
     "max": { "type": { "name": "number" }, "default": "100" },
     "min": { "type": { "name": "number" }, "default": "0" },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
-    "onChangeCommitted": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: Event, value: number | Array<number>, activeThumb: number) => void",
+        "describedArgs": ["event", "value", "activeThumb"]
+      }
+    },
+    "onChangeCommitted": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent | Event, value: number | Array<number>) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "scale": { "type": { "name": "func" }, "default": "function Identity(x) {\n  return x;\n}" },
+    "scale": {
+      "type": { "name": "func" },
+      "default": "function Identity(x) {\n  return x;\n}",
+      "signature": { "type": "function(x: any) => any", "describedArgs": [] }
+    },
+    "shiftStep": { "type": { "name": "number" }, "default": "10" },
     "size": {
       "type": {
         "name": "union",
@@ -75,7 +105,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "tabIndex": { "type": { "name": "number" } },
     "track": {
@@ -98,42 +129,216 @@
     }
   },
   "name": "Slider",
-  "styles": {
-    "classes": [
-      "root",
-      "colorPrimary",
-      "colorSecondary",
-      "marked",
-      "vertical",
-      "disabled",
-      "dragging",
-      "rail",
-      "track",
-      "trackFalse",
-      "trackInverted",
-      "thumb",
-      "active",
-      "focusVisible",
-      "mark",
-      "markActive",
-      "markLabel",
-      "markLabelActive",
-      "sizeSmall",
-      "thumbColorPrimary",
-      "thumbColorSecondary",
-      "thumbSizeSmall",
-      "valueLabel",
-      "valueLabelOpen",
-      "valueLabelCircle",
-      "valueLabelLabel"
-    ],
-    "globalClasses": {
-      "disabled": "Mui-disabled",
-      "active": "Mui-active",
-      "focusVisible": "Mui-focusVisible"
+  "imports": [
+    "import Slider from '@mui/material/Slider';",
+    "import { Slider } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "active",
+      "className": "Mui-active",
+      "description": "State class applied to the thumb element if it's active.",
+      "isGlobal": true
     },
-    "name": "MuiSlider"
-  },
+    {
+      "key": "colorError",
+      "className": "MuiSlider-colorError",
+      "description": "Styles applied to the root element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorInfo",
+      "className": "MuiSlider-colorInfo",
+      "description": "Styles applied to the root element if `color=\"info\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiSlider-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiSlider-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiSlider-colorSuccess",
+      "description": "Styles applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiSlider-colorWarning",
+      "description": "Styles applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root and thumb element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "dragging",
+      "className": "MuiSlider-dragging",
+      "description": "State class applied to the root if a thumb is being dragged.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the thumb element if keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "mark",
+      "className": "MuiSlider-mark",
+      "description": "Styles applied to the mark element.",
+      "isGlobal": false
+    },
+    {
+      "key": "markActive",
+      "className": "MuiSlider-markActive",
+      "description": "Styles applied to the mark element if active (depending on the value).",
+      "isGlobal": false
+    },
+    {
+      "key": "marked",
+      "className": "MuiSlider-marked",
+      "description": "Styles applied to the root element if `marks` is provided with at least one label.",
+      "isGlobal": false
+    },
+    {
+      "key": "markLabel",
+      "className": "MuiSlider-markLabel",
+      "description": "Styles applied to the mark label element.",
+      "isGlobal": false
+    },
+    {
+      "key": "markLabelActive",
+      "className": "MuiSlider-markLabelActive",
+      "description": "Styles applied to the mark label element if active (depending on the value).",
+      "isGlobal": false
+    },
+    {
+      "key": "rail",
+      "className": "MuiSlider-rail",
+      "description": "Styles applied to the rail element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSlider-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiSlider-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "thumb",
+      "className": "MuiSlider-thumb",
+      "description": "Styles applied to the thumb element.",
+      "isGlobal": false
+    },
+    {
+      "key": "thumbColorError",
+      "className": "MuiSlider-thumbColorError",
+      "description": "Styles applied to the thumb element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "thumbColorInfo",
+      "className": "MuiSlider-thumbColorInfo",
+      "description": "Styles applied to the thumb element if `color=\"info\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "thumbColorPrimary",
+      "className": "MuiSlider-thumbColorPrimary",
+      "description": "Styles applied to the thumb element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "thumbColorSecondary",
+      "className": "MuiSlider-thumbColorSecondary",
+      "description": "Styles applied to the thumb element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "thumbColorSuccess",
+      "className": "MuiSlider-thumbColorSuccess",
+      "description": "Styles applied to the thumb element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "thumbColorWarning",
+      "className": "MuiSlider-thumbColorWarning",
+      "description": "Styles applied to the thumb element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "thumbSizeSmall",
+      "className": "MuiSlider-thumbSizeSmall",
+      "description": "Styles applied to the thumb element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "track",
+      "className": "MuiSlider-track",
+      "description": "Styles applied to the track element.",
+      "isGlobal": false
+    },
+    {
+      "key": "trackFalse",
+      "className": "MuiSlider-trackFalse",
+      "description": "Styles applied to the root element if `track={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "trackInverted",
+      "className": "MuiSlider-trackInverted",
+      "description": "Styles applied to the root element if `track=\"inverted\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "valueLabel",
+      "className": "MuiSlider-valueLabel",
+      "description": "Styles applied to the thumb label element.",
+      "isGlobal": false
+    },
+    {
+      "key": "valueLabelCircle",
+      "className": "MuiSlider-valueLabelCircle",
+      "description": "Styles applied to the thumb label's circle element.",
+      "isGlobal": false
+    },
+    {
+      "key": "valueLabelLabel",
+      "className": "MuiSlider-valueLabelLabel",
+      "description": "Styles applied to the thumb label's label element.",
+      "isGlobal": false
+    },
+    {
+      "key": "valueLabelOpen",
+      "className": "MuiSlider-valueLabelOpen",
+      "description": "Styles applied to the thumb label element if it's open.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiSlider-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiSlider",

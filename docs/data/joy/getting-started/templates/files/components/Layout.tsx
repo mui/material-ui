@@ -105,28 +105,26 @@ function Main(props: BoxProps) {
     />
   );
 }
-
-function SideDrawer({
-  onClose,
-  ...props
-}: BoxProps & { onClose: React.MouseEventHandler<HTMLDivElement> }) {
+function SideDrawer(
+  props: BoxProps & { onClose: React.MouseEventHandler<HTMLDivElement> },
+) {
+  const { onClose, ...other } = props;
   return (
     <Box
-      {...props}
+      {...other}
       sx={[
         { position: 'fixed', zIndex: 1200, width: '100%', height: '100%' },
-        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+        ...(Array.isArray(other.sx) ? other.sx : [other.sx]),
       ]}
     >
       <Box
         role="button"
         onClick={onClose}
-        sx={{
+        sx={(theme) => ({
           position: 'absolute',
           inset: 0,
-          bgcolor: (theme) =>
-            `rgba(${theme.vars.palette.neutral.darkChannel} / 0.8)`,
-        }}
+          bgcolor: `rgba(${theme.vars.palette.neutral.darkChannel} / 0.8)`,
+        })}
       />
       <Sheet
         sx={{

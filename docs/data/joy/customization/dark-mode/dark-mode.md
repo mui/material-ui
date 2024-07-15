@@ -1,6 +1,6 @@
 # Dark mode
 
-<p class="description">Learn about the different methods for applying dark mode to a Joy UI app.</p>
+<p class="description">Learn about the different methods for applying dark mode to a Joy UI app.</p>
 
 ## Set as default
 
@@ -12,10 +12,10 @@ When you change the `defaultMode` to another value, you must clear the local sto
 
 {{"demo": "DarkModeByDefault.js"}}
 
-For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `getInitColorSchemeScript` function:
+For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `InitColorSchemeScript` component:
 
 ```js
-getInitColorSchemeScript({ defaultMode: 'dark' });
+<InitColorSchemeScript defaultMode="dark" />
 ```
 
 ## Matching device's preference
@@ -28,10 +28,10 @@ import { CssVarsProvider } from '@mui/joy/styles';
 <CssVarsProvider defaultMode="system">...</CssVarsProvider>;
 ```
 
-For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `getInitColorSchemeScript` function:
+For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `InitColorSchemeScript` component:
 
 ```js
-getInitColorSchemeScript({ defaultMode: 'system' });
+<InitColorSchemeScript defaultMode="system" />
 ```
 
 ### Identify the system mode
@@ -121,23 +121,23 @@ If you try to render your UI based on the server, before mounting on the client,
 
 ### Avoiding screen flickering
 
-To [prevent the UI from flickering](/joy-ui/main-features/dark-mode-optimization/#the-problem-flickering-on-first-load), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
+To [prevent the UI from flickering](/joy-ui/main-features/dark-mode-optimization/#the-problem-flickering-on-first-load), apply `<InitColorSchemeScript />` before the main application script－it varies across frameworks:
 
-### Next.js
+### Next.js Pages Router
 
-To use the Joy UI API with a Next.js project, add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document) file:
+To use the Joy UI API with a Next.js project, add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { getInitColorSchemeScript } from '@mui/joy/styles';
+import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
-          {getInitColorSchemeScript()}
+          <InitColorSchemeScript />
           <Main />
           <NextScript />
         </body>
@@ -147,15 +147,26 @@ export default class MyDocument extends Document {
 }
 ```
 
-### Gatsby
+### Next.js App Router
 
-To use the Joy UI API with a Gatsby project, add the following code to the custom [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
+To use the Joy UI API with a Next.js project with the App Router, add the following code to the [`app/layout.js`](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts) file in order to prevent flickering:
 
-```jsx
-import * as React from 'react';
-import { getInitColorSchemeScript } from '@mui/joy/styles';
+```jsx title="layout.js"
+import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
+import { CssVarsProvider } from '@mui/joy/styles';
+import CssBaseline from '@mui/joy/CssBaseline';
 
-export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([getInitColorSchemeScript()]);
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" suppressHydrationWarning={true}>
+      <body>
+        <InitColorSchemeScript />
+        <CssVarsProvider>
+          <CssBaseline />
+          {children}
+        </CssVarsProvider>
+      </body>
+    </html>
+  );
 }
 ```

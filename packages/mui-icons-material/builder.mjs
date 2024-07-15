@@ -1,7 +1,7 @@
+import path from 'path';
 import fse from 'fs-extra';
 import yargs from 'yargs';
-import path from 'path';
-import rimraf from 'rimraf';
+import { rimrafSync } from 'rimraf';
 import Mustache from 'mustache';
 import globAsync from 'fast-glob';
 import * as svgo from 'svgo';
@@ -114,7 +114,7 @@ export function cleanPaths({ svgPath, data }) {
         },
       },
       { name: 'removeUnusedNS' },
-      { name: 'cleanupIDs' },
+      { name: 'cleanupIds' },
       { name: 'cleanupNumericValues' },
       { name: 'cleanupListOfValues' },
       { name: 'moveElemsAttrsToGroup' },
@@ -138,7 +138,6 @@ export function cleanPaths({ svgPath, data }) {
     plugins: [
       {
         name: 'svgAsReactFragment',
-        type: 'visitor',
         fn: () => {
           return {
             root: {
@@ -154,14 +153,15 @@ export function cleanPaths({ svgPath, data }) {
                 if (svg.children.length > 1) {
                   childrenAsArray = true;
                   svg.children.forEach((svgChild, index) => {
-                    svgChild.addAttr({ name: 'key', value: index });
+                    svgChild.attributes.key = index;
                     // Original name will be restored later
                     // We just need a mechanism to convert the resulting
                     // svg string into an array of JSX elements
-                    svgChild.renameElem(`SVGChild:${svgChild.name}`);
+                    svgChild.name = `SVGChild:${svgChild.name}`;
                   });
                 }
-                root.spliceContent(0, svg.children.length, svg.children);
+
+                root.children = svg.children;
               },
             },
           };
@@ -237,7 +237,7 @@ async function worker({ progress, svgPath, options, renameFilter, template }) {
 export async function handler(options) {
   const progress = options.disableLog ? () => {} : () => process.stdout.write('.');
 
-  rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
+  rimrafSync(`${options.outputDir}/*.js`, { glob: true }); // Clean old files
 
   let renameFilter = options.renameFilter;
   if (typeof renameFilter === 'string') {

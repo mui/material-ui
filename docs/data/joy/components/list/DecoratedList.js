@@ -9,17 +9,12 @@ export default function DecoratedList() {
     <div>
       <Typography
         id="decorated-list-demo"
-        level="body3"
-        textTransform="uppercase"
-        fontWeight="lg"
-        mb={1}
+        level="body-xs"
+        sx={{ textTransform: 'uppercase', fontWeight: 'lg', mb: 1 }}
       >
         Ingredients
       </Typography>
-      <List
-        aria-labelledby="decorated-list-demo"
-        sx={{ '--ListItemDecorator-size': '32px' }}
-      >
+      <List aria-labelledby="decorated-list-demo">
         <ListItem>
           <ListItemDecorator>🧅</ListItemDecorator> 1 red onion
         </ListItem>

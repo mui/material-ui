@@ -18190,6 +18190,18 @@ Object.defineProperty(exports, "EmailTwoTone", {
     return _EmailTwoTone.default;
   }
 });
+Object.defineProperty(exports, "Emergency", {
+  enumerable: true,
+  get: function () {
+    return _Emergency.default;
+  }
+});
+Object.defineProperty(exports, "EmergencyOutlined", {
+  enumerable: true,
+  get: function () {
+    return _EmergencyOutlined.default;
+  }
+});
 Object.defineProperty(exports, "EmergencyRecording", {
   enumerable: true,
   get: function () {
@@ -18220,6 +18232,12 @@ Object.defineProperty(exports, "EmergencyRecordingTwoTone", {
     return _EmergencyRecordingTwoTone.default;
   }
 });
+Object.defineProperty(exports, "EmergencyRounded", {
+  enumerable: true,
+  get: function () {
+    return _EmergencyRounded.default;
+  }
+});
 Object.defineProperty(exports, "EmergencyShare", {
   enumerable: true,
   get: function () {
@@ -18248,6 +18266,18 @@ Object.defineProperty(exports, "EmergencyShareTwoTone", {
   enumerable: true,
   get: function () {
     return _EmergencyShareTwoTone.default;
+  }
+});
+Object.defineProperty(exports, "EmergencySharp", {
+  enumerable: true,
+  get: function () {
+    return _EmergencySharp.default;
+  }
+});
+Object.defineProperty(exports, "EmergencyTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _EmergencyTwoTone.default;
   }
 });
 Object.defineProperty(exports, "EmojiEmotions", {
@@ -63478,6 +63508,12 @@ Object.defineProperty(exports, "WysiwygTwoTone", {
     return _WysiwygTwoTone.default;
   }
 });
+Object.defineProperty(exports, "X", {
+  enumerable: true,
+  get: function () {
+    return _X.default;
+  }
+});
 Object.defineProperty(exports, "Yard", {
   enumerable: true,
   get: function () {
@@ -66695,16 +66731,21 @@ var _EmailOutlined = _interopRequireDefault(require("./EmailOutlined"));
 var _EmailRounded = _interopRequireDefault(require("./EmailRounded"));
 var _EmailSharp = _interopRequireDefault(require("./EmailSharp"));
 var _EmailTwoTone = _interopRequireDefault(require("./EmailTwoTone"));
+var _Emergency = _interopRequireDefault(require("./Emergency"));
+var _EmergencyOutlined = _interopRequireDefault(require("./EmergencyOutlined"));
 var _EmergencyRecording = _interopRequireDefault(require("./EmergencyRecording"));
 var _EmergencyRecordingOutlined = _interopRequireDefault(require("./EmergencyRecordingOutlined"));
 var _EmergencyRecordingRounded = _interopRequireDefault(require("./EmergencyRecordingRounded"));
 var _EmergencyRecordingSharp = _interopRequireDefault(require("./EmergencyRecordingSharp"));
 var _EmergencyRecordingTwoTone = _interopRequireDefault(require("./EmergencyRecordingTwoTone"));
+var _EmergencyRounded = _interopRequireDefault(require("./EmergencyRounded"));
 var _EmergencyShare = _interopRequireDefault(require("./EmergencyShare"));
 var _EmergencyShareOutlined = _interopRequireDefault(require("./EmergencyShareOutlined"));
 var _EmergencyShareRounded = _interopRequireDefault(require("./EmergencyShareRounded"));
 var _EmergencyShareSharp = _interopRequireDefault(require("./EmergencyShareSharp"));
 var _EmergencyShareTwoTone = _interopRequireDefault(require("./EmergencyShareTwoTone"));
+var _EmergencySharp = _interopRequireDefault(require("./EmergencySharp"));
+var _EmergencyTwoTone = _interopRequireDefault(require("./EmergencyTwoTone"));
 var _EmojiEmotions = _interopRequireDefault(require("./EmojiEmotions"));
 var _EmojiEmotionsOutlined = _interopRequireDefault(require("./EmojiEmotionsOutlined"));
 var _EmojiEmotionsRounded = _interopRequireDefault(require("./EmojiEmotionsRounded"));
@@ -74243,6 +74284,7 @@ var _WysiwygOutlined = _interopRequireDefault(require("./WysiwygOutlined"));
 var _WysiwygRounded = _interopRequireDefault(require("./WysiwygRounded"));
 var _WysiwygSharp = _interopRequireDefault(require("./WysiwygSharp"));
 var _WysiwygTwoTone = _interopRequireDefault(require("./WysiwygTwoTone"));
+var _X = _interopRequireDefault(require("./X"));
 var _Yard = _interopRequireDefault(require("./Yard"));
 var _YardOutlined = _interopRequireDefault(require("./YardOutlined"));
 var _YardRounded = _interopRequireDefault(require("./YardRounded"));

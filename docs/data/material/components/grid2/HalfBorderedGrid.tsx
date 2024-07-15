@@ -8,7 +8,6 @@ export default function HalfBorderedGrid() {
     <Box sx={{ flexGrow: 1, p: 2 }}>
       <Grid
         container
-        spacing={2}
         sx={(theme) => ({
           '--Grid-borderWidth': '1px',
           borderTop: 'var(--Grid-borderWidth) solid',
@@ -32,7 +31,7 @@ export default function HalfBorderedGrid() {
         })}
       >
         {[...Array(6)].map((_, index) => (
-          <Grid key={index} {...colWidth} minHeight={160} />
+          <Grid key={index} size={colWidth} minHeight={160} />
         ))}
       </Grid>
     </Box>

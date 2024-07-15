@@ -27,8 +27,10 @@ function renderRow(props) {
     );
   }
 
+  const { key, ...optionProps } = dataSet[0];
+
   return (
-    <Typography component="li" {...dataSet[0]} noWrap style={inlineStyle}>
+    <Typography key={key} component="li" {...optionProps} noWrap style={inlineStyle}>
       {`#${dataSet[2] + 1} - ${dataSet[1]}`}
     </Typography>
   );
@@ -138,17 +140,17 @@ const OPTIONS = Array.from(new Array(10000))
 export default function Virtualize() {
   return (
     <Autocomplete
-      id="virtualize-demo"
       sx={{ width: 300 }}
       disableListWrap
-      PopperComponent={StyledPopper}
-      ListboxComponent={ListboxComponent}
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
       renderOption={(props, option, state) => [props, option, state.index]}
-      // TODO: Post React 18 update - validate this conversion, look like a hidden bug
       renderGroup={(params) => params}
+      slots={{
+        popper: StyledPopper,
+        listbox: ListboxComponent,
+      }}
     />
   );
 }

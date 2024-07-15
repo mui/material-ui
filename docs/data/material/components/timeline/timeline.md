@@ -11,10 +11,10 @@ packageName: '@mui/lab'
 <p class="description">The timeline displays a list of events in chronological order.</p>
 
 :::info
-This component is not documented in the [Material Design guidelines](https://m2.material.io/), but it is available in Material UI.
+This component is not documented in the [Material Design guidelines](https://m2.material.io/), but it is available in Material UI.
 :::
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic timeline
 

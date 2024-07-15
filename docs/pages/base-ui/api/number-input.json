@@ -1,0 +1,129 @@
+{
+  "props": {
+    "defaultValue": { "type": { "name": "number" } },
+    "disabled": { "type": { "name": "bool" } },
+    "endAdornment": { "type": { "name": "node" } },
+    "error": { "type": { "name": "bool" } },
+    "id": { "type": { "name": "string" } },
+    "max": { "type": { "name": "number" } },
+    "min": { "type": { "name": "number" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent, value: number | undefined) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
+    "onInputChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "placeholder": { "type": { "name": "string" } },
+    "readOnly": { "type": { "name": "bool" }, "default": "false" },
+    "required": { "type": { "name": "bool" } },
+    "shiftMultiplier": { "type": { "name": "number" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ decrementButton?: func<br>&#124;&nbsp;object, incrementButton?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ decrementButton?: elementType, incrementButton?: elementType, input?: elementType, root?: elementType }"
+      },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "startAdornment": { "type": { "name": "node" } },
+    "step": { "type": { "name": "number" } },
+    "value": { "type": { "name": "number" }, "default": "null" }
+  },
+  "name": "NumberInput",
+  "imports": [
+    "import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';",
+    "import { Unstable_NumberInput as NumberInput } from '@mui/base';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-NumberInput-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": "base-NumberInput-input"
+    },
+    {
+      "name": "incrementButton",
+      "description": "The component that renders the increment button.",
+      "default": "'button'",
+      "class": "base-NumberInput-incrementButton"
+    },
+    {
+      "name": "decrementButton",
+      "description": "The component that renders the decrement button.",
+      "default": "'button'",
+      "class": "base-NumberInput-decrementButton"
+    }
+  ],
+  "classes": [
+    {
+      "key": "adornedEnd",
+      "className": "base-NumberInput-adornedEnd",
+      "description": "Class name applied to the root element if `endAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "adornedStart",
+      "className": "base-NumberInput-adornedStart",
+      "description": "Class name applied to the root element if `startAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "Class name applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "base--error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focused",
+      "className": "base--focused",
+      "description": "Class name applied to the root element if the component is focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "formControl",
+      "className": "base-NumberInput-formControl",
+      "description": "Class name applied to the root element if the component is a descendant of `FormControl`.",
+      "isGlobal": false
+    },
+    {
+      "key": "readOnly",
+      "className": "base--readOnly",
+      "description": "State class applied to the root element if `readOnly={true}`.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "muiName": "NumberInput",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Unstable_NumberInput/NumberInput.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-number-input/\">Number Input</a></li></ul>",
+  "cssComponent": false
+}

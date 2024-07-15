@@ -1,6 +1,4 @@
 import * as React from 'react';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Box from '@mui/joy/Box';
 import FormLabel from '@mui/joy/FormLabel';
 import List from '@mui/joy/List';
@@ -11,8 +9,10 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
 
-export default function ButtonThemes() {
+export default function ListThemes() {
   const [preset, setPreset] = React.useState('');
   const rootPresets = {
     dense: {
@@ -24,13 +24,12 @@ export default function ButtonThemes() {
       '--ListItem-paddingLeft': '5px',
       '--ListItem-paddingRight': '5px',
       '--ListItem-paddingY': '0px',
-      '--ListItem-fontSize': '14px',
       '--List-nestedInsetStart': '28px',
-      '--ListItemDecorator-color': 'var(--joy-palette-primary-plainColor)',
+      fontSize: '14px',
     },
     cozy: {
       '--List-radius': '20px',
-      '--ListItem-minHeight': '48px',
+      '--ListItem-minHeight': '44px',
       '--List-padding': '8px',
       '--List-gap': '8px',
       '--List-nestedInsetStart': 'var(--ListItemDecorator-size)',
@@ -57,14 +56,7 @@ export default function ButtonThemes() {
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
         <Box sx={{ m: 'auto' }}>
-          <List
-            sx={{
-              ...rootPresets[preset],
-              bgcolor: 'background.body',
-              border: '1px solid',
-              borderColor: 'neutral.outlinedBorder',
-            }}
-          >
+          <List variant="outlined" sx={{ ...rootPresets[preset] }}>
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>
@@ -131,11 +123,10 @@ export default function ButtonThemes() {
 <List${
               preset
                 ? `
-  sx={{
-    ${JSON.stringify(rootPresets[preset], null, 4)
-      .replace('{', '')
-      .replace('}', '')
-      .trim()}
+  sx={{  ${JSON.stringify(rootPresets[preset], null, 4)
+    .replace('{', '')
+    .replace('}', '')
+    .trim()}
   }}
 `
                 : ''
@@ -145,11 +136,10 @@ export default function ButtonThemes() {
     <List${
       nestedPresets[preset]
         ? `
-      sx={{
-        ${JSON.stringify(nestedPresets[preset], null, 8)
-          .replace('{', '')
-          .replace('}', '')
-          .trim()}
+      sx={{      ${JSON.stringify(nestedPresets[preset], null, 8)
+        .replace('{', '')
+        .replace('}', '')
+        .trim()}
       }}
     `
         : ''
@@ -170,10 +160,7 @@ export default function ButtonThemes() {
 `}
             copyButtonHidden
             language="jsx"
-            sx={{
-              display: { xs: 'none', md: 'block' },
-              borderRadius: '7px',
-            }}
+            sx={{ display: { xs: 'none', md: 'block' }, borderRadius: '7px' }}
           />
         </BrandingProvider>
       }

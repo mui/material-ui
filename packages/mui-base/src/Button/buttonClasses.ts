@@ -1,5 +1,7 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
+
+const COMPONENT_NAME = 'Button';
 
 export interface ButtonClasses {
   /** Class name applied to the root element. */
@@ -15,14 +17,12 @@ export interface ButtonClasses {
 export type ButtonClassKey = keyof ButtonClasses;
 
 export function getButtonUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiButton', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
+export const buttonClasses: ButtonClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'active',
   'disabled',
   'focusVisible',
 ]);
-
-export default buttonClasses;

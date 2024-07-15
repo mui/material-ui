@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Theme } from '@mui/system';
+import { Box, styled } from '@mui/system';
 
 interface TestProps {
   test?: string;
@@ -103,4 +103,21 @@ function TestFillPropCallback() {
       },
     ]}
   />;
+}
+
+// eslint-disable-next-line material-ui/no-styled-box
+const StyledBox = styled(Box)`
+  color: white;
+`;
+
+function StyledBoxWithSx() {
+  return (
+    <StyledBox component="span" sx={{ width: 300 }}>
+      Box
+    </StyledBox>
+  );
+}
+
+function LogicalPropertiesTest() {
+  <Box marginInline={1} paddingBlockEnd="10px" />;
 }

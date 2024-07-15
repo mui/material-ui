@@ -9,7 +9,7 @@ unstyled: /base-ui/react-input/
 
 <p class="description">The Input component facilitates the entry of text data from the user.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -31,7 +31,7 @@ The Input component provides a customizable input field that can be used to coll
 
 ### Variants
 
-The Input component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
+The Input component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "InputVariants.js"}}
 
@@ -56,7 +56,7 @@ Every palette included in the theme is available via the `color` prop.
 
 {{"demo": "InputColors.js"}}
 
-### Form props
+### Form submission
 
 You can add standard form attributes such as `required` and `disabled` to the Input component:
 
@@ -95,12 +95,18 @@ To trigger the focus ring programmatically, set the CSS variable `--Input-focuse
 {{"demo": "TriggerFocusInput.js"}}
 
 :::info
-💡 The focus ring still appear on focus even though you set `--Input-focused: 0`.
+The focus ring still appear on focus even though you set `--Input-focused: 0`.
 :::
+
+### Label and helper text
+
+Group Input with the Form label and Form helper text in a Form control component to create a text field.
+
+{{"demo": "InputField.js"}}
 
 ### Validation
 
-Use the `error` prop to toggle the error state:
+Use the `error` prop on Input or Form Control to toggle the error state:
 
 {{"demo": "InputValidation.js"}}
 
@@ -126,6 +132,13 @@ If you need to pass props to the inner HTML `<input>`, use `slotProps={{ input: 
 These props may include HTML attributes such as `ref`, `min`, `max`, and `autocomplete`.
 
 {{"demo": "InputSlotProps.js"}}
+
+## CSS variables playground
+
+Play around with the CSS variables available to the Input component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "InputVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 
@@ -153,12 +166,30 @@ To create a floating label input, a custom component (combination of `<input>` a
 
 {{"demo": "PasswordMeterInput.js"}}
 
-## CSS variable playground
+### Debounced Input
 
-Play around with the CSS variables available to the Input component to see how the design changes.
-You can use these to customize the component with both the `sx` prop and the theme.
+{{"demo": "DebouncedInput.js"}}
 
-{{"demo": "InputVariables.js", "hideToolbar": true}}
+### Third-party formatting
+
+The Input component can be integrated with third-party formatting libraries for more complex use cases.
+
+Create an adapter component to get the props from the Input component and map them to the third-party component APIs.
+Then use that adapter as a value to the `slotProps.input.component` property of the Joy UI Input.
+
+The demos below illustrate how to do this with two popular libraries.
+
+#### React imask
+
+[react-imask](https://github.com/uNmAnNeR/imaskjs/tree/master/packages/react-imask) provides the `IMaskInput` component for complex formatting options.
+
+{{"demo": "InputReactImask.js"}}
+
+#### React number format
+
+[react-number-format](https://github.com/s-yadav/react-number-format) provides the `NumericFormat` component for enforcing text formatting that follows a specific number or string pattern.
+
+{{"demo": "InputReactNumberFormat.js"}}
 
 ## Accessibility
 

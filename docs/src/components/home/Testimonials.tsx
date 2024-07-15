@@ -1,39 +1,35 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import { useInView } from 'react-intersection-observer';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import MuiStatistics from 'docs/src/components/home/MuiStatistics';
+import Typography from '@mui/material/Typography';
+import Section from 'docs/src/layouts/Section';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import GradientText from 'docs/src/components/typography/GradientText';
 
 const UserFeedbacks = dynamic(() => import('./UserFeedbacks'));
 
-function Testimonials() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0,
-    rootMargin: '500px',
-  });
+export default function Testimonials() {
   return (
     <Box
       data-mui-color-scheme="dark"
-      ref={ref}
       sx={(theme) => ({
-        background: `linear-gradient(85deg, ${(theme.vars || theme).palette.primaryDark[700]} 0%, ${
-          (theme.vars || theme).palette.primaryDark[600]
-        } 100%)`,
+        background: `linear-gradient(180deg, ${alpha(theme.palette.primaryDark[800], 0.8)}2%, ${
+          theme.palette.primaryDark[900]
+        } 80%), ${theme.palette.primaryDark[900]}`,
       })}
     >
-      <Container sx={{ py: { xs: 4, md: 8 } }}>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={12} md={6} sx={{ zIndex: 1, minHeight: { xs: 400, sm: 307, lg: 355 } }}>
-            {inView && <UserFeedbacks />}
-          </Grid>
-          <MuiStatistics />
-        </Grid>
-      </Container>
+      <Section bg="transparent" cozy>
+        <SectionHeadline
+          overline="Join the community"
+          title={
+            <Typography variant="h2" component="h2">
+              Supported by thousands of <GradientText>developers and designers</GradientText>
+            </Typography>
+          }
+        />
+        <UserFeedbacks />
+      </Section>
     </Box>
   );
 }
-
-export default Testimonials;

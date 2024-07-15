@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import MuiPaper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
@@ -9,21 +8,21 @@ import PropTypes from 'prop-types';
 import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
-import { Index as FlexSearchIndex } from 'flexsearch';
+import * as flexsearch from 'flexsearch';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import * as mui from '@mui/icons-material';
+import { Link } from '@mui/docs/Link';
+import { useTranslate } from '@mui/docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
@@ -46,8 +45,10 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
-import * as mui from '@mui/icons-material';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import synonyms from './synonyms';
+
+const FlexSearchIndex = flexsearch.default.Index;
 
 const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
 
@@ -115,15 +116,16 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   boxSizing: 'content-box',
   cursor: 'pointer',
   color: theme.palette.text.primary,
-  borderRadius: theme.shape.borderRadius,
+  border: '1px solid transparent',
+  borderRadius: '12px',
   transition: theme.transitions.create(['background-color', 'box-shadow'], {
     duration: theme.transitions.duration.shortest,
   }),
   padding: theme.spacing(2),
   margin: theme.spacing(0.5, 0),
   '&:hover': {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[1],
+    backgroundColor: theme.palette.background.default,
+    borderColor: theme.palette.primary.light,
   },
 }));
 
@@ -132,21 +134,9 @@ const Icons = React.memo(function Icons(props) {
 
   const handleIconClick = (icon) => () => {
     if (Math.random() < 0.1) {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'material-icons',
-        eventAction: 'click',
-        eventLabel: icon.name,
-      });
       window.gtag('event', 'material-icons', {
         eventAction: 'click',
         eventLabel: icon.name,
-      });
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'material-icons-theme',
-        eventAction: 'click',
-        eventLabel: icon.theme,
       });
       window.gtag('event', 'material-icons-theme', {
         eventAction: 'click',
@@ -176,7 +166,7 @@ const Icons = React.memo(function Icons(props) {
               {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
               <div onClick={handleLabelClick}>{icon.importName}</div>
             </div>
-            {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
+            {/* eslint-enable jsx-a11y/click-events-have-key-events */}
           </StyledIcon>
         );
       })}
@@ -221,51 +211,84 @@ const Title = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const CanvasComponent = styled(Box)(({ theme }) => ({
+const CanvasComponent = styled('div')(({ theme }) => ({
   fontSize: 210,
-  marginTop: theme.spacing(2),
   color: theme.palette.text.primary,
   backgroundSize: '30px 30px',
   backgroundColor: 'transparent',
   backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
   backgroundImage:
-    theme.palette.mode === 'light'
-      ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
-      : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
+    'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)',
+  ...theme.applyStyles('dark', {
+    backgroundImage:
+      'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
+  }),
 }));
 
 const FontSizeComponent = styled('span')(({ theme }) => ({
   margin: theme.spacing(2),
 }));
 
-const ContextComponent = styled(Box, {
-  shouldForwardProp: (prop) => prop !== 'contextColor',
-})(({ theme, contextColor }) => ({
+const ContextComponent = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'contextColor' && prop !== 'as',
+})(({ theme }) => ({
   margin: theme.spacing(0.5),
   padding: theme.spacing(1, 2),
   borderRadius: theme.shape.borderRadius,
   boxSizing: 'content-box',
-  ...(contextColor === 'primary' && {
-    color: theme.palette.primary.main,
-  }),
-  ...(contextColor === 'primaryInverse' && {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main,
-  }),
-  ...(contextColor === 'textPrimary' && {
-    color: theme.palette.text.primary,
-  }),
-  ...(contextColor === 'textPrimaryInverse' && {
-    color: theme.palette.background.paper,
-    backgroundColor: theme.palette.text.primary,
-  }),
-  ...(contextColor === 'textSecondary' && {
-    color: theme.palette.text.secondary,
-  }),
-  ...(contextColor === 'textSecondaryInverse' && {
-    color: theme.palette.background.paper,
-    backgroundColor: theme.palette.text.secondary,
-  }),
+  variants: [
+    {
+      props: {
+        contextColor: 'primary',
+      },
+      style: {
+        color: theme.palette.primary.main,
+      },
+    },
+    {
+      props: {
+        contextColor: 'primaryInverse',
+      },
+      style: {
+        color: theme.palette.primary.contrastText,
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+    {
+      props: {
+        contextColor: 'textPrimary',
+      },
+      style: {
+        color: theme.palette.text.primary,
+      },
+    },
+    {
+      props: {
+        contextColor: 'textPrimaryInverse',
+      },
+      style: {
+        color: theme.palette.background.paper,
+        backgroundColor: theme.palette.text.primary,
+      },
+    },
+    {
+      props: {
+        contextColor: 'textSecondary',
+      },
+      style: {
+        color: theme.palette.text.secondary,
+      },
+    },
+    {
+      props: {
+        contextColor: 'textSecondaryInverse',
+      },
+      style: {
+        color: theme.palette.background.paper,
+        backgroundColor: theme.palette.text.secondary,
+      },
+    },
+  ],
 }));
 
 const DialogDetails = React.memo(function DialogDetails(props) {
@@ -283,7 +306,20 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   };
 
   return (
-    <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
+    <Dialog
+      fullWidth
+      maxWidth="sm"
+      open={open}
+      onClose={handleClose}
+      sx={{
+        '& .MuiDialog-paper': {
+          borderRadius: 2.5,
+          backgroundImage: 'none',
+          border: '1px solid',
+          borderColor: 'divider',
+        },
+      }}
+    >
       {selectedIcon ? (
         <React.Fragment>
           <DialogTitle>
@@ -321,12 +357,15 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           <DialogContent>
             <Grid container>
               <Grid item xs>
-                <Grid container justifyContent="center">
-                  <CanvasComponent component={selectedIcon.Component} />
+                <Grid container sx={{ justifyContent: 'center' }}>
+                  <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
               <Grid item xs>
-                <Grid container alignItems="flex-end" justifyContent="center">
+                <Grid
+                  container
+                  sx={{ alignItems: 'flex-end', justifyContent: 'center' }}
+                >
                   <Grid item>
                     <Tooltip title="fontSize small">
                       <FontSizeComponent
@@ -349,40 +388,40 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     </Tooltip>
                   </Grid>
                 </Grid>
-                <Grid container justifyContent="center">
+                <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="primary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="primaryInverse"
                   />
                 </Grid>
-                <Grid container justifyContent="center">
+                <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textPrimary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textPrimaryInverse"
                   />
                 </Grid>
-                <Grid container justifyContent="center">
+                <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textSecondary"
                   />
                   <ContextComponent
-                    component={selectedIcon.Component}
+                    as={selectedIcon.Component}
                     contextColor="textSecondaryInverse"
                   />
                 </Grid>
               </Grid>
             </Grid>
           </DialogContent>
-          <DialogActions>
+          <DialogActions sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <Button onClick={handleClose}>{t('close')}</Button>
           </DialogActions>
         </React.Fragment>
@@ -407,7 +446,6 @@ const Form = styled('form')({
 const Paper = styled(MuiPaper)(({ theme }) => ({
   position: 'sticky',
   top: 80,
-  padding: '2px 4px',
   display: 'flex',
   alignItems: 'center',
   marginBottom: theme.spacing(2),
@@ -415,6 +453,7 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   borderRadius: '12px',
   border: '1px solid',
   borderColor: theme.palette.divider,
+  boxShadow: 'none',
 }));
 
 function formatNumber(value) {
@@ -422,7 +461,6 @@ function formatNumber(value) {
 }
 
 const Input = styled(InputBase)({
-  marginLeft: 8,
   flex: 1,
 });
 
@@ -505,12 +543,6 @@ export default function SearchIcons() {
 
             // Keep track of the no results so we can add synonyms in the future.
             if (value.length >= 4 && results.length === 0) {
-              window.ga('send', {
-                hitType: 'event',
-                eventCategory: 'material-icons',
-                eventAction: 'no-results',
-                eventLabel: value,
-              });
               window.gtag('event', 'material-icons', {
                 eventAction: 'no-results',
                 eventLabel: value,
@@ -542,12 +574,10 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container sx={{ minHeight: 500, my: 2 }}>
+    <Grid container sx={{ minHeight: 500 }}>
       <Grid item xs={12} sm={3}>
         <Form>
-          <Typography fontWeight={500} sx={{ mb: 1 }}>
-            Filter the style
-          </Typography>
+          <Typography sx={{ fontWeight: 500, mb: 1 }}>Filter the style</Typography>
           <RadioGroup>
             {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
               (currentTheme) => {

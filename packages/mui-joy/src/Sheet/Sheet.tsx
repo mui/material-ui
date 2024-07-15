@@ -7,11 +7,11 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { getPath } from '@mui/system';
 import { useThemeProps } from '../styles';
+import { applySoftInversion, applySolidInversion } from '../colorInversion';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
-import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: SheetOwnerState) => {
@@ -34,10 +34,17 @@ export const SheetRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SheetOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius');
-  const bgcolor = resolveSxValue({ theme, ownerState }, 'bgcolor');
-  const backgroundColor = resolveSxValue({ theme, ownerState }, 'backgroundColor');
-  const background = resolveSxValue({ theme, ownerState }, 'background');
+  const {
+    borderRadius: childRadius,
+    bgcolor,
+    backgroundColor,
+    background,
+  } = resolveSxValue({ theme, ownerState }, [
+    'borderRadius',
+    'bgcolor',
+    'backgroundColor',
+    'background',
+  ]);
   const resolvedBg =
     (getPath(theme, `palette.${bgcolor}`) as string) ||
     bgcolor ||
@@ -49,8 +56,12 @@ export const SheetRoot = styled('div', {
     theme.vars.palette.background.surface;
   return [
     {
-      '--ListItem-stickyBackground': resolvedBg, // for sticky List
-      '--Sheet-background': resolvedBg, // for sticky table cell
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
+      '--ListItem-stickyBackground': resolvedBg === 'transparent' ? 'initial' : resolvedBg, // for sticky List
+      '--Sheet-background': resolvedBg === 'transparent' ? 'initial' : resolvedBg, // for sticky table cell
       // minus the sheet's border width to have consistent radius between sheet and children
       ...(childRadius !== undefined && {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
@@ -58,11 +69,20 @@ export const SheetRoot = styled('div', {
       }),
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
+    } as const,
+    {
+      ...theme.typography['body-md'],
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
+      ...(ownerState.variant === 'soft' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ...variantStyle,
     },
-    variantStyle,
-    ownerState.color !== 'context' &&
-      ownerState.invertedColors &&
-      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 /**
@@ -83,7 +103,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
 
   const {
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     component = 'div',
     variant = 'plain',
     invertedColors = false,
@@ -91,8 +111,6 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -113,19 +131,14 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     ownerState,
   });
 
-  const result = <SlotRoot {...rootProps} />;
-
-  if (invertedColors) {
-    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-  return result;
+  return <SlotRoot {...rootProps} />;
 }) as OverridableComponent<SheetTypeMap>;
 
 Sheet.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -139,7 +152,7 @@ Sheet.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

@@ -1,32 +1,24 @@
 import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
-import SandboxDependencies from './Dependencies';
-import * as CRA from './CreateReactApp';
-import getFileExtension from './FileExtension';
-import { CodeVariant, Product, CodeStyling } from './types';
+import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
+import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
+import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
+import { DemoData } from 'docs/src/modules/sandbox/types';
 
-const createReactApp = (demo: {
-  title: string;
-  language: string;
-  raw: string;
-  codeVariant: CodeVariant;
-  githubLocation: string;
-  productId?: Product;
-  codeStyling?: CodeStyling;
-}) => {
-  const ext = getFileExtension(demo.codeVariant);
-  const { title, githubLocation: description } = demo;
+function createReactApp(demoData: DemoData) {
+  const ext = getFileExtension(demoData.codeVariant);
+  const { title, githubLocation: description } = demoData;
 
   const files: Record<string, string> = {
-    'index.html': CRA.getHtml(demo),
-    [`index.${ext}`]: CRA.getRootIndex(demo.productId),
-    [`demo.${ext}`]: demo.raw,
-    ...(demo.codeVariant === 'TS' && {
+    'index.html': CRA.getHtml(demoData),
+    [`index.${ext}`]: CRA.getRootIndex(demoData),
+    [`Demo.${ext}`]: demoData.raw,
+    ...(demoData.codeVariant === 'TS' && {
       'tsconfig.json': CRA.getTsconfig(),
     }),
   };
 
-  const { dependencies, devDependencies } = SandboxDependencies(demo, {
+  const { dependencies, devDependencies } = SandboxDependencies(demoData, {
     // Waiting for https://github.com/stackblitz/core/issues/437
     // commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
   });
@@ -37,8 +29,8 @@ const createReactApp = (demo: {
     files,
     dependencies,
     devDependencies,
-    openSandbox: (initialFile = 'App') => {
-      const extension = demo.codeVariant === CODE_VARIANTS.TS ? '.tsx' : '.js';
+    openSandbox: (initialFile = `Demo.${ext}`) => {
+      const extension = demoData.codeVariant === CODE_VARIANTS.TS ? '.tsx' : '.js';
       // ref: https://developer.stackblitz.com/docs/platform/post-api/
       const form = document.createElement('form');
       form.method = 'POST';
@@ -60,7 +52,7 @@ const createReactApp = (demo: {
       document.body.removeChild(form);
     },
   };
-};
+}
 
 export default {
   createReactApp,

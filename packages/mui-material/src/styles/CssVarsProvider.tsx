@@ -1,31 +1,27 @@
 'use client';
-import {
-  unstable_createCssVarsProvider as createCssVarsProvider,
-  SxProps,
-  unstable_styleFunctionSx as styleFunctionSx,
-} from '@mui/system';
-import experimental_extendTheme, {
-  SupportedColorScheme,
-  CssVarsTheme,
-} from './experimental_extendTheme';
+import * as React from 'react';
+import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
+import styleFunctionSx from '@mui/system/styleFunctionSx';
+import extendTheme, { SupportedColorScheme, CssVarsTheme } from './extendTheme';
 import createTypography from './createTypography';
-import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 import THEME_ID from './identifier';
+import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
-const defaultTheme = experimental_extendTheme();
+const defaultTheme = extendTheme();
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  SupportedColorScheme,
-  typeof THEME_ID
->({
+const {
+  CssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
+} = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
   themeId: THEME_ID,
   theme: defaultTheme,
-  attribute: 'data-mui-color-scheme',
-  modeStorageKey: 'mui-mode',
-  colorSchemeStorageKey: 'mui-color-scheme',
+  attribute: defaultConfig.attribute,
+  colorSchemeStorageKey: defaultConfig.colorSchemeStorageKey,
+  modeStorageKey: defaultConfig.modeStorageKey,
   defaultColorScheme: {
-    light: 'light',
-    dark: 'dark',
+    light: defaultConfig.defaultLightColorScheme,
+    dark: defaultConfig.defaultDarkColorScheme,
   },
   resolveTheme: (theme) => {
     const newTheme = {
@@ -34,19 +30,50 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     };
 
     newTheme.unstable_sx = function sx(props: SxProps<CssVarsTheme>) {
-      return styleFunctionSx({
-        sx: props,
-        theme: this,
-      });
+      return styleFunctionSx({ sx: props, theme: this });
     };
 
     return newTheme;
   },
-  excludeVariablesFromRoot,
 });
 
-export {
-  useColorScheme,
-  getInitColorSchemeScript,
-  CssVarsProvider as Experimental_CssVarsProvider,
+let warnedOnce = false;
+
+// TODO: remove in v7
+// eslint-disable-next-line @typescript-eslint/naming-convention
+function Experimental_CssVarsProvider(props: any) {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'MUI: The Experimental_CssVarsProvider component has been stabilized.',
+        '',
+        "You should use `import { CssVarsProvider } from '@mui/material/styles'`",
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
+
+  return <CssVarsProvider {...props} />;
+}
+
+let warnedInitScriptOnce = false;
+
+// TODO: remove in v7
+const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (params) => {
+  if (!warnedInitScriptOnce) {
+    console.warn(
+      [
+        'MUI: The getInitColorSchemeScript function has been deprecated.',
+        '',
+        "You should use `import InitColorSchemeScript from '@mui/material/InitColorSchemeScript'`",
+        'and replace the function call with `<InitColorSchemeScript />` instead.',
+      ].join('\n'),
+    );
+
+    warnedInitScriptOnce = true;
+  }
+  return deprecatedGetInitColorSchemeScript(params);
 };
+
+export { useColorScheme, CssVarsProvider, getInitColorSchemeScript, Experimental_CssVarsProvider };

@@ -3,12 +3,12 @@
     label={
       <React.Fragment>
         I have read and agree to the{' '}
-        <Typography fontWeight="md">terms and conditions</Typography>.
+        <Typography sx={{ fontWeight: 'md' }}>terms and conditions</Typography>.
       </React.Fragment>
     }
   />
   <FormHelperText>
-    <Typography level="body2">
+    <Typography level="body-sm">
       Read our <Link href="#link">terms and conditions</Link>.
     </Typography>
   </FormHelperText>

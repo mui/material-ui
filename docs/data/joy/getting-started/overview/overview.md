@@ -2,64 +2,68 @@
 title: Overview
 ---
 
-# Joy UI - Overview
+# Joy UI - Overview
 
-<p class="description">Joy UI is a library of beautifully designed React UI components built to spark joy in the development process.</p>
+<p class="description">Joy UI is an open-source React component library that implements MUI's own design principles. It's comprehensive and can be used in production out of the box.</p>
 
 ## Introduction
 
-Joy UI is an open-source React component library that implements MUI's own in-house design [principles](#principles).
-
-It includes foundational pre-built components that look beautiful by default, and give you plenty of room to customize their look and feel.
-
-Use Joy UI to spark joy in the creative process of building your next app.
+Joy UI is an open-source React component library that follows a lightly opinionated design direction, for a clean and modern UI that gives you plenty of room to customize the look and feel.
 
 :::warning
-Joy UI is currently in active development, and breaking changes are to be expected.
+Joy UI development is temporarily on hold as the maintainers focus on the next two major releases of Material UI.
+Read [this blog post](/blog/2023-material-ui-v6-and-beyond/) to learn more.
 
-We're adding new components and features regularly, and you're welcome to contribute!
-
-Look for the [`package: joy-ui`](https://github.com/mui/material-ui/labels/package%3A%20joy-ui) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
+However, you're welcome to look for the [`package: joy-ui`](https://github.com/mui/material-ui/labels/package%3A%20joy-ui) label on open issues and pull requests in the `mui/material-ui` GitHub repository to see what other community members are working on, and submit your own.
 :::
 
-## Advantages of Joy UI
+## Why use Joy UI
 
-- **Ship faster:** Joy UI gives you pre-built components with a sleek and carefully designed look and feel, so you don't need design skills to ship beautiful UIs rapidly.
-- **Extensive customization options:** you can customize each and every tiny piece of Joy UI's components to match your own unique design.
-- **Accessibility in mind:** Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base-ui/getting-started/), giving you support for many accessibility features out of the box.
-  We do our best to make all components screen reader-friendly, and also offer suggestions for optimizing accessibility throughout our documentation.
+Maintained by MUI, **Joy UI is an alternative to Material UI** for projects that **don't adhere to Material Design** guidelines as a design system starting point.
 
-## Joy UI vs. Material UI
+These two sister libraries feature many of the same components, with similarly designed component APIs and customization features.
+Joy UI applies the decade of lessons learned in building and maintaining Material UI, for developers looking for sleek design, next-gen DX, and extensible components.
 
-Joy UI is intended to serve as an alternative to Material UI for designs that don't adhere to Material Design specifications.
-These two sister libraries feature many of the same components, and similarly designed component APIs, so you can quickly start building with one if you've used the other before.
+Learn more about why you should use Joy UI for your next project below.
 
-Try Joy UI if you appreciate the comprehensiveness and reliability of Material UI, but don't need all of the additional baggage that comes along with Material Design.
+### Beautiful out of the box
 
-## Principles
+Joy UI follows a lightly opinionated design direction called Joy Design.
+Simple and functional, it offers a thoughtfully crafted set of defaults to ensure that your next project looks and feels great before you even begin customizing.
 
-### Include only what's essential
+For example, the [Order Dashboard template](/joy-ui/getting-started/templates/order-dashboard/) (pictured below) is minimally customized beyond defaults, to demonstrate how meticulously we've designed each component for consistency and cohesion across the UI:
 
-Joy UI should work with the least amount of effort possible.
-We're striving for the essential only, both in the component API and design (look and feel).
+<img src="/static/joy-ui/overview/order-dashboard.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="The Order Dashboard template, inspired by Untitled UI and built using Joy UI with very little customizations." width="1628" height="400" />
 
-Components should have only what they need to do the job.
-What is considered essential is drawn from MUI's experience over the years developing component libraries, as well as from benchmarks of modern API and design guidelines—especially when it comes to developing web apps.
+### Highly customizable
 
-### Make it beautiful out of the box
+You should feel inspired and empowered to change, extend, and revamp Joy UI's appearance and behavior with ease.
+Drawing from many years of experience maintaining Material UI, Joy UI applies new approaches to customization, enabling you to customize every piece of the components to match your unique design.
 
-Joy UI needs to be simple yet characteristic.
-Visual attributes such as scale, size, and density should be consistent across all of the components so they live together nicely.
+For example, the demo below shows how to customize the [List](/joy-ui/react-list/) component using built-in CSS variables to match the design of the [Gatsby documentation side nav](https://www.gatsbyjs.com/docs/):
 
-We aim to spark delight with simplicity and attention to detail.
-You should feel like your UI looks great from the start.
+{{"demo": "../../components/list/ExampleCollapsibleList.js"}}
 
-### Encourage creativity
+### Developer experience
 
-Working with Joy UI shouldn't feel stiff or rigid—you should feel inspired and empowered to change, extend, and revamp Joy UI's appearance and behavior with ease.
-We want it to become your go-to starting point for building UIs.
+Joy UI draws its name from the idea that it should spark joy in the creative process of building apps.
+Providing an unrivaled developer experience is at the heart of this.
 
-### Prioritize developer experience
+For example, observe how each element of the [Input](/joy-ui/react-input/) component automatically calculates and adjusts its own dimensions relative to the border radius, saving you from the tedium of doing it yourself:
 
-A great developer experience is not only about the quality of the code we ship, but also about how clear the documentation is, and what learning resources are available for developers.
-We hope that every step of the experience brings you joy.
+{{"demo": "../../main-features/automatic-adjustment/InputVariables.js"}}
+
+### Accessibility
+
+Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base-ui/getting-started/), giving you many accessibility features out of the box.
+We strive to make all components accessible to end users who require assistive technology, and offer suggestions for optimizing accessibility throughout our documentation.
+
+Joy UI's Form Control component automatically generates a unique ID that links the Input that it wraps with the Form Label and Form Helper Text components, ensuring that your app complies with this guideline:
+
+{{"demo": "../../components/input/InputField.js"}}
+
+## Start now
+
+Get started with Joy UI today through some of these useful resources:
+
+{{"component": "modules/components/JoyStartingLinksCollection.js"}}

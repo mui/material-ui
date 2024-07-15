@@ -2,13 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { integerPropType } from '@mui/utils';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import integerPropType from '@mui/utils/integerPropType';
 import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant } = ownerState;
@@ -52,7 +53,7 @@ function defaultGetAriaLabel(type, page, selected) {
 }
 
 const Pagination = React.forwardRef(function Pagination(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPagination' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPagination' });
   const {
     boundaryCount = 1,
     className,
@@ -127,10 +128,10 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
 // @default tags synced with default values from usePagination
 
 Pagination.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Number of always visible pages at the beginning and end.
    * @default 1
@@ -147,7 +148,7 @@ Pagination.propTypes /* remove-proptypes */ = {
   /**
    * The active color.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -174,7 +175,7 @@ Pagination.propTypes /* remove-proptypes */ = {
    * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
-   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
+   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous' | 'start-ellipsis' | 'end-ellipsis'). Defaults to 'page'.
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
    * @returns {string}
@@ -198,7 +199,7 @@ Pagination.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
-   * The current page.
+   * The current page. Unlike `TablePagination`, which starts numbering from `0`, this pagination starts from `1`.
    */
   page: integerPropType,
   /**

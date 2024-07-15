@@ -10,17 +10,32 @@ materialDesign: https://m2.material.io/components/cards
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
+## Introduction
+
 Cards are surfaces that display content and actions on a single topic.
+The Material UI Card component includes several complementary utility components to handle various use cases:
 
-They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
-
-{{"component": "modules/components/ComponentLinkHeader.js"}}
-
-## Basic card
-
-Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.
+- Card: a surface-level container for grouping related components.
+- Card Content: the wrapper for the Card content.
+- Card Header: an optional wrapper for the Card header.
+- Card Media: an optional container for displaying background images and gradient layers behind the Card Content.
+- Card Actions: an optional wrapper that groups a set of buttons.
+- Card Action Area: an optional wrapper that allows users to interact with the specified area of the Card.
 
 {{"demo": "BasicCard.js", "bg": true}}
+
+## Basics
+
+```jsx
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+```
+
+:::success
+Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are meant to be entry points to more complex and detailed information.
+:::
 
 ### Outlined Card
 
@@ -44,10 +59,6 @@ By default, we use the combination of a `<div>` element and a _background image_
 
 {{"demo": "ImgMediaCard.js", "bg": true}}
 
-:::warning
-When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
-:::
-
 ## Primary action
 
 Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
@@ -66,4 +77,4 @@ Here's an example of a media control card.
 
 {{"demo": "MediaControlCard.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/card-introduction--docs).

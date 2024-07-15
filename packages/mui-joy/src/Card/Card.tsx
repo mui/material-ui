@@ -9,8 +9,8 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
+import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';
-import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
@@ -32,62 +32,80 @@ const useUtilityClasses = (ownerState: CardOwnerState) => {
   return composeClasses(slots, getCardUtilityClass, {});
 };
 
-const CardRoot = styled('div', {
+export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(({
+  theme,
+  ownerState,
+}) => {
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
+  return [
+    {
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
+      // a context variable for any child component
+      '--Card-childRadius':
+        'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
+      // AspectRatio integration
+      '--AspectRatio-radius': 'var(--Card-childRadius)',
+      // Link integration
+      '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
+      // Link, Radio, Checkbox integration
+      '--unstable_actionRadius': 'var(--Card-radius)',
+      // CardCover integration
+      '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
+      // CardOverflow integration
+      '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
+      '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
+      // Divider integration
+      '--Divider-inset': 'calc(-1 * var(--Card-padding))',
+      ...(ownerState.size === 'sm' && {
+        '--Card-radius': theme.vars.radius.sm,
+        '--Card-padding': '0.625rem',
+        gap: '0.5rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Card-radius': theme.vars.radius.md,
+        '--Card-padding': '1rem',
+        gap: '0.75rem 1rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Card-radius': theme.vars.radius.lg,
+        '--Card-padding': '1.5rem',
+        gap: '1rem 1.5rem',
+      }),
+      padding: 'var(--Card-padding)',
+      borderRadius: 'var(--Card-radius)',
+      backgroundColor: theme.vars.palette.background.surface,
+      position: 'relative',
+      display: 'flex',
+      flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+      ...theme.typography[`body-${ownerState.size!}`],
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
+      ...(ownerState.variant === 'soft' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    } as const,
+    p !== undefined && { '--Card-padding': p },
+    padding !== undefined && { '--Card-padding': padding },
+    borderRadius !== undefined && { '--Card-radius': borderRadius },
+  ];
+});
+
+const CardRoot = styled(StyledCardRoot, {
   name: 'JoyCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => [
-  {
-    // a context variable for any child component
-    '--Card-childRadius':
-      'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
-    // AspectRatio integration
-    '--AspectRatio-radius': 'var(--Card-childRadius)',
-    // Link integration
-    '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
-    // Link, Radio, Checkbox integration
-    '--unstable_actionRadius': resolveSxValue(
-      { theme, ownerState },
-      'borderRadius',
-      'var(--Card-radius)',
-    ),
-    // CardCover integration
-    '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
-    // CardOverflow integration
-    '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
-    '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
-    // Divider integration
-    '--Divider-inset': 'calc(-1 * var(--Card-padding))',
-    ...(ownerState.size === 'sm' && {
-      '--Card-radius': theme.vars.radius.sm,
-      '--Card-padding': '0.5rem',
-      gap: '0.375rem 0.5rem',
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Card-radius': theme.vars.radius.md,
-      '--Card-padding': '1rem',
-      gap: '0.75rem 1rem',
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Card-radius': theme.vars.radius.lg,
-      '--Card-padding': '1.5rem',
-      gap: '1rem 1.5rem',
-    }),
-    padding: 'var(--Card-padding)',
-    borderRadius: 'var(--Card-radius)',
-    boxShadow: theme.shadow.sm,
-    backgroundColor: theme.vars.palette.background.surface,
-    fontFamily: theme.vars.fontFamily.body,
-    fontSize: theme.vars.fontSize.md,
-    position: 'relative',
-    display: 'flex',
-    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-  },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ownerState.color !== 'context' &&
-    ownerState.invertedColors &&
-    theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
-]);
+})<{ ownerState: CardOwnerState }>({});
 
 /**
  *
@@ -107,19 +125,17 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const {
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     component = 'div',
     invertedColors = false,
     size = 'md',
-    variant = 'plain',
+    variant = 'outlined',
     children,
     orientation = 'vertical',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -128,6 +144,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     orientation,
     size,
     variant,
+    invertedColors,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -141,7 +158,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ownerState,
   });
 
-  const result = (
+  return (
     <SlotRoot {...rootProps}>
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) {
@@ -155,14 +172,6 @@ const Card = React.forwardRef(function Card(inProps, ref) {
           extraProps.orientation =
             'orientation' in child.props ? child.props.orientation : dividerOrientation;
         }
-        if (isMuiElement(child, ['CardOverflow'])) {
-          if (orientation === 'horizontal') {
-            extraProps['data-parent'] = 'Card-horizontal';
-          }
-          if (orientation === 'vertical') {
-            extraProps['data-parent'] = 'Card-vertical';
-          }
-        }
         if (index === 0) {
           extraProps['data-first-child'] = '';
         }
@@ -173,18 +182,13 @@ const Card = React.forwardRef(function Card(inProps, ref) {
       })}
     </SlotRoot>
   );
-
-  if (invertedColors) {
-    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-  return result;
 }) as OverridableComponent<CardTypeMap>;
 
 Card.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the Card if `src` is not set.
    * This can be an element, or just a string.
@@ -199,7 +203,7 @@ Card.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -250,7 +254,7 @@ Card.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'plain'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

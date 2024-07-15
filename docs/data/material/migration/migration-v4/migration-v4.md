@@ -1,8 +1,8 @@
 # Migrating to v5: getting started
 
-<p class="description">This guide explains how and why to migrate from Material UI v4 to v5.</p>
+<p class="description">This guide explains how and why to migrate from Material UI v4 to v5.</p>
 
-## Material UI v5 migration
+## Material UI v5 migration
 
 1. Getting started 👈 _you are here_
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
@@ -12,13 +12,13 @@
 
 ## Introduction
 
-This is the first document in a multi-part series to walk you through upgrading your app from Material UI v4 to v5.
+This is the first document in a multi-part series to walk you through upgrading your app from Material UI v4 to v5.
 
 We highly recommend running our [codemods](#run-codemods) for efficiency—these will automatically address many of the [breaking changes](#address-breaking-changes) introduced in v5.
 
 One of the biggest changes in v5 is the replacement of JSS for [Emotion](https://emotion.sh/docs/introduction) as a default styling solution.
 
-Note that you may continue to use JSS for adding overrides to the components (e.g. `makeStyles`, `withStyles`) even after migrating to v5.
+Note that you may continue to use JSS for adding overrides to the components (for example `makeStyles`, `withStyles`) even after migrating to v5.
 Once you've completed the rest of the v5 upgrade, we recommend progressively moving over to the new styling engine.
 
 This process is covered in [Migrating from JSS](/material-ui/migration/migrating-from-jss/).
@@ -28,25 +28,25 @@ Need to refer back to an older version of the docs? Check out [the v4 documentat
 :::
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration).
 :::
 
 ## Why you should migrate
 
-Material UI v5 includes many bug fixes and improvements over v4.
+Material UI v5 includes many bug fixes and improvements over v4.
 
 Chief among these improvements is the new styling engine, which offers significant advancements in performance when it comes to dynamic styles, as well as a more enjoyable developer experience.
 
 Additionally, v5 is the only version that fully supports React 18, so you will need to migrate to take advantage of the latest React features.
 
-To learn more, check out [the blog post about the release of Material UI v5](https://mui.com/blog/mui-core-v5/).
+To learn more, check out [the blog post about the release of Material UI v5](https://mui.com/blog/mui-core-v5/).
 
 :::success
 Create small commits as you go to ensure a smooth migration.
 
 If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc.
 
-For problems not addressed there, please [create an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: **[Migration] Summary of your issue**.
+For problems not addressed there please [create an issue](https://github.com/mui/material-ui/issues/new/choose) with this title format: **[Migration] Summary of your issue**.
 :::
 
 ## Supported browsers and Node versions
@@ -66,8 +66,8 @@ The default bundle supports the following minimum versions:
 - Safari 14 (macOS) and 12.5 (iOS) (up from 10)
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v5.0.0/.browserslistrc#L11))
 
-Material UI no longer supports IE 11.
-If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
+Material UI no longer supports IE 11.
+If you need to support IE 11, check out the [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
 
 ## Update React & TypeScript version
 
@@ -75,28 +75,28 @@ If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/
 
 The minimum supported version of React has been increased from v16.8.0 to v17.0.0.
 
-If you are using a React version below 17.0.0, update your packages to at least v4.11.2 for Material UI and v17.0.0 for React.
+If you are using a React version below 17.0.0, update your packages to at least v4.11.2 for Material UI and v17.0.0 for React.
 
-With npm:
+<codeblock storageKey="package-manager">
 
-```bash
+```bash npm
 npm install @material-ui/core@^4.11.2 react@^17.0.0
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn upgrade @material-ui/core@^4.11.2 react@^17.0.0
 ```
+
+</codeblock>
 
 ### Update TypeScript
 
 The minimum supported version of TypeScript has been increased from v3.2 to v3.5.
 
 :::info
-We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (that is packages published on npm under the `@types` namespace).
 
-We will not change the minimum supported version in a minor version of Material UI.
+We will not change the minimum supported version in a minor version of Material UI.
 However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
 :::
 
@@ -107,7 +107,7 @@ If your project includes these packages, you'll need to update them:
 - `@types/react-dom`
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ## Set up `ThemeProvider`
@@ -138,60 +138,57 @@ function App() {
 ```
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
-## Update MUI packages
+## Update Material UI packages
 
-### Material UI v5 and `@mui/styles`
+### Material UI v5 and `@mui/styles`
 
-Install the Material UI v5 packages.
+Install the Material UI v5 packages.
 
-With npm:
-
-```bash
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/material @mui/styles
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @mui/material @mui/styles
 ```
+
+</codeblock>
 
 If you're using `@material-ui/lab` or `@material-ui/icons`, you will need to install the new packages.
 
 ### `@material-ui/lab`
 
-With npm:
-
-```bash
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/lab
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @mui/lab
 ```
 
+</codeblock>
+
 ### `@material-ui/icons`
 
-With npm:
-
-```bash
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/icons-material
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @mui/icons-material
 ```
 
+</codeblock>
+
 ### Date and time pickers
 
-The date and time picker components have been moved to MUI X.
+The date and time picker components have been moved to MUI X.
 If you are using `@material-ui/date-pickers` or the pickers in the `@mui/lab` package, you will need to migrate to `@mui/x-date-pickers`.
 See [Migration from the lab](https://mui.com/x/migration/migration-pickers-lab/) for details.
 
@@ -199,28 +196,28 @@ See [Migration from the lab](https://mui.com/x/migration/migration-pickers-lab/)
 
 Next, add the Emotion packages.
 
-With npm:
+<codeblock storageKey="package-manager">
 
-```bash
+```bash npm
 npm install @emotion/react @emotion/styled
 ```
 
-With yarn:
-
-```bash
+```bash yarn
 yarn add @emotion/react @emotion/styled
 ```
 
+</codeblock>
+
 #### styled-components (optional)
 
-If you want to use Material UI v5 with styled-components instead of Emotion, check out [the Material UI installation guide](/material-ui/getting-started/installation/).
+If you want to use Material UI v5 with styled-components instead of Emotion, check out [the Material UI installation guide](/material-ui/getting-started/installation/).
 
 Note that if your app uses server-side rendering (SSR), there is a [known bug](https://github.com/mui/material-ui/issues/29742) with the Babel plugin for styled-components which prevents `@mui/styled-engine-sc` (the adapter for styled-components) from being used.
 
 We strongly recommend using the default setup with Emotion instead.
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ### Replace all imports
@@ -302,7 +299,7 @@ Make sure that your application still runs without errors after running each cod
 This codemod contains most of the transformers that are necessary for migration. It should be only applied **once per folder.**
 
 ```bash
-npx @mui/codemod v5.0.0/preset-safe <path>
+npx @mui/codemod@latest v5.0.0/preset-safe <path>
 ```
 
 :::info
@@ -334,7 +331,7 @@ createMuiTheme({
 If you want to keep `variant="standard"` in your components, run this codemod or else configure the corresponding default theme props.
 
 ```bash
-npx @mui/codemod v5.0.0/variant-prop <path>
+npx @mui/codemod@latest v5.0.0/variant-prop <path>
 ```
 
 For more details, check out the [variant-prop codemod README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#variant-prop).
@@ -364,7 +361,7 @@ createMuiTheme({
 If you want to keep `underline="hover"`, run this codemod or else configure the corresponding default theme props.
 
 ```bash
-npx @mui/codemod v5.0.0/link-underline-hover <path>
+npx @mui/codemod@latest v5.0.0/link-underline-hover <path>
 ```
 
 For more details, check out the [link-underline-hover codemod README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#link-underline-hover).

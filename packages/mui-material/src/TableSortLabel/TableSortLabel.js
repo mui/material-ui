@@ -1,12 +1,12 @@
 'use client';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
 
@@ -14,7 +14,7 @@ const useUtilityClasses = (ownerState) => {
   const { classes, direction, active } = ownerState;
 
   const slots = {
-    root: ['root', active && 'active'],
+    root: ['root', active && 'active', `direction${capitalize(direction)}`],
     icon: ['icon', `iconDirection${capitalize(direction)}`],
   };
 
@@ -61,7 +61,7 @@ const TableSortLabelIcon = styled('span', {
 
     return [styles.icon, styles[`iconDirection${capitalize(ownerState.direction)}`]];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   fontSize: 18,
   marginRight: 4,
   marginLeft: 4,
@@ -70,19 +70,31 @@ const TableSortLabelIcon = styled('span', {
     duration: theme.transitions.duration.shorter,
   }),
   userSelect: 'none',
-  ...(ownerState.direction === 'desc' && {
-    transform: 'rotate(0deg)',
-  }),
-  ...(ownerState.direction === 'asc' && {
-    transform: 'rotate(180deg)',
-  }),
+  variants: [
+    {
+      props: {
+        direction: 'desc',
+      },
+      style: {
+        transform: 'rotate(0deg)',
+      },
+    },
+    {
+      props: {
+        direction: 'asc',
+      },
+      style: {
+        transform: 'rotate(180deg)',
+      },
+    },
+  ],
 }));
 
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
 const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableSortLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableSortLabel' });
   const {
     active = false,
     children,
@@ -125,10 +137,10 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
 });
 
 TableSortLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the label will have the active styling (should be true for the sorted column).
    * @default false

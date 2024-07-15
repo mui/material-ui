@@ -1,7 +1,7 @@
-<Sheet variant="outlined" sx={{ bgcolor: 'background.body' }}>
+<Sheet variant="outlined">
   <Checkbox overlay label="Focus on me" />
 </Sheet>
-<Sheet variant="outlined" sx={{ bgcolor: 'background.body' }}>
+<Sheet variant="outlined">
   <Checkbox
     label="My parent receives focus"
     overlay

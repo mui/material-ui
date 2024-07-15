@@ -1,6 +1,6 @@
 {
   "name": "@mui/types",
-  "version": "7.2.4",
+  "version": "7.2.14",
   "private": false,
   "author": "MUI Team",
   "description": "Utility types for MUI.",
@@ -26,19 +26,24 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-types",
   "scripts": {
-    "build": "mkdir build && cpy index.d.ts build/ && cpy OverridableComponentAugmentation.ts build/ && yarn build:copy-files",
+    "build": "mkdir build && cpy index.d.ts build/ && cpy OverridableComponentAugmentation.ts build/ && pnpm build:copy-files",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && pnpm publish",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
-    "typescript": "tslint -p tsconfig.json \"*.{ts,tsx}\""
+    "typescript": "tsc -p tsconfig.json"
   },
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
+  },
+  "devDependencies": {
+    "@mui/types": "workspace:*",
+    "@types/react": "^18.3.3"
   },
   "peerDependencies": {
-    "@types/react": "*"
+    "@types/react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

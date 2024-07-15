@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Slider, { sliderClasses } from '@mui/material/Slider';
@@ -12,98 +13,92 @@ export default function ThemeSlider() {
     <Fade in timeout={700}>
       <Box
         sx={(theme) => ({
+          px: 3,
+          py: 4,
           display: 'flex',
           justifyContent: 'center',
           bgcolor: '#fff',
           border: '1px solid',
           borderColor: 'grey.200',
           borderRadius: 1,
-          p: 2,
+          boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.800',
-            borderColor: 'primaryDark.500',
+            bgcolor: 'primaryDark.900',
+            borderColor: 'primaryDark.700',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
           }),
         })}
       >
-        <Box
-          sx={{
-            display: 'inline-block',
-            height: 180,
-            padding: '0.75rem 0',
-            borderRadius: 4,
-          }}
-        >
-          <Slider
-            getAriaLabel={() => 'Temperature'}
-            orientation="vertical"
-            getAriaValueText={valuetext}
-            defaultValue={[25, 50]}
-            marks={[{ value: 0 }, { value: 25 }, { value: 50 }, { value: 75 }, { value: 100 }]}
-            valueLabelFormat={valuetext}
-            valueLabelDisplay="on"
-            sx={[
-              {
-                color: 'primary.500',
-                [`& .${sliderClasses.rail}`]: {
-                  opacity: 1,
-                  bgcolor: 'grey.200',
-                },
-                [`& .${sliderClasses.track}`]: {
-                  border: 'none',
-                },
-                [`& .${sliderClasses.mark}`]: {
-                  color: 'grey.500',
-                },
-                [`& .${sliderClasses.thumb}`]: {
-                  width: 8,
-                  height: 8,
-                  '&:before': {
-                    boxShadow: 'none',
-                  },
-                },
-                [`&.${sliderClasses.vertical}`]: {
-                  [`& .${sliderClasses.mark}[data-index="0"]`]: {
-                    bottom: '2px !important',
-                    bgcolor: 'grey.500',
-                  },
-                  [`& .${sliderClasses.mark}[data-index="4"]`]: {
-                    bottom: 'unset !important',
-                    bgcolor: 'grey.500',
-                  },
-                  [`& .${sliderClasses.valueLabel}`]: {
-                    backgroundColor: 'transparent',
-                    color: 'grey.500',
-                    fontWeight: 700,
-                    padding: 0,
-                    left: '2rem',
-                    top: '14px',
-                    [`& .${sliderClasses.valueLabelOpen}`]: {
-                      transform: 'none',
-                      top: 'initial',
-                    },
-                  },
+        <Slider
+          getAriaLabel={() => 'Temperature'}
+          getAriaValueText={valuetext}
+          defaultValue={[25, 50]}
+          valueLabelFormat={valuetext}
+          valueLabelDisplay="on"
+          marks={[
+            { value: 10 },
+            { value: 20, label: '20ºC' },
+            { value: 30 },
+            { value: 40 },
+            { value: 50, label: '50ºC' },
+            { value: 60 },
+            { value: 70 },
+            { value: 80, label: '80ºC' },
+            { value: 90 },
+          ]}
+          sx={[
+            {
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'primary.main',
+              height: 6,
+              m: 0,
+              [`& .${sliderClasses.rail}`]: {
+                opacity: 1,
+                bgcolor: 'grey.200',
+              },
+              [`& .${sliderClasses.track}`]: {
+                border: 'none',
+              },
+              [`& .${sliderClasses.mark}`]: {
+                color: 'text.tertiary',
+              },
+              [`& .${sliderClasses.markLabel}`]: {
+                color: 'text.secondary',
+                fontSize: '0.75rem',
+                fontWeight: 'semiBold',
+              },
+              [`& .${sliderClasses.thumb}`]: {
+                width: 16,
+                height: 16,
+                '&::before': {
+                  boxShadow: 'none',
                 },
               },
-              (theme) =>
-                theme.applyDarkStyles({
-                  [`& .${sliderClasses.rail}`]: {
-                    bgcolor: 'primaryDark.600',
-                  },
-                  [`&.${sliderClasses.vertical}`]: {
-                    [`& .${sliderClasses.mark}[data-index="0"]`]: {
-                      bgcolor: 'primary.400',
-                    },
-                    [`& .${sliderClasses.mark}[data-index="4"]`]: {
-                      bgcolor: 'primary.400',
-                    },
-                    [`& .${sliderClasses.valueLabel}`]: {
-                      color: 'grey.50',
-                    },
-                  },
-                }),
-            ]}
-          />
-        </Box>
+              [`& .${sliderClasses.valueLabel}`]: {
+                backgroundColor: 'transparent',
+                color: 'primary.600',
+                fontSize: '0.75rem',
+                fontWeight: 'bold',
+                padding: 0,
+                [`& .${sliderClasses.valueLabelOpen}`]: {
+                  transform: 'none',
+                  top: 'initial',
+                },
+              },
+            },
+            (theme) =>
+              theme.applyDarkStyles({
+                [`& .${sliderClasses.rail}`]: {
+                  bgcolor: 'primaryDark.600',
+                },
+                [`& .${sliderClasses.valueLabel}`]: {
+                  color: 'primary.300',
+                },
+              }),
+          ]}
+        />
       </Box>
     </Fade>
   );

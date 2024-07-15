@@ -66,14 +66,18 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={top100Films[13]}
         renderTags={(value, getTagProps) =>
-          value.map((option, index) => (
-            <Chip
-              variant="outlined"
-              label={option.title}
-              size="small"
-              {...getTagProps({ index })}
-            />
-          ))
+          value.map((option, index) => {
+            const { key, ...tagProps } = getTagProps({ index });
+            return (
+              <Chip
+                key={key}
+                variant="outlined"
+                label={option.title}
+                size="small"
+                {...tagProps}
+              />
+            );
+          })
         }
         renderInput={(params) => (
           <TextField
@@ -92,14 +96,18 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
         renderTags={(value, getTagProps) =>
-          value.map((option, index) => (
-            <Chip
-              variant="outlined"
-              label={option.title}
-              size="small"
-              {...getTagProps({ index })}
-            />
-          ))
+          value.map((option, index) => {
+            const { key, ...tagProps } = getTagProps({ index });
+            return (
+              <Chip
+                key={key}
+                variant="outlined"
+                label={option.title}
+                size="small"
+                {...tagProps}
+              />
+            );
+          })
         }
         renderInput={(params) => (
           <TextField

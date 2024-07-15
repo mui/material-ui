@@ -1,22 +1,21 @@
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
+import type { MuiPage } from 'docs/src/MuiPage';
 import pagesApi from 'docs/data/system/pagesApi';
 
-const pages = [
+const pages: readonly MuiPage[] = [
   {
     pathname: '/system/getting-started-group',
     title: 'Getting started',
-    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/system/getting-started', title: 'Overview' },
       { pathname: '/system/getting-started/installation' },
       { pathname: '/system/getting-started/usage' },
       { pathname: '/system/getting-started/the-sx-prop' },
       { pathname: '/system/getting-started/custom-components' },
+      { pathname: '/system/getting-started/support' },
     ],
   },
   {
     pathname: '/style-utilities',
-    icon: standardNavIcons.BuildIcon,
     children: [
       { pathname: '/system/properties' },
       { pathname: '/system/borders' },
@@ -36,7 +35,6 @@ const pages = [
   {
     pathname: '/system/react-',
     title: 'Components',
-    icon: standardNavIcons.ToggleOnIcon,
     children: [
       { pathname: '/system/react-box', title: 'Box' },
       { pathname: '/system/react-container', title: 'Container' },
@@ -45,15 +43,23 @@ const pages = [
     ],
   },
   {
+    pathname: '/system/migration',
+    title: 'Migration',
+    children: [
+      {
+        pathname: '/system/migration/migrating-to-v6',
+        title: 'Migrating to v6',
+      },
+    ],
+  },
+  {
     title: 'APIs',
     pathname: '/system/api',
-    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
   },
   {
     pathname: '/system/experimental-api',
     title: 'Experimental APIs',
-    icon: standardNavIcons.ExperimentIcon,
     children: [
       {
         pathname: '/system/experimental-api/configure-the-sx-prop',
@@ -69,7 +75,6 @@ const pages = [
     pathname: '/system/styles',
     title: 'Styles',
     legacy: true,
-    icon: standardNavIcons.StyleIcon,
     children: [
       { pathname: '/system/styles/basics' },
       { pathname: '/system/styles/advanced' },

@@ -2,27 +2,28 @@
 import * as React from 'react';
 import {
   unstable_useForkRef as useForkRef,
-  unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_isFocusVisible as isFocusVisible,
 } from '@mui/utils';
 import {
   UseButtonParameters,
   UseButtonReturnValue,
   UseButtonRootSlotProps,
 } from './useButton.types';
-import extractEventHandlers from '../utils/extractEventHandlers';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { useRootElementName } from '../utils/useRootElementName';
 import { EventHandlers } from '../utils/types';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 /**
  *
  * Demos:
  *
- * - [Button](https://mui.com/base-ui/react-button/#hook)
+ * - [Button](https://next.mui.com/base-ui/react-button/#hook)
  *
  * API:
  *
- * - [useButton API](https://mui.com/base-ui/react-button/hooks-api/#use-button)
+ * - [useButton API](https://next.mui.com/base-ui/react-button/hooks-api/#use-button)
  */
-export default function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
+export function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
   const {
     disabled = false,
     focusableWhenDisabled,
@@ -31,28 +32,21 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
     tabIndex,
     to,
     type,
+    rootElementName: rootElementNameProp,
   } = parameters;
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
   const [active, setActive] = React.useState<boolean>(false);
-
-  const {
-    isFocusVisibleRef,
-    onFocus: handleFocusVisible,
-    onBlur: handleBlurVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
 
   const [focusVisible, setFocusVisible] = React.useState(false);
   if (disabled && !focusableWhenDisabled && focusVisible) {
     setFocusVisible(false);
   }
 
-  React.useEffect(() => {
-    isFocusVisibleRef.current = focusVisible;
-  }, [focusVisible, isFocusVisibleRef]);
-
-  const [hostElementName, setHostElementName] = React.useState<string>('');
+  const [rootElementName, updateRootElementName] = useRootElementName({
+    rootElementName: rootElementNameProp ?? (href || to ? 'a' : undefined),
+    componentName: 'Button',
+  });
 
   const createHandleMouseLeave = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
     if (focusVisible) {
@@ -63,9 +57,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
   };
 
   const createHandleBlur = (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
-    handleBlurVisible(event);
-
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
     }
 
@@ -79,8 +71,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
         buttonRef.current = event.currentTarget;
       }
 
-      handleFocusVisible(event);
-      if (isFocusVisibleRef.current === true) {
+      if (isFocusVisible(event.target)) {
         setFocusVisible(true);
         otherHandlers.onFocusVisible?.(event);
       }
@@ -92,10 +83,10 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
     const button = buttonRef.current;
 
     return (
-      hostElementName === 'BUTTON' ||
-      (hostElementName === 'INPUT' &&
+      rootElementName === 'BUTTON' ||
+      (rootElementName === 'INPUT' &&
         ['button', 'submit', 'reset'].includes((button as HTMLInputElement)?.type)) ||
-      (hostElementName === 'A' && (button as HTMLAnchorElement)?.href)
+      (rootElementName === 'A' && (button as HTMLAnchorElement)?.href)
     );
   };
 
@@ -151,7 +142,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
   const createHandleKeyUp =
     (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
       // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-      // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
+      // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
 
       if (event.target === event.currentTarget) {
         setActive(false);
@@ -171,11 +162,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
       }
     };
 
-  const updateHostElementName = React.useCallback((instance: HTMLElement | null) => {
-    setHostElementName(instance?.tagName ?? '');
-  }, []);
-
-  const handleRef = useForkRef(updateHostElementName, externalRef, focusVisibleRef, buttonRef);
+  const handleRef = useForkRef(updateRootElementName, externalRef, buttonRef);
 
   interface AdditionalButtonProps {
     type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
@@ -187,14 +174,26 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
 
   const buttonProps: AdditionalButtonProps = {};
 
-  if (hostElementName === 'BUTTON') {
+  if (tabIndex !== undefined) {
+    buttonProps.tabIndex = tabIndex;
+  }
+
+  if (rootElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
     if (focusableWhenDisabled) {
       buttonProps['aria-disabled'] = disabled;
     } else {
       buttonProps.disabled = disabled;
     }
-  } else if (hostElementName !== '') {
+  } else if (rootElementName === 'INPUT') {
+    if (type && ['button', 'submit', 'reset'].includes(type)) {
+      if (focusableWhenDisabled) {
+        buttonProps['aria-disabled'] = disabled;
+      } else {
+        buttonProps.disabled = disabled;
+      }
+    }
+  } else if (rootElementName !== '') {
     if (!href && !to) {
       buttonProps.role = 'button';
       buttonProps.tabIndex = tabIndex ?? 0;
@@ -205,23 +204,19 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
     }
   }
 
-  const getRootProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseButtonRootSlotProps<TOther> => {
-    const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseButtonParameters>;
+  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseButtonRootSlotProps<ExternalProps> => {
     const externalEventHandlers = {
-      ...propsEventHandlers,
-      ...otherHandlers,
+      ...extractEventHandlers(parameters),
+      ...extractEventHandlers(externalProps),
     };
 
-    // onFocusVisible can be present on the props, but since it's not a valid React event handler,
-    // it must not be forwarded to the inner component.
-    delete externalEventHandlers.onFocusVisible;
-
-    return {
+    const props = {
       type,
       ...externalEventHandlers,
       ...buttonProps,
+      ...externalProps,
       onBlur: createHandleBlur(externalEventHandlers),
       onClick: createHandleClick(externalEventHandlers),
       onFocus: createHandleFocus(externalEventHandlers),
@@ -231,6 +226,13 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
       onMouseLeave: createHandleMouseLeave(externalEventHandlers),
       ref: handleRef,
     };
+
+    // onFocusVisible can be present on the props or parameters,
+    // but it's not a valid React event handler so it must not be forwarded to the inner component.
+    // If present, it will be handled by the focus handler.
+    delete props.onFocusVisible;
+
+    return props;
   };
 
   return {

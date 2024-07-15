@@ -1,12 +1,12 @@
 import * as React from 'react';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormLabel from '@mui/joy/FormLabel';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
 
 const githubTheme = extendTheme({
   cssVarPrefix: 'gh',
@@ -475,29 +475,30 @@ export default function ButtonThemes() {
 
   const [design, setDesign] = React.useState('github');
   return (
-    <CssVarsProvider
-      theme={themes[design]}
-      colorSchemeNode={node || null}
-      colorSchemeSelector="#button-themes-demo"
-      modeStorageKey="button-themes-demo"
-      colorSchemeStorageKey="button-themes-demo"
+    <Box
+      sx={{
+        m: -1.5,
+        mt: 0.5,
+        flexGrow: 1,
+        maxWidth: 'calc(100% + 24px)',
+        borderRadius: '8px',
+        '& .markdown-body pre': {
+          margin: 0,
+          borderRadius: 'xs',
+        },
+      }}
     >
-      <Box
-        id="button-themes-demo"
-        sx={{
-          m: -1.5,
-          mt: 0.5,
-          flexGrow: 1,
-          maxWidth: 'calc(100% + 24px)',
-          borderRadius: '8px',
-          '& .markdown-body pre': {
-            margin: 0,
-            borderRadius: 'xs',
-          },
-        }}
-      >
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
+        <CssVarsProvider
+          disableNestedContext
+          theme={themes[design]}
+          colorSchemeNode={node || null}
+          colorSchemeSelector="#button-themes-demo"
+          modeStorageKey="button-themes-demo"
+          colorSchemeStorageKey="button-themes-demo"
+        >
           <Box
+            id="button-themes-demo"
             sx={{
               flexGrow: 1,
               m: 'auto',
@@ -515,6 +516,7 @@ export default function ButtonThemes() {
                 </Button>
               </Box>
             )}
+
             {design === 'fluent' && (
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button>Primary</Button>
@@ -523,12 +525,14 @@ export default function ButtonThemes() {
                 </Button>
               </Box>
             )}
+
             {design === 'chakra' && (
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button>Solid</Button>
                 <Button variant="outlined">Outlined</Button>
               </Box>
             )}
+
             {design === 'mantine' && (
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button>Solid</Button>
@@ -537,42 +541,42 @@ export default function ButtonThemes() {
               </Box>
             )}
           </Box>
-          <Box
-            sx={{
-              mx: 'auto',
-              pt: 3,
-              width: '100%',
-              display: 'flex',
-              gap: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderTop: '1px solid',
-              borderColor: 'neutral.200',
+        </CssVarsProvider>
+        <Box
+          sx={{
+            mx: 'auto',
+            pt: 3,
+            width: '100%',
+            display: 'flex',
+            gap: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderTop: '1px solid',
+            borderColor: 'divider',
+          }}
+        >
+          <FormLabel htmlFor="button-theme">Change the theme:</FormLabel>
+          <Select
+            slotProps={{
+              button: {
+                id: 'button-theme',
+              },
             }}
+            size="sm"
+            value={design}
+            onChange={(event, newValue) => setDesign(newValue)}
+            sx={{ minWidth: 160 }}
           >
-            <FormLabel htmlFor="button-theme">Change the theme:</FormLabel>
-            <Select
-              slotProps={{
-                button: {
-                  id: 'button-theme',
-                },
-              }}
-              size="sm"
-              value={design}
-              onChange={(event, newValue) => setDesign(newValue)}
-              sx={{ minWidth: 160 }}
-            >
-              <Option value="github">GitHub</Option>
-              <Option value="fluent">Fluent</Option>
-              <Option value="chakra">Chakra</Option>
-              <Option value="mantine">Mantine</Option>
-            </Select>
-          </Box>
+            <Option value="github">GitHub</Option>
+            <Option value="fluent">Fluent</Option>
+            <Option value="chakra">Chakra</Option>
+            <Option value="mantine">Mantine</Option>
+          </Select>
         </Box>
-        {
-          <BrandingProvider mode="dark">
-            <HighlightedCode
-              code={`import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
+      </Box>
+      <BrandingProvider mode="dark">
+        <HighlightedCode
+          code={`import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 
 ${codes[design]}
@@ -586,18 +590,16 @@ function App() {
   );
 };
 `}
-              copyButtonHidden
-              language="jsx"
-              sx={{
-                display: { xs: 'none', md: 'block' },
-                maxHeight: '40vh',
-                overflow: 'auto',
-                borderRadius: '7px',
-              }}
-            />
-          </BrandingProvider>
-        }
-      </Box>
-    </CssVarsProvider>
+          copyButtonHidden
+          language="jsx"
+          sx={{
+            display: { xs: 'none', md: 'block' },
+            maxHeight: '40vh',
+            overflow: 'auto',
+            borderRadius: '7px',
+          }}
+        />
+      </BrandingProvider>
+    </Box>
   );
 }

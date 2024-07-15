@@ -1,7 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import { alpha } from '@mui/material/styles';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import Box from '@mui/system/Box';
 
 export default function Demo() {
   return (
@@ -10,11 +8,11 @@ export default function Demo() {
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
         alignItems: 'center',
-        bgcolor: 'background.paper',
-        overflow: 'hidden',
-        borderRadius: '12px',
-        boxShadow: 1,
-        fontWeight: 'bold',
+        bgcolor: 'background.default',
+        border: '1px solid',
+        borderColor: 'divider',
+        borderRadius: 2,
+        overflow: 'clip',
       }}
     >
       <Box
@@ -30,38 +28,42 @@ export default function Demo() {
       />
       <Box
         sx={{
+          p: 3,
+          minWidth: { md: 350 },
           display: 'flex',
           flexDirection: 'column',
           alignItems: { xs: 'center', md: 'flex-start' },
-          m: 3,
-          minWidth: { md: 350 },
+          gap: 0.5,
         }}
       >
-        <Box component="span" sx={{ fontSize: 16, mt: 1 }}>
+        <Box component="span" sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>
           123 Main St, Phoenix AZ
         </Box>
-        <Box component="span" sx={{ color: 'primary.main', fontSize: 22 }}>
+        <Box
+          component="span"
+          sx={{ color: 'primary.main', fontSize: '1.5rem', fontWeight: 'bold' }}
+        >
           $280,000 — $310,000
         </Box>
         <Box
           sx={{
-            mt: 1.5,
-            p: 0.5,
-            backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
-            borderRadius: '5px',
-            color: 'primary.main',
-            fontWeight: 'medium',
+            py: 0.5,
+            px: 1,
+            backgroundColor: 'rgba(46, 125, 50, 0.1)',
+            borderRadius: 10,
             display: 'flex',
-            fontSize: 12,
             alignItems: 'center',
-            '& svg': {
-              fontSize: 21,
-              mr: 0.5,
-            },
+            gap: 0.5,
+            border: '1px solid',
+            borderColor: 'rgba(46, 125, 50, 0.1)',
+            fontSize: '0.7rem',
+            fontWeight: 'bold',
+            letterSpacing: '.05rem',
+            textTransform: 'uppercase',
+            color: 'success.main',
           }}
         >
-          <ErrorOutlineIcon />
-          CONFIDENCE SCORE 85%
+          Confidence score: 85%
         </Box>
       </Box>
     </Box>

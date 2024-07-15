@@ -2,11 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsProps, TabsRootSlotProps, TabsTypeMap } from './Tabs.types';
-import useTabs from '../useTabs';
-import TabsProvider from '../useTabs/TabsProvider';
+import { useTabs } from '../useTabs';
+import { TabsProvider } from '../useTabs/TabsProvider';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
@@ -46,13 +46,13 @@ const Tabs = React.forwardRef(function Tabs<RootComponentType extends React.Elem
     ...other
   } = props;
 
-  const { contextValue } = useTabs(props);
-
   const ownerState: TabsOwnerState = {
     ...props,
     orientation,
     direction,
   };
+
+  const { contextValue } = useTabs(ownerState);
 
   const classes = useUtilityClasses(ownerState);
 
@@ -76,14 +76,18 @@ const Tabs = React.forwardRef(function Tabs<RootComponentType extends React.Elem
 }) as PolymorphicComponent<TabsTypeMap>;
 
 Tabs.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -129,4 +133,4 @@ Tabs.propTypes /* remove-proptypes */ = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
-export default Tabs;
+export { Tabs };

@@ -1,11 +1,11 @@
-'use client';
-import MuiError from '@mui/utils/macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
 export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';
 export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';
+export { default as cssContainerQueries } from './cssContainerQueries';
 export {
   handleBreakpoints,
   mergeBreakpointsInOrder,
@@ -56,6 +56,7 @@ export { default as shape } from './createTheme/shape';
 export { default as useThemeProps, getThemeProps } from './useThemeProps';
 export { default as useTheme } from './useTheme';
 export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
+export { default as useMediaQuery } from './useMediaQuery';
 export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
@@ -64,6 +65,8 @@ export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
 export { default as unstable_prepareCssVars } from './cssVars/prepareCssVars';
 export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsTheme';
 export { default as responsivePropType } from './responsivePropType';
+export { default as RtlProvider } from './RtlProvider';
+export * from './RtlProvider';
 
 /** ----------------- */
 /** Layout components */

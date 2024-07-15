@@ -1,4 +1,4 @@
 'use client';
-export { default } from './useInput';
+export { useInput } from './useInput';
 
 export * from './useInput.types';

@@ -66,7 +66,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
       gutterBottom?: boolean;
       /**
        * Applies the theme typography styles.
-       * @default 'body1'
+       * @default 'body-md'
        */
       level?: keyof TypographySystem | 'inherit';
       /**
@@ -79,11 +79,13 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        *   h2: 'h2',
        *   h3: 'h3',
        *   h4: 'h4',
-       *   h5: 'h5',
-       *   h6: 'h6',
-       *   body1: 'p',
-       *   body2: 'p',
-       *   body3: 'p',
+       *   'title-lg': 'p',
+       *   'title-md': 'p',
+       *   'title-sm': 'p',
+       *   'body-lg': 'p',
+       *   'body-md': 'p',
+       *   'body-sm': 'p',
+       *   'body-xs': 'span',
        *   inherit: 'p',
        * }
        */
@@ -128,4 +130,9 @@ export interface TypographyOwnerState extends ApplyColorInversion<TypographyProp
    * If `true`, the element is rendered in a Typography.
    */
   nesting: boolean;
+  /**
+   * @internal
+   * If `true`, the Skeleton is a direct child.
+   */
+  unstable_hasSkeleton?: boolean;
 }

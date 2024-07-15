@@ -17,7 +17,7 @@ Tables display information in a way that's easy to scan, so that users can look 
 - Navigation
 - Tools to query and manipulate data
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic table
 
@@ -83,7 +83,6 @@ The `ActionsComponent` prop of the `TablePagination` component allows the implem
 
 Here is an example of a table with scrollable rows and fixed column headers.
 It leverages the `stickyHeader` prop.
-(⚠️ no IE 11 support)
 
 {{"demo": "StickyHeadTable.js", "bg": true}}
 

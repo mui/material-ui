@@ -132,7 +132,7 @@ function defaultIsEnabled(): boolean {
  *
  * - [FocusTrap API](https://mui.com/base-ui/react-focus-trap/components-api/#focus-trap)
  */
-function FocusTrap(props: FocusTrapProps): JSX.Element {
+function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   const {
     children,
     disableAutoFocus = false,
@@ -220,69 +220,6 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
 
     const doc = ownerDocument(rootRef.current);
 
-    const contain = (nativeEvent: FocusEvent | null) => {
-      const { current: rootElement } = rootRef;
-
-      // Cleanup functions are executed lazily in React 17.
-      // Contain can be called between the component being unmounted and its cleanup function being run.
-      if (rootElement === null) {
-        return;
-      }
-
-      if (
-        !doc.hasFocus() ||
-        disableEnforceFocus ||
-        !isEnabled() ||
-        ignoreNextEnforceFocus.current
-      ) {
-        ignoreNextEnforceFocus.current = false;
-        return;
-      }
-
-      if (!rootElement.contains(doc.activeElement)) {
-        // if the focus event is not coming from inside the children's react tree, reset the refs
-        if (
-          (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
-          doc.activeElement !== reactFocusEventTarget.current
-        ) {
-          reactFocusEventTarget.current = null;
-        } else if (reactFocusEventTarget.current !== null) {
-          return;
-        }
-
-        if (!activated.current) {
-          return;
-        }
-
-        let tabbable: string[] | HTMLElement[] = [];
-        if (
-          doc.activeElement === sentinelStart.current ||
-          doc.activeElement === sentinelEnd.current
-        ) {
-          tabbable = getTabbable(rootRef.current as HTMLElement);
-        }
-
-        if (tabbable.length > 0) {
-          const isShiftTab = Boolean(
-            lastKeydown.current?.shiftKey && lastKeydown.current?.key === 'Tab',
-          );
-
-          const focusNext = tabbable[0];
-          const focusPrevious = tabbable[tabbable.length - 1];
-
-          if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
-            if (isShiftTab) {
-              focusPrevious.focus();
-            } else {
-              focusNext.focus();
-            }
-          }
-        } else {
-          rootElement.focus();
-        }
-      }
-    };
-
     const loopFocus = (nativeEvent: KeyboardEvent) => {
       lastKeydown.current = nativeEvent;
 
@@ -302,18 +239,88 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       }
     };
 
+    const contain = () => {
+      const rootElement = rootRef.current;
+
+      // Cleanup functions are executed lazily in React 17.
+      // Contain can be called between the component being unmounted and its cleanup function being run.
+      if (rootElement === null) {
+        return;
+      }
+
+      if (!doc.hasFocus() || !isEnabled() || ignoreNextEnforceFocus.current) {
+        ignoreNextEnforceFocus.current = false;
+        return;
+      }
+
+      // The focus is already inside
+      if (rootElement.contains(doc.activeElement)) {
+        return;
+      }
+
+      // The disableEnforceFocus is set and the focus is outside of the focus trap (and sentinel nodes)
+      if (
+        disableEnforceFocus &&
+        doc.activeElement !== sentinelStart.current &&
+        doc.activeElement !== sentinelEnd.current
+      ) {
+        return;
+      }
+
+      // if the focus event is not coming from inside the children's react tree, reset the refs
+      if (doc.activeElement !== reactFocusEventTarget.current) {
+        reactFocusEventTarget.current = null;
+      } else if (reactFocusEventTarget.current !== null) {
+        return;
+      }
+
+      if (!activated.current) {
+        return;
+      }
+
+      let tabbable: ReadonlyArray<string> | HTMLElement[] = [];
+      if (
+        doc.activeElement === sentinelStart.current ||
+        doc.activeElement === sentinelEnd.current
+      ) {
+        tabbable = getTabbable(rootRef.current!);
+      }
+
+      // one of the sentinel nodes was focused, so move the focus
+      // to the first/last tabbable element inside the focus trap
+      if (tabbable.length > 0) {
+        const isShiftTab = Boolean(
+          lastKeydown.current?.shiftKey && lastKeydown.current?.key === 'Tab',
+        );
+
+        const focusNext = tabbable[0];
+        const focusPrevious = tabbable[tabbable.length - 1];
+
+        if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
+          if (isShiftTab) {
+            focusPrevious.focus();
+          } else {
+            focusNext.focus();
+          }
+        }
+        // no tabbable elements in the trap focus or the focus was outside of the focus trap
+      } else {
+        rootElement.focus();
+      }
+    };
+
     doc.addEventListener('focusin', contain);
     doc.addEventListener('keydown', loopFocus, true);
 
     // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area.
-    // e.g. https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
+    // for example https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
     // Instead, we can look if the active element was restored on the BODY element.
     //
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
     const interval = setInterval(() => {
       if (doc.activeElement && doc.activeElement.tagName === 'BODY') {
-        contain(null);
+        contain();
       }
     }, 50);
 
@@ -365,10 +372,10 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
 }
 
 FocusTrap.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A single child content element.
    */
@@ -424,4 +431,4 @@ if (process.env.NODE_ENV !== 'production') {
   (FocusTrap as any)['propTypes' + ''] = exactProp(FocusTrap.propTypes);
 }
 
-export default FocusTrap;
+export { FocusTrap };

@@ -23,26 +23,19 @@ export default function CondensedBreadcrumbs() {
             setCondensed(false);
           }}
           variant="plain"
-          color="info"
+          color="primary"
         >
           •••
         </Button>
       ) : null}
       {navigationItems.map((item) => (
-        <Link
-          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
-          onClick={(event) => event.preventDefault()}
-          underline="hover"
-          color="info"
-          href="/"
-          fontSize="inherit"
-        >
-          <FolderIcon sx={{ mr: 0.5 }} fontSize="inherit" color="inherit" />
+        <Link key={item} color="primary" href="#condensed-breadcrumbs">
+          <FolderIcon sx={{ mr: 0.5 }} color="inherit" />
           {item}
         </Link>
       ))}
-      <Typography fontSize="inherit" sx={{ display: 'flex', alignItems: 'center' }}>
-        <FolderIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+      <Typography sx={{ display: 'flex', alignItems: 'center' }}>
+        <FolderIcon sx={{ mr: 0.5 }} />
         bablo.txt
       </Typography>
     </Breadcrumbs>

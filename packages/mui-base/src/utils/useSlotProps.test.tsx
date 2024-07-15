@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { createRenderer } from '@mui/internal-test-utils';
 import { EventHandlers } from '@mui/base';
-import { createRenderer } from 'test/utils';
-import useSlotProps, { UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
+import { useSlotProps, UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
 
 const { render } = createRenderer();
 
@@ -277,7 +277,7 @@ describe('useSlotProps', () => {
       ownerState,
     });
 
-    expect(externalSlotProps.callCount).to.not.equal(0);
+    expect(externalSlotProps.callCount).not.to.equal(0);
     expect(externalSlotProps.args[0][0]).to.deep.equal(ownerState);
   });
 

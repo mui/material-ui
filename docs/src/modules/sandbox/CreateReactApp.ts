@@ -1,25 +1,35 @@
+import { DemoData } from 'docs/src/modules/sandbox/types';
+
 export const getHtml = ({
   title,
   language,
   codeStyling,
+  raw,
 }: {
   title: string;
   language: string;
   codeStyling?: 'Tailwind' | 'MUI System';
+  raw?: string;
 }) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
   <head>
+    <meta charset="utf-8" />
     <title>${title}</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons${
+        raw?.includes('material-icons-two-tone') ? '+Two+Tone' : ''
+      }"
     />${
       codeStyling === 'Tailwind'
         ? `
@@ -29,15 +39,20 @@ export const getHtml = ({
       tailwind.config = {
         theme: {
           extend: {
-            boxShadow: {
-              'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
-              'outline-switch': '0 0 1px 8px rgba(0, 0, 0, 0.25)',
-            },
-            cursor: {
-              inherit: 'inherit',
+            animation: {
+              appear: 'in-right 200ms',
             },
             border: {
               3: '3px',
+            },
+            boxShadow: {
+              'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
+              'outline-purple-light': '0 0 0 4px rgba(245, 208, 254, 0.25)',
+              'outline-purple-xs': '0 0 0 1px rgba(192, 132, 252, 0.25)',
+              'outline-switch': '0 0 1px 3px rgba(168, 85, 247, 0.35)',
+            },
+            cursor: {
+              inherit: 'inherit',
             },
             keyframes: {
               'in-right': {
@@ -45,12 +60,8 @@ export const getHtml = ({
                 to: { transform: 'translateX(0)' },
               },
             },
-            animation: {
-              appear: 'in-right 200ms',
-            },
-            minWidth: {
-              badge: '22px',
-              snackbar: '300px',
+            lineHeight: {
+              '5.5': '1.375rem',
             },
             maxWidth: {
               snackbar: '560px',
@@ -58,11 +69,14 @@ export const getHtml = ({
             minHeight: {
               badge: '22px',
             },
-            lineHeight: {
-              '5.5': '1.375rem',
-            }
-          }
-        }
+            minWidth: {
+              badge: '22px',
+              listbox: '200px',
+              snackbar: '300px',
+              'tabs-list': '400px',
+            },
+          },
+        },
       }
     </script>`
         : ''
@@ -74,14 +88,17 @@ export const getHtml = ({
 </html>`;
 };
 
-export const getRootIndex = (productId?: 'joy-ui' | 'base-ui') => {
-  if (productId === 'joy-ui') {
+export function getRootIndex(demoData: DemoData) {
+  // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
+  const type = demoData.codeVariant === 'TS' ? '!' : '';
+
+  if (demoData.productId === 'joy-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
-import Demo from './demo';
+import Demo from './Demo';
 
-ReactDOM.createRoot(document.querySelector("#root")).render(
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <CssVarsProvider>
@@ -91,12 +108,12 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </React.StrictMode>
 );`;
   }
-  if (productId === 'base-ui') {
+  if (demoData.productId === 'base-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import Demo from './demo';
+import Demo from './Demo';
 
-ReactDOM.createRoot(document.querySelector("#root")).render(
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
     <Demo />
   </React.StrictMode>
@@ -105,16 +122,16 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
-import Demo from './demo';
+import Demo from './Demo';
 
-ReactDOM.createRoot(document.querySelector("#root")).render(
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <Demo />
     </StyledEngineProvider>
   </React.StrictMode>
 );`;
-};
+}
 
 export const getTsconfig = () => `{
   "compilerOptions": {

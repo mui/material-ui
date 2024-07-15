@@ -2,7 +2,6 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme, styled, alpha } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormLabel from '@mui/material/FormLabel';
@@ -56,36 +55,25 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
   if (form.status === 'sent') {
     return (
       <Alert
+        icon={<CheckCircleRoundedIcon fontSize="small" />}
         severity="success"
         sx={[
           (theme) => ({
-            maxWidth: { sm: 400 },
+            fontWeight: 'medium',
             bgcolor: 'success.50',
+            border: '1px solid',
+            borderColor: 'success.200',
+            color: 'success.900',
             ...theme.applyDarkStyles({
-              bgcolor: 'primaryDark.700',
+              color: 'success.200',
+              bgcolor: alpha(theme.palette.success[700], 0.1),
+              borderColor: alpha(theme.palette.success[600], 0.3),
             }),
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
         ]}
-        iconMapping={{
-          success: (
-            <CheckCircleRoundedIcon
-              fontSize="small"
-              sx={(theme: Theme) => ({
-                color: 'success.700',
-                ...theme.applyDarkStyles({
-                  color: 'success.600',
-                }),
-              })}
-            />
-          ),
-        }}
       >
-        <AlertTitle sx={{ typography: 'body2', fontWeight: 700 }}>
-          Thanks! Check your email.
-        </AlertTitle>
-        You should get a <strong>confirmation email</strong> soon. Open it up and confirm your email
-        address so that we can keep you up to date.
+        Go to your email and open the <strong>confirmation email</strong> to confirm your
+        subscription.
       </Alert>
     );
   }
@@ -93,16 +81,18 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     <Form onSubmit={handleSubmit} sx={sx}>
       <FormLabel
         htmlFor="email-subscribe"
-        sx={{ typography: 'caption', mb: 0.5, color: 'text.secondary', fontWeight: 500 }}
+        sx={{ typography: 'caption', color: 'text.secondary', fontWeight: 'medium' }}
       >
-        Enter your email:
+        Your email
       </FormLabel>
       <Box
         sx={{
-          display: 'flex',
-          gap: 1,
+          mt: 1,
           width: { xs: '100%', sm: 'auto' },
-          maxWidth: 320,
+          maxWidth: { xs: '100%', sm: 320 },
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: 1,
         }}
       >
         <InputBase
@@ -115,79 +105,62 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           inputProps={{ required: true }}
           sx={[
             (theme) => ({
+              typography: 'body1',
+              flexGrow: 1,
               minWidth: 220,
-              borderRadius: 1,
+              borderRadius: '8px',
               border: '1px solid',
-              bgcolor: '#fff',
-              boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.1)',
               borderColor: 'grey.300',
-              typography: 'body2',
+              bgcolor: '#FFF',
+              boxShadow: `inset 0 1px 2px ${
+                (theme.vars || theme).palette.grey[50]
+              }, 0 2px .5px ${alpha(theme.palette.grey[100], 0.5)}`,
               '&:hover': {
                 borderColor: 'grey.400',
-                boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.2)',
+                boxShadow: `inset 0 1px 2px ${(theme.vars || theme).palette.grey[100]}`,
               },
               [`&.${inputBaseClasses.focused}`]: {
-                boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary[200]}`,
+                boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.5)}`,
                 borderColor: 'primary.500',
               },
               [`& .${inputBaseClasses.input}`]: {
-                borderRadius: `calc(${theme.spacing(1)} - 1px)`,
-                py: '11px',
+                borderRadius: theme.shape.borderRadius,
                 px: 1,
               },
             }),
             (theme) =>
               theme.applyDarkStyles({
-                bgcolor: 'primaryDark.900',
-                boxShadow: '0 1px 2px 0 rgba(0 0 0 / 1)',
-                borderColor: 'primaryDark.500',
+                bgcolor: 'primaryDark.800',
+                borderColor: alpha(theme.palette.primaryDark[600], 0.8),
+                boxShadow: `inset 0 1px 1px ${
+                  (theme.vars || theme).palette.primaryDark[900]
+                }, 0 2px .5px ${(theme.vars || theme).palette.common.black}`,
                 '&:hover': {
-                  borderColor: 'primaryDark.300',
-                  boxShadow: '0 1px 2px 0 rgba(0 0 0 / 1)',
+                  borderColor: 'primaryDark.500',
+                  boxShadow: `inset 0 1px 2px ${(theme.vars || theme).palette.common.black}`,
                 },
                 [`&.${inputBaseClasses.focused}`]: {
-                  boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[500]}`,
-                  borderColor: 'primaryDark.300',
+                  borderColor: 'primary.400',
                 },
               }),
           ]}
         />
-        <Button
-          disabled={form.status === 'loading'}
-          type="submit"
-          sx={[
-            (theme) => ({
-              bgcolor: alpha(theme.palette.primary[100], 0.5),
-              color: 'primary.600',
-              py: 1,
-              px: 1.5,
-              '&:hover': {
-                bgcolor: alpha(theme.palette.primary[100], 1),
-              },
-            }),
-            (theme) =>
-              theme.applyDarkStyles({
-                bgcolor: 'primaryDark.500',
-                color: 'primaryDark.100',
-                '&:hover': {
-                  bgcolor: 'primaryDark.600',
-                },
-              }),
-          ]}
-        >
+        <Button variant="outlined" size="small" disabled={form.status === 'loading'} type="submit">
           Subscribe
         </Button>
       </Box>
       {form.status === 'failure' && (
         <FormHelperText
           sx={(theme) => ({
-            color: 'warning.800',
+            mt: 1,
+            fontWeight: 'semiBold',
+            color: 'error.700',
             ...theme.applyDarkStyles({
-              color: 'warning.500',
+              color: 'error.400',
             }),
           })}
         >
-          Oops! something went wrong, please try again later.
+          Oops! Something went wrong, please try again later.
         </FormHelperText>
       )}
     </Form>

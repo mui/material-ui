@@ -1,5 +1,4 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Avatar from '@mui/joy/Avatar';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
@@ -12,6 +11,7 @@ import Sheet from '@mui/joy/Sheet';
 import Home from '@mui/icons-material/Home';
 import Apps from '@mui/icons-material/Apps';
 import MoreVert from '@mui/icons-material/MoreVert';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function ListVariables() {
   return (
@@ -34,7 +34,6 @@ export default function ListVariables() {
             ...sx,
             width: 300,
             ...theme.variants.outlined.neutral,
-            bgcolor: 'background.body',
           })}
         >
           <ListItem>
@@ -57,8 +56,7 @@ export default function ListVariables() {
           <ListItem nested>
             <ListItem>
               <Typography
-                level="body2"
-                fontWeight="md"
+                level="body-sm"
                 startDecorator={
                   <Sheet
                     component="span"
@@ -70,6 +68,7 @@ export default function ListVariables() {
                     }}
                   />
                 }
+                sx={{ fontWeight: 'md' }}
               >
                 Online people
               </Typography>

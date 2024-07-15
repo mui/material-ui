@@ -2,8 +2,12 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useTabsContext } from '../Tabs';
-import { useCompoundItem } from '../utils/useCompoundItem';
-import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.types';
+import { useCompoundItem } from '../useCompound';
+import {
+  UseTabPanelParameters,
+  UseTabPanelReturnValue,
+  UseTabPanelRootSlotProps,
+} from './useTabPanel.types';
 
 function tabPanelValueGenerator(otherTabPanelValues: Set<string | number>) {
   return otherTabPanelValues.size;
@@ -13,11 +17,11 @@ function tabPanelValueGenerator(otherTabPanelValues: Set<string | number>) {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base-ui/react-tabs/#hooks)
+ * - [Tabs](https://next.mui.com/base-ui/react-tabs/#hooks)
  *
  * API:
  *
- * - [useTabPanel API](https://mui.com/base-ui/react-tabs/hooks-api/#use-tab-panel)
+ * - [useTabPanel API](https://next.mui.com/base-ui/react-tabs/hooks-api/#use-tab-panel)
  */
 function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue {
   const { value: valueParam, id: idParam, rootRef: externalRef } = parameters;
@@ -40,11 +44,14 @@ function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue 
 
   const correspondingTabId = value !== undefined ? getTabId(value) : undefined;
 
-  const getRootProps = () => {
+  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseTabPanelRootSlotProps<ExternalProps> => {
     return {
       'aria-labelledby': correspondingTabId ?? undefined,
       hidden,
       id: id ?? undefined,
+      ...externalProps,
       ref: handleRef,
     };
   };
@@ -56,4 +63,4 @@ function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue 
   };
 }
 
-export default useTabPanel;
+export { useTabPanel };

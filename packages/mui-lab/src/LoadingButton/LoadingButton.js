@@ -1,11 +1,15 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@mui/utils';
 import { capitalize, unstable_useId as useId } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { styled, useThemeProps } from '@mui/material/styles';
+import { useDefaultProps } from '@mui/material/DefaultPropsProvider';
 import Button from '@mui/material/Button';
+import { ButtonGroupContext } from '@mui/material/ButtonGroup';
 import CircularProgress from '@mui/material/CircularProgress';
+import resolveProps from '@mui/utils/resolveProps';
+import { styled } from '../zero-styled';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -29,7 +33,7 @@ const useUtilityClasses = (ownerState) => {
   };
 };
 
-// TODO use `import { rootShouldForwardProp } from '../styles/styled';` once move to core
+// TODO use `import rootShouldForwardProp from '../styles/rootShouldForwardProp';` once move to core
 const rootShouldForwardProp = (prop) =>
   prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as' && prop !== 'classes';
 const LoadingButtonRoot = styled(Button, {
@@ -47,7 +51,7 @@ const LoadingButtonRoot = styled(Button, {
       },
     ];
   },
-})(({ ownerState, theme }) => ({
+})(({ theme }) => ({
   [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
     {
       transition: theme.transitions.create(['opacity'], {
@@ -55,39 +59,50 @@ const LoadingButtonRoot = styled(Button, {
       }),
       opacity: 0,
     },
-  ...(ownerState.loadingPosition === 'center' && {
-    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
-      duration: theme.transitions.duration.short,
-    }),
-    [`&.${loadingButtonClasses.loading}`]: {
-      color: 'transparent',
+  variants: [
+    {
+      props: {
+        loadingPosition: 'center',
+      },
+      style: {
+        transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+          duration: theme.transitions.duration.short,
+        }),
+        [`&.${loadingButtonClasses.loading}`]: {
+          color: 'transparent',
+        },
+      },
     },
-  }),
-  ...(ownerState.loadingPosition === 'start' &&
-    ownerState.fullWidth && {
-      [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
-        {
-          transition: theme.transitions.create(['opacity'], {
-            duration: theme.transitions.duration.short,
-          }),
-          opacity: 0,
-          marginRight: -8,
-        },
-    }),
-  ...(ownerState.loadingPosition === 'end' &&
-    ownerState.fullWidth && {
-      [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
-        {
-          transition: theme.transitions.create(['opacity'], {
-            duration: theme.transitions.duration.short,
-          }),
-          opacity: 0,
-          marginLeft: -8,
-        },
-    }),
+    {
+      props: ({ ownerState }) => ownerState.loadingPosition === 'start' && ownerState.fullWidth,
+      style: {
+        [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+          {
+            transition: theme.transitions.create(['opacity'], {
+              duration: theme.transitions.duration.short,
+            }),
+            opacity: 0,
+            marginRight: -8,
+          },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.loadingPosition === 'end' && ownerState.fullWidth,
+      style: {
+        [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+          {
+            transition: theme.transitions.create(['opacity'], {
+              duration: theme.transitions.duration.short,
+            }),
+            opacity: 0,
+            marginLeft: -8,
+          },
+      },
+    },
+  ],
 }));
 
-const LoadingButtonLoadingIndicator = styled('div', {
+const LoadingButtonLoadingIndicator = styled('span', {
   name: 'MuiLoadingButton',
   slot: 'LoadingIndicator',
   overridesResolver: (props, styles) => {
@@ -97,45 +112,92 @@ const LoadingButtonLoadingIndicator = styled('div', {
       styles[`loadingIndicator${capitalize(ownerState.loadingPosition)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   position: 'absolute',
   visibility: 'visible',
   display: 'flex',
-  ...(ownerState.loadingPosition === 'start' &&
-    (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
-      left: ownerState.size === 'small' ? 10 : 14,
-    }),
-  ...(ownerState.loadingPosition === 'start' &&
-    ownerState.variant === 'text' && {
-      left: 6,
-    }),
-  ...(ownerState.loadingPosition === 'center' && {
-    left: '50%',
-    transform: 'translate(-50%)',
-    color: (theme.vars || theme).palette.action.disabled,
-  }),
-  ...(ownerState.loadingPosition === 'end' &&
-    (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
-      right: ownerState.size === 'small' ? 10 : 14,
-    }),
-  ...(ownerState.loadingPosition === 'end' &&
-    ownerState.variant === 'text' && {
-      right: 6,
-    }),
-  ...(ownerState.loadingPosition === 'start' &&
-    ownerState.fullWidth && {
-      position: 'relative',
-      left: -10,
-    }),
-  ...(ownerState.loadingPosition === 'end' &&
-    ownerState.fullWidth && {
-      position: 'relative',
-      right: -10,
-    }),
+  variants: [
+    {
+      props: {
+        loadingPosition: 'start',
+        size: 'small',
+      },
+      style: {
+        left: 10,
+      },
+    },
+    {
+      props: ({ loadingPosition, ownerState }) =>
+        loadingPosition === 'start' && ownerState.size !== 'small',
+      style: {
+        left: 14,
+      },
+    },
+    {
+      props: {
+        variant: 'text',
+        loadingPosition: 'start',
+      },
+      style: {
+        left: 6,
+      },
+    },
+    {
+      props: {
+        loadingPosition: 'center',
+      },
+      style: {
+        left: '50%',
+        transform: 'translate(-50%)',
+        color: (theme.vars || theme).palette.action.disabled,
+      },
+    },
+    {
+      props: {
+        loadingPosition: 'end',
+        size: 'small',
+      },
+      style: {
+        right: 10,
+      },
+    },
+    {
+      props: ({ loadingPosition, ownerState }) =>
+        loadingPosition === 'end' && ownerState.size !== 'small',
+      style: {
+        right: 14,
+      },
+    },
+    {
+      props: {
+        variant: 'text',
+        loadingPosition: 'end',
+      },
+      style: {
+        right: 6,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.loadingPosition === 'start' && ownerState.fullWidth,
+      style: {
+        position: 'relative',
+        left: -10,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.loadingPosition === 'end' && ownerState.fullWidth,
+      style: {
+        position: 'relative',
+        right: -10,
+      },
+    },
+  ],
 }));
 
 const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiLoadingButton' });
+  const contextProps = React.useContext(ButtonGroupContext);
+  const resolvedProps = resolveProps(contextProps, inProps);
+  const props = useDefaultProps({ props: resolvedProps, name: 'MuiLoadingButton' });
   const {
     children,
     disabled = false,
@@ -179,17 +241,26 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       classes={classes}
       ownerState={ownerState}
     >
-      {ownerState.loadingPosition === 'end' ? children : loadingButtonLoadingIndicator}
-      {ownerState.loadingPosition === 'end' ? loadingButtonLoadingIndicator : children}
+      {ownerState.loadingPosition === 'end' ? (
+        <span>{children}</span>
+      ) : (
+        loadingButtonLoadingIndicator
+      )}
+
+      {ownerState.loadingPosition === 'end' ? (
+        loadingButtonLoadingIndicator
+      ) : (
+        <span>{children}</span>
+      )}
     </LoadingButtonRoot>
   );
 });
 
 LoadingButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -208,7 +279,7 @@ LoadingButton.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the loading indicator is shown.
+   * If `true`, the loading indicator is shown and the button becomes disabled.
    * @default false
    */
   loading: PropTypes.bool,

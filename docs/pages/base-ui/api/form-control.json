@@ -1,6 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
+    "className": { "type": { "name": "string" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "onChange": { "type": { "name": "func" } },
@@ -11,14 +12,58 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "value": { "type": { "name": "any" } }
   },
   "name": "FormControl",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import { FormControl } from '@mui/base/FormControl';",
+    "import { FormControl } from '@mui/base';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-FormControl-root"
+    }
+  ],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "base--error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "filled",
+      "className": "base-FormControl-filled",
+      "description": "State class applied to the root element if the inner input has value.",
+      "isGlobal": false
+    },
+    {
+      "key": "focused",
+      "className": "base--focused",
+      "description": "State class applied to the root element if the inner input is focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "required",
+      "className": "base--required",
+      "description": "State class applied to the root element if `required={true}`.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
-  "muiName": "MuiFormControl",
+  "muiName": "FormControl",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/FormControl/FormControl.tsx",
   "inheritance": null,

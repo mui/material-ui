@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "5.13.7",
+  "version": "6.0.0-beta.0",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -25,28 +25,49 @@
   "homepage": "https://mui.com/material-ui/material-icons/",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/mui"
+    "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "shx cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
-    "build:lib": "yarn build:node && yarn build:stable",
-    "build:lib:clean": "rimraf lib/ && yarn build:lib",
-    "build:legacy": "echo 'Skip legacy build'",
+    "build": "shx cp -r lib/ build/ && pnpm build:typings && pnpm build:copy-files",
+    "build:lib": "pnpm build:node && pnpm build:stable",
+    "build:lib:clean": "rimraf lib/ && pnpm build:lib",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
     "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:typings": "node ./scripts/create-typings.mjs",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && pnpm publish",
     "src:download": "node ./scripts/download.mjs",
-    "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && yarn build:lib:clean",
+    "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && pnpm build:lib:clean",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.{mjs,js,ts,tsx}'",
-    "test:built-typings": "tslint -p test/generated-types/tsconfig.json \"test/generated-types/*.{ts,tsx}\"",
-    "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
+    "test:built-typings": "tsc -p test/generated-types/tsconfig.json",
+    "typescript": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.24.7"
+  },
+  "devDependencies": {
+    "@mui/icons-material": "workspace:*",
+    "@mui/internal-waterfall": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@types/chai": "^4.3.16",
+    "@types/react": "^18.3.3",
+    "chai": "^4.4.1",
+    "chalk": "^5.3.0",
+    "cross-fetch": "^4.0.0",
+    "fast-glob": "^3.3.2",
+    "fs-extra": "^11.2.0",
+    "lodash": "^4.17.21",
+    "mustache": "^4.2.0",
+    "react": "^18.3.1",
+    "rimraf": "^5.0.8",
+    "shx": "^0.3.4",
+    "svgo": "^3.3.2",
+    "yargs": "^17.7.2"
   },
   "peerDependencies": {
-    "@mui/material": "^5.0.0",
+    "@mui/material": "workspace:*",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },
@@ -55,19 +76,10 @@
       "optional": true
     }
   },
-  "dependencies": {
-    "@babel/runtime": "^7.22.5"
-  },
-  "devDependencies": {
-    "fs-extra": "^11.1.1",
-    "mustache": "^4.2.0",
-    "shx": "^0.3.4",
-    "svgo": "^2.8.0",
-    "yargs": "^17.7.2"
-  },
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"

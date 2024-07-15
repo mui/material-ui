@@ -1,16 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  createRenderer,
-  describeConformance,
-  describeJoyColorInversion,
-  act,
-  fireEvent,
-} from 'test/utils';
+import { createRenderer, act, fireEvent } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Chip from '@mui/joy/Chip';
 import ChipDelete, { chipDeleteClasses as classes } from '@mui/joy/ChipDelete';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ChipDelete />', () => {
   const { render } = createRenderer();
@@ -33,8 +28,6 @@ describe('<ChipDelete />', () => {
     },
   }));
 
-  describeJoyColorInversion(<ChipDelete />, { muiName: 'JoyChipDelete', classes });
-
   describe('Chip context', () => {
     it('disabled', () => {
       const { getByRole } = render(
@@ -51,7 +44,7 @@ describe('<ChipDelete />', () => {
           <ChipDelete />
         </Chip>,
       );
-      expect(getByRole('button')).to.have.class(classes.variantSolid);
+      expect(getByRole('button')).to.have.class(classes.variantSoft);
     });
 
     it('use variant prop if provided', () => {
@@ -81,6 +74,7 @@ describe('<ChipDelete />', () => {
       expect(getByRole('button')).to.have.class(classes.colorNeutral);
     });
   });
+
   describe('Chip onDelete', () => {
     it('should call onDelete function when backspace, enter or delete is pressed', () => {
       const handleDelete = spy();

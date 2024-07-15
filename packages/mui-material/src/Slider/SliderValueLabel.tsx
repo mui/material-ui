@@ -50,4 +50,4 @@ SliderValueLabel.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   value: PropTypes.node,
-};
+} as any;

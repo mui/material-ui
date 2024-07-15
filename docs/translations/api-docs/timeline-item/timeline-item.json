@@ -1,22 +1,18 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "position": "The position where the timeline&#39;s item should appear.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "children": { "description": "The content of the component." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "position": { "description": "The position where the timeline&#39;s item should appear." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "positionLeft": {
+    "missingOppositeContent": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>position=\"left\"</code>"
-    },
-    "positionRight": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>position=\"right\"</code>"
+      "conditions": "TimelineOppositeContent isn&#39;t provided"
     },
     "positionAlternate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -28,10 +24,16 @@
       "nodeName": "the root element",
       "conditions": "<code>position=\"alternate-reverse\"</code>"
     },
-    "missingOppositeContent": {
+    "positionLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "TimelineOppositeContent isn&#39;t provided"
-    }
+      "conditions": "<code>position=\"left\"</code>"
+    },
+    "positionRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"right\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

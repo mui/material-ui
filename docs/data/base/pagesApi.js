@@ -7,6 +7,15 @@ module.exports = [
     title: 'ClickAwayListener',
   },
   {
+    pathname: '/base-ui/react-transitions/components-api/#css-animation',
+    title: 'CssAnimation',
+  },
+  {
+    pathname: '/base-ui/react-transitions/components-api/#css-transition',
+    title: 'CssTransition',
+  },
+  { pathname: '/base-ui/react-menu/components-api/#dropdown', title: 'Dropdown' },
+  {
     pathname: '/base-ui/react-focus-trap/components-api/#focus-trap',
     title: 'FocusTrap',
   },
@@ -16,15 +25,24 @@ module.exports = [
   },
   { pathname: '/base-ui/react-input/components-api/#input', title: 'Input' },
   { pathname: '/base-ui/react-menu/components-api/#menu', title: 'Menu' },
+  {
+    pathname: '/base-ui/react-menu/components-api/#menu-button',
+    title: 'MenuButton',
+  },
   { pathname: '/base-ui/react-menu/components-api/#menu-item', title: 'MenuItem' },
   { pathname: '/base-ui/react-modal/components-api/#modal', title: 'Modal' },
   { pathname: '/base-ui/react-no-ssr/components-api/#no-ssr', title: 'NoSsr' },
+  {
+    pathname: '/base-ui/react-number-input/components-api/#number-input',
+    title: 'NumberInput',
+  },
   { pathname: '/base-ui/react-select/components-api/#option', title: 'Option' },
   {
     pathname: '/base-ui/react-select/components-api/#option-group',
     title: 'OptionGroup',
   },
   { pathname: '/base-ui/react-popper/components-api/#popper', title: 'Popper' },
+  { pathname: '/base-ui/react-popup/components-api/#popup', title: 'Popup' },
   { pathname: '/base-ui/react-portal/components-api/#portal', title: 'Portal' },
   { pathname: '/base-ui/react-select/components-api/#select', title: 'Select' },
   { pathname: '/base-ui/react-slider/components-api/#slider', title: 'Slider' },
@@ -51,14 +69,32 @@ module.exports = [
   },
   { pathname: '/base-ui/react-badge/hooks-api/#use-badge', title: 'useBadge' },
   { pathname: '/base-ui/react-button/hooks-api/#use-button', title: 'useButton' },
+  { pathname: '/base-ui/react-menu/hooks-api/#use-dropdown', title: 'useDropdown' },
   {
     pathname: '/base-ui/react-form-control/hooks-api/#use-form-control-context',
     title: 'useFormControlContext',
   },
   { pathname: '/base-ui/react-input/hooks-api/#use-input', title: 'useInput' },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu', title: 'useMenu' },
+  {
+    pathname: '/base-ui/react-menu/hooks-api/#use-menu-button',
+    title: 'useMenuButton',
+  },
   { pathname: '/base-ui/react-menu/hooks-api/#use-menu-item', title: 'useMenuItem' },
+  {
+    pathname: '/base-ui/react-menu/hooks-api/#use-menu-item-context-stabilizer',
+    title: 'useMenuItemContextStabilizer',
+  },
+  { pathname: '/base-ui/react-modal/hooks-api/#use-modal', title: 'useModal' },
+  {
+    pathname: '/base-ui/react-number-input/hooks-api/#use-number-input',
+    title: 'useNumberInput',
+  },
   { pathname: '/base-ui/react-select/hooks-api/#use-option', title: 'useOption' },
+  {
+    pathname: '/base-ui/react-select/hooks-api/#use-option-context-stabilizer',
+    title: 'useOptionContextStabilizer',
+  },
   { pathname: '/base-ui/react-select/hooks-api/#use-select', title: 'useSelect' },
   { pathname: '/base-ui/react-slider/hooks-api/#use-slider', title: 'useSlider' },
   {
@@ -70,4 +106,12 @@ module.exports = [
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tab-panel', title: 'useTabPanel' },
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tabs', title: 'useTabs' },
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tabs-list', title: 'useTabsList' },
+  {
+    pathname: '/base-ui/react-transitions/hooks-api/#use-transition-state-manager',
+    title: 'useTransitionStateManager',
+  },
+  {
+    pathname: '/base-ui/react-transitions/hooks-api/#use-transition-trigger',
+    title: 'useTransitionTrigger',
+  },
 ];

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, strictModeDoubleLoggingSuppressed } from 'test/utils';
+import { createRenderer, strictModeDoubleLoggingSuppressed } from '@mui/internal-test-utils';
 import { typographyClasses } from '@mui/material/Typography';
 import InputAdornment, { inputAdornmentClasses as classes } from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
+import describeConformance from '../../test/describeConformance';
 
 describe('<InputAdornment />', () => {
   const { render } = createRenderer();

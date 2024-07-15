@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
 import {
   act,
   createRenderer,
   fireEvent,
   screen,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui/internal-test-utils';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
+import Divider from '@mui/material/Divider';
 
 describe('<MenuList> integration', () => {
   const { clock, render } = createRenderer();
@@ -485,20 +485,16 @@ describe('<MenuList> integration', () => {
       expect(getByText('Arcansas')).toHaveFocus();
     });
 
-    it('should not get focusVisible class on click', () => {
-      const { getByText } = render(
+    it('should not get focusVisible class on click', async () => {
+      const { user, getByText } = render(
         <MenuList>
           <MenuItem focusVisibleClassName="focus-visible">Arizona</MenuItem>
         </MenuList>,
       );
 
       const menuitem = getByText('Arizona');
-      // user click
-      act(() => {
-        fireEvent.mouseDown(menuitem);
-        menuitem.focus();
-      });
-      fireEvent.click(menuitem);
+
+      await user.click(menuitem);
 
       expect(menuitem).toHaveFocus();
       if (programmaticFocusTriggersFocusVisible()) {

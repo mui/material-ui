@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
-import useBadge from '../useBadge';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { useBadge } from '../useBadge';
 import { getBadgeUtilityClass } from './badgeClasses';
 import {
   BadgeProps,
@@ -94,10 +94,10 @@ const Badge = React.forwardRef(function Badge<RootComponentType extends React.El
 }) as PolymorphicComponent<BadgeTypeMap>;
 
 Badge.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content rendered within the badge.
    */
@@ -140,4 +140,4 @@ Badge.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Badge;
+export { Badge };

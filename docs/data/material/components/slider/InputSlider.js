@@ -19,7 +19,7 @@ export default function InputSlider() {
   };
 
   const handleInputChange = (event) => {
-    setValue(event.target.value === '' ? '' : Number(event.target.value));
+    setValue(event.target.value === '' ? 0 : Number(event.target.value));
   };
 
   const handleBlur = () => {
@@ -35,7 +35,7 @@ export default function InputSlider() {
       <Typography id="input-slider" gutterBottom>
         Volume
       </Typography>
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
         <Grid item>
           <VolumeUp />
         </Grid>

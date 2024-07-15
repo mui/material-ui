@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListItemDecorator, { listItemDecoratorClasses as classes } from '@mui/joy/ListItemDecorator';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <ListItemDecorator />', () => {
   const { render } = createRenderer();

@@ -10,7 +10,7 @@ unstyled: /base-ui/react-switch/
 
 <p class="description">Switches toggle the state of a single setting on or off.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -52,7 +52,7 @@ By default, the color of the switch changes from `neutral` to `primary` when it 
 
 ### Label
 
-When a `Switch` is used together with `FormControl` and `FormLabel`, the switch is labelled automatically. You can also use `FormHelperText` to include a description to the switch as well.
+When a `Switch` is used together with `FormControl` and `FormLabel`, the switch is labeled automatically. You can also use `FormHelperText` to include a description to the switch as well.
 
 {{"demo": "SwitchControl.js"}}
 
@@ -82,46 +82,19 @@ Similarly to the above, target the thumb's children to display icons inside of i
 
 {{"demo": "ExampleThumbChild.js"}}
 
-## CSS Variables
+## CSS variables playground
 
 Play around with all the CSS variables available in the switch component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-{{"demo": "SwitchVariables.js"}}
-
-## Accessibility
-
-Here are a few tips to make sure you have an accessible switch component:
-
-- The `Switch` will render with the `checkbox` role as opposed to `switch`.
-  This is mainly because the latter isn't widely supported yet.
-  However, if you believe your audience will support it, make sure to test with assistive technology.
-  Use the `slotProps` prop to change the role:
-
-  ```jsx
-  <Switch slotProps={{ input: { role: 'switch' } }}>
-  ```
-
-- Every form control component should have proper labels.
-  This includes radio buttons, checkboxes, and switches.
-  In most cases, this is done using the `<label>` element.
-  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `slotProps` prop.
-  ```jsx
-  <Switch value="checkedA" slotProps={{ 'aria-label': 'Switch A' }} />
-  ```
+{{"demo": "SwitchVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 
-### Material Design
-
-You can also find the Material Design switch design, out of the box, in [Material UI's documentation](/material-ui/react-switch/).
-
-{{"demo": "ExampleMaterialSwitch.js"}}
-
 ### Fluent UI
 
-Here's how you'd customize Joy UI's switch to make it look like [Microsoft's Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle):
+Here's how you'd customize Joy UI's Switch to make it look like [Microsoft's Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle):
 
 - Unchecked state: `outlined` variant and `neutral` color.
 - Checked state: `solid` variant and `primary` color.
@@ -149,3 +122,24 @@ Note how we've used the `:active` pseudo-class to replicate the small thumb size
 ### Mantine
 
 {{"demo": "ExampleMantineSwitch.js"}}
+
+## Accessibility
+
+Here are a few tips to make sure you have an accessible switch component:
+
+- The `Switch` will render with the `checkbox` role as opposed to `switch`.
+  This is mainly because the latter isn't widely supported yet.
+  However, if you believe your audience will support it, make sure to test with assistive technology.
+  Use the `slotProps` prop to change the role:
+
+  ```jsx
+  <Switch slotProps={{ input: { role: 'switch' } }}>
+  ```
+
+- Every form control component should have proper labels.
+  This includes radio buttons, checkboxes, and switches.
+  In most cases, this is done using the `<label>` element.
+  - If a label can't be applied, make sure to add an attribute (for example `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `slotProps` prop.
+  ```jsx
+  <Switch value="checkedA" slotProps={{ 'aria-label': 'Switch A' }} />
+  ```

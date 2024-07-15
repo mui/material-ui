@@ -107,7 +107,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
        */
       variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
       /**
-       * If `true`, the loading indicator is shown.
+       * If `true`, the loading indicator is shown and the button becomes disabled.
        * @default false
        */
       loading?: boolean;
@@ -147,5 +147,5 @@ export interface ButtonOwnerState extends ApplyColorInversion<ButtonProps> {
 
 export type ExtendButton<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendButtonTypeMap<M>, 'a'>,
-) => JSX.Element) &
+) => React.JSX.Element) &
   OverridableComponent<ExtendButtonTypeMap<M>>;

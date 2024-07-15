@@ -3,15 +3,12 @@ import JoyMenu, { MenuActions } from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import { ListActionTypes } from '@mui/base/useList';
 
-function Menu({
-  control,
-  menus,
-  id,
-}: {
-  control: React.ReactElement;
+export default function Menu(props: {
+  control: React.ReactElement<any>;
   id: string;
   menus: Array<{ label: string } & { [k: string]: any }>;
 }) {
+  const { control, menus, id } = props;
   const [buttonElement, setButtonElement] = React.useState<HTMLButtonElement | null>(
     null,
   );
@@ -97,5 +94,3 @@ function Menu({
     </React.Fragment>
   );
 }
-
-export default Menu;

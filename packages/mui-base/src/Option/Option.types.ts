@@ -65,7 +65,7 @@ export interface OptionType {
     RootComponentType extends React.ElementType = OptionTypeMap<OptionValue>['defaultComponent'],
   >(
     props: PolymorphicProps<OptionTypeMap<OptionValue>, RootComponentType>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   propTypes?: any;
   displayName?: string | undefined;
 }
@@ -82,7 +82,7 @@ export type OptionRootSlotProps<OptionValue> = Simplify<
   UseOptionRootSlotProps & {
     children?: React.ReactNode;
     className: string;
-    ref: React.Ref<HTMLLIElement>;
+    ref: React.Ref<HTMLElement>;
     ownerState: OptionOwnerState<OptionValue>;
   }
 >;

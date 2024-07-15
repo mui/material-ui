@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
 import Input from '@mui/material/Input';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { isMuiElement } from '@mui/material/utils';
 import { createTheme } from '@mui/material/styles';
+import { unstable_nested } from '@mui/private-theming';
 import StylesProvider from '../StylesProvider';
 import createGenerateClassName from '../createGenerateClassName';
 import ThemeProvider from '../ThemeProvider';
@@ -135,7 +136,16 @@ describe('withStyles', () => {
       const jssCallbackStub = stub().returns({});
       const styles = { root: jssCallbackStub };
       const StyledComponent = withStyles(styles)(MyComp);
-      render(<StyledComponent mySuppliedProp={222} />);
+      const renderCb = () => render(<StyledComponent mySuppliedProp={222} />);
+
+      // React 18.3.0 started warning for deprecated defaultProps for function components
+      if (React.version.startsWith('18.3')) {
+        expect(renderCb).toErrorDev([
+          'Warning: MyComp: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.',
+        ]);
+      } else {
+        renderCb();
+      }
 
       expect(jssCallbackStub.callCount).to.equal(1);
       expect(jssCallbackStub.args[0][0]).to.deep.equal({
@@ -178,24 +188,33 @@ describe('withStyles', () => {
 
       const styles = { root: { display: 'flex' } };
       const StyledComponent = withStyles(styles, { name: 'MuiFoo' })(MuiFoo);
-
-      const { container } = render(
-        <ThemeProvider
-          theme={createTheme({
-            components: {
-              MuiFoo: {
-                defaultProps: {
-                  foo: 'bar',
+      const renderCb = () =>
+        render(
+          <ThemeProvider
+            theme={createTheme({
+              components: {
+                MuiFoo: {
+                  defaultProps: {
+                    foo: 'bar',
+                  },
                 },
               },
-            },
-          })}
-        >
-          <StyledComponent foo={undefined} />
-        </ThemeProvider>,
-      );
+            })}
+          >
+            <StyledComponent foo={undefined} />
+          </ThemeProvider>,
+        );
 
-      expect(container).to.have.text('bar');
+      // React 18.3.0 started warning for deprecated defaultProps for function components
+      if (React.version.startsWith('18.3')) {
+        expect(renderCb).toErrorDev([
+          'Warning: MuiFoo: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.',
+        ]);
+      } else {
+        renderCb();
+      }
+
+      expect(screen.getByText('bar')).not.to.equal(null);
     });
 
     it('should work when depending on a theme', () => {
@@ -364,13 +383,13 @@ describe('withStyles', () => {
         propsTheme = props.theme;
         return null;
       });
-      const theme = {};
+      const theme = { [unstable_nested]: false };
       render(
         <ThemeProvider theme={theme}>
           <StyledComponent />
         </ThemeProvider>,
       );
-      expect(propsTheme).to.equal(theme);
+      expect(propsTheme).to.deep.equal(theme);
     });
   });
 });

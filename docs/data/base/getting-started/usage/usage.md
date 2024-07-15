@@ -1,10 +1,10 @@
 # Usage
 
-<p class="description">Learn the basics of working with Base UI components.</p>
+<p class="description">Learn the basics of working with Base UI components.</p>
 
 ## Responsive meta tag
 
-Base UI is a _mobile-first_ component library—we write code for mobile devices first, and then scale up the components as necessary using CSS media queries.
+Base UI is a _mobile-first_ component library—we write code for mobile devices first, and then scale up the components as necessary using CSS media queries.
 
 To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element:
 
@@ -24,15 +24,16 @@ The `slots` prop is an object that lets you override any interior subcomponents�
 
 :::info
 Each component contains a root slot, and other appropriate slots based on the nature of the component.
-For example, the Base UI Badge contains two slots:
+For example, the Base UI Badge contains two slots:
 
 - `root`: the container element that wraps the children.
 - `badge`: the badge element itself.
+
   :::
 
 You can use the `slots` prop to override default slots with either custom components or HTML elements.
 
-For example, the Base UI Badge component renders a `<span>` by default.
+For example, the Base UI Badge component renders a `<span>` by default.
 The code snippet below shows how to override this by assigning a `<div>` to the root slot:
 
 ```jsx
@@ -44,7 +45,7 @@ The code snippet below shows how to override this by assigning a `<div>` to the 
 The `slotProps` prop is an object that contains the props for all slots within a component.
 You can use it to define additional custom props for a component's interior elements.
 
-For example, the code snippet below shows how to add a custom CSS class to the badge slot of the Base UI Badge component:
+For example, the code snippet below shows how to add a custom CSS class to the badge slot of the Base UI Badge component:
 
 ```jsx
 <Badge slotProps={{ badge: { className: 'my-badge' } }} />
@@ -77,16 +78,14 @@ If you did the same with `slots.root`, you would need to place this attribute on
 
 ## Components vs. hooks
 
-Base UI includes two kinds of building blocks: **components** and **hooks**.
+Base UI includes two kinds of building blocks: **components** and **hooks**.
 
 :::info
-💡 Hooks encapsulate _logic_; components provide _structure_.
+Hooks encapsulate _logic_; components provide _structure_.
 :::
 
-Many Base components are implemented with the help of hooks.
-(Visit the [React documentation on hooks](https://legacy.reactjs.org/docs/hooks-intro.html) to get up to speed on this concept.)
-
-You can use components or hooks—or a combination thereof—when building custom components.
+Many Base UI components are implemented with the help of [React hooks](https://react.dev/reference/react/hooks).
+You can use components or hooks—or a combination of both—when building custom components.
 
 In general, we recommend that you begin building with the component, and if you find that you are too limited by the customization options available, then consider refactoring your component to use the corresponding hook instead.
 

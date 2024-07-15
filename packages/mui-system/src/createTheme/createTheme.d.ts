@@ -3,8 +3,10 @@ import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
 import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './createSpacing';
 import { SxConfig, SxProps } from '../styleFunctionSx';
+import { ApplyStyles } from './applyStyles';
+import { CssContainerQueries } from '../cssContainerQueries';
 
-export { Breakpoint, BreakpointOverrides } from './createBreakpoints';
+export { Breakpoint, Breakpoints, BreakpointOverrides } from './createBreakpoints';
 
 export type Direction = 'ltr' | 'rtl';
 
@@ -23,7 +25,7 @@ export interface ThemeOptions {
   unstable_sxConfig?: SxConfig;
 }
 
-export interface Theme {
+export interface Theme extends CssContainerQueries {
   shape: Shape;
   breakpoints: Breakpoints;
   direction: Direction;
@@ -35,6 +37,7 @@ export interface Theme {
   mixins?: unknown;
   typography?: unknown;
   zIndex?: unknown;
+  applyStyles: ApplyStyles<'light' | 'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
 }

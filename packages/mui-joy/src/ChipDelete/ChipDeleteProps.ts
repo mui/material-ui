@@ -27,7 +27,7 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
   props: P & {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'primary'
+     * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ChipDeletePropsColorOverrides>;
     /**
@@ -53,7 +53,7 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
     sx?: SxProps;
     /**
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-     * @default 'solid'
+     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ChipDeletePropsVariantOverrides>;
   } & ChipDeleteSlotsAndSlotProps;

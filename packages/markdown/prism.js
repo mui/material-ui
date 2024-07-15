@@ -6,6 +6,7 @@ require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-json');
 require('prismjs/components/prism-jsx');
 require('prismjs/components/prism-markup');
+require('prismjs/components/prism-yaml');
 require('prismjs/components/prism-tsx');
 
 function highlight(code, language) {

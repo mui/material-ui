@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  describeJoyColorInversion,
-  createRenderer,
-  act,
-  fireEvent,
-} from 'test/utils';
+import { createRenderer, act, fireEvent } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/joy/ListItemButton';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <ListItemButton />', () => {
   const { render } = createRenderer();
@@ -29,8 +24,6 @@ describe('Joy <ListItemButton />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<ListItemButton />, { muiName: 'JoyListItemButton', classes });
 
   it('should render with the selected class', () => {
     const { getByRole } = render(<ListItemButton selected />);
@@ -63,7 +56,12 @@ describe('Joy <ListItemButton />', () => {
   });
 
   describe('prop: focusVisibleClassName', () => {
-    it('should have focusVisible classes', () => {
+    it('should have focusVisible classes', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { getByRole } = render(<ListItemButton />);
       const button = getByRole('button');
 

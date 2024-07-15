@@ -20,10 +20,8 @@ export default function ExampleIOSList() {
     <Sheet variant="soft" sx={{ width: 343, p: 2, borderRadius: 'sm' }}>
       <Typography
         level="h3"
-        fontSize="xl2"
-        fontWeight="xl"
         id="ios-example-demo"
-        mb={1}
+        sx={{ fontSize: 'xl2', fontWeight: 'xl', mb: 1 }}
       >
         Settings
       </Typography>
@@ -70,8 +68,8 @@ export default function ExampleIOSList() {
                 </Avatar>
               </ListItemDecorator>
               <div>
-                <Typography fontSize="xl">Murphy Bates</Typography>
-                <Typography fontSize="xs">
+                <Typography sx={{ fontSize: 'xl' }}>Murphy Bates</Typography>
+                <Typography sx={{ fontSize: 'xs' }}>
                   Apple ID, iCloud, Media & Purchase
                 </Typography>
               </div>
@@ -80,7 +78,7 @@ export default function ExampleIOSList() {
             <ListItem>
               <ListItemButton>
                 <ListItemContent>iCloud+ Feature Updates</ListItemContent>
-                <KeyboardArrowRight fontSize="xl3" sx={{ color: 'text.tertiary' }} />
+                <KeyboardArrowRight fontSize="xl3" />
               </ListItemButton>
             </ListItem>
           </List>
@@ -100,7 +98,7 @@ export default function ExampleIOSList() {
               Apple TV+ Free Year Available
             </ListItemButton>
           </ListItem>
-          <Typography id="apple-tv-description" level="body3" aria-hidden>
+          <Typography id="apple-tv-description" level="body-xs" aria-hidden>
             Included with your recent Apple device purchase. Must be accepted within
             90 days of activation.
           </Typography>
@@ -162,8 +160,13 @@ export default function ExampleIOSList() {
                   </Sheet>
                 </ListItemDecorator>
                 <ListItemContent>Wi-Fi</ListItemContent>
-                <Typography textColor="text.tertiary">Mars</Typography>
-                <KeyboardArrowRight fontSize="xl3" sx={{ color: 'text.tertiary' }} />
+                <Typography
+                  textColor="text.tertiary"
+                  sx={{ mr: 'calc(-1 * var(--ListItem-gap))' }}
+                >
+                  Mars
+                </Typography>
+                <KeyboardArrowRight fontSize="xl3" />
               </ListItemButton>
             </ListItem>
             <ListDivider inset="startContent" />
@@ -175,24 +178,25 @@ export default function ExampleIOSList() {
                   </Sheet>
                 </ListItemDecorator>
                 <ListItemContent>Bluetooth</ListItemContent>
-                <Typography textColor="text.tertiary">On</Typography>
-                <KeyboardArrowRight fontSize="xl3" sx={{ color: 'text.tertiary' }} />
+                <Typography
+                  textColor="text.tertiary"
+                  sx={{ mr: 'calc(-1 * var(--ListItem-gap))' }}
+                >
+                  On
+                </Typography>
+                <KeyboardArrowRight fontSize="xl3" />
               </ListItemButton>
             </ListItem>
             <ListDivider inset="startContent" />
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>
-                  <Sheet
-                    variant="solid"
-                    color="success"
-                    sx={{ bgcolor: 'success.500' }}
-                  >
+                  <Sheet variant="solid" color="success">
                     <Podcasts />
                   </Sheet>
                 </ListItemDecorator>
                 <ListItemContent>Cellular</ListItemContent>
-                <KeyboardArrowRight fontSize="xl3" sx={{ color: 'text.tertiary' }} />
+                <KeyboardArrowRight fontSize="xl3" />
               </ListItemButton>
             </ListItem>
           </List>

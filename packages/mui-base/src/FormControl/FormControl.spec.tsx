@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FormControl from '@mui/base/FormControl';
 import { expectType } from '@mui/types';
+import { FormControl } from '@mui/base/FormControl';
 import { FormControlRootSlotProps } from './FormControl.types';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =

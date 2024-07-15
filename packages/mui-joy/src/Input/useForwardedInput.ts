@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import useInput from '@mui/base/useInput';
+import { useInput } from '@mui/base/useInput';
 import FormControlContext, { FormControlContextValue } from '../FormControl/FormControlContext';
 
 export default function useForwardedInput<Output>(
@@ -17,6 +17,7 @@ export default function useForwardedInput<Output>(
     className,
     defaultValue,
     disabled: disabledProp,
+    disabledInProp,
     error: errorProp,
     id,
     name,
@@ -35,7 +36,7 @@ export default function useForwardedInput<Output>(
   } = props;
 
   const { getRootProps, getInputProps, focused, error, disabled } = useInput({
-    disabled: disabledProp ?? formControl?.disabled,
+    disabled: disabledInProp ?? formControl?.disabled ?? disabledProp,
     defaultValue,
     error: errorProp,
     onBlur,

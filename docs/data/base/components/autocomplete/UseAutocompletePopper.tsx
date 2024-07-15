@@ -1,10 +1,10 @@
 import * as React from 'react';
-import useAutocomplete, { UseAutocompleteProps } from '@mui/base/useAutocomplete';
-import Popper from '@mui/base/Popper';
+import { useAutocomplete, UseAutocompleteProps } from '@mui/base/useAutocomplete';
+import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import useForkRef from '@mui/utils/useForkRef';
 
-const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
+const Autocomplete = React.forwardRef(function Autocomplete(
   props: UseAutocompleteProps<(typeof top100Films)[number], false, false, false>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -14,6 +14,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
     getListboxProps,
     getOptionProps,
     groupedOptions,
+    focused,
     popupOpen,
     anchorEl,
     setAnchorEl,
@@ -23,9 +24,13 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
 
   return (
     <React.Fragment>
-      <StyledAutocompleteRoot {...getRootProps()} ref={rootRef}>
+      <Root
+        {...getRootProps()}
+        ref={rootRef}
+        className={focused ? 'Mui-focused' : ''}
+      >
         <StyledInput {...getInputProps()} />
-      </StyledAutocompleteRoot>
+      </Root>
       {anchorEl && (
         <Popper
           open={popupOpen}
@@ -34,17 +39,17 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
             root: StyledPopper,
           }}
         >
-          {groupedOptions.length > 0 ? (
-            <StyledListbox {...getListboxProps()}>
-              {(groupedOptions as typeof top100Films).map((option, index) => (
-                <StyledOption {...getOptionProps({ option, index })}>
+          <Listbox {...getListboxProps()}>
+            {groupedOptions.length > 0 ? (
+              (groupedOptions as typeof top100Films).map((option, index) => (
+                <Option {...getOptionProps({ option, index })}>
                   {option.label}
-                </StyledOption>
-              ))}
-            </StyledListbox>
-          ) : (
-            <StyledNoOptions>No results</StyledNoOptions>
-          )}
+                </Option>
+              ))
+            ) : (
+              <NoOptions>No results</NoOptions>
+            )}
+          </Listbox>
         </Popper>
       )}
     </React.Fragment>
@@ -62,11 +67,7 @@ export default function UseAutocompletePopper() {
   ) => setValue(newValue);
 
   return (
-    <CustomAutocomplete
-      options={top100Films}
-      value={value}
-      onChange={handleChange}
-    />
+    <Autocomplete options={top100Films} value={value} onChange={handleChange} />
   );
 }
 
@@ -76,41 +77,44 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
   900: '#003A75',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const StyledAutocompleteRoot = styled('div')(
+const Root = styled('div')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
   display: flex;
   gap: 5px;
   padding-right: 5px;
   overflow: hidden;
   width: 320px;
-  margin: 2rem 0 1.5rem;
+  margin: 1.5rem 0;
 
-  &.focused {
+  &.Mui-focused {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   &:hover {
@@ -133,7 +137,7 @@ const StyledInput = styled('input')(
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
   flex: 1 0 auto;
 `,
@@ -146,9 +150,9 @@ const StyledPopper = styled('div')`
   width: 320px;
 `;
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -156,17 +160,19 @@ const StyledListbox = styled('ul')(
   min-width: 320px;
   border-radius: 12px;
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   max-height: 300px;
   z-index: 1;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 4px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
-const StyledOption = styled('li')(
+const Option = styled('li')(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -204,7 +210,7 @@ const StyledOption = styled('li')(
   `,
 );
 
-const StyledNoOptions = styled('li')`
+const NoOptions = styled('li')`
   list-style: none;
   padding: 8px;
   cursor: default;

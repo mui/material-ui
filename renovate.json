@@ -19,11 +19,15 @@
     },
     {
       "groupName": "babel",
-      "matchPackagePatterns": "@babel/*"
+      "matchPackagePatterns": ["^@babel/", "^@types/babel"]
     },
     {
       "groupName": "Emotion",
       "matchPackagePatterns": "@emotion/*"
+    },
+    {
+      "groupName": "Pigment CSS",
+      "matchPackagePatterns": ["@pigment-css/*"]
     },
     {
       "groupName": "Font awesome SVG icons",
@@ -64,16 +68,16 @@
     },
     {
       "groupName": "React",
-      "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
-    },
-    {
-      "groupName": "tslint",
-      "matchPackageNames": ["tslint"],
-      "allowedVersions": "<= 5.14.0"
+      "matchPackageNames": ["react", "react-dom", "react-is"]
     },
     {
       "groupName": "typescript-eslint",
       "matchPackagePatterns": "@typescript-eslint/*"
+    },
+    {
+      "groupName": "@types/node",
+      "matchPackageNames": ["@types/node"],
+      "allowedVersions": "< 19.0.0"
     },
     {
       "groupName": "bundling fixtures",
@@ -105,9 +109,19 @@
     {
       "groupName": "@definitelytyped tools",
       "matchPackagePatterns": ["@definitelytyped/*"]
+    },
+    {
+      "groupName": "Testing libraries",
+      "matchPackagePatterns": ["@testing-library/*"]
+    },
+    {
+      "groupName": "envinfo tests",
+      "matchPaths": ["packages/mui-envinfo/test/package.json"],
+      "matchPackagePatterns": ["@mui/*"],
+      "enabled": false
     }
   ],
-  "postUpdateOptions": ["yarnDedupeHighest"],
+  "postUpdateOptions": ["pnpmDedupe"],
   "prConcurrentLimit": 30,
   "prHourlyLimit": 0,
   "rangeStrategy": "bump",

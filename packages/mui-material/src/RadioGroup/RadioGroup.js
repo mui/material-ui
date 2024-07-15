@@ -1,11 +1,24 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import composeClasses from '@mui/utils/composeClasses';
 import FormGroup from '../FormGroup';
+import { getRadioGroupUtilityClass } from './radioGroupClasses';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import RadioGroupContext from './RadioGroupContext';
 import useId from '../utils/useId';
+
+const useUtilityClasses = (props) => {
+  const { classes, row, error } = props;
+
+  const slots = {
+    root: ['root', row && 'row', error && 'error'],
+  };
+
+  return composeClasses(slots, getRadioGroupUtilityClass, classes);
+};
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const {
@@ -13,6 +26,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     // eslint-disable-next-line react/prop-types
     actions,
     children,
+    className,
     defaultValue,
     name: nameProp,
     onChange,
@@ -20,6 +34,8 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     ...other
   } = props;
   const rootRef = React.useRef(null);
+
+  const classes = useUtilityClasses(props);
 
   const [value, setValueState] = useControlled({
     controlled: valueProp,
@@ -66,7 +82,12 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
 
   return (
     <RadioGroupContext.Provider value={contextValue}>
-      <FormGroup role="radiogroup" ref={handleRef} {...other}>
+      <FormGroup
+        role="radiogroup"
+        ref={handleRef}
+        className={clsx(classes.root, className)}
+        {...other}
+      >
         {children}
       </FormGroup>
     </RadioGroupContext.Provider>
@@ -74,14 +95,18 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
 });
 
 RadioGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The default value. Use when the component is not controlled.
    */

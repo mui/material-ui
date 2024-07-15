@@ -1,12 +1,20 @@
 {
   "props": {
     "count": { "type": { "name": "number" }, "required": true },
-    "onPageChange": { "type": { "name": "func" }, "required": true },
+    "onPageChange": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": {
+        "type": "function(event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void",
+        "describedArgs": ["event", "page"]
+      }
+    },
     "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "getItemAriaLabel": {
       "type": { "name": "func" },
-      "default": "function defaultGetAriaLabel(type: ItemAriaLabelType) {\n  return `Go to ${type} page`;\n}"
+      "default": "function defaultGetAriaLabel(type: ItemAriaLabelType) {\n  return `Go to ${type} page`;\n}",
+      "signature": { "type": "function(type: string) => string", "describedArgs": ["type"] }
     },
     "labelDisplayedRows": {
       "type": { "name": "func" },
@@ -14,7 +22,13 @@
     },
     "labelId": { "type": { "name": "string" } },
     "labelRowsPerPage": { "type": { "name": "node" }, "default": "'Rows per page:'" },
-    "onRowsPerPageChange": { "type": { "name": "func" } },
+    "onRowsPerPageChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "rowsPerPageOptions": {
       "type": {
         "name": "arrayOf",
@@ -35,64 +49,87 @@
         "name": "shape",
         "description": "{ actions?: elementType, displayedRows?: elementType, menuItem?: elementType, root?: elementType, select?: elementType, selectLabel?: elementType, spacer?: elementType, toolbar?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "TablePagination",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import { TablePagination } from '@mui/base/TablePagination';",
+    "import { TablePagination } from '@mui/base';"
+  ],
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'td'",
-      "class": ".MuiTablePagination-root"
+      "class": "base-TablePagination-root"
     },
     {
       "name": "actions",
       "description": "The component that renders the actions.",
       "default": "TablePaginationActions",
-      "class": ".MuiTablePagination-actions"
+      "class": "base-TablePagination-actions"
     },
     {
       "name": "select",
       "description": "The component that renders the select.",
       "default": "'select'",
-      "class": ".MuiTablePagination-select"
+      "class": "base-TablePagination-select"
     },
     {
       "name": "selectLabel",
       "description": "The component that renders the select label.",
       "default": "'p'",
-      "class": ".MuiTablePagination-selectLabel"
+      "class": "base-TablePagination-selectLabel"
     },
     {
       "name": "menuItem",
       "description": "The component that renders the menu item.",
       "default": "'option'",
-      "class": ".MuiTablePagination-menuItem"
+      "class": "base-TablePagination-menuItem"
     },
     {
       "name": "displayedRows",
       "description": "The component that renders the displayed rows.",
       "default": "'p'",
-      "class": ".MuiTablePagination-displayedRows"
+      "class": "base-TablePagination-displayedRows"
     },
     {
       "name": "toolbar",
       "description": "The component that renders the toolbar.",
       "default": "'div'",
-      "class": ".MuiTablePagination-toolbar"
+      "class": "base-TablePagination-toolbar"
     },
     {
       "name": "spacer",
       "description": "The component that renders the spacer.",
       "default": "'div'",
-      "class": ".MuiTablePagination-spacer"
+      "class": "base-TablePagination-spacer"
     }
   ],
-  "classes": { "classes": ["input", "selectIcon", "selectRoot"], "globalClasses": {} },
+  "classes": [
+    {
+      "key": "input",
+      "className": "base-TablePagination-input",
+      "description": "Class name applied to the Select component `root` element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selectIcon",
+      "className": "base-TablePagination-selectIcon",
+      "description": "Class name applied to the Select component `icon` class.",
+      "isGlobal": false
+    },
+    {
+      "key": "selectRoot",
+      "className": "base-TablePagination-selectRoot",
+      "description": "Class name applied to the Select component `root` element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
-  "muiName": "MuiTablePagination",
+  "muiName": "TablePagination",
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-base/src/TablePagination/TablePagination.tsx",
   "inheritance": null,

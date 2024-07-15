@@ -9,7 +9,7 @@ githubLabel: 'component: breadcrumbs'
 
 <p class="description">A breadcrumb trail is a navigational tool that helps users keep track of their location within an app.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -58,12 +58,19 @@ import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 ```
 
-The Breadcrumbs component doesn't accept common Joy UI style props like `variant`, `color`, `startDecorator`, or `endDecorator`—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
+The Breadcrumbs component doesn't accept common Joy UI style props like `variant`, `color`, `startDecorator`, or `endDecorator`—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
 As such, most custom styles that affect the content should be applied directly to those components rather than Breadcrumbs.
 
 The demo below shows how to add an icon to the Link with `startDecorator` and change the color with the `color` prop:
 
 {{"demo": "BreadcrumbsWithIcon.js"}}
+
+## CSS variables playground
+
+Play around with the CSS variables available to the Breadcrumbs component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 
@@ -84,20 +91,11 @@ As an alternative to the behavior of the condensed demo above, consider adding a
 
 {{"demo": "BreadcrumbsWithMenu.js"}}
 
-## CSS variable playground
-
-Play around with the CSS variables available to the Breadcrumbs component to see how the design changes.
-You can use these to customize the component with both the `sx` prop and the theme.
-
-{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true}}
-
 ## Accessibility
-
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
 
 Be sure to add an informative `aria-label` description to the Breadcrumbs component.
 
-The following features are included to optimize the component's baseline accessibility:
+The following features, which follows [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/), are included to optimize the component's baseline accessibility:
 
 - The set of links is structured using an ordered list (`<ol>`).
 - Visual separators between links are hidden with `aria-hidden` to prevent screen readers from announcing them.

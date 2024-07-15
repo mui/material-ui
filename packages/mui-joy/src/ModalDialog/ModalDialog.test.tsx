@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ModalDialog, { modalDialogClasses as classes } from '@mui/joy/ModalDialog';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ModalDialog />', () => {
   const { render } = createRenderer();
@@ -24,8 +25,6 @@ describe('<ModalDialog />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<ModalDialog />, { muiName: 'JoyModalDialog', classes });
 
   describe('prop: variant', () => {
     it('plain by default', () => {
@@ -51,7 +50,7 @@ describe('<ModalDialog />', () => {
       expect(getByRole('dialog')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(<ModalDialog color={color} />);
 

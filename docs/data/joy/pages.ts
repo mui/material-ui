@@ -1,17 +1,18 @@
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
-import pagesApi from './pagesApi';
+import type { MuiPage } from 'docs/src/MuiPage';
+import pagesApi from 'docs/data/joy/pagesApi';
 
-const pages = [
+const pages: readonly MuiPage[] = [
   {
     pathname: '/joy-ui/getting-started-group',
     title: 'Getting started',
-    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/joy-ui/getting-started', title: 'Overview' },
       { pathname: '/joy-ui/getting-started/installation' },
       { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
       { pathname: '/joy-ui/getting-started/templates' },
+      { pathname: '/joy-ui/getting-started/roadmap' },
+      { pathname: '/joy-ui/getting-started/support' },
       {
         pathname: '/joy-ui/main-features',
         subheader: 'main-features',
@@ -27,7 +28,6 @@ const pages = [
   {
     pathname: '/joy-ui/react-',
     title: 'Components',
-    icon: standardNavIcons.ToggleOnIcon,
     children: [
       {
         pathname: '/joy-ui/components/inputs',
@@ -44,7 +44,10 @@ const pages = [
           { pathname: '/joy-ui/react-switch' },
           { pathname: '/joy-ui/react-textarea' },
           { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
-          { pathname: '/joy-ui/react-toggle-button', title: 'Toggle Button', comingSoon: true },
+          {
+            pathname: '/joy-ui/react-toggle-button-group',
+            title: 'Toggle Button Group',
+          },
         ],
       },
       {
@@ -70,15 +73,15 @@ const pages = [
           { pathname: '/joy-ui/react-circular-progress', title: 'Circular Progress' },
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
-          { pathname: '/joy-ui/react-skeleton', comingSoon: true },
-          { pathname: '/joy-ui/react-snackbar', comingSoon: true },
+          { pathname: '/joy-ui/react-skeleton' },
+          { pathname: '/joy-ui/react-snackbar' },
         ],
       },
       {
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
         children: [
-          { pathname: '/joy-ui/react-accordion', comingSoon: true },
+          { pathname: '/joy-ui/react-accordion' },
           { pathname: '/joy-ui/react-card' },
           { pathname: '/joy-ui/react-sheet' },
         ],
@@ -88,16 +91,21 @@ const pages = [
         subheader: 'navigation',
         children: [
           { pathname: '/joy-ui/react-breadcrumbs' },
-          { pathname: '/joy-ui/react-drawer', comingSoon: true },
+          { pathname: '/joy-ui/react-drawer' },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
+          { pathname: '/joy-ui/react-stepper' },
           { pathname: '/joy-ui/react-tabs' },
         ],
       },
       {
         pathname: '/joy-ui/components/layout',
         subheader: 'layout',
-        children: [{ pathname: '/joy-ui/react-grid' }, { pathname: '/joy-ui/react-stack' }],
+        children: [
+          { pathname: '/joy-ui/react-box' },
+          { pathname: '/joy-ui/react-grid' },
+          { pathname: '/joy-ui/react-stack' },
+        ],
       },
       {
         pathname: '/joy-ui/components/utils',
@@ -109,16 +117,12 @@ const pages = [
   {
     title: 'APIs',
     pathname: '/joy-ui/api',
-    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
   },
   {
     pathname: '/joy-ui/customization',
-    icon: standardNavIcons.CreateIcon,
     children: [
       { pathname: '/joy-ui/customization/approaches' },
-      { pathname: '/joy-ui/customization/dark-mode' },
-      { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
       {
         pathname: '/joy-ui/customization/theme',
         subheader: 'Theme',
@@ -127,6 +131,26 @@ const pages = [
           { pathname: '/joy-ui/customization/theme-shadow', title: 'Shadow' },
           { pathname: '/joy-ui/customization/theme-typography', title: 'Typography' },
           { pathname: '/joy-ui/customization/themed-components', title: 'Components' },
+        ],
+      },
+      {
+        pathname: '/joy-ui/customization/guides',
+        subheader: 'Guides',
+        children: [
+          { pathname: '/joy-ui/customization/dark-mode' },
+          { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
+          {
+            pathname: '/joy-ui/customization/creating-themed-components',
+            title: 'Creating themed components',
+          },
+          {
+            pathname: '/joy-ui/customization/overriding-component-structure',
+            title: 'Overriding the component structure',
+          },
+          {
+            pathname: '/joy-ui/customization/right-to-left',
+            title: 'Right-to-left support',
+          },
         ],
       },
       {
@@ -140,25 +164,30 @@ const pages = [
     ],
   },
   {
-    pathname: '/joy-ui/guides',
-    title: 'How-to guides',
-    icon: standardNavIcons.VisibilityIcon,
+    pathname: '/joy-ui/integrations',
+    title: 'Integrations',
     children: [
       {
-        pathname: '/joy-ui/guides/overriding-component-structure',
-        title: 'Overriding component structure',
+        pathname: '/joy-ui/integrations/next-js-app-router',
+        title: 'Next.js App Router',
       },
       {
-        pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
-        title: 'Joy UI and Material UI together',
+        pathname: '/joy-ui/integrations/material-ui',
+        title: 'Usage with Material UI',
       },
       {
-        pathname: '/joy-ui/guides/using-icon-libraries',
-        title: 'Using icon libraries',
+        pathname: '/joy-ui/integrations/icon-libraries',
+        title: 'Using other icon libraries',
       },
+    ],
+  },
+  {
+    pathname: '/joy-ui/migration',
+    title: 'Migration',
+    children: [
       {
-        pathname: '/joy-ui/guides/next-js-app-router',
-        title: 'Integrating with Next.js App Router',
+        pathname: '/joy-ui/migration/migrating-default-theme',
+        title: 'Migrating the default theme',
       },
     ],
   },

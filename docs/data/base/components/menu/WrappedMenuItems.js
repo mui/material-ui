@@ -1,15 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Menu from '@mui/base/Menu';
-import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
-import Button, { buttonClasses } from '@mui/base/Button';
-import Popper from '@mui/base/Popper';
+import { Dropdown } from '@mui/base/Dropdown';
+import { Menu } from '@mui/base/Menu';
+import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
+import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
-import { ListActionTypes } from '@mui/base/useList';
 
 function MenuSection({ children, label }) {
   return (
-    <MenuSectionRoot>
+    <MenuSectionRoot role="group">
       <MenuSectionLabel>{label}</MenuSectionLabel>
       <ul>{children}</ul>
     </MenuSectionRoot>
@@ -22,138 +21,68 @@ MenuSection.propTypes = {
 };
 
 export default function WrappedMenuItems() {
-  const [buttonElement, setButtonElement] = React.useState(null);
-  const [isOpen, setOpen] = React.useState(false);
-  const menuActions = React.useRef(null);
-  const preventReopen = React.useRef(false);
-
-  const updateAnchor = React.useCallback((node) => {
-    setButtonElement(node);
-  }, []);
-
-  const handleButtonClick = (event) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    setOpen((open) => !open);
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpen) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setOpen(true);
-      if (event.key === 'ArrowUp') {
-        // Focus the last item when pressing ArrowUp.
-        menuActions.current?.dispatch({
-          type: ListActionTypes.keyDown,
-          key: event.key,
-          event,
-        });
-      }
-    }
-  };
-
   const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
-      setOpen(false);
-      buttonElement?.focus();
     };
   };
 
   return (
-    <div>
-      <TriggerButton
-        type="button"
-        onClick={handleButtonClick}
-        onKeyDown={handleButtonKeyDown}
-        onMouseDown={handleButtonMouseDown}
-        ref={updateAnchor}
-        aria-controls={isOpen ? 'wrapped-menu' : undefined}
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
-      >
-        Options
-      </TriggerButton>
-      <Menu
-        actions={menuActions}
-        open={isOpen}
-        onOpenChange={(open) => {
-          setOpen(open);
-        }}
-        anchorEl={buttonElement}
-        slots={{ root: StyledPopper, listbox: StyledListbox }}
-        slotProps={{ listbox: { id: 'simple-menu' } }}
-      >
+    <Dropdown>
+      <MenuButton>Options</MenuButton>
+      <Menu slots={{ listbox: Listbox }}>
         <MenuSection label="Navigation">
-          <StyledMenuItem onClick={createHandleMenuClick('Back')}>
-            Back
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Forward')} disabled>
+          <MenuItem onClick={createHandleMenuClick('Back')}>Back</MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Forward')} disabled>
             Forward
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Refresh')}>
-            Refresh
-          </StyledMenuItem>
+          </MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Refresh')}>Refresh</MenuItem>
         </MenuSection>
         <MenuSection label="Page">
-          <StyledMenuItem onClick={createHandleMenuClick('Save as...')}>
+          <MenuItem onClick={createHandleMenuClick('Save as...')}>
             Save as...
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Print...')}>
-            Print...
-          </StyledMenuItem>
+          </MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Print...')}>Print...</MenuItem>
         </MenuSection>
         <MenuSection label="View">
-          <StyledMenuItem onClick={createHandleMenuClick('Zoom in')}>
-            Zoom in
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Zoom out')}>
-            Zoom out
-          </StyledMenuItem>
+          <MenuItem onClick={createHandleMenuClick('Zoom in')}>Zoom in</MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Zoom out')}>Zoom out</MenuItem>
         </MenuSection>
         <li className="helper">Current zoom level: 100%</li>
       </Menu>
-    </div>
+    </Dropdown>
   );
 }
 
 const blue = {
-  100: '#DAECFF',
+  50: '#F0F7FF',
+  100: '#C2E0FF',
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
-  600: '#0072E5',
+  600: '#0072E6',
+  700: '#0059B3',
+  800: '#004C99',
   900: '#003A75',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -161,15 +90,18 @@ const StyledListbox = styled('ul')(
   min-width: 200px;
   border-radius: 12px;
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 2px 16px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 4px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
+  z-index: 1;
   `,
 );
 
-const StyledMenuItem = styled(MenuItem)(
+const MenuItem = styled(BaseMenuItem)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -181,7 +113,7 @@ const StyledMenuItem = styled(MenuItem)(
     border-bottom: none;
   }
 
-  &.${menuItemClasses.focusVisible} {
+  &:focus {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -190,46 +122,40 @@ const StyledMenuItem = styled(MenuItem)(
   &.${menuItemClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
-
-  &:hover:not(.${menuItemClasses.disabled}) {
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  }
   `,
 );
 
-const TriggerButton = styled(Button)(
+const MenuButton = styled(BaseMenuButton)(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
   font-size: 0.875rem;
-  box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 8px 14px;
   line-height: 1.5;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
+  cursor: pointer;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 120ms;
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
   &:hover {
     background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &.${buttonClasses.focusVisible} {
-    border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  &:active {
+    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
   }
-  `,
-);
 
-const StyledPopper = styled(Popper)`
-  z-index: 1;
-`;
+  &:focus-visible {
+    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+    outline: none;
+  }
+`,
+);
 
 const MenuSectionRoot = styled('li')`
   list-style: none;

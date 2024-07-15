@@ -1,38 +1,42 @@
 # Quickstart
 
-<p class="description">Get started with Base UI, a library of headless ("unstyled") React UI components and low-level hooks.</p>
+<p class="description">Get started with Base UI, a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
 :::info
-If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/base-ui/guides/next-js-app-router/)
+If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/base-ui/guides/next-js-app-router/).
 :::
 
 ## Installation
 
-`@mui/base` is completely standalone – run one of the following commands to add Base UI to your React project:
+`@mui/base` is completely standalone – run one of the following commands to add Base UI to your React project:
 
-### With npm
+:::info
+The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
+:::
 
-```bash
-npm install @mui/base
+<!-- #default-branch-switch -->
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @mui/base@next
 ```
 
-### With yarn
-
-```bash
-yarn add @mui/base
+```bash yarn
+yarn add @mui/base@next
 ```
 
-### With pnpm
-
-```bash
-pnpm add @mui/base
+```bash pnpm
+pnpm add @mui/base@next
 ```
+
+</codeblock>
 
 ### Peer dependencies
 
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing Base UI.
 
 ```json
 "peerDependencies": {
@@ -43,13 +47,13 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Implementing a Button
 
-This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/design/) as a reference.
+This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/components/button/) as a reference.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
 ### Components and hooks
 
-Base UI provides a `<Button />` component and a `useButton` hook.
+Base UI provides a `<Button />` component and a `useButton` hook.
 Both can be used to build a button, and each has its own benefits and trade-offs—see [Components vs. hooks](/base-ui/getting-started/usage/#components-vs-hooks) for details.
 
 The code snippets below demonstrate the basic implementation of each:
@@ -58,7 +62,7 @@ The code snippets below demonstrate the basic implementation of each:
 
 ```tsx
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 export default function App() {
   return <Button>Click Me</Button>;
@@ -69,7 +73,7 @@ export default function App() {
 
 ```tsx
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 
 export default function App() {
   const { getRootProps } = useButton();
@@ -81,7 +85,7 @@ export default function App() {
 }
 ```
 
-Base UI comes with no styles or styling solution—here's what the Button component looks like out of the box:
+Base UI comes with no styles or styling solution—here's what the Button component looks like out of the box:
 
 {{"demo": "BaseButton.js", "defaultCodeOpen": false}}
 
@@ -108,74 +112,79 @@ Pass a `className` prop and use it as a styling hook:
 <Button className="btn">Create Repository</Button>
 ```
 
-Base UI components like the Button come with a classes object (e.g. `buttonClasses`) that provides class hooks for styling a particular state.
+Base UI components like the Button come with a classes object (for example `buttonClasses`) that provides class hooks for styling a particular state.
 
 ```css
 /* To style the disabled state: */
 
-.${buttonClasses.disabled} { /* ".MuiButton-disabled" */
+.${buttonClasses.disabled} { /* ".base-Button-disabled" */
   cursor: not-allowed;
 }
 ```
 
-The demo below shows how to create the Primer button using plain CSS with Base UI's Button component and `useButton` hook:
+The demo below shows how to create the Primer button using plain CSS with Base UI's Button component and `useButton` hook:
 
 {{"demo": "BaseButtonPlainCss.js", "defaultCodeOpen": false}}
 
-### Styling with Tailwind CSS
+### Styling with Tailwind CSS
 
-After installing Tailwind CSS, pass its utility classes to `className`, as shown below:
+After installing Tailwind CSS, pass its utility classes to `className`, as shown below:
 
 ```tsx
 <Button className="bg-green-600 rounded-md py-1 px-4...">Create Repository</Button>
 ```
 
-The demo below shows how to build the Primer button using Tailwind CSS:
+The demo below shows how to build the Primer button using Tailwind CSS:
 
 {{"demo": "BaseButtonTailwind.js", "hideToolbar": true, "bg": "inline"}}
 
-### Styling with MUI System
+### Styling with MUI System
 
-[MUI System](/system/getting-started/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
+[MUI System](/system/getting-started/) is a small set of CSS utilities that provide a styled-components-like API for building out designs that adhere to a theme.
 
-MUI System's core utility is a [`styled` function](/system/styled/) that's equivalent to the `styled()` function in emotion and styled-components.
+MUI System's core utility is a [`styled` function](/system/styled/) that's equivalent to the `styled()` function in emotion and styled-components.
 Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
 
 ```tsx
 import * as React from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { styled } from '@mui/system';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 const theme = {
-  colors: {
+  palette: {
     primary: 'green',
+    text: '#fff',
   },
 };
 
 const GitHubButton = styled(Button)(
   ({ theme }) => `
-    background-color: ${theme.colors.primary /* => 'green' */};
+    background-color: ${theme.palette.primary /* => 'green' */};
+    ${/* ... the rest of the styles */}
   `,
 );
 
-render(
-  <ThemeProvider theme={theme}>
-    <GitHubButton>Create Repository</GitHubButton>
-  </ThemeProvider>,
-);
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <GitHubButton>Create Repository</GitHubButton>
+    </ThemeProvider>
+  );
+}
+
 ```
 
-Most of the demos in the Base UI docs are styled with MUI System in this way.
-You can inspect the `theme` object used on this site in your browser console, or explore the default structure in the Material UI [Default theme](/material-ui/customization/default-theme/) documentation.
+Most of the demos in the Base UI docs are styled with MUI System in this way.
+You can inspect the `theme` object used on this site in your browser console, or explore the default structure in the Material UI [Default theme](/material-ui/customization/default-theme/) documentation.
 
-The demos below show how to create the Primer button using MUI System:
+The demos below show how to create the Primer button using MUI System:
 
-#### Button Component with MUI System
+#### Button Component with MUI System
 
 ```tsx
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 import { styled } from '@mui/system';
 
 const GitHubButton = styled(Button)(
@@ -192,11 +201,11 @@ export default function App() {
 }
 ```
 
-#### useButton hook with MUI System
+#### useButton hook with MUI System
 
 ```tsx
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 import { styled } from '@mui/system';
 
 const GitHubButton = styled('button')(
@@ -219,7 +228,7 @@ export default function App() {
 
 ### Using the sx prop
 
-MUI System supports the [`sx` prop](/system/getting-started/the-sx-prop/), which provides a quick way to apply ad-hoc styles using theme-aware values to any component created with `styled`.
+MUI System supports the [`sx` prop](/system/getting-started/the-sx-prop/), which provides a quick way to apply ad-hoc styles using theme-aware values to any component created with `styled`.
 
 ```tsx
 const GitHubButton = styled(Button)(
@@ -238,8 +247,8 @@ export default function App() {
 }
 ```
 
-The demo below shows how to build the Primer button using MUI System along with the `sx` prop:
+The demo below shows how to build the Primer button using MUI System along with the `sx` prop:
 
 {{"demo": "BaseButtonMuiSystem.js", "defaultCodeOpen": false}}
 
-Read the [MUI System Usage](/system/getting-started/usage/) doc for further details.
+Read the [MUI System Usage](/system/getting-started/usage/) doc for further details.

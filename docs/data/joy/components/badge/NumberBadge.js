@@ -12,10 +12,18 @@ export default function NumberBadge() {
   const [showZero, setShowZero] = React.useState(false);
   return (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 2,
+        mt: 4,
+      }}
     >
       <Badge badgeContent={count} showZero={showZero}>
-        <Typography fontSize="xl">🛍</Typography>
+        <Typography level="h1" component="h2">
+          🛍
+        </Typography>
       </Badge>
       <Box
         sx={{
@@ -23,6 +31,7 @@ export default function NumberBadge() {
           alignItems: 'center',
           gap: 2,
           pt: 4,
+          mb: 2,
           borderTop: '1px solid',
           borderColor: 'background.level1',
         }}
@@ -34,7 +43,7 @@ export default function NumberBadge() {
         >
           <Remove />
         </IconButton>
-        <Typography fontWeight="md" textColor="text.secondary">
+        <Typography textColor="text.secondary" sx={{ fontWeight: 'md' }}>
           {count}
         </Typography>
         <IconButton
@@ -44,12 +53,12 @@ export default function NumberBadge() {
         >
           <Add />
         </IconButton>
-        <Checkbox
-          onChange={(event) => setShowZero(event.target.checked)}
-          checked={showZero}
-          label="show zero"
-        />
       </Box>
+      <Checkbox
+        onChange={(event) => setShowZero(event.target.checked)}
+        checked={showZero}
+        label="show zero"
+      />
     </Box>
   );
 }

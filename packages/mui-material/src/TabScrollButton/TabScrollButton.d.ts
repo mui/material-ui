@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/base';
-import { InternalStandardProps as StandardProps, SvgIcon, Theme } from '..';
+import { SlotComponentProps } from '../utils/types';
+import { ButtonBaseProps } from '../ButtonBase';
+import { SvgIcon, Theme } from '..';
 import { TabScrollButtonClasses } from './tabScrollButtonClasses';
 
 export interface TabScrollButtonStartIconSlotPropsOverrides {}
@@ -11,7 +12,7 @@ export interface TabScrollButtonOwnerState extends TabScrollButtonProps {
   isRtl: boolean;
 }
 
-export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface TabScrollButtonProps extends ButtonBaseProps {
   /**
    * The content of the component.
    */
@@ -68,10 +69,10 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://next.mui.com/material-ui/react-tabs/)
  *
  * API:
  *
- * - [TabScrollButton API](https://mui.com/material-ui/api/tab-scroll-button/)
+ * - [TabScrollButton API](https://next.mui.com/material-ui/api/tab-scroll-button/)
  */
-export default function TabScrollButton(props: TabScrollButtonProps): JSX.Element;
+export default function TabScrollButton(props: TabScrollButtonProps): React.JSX.Element;

@@ -1,2 +1,2 @@
-<Paper variant="outlined" />
-<Paper variant="outlined" square />
+<DemoPaper variant="elevation">default variant</DemoPaper>
+<DemoPaper variant="outlined">outlined variant</DemoPaper>

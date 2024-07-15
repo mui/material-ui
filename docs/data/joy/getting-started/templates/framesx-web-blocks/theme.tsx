@@ -1,4 +1,5 @@
 import { extendTheme } from '@mui/joy/styles';
+import { inputClasses } from '@mui/joy/Input';
 
 export default extendTheme({
   colorSchemes: {
@@ -12,7 +13,7 @@ export default extendTheme({
           400: '#60A5FA',
           500: '#3479E8',
           600: '#2362EA',
-          700: '1D4FD7',
+          700: '#1D4FD7',
           800: '#1D3FAE',
           900: '#1E3B8A',
           solidBg: 'var(--joy-palette-primary-600)',
@@ -54,14 +55,13 @@ export default extendTheme({
     JoyInput: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
-          ...(ownerState.variant === 'outlined' &&
-            ownerState.color !== 'context' && {
-              '&:not(.Joy-focused):hover::before': {
-                boxShadow: `inset 0 0 0 2px ${
-                  theme.vars.palette?.[ownerState.color!]?.outlinedBorder
-                }`,
-              },
-            }),
+          ...(ownerState.variant === 'outlined' && {
+            [`&:not(.${inputClasses.focused}):hover::before`]: {
+              boxShadow: `inset 0 0 0 2px ${
+                theme.vars.palette?.[ownerState.color!]?.outlinedBorder
+              }`,
+            },
+          }),
         }),
         input: {
           caretColor: 'var(--Input-focusedHighlight)',

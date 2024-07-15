@@ -26,7 +26,6 @@ declare module '@mui/joy/styles' {
     'PalettePrimaryOverrides',
     'PaletteNeutralOverrides',
     'PaletteDangerOverrides',
-    'PaletteInfoOverrides',
     'PaletteSuccessOverrides',
     'PaletteWarningOverrides',
     'PaletteBackgroundOverrides',
@@ -72,9 +71,6 @@ declare module '@mui/joy/styles' {
               danger: {
                 gradient3: 'any',
               },
-              info: {
-                gradient4: 'any',
-              },
               success: {
                 gradient5: 'any',
               },
@@ -104,9 +100,6 @@ declare module '@mui/joy/styles' {
   }
   interface PaletteDangerOverrides {
     gradient3: true;
-  }
-  interface PaletteInfoOverrides {
-    gradient4: true;
   }
   interface PaletteSuccessOverrides {
     gradient5: true;

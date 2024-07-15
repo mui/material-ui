@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useTheme, styled, Theme } from '@mui/material/styles';
-import { SxProps } from '@mui/system';
 import Box from '@mui/material/Box';
-import Tooltip from '@mui/material/Tooltip';
+import { SxProps } from '@mui/system';
 
 export type IconImageProps = {
   name:
@@ -11,104 +10,102 @@ export type IconImageProps = {
     | 'product-toolpad'
     | 'product-templates'
     | 'product-designkits'
-    | 'block-green'
-    | 'block-blue'
-    | 'block-gold'
-    | 'yes'
-    | 'no'
-    | 'time'
-    | 'spotify'
-    | 'amazon'
-    | 'nasa'
-    | 'netflix'
-    | 'unity'
-    | 'shutterstock'
-    | 'southwest'
-    | 'boeing'
-    | 'siemens'
-    | 'deloitte'
-    | 'apple'
-    | 'twitter'
-    | 'salesforce'
-    | 'verizon'
-    | 'atandt'
-    | 'patreon'
-    | 'ebay'
-    | 'samsung'
-    | 'volvo';
+    | 'pricing/x-plan-pro'
+    | 'pricing/x-plan-premium'
+    | 'pricing/x-plan-community'
+    | 'pricing/yes'
+    | 'pricing/no'
+    | 'pricing/time'
+    | 'companies/spotify'
+    | 'companies/amazon'
+    | 'companies/nasa'
+    | 'companies/netflix'
+    | 'companies/unity'
+    | 'companies/shutterstock'
+    | 'companies/southwest'
+    | 'companies/boeing'
+    | 'companies/siemens'
+    | 'companies/deloitte'
+    | 'companies/apple'
+    | 'companies/twitter'
+    | 'companies/salesforce'
+    | 'companies/verizon'
+    | 'companies/atandt'
+    | 'companies/patreon'
+    | 'companies/ebay'
+    | 'companies/samsung'
+    | 'companies/volvo'
+    | string;
   height?: number;
-  ref?: React.Ref<HTMLImageElement>;
+  mode?: '' | 'light' | 'dark';
   sx?: SxProps<Theme>;
-  title?: string;
   width?: number;
-} & Omit<JSX.IntrinsicElements['img'], 'ref'>;
+} & Omit<React.JSX.IntrinsicElements['img'], 'ref'>;
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 
 let neverHydrated = true;
 
 export default function IconImage(props: IconImageProps) {
-  const { height: heightProp, name, title, width: widthProp, ...other } = props;
+  const { height: heightProp, name, width: widthProp, mode: modeProp, ...other } = props;
   const theme = useTheme();
-  const [mounted, setMounted] = React.useState(false);
+  const [firstRender, setFirstRender] = React.useState(true);
   React.useEffect(() => {
+    setFirstRender(false);
     neverHydrated = false;
-    setMounted(true);
   }, []);
   let defaultWidth;
   let defaultHeight;
-  let category = '';
-  let mode = `-${theme.palette.mode}`;
+  const mode = modeProp ?? (theme.palette.mode as any);
+
   if (name.startsWith('product-')) {
     defaultWidth = 36;
     defaultHeight = 36;
-  }
-  if (name.startsWith('block-')) {
-    category = 'pricing/';
-    mode = '';
+  } else if (name.startsWith('pricing/x-plan-')) {
     defaultWidth = 13;
     defaultHeight = 15;
-  }
-  if (['yes', 'no', 'time'].indexOf(name) !== -1) {
-    category = 'pricing/';
+  } else if (['pricing/yes', 'pricing/no', 'pricing/time'].indexOf(name) !== -1) {
     defaultWidth = 18;
     defaultHeight = 18;
   }
-  if (
-    [
-      'spotify',
-      'amazon',
-      'nasa',
-      'netflix',
-      'unity',
-      'shutterstock',
-      'southwest',
-      'boeing',
-      'siemens',
-      'deloitte',
-      'apple',
-      'twitter',
-      'salesforce',
-      'volvo',
-      'verizon',
-      'atandt',
-      'patreon',
-      'ebay',
-      'samsung',
-    ].indexOf(name) !== -1
-  ) {
-    category = 'companies/';
-  }
+
   const width = widthProp ?? defaultWidth;
   const height = heightProp ?? defaultHeight;
 
-  if (!mounted && neverHydrated && !!theme.vars) {
+  // First time render with a theme depend image
+  if (firstRender && neverHydrated && mode !== '') {
+    if (other.loading === 'eager') {
+      return (
+        <React.Fragment>
+          <Img
+            className="only-light-mode-v2"
+            src={`/static/branding/${name}-light.svg`}
+            alt=""
+            width={width}
+            height={height}
+            {...other}
+            loading="lazy"
+          />
+          <Img
+            className="only-dark-mode-v2"
+            src={`/static/branding/${name}-dark.svg`}
+            alt=""
+            width={width}
+            height={height}
+            {...other}
+            loading="lazy"
+          />
+        </React.Fragment>
+      );
+    }
+
     // Prevent hydration mismatch between the light and dark mode image source.
     return <Box component="span" sx={{ width, height, display: 'inline-block' }} />;
   }
-  const element = (
+
+  return (
     <Img
-      src={`/static/branding/${category}${name}${mode}.svg`}
+      src={`/static/branding/${name}${mode ? `-${mode}` : ''}.svg`}
       alt=""
       loading="lazy"
       width={width}
@@ -116,8 +113,4 @@ export default function IconImage(props: IconImageProps) {
       {...other}
     />
   );
-  if (!title) {
-    return element;
-  }
-  return <Tooltip title={title}>{element}</Tooltip>;
 }

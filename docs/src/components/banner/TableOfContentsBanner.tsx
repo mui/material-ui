@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { alpha } from '@mui/material/styles';
+import { Link } from '@mui/docs/Link';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 export default function TableOfContentsBanner() {
   return FEATURE_TOGGLE.enable_toc_banner ? (
@@ -15,9 +15,10 @@ export default function TableOfContentsBanner() {
           mb: 2,
           mx: 0.5,
           p: 1,
+          pl: '10px',
           display: 'flex',
           alignItems: 'center',
-          gap: 1.5,
+          gap: '10px',
           backgroundColor: alpha(theme.palette.grey[50], 0.4),
           border: '1px solid',
           borderColor: (theme.vars || theme).palette.divider,
@@ -33,10 +34,9 @@ export default function TableOfContentsBanner() {
         (theme) =>
           theme.applyDarkStyles({
             backgroundColor: alpha(theme.palette.primary[900], 0.2),
-            borderColor: (theme.vars || theme).palette.divider,
             '&:hover, &:focus-visible': {
               backgroundColor: alpha(theme.palette.primary[900], 0.4),
-              borderColor: (theme.vars || theme).palette.primaryDark[500],
+              borderColor: (theme.vars || theme).palette.primary[900],
             },
           }),
       ]}
@@ -45,7 +45,11 @@ export default function TableOfContentsBanner() {
         <Box sx={{ height: 6, width: 16, backgroundColor: '#0057B7' }} />
         <Box sx={{ height: 6, width: 16, backgroundColor: '#FFD700' }} />
       </Box>
-      <Typography component="span" variant="caption" fontWeight="medium" color="text.secondary">
+      <Typography
+        component="span"
+        variant="caption"
+        sx={{ fontWeight: 'medium', color: 'text.secondary' }}
+      >
         MUI stands in solidarity with Ukraine.
       </Typography>
     </Link>

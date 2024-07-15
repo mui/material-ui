@@ -1,6 +1,6 @@
 {
   "props": {
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "delay": { "type": { "name": "number" }, "default": "0" },
     "FabProps": { "type": { "name": "object" }, "default": "{}" },
     "icon": { "type": { "name": "node" } },
@@ -10,7 +10,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "TooltipClasses": { "type": { "name": "object" } },
     "tooltipOpen": { "type": { "name": "bool" }, "default": "false" },
@@ -24,19 +25,54 @@
     "tooltipTitle": { "type": { "name": "node" } }
   },
   "name": "SpeedDialAction",
-  "styles": {
-    "classes": [
-      "fab",
-      "fabClosed",
-      "staticTooltip",
-      "staticTooltipClosed",
-      "staticTooltipLabel",
-      "tooltipPlacementLeft",
-      "tooltipPlacementRight"
-    ],
-    "globalClasses": {},
-    "name": "MuiSpeedDialAction"
-  },
+  "imports": [
+    "import SpeedDialAction from '@mui/material/SpeedDialAction';",
+    "import { SpeedDialAction } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "fab",
+      "className": "MuiSpeedDialAction-fab",
+      "description": "Styles applied to the Fab component.",
+      "isGlobal": false
+    },
+    {
+      "key": "fabClosed",
+      "className": "MuiSpeedDialAction-fabClosed",
+      "description": "Styles applied to the Fab component if `open={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "staticTooltip",
+      "className": "MuiSpeedDialAction-staticTooltip",
+      "description": "Styles applied to the root element if `tooltipOpen={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "staticTooltipClosed",
+      "className": "MuiSpeedDialAction-staticTooltipClosed",
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `open={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "staticTooltipLabel",
+      "className": "MuiSpeedDialAction-staticTooltipLabel",
+      "description": "Styles applied to the static tooltip label if `tooltipOpen={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipPlacementLeft",
+      "className": "MuiSpeedDialAction-tooltipPlacementLeft",
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"left\"``",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipPlacementRight",
+      "className": "MuiSpeedDialAction-tooltipPlacementRight",
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"right\"``",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiSpeedDialAction",

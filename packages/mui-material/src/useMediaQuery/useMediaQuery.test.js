@@ -1,17 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   act,
   createRenderer,
   screen,
   RenderCounter,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui/internal-test-utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { ThemeProvider } from '@mui/material/styles';
 
 const usesUseSyncExternalStore = React.useSyncExternalStore !== undefined;
 
@@ -22,11 +22,10 @@ function createMatchMedia(width, ref) {
       matches: mediaQuery.match(query, {
         width,
       }),
-      // Mocking matchMedia in Safari < 14 where MediaQueryList doesn't inherit from EventTarget
-      addListener: (listener) => {
+      addEventListener: (eventType, listener) => {
         listeners.push(listener);
       },
-      removeListener: (listener) => {
+      removeEventListener: (eventType, listener) => {
         const index = listeners.indexOf(listener);
         if (index > -1) {
           listeners.splice(index, 1);
@@ -46,10 +45,12 @@ describe('useMediaQuery', () => {
 
   describe('without window.matchMedia', () => {
     let originalMatchmedia;
+
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
       delete window.matchMedia;
     });
+
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });

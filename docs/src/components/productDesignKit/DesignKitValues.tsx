@@ -1,20 +1,20 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import GradientText from 'docs/src/components/typography/GradientText';
+import Grid from '@mui/material/Unstable_Grid2';
 import Palette from '@mui/icons-material/Palette';
 import LibraryBooks from '@mui/icons-material/LibraryBooks';
+import { InfoCard } from '@mui/docs/InfoCard';
 import CodeRounded from '@mui/icons-material/CodeRounded';
+import GradientText from 'docs/src/components/typography/GradientText';
+import Section from 'docs/src/layouts/Section';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const content = [
   {
     icon: <Palette fontSize="small" color="primary" />,
     title: 'For designers',
     description:
-      'Save time getting the MUI Core components all setup, leveraging the latest features from your favorite design tool.',
+      'Save time getting the Material UI components all setup, leveraging the latest features from your favorite design tool.',
   },
   {
     icon: <LibraryBooks fontSize="small" color="primary" />,
@@ -26,45 +26,29 @@ const content = [
     icon: <CodeRounded fontSize="small" color="primary" />,
     title: 'For developers',
     description:
-      'Effortlessly communicate with designers using the same language around the MUI Core components props and variants.',
+      'Effortlessly communicate with designers using the same language around the Material UI components props and variants.',
   },
 ];
 
-function DesignKitValues() {
+export default function DesignKitValues() {
   return (
-    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
-      <Typography variant="body2" color="primary" fontWeight="bold">
-        Collaboration
-      </Typography>
-      <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Be more efficient <GradientText>designing and developing</GradientText> with the same
-        library
-      </Typography>
-      <Grid container spacing={2}>
+    <Section cozy>
+      <SectionHeadline
+        overline="Collaboration"
+        title={
+          <Typography variant="h2" sx={{ mt: 1 }}>
+            Be more efficient <GradientText>designing and developing</GradientText> with the same
+            library
+          </Typography>
+        }
+      />
+      <Grid container spacing={3} mt={4}>
         {content.map(({ icon, title, description }) => (
-          <Grid key={title} item xs={12} sm={6} md={4}>
-            <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                {icon}
-                <Typography
-                  fontWeight="bold"
-                  component="h3"
-                  color="text.primary"
-                  variant="body2"
-                  sx={{ ml: 1 }}
-                >
-                  {title}
-                </Typography>
-              </Box>
-              <Typography variant="body2" color="text.secondary">
-                {description}
-              </Typography>
-            </Paper>
+          <Grid key={title} size={{ xs: 12, sm: 6, md: 4 }}>
+            <InfoCard title={title} icon={icon} description={description} />
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </Section>
   );
 }
-
-export default DesignKitValues;

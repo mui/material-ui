@@ -6,9 +6,8 @@ import {
   ControllableReducerAction,
   StateChangeCallback,
 } from '../utils/useControllableReducer.types';
-import { EventHandlers } from '../utils';
 import type { ListContextValue } from './ListContext';
-import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 type ListActionContextRequiredKeys =
   | 'disabledItemsFocusable'
@@ -106,6 +105,7 @@ export interface UseListParameters<
   /**
    * The focus management strategy used by the list.
    * Controls the attributes used to set focus on the list items.
+   * @default 'activeDescendant'
    */
   focusManagement?: FocusManagementType;
   /**
@@ -136,7 +136,7 @@ export interface UseListParameters<
    */
   isItemDisabled?: (itemValue: ItemValue, index: number) => boolean;
   /**
-   * Ref of the list root DOM element.
+   * Ref to the list root DOM element.
    */
   rootRef?: React.Ref<Element>;
   /**
@@ -215,13 +215,15 @@ export interface UseListParameters<
       ListActionContext<ItemValue> & CustomActionContext
     >,
   ) => State;
+  /**
+   * The name of the component using useList.
+   * For debugging purposes.
+   * @default 'useList'
+   */
+  componentName?: string;
 }
 
 export interface ListItemState {
-  /**
-   * If `true` the item is disabled.
-   */
-  disabled: boolean;
   /**
    * Determines if the item is focusable (its focus is managed by the DOM).
    */
@@ -230,10 +232,6 @@ export interface ListItemState {
    * If `true` the item is highlighted.
    */
   highlighted: boolean;
-  /**
-   * The 0-based index of the item.
-   */
-  index: number;
   /**
    * If `true` the item is selected.
    */
@@ -248,7 +246,7 @@ interface UseListRootSlotOwnProps {
   ref: React.RefCallback<Element> | null;
 }
 
-export type UseListRootSlotProps<TOther = {}> = TOther & UseListRootSlotOwnProps;
+export type UseListRootSlotProps<ExternalProps = {}> = ExternalProps & UseListRootSlotOwnProps;
 
 export interface UseListReturnValue<
   ItemValue,
@@ -257,9 +255,14 @@ export interface UseListReturnValue<
 > {
   contextValue: ListContextValue<ItemValue>;
   dispatch: (action: CustomAction | ListAction<ItemValue>) => void;
-  getRootProps: <TOther extends EventHandlers = {}>(
-    otherHandlers?: TOther,
-  ) => UseListRootSlotProps<TOther>;
+  /**
+   * Resolver for the root slot's props.
+   * @param externalProps additional props for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseListRootSlotProps<ExternalProps>;
   rootRef: React.RefCallback<Element> | null;
   state: State;
 }

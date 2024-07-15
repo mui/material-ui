@@ -1,72 +1,110 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "defaultValue": "The default value. Use when the component is not controlled.",
-    "direction": "The direction of the text.",
-    "onChange": "Callback invoked when new value is being set.",
-    "orientation": "The component orientation (layout flow direction).",
-    "selectionFollowsFocus": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation.",
-    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
-    "slotProps": "The props used for each slot inside.",
-    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "value": "The value of the currently selected <code>Tab</code>. If you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>null</code>.",
-    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+    "children": { "description": "The content of the component." },
+    "color": {
+      "description": "The color of the component. It supports those theme colors that make sense for this component."
+    },
+    "component": {
+      "description": "The component used for the root node. Either a string to use a HTML element or a component."
+    },
+    "defaultValue": {
+      "description": "The default value. Use when the component is not controlled."
+    },
+    "direction": { "description": "The direction of the text." },
+    "onChange": { "description": "Callback invoked when new value is being set." },
+    "orientation": { "description": "The component orientation (layout flow direction)." },
+    "selectionFollowsFocus": {
+      "description": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation."
+    },
+    "size": { "description": "The size of the component." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    },
+    "value": {
+      "description": "The value of the currently selected <code>Tab</code>. If you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>null</code>."
+    },
+    "variant": {
+      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use."
+    }
   },
   "classDescriptions": {
-    "root": { "description": "Classname applied to the root element." },
-    "horizontal": {
-      "description": "Classname applied to the root element if <code>orientation=&quot;horizontal&quot;</code>."
-    },
-    "vertical": {
-      "description": "Classname applied to the root element if <code>orientation=&quot;vertical&quot;</code>."
-    },
-    "colorPrimary": {
-      "description": "Classname applied to the root element if <code>color=&quot;primary&quot;</code>."
-    },
-    "colorNeutral": {
-      "description": "Classname applied to the root element if <code>color=&quot;neutral&quot;</code>."
-    },
-    "colorDanger": {
-      "description": "Classname applied to the root element if <code>color=&quot;danger&quot;</code>."
-    },
-    "colorInfo": {
-      "description": "Classname applied to the root element if <code>color=&quot;info&quot;</code>."
-    },
-    "colorSuccess": {
-      "description": "Classname applied to the root element if <code>color=&quot;success&quot;</code>."
-    },
-    "colorWarning": {
-      "description": "Classname applied to the root element if <code>color=&quot;warning&quot;</code>."
-    },
     "colorContext": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "color inversion is triggered"
     },
-    "variantPlain": {
-      "description": "Classname applied to the root element if <code>variant=&quot;plain&quot;</code>."
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
     },
-    "variantOutlined": {
-      "description": "Classname applied to the root element if <code>variant=&quot;outlined&quot;</code>."
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
     },
-    "variantSoft": {
-      "description": "Classname applied to the root element if <code>variant=&quot;soft&quot;</code>."
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
     },
-    "variantSolid": {
-      "description": "Classname applied to the root element if <code>variant=&quot;solid&quot;</code>."
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
     },
-    "sizeSm": {
-      "description": "Classname applied to the root element if <code>size=&quot;sm&quot;</code>."
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
     },
-    "sizeMd": {
-      "description": "Classname applied to the root element if <code>size=&quot;md&quot;</code>."
+    "horizontal": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
     },
     "sizeLg": {
-      "description": "Classname applied to the root element if <code>size=&quot;lg&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "sizeMd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    },
+    "vertical": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"vertical\"</code>"
     }
   },
   "slotDescriptions": { "root": "The component that renders the root." }

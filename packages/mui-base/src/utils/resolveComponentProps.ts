@@ -2,7 +2,7 @@
  * If `componentProps` is a function, calls it with the provided `ownerState`.
  * Otherwise, just returns `componentProps`.
  */
-export default function resolveComponentProps<TProps, TOwnerState, TSlotState>(
+export function resolveComponentProps<TProps, TOwnerState, TSlotState>(
   componentProps:
     | TProps
     | ((ownerState: TOwnerState, slotState?: TSlotState) => TProps)

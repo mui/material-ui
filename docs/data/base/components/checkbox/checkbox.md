@@ -5,11 +5,10 @@ githubLabel: 'component: checkbox'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 ---
 
-# Checkbox
+# Checkbox 🚧
 
 <p class="description">Checkboxes give users binary choices when presented with multiple options in a series.</p>
 
-:::info
-💡 The Base UI Checkbox component is still in development.
-Help us prioritize the next batch of new components by sharing your needs in [this GitHub issue](https://github.com/mui/material-ui/issues/27170).
+:::warning
+The Base UI Checkbox component isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/base-ui/issues/24) to see it arrive sooner.
 :::

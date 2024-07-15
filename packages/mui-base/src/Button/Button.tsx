@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
-import useButton from '../useButton';
+import { useButton } from '../useButton';
 import { WithOptionalOwnerState } from '../utils/types';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
@@ -42,14 +42,24 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
     onFocusVisible,
     slotProps = {},
     slots = {},
+    rootElementName: rootElementNameProp = 'button',
     ...other
   } = props;
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
+  let rootElementName = rootElementNameProp;
+
+  if (typeof slots.root === 'string') {
+    rootElementName = slots.root as keyof HTMLElementTagNameMap;
+  } else if (other.href || other.to) {
+    rootElementName = 'a';
+  }
+
   const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
     focusableWhenDisabled,
+    rootElementName,
   });
 
   React.useImperativeHandle(
@@ -90,10 +100,10 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
 }) as PolymorphicComponent<ButtonTypeMap>;
 
 Button.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -109,6 +119,10 @@ Button.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -127,6 +141,11 @@ Button.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocusVisible: PropTypes.func,
+  /**
+   * The HTML element that is ultimately rendered, for example 'button' or 'a'
+   * @default 'button'
+   */
+  rootElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The props used for each slot inside the Button.
    * @default {}
@@ -148,4 +167,4 @@ Button.propTypes /* remove-proptypes */ = {
   to: PropTypes.string,
 } as any;
 
-export default Button;
+export { Button };

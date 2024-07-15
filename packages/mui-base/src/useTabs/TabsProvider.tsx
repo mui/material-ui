@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
-import TabsContext, { TabsContextValue } from '../Tabs/TabsContext';
-import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
+import { TabsContext, TabsContextValue } from '../Tabs/TabsContext';
+import { CompoundComponentContext, CompoundComponentContextValue } from '../useCompound';
 
 export type TabPanelMetadata = {
   id: string | undefined;
@@ -21,7 +21,7 @@ export interface TabsProviderProps {
  *
  * @ignore - do not document.
  */
-export default function TabsProvider(props: TabsProviderProps) {
+export function TabsProvider(props: TabsProviderProps) {
   const { value: valueProp, children } = props;
   const {
     direction,

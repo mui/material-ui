@@ -2,9 +2,15 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
-import Portal from '@mui/base/Portal';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import {
+  act,
+  createRenderer,
+  fireEvent,
+  fireDiscreteEvent,
+  screen,
+} from '@mui/internal-test-utils';
+import { Portal } from '@mui/base/Portal';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 
 describe('<ClickAwayListener />', () => {
   const { render: clientRender, clock } = createRenderer({ clock: 'fake' });

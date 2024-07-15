@@ -7,17 +7,17 @@ declare module '@mui/material/OverridableComponent' {
    *
    * Adjusts valid props based on the type of `component`.
    */
-  interface OverridableComponent<M extends OverridableTypeMap> {
-    <C extends React.ElementType>(
+  interface OverridableComponent<TypeMap extends OverridableTypeMap> {
+    <DefaultComponent extends React.ElementType>(
       props: {
         /**
          * The component used for the root node.
          * Either a string to use a HTML element or a component.
          */
-        component: C;
-      } & OverridePropsVer2<M, C>,
-    ): JSX.Element;
-    (props: DefaultComponentPropsVer2<M>): JSX.Element;
+        component: DefaultComponent;
+      } & OverridePropsVer2<TypeMap, DefaultComponent>,
+    ): React.JSX.Element;
+    (props: DefaultComponentPropsVer2<TypeMap>): React.JSX.Element;
   }
 
   /**
@@ -25,11 +25,11 @@ declare module '@mui/material/OverridableComponent' {
    */
   // prettier-ignore
   type OverridePropsVer2<
-    M extends OverridableTypeMap,
-    C extends React.ElementType,
+    TypeMap extends OverridableTypeMap,
+    RootComponent extends React.ElementType,
   > = (
-    & BaseProps<M>
-    & DistributiveOmit<React.ComponentPropsWithoutRef<C>, keyof BaseProps<M>>
+    & BaseProps<TypeMap>
+    & DistributiveOmit<React.ComponentPropsWithoutRef<RootComponent>, keyof BaseProps<TypeMap>>
     & { ref?: React.Ref<Element> }
   );
 
@@ -37,8 +37,8 @@ declare module '@mui/material/OverridableComponent' {
    * Props if `component={Component}` is NOT used.
    */
   // prettier-ignore
-  type DefaultComponentPropsVer2<M extends OverridableTypeMap> = 
-    & BaseProps<M>
-    & DistributiveOmit<React.ComponentPropsWithoutRef<M['defaultComponent']>, keyof BaseProps<M>>
+  type DefaultComponentPropsVer2<TypeMap extends OverridableTypeMap> = 
+    & BaseProps<TypeMap>
+    & DistributiveOmit<React.ComponentPropsWithoutRef<TypeMap['defaultComponent']>, keyof BaseProps<TypeMap>>
     & { ref?: React.Ref<Element> };
 }

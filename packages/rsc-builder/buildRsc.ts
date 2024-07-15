@@ -1,15 +1,20 @@
+import path from 'path';
 import * as yargs from 'yargs';
 import * as fse from 'fs-extra';
-import os from 'os';
-import path from 'path';
 import findComponents from '../api-docs-builder/utils/findComponents';
 import findHooks from '../api-docs-builder/utils/findHooks';
 
 type CommandOptions = { grep?: string };
 
-const { EOL } = os;
+type Project = {
+  name: string;
+  rootPath: string;
+  additionalPaths?: string[];
+  additionalFiles?: string[];
+  ignorePaths?: string[];
+};
 
-const PROJECTS = [
+const PROJECTS: Project[] = [
   {
     name: 'base',
     rootPath: path.join(process.cwd(), 'packages/mui-base'),
@@ -17,18 +22,26 @@ const PROJECTS = [
   {
     name: 'material',
     rootPath: path.join(process.cwd(), 'packages/mui-material'),
-  },
-  {
-    name: 'material-next',
-    rootPath: path.join(process.cwd(), 'packages/mui-material-next'),
+    ignorePaths: [
+      'packages/mui-material/src/InitColorSchemeScript/InitColorSchemeScript.tsx', // RSC compatible
+      'packages/mui-material/src/PigmentContainer/PigmentContainer.tsx', // RSC compatible
+      'packages/mui-material/src/PigmentGrid/PigmentGrid.tsx', // RSC compatible
+      'packages/mui-material/src/PigmentStack/PigmentStack.tsx', // RSC compatible
+    ],
   },
   {
     name: 'joy',
     rootPath: path.join(process.cwd(), 'packages/mui-joy'),
+    ignorePaths: [
+      'packages/mui-joy/src/InitColorSchemeScript/InitColorSchemeScript.tsx', // no need 'use client' because of `styles/index` export
+    ],
   },
   {
     name: 'system',
     rootPath: path.join(process.cwd(), 'packages/mui-system'),
+    ignorePaths: [
+      'packages/mui-system/src/InitColorSchemeScript/InitColorSchemeScript.tsx', // no need 'use client' because of `styles/index` export
+    ],
   },
   {
     name: 'styled-engine',
@@ -38,37 +51,58 @@ const PROJECTS = [
     name: 'utils',
     rootPath: path.join(process.cwd(), 'packages/mui-utils'),
   },
+  {
+    name: 'icons-material',
+    rootPath: path.join(process.cwd(), 'packages/mui-icons-material'),
+    additionalPaths: ['custom'],
+    additionalFiles: ['src/utils/createSvgIcon.js'],
+  },
+  {
+    name: 'lab',
+    rootPath: path.join(process.cwd(), 'packages/mui-lab'),
+  },
 ];
 
 async function processFile(
   filename: string,
   options: {
     lineToPrepend?: string;
-    truncate?: boolean;
   } = {},
 ) {
-  const { lineToPrepend = `'use client';${EOL}`, truncate = true } = options;
+  if (!fse.statSync(filename).isFile()) {
+    return;
+  }
+
+  const { lineToPrepend = `'use client';` } = options;
   const contents = await fse.readFile(filename, 'utf8');
 
-  const truncatedContents = truncate ? contents.split(/\r?\n/).slice(1).join('\n') : contents;
-  const newContents = `${lineToPrepend}${truncatedContents}`;
+  const lines = contents.split(/\r?\n/);
+  if (lines[0] === lineToPrepend) {
+    return;
+  }
+
+  const newContents = `${lineToPrepend}\n${contents}`;
 
   await fse.writeFile(filename, newContents);
 }
 
-function getIndexFile(directory: string) {
-  const items = fse.readdirSync(directory);
+async function findAll(
+  directories: string[],
+  grep: RegExp | null,
+  findFn: typeof findComponents | typeof findHooks,
+) {
+  const result = await Promise.all(
+    directories.map((dir) => {
+      return findFn(dir).filter((item) => {
+        if (grep === null) {
+          return true;
+        }
+        return grep.test(item.filename);
+      });
+    }),
+  );
 
-  const indexFile = items.reduce((prev, curr) => {
-    if (!/^index.(js|ts)/.test(curr)) {
-      return prev;
-    }
-    return curr;
-  }, '');
-
-  return {
-    filename: path.join(directory, indexFile),
-  };
+  return result.flat();
 }
 
 async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
@@ -79,28 +113,21 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
 
     const projectSrc = path.join(project.rootPath, 'src');
 
-    const indexFile = getIndexFile(projectSrc);
+    let directories = [projectSrc];
 
-    try {
-      processFile(indexFile.filename);
-    } catch (error: any) {
-      error.message = `${path.relative(process.cwd(), indexFile.filename)}: ${error.message}`;
-      throw error;
+    if (Array.isArray(project?.additionalPaths)) {
+      directories = [
+        ...directories,
+        ...project.additionalPaths.map((p) => path.join(project.rootPath, p)),
+      ];
     }
 
-    const components = findComponents(projectSrc).filter((component) => {
-      if (grep === null) {
-        return true;
-      }
-      return grep.test(component.filename);
-    });
+    const components = await findAll(directories, grep, findComponents);
 
     components.forEach(async (component) => {
       try {
-        processFile(component.filename);
-
-        if (component.indexFilename) {
-          processFile(component.indexFilename);
+        if (!project.ignorePaths?.some((p) => component.filename.includes(p))) {
+          processFile(component.filename);
         }
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
@@ -108,25 +135,24 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       }
     });
 
-    const hooks = findHooks(projectSrc).filter((hook) => {
-      if (grep === null) {
-        return true;
-      }
-      return grep.test(hook.filename);
-    });
+    const hooks = await findAll(directories, grep, findHooks);
 
     hooks.forEach(async (hook) => {
       try {
         processFile(hook.filename);
-
-        if (hook.indexFilename) {
-          processFile(hook.indexFilename);
-        }
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
         throw error;
       }
     });
+
+    if (Array.isArray(project?.additionalFiles)) {
+      project.additionalFiles.forEach(async (file) => {
+        const fullPath = path.join(project.rootPath, file);
+        processFile(fullPath);
+      });
+    }
+
     return Promise.resolve();
   }, Promise.resolve());
 }

@@ -9,5 +9,5 @@
   >
     Core
   </Link>
-  <Typography color="text.primary">Breadcrumbs</Typography>
+  <Typography sx={{ color: 'text.primary' }}>Breadcrumbs</Typography>
 </Breadcrumbs>

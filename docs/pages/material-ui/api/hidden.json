@@ -29,12 +29,17 @@
     "xsUp": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Hidden",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import Hidden from '@mui/material/Hidden';",
+    "import { Hidden } from '@mui/material';"
+  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": null,
   "muiName": "MuiHidden",
   "filename": "/packages/mui-material/src/Hidden/Hidden.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-hidden/\">Hidden</a></li></ul>",
-  "cssComponent": false
+  "cssComponent": false,
+  "deprecated": true
 }

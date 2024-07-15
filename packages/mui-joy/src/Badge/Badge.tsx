@@ -6,7 +6,6 @@ import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils'
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeOwnerState, BadgeTypeMap } from './BadgeProps';
@@ -41,7 +40,6 @@ const BadgeRoot = styled('span', {
       '--Badge-minHeight': '1rem',
     }),
     '--Badge-paddingX': '0.25rem',
-    fontSize: theme.vars.fontSize.xs,
   }),
   ...(ownerState.size === 'md' && {
     '--Badge-minHeight': '0.75rem',
@@ -49,7 +47,6 @@ const BadgeRoot = styled('span', {
       '--Badge-minHeight': '1.25rem',
     }),
     '--Badge-paddingX': '0.375rem',
-    fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'lg' && {
     '--Badge-minHeight': '1rem',
@@ -57,7 +54,6 @@ const BadgeRoot = styled('span', {
       '--Badge-minHeight': '1.5rem',
     }),
     '--Badge-paddingX': '0.5rem',
-    fontSize: theme.vars.fontSize.md,
   }),
   '--Badge-ringSize': '2px',
   '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.surface})`,
@@ -105,7 +101,11 @@ const BadgeBadge = styled('span', {
     ownerState.anchorOrigin?.horizontal === 'left' ? 'translateX(-50%)' : 'translateX(50%)';
   const transformOriginY = ownerState.anchorOrigin?.vertical === 'top' ? '0%' : '100%';
   const transformOriginX = ownerState.anchorOrigin?.horizontal === 'left' ? '0%' : '100%';
+  const typography =
+    theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`];
   return {
+    '--Icon-color': 'currentColor',
+    '--Icon-fontSize': `calc(1em * ${typography?.lineHeight ?? '1'})`,
     display: 'inline-flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -114,11 +114,8 @@ const BadgeBadge = styled('span', {
     position: 'absolute',
     boxSizing: 'border-box',
     boxShadow: 'var(--Badge-ring)',
-    fontFamily: theme.vars.fontFamily.body,
-    fontWeight: theme.vars.fontWeight.md,
     lineHeight: 1,
-    padding:
-      'calc(var(--Badge-paddingX) / 2 - var(--variant-borderWidth, 0px)) calc(var(--Badge-paddingX) - var(--variant-borderWidth, 0px))',
+    padding: '0 calc(var(--Badge-paddingX) - var(--variant-borderWidth, 0px))',
     minHeight: 'var(--Badge-minHeight)',
     minWidth: 'var(--Badge-minHeight)',
     borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',
@@ -131,6 +128,8 @@ const BadgeBadge = styled('span', {
     [`&.${badgeClasses.invisible}`]: {
       transform: `scale(0) ${translateX} ${translateY}`,
     },
+    ...typography,
+    fontWeight: theme.vars.fontWeight.md,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   };
 });
@@ -184,17 +183,22 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   }
 
   const {
-    color: internalColor = colorProp,
+    color = colorProp,
     size = sizeProp,
     anchorOrigin = anchorOriginProp,
     variant = variantProp,
     badgeInset = badgeInsetProp,
   } = invisible ? prevProps : props;
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, internalColor);
-
-  const ownerState = { ...props, anchorOrigin, badgeInset, variant, invisible, color, size };
+  const ownerState = {
+    ...props,
+    anchorOrigin,
+    badgeInset,
+    variant,
+    invisible,
+    color,
+    size,
+  };
   const classes = useUtilityClasses(ownerState);
   const externalForwardedProps = { ...other, component, slots, slotProps };
   let displayValue =
@@ -228,10 +232,10 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 }) as OverridableComponent<BadgeTypeMap>;
 
 Badge.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The anchor of the badge.
    * @default {
@@ -262,7 +266,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

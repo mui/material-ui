@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@mui/material/Fade';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Fade />', () => {
   const { clock, render } = createRenderer();
@@ -15,6 +16,7 @@ describe('<Fade />', () => {
   };
 
   describeConformance(<Fade {...defaultProps} />, () => ({
+    render,
     classes: {},
     inheritComponent: Transition,
     refInstanceof: window.HTMLDivElement,
@@ -24,9 +26,6 @@ describe('<Fade />', () => {
       'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
-      // TODO: really?
-      // react-transition-group issue
-      'reactTestRenderer',
     ],
   }));
 

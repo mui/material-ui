@@ -5,11 +5,10 @@ githubLabel: 'component: accordion'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 ---
 
-# Accordion
+# Accordion 🚧
 
 <p class="description">Accordions let users show and hide sections of related content on a page.</p>
 
-:::info
-💡 The Base UI Accordion component is still in development.
-Help us prioritize the next batch of new components by sharing your needs in [this GitHub issue](https://github.com/mui/material-ui/issues/27170).
+:::warning
+The Base UI Accordion component isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/base-ui/issues/25) to see it arrive sooner.
 :::

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Typography from '@mui/material/Typography';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import { stepIconClasses as iconClasses } from '@mui/material/StepIcon';
 import StepLabel, { stepLabelClasses as classes } from '@mui/material/StepLabel';
+import describeConformance from '../../test/describeConformance';
 
 describe('<StepLabel />', () => {
   const { render } = createRenderer();
@@ -17,16 +18,10 @@ describe('<StepLabel />', () => {
     render,
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { error: true },
-    testLegacyComponentsProp: true,
     slots: {
       label: { expectedClassName: classes.label },
     },
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'slotsProp',
-      'slotPropsCallback', // not supported yet
-    ],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('label content', () => {

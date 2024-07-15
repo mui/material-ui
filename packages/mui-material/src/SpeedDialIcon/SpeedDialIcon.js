@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import AddIcon from '../internal/svg-icons/Add';
 import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialIconClasses';
 
@@ -38,17 +38,11 @@ const SpeedDialIconRoot = styled('span', {
       styles.root,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   height: 24,
   [`& .${speedDialIconClasses.icon}`]: {
     transition: theme.transitions.create(['transform', 'opacity'], {
       duration: theme.transitions.duration.short,
-    }),
-    ...(ownerState.open && {
-      transform: 'rotate(45deg)',
-      ...(ownerState.openIcon && {
-        opacity: 0,
-      }),
     }),
   },
   [`& .${speedDialIconClasses.openIcon}`]: {
@@ -58,15 +52,38 @@ const SpeedDialIconRoot = styled('span', {
     }),
     opacity: 0,
     transform: 'rotate(-45deg)',
-    ...(ownerState.open && {
-      transform: 'rotate(0deg)',
-      opacity: 1,
-    }),
   },
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.open,
+      style: {
+        [`& .${speedDialIconClasses.icon}`]: {
+          transform: 'rotate(45deg)',
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.open && ownerState.openIcon,
+      style: {
+        [`& .${speedDialIconClasses.icon}`]: {
+          opacity: 0,
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.open,
+      style: {
+        [`& .${speedDialIconClasses.openIcon}`]: {
+          transform: 'rotate(0deg)',
+          opacity: 1,
+        },
+      },
+    },
+  ],
 }));
 
 const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDialIcon' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialIcon' });
   const { className, icon: iconProp, open, openIcon: openIconProp, ...other } = props;
 
   const ownerState = props;
@@ -94,10 +111,10 @@ const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(inProps, ref) {
 });
 
 SpeedDialIcon.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Override or extend the styles applied to the component.
    */

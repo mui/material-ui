@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
+import { UseMenuItemRootSlotProps } from '../useMenuItem';
 
 export interface MenuItemRootSlotPropsOverrides {}
 
@@ -39,6 +40,12 @@ export interface MenuItemOwnProps {
    * Used for keyboard text navigation matching.
    */
   label?: string;
+  /**
+   * If `true`, the menu item won't receive focus when the mouse moves over it.
+   *
+   * @default false
+   */
+  disableFocusOnHover?: boolean;
 }
 
 export interface MenuItemSlots {
@@ -65,3 +72,12 @@ export interface MenuItemState {
   disabled: boolean;
   highlighted: boolean;
 }
+
+export type MenuItemRootSlotProps = Simplify<
+  UseMenuItemRootSlotProps & {
+    children?: React.ReactNode;
+    className: string;
+    ref: React.Ref<HTMLElement>;
+    ownerState: MenuItemOwnerState;
+  }
+>;

@@ -1,8 +1,6 @@
 import { expect } from 'chai';
-import createMixins from '@mui/material/styles/createMixins';
-import createTypography from '@mui/material/styles/createTypography';
-import createBreakpoints from '../createTheme/createBreakpoints';
 import styleFunctionSx from './styleFunctionSx';
+import cssContainerQueries from '../cssContainerQueries';
 
 describe('styleFunctionSx', () => {
   const breakpointsValues = {
@@ -15,16 +13,16 @@ describe('styleFunctionSx', () => {
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
 
-  const theme = {
+  const theme = cssContainerQueries({
     spacing: (val) => `${val * 10}px`,
     breakpoints: {
       keys: ['xs', 'sm', 'md', 'lg', 'xl'],
       values: breakpointsValues,
+      unit: 'px',
       up: (key) => {
         return `@media (min-width:${breakpointsValues[key]}px)`;
       },
     },
-    unit: 'px',
     palette: {
       primary: {
         main: 'rgb(0, 0, 255)',
@@ -52,7 +50,7 @@ describe('styleFunctionSx', () => {
         lineHeight: 1.43,
       },
     },
-  };
+  });
 
   describe('system', () => {
     it('resolves system ', () => {
@@ -61,6 +59,8 @@ describe('styleFunctionSx', () => {
         sx: {
           color: 'primary.main',
           bgcolor: 'secondary.main',
+          outline: 1,
+          outlineColor: 'secondary.main',
           m: 2,
           p: 1,
           fontFamily: 'default',
@@ -75,6 +75,8 @@ describe('styleFunctionSx', () => {
       expect(result).to.deep.equal({
         color: 'rgb(0, 0, 255)',
         backgroundColor: 'rgb(0, 255, 0)',
+        outline: '1px solid',
+        outlineColor: 'rgb(0, 255, 0)',
         margin: '20px',
         padding: '10px',
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -240,23 +242,78 @@ describe('styleFunctionSx', () => {
         '@media (min-width:1280px)': { margin: '20px' },
       });
     });
+  });
 
-    it('writes breakpoints in correct order if default toolbar mixin is present in theme', () => {
-      const breakpoints = createBreakpoints({});
+  describe('container queries', () => {
+    const queriesExpectedResult = {
+      '@container (min-width:0px)': { border: '1px solid' },
+      '@container (min-width:600px)': { border: '2px solid' },
+      '@container (min-width:960px)': { border: '3px solid' },
+      '@container (min-width:1280px)': { border: '4px solid' },
+      '@container (min-width:1920px)': { border: '5px solid' },
+    };
+
+    it('resolves queries object', () => {
       const result = styleFunctionSx({
-        theme: {
-          mixins: createMixins(breakpoints),
-          breakpoints,
+        theme,
+        sx: {
+          border: {
+            '@xs': 1,
+            '@sm': 2,
+            '@md': 3,
+            '@lg': 4,
+            '@xl': 5,
+          },
         },
-        sx: (themeParam) => themeParam.mixins.toolbar,
+      });
+
+      expect(result).to.deep.equal(queriesExpectedResult);
+    });
+
+    it('merges multiple queries object', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          m: {
+            '@xs': 1,
+            '@sm': 2,
+            '@md': 3,
+          },
+          p: {
+            '@xs': 5,
+            '@sm': 6,
+            '@md': 7,
+          },
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@container (min-width:0px)': { padding: '50px', margin: '10px' },
+        '@container (min-width:600px)': { padding: '60px', margin: '20px' },
+        '@container (min-width:960px)': { padding: '70px', margin: '30px' },
+      });
+    });
+
+    it('writes queries in correct order', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: { m: { '@md': 1, '@lg': 2 }, p: { '@xs': 0, '@sm': 1, '@md': 2 } },
       });
 
       // Test the order
       expect(Object.keys(result)).to.deep.equal([
-        '@media (min-width:0px)',
-        '@media (min-width:600px)',
-        'minHeight',
+        '@container (min-width:0px)',
+        '@container (min-width:600px)',
+        '@container (min-width:960px)',
+        '@container (min-width:1280px)',
       ]);
+
+      expect(result).to.deep.equal({
+        '@container (min-width:0px)': { padding: '0px' },
+        '@container (min-width:600px)': { padding: '10px' },
+        '@container (min-width:960px)': { padding: '20px', margin: '10px' },
+        '@container (min-width:1280px)': { margin: '20px' },
+      });
     });
   });
 
@@ -418,44 +475,6 @@ describe('styleFunctionSx', () => {
           sx: [(t) => t.typography.unknown],
         }),
       ).not.to.throw();
-    });
-  });
-
-  it('resolves inherit typography properties', () => {
-    const result = styleFunctionSx({
-      theme: { typography: createTypography({}, {}) },
-      sx: {
-        fontFamily: 'inherit',
-        fontWeight: 'inherit',
-        fontSize: 'inherit',
-        lineHeight: 'inherit',
-        letterSpacing: 'inherit',
-      },
-    });
-
-    expect(result).deep.equal({
-      fontFamily: 'inherit',
-      fontWeight: 'inherit',
-      fontSize: 'inherit',
-      lineHeight: 'inherit',
-      letterSpacing: 'inherit',
-    });
-  });
-
-  it('resolves theme typography properties', () => {
-    const result = styleFunctionSx({
-      theme: { typography: createTypography({}, {}) },
-      sx: {
-        fontFamily: 'default',
-        fontWeight: 'fontWeightMedium',
-        fontSize: 'fontSize',
-      },
-    });
-
-    expect(result).deep.equal({
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 500,
-      fontSize: 14,
     });
   });
 });

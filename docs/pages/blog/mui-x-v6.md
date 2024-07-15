@@ -1,10 +1,10 @@
 ---
-title: Introducing MUI X v6.0.0
+title: Introducing MUI X v6
 description: Introducing the new major version of the advanced components.
 date: 2023-03-06T00:00:00.000Z
 authors: ['josefreitas']
-card: true
-tags: ['MUI X', 'News']
+manualCard: true
+tags: ['MUI X', 'Product']
 ---
 
 <img src="/static/blog/mui-x-v6/card.png" alt="" style="margin-bottom: 16px;" width="2400" height="559" />
@@ -16,20 +16,20 @@ tags: ['MUI X', 'News']
 - [Data Grid - feature highlights ✨](#data-grid-features-highlights-✨)
   - [ApiRef moved to the MIT (Community) version](#apiref-moved-to-the-mit-community-version)
   - [Improved column menu](#improved-column-menu)
-  - [Row pinning is now stable](#row-pinning-is-now-stable) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
-  - [Aggregation is now stable](#aggregation-is-now-stable) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
-  - [Cell selection](#cell-selection) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
-  - [Use web workers to export data to excel files](#use-web-workers-to-export-data-to-excel-files) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+  - [Row pinning is now stable](#row-pinning-is-now-stable) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Aggregation is now stable](#aggregation-is-now-stable) <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
+  - [Cell selection](#cell-selection) <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
+  - [Use web workers to export data to excel files](#use-web-workers-to-export-data-to-excel-files) <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
 - [Date and Time Pickers - feature highlights ✨](#date-and-time-pickers-features-highlights-✨)
   - [Fields: the new default \<input\> for pickers](#fields-the-new-default-input-gt-for-pickers)
   - [Improved layout customization](#improved-layout-customization)
   - [Overhaul in the documentation](#overhaul-in-the-documentation)
   - [Removed clock view on desktop Time Pickers](#removed-clock-view-on-desktop-time-pickers)
-  - [Shortcuts for picking specific dates in a calendar](#shortcuts-for-picking-specific-dates-in-a-calendar) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
-  - [Edit date ranges with drag and drop](#edit-date-ranges-with-drag-and-drop) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+  - [Shortcuts for picking specific dates in a calendar](#shortcuts-for-picking-specific-dates-in-a-calendar) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Edit date ranges with drag and drop](#edit-date-ranges-with-drag-and-drop) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Installation and migration](#installation-and-migration)
 - [What's next](#whats-next)
-- [Decoupling versions from MUI Core](#decoupling-versions-from-mui-core)
+- [Decoupling versions from MUI Core](#decoupling-versions-from-mui-core)
 - [Feedback](#feedback)
 
 ## Data Grid - features highlights ✨
@@ -58,7 +58,7 @@ See the [apiRef reference documentation](/x/react-data-grid/api-object/) for mor
 
 This is the first feature we ever move from the Pro plan to be MIT licensed.
 We identified that this feature in the Pro plan was going against our objectives.
-Our goal is for MUI X data grid to become the best grid for React developers, when compared to other standalone open-source grid.
+Our goal is for MUI X data grid to become the best grid for React developers, when compared to other standalone open-source grid.
 To do such, developers need to have access to all the primitives required to customize it.
 
 And if you want to understand more about our view of the open-source/commercial balance, check our [Stewardship page](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).
@@ -66,7 +66,7 @@ And if you want to understand more about our view of the open-source/commercial 
 ### Improved column menu
 
 Another significant step in terms of customization but also usability; the v6 [column menu](/x/react-data-grid/column-menu/) now provides support for icons, menu groups, custom items and actions, and more.
-We've redesigned this sub-component to make it as extensible as possible.
+We've redesigned this subcomponent to make it as extensible as possible.
 
 <a href="/x/react-data-grid/column-menu/">
 <img src="/static/blog/mui-x-v6/column-menu-custom-action.png" loading="lazy" alt="Column menu custom action" width="1636" height="808" />
@@ -76,7 +76,7 @@ We've redesigned this sub-component to make it as extensible as possible.
 
 This improvement is part of an overarching effort throughout the life cycle of v6 to refactor all Data Grid panels.
 
-### Row pinning is now stable [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### Row pinning is now stable [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 [Row pinning](/x/react-data-grid/row-pinning/) was previously released in a minor v5 version under the `experimentalFeatures={{ rowPinning: true }}` flag.
 The API is now stable, thanks to the community for trying it out and reporting bugs.
@@ -85,7 +85,7 @@ The API is now stable, thanks to the community for trying it out and reporting b
 <img src="/static/blog/mui-x-v6/row-pinning.png" style="width: 655px" loading="lazy" alt="Column menu custom action" width="1310" height="828" />
 </a>
 
-### Aggregation is now stable [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+### Aggregation is now stable <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
 
 [Aggregation](/x/react-data-grid/aggregation/) was previously released in a minor v5 version under the `experimentalFeatures={{ aggregation: true }}` flag.
 The API is now stable, thanks to the community for trying it out and reporting bugs.
@@ -96,7 +96,7 @@ The API is now stable, thanks to the community for trying it out and reporting b
 
 <p class="blog-description">The footer of the second column is a sum all its cells.</p>
 
-### Cell selection [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+### Cell selection <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
 
 [Cell selection](/x/react-data-grid/cell-selection/) is a powerful and flexible way to select data in the Data Grid.
 It allows end-users to select a cell or group of cells like in an Excel sheet.
@@ -116,7 +116,7 @@ The API is unstable in this first release but you can enable it with:
 <DataGridPremium unstable_cellSelection />
 ```
 
-### Use web workers to export data to excel files [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+### Use web workers to export data to excel files <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
 
 By default, the Excel file export is generated in the main thread. This can freeze the UI when exporting large datasets.
 
@@ -176,7 +176,7 @@ import { DateField } from '@mui/x-date-pickers/DateField';
 
 ### Improved layout customization
 
-Combining the slots concept with the grid layout, you can now rearrange, extend, and customize most of the sub-components used in the Pickers UI.
+Combining the slots concept with the grid layout, you can now rearrange, extend, and customize most of the subcomponents used in the Pickers UI.
 See [the documentation about it](/x/react-date-pickers/custom-layout/) and this quick overview:
 
 ```tsx
@@ -214,7 +214,7 @@ Many end-users complained, and we completely agree, the [clock view](/x/react-da
 
 You can still use the Clock if you like to, but [a replacement UI](https://github.com/mui/mui-x/issues/4483) for the time picker is coming shortly after this release.
 
-### Shortcuts for picking specific dates in a calendar [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### Shortcuts for picking specific dates in a calendar [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 You can now [add quick and customizable shortcuts](/x/react-date-pickers/shortcuts/) for your end-users.
 While shortcuts are an MIT licensed, it's particularly useful for date range pickers.
@@ -226,7 +226,7 @@ You can display them on the left, right, bottom, or top.
 
 <p class="blog-description">A demo of a Pro plan date range picker with shortcuts on the left.</p>
 
-### Edit date ranges with drag and drop [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### Edit date ranges with drag and drop [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 [Editing a date range](/x/react-date-pickers/date-range-calendar/) is even easier now with the new drag-and-drop interaction.
 End-users can more easily change the start and end dates.
@@ -252,7 +252,7 @@ If you're coming from previous versions, we recommend you check our migration gu
 We also provide codemods to automate some of the necessary updates in your codebase.
 
 ```bash
-npx @mui/x-codemod v6.0.0/preset-safe <path>
+npx @mui/x-codemod@latest v6.0.0/preset-safe <path>
 ```
 
 ## What's next?
@@ -270,7 +270,7 @@ Here's a list of what you can expect to be delivered in the following months (wh
 - Row spanning ([mui-x#207](https://github.com/mui/mui-x/issues/207))
 - Improved column management panel (column visibility, reordering, grouping, pinning, etc.) ([mui-x#5700](https://github.com/mui/mui-x/issues/5700))
 - Improved filter panel ([mui-x#6419](https://github.com/mui/mui-x/issues/6419))
-- Support for Joy UI
+- Support for Joy UI
 
 ### Date Pickers
 
@@ -278,7 +278,7 @@ Here's a list of what you can expect to be delivered in the following months (wh
 - Time Range Picker ([mui-x#4460](https://github.com/mui/mui-x/issues/4460))
 - Date Time Range Picker ([mui-x#4547](https://github.com/mui/mui-x/issues/4547))
 - Ability to select a month range in the Date Range Picker ([mui-x#4995](https://github.com/mui/mui-x/issues/4995))
-- Support for Joy UI
+- Support for Joy UI
 
 ### Charts 📊
 
@@ -286,14 +286,14 @@ Here's a list of what you can expect to be delivered in the following months (wh
 
 You can get more details of our next steps in [MUI X public roadmap](https://github.com/mui/mui-x/projects/1).
 
-## Decoupling versions from MUI Core
+## Decoupling versions from MUI Core
 
-We have decoupled MUI X's versioning from MUI Core (including `@mui/material`: Material UI). We understand that this may cause confusion, so we'd like to explain the main reasons why we're moving in this direction:
+We have decoupled MUI X's versioning from MUI Core (including `@mui/material`: Material UI). We understand that this may cause confusion, so we'd like to explain the main reasons why we're moving in this direction:
 
 1. Soften migration pains with a yearly release cycle.\
-   The MUI X codebase is dynamic, and the constant development of new features often requires a faster breaking changes pace than MUI Core. With a yearly release, we aim to deliver those in smaller, more digestible sizes, in a time window that you can rely on to make your plans and prepare for updates.
+   The MUI X codebase is dynamic, and the constant development of new features often requires a faster breaking changes pace than MUI Core. With a yearly release, we aim to deliver those in smaller, more digestible sizes, in a time window that you can rely on to make your plans and prepare for updates.
 
-2. We aim to support not only Material UI but also Joy UI and, in the future, Base UI.
+2. We aim to support not only Material UI but also Joy UI and, in the future, Base UI.
 
 ## Feedback
 

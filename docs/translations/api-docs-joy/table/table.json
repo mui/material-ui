@@ -1,112 +1,49 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "borderAxis": "The axis to display a border on the table cell.",
-    "children": "Children of the table",
-    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "hoverRow": "If <code>true</code>, the table row will shade on hover.",
-    "noWrap": "If <code>true</code>, the body cells will not wrap, but instead will truncate with a text overflow ellipsis.<br>Note: Header cells are always truncated with overflow ellipsis.",
-    "size": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
-    "slotProps": "The props used for each slot inside.",
-    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
-    "stickyFooter": "If <code>true</code>, the footer always appear at the bottom of the overflow table.<br>⚠️ It doesn&#39;t work with IE11.",
-    "stickyHeader": "If <code>true</code>, the header always appear at the top of the overflow table.<br>⚠️ It doesn&#39;t work with IE11.",
-    "stripe": "The odd or even row of the table body will have subtle background color.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
-  },
-  "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "colorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+    "borderAxis": { "description": "The axis to display a border on the table cell." },
+    "children": { "description": "Children of the table" },
+    "color": {
+      "description": "The color of the component. It supports those theme colors that make sense for this component."
     },
-    "colorNeutral": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"neutral\"</code>"
+    "component": {
+      "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
-    "colorDanger": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
+    "hoverRow": { "description": "If <code>true</code>, the table row will shade on hover." },
+    "noWrap": {
+      "description": "If <code>true</code>, the body cells will not wrap, but instead will truncate with a text overflow ellipsis.<br>Note: Header cells are always truncated with overflow ellipsis."
     },
-    "colorInfo": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"info\"</code>"
+    "size": {
+      "description": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;."
     },
-    "colorSuccess": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"success\"</code>"
-    },
-    "colorWarning": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"warning\"</code>"
-    },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
-    },
-    "variantPlain": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"plain\"</code>"
-    },
-    "variantOutlined": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
-    },
-    "variantSoft": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"soft\"</code>"
-    },
-    "variantSolid": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"solid\"</code>"
-    },
-    "sizeSm": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
-    },
-    "sizeMd": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"md\"</code>"
-    },
-    "sizeLg": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"lg\"</code>"
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
+    "stickyFooter": {
+      "description": "If <code>true</code>, the footer always appear at the bottom of the overflow table."
     },
     "stickyHeader": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>stickyHeader</code> is true"
+      "description": "If <code>true</code>, the header always appear at the top of the overflow table."
     },
-    "stickyFooter": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>stickyFooter</code> is true"
+    "stripe": {
+      "description": "The odd or even row of the table body will have subtle background color."
     },
-    "noWrap": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>noWrap</code> is true"
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
-    "hoverRow": {
+    "variant": {
+      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use."
+    }
+  },
+  "classDescriptions": {
+    "borderAxisBoth": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>hoverRow</code> is true"
+      "conditions": "<code>borderAxis=\"both\"</code>"
+    },
+    "borderAxisBothBetween": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>borderAxis=\"bothBetween\"</code>"
     },
     "borderAxisNone": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -133,15 +70,90 @@
       "nodeName": "the root element",
       "conditions": "<code>borderAxis=\"yBetween\"</code>"
     },
-    "borderAxisBoth": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>borderAxis=\"both\"</code>"
+      "conditions": "color inversion is triggered"
     },
-    "borderAxisBothBetween": {
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>borderAxis=\"bothBetween\"</code>"
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "hoverRow": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>hoverRow</code> is true"
+    },
+    "noWrap": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>noWrap</code> is true"
+    },
+    "sizeLg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "sizeMd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "stickyFooter": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>stickyFooter</code> is true"
+    },
+    "stickyHeader": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>stickyHeader</code> is true"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
     }
   },
   "slotDescriptions": { "root": "The component that renders the root." }

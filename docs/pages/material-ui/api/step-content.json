@@ -1,12 +1,13 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
     "transitionDuration": {
@@ -19,11 +20,30 @@
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "StepContent",
-  "styles": {
-    "classes": ["root", "last", "transition"],
-    "globalClasses": {},
-    "name": "MuiStepContent"
-  },
+  "imports": [
+    "import StepContent from '@mui/material/StepContent';",
+    "import { StepContent } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "last",
+      "className": "MuiStepContent-last",
+      "description": "Styles applied to the root element if `last={true}` (controlled by `Step`).",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiStepContent-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "transition",
+      "className": "MuiStepContent-transition",
+      "description": "Styles applied to the Transition component.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStepContent",

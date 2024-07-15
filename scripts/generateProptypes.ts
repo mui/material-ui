@@ -1,16 +1,27 @@
 /* eslint-disable no-console */
 import * as path from 'path';
 import * as fse from 'fs-extra';
-import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
+import * as ts from 'typescript';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
   getUnstyledFilename,
-} from '@mui-internal/docs-utilities';
+} from '@mui/internal-docs-utils';
+import {
+  getPropTypesFromFile,
+  injectPropTypesInFile,
+  InjectPropTypesInFileOptions,
+} from '@mui/internal-scripts/typescript-to-proptypes';
+import {
+  createTypeScriptProjectBuilder,
+  TypeScriptProject,
+} from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
+
+import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects';
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -120,20 +131,23 @@ const ignoreExternalDocumentation: Record<string, readonly string[]> = {
   Zoom: transitionCallbacks,
 };
 
-function sortBreakpointsLiteralByViewportAscending(a: ttp.LiteralType, b: ttp.LiteralType) {
+function sortBreakpointsLiteralByViewportAscending(a: ts.LiteralType, b: ts.LiteralType) {
   // default breakpoints ordered by their size ascending
   const breakpointOrder: readonly unknown[] = ['"xs"', '"sm"', '"md"', '"lg"', '"xl"'];
 
   return breakpointOrder.indexOf(a.value) - breakpointOrder.indexOf(b.value);
 }
 
-function sortSizeByScaleAscending(a: ttp.LiteralType, b: ttp.LiteralType) {
+function sortSizeByScaleAscending(a: ts.LiteralType, b: ts.LiteralType) {
   const sizeOrder: readonly unknown[] = ['"small"', '"medium"', '"large"'];
   return sizeOrder.indexOf(a.value) - sizeOrder.indexOf(b.value);
 }
 
 // Custom order of literal unions by component
-const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (component, propType) => {
+const getSortLiteralUnions: InjectPropTypesInFileOptions['getSortLiteralUnions'] = (
+  component,
+  propType,
+) => {
   if (
     component.name === 'Hidden' &&
     (propType.name === 'initialWidth' || propType.name === 'only')
@@ -148,22 +162,19 @@ const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (compone
   return undefined;
 };
 
-const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
-
-const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
-  config: path.join(__dirname, '../prettier.config.js'),
-});
-
 async function generateProptypes(
-  program: ttp.ts.Program,
+  project: TypeScriptProject,
   sourceFile: string,
-  tsFile: string = sourceFile,
+  tsFile: string,
 ): Promise<void> {
-  const proptypes = ttp.parseFromProgram(tsFile, program, {
+  const components = getPropTypesFromFile({
+    filePath: tsFile,
+    project,
     shouldResolveObject: ({ name }) => {
       if (
         name.toLowerCase().endsWith('classes') ||
         name === 'theme' ||
+        name === 'ownerState' ||
         (name.endsWith('Props') && name !== 'componentsProps' && name !== 'slotProps')
       ) {
         return false;
@@ -173,27 +184,28 @@ async function generateProptypes(
     checkDeclarations: true,
   });
 
-  if (proptypes.body.length === 0) {
+  if (components.length === 0) {
     return;
   }
 
-  // exclude internal slot components, eg. ButtonRoot
-  proptypes.body = proptypes.body.filter((data) => {
-    if (data.propsFilename?.endsWith('.tsx')) {
+  // exclude internal slot components, for example ButtonRoot
+  const cleanComponents = components.filter((component) => {
+    if (component.propsFilename?.endsWith('.tsx')) {
       // only check for .tsx
-      const match = data.propsFilename.match(/.*\/([A-Z][a-zA-Z]+)\.tsx/);
+      const match = component.propsFilename.match(/.*\/([A-Z][a-zA-Z]+)\.tsx/);
       if (match) {
-        return data.name === match[1];
+        return component.name === match[1];
       }
     }
     return true;
   });
 
-  proptypes.body.forEach((component) => {
+  cleanComponents.forEach((component) => {
     component.types.forEach((prop) => {
       if (
         !prop.jsDoc ||
-        (ignoreExternalDocumentation[component.name] &&
+        (project.name !== 'base' &&
+          ignoreExternalDocumentation[component.name] &&
           ignoreExternalDocumentation[component.name].includes(prop.name))
       ) {
         prop.jsDoc = '@ignore';
@@ -202,82 +214,87 @@ async function generateProptypes(
   });
 
   const sourceContent = await fse.readFile(sourceFile, 'utf8');
-
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
-
   // If the component inherits the props from some unstyled components
   // we don't want to add those propTypes again in the Material UI/Joy UI propTypes
   const unstyledFile = getUnstyledFilename(tsFile, true);
   const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 
+  // TODO remove, should only have .types.ts
   const propsFile = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
+  const propsFileAlternative = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, '.types.ts');
   const generatedForTypeScriptFile = sourceFile === tsFile;
-  const result = ttp.inject(proptypes, sourceContent, {
-    disablePropTypesTypeChecking: generatedForTypeScriptFile,
-    babelOptions: {
-      filename: sourceFile,
-    },
-    comment: [
-      '----------------------------- Warning --------------------------------',
-      '| These PropTypes are generated from the TypeScript type definitions |',
-      isTsFile
-        ? '|     To update them edit TypeScript types and run "yarn proptypes"  |'
-        : '|     To update them edit the d.ts file and run "yarn proptypes"     |',
-      '----------------------------------------------------------------------',
-    ].join('\n'),
-    ensureBabelPluginTransformReactRemovePropTypesIntegration: true,
-    getSortLiteralUnions,
-    reconcilePropTypes: (prop, previous, generated) => {
-      const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
-      const ignoreGenerated =
-        previous !== undefined &&
-        previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');
+  const result = injectPropTypesInFile({
+    components,
+    target: sourceContent,
+    options: {
+      disablePropTypesTypeChecking: generatedForTypeScriptFile,
+      babelOptions: {
+        filename: sourceFile,
+      },
+      comment: [
+        '┌────────────────────────────── Warning ──────────────────────────────┐',
+        '│ These PropTypes are generated from the TypeScript type definitions. │',
+        isTsFile
+          ? '│ To update them, edit the TypeScript types and run `pnpm proptypes`. │'
+          : '│    To update them, edit the d.ts file and run `pnpm proptypes`.     │',
+        '└─────────────────────────────────────────────────────────────────────┘',
+      ].join('\n'),
+      ensureBabelPluginTransformReactRemovePropTypesIntegration: true,
+      getSortLiteralUnions,
+      reconcilePropTypes: (prop, previous, generated) => {
+        const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
+        const ignoreGenerated =
+          previous !== undefined &&
+          previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');
 
-      if (
-        ignoreGenerated &&
-        // `ignoreGenerated` implies that `previous !== undefined`
-        previous!
-          .replace('PropTypes /* @typescript-to-proptypes-ignore */', 'PropTypes')
-          .replace(/\s/g, '') === generated.replace(/\s/g, '')
-      ) {
-        throw new Error(
-          `Unused \`@typescript-to-proptypes-ignore\` directive for prop '${prop.name}'.`,
-        );
-      }
+        if (
+          ignoreGenerated &&
+          // `ignoreGenerated` implies that `previous !== undefined`
+          previous!
+            .replace('PropTypes /* @typescript-to-proptypes-ignore */', 'PropTypes')
+            .replace(/\s/g, '') === generated.replace(/\s/g, '')
+        ) {
+          throw new Error(
+            `Unused \`@typescript-to-proptypes-ignore\` directive for prop '${prop.name}'.`,
+          );
+        }
 
-      if (usedCustomValidator || ignoreGenerated) {
-        // `usedCustomValidator` and `ignoreGenerated` narrow `previous` to `string`
-        return previous!;
-      }
+        if (usedCustomValidator || ignoreGenerated) {
+          // `usedCustomValidator` and `ignoreGenerated` narrow `previous` to `string`
+          return previous!;
+        }
 
-      return generated;
-    },
-    shouldInclude: ({ component, prop }) => {
-      if (prop.name === 'children') {
-        return true;
-      }
-      let shouldDocument;
-      const { name: componentName } = component;
+        return generated;
+      },
+      shouldInclude: ({ component, prop }) => {
+        if (prop.name === 'children') {
+          return true;
+        }
+        let shouldDocument;
+        const { name: componentName } = component;
 
-      prop.filenames.forEach((filename) => {
-        const isExternal = filename !== tsFile;
-        const implementedByUnstyledVariant =
-          filename === unstyledFile || filename === unstyledPropsFile;
-        const implementedBySelfPropsFile = filename === propsFile;
-        if (!isExternal || implementedByUnstyledVariant || implementedBySelfPropsFile) {
+        prop.filenames.forEach((filename) => {
+          const isExternal = filename !== tsFile;
+          const implementedByUnstyledVariant =
+            filename === unstyledFile || filename === unstyledPropsFile;
+          const implementedBySelfPropsFile =
+            filename === propsFile || filename === propsFileAlternative;
+          if (!isExternal || implementedByUnstyledVariant || implementedBySelfPropsFile) {
+            shouldDocument = true;
+          }
+        });
+
+        if (
+          useExternalDocumentation[componentName] &&
+          (useExternalDocumentation[componentName] === '*' ||
+            useExternalDocumentation[componentName].includes(prop.name))
+        ) {
           shouldDocument = true;
         }
-      });
 
-      if (
-        useExternalDocumentation[componentName] &&
-        (useExternalDocumentation[componentName] === '*' ||
-          useExternalDocumentation[componentName].includes(prop.name))
-      ) {
-        shouldDocument = true;
-      }
-
-      return shouldDocument;
+        return shouldDocument;
+      },
     },
   });
 
@@ -285,7 +302,11 @@ async function generateProptypes(
     throw new Error('Unable to produce inject propTypes into code.');
   }
 
-  const prettified = prettier.format(result, { ...prettierConfig, filepath: sourceFile });
+  const prettierConfig = await prettier.resolveConfig(process.cwd(), {
+    config: path.join(__dirname, '../prettier.config.js'),
+  });
+
+  const prettified = await prettier.format(result, { ...prettierConfig, filepath: sourceFile });
   const formatted = fixBabelGeneratorIssues(prettified);
   const correctedLineEndings = fixLineEndings(sourceContent, formatted);
 
@@ -303,16 +324,16 @@ async function run(argv: HandlerArgv) {
     console.log(`Only considering declaration files matching ${filePattern}`);
   }
 
+  const buildProject = createTypeScriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
+
   // Matches files where the folder and file both start with uppercase letters
   // Example: AppBar/AppBar.d.ts
-
   const allFiles = await Promise.all(
     [
       path.resolve(__dirname, '../packages/mui-system/src'),
       path.resolve(__dirname, '../packages/mui-base/src'),
       path.resolve(__dirname, '../packages/mui-material/src'),
       path.resolve(__dirname, '../packages/mui-lab/src'),
-      path.resolve(__dirname, '../packages/mui-material-next/src'),
       path.resolve(__dirname, '../packages/mui-joy/src'),
     ].map((folderPath) =>
       glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
@@ -324,26 +345,29 @@ async function run(argv: HandlerArgv) {
 
   const files = _.flatten(allFiles)
     .filter((filePath) => {
-      const folderName = path.basename(path.dirname(filePath));
+      // Filter out files where the directory name and filename doesn't match
+      // Example: Modal/ModalManager.d.ts
+      let folderName = path.basename(path.dirname(filePath));
       const fileName = path.basename(filePath).replace(/(\.d\.ts|\.tsx|\.ts)/g, '');
 
-      return (
-        // Filter out files where the directory name and filename doesn't match
-        // Example: Modal/ModalManager.d.ts
-        fileName === folderName
-      );
+      // An exception is if the folder name starts with Unstable_/unstable_
+      // Example: Unstable_Grid2/Grid2.tsx
+      if (/(u|U)nstable_/g.test(folderName)) {
+        folderName = folderName.slice(9);
+      }
+
+      return fileName === folderName;
     })
-    .filter((filePath) => {
-      return filePattern.test(filePath);
-    });
-  // May not be able to understand all files due to mismatch in TS versions.
-  // Check `program.getSyntacticDiagnostics()` if referenced files could not be compiled.
-  const program = ttp.createTSProgram(files, tsconfig);
+    .filter((filePath) => filePattern.test(filePath));
 
   const promises = files.map<Promise<void>>(async (tsFile) => {
     const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
     try {
-      await generateProptypes(program, sourceFile, tsFile);
+      const projectName = tsFile.match(
+        /packages\/mui-([a-zA-Z-]+)\/src/,
+      )![1] as CoreTypeScriptProjects;
+      const project = buildProject(projectName);
+      await generateProptypes(project, sourceFile, tsFile);
     } catch (error: any) {
       error.message = `${tsFile}: ${error.message}`;
       throw error;

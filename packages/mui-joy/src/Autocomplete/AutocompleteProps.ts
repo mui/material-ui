@@ -3,6 +3,7 @@ import {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
+  AutocompleteFreeSoloValueMapping,
   AutocompleteInputChangeReason,
   AutocompleteValue,
   UseAutocompleteProps,
@@ -241,7 +242,7 @@ type AutocompleteOwnProps<
     getLimitTagsText?: (more: string | number) => React.ReactNode;
     /**
      * If `true`, the component is in a loading state.
-     * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+     * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
      * @default false
      */
     loading?: boolean;
@@ -379,6 +380,7 @@ export interface AutocompleteOwnerState<
   FreeSolo extends boolean | undefined,
 > extends ApplyColorInversion<AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>> {
   focused?: boolean;
+  getOptionLabel: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   hasClearIcon?: boolean;
   hasPopupIcon?: boolean;
   hasOptions?: boolean;

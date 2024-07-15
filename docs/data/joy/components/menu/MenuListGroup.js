@@ -24,9 +24,8 @@ export default function MenuListGroup() {
           <ListItem sticky>
             <Typography
               id={`sticky-list-demo-${categoryIndex}`}
-              level="body3"
-              textTransform="uppercase"
-              fontWeight="lg"
+              level="body-xs"
+              sx={{ textTransform: 'uppercase', fontWeight: 'lg' }}
             >
               Category {categoryIndex + 1}
             </Typography>

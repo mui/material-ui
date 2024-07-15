@@ -8,19 +8,19 @@ export default function BoxSx() {
         palette: {
           primary: {
             main: '#007FFF',
-            dark: '#0059B2',
+            dark: '#0066CC',
           },
         },
       }}
     >
       <Box
         sx={{
-          width: 300,
-          height: 300,
+          width: 100,
+          height: 100,
+          borderRadius: 1,
           bgcolor: 'primary.main',
           '&:hover': {
-            backgroundColor: 'primary.dark',
-            opacity: [0.9, 0.8, 0.7],
+            bgcolor: 'primary.dark',
           },
         }}
       />

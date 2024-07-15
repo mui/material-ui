@@ -1,12 +1,13 @@
 import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles<{color: 'primary' | 'secondary', padding: number}, 'child' | 'small'>({name: 'App'})((theme, { color, padding }, classes) => ({
-  root: {
+  root: ({
     padding: padding,
+
     [`&:hover .${classes.child}`]: {
       backgroundColor: theme.palette[color].main,
     }
-  },
+  }),
   small: {},
   child: {
     border: '1px solid black',
@@ -28,7 +29,7 @@ function App({classes: classesProp}: {classes?: any}) {
   });
 
   return (
-    <div className={classes.root}>
+    (<div className={classes.root}>
       <div className={classes.child}>
         The Background take the primary theme color when the mouse hovers the parent.
       </div>
@@ -36,7 +37,7 @@ function App({classes: classesProp}: {classes?: any}) {
         The Background take the primary theme color when the mouse hovers the parent.
         I am smaller than the other child.
       </div>
-    </div>
+    </div>)
   );
 }
 

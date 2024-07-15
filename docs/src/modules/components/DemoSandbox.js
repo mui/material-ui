@@ -1,29 +1,31 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import { create } from 'jss';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
-import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
 import { jssPreset, StylesProvider } from '@mui/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { getDesignTokens } from 'docs/src/modules/brandingTheme';
+import { useTranslate } from '@mui/docs/i18n';
+import { getDesignTokens } from '@mui/docs/branding';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
+const iframeDefaultJoyTheme = extendTheme({
+  cssVarPrefix: 'demo-iframe',
+});
+
 function FramedDemo(props) {
-  const { children, document } = props;
+  const { children, document, productId } = props;
 
   const theme = useTheme();
   React.useEffect(() => {
-    document.body.dir = theme.direction;
+    document.body.setAttribute('dir', theme.direction);
   }, [document, theme.direction]);
 
   const { jss, sheetsManager } = React.useMemo(() => {
@@ -49,16 +51,28 @@ function FramedDemo(props) {
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);
 
+  const Wrapper = productId === 'joy-ui' ? CssVarsProvider : React.Fragment;
+  const wrapperProps =
+    productId === 'joy-ui'
+      ? {
+          documentNode: document,
+          colorSchemeNode: document.documentElement,
+          theme: iframeDefaultJoyTheme,
+        }
+      : {};
+
   return (
     <StylesProvider jss={jss} sheetsManager={sheetsManager}>
       <StyleSheetManager
         target={document.head}
-        stylisPlugins={theme.direction === 'rtl' ? [rtlPluginSc] : []}
+        stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}
       >
         <CacheProvider value={cache}>
-          {React.cloneElement(children, {
-            window: getWindow,
-          })}
+          <Wrapper {...wrapperProps}>
+            {React.cloneElement(children, {
+              window: getWindow,
+            })}
+          </Wrapper>
         </CacheProvider>
       </StyleSheetManager>
     </StylesProvider>
@@ -67,6 +81,7 @@ function FramedDemo(props) {
 FramedDemo.propTypes = {
   children: PropTypes.node,
   document: PropTypes.object.isRequired,
+  productId: PropTypes.string,
 };
 
 const Iframe = styled('iframe')(({ theme }) => ({
@@ -74,11 +89,11 @@ const Iframe = styled('iframe')(({ theme }) => ({
   flexGrow: 1,
   height: 400,
   border: 0,
-  boxShadow: (theme.vars || theme).shadows[1],
+  boxShadow: (theme.vars || theme)?.shadows?.[1],
 }));
 
 function DemoIframe(props) {
-  const { children, name, ...other } = props;
+  const { children, name, productId, ...other } = props;
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
    */
@@ -108,7 +123,9 @@ function DemoIframe(props) {
       <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
-            <FramedDemo document={document}>{children}</FramedDemo>,
+            <FramedDemo document={document} productId={productId}>
+              {children}
+            </FramedDemo>,
             document.body,
           )
         : null}
@@ -119,9 +136,10 @@ function DemoIframe(props) {
 DemoIframe.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
+  productId: PropTypes.string,
 };
 
-// Use the default MUI theme for the demos
+// Use the default Material UI theme for the demos
 function getTheme(outerTheme) {
   const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
   const isCustomized =
@@ -163,11 +181,16 @@ const jss = create({
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandbox(props) {
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
-  const { children: childrenProp, iframe = false, name, onResetDemoClick, ...other } = props;
+  const {
+    children: childrenProp,
+    iframe = false,
+    name,
+    onResetDemoClick,
+    productId,
+    ...other
+  } = props;
   const Sandbox = iframe ? DemoIframe : React.Fragment;
-  const sandboxProps = iframe ? { name, ...other } : {};
+  const sandboxProps = iframe ? { name, productId, ...other } : {};
 
   const t = useTranslate();
 
@@ -176,7 +199,7 @@ function DemoSandbox(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {canonicalAs.startsWith('/joy-ui/') ? (
+      {productId === 'joy-ui' ? (
         children
       ) : (
         <StylesProvider jss={jss}>
@@ -192,6 +215,7 @@ DemoSandbox.propTypes = {
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
+  productId: PropTypes.string,
 };
 
 export default React.memo(DemoSandbox);

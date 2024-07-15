@@ -1,6 +1,5 @@
 import * as React from 'react';
-// @ts-ignore
-import { TypeScript as TypeScriptIcon } from '@mui/docs';
+import TypeScriptIcon from '@mui/docs/svgIcons/TypeScript';
 import startCase from 'lodash/startCase';
 import { deepmerge } from '@mui/utils';
 import { decomposeColor } from '@mui/system';
@@ -45,6 +44,7 @@ import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import TabPanel, { tabPanelClasses } from '@mui/joy/TabPanel';
 import Tab, { tabClasses } from '@mui/joy/Tab';
+import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
@@ -59,8 +59,8 @@ import Search from '@mui/icons-material/Search';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import sourceJoyTemplates, { TemplateData } from 'docs/src/modules/joy/sourceJoyTemplates';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
@@ -348,13 +348,14 @@ const theme = extendTheme(${JSON.stringify(
     (k, v) => (v === undefined ? '__undefined' : v),
     2,
   ).replace(/"__undefined"/g, 'undefined')})
-  
+
 export default theme;`;
 
 function getPaletteFormProps(colorSchemes: any, colorMode: string, node: string) {
   // @ts-ignore
   const themeDefaultValue = defaultTheme.colorSchemes[colorMode].palette[node];
-  const value = colorSchemes[colorMode][node];
+  const value = colorSchemes[colorMode][node] || {};
+
   const mergedValue = { ...themeDefaultValue, ...value };
   return {
     themeDefaultValue,
@@ -450,10 +451,7 @@ function CodeBlockResult({
               </ListItemDecorator>
               theme.js
             </Tab>
-            <Tab
-              value="ts"
-              sx={{ [`&.${tabClasses.selected}`]: { '--ListItemDecorator-color': '#007acc' } }}
-            >
+            <Tab value="ts">
               <ListItemDecorator>
                 <TypeScriptIcon />
               </ListItemDecorator>
@@ -505,12 +503,7 @@ function ColorInput({
       size="sm"
       error={isError}
       startDecorator={
-        <ColorBubblePreview
-          value={internalValue || props.placeholder}
-          sx={{
-            mr: -0.5,
-          }}
-        />
+        <ColorBubblePreview value={internalValue || props.placeholder} sx={{ mr: -0.5 }} />
       }
       value={internalValue}
       onFocus={(event) => {
@@ -721,6 +714,7 @@ function PaletteImport({
 function ColorTokenCreator({ onChange }: { onChange: (name: string, value: string) => void }) {
   const [open, setOpen] = React.useState(false);
   const nameRef = React.useRef<HTMLInputElement | null>(null);
+  const colorRef = React.useRef<HTMLInputElement | null>(null);
   const [name, setName] = React.useState('');
   const [color, setColor] = React.useState('');
   if (!open) {
@@ -741,6 +735,9 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
       </Button>
     );
   }
+
+  const isValidToken = name.trim() && color.trim();
+
   return (
     <Sheet
       variant="soft"
@@ -765,28 +762,41 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
         onChange={(event) => setName(event.target.value)}
       />{' '}
       <b>:</b>{' '}
-      <Input
+      <ColorInput
         size="sm"
         placeholder="A valid CSS color"
         value={color}
-        onChange={(event) => setColor(event.target.value)}
+        onEmptyColor={() => {
+          setColor('');
+        }}
         onKeyDown={(event) => {
           if (event.key === 'Enter' && name && color) {
             onChange(name, color);
             setOpen(false);
           }
         }}
+        onValidColor={(newColor) => {
+          setColor(newColor);
+        }}
+        slotProps={{
+          input: { ref: colorRef },
+        }}
         sx={{ flexGrow: 1 }}
       />
       <IconButton
         variant="solid"
-        color="neutral"
+        color={isValidToken ? 'primary' : 'neutral'}
         size="sm"
         onClick={() => {
-          if (!name) {
+          const trimmedName = name.trim();
+          const trimmedColor = color.trim();
+
+          if (!trimmedName) {
             nameRef.current?.focus();
+          } else if (!trimmedColor) {
+            colorRef.current?.focus();
           } else {
-            onChange(name, color);
+            onChange(trimmedName, trimmedColor);
             setColor('');
             setName('');
             setOpen(false);
@@ -1015,14 +1025,13 @@ function GlobalVariantForm({
   ].filter((item) => !(tokens as Array<string>).includes(item));
   return (
     <React.Fragment>
-      <Typography component="div" fontWeight="xl" level="h6">
+      <Typography component="div" level="title-md" sx={{ fontWeight: 'xl' }}>
         Global variant tokens
       </Typography>
-      <Typography component="div" level="body2" mb={2} mt={0.5}>
+      <Typography component="div" level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
         Pick the specific primitive color, now in CSS variables form already, to correspond to a
         semantic global variant token.
       </Typography>
-
       <Sheet
         variant="outlined"
         sx={{
@@ -1062,12 +1071,7 @@ function GlobalVariantForm({
           <Option value="outlined">outlined</Option>
           <Option value="plain">plain</Option>
         </Select>
-        <Box
-          sx={{
-            display: 'flex',
-            gap: 1,
-          }}
-        >
+        <Box sx={{ display: 'flex', gap: 1 }}>
           <Checkbox
             size="sm"
             label=":hover"
@@ -1258,7 +1262,7 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
   return tokens;
 }
 
-function TemplatesDialog({ children, data }: { children: React.ReactElement; data: any }) {
+function TemplatesDialog({ children, data }: { children: React.ReactElement<any>; data: any }) {
   const [open, setOpen] = React.useState(false);
   const { map: templateMap } = sourceJoyTemplates();
   const renderItem = (name: string, item: TemplateData) => {
@@ -1302,8 +1306,6 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link
               component="button"
-              fontSize="xl"
-              fontWeight="xl"
               color="neutral"
               textColor="#fff"
               overlay
@@ -1319,6 +1321,7 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
                   .openSandbox();
               }}
               endDecorator={<ArrowOutwardIcon sx={{ color: 'inherit', opacity: 0.72 }} />}
+              sx={{ fontSize: 'xl', fontWeight: 'xl' }}
             >
               {startCase(name)}
             </Link>
@@ -1346,7 +1349,11 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
           <Typography level="h2" id="templates-dialog">
             Clone a template sandbox
           </Typography>
-          <Typography id="templates-dialog-description" textColor="text.secondary" fontSize="md">
+          <Typography
+            id="templates-dialog-description"
+            textColor="text.secondary"
+            sx={{ fontSize: 'md' }}
+          >
             Click on one of these template to see start a sandbox with your custom theme.
           </Typography>
 
@@ -1374,8 +1381,6 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 component="button"
-                fontSize="lg"
-                fontWeight="lg"
                 color="neutral"
                 textColor="text.primary"
                 overlay
@@ -1394,6 +1399,7 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
                     .openSandbox();
                 }}
                 endDecorator={<ArrowOutwardIcon />}
+                sx={{ fontSize: 'lg', fontWeight: 'lg' }}
               >
                 Minimal template
               </Link>
@@ -1471,27 +1477,20 @@ export default function JoyThemeBuilder() {
             borderRadius: '8px 8px 0 0',
           }}
         >
-          <Tabs
+          <ToggleButtonGroup
             size="sm"
             value={colorMode}
             onChange={(event, newValue) => setColorMode(newValue as 'light' | 'dark')}
-            sx={{ bgcolor: 'transparent' }}
           >
-            <TabList>
-              <Tab value="light">
-                <ListItemDecorator>
-                  <LightMode />
-                </ListItemDecorator>{' '}
-                Light
-              </Tab>
-              <Tab value="dark">
-                <ListItemDecorator>
-                  <DarkMode />
-                </ListItemDecorator>{' '}
-                Dark
-              </Tab>
-            </TabList>
-          </Tabs>
+            <Button value="light">
+              <LightMode />
+              Light
+            </Button>
+            <Button value="dark">
+              <DarkMode />
+              Dark
+            </Button>
+          </ToggleButtonGroup>
           <IconButton
             size="sm"
             variant="outlined"
@@ -1526,36 +1525,29 @@ export default function JoyThemeBuilder() {
             }}
           >
             <ListSubheader sx={{ minHeight: 48 }}>Palette</ListSubheader>
-            {(['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const).map(
-              (color) => (
-                <React.Fragment key={color}>
-                  <ListItem>
-                    <ListItemButton
-                      {...(colorProp === color && {
-                        variant: 'soft',
-                        selected: true,
-                        color,
-                      })}
-                      onClick={() => setColorProp(color)}
-                    >
-                      <ListItemDecorator>
-                        <Box
-                          sx={{
-                            width: 20,
-                            height: 20,
-                            borderRadius: '50%',
-                            bgcolor: `${color}.500`,
-                          }}
-                        />
-                      </ListItemDecorator>
-                      <ListItemContent sx={{ fontSize: 'sm' }}>{color}</ListItemContent>
-                      <KeyboardArrowRight />
-                    </ListItemButton>
-                  </ListItem>
-                  <ListDivider />
-                </React.Fragment>
-              ),
-            )}
+            {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map((color) => (
+              <React.Fragment key={color}>
+                <ListItem>
+                  <ListItemButton
+                    {...(colorProp === color && {
+                      variant: 'soft',
+                      selected: true,
+                      color,
+                    })}
+                    onClick={() => setColorProp(color)}
+                  >
+                    <ListItemDecorator>
+                      <Box
+                        sx={{ width: 20, height: 20, borderRadius: '50%', bgcolor: `${color}.500` }}
+                      />
+                    </ListItemDecorator>
+                    <ListItemContent sx={{ fontSize: 'sm' }}>{color}</ListItemContent>
+                    <KeyboardArrowRight />
+                  </ListItemButton>
+                </ListItem>
+                <ListDivider />
+              </React.Fragment>
+            ))}
             <ListItem>
               <ListItemButton
                 {...(colorProp === 'etc' && {
@@ -1575,9 +1567,7 @@ export default function JoyThemeBuilder() {
             if (colorProp === 'etc') {
               return (
                 <Box sx={{ p: 3, flex: 1 }}>
-                  <Typography fontSize="sm" fontWeight="lg">
-                    background
-                  </Typography>
+                  <Typography sx={{ fontSize: 'sm', fontWeight: 'lg' }}>background</Typography>
                   <ColorPaletteForm
                     availableTokens={availableTokens}
                     {...getPaletteFormProps(
@@ -1593,15 +1583,13 @@ export default function JoyThemeBuilder() {
                     }}
                     onRemove={(token) => {
                       setter((prev) => {
-                        const newPalette = prev.background;
+                        const newPalette = prev.background || {};
                         delete newPalette[token];
                         return { ...prev, background: newPalette };
                       });
                     }}
                   />
-                  <Typography fontSize="sm" fontWeight="lg" mt={2}>
-                    common
-                  </Typography>
+                  <Typography sx={{ fontSize: 'sm', fontWeight: 'lg', mt: 2 }}>common</Typography>
                   <ColorPaletteForm
                     availableTokens={availableTokens}
                     {...getPaletteFormProps(
@@ -1617,15 +1605,13 @@ export default function JoyThemeBuilder() {
                     }}
                     onRemove={(token) => {
                       setter((prev) => {
-                        const newPalette = prev.common;
+                        const newPalette = prev.common || {};
                         delete newPalette[token];
                         return { ...prev, common: newPalette };
                       });
                     }}
                   />
-                  <Typography fontSize="sm" fontWeight="lg" mt={2}>
-                    text
-                  </Typography>
+                  <Typography sx={{ fontSize: 'sm', fontWeight: 'lg', mt: 2 }}>text</Typography>
                   <ColorPaletteForm
                     availableTokens={availableTokens}
                     {...getPaletteFormProps(
@@ -1641,7 +1627,7 @@ export default function JoyThemeBuilder() {
                     }}
                     onRemove={(token) => {
                       setter((prev) => {
-                        const newPalette = prev.text;
+                        const newPalette = prev.text || {};
                         delete newPalette[token];
                         return { ...prev, text: newPalette };
                       });
@@ -1660,48 +1646,19 @@ export default function JoyThemeBuilder() {
               .filter((k) => mergedValue[k] !== undefined);
             return (
               <Tabs
-                size="sm"
+                size="md"
                 defaultValue={0}
                 sx={{ flex: 1, [`& .${tabPanelClasses.root}`]: { p: 3 } }}
               >
-                <TabList
-                  variant="plain"
-                  sx={{
-                    px: 2,
-                    '--List-padding': '0px',
-                    '--ListItem-minHeight': '48px',
-                    '& > button': {
-                      bgcolor: 'transparent',
-                      boxShadow: 'none',
-                      flex: 'none',
-                      color: 'text.tertiary',
-                      fontWeight: 'md',
-                      '&:hover': { bgcolor: 'transparent' },
-                      '&[aria-selected="true"]': {
-                        color: 'text.primary',
-                        '&::before': {
-                          content: '""',
-                          display: 'block',
-                          position: 'absolute',
-                          height: 2,
-                          left: 'var(--ListItem-paddingLeft)',
-                          right: 'var(--ListItem-paddingRight)',
-                          bottom: -1,
-                          bgcolor: `${colorProp}.solidBg`,
-                        },
-                      },
-                    },
-                  }}
-                >
+                <TabList variant="plain">
                   <Tab>Primitive colors</Tab>
                   <Tab>Global variants</Tab>
                 </TabList>
-                <Divider />
                 <TabPanel value={0}>
-                  <Typography component="div" fontWeight="xl" level="h6">
+                  <Typography component="div" level="title-md" sx={{ fontWeight: 'xl' }}>
                     Customize primitive colors
                   </Typography>
-                  <Typography component="div" level="body2" mb={2} mt={0.5}>
+                  <Typography component="div" level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
                     Add your custom-tailored palette here, inserting each HEX value to the scale, or
                     choose from an available set of popular color palettes.
                   </Typography>
@@ -1726,7 +1683,7 @@ export default function JoyThemeBuilder() {
                     }}
                     onRemove={(token) => {
                       setter((prev) => {
-                        const newPalette = prev[colorProp];
+                        const newPalette = prev[colorProp] || {};
                         delete newPalette[token];
                         return { ...prev, [colorProp]: newPalette };
                       });
@@ -1747,7 +1704,7 @@ export default function JoyThemeBuilder() {
                     }}
                     onRemove={(token) => {
                       setter((prev) => {
-                        const newPalette = prev[colorProp];
+                        const newPalette = prev[colorProp] || {};
                         delete newPalette[token];
                         return { ...prev, [colorProp]: newPalette };
                       });

@@ -15,7 +15,6 @@ import Slider, { SliderOwnerState } from '@mui/joy/Slider';
 
 <Slider color="primary" />;
 <Slider color="danger" />;
-<Slider color="info" />;
 <Slider color="success" />;
 <Slider color="warning" />;
 <Slider color="neutral" />;

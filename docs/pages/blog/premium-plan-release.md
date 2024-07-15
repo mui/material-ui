@@ -1,16 +1,16 @@
 ---
 title: Premium passengers, please proceed to the boarding gate 🚀
-description: Introducing the MUI X Premium plan, and a new licensing model.
+description: Introducing the MUI X Premium plan, and a new licensing model.
 date: 2022-05-12T00:00:00.000Z
 authors: ['josefreitas', 'alexfauquette']
-tags: ['MUI X', 'News']
-card: true
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
 We're happy to announce that the Premium plan is [finally out](https://mui.com/pricing/)!
-With it, MUI X officially steps up to the next level, supporting more advanced data grid use cases.
+With it, MUI X officially steps up to the next level, supporting more advanced data grid use cases.
 
-<img src="/static/blog/premium-plan-release/card.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Promotional image of MUI X Premium plan release showcasing Data Grid's new features (such as Download data as an Excel file) and Date Range Picker" />
+<img src="/static/blog/premium-plan-release/card.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Promotional image of MUI X Premium plan release showcasing Data Grid's new features (such as Download data as an Excel file) and Date Range Picker" />
 
 You can use the new Premium features to provide your end users with the most sophisticated tools necessary to navigate and interpret massive amounts of data.
 
@@ -71,7 +71,7 @@ Aggregation functions open up an exponential number of new possibilities for org
 
 ## The new licensing model
 
-With the release of the Premium plan, we're also announcing a revised pricing and licensing model for MUI X Premium and Pro.
+With the release of the Premium plan, we're also announcing a revised pricing and licensing model for MUI X Premium and Pro.
 
 We're aiming for simplicity, restructuring the model to be as clear as possible, based on the recurrent questions we've had in our sales and other channels.
 We'd also like to keep it within reach of individuals and small teams, while still capturing more of the value we generate for larger companies.
@@ -93,7 +93,7 @@ Their last renewal can have a support duration of up to 5 years.
 
 - **Removing volume and renewal discounts**
 
-  We aim to give a more transparent price based on the number of developer licenses while providing more predictable revenue for MUI X in the long term.
+  We aim to give a more transparent price based on the number of developer licenses while providing more predictable revenue for MUI X in the long term.
   We believe that's best for both our long-standing customers and us as a company.
 
 - **Perpetual in production**

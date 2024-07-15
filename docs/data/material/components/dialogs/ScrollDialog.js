@@ -30,7 +30,7 @@ export default function ScrollDialog() {
   }, [open]);
 
   return (
-    <div>
+    <React.Fragment>
       <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
       <Button onClick={handleClickOpen('body')}>scroll=body</Button>
       <Dialog
@@ -62,6 +62,6 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
           <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </React.Fragment>
   );
 }

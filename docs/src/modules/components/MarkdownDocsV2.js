@@ -8,15 +8,17 @@ import { CssVarsProvider as JoyCssVarsProvider, useColorScheme } from '@mui/joy/
 import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElementV2';
+import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { BrandingProvider } from '@mui/docs/branding';
 import Ad from 'docs/src/modules/components/Ad';
 import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import AdGuest from 'docs/src/modules/components/AdGuest';
+import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
@@ -64,10 +66,10 @@ export default function MarkdownDocsV2(props) {
     docs,
     demoComponents,
     srcComponents,
-    componentsApiDescriptions = {},
-    componentsApiPageContents = {},
-    hooksApiDescriptions = {},
-    hooksApiPageContents = {},
+    componentsApiDescriptions,
+    componentsApiPageContents,
+    hooksApiDescriptions,
+    hooksApiPageContents,
   } = props;
 
   const userLanguage = useUserLanguage();
@@ -79,37 +81,45 @@ export default function MarkdownDocsV2(props) {
 
   const localizedDoc = docs[userLanguage] || docs.en;
   // Generate the TOC based on the tab
-  const { description, location, rendered, title, toc, headers } = localizedDoc;
-  const demosToc = toc.filter((item) => item.text !== 'API');
+  const demosToc = localizedDoc.toc;
 
-  function createHookTocEntry(hookName, sectionName) {
+  function createHookTocEntry(hookName, sectionName, hookProps = {}) {
+    const hookPropToc = [];
+    Object.keys(hookProps).forEach((propName) => {
+      hookPropToc.push({
+        text: propName,
+        hash: `${hookName}-${sectionName}-${propName}`,
+        children: [],
+      });
+    });
+
     return {
       text: getHookTranslatedHeader(t, sectionName),
       hash: `${hookName}-${sectionName}`,
-      children: [],
+      children: hookPropToc,
     };
   }
 
   const hooksToc = [];
-  Object.keys(hooksApiPageContents).forEach((key) => {
-    const { hookDescriptionToc = [] } = hooksApiDescriptions[key][userLanguage];
-    const { name: hookName } = hooksApiPageContents[key];
+  if (hooksApiPageContents) {
+    Object.keys(hooksApiPageContents).forEach((key) => {
+      const { name: hookName, parameters = {}, returnValue = {} } = hooksApiPageContents[key];
 
-    const hookNameKebabCase = kebabCase(hookName);
+      const hookNameKebabCase = kebabCase(hookName);
 
-    const hookToc = [
-      createHookTocEntry(hookNameKebabCase, 'import'),
-      ...hookDescriptionToc,
-      createHookTocEntry(hookNameKebabCase, 'parameters'),
-      createHookTocEntry(hookNameKebabCase, 'return-value'),
-    ].filter(Boolean);
+      const hookToc = [
+        createHookTocEntry(hookNameKebabCase, 'import'),
+        createHookTocEntry(hookNameKebabCase, 'parameters', parameters),
+        createHookTocEntry(hookNameKebabCase, 'return-value', returnValue),
+      ].filter(Boolean);
 
-    hooksToc.push({
-      text: hookName,
-      hash: hookNameKebabCase,
-      children: hookToc,
+      hooksToc.push({
+        text: hookName,
+        hash: hookNameKebabCase,
+        children: hookToc,
+      });
     });
-  });
+  }
 
   function createComponentTocEntry(
     componentName,
@@ -132,35 +142,46 @@ export default function MarkdownDocsV2(props) {
 
   const componentsApiToc = [];
 
-  Object.keys(componentsApiPageContents).forEach((key) => {
-    const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
-    const {
-      name: componentName,
-      styles,
-      inheritance,
-      slots,
-      themeDefaultProps,
-      classes,
-    } = componentsApiPageContents[key];
-    const componentNameKebabCase = kebabCase(componentName);
+  if (componentsApiPageContents) {
+    Object.keys(componentsApiPageContents).forEach((key) => {
+      const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
+      const {
+        name: componentName,
+        inheritance,
+        slots,
+        themeDefaultProps,
+        classes,
+        props: componentProps,
+      } = componentsApiPageContents[key];
+      const componentNameKebabCase = kebabCase(componentName);
 
-    const componentApiToc = [
-      createComponentTocEntry(componentNameKebabCase, 'import'),
-      ...componentDescriptionToc,
-      styles.name && createComponentTocEntry(componentNameKebabCase, 'component-name'),
-      createComponentTocEntry(componentNameKebabCase, 'props', { inheritance, themeDefaultProps }),
-      styles.classes.length > 0 && createComponentTocEntry(componentNameKebabCase, 'css'),
-      slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),
-      (classes?.classes?.length || Object.keys(classes?.classes?.globalClasses || {}).length) &&
-        createComponentTocEntry(componentNameKebabCase, 'classes'),
-    ].filter(Boolean);
+      const componentApiToc = [
+        createComponentTocEntry(componentNameKebabCase, 'import'),
+        ...componentDescriptionToc,
+        getPropsToC({
+          t,
+          componentName: componentNameKebabCase,
+          componentProps,
+          inheritance,
+          themeDefaultProps,
+          hash: `${componentNameKebabCase}-props`,
+        }),
+        slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),
+        ...getClassesToC({
+          t,
+          componentName: componentNameKebabCase,
+          componentClasses: classes,
+          hash: `${componentNameKebabCase}-classes`,
+        }),
+      ].filter(Boolean);
 
-    componentsApiToc.push({
-      text: componentName,
-      hash: componentNameKebabCase,
-      children: componentApiToc,
+      componentsApiToc.push({
+        text: componentName,
+        hash: componentNameKebabCase,
+        children: componentApiToc,
+      });
     });
-  });
+  }
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
   const CssVarsProvider = isJoy ? JoyCssVarsProvider : React.Fragment;
@@ -176,25 +197,24 @@ export default function MarkdownDocsV2(props) {
   let done = false;
 
   // process the elements before the tabs component
-  while (i < rendered.length && !done) {
-    const renderedMarkdownOrDemo = rendered[i];
+  while (i < localizedDoc.rendered.length && !done) {
+    const renderedMarkdownOrDemo = localizedDoc.rendered[i];
     if (renderedMarkdownOrDemo.component && renderedMarkdownOrDemo.component.indexOf('Tabs') >= 0) {
       done = true;
     }
     commonElements.push(
-      <MarkdownElement
-        srcComponents={srcComponents}
+      <RichMarkdownElement
+        key={`common-elements-${i}`}
+        activeTab={activeTab}
+        demoComponents={demoComponents}
+        demos={demos}
+        disableAd={disableAd}
+        localizedDoc={localizedDoc}
         renderedMarkdownOrDemo={renderedMarkdownOrDemo}
+        srcComponents={srcComponents}
+        theme={theme}
         WrapperComponent={Wrapper}
         wrapperProps={wrapperProps}
-        key={`common-elements-${i}`}
-        localizedDoc={localizedDoc}
-        demos={demos}
-        location={location}
-        theme={theme}
-        demoComponents={demoComponents}
-        activeTab={activeTab}
-        disableAd={disableAd}
       />,
     );
     i += 1;
@@ -210,25 +230,42 @@ export default function MarkdownDocsV2(props) {
     activeToc = componentsApiToc;
   }
 
+  const hasTabs = localizedDoc.rendered.some((renderedMarkdownOrDemo) => {
+    if (
+      typeof renderedMarkdownOrDemo === 'object' &&
+      renderedMarkdownOrDemo.component &&
+      renderedMarkdownOrDemo.component === 'modules/components/ComponentPageTabs.js'
+    ) {
+      return true;
+    }
+    return false;
+  });
+
   return (
     <AppLayoutDocs
-      description={description}
+      cardOptions={{
+        description: localizedDoc.headers.cardDescription,
+        title: localizedDoc.headers.cardTitle,
+      }}
+      description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}
-      location={location}
-      title={title}
-      disableLayout
+      location={localizedDoc.location}
+      title={localizedDoc.title}
       toc={activeToc}
-      hasTabs
+      disableLayout
+      hasTabs={hasTabs}
     >
       <div
         style={{
-          '--MuiDocs-header-height': `${AppFrameHeight + TabsHeight}px`,
+          '--MuiDocs-header-height': hasTabs
+            ? `${AppFrameHeight + TabsHeight}px`
+            : `${AppFrameHeight}px`,
         }}
       >
         {disableAd ? null : (
           <BrandingProvider>
-            <AdGuest classSelector=".component-tabs">
+            <AdGuest classSelector={hasTabs ? '.component-tabs' : undefined}>
               <Ad />
             </AdGuest>
           </BrandingProvider>
@@ -237,24 +274,21 @@ export default function MarkdownDocsV2(props) {
           {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
           {commonElements}
           {activeTab === '' &&
-            rendered
-              // for the "hook only" edge case, e.g. Base UI autocomplete
-              .slice(i, rendered.length - (headers.components.length > 0 ? 1 : 0))
+            localizedDoc.rendered
+              .slice(i)
               .map((renderedMarkdownOrDemo, index) => (
-                <MarkdownElement
+                <RichMarkdownElement
                   key={`demos-section-${index}`}
+                  activeTab={activeTab}
+                  demoComponents={demoComponents}
+                  demos={demos}
+                  disableAd={disableAd}
+                  localizedDoc={localizedDoc}
                   renderedMarkdownOrDemo={renderedMarkdownOrDemo}
+                  srcComponents={srcComponents}
+                  theme={theme}
                   WrapperComponent={Wrapper}
                   wrapperProps={wrapperProps}
-                  srcComponents={srcComponents}
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                  localizedDoc={localizedDoc}
-                  demos={demos}
-                  location={location}
-                  theme={theme}
-                  demoComponents={demoComponents}
-                  disableAd={disableAd}
                 />
               ))}
           {activeTab === 'components-api' && (

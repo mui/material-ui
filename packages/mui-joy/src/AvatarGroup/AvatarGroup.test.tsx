@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AvatarGroup, { avatarGroupClasses as classes } from '@mui/joy/AvatarGroup';
 import Avatar, { avatarClasses } from '@mui/joy/Avatar';
+import describeConformance from '../../test/describeConformance';
 
 describe('<AvatarGroup />', () => {
   const { render } = createRenderer();

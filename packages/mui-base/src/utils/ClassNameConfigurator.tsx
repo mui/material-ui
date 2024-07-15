@@ -15,6 +15,10 @@ const defaultContextValue: ClassNameConfiguration = {
 const ClassNameConfiguratorContext =
   React.createContext<ClassNameConfiguration>(defaultContextValue);
 
+if (process.env.NODE_ENV !== 'production') {
+  ClassNameConfiguratorContext.displayName = 'ClassNameConfiguratorContext';
+}
+
 export interface ClassNameConfiguratorProps extends Partial<ClassNameConfiguration> {
   children?: React.ReactNode;
 }
@@ -42,7 +46,7 @@ export function useClassNamesOverride(generateUtilityClass: (slot: string) => st
 /**
  * Allows to configure the components within to not apply any built-in classes.
  */
-export default function ClassNameConfigurator(props: ClassNameConfiguratorProps) {
+export function ClassNameConfigurator(props: ClassNameConfiguratorProps) {
   const { disableDefaultClasses, children } = props;
 
   const contextValue = React.useMemo(

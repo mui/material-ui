@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "5.13.7",
+  "version": "6.0.0-beta.0",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -23,19 +23,41 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
-    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:types": "node ../../scripts/buildTypes.mjs",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./node/translations/translations.json",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && pnpm publish",
     "test": "exit 0"
   },
+  "dependencies": {
+    "@babel/runtime": "^7.24.7",
+    "@mui/internal-markdown": "workspace:^",
+    "clipboard-copy": "^4.0.1",
+    "clsx": "^2.1.1",
+    "nprogress": "^0.2.0",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@mui/icons-material": "workspace:*",
+    "@mui/material": "workspace:*",
+    "@types/node": "^18.19.39",
+    "@types/prop-types": "^15.7.12",
+    "@types/react": "^18.3.3",
+    "next": "^13.5.1",
+    "react": "^18.3.1"
+  },
   "peerDependencies": {
+    "@mui/base": "*",
+    "@mui/icons-material": "^5.0.0",
     "@mui/material": "^5.0.0",
+    "@mui/system": "^5.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
+    "chai": "^4.4.1",
+    "next": "^13.5.1 || ^14",
     "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
@@ -43,13 +65,9 @@
       "optional": true
     }
   },
-  "dependencies": {
-    "@babel/runtime": "^7.22.5",
-    "@mui/utils": "^5.13.7",
-    "nprogress": "^0.2.0"
-  },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"

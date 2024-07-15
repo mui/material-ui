@@ -6,8 +6,9 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_isFocusVisible as isFocusVisible,
   visuallyHidden,
+  clamp,
 } from '@mui/utils';
 import {
   Mark,
@@ -17,19 +18,12 @@ import {
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
 } from './useSlider.types';
-import { areArraysEqual, EventHandlers } from '../utils';
+import { areArraysEqual, EventHandlers, extractEventHandlers } from '../utils';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
 function asc(a: number, b: number) {
   return a - b;
-}
-
-function clamp(value: number, min: number, max: number) {
-  if (value == null) {
-    return min;
-  }
-  return Math.min(Math.max(min, value), max);
 }
 
 function findClosest(values: number[], currentValue: number) {
@@ -142,8 +136,8 @@ function focusThumb({
 }
 
 function areValuesEqual(
-  newValue: number | Array<number>,
-  oldValue: number | Array<number>,
+  newValue: number | ReadonlyArray<number>,
+  oldValue: number | ReadonlyArray<number>,
 ): boolean {
   if (typeof newValue === 'number' && typeof oldValue === 'number') {
     return newValue === oldValue;
@@ -196,13 +190,13 @@ function doesSupportTouchActionNone() {
  *
  * Demos:
  *
- * - [Slider](https://mui.com/base-ui/react-slider/#hook)
+ * - [Slider](https://next.mui.com/base-ui/react-slider/#hook)
  *
  * API:
  *
- * - [useSlider API](https://mui.com/base-ui/react-slider/hooks-api/#use-slider)
+ * - [useSlider API](https://next.mui.com/base-ui/react-slider/hooks-api/#use-slider)
  */
-export default function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
+export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {
     'aria-labelledby': ariaLabelledby,
     defaultValue,
@@ -219,6 +213,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     rootRef: ref,
     scale = Identity,
     step = 1,
+    shiftStep = 10,
     tabIndex,
     value: valueProp,
   } = parameters;
@@ -259,7 +254,8 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
 
   const range = Array.isArray(valueDerived);
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
-  values = values.map((value) => clamp(value, min, max));
+  values = values.map((value) => (value == null ? min : clamp(value, min, max)));
+
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
@@ -269,43 +265,118 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
 
   const marksValues = (marks as Mark[]).map((mark: Mark) => mark.value);
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
   const sliderRef = React.useRef<HTMLSpanElement>();
-  const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
-  const handleRef = useForkRef(ref, handleFocusRef);
+  const handleRef = useForkRef(ref, sliderRef);
 
   const createHandleHiddenInputFocus =
-    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
       const index = Number(event.currentTarget.getAttribute('data-index'));
-      handleFocusVisible(event);
-      if (isFocusVisibleRef.current === true) {
+      if (isFocusVisible(event.target)) {
         setFocusedThumbIndex(index);
       }
       setOpen(index);
       otherHandlers?.onFocus?.(event);
     };
   const createHandleHiddenInputBlur =
-    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
-      handleBlurVisible(event);
-      if (isFocusVisibleRef.current === false) {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
+      if (!isFocusVisible(event.target)) {
         setFocusedThumbIndex(-1);
       }
       setOpen(-1);
       otherHandlers?.onBlur?.(event);
     };
 
+  const changeValue = (event: React.KeyboardEvent | React.ChangeEvent, valueInput: number) => {
+    const index = Number(event.currentTarget.getAttribute('data-index'));
+    const value = values[index];
+    const marksIndex = marksValues.indexOf(value);
+    let newValue: number | number[] = valueInput;
+
+    if (marks && step == null) {
+      const maxMarksValue = marksValues[marksValues.length - 1];
+      if (newValue > maxMarksValue) {
+        newValue = maxMarksValue;
+      } else if (newValue < marksValues[0]) {
+        newValue = marksValues[0];
+      } else {
+        newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
+      }
+    }
+
+    newValue = clamp(newValue, min, max);
+
+    if (range) {
+      // Bound the new value to the thumb's neighbours.
+      if (disableSwap) {
+        newValue = clamp(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
+      }
+
+      const previousValue = newValue;
+      newValue = setValueIndex({
+        values,
+        newValue,
+        index,
+      });
+
+      let activeIndex = index;
+
+      // Potentially swap the index if needed.
+      if (!disableSwap) {
+        activeIndex = newValue.indexOf(previousValue);
+      }
+
+      focusThumb({ sliderRef, activeIndex });
+    }
+
+    setValueState(newValue);
+    setFocusedThumbIndex(index);
+
+    if (handleChange && !areValuesEqual(newValue, valueDerived)) {
+      handleChange(event, newValue, index);
+    }
+
+    if (onChangeCommitted) {
+      onChangeCommitted(event, newValue);
+    }
+  };
+
+  const createHandleHiddenInputKeyDown =
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
+      // The Shift + Up/Down keyboard shortcuts for moving the slider makes sense to be supported
+      // only if the step is defined. If the step is null, this means tha the marks are used for specifying the valid values.
+      if (step !== null) {
+        const index = Number(event.currentTarget.getAttribute('data-index'));
+        const value = values[index];
+
+        let newValue = null;
+        if (
+          ((event.key === 'ArrowLeft' || event.key === 'ArrowDown') && event.shiftKey) ||
+          event.key === 'PageDown'
+        ) {
+          newValue = Math.max(value - shiftStep, min);
+        } else if (
+          ((event.key === 'ArrowRight' || event.key === 'ArrowUp') && event.shiftKey) ||
+          event.key === 'PageUp'
+        ) {
+          newValue = Math.min(value + shiftStep, max);
+        }
+
+        if (newValue !== null) {
+          changeValue(event, newValue);
+          event.preventDefault();
+        }
+      }
+
+      otherHandlers?.onKeyDown?.(event);
+    };
+
   useEnhancedEffect(() => {
     if (disabled && sliderRef.current!.contains(document.activeElement)) {
       // This is necessary because Firefox and Safari will keep focus
       // on a disabled element:
-      // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
+      // https://codesandbox.io/p/sandbox/mui-pr-22247-forked-h151h?file=/src/App.js
       // @ts-ignore
       document.activeElement?.blur();
     }
@@ -319,62 +390,10 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
   }
 
   const createHandleHiddenInputChange =
-    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.ChangeEvent) => {
+    (otherHandlers: EventHandlers) => (event: React.ChangeEvent) => {
       otherHandlers.onChange?.(event);
-
-      const index = Number(event.currentTarget.getAttribute('data-index'));
-      const value = values[index];
-      const marksIndex = marksValues.indexOf(value);
-
       // @ts-ignore
-      let newValue = event.target.valueAsNumber;
-
-      if (marks && step == null) {
-        const maxMarksValue = marksValues[marksValues.length - 1];
-        if (newValue > maxMarksValue) {
-          newValue = maxMarksValue;
-        } else if (newValue < marksValues[0]) {
-          newValue = marksValues[0];
-        } else {
-          newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
-        }
-      }
-
-      newValue = clamp(newValue, min, max);
-
-      if (range) {
-        // Bound the new value to the thumb's neighbours.
-        if (disableSwap) {
-          newValue = clamp(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
-        }
-
-        const previousValue = newValue;
-        newValue = setValueIndex({
-          values,
-          newValue,
-          index,
-        });
-
-        let activeIndex = index;
-
-        // Potentially swap the index if needed.
-        if (!disableSwap) {
-          activeIndex = newValue.indexOf(previousValue);
-        }
-
-        focusThumb({ sliderRef, activeIndex });
-      }
-
-      setValueState(newValue);
-      setFocusedThumbIndex(index);
-
-      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
-        handleChange(event, newValue, index);
-      }
-
-      if (onChangeCommitted) {
-        onChangeCommitted(event, newValue);
-      }
+      changeValue(event, event.target.valueAsNumber);
     };
 
   const previousIndex = React.useRef<number>();
@@ -536,8 +555,8 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
 
     moveCount.current = 0;
     const doc = ownerDocument(sliderRef.current);
-    doc.addEventListener('touchmove', handleTouchMove);
-    doc.addEventListener('touchend', handleTouchEnd);
+    doc.addEventListener('touchmove', handleTouchMove, { passive: true });
+    doc.addEventListener('touchend', handleTouchEnd, { passive: true });
   });
 
   const stopListening = React.useCallback(() => {
@@ -555,10 +574,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     });
 
     return () => {
-      // @ts-ignore
-      slider!.removeEventListener('touchstart', handleTouchStart, {
-        passive: doesSupportTouchActionNone(),
-      });
+      slider!.removeEventListener('touchstart', handleTouchStart);
 
       stopListening();
     };
@@ -571,8 +587,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
   }, [disabled, stopListening]);
 
   const createHandleMouseDown =
-    (otherHandlers: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLSpanElement>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLSpanElement>) => {
       otherHandlers.onMouseDown?.(event);
       if (disabled) {
         return;
@@ -603,33 +618,36 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
 
       moveCount.current = 0;
       const doc = ownerDocument(sliderRef.current);
-      doc.addEventListener('mousemove', handleTouchMove);
+      doc.addEventListener('mousemove', handleTouchMove, { passive: true });
       doc.addEventListener('mouseup', handleTouchEnd);
     };
 
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
   const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
 
-  const getRootProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSliderRootSlotProps<TOther> => {
+  const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSliderRootSlotProps<ExternalProps> => {
+    const externalHandlers = extractEventHandlers(externalProps);
+
     const ownEventHandlers = {
-      onMouseDown: createHandleMouseDown(otherHandlers || {}),
+      onMouseDown: createHandleMouseDown(externalHandlers || {}),
     };
 
     const mergedEventHandlers = {
-      ...otherHandlers,
+      ...externalHandlers,
       ...ownEventHandlers,
     };
+
     return {
+      ...externalProps,
       ref: handleRef,
       ...mergedEventHandlers,
     };
   };
 
   const createHandleMouseOver =
-    (otherHandlers: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
       otherHandlers.onMouseOver?.(event);
 
       const index = Number(event.currentTarget.getAttribute('data-index'));
@@ -637,23 +655,25 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     };
 
   const createHandleMouseLeave =
-    (otherHandlers: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
       otherHandlers.onMouseLeave?.(event);
 
       setOpen(-1);
     };
 
-  const getThumbProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSliderThumbSlotProps<TOther> => {
+  const getThumbProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSliderThumbSlotProps<ExternalProps> => {
+    const externalHandlers = extractEventHandlers(externalProps);
+
     const ownEventHandlers = {
-      onMouseOver: createHandleMouseOver(otherHandlers || {}),
-      onMouseLeave: createHandleMouseLeave(otherHandlers || {}),
+      onMouseOver: createHandleMouseOver(externalHandlers || {}),
+      onMouseLeave: createHandleMouseLeave(externalHandlers || {}),
     };
 
     return {
-      ...otherHandlers,
+      ...externalProps,
+      ...externalHandlers,
       ...ownEventHandlers,
     };
   };
@@ -665,17 +685,20 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     };
   };
 
-  const getHiddenInputProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSliderHiddenInputProps<TOther> => {
+  const getHiddenInputProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSliderHiddenInputProps<ExternalProps> => {
+    const externalHandlers = extractEventHandlers(externalProps);
+
     const ownEventHandlers = {
-      onChange: createHandleHiddenInputChange(otherHandlers || {}),
-      onFocus: createHandleHiddenInputFocus(otherHandlers || {}),
-      onBlur: createHandleHiddenInputBlur(otherHandlers || {}),
+      onChange: createHandleHiddenInputChange(externalHandlers || {}),
+      onFocus: createHandleHiddenInputFocus(externalHandlers || {}),
+      onBlur: createHandleHiddenInputBlur(externalHandlers || {}),
+      onKeyDown: createHandleHiddenInputKeyDown(externalHandlers || {}),
     };
 
     const mergedEventHandlers = {
-      ...otherHandlers,
+      ...externalHandlers,
       ...ownEventHandlers,
     };
 
@@ -691,6 +714,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
       max: parameters.max,
       step: parameters.step === null && parameters.marks ? 'any' : parameters.step ?? undefined,
       disabled,
+      ...externalProps,
       ...mergedEventHandlers,
       style: {
         ...visuallyHidden,

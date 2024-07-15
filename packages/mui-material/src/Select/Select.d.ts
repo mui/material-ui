@@ -6,13 +6,12 @@ import { MenuProps } from '../Menu';
 import { SelectChangeEvent, SelectInputProps } from './SelectInput';
 import { SelectClasses } from './selectClasses';
 import { OutlinedInputProps } from '../OutlinedInput';
+import { FilledInputProps } from '../FilledInput';
 
 export { SelectChangeEvent };
 
-export interface SelectProps<T = unknown>
-  extends StandardProps<InputProps, 'value' | 'onChange'>,
-    Omit<OutlinedInputProps, 'value' | 'onChange'>,
-    Pick<SelectInputProps<T>, 'onChange'> {
+export interface BaseSelectProps<Value = unknown>
+  extends StandardProps<InputProps, 'value' | 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -40,7 +39,7 @@ export interface SelectProps<T = unknown>
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: T;
+  defaultValue?: Value;
   /**
    * If `true`, a value is displayed even if no items are selected.
    *
@@ -96,12 +95,12 @@ export interface SelectProps<T = unknown>
   /**
    * Callback fired when a menu item is selected.
    *
-   * @param {SelectChangeEvent<T>} event The event source of the callback.
+   * @param {SelectChangeEvent<Value>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
-  onChange?: SelectInputProps<T>['onChange'];
+  onChange?: SelectInputProps<Value>['onChange'];
   /**
    * Callback fired when the component requests to be closed.
    * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapses).
@@ -128,7 +127,7 @@ export interface SelectProps<T = unknown>
    * @param {any} value The `value` provided to the component.
    * @returns {ReactNode}
    */
-  renderValue?: (value: T) => React.ReactNode;
+  renderValue?: (value: Value) => React.ReactNode;
   /**
    * Props applied to the clickable div element.
    */
@@ -144,26 +143,60 @@ export interface SelectProps<T = unknown>
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value?: T | '';
+  value?: Value | '';
   /**
    * The variant to use.
    * @default 'outlined'
    */
-  variant?: 'standard' | 'outlined' | 'filled';
+  variant?: SelectVariants;
 }
+
+export interface FilledSelectProps
+  extends Omit<FilledInputProps, 'value' | 'onChange' | 'id' | 'classes' | 'inputProps'> {
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant: 'filled';
+}
+
+export interface StandardSelectProps
+  extends Omit<InputProps, 'value' | 'onChange' | 'id' | 'classes' | 'inputProps'> {
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant: 'standard';
+}
+
+export interface OutlinedSelectProps
+  extends Omit<OutlinedInputProps, 'value' | 'onChange' | 'id' | 'classes' | 'inputProps'> {
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant?: 'outlined';
+}
+
+export type SelectVariants = 'outlined' | 'standard' | 'filled';
+
+export type SelectProps<Value = unknown> =
+  | (FilledSelectProps & BaseSelectProps<Value>)
+  | (StandardSelectProps & BaseSelectProps<Value>)
+  | (OutlinedSelectProps & BaseSelectProps<Value>);
 
 /**
  *
  * Demos:
  *
- * - [Select](https://mui.com/material-ui/react-select/)
+ * - [Select](https://next.mui.com/material-ui/react-select/)
  *
  * API:
  *
- * - [Select API](https://mui.com/material-ui/api/select/)
- * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
+ * - [Select API](https://next.mui.com/material-ui/api/select/)
+ * - inherits [OutlinedInput API](https://next.mui.com/material-ui/api/outlined-input/)
  */
-declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & {
+declare const Select: (<Value = unknown>(props: SelectProps<Value>) => React.JSX.Element) & {
   muiName: string;
 };
 

@@ -6,7 +6,7 @@ import ListDivider from '@mui/joy/ListDivider';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Typography from '@mui/joy/Typography';
-import Switch, { switchClasses } from '@mui/joy/Switch';
+import Switch from '@mui/joy/Switch';
 
 export default function ExamplePaymentChannels() {
   const [orientation, setOrientation] = React.useState('vertical');
@@ -22,27 +22,21 @@ export default function ExamplePaymentChannels() {
       >
         <Typography
           id="example-payment-channel-label"
-          level="body3"
-          textTransform="uppercase"
-          fontWeight="xl"
-          sx={{ letterSpacing: '0.15rem' }}
+          level="title-md"
+          textColor={'text.secondary'}
+          sx={{ fontWeight: 'xl' }}
         >
           Pay with
         </Typography>
         <Switch
           component="label"
           size="sm"
-          endDecorator="Row view"
+          startDecorator="List"
+          endDecorator="Row"
           checked={orientation === 'horizontal'}
           onChange={(event) =>
             setOrientation(event.target.checked ? 'horizontal' : 'vertical')
           }
-          sx={{
-            [`&&:not(.${switchClasses.checked})`]: {
-              '--Switch-trackBackground': (theme) =>
-                theme.vars.palette.background.level3,
-            },
-          }}
         />
       </Box>
       <RadioGroup
@@ -55,11 +49,7 @@ export default function ExamplePaymentChannels() {
           component="div"
           variant="outlined"
           orientation={orientation}
-          sx={{
-            borderRadius: 'sm',
-            boxShadow: 'sm',
-            bgcolor: 'background.body',
-          }}
+          sx={{ borderRadius: 'sm', boxShadow: 'sm' }}
         >
           {['Credit Card', 'Paypal', 'QR Code'].map((value, index) => (
             <React.Fragment key={value}>

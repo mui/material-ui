@@ -1,5 +1,5 @@
-import useAutocomplete, { FilterOptionsState } from '@mui/base/useAutocomplete';
 import { expectType } from '@mui/types';
+import { useAutocomplete, FilterOptionsState } from '@mui/base/useAutocomplete';
 
 interface Person {
   id: string;
@@ -167,6 +167,15 @@ function Component() {
   useAutocomplete({
     options: persons,
     getOptionLabel(option) {
+      expectType<string | Person, typeof option>(option);
+      return '';
+    },
+    freeSolo: true,
+  });
+
+  useAutocomplete({
+    options: persons,
+    getOptionKey(option) {
       expectType<string | Person, typeof option>(option);
       return '';
     },

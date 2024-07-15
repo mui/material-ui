@@ -10,13 +10,7 @@ import Sheet from '@mui/joy/Sheet';
 export default function CircularProgressColors() {
   const [variant, setVariant] = React.useState('solid');
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 3,
-      }}
-    >
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
       <Box
         sx={{
           display: 'grid',
@@ -27,7 +21,6 @@ export default function CircularProgressColors() {
         <CircularProgress variant={variant} color="primary" />
         <CircularProgress variant={variant} color="neutral" />
         <CircularProgress variant={variant} color="danger" />
-        <CircularProgress variant={variant} color="info" />
         <CircularProgress variant={variant} color="success" />
         <CircularProgress variant={variant} color="warning" />
       </Box>
@@ -40,11 +33,10 @@ export default function CircularProgressColors() {
         }}
       >
         <Typography
-          level="body2"
-          fontWeight="xl"
+          level="body-sm"
           id="variant-label"
           textColor="text.primary"
-          mb={1}
+          sx={{ fontWeight: 'xl', mb: 1 }}
         >
           Variant:
         </Typography>

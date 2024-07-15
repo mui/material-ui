@@ -2,9 +2,9 @@ import { ChatProps, UserProps } from './types';
 
 export const users: UserProps[] = [
   {
-    name: 'Abel Boyle',
-    username: '@abel',
-    avatar: '/static/images/avatar/1.jpg',
+    name: 'Steve E.',
+    username: '@steveEberger',
+    avatar: '/static/images/avatar/2.jpg',
     online: true,
   },
   {
@@ -16,7 +16,7 @@ export const users: UserProps[] = [
   {
     name: 'Phoenix Baker',
     username: '@phoenix',
-    avatar: '/static/images/avatar/2.jpg',
+    avatar: '/static/images/avatar/1.jpg',
     online: true,
   },
   {
@@ -83,14 +83,14 @@ export const chats: ChatProps[] = [
       {
         id: '6',
         content:
-          'Thanks Olivia! Almost there. I’ll work on making those changes you suggested and will shoot it over.',
+          "Thanks Olivia! Almost there. I'll work on making those changes you suggested and will shoot it over.",
         timestamp: 'Thursday 10:16am',
         sender: users[0],
       },
       {
         id: '7',
         content:
-          'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
+          "Hey Olivia, I've finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.",
         timestamp: 'Thursday 11:40am',
         sender: users[0],
       },
@@ -109,13 +109,13 @@ export const chats: ChatProps[] = [
         id: '8',
         timestamp: 'Thursday 11:41am',
         sender: 'You',
-        content: 'Awesome! Thanks. I’ll look at this today.',
+        content: "Awesome! Thanks. I'll look at this today.",
       },
       {
         id: '9',
         timestamp: 'Thursday 11:44am',
         sender: users[0],
-        content: 'No rush though — we still have to wait for Lana’s designs.',
+        content: "No rush though — we still have to wait for Lana's designs.",
       },
       {
         id: '10',
@@ -127,7 +127,7 @@ export const chats: ChatProps[] = [
         id: '11',
         timestamp: 'Just now',
         sender: 'You',
-        content: 'Sure thing, I’ll have a look today. They’re looking great!',
+        content: "Sure thing, I'll have a look today. They're looking great!",
       },
     ],
   },
@@ -262,7 +262,7 @@ export const chats: ChatProps[] = [
       {
         id: '1',
         content:
-          'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
+          "Hey Olivia, I've finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.",
         timestamp: '5 mins ago',
         sender: users[6],
         unread: true,

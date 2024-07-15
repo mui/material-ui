@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { IMaskInput } from 'react-imask';
 import { NumericFormat } from 'react-number-format';
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
@@ -29,30 +29,29 @@ TextMaskCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(
-  props,
-  ref,
-) {
-  const { onChange, ...other } = props;
+const NumericFormatCustom = React.forwardRef(
+  function NumericFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
 
-  return (
-    <NumericFormat
-      {...other}
-      getInputRef={ref}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-      thousandSeparator
-      valueIsNumericString
-      prefix="$"
-    />
-  );
-});
+    return (
+      <NumericFormat
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        valueIsNumericString
+        prefix="$"
+      />
+    );
+  },
+);
 
 NumericFormatCustom.propTypes = {
   name: PropTypes.string.isRequired,
@@ -73,13 +72,7 @@ export default function FormattedInputs() {
   };
 
   return (
-    <Box
-      sx={{
-        '& > :not(style)': {
-          m: 1,
-        },
-      }}
-    >
+    <Stack direction="row" spacing={2}>
       <FormControl variant="standard">
         <InputLabel htmlFor="formatted-text-mask-input">react-imask</InputLabel>
         <Input
@@ -96,11 +89,13 @@ export default function FormattedInputs() {
         onChange={handleChange}
         name="numberformat"
         id="formatted-numberformat-input"
-        InputProps={{
-          inputComponent: NumericFormatCustom,
+        slotProps={{
+          input: {
+            inputComponent: NumericFormatCustom,
+          },
         }}
         variant="standard"
       />
-    </Box>
+    </Stack>
   );
 }

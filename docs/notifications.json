@@ -1,17 +1,12 @@
 [
   {
-    "id": 68,
-    "title": "<b>Check out Base UI today</b> 💥",
-    "text": "Love Material UI, but don't need Material Design? Try Base UI, the new \"unstyled\" alternative. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-mui-base\" href=\"/blog/introducing-mui-base/\">Read more in this announcement</a>."
+    "id": 78,
+    "title": "MUI X v6.18.x and the latest improvements before the next major",
+    "text": "New stable components, polished features, better performance and more. Check out the details in our <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-end-v6\" href=\"https://mui.com/blog/mui-x-end-v6-features/\">recent blog post</a>."
   },
   {
-    "id": 74,
-    "title": "<b>Introducing MUI X v6.0.0</b>",
-    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6\" href=\"/blog/mui-x-v6/\">Explore</a> what's new and what's next in the new stable version of the advanced components."
-  },
-  {
-    "id": 75,
-    "title": "<b>Try the new time picker UI now</b>",
-    "text": "The new time-picking experience is designed for desktops, and it's available on the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6\" href=\"https://mui.com/x/react-date-pickers/time-picker/\">Time Picker</a> as well as a <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6\" href=\"https://mui.com/x/react-date-pickers/digital-clock/\">standalone component</a>."
+    "id": 81,
+    "title": "Introducing MUI X v7",
+    "text": "The new version is packed with new components, exciting features, improved usability, and developer experience. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v7\" href=\"https://mui.com/blog/mui-x-v7/\">announcement blog post</a>."
   }
 ]

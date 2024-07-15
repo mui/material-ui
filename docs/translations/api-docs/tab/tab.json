@@ -1,24 +1,62 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
-    "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class.",
-    "icon": "The icon to display.",
-    "iconPosition": "The position of the icon relative to the label.",
-    "label": "The label element.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "value": "You can provide your own value. Otherwise, we fallback to the child position index.",
-    "wrapped": "Tab labels appear in a single row. They can use a second line if needed."
+    "children": {
+      "description": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure."
+    },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "disabled": { "description": "If <code>true</code>, the component is disabled." },
+    "disableFocusRipple": {
+      "description": "If <code>true</code>, the  keyboard focus ripple is disabled."
+    },
+    "disableRipple": {
+      "description": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class."
+    },
+    "icon": { "description": "The icon to display." },
+    "iconPosition": { "description": "The position of the icon relative to the label." },
+    "label": { "description": "The label element." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    },
+    "value": {
+      "description": "You can provide your own value. Otherwise, we fallback to the child position index."
+    },
+    "wrapped": {
+      "description": "Tab labels appear in a single row. They can use a second line if needed."
+    }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code> (controlled by the Tabs component)"
+    },
+    "fullWidth": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>fullWidth={true}</code> (controlled by the Tabs component)"
+    },
+    "icon": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the <code>icon</code> HTML element",
+      "conditions": "both <code>icon</code> and <code>label</code> are provided"
+    },
+    "iconWrapper": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the <code>icon</code> HTML element",
+      "conditions": "both <code>icon</code> and <code>label</code> are provided",
+      "deprecationInfo": "Use <code>icon</code> class instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details"
+    },
     "labelIcon": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "both <code>icon</code> and <code>label</code> are provided"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "selected": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>selected={true}</code> (controlled by the Tabs component)"
     },
     "textColorInherit": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -35,30 +73,10 @@
       "nodeName": "the root element",
       "conditions": "the parent <a href=\"/material-ui/api/tabs/\"><code>Tabs</code></a> has <code>textColor=\"secondary\"</code>"
     },
-    "selected": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>selected={true}</code> (controlled by the Tabs component)"
-    },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disabled={true}</code> (controlled by the Tabs component)"
-    },
-    "fullWidth": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>fullWidth={true}</code> (controlled by the Tabs component)"
-    },
     "wrapped": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>wrapped={true}</code>"
-    },
-    "iconWrapper": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the wrapper element of <code>icon</code>",
-      "conditions": "<code>icon</code> is provided"
     }
   }
 }

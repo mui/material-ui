@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build && concurrently --success first --kill-others \"yarn server\" \"node testEsbuildIntegration\"",
+    "start": "pnpm build && concurrently --success first --kill-others \"pnpm server\" \"node testEsbuildIntegration\"",
     "build": "esbuild esbuild.fixture.js --bundle --outfile=build/esbuild.fixture.js",
     "server": "serve -p 5001 -s build"
   },
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.35.1",
+    "playwright": "1.45.1",
     "serve": "14.0.1"
   }
 }

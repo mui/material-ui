@@ -2,11 +2,13 @@ import * as React from 'react';
 import NextHead from 'next/head';
 import { useRouter } from 'next/router';
 import { LANGUAGES_SSR } from 'docs/config';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
-// #major-version-switch
-const HOST = 'https://mui.com';
+// #default-branch-switch
+const HOST = process.env.PULL_REQUEST_ID
+  ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
+  : 'https://mui.com';
 
 interface HeadProps {
   card?: string;
@@ -21,7 +23,7 @@ interface HeadProps {
 export default function Head(props: HeadProps) {
   const t = useTranslate();
   const {
-    card = '/static/social-previews/default-preview.jpg',
+    card = '/static/social-previews/home-preview.jpg',
     children,
     description = t('strapline'),
     disableAlternateLocale = false,
@@ -38,25 +40,25 @@ export default function Head(props: HeadProps) {
     <NextHead>
       <title>{title}</title>
       <meta name="description" content={description} />
-      {/* Twitter */}
+      {/* X */}
       <meta name="twitter:card" content={largeCard ? 'summary_large_image' : 'summary'} />
-      {/* https://twitter.com/MUI_hq */}
+      {/* https://x.com/MUI_hq */}
       <meta name="twitter:site" content="@MUI_hq" />
-      {/* #major-version-switch */}
+      {/* #default-branch-switch */}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={preview} />
       {/* Facebook */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
-      {/* #major-version-switch */}
+      {/* #default-branch-switch */}
       <meta property="og:url" content={`${HOST}${router.asPath}`} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={preview} />
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
-      {/* #major-version-switch */}
+      {/* #default-branch-switch */}
       <meta name="docsearch:version" content="master" />
       {disableAlternateLocale
         ? null

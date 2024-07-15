@@ -1,30 +1,74 @@
 {
   "componentDescription": "The props of the [Modal](/material-ui/api/modal/) component are available\nwhen `variant=\"temporary\"` is set.",
   "propDescriptions": {
-    "anchor": "Side from which the drawer will appear.",
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "elevation": "The elevation of the drawer.",
-    "hideBackdrop": "If <code>true</code>, the backdrop is not rendered.",
-    "ModalProps": "Props applied to the <a href=\"/material-ui/api/modal/\"><code>Modal</code></a> element.",
-    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback.",
-    "open": "If <code>true</code>, the component is shown.",
-    "PaperProps": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element.",
-    "SlideProps": "Props applied to the <a href=\"/material-ui/api/slide/\"><code>Slide</code></a> element.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
-    "variant": "The variant to use."
+    "anchor": { "description": "Side from which the drawer will appear." },
+    "children": { "description": "The content of the component." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "elevation": { "description": "The elevation of the drawer." },
+    "hideBackdrop": { "description": "If <code>true</code>, the backdrop is not rendered." },
+    "ModalProps": {
+      "description": "Props applied to the <a href=\"/material-ui/api/modal/\"><code>Modal</code></a> element."
+    },
+    "onClose": {
+      "description": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.",
+      "typeDescriptions": {
+        "event": "The event source of the callback.",
+        "reason": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
+      }
+    },
+    "open": { "description": "If <code>true</code>, the component is shown." },
+    "PaperProps": {
+      "description": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element."
+    },
+    "SlideProps": {
+      "description": "Props applied to the <a href=\"/material-ui/api/slide/\"><code>Slide</code></a> element."
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    },
+    "transitionDuration": {
+      "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
+    },
+    "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "docked": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"permanent or persistent\"</code>"
     },
+    "modal": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Modal component"
+    },
     "paper": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Paper component"
+    },
+    "paperAnchorBottom": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"bottom\"</code>"
+    },
+    "paperAnchorDockedBottom": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"bottom\"</code> and <code>variant</code> is not &quot;temporary&quot;"
+    },
+    "paperAnchorDockedLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"left\"</code> and <code>variant</code> is not &quot;temporary&quot;"
+    },
+    "paperAnchorDockedRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"right\"</code> and <code>variant</code> is not &quot;temporary&quot;"
+    },
+    "paperAnchorDockedTop": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"top\"</code> and <code>variant</code> is not &quot;temporary&quot;"
     },
     "paperAnchorLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -41,31 +85,6 @@
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"top\"</code>"
     },
-    "paperAnchorBottom": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>anchor=\"bottom\"</code>"
-    },
-    "paperAnchorDockedLeft": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>anchor=\"left\"</code> and <code>variant</code> is not &quot;temporary&quot;"
-    },
-    "paperAnchorDockedTop": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>anchor=\"top\"</code> and <code>variant</code> is not &quot;temporary&quot;"
-    },
-    "paperAnchorDockedRight": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>anchor=\"right\"</code> and <code>variant</code> is not &quot;temporary&quot;"
-    },
-    "paperAnchorDockedBottom": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>anchor=\"bottom\"</code> and <code>variant</code> is not &quot;temporary&quot;"
-    },
-    "modal": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Modal component" }
+    "root": { "description": "Styles applied to the root element." }
   }
 }

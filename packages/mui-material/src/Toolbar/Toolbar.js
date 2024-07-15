@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getToolbarUtilityClass } from './toolbarClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -25,28 +25,41 @@ const ToolbarRoot = styled('div', {
 
     return [styles.root, !ownerState.disableGutters && styles.gutters, styles[ownerState.variant]];
   },
-})(
-  ({ theme, ownerState }) => ({
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    ...(!ownerState.disableGutters && {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
-        paddingLeft: theme.spacing(3),
-        paddingRight: theme.spacing(3),
+})(({ theme }) => ({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.disableGutters,
+      style: {
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
+        [theme.breakpoints.up('sm')]: {
+          paddingLeft: theme.spacing(3),
+          paddingRight: theme.spacing(3),
+        },
       },
-    }),
-    ...(ownerState.variant === 'dense' && {
-      minHeight: 48,
-    }),
-  }),
-  ({ theme, ownerState }) => ownerState.variant === 'regular' && theme.mixins.toolbar,
-);
+    },
+    {
+      props: {
+        variant: 'dense',
+      },
+      style: {
+        minHeight: 48,
+      },
+    },
+    {
+      props: {
+        variant: 'regular',
+      },
+      style: theme.mixins.toolbar,
+    },
+  ],
+}));
 
 const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiToolbar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiToolbar' });
   const {
     className,
     component = 'div',
@@ -76,10 +89,10 @@ const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
 });
 
 Toolbar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
    * The Toolbar is a flex container, allowing flex item properties to be used to lay out the children.

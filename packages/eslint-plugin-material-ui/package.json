@@ -5,11 +5,15 @@
   "description": "Custom eslint rules for MUI.",
   "main": "src/index.js",
   "dependencies": {
-    "emoji-regex": "^10.2.1"
+    "emoji-regex": "^10.3.0"
   },
   "devDependencies": {
-    "@types/eslint": "^8.40.2",
-    "@typescript-eslint/parser": "^5.61.0"
+    "@types/eslint": "^8.56.10",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.0"
+  },
+  "peerDependencies": {
+    "eslint": "^8.47.0"
   },
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js'"

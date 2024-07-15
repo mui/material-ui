@@ -13,7 +13,7 @@ export type TabsListActionContext = ListActionContext<string | number> & {
   selectionFollowsFocus: boolean;
 };
 
-export default function tabsListReducer(
+export function tabsListReducer(
   state: ListState<string | number>,
   action: ActionWithContext<ListAction<string | number> | ValueChangeAction, TabsListActionContext>,
 ) {

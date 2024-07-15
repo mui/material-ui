@@ -99,7 +99,8 @@ export { default as withTheme } from './withTheme';
 
 export * from './CssVarsProvider';
 
-export { default as experimental_extendTheme } from './experimental_extendTheme';
+export { default as extendTheme } from './extendTheme';
+
 export type {
   ColorSchemeOverrides,
   SupportedColorScheme,
@@ -132,7 +133,7 @@ export type {
   ThemeCssVar,
   ThemeCssVarOverrides,
   ColorSystemOptions,
-} from './experimental_extendTheme';
+} from './extendTheme';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
-import { createRenderer, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { useButton } from '@mui/base/useButton';
 
 describe('useButton', () => {
   const { render } = createRenderer();
@@ -169,6 +169,92 @@ describe('useButton', () => {
         expect(handleClickInternal.callCount).to.equal(1);
         expect(handleClickExternal.callCount).to.equal(0);
       });
+
+      it('handles onFocusVisible and does not include it in the root props', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // JSDOM doesn't support :focus-visible
+          this.skip();
+        }
+
+        interface WithFocusVisibleHandler {
+          onFocusVisible: React.FocusEventHandler;
+        }
+
+        function TestComponent(props: WithFocusVisibleHandler) {
+          const ref = React.useRef(null);
+          const { getRootProps } = useButton({ ...props, rootRef: ref });
+
+          // @ts-expect-error onFocusVisible is removed from props
+          expect(getRootProps().onFocusVisible).to.equal(undefined);
+
+          return <button {...getRootProps()} />;
+        }
+
+        const handleFocusVisible = spy();
+
+        const { getByRole } = render(<TestComponent onFocusVisible={handleFocusVisible} />);
+
+        act(() => {
+          getByRole('button').focus();
+        });
+
+        expect(handleFocusVisible.callCount).to.equal(1);
+      });
+    });
+  });
+
+  describe('tabIndex', () => {
+    it('does not return tabIndex in getRootProps when host component is BUTTON', () => {
+      function TestComponent() {
+        const ref = React.useRef(null);
+        const { getRootProps } = useButton({ rootRef: ref });
+
+        expect(getRootProps().tabIndex).to.equal(undefined);
+
+        return <button {...getRootProps()} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.property('tabIndex', 0);
+    });
+
+    it('returns tabIndex in getRootProps when host component is not BUTTON', () => {
+      function TestComponent() {
+        const ref = React.useRef(null);
+        const { getRootProps } = useButton({ rootRef: ref });
+
+        expect(getRootProps().tabIndex).to.equal(ref.current ? 0 : undefined);
+
+        return <span {...getRootProps()} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.property('tabIndex', 0);
+    });
+
+    it('returns tabIndex in getRootProps if it is explicitly provided', () => {
+      const customTabIndex = 3;
+      function TestComponent() {
+        const ref = React.useRef(null);
+        const { getRootProps } = useButton({ rootRef: ref, tabIndex: customTabIndex });
+        return <button {...getRootProps()} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.property('tabIndex', customTabIndex);
+    });
+  });
+
+  describe('arbitrary props', () => {
+    it('are passed to the host component', () => {
+      const buttonTestId = 'button-test-id';
+      function TestComponent() {
+        const { getRootProps } = useButton({});
+        return <button {...getRootProps({ 'data-testid': buttonTestId })} />;
+      }
+
+      const { getByRole } = render(<TestComponent />);
+      expect(getByRole('button')).to.have.attribute('data-testid', buttonTestId);
     });
   });
 });

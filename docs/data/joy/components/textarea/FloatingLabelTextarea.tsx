@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/joy/styles';
 import Textarea from '@mui/joy/Textarea';
 
@@ -48,7 +48,7 @@ const StyledLabel = styled('label')(({ theme }) => ({
 
 const InnerTextarea = React.forwardRef<
   HTMLTextAreaElement,
-  JSX.IntrinsicElements['textarea']
+  React.JSX.IntrinsicElements['textarea']
 >(function InnerTextarea(props, ref) {
   const id = React.useId();
   return (

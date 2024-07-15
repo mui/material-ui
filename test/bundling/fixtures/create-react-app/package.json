@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn cross-env DISABLE_ESLINT_PLUGIN=true SKIP_PREFLIGHT_CHECK=true react-scripts build && concurrently --success first --kill-others \"yarn server\" \"node testCreateReactAppIntegration\"",
+    "start": "pnpm cross-env DISABLE_ESLINT_PLUGIN=true SKIP_PREFLIGHT_CHECK=true react-scripts build && concurrently --success first --kill-others \"pnpm server\" \"node testCreateReactAppIntegration\"",
     "server": "serve -p 5001 -s build"
   },
   "dependencies": {
@@ -25,7 +25,7 @@
   "devDependencies": {
     "concurrently": "7.4.0",
     "cross-env": "7.0.3",
-    "playwright": "1.35.1",
+    "playwright": "1.45.1",
     "serve": "14.0.1"
   },
   "browserslist": {

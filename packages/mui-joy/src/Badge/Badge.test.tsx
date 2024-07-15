@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Badge, { BadgeClassKey, BadgeOrigin, badgeClasses as classes } from '@mui/joy/Badge';
+import describeConformance from '../../test/describeConformance';
 
 function findBadge(container: HTMLElement) {
   return (container?.firstChild as HTMLElement)?.querySelector('span') ?? null;
@@ -40,13 +41,6 @@ describe('<Badge />', () => {
       },
       skip: ['classesRoot', 'componentsProp'],
     }),
-  );
-
-  describeJoyColorInversion(
-    <Badge badgeContent="1" slotProps={{ badge: { 'data-testid': 'test-element' } }}>
-      <button />
-    </Badge>,
-    { muiName: 'JoyBadge', classes },
   );
 
   it('renders children and badgeContent', () => {
@@ -121,7 +115,7 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.colorPrimary);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { container } = render(<Badge color={color} {...defaultProps} />);
 

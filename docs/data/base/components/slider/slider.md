@@ -12,7 +12,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 <p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.
 </p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -22,28 +22,13 @@ The Slider component lets users make selections from a range of values along a h
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
-{{"demo": "UnstyledSliderIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSliderIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
-import Slider from '@mui/base/Slider';
-
-export default function MyApp() {
-  return <Slider />;
-}
+import { Slider } from '@mui/base/Slider';
 ```
-
-### Basics
-
-The following demo shows how to create and style two basic sliders.
-Notice that both are set to a default value of 10 with the `defaultValue` prop, and the second slider cannot be adjusted due to the `disabled` prop:
-
-{{"demo": "UnstyledSliderBasic", "defaultCodeOpen": false}}
 
 ### Anatomy
 
@@ -57,38 +42,38 @@ The Slider component is composed of a root `<span>` that houses several interior
 - valueLabel: optional label to display the values on a range slider
 
 ```html
-<span class="MuiSlider-root">
-  <span class="MuiSlider-rail"></span>
-  <span class="MuiSlider-track"></span>
+<span class="base-Slider-root">
+  <span class="base-Slider-rail"></span>
+  <span class="base-Slider-track"></span>
   <span
     data-index="0"
-    class="MuiSlider-mark MuiSlider-markActive"
+    class="base-Slider-mark base-Slider-markActive"
     style="left: 0%;"
   ></span>
   <span
     aria-hidden="true"
     data-index="0"
-    class="MuiSlider-markLabel MuiSlider-markLabelActive"
+    class="base-Slider-markLabel base-Slider-markLabelActive"
     style="left: 0%;"
     >0</span
   >
-  <span data-index="1" class="MuiSlider-mark" style="left: 50%;"></span>
+  <span data-index="1" class="base-Slider-mark" style="left: 50%;"></span>
   <span
     aria-hidden="true"
     data-index="1"
-    class="MuiSlider-markLabel"
+    class="base-Slider-markLabel"
     style="left: 50%;"
     >50</span
   >
-  <span data-index="2" class="MuiSlider-mark" style="left: 100%;"></span>
+  <span data-index="2" class="base-Slider-mark" style="left: 100%;"></span>
   <span
     aria-hidden="true"
     data-index="2"
-    class="MuiSlider-markLabel"
+    class="base-Slider-markLabel"
     style="left: 100%;"
     >100</span
   >
-  <span class="MuiSlider-thumb">
+  <span class="base-Slider-thumb">
     <input />
   </span>
 </span>
@@ -118,9 +103,10 @@ The following code snippet applies a CSS class called `my-rail` to the rail slot
 <Slider slotProps={{ rail: { className: 'my-rail' } }} />
 ```
 
-#### Usage with TypeScript
+### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
+This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <Slider<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
@@ -135,13 +121,13 @@ The same applies for props specific to custom primitive elements:
 ## Hook
 
 ```js
-import useSlider from '@mui/base/useSlider';
+import { useSlider } from '@mui/base/useSlider';
 ```
 
-The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.
+The `useSlider` hook lets you apply the functionality of a Slider to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
 
 :::info
 Hooks give you the most room for customization, but require more work to implement.
@@ -156,16 +142,17 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 Slider components can be arranged vertically as well as horizontally.
 
-When vertical, you must set `orientation="vertical"` on the `<Slider />` component so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal sliders).
+When vertical, you must set `orientation="vertical"` on the Slider so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal sliders).
 
 {{"demo": "VerticalSlider.js"}}
 
 ### Discrete sliders
 
-The most basic slider is _continuous_, which means it does not have pre-defined (_discrete_) values for the user to select from.
+The most basic Slider is _continuous_, which means it does not have pre-defined (_discrete_) values for the user to select from.
 This is suitable for situations in which an approximate value is good enough for the user, such as brightness or volume.
 
-But if your users need more precise options, you can create a discrete slider that snaps the thumb to pre-defined stops along the bar.
+But if your users need more precise options, you can create a discrete Slider that snaps the thumb to pre-defined stops along the bar.
+Make sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divadable with the `step`.
 
 To generate a mark for each stop, use `marks={true}`:
 
@@ -185,13 +172,14 @@ If the user should only be able to select from the values provided with the `mar
 
 ### Range slider
 
-To let users set the start and end of a range on a slider, provide an array of values to the `value` or `defaultValue` prop:
+To let users set the start and end of a range on a Slider, provide an array of values to the `value` or `defaultValue` prop:
 
 {{"demo": "RangeSlider.js"}}
 
 ### Value label
 
-A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot. These are the typical use cases for showing the value label:
+A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot.
+These are typical use cases for showing the value label:
 
 - always
 - only when hovering over the thumb (using CSS)

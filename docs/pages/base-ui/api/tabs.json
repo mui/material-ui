@@ -18,23 +18,37 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
   "name": "Tabs",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import { Tabs } from '@mui/base/Tabs';", "import { Tabs } from '@mui/base';"],
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiTabs-root"
+      "class": "base-Tabs-root"
     }
   ],
-  "classes": { "classes": ["horizontal", "vertical"], "globalClasses": {} },
+  "classes": [
+    {
+      "key": "horizontal",
+      "className": "base-Tabs-horizontal",
+      "description": "Class name applied to the root element if `orientation='horizontal'`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "base-Tabs-vertical",
+      "description": "Class name applied to the root element if `orientation='vertical'`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
-  "muiName": "MuiTabs",
+  "muiName": "Tabs",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Tabs/Tabs.tsx",
   "inheritance": null,

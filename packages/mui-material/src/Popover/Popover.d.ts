@@ -1,12 +1,25 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/base';
 import { InternalStandardProps as StandardProps } from '..';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalOwnerState, ModalProps } from '../Modal';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { PopoverClasses } from './popoverClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+
+export interface PopoverSlots {
+  root?: React.ElementType;
+  paper?: React.ElementType;
+}
+
+export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  PopoverSlots,
+  {
+    root: SlotProps<typeof Modal, {}, ModalOwnerState>;
+    paper: SlotProps<typeof Paper, {}, {}>;
+  }
+>;
 
 export interface PopoverOrigin {
   vertical: 'top' | 'center' | 'bottom' | number;
@@ -26,7 +39,8 @@ interface PopoverVirtualElement {
 }
 
 export interface PopoverProps
-  extends StandardProps<Omit<ModalProps, 'slots' | 'slotProps'>, 'children'> {
+  extends StandardProps<Omit<ModalProps, 'slots' | 'slotProps'>, 'children'>,
+    PopoverSlotsAndSlotProps {
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.
@@ -91,9 +105,10 @@ export interface PopoverProps
   elevation?: number;
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * If null, the popover will not be constrained by the window.
    * @default 16
    */
-  marginThreshold?: number;
+  marginThreshold?: number | null;
   onClose?: ModalProps['onClose'];
   /**
    * If `true`, the component is shown.
@@ -107,26 +122,7 @@ export interface PopoverProps
    *
    * @default {}
    */
-  PaperProps?: Partial<PaperProps>;
-  /**
-   * The components used for each slot inside.
-   *
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-    paper?: React.ElementType;
-  };
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    root?: SlotComponentProps<typeof Modal, {}, ModalOwnerState>;
-    paper?: SlotComponentProps<typeof Paper, {}, {}>;
-  };
+  PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -159,7 +155,7 @@ export interface PopoverProps
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -186,12 +182,12 @@ export declare const PopoverPaper: React.FC<PopoverPaperProps>;
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
- * - [Popover](https://mui.com/material-ui/react-popover/)
+ * - [Menu](https://next.mui.com/material-ui/react-menu/)
+ * - [Popover](https://next.mui.com/material-ui/react-popover/)
  *
  * API:
  *
- * - [Popover API](https://mui.com/material-ui/api/popover/)
- * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
+ * - [Popover API](https://next.mui.com/material-ui/api/popover/)
+ * - inherits [Modal API](https://next.mui.com/material-ui/api/modal/)
  */
-export default function Popover(props: PopoverProps): JSX.Element;
+export default function Popover(props: PopoverProps): React.JSX.Element;

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Tooltip from '@mui/material/Tooltip';
 import { Instance } from '@popperjs/core';
+import Tooltip from '@mui/material/Tooltip';
 
 interface Props {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   value: number;
 }
 

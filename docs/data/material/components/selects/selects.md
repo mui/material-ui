@@ -12,7 +12,7 @@ unstyled: /base-ui/react-select/
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic select
 
@@ -30,7 +30,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 ## Props
 
 The Select component is implemented as a custom `<input>` element of the [InputBase](/material-ui/api/input-base/).
-It extends the [text field components](/material-ui/react-text-field/) sub-components, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.
+It extends the [text field components](/material-ui/react-text-field/) subcomponents, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.
 It shares the same styles and many of the same props. Refer to the respective component's API page for details.
 
 ### Filled and standard variants
@@ -80,7 +80,7 @@ Notice that the `"standard"` variant is easier to customize, since it does not w
 
 {{"demo": "CustomizedSelects.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/select-introduction--docs).
 
 ## Multiple select
 
@@ -136,7 +136,7 @@ Display categories with the `ListSubheader` component or the native `<optgroup>`
 {{"demo": "GroupedSelect.js"}}
 
 :::warning
-If you wish to wrap the ListSubheader in a custom component, you'll have to annotate it so Material UI can handle it properly when determining focusable elements.
+If you wish to wrap the ListSubheader in a custom component, you'll have to annotate it so Material UI can handle it properly when determining focusable elements.
 
 You have two options for solving this:
 Option 1: Define a static boolean field called `muiSkipListHighlight` on your component function, and set it to `true`:

@@ -1,2 +1,2 @@
 'use client';
-export { default } from './MultiSelect';
+export { MultiSelect } from './MultiSelect';

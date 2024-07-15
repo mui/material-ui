@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 export default function GridsDiff() {
   return (
-    <Box>
+    <div>
       <Box
         sx={{
           pt: 3,
@@ -24,12 +24,14 @@ export default function GridsDiff() {
           >
             <Grid
               item
-              height={100}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              textAlign="center"
               xs
+              sx={{
+                height: 100,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+              }}
             >
               ver.1 <br />
               Top and left
@@ -48,7 +50,7 @@ export default function GridsDiff() {
               alignItems="center"
               justifyContent="center"
               textAlign="center"
-              xs
+              size="grow"
             >
               ver.2 <br />
               All sides
@@ -59,6 +61,6 @@ export default function GridsDiff() {
       <Typography variant="body2" sx={{ mt: 3, color: 'text.secondary' }}>
         The overflow represents the negative margin of the grid.
       </Typography>
-    </Box>
+    </div>
   );
 }

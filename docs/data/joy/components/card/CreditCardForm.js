@@ -25,7 +25,7 @@ export default function CreditCardForm() {
         resize: 'horizontal',
       }}
     >
-      <Typography level="h2" fontSize="xl" startDecorator={<InfoOutlined />}>
+      <Typography level="title-lg" startDecorator={<InfoOutlined />}>
         Add new card
       </Typography>
       <Divider inset="none" />

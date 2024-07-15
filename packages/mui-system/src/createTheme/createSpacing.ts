@@ -2,6 +2,7 @@ import { createUnarySpacing } from '../spacing';
 
 export type SpacingOptions =
   | number
+  | string
   | Spacing
   | ((abs: number) => number | string)
   | ((abs: number | string) => number | string)
@@ -11,10 +12,9 @@ export type SpacingArgument = number | string;
 
 // The different signatures imply different meaning for their arguments that can't be expressed structurally.
 // We express the difference with variable names.
-/* tslint:disable:unified-signatures */
 export interface Spacing {
   (): string;
-  (value: number): string;
+  (value: SpacingArgument): string;
   (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
   (top: SpacingArgument, rightLeft: SpacingArgument, bottom: SpacingArgument): string;
   (
@@ -24,20 +24,20 @@ export interface Spacing {
     left: SpacingArgument,
   ): string;
 }
-/* tslint:enable:unified-signatures */
 
-export default function createSpacing(spacingInput: SpacingOptions = 8): Spacing {
+export default function createSpacing(
+  spacingInput: SpacingOptions = 8,
+  // Material Design layouts are visually balanced. Most measurements align to an 8dp grid, which aligns both spacing and the overall layout.
+  // Smaller components, such as icons, can align to a 4dp grid.
+  // https://m2.material.io/design/layout/understanding-layout.html
+  transform = createUnarySpacing({
+    spacing: spacingInput,
+  }),
+): Spacing {
   // Already transformed.
   if ((spacingInput as any).mui) {
     return spacingInput as Spacing;
   }
-
-  // Material Design layouts are visually balanced. Most measurements align to an 8dp grid, which aligns both spacing and the overall layout.
-  // Smaller components, such as icons, can align to a 4dp grid.
-  // https://m2.material.io/design/layout/understanding-layout.html
-  const transform = createUnarySpacing({
-    spacing: spacingInput,
-  });
 
   const spacing = (...argsInput: ReadonlyArray<number | string>): string => {
     if (process.env.NODE_ENV !== 'production') {

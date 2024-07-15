@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
 describe('createTheme', () => {
@@ -248,6 +248,52 @@ describe('createTheme', () => {
       borderBottomLeftRadius: '0px',
       borderTopRightRadius: '0px',
       borderBottomRightRadius: '0px',
+    });
+  });
+
+  it('should apply dark styles when using applyStyles if mode="dark"', function test() {
+    const darkTheme = createTheme({
+      palette: {
+        mode: 'dark',
+      },
+    });
+
+    const Test = styled('div')(({ theme }) => ({
+      backgroundColor: 'rgb(255, 255, 255)',
+      ...theme.applyStyles('dark', {
+        backgroundColor: 'rgb(0, 0, 0)',
+      }),
+    }));
+
+    const { container } = render(
+      <ThemeProvider theme={darkTheme}>
+        <Test />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 0)',
+    });
+  });
+
+  it('should not apply dark styles when using applyStyles if mode="light"', function test() {
+    const lightTheme = createTheme();
+
+    const Test = styled('div')(({ theme }) => ({
+      backgroundColor: 'rgb(255, 255, 255)',
+      ...theme.applyStyles('dark', {
+        backgroundColor: 'rgb(0, 0, 0)',
+      }),
+    }));
+
+    const { container } = render(
+      <ThemeProvider theme={lightTheme}>
+        <Test />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({
+      backgroundColor: 'rgb(255, 255, 255)',
     });
   });
 

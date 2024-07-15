@@ -1,9 +1,10 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import * as pageProps from 'docs/data/base/components/modal/modal.md?@mui/markdown';
+import * as pageProps from 'docs/data/base/components/modal/modal.md?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import ModalApiJsonPageContent from '../../api/modal.json';
+import useModalApiJsonPageContent from '../../api/use-modal.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -29,12 +30,19 @@ export const getStaticProps = () => {
   );
   const ModalApiDescriptions = mapApiPageTranslations(ModalApiReq);
 
+  const useModalApiReq = require.context(
+    'docs/translations/api-docs/use-modal',
+    false,
+    /use-modal.*.json$/,
+  );
+  const useModalApiDescriptions = mapApiPageTranslations(useModalApiReq);
+
   return {
     props: {
       componentsApiDescriptions: { Modal: ModalApiDescriptions },
       componentsApiPageContents: { Modal: ModalApiJsonPageContent },
-      hooksApiDescriptions: {},
-      hooksApiPageContents: {},
+      hooksApiDescriptions: { useModal: useModalApiDescriptions },
+      hooksApiPageContents: { useModal: useModalApiJsonPageContent },
     },
   };
 };

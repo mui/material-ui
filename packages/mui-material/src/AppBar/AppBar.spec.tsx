@@ -1,6 +1,6 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import { expectType } from '@mui/types';
+import AppBar from '@mui/material/AppBar';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {
@@ -26,3 +26,14 @@ function AppBarTest() {
     </div>
   );
 }
+
+// `color`
+<AppBar color="inherit" />;
+<AppBar color="primary" />;
+<AppBar color="secondary" />;
+<AppBar color="default" />;
+<AppBar color="transparent" />;
+<AppBar color="error" />;
+<AppBar color="success" />;
+<AppBar color="info" />;
+<AppBar color="warning" />;

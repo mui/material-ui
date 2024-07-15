@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import isHostComponent from '../utils/isHostComponent';
-import composeClasses from '../composeClasses';
+import { isHostComponent } from '../utils/isHostComponent';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSliderUtilityClass } from './sliderClasses';
-import useSlider, { valueToPercent } from '../useSlider';
-import useSlotProps from '../utils/useSlotProps';
-import resolveComponentProps from '../utils/resolveComponentProps';
+import { useSlider, valueToPercent } from '../useSlider';
+import { useSlotProps } from '../utils/useSlotProps';
+import { resolveComponentProps } from '../utils/resolveComponentProps';
 import { SliderOwnerState, SliderProps, SliderTypeMap } from './Slider.types';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -77,6 +77,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
+    shiftStep = 10,
     scale = Identity,
     step = 1,
     tabIndex,
@@ -107,6 +108,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     orientation,
     scale,
     step,
+    shiftStep,
     track,
     valueLabelFormat,
   };
@@ -324,10 +326,10 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
 }) as PolymorphicComponent<SliderTypeMap>;
 
 Slider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The label of the slider.
    */
@@ -457,6 +459,11 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   scale: PropTypes.func,
   /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep: PropTypes.number,
+  /**
    * The props used for each slot inside the Slider.
    * @default {}
    */
@@ -528,4 +535,4 @@ Slider.propTypes /* remove-proptypes */ = {
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 } as any;
 
-export default Slider;
+export { Slider };

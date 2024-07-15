@@ -21,8 +21,6 @@ export interface TooltipClasses {
   colorPrimary: string;
   /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
   /** Class name applied to the root element if `color="success"`. */
@@ -64,7 +62,6 @@ const tooltipClasses: TooltipClasses = generateUtilityClasses('MuiTooltip', [
   'placementBottom',
   'colorPrimary',
   'colorDanger',
-  'colorInfo',
   'colorNeutral',
   'colorSuccess',
   'colorWarning',

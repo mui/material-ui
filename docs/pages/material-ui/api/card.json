@@ -1,17 +1,26 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "raised": { "type": { "name": "custom", "description": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "Card",
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCard" },
+  "imports": ["import Card from '@mui/material/Card';", "import { Card } from '@mui/material';"],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiCard-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiCard",

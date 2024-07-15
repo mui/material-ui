@@ -1,34 +1,34 @@
 # Introductory tutorial
 
-<p class="description">Learn how to import and style Joy UI components to build a simple login page with light and dark modes.</p>
+<p class="description">Learn how to import and style Joy UI components to build a simple login page with light and dark modes.</p>
 
-This tutorial will walk you through how to assemble the UI for a basic login page using Joy UI.
+This tutorial will walk you through how to assemble the UI for a basic login page using Joy UI.
 You'll be introduced to several common components as well as some of the props you can use to control their styles.
-You'll also encounter key features of Joy UI such as global variants, the `sx` prop, and the `useColorScheme` hook.
+You'll also encounter key features of Joy UI such as global variants, the `sx` prop, and the `useColorScheme` hook.
 
 By the end, you should understand how to:
 
-1. import and customize Joy UI components
-2. add styles to Joy UI components with `sx`
+1. import and customize Joy UI components
+2. add styles to Joy UI components with `sx`
 3. override default HTML elements with `component`
 4. toggle light and dark mode with `useColorScheme`
 
 ## Interactive demo
 
-Here's what the final product looks like—click on the **<>** icon underneath the demo to see the full source code:
+Here's what the final product looks like—click on the "Show code" button underneath the demo to see the full source code:
 
-{{"demo": "LoginFinal.js"}}
+{{"demo": "LoginFinal.js", "iframe": true, "height": 500, "bg": "outlined"}}
 
 ## Prerequisites
 
 This tutorial assumes that you've already:
 
 - set up a React app—try [Create React App](https://create-react-app.dev/) if you need a boilerplate
-- installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions
+- installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions
 
 ## Import the Sheet component for structure
 
-The [Sheet](/joy-ui/react-sheet/) component is a `<div>` container that supports Joy UI's [global variants feature](/joy-ui/main-features/global-variants/), helping to ensure consistency across your app.
+The [Sheet](/joy-ui/react-sheet/) component is a `<div>` container that supports Joy UI's [global variants feature](/joy-ui/main-features/global-variants/), helping to ensure consistency across your app.
 
 Import Sheet and add it to your app as shown below.
 (If you're using Create React App, for example, all of this code should go in `App.js`.)
@@ -49,12 +49,12 @@ export default function App() {
 
 :::success
 Try playing around with different `variant` values to see the available styles.
-In addition to `outlined`, you can also use `solid`, `soft`, or `plain`—these are Joy UI's [global variants](/joy-ui/main-features/global-variants/), and they're available on all components.
+In addition to `outlined`, you can also use `solid`, `soft`, or `plain`—these are Joy UI's [global variants](/joy-ui/main-features/global-variants/), and they're available on all components.
 :::
 
 ### Add styles with the sx prop
 
-All Joy UI components accept [the `sx` prop](/system/getting-started/the-sx-prop/), which gives you access to a shorthand syntax for writing CSS.
+All Joy UI components accept [the `sx` prop](/system/getting-started/the-sx-prop/), which gives you access to a shorthand syntax for writing CSS.
 It's great for creating one-off customizations or rapidly experimenting with different styles.
 
 Replace your basic Sheet from the previous step with the following `sx`-styled Sheet:
@@ -80,20 +80,19 @@ Replace your basic Sheet from the previous step with the following `sx`-styled S
 
 :::success
 Try changing some of the values for the CSS properties above based on the patterns you observe.
-To go deeper, read about the `sx` prop in the [MUI System documentation](/system/getting-started/the-sx-prop/).
+To go deeper, read about the `sx` prop in the [MUI System documentation](/system/getting-started/the-sx-prop/).
 :::
 
 ## Add text with the Typography component
 
 The [Typography](/joy-ui/react-typography/) component replaces HTML header, paragraph, and span tags to help maintain a consistent hierarchy of text on the page.
 
-:::info
 The `level` prop gives you access to a pre-defined scale of typographic values.
-Joy UI provides 13 typographic levels out of the box:
+Joy UI provides 11 typographic levels out of the box.
 
-`display1 | display2 | h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | body4 | body5`
-
-:::
+- Four heading levels: `'h1' | 'h2' | 'h3' | 'h4'`
+- Three title levels: `'title-lg' | 'title-md' | 'title-sm'`
+- Four body levels: `'body-lg' | 'body-md' | 'body-sm' | 'body-xs'`
 
 Add an import for Typography with the rest of your imports:
 
@@ -108,13 +107,13 @@ Replace `Welcome!` inside your Sheet component with this `<div>`:
   <Typography level="h4" component="h1">
     Welcome!
   </Typography>
-  <Typography level="body2">Sign in to continue.</Typography>
+  <Typography level="body-sm">Sign in to continue.</Typography>
 </div>
 ```
 
 :::success
 Try changing the values for the `level` and `component` props to see how they affect the typographic values and the elements rendered.
-(Note that while `level` only accepts the 13 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
+(Note that while `level` only accepts the 11 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
 :::
 
 ## Add text field for user inputs
@@ -181,7 +180,7 @@ Notice that the Link is appended to the Typography inside of [the `endDecorator`
 ## 🎁 Bonus: Build a toggle for light and dark mode
 
 The `useColorScheme` hook aids in the implementation of a toggle button for switching between light and dark mode in an app.
-It also enables Joy UI to ensure that the user-selected mode (which is stored in `localStorage` by default) stays in sync across browser tabs.
+It also enables Joy UI to ensure that the user-selected mode (which is stored in `localStorage` by default) stays in sync across browser tabs.
 
 Add `useColorScheme` to your import from `@mui/joy/styles`:
 
@@ -254,7 +253,7 @@ Here are some of the major features introduced:
 This tutorial does not cover theming or general component customization.
 Learn more about [different customization approaches](/joy-ui/customization/approaches/) and when to apply them.
 
-To see some more sophisticated examples of Joy UI in action, check out our [collection of templates](/joy-ui/getting-started/templates/).
+To see some more sophisticated examples of Joy UI in action, check out our [collection of templates](/joy-ui/getting-started/templates/).
 
-Are you migrating from Material UI?
-Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/guides/using-joy-ui-and-material-ui-together/).
+Are you migrating from Material UI?
+Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/integrations/material-ui/).

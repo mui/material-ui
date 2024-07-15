@@ -32,7 +32,7 @@ export default function DarkModeByDefault() {
                 Default
               </Chip>
             }
-            fontSize="lg"
+            sx={{ fontSize: 'lg' }}
           >
             Dark mode
           </Typography>

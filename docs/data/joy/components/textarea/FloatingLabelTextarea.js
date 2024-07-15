@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/joy/styles';
 import Textarea from '@mui/joy/Textarea';
 

@@ -1,27 +1,36 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import {
-  act,
-  createRenderer,
-  describeConformance,
-  screen,
-  fireEvent,
-  describeJoyColorInversion,
-  strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+import { act, createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { Popper as PopperUnstyled } from '@mui/base/Popper';
+import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
 import Menu, { menuClasses as classes } from '@mui/joy/Menu';
+import Dropdown from '@mui/joy/Dropdown';
 import MenuItem from '@mui/joy/MenuItem';
-import PopperUnstyled from '@mui/base/Popper';
+import MenuButton from '@mui/joy/MenuButton';
+import describeConformance from '../../test/describeConformance';
+
+const testContext: DropdownContextValue = {
+  dispatch: () => {},
+  popupId: 'menu-popup',
+  registerPopup: () => {},
+  registerTrigger: () => {},
+  state: { open: true, changeReason: null },
+  triggerElement: document.createElement('div'),
+};
 
 describe('Joy <Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
-  describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
+  describeConformance(<Menu />, () => ({
     classes,
     inheritComponent: PopperUnstyled, // `Unstyled` suffix must exist for parser to recognise that this component inherits Base UI component
-    render,
+    render: (node) => {
+      return render(
+        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
+      );
+    },
     ThemeProvider,
     muiName: 'JoyMenu',
     refInstanceof: window.HTMLUListElement,
@@ -33,32 +42,12 @@ describe('Joy <Menu />', () => {
       'classesRoot',
       'componentProp',
       'componentsProp',
-      'reactTestRenderer', // react-transition-group issue
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));
 
   const anchorEl = document.createElement('div');
   anchorEl.setAttribute('aria-controls', 'test');
-
-  describeJoyColorInversion(
-    <Menu open disablePortal anchorEl={() => anchorEl} data-testid="test-element" />,
-    {
-      muiName: 'JoyMenu',
-      classes,
-      portalSlot: 'root',
-    },
-  );
-
-  it("should show warning if `id` does not match the anchorEl's `aria-controls`", () => {
-    expect(() =>
-      render(<Menu id="foo" anchorEl={anchorEl} open data-testid="popover" />),
-    ).toErrorDev([
-      'MUI: the anchorEl must have [aria-controls="foo"] but got [aria-controls="test"].',
-      !strictModeDoubleLoggingSuppressed &&
-        'MUI: the anchorEl must have [aria-controls="foo"] but got [aria-controls="test"].',
-    ]);
-  });
 
   it('should render with `ul` by default', () => {
     render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
@@ -68,9 +57,12 @@ describe('Joy <Menu />', () => {
   it('should pass onClose prop to Popover', () => {
     const handleClose = spy();
     render(
-      <Menu anchorEl={anchorEl} open onClose={handleClose}>
-        <MenuItem />
-      </Menu>,
+      <Dropdown open onOpenChange={handleClose}>
+        <MenuButton />
+        <Menu>
+          <MenuItem />
+        </Menu>
+      </Dropdown>,
     );
 
     const item = screen.getByRole('menuitem');

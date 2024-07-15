@@ -22,10 +22,8 @@ export default function ExampleGmailList() {
       <List
         aria-label="Sidebar"
         sx={{
-          // ...applyRadiusOnEdges({ target: 'deepest' | 'nested' }),
           '--ListItem-paddingLeft': '0px',
           '--ListItemDecorator-size': '64px',
-          '--ListItemDecorator-color': (theme) => theme.vars.palette.text.secondary,
           '--ListItem-minHeight': '32px',
           '--List-nestedInsetStart': '13px',
           [`& .${listItemDecoratorClasses.root}`]: {
@@ -40,15 +38,17 @@ export default function ExampleGmailList() {
         <ListItem>
           <ListItemButton
             selected={index === 0}
-            variant={index === 0 ? 'soft' : 'plain'}
-            color={index === 0 ? 'danger' : undefined}
+            color={index === 0 ? 'primary' : undefined}
             onClick={() => setIndex(0)}
           >
             <ListItemDecorator>
               <InboxIcon fontSize="lg" />
             </ListItemDecorator>
             <ListItemContent>Inbox</ListItemContent>
-            <Typography level="body2" sx={{ fontWeight: 'bold', color: 'inherit' }}>
+            <Typography
+              level="body-sm"
+              sx={{ fontWeight: 'bold', color: 'inherit' }}
+            >
               1,950
             </Typography>
           </ListItemButton>
@@ -56,7 +56,6 @@ export default function ExampleGmailList() {
         <ListItem>
           <ListItemButton
             selected={index === 1}
-            variant={index === 1 ? 'soft' : 'plain'}
             color={index === 1 ? 'neutral' : undefined}
             onClick={() => setIndex(1)}
           >
@@ -69,8 +68,7 @@ export default function ExampleGmailList() {
         <ListItem nested>
           <ListItemButton
             selected={index === 2}
-            variant={index === 2 ? 'soft' : 'plain'}
-            color={index === 2 ? 'info' : undefined}
+            color={index === 2 ? 'success' : undefined}
             onClick={() => setIndex(2)}
           >
             <ListItemDecorator>
@@ -83,7 +81,6 @@ export default function ExampleGmailList() {
             <ListItem>
               <ListItemButton
                 selected={index === 3}
-                variant={index === 3 ? 'soft' : 'plain'}
                 color={index === 3 ? 'primary' : undefined}
                 onClick={() => setIndex(3)}
               >
@@ -91,13 +88,12 @@ export default function ExampleGmailList() {
                   <People fontSize="lg" />
                 </ListItemDecorator>
                 <ListItemContent>Social</ListItemContent>
-                <Typography level="body2">4,320</Typography>
+                <Typography level="body-sm">4,320</Typography>
               </ListItemButton>
             </ListItem>
             <ListItem>
               <ListItemButton
                 selected={index === 4}
-                variant={index === 4 ? 'soft' : 'plain'}
                 color={index === 4 ? 'warning' : undefined}
                 onClick={() => setIndex(4)}
               >
@@ -105,7 +101,7 @@ export default function ExampleGmailList() {
                   <Info fontSize="lg" />
                 </ListItemDecorator>
                 <ListItemContent>Updates</ListItemContent>
-                <Typography level="body2">22,252</Typography>
+                <Typography level="body-sm">22,252</Typography>
               </ListItemButton>
             </ListItem>
           </List>

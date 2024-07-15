@@ -4,6 +4,7 @@ description: Here are the most significant improvements in August.
 date: 2019-09-07T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
+manualCard: true
 ---
 
 Here are the most significant improvements in August:

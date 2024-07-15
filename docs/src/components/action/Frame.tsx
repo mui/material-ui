@@ -10,11 +10,11 @@ const FrameDemo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameDemo(
         (theme) => ({
           position: 'relative',
           border: '1px solid',
-          bgcolor: 'grey.100',
-          borderColor: 'grey.200',
+          background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+          borderColor: 'grey.100',
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.700',
-            borderColor: 'primaryDark.600',
+            background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+            borderColor: 'primaryDark.700',
           }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
@@ -29,35 +29,42 @@ const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(
       ref={ref}
       {...props}
       sx={{
-        color: '#fff',
         p: 2,
-        bgcolor: 'primaryDark.800',
+        overflow: 'clip',
+        position: 'relative',
+        colorScheme: 'dark',
+        color: '#fff',
+        bgcolor: 'common.black',
         border: '1px solid',
         borderColor: 'primaryDark.700',
-        colorScheme: 'dark',
+        borderTop: 0,
+        borderBottomLeftRadius: 12,
+        borderBottomRightRadius: 12,
         ...props.sx,
       }}
     />
   );
 });
 
-function Frame(props: BoxProps) {
+function Frame({ sx, ...props }: BoxProps) {
   return (
     <Box
       {...props}
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        '& > div:first-of-type': {
-          borderTopLeftRadius: '12px',
-          borderTopRightRadius: '12px',
+      sx={[
+        {
+          display: 'flex',
+          flexDirection: 'column',
+          '& > div:first-of-type': {
+            borderTopLeftRadius: '12px',
+            borderTopRightRadius: '12px',
+          },
+          '& > div:last-of-type': {
+            borderBottomLeftRadius: '12px',
+            borderBottomRightRadius: '12px',
+          },
         },
-        '& > div:last-of-type': {
-          borderBottomLeftRadius: '12px',
-          borderBottomRightRadius: '12px',
-        },
-        ...props.sx,
-      }}
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     />
   );
 }

@@ -24,10 +24,11 @@ const Image = styled('img')(({ theme }) => ({
     width: 450,
     height: 450 / ratio,
   },
-  border: '6px solid',
+  border: '4px solid',
   borderColor: (theme.vars || theme).palette.grey[400],
   borderRadius: (theme.vars || theme).shape.borderRadius,
   objectFit: 'cover',
+  objectPosition: 'top',
   boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
   ...theme.applyDarkStyles({
     borderColor: (theme.vars || theme).palette.grey[800],
@@ -50,7 +51,7 @@ const linkMapping = {
   minimal: 'https://mui.com/store/items/minimal-dashboard/',
   theFront: 'https://mui.com/store/items/the-front-landing-page/',
   miro: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
-  flexy: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
+  devias: 'https://mui.com/store/items/devias-kit-pro/',
   berry: 'https://mui.com/store/items/berry-react-material-admin/',
   webbee: 'https://mui.com/store/items/webbee-landing-page/',
 };
@@ -90,7 +91,7 @@ const StoreTemplateLink = React.forwardRef<
           justifyContent: 'center',
         }}
       >
-        <Typography fontWeight="bold">Go to store</Typography>
+        <Typography sx={{ fontWeight: 'bold' }}>Go to store</Typography>
         <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
       </Box>
     </Anchor>
@@ -99,7 +100,7 @@ const StoreTemplateLink = React.forwardRef<
 
 const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
-  { brand: TemplateBrand } & Omit<JSX.IntrinsicElements['img'], 'ref'>
+  { brand: TemplateBrand } & Omit<React.JSX.IntrinsicElements['img'], 'ref'>
 >(function StoreTemplateImage({ brand, ...props }, ref) {
   return (
     <Image
@@ -108,6 +109,7 @@ const StoreTemplateImage = React.forwardRef<
         Object.keys(linkMapping).indexOf(brand) + 1
       }light.jpg`}
       alt=""
+      loading="lazy"
       sx={(theme) =>
         theme.applyDarkStyles({
           content: `url(/static/branding/store-templates/template-${
@@ -221,8 +223,8 @@ export default function StoreTemplatesBanner() {
     <Box
       sx={{
         mx: { xs: -2, sm: -3, md: 0 },
-        my: { md: -8 },
-        height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
+        my: { md: -18 },
+        height: { xs: 300, sm: 360, md: 'calc(100% + 320px)' },
         overflow: 'hidden',
         position: 'relative',
         width: { xs: '100vw', md: '50vw' },
@@ -237,11 +239,6 @@ export default function StoreTemplatesBanner() {
           width: '100%',
           height: '100%',
           pointerEvents: 'none',
-          background: `linear-gradient(to bottom, ${
-            (theme.vars || theme).palette.grey[50]
-          } 0%, ${transparent} 30%, ${transparent} 70%, ${
-            (theme.vars || theme).palette.grey[50]
-          } 100%)`,
           zIndex: 2,
           ...theme.applyDarkStyles({
             background: `linear-gradient(to bottom, ${
@@ -286,12 +283,12 @@ export default function StoreTemplatesBanner() {
           pointerEvents: 'none',
           zIndex: 10,
           background: `linear-gradient(to right, ${
-            (theme.vars || theme).palette.grey[50]
+            (theme.vars || theme).palette.primary[50]
           }, ${transparent})`,
           ...theme.applyDarkStyles({
             background: `linear-gradient(to right, ${
               (theme.vars || theme).palette.primaryDark[900]
-            }, ${alpha(theme.palette.primaryDark[900], 0)})`,
+            }, ${alpha(theme.palette.primary[900], 0)})`,
           }),
         })}
       />

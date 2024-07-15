@@ -9,7 +9,7 @@ githubLabel: 'component: divider'
 
 <p class="description">A divider is a thin line that groups content in lists and layouts.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

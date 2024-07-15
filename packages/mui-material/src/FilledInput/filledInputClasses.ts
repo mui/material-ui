@@ -1,5 +1,5 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import { inputBaseClasses } from '../InputBase';
 
 export interface FilledInputClasses {
@@ -19,7 +19,7 @@ export interface FilledInputClasses {
   adornedEnd: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
-  /** Styles applied to the input element if `size="small"`. */
+  /** Styles applied to the root element if `size="small"`. */
   sizeSmall: string;
   /** Styles applied to the root element if `multiline={true}`. */
   multiline: string;
@@ -27,18 +27,6 @@ export interface FilledInputClasses {
   hiddenLabel: string;
   /** Styles applied to the input element. */
   input: string;
-  /** Styles applied to the input element if `size="small"`. */
-  inputSizeSmall: string;
-  /** Styles applied to the `input` if in `<FormControl hiddenLabel />`. */
-  inputHiddenLabel: string;
-  /** Styles applied to the input element if `multiline={true}`. */
-  inputMultiline: string;
-  /** Styles applied to the input element if `startAdornment` is provided. */
-  inputAdornedStart: string;
-  /** Styles applied to the input element if `endAdornment` is provided. */
-  inputAdornedEnd: string;
-  /** Styles applied to the input element if `type="search"`. */
-  inputTypeSearch: string;
 }
 
 export type FilledInputClassKey = keyof FilledInputClasses;
@@ -49,7 +37,16 @@ export function getFilledInputUtilityClass(slot: string): string {
 
 const filledInputClasses: FilledInputClasses = {
   ...inputBaseClasses,
-  ...generateUtilityClasses('MuiFilledInput', ['root', 'underline', 'input']),
+  ...generateUtilityClasses('MuiFilledInput', [
+    'root',
+    'underline',
+    'input',
+    'adornedStart',
+    'adornedEnd',
+    'sizeSmall',
+    'multiline',
+    'hiddenLabel',
+  ]),
 };
 
 export default filledInputClasses;

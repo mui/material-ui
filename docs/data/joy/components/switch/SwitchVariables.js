@@ -1,7 +1,7 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function SwitchVariables() {
   return (
@@ -10,7 +10,7 @@ export default function SwitchVariables() {
       data={[
         { var: '--Switch-gap', defaultValue: '8px' },
         [
-          'track',
+          'Track',
           [
             { var: '--Switch-trackRadius', defaultValue: '16px' },
             { var: '--Switch-trackWidth', defaultValue: '48px' },
@@ -19,7 +19,7 @@ export default function SwitchVariables() {
           { defaultOpen: true },
         ],
         [
-          'thumb',
+          'Thumb',
           [
             { var: '--Switch-thumbSize', defaultValue: '16px' },
             { var: '--Switch-thumbRadius' },

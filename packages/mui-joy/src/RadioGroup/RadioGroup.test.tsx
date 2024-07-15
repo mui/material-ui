@@ -2,10 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import RadioGroup, { radioGroupClasses as classes, RadioGroupProps } from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import { ThemeProvider } from '@mui/joy/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<RadioGroup />', () => {
   const { render } = createRenderer();

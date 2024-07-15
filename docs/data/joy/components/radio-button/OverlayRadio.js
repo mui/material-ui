@@ -16,7 +16,7 @@ export default function OverlayRadio() {
         name="member"
         defaultValue="person1"
         orientation="horizontal"
-        sx={{ gap: 2, mt: 1 }}
+        sx={{ gap: 2 }}
       >
         {[1, 2, 3].map((num) => (
           <Sheet
@@ -27,25 +27,16 @@ export default function OverlayRadio() {
               p: 2,
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'start',
+              alignItems: 'center',
               boxShadow: 'sm',
               borderRadius: 'md',
-              bgcolor: 'background.body',
-              gap: 1.5,
             }}
           >
-            <Radio
-              value={`person${num}`}
-              sx={{
-                mt: -1,
-                mr: -1,
-                mb: 0.5,
-                alignSelf: 'flex-end',
-                '--Radio-actionRadius': (theme) => theme.vars.radius.md,
-              }}
-            />
+            <Radio value={`person${num}`} variant="soft" sx={{ mb: 2 }} />
             <Avatar alt={`person${num}`} src={`/static/images/avatar/${num}.jpg`} />
-            <Typography level="body2">Person {num}</Typography>
+            <Typography level="body-sm" sx={{ mt: 1 }}>
+              Person {num}
+            </Typography>
           </Sheet>
         ))}
       </RadioGroup>

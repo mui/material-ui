@@ -1,28 +1,88 @@
 {
   "props": {
     "children": { "type": { "name": "custom", "description": "node" }, "required": true },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "defaultExpanded": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "expanded": { "type": { "name": "bool" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, expanded: boolean) => void",
+        "describedArgs": ["event", "expanded"]
+      }
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "default": "{}"
+    },
     "square": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
+    "TransitionComponent": { "type": { "name": "elementType" } },
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "Accordion",
-  "styles": {
-    "classes": ["root", "rounded", "expanded", "disabled", "gutters", "region"],
-    "globalClasses": { "expanded": "Mui-expanded", "disabled": "Mui-disabled" },
-    "name": "MuiAccordion"
-  },
+  "imports": [
+    "import Accordion from '@mui/material/Accordion';",
+    "import { Accordion } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "transition",
+      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "Collapse",
+      "class": null
+    }
+  ],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "State class applied to the root element if `expanded={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "gutters",
+      "className": "MuiAccordion-gutters",
+      "description": "Styles applied to the root element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "region",
+      "className": "MuiAccordion-region",
+      "description": "Styles applied to the region element, the container of the children.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAccordion-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "rounded",
+      "className": "MuiAccordion-rounded",
+      "description": "Styles applied to the root element unless `square={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAccordion",

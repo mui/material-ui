@@ -23,22 +23,21 @@ export default function ProductCard() {
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        <Typography level="body3">Bluetooth Headset</Typography>
+        <Typography level="body-xs">Bluetooth Headset</Typography>
         <Link
           href="#product-card"
-          fontWeight="xl"
           color="neutral"
           textColor="text.primary"
           overlay
           endDecorator={<ArrowOutwardIcon />}
+          sx={{ fontWeight: 'md' }}
         >
           Super Rockez A400
         </Link>
 
         <Typography
-          fontSize="xl"
-          fontWeight="xl"
-          sx={{ mt: 1 }}
+          level="title-lg"
+          sx={{ mt: 1, fontWeight: 'xl' }}
           endDecorator={
             <Chip component="span" size="sm" variant="soft" color="success">
               Lowest price
@@ -47,7 +46,7 @@ export default function ProductCard() {
         >
           2,900 THB
         </Typography>
-        <Typography level="body2">
+        <Typography level="body-sm">
           (Only <b>7</b> left in stock!)
         </Typography>
       </CardContent>

@@ -10,7 +10,7 @@ unstyled: /base-ui/react-badge/
 
 <p class="description">The Badge component generates a small label that is attached to its child element.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -57,7 +57,7 @@ Use the `max` prop to cap the content to a maximum numerical value.
 
 ### Variants
 
-The Badge component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft` , `outlined`, and `plain`.
+The Badge component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft` , `outlined`, and `plain`.
 
 {{"demo": "BadgeVariants.js"}}
 

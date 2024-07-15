@@ -6,7 +6,7 @@ import Slide from '@mui/material/Slide';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 import IconButton from '@mui/material/IconButton';
-import { TransitionProps } from '@mui/material/transitions/transition';
+import { TransitionProps } from '@mui/material/transitions';
 
 const styles = ({ theme }: { theme: Theme }) =>
   ({
@@ -21,22 +21,26 @@ const styles = ({ theme }: { theme: Theme }) =>
         borderBottomLeftRadius: 4,
       },
     },
+
     [`& .${snackbarContentClasses.message}`]: {
       fontSize: 16,
       display: 'flex',
       alignItems: 'center',
     },
+
     [`& .${snackbarContentClasses.action}`]: {
       paddingLeft: theme.spacing(2),
     },
+
     '& .MuiSnackbarContent-info': {
       flexShrink: 0,
       marginRight: theme.spacing(2),
     },
+
     '& .MuiSnackbarContent-close': {
       padding: theme.spacing(1),
     },
-  } as const);
+  }) as const;
 
 function Transition(
   props: TransitionProps & { children: React.ReactElement<any, any> },

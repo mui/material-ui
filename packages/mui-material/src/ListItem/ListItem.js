@@ -2,11 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
-import { chainPropTypes, elementTypeAcceptingRef } from '@mui/utils';
-import { alpha } from '@mui/system';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { alpha } from '@mui/system/colorManipulator';
+import isHostComponent from '../utils/isHostComponent';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -68,7 +70,7 @@ export const ListItemRoot = styled('div', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -77,28 +79,6 @@ export const ListItemRoot = styled('div', {
   width: '100%',
   boxSizing: 'border-box',
   textAlign: 'left',
-  ...(!ownerState.disablePadding && {
-    paddingTop: 8,
-    paddingBottom: 8,
-    ...(ownerState.dense && {
-      paddingTop: 4,
-      paddingBottom: 4,
-    }),
-    ...(!ownerState.disableGutters && {
-      paddingLeft: 16,
-      paddingRight: 16,
-    }),
-    ...(!!ownerState.secondaryAction && {
-      // Add some space to avoid collision as `ListItemSecondaryAction`
-      // is absolutely positioned.
-      paddingRight: 48,
-    }),
-  }),
-  ...(!!ownerState.secondaryAction && {
-    [`& > .${listItemButtonClasses.root}`]: {
-      paddingRight: 48,
-    },
-  }),
   [`&.${listItemClasses.focusVisible}`]: {
     backgroundColor: (theme.vars || theme).palette.action.focus,
   },
@@ -118,45 +98,98 @@ export const ListItemRoot = styled('div', {
   [`&.${listItemClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
   },
-  ...(ownerState.alignItems === 'flex-start' && {
-    alignItems: 'flex-start',
-  }),
-  ...(ownerState.divider && {
-    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-    backgroundClip: 'padding-box',
-  }),
-  ...(ownerState.button && {
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      textDecoration: 'none',
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.disablePadding,
+      style: {
+        paddingTop: 8,
+        paddingBottom: 8,
       },
     },
-    [`&.${listItemClasses.selected}:hover`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    {
+      props: ({ ownerState }) => !ownerState.disablePadding && ownerState.dense,
+      style: {
+        paddingTop: 4,
+        paddingBottom: 4,
       },
     },
-  }),
-  ...(ownerState.hasSecondaryAction && {
-    // Add some space to avoid collision as `ListItemSecondaryAction`
-    // is absolutely positioned.
-    paddingRight: 48,
-  }),
+    {
+      props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.disableGutters,
+      style: {
+        paddingLeft: 16,
+        paddingRight: 16,
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState.disablePadding && !!ownerState.secondaryAction,
+      style: {
+        // Add some space to avoid collision as `ListItemSecondaryAction`
+        // is absolutely positioned.
+        paddingRight: 48,
+      },
+    },
+    {
+      props: ({ ownerState }) => !!ownerState.secondaryAction,
+      style: {
+        [`& > .${listItemButtonClasses.root}`]: {
+          paddingRight: 48,
+        },
+      },
+    },
+    {
+      props: {
+        alignItems: 'flex-start',
+      },
+      style: {
+        alignItems: 'flex-start',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.divider,
+      style: {
+        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+        backgroundClip: 'padding-box',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.button,
+      style: {
+        transition: theme.transitions.create('background-color', {
+          duration: theme.transitions.duration.shortest,
+        }),
+        '&:hover': {
+          textDecoration: 'none',
+          backgroundColor: (theme.vars || theme).palette.action.hover,
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
+        },
+        [`&.${listItemClasses.selected}:hover`]: {
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+            : alpha(
+                theme.palette.primary.main,
+                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+              ),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+              : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+          },
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.hasSecondaryAction,
+      style: {
+        // Add some space to avoid collision as `ListItemSecondaryAction`
+        // is absolutely positioned.
+        paddingRight: 48,
+      },
+    },
+  ],
 }));
 
 const ListItemContainer = styled('li', {
@@ -171,7 +204,7 @@ const ListItemContainer = styled('li', {
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItem' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItem' });
   const {
     alignItems = 'center',
     autoFocus = false,
@@ -221,7 +254,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const children = React.Children.toArray(childrenProp);
 
-  // v4 implementation, deprecated in v5, will be removed in v6
+  // v4 implementation, deprecated in v6, will be removed in v7
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
@@ -264,7 +297,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     Component = ButtonBase;
   }
 
-  // v4 implementation, deprecated in v5, will be removed in v6
+  // v4 implementation, deprecated in v6, will be removed in v7
   if (hasSecondaryAction) {
     // Use div by default.
     Component = !componentProps.component && !componentProp ? 'div' : Component;
@@ -322,10 +355,10 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 });
 
 ListItem.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Defines the `align-items` style property.
    * @default 'center'
@@ -389,9 +422,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   components: PropTypes.shape({
@@ -401,9 +432,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-   *
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -412,13 +441,13 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
-   * @deprecated
+   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerComponent: elementTypeAcceptingRef,
   /**
    * Props applied to the container component if used.
    * @default {}
-   * @deprecated
+   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerProps: PropTypes.object,
   /**
@@ -466,8 +495,6 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -475,8 +502,6 @@ ListItem.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
    *
    * @default {}
    */

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Divider from '@mui/joy/Divider';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function DividerUsage() {
   return (
@@ -38,21 +38,25 @@ export default function DividerUsage() {
             sx={{ width: 300, pb: 3 }}
           >
             <Sheet
-              sx={{
-                height: props.orientation === 'vertical' ? 120 : 40,
-                flexGrow: 1,
-                borderRadius: 'xs',
-                bgcolor: 'background.level3',
-              }}
+              sx={[
+                {
+                  flexGrow: 1,
+                  borderRadius: 'xs',
+                  bgcolor: 'background.level3',
+                },
+                props.orientation === 'vertical' ? { height: 120 } : { height: 40 },
+              ]}
             />
             <Divider {...props} />
             <Sheet
-              sx={{
-                height: props.orientation === 'vertical' ? 120 : 40,
-                flexGrow: 1,
-                borderRadius: 'xs',
-                bgcolor: 'background.level3',
-              }}
+              sx={[
+                {
+                  flexGrow: 1,
+                  borderRadius: 'xs',
+                  bgcolor: 'background.level3',
+                },
+                props.orientation === 'vertical' ? { height: 120 } : { height: 40 },
+              ]}
             />
           </Stack>
         </Sheet>

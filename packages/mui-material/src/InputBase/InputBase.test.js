@@ -2,14 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material/InputBase';
 import { createTheme } from '@mui/material/styles';
-import { ThemeProvider } from '@emotion/react';
+import describeConformance from '../../test/describeConformance';
 
 describe('<InputBase />', () => {
   const { render } = createRenderer();
@@ -109,25 +110,12 @@ describe('<InputBase />', () => {
       expect(handleFocus.callCount).to.equal(1);
     });
 
-    // IE11 bug
-    it('should not respond the focus event when disabled', () => {
-      const handleFocus = spy();
-      // non-native input simulating how IE11 treats disabled inputs
-      const { getByRole } = render(
-        <div onFocus={handleFocus}>
-          <InputBase
-            disabled
-            inputComponent="div"
-            inputProps={{ role: 'textbox', tabIndex: -1 }}
-            onFocus={handleFocus}
-          />
-        </div>,
-      );
-
-      act(() => {
-        getByRole('textbox').focus();
-      });
-      expect(handleFocus.called).to.equal(false);
+    it('fires the click event when the <input /> is disabled', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<InputBase disabled onClick={handleClick} />);
+      const input = getByRole('textbox');
+      fireEvent.click(input);
+      expect(handleClick.callCount).to.equal(1);
     });
   });
 

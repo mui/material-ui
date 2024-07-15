@@ -29,9 +29,7 @@ export default function SelectCustomValueAppearance() {
           },
         },
       }}
-      sx={{
-        minWidth: 240,
-      }}
+      sx={{ minWidth: 240 }}
     >
       {people.map((data, index) => (
         <Option
@@ -43,8 +41,10 @@ export default function SelectCustomValueAppearance() {
             <Avatar src={`/static/images/avatar/${index + 1}.jpg`} />
           </ListItemDecorator>
           <Box component="span" sx={{ display: 'block' }}>
-            <Typography component="span">{data.name}</Typography>
-            <Typography level="body4">{data.status}</Typography>
+            <Typography component="span" level="title-sm">
+              {data.name}
+            </Typography>
+            <Typography level="body-xs">{data.status}</Typography>
           </Box>
           <Chip
             size="sm"
@@ -56,8 +56,9 @@ export default function SelectCustomValueAppearance() {
               minHeight: '20px',
               paddingInline: '4px',
               fontSize: 'xs',
-              bgcolor: `${colors[data.role]}.softBg`,
+              bgcolor: `${'var(--colors-role)'}.softBg`,
             }}
+            style={{ '--colors-role': colors[data.role] }}
           >
             {data.role}
           </Chip>

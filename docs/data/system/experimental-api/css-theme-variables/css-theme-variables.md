@@ -1,6 +1,6 @@
 # CSS theme variables
 
-<p class="description">An overview of adopting CSS theme variables in Material UI or Joy UI.</p>
+<p class="description">An overview of adopting CSS theme variables in Material UI or Joy UI.</p>
 
 [CSS variables](https://www.w3.org/TR/css-variables-1/) are a modern cross-browser feature that let you declare variables in CSS and reuse them in other properties.
 
@@ -10,9 +10,9 @@ If this is your first time encountering CSS variables, you should check out [the
 
 ## Introduction
 
-CSS theme variable support is a new feature in MUI System added in [`v5.0.5`](https://github.com/mui/material-ui/releases/tag/v5.0.5) as an experimental export. It tells the underlying Material UI, Joy UI or even custom UI library components to use the generated CSS theme variables instead of raw values. This provides significant improvements in developer experience related to theming and customization.
+CSS theme variable support is a new feature in MUI System added in [`v5.0.5`](https://github.com/mui/material-ui/releases/tag/v5.0.5) as an experimental export. It tells the underlying Material UI, Joy UI or even custom UI library components to use the generated CSS theme variables instead of raw values. This provides significant improvements in developer experience related to theming and customization.
 With these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
-You can checkout the [advantages](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/#advantages) and [trade-offs](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/#trade-offs) of using CSS theme variables before using them.
+Learn more about the [advantages](https://mui.com/material-ui/customization/css-theme-variables/overview/#advantages) and [trade-offs](https://mui.com/material-ui/customization/css-theme-variables/overview/#trade-offs) of using CSS theme variables.
 
 ### Advantages
 
@@ -27,11 +27,11 @@ You can checkout the [advantages](https://mui.com/material-ui/experimental-api/c
 
 For server-side applications, there are some trade-offs to consider:
 
-|                                                      | Compare to the default method | Reason                                                                                                       |
-| :--------------------------------------------------- | :---------------------------- | :----------------------------------------------------------------------------------------------------------- |
-| HTML size                                            | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                      |
-| [First Contentful Paint (FCP)](https://web.dev/fcp/) | Larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
-| [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | Stylesheets are not regenerated between light and dark mode, so it takes less time for JavaScript to run.    |
+|                                                              | Compare to the default method | Reason                                                                                                         |
+| :----------------------------------------------------------- | :---------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| HTML size                                                    | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                        |
+| [First Contentful Paint (FCP)](https://web.dev/articles/fcp) | Longer                        | Since the HTML size is bigger, the time to download the HTML before showing the content is bit longer.         |
+| [Time to Interactive (TTI)](https://web.dev/articles/tti)    | Shorter (for dark mode)       | Stylesheets are not regenerated between light and dark mode, a lot less time is spent running JavaScript code. |
 
 :::warning
 The comparison described in the table above may not be applicable to large and complex applications since there are so many factors that can impact performance metrics.
@@ -39,7 +39,8 @@ The comparison described in the table above may not be applicable to large and c
 
 ## Usage
 
-The CSS variables API usage is exposed as a higher order function called `unstable_createCssVarsProvider` which can be called to create a theme provider and other utitlities to share the theme config throughout your app. This is a very low-level function and has a lot of moving parts. If you are already using [Material UI](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/) or [Joy UI](https://mui.com/joy-ui/customization/using-css-variables/), they already expose their own `CssVarsProvider` component that you can use directly without needing to configure your theme. Now that's out of the way, we can continue with how this util can be used.
+The CSS variables API usage is exposed as a higher order function called `unstable_createCssVarsProvider` which can be called to create a theme provider and other utilities to share the theme config throughout your app. This is a very low-level function and has a lot of moving parts.
+If you're using [Material UI](https://mui.com/material-ui/customization/css-theme-variables/overview/) or [Joy UI](https://mui.com/joy-ui/customization/using-css-variables/), they expose their own `CssVarsProvider` component that you can use directly without configuring your theme.
 
 We'll first define a minimal theme palette for light and dark modes.
 
@@ -114,7 +115,7 @@ const myCustomDefaultTheme = extendTheme();
 export default myCustomDefaultTheme;
 ```
 
-Here, the returned `theme` object needs to follow a certain structure to be used correctly by the final `CssVarsProvider`. It should have a `colorSchemes` key with the light and dark (and any other) palette. `prepareCssVars` import from `@mui/system` is used to create css variable names which can then be easily accessed using the returned `vars`. This is also added to the `theme` object. Finally, `myCustomDefaultTheme` theme object is created that can now be passed to the `createCssVarsProvider` to get a `CssVarsProvider`.
+Here, the returned `theme` object needs to follow a certain structure to be used correctly by the final `CssVarsProvider`. It should have a `colorSchemes` key with the light and dark (and any other) palette. `prepareCssVars` import from `@mui/system` is used to create CSS variable names which can then be easily accessed using the returned `vars`. This is also added to the `theme` object. Finally, `myCustomDefaultTheme` theme object is created that can now be passed to the `createCssVarsProvider` to get a `CssVarsProvider`.
 
 ```js
 // CssVarsProvider.js
@@ -133,7 +134,7 @@ export { CssVarsProvider, useColorScheme };
 
 Now wrap your top level app component with this `CssVarsProvider` component and then you can access the passed theme value to any of the components rendered inside the provider.
 
-Example of a component using the css variable -
+Example of a component using the CSS variable -
 
 ```js
 // Button.js
@@ -184,10 +185,10 @@ Now, the Button's `backgroundColor`, `borderColor` and text `color` values will 
 ### Demo
 
 {{"demo": "CreateCssVarsProvider.js"}}
+For framework- or language-specific setup instructions, see [CSS theme variables—Usage—Server-side rendering](https://mui.com/material-ui/customization/css-theme-variables/usage/#server-side-rendering).
+For framework or language specific setup, see [this](https://mui.com/material-ui/customization/css-theme-variables/usage/#server-side-rendering)
 
-For framework or language specific setup, see [this](https://mui.com/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering)
-
-See the complete usage of `createVssVarsProvider` in [Material UI](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/CssVarsProvider.tsx) and [Joy UI](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/CssVarsProvider.tsx).
+See the complete usage of `createCssVarsProvider` in [Material UI](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/CssVarsProvider.tsx) and [Joy UI](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/CssVarsProvider.tsx).
 
 ## API
 
@@ -200,7 +201,7 @@ See the complete usage of `createVssVarsProvider` in [Material UI](https://githu
 - `defaultMode?`: Design system default mode (`light` by default)
 - `disableTransitionOnChange?`: Disable CSS transitions when switching between modes or color schemes (`false` by default)
 - `themeId?`: The design system's unique id for getting the corresponded theme when there are multiple design systems.
-- `theme`: Design system default theme. It's structure, besides the minimium requirements by `createCssVarsProvider`, is upto the design system to implement.
+- `theme`: Design system default theme. It's structure, besides the minimum requirements by `createCssVarsProvider`, is upto the design system to implement.
 - `resolveTheme(theme: Theme) => Theme`: A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to `ThemeProvider`.
 
 `createCssVarsProvider` returns 3 items.
@@ -209,8 +210,6 @@ See the complete usage of `createVssVarsProvider` in [Material UI](https://githu
 
 - `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
-- `enableColorScheme: boolean` - Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
-- `prefix: string` - CSS variable prefix
 - `theme: ThemeInput` - the theme provided to React's context
 - `modeStorageKey?: string` - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme

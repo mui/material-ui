@@ -1,12 +1,10 @@
+'use client';
 import * as React from 'react';
 import Rating from '@mui/material/Rating';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedRating(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -19,6 +17,13 @@ export default React.forwardRef(function DeprecatedRating(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedRating(props, ref) {
+  warn();
 
   return <Rating ref={ref} {...props} />;
 });

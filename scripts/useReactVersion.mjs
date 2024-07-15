@@ -5,7 +5,7 @@
  *
  * If you work on this file:
  * WARNING: This script can only use built-in modules since it has to run before
- * `yarn install`
+ * `pnpm install`
  */
 import childProcess from 'child_process';
 import fs from 'fs';
@@ -17,13 +17,12 @@ import { getWorkspaceRoot } from './utils.mjs';
 const exec = promisify(childProcess.exec);
 
 // packages published from the react monorepo using the same version
-const reactPackageNames = ['react', 'react-dom', 'react-is', 'react-test-renderer', 'scheduler'];
-const devDependenciesPackageNames = ['@mnajdova/enzyme-adapter-react-18', '@testing-library/react'];
+const reactPackageNames = ['react', 'react-dom', 'react-is', 'scheduler'];
+const devDependenciesPackageNames = ['@testing-library/react'];
 
 // if we need to support more versions we will need to add new mapping here
 const additionalVersionsMappings = {
   17: {
-    '@mnajdova/enzyme-adapter-react-18': 'npm:@eps1lon/enzyme-adapter-react-17',
     '@testing-library/react': '^12.1.0',
   },
 };
@@ -82,8 +81,6 @@ async function main(version) {
   // At this moment all dist tags reference React 18 version, so we don't need
   // to update these dependencies unless an older version is used, or when the
   // next/experimental dist tag reference to a future version of React
-  // packageJson.devDependencies['@mnajdova/enzyme-adapter-react-18'] =
-  //   'npm:@mnajdova/enzyme-adapter-react-next';
   // packageJson.devDependencies['@testing-library/react'] = 'alpha';
 
   if (majorVersion && additionalVersionsMappings[majorVersion]) {

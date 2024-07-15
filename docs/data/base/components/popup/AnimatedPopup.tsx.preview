@@ -1,0 +1,8 @@
+<Button ref={setAnchor} onClick={() => setOpen((o) => !o)} type="button">
+  Toggle Popup
+</Button>
+<BasePopup anchor={anchor} open={open}>
+  <PopAnimation>
+    <PopupBody>This is an animated popup.</PopupBody>
+  </PopAnimation>
+</BasePopup>

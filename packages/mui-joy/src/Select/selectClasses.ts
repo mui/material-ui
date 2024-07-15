@@ -15,14 +15,14 @@ export interface SelectClasses {
   popper: string;
   /** Class name applied to the listbox slot. */
   listbox: string;
+  /** Class name applied to the root slot if `multiple=true` */
+  multiple: string;
   /** Class name applied to the root slot if `color="primary"`. */
   colorPrimary: string;
   /** Class name applied to the root slot if `color="neutral"`. */
   colorNeutral: string;
   /** Class name applied to the root slot if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root slot if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root slot if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the root slot if `color="warning"`. */
@@ -68,7 +68,6 @@ const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',
@@ -82,6 +81,7 @@ const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'focusVisible',
   'disabled',
   'expanded',
+  'multiple',
 ]);
 
 export default selectClasses;

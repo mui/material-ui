@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
 import { expectType } from '@mui/types';
+import Accordion from '@mui/material/Accordion';
 
 function testOnChange() {
   function handleAccordionChange(event: React.SyntheticEvent, tabsValue: unknown) {}

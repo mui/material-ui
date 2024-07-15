@@ -8,9 +8,11 @@ interface Film {
   year: number;
 }
 
-function sleep(delay = 0) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
+function sleep(duration: number): Promise<void> {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, duration);
   });
 }
 
@@ -47,7 +49,6 @@ export default function Asynchronous() {
 
   return (
     <Autocomplete
-      id="asynchronous-demo"
       sx={{ width: 300 }}
       open={open}
       onOpen={() => {
@@ -64,14 +65,16 @@ export default function Asynchronous() {
         <TextField
           {...params}
           label="Asynchronous"
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: (
-              <React.Fragment>
-                {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                {params.InputProps.endAdornment}
-              </React.Fragment>
-            ),
+          slotProps={{
+            input: {
+              ...params.InputProps,
+              endAdornment: (
+                <React.Fragment>
+                  {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                  {params.InputProps.endAdornment}
+                </React.Fragment>
+              ),
+            },
           }}
         />
       )}

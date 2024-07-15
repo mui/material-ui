@@ -1,5 +1,5 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface AccordionSummaryClasses {
   /** Styles applied to the root element. */
@@ -12,7 +12,10 @@ export interface AccordionSummaryClasses {
   disabled: string;
   /** Styles applied to the root element unless `disableGutters={true}`. */
   gutters: string;
-  /** Styles applied to the children wrapper element unless `disableGutters={true}`. */
+  /**
+   * Styles applied to the children wrapper element unless `disableGutters={true}`.
+   * @deprecated Combine the [.MuiAccordionSummary-gutters](/material-ui/api/accordion-summary/#AccordionSummary-classes-gutters) and [.MuiAccordionSummary-content](/material-ui/api/accordion-summary/#AccordionSummary-classes-content) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   contentGutters: string;
   /** Styles applied to the children wrapper element. */
   content: string;

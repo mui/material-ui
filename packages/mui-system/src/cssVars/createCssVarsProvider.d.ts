@@ -1,5 +1,5 @@
 import * as React from 'react';
-import getInitColorSchemeScript from './getInitColorSchemeScript';
+import InitColorSchemeScript from '../InitColorSchemeScript';
 import { Mode, Result } from './useCurrentColorScheme';
 
 export interface ColorSchemeContextValue<SupportedColorScheme extends string>
@@ -90,9 +90,9 @@ export interface CreateCssVarsProviderResult<
         disableStyleSheetGeneration?: boolean;
       }
     >,
-  ) => React.ReactElement;
+  ) => React.ReactElement<any>;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  getInitColorSchemeScript: typeof getInitColorSchemeScript;
+  getInitColorSchemeScript: typeof InitColorSchemeScript;
 }
 
 export default function createCssVarsProvider<
@@ -142,14 +142,6 @@ export default function createCssVarsProvider<
      * variants from those tokens.
      */
     resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
-    /**
-     * @internal
-     * A function that returns a list of variables that will be excluded from the `colorSchemeSelector` (:root by default)
-     *
-     * Some variables are intended to be used in a specific color scheme only. They should be excluded when the default mode is set to the color scheme.
-     * This is introduced to fix https://github.com/mui/material-ui/issues/34084
-     */
-    excludeVariablesFromRoot?: (cssVarPrefix: string) => string[];
   },
 ): CreateCssVarsProviderResult<ColorScheme, Identifier>;
 

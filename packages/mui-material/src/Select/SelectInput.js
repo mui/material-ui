@@ -3,23 +3,22 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { refType } from '@mui/utils';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
+import composeClasses from '@mui/utils/composeClasses';
+import useId from '@mui/utils/useId';
+import refType from '@mui/utils/refType';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
-import {
-  nativeSelectSelectStyles,
-  nativeSelectIconStyles,
-} from '../NativeSelect/NativeSelectInput';
+import { StyledSelectSelect, StyledSelectIcon } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
-import styled, { slotShouldForwardProp } from '../styles/styled';
+import { styled } from '../zero-styled';
+import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
-const SelectSelect = styled('div', {
+const SelectSelect = styled(StyledSelectSelect, {
   name: 'MuiSelect',
   slot: 'Select',
   overridesResolver: (props, styles) => {
@@ -32,7 +31,7 @@ const SelectSelect = styled('div', {
       { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
-})(nativeSelectSelectStyles, {
+})({
   // Win specificity over the input base
   [`&.${selectClasses.select}`]: {
     height: 'auto', // Resets for multiple select with chips
@@ -43,7 +42,7 @@ const SelectSelect = styled('div', {
   },
 });
 
-const SelectIcon = styled('svg', {
+const SelectIcon = styled(StyledSelectIcon, {
   name: 'MuiSelect',
   slot: 'Icon',
   overridesResolver: (props, styles) => {
@@ -54,7 +53,7 @@ const SelectIcon = styled('svg', {
       ownerState.open && styles.iconOpen,
     ];
   },
-})(nativeSelectIconStyles);
+})({});
 
 const SelectNativeInput = styled('input', {
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
@@ -482,12 +481,21 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const paperProps = {
+    ...MenuProps.PaperProps,
+    ...MenuProps.slotProps?.paper,
+  };
+
+  const listboxId = useId();
+
   return (
     <React.Fragment>
       <SelectSelect
+        as="div"
         ref={handleDisplayRef}
         tabIndex={tabIndex}
-        role="button"
+        role="combobox"
+        aria-controls={listboxId}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
@@ -523,8 +531,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         disabled={disabled}
         className={classes.nativeInput}
         autoFocus={autoFocus}
-        ownerState={ownerState}
         {...other}
+        ownerState={ownerState}
       />
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
       <Menu
@@ -544,14 +552,19 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         MenuListProps={{
           'aria-labelledby': labelId,
           role: 'listbox',
+          'aria-multiselectable': multiple ? 'true' : undefined,
           disableListWrap: true,
+          id: listboxId,
           ...MenuProps.MenuListProps,
         }}
-        PaperProps={{
-          ...MenuProps.PaperProps,
-          style: {
-            minWidth: menuMinWidth,
-            ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
+        slotProps={{
+          ...MenuProps.slotProps,
+          paper: {
+            ...paperProps,
+            style: {
+              minWidth: menuMinWidth,
+              ...(paperProps != null ? paperProps.style : null),
+            },
           },
         }}
       >
@@ -586,7 +599,6 @@ SelectInput.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

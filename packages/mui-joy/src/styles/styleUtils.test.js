@@ -4,44 +4,41 @@ import defaultTheme from './defaultTheme';
 
 describe('getThemeValue', () => {
   it('return undefined if no sx', () => {
-    expect(resolveSxValue({ theme: defaultTheme, ownerState: {} })).to.equal(undefined);
+    expect(resolveSxValue({ theme: defaultTheme, ownerState: {} }, [])).to.deep.equal({});
   });
 
   describe('border-radius', () => {
     it('return correct value if shorthand is provided', () => {
       expect(
-        resolveSxValue(
-          { theme: defaultTheme, ownerState: { sx: { borderRadius: 'md' } } },
+        resolveSxValue({ theme: defaultTheme, ownerState: { sx: { borderRadius: 'md' } } }, [
           'borderRadius',
-        ),
-      ).to.equal(defaultTheme.vars.radius.md);
+        ]),
+      ).to.deep.equal({ borderRadius: defaultTheme.vars.radius.md });
     });
 
     it('return correct value if number is provided', () => {
       expect(
-        resolveSxValue(
-          { theme: defaultTheme, ownerState: { sx: { borderRadius: 20 } } },
+        resolveSxValue({ theme: defaultTheme, ownerState: { sx: { borderRadius: 20 } } }, [
           'borderRadius',
-        ),
-      ).to.equal('20px');
+        ]),
+      ).to.deep.equal({ borderRadius: '20px' });
     });
 
     it('return correct value if css value is provided', () => {
       expect(
-        resolveSxValue(
-          { theme: defaultTheme, ownerState: { sx: { borderRadius: '1rem' } } },
+        resolveSxValue({ theme: defaultTheme, ownerState: { sx: { borderRadius: '1rem' } } }, [
           'borderRadius',
-        ),
-      ).to.equal('1rem');
+        ]),
+      ).to.deep.equal({ borderRadius: '1rem' });
     });
 
     it('works with sx as a function', () => {
       expect(
         resolveSxValue(
           { theme: defaultTheme, ownerState: { sx: () => ({ borderRadius: 'sm' }) } },
-          'borderRadius',
+          ['borderRadius'],
         ),
-      ).to.equal(defaultTheme.vars.radius.sm);
+      ).to.deep.equal({ borderRadius: defaultTheme.vars.radius.sm });
     });
 
     it('works with sx as an array', () => {
@@ -51,9 +48,31 @@ describe('getThemeValue', () => {
             theme: defaultTheme,
             ownerState: { sx: [{ borderRadius: 'sm' }, () => ({ borderRadius: '12px' })] },
           },
-          'borderRadius',
+          ['borderRadius'],
         ),
-      ).to.equal('12px');
+      ).to.deep.equal({ borderRadius: '12px' });
+    });
+  });
+
+  describe('padding', () => {
+    it('return correct value if shorthand is provided', () => {
+      expect(
+        resolveSxValue({ theme: defaultTheme, ownerState: { sx: { p: 2 } } }, ['p']),
+      ).to.deep.equal({ p: 'calc(2 * var(--joy-spacing, 8px))' });
+    });
+
+    it('return correct value if number is provided', () => {
+      expect(
+        resolveSxValue({ theme: defaultTheme, ownerState: { sx: { padding: 2 } } }, ['padding']),
+      ).to.deep.equal({ padding: 'calc(2 * var(--joy-spacing, 8px))' });
+    });
+
+    it('return correct value if css value is provided', () => {
+      expect(
+        resolveSxValue({ theme: defaultTheme, ownerState: { sx: { padding: '1rem' } } }, [
+          'padding',
+        ]),
+      ).to.deep.equal({ padding: '1rem' });
     });
   });
 });

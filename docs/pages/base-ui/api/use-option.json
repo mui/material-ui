@@ -14,8 +14,8 @@
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "&lt;Other extends EventHandlers&gt;(otherHandlers?: Other) =&gt; UseOptionRootSlotProps&lt;Other&gt;",
-        "description": "&lt;Other extends EventHandlers&gt;(otherHandlers?: Other) =&gt; UseOptionRootSlotProps&lt;Other&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt;&gt;(externalProps?: ExternalProps) =&gt; UseOptionRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt;&gt;(externalProps?: ExternalProps) =&gt; UseOptionRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
@@ -32,5 +32,9 @@
   },
   "name": "useOption",
   "filename": "/packages/mui-base/src/useOption/useOption.ts",
+  "imports": [
+    "import { useOption } from '@mui/base/useOption';",
+    "import { useOption } from '@mui/base';"
+  ],
   "demos": "<ul><li><a href=\"/base-ui/react-select/#hooks\">Select</a></li></ul>"
 }

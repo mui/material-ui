@@ -1,10 +1,10 @@
 # Overriding component structure
 
-<p class="description">Learn how to override the default DOM structure of Base UI components.</p>
+<p class="description">Learn how to override the default DOM structure of Base UI components.</p>
 
-Base UI components are designed to suit the widest possible range of use cases, but you may occasionally need to change how a component's structure is rendered in the DOM.
+Base UI components are designed to suit the widest possible range of use cases, but you may occasionally need to change how a component's structure is rendered in the DOM.
 
-To understand how to do this, it helps to have an accurate mental model of MUI components.
+To understand how to do this, it helps to have an accurate mental model of the components.
 
 ## The mental model
 
@@ -13,7 +13,7 @@ Slots are most commonly filled by HTML tags, but may also be filled by React com
 
 All components contain a root slot that defines their primary node in the DOM tree; more complex components also contain additional interior slots named after the elements they represent.
 
-All _non-utility_ Base UI components accept [the `slots` prop](#the-slots-prop) for overriding their rendered HTML structure.
+All _non-utility_ Base UI components accept [the `slots` prop](#the-slots-prop) for overriding their rendered HTML structure.
 
 Additionally, you can pass custom props to [interior slots](#interior-slots) using `slotProps`.
 

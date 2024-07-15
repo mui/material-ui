@@ -26,48 +26,21 @@ describe('grid generator', () => {
         boxSizing: 'border-box',
         display: 'flex',
         flexWrap: 'wrap',
-        margin: 'calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)',
+        gap: 'var(--Grid-rowSpacing) var(--Grid-columnSpacing)',
       });
     });
 
     it('nested container level 1', () => {
       const result = generateGridStyles({ ownerState: { container: true, unstable_level: 1 } });
       sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacingLevel1) / -2) calc(var(--Grid-columnSpacingLevel1) / -2)`,
-        padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
+        gap: `var(--Grid-rowSpacingLevel1) var(--Grid-columnSpacingLevel1)`,
       });
     });
 
     it('nested container level 2', () => {
       const result = generateGridStyles({ ownerState: { container: true, unstable_level: 2 } });
       sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacingLevel2) / -2) calc(var(--Grid-columnSpacingLevel2) / -2)`,
-        padding: `calc(var(--Grid-rowSpacingLevel1) / 2) calc(var(--Grid-columnSpacingLevel1) / 2)`,
-      });
-    });
-
-    it('root container with disableEqualOverflow', () => {
-      const result = generateGridStyles({
-        ownerState: { container: true, unstable_level: 1, disableEqualOverflow: true },
-      });
-      sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacingLevel1) * -1) 0px 0px calc(var(--Grid-columnSpacingLevel1) * -1)`,
-        padding: `var(--Grid-rowSpacing) 0px 0px var(--Grid-columnSpacing)`,
-      });
-    });
-
-    it('nested container without disableEqualOverflow but parent has', () => {
-      const result = generateGridStyles({
-        ownerState: {
-          container: true,
-          unstable_level: 1,
-          disableEqualOverflow: false,
-          parentDisableEqualOverflow: true,
-        },
-      });
-      sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacingLevel1) / -2) calc(var(--Grid-columnSpacingLevel1) / -2)`,
-        padding: `var(--Grid-rowSpacing) 0px 0px var(--Grid-columnSpacing)`,
+        gap: `var(--Grid-rowSpacingLevel2) var(--Grid-columnSpacingLevel2)`,
       });
     });
 
@@ -76,25 +49,6 @@ describe('grid generator', () => {
       expect(result).to.deep.equal({
         minWidth: 0,
         boxSizing: 'border-box',
-        padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
-      });
-    });
-
-    it('item with disableEqualOverflow', () => {
-      const result = generateGridStyles({
-        ownerState: { container: false, disableEqualOverflow: true },
-      });
-      sinon.assert.match(result, {
-        padding: `var(--Grid-rowSpacing) 0px 0px var(--Grid-columnSpacing)`,
-      });
-    });
-
-    it('item level 2', () => {
-      const result = generateGridStyles({
-        ownerState: { container: false, disableEqualOverflow: true, unstable_level: 2 },
-      });
-      sinon.assert.match(result, {
-        padding: `var(--Grid-rowSpacingLevel1) 0px 0px var(--Grid-columnSpacingLevel1)`,
       });
     });
   });
@@ -105,10 +59,10 @@ describe('grid generator', () => {
         generateGridSizeStyles({
           theme: { breakpoints },
           ownerState: {
-            gridSize: {
+            size: {
               xs: 'auto',
               sm: 6,
-              md: true,
+              md: 'grow',
               lg: 4,
               xl: 'auto',
             },
@@ -126,7 +80,7 @@ describe('grid generator', () => {
         '@media (min-width:600px)': {
           flexBasis: 'auto',
           flexGrow: 0,
-          width: `calc(100% * 6 / var(--Grid-columns))`,
+          width: `calc(100% * 6 / var(--Grid-columns) - (var(--Grid-columns) - 6) * (var(--Grid-columnSpacing) / var(--Grid-columns)))`,
         },
         '@media (min-width:900px)': {
           flexBasis: 0,
@@ -136,7 +90,7 @@ describe('grid generator', () => {
         '@media (min-width:1200px)': {
           flexBasis: 'auto',
           flexGrow: 0,
-          width: `calc(100% * 4 / var(--Grid-columns))`,
+          width: `calc(100% * 4 / var(--Grid-columns) - (var(--Grid-columns) - 4) * (var(--Grid-columnSpacing) / var(--Grid-columns)))`,
         },
         '@media (min-width:1536px)': {
           flexBasis: 'auto',
@@ -329,12 +283,12 @@ describe('grid generator', () => {
       expect(
         generateGridOffsetStyles({
           theme: { breakpoints, spacing },
-          ownerState: { gridOffset: { xs: 0, md: 5, lg: 'auto' } },
+          ownerState: { offset: { xs: 0, md: 5, lg: 'auto' } },
         }),
       ).to.deep.equal({
         marginLeft: '0px',
         '@media (min-width:900px)': {
-          marginLeft: `calc(100% * 5 / var(--Grid-columns))`,
+          marginLeft: `calc(100% * 5 / var(--Grid-columns) + var(--Grid-columnSpacing) * 5 / var(--Grid-columns))`,
         },
         '@media (min-width:1200px)': {
           marginLeft: `auto`,

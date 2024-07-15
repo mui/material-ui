@@ -6,16 +6,11 @@ import Button from '@mui/joy/Button';
 export default function ButtonLoadingPosition() {
   return (
     <Stack spacing={2} direction="row">
-      <Button loading loadingPosition="start" variant="outlined">
-        Fetch data
+      <Button loading loadingPosition="start">
+        Start
       </Button>
-      <Button
-        loading
-        loadingPosition="end"
-        endDecorator={<SendIcon />}
-        variant="solid"
-      >
-        Send
+      <Button loading loadingPosition="end" endDecorator={<SendIcon />}>
+        End
       </Button>
     </Stack>
   );

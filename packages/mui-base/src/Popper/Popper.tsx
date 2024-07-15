@@ -10,8 +10,8 @@ import {
 } from '@mui/utils';
 import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
 import PropTypes from 'prop-types';
-import composeClasses from '../composeClasses';
-import Portal from '../Portal';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Portal } from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import {
@@ -96,7 +96,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
     ...other
   } = props;
 
-  const tooltipRef = React.useRef<HTMLElement | null>(null);
+  const tooltipRef = React.useRef<HTMLElement>(null);
   const ownRef = useForkRef(tooltipRef, forwardedRef);
 
   const popperRef = React.useRef<Instance | null>(null);
@@ -337,10 +337,10 @@ const Popper = React.forwardRef(function Popper<RootComponentType extends React.
 }) as PolymorphicComponent<PopperTypeMap>;
 
 Popper.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.
@@ -405,6 +405,9 @@ Popper.propTypes /* remove-proptypes */ = {
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
@@ -539,4 +542,4 @@ Popper.propTypes /* remove-proptypes */ = {
   transition: PropTypes.bool,
 } as any;
 
-export default Popper;
+export { Popper };

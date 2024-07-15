@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import Popper from '@mui/base/Popper';
+import { Popper } from '@mui/base/Popper';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
@@ -66,7 +66,7 @@ const ListboxComponent = React.forwardRef<
   const { children, anchorEl, open, modifiers, ...other } = props;
   const itemData: Array<any> = [];
   (
-    children as [Array<{ children: Array<React.ReactElement> | undefined }>]
+    children as [Array<{ children: Array<React.ReactElement<any>> | undefined }>]
   )[0].forEach((item) => {
     if (item) {
       itemData.push(item);

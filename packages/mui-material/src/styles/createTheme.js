@@ -1,11 +1,10 @@
-import { deepmerge } from '@mui/utils';
-import {
-  createTheme as systemCreateTheme,
+import deepmerge from '@mui/utils/deepmerge';
+import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
-  unstable_styleFunctionSx as styleFunctionSx,
-} from '@mui/system';
-import MuiError from '@mui/utils/macros/MuiError.macro';
-import generateUtilityClass from '../generateUtilityClass';
+} from '@mui/system/styleFunctionSx';
+import systemCreateTheme from '@mui/system/createTheme';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
@@ -66,7 +65,7 @@ function createTheme(options = {}, ...args) {
     const traverse = (node, component) => {
       let key;
 
-      // eslint-disable-next-line guard-for-in, no-restricted-syntax
+      // eslint-disable-next-line guard-for-in
       for (key in node) {
         const child = node[key];
         if (stateClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {

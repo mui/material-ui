@@ -5,6 +5,7 @@ import createGrid from './createGrid';
  *
  * Demos:
  *
+ * - [Grid (Joy UI)](https://mui.com/joy-ui/react-grid/)
  * - [Grid (Material UI)](https://mui.com/material-ui/react-grid/)
  *
  * API:
@@ -14,10 +15,10 @@ import createGrid from './createGrid';
 const Grid = createGrid();
 
 Grid.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -58,41 +59,14 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * If `true`, the negative margin and padding are apply only to the top and left sides of the grid.
+   * Defines the offset value for the type `item` components.
    */
-  disableEqualOverflow: PropTypes.bool,
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `lg` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  lg: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-  /**
-   * If a number, it sets the margin-left equals to the number of columns the grid item uses.
-   * If 'auto', the grid item push itself to the right-end of the container.
-   * The value is applied for the `lg` breakpoint and wider screens if not overridden.
-   */
-  lgOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `md` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  md: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-  /**
-   * If a number, it sets the margin-left equals to the number of columns the grid item uses.
-   * If 'auto', the grid item push itself to the right-end of the container.
-   * The value is applied for the `md` breakpoint and wider screens if not overridden.
-   */
-  mdOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+  offset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    PropTypes.object,
+  ]),
   /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
@@ -104,21 +78,15 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `sm` breakpoint and wider screens if not overridden.
-   * @default false
+   * Defines the size of the the type `item` components.
    */
-  sm: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-  /**
-   * If a number, it sets the margin-left equals to the number of columns the grid item uses.
-   * If 'auto', the grid item push itself to the right-end of the container.
-   * The value is applied for the `sm` breakpoint and wider screens if not overridden.
-   */
-  smOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number])),
+    PropTypes.object,
+  ]),
   /**
    * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
@@ -139,43 +107,34 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
+   * @internal
+   * The level of the grid starts from `0`
+   * and increases when the grid nests inside another grid regardless of container or item.
+   *
+   * ```js
+   * <Grid> // level 0
+   *   <Grid> // level 1
+   *     <Grid> // level 2
+   *   <Grid> // level 1
+   * ```
+   *
+   * Only consecutive grid is considered nesting.
+   * A grid container will start at `0` if there are non-Grid element above it.
+   *
+   * ```js
+   * <Grid> // level 0
+   *   <div>
+   *     <Grid> // level 0
+   *       <Grid> // level 1
+   * ```
+   */
+  unstable_level: PropTypes.number,
+  /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
    */
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `xl` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  xl: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-  /**
-   * If a number, it sets the margin-left equals to the number of columns the grid item uses.
-   * If 'auto', the grid item push itself to the right-end of the container.
-   * The value is applied for the `xl` breakpoint and wider screens if not overridden.
-   */
-  xlOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for all the screen sizes with the lowest priority.
-   * @default false
-   */
-  xs: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-  /**
-   * If a number, it sets the margin-left equals to the number of columns the grid item uses.
-   * If 'auto', the grid item push itself to the right-end of the container.
-   * The value is applied for the `xs` breakpoint and wider screens if not overridden.
-   */
-  xsOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
 } as any;
 
 export default Grid;

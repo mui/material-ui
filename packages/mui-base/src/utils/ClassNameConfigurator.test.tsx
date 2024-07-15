@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Switch, { switchClasses } from '@mui/base/Switch';
-import ClassNameConfigurator from '@mui/base/utils/ClassNameConfigurator';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { expect } from 'chai';
+import { Switch, switchClasses } from '@mui/base/Switch';
+import { ClassNameConfigurator } from '@mui/base/utils/ClassNameConfigurator';
 
 describe('ClassNameConfigurator', () => {
   const { render } = createRenderer();

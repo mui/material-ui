@@ -22,10 +22,9 @@ export default function MediaCover() {
         </CardCover>
         <CardContent>
           <Typography
-            level="h6"
-            fontWeight="lg"
+            level="body-lg"
             textColor="#fff"
-            mt={{ xs: 12, sm: 18 }}
+            sx={{ fontWeight: 'lg', mt: { xs: 12, sm: 18 } }}
           >
             Image
           </Typography>
@@ -47,10 +46,9 @@ export default function MediaCover() {
         </CardCover>
         <CardContent>
           <Typography
-            level="h6"
-            fontWeight="lg"
+            level="body-lg"
             textColor="#fff"
-            mt={{ xs: 12, sm: 18 }}
+            sx={{ fontWeight: 'lg', mt: { xs: 12, sm: 18 } }}
           >
             Video
           </Typography>

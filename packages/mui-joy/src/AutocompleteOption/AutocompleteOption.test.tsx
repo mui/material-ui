@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AutocompleteOption, {
   autocompleteOptionClasses as classes,
 } from '@mui/joy/AutocompleteOption';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <AutocompleteOption />', () => {
   const { render } = createRenderer();
@@ -25,8 +26,6 @@ describe('Joy <AutocompleteOption />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<AutocompleteOption />, { muiName: 'JoyAutocompleteOption', classes });
 
   it('should have li tag', () => {
     const { getByRole } = render(<AutocompleteOption />);

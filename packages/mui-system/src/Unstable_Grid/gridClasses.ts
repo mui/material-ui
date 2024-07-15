@@ -1,7 +1,5 @@
-import {
-  unstable_generateUtilityClass as generateUtilityClass,
-  unstable_generateUtilityClasses as generateUtilityClasses,
-} from '@mui/utils';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface GridClasses {
   /** Styles applied to the root element. */
@@ -29,7 +27,7 @@ export function getGridUtilityClass(slot: string): string {
 const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
 const DIRECTIONS = ['column-reverse', 'column', 'row-reverse', 'row'] as const;
 const WRAPS = ['nowrap', 'wrap-reverse', 'wrap'] as const;
-const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
+const GRID_SIZES = ['auto', 'grow', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 
 const gridClasses: GridClasses = generateUtilityClasses('MuiGrid', [
   'root',

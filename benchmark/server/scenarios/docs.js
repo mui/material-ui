@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-import Benchmark from 'benchmark';
 import fs from 'fs';
 import path from 'path';
+import Benchmark from 'benchmark';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import Markdown from 'docs/data/material/getting-started/templates/blog/Markdown';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';

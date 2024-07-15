@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useAutocomplete from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 import { styled } from '@mui/system';
 
 const options = ['Firefox', 'Google Chrome', 'Microsoft Edge', 'Safari', 'Opera'];
@@ -14,6 +14,7 @@ export default function ControlledStates() {
     getListboxProps,
     getOptionProps,
     groupedOptions,
+    focused,
   } = useAutocomplete({
     id: 'controlled-state-demo',
     options,
@@ -31,20 +32,21 @@ export default function ControlledStates() {
       <Pre>
         inputValue: <code>{inputValue ?? ' '}</code>
       </Pre>
-      <StyledAutocomplete>
-        <StyledInputRoot {...getRootProps()}>
-          <StyledInput {...getInputProps()} />
-        </StyledInputRoot>
+      <AutocompleteWrapper>
+        <AutocompleteRoot
+          {...getRootProps()}
+          className={focused ? 'Mui-focused' : ''}
+        >
+          <Input {...getInputProps()} />
+        </AutocompleteRoot>
         {groupedOptions.length > 0 && (
-          <StyledListbox {...getListboxProps()}>
+          <Listbox {...getListboxProps()}>
             {groupedOptions.map((option, index) => (
-              <StyledOption {...getOptionProps({ option, index })}>
-                {option}
-              </StyledOption>
+              <Option {...getOptionProps({ option, index })}>{option}</Option>
             ))}
-          </StyledListbox>
+          </Listbox>
         )}
-      </StyledAutocomplete>
+      </AutocompleteWrapper>
     </Layout>
   );
 }
@@ -55,45 +57,47 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
   900: '#003A75',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const StyledAutocomplete = styled('div')`
+const AutocompleteWrapper = styled('div')`
   position: relative;
-  margin: 1.5rem 0;
 `;
 
-const StyledInputRoot = styled('div')(
+const AutocompleteRoot = styled('div')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
   display: flex;
   gap: 5px;
   padding-right: 5px;
   overflow: hidden;
   width: 320px;
 
-  &.focused {
+  &.Mui-focused {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   &:hover {
@@ -106,7 +110,7 @@ const StyledInputRoot = styled('div')(
 `,
 );
 
-const StyledInput = styled('input')(
+const Input = styled('input')(
   ({ theme }) => `
   font-size: 0.875rem;
   font-family: inherit;
@@ -116,15 +120,15 @@ const StyledInput = styled('input')(
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
   flex: 1 0 auto;
 `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -132,7 +136,7 @@ const StyledListbox = styled('ul')(
   max-width: 320px;
   border-radius: 12px;
   overflow: auto;
-  outline: 0px;
+  outline: 0;
   max-height: 300px;
   z-index: 1;
   position: absolute;
@@ -141,11 +145,13 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 4px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
-const StyledOption = styled('li')(
+const Option = styled('li')(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -186,12 +192,16 @@ const StyledOption = styled('li')(
 const Layout = styled('div')`
   display: flex;
   flex-flow: column nowrap;
+  gap: 4px;
 `;
 
 const Pre = styled('pre')(({ theme }) => ({
   margin: '0.5rem 0',
+  fontSize: '0.75rem',
   '& code': {
-    backgroundColor: theme.palette.mode === 'light' ? '#ebebef' : '#25252d',
+    backgroundColor: theme.palette.mode === 'light' ? grey[100] : grey[900],
+    border: '1px solid',
+    borderColor: theme.palette.mode === 'light' ? grey[300] : grey[700],
     color: theme.palette.mode === 'light' ? '#000' : '#fff',
     padding: '0.125rem 0.25rem',
     borderRadius: 3,

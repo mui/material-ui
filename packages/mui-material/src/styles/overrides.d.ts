@@ -1,4 +1,5 @@
-import { CSSObject, CSSInterpolation } from '@mui/system';
+import { CSSObject, CSSInterpolation, Interpolation } from '@mui/system';
+import { PopperClassKey } from '../Popper';
 import { ComponentsPropsList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
@@ -66,6 +67,7 @@ import { ListItemTextClassKey } from '../ListItemText';
 import { ListSubheaderClassKey } from '../ListSubheader';
 import { MenuClassKey } from '../Menu';
 import { MenuItemClassKey } from '../MenuItem';
+import { MenuListClassKey } from '../MenuList';
 import { MobileStepperClassKey } from '../MobileStepper';
 import { ModalClassKey } from '../Modal';
 import { NativeSelectClassKey } from '../NativeSelect';
@@ -75,6 +77,7 @@ import { PaginationItemClassKey } from '../PaginationItem';
 import { PaperClassKey } from '../Paper';
 import { PopoverClassKey } from '../Popover';
 import { RadioClassKey } from '../Radio';
+import { RadioGroupClassKey } from '../RadioGroup';
 import { RatingClassKey } from '../Rating';
 import { ScopedCssBaselineClassKey } from '../ScopedCssBaseline';
 import { SelectClassKey } from '../Select';
@@ -85,6 +88,7 @@ import { SnackbarContentClassKey } from '../SnackbarContent';
 import { SpeedDialClassKey } from '../SpeedDial';
 import { SpeedDialActionClassKey } from '../SpeedDialAction';
 import { SpeedDialIconClassKey } from '../SpeedDialIcon';
+import { StackClassKey } from '../Stack';
 import { StepButtonClasskey } from '../StepButton';
 import { StepClasskey } from '../Step';
 import { StepConnectorClasskey } from '../StepConnector';
@@ -119,14 +123,18 @@ export type OverridesStyleRules<
   Theme = unknown,
 > = Record<
   ClassKey,
-  | CSSInterpolation
-  | ((
-      // Record<string, unknown> is for other props that the slot receive internally
-      // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
-      props: (ComponentName extends keyof ComponentsPropsList
-        ? { ownerState: ComponentsPropsList[ComponentName] & Record<string, unknown> }
-        : {}) & { theme: Theme } & Record<string, unknown>,
-    ) => CSSInterpolation)
+  Interpolation<
+    // Record<string, unknown> is for other props that the slot receive internally
+    // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
+    (ComponentName extends keyof ComponentsPropsList
+      ? ComponentsPropsList[ComponentName] &
+          Record<string, unknown> & {
+            ownerState: ComponentsPropsList[ComponentName] & Record<string, unknown>;
+          }
+      : {}) & {
+      theme: Theme;
+    } & Record<string, unknown>
+  >
 >;
 
 export type ComponentsOverrides<Theme = unknown> = {
@@ -204,6 +212,7 @@ export interface ComponentNameToClassKey {
   MuiListSubheader: ListSubheaderClassKey;
   MuiMenu: MenuClassKey;
   MuiMenuItem: MenuItemClassKey;
+  MuiMenuList: MenuListClassKey;
   MuiMobileStepper: MobileStepperClassKey;
   MuiModal: ModalClassKey;
   MuiNativeSelect: NativeSelectClassKey;
@@ -212,7 +221,9 @@ export interface ComponentNameToClassKey {
   MuiPaginationItem: PaginationItemClassKey;
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
+  MuiPopper: PopperClassKey;
   MuiRadio: RadioClassKey;
+  MuiRadioGroup: RadioGroupClassKey;
   MuiRating: RatingClassKey;
   MuiScopedCssBaseline: ScopedCssBaselineClassKey;
   MuiSelect: SelectClassKey;
@@ -223,6 +234,7 @@ export interface ComponentNameToClassKey {
   MuiSpeedDial: SpeedDialClassKey;
   MuiSpeedDialAction: SpeedDialActionClassKey;
   MuiSpeedDialIcon: SpeedDialIconClassKey;
+  MuiStack: StackClassKey;
   MuiStep: StepClasskey;
   MuiStepButton: StepButtonClasskey;
   MuiStepConnector: StepConnectorClasskey;

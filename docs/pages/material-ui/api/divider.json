@@ -2,10 +2,15 @@
   "props": {
     "absolute": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "flexItem": { "type": { "name": "bool" }, "default": "false" },
-    "light": { "type": { "name": "bool" }, "default": "false" },
+    "light": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "deprecated": true,
+      "deprecationInfo": "Use &lt;Divider sx={{ opacity: 0.6 }} /&gt; (or any opacity or color) instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
@@ -14,7 +19,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "textAlign": {
       "type": {
@@ -32,26 +38,98 @@
     }
   },
   "name": "Divider",
-  "styles": {
-    "classes": [
-      "root",
-      "absolute",
-      "inset",
-      "fullWidth",
-      "light",
-      "middle",
-      "vertical",
-      "flexItem",
-      "withChildren",
-      "withChildrenVertical",
-      "textAlignRight",
-      "textAlignLeft",
-      "wrapper",
-      "wrapperVertical"
-    ],
-    "globalClasses": {},
-    "name": "MuiDivider"
-  },
+  "imports": [
+    "import Divider from '@mui/material/Divider';",
+    "import { Divider } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "absolute",
+      "className": "MuiDivider-absolute",
+      "description": "Styles applied to the root element if `absolute={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "flexItem",
+      "className": "MuiDivider-flexItem",
+      "description": "Styles applied to the root element if `flexItem={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fullWidth",
+      "className": "MuiDivider-fullWidth",
+      "description": "Styles applied to the root element if `variant=\"fullWidth\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inset",
+      "className": "MuiDivider-inset",
+      "description": "Styles applied to the root element if `variant=\"inset\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "light",
+      "className": "MuiDivider-light",
+      "description": "Styles applied to the root element if `light={true}`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "middle",
+      "className": "MuiDivider-middle",
+      "description": "Styles applied to the root element if `variant=\"middle\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiDivider-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "textAlignLeft",
+      "className": "MuiDivider-textAlignLeft",
+      "description": "Styles applied to the root element if `textAlign=\"left\" orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "textAlignRight",
+      "className": "MuiDivider-textAlignRight",
+      "description": "Styles applied to the root element if `textAlign=\"right\" orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiDivider-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "withChildren",
+      "className": "MuiDivider-withChildren",
+      "description": "Styles applied to the root element if divider have text.",
+      "isGlobal": false
+    },
+    {
+      "key": "withChildrenVertical",
+      "className": "MuiDivider-withChildrenVertical",
+      "description": "Styles applied to the root element if divider have text and `orientation=\"vertical\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "wrapper",
+      "className": "MuiDivider-wrapper",
+      "description": "Styles applied to the span children element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "wrapperVertical",
+      "className": "MuiDivider-wrapperVertical",
+      "description": "Styles applied to the span children element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiDivider",

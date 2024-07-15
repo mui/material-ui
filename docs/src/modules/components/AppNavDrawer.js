@@ -1,86 +1,135 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, ThemeProvider } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Fade from '@mui/material/Fade';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
-import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import DoneRounded from '@mui/icons-material/DoneRounded';
+import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import DoneRounded from '@mui/icons-material/DoneRounded';
+import { useTranslate } from '@mui/docs/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
+
+// TODO: Collapse should expose an API to customize the duration based on the height.
+function transitionTheme(theme) {
+  return {
+    ...theme,
+    transitions: {
+      ...theme.transitions,
+      getAutoHeightDuration: (height) => {
+        if (!height) {
+          return 0;
+        }
+
+        const constant = height / 80;
+
+        // https://www.wolframalpha.com/input/?i=(4+%2B+15+*+(x+%2F+36+)+**+0.25+%2B+(x+%2F+36)+%2F+5)+*+10
+        return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
+      },
+    },
+  };
+}
 
 const savedScrollTop = {};
 
+const customButtonStyles = (theme) => ({
+  pl: 1,
+  pr: '6px',
+  height: 26,
+  fontSize: theme.typography.pxToRem(13),
+  fontWeight: theme.typography.fontWeightMedium,
+  letterSpacing: '0.01rem',
+});
+
 function ProductDrawerButton(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    setOpen(false);
   };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  }
 
   return (
     <React.Fragment>
       <Button
+        size="small"
         id="mui-product-selector"
-        aria-controls="drawer-open-button"
+        ref={anchorRef}
         aria-haspopup="true"
+        aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
+        onClick={handleToggle}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
-        sx={(theme) => ({
-          py: 0.1,
-          minWidth: 0,
-          fontSize: theme.typography.pxToRem(13),
-          fontWeight: theme.typography.fontWeightMedium,
-          color: (theme.vars || theme).palette.primary[600],
-          '& svg': {
-            ml: -0.6,
-            width: 18,
-            height: 18,
-          },
-          '& > span': {
-            ml: '4px',
-          },
-          ...theme.applyDarkStyles({
-            color: (theme.vars || theme).palette.primary[300],
-          }),
-        })}
+        sx={customButtonStyles}
       >
         {props.productName}
       </Button>
-      <Menu
-        id="mui-product-menu"
-        anchorEl={anchorEl}
+      <Popper
         open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'mui-product-selector',
-        }}
-        PaperProps={{
-          sx: {
-            width: { xs: 340, sm: 'auto' },
-          },
-        }}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        placement="bottom-start"
+        disablePortal
+        transition
+        style={{ zIndex: 1200 }}
       >
-        <MuiProductSelector />
-      </Menu>
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={250}>
+            <Paper
+              variant="outlined"
+              sx={(theme) => ({
+                mt: 1,
+                minWidth: { xs: '100%', sm: 600 },
+                overflow: 'clip',
+                boxShadow: `0 4px 16px ${alpha(theme.palette.common.black, 0.15)}`,
+                ...theme.applyDarkStyles({
+                  bgcolor: 'primaryDark.900',
+                }),
+              })}
+            >
+              <ClickAwayListener onClickAway={handleClose}>
+                <MuiProductSelector
+                  autoFocusItem={open}
+                  id="mui-product-menu"
+                  aria-labelledby="mui-product-selector"
+                  onKeyDown={handleListKeyDown}
+                />
+              </ClickAwayListener>
+            </Paper>
+          </Fade>
+        )}
+      </Popper>
     </React.Fragment>
   );
 }
@@ -95,12 +144,12 @@ function ProductIdentifier(props) {
     <Box sx={{ flexGrow: 1 }}>
       <Typography
         sx={(theme) => ({
-          ml: 1,
-          color: (theme.vars || theme).palette.grey[600],
-          fontSize: theme.typography.pxToRem(11),
-          fontWeight: 700,
+          ml: '6px',
+          fontSize: theme.typography.pxToRem(10),
+          fontWeight: theme.typography.fontWeightBold,
           textTransform: 'uppercase',
-          letterSpacing: '.08rem',
+          letterSpacing: '.1rem',
+          color: (theme.vars || theme).palette.text.tertiary,
         })}
       >
         {metadata}
@@ -139,11 +188,12 @@ function PersistScroll(props) {
     const activeBox = activeDrawerLink.getBoundingClientRect();
 
     if (activeBox.top < 0 || activeBox.bottom + browserUrlPreviewMarge > window.innerHeight) {
-      // Scroll the least possible from the initial render, e.g. server-side, scrollTop = 0.
+      // Scroll the least possible from the initial render, for example server-side, scrollTop = 0.
       activeDrawerLink.scrollIntoView({ block: 'nearest' });
     }
 
     return () => {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- useEnhancedEffect uses useEffect under the hood
       savedScrollTop[slot] = scrollContainer.scrollTop;
     };
   }, [enabled, slot]);
@@ -158,15 +208,17 @@ PersistScroll.propTypes = {
 };
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1.45, 2),
+  padding: theme.spacing(1.5),
   paddingRight: 0,
+  flexShrink: 0,
   height: 'var(--MuiDocs-header-height)',
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
-  flexGrow: 1,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
+  borderBottom: '1px solid',
+  borderColor: (theme.vars || theme).palette.divider,
 }));
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -178,18 +230,13 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-const AppNavPaperComponent = styled('div')(({ theme }) => {
+const AppNavPaperComponent = styled('div')(() => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    border: '0 !important', // TODO add a Paper slot
+    overflowY: 'unset !important', // TODO add a Paper slot
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-    paddingBottom: theme.spacing(5),
-    [theme.breakpoints.up('xs')]: {
-      borderRadius: '0px 10px 10px 0px',
-    },
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: '0px',
-    },
   };
 });
 
@@ -197,13 +244,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List sx={{ my: 0.5 }}>
-      {pages.reduce(
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        (items, page) => reduceChildRoutes({ items, page, ...params }),
-        [],
-      )}
-    </List>
+    <List>{pages.reduce((items, page) => reduceChildRoutes({ items, page, ...params }), [])}</List>
   );
 }
 
@@ -213,7 +254,7 @@ function renderNavItems(options) {
  */
 function reduceChildRoutes(context) {
   const { onClose, activePageParents, items, depth, t } = context;
-  let { page } = context;
+  const { page } = context;
   if (page.inSideNav === false) {
     return items;
   }
@@ -244,12 +285,15 @@ function reduceChildRoutes(context) {
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
+        unstable={page.unstable}
+        beta={page.beta}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
         topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || subheader}
+        initiallyExpanded={topLevel || subheader}
+        expandable={!subheader}
       >
         {renderNavItems({
           onClose,
@@ -261,7 +305,6 @@ function reduceChildRoutes(context) {
       </AppNavDrawerItem>,
     );
   } else {
-    page = page.children && page.children.length === 1 ? page.children[0] : page;
     const [path, hash] = page.pathname.split('#');
     items.push(
       <AppNavDrawerItem
@@ -276,7 +319,9 @@ function reduceChildRoutes(context) {
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
+        unstable={page.unstable}
+        beta={page.beta}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -299,11 +344,12 @@ export default function AppNavDrawer(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const swipeableDrawer = disablePermanent || mobile;
 
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
 
-    const renderVersionSelector = (versions, sx) => {
+    const renderVersionSelector = (versions) => {
       if (!versions?.length) {
         return null;
       }
@@ -312,6 +358,9 @@ export default function AppNavDrawer(props) {
       return (
         <React.Fragment>
           <Button
+            variant="text"
+            color="secondary"
+            size="small"
             id="mui-version-selector"
             onClick={(event) => {
               setAnchorEl(event.currentTarget);
@@ -321,24 +370,7 @@ export default function AppNavDrawer(props) {
                 <ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />
               ) : null
             }
-            sx={[
-              (theme) => ({
-                py: 0.1,
-                minWidth: 0,
-                fontSize: theme.typography.pxToRem(13),
-                fontWeight: 500,
-                color: (theme.vars || theme).palette.primary[600],
-                '& svg': {
-                  ml: -0.6,
-                  width: 18,
-                  height: 18,
-                },
-                ...theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.primary[300],
-                }),
-              }),
-              ...(Array.isArray(sx) ? sx : [sx]),
-            ]}
+            sx={customButtonStyles}
           >
             {currentVersion.text}
           </Button>
@@ -372,7 +404,7 @@ export default function AppNavDrawer(props) {
                         onClick: onClose,
                       })}
                 >
-                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />}
+                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 'auto' }} />}
                 </MenuItem>
               );
             })}
@@ -384,43 +416,38 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref legacyBehavior>
-            <Box
-              component="a"
-              onClick={onClose}
-              aria-label={t('goToHome')}
-              sx={(theme) => ({
-                pr: '12px',
-                mr: '4px',
-                borderRight: '1px solid',
-                borderColor: (theme.vars || theme).palette.grey[200],
-                ...theme.applyDarkStyles({
-                  borderColor: alpha(theme.palette.primary[100], 0.08),
-                }),
-              })}
-            >
-              <SvgMuiLogomark width={30} />
-            </Box>
-          </NextLink>
+          <LogoWithCopyMenu
+            logo={productIdentifier.logo}
+            logoSvgString={productIdentifier.logoSvg}
+            wordmarkSvgString={productIdentifier.wordmarkSvg}
+          />
           <ProductIdentifier
             name={productIdentifier.name}
             metadata={productIdentifier.metadata}
             versionSelector={renderVersionSelector(productIdentifier.versions)}
           />
         </ToolbarDiv>
-        <Divider
-          sx={(theme) => ({
-            borderColor: (theme.vars || theme).palette.grey[100],
-            ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primary[100], 0.08),
-            }),
-          })}
-        />
-        <DiamondSponsors />
-        {navItems}
+        <Box
+          sx={{
+            pt: 0.5,
+            pb: 5,
+            overflowY: 'auto',
+            flexGrow: 1,
+            ...(swipeableDrawer
+              ? {}
+              : {
+                  borderRight: '1px solid',
+                  borderColor: 'divider',
+                }),
+          }}
+        >
+          <PersistScroll slot="side" enabled>
+            {navItems}
+          </PersistScroll>
+        </Box>
       </React.Fragment>
     );
-  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
+  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl, swipeableDrawer]);
 
   if (process.env.NODE_ENV !== 'production') {
     if (!productIdentifier) {
@@ -432,41 +459,37 @@ export default function AppNavDrawer(props) {
   }
 
   return (
-    <nav className={className} aria-label={t('mainNavigation')}>
-      {disablePermanent || mobile ? (
-        <SwipeableDrawer
-          disableBackdropTransition={!iOS}
-          variant="temporary"
-          open={mobileOpen}
-          onOpen={onOpen}
-          onClose={onClose}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          PaperProps={{
-            className: 'algolia-drawer',
-            component: AppNavPaperComponent,
-          }}
-        >
-          <PersistScroll slot="swipeable" enabled={mobileOpen}>
+    <ThemeProvider theme={transitionTheme}>
+      <nav className={className} aria-label={t('mainNavigation')}>
+        {swipeableDrawer ? (
+          <SwipeableDrawer
+            disableBackdropTransition={!iOS}
+            variant="temporary"
+            open={mobileOpen}
+            onOpen={onOpen}
+            onClose={onClose}
+            ModalProps={{
+              keepMounted: true,
+            }}
+            PaperProps={{
+              component: AppNavPaperComponent,
+            }}
+          >
             {drawer}
-          </PersistScroll>
-        </SwipeableDrawer>
-      ) : null}
-      {disablePermanent || mobile ? null : (
-        <StyledDrawer
-          variant="permanent"
-          PaperProps={{
-            component: AppNavPaperComponent,
-          }}
-          open
-        >
-          <PersistScroll slot="side" enabled>
+          </SwipeableDrawer>
+        ) : (
+          <StyledDrawer
+            variant="permanent"
+            PaperProps={{
+              component: AppNavPaperComponent,
+            }}
+            open
+          >
             {drawer}
-          </PersistScroll>
-        </StyledDrawer>
-      )}
-    </nav>
+          </StyledDrawer>
+        )}
+      </nav>
+    </ThemeProvider>
   );
 }
 

@@ -48,49 +48,47 @@ export default function AlertInvertedColors() {
         }
         sx={{ alignItems: 'flex-start', overflow: 'hidden' }}
       >
-        <Box>
-          <Typography level="body1" fontWeight="lg">
-            Success
-          </Typography>
-          <Typography level="body3">
+        <div>
+          <Typography level="title-lg">Success</Typography>
+          <Typography level="body-sm">
             Success is walking from failure to failure with no loss of enthusiam.
           </Typography>
-        </Box>
+        </div>
         <LinearProgress
-          variant="soft"
+          variant="solid"
+          color="success"
           value={40}
-          sx={(theme) => ({
+          sx={{
             position: 'absolute',
             bottom: 0,
             left: 0,
             right: 0,
-            color: `rgb(${theme.vars.palette.success.lightChannel} / 0.72)`,
-            '--LinearProgress-radius': '0px',
-          })}
+            borderRadius: 0,
+          }}
         />
       </Alert>
-
       <Alert
         variant="soft"
         color="danger"
         invertedColors
         startDecorator={
-          <CircularProgress size="lg">
+          <CircularProgress size="lg" color="danger">
             <Warning />
           </CircularProgress>
         }
-        sx={{ alignItems: 'flex-start', '--Alert-gap': '1rem' }}
+        sx={{ alignItems: 'flex-start', gap: '1rem' }}
       >
         <Box sx={{ flex: 1 }}>
-          <Typography sx={{ mt: 1 }}>
-            Network loss, please recheck your connection.
+          <Typography level="title-md">Lost connection</Typography>
+          <Typography level="body-md">
+            Please verify your network connection and try again.
           </Typography>
           <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
             <Button variant="outlined" size="sm">
-              Open network setting
+              Open network settings
             </Button>
-            <Button variant="soft" size="sm">
-              Okay
+            <Button variant="solid" size="sm">
+              Try again
             </Button>
           </Box>
         </Box>

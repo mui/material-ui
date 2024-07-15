@@ -7,9 +7,6 @@ import Typography from '@mui/joy/Typography';
 const defaultTheme = extendTheme();
 
 const Table = styled('table')(({ theme }) => ({
-  border: '1px solid',
-  borderColor: theme.vars.palette.divider,
-  borderRadius: theme.vars.radius.md,
   borderCollapse: 'separate',
   borderSpacing: 0,
   display: 'block',
@@ -63,36 +60,41 @@ export default function TypographyThemeViewer() {
       />
     ) : null;
   return (
-    <Box sx={{ maxWidth: '100%', overflowX: 'scroll' }}>
+    <Box
+      sx={{
+        marginBottom: '-9px',
+        maxWidth: '100%',
+        overflowX: 'scroll',
+        border: '1px solid',
+        borderColor: 'divider',
+        borderTopLeftRadius: '12px',
+        borderTopRightRadius: '12px',
+      }}
+    >
       <Table>
         <thead>
           <tr>
             <th>
-              <Typography fontSize="sm">Level</Typography>
+              <Typography sx={{ fontSize: 'sm' }}>Level</Typography>
             </th>
             <th>
-              <Typography fontSize="sm" noWrap>
+              <Typography noWrap sx={{ fontSize: 'sm' }}>
                 Color
               </Typography>
             </th>
             <th>
-              <Typography fontSize="sm" noWrap>
+              <Typography noWrap sx={{ fontSize: 'sm' }}>
                 Font size
               </Typography>
             </th>
             <th>
-              <Typography fontSize="sm" noWrap>
+              <Typography noWrap sx={{ fontSize: 'sm' }}>
                 Font weight
               </Typography>
             </th>
             <th>
-              <Typography fontSize="sm" noWrap>
+              <Typography noWrap sx={{ fontSize: 'sm' }}>
                 Line height
-              </Typography>
-            </th>
-            <th>
-              <Typography fontSize="sm" noWrap>
-                Letter spacing
               </Typography>
             </th>
           </tr>
@@ -109,7 +111,7 @@ export default function TypographyThemeViewer() {
                   placement="bottom-start"
                   sx={{ pointerEvents: 'none' }}
                 >
-                  <Typography fontSize="sm" sx={{ cursor: 'zoom-in' }}>
+                  <Typography sx={{ fontSize: 'sm', cursor: 'zoom-in' }}>
                     {level}
                   </Typography>
                 </Tooltip>
@@ -122,20 +124,20 @@ export default function TypographyThemeViewer() {
                   title={
                     <Box sx={{ display: 'flex', gap: 3 }}>
                       <Typography
-                        fontSize="xs"
                         startDecorator={renderSwatch(
                           'light',
                           defaultTheme.typography[level].color,
                         )}
+                        sx={{ fontSize: 'xs' }}
                       >
                         (light)
                       </Typography>
                       <Typography
-                        fontSize="xs"
                         startDecorator={renderSwatch(
                           'dark',
                           defaultTheme.typography[level].color,
                         )}
+                        sx={{ fontSize: 'xs' }}
                       >
                         (dark)
                       </Typography>
@@ -144,10 +146,7 @@ export default function TypographyThemeViewer() {
                   sx={{ pointerEvents: 'none' }}
                 >
                   <Typography
-                    fontSize="xs"
-                    fontFamily="code"
-                    letterSpacing="sm"
-                    sx={{ cursor: 'zoom-in' }}
+                    sx={{ fontSize: 'xs', fontFamily: 'code', cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].color || '-'}
                   </Typography>
@@ -168,16 +167,13 @@ export default function TypographyThemeViewer() {
                   sx={{ pointerEvents: 'none' }}
                 >
                   <Typography
-                    fontSize="xs"
-                    fontFamily="code"
-                    letterSpacing="sm"
-                    sx={{ cursor: 'zoom-in' }}
+                    sx={{ fontSize: 'xs', fontFamily: 'code', cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].fontSize || '-'}
                   </Typography>
                 </Tooltip>
               </td>
-              {['fontWeight', 'lineHeight', 'letterSpacing'].map((field) => (
+              {['fontWeight', 'lineHeight'].map((field) => (
                 <td key={field}>
                   <Tooltip
                     size="sm"
@@ -190,11 +186,12 @@ export default function TypographyThemeViewer() {
                     sx={{ pointerEvents: 'none' }}
                   >
                     <Typography
-                      fontSize="xs"
-                      fontFamily="code"
-                      letterSpacing="sm"
-                      textAlign="center"
-                      sx={{ cursor: 'zoom-in' }}
+                      sx={{
+                        fontSize: 'xs',
+                        fontFamily: 'code',
+                        textAlign: 'center',
+                        cursor: 'zoom-in',
+                      }}
                     >
                       {defaultTheme.typography[level][field] || '-'}
                     </Typography>

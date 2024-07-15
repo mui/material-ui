@@ -32,7 +32,7 @@ export default function DelayingAppearance() {
     }
 
     setQuery('progress');
-    timerRef.current = window.setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setQuery('success');
     }, 2000);
   };

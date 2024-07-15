@@ -2,30 +2,41 @@
   "props": {
     "open": { "type": { "name": "bool" }, "required": true },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ root?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "invisible": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ root?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ root?: elementType, transition?: elementType }"
+      },
       "default": "{}"
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {
@@ -36,7 +47,32 @@
     }
   },
   "name": "Backdrop",
-  "styles": { "classes": ["root", "invisible"], "globalClasses": {}, "name": "MuiBackdrop" },
+  "imports": [
+    "import Backdrop from '@mui/material/Backdrop';",
+    "import { Backdrop } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiBackdrop-root"
+    },
+    {
+      "name": "transition",
+      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "Fade",
+      "class": null
+    }
+  ],
+  "classes": [
+    {
+      "key": "invisible",
+      "className": "MuiBackdrop-invisible",
+      "description": "Styles applied to the root element if `invisible={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiBackdrop",

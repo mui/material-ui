@@ -1,0 +1,21 @@
+name: Vale action
+
+on: [pull_request]
+
+permissions: {}
+
+jobs:
+  vale:
+    name: runner / vale
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: errata-ai/vale-action@38bf078c328061f59879b347ca344a718a736018 # v2.1.0
+        continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
+        with:
+          fail_on_error: true
+          reporter: github-pr-check
+          token: ${{secrets.GITHUB_TOKEN}}

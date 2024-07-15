@@ -9,7 +9,7 @@ githubLabel: 'component: avatar'
 
 <p class="description">An avatar is a graphical representation of a user's identity.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -56,7 +56,7 @@ If an error occurs while loading the Avatar's image, it will fall back to the fo
 
 ### Variants
 
-The Avatar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
+The Avatar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "AvatarVariants.js"}}
 
@@ -131,12 +131,12 @@ Combine the Avatar component with the [Badge](/joy-ui/react-badge/) to visually 
 
 {{"demo": "BadgeAvatars.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Avatar component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
 
-{{"demo": "AvatarGroupVariables.js", "hideToolbar": true }}
+{{"demo": "AvatarGroupVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Anatomy
 

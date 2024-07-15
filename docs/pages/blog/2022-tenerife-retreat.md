@@ -3,8 +3,8 @@ title: MUI's company retreat in Tenerife: a recap
 description: Our internationally distributed startup gathered on a remote island to get to know each other better. Here's what happened!
 date: 2022-07-28T00:00:00.000Z
 authors: ['samuelsycamore']
-card: true
 tags: ['Company']
+manualCard: true
 ---
 
 One of the toughest challenges to overcome as a fully remote team is fostering a supportive and inclusive company culture.
@@ -52,9 +52,9 @@ Almost all of our meals were cooked fresh by the hosts in their fabulous outdoor
 I don't think I've ever eaten that many incredible home-cooked meals in a single week. 😋
 And somehow each one was even better than the last!
 
-<img alt="MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat." src="/static/blog/2022-tenerife-retreat/jose-andrew-wine.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat." src="/static/blog/2022-tenerife-retreat/jose-andrew-wine.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
 
-<p class="blog-description">MUI X colleagues José and Andrew bond through the tradition of a brüderschaft (German: <em>brotherhood</em>) toast.</p>
+<p class="blog-description">MUI X colleagues José and Andrew bond through the tradition of a brüderschaft (German: <em>brotherhood</em>) toast.</p>
 
 ## Activities
 
@@ -62,7 +62,7 @@ Throughout our stay in Tenerife, we arranged group activities to make the most o
 
 ### Whale and dolphin watching
 
-<img alt="Danail from the MUI X team snaps a selfie on the bow of the whale-watching boat, with coworkers in the background." src="/static/blog/2022-tenerife-retreat/whale-watching-danail.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Danail from the MUI X team snaps a selfie on the bow of the whale-watching boat, with coworkers in the background." src="/static/blog/2022-tenerife-retreat/whale-watching-danail.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
 
 <p class="blog-description">Danail snaps a selfie on the whale-watching boat.</p>
 
@@ -117,15 +117,15 @@ Believe it or not, we actually did manage to squeeze in some productive work tim
 
 ### Roadmap to v6
 
-<img alt="MUI Core team members Marija, Jun, and Sam discuss the product roadmap." src="/static/blog/2022-tenerife-retreat/focus-group.jpeg" loading="lazy" />
+<img alt="MUI Core team members Marija, Jun, and Sam discuss the product roadmap." src="/static/blog/2022-tenerife-retreat/focus-group.jpeg" loading="lazy" />
 
-<p class="blog-description">MUI Core team discusses the product roadmap.</p>
+<p class="blog-description">MUI Core team discusses the product roadmap.</p>
 
 One of the key goals of the retreat was to outline mid- to long-term goals for our products, and begin to estimate timelines to get where we want to go from here.
 
-We had some great conversations about what we hope to accomplish over the next several months on the way to our next major release: MUI v6.
+We had some great conversations about what we hope to accomplish over the next several months on the way to our next major release: Material UI v6.
 It's still hard to say when that release day might come, but we're optimistic that we could see it in mid to late 2023.
-[@RemindMe_OfThis](https://twitter.com/RemindMe_OfThis) September 2023 🙃
+[@RemindMe_OfThis](https://x.com/RemindMe_OfThis) September 2023 🙃
 
 <img alt="The product teams are seen spread out around a large indoor/outdoor workspace" src="/static/blog/2022-tenerife-retreat/focus-groups.jpeg" loading="lazy" />
 
@@ -144,7 +144,7 @@ Before the retreat, we were all invited to propose topics to cover in smaller gr
 This gave us a great opportunity for some cross-team collaboration that isn't usually part of our standard workflow.
 
 I participated in sessions on copywriting, marketing, and developer outreach that I found particularly exciting—but I'm kind of a nerd like that. 🤓
-Others discussed optimizing TypeScript performance, implementing editable demos in the docs, and supporting [Joy UI](/blog/first-look-at-joy/) with MUI X components, among other things.
+Others discussed optimizing TypeScript performance, implementing editable demos in the docs, and supporting [Joy UI](/blog/first-look-at-joy/) with MUI X components, among other things.
 
 ### Our feline colleague 🐈
 

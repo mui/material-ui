@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import Avatar, { AvatarProps } from '@mui/material/Avatar';
+import { AvatarProps } from '@mui/material/Avatar';
 import Box, { BoxProps } from '@mui/material/Box';
 import Slide from 'docs/src/components/animation/Slide';
 import FadeDelay from 'docs/src/components/animation/FadeDelay';
@@ -29,10 +29,10 @@ const Image = styled('img')(({ theme }) => ({
   objectFit: 'cover',
   transitionProperty: 'all',
   transitionDuration: '150ms',
-  boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
+  boxShadow: '0 4px 20px rgba(61, 71, 82, 0.2)',
   ...theme.applyDarkStyles({
     borderColor: (theme.vars || theme).palette.grey[800],
-    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.6)',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.6)',
   }),
 }));
 
@@ -40,24 +40,35 @@ const Anchor = styled('a')(({ theme }) => [
   {
     display: 'inline-block',
     position: 'relative',
-    transitionProperty: 'all',
-    transitionDuration: '150ms',
+    transition: 'all 120ms ease',
     borderRadius: '50%',
+    border: '1px solid',
+    borderColor: (theme.vars || theme).palette.grey[200],
+    boxShadow: `0 2px 12px ${alpha(theme.palette.primary[200], 0.3)}`,
+    backgroundColor: '#FFF',
     '&:hover, &:focus': {
-      boxShadow: '0 6px 20px 0 rgba(0,0,0,0.2)',
+      borderColor: (theme.vars || theme).palette.primary[300],
+      boxShadow: `0 4px 20px ${alpha(theme.palette.primary[400], 0.3)}`,
+      backgroundColor: (theme.vars || theme).palette.primary[50],
     },
-  },
+  } as const,
   theme.applyDarkStyles({
+    backgroundColor: alpha(theme.palette.primaryDark[900], 0.8),
+    borderColor: (theme.vars || theme).palette.primaryDark[600],
+    boxShadow: `0 2px 12px ${alpha(theme.palette.primaryDark[800], 0.5)}`,
     '&:hover, &:focus': {
-      boxShadow: `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`,
+      backgroundColor: alpha(theme.palette.primary[900], 0.8),
+      borderColor: (theme.vars || theme).palette.primary[700],
+      boxShadow: `0 2px 16px 0 ${alpha(theme.palette.primary[800], 0.5)}`,
     },
   }),
 ]);
 
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
-  React.PropsWithChildren<{ brand: 'figma' | 'sketch' | 'xd' }>
->(function DesignToolLink({ brand, ...props }, ref) {
+  React.PropsWithChildren<{ brand: 'figma' | 'sketch' | 'adobexd' }>
+>(function DesignToolLink(props, ref) {
+  const { brand, ...other } = props;
   return (
     <Anchor
       ref={ref}
@@ -68,37 +79,39 @@ const DesignToolLink = React.forwardRef<
             'https://mui.com/store/items/figma-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
           sketch:
             'https://mui.com/store/items/sketch-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
-          xd: 'https://mui.com/store/items/adobe-xd-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
+          adobexd:
+            'https://mui.com/store/items/adobe-xd-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
         }[brand]
       }
       target="_blank"
-      {...props}
-    >
-      {props.children}
-    </Anchor>
+      {...other}
+    />
   );
 });
 
 const DesignToolLogo = React.forwardRef<
   HTMLImageElement,
-  { brand: 'figma' | 'sketch' | 'xd' } & AvatarProps
+  { brand: 'figma' | 'sketch' | 'adobexd' } & AvatarProps
 >(function DesignToolLogo({ brand, ...props }, ref) {
   return (
-    <Avatar
+    <Box
       ref={ref}
-      src={`/static/branding/design-kits/designkits-${brand}.png`}
-      alt=""
       {...props}
-      sx={[
-        (theme) => ({
-          boxShadow: `0px 3.57436px 44.6795px ${'rgba(90, 105, 120, 0.36)'}`,
-          ...theme.applyDarkStyles({
-            boxShadow: `0px 3.57436px 44.6795px ${(theme.vars || theme).palette.primaryDark[900]}`,
-          }),
-        }),
+      sx={{
+        display: 'flex',
+        p: 2,
+        borderRadius: '50%',
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
-      ]}
-    />
+      }}
+    >
+      <img
+        src={`/static/branding/design-kits/${brand}-logo.svg`}
+        alt=""
+        loading="lazy"
+        width="60"
+        height="60"
+      />
+    </Box>
   );
 });
 
@@ -184,7 +197,7 @@ export function DesignKitImagesSet2({
 }
 
 export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolean } & BoxProps) {
-  function renderTool(brand: 'figma' | 'sketch' | 'xd') {
+  function renderTool(brand: 'figma' | 'sketch' | 'adobexd') {
     if (disableLink) {
       return <DesignToolLogo brand={brand} />;
     }
@@ -216,7 +229,7 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
     >
       <FadeDelay delay={200}>{renderTool('figma')}</FadeDelay>
       <FadeDelay delay={400}>{renderTool('sketch')}</FadeDelay>
-      <FadeDelay delay={600}>{renderTool('xd')}</FadeDelay>
+      <FadeDelay delay={600}>{renderTool('adobexd')}</FadeDelay>
     </Box>
   );
 }
@@ -226,8 +239,8 @@ export default function DesignKits() {
     <Box
       sx={{
         mx: { xs: -2, sm: -3, md: 0 },
-        my: { md: -8 },
-        height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
+        my: { md: -18 },
+        height: { xs: 300, sm: 360, md: 'calc(100% + 320px)' },
         overflow: 'hidden',
         position: 'relative',
         width: { xs: '100vw', md: '50vw' },
@@ -255,9 +268,9 @@ export default function DesignKits() {
           width: '100%',
           height: '100%',
           background: `linear-gradient(to bottom, ${
-            (theme.vars || theme).palette.grey[50]
+            (theme.vars || theme).palette.primary[50]
           } 0%, ${transparent} 30%, ${transparent} 70%, ${
-            (theme.vars || theme).palette.grey[50]
+            (theme.vars || theme).palette.primary[50]
           } 100%)`,
           zIndex: 2,
           ...theme.applyDarkStyles({
@@ -279,7 +292,7 @@ export default function DesignKits() {
           width: 400,
           height: '100%',
           background: `linear-gradient(to right, ${
-            (theme.vars || theme).palette.grey[50]
+            (theme.vars || theme).palette.primary[50]
           }, ${transparent})`,
           zIndex: 2,
           ...theme.applyDarkStyles({

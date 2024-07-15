@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
-import { createTheme, styled, ThemeProvider } from '@mui/system';
+import { createRenderer } from '@mui/internal-test-utils';
+import { styled, ThemeProvider } from '@mui/system';
+
+import createTheme from '@mui/system/createTheme';
 
 describe('createTheme', () => {
   const { render } = createRenderer();
@@ -150,6 +152,52 @@ describe('createTheme', () => {
         paddingLeft: '10px',
         fontSize: '14px',
         maxWidth: '600px',
+      });
+    });
+
+    it('apply correct styles', () => {
+      const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+          primary: {
+            main: 'rgb(0, 0, 255)',
+          },
+          secondary: {
+            main: 'rgb(0, 255, 0)',
+          },
+        },
+      });
+
+      expect(darkTheme.applyStyles('dark', { color: 'red' })).to.deep.equal({
+        color: 'red',
+      });
+      expect(darkTheme.applyStyles('light', { color: 'salmon' })).to.deep.equal({});
+
+      // assume switching to light theme
+      darkTheme.palette.mode = 'light';
+      expect(darkTheme.applyStyles('dark', { color: 'red' })).to.deep.equal({});
+      expect(darkTheme.applyStyles('light', { color: 'salmon' })).to.deep.equal({
+        color: 'salmon',
+      });
+    });
+
+    it('apply correct styles with new theme', () => {
+      const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+          primary: {
+            main: 'rgb(0, 0, 255)',
+          },
+          secondary: {
+            main: 'rgb(0, 255, 0)',
+          },
+        },
+      });
+
+      const newTheme = { ...darkTheme, palette: { mode: 'light' } };
+      expect(newTheme.applyStyles('dark', { color: 'red' })).to.deep.equal({});
+      expect(newTheme.applyStyles('light', { color: 'salmon' })).to.deep.equal({
+        color: 'salmon',
       });
     });
   });

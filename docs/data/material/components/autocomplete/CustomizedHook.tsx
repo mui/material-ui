@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useAutocomplete, { AutocompleteGetTagProps } from '@mui/base/useAutocomplete';
+import { useAutocomplete, AutocompleteGetTagProps } from '@mui/base/useAutocomplete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
@@ -179,20 +179,24 @@ export default function CustomizedHook() {
       <div {...getRootProps()}>
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-          {value.map((option: FilmOptionType, index: number) => (
-            <StyledTag label={option.title} {...getTagProps({ index })} />
-          ))}
+          {value.map((option: FilmOptionType, index: number) => {
+            const { key, ...tagProps } = getTagProps({ index });
+            return <StyledTag key={key} {...tagProps} label={option.title} />;
+          })}
           <input {...getInputProps()} />
         </InputWrapper>
       </div>
       {groupedOptions.length > 0 ? (
         <Listbox {...getListboxProps()}>
-          {(groupedOptions as typeof top100Films).map((option, index) => (
-            <li {...getOptionProps({ option, index })}>
-              <span>{option.title}</span>
-              <CheckIcon fontSize="small" />
-            </li>
-          ))}
+          {(groupedOptions as typeof top100Films).map((option, index) => {
+            const { key, ...optionProps } = getOptionProps({ option, index });
+            return (
+              <li key={key} {...optionProps}>
+                <span>{option.title}</span>
+                <CheckIcon fontSize="small" />
+              </li>
+            );
+          })}
         </Listbox>
       ) : null}
     </Root>

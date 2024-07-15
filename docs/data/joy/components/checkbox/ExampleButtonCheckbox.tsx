@@ -16,7 +16,6 @@ export default function ExampleButtonCheckbox() {
       role="group"
       orientation="horizontal"
       sx={{
-        bgcolor: 'background.body',
         flexGrow: 0,
         '--List-gap': '8px',
         '--List-padding': '8px',
@@ -26,11 +25,13 @@ export default function ExampleButtonCheckbox() {
       {['Mobile', 'Laptop', 'Monitor'].map((item) => (
         <ListItem key={item}>
           <ListItemDecorator
-            sx={{
-              zIndex: 2,
-              pointerEvents: 'none',
-              ...(value.includes(item) && { color: 'text.primary' }),
-            }}
+            sx={[
+              {
+                zIndex: 2,
+                pointerEvents: 'none',
+              },
+              value.includes(item) && { color: 'text.primary' },
+            ]}
           >
             {
               {

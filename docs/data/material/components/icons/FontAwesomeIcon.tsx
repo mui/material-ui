@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { loadCSS } from 'fg-loadcss';
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { green } from '@mui/material/colors';
 import Icon from '@mui/material/Icon';
 
@@ -18,13 +18,7 @@ export default function FontAwesomeIcon() {
   }, []);
 
   return (
-    <Box
-      sx={{
-        '& > :not(style)': {
-          m: 2,
-        },
-      }}
-    >
+    <Stack direction="row" spacing={4} sx={{ alignItems: 'flex-end' }}>
       <Icon baseClassName="fas" className="fa-plus-circle" />
       <Icon baseClassName="fas" className="fa-plus-circle" color="primary" />
       <Icon
@@ -34,6 +28,6 @@ export default function FontAwesomeIcon() {
       />
       <Icon baseClassName="fas" className="fa-plus-circle" fontSize="small" />
       <Icon baseClassName="fas" className="fa-plus-circle" sx={{ fontSize: 30 }} />
-    </Box>
+    </Stack>
   );
 }

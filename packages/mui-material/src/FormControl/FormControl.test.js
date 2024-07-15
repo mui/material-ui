@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer } from 'test/utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import Select from '@mui/material/Select';
 import useFormControl from './useFormControl';
+import describeConformance from '../../test/describeConformance';
 
 describe('<FormControl />', () => {
   const { render } = createRenderer();

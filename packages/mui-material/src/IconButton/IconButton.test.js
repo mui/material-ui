@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
+import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import Icon from '@mui/material/Icon';
 import ButtonBase from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<IconButton />', () => {
   const { render } = createRenderer();
@@ -29,19 +31,21 @@ describe('<IconButton />', () => {
     expect(getByTestId('icon')).to.have.class(childClassName);
   });
 
-  it('should have a ripple by default', () => {
-    const { container } = render(
+  it('should have a ripple', async () => {
+    const { container, getByRole } = render(
       <IconButton TouchRippleProps={{ className: 'touch-ripple' }}>book</IconButton>,
     );
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
-  it('can disable the ripple and hover effect', () => {
-    const { container } = render(
+  it('can disable the ripple and hover effect', async () => {
+    const { container, getByRole } = render(
       <IconButton disableRipple TouchRippleProps={{ className: 'touch-ripple' }}>
         book
       </IconButton>,
     );
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
@@ -69,11 +73,13 @@ describe('<IconButton />', () => {
 
       expect(container.firstChild).to.have.class(classes.edgeStart);
     });
+
     it('edge="end" should render the right class', () => {
       const { container } = render(<IconButton edge="end">book</IconButton>);
 
       expect(container.firstChild).to.have.class(classes.edgeEnd);
     });
+
     it('no edge should render the right class', () => {
       const { container } = render(<IconButton>book</IconButton>);
 

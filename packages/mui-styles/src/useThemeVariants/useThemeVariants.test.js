@@ -1,6 +1,10 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createRenderer, screen, strictModeDoubleLoggingSuppressed } from 'test/utils';
+import {
+  createRenderer,
+  screen,
+  strictModeDoubleLoggingSuppressed,
+} from '@mui/internal-test-utils';
 import { createTheme } from '@mui/material/styles';
 import ThemeProvider from '../ThemeProvider';
 import useThemeVariants from './useThemeVariants';

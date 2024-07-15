@@ -12,7 +12,7 @@ const StyledDiv = styled('div')({
 });
 
 type WrapperProps = {
-  children: JSX.Element;
+  children: React.JSX.Element;
   hint: string;
 };
 

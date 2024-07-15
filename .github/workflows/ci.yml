@@ -25,27 +25,26 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
-          # fetch all tags which are required for `yarn release:changelog`
+          # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
+      - name: Set up pnpm
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
       - name: Use Node.js 18.x
-        uses: actions/setup-node@e33196f7422957bea03ed53f6fbb155025ffc7b8 # v3.7.0
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
           node-version: 18
-          cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
-      - run: yarn install
+          cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
+      - run: pnpm install
+      - run: pnpm build:ci
         env:
-          # Don't need playwright in this job
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      - run: yarn release:build
-      # double run to check if cleanup works
-      - run: yarn release:build
-      - run: yarn release:changelog
+          NODE_OPTIONS: --max_old_space_size=4096
+      - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: yarn validate-declarations
-      - name: yarn release:tag
+      - run: pnpm validate-declarations
+      - name: pnpm release:tag
         run: |
           git remote -v
-          yarn release:tag --dryRun
+          pnpm release:tag --dryRun

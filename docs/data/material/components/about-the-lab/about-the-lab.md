@@ -8,7 +8,7 @@ As developers use and test the components and report issues, the maintainers lea
 
 For a component to be ready to move to the core, the following criteria are considered:
 
-- It needs to be **used**. The MUI team uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
+- It needs to be **used**. We use Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
 - It needs to match the **code quality** of the core components. It doesn't have to be perfect to be part of the core, but the component should be reliable enough that developers can depend on it.
   - Each component needs **type definitions**. It is not currently required that a lab component is typed, but it would need to be typed to move to the core.
   - Requires good **test coverage**. Some of the lab components don't currently have comprehensive tests.
@@ -17,19 +17,31 @@ For a component to be ready to move to the core, the following criteria are cons
 
 ## Installation
 
-To install and save in your `package.json` dependencies, run the command below using **npm**:
+To install and save in your `package.json` dependencies, run one of the following commands:
 
-```bash
-npm install @mui/lab @mui/material
+:::info
+The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
+:::
+
+<!-- #default-branch-switch -->
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @mui/lab@next @mui/material@next
 ```
 
-Or **yarn**:
-
-```bash
-yarn add @mui/lab @mui/material
+```bash yarn
+yarn add @mui/lab@next @mui/material@next
 ```
 
-Note that the lab has a peer dependency on the Material UI components.
+```bash pnpm
+pnpm add @mui/lab@next @mui/material@next
+```
+
+</codeblock>
+
+Note that the lab has a peer dependency on the Material UI components.
 
 ## TypeScript
 

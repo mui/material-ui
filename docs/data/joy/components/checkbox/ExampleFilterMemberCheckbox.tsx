@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
 import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -18,19 +17,13 @@ export default function ExampleFilterMemberCheckbox() {
   return (
     <Sheet
       variant="outlined"
-      sx={{
-        p: 2,
-        bgcolor: 'background.body',
-        borderRadius: 'sm',
-        width: 360,
-        maxWidth: '100%',
-      }}
+      sx={{ p: 2, borderRadius: 'sm', width: 360, maxWidth: '100%' }}
     >
       <Typography
         id="member"
         sx={{
           textTransform: 'uppercase',
-          fontSize: 'xs2',
+          fontSize: 'xs',
           letterSpacing: 'lg',
           fontWeight: 'lg',
           color: 'text.secondary',
@@ -39,15 +32,15 @@ export default function ExampleFilterMemberCheckbox() {
       >
         Team members
       </Typography>
-      <Box role="group" aria-labelledby="member">
+      <div role="group" aria-labelledby="member">
         <List
           sx={{
+            '--ListItem-gap': '0.75rem',
             [`& .${checkboxClasses.root}`]: {
               mr: 'auto',
               flexGrow: 1,
               alignItems: 'center',
               flexDirection: 'row-reverse',
-              gap: 1.5,
             },
           }}
         >
@@ -101,7 +94,7 @@ export default function ExampleFilterMemberCheckbox() {
             />
           </ListItem>
         </List>
-      </Box>
+      </div>
     </Sheet>
   );
 }

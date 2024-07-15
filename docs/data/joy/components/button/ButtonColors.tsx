@@ -10,13 +10,7 @@ import { VariantProp } from '@mui/joy/styles';
 export default function ButtonColors() {
   const [variant, setVariant] = React.useState<VariantProp>('solid');
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 3,
-      }}
-    >
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
       <Box
         sx={{
           display: 'grid',
@@ -32,9 +26,6 @@ export default function ButtonColors() {
         </Button>
         <Button size="md" variant={variant} color="danger">
           Danger
-        </Button>
-        <Button size="md" variant={variant} color="info">
-          Info
         </Button>
         <Button size="md" variant={variant} color="success">
           Success
@@ -52,11 +43,10 @@ export default function ButtonColors() {
         }}
       >
         <Typography
-          level="body2"
-          fontWeight="xl"
+          level="body-sm"
           id="variant-label"
           textColor="text.primary"
-          mb={1}
+          sx={{ fontWeight: 'xl', mb: 1 }}
         >
           Variant:
         </Typography>

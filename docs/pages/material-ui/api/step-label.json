@@ -1,16 +1,25 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ label?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
     "optional": { "type": { "name": "node" } },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ label?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ label?: func<br>&#124;&nbsp;object, stepIcon?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ label?: elementType, stepIcon?: elementType }" },
       "default": "{}"
     },
     "StepIconComponent": { "type": { "name": "elementType" } },
@@ -19,32 +28,90 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "StepLabel",
-  "styles": {
-    "classes": [
-      "root",
-      "horizontal",
-      "vertical",
-      "label",
-      "active",
-      "completed",
-      "error",
-      "disabled",
-      "iconContainer",
-      "alternativeLabel",
-      "labelContainer"
-    ],
-    "globalClasses": {
-      "active": "Mui-active",
-      "completed": "Mui-completed",
-      "error": "Mui-error",
-      "disabled": "Mui-disabled"
+  "imports": [
+    "import StepLabel from '@mui/material/StepLabel';",
+    "import { StepLabel } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "label",
+      "description": "The component that renders the label.",
+      "default": "span",
+      "class": "MuiStepLabel-label"
     },
-    "name": "MuiStepLabel"
-  },
+    {
+      "name": "stepIcon",
+      "description": "The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).",
+      "class": null
+    }
+  ],
+  "classes": [
+    {
+      "key": "active",
+      "className": "Mui-active",
+      "description": "State class applied to the label element if `active={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "alternativeLabel",
+      "className": "MuiStepLabel-alternativeLabel",
+      "description": "State class applied to the root and icon container and label if `alternativeLabel={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "completed",
+      "className": "Mui-completed",
+      "description": "State class applied to the label element if `completed={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root and label elements if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root and label elements if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiStepLabel-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconContainer",
+      "className": "MuiStepLabel-iconContainer",
+      "description": "Styles applied to the `icon` container element.",
+      "isGlobal": false
+    },
+    {
+      "key": "labelContainer",
+      "className": "MuiStepLabel-labelContainer",
+      "description": "Styles applied to the container element which wraps label and `optional`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiStepLabel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiStepLabel-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStepLabel",

@@ -17,7 +17,7 @@ Progress indicators inform users about the status of ongoing processes, such as 
 
 The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Circular
 
@@ -94,7 +94,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 ## Delaying appearance
 
 There are [3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time.
-The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously.
+The ripple effect of the `ButtonBase` component ensures that the user feels that the UI is reacting instantaneously.
 Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second.
 After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
 
@@ -125,28 +125,5 @@ If you need to perform 30 re-renders per second or more, we recommend disabling 
 ```css
 .MuiLinearProgress-bar {
   transition: none;
-}
-```
-
-### IE 11
-
-The circular progress component animation on IE 11 is degraded.
-The stroke dash animation is not working (equivalent to `disableShrink`) and the circular animation wobbles.
-You can solve the latter with:
-
-```css
-.MuiCircularProgress-indeterminate {
-  animation: circular-rotate 1.4s linear infinite;
-}
-
-@keyframes circular-rotate {
-  0% {
-    transform: rotate(0deg);
-    /* Fix IE11 wobbly */
-    transform-origin: 50% 50%;
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 ```

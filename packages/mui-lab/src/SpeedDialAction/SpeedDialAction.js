@@ -1,12 +1,10 @@
+'use client';
 import * as React from 'react';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedSpeedDialAction(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -19,6 +17,13 @@ export default React.forwardRef(function DeprecatedSpeedDialAction(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedSpeedDialAction(props, ref) {
+  warn();
 
   return <SpeedDialAction ref={ref} {...props} />;
 });

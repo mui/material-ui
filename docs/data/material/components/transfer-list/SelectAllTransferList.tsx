@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Checkbox from '@mui/material/Checkbox';
@@ -102,10 +102,9 @@ export default function SelectAllTransferList() {
           const labelId = `transfer-list-all-item-${value}-label`;
 
           return (
-            <ListItem
+            <ListItemButton
               key={value}
               role="listitem"
-              button
               onClick={handleToggle(value)}
             >
               <ListItemIcon>
@@ -119,7 +118,7 @@ export default function SelectAllTransferList() {
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`List item ${value + 1}`} />
-            </ListItem>
+            </ListItemButton>
           );
         })}
       </List>
@@ -127,10 +126,14 @@ export default function SelectAllTransferList() {
   );
 
   return (
-    <Grid container spacing={2} justifyContent="center" alignItems="center">
+    <Grid
+      container
+      spacing={2}
+      sx={{ justifyContent: 'center', alignItems: 'center' }}
+    >
       <Grid item>{customList('Choices', left)}</Grid>
       <Grid item>
-        <Grid container direction="column" alignItems="center">
+        <Grid container direction="column" sx={{ alignItems: 'center' }}>
           <Button
             sx={{ my: 0.5 }}
             variant="outlined"

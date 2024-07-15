@@ -8,21 +8,20 @@ import {
   UseTabsListRootSlotProps,
   ValueChangeAction,
 } from './useTabsList.types';
-import { EventHandlers } from '../utils';
-import { useCompoundParent } from '../utils/useCompound';
+import { useCompoundParent } from '../useCompound';
 import { TabMetadata } from '../useTabs/useTabs';
-import useList, { ListState, UseListParameters } from '../useList';
-import tabsListReducer from './tabsListReducer';
+import { useList, ListState, UseListParameters } from '../useList';
+import { tabsListReducer } from './tabsListReducer';
 
 /**
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base-ui/react-tabs/#hooks)
+ * - [Tabs](https://next.mui.com/base-ui/react-tabs/#hooks)
  *
  * API:
  *
- * - [useTabsList API](https://mui.com/base-ui/react-tabs/hooks-api/#use-tabs-list)
+ * - [useTabsList API](https://next.mui.com/base-ui/react-tabs/hooks-api/#use-tabs-list)
  */
 function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
   const { rootRef: externalRef } = parameters;
@@ -142,12 +141,12 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     }
   }, [dispatch, value]);
 
-  const getRootProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseTabsListRootSlotProps<TOther> => {
+  const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseTabsListRootSlotProps<ExternalProps> => {
     return {
-      ...otherHandlers,
-      ...getListboxRootProps(otherHandlers),
+      ...externalProps,
+      ...getListboxRootProps(externalProps),
       'aria-orientation': orientation === 'vertical' ? 'vertical' : undefined,
       role: 'tablist',
     };
@@ -173,4 +172,4 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
   };
 }
 
-export default useTabsList;
+export { useTabsList };

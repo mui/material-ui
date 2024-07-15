@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import FormControl, { formControlClasses as classes } from '@mui/joy/FormControl';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
@@ -14,6 +14,7 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Radio, { radioClasses } from '@mui/joy/Radio';
 import Switch, { switchClasses } from '@mui/joy/Switch';
 import Autocomplete, { autocompleteClasses } from '@mui/joy/Autocomplete';
+import describeConformance from '../../test/describeConformance';
 
 describe('<FormControl />', () => {
   const { render } = createRenderer();
@@ -42,12 +43,11 @@ describe('<FormControl />', () => {
       expect(getByTestId('root')).not.to.have.class(classes.colorNeutral);
       expect(getByTestId('root')).not.to.have.class(classes.colorPrimary);
       expect(getByTestId('root')).not.to.have.class(classes.colorDanger);
-      expect(getByTestId('root')).not.to.have.class(classes.colorInfo);
       expect(getByTestId('root')).not.to.have.class(classes.colorSuccess);
       expect(getByTestId('root')).not.to.have.class(classes.colorWarning);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<FormControl data-testid="root" color={color} />);
 
@@ -505,5 +505,23 @@ describe('<FormControl />', () => {
 
       expect(getByRole('combobox')).to.have.attribute('disabled');
     });
+  });
+
+  it('should inherit htmlFor from FormControl if htmlFor is undefined', () => {
+    const { getByText } = render(
+      <FormControl>
+        <FormLabel htmlFor={undefined}>label</FormLabel>
+      </FormControl>,
+    );
+    expect(getByText('label')).to.have.attribute('for');
+  });
+
+  it('should inherit id from FormControl if id is undefined', () => {
+    const { getByText } = render(
+      <FormControl>
+        <FormLabel id={undefined}>label</FormLabel>
+      </FormControl>,
+    );
+    expect(getByText('label')).to.have.attribute('id');
   });
 });

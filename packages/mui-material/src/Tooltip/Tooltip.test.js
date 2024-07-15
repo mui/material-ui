@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
@@ -10,13 +9,15 @@ import {
   simulatePointerDevice,
   focusVisible,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui/internal-test-utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Tooltip />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
+
   beforeEach(() => {
     testReset();
   });
@@ -57,8 +58,6 @@ describe('<Tooltip />', () => {
         'componentProp',
         'componentsProp',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
         'slotPropsCallback', // not supported yet
       ],
     }),
@@ -472,7 +471,12 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', () => {
+    it('should handle autoFocus + onFocus forwarding', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const handleFocus = spy();
       function AutoFocus(props) {
         return (
@@ -501,6 +505,13 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: delay', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('should take the enterDelay into account', async () => {
       const { queryByRole } = render(
         <Tooltip title="Hello World" enterDelay={111}>
@@ -621,7 +632,12 @@ describe('<Tooltip />', () => {
       });
     });
 
-    it(`should be transparent for the focus and blur event`, () => {
+    it(`should be transparent for the focus and blur event`, function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const handleBlur = spy();
       const handleFocus = spy();
       render(
@@ -867,6 +883,13 @@ describe('<Tooltip />', () => {
   });
 
   describe('focus', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('ignores base focus', () => {
       render(
         <Tooltip enterDelay={0} title="Some information">
@@ -961,6 +984,45 @@ describe('<Tooltip />', () => {
       // return value is event.currentTarget
       expect(handleFocus.callCount).to.equal(1);
       expect(handleFocus.returned(input)).to.equal(true);
+    });
+
+    // https://github.com/mui/mui-x/issues/12248
+    it('should support event handlers with extra parameters', () => {
+      const handleFocus = spy((event, extra) => extra);
+      const handleBlur = spy((event, ...params) => params);
+
+      const TextField = React.forwardRef(function TextField(props, ref) {
+        const { onFocus, onBlur, ...other } = props;
+        return (
+          <div ref={ref} {...other}>
+            <input
+              type="text"
+              onFocus={(event) => onFocus(event, 'focus')}
+              onBlur={(event) => onBlur(event, 'blur', 1)}
+            />
+          </div>
+        );
+      });
+      render(
+        <Tooltip open title="test">
+          <TextField onFocus={handleFocus} onBlur={handleBlur} variant="standard" />
+        </Tooltip>,
+      );
+      const input = screen.getByRole('textbox');
+
+      act(() => {
+        input.focus();
+      });
+
+      expect(handleFocus.callCount).to.equal(1);
+      expect(handleFocus.returnValues[0]).to.equal('focus');
+
+      act(() => {
+        input.blur();
+      });
+
+      expect(handleBlur.callCount).to.equal(1);
+      expect(handleBlur.returnValues[0]).to.deep.equal(['blur', 1]);
     });
   });
 
@@ -1181,6 +1243,7 @@ describe('<Tooltip />', () => {
 
   describe('user-select state', () => {
     let prevWebkitUserSelect;
+
     beforeEach(() => {
       prevWebkitUserSelect = document.body.style.WebkitUserSelect;
     });

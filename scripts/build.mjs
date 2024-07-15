@@ -8,8 +8,6 @@ import { getWorkspaceRoot } from './utils.mjs';
 const exec = promisify(childProcess.exec);
 
 const validBundles = [
-  // legacy build using ES6 modules
-  'legacy',
   // modern build with a rolling target using ES6 modules
   'modern',
   // build for node using commonJS modules
@@ -59,12 +57,12 @@ async function run(argv) {
     // The first case resolves to a file while the second case resolves to a package first i.e. a package.json
     // This means that only in the second case the bundler can decide whether it uses ES modules or CommonJS modules.
     // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
-    // Switch to `exports` field in v6.
+    //
+    // TODO v6: Switch to `exports` field.
     {
       node: topLevelPathImportsCanBePackages ? './node' : './',
       modern: './modern',
       stable: topLevelPathImportsCanBePackages ? './' : './esm',
-      legacy: './legacy',
     }[bundle],
   );
 
@@ -84,7 +82,7 @@ async function run(argv) {
     babelArgs.push('--compact false');
   }
 
-  const command = ['yarn babel', ...babelArgs].join(' ');
+  const command = ['pnpm babel', ...babelArgs].join(' ');
 
   if (verbose) {
     // eslint-disable-next-line no-console

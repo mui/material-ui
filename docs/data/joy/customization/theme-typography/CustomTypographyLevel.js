@@ -4,7 +4,7 @@ import Box from '@mui/joy/Box';
 
 const customTheme = extendTheme({
   typography: {
-    display1: {
+    h1: {
       // `--joy` is the default CSS variable prefix.
       // If you have a custom prefix, you have to use it instead.
       // For more details about the custom prefix, go to https://mui.com/joy-ui/customization/using-css-variables/#custom-prefix
@@ -20,7 +20,7 @@ const customTheme = extendTheme({
 export default function CustomTypographyLevel() {
   return (
     <CssVarsProvider theme={customTheme}>
-      <Box sx={(theme) => theme.typography.display1}>Gradient text</Box>
+      <Box sx={(theme) => theme.typography.h1}>This is a gradient h1</Box>
     </CssVarsProvider>
   );
 }

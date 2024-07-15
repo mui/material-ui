@@ -10,7 +10,7 @@ export default function ButtonGroupColors() {
     setVariant(value);
   };
   return (
-    <Stack spacing={1} alignItems="center">
+    <Stack spacing={1} sx={{ alignItems: 'center' }}>
       <ButtonGroup variant={variant} size="sm" aria-label="neutral button group">
         <Button onClick={createOnClick('outlined')}>Outlined</Button>
         <Button onClick={createOnClick('plain')}>Plain</Button>
@@ -22,17 +22,6 @@ export default function ButtonGroupColors() {
         size="sm"
         color="primary"
         aria-label="primary button group"
-      >
-        <Button onClick={createOnClick('outlined')}>Outlined</Button>
-        <Button onClick={createOnClick('plain')}>Plain</Button>
-        <Button onClick={createOnClick('soft')}>Soft</Button>
-        <Button onClick={createOnClick('solid')}>Solid</Button>
-      </ButtonGroup>
-      <ButtonGroup
-        variant={variant}
-        size="sm"
-        color="info"
-        aria-label="info button group"
       >
         <Button onClick={createOnClick('outlined')}>Outlined</Button>
         <Button onClick={createOnClick('plain')}>Plain</Button>

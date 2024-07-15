@@ -16,11 +16,11 @@ export interface UseInputParameters {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error?: boolean;
-  onBlur?: React.FocusEventHandler;
+  onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onClick?: React.MouseEventHandler;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  onFocus?: React.FocusEventHandler;
-  inputRef?: React.Ref<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  inputRef?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
   /**
    * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -33,8 +33,8 @@ export interface UseInputRootSlotOwnProps {
   onClick: React.MouseEventHandler | undefined;
 }
 
-export type UseInputRootSlotProps<TOther = {}> = Omit<
-  TOther,
+export type UseInputRootSlotProps<ExternalProps = {}> = Omit<
+  ExternalProps,
   keyof UseInputRootSlotOwnProps | 'onBlur' | 'onChange' | 'onFocus'
 > &
   UseInputRootSlotOwnProps;
@@ -42,16 +42,19 @@ export type UseInputRootSlotProps<TOther = {}> = Omit<
 export interface UseInputInputSlotOwnProps {
   'aria-invalid': React.AriaAttributes['aria-invalid'];
   defaultValue: string | number | readonly string[] | undefined;
-  ref: React.RefCallback<HTMLInputElement> | null;
+  ref: React.RefCallback<HTMLInputElement | HTMLTextAreaElement> | null;
   value: string | number | readonly string[] | undefined;
-  onBlur: React.FocusEventHandler;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  onFocus: React.FocusEventHandler;
+  onBlur: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onFocus: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   required: boolean;
   disabled: boolean;
 }
 
-export type UseInputInputSlotProps<TOther = {}> = Omit<TOther, keyof UseInputInputSlotOwnProps> &
+export type UseInputInputSlotProps<ExternalProps = {}> = Omit<
+  ExternalProps,
+  keyof UseInputInputSlotOwnProps
+> &
   UseInputInputSlotOwnProps;
 
 export interface UseInputReturnValue {
@@ -76,18 +79,18 @@ export interface UseInputReturnValue {
    * @param externalProps props for the input slot
    * @returns props that should be spread on the input slot
    */
-  getInputProps: <TOther extends Record<string, any> = {}>(
-    externalProps?: TOther,
-  ) => UseInputInputSlotProps<TOther>;
+  getInputProps: <ExternalProps extends Record<string, any> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseInputInputSlotProps<ExternalProps>;
   /**
    * Resolver for the root slot's props.
    * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <TOther extends Record<string, any> = {}>(
-    externalProps?: TOther,
-  ) => UseInputRootSlotProps<TOther>;
-  inputRef: React.RefCallback<HTMLInputElement> | null;
+  getRootProps: <ExternalProps extends Record<string, any> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseInputRootSlotProps<ExternalProps>;
+  inputRef: React.RefCallback<HTMLInputElement | HTMLTextAreaElement> | null;
   /**
    * If `true`, the `input` will indicate that it's required.
    */

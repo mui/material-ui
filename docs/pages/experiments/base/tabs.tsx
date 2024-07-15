@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Tabs from '@mui/base/Tabs';
-import TabsList from '@mui/base/TabsList';
-import TabPanel from '@mui/base/TabPanel';
-import Tab, { tabClasses } from '@mui/base/Tab';
+import { Tabs } from '@mui/base/Tabs';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
+import { Tab, tabClasses } from '@mui/base/Tab';
 
 const blue = {
   50: '#F0F7FF',
@@ -68,7 +68,7 @@ const StyledTab = styled(Tab)`
 const StyledTabPanel = styled(TabPanel)(
   ({ theme }) => `
   width: 100%;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   padding: 20px 12px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};

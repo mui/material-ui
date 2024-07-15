@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -13,10 +13,12 @@ import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
-import styled, { rootShouldForwardProp } from '../styles/styled';
+import { styled } from '../zero-styled';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
+
   return classes;
 };
 
@@ -73,6 +75,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 
   const ownerState = { ...props, variant, classes: classesProp };
   const classes = useUtilityClasses(ownerState);
+  const { root, ...restOfClasses } = classes;
 
   const InputComponent =
     input ||
@@ -112,12 +115,14 @@ const Select = React.forwardRef(function Select(inProps, ref) {
                 SelectDisplayProps: { id, ...SelectDisplayProps },
               }),
           ...inputProps,
-          classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
+          classes: inputProps ? deepmerge(restOfClasses, inputProps.classes) : restOfClasses,
           ...(input ? input.props.inputProps : {}),
         },
-        ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
+        ...(((multiple && native) || displayEmpty) && variant === 'outlined'
+          ? { notched: true }
+          : {}),
         ref: inputComponentRef,
-        className: clsx(InputComponent.props.className, className),
+        className: clsx(InputComponent.props.className, className, classes.root),
         // If a custom input is provided via 'input' prop, do not allow 'variant' to be propagated to it's root element. See https://github.com/mui/material-ui/issues/33894.
         ...(!input && { variant }),
         ...other,
@@ -127,10 +132,10 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 });
 
 Select.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -218,7 +223,7 @@ Select.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when a menu item is selected.
    *
-   * @param {SelectChangeEvent<T>} event The event source of the callback.
+   * @param {SelectChangeEvent<Value>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).

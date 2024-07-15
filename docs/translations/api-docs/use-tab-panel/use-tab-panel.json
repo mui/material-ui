@@ -1,12 +1,16 @@
 {
   "hookDescription": "",
   "parametersDescriptions": {
-    "id": "The id of the TabPanel.",
-    "rootRef": "The ref of the TabPanel.",
-    "value": "The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected."
+    "id": { "description": "The id of the TabPanel." },
+    "rootRef": { "description": "The ref of the TabPanel." },
+    "value": {
+      "description": "The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected."
+    }
   },
   "returnValueDescriptions": {
-    "getRootProps": "Resolver for the root slot&#39;s props.",
-    "hidden": "If <code>true</code>, it indicates that the tab panel will be hidden."
+    "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
+    "hidden": {
+      "description": "If <code>true</code>, it indicates that the tab panel will be hidden."
+    }
   }
 }

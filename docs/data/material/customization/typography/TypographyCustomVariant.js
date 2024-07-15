@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 
 const theme = createTheme({
   typography: {
-    // @ts-ignore
     poster: {
       fontSize: '4rem',
       color: 'indianred',
@@ -17,7 +16,6 @@ const theme = createTheme({
     MuiTypography: {
       defaultProps: {
         variantMapping: {
-          // @ts-ignore
           poster: 'h1', // map our new variant to render an <h1> by default
         },
       },

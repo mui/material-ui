@@ -55,18 +55,6 @@ async function getWebpackEntries() {
     },
   );
 
-  const materialNextPackagePath = path.join(workspaceRoot, 'packages/mui-material-next/build');
-  const materialNextComponents = (
-    await glob(path.join(materialNextPackagePath, '([A-Z])*/index.js'))
-  ).map((componentPath) => {
-    const componentName = path.basename(path.dirname(componentPath));
-
-    return {
-      id: `@mui/material-next/${componentName}`,
-      path: path.relative(workspaceRoot, path.dirname(componentPath)),
-    };
-  });
-
   const joyPackagePath = path.join(workspaceRoot, 'packages/mui-joy/build');
   const joyComponents = (await glob(path.join(joyPackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
@@ -102,15 +90,15 @@ async function getWebpackEntries() {
     },
     {
       id: '@material-ui/system',
-      path: 'packages/mui-system/build/esm/index.js',
+      path: 'packages/mui-system/build/index.js',
     },
     {
       id: 'createBox',
-      path: 'packages/mui-system/build/esm/createBox.js',
+      path: 'packages/mui-system/build/createBox/index.js',
     },
     {
       id: 'createStyled',
-      path: 'packages/mui-system/build/esm/createStyled.js',
+      path: 'packages/mui-system/build/createStyled/index.js',
     },
     {
       id: '@material-ui/core/styles/createTheme',
@@ -118,7 +106,7 @@ async function getWebpackEntries() {
     },
     {
       id: 'colorManipulator',
-      path: 'packages/mui-system/build/colorManipulator.js',
+      path: 'packages/mui-system/build/colorManipulator/index.js',
     },
     {
       id: 'useAutocomplete',
@@ -139,7 +127,7 @@ async function getWebpackEntries() {
     ...coreComponents,
     {
       id: '@material-ui/utils',
-      path: 'packages/mui-utils/build/esm/index.js',
+      path: 'packages/mui-utils/build/index.js',
     },
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
@@ -148,15 +136,6 @@ async function getWebpackEntries() {
     //   webpack: true,
     //   path: path.join(path.relative(workspaceRoot, materialPackagePath), 'modern/index.js'),
     // },
-    {
-      id: '@material-ui/core.legacy',
-      path: path.join(path.relative(workspaceRoot, materialPackagePath), 'legacy/index.js'),
-    },
-    {
-      id: '@mui/material-next',
-      path: path.join(path.relative(workspaceRoot, materialNextPackagePath), 'index.js'),
-    },
-    ...materialNextComponents,
     {
       id: '@mui/joy',
       path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.js'),
@@ -218,7 +197,7 @@ function createWebpackConfig(entry, environment) {
         '@mui/private-theming': path.join(workspaceRoot, 'packages/mui-private-theming/build'),
         '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
         '@mui/base': path.join(workspaceRoot, 'packages/mui-base/build'),
-        '@mui/material-next': path.join(workspaceRoot, 'packages/mui-material-next/build'),
+        '@mui/material-nextjs': path.join(workspaceRoot, 'packages/mui-material-nextjs/build'),
         '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
       },
     },
