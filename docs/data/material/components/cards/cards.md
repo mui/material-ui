@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
-githubLabel: 'component: card'
+githubLabel: "component: card"
 materialDesign: https://m2.material.io/components/cards
 ---
 
@@ -20,7 +20,7 @@ The Material UI Card component includes several complementary utility component
 - Card: a surface-level container for grouping related components.
 - Card Content: the wrapper for the Card content.
 - Card Header: an optional wrapper for the Card header.
-- Card Media:  displays images, videos, or iframes in a card with customizable size and centered styling.
+- Card Media: an optional versatile media wrapper that supports various media elements and background images with customizable styles and properties.
 - Card Actions: an optional wrapper that groups a set of buttons.
 - Card Action Area: an optional wrapper that allows users to interact with the specified area of the Card.
 
@@ -29,8 +29,8 @@ The Material UI Card component includes several complementary utility component
 ## Basics
 
 ```jsx
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 ```
 
 :::success
