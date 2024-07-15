@@ -330,9 +330,8 @@ describe('<Menu /> integration', () => {
     await act(async () => {
       button.focus();
       button.click();
+      getByTestId('Backdrop').click();
     });
-
-    await act(async () => getByTestId('Backdrop').click());
 
     expect(getByRole('menu', { hidden: true })).toBeInaccessible();
   });

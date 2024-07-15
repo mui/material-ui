@@ -350,11 +350,9 @@ describe('<SpeedDial />', () => {
             const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
 
             // eslint-disable-next-line no-await-in-loop
-            await act(async () =>
-              fireEvent.keyDown(getActionButton(previousFocusedAction), {
-                key: arrowKey,
-              }),
-            );
+            fireEvent.keyDown(getActionButton(previousFocusedAction), {
+              key: arrowKey,
+            });
             expect(isActionFocused(expectedFocusedAction)).to.equal(
               true,
               `focused action after ${combinationUntilNot.join(

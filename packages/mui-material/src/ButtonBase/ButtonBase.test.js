@@ -359,7 +359,7 @@ describe('<ButtonBase />', () => {
         const button = getByRole('button');
         await ripple.startTouch(button);
 
-        act(() => button.blur());
+        await act(async () => button.blur());
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(0);
         expect(
@@ -475,7 +475,7 @@ describe('<ButtonBase />', () => {
 
       it('should not crash when changes enableRipple from false to true', async () => {
         function App() {
-          /** @type {React.MutableRefObject<import('./ButtonBase').ButtonBaseActions | null>} */
+          /** @type {Re(act).MutableRefObject<import('./ButtonBase').ButtonBaseActions | null>} */
           const buttonRef = React.useRef(null);
           const [enableRipple, setRipple] = React.useState(false);
 
@@ -802,7 +802,7 @@ describe('<ButtonBase />', () => {
   });
 
   describe('event: focus', () => {
-    it('when disabled should be called onFocus', () => {
+    it('when disabled should be called onFocus', async () => {
       const onFocusSpy = spy();
       const { getByRole } = render(
         <ButtonBase component="div" disabled onFocus={onFocusSpy}>
@@ -810,14 +810,14 @@ describe('<ButtonBase />', () => {
         </ButtonBase>,
       );
 
-      act(() => {
+      await act(async () => {
         getByRole('button').focus();
       });
 
       expect(onFocusSpy.callCount).to.equal(1);
     });
 
-    it('has a focus-visible polyfill', function test() {
+    it('has a focus-visible polyfill', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM doesn't support :focus-visible
         this.skip();
@@ -829,7 +829,7 @@ describe('<ButtonBase />', () => {
 
       expect(button).not.to.have.class(classes.focusVisible);
 
-      act(() => {
+      await act(async () => {
         button.focus();
       });
 
@@ -1185,7 +1185,7 @@ describe('<ButtonBase />', () => {
       }
     });
 
-    it('should be able to focus visible the button', () => {
+    it('should be able to focus visible the button', async () => {
       /**
        * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions>}
        */
@@ -1199,7 +1199,7 @@ describe('<ButtonBase />', () => {
       // @ts-ignore
       expect(typeof buttonActionsRef.current.focusVisible).to.equal('function');
 
-      act(() => {
+      await act(async () => {
         // @ts-ignore
         buttonActionsRef.current.focusVisible();
       });

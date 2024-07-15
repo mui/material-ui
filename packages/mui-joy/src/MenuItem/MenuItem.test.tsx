@@ -133,7 +133,7 @@ describe('Joy <MenuItem />', () => {
 
       expect(handleKeyUp.callCount).to.equal(1);
 
-      act(() => {
+      await act(async () => {
         menuitem.blur();
       });
 
