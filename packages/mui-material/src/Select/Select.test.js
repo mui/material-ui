@@ -116,14 +116,15 @@ describe('<Select />', () => {
     );
     const trigger = getByRole('combobox');
 
-    await act(async () => fireEvent.mouseDown(trigger));
+    fireEvent.mouseDown(trigger);
 
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).not.to.equal(null);
 
+    const options = getAllByRole('option');
+    fireEvent.mouseDown(options[0]);
+
     await act(async () => {
-      const options = getAllByRole('option');
-      fireEvent.mouseDown(options[0]);
       options[0].click();
     });
 

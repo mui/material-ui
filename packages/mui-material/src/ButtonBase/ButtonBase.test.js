@@ -202,47 +202,47 @@ describe('<ButtonBase />', () => {
       if (typeof Touch !== 'undefined') {
         const touch = new Touch({ identifier: 0, target: button, clientX: 0, clientY: 0 });
 
-        await act(async () => fireEvent.touchStart(button, { touches: [touch] }));
+        fireEvent.touchStart(button, { touches: [touch] });
         expect(onTouchStart.callCount).to.equal(1);
 
-        await act(async () => fireEvent.touchEnd(button, { touches: [touch] }));
+        fireEvent.touchEnd(button, { touches: [touch] });
         expect(onTouchEnd.callCount).to.equal(1);
       }
 
       if (canFireDragEvents) {
-        await act(async () => fireEvent.dragEnd(button));
+        fireEvent.dragEnd(button);
         expect(onDragEnd.callCount).to.equal(1);
       }
 
-      await act(async () => fireEvent.mouseDown(button));
+      fireEvent.mouseDown(button);
       expect(onMouseDown.callCount).to.equal(1);
 
-      await act(async () => fireEvent.mouseUp(button));
+      fireEvent.mouseUp(button);
       expect(onMouseUp.callCount).to.equal(1);
 
-      await act(async () => fireEvent.contextMenu(button));
+      fireEvent.contextMenu(button);
       expect(onContextMenu.callCount).to.equal(1);
 
       await user.click(button);
       expect(onClick.callCount).to.equal(1);
 
-      act(() => {
+      await act(async () => {
         button.focus();
       });
       expect(onFocus.callCount).to.equal(1);
 
-      await act(async () => fireEvent.keyDown(button));
+      fireEvent.keyDown(button);
       expect(onKeyDown.callCount).to.equal(1);
 
-      await act(async () => fireEvent.keyUp(button));
+      fireEvent.keyUp(button);
       expect(onKeyUp.callCount).to.equal(1);
 
-      act(() => {
+      await act(async () => {
         button.blur();
       });
       expect(onBlur.callCount).to.equal(1);
 
-      await act(async () => fireEvent.mouseLeave(button));
+      fireEvent.mouseLeave(button);
       expect(onMouseLeave.callCount).to.equal(1);
     });
   });
@@ -942,9 +942,7 @@ describe('<ButtonBase />', () => {
 
       await ripple.startFocus(button);
 
-      act(() => {
-        fireEvent.keyDown(button, { key: 'Enter' });
-      });
+      fireEvent.keyDown(button, { key: 'Enter' });
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
 
@@ -1007,7 +1005,7 @@ describe('<ButtonBase />', () => {
     });
 
     describe('keyboard accessibility for non interactive elements', () => {
-      it('does not call onClick when a spacebar is pressed on the element but prevents the default', () => {
+      it('does not call onClick when a spacebar is pressed on the element but prevents the default', async () => {
         const onKeyDown = spy();
         const onClickSpy = spy();
         const { getByRole } = render(
@@ -1017,11 +1015,12 @@ describe('<ButtonBase />', () => {
         );
         const button = getByRole('button');
 
-        act(() => {
+        await act(async () => {
           button.focus();
-          fireEvent.keyDown(button, {
-            key: ' ',
-          });
+        });
+
+        fireEvent.keyDown(button, {
+          key: ' ',
         });
 
         expect(onClickSpy.callCount).to.equal(0);
@@ -1029,7 +1028,7 @@ describe('<ButtonBase />', () => {
         expect(onKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
-      it('does call onClick when a spacebar is released on the element', () => {
+      it('does call onClick when a spacebar is released on the element', async () => {
         const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} component="div">
@@ -1038,18 +1037,19 @@ describe('<ButtonBase />', () => {
         );
         const button = getByRole('button');
 
-        act(() => {
+        await act(async () => {
           button.focus();
-          fireEvent.keyUp(button, {
-            key: ' ',
-          });
+        });
+
+        fireEvent.keyUp(button, {
+          key: ' ',
         });
 
         expect(onClickSpy.callCount).to.equal(1);
         expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
 
-      it('does not call onClick when a spacebar is released and the default is prevented', () => {
+      it('does not call onClick when a spacebar is released and the default is prevented', async () => {
         const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase
@@ -1067,17 +1067,18 @@ describe('<ButtonBase />', () => {
         );
         const button = getByRole('button');
 
-        act(() => {
+        await act(async () => {
           button.focus();
-          fireEvent.keyUp(button, {
-            key: ' ',
-          });
+        });
+
+        fireEvent.keyUp(button, {
+          key: ' ',
         });
 
         expect(onClickSpy.callCount).to.equal(0);
       });
 
-      it('calls onClick when Enter is pressed on the element', () => {
+      it('calls onClick when Enter is pressed on the element', async () => {
         const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} component="div">
@@ -1086,11 +1087,12 @@ describe('<ButtonBase />', () => {
         );
         const button = getByRole('button');
 
-        act(() => {
+        await act(async () => {
           button.focus();
-          fireEvent.keyDown(button, {
-            key: 'Enter',
-          });
+        });
+
+        fireEvent.keyDown(button, {
+          key: 'Enter',
         });
 
         expect(onClickSpy.calledOnce).to.equal(true);
@@ -1131,7 +1133,7 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.callCount).to.equal(0);
       });
 
-      it('prevents default with an anchor and empty href', () => {
+      it('prevents default with an anchor and empty href', async () => {
         const onClickSpy = spy();
         const { getByRole } = render(
           <ButtonBase component="a" onClick={onClickSpy}>
@@ -1140,16 +1142,17 @@ describe('<ButtonBase />', () => {
         );
         const button = getByRole('button');
 
-        act(() => {
+        await act(async () => {
           button.focus();
-          fireEvent.keyDown(button, { key: 'Enter' });
         });
+
+        fireEvent.keyDown(button, { key: 'Enter' });
 
         expect(onClickSpy.calledOnce).to.equal(true);
         expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
-      it('should ignore anchors with href', () => {
+      it('should ignore anchors with href', async () => {
         const onClick = spy();
         const onKeyDown = spy();
         const { getByText } = render(
@@ -1159,11 +1162,12 @@ describe('<ButtonBase />', () => {
         );
         const button = getByText('Hello');
 
-        act(() => {
+        await act(async () => {
           button.focus();
-          fireEvent.keyDown(button, {
-            key: 'Enter',
-          });
+        });
+
+        fireEvent.keyDown(button, {
+          key: 'Enter',
         });
 
         expect(onClick.callCount).to.equal(0);

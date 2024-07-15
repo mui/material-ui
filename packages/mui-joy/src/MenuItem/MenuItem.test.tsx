@@ -97,7 +97,7 @@ describe('Joy <MenuItem />', () => {
         const handler = spy();
         render(<MenuItem {...{ [handlerName]: handler }} />);
 
-        await act(async () => fireEvent[eventName](screen.getByRole('menuitem')));
+        fireEvent[eventName](screen.getByRole('menuitem'));
 
         expect(handler.callCount).to.equal(1);
       });
@@ -125,11 +125,11 @@ describe('Joy <MenuItem />', () => {
 
       expect(handleFocus.callCount).to.equal(1);
 
-      await act(async () => fireEvent.keyDown(menuitem));
+      fireEvent.keyDown(menuitem);
 
       expect(handleKeyDown.callCount).to.equal(1);
 
-      await act(async () => fireEvent.keyUp(menuitem));
+      fireEvent.keyUp(menuitem);
 
       expect(handleKeyUp.callCount).to.equal(1);
 
