@@ -88,7 +88,7 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
             </MenuButton>
             <OptionsMenu />
             <ToggleColorMode
-              id="toggle-mode"
+              data-screenshot="toggle-mode"
               mode={mode}
               toggleColorMode={toggleColorMode}
             />

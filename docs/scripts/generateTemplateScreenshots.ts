@@ -13,10 +13,10 @@ import { chromium } from 'playwright';
  *
  * Note:
  * - The screenshot with `-dark` suffix is generated if the page has a button with id `toggle-mode`
- *   <button id="toggle-mode" onClick={toggleMode}>Toggle Mode</button>
+ *   <button data-screenshot="toggle-mode" onClick={toggleMode}>Toggle Mode</button>
  *
  * - The screenshot with `-default` suffix is generated if the page has a button with id `toggle-default-theme`
- *   <button id="toggle-default-theme" onClick={toggleDefaultTheme}>Toggle Default Theme</button>
+ *   <button data-screenshot="toggle-default-theme" onClick={toggleDefaultTheme}>Toggle Default Theme</button>
  *
  * - The screenshot with `-default-dark` suffix is generated if the page has both buttons
  *
@@ -72,16 +72,16 @@ const names = new Set(process.argv.slice(2));
           );
 
         async function captureDarkMode(outputPath: string) {
-          const btn = await page.$('#toggle-mode');
+          const btn = await page.$('[data-screenshot="toggle-mode"]');
           if (btn) {
-            await page.click('#toggle-mode');
+            await page.click('[data-screenshot="toggle-mode"]');
             await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
             await page.screenshot({
               path: outputPath,
               animations: 'disabled',
             });
 
-            await page.click('#toggle-mode'); // switch back to light
+            await page.click('[data-screenshot="toggle-mode"]'); // switch back to light
           }
         }
 
@@ -99,9 +99,9 @@ const names = new Set(process.argv.slice(2));
               await captureDarkMode(filePath.replace('.jpg', '-dark.jpg'));
 
               // capture custom theme
-              const toggleTheme = await page.$('#toggle-default-theme');
+              const toggleTheme = await page.$('[data-screenshot="toggle-default-theme"]');
               if (toggleTheme) {
-                await page.click('#toggle-default-theme');
+                await page.click('[data-screenshot="toggle-default-theme"]');
                 await page.screenshot({
                   path: filePath.replace('.jpg', '-default.jpg'),
                   animations: 'disabled',
@@ -115,7 +115,7 @@ const names = new Set(process.argv.slice(2));
           );
         } catch (error) {
           // eslint-disable-next-line no-console
-          console.log(error);
+          console.error(error);
         }
       }),
   );

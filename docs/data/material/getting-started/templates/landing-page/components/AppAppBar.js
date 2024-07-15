@@ -119,7 +119,7 @@ function AppAppBar({ mode, toggleColorMode }) {
             }}
           >
             <ToggleColorMode
-              id="toggle-mode"
+              data-screenshot="toggle-mode"
               mode={mode}
               toggleColorMode={toggleColorMode}
             />
