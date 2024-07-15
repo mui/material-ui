@@ -37,7 +37,6 @@ describe('<Menu />', () => {
       'rootClass', // portal, can't determine the root
       'componentProp',
       'componentsProp',
-      'reactTestRenderer', // react-transition-group issue
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));

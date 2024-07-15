@@ -15,7 +15,7 @@ export default function XComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid md={6}>
+        <Grid size={{ md: 6 }}>
           <SectionHeadline
             overline="Advanced React component library"
             title={
@@ -31,9 +31,8 @@ export default function XComponents() {
           />
         </Grid>
         <Grid
-          xs={12}
-          md={6}
           sx={componentIndex === 0 ? { minHeight: { xs: 'auto', sm: 757, md: 'unset' } } : {}}
+          size={{ xs: 12, md: 6 }}
         >
           <React.Fragment>
             {componentIndex === 0 && <XGridFullDemo />}

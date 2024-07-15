@@ -366,7 +366,12 @@ describe('<Slider />', () => {
       expect(screen.getByTestId('value-label')).to.have.text('20');
     });
 
-    it('should provide focused state to the slotProps.thumb', () => {
+    it('should provide focused state to the slotProps.thumb', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { getByTestId } = render(
         <Slider
           defaultValue={[20, 40]}

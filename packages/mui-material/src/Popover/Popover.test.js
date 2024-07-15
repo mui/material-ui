@@ -71,7 +71,6 @@ describe('<Popover />', () => {
       'themeDefaultProps', // portal, can't determine the root
       'themeStyleOverrides', // portal, can't determine the root
       'themeVariants',
-      'reactTestRenderer', // react-transition-group issue
     ],
   }));
 
