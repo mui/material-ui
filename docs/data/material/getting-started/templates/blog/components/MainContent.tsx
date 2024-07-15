@@ -88,10 +88,16 @@ const SyledCardContent = styled(CardContent)({
   gap: 4,
   padding: 16,
   flexGrow: 1,
+
   '&:last-child': {
     paddingBottom: 16,
   },
 });
+
+const SyledCardMedia = styled(CardMedia)(({ theme }) => ({
+  borderBottom: '1px solid',
+  borderColor: theme.palette.divider,
+}));
 
 const StyledTypography = styled(Typography)({
   display: '-webkit-box',
@@ -195,7 +201,7 @@ export default function MainContent() {
       <Grid container spacing={2} columns={12}>
         <Grid size={{ xs: 12, md: 6 }}>
           <SyledCard variant="outlined">
-            <CardMedia
+            <SyledCardMedia
               component="img"
               alt="green iguana"
               aspect-ratio="16 / 9"
@@ -217,7 +223,7 @@ export default function MainContent() {
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
           <SyledCard variant="outlined">
-            <CardMedia
+            <SyledCardMedia
               component="img"
               alt="green iguana"
               aspect-ratio="16 / 9"
@@ -239,7 +245,7 @@ export default function MainContent() {
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
           <SyledCard variant="outlined" sx={{ height: '100%' }}>
-            <CardMedia
+            <SyledCardMedia
               component="img"
               alt="green iguana"
               image={cardData[2].img}
@@ -322,7 +328,7 @@ export default function MainContent() {
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
           <SyledCard variant="outlined" sx={{ height: '100%' }}>
-            <CardMedia
+            <SyledCardMedia
               component="img"
               alt="green iguana"
               image={cardData[5].img}
