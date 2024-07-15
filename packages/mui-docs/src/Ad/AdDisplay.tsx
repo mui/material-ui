@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { adShape } from 'docs/src/modules/components/AdManager';
-import { adStylesObject } from 'docs/src/modules/components/ad.styles';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '../i18n';
+import { adShape } from './AdManager';
+import { adStylesObject } from './ad.styles';
 
 const InlineShape = styled('span')(({ theme }) => {
   const styles = adStylesObject['body-inline'](theme);
@@ -31,7 +31,7 @@ const ImageShape = styled('span')(({ theme }) => {
   };
 });
 
-export interface Ad {
+export interface AdParameters {
   name: string;
   link: string;
   img?: string;
@@ -40,7 +40,7 @@ export interface Ad {
   label: string;
 }
 interface AdDisplayProps {
-  ad: Ad;
+  ad: AdParameters;
   className?: string;
   shape?: 'auto' | 'inline' | 'image';
 }

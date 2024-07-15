@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
-import AdDisplay from 'docs/src/modules/components/AdDisplay';
-import { adStylesObject } from 'docs/src/modules/components/ad.styles';
+import AdDisplay from './AdDisplay';
+import { adStylesObject } from './ad.styles';
 
 type CarbonAd = {
   pixel: string;
