@@ -283,7 +283,7 @@ importers:
         specifier: ^0.11.10
         version: 0.11.10
       rimraf:
-        specifier: ^5.0.8
+        specifier: ^5.0.9
         version: 5.0.9
       serve:
         specifier: ^14.2.3
@@ -792,7 +792,7 @@ importers:
         specifier: ^1.8.10
         version: 1.8.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rimraf:
-        specifier: ^5.0.8
+        specifier: ^5.0.9
         version: 5.0.9
       styled-components:
         specifier: ^6.1.11
@@ -889,7 +889,7 @@ importers:
   packages-internal/docs-utils:
     dependencies:
       rimraf:
-        specifier: ^5.0.8
+        specifier: ^5.0.9
         version: 5.0.9
       typescript:
         specifier: ^5.4.5
@@ -962,7 +962,7 @@ importers:
         specifier: ^3.3.2
         version: 3.3.2
       rimraf:
-        specifier: ^5.0.8
+        specifier: ^5.0.9
         version: 5.0.9
 
   packages-internal/test-utils:
@@ -1528,7 +1528,7 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       rimraf:
-        specifier: ^5.0.8
+        specifier: ^5.0.9
         version: 5.0.9
       shx:
         specifier: ^0.3.4
