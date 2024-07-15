@@ -63,7 +63,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     }
     insertStyleSheet(getSelector?.(undefined, { ...rootCss }) || ':root', rootCss);
 
-    const { [colorScheme]: defaultSchemeVal, ...rest } = colorSchemesMap;
+    const { [colorScheme]: defaultSchemeVal, ...other } = colorSchemesMap;
 
     if (defaultSchemeVal) {
       // default color scheme has to come before other color schemes
@@ -75,7 +75,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
       );
     }
 
-    Object.entries(rest).forEach(([key, { css }]) => {
+    Object.entries(other).forEach(([key, { css }]) => {
       insertStyleSheet(
         getSelector?.(key as keyof T['colorSchemes'], { ...css }) ||
           `[${theme.attribute || 'data-color-scheme'}="${key}"]`,
