@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { adShape } from 'docs/src/modules/components/AdManager';
-import { GA_ADS_DISPLAY_RATIO } from 'docs/src/modules/constants';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
+import { useTranslate } from '@mui/docs/i18n';
 
 const InlineShape = styled('span')(({ theme }) => {
   const styles = adStylesObject['body-inline'](theme);
@@ -31,12 +31,27 @@ const ImageShape = styled('span')(({ theme }) => {
   };
 });
 
-export default function AdDisplay(props) {
+export interface Ad {
+  name: string;
+  link: string;
+  img?: string;
+  description: string;
+  poweredby: string;
+  label: string;
+}
+interface AdDisplayProps {
+  ad: Ad;
+  className?: string;
+  shape?: 'auto' | 'inline' | 'image';
+}
+
+export default function AdDisplay(props: AdDisplayProps) {
   const { ad, className, shape: shapeProp = 'auto' } = props;
+  const t = useTranslate();
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
-    if (Math.random() > GA_ADS_DISPLAY_RATIO || !ad.label) {
+    if (Math.random() > ((process.env.GA_ADS_DISPLAY_RATIO ?? 0.1) as number) || !ad.label) {
       return;
     }
 
@@ -48,15 +63,9 @@ export default function AdDisplay(props) {
 
   const shape = shapeProp === 'auto' ? adShape : shapeProp;
 
-  let Root;
-  if (shape === 'inline') {
-    Root = InlineShape;
-  }
-  if (shape === 'image') {
-    Root = ImageShape;
-  }
+  const Root = shape === 'image' ? ImageShape : InlineShape;
 
-  /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
+  /* eslint-disable react/no-danger */
   return (
     <Root className={className}>
       <a
@@ -79,10 +88,12 @@ export default function AdDisplay(props) {
           dangerouslySetInnerHTML={{ __html: ad.description }}
         />
       </a>
-      <span className="AdDisplay-poweredby">ad by {ad.poweredby}</span>
+      <span className="AdDisplay-poweredby">
+        {t('adPublisher').replace('{{publisher}}', ad.poweredby)}
+      </span>
     </Root>
   );
-  /* eslint-enable material-ui/no-hardcoded-labels, react/no-danger */
+  /* eslint-enable react/no-danger */
 }
 
 AdDisplay.propTypes = {

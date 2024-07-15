@@ -102,7 +102,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     id,
     sticky,
     variant,
-    color: variant ? color ?? 'neutral' : color,
+    color: variant ? (color ?? 'neutral') : color,
   };
 
   const classes = useUtilityClasses(ownerState);

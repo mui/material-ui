@@ -1,7 +1,6 @@
 {
   "name": "@mui/material-pigment-css",
-  "version": "6.0.0-alpha.13",
-  "private": true,
+  "version": "6.0.0-beta.0",
   "author": "MUI Team",
   "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
   "main": "./src/index.ts",
@@ -40,7 +39,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@mui/system": "workspace:^",
+    "@mui/system": "workspace:*",
     "@pigment-css/react": "0.0.17"
   },
   "sideEffects": false,

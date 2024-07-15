@@ -15,10 +15,10 @@ type MyIconButtonProps = IconButtonProps<
   }
 >;
 
-const MyIconButton = ({ iconSize, ...rest }: MyIconButtonProps) => {
+const MyIconButton = ({ iconSize, ...other }: MyIconButtonProps) => {
   return (
     <IconButton
-      {...rest}
+      {...other}
       sx={{
         // whatever customization based on iconSize
         [`.${svgIconClasses.root}`]: {
