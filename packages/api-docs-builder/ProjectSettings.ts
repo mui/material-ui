@@ -57,6 +57,10 @@ export interface ProjectSettings {
    */
   skipComponent: (filename: string) => boolean;
   /**
+   * Fuction called to detemine whether to skip the generation of a particular hook's API docs
+   */
+  skipHook?: (filename: string) => boolean;
+  /**
    * Determine is the component definition should be updated.
    */
   skipAnnotatingComponentDefinition?: boolean | ((filename: string) => boolean);

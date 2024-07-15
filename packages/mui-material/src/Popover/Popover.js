@@ -2,13 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useSlotProps, isHostComponent } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
+import useSlotProps from '@mui/utils/useSlotProps';
+import isHostComponent from '@mui/utils/isHostComponent';
 import styled from '../styles/styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';

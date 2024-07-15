@@ -1,3 +1,4 @@
+export { unstable_ClassNameGenerator } from '@mui/utils';
 export { default as capitalize } from './capitalize';
 export { default as createChainedFunction } from './createChainedFunction';
 export { default as createSvgIcon } from './createSvgIcon';
@@ -15,4 +16,4 @@ export { default as useControlled } from './useControlled';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
 export { default as useIsFocusVisible } from './useIsFocusVisible';
-export { unstable_ClassNameGenerator } from '@mui/base/ClassNameGenerator';
+export * from './types';
