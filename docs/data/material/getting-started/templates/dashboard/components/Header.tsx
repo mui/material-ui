@@ -34,8 +34,11 @@ export default function Header({ mode, toggleColorMode }: HeaderProps) {
         <MenuButton showBadge aria-label="Open notifications">
           <NotificationsRoundedIcon />
         </MenuButton>
-
-        <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+        <ToggleColorMode
+          mode={mode}
+          toggleColorMode={toggleColorMode}
+          data-screenshot="toggle-mode"
+        />
       </Stack>
     </Stack>
   );
