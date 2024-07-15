@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import isHostComponent from '../utils/isHostComponent';
+import isHostComponent from '@mui/utils/isHostComponent';
 import styled from '../styles/styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import InputBase from '../InputBase';

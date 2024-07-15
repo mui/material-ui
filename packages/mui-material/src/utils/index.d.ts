@@ -15,4 +15,5 @@ export { default as unsupportedProp } from './unsupportedProp';
 export { default as useControlled } from './useControlled';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
+export { default as useIsFocusVisible } from './useIsFocusVisible';
 export * from './types';
