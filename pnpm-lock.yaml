@@ -1825,7 +1825,7 @@ importers:
   packages/mui-material-pigment-css:
     dependencies:
       '@mui/system':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-system/build
       '@pigment-css/react':
         specifier: 0.0.17
