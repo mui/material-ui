@@ -16,7 +16,7 @@ export interface AlertTitleProps extends TypographyProps<'div'> {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> & {
-    typography?: string | Partial<Record<Breakpoint, TypographyProps['variant']>>;
+    typography?: string | Partial<Record<Breakpoint, AlertTitleProps['variant']>>;
   };
 }
 
