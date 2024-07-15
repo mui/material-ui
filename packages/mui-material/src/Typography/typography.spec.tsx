@@ -55,6 +55,9 @@ const typographyTest = () => {
       <Typography component={CustomComponent} prop1="1" />
       {/* @ts-expect-error */}
       <Typography component={CustomComponent} prop1="1" prop2="12" />
+      <Typography sx={{ typography: { xs: 'body1', sm: 'h2', md: 'h1', lg: 'body2' } }} />
+      {/* @ts-expect-error */}
+      <Typography sx={{ typography: { xs: 'body 1', sm: 'h2', md: 'h1', lg: 'body1' } }} />
     </div>
   );
 };
