@@ -147,7 +147,7 @@ const tabsCodeInfo = [
     code: tabOneCode,
     language: 'tsx',
     description:
-      'Write serverless functions that access your project&apos;s code, and let Toolpad handle linking your data with the UI.',
+      "Write serverless functions that access your project's code, and let Toolpad handle linking your data with the UI.",
   },
   {
     code: tabTwoCode,
@@ -199,21 +199,21 @@ export default function ToolpadShowcase() {
               <Image
                 index={0}
                 value={value}
-                src="/static/branding/toolpad/toolpad-homepage-1-ex.png"
+                src="/static/branding/toolpad/ex-1.png"
                 alt="Toolpad user management app"
               />
-              {/* <Image
-            index={1}
-            value={value}
-            src="/static/branding/toolpad/toolpad-homepage-1-ex.png" // change the source
-            alt="Toolpad user management app"
-          /> */}
-              {/* <Image
-            index={2}
-            value={value}
-            src="/static/branding/toolpad/toolpad-homepage-1-ex.png" // change the source
-            alt="Toolpad user management app"
-          /> */}
+              <Image
+                index={1}
+                value={value}
+                src="/static/branding/toolpad/ex-2.png"
+                alt="yaml file represents Toolpad app"
+              />
+              <Image
+                index={2}
+                value={value}
+                src="/static/branding/toolpad/ex-3.png"
+                alt="Toolpad app with custom component"
+              />
             </Paper>
           </Box>
         </Box>
