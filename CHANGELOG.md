@@ -1,5 +1,37 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-beta.1
+
+<!-- generated comparing v6.0.0-beta.0..next -->
+
+_Jul 16, 2024_
+
+A big thanks to the 6 contributors who made this release possible.
+
+### `@mui/material@6.0.0-beta.1`
+
+- &#8203;<!-- 03 -->Remove dependency on @mui/base (#42907) @mnajdova
+- &#8203;<!-- 02 -->Set material-pigment-css to public (#42912) @siriwatknp
+
+### `@mui/codemod@6.0.0-beta.1`
+
+- &#8203;<!-- 10 -->Support sx conditional inside spread element (#42894) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 07 -->Fix 301 link @oliviertassinari
+- &#8203;<!-- 04 -->[material-ui] Add script to generate template screenshots (#42903) @siriwatknp
+
+### Core
+
+- &#8203;<!-- 09 -->[core] Remove custom hooks from the `mui-name-matches-component-name` linting rule (#42773) @flaviendelangle
+- &#8203;<!-- 08 -->[core] Normalize rest / other to match the most common used @oliviertassinari
+- &#8203;<!-- 06 -->[docs-infra] Move Ads component to TS (#42842) @alexfauquette
+- &#8203;<!-- 05 -->[docs-infra] Support code tabs overflow (#42913) @arminmeh
+- &#8203;<!-- 01 -->[website] Sync /about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @arminmeh, @flaviendelangle, @mnajdova, @oliviertassinari, @siriwatknp
+
 ## v6.0.0-beta.0
 
 <!-- generated comparing v6.0.0-alpha.14..next -->
