@@ -414,7 +414,7 @@ describe('<Autocomplete />', () => {
       }
     });
 
-    it('listbox stays open after opening', async () => {
+    it('listbox stays open after opening', () => {
       const handleClose = spy();
       const { getByRole } = render(
         <Autocomplete
