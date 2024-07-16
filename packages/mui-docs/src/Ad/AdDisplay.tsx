@@ -62,7 +62,7 @@ export default function AdDisplay(props: AdDisplayProps) {
       eventAction: 'display',
       eventLabel: ad.label,
     });
-  }, [ad.label]);
+  }, [GADisplayRatio, ad.label]);
 
   const shape = shapeProp === 'auto' ? adShape : shapeProp;
 

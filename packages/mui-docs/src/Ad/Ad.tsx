@@ -121,7 +121,7 @@ function isBot() {
   return /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
 }
 
-export default function Ad() {
+export function Ad() {
   const [adblock, setAdblock] = React.useState<null | boolean>(null);
   const [carbonOut, setCarbonOut] = React.useState<null | boolean>(null);
 
@@ -215,7 +215,7 @@ export default function Ad() {
     return () => {
       clearTimeout(delay);
     };
-  }, [eventLabel]);
+  }, [GADisplayRatio, eventLabel]);
 
   return (
     <Box
