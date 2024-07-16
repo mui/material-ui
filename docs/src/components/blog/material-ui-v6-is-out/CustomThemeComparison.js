@@ -12,7 +12,7 @@ export default function CustomThemeComparison() {
     const rect = target.getBoundingClientRect();
     target.style.setProperty(
       '--split-point',
-      `clamp(48px, ${((length * 100) / rect.width).toFixed(2)}%, calc(100% - 48px))`,
+      `clamp(12px, ${((length * 100) / rect.width).toFixed(2)}%, calc(100% - 12px))`,
     );
   }, []);
   const { dragging, getDragHandlers } = useResizeHandle(objectRef, {
@@ -23,8 +23,10 @@ export default function CustomThemeComparison() {
       ref={objectRef}
       style={{ touchAction: dragging ? 'none' : 'auto' }}
       sx={{
-        height: 'clamp(260px, 48vh, 420px)',
+        height: 'clamp(260px, 40vmax, 420px)',
+        mx: { md: '-64px' },
         position: 'relative',
+        mb: 2,
         '--split-point': '50%',
         '& > *': {
           borderRadius: '12px',
@@ -49,8 +51,17 @@ export default function CustomThemeComparison() {
       >
         <Box
           component="img"
-          src="/static/images/templates/dashboard-light.png"
-          sx={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+          src="/static/screenshots/material-ui/getting-started/templates/dashboard-default.jpg"
+          sx={(theme) => ({
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'top',
+            ...theme.applyStyles('dark', {
+              content:
+                'url(/static/screenshots/material-ui/getting-started/templates/dashboard-default-dark.jpg)',
+            }),
+          })}
         />
       </Frame.Demo>
       <Frame.Demo
@@ -71,8 +82,17 @@ export default function CustomThemeComparison() {
       >
         <Box
           component="img"
-          src="/static/images/templates/dashboard-dark.png"
-          sx={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+          src="/static/screenshots/material-ui/getting-started/templates/dashboard.jpg"
+          sx={(theme) => ({
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'top',
+            ...theme.applyStyles('dark', {
+              content:
+                'url(/static/screenshots/material-ui/getting-started/templates/dashboard-dark.jpg)',
+            }),
+          })}
         />
       </Frame.Demo>
       <Box

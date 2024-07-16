@@ -22,9 +22,9 @@ Material UI v6 is now stable! We're excited to share all the updates.
 
 As you know, Material UI v5 uses Emotion as a default styling solution. As a runtime CSS-in-JS library, it has several trade-offs such as slower performance and larger bundle size.
 
-With Material UI v6, we're introducing an opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new open-source library, that will eliminate the overhead of style recalculation while preserving similar APIs that you are already familiar with.
+In v6, we introduce an opt-in integration with [Pigment CSS](https://github.com/mui/pigment-css), our new zero-runtime styling library, that will eliminate the runtime overhead while preserving similar APIs that you are already familiar with.
 
-Since the integration is an opt-in feature, you can upgrade to v6 and continue using Emotion if you'd like. The link to the migration guide is at the end of the page.
+Since the integration is an opt-in feature, you can upgrade to v6 and continue using Emotion if you'd like. The link to the migration guide is at the bottom of the page.
 
 <!-- would be nice if we have a link to a prototype page -->
 <!-- a link to Next.js repo that render templates -->
@@ -66,6 +66,8 @@ The `CssVarsProvider` has been stablized with additional improvements and featur
 
 Serializable values like palette, spacing, typography, etc., are converted to CSS variables and can be accessed from `theme.vars`.
 
+{{"component": "components/blog/material-ui-v6-is-out/ThemeTokens.js"}}
+
 With CSS variables, you can easily integrate your preferred styling solution with Material UI.
 
 ```css title="styles.css"
@@ -79,7 +81,7 @@ With CSS variables, you can easily integrate your preferred styling solution wit
 
 ### Media prefers-color-scheme
 
-The new `extendTheme` lets you enable media [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) in one line:
+The new `extendTheme` uses [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) as a default method when `light` and `dark` color schemes are enabled.
 
 <codeblock>
 
@@ -87,7 +89,7 @@ The new `extendTheme` lets you enable media [prefers-color-scheme](https://devel
 import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 
 const theme = extendTheme({
-  strategy: 'media',
+  colorSchemes: { light: true, dark: true },
 });
 
 function App({ children }) {
@@ -111,9 +113,9 @@ function App({ children }) {
 
 </codeblock>
 
-### Toggle between modes
+### Manually toggle between modes
 
-To manually toggle between modes, you can specify a custom value:
+If you want to manually toggle between modes, you can use the `colorSchemeSelector` option with `class` or `data` selector.
 
 <codeblock>
 
@@ -121,7 +123,8 @@ To manually toggle between modes, you can specify a custom value:
 import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 
 const theme = extendTheme({
-  strategy: '[data-mode-%s]', // the %s will be replaced with the mode
+  colorSchemes: { light: true, dark: true },
+  colorSchemeSelector: 'class',
 });
 
 function App({ children }) {
@@ -135,7 +138,7 @@ function App({ children }) {
   /* ...other variables */
 }
 
-:where([data-mode-dark]) {
+:where(.dark) {
   --palette-background-default: #121212;
   /* ...other variables */
 }
@@ -145,34 +148,31 @@ function App({ children }) {
 
 ### Custom styles for specific modes
 
-The new API `theme.applyStyles()` has been added to unify all supporting styling solutions, including Emotion, Styled-components and Pigment CSS.
+The new API `theme.applyStyles` has been added for creating specific mode styles that work across styling solutions.
 
-We will provide a codemod that migrates the code like an example below:
+The snippet below will work for both Emotion and Pigment CSS.
 
-```diff
-  const StyledInput = styled(InputBase)(({ theme }) => ({
-    padding: 10,
-    width: '100%',
--    borderBottom: `1px solid ${
--      theme.palette.mode === 'dark' ? '#30363d' : '#eaecef'
--    }`,
-+    borderBottom: `1px solid #eaecef`,
-+    ...theme.applyStyles('dark', {
-+      borderBottom: '1px solid #30363d',
-+    })
-    '& input': {
-      borderRadius: 4,
--      backgroundColor: '#fff',
-+     ...theme.applyStyles('dark', {
-+       backgroundColor: '#0d1117',
-+     })
-    },
-  }));
+```jsx
+const StyledInput = styled(InputBase)(({ theme }) => ({
+  padding: 10,
+  width: '100%',
+  borderBottom: `1px solid #eaecef`,
+  ...theme.applyStyles('dark', {
+    borderBottom: '1px solid #30363d',
+  })
+  '& input': {
+    borderRadius: 4,
+    backgroundColor: '#fff',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#0d1117',
+    })
+  },
+}));
 ```
 
 ## Container Queries
 
-We added support for [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) based on the existing `theme.breakpoints` API.
+We added [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) utility based on the existing `theme.breakpoints` API.
 
 This feature lets you define styles based on the parent container's width instead of the viewport.
 
@@ -211,8 +211,6 @@ It also works with the `sx` prop:
 
 Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
 
-{{"component": "components/blog/material-ui-v6-is-out/TemplateCarousel.js"}}
-
 ### Custom syles
 
 The new custom styles we've added allow you to dive into the best approaches for customization or simply copy and paste some stylish elements.
@@ -220,10 +218,6 @@ The new custom styles we've added allow you to dive into the best approaches for
 {{"component": "components/blog/material-ui-v6-is-out/CustomThemeComparison.js"}}
 
 Stay tuned, as many more updates are coming in the upcoming months! We'd love to hear your feedback on which templates or sections you'd like to see next.
-
-We are upgrading the [free templates](https://mui.com/material-ui/getting-started/templates/) to make them look amazing for your next project.
-
-<!-- Add images -->
 
 ## Bundle size improvements
 
