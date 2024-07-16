@@ -1,1 +1,1 @@
-export { FocusTrap as default } from '@mui/base/FocusTrap';
+export { default } from './FocusTrap';
