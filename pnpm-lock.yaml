@@ -1504,6 +1504,9 @@ importers:
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
+      '@popperjs/core':
+        specifier: ^2.11.8
+        version: 2.11.8
       '@types/react-transition-group':
         specifier: ^4.4.10
         version: 4.4.10
@@ -1529,9 +1532,6 @@ importers:
       '@mui/internal-babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
-      '@popperjs/core':
-        specifier: ^2.11.8
-        version: 2.11.8
       '@rollup/plugin-replace':
         specifier: ^5.0.5
         version: 5.0.5(rollup@3.29.4)
