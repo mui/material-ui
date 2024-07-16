@@ -11,7 +11,8 @@ import ROUTES from 'docs/src/route';
 import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
-import SvgToolpadLogo from 'docs/src/icons/SvgToolpadLogo';
+import SvgToolpadCoreLogo from 'docs/src/icons/SvgToolpadCoreLogo';
+import SvgToolpadStudioLogo from 'docs/src/icons/SvgToolpadStudioLogo';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
@@ -192,6 +193,41 @@ const advancedProducts = [
   },
 ];
 
+const toolpadProducts = [
+  {
+    id: 'toolpad-core',
+    name: 'Toolpad Core',
+    description: 'Dashboard components for internal tools.',
+    icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
+    href: ROUTES.toolpadCoreDocs,
+  },
+  {
+    id: 'toolpad-studio',
+    name: 'Studio',
+    description: 'A self-hosted, low-code internal tool builder.',
+    icon: <SvgToolpadStudioLogo width={14} height={14} sx={logoColor} />,
+    href: ROUTES.toolpadStudioDocs,
+    chip: (
+      <Chip
+        label="Beta"
+        size="small"
+        color="primary"
+        variant="outlined"
+        sx={{
+          fontSize: '.625rem',
+          fontWeight: 'semiBold',
+          textTransform: 'uppercase',
+          letterSpacing: '.04rem',
+          height: '16px',
+          '& .MuiChip-label': {
+            px: '4px',
+          },
+        }}
+      />
+    ),
+  },
+];
+
 const MuiProductSelector = React.forwardRef(function MuiProductSelector(
   props: MenuListProps<'div'>,
   forwardedRef: React.ForwardedRef<HTMLDivElement>,
@@ -263,38 +299,29 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           },
         }}
       />
-      <ProductItem
+      <Box
         key="Toolpad"
-        name="Toolpad"
-        href={ROUTES.toolpadStudioDocs}
-        icon={<SvgToolpadLogo width={14} height={14} sx={logoColor} />}
-        description="A self-hosted, low-code internal tool builder."
-        active={pageContext.productId === 'toolpad-core'}
-        chip={
-          <Chip
-            label="Beta"
-            size="small"
-            color="primary"
-            variant="outlined"
-            sx={{
-              fontSize: '.625rem',
-              fontWeight: 'semiBold',
-              textTransform: 'uppercase',
-              letterSpacing: '.04rem',
-              height: '16px',
-              '& .MuiChip-label': {
-                px: '4px',
-              },
-            }}
-          />
-        }
+        role="none"
         sx={{
           gridColumn: {
             xs: '1 / span 1',
             sm: '1 / span 2',
           },
         }}
-      />
+      >
+        <NavLabel> Toolpad </NavLabel>
+      </Box>
+      {toolpadProducts.map((product) => (
+        <ProductItem
+          key={product.name}
+          name={product.name}
+          description={product.description}
+          icon={product.icon}
+          href={product.href}
+          active={pageContext.productId === product.id}
+          chip={product.chip}
+        />
+      ))}
     </MenuList>
   );
 });
