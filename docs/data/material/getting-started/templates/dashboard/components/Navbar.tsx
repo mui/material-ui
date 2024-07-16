@@ -87,7 +87,11 @@ export default function Navbar({ mode, toggleColorMode }: NavBarProps) {
               <NotificationsRoundedIcon />
             </MenuButton>
             <OptionsMenu />
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            <ToggleColorMode
+              data-screenshot="toggle-mode"
+              mode={mode}
+              toggleColorMode={toggleColorMode}
+            />
           </Stack>
         </Stack>
         <Stack
