@@ -6,9 +6,7 @@
 
 _Jul 16, 2024_
 
-A big thanks to the 2 contributors who made this release possible. Here are some highlights ✨:
-
-- `@mui/base` is no longer a dependency of `@mui/material`
+A big thanks to the 2 contributors who made this release possible.
 
 ### `@mui/material@5.16.2`
 
