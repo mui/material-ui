@@ -143,8 +143,7 @@ function HiddenCss(props: HiddenProps & { className?: string }) {
 
   const breakpoints = [];
 
-  for (let i = 0; i < theme.breakpoints.keys.length; i += 1) {
-    const breakpoint = theme.breakpoints.keys[i];
+  for (const breakpoint of theme.breakpoints.keys) {
     const breakpointUp = other[`${breakpoint}Up`];
     const breakpointDown = other[`${breakpoint}Down`];
 
