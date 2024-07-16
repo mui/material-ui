@@ -145,7 +145,6 @@ export default function GoogleMaps() {
           option.structured_formatting.main_text,
           matches.map((match: any) => [match.offset, match.offset + match.length]),
         );
-
         return (
           <li key={key} {...optionProps}>
             <Grid container sx={{ alignItems: 'center' }}>
