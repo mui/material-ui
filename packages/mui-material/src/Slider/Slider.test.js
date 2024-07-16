@@ -270,8 +270,9 @@ describe('<Slider />', () => {
 
       act(() => {
         slider2.focus();
-        fireEvent.change(slider2, { target: { value: '31' } });
       });
+
+      fireEvent.change(slider2, { target: { value: '31' } });
 
       expect(slider1.getAttribute('aria-valuenow')).to.equal('21');
       expect(slider2.getAttribute('aria-valuenow')).to.equal('31');

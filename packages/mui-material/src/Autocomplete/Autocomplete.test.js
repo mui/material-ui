@@ -7,6 +7,7 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
+  within,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
@@ -25,6 +26,7 @@ import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
 
 function checkHighlightIs(listbox, expected) {
+  // eslint-disable-next-line testing-library/no-node-access
   const focused = listbox.querySelector(`.${classes.focused}`);
 
   if (expected) {
@@ -106,7 +108,7 @@ describe('<Autocomplete />', () => {
     }),
   );
 
-  it('should be customizable in the theme', () => {
+  it('should be customizable in the theme', async () => {
     const theme = createTheme({
       components: {
         MuiAutocomplete: {
@@ -124,6 +126,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete options={[]} open renderInput={(params) => <TextField {...params} />} />
       </ThemeProvider>,
     );
+    // eslint-disable-next-line testing-library/no-node-access
     expect(document.querySelector(`.${classes.paper}`)).to.toHaveComputedStyle({
       mixBlendMode: 'darken',
     });
@@ -138,13 +141,14 @@ describe('<Autocomplete />', () => {
 
       act(() => {
         input.focus();
-        fireEvent.change(document.activeElement, { target: { value: 'a' } });
       });
+
+      fireEvent.change(input, { target: { value: 'a' } });
 
       expect(input.value).to.equal('a');
 
       act(() => {
-        document.activeElement.blur();
+        input.blur();
       });
       expect(input.value).to.equal('');
     });
@@ -157,7 +161,9 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasClearIcon);
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
     });
   });
@@ -173,6 +179,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      // eslint-disable-next-line testing-library/no-node-access
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
     });
 
@@ -186,11 +193,13 @@ describe('<Autocomplete />', () => {
       );
 
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      // eslint-disable-next-line testing-library/no-node-access
       expect(document.querySelector(`.${classes.paper}`).textContent).not.to.equal('Loading…');
 
       const listbox = screen.getByRole('listbox');
-      const htmlOptions = listbox.querySelectorAll('li');
-      expect(htmlOptions[0].innerHTML).to.equal('one');
+      const firstOption = within(listbox).getByRole('option', { name: 'one' });
+
+      expect(firstOption).to.not.equal(null);
     });
   });
 
@@ -208,8 +217,8 @@ describe('<Autocomplete />', () => {
       );
 
       checkHighlightIs(getByRole('listbox'), 'one');
-      fireEvent.change(document.activeElement, { target: { value: 'oo' } });
-      fireEvent.change(document.activeElement, { target: { value: 'o' } });
+      fireEvent.change(getByRole('combobox'), { target: { value: 'oo' } });
+      fireEvent.change(getByRole('combobox'), { target: { value: 'o' } });
       checkHighlightIs(getByRole('listbox'), 'one');
     });
 
@@ -226,7 +235,7 @@ describe('<Autocomplete />', () => {
       );
 
       checkHighlightIs(getByRole('listbox'), 'one');
-      fireEvent.change(document.activeElement, { target: { value: 'two' } });
+      fireEvent.change(getByRole('combobox'), { target: { value: 'two' } });
       checkHighlightIs(getByRole('listbox'), 'two');
     });
 
@@ -481,17 +490,15 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('combobox');
 
-      act(() => {
-        fireEvent.change(textbox, { target: { value: 't' } });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-        textbox.blur();
-      });
+      fireEvent.change(textbox, { target: { value: 't' } });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.blur(textbox);
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(options);
     });
 
-    it('should add new value when autoSelect & multiple & freeSolo on blur', () => {
+    it('should add new value when autoSelect & multiple & freeSolo on blur', async () => {
       const handleChange = spy();
       render(
         <Autocomplete
@@ -504,9 +511,9 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'a' } });
       act(() => {
-        document.activeElement.blur();
+        screen.getByRole('combobox').blur();
       });
 
       expect(handleChange.callCount).to.equal(1);
@@ -528,7 +535,7 @@ describe('<Autocomplete />', () => {
 
       act(() => {
         input.focus();
-        document.activeElement.blur();
+        input.blur();
         input.focus();
       });
     });
@@ -1056,7 +1063,7 @@ describe('<Autocomplete />', () => {
     it('does not open on clear', () => {
       const handleOpen = spy();
       const handleChange = spy();
-      const { container } = render(
+      render(
         <Autocomplete
           onOpen={handleOpen}
           onChange={handleChange}
@@ -1067,7 +1074,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      const clear = container.querySelector('button');
+      const clear = screen.getByLabelText('Clear');
       fireEvent.click(clear);
 
       expect(handleOpen.callCount).to.equal(0);
@@ -1162,7 +1169,7 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('combobox');
       fireEvent.change(textbox, { target: { value: 'test' } });
-      expect(document.activeElement.value).to.equal('test');
+      expect(textbox.value).to.equal('test');
       act(() => {
         textbox.blur();
       });
@@ -1179,7 +1186,7 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('combobox');
       fireEvent.change(textbox, { target: { value: 'test' } });
-      expect(document.activeElement.value).to.equal('test');
+      expect(textbox.value).to.equal('test');
       act(() => {
         textbox.blur();
       });
@@ -1198,7 +1205,7 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('combobox');
       fireEvent.change(textbox, { target: { value: 'test' } });
-      expect(document.activeElement.value).to.equal('test');
+      expect(textbox.value).to.equal('test');
       act(() => {
         textbox.blur();
       });
@@ -1329,7 +1336,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.attribute('aria-expanded', 'false');
 
       act(() => {
-        document.activeElement.blur();
+        textbox.blur();
       });
 
       expect(textbox).to.have.attribute('aria-expanded', 'false');
@@ -1560,6 +1567,7 @@ describe('<Autocomplete />', () => {
 
       // userEvent will fail at releasing MouseLeft if we target the
       // <button> since it has "pointer-events: none"
+      // eslint-disable-next-line testing-library/no-node-access
       const popupIndicator = container.querySelector(`.${classes.endAdornment}`);
 
       const user = userEvent.setup();
@@ -1597,7 +1605,9 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
     });
 
@@ -1647,7 +1657,9 @@ describe('<Autocomplete />', () => {
         />,
       );
       expect(queryByTitle('Clear')).to.equal(null);
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
     });
   });
@@ -1957,7 +1969,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(input);
 
       const listbox = getByRole('listbox');
-      const firstOption = listbox.querySelector('li');
+      const firstOption = within(listbox).getByRole('option', { name: 'one' });
       fireEvent.click(firstOption);
 
       expect(handleChange.args[0][1]).to.equal('one');
@@ -1983,9 +1995,9 @@ describe('<Autocomplete />', () => {
       fireEvent.click(input);
 
       const listbox = getByRole('listbox');
-      const htmlOptions = listbox.querySelectorAll('li');
+      const firstOption = within(listbox).getByRole('option', { name: 'one' });
 
-      expect(htmlOptions[0].innerHTML).to.equal('one');
+      expect(firstOption).to.not.equal(null);
     });
 
     it("should display a 'no options' message if no options are available", () => {
@@ -1997,6 +2009,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.attribute('aria-expanded', 'false');
       expect(textbox).not.to.have.attribute('aria-owns');
       expect(textbox).not.to.have.attribute('aria-controls');
+      // eslint-disable-next-line testing-library/no-node-access
       expect(document.querySelector(`.${classes.paper}`)).to.have.text('No options');
     });
   });
@@ -2059,21 +2072,21 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('combobox');
 
-      fireEvent.change(document.activeElement, { target: { value: 'O' } });
+      fireEvent.change(textbox, { target: { value: 'O' } });
 
-      expect(document.activeElement.value).to.equal('O');
+      expect(textbox.value).to.equal('O');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
-      expect(document.activeElement.value).to.equal('one');
-      expect(document.activeElement.selectionStart).to.equal(1);
-      expect(document.activeElement.selectionEnd).to.equal(3);
+      expect(textbox.value).to.equal('one');
+      expect(textbox.selectionStart).to.equal(1);
+      expect(textbox.selectionEnd).to.equal(3);
 
       fireEvent.keyDown(textbox, { key: 'Enter' });
 
-      expect(document.activeElement.value).to.equal('one');
-      expect(document.activeElement.selectionStart).to.equal(3);
-      expect(document.activeElement.selectionEnd).to.equal(3);
+      expect(textbox.value).to.equal('one');
+      expect(textbox.selectionStart).to.equal(3);
+      expect(textbox.selectionEnd).to.equal(3);
     });
   });
 
@@ -2192,9 +2205,7 @@ describe('<Autocomplete />', () => {
       const textbox = getByRole('combobox');
       const tooltip = getByText('tooltip');
 
-      act(() => {
-        fireEvent.click(tooltip);
-      });
+      fireEvent.click(tooltip);
 
       expect(textbox).not.toHaveFocus();
     });
@@ -2222,10 +2233,10 @@ describe('<Autocomplete />', () => {
       render(<MyComponent />);
 
       expect(handleChange.callCount).to.equal(0);
-      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'a' } });
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][0]).to.equal('a');
-      expect(document.activeElement.value).to.equal('');
+      expect(screen.getByRole('combobox').value).to.equal('');
     });
 
     it('should fire the input change event before the change event', () => {
@@ -2251,7 +2262,7 @@ describe('<Autocomplete />', () => {
 
   describe('prop: filterOptions', () => {
     it('should ignore object keys by default', () => {
-      const { queryAllByRole } = render(
+      const { queryAllByRole, getByRole } = render(
         <Autocomplete
           open
           options={[
@@ -2272,11 +2283,11 @@ describe('<Autocomplete />', () => {
       options = queryAllByRole('option');
       expect(options.length).to.equal(2);
 
-      fireEvent.change(document.activeElement, { target: { value: 'value' } });
+      fireEvent.change(getByRole('combobox'), { target: { value: 'value' } });
       options = queryAllByRole('option');
       expect(options.length).to.equal(0);
 
-      fireEvent.change(document.activeElement, { target: { value: 'one' } });
+      fireEvent.change(getByRole('combobox'), { target: { value: 'one' } });
       options = queryAllByRole('option');
       expect(options.length).to.equal(1);
     });
@@ -2353,11 +2364,13 @@ describe('<Autocomplete />', () => {
       fireEvent.change(textbox, { target: { value: 'three' } });
       fireEvent.keyDown(textbox, { key: 'Enter' });
 
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
 
       fireEvent.change(textbox, { target: { value: 'three' } });
       fireEvent.keyDown(textbox, { key: 'Enter' });
 
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
     });
 
@@ -2390,6 +2403,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete freeSolo options={[]} renderInput={(params) => <TextField {...params} />} />,
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
     });
 
@@ -2505,7 +2519,7 @@ describe('<Autocomplete />', () => {
     it('provides a reason and details on clear', () => {
       const handleChange = spy();
       const options = ['one', 'two', 'three'];
-      const { container } = render(
+      render(
         <Autocomplete
           multiple
           value={options}
@@ -2515,7 +2529,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      const button = container.querySelector('button');
+      const button = screen.getByTitle('Clear');
       fireEvent.click(button);
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([]);
@@ -2537,6 +2551,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       await user.type(document.activeElement, 'a');
 
       expect(handleInputChange.callCount).to.equal(1);
@@ -2815,7 +2830,7 @@ describe('<Autocomplete />', () => {
   });
 
   it('should specify option key for duplicate options', () => {
-    const { getAllByRole } = render(
+    const { getAllByRole, getByRole } = render(
       <Autocomplete
         open
         options={[
@@ -2830,7 +2845,7 @@ describe('<Autocomplete />', () => {
       />,
     );
 
-    fireEvent.change(document.activeElement, { target: { value: 'th' } });
+    fireEvent.change(getByRole('combobox'), { target: { value: 'th' } });
     const options = getAllByRole('option');
     expect(options.length).to.equal(2);
   });
@@ -2846,6 +2861,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
     });
   });
@@ -2974,7 +2990,7 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('combobox');
 
-      fireEvent.change(document.activeElement, { target: { value: 'one' } });
+      fireEvent.change(textbox, { target: { value: 'one' } });
       expect(screen.getAllByRole('option').length).to.equal(2);
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -3198,7 +3214,9 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
     });
 
@@ -3248,6 +3266,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const chip = container.querySelector(`.${chipClasses.root}`);
       expect(chip).not.to.have.class(chipClasses.deletable);
 
@@ -3255,8 +3274,10 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
       fireEvent.keyDown(textbox, { key: 'Backspace' });
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
     });
   });
@@ -3282,9 +3303,11 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight another option
 
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
 
       fireEvent.keyDown(textbox, { key: 'Backspace' });
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
 
@@ -3307,9 +3330,11 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight another option
 
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
 
       fireEvent.keyDown(textbox, { key: 'Backspace' });
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
   });
@@ -3323,6 +3348,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const root = container.querySelector(`.${classes.root}`);
 
       expect(root).not.to.have.class(classes.expanded);
@@ -3338,6 +3364,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete options={[]} renderInput={(params) => <TextField {...params} autoFocus />} />,
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const root = container.querySelector(`.${classes.root}`);
 
       expect(root).not.to.have.class(classes.expanded);
@@ -3413,11 +3440,14 @@ describe('<Autocomplete />', () => {
     expect(listbox).to.have.property('scrollTop', 0);
 
     const options = getAllByRole('option');
+
+    fireEvent.touchStart(options[1]);
+
     act(() => {
-      fireEvent.touchStart(options[1]);
       listbox.scrollBy(0, 60);
-      setProps({ options: getOptions(10) });
     });
+
+    setProps({ options: getOptions(10) });
 
     expect(listbox).to.have.property('scrollTop', 60);
   });

@@ -19,9 +19,9 @@ describe('<Snackbar />', () => {
    * React bug: https://github.com/facebook/react/issues/20074
    */
   function render(...args) {
-    const result = clientRender(...args);
+    const utils = clientRender(...args);
     clock.tick(0);
-    return result;
+    return utils;
   }
 
   describeConformance(<Snackbar open message="message" />, () => ({

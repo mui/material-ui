@@ -49,16 +49,11 @@ describe('<CardHeader />', () => {
   });
 
   describe('with an avatar', () => {
-    let avatar;
-    let cardHeader;
-
-    beforeEach(() => {
-      avatar = <span />;
-      cardHeader = render(<CardHeader avatar={avatar} title="Title" subheader="Subhead" />)
-        .container.firstChild;
-    });
+    const avatar = <span />;
 
     it('should render the avatar inside the first child', () => {
+      const cardHeader = render(<CardHeader avatar={avatar} title="Title" subheader="Subhead" />)
+        .container.firstChild;
       const avatarWrapper = cardHeader.childNodes[0];
       expect(avatarWrapper).to.have.tagName('div');
       expect(avatarWrapper).to.have.class(classes.avatar);
@@ -66,6 +61,8 @@ describe('<CardHeader />', () => {
     });
 
     it('should render the title text inside the second child', () => {
+      const cardHeader = render(<CardHeader avatar={avatar} title="Title" subheader="Subhead" />)
+        .container.firstChild;
       const titleWrapper = cardHeader.childNodes[1];
       expect(titleWrapper).to.have.class(classes.content, 'should have the content class');
       const title = titleWrapper.childNodes[0];
@@ -74,6 +71,8 @@ describe('<CardHeader />', () => {
     });
 
     it('should render the subheader as body2 secondary text inside the second child', () => {
+      const cardHeader = render(<CardHeader avatar={avatar} title="Title" subheader="Subhead" />)
+        .container.firstChild;
       const titleWrapper = cardHeader.childNodes[1];
       expect(titleWrapper).to.have.class(classes.content, 'should have the content class');
       const subHeader = titleWrapper.childNodes[1];

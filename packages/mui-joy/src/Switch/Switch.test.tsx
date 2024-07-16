@@ -97,8 +97,8 @@ describe('<Switch />', () => {
     // how a user would trigger it
     act(() => {
       getByRole('switch').click();
-      fireEvent.change(getByRole('switch'), { target: { checked: '' } });
     });
+    fireEvent.change(getByRole('switch'), { target: { checked: '' } });
 
     expect(getByRole('switch')).to.have.property('checked', false);
   });
@@ -126,8 +126,8 @@ describe('<Switch />', () => {
       // how a user would trigger it
       act(() => {
         getByRole('switch').click();
-        fireEvent.change(getByRole('switch'), { target: { checked: '' } });
       });
+      fireEvent.change(getByRole('switch'), { target: { checked: '' } });
 
       expect(getByText('On')).toBeVisible();
     });
@@ -142,8 +142,8 @@ describe('<Switch />', () => {
       // how a user would trigger it
       act(() => {
         getByRole('switch').click();
-        fireEvent.change(getByRole('switch'), { target: { checked: '' } });
       });
+      fireEvent.change(getByRole('switch'), { target: { checked: '' } });
 
       expect(getByText('On')).toBeVisible();
     });

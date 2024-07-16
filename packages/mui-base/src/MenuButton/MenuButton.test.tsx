@@ -98,7 +98,7 @@ describe('<MenuButton />', () => {
         button.focus();
       });
 
-      expect(document.activeElement).to.equal(button);
+      expect(button).toHaveFocus();
     });
   });
 

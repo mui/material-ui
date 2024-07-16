@@ -75,6 +75,7 @@ describe('<TabContext />', () => {
       );
     }
 
+    // eslint-disable-next-line testing-library/render-result-naming-convention
     const markup = ReactDOMServer.renderToStaticMarkup(
       <TabContext value="0">
         <Tabs value="0" />

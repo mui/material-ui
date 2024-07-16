@@ -9,6 +9,7 @@ import {
   MuiRenderResult,
   RenderOptions,
   flushMicrotasks,
+  within,
 } from '@mui/internal-test-utils';
 import userEvent from '@testing-library/user-event';
 import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
@@ -28,6 +29,7 @@ describe('<Select />', () => {
     element: React.ReactElement<any, string | React.JSXElementConstructor<any>>,
     options?: RenderOptions,
   ): Promise<MuiRenderResult> {
+    // eslint-disable-next-line testing-library/render-result-naming-convention
     const rendered = internalRender(element, options);
     await flushMicrotasks();
     return rendered;
@@ -918,15 +920,15 @@ describe('<Select />', () => {
     });
 
     it('renders a zero-width space when there is no selected value nor placeholder and renderValue is not provided', async () => {
-      const { getByRole } = await render(
+      await render(
         <Select>
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
         </Select>,
       );
 
-      const select = getByRole('combobox');
-      const zws = select.querySelector('.notranslate');
+      const select = screen.getByRole('combobox');
+      const zws = within(select).getByText('​'); // zero-width space
 
       expect(zws).not.to.equal(null);
     });
@@ -1160,7 +1162,7 @@ describe('<Select />', () => {
       );
 
       const input = getAllByRole('textbox')[0];
-      expect(document.activeElement).to.equal(input);
+      expect(input).toHaveFocus();
     });
 
     it('scrolls to initially highlighted option after opening', async function test() {
@@ -1219,7 +1221,7 @@ describe('<Select />', () => {
       );
 
       const select = getByRole('combobox');
-      expect(document.activeElement).to.equal(select);
+      expect(select).toHaveFocus();
     });
   });
 
@@ -1346,7 +1348,7 @@ describe('<Select />', () => {
   describe('browser autofill', () => {
     it('sets value and calls external onChange when browser autofills', async () => {
       const onChangeHandler = spy();
-      const { container } = await render(
+      await render(
         <Select onChange={onChangeHandler} defaultValue="germany" autoComplete="country">
           <Option value="france">France</Option>
           <Option value="germany">Germany</Option>
@@ -1354,7 +1356,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      const hiddenInput = container.querySelector('[autocomplete="country"]');
+      const hiddenInput = screen.getByRole('textbox', { hidden: true });
 
       expect(hiddenInput).not.to.eq(null);
       expect(hiddenInput).to.have.value('germany');
@@ -1372,7 +1374,7 @@ describe('<Select />', () => {
 
     it('does not set value when browser autofills invalid value', async () => {
       const onChangeHandler = spy();
-      const { container } = await render(
+      await render(
         <Select onChange={onChangeHandler} defaultValue="germany" autoComplete="country">
           <Option value="france">France</Option>
           <Option value="germany">Germany</Option>
@@ -1380,7 +1382,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      const hiddenInput = container.querySelector('[autocomplete="country"]');
+      const hiddenInput = screen.getByRole('textbox', { hidden: true });
 
       expect(hiddenInput).not.to.eq(null);
       expect(hiddenInput).to.have.value('germany');
@@ -1397,7 +1399,7 @@ describe('<Select />', () => {
 
     it('clears value and calls external onChange when browser clears autofill', async () => {
       const onChangeHandler = spy();
-      const { container } = await render(
+      await render(
         <Select onChange={onChangeHandler} defaultValue="germany" autoComplete="country">
           <Option value="france">France</Option>
           <Option value="germany">Germany</Option>
@@ -1405,7 +1407,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      const hiddenInput = container.querySelector('[autocomplete="country"]');
+      const hiddenInput = screen.getByRole('textbox', { hidden: true });
 
       expect(hiddenInput).not.to.eq(null);
       expect(hiddenInput).to.have.value('germany');

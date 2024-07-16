@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, ErrorBoundary, act, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, screen, ErrorBoundary, fireEvent } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import { useAutocomplete, createFilterOptions } from '@mui/base/useAutocomplete';
 
@@ -319,10 +319,8 @@ describe('useAutocomplete', () => {
       render(<Test options={['foo', 'bar']} />);
       const input = screen.getByRole('combobox');
 
-      act(() => {
-        fireEvent.change(input, { target: { value: 'free' } });
-        input.blur();
-      });
+      fireEvent.change(input, { target: { value: 'free' } });
+      fireEvent.blur(input);
 
       expect(input.value).to.equal('free');
     });

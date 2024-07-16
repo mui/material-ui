@@ -25,6 +25,7 @@ describe('<ClickAwayListener />', () => {
    * React bug: https://github.com/facebook/react/issues/20074
    */
   function render(...args) {
+    // eslint-disable-next-line testing-library/render-result-naming-convention
     const result = clientRender(...args);
     clock.tick(0);
     return result;
