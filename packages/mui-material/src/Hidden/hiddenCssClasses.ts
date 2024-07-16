@@ -7,9 +7,6 @@ export function getHiddenCssUtilityClass(slot: string) {
 
 const hiddenCssClasses = generateUtilityClasses('PrivateHiddenCss', [
   'root',
-  'uwDown',
-  'uwUp',
-  'onlyUw',
   'xlDown',
   'xlUp',
   'onlyXl',

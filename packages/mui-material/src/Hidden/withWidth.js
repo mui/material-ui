@@ -6,7 +6,7 @@ import useTheme from '../styles/useTheme';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useMediaQuery from '../useMediaQuery';
 
-const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl', 'uw'];
+const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 // By default, returns true if screen width is the same or greater than the given breakpoint.
 export const isWidthUp = (breakpoint, width, inclusive = true) => {
@@ -48,9 +48,9 @@ const withWidth =
       }, []);
 
       /**
-       * innerWidth |xs      sm      md      lg      xl      uw
-       *            |-------|-------|-------|-------|-------|------>
-       * width      |  xs   |  sm   |  md   |  lg   |  xl   |  uw
+       * innerWidth |xs      sm      md      lg      xl
+       *            |-------|-------|-------|-------|------>
+       * width      |  xs   |  sm   |  md   |  lg   |  xl
        */
       const keys = theme.breakpoints.keys.slice().reverse();
       const widthComputed = keys.reduce((output, key) => {
@@ -92,7 +92,7 @@ const withWidth =
        * For instance, you could be using the user-agent or the client-hints.
        * https://caniuse.com/#search=client%20hint
        */
-      initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'uw']),
+      initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
       /**
        * @ignore
        */
@@ -100,7 +100,7 @@ const withWidth =
       /**
        * Bypass the width calculation logic.
        */
-      width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'uw']),
+      width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     };
 
     if (process.env.NODE_ENV !== 'production') {

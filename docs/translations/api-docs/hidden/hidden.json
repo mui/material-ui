@@ -28,12 +28,6 @@
     "smUp": {
       "description": "If <code>true</code>, component is hidden on screens this size and above."
     },
-    "uwDown": {
-      "description": "If <code>true</code>, component is hidden on screens below (but not including) this size."
-    },
-    "uwUp": {
-      "description": "If <code>true</code>, component is hidden on screens this size and above."
-    },
     "xlDown": {
       "description": "If <code>true</code>, component is hidden on screens below (but not including) this size."
     },

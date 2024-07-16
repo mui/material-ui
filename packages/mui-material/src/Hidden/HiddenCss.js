@@ -152,8 +152,8 @@ HiddenCss.propTypes = {
    * Hide the given breakpoint(s).
    */
   only: PropTypes.oneOfType([
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'uw']),
-    PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'uw'])),
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
   ]),
   /**
    * If `true`, screens this size and down are hidden.
@@ -163,14 +163,6 @@ HiddenCss.propTypes = {
    * If `true`, screens this size and up are hidden.
    */
   smUp: PropTypes.bool,
-  /**
-   * If `true`, screens this size and down are hidden.
-   */
-  uwDown: PropTypes.bool,
-  /**
-   * If `true`, screens this size and up are hidden.
-   */
-  uwUp: PropTypes.bool,
   /**
    * If `true`, screens this size and down are hidden.
    */

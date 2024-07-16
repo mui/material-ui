@@ -23,8 +23,6 @@
     },
     "smDown": { "type": { "name": "bool" }, "default": "false" },
     "smUp": { "type": { "name": "bool" }, "default": "false" },
-    "uwDown": { "type": { "name": "bool" }, "default": "false" },
-    "uwUp": { "type": { "name": "bool" }, "default": "false" },
     "xlDown": { "type": { "name": "bool" }, "default": "false" },
     "xlUp": { "type": { "name": "bool" }, "default": "false" },
     "xsDown": { "type": { "name": "bool" }, "default": "false" },

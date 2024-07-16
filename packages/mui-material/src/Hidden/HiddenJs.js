@@ -82,8 +82,8 @@ HiddenJs.propTypes = {
    * Hide the given breakpoint(s).
    */
   only: PropTypes.oneOfType([
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'uw']),
-    PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'uw'])),
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
   ]),
   /**
    * If `true`, screens this size and down are hidden.
@@ -95,16 +95,6 @@ HiddenJs.propTypes = {
    */
   // eslint-disable-next-line react/no-unused-prop-types
   smUp: PropTypes.bool,
-  /**
-   * If `true`, screens this size and down are hidden.
-   */
-  // eslint-disable-next-line react/no-unused-prop-types
-  uwDown: PropTypes.bool,
-  /**
-   * If `true`, screens this size and up are hidden.
-   */
-  // eslint-disable-next-line react/no-unused-prop-types
-  uwUp: PropTypes.bool,
   /**
    * @ignore
    * width prop provided by withWidth decorator.

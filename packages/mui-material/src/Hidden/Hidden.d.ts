@@ -62,16 +62,6 @@ export interface HiddenProps {
    * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
-  uwDown?: boolean;
-  /**
-   * If `true`, component is hidden on screens this size and above.
-   * @default false
-   */
-  uwUp?: boolean;
-  /**
-   * If `true`, component is hidden on screens below (but not including) this size.
-   * @default false
-   */
   xlDown?: boolean;
   /**
    * If `true`, component is hidden on screens this size and above.

@@ -9,8 +9,6 @@ export interface HiddenCssProps {
   only?: Breakpoint | Breakpoint[];
   smDown?: boolean;
   smUp?: boolean;
-  uwDown?: boolean;
-  uwUp?: boolean;
   xlDown?: boolean;
   xlUp?: boolean;
   xsDown?: boolean;

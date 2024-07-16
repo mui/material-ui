@@ -18,8 +18,6 @@ function Hidden(props) {
     mdUp = false,
     smDown = false,
     smUp = false,
-    uwDown = false,
-    uwUp = false,
     xlDown = false,
     xlUp = false,
     xsDown = false,
@@ -36,8 +34,6 @@ function Hidden(props) {
         mdUp={mdUp}
         smDown={smDown}
         smUp={smUp}
-        uwDown={uwDown}
-        uwUp={uwUp}
         xlDown={xlDown}
         xlUp={xlUp}
         xsDown={xsDown}
@@ -55,8 +51,6 @@ function Hidden(props) {
       mdUp={mdUp}
       smDown={smDown}
       smUp={smUp}
-      uwDown={uwDown}
-      uwUp={uwUp}
       xlDown={xlDown}
       xlUp={xlUp}
       xsDown={xsDown}
@@ -130,16 +124,6 @@ Hidden.propTypes /* remove-proptypes */ = {
    * @default false
    */
   smUp: PropTypes.bool,
-  /**
-   * If `true`, component is hidden on screens below (but not including) this size.
-   * @default false
-   */
-  uwDown: PropTypes.bool,
-  /**
-   * If `true`, component is hidden on screens this size and above.
-   * @default false
-   */
-  uwUp: PropTypes.bool,
   /**
    * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
