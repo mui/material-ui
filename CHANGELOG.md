@@ -1,5 +1,22 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.16.3
+<!-- generated comparing v5.16.2..master -->
+_Jul 16, 2024_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@5.16.3`
+
+- &#8203;<!-- 1 -->[material] Add missing dependency (#42959) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 3 -->[material-ui][Autocomplete] Add instructions about `autosuggest-highlight` dependency (#42953) @HoFa1997
+- &#8203;<!-- 2 -->Move feedback from Canny to GitHub @oliviertassinari
+
+All contributors of this release in alphabetical order: @HoFa1997, @mnajdova, @oliviertassinari
+
 ## v5.16.2
 
 <!-- generated comparing v5.16.1..master -->
