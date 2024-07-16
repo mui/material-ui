@@ -1715,6 +1715,9 @@ importers:
       '@mui/utils':
         specifier: workspace:*
         version: link:../mui-utils/build
+      '@popperjs/core':
+        specifier: ^2.11.8
+        version: 2.11.8
       '@types/react-transition-group':
         specifier: ^4.4.10
         version: 4.4.10
@@ -1740,9 +1743,6 @@ importers:
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
-      '@popperjs/core':
-        specifier: ^2.11.8
-        version: 2.11.8
       '@testing-library/dom':
         specifier: ^10.3.1
         version: 10.3.1
