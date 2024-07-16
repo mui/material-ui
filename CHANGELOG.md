@@ -1,5 +1,21 @@
 # [Versions](https://mui.com/versions/)
 
+## v6.0.0-beta.2
+
+<!-- generated comparing v6.0.0-beta.1..next -->
+
+_Jul 16, 2024_
+
+### `@mui/material@6.0.0-beta.2`
+
+- &#8203;<!-- 1 -->[material] Add missing dependency (#42961) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 2 -->[docs] Move feedback from Canny to GitHub @oliviertassinari
+
+All contributors of this release in alphabetical order: @mnajdova, @oliviertassinari
+
 ## v6.0.0-beta.1
 
 <!-- generated comparing v6.0.0-beta.0..next -->
