@@ -1,11 +1,11 @@
-.MuiSelect-select .MuiSelect-filled ~ .MuiSelect-icon {
+.MuiSelect-filled ~ .MuiSelect-icon {
   color: red;
 }
 
-.MuiSelect-select .MuiSelect-outlined ~ .MuiSelect-icon {
+ .MuiSelect-outlined ~ .MuiSelect-icon {
   color: red;
 }
 
-.MuiSelect-select .MuiSelect-standard ~ .MuiSelect-icon {
+ .MuiSelect-standard ~ .MuiSelect-icon {
   color: red;
 }
