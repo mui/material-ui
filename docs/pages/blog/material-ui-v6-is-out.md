@@ -64,7 +64,7 @@ The `CssVarsProvider` has been stablized with additional improvements and featur
 + import { CssVarsProvider } from '@mui/material/styles';
 ```
 
-Serializable values like palette, spacing, typography, etc., are converted to CSS variables and can be accessed from `theme.vars`.
+Serializable values like palette, spacing, typography, etc., are converted to CSS variables.
 
 {{"component": "components/blog/material-ui-v6-is-out/ThemeTokens.js"}}
 
@@ -115,12 +115,13 @@ function App({ children }) {
 
 ### Manually toggle between modes
 
-If you want to manually toggle between modes, you can use the `colorSchemeSelector` option with `class` or `data` selector.
+If you want to control when to change between modes, you can set the `colorSchemeSelector` with a class or data selector and then use `useColorScheme` hook to read/update the mode.
 
 <codeblock>
 
 ```js Theme
-import { extendTheme, CssVarsProvider } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
+import ModeSwitcher from './ModeSwitcher';
 
 const theme = extendTheme({
   colorSchemes: { light: true, dark: true },
@@ -128,7 +129,27 @@ const theme = extendTheme({
 });
 
 function App({ children }) {
-  return <CssVarsProvider theme={theme}>{children}</CssVarsProvider>;
+  return (
+    <CssVarsProvider theme={theme}>
+      <ModeSwitcher />
+      {children}
+    </CssVarsProvider>
+  );
+}
+```
+
+```jsx ModeSwitcher
+import { useColorScheme } from '@mui/material/styles';
+
+export default function ModeSwitcher() {
+  const { mode, setMode } = useColorScheme();
+  return (
+    <select value={mode || ''} onChange={(e) => setMode(e.target.value)}>
+      <option value="system">Systen</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  );
 }
 ```
 
