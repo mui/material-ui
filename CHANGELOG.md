@@ -1,7 +1,23 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.16.4
+
+<!-- generated comparing v5.16.3..master -->
+
+_Jul 16, 2024_
+
+A big thanks to the 1 contributor who made this release possible.
+
+### `@mui/material@5.16.4`
+
+- &#8203;<!-- 1 -->Fix wrong import in Popover types (#42967) @mnajdova
+
+All contributors of this release in alphabetical order: @mnajdova
+
 ## v5.16.3
+
 <!-- generated comparing v5.16.2..master -->
+
 _Jul 16, 2024_
 
 A big thanks to the 3 contributors who made this release possible.
