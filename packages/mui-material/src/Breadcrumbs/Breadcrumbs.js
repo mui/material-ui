@@ -152,7 +152,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
         key="ellipsis"
         slots={{ CollapsedIcon: slots.CollapsedIcon }}
         slotProps={{ collapsedIcon: collapsedIconSlotProps }}
-        onClick={handleClickExpand}
+        onClick={collapsedIconSlotProps.onClick || handleClickExpand}
       />,
       ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
     ];
