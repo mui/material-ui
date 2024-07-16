@@ -5,11 +5,10 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
-import { GA_ADS_DISPLAY_RATIO } from 'docs/src/modules/constants';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
 import { useTranslate } from '@mui/docs/i18n';
 
-function PleaseDisableAdblock(props) {
+function PleaseDisableAdblock() {
   const t = useTranslate();
 
   return (
@@ -17,7 +16,6 @@ function PleaseDisableAdblock(props) {
       component="span"
       elevation={0}
       sx={{ display: 'block', p: 1.5, border: '2px solid', borderColor: 'primary.main' }}
-      {...props}
     >
       <Typography variant="body2" component="span" gutterBottom sx={{ display: 'block' }}>
         {t('likeMui')}
@@ -74,7 +72,10 @@ const inHouseAds = [
   },
 ];
 
-class AdErrorBoundary extends React.Component {
+class AdErrorBoundary extends React.Component<{
+  eventLabel: string | null;
+  children?: React.ReactNode | undefined;
+}> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     eventLabel: PropTypes.string,
@@ -120,8 +121,8 @@ function isBot() {
 }
 
 export default function Ad() {
-  const [adblock, setAdblock] = React.useState(null);
-  const [carbonOut, setCarbonOut] = React.useState(null);
+  const [adblock, setAdblock] = React.useState<null | boolean>(null);
+  const [carbonOut, setCarbonOut] = React.useState<null | boolean>(null);
 
   const { current: randomAdblock } = React.useRef(Math.random());
   const { current: randomInHouse } = React.useRef(Math.random());
@@ -150,7 +151,7 @@ export default function Ad() {
   const ad = React.useContext(AdContext);
   const eventLabel = label ? `${label}-${ad.placement}-${adShape}` : null;
 
-  const timerAdblock = React.useRef();
+  const timerAdblock = React.useRef<NodeJS.Timeout>();
 
   const checkAdblock = React.useCallback(
     (attempt = 1) => {
@@ -162,7 +163,7 @@ export default function Ad() {
       ) {
         if (
           document.querySelector('#carbonads a') &&
-          document.querySelector('#carbonads a').getAttribute('href') ===
+          document.querySelector('#carbonads a')?.getAttribute('href') ===
             'https://material-ui-next.com/discover-more/backers'
         ) {
           setCarbonOut(true);
@@ -198,7 +199,7 @@ export default function Ad() {
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
-    if (Math.random() > GA_ADS_DISPLAY_RATIO || !eventLabel) {
+    if (Math.random() > ((process.env.GA_ADS_DISPLAY_RATIO ?? 0.1) as number) || !eventLabel) {
       return undefined;
     }
 
@@ -228,10 +229,6 @@ export default function Ad() {
         },
         ...(adShape === 'image' && {}),
         ...(adShape === 'inline' && {
-          display: 'flex',
-          alignItems: 'flex-end',
-        }),
-        ...(adShape === 'inline2' && {
           display: 'flex',
           alignItems: 'flex-end',
         }),
