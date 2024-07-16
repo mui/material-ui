@@ -134,6 +134,9 @@ async function buildSingleProject(
     );
 
     const projectHooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
+      if (projectSettings.skipHook?.(hook.filename)) {
+        return false;
+      }
       if (grep === null) {
         return true;
       }

@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "6.0.0-alpha.14",
+  "version": "6.0.0-beta.0",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -40,7 +40,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.7",
+    "@babel/runtime": "^7.24.8",
     "@mui/base": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/types": "workspace:^",
@@ -65,6 +65,7 @@
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@mui/material": "workspace:^",
+    "@mui/material-pigment-css": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
@@ -77,6 +78,9 @@
       "optional": true
     },
     "@emotion/styled": {
+      "optional": true
+    },
+    "@mui/material-pigment-css": {
       "optional": true
     }
   },

@@ -295,10 +295,10 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const radioGroup = React.useContext(RadioGroupContext);
   const activeColor = formControl?.error
     ? 'danger'
-    : inProps.color ?? formControl?.color ?? colorProp ?? 'primary';
+    : (inProps.color ?? formControl?.color ?? colorProp ?? 'primary');
   const inactiveColor = formControl?.error
     ? 'danger'
-    : inProps.color ?? formControl?.color ?? colorProp ?? 'neutral';
+    : (inProps.color ?? formControl?.color ?? colorProp ?? 'neutral');
   const size = inProps.size || formControl?.size || radioGroup?.size || sizeProp;
   const name = inProps.name || radioGroup?.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup?.disableIcon || disableIconProp;

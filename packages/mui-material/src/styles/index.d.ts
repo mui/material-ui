@@ -101,8 +101,6 @@ export * from './CssVarsProvider';
 
 export { default as extendTheme } from './extendTheme';
 
-export * from './stringifyTheme';
-
 export type {
   ColorSchemeOverrides,
   SupportedColorScheme,
