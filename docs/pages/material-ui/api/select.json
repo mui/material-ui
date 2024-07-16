@@ -90,7 +90,8 @@
       "key": "iconFilled",
       "className": "MuiSelect-iconFilled",
       "description": "Styles applied to the icon component if `variant=\"filled\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "iconOpen",
@@ -102,13 +103,15 @@
       "key": "iconOutlined",
       "className": "MuiSelect-iconOutlined",
       "description": "Styles applied to the icon component if `variant=\"outlined\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "iconStandard",
       "className": "MuiSelect-iconStandard",
       "description": "Styles applied to the icon component if `variant=\"standard\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "multiple",
