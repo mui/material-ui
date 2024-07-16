@@ -1501,16 +1501,29 @@ The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ## Typography
 
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#typography-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
 ### paragraph
 
-The Typography's `paragraph` prop was deprecated in favor of using the `component` prop. The `16px` of margin-bottom that was automatically added to the element when using `paragraph` must be manually handled now.
+The Typography's `paragraph` prop was deprecated. If you want to render `p` when using Typography, pass `component="p"`.
 
 ```diff
  <Typography
+   variant="subtitle1"
 -  paragraph
 +  component="p"
  />
 ```
+
+Note that Typography already renders a `p` by default, so there's no need to pass `component="p"` when not explicitly passing a variant.
+This is because `body1` is the default variant in Typography, and `body1` and `body2` variants render `p`, so there's no need to pass `component="p"` when using one of these variants.
+
+The `16px` of margin-bottom that was automatically added to the element when using `paragraph` must be manually handled now.
+The codemod that removes the `paragraph` prop adds `sx={{ marginBottom: '16px' }}` to the Typography component.
 
 ## StepLabel
 
