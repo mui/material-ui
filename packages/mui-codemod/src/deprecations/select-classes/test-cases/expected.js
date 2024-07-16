@@ -1,6 +1,8 @@
-import { tableSortLabelClasses } from '@mui/material/TableSortLabel';
+import { selectClasses } from '@mui/material/Select';
 
-("&.MuiTableSortLabel-directionDesc > .MuiTableSortLabel-icon");
-("&.MuiTableSortLabel-directionAsc > .MuiTableSortLabel-icon");
-`&.${tableSortLabelClasses.directionDesc} > .${tableSortLabelClasses.icon}`;
-`&.${tableSortLabelClasses.directionAsc} > .${tableSortLabelClasses.icon}`;
+("& .MuiSelect-filled ~ .MuiSelect-icon");
+("& .MuiSelect-outlined ~ .MuiSelect-icon");
+("& .MuiSelect-standard ~ .MuiSelect-icon");
+`& .${selectClasses.filled} ~ .${selectClasses.icon}`;
+`& .${selectClasses.outlined} ~ .${selectClasses.icon}`;
+`& .${selectClasses.standard} ~ .${selectClasses.icon}`;
