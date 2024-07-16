@@ -1,5 +1,25 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.16.2
+
+<!-- generated comparing v5.16.1..master -->
+
+_Jul 16, 2024_
+
+A big thanks to the 2 contributors who made this release possible. Here are some highlights ✨:
+
+- `@mui/base` is no longer a dependency of `@mui/material`
+
+### `@mui/material@5.16.2`
+
+- &#8203;<!-- 2 -->[material] Remove dependency to @mui/base (@mnajdova) (#42917) @mnajdova
+
+### Core
+
+- &#8203;<!-- 1 -->[website] Sync /about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @mnajdova, @oliviertassinari
+
 ## v5.16.1
 
 _Jul 11, 2024_
