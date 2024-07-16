@@ -11,7 +11,6 @@ const classes = [
     deprecatedClass: ' .MuiSelect-iconStandard',
     replacementSelector: ' .MuiSelect-standard ~ .MuiSelect-icon',
   },
-
 ];
 
 const plugin = () => {
