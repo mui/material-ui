@@ -152,7 +152,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const inputComponentsProps = { root: { ownerState } };
 
   const componentsProps =
-    (slotProps ?? componentsPropsProp)
+    slotProps ?? componentsPropsProp
       ? deepmerge(slotProps ?? componentsPropsProp, inputComponentsProps)
       : inputComponentsProps;
 

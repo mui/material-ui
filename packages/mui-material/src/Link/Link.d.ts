@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { DistributiveOmit } from '@mui/types';
-import { SxProps, Breakpoint } from '@mui/system';
+import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { TypographyOwnProps } from '../Typography';
 import { LinkClasses } from './linkClasses';
 
-export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'> {
+export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes' | 'sx'> {
   /**
    * The content of the component.
    */
@@ -23,9 +23,7 @@ export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'>
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme> & {
-    typography?: string | Partial<Record<Breakpoint, LinkProps['variant']>>;
-  };
+  sx?: SxProps<Theme>;
   /**
    * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
    */

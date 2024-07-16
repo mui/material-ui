@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { SxProps, Breakpoint } from '@mui/system';
+import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { TypographyTypeMap } from '../Typography';
 import { DialogTitleClasses } from './dialogTitleClasses';
 
-export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'classes'> {
+export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'classes' | 'sx'> {
   /**
    * The content of the component.
    */
@@ -17,9 +17,7 @@ export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'c
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme> & {
-    typography?: string | Partial<Record<Breakpoint, DialogTitleProps['variant']>>;
-  };
+  sx?: SxProps<Theme>;
 }
 
 export interface DialogTitleTypeMap<
