@@ -446,16 +446,7 @@ module.exports = {
       files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
       excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**/*{.ts,.tsx,.js}'],
       rules: {
-        'material-ui/mui-name-matches-component-name': [
-          'error',
-          {
-            customHooks: [
-              'useDatePickerDefaultizedProps',
-              'useDateTimePickerDefaultizedProps',
-              'useTimePickerDefaultizedProps',
-            ],
-          },
-        ],
+        'material-ui/mui-name-matches-component-name': 'error',
       },
     },
     {
@@ -476,7 +467,7 @@ module.exports = {
       rules: {
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
-        ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'off' } : {}),
+        'react-compiler/react-compiler': 'off',
       },
     },
     {

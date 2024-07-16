@@ -11,6 +11,7 @@ describe('<TabContext />', () => {
   it('is null by default', () => {
     let value;
     function Tabs() {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- value is used outside of component
       value = useTabContext();
       return null;
     }

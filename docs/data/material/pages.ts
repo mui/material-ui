@@ -283,6 +283,10 @@ const pages: MuiPage[] = [
             pathname: '/material-ui/migration/migration-css-theme-variables',
             title: 'Migrating to CSS theme variables',
           },
+          {
+            pathname: '/material-ui/migration/migrating-to-pigment-css',
+            title: 'Migrating to Pigment CSS',
+          },
         ],
       },
       {
