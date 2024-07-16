@@ -6,13 +6,14 @@ import IconButton from '@mui/material/IconButton';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 
-function ToggleColorMode({ mode, toggleColorMode }) {
+function ToggleColorMode({ mode, toggleColorMode, ...props }) {
   return (
     <IconButton
       onClick={toggleColorMode}
       color="primary"
       aria-label="Theme toggle button"
       size="small"
+      {...props}
     >
       {mode === 'dark' ? (
         <WbSunnyRoundedIcon fontSize="small" />

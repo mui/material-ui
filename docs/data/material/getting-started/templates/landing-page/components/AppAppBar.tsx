@@ -122,7 +122,11 @@ export default function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
               alignItems: 'center',
             }}
           >
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            <ToggleColorMode
+              data-screenshot="toggle-mode"
+              mode={mode}
+              toggleColorMode={toggleColorMode}
+            />
             <Button color="primary" variant="text" size="small">
               Sign in
             </Button>

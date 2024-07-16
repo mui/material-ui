@@ -298,7 +298,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
 
   const componentsProps =
-    slotProps ?? componentsPropsProp
+    (slotProps ?? componentsPropsProp)
       ? deepmerge(filledInputComponentsProps, slotProps ?? componentsPropsProp)
       : filledInputComponentsProps;
 
