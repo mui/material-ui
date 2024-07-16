@@ -115,7 +115,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
         ...(variant === 'elevation' && {
           '--Paper-shadow': (theme.vars || theme).shadows[elevation],
           ...(theme.vars && {
-            '--Paper-overlay': theme.overlays?.[elevation],
+            '--Paper-overlay': theme.vars.overlays?.[elevation],
           }),
           ...(!theme.vars &&
             theme.palette.mode === 'dark' && {

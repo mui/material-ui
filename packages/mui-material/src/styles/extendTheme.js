@@ -1,7 +1,11 @@
 import deepmerge from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
-import { prepareCssVars, prepareTypographyVars } from '@mui/system/cssVars';
+import {
+  prepareCssVars,
+  prepareTypographyVars,
+  createGetColorSchemeSelector,
+} from '@mui/system/cssVars';
 import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
 } from '@mui/system/styleFunctionSx';
@@ -90,56 +94,89 @@ const silent = (fn) => {
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
+function getOpacity(mode) {
+  return {
+    inputPlaceholder: mode === 'dark' ? 0.5 : 0.42,
+    inputUnderline: mode === 'dark' ? 0.7 : 0.42,
+    switchTrackDisabled: mode === 'dark' ? 0.2 : 0.12,
+    switchTrack: mode === 'dark' ? 0.3 : 0.38,
+  };
+}
+function getOverlays(mode) {
+  return mode === 'dark' ? defaultDarkOverlays : [];
+}
+
+function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
+  scheme = typeof scheme === 'boolean' ? {} : scheme;
+  const mode = colorScheme === 'dark' ? 'dark' : 'light';
+  const { palette, ...muiTheme } = createThemeWithoutVars({
+    ...restTheme,
+    palette: {
+      mode,
+      ...scheme?.palette,
+    },
+  });
+  colorSchemes[colorScheme] = {
+    ...scheme,
+    palette,
+    opacity: {
+      ...getOpacity(mode),
+      ...scheme?.opacity,
+    },
+    overlays: scheme?.overlays || getOverlays(mode),
+  };
+  return muiTheme;
+}
+
+/**
+ * A default `extendTheme` comes with a single color scheme, either `light` or `dark` based on the `defaultColorScheme`.
+ * This is better suited for apps that only need a single color scheme.
+ *
+ * To enable built-in `light` and `dark` color schemes, either:
+ * 1. provide a `colorSchemeSelector` to define how the color schemes will change.
+ * 2. provide `colorSchemes.dark` will set `colorSchemeSelector: 'media'` by default.
+ */
 export default function extendTheme(options = {}, ...args) {
   const {
-    colorSchemes: colorSchemesInput = {},
+    colorSchemes: colorSchemesInput = { light: true },
+    defaultColorScheme = Object.keys(colorSchemesInput).length > 1
+      ? 'light'
+      : Object.keys(colorSchemesInput)[0],
+    disableCssColorScheme = false,
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    getSelector,
+    colorSchemeSelector: selector = colorSchemesInput.light && colorSchemesInput.dark
+      ? 'media'
+      : undefined,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
+  const {
+    [defaultColorScheme]: defaultScheme,
+    light: builtInLight,
+    dark: builtInDark,
+    ...customColorSchemes
+  } = colorSchemesInput;
+  const colorSchemes = { ...customColorSchemes };
 
-  const { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
-    ...input,
-    ...(colorSchemesInput.light && { palette: colorSchemesInput.light?.palette }),
-  });
-  const { palette: darkPalette } = createThemeWithoutVars({
-    palette: { mode: 'dark', ...colorSchemesInput.dark?.palette },
-  });
+  // Create the palette for the default color scheme, either `light`, `dark`, or custom color scheme.
+  const muiTheme = attachColorScheme(colorSchemes, defaultScheme, input, defaultColorScheme);
+
+  if (builtInLight && !colorSchemes.light) {
+    attachColorScheme(colorSchemes, builtInLight, undefined, 'light');
+  }
+
+  if (builtInDark && !colorSchemes.dark) {
+    attachColorScheme(colorSchemes, builtInDark, undefined, 'dark');
+  }
 
   let theme = {
-    defaultColorScheme: 'light',
+    defaultColorScheme,
     ...muiTheme,
     cssVarPrefix,
+    colorSchemeSelector: selector,
     getCssVar,
-    colorSchemes: {
-      ...colorSchemesInput,
-      light: {
-        ...colorSchemesInput.light,
-        palette: lightPalette,
-        opacity: {
-          inputPlaceholder: 0.42,
-          inputUnderline: 0.42,
-          switchTrackDisabled: 0.12,
-          switchTrack: 0.38,
-          ...colorSchemesInput.light?.opacity,
-        },
-        overlays: colorSchemesInput.light?.overlays || [],
-      },
-      dark: {
-        ...colorSchemesInput.dark,
-        palette: darkPalette,
-        opacity: {
-          inputPlaceholder: 0.5,
-          inputUnderline: 0.7,
-          switchTrackDisabled: 0.2,
-          switchTrack: 0.3,
-          ...colorSchemesInput.dark?.opacity,
-        },
-        overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
-      },
-    },
+    colorSchemes,
     font: { ...prepareTypographyVars(muiTheme.typography), ...muiTheme.font },
     spacing: getSpacingVal(input.spacing),
   };
@@ -155,10 +192,11 @@ export default function extendTheme(options = {}, ...args) {
     };
 
     // attach black & white channels to common node
-    if (key === 'light') {
+    if (palette.mode === 'light') {
       setColor(palette.common, 'background', '#fff');
       setColor(palette.common, 'onBackground', '#000');
-    } else {
+    }
+    if (palette.mode === 'dark') {
       setColor(palette.common, 'background', '#000');
       setColor(palette.common, 'onBackground', '#fff');
     }
@@ -182,7 +220,7 @@ export default function extendTheme(options = {}, ...args) {
       'TableCell',
       'Tooltip',
     ]);
-    if (key === 'light') {
+    if (palette.mode === 'light') {
       setColor(palette.Alert, 'errorColor', safeDarken(palette.error.light, 0.6));
       setColor(palette.Alert, 'infoColor', safeDarken(palette.info.light, 0.6));
       setColor(palette.Alert, 'successColor', safeDarken(palette.success.light, 0.6));
@@ -194,22 +232,22 @@ export default function extendTheme(options = {}, ...args) {
       setColor(
         palette.Alert,
         'errorFilledColor',
-        silent(() => lightPalette.getContrastText(palette.error.main)),
+        silent(() => palette.getContrastText(palette.error.main)),
       );
       setColor(
         palette.Alert,
         'infoFilledColor',
-        silent(() => lightPalette.getContrastText(palette.info.main)),
+        silent(() => palette.getContrastText(palette.info.main)),
       );
       setColor(
         palette.Alert,
         'successFilledColor',
-        silent(() => lightPalette.getContrastText(palette.success.main)),
+        silent(() => palette.getContrastText(palette.success.main)),
       );
       setColor(
         palette.Alert,
         'warningFilledColor',
-        silent(() => lightPalette.getContrastText(palette.warning.main)),
+        silent(() => palette.getContrastText(palette.warning.main)),
       );
       setColor(palette.Alert, 'errorStandardBg', safeLighten(palette.error.light, 0.9));
       setColor(palette.Alert, 'infoStandardBg', safeLighten(palette.info.light, 0.9));
@@ -251,7 +289,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(
         palette.SnackbarContent,
         'color',
-        silent(() => lightPalette.getContrastText(snackbarContentBackground)),
+        silent(() => palette.getContrastText(snackbarContentBackground)),
       );
       setColor(
         palette.SpeedDialAction,
@@ -270,7 +308,8 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Switch, 'warningDisabledColor', safeLighten(palette.warning.main, 0.62));
       setColor(palette.TableCell, 'border', safeLighten(safeAlpha(palette.divider, 1), 0.88));
       setColor(palette.Tooltip, 'bg', safeAlpha(palette.grey[700], 0.92));
-    } else {
+    }
+    if (palette.mode === 'dark') {
       setColor(palette.Alert, 'errorColor', safeLighten(palette.error.light, 0.6));
       setColor(palette.Alert, 'infoColor', safeLighten(palette.info.light, 0.6));
       setColor(palette.Alert, 'successColor', safeLighten(palette.success.light, 0.6));
@@ -282,22 +321,22 @@ export default function extendTheme(options = {}, ...args) {
       setColor(
         palette.Alert,
         'errorFilledColor',
-        silent(() => darkPalette.getContrastText(palette.error.dark)),
+        silent(() => palette.getContrastText(palette.error.dark)),
       );
       setColor(
         palette.Alert,
         'infoFilledColor',
-        silent(() => darkPalette.getContrastText(palette.info.dark)),
+        silent(() => palette.getContrastText(palette.info.dark)),
       );
       setColor(
         palette.Alert,
         'successFilledColor',
-        silent(() => darkPalette.getContrastText(palette.success.dark)),
+        silent(() => palette.getContrastText(palette.success.dark)),
       );
       setColor(
         palette.Alert,
         'warningFilledColor',
-        silent(() => darkPalette.getContrastText(palette.warning.dark)),
+        silent(() => palette.getContrastText(palette.warning.dark)),
       );
       setColor(palette.Alert, 'errorStandardBg', safeDarken(palette.error.light, 0.9));
       setColor(palette.Alert, 'infoStandardBg', safeDarken(palette.info.light, 0.9));
@@ -341,7 +380,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(
         palette.SnackbarContent,
         'color',
-        silent(() => darkPalette.getContrastText(snackbarContentBackground)),
+        silent(() => palette.getContrastText(snackbarContentBackground)),
       );
       setColor(
         palette.SpeedDialAction,
@@ -420,12 +459,11 @@ export default function extendTheme(options = {}, ...args) {
 
   const parserConfig = {
     prefix: cssVarPrefix,
+    disableCssColorScheme,
     shouldSkipGeneratingVar,
-    getSelector: getSelector || defaultGetSelector(theme),
+    getSelector: defaultGetSelector(theme),
   };
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
-  theme.attribute = 'data-mui-color-scheme';
-  theme.colorSchemeSelector = ':root';
   theme.vars = vars;
   Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
     theme[key] = value;
@@ -435,7 +473,7 @@ export default function extendTheme(options = {}, ...args) {
   theme.generateSpacing = function generateSpacing() {
     return createSpacing(input.spacing, createUnarySpacing(this));
   };
-  theme.getColorSchemeSelector = (colorScheme) => `[${theme.attribute}="${colorScheme}"] &`;
+  theme.getColorSchemeSelector = createGetColorSchemeSelector(selector);
   theme.spacing = theme.generateSpacing();
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
