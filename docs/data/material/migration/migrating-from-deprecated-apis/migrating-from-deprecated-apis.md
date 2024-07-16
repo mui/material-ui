@@ -1297,6 +1297,52 @@ The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
  />
 ```
 
+## Select
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#select-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/select-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `icon` class and `variant` prop were removed.
+
+Here's how to migrate:
+
+```diff
+- .MuiSelect-iconFilled
++ .MuiSelect-filled ~ .MuiSelect-icon
+- .MuiSelect-iconOutlined
++ .MuiSelect-outlined ~ .MuiSelect-icon
+- .MuiSelect-iconStandard
++ .MuiSelect-standard ~ .MuiSelect-icon
+```
+
+```diff
+ import { selectClasses } from '@mui/material/Select';
+
+ MuiSelect: {
+   styleOverrides: {
+     root: {
+-      [`& .${selectClasses.iconFilled}`]: {
++      [`& .${selectClasses.filled} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${selectClasses.iconOutlined}`]: {
++      [`& .${selectClasses.outlined} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${selectClasses.iconStandard}`]: {
++      [`& .${selectClasses.standard} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
+```
+
 ## Slider
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following sections:

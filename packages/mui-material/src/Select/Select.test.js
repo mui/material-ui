@@ -1758,8 +1758,6 @@ describe('<Select />', () => {
   it('outlined icon should be selected from below css selectors', () => {
     const { container } = render(<Select value="" />);
     expect(container.querySelector('.MuiSelect-iconOutlined')).not.to.equal(null);
-    expect(
-      container.querySelector('.MuiSelect-outlined ~ .MuiSelect-icon'),
-    ).not.to.equal(null);
+    expect(container.querySelector('.MuiSelect-outlined ~ .MuiSelect-icon')).not.to.equal(null);
   });
 });
