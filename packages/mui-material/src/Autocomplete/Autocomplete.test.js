@@ -414,15 +414,26 @@ describe('<Autocomplete />', () => {
       }
     });
 
-    it('listbox stays open after opening', () => {
+    it('When the input box needs to expand downward, the listbox should remain open.', () => {
+      const options = [
+        'The Lord of the Rings: The Return of the King',
+        'The Good, the Bad and the Ugly',
+        'The Shawshank Redemption',
+        'Star Wars: Episode V - The Empire Strikes Back',
+      ];
+      const defaultValue = [
+        'The Lord of the Rings: The Return of the King',
+        'The Good, the Bad and the Ugly',
+        'The Shawshank Redemption',
+      ];
       const handleClose = spy();
       const { getByRole } = render(
         <Autocomplete
           multiple
           onClose={handleClose}
           limitTags={2}
-          options={['one', 'two', 'three', 'four', 'five']}
-          defaultValue={['one', 'two', 'three']}
+          options={options}
+          defaultValue={defaultValue}
           renderInput={(params) => <TextField {...params} variant="standard" />}
         />,
       );
