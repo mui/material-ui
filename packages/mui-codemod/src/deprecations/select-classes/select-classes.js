@@ -15,7 +15,10 @@ export default function transformer(file, api, options) {
       .filter((path) => path.node.source.value.match(/^@mui\/material\/Select$/))
       .forEach((path) => {
         path.node.specifiers.forEach((specifier) => {
-          if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'selectClasses') {
+          if (
+            specifier.type === 'ImportSpecifier' &&
+            specifier.imported.name === 'selectClasses'
+          ) {
             const deprecatedAtomicClass = deprecatedClass.replace(
               `${deprecatedClass.split('-')[0]}-`,
               '',
@@ -32,19 +35,12 @@ export default function transformer(file, api, options) {
                     (expression) => expression === memberExpression.value,
                   );
                   const precedingTemplateElement = parent.quasis[memberExpressionIndex];
-
-                  let cssSelector = '';
-                  if (replacementSelector.includes(' > ')) {
-                    cssSelector = '>';
-                  } else if (replacementSelector.includes(' ~ ')) {
-                    cssSelector = '~';
-                  }
-
                   const atomicClasses = replacementSelector
-                    .replaceAll('MuiTableSortLabel-', '')
+                    .replaceAll('MuiSelect-', '')
                     .replaceAll(replacementSelectorPrefix, '')
-                    .replaceAll(`${cssSelector} `, '')
+                    .replaceAll(' ~ ', '')
                     .split('.')
+                    .map((className) => className.trim())
                     .filter(Boolean);
 
                   if (
@@ -66,7 +62,7 @@ export default function transformer(file, api, options) {
                     ];
                     parent.expressions.splice(...atomicClassesArgs);
 
-                    if (cssSelector) {
+                    if (replacementSelector.includes(' ~ ')) {
                       const quasisArgs = [
                         memberExpressionIndex,
                         1,
@@ -77,10 +73,7 @@ export default function transformer(file, api, options) {
                           },
                           false,
                         ),
-                        j.templateElement(
-                          { raw: ` ${cssSelector} .`, cooked: ` ${cssSelector} .` },
-                          false,
-                        ),
+                        j.templateElement({ raw: ' ~ .', cooked: ' ~ .' }, false),
                       ];
 
                       if (atomicClasses.length === 3) {
