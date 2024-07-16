@@ -1757,7 +1757,7 @@ describe('<Select />', () => {
 
   it('outlined icon should be selected from below css selectors', () => {
     const { container } = render(<Select value="" />);
-    console.log(container.classList,'p');
+    console.log(container.classList, 'p');
     expect(container.querySelector('.MuiSelect-root .MuiSelect-iconOutlined')).not.to.equal(null);
     expect(
       container.querySelector('.MuiSelect-root .MuiSelect-outlined ~ .MuiSelect-icon'),
