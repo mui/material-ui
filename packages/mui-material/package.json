@@ -47,6 +47,7 @@
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
+    "@popperjs/core": "^2.11.8",
     "@types/react-transition-group": "^4.4.10",
     "clsx": "^2.1.0",
     "csstype": "^3.1.3",
