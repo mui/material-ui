@@ -1755,7 +1755,7 @@ describe('<Select />', () => {
     expect(getByRole('combobox')).not.toHaveFocus();
   });
 
-  it('should render outlined select icon', () => {
+  it('outlined icon should be selected from below css selectors', () => {
     const { container } = render(<Select value="" />);
     expect(container.querySelector('.MuiSelect-root .MuiSelect-iconOutlined')).not.to.equal(null);
     expect(
