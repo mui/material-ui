@@ -1757,7 +1757,9 @@ describe('<Select />', () => {
 
   it('should render outlined select icon', () => {
     const { container } = render(<Select value="" />);
-    expect(container.querySelector('.MuiSelect-iconOutlined')).not.null();
-    expect(container.querySelector('.MuiSelect-outlined ~ .MuiSelect-icon')).not.null();
+    expect(container.querySelector('.MuiSelect-root .MuiSelect-iconOutlined')).not.to.equal(null);
+    expect(
+      container.querySelector('.MuiSelect-root .MuiSelect-outlined ~ .MuiSelect-icon'),
+    ).not.to.equal(null);
   });
 });
