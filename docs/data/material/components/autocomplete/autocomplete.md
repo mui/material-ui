@@ -212,7 +212,7 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 {{"demo": "GoogleMaps.js"}}
 
-:::success
+:::info
 The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
 :::
 
