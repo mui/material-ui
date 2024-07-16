@@ -1754,4 +1754,10 @@ describe('<Select />', () => {
 
     expect(getByRole('combobox')).not.toHaveFocus();
   });
+
+  it('should render outlined select icon', () => {
+    const { container } = render(<Select value="" />);
+    expect(container.querySelector('.MuiSelect-iconOutlined')).not.null();
+    expect(container.querySelector('.MuiSelect-outlined ~ .MuiSelect-icon')).not.null();
+  });
 });
