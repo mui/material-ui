@@ -45,6 +45,7 @@
     "@mui/system": "workspace:*",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:*",
+    "@popperjs/core": "^2.11.8",
     "@types/react-transition-group": "^4.4.10",
     "clsx": "^2.1.1",
     "csstype": "^3.1.3",
@@ -55,7 +56,6 @@
   "devDependencies": {
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
-    "@popperjs/core": "^2.11.8",
     "@testing-library/dom": "^10.3.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/chai": "^4.3.16",
