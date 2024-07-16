@@ -17,7 +17,7 @@ Other kits, such as the Joy UI Design Kit, are not supported yet.
 
 If you don't have the [complete and latest version](/store/items/figma-react/) of the Material UI for Figma Design Kit installed, you can test the plugin by using the [Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x) instead.
 
-After installing and opening it in Figma, head over to the [Material UI Sync plugin page](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync) on the Community tab and click on **Open in...** and select the Material UI for Figma Design Kit.
+After installing and opening it in Figma, head over to the [Material UI Sync plugin page](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync) on the Community tab and click on **Open in…** and select the Material UI for Figma Design Kit.
 
 <img src="/static/material-ui/design-resources/sync-access.png" style="width: 814px;" alt="Accessing Material UI Sync via the Resources menu in Figma." width="1628" height="400" />
 
@@ -297,4 +297,4 @@ export default function MyApp({ Component, pageProps }) {
 
 ## Feedback and bug reports
 
-Use [the dedicated Material UI Sync feedback board](https://material-ui-sync.canny.io/) to share feedback, report bugs, or drop feature requests.
+If you've got any feedback, we'd love to [hear from you](https://github.com/mui/mui-design-kits/discussions/84).
