@@ -67,7 +67,7 @@ describe('<Select />', () => {
       </Select>,
     );
 
-    expect(container.querySelector(classes.root)).not.to.equal(null);
+    expect(container.querySelector(`.${classes.root}`)).not.to.equal(null);
   });
 
   specify('the trigger is in tab order', () => {
