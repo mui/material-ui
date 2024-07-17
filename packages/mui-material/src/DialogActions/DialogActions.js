@@ -31,16 +31,11 @@ const DialogActionsRoot = styled('div', {
   padding: 8,
   justifyContent: 'flex-end',
   flex: '0 0 auto',
-  ...(!ownerState.disableSpacing && {
-    gap: 8,
-  }),
   variants: [
     {
       props: ({ ownerState }) => !ownerState.disableSpacing,
       style: {
-        '& > :not(style) ~ :not(style)': {
-          marginLeft: 8,
-        },
+        gap: 8,
       },
     },
   ],
