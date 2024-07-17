@@ -129,7 +129,6 @@
     "@types/react-transition-group": "^4.4.10",
     "@types/react-window": "^1.8.8",
     "@types/stylis": "^4.2.0",
-    "@types/gtag.js": "^0.0.20",
     "chai": "^4.4.1",
     "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",

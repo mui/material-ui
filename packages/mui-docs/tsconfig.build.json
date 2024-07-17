@@ -11,7 +11,7 @@
     "rootDir": "./src",
     "tsBuildInfoFile": "build/tsconfig.build.tsbuildinfo"
   },
-  "include": ["src/**/*.ts*", "src/**/*.json"],
+  "include": ["src/**/*.ts*", "src/**/*.json", "types"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
   "references": [
     { "path": "../mui-material/tsconfig.build.json" },
