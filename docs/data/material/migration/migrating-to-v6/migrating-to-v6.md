@@ -2,7 +2,7 @@
 
 <p class="description">This guide explains how and why to migrate from Material UI v5 to v6.</p>
 
-## Start using the alpha release
+## Start using the beta release
 
 In your `package.json` file, change the package version from `latest` to `next`.
 
@@ -20,8 +20,8 @@ Optionally, if you are using one of these packages, you can also change their ve
 - `@mui/styled-engine-sc`
 - `@mui/utils`
 
-Using `next` ensures your project always uses the latest v6 alpha release.
-Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-alpha.0`.
+Using `next` ensures your project always uses the latest v6 beta release.
+Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-beta.0`.
 
 ## Why you should migrate
 
@@ -119,6 +119,19 @@ This results in a reduction of the `@mui/material` package size by 2.5MB or 25% 
 Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended.
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
+### Autocomplete
+
+#### New reason values added to onInputChange
+
+Three new possible values have been added to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
+These three were previously treated as `"reset"`, so if you are relying on that, you might need to adjust your code accordingly:
+
+- `"blur"`: like `"reset"` but triggered when the focus is moved off the input. `clearOnBlur` must be `true`.
+- `"selectOption"`: triggered when the input value changes after an option has been selected.
+- `"removeOption"`: triggered in multiple selection when a chip gets removed due to the corresponding option being selected.
+
+These are added on top of the existing ones: `"input"`, `"reset"`, and `"clear"`.
+
 ### Chip
 
 Previously, the Chip component lost focus when the escape button was pressed, which differed from how other button-like components work.
@@ -212,7 +225,7 @@ If you have custom breakpoints, the change is the same:
 Which you can cover with the same codemod by providing the custom breakpoints as an argument:
 
 ```bash
-npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshit='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 #### Removal of the disableEqualOverflow prop
@@ -347,6 +360,4 @@ This reduces the API surface and lets you define variants in other slots of the 
 
 ## Pigment CSS integration (optional)
 
-:::info
-⏳ This section is under construction
-:::
+Check out the [Pigment CSS migration page](/material-ui/migration/migrating-to-pigment-css/) to learn how to integrate it into your project.

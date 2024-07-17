@@ -41,5 +41,5 @@
       "description": "Help supporting a react-transition-group/Transition component."
     }
   },
-  "classDescriptions": {}
+  "classDescriptions": { "root": { "description": "Class name applied to the root element." } }
 }

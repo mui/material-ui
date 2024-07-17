@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "6.0.0-alpha.14",
+  "version": "6.0.0-beta.2",
   "private": false,
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
@@ -40,12 +40,12 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.7",
-    "@mui/base": "workspace:*",
+    "@babel/runtime": "^7.24.8",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:*",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:*",
+    "@popperjs/core": "^2.11.8",
     "@types/react-transition-group": "^4.4.10",
     "clsx": "^2.1.1",
     "csstype": "^3.1.3",
@@ -56,7 +56,6 @@
   "devDependencies": {
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
-    "@popperjs/core": "^2.11.8",
     "@testing-library/dom": "^10.3.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/chai": "^4.3.16",
@@ -78,7 +77,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@pigment-css/react": "^0.0.16",
+    "@mui/material-pigment-css": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
@@ -93,7 +92,7 @@
     "@emotion/styled": {
       "optional": true
     },
-    "@pigment-css/react": {
+    "@mui/material-pigment-css": {
       "optional": true
     }
   },
@@ -104,5 +103,17 @@
   },
   "engines": {
     "node": ">=12.0.0"
+  },
+  "pigment-css": {
+    "vite": {
+      "include": [
+        "prop-types",
+        "react-is",
+        "hoist-non-react-statics",
+        "react",
+        "react-dom",
+        "@emotion/react"
+      ]
+    }
   }
 }
