@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import usePreviousProps from '@mui/utils/usePreviousProps';
 import composeClasses from '@mui/utils/composeClasses';
-import { useBadge } from '@mui/base/useBadge';
-import { useSlotProps } from '@mui/base/utils';
-import { styled, createUseThemeProps } from '../zero-styled';
+import useSlotProps from '@mui/utils/useSlotProps';
+import useBadge from './useBadge';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
-
-const useThemeProps = createUseThemeProps('MuiBadge');
 
 const useUtilityClasses = (ownerState) => {
   const { color, anchorOrigin, invisible, overlap, variant, classes = {} } = ownerState;
@@ -89,13 +88,9 @@ const BadgeBadge = styled('span', {
     duration: theme.transitions.duration.enteringScreen,
   }),
   variants: [
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter(
-        (key) =>
-          (theme.vars ?? theme).palette[key].main &&
-          (theme.vars ?? theme).palette[key].contrastText,
-      )
-      .map((color) => ({
+    ...Object.entries(theme.palette)
+      .filter(([, palette]) => palette && palette.main && palette.contrastText)
+      .map(([color]) => ({
         props: { color },
         style: {
           backgroundColor: (theme.vars || theme).palette[color].main,
@@ -244,7 +239,7 @@ const BadgeBadge = styled('span', {
 }));
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });
   const {
     anchorOrigin: anchorOriginProp = {
       vertical: 'top',
@@ -398,8 +393,7 @@ Badge.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -411,8 +405,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

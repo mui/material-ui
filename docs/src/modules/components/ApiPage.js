@@ -3,17 +3,17 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import AdGuest from 'docs/src/modules/components/AdGuest';
 import Alert from '@mui/material/Alert';
+import AdGuest from 'docs/src/modules/components/AdGuest';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
-import { alpha } from '@mui/material/styles';
+import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
+import { SectionTitle } from '@mui/docs/SectionTitle';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import BrandingProvider from 'docs/src/BrandingProvider';
 import PropertiesSection, {
   getPropsToC,
 } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
@@ -48,19 +48,9 @@ export function getTranslatedHeader(t, header) {
 }
 
 function Heading(props) {
-  const { hash, level: Level = 'h2' } = props;
+  const { hash, level = 'h2' } = props;
   const t = useTranslate();
-
-  return (
-    <Level id={hash}>
-      {getTranslatedHeader(t, hash)}
-      <a aria-labelledby={hash} className="anchor-link" href={`#${hash}`} tabIndex={-1}>
-        <svg>
-          <use xlinkHref="#anchor-link-icon" />
-        </svg>
-      </a>
-    </Level>
-  );
+  return <SectionTitle title={getTranslatedHeader(t, hash)} hash={hash} level={level} />;
 }
 
 Heading.propTypes = {
@@ -82,6 +72,7 @@ export default function ApiPage(props) {
   const {
     cssComponent,
     demos,
+    deprecated,
     filename,
     forwardsRefTo,
     inheritance,
@@ -114,6 +105,7 @@ export default function ApiPage(props) {
     componentDescription,
     componentDescriptionToc = [],
     classDescriptions,
+    deprecationInfo,
     propDescriptions,
     slotDescriptions,
   } = descriptions[userLanguage];
@@ -190,6 +182,19 @@ export default function ApiPage(props) {
     >
       <MarkdownElement>
         <h1>{pageContent.name} API</h1>
+        {deprecated ? (
+          <Alert
+            severity="warning"
+            icon={<WarningRoundedIcon fontSize="small" />}
+            sx={{ mt: 1.5, mb: 3 }}
+          >
+            <span
+              dangerouslySetInnerHTML={{
+                __html: deprecationInfo || t('api-docs.defaultDeprecationMessage'),
+              }}
+            />
+          </Alert>
+        ) : null}
         <Typography variant="h5" component="p" className="description" gutterBottom>
           {description}
           {disableAd ? null : (
@@ -201,38 +206,7 @@ export default function ApiPage(props) {
           )}
         </Typography>
         <Heading hash="demos" />
-        <Alert
-          severity="success"
-          variant="outlined"
-          icon={<VerifiedRoundedIcon sx={{ fontSize: 20 }} />}
-          sx={[
-            (theme) => ({
-              mt: 1.5,
-              pt: 1,
-              px: 2,
-              pb: 0,
-              fontSize: theme.typography.pxToRem(16),
-              backgroundColor: (theme.vars || theme).palette.success[50],
-              borderColor: (theme.vars || theme).palette.success[100],
-              '& * p': {
-                mb: 1,
-              },
-              '& * a': {
-                fontWeight: theme.typography.fontWeightMedium,
-                color: (theme.vars || theme).palette.success[900],
-                textDecorationColor: alpha(theme.palette.success[600], 0.3),
-              },
-              ...theme.applyDarkStyles({
-                '& * a': {
-                  color: (theme.vars || theme).palette.success[100],
-                  textDecorationColor: alpha(theme.palette.success[100], 0.3),
-                },
-                backgroundColor: alpha(theme.palette.success[700], 0.15),
-                borderColor: alpha(theme.palette.success[600], 0.3),
-              }),
-            }),
-          ]}
-        >
+        <Alert severity="success" icon={<VerifiedRoundedIcon fontSize="small" />}>
           <span
             dangerouslySetInnerHTML={{
               __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
@@ -247,7 +221,9 @@ export default function ApiPage(props) {
 `)}
           language="jsx"
         />
-        <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        {pageContent.imports.length > 1 && (
+          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        )}
         {componentDescription ? (
           <React.Fragment>
             <br />
@@ -299,7 +275,6 @@ export default function ApiPage(props) {
                   .replace(/{{name}}/, pageContent.name),
               }}
             />
-            <Divider />
           </React.Fragment>
         )}
         {pageContent.themeDefaultProps && (
@@ -312,7 +287,6 @@ export default function ApiPage(props) {
                   .replace(/{{defaultPropsLink}}/, defaultPropsLink),
               }}
             />
-            <Divider sx={{ 'hr&&': { mb: 0 } }} />
           </React.Fragment>
         )}
         <SlotsSection

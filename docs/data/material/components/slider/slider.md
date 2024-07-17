@@ -14,7 +14,7 @@ unstyled: /base-ui/react-slider/
 
 Sliders reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Continuous sliders
 
@@ -151,17 +151,3 @@ However, you need to make sure that:
 - Each thumb has a user-friendly text for its current value.
   This is not required if the value matches the semantics of the label.
   You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
-
-## Limitations
-
-### IE 11
-
-The slider's value label is not centered in IE 11.
-The alignment is not handled to make customizations easier with the latest browsers.
-You can solve the issue with:
-
-```css
-.MuiSlider-valueLabel {
-  left: calc(-50% - 4px);
-}
-```

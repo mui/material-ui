@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "target": "es5",
+    // aligning with Node18 recommendation: https://www.npmjs.com/package/@tsconfig/node18
+    "target": "es2022",
     "lib": ["es2020", "dom"],
     "jsx": "preserve",
     "moduleResolution": "node",
@@ -42,16 +43,12 @@
       "@mui/joy": ["./packages/mui-joy/src"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
       "@mui/icons-material/*": ["./packages/mui-icons-material/src/icon.d.ts"],
-      "@pigment-css/nextjs-plugin": ["./packages/pigment-css-nextjs-plugin/src"],
-      "@pigment-css/nextjs-plugin/*": ["./packages/pigment-css-nextjs-plugin/src/*"],
-      "@pigment-css/react": ["./packages/pigment-css-react/src"],
-      "@pigment-css/react/*": ["./packages/pigment-css-react/src/*"],
-      "@pigment-css/vite-plugin": ["./packages/pigment-css-vite-plugin/src"],
-      "@pigment-css/vite-plugin/*": ["./packages/pigment-css-vite-plugin/src/*"],
       "@mui/internal-docs-utils": ["./packages-internal/docs-utils/src"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "./packages-internal/scripts/typescript-to-proptypes/src"
-      ]
+      ],
+      "@mui/internal-test-utils": ["./packages-internal/test-utils/src"],
+      "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
     "types": ["node", "react"]

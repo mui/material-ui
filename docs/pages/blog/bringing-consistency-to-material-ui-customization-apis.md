@@ -4,7 +4,7 @@ description: We're standardizing two key areas of the Material UI customization
 date: 2024-03-18T10:00:00.000Z
 authors: ['diegoandai']
 tags: ['Material UI', 'Product']
-card: true
+manualCard: true
 ---
 
 The Material UI team is working on two initiatives to standardize the Material UI API: The first applies to overriding inner elements, and the second applies to component CSS classes.

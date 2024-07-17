@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import CardActions, { cardActionsClasses as classes } from '@mui/material/CardActions';
 import { expect } from 'chai';
 import describeConformance from '../../test/describeConformance';

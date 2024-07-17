@@ -5,6 +5,7 @@ export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';
+export { default as cssContainerQueries } from './cssContainerQueries';
 export {
   handleBreakpoints,
   mergeBreakpointsInOrder,

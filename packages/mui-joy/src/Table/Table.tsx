@@ -418,15 +418,11 @@ Table.propTypes /* remove-proptypes */ = {
   }),
   /**
    * If `true`, the footer always appear at the bottom of the overflow table.
-   *
-   * ⚠️ It doesn't work with IE11.
    * @default false
    */
   stickyFooter: PropTypes.bool,
   /**
    * If `true`, the header always appear at the top of the overflow table.
-   *
-   * ⚠️ It doesn't work with IE11.
    * @default false
    */
   stickyHeader: PropTypes.bool,

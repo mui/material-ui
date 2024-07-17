@@ -68,18 +68,10 @@ const rule = {
 
     return {
       CallExpression(node) {
-        const isCreateUseThemePropsCall = node.callee.name === 'createUseThemeProps';
-        if (isCreateUseThemePropsCall) {
-          if (!node.arguments.length) {
-            context.report({ node, messageId: 'noNameValue' });
-          } else if (node.arguments[0].type !== 'Literal' || !node.arguments[0].value) {
-            context.report({ node: node.arguments[0], messageId: 'noNameValue' });
-          }
-        }
-
         let nameLiteral = null;
-        const isUseThemePropsCall = node.callee.name === 'useThemeProps';
-        if (isUseThemePropsCall) {
+        const isUseDefaultPropsCall =
+          node.callee.name === 'useDefaultProps' || node.callee.name === 'useThemeProps';
+        if (isUseDefaultPropsCall) {
           let isCalledFromCustomHook = false;
           let parent = node.parent;
           while (parent != null) {

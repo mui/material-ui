@@ -7,7 +7,7 @@ import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
-import useTheme from '../styles/useTheme';
+import { useTheme } from '../zero-styled';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 

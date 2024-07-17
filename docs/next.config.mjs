@@ -30,10 +30,6 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
-  experimental: {
-    workerThreads: true,
-    cpus: 3,
-  },
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -256,7 +252,7 @@ export default withDocsInfra({
 
     return map;
   },
-  // Used to signal we run yarn build
+  // Used to signal we run pnpm build
   ...(process.env.NODE_ENV === 'production'
     ? {
         output: 'export',

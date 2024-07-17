@@ -6,19 +6,24 @@ import Switch from '@mui/material/Switch';
 
 const StyledSlider = styled(Slider, {
   shouldForwardProp: (prop) => prop !== 'success',
-})(({ success, theme }) => ({
+})(({ theme }) => ({
   width: 300,
-  ...(success && {
-    color: theme.palette.success.main,
-    '& .MuiSlider-thumb': {
-      [`&:hover, &.Mui-focusVisible`]: {
-        boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
-      },
-      [`&.Mui-active`]: {
-        boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
+  variants: [
+    {
+      props: ({ success }) => success,
+      style: {
+        color: theme.palette.success.main,
+        '& .MuiSlider-thumb': {
+          [`&:hover, &.Mui-focusVisible`]: {
+            boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
+          },
+          [`&.Mui-active`]: {
+            boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
+          },
+        },
       },
     },
-  }),
+  ],
 }));
 
 export default function DynamicCSS() {

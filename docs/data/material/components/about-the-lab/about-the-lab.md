@@ -8,7 +8,7 @@ As developers use and test the components and report issues, the maintainers lea
 
 For a component to be ready to move to the core, the following criteria are considered:
 
-- It needs to be **used**. We uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
+- It needs to be **used**. We use Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
 - It needs to match the **code quality** of the core components. It doesn't have to be perfect to be part of the core, but the component should be reliable enough that developers can depend on it.
   - Each component needs **type definitions**. It is not currently required that a lab component is typed, but it would need to be typed to move to the core.
   - Requires good **test coverage**. Some of the lab components don't currently have comprehensive tests.

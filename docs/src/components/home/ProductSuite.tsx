@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
@@ -31,11 +31,13 @@ function createLoading(sx: BoxProps['sx']) {
 }
 
 const CoreShowcase = dynamic(() => import('./CoreShowcase'), {
-  loading: createLoading({ height: 723, mt: { md: 2 } }),
+  loading: createLoading({ height: 630 }),
 });
+
 const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
-  loading: createLoading({ height: 750, mt: { md: 2 } }),
+  loading: createLoading({ height: 630 }),
 });
+
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
 const DesignKits = dynamic(() => import('./DesignKits'));
 
@@ -46,10 +48,11 @@ export default function ProductSuite() {
     threshold: 0,
     rootMargin: '200px',
   });
+
   return (
-    <Section bg="gradient" ref={ref}>
+    <Section bg="gradient" ref={ref} cozy>
       <Grid container spacing={2}>
-        <Grid item md={6}>
+        <Grid size={{ md: 6 }} sx={{ minHeight: { md: 630 } }}>
           <SectionHeadline
             overline="Products"
             title={
@@ -66,10 +69,8 @@ export default function ProductSuite() {
           />
         </Grid>
         <Grid
-          item
-          xs={12}
-          md={6}
           sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
+          size={{ xs: 12, md: 6 }}
         >
           {inView ? (
             <React.Fragment>
@@ -81,7 +82,7 @@ export default function ProductSuite() {
               {productIndex === 3 && <DesignKits />}
             </React.Fragment>
           ) : (
-            <Box sx={{ height: { xs: 0, md: 803 } }} />
+            <Box sx={{ height: { xs: 0, md: 690 } }} />
           )}
         </Grid>
       </Grid>

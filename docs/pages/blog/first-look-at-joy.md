@@ -4,7 +4,7 @@ description: A sneak peek at MUI's new starting point for your design system.
 date: 2022-06-08T00:00:00.000Z
 authors: ['danilo-leal', 'siriwatknp']
 tags: ['Joy UI', 'Product']
-card: true
+manualCard: true
 ---
 
 <a href="/joy-ui/getting-started/"><img src="/static/blog/first-look-at-joy/card.png" style="width: 692px; aspect-ratio: 2/1; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." /></a>
@@ -93,12 +93,12 @@ You're still able to override the style completely via the usual CSS overrides, 
 Joy UI provides an effective way to prevent UI flicker when users refresh or re-enter a page with dark mode enabled.
 The out-of-the-box CSS variables support allows every color scheme to be rendered at build time, inserting the selected color scheme and mode before the browser renders the DOM.
 
-What's more, it provides a function called `getInitColorSchemeScript()` that enables you to have perfect functioning dark mode in various React frameworks, such as Next.js, Gatsby, and Remix.
+What's more, it provides a component called `InitColorSchemeScript` that enables you to have perfect functioning dark mode in various React frameworks, such as Next.js, Gatsby, and Remix.
 
 ```js
 // A Next.js example
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { getInitColorSchemeScript } from '@mui/joy/styles';
+import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
 
 export default class MyDocument extends Document {
   render() {
@@ -106,7 +106,7 @@ export default class MyDocument extends Document {
       <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
-          {getInitColorSchemeScript()}
+          <InitColorSchemeScript />
           <Main />
           <NextScript />
         </body>

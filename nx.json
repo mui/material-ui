@@ -10,6 +10,9 @@
       "cache": true,
       "dependsOn": ["copy-license", "^build"],
       "outputs": ["{projectRoot}/build", "{projectRoot}/dist", "{projectRoot}/.next"]
+    },
+    "preview": {
+      "dependsOn": ["^build"]
     }
   }
 }

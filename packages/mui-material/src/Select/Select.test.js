@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -95,7 +95,7 @@ describe('<Select />', () => {
     expect(container.querySelector('input')).to.have.attribute('aria-hidden', 'true');
   });
 
-  it('should ignore onBlur when the menu opens', () => {
+  it('should ignore onBlur when the menu opens', async () => {
     // mousedown calls focus while click opens moving the focus to an item
     // this means the trigger is blurred immediately
     const handleBlur = spy();
@@ -116,12 +116,12 @@ describe('<Select />', () => {
     );
     const trigger = getByRole('combobox');
 
-    fireEvent.mouseDown(trigger);
+    await act(async () => fireEvent.mouseDown(trigger));
 
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).not.to.equal(null);
 
-    act(() => {
+    await act(async () => {
       const options = getAllByRole('option');
       fireEvent.mouseDown(options[0]);
       options[0].click();
@@ -1410,7 +1410,7 @@ describe('<Select />', () => {
   });
 
   // https://github.com/testing-library/react-testing-library/issues/322
-  // https://twitter.com/devongovett/status/1248306411508916224
+  // https://x.com/devongovett/status/1248306411508916224
   it('should handle the browser autofill event and simple testing-library API', () => {
     const onChangeHandler = spy();
     const { container, getByRole } = render(

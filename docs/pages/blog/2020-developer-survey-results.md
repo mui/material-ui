@@ -4,7 +4,7 @@ description: Your feedback helps us to build better products. Here's what we lea
 date: 2020-06-27T00:00:00.000Z
 authors: ['mnajdova', 'oliviertassinari', 'mbrookes']
 tags: ['Developer Survey']
-card: true
+manualCard: true
 ---
 
 Continuing the tradition from last year, we launched a Developer Survey a few months ago, to which we received 1488 responses. This is twice as many as last year (734), so we thank you all for your participation!
@@ -315,5 +315,5 @@ We will run a similar survey next year to keep track of our progress.
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
 
-<img src="/static/blog/2019-survey/vote.gif" style="width: 550px; margin-bottom: 8px;" alt="How to upvote on GitHub" />
+<img src="/static/blog/2019-developer-survey-results/vote.gif" style="width: 550px; margin-bottom: 8px;" alt="How to upvote on GitHub" />
 <p class="blog-description">Help us prioritize by upvoting.</p>

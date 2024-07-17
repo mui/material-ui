@@ -6,11 +6,11 @@ import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 import ExpandableApiItem, {
   ApiItemContaier,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
+import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -42,8 +42,10 @@ const StyledApiItem = styled(ExpandableApiItem)(
       },
     },
     '& .prop-list-alert': {
-      marginTop: 12,
       marginBottom: 16,
+      '& .MuiAlert-icon': {
+        margin: 0,
+      },
     },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
@@ -218,13 +220,13 @@ export default function PropertiesList(props: PropertiesListProps) {
             {description && <PropDescription description={description} />}
             {seeMoreDescription && <p dangerouslySetInnerHTML={{ __html: seeMoreDescription }} />}
             {requiresRef && (
-              <ApiWarning className="MuiApi-collapsible prop-list-alert">
+              <ApiWarningAlert className="MuiApi-collapsible prop-list-alert">
                 <span
                   dangerouslySetInnerHTML={{
                     __html: t('api-docs.requires-ref'),
                   }}
                 />
-              </ApiWarning>
+              </ApiWarningAlert>
             )}
             {additionalInfo.map((key) => (
               <p
@@ -235,21 +237,6 @@ export default function PropertiesList(props: PropertiesListProps) {
                 }}
               />
             ))}
-            {isDeprecated && (
-              <ApiWarning className="MuiApi-collapsible prop-list-alert">
-                {t('api-docs.deprecated')}
-                {deprecationInfo && (
-                  <React.Fragment>
-                    {' - '}
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: deprecationInfo,
-                      }}
-                    />
-                  </React.Fragment>
-                )}
-              </ApiWarning>
-            )}
             <div className="prop-list-additional-info">
               {typeName && (
                 <p className="prop-list-type MuiApi-collapsible">
@@ -305,6 +292,21 @@ export default function PropertiesList(props: PropertiesListProps) {
                 </div>
               )}
             </div>
+            {isDeprecated && (
+              <ApiWarningAlert>
+                <b>{t('api-docs.deprecated')}</b>
+                {deprecationInfo && (
+                  <React.Fragment>
+                    {'－'}
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: deprecationInfo,
+                      }}
+                    />
+                  </React.Fragment>
+                )}
+              </ApiWarningAlert>
+            )}
           </StyledApiItem>
         );
       })}

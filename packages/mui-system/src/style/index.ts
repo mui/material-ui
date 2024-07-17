@@ -1,3 +1,3 @@
-'use client'
-export { default } from './style'
-export * from './style'
+'use client';
+export { default } from './style';
+export * from './style';

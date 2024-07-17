@@ -3,7 +3,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
@@ -59,7 +59,7 @@ export default function TemplateDemo() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2} alignItems="center">
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Templates"
             title={
@@ -67,8 +67,7 @@ export default function TemplateDemo() {
                 The right template for your <GradientText>specific use case</GradientText>
               </Typography>
             }
-            description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team.
-              "
+            description="The Material UI collection of templates offers an expanding list of use cases designed to support projects of various types."
           />
           <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
@@ -93,7 +92,7 @@ export default function TemplateDemo() {
             />
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame>
             <Frame.Demo sx={{ minHeight: { xs: 240, sm: 320 } }}>
               <Box
@@ -164,7 +163,7 @@ export default function TemplateDemo() {
                           },
                         }}
                       >
-                        <Typography fontWeight="bold">Go to store</Typography>
+                        <Typography sx={{ fontWeight: 'bold' }}>Go to store</Typography>
                         <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
                       </Link>
                     </Box>
@@ -196,27 +195,24 @@ export default function TemplateDemo() {
             </Frame.Demo>
             <Frame.Info
               sx={{
+                width: '100%',
                 display: 'flex',
-                alignItems: 'center',
+                alignItems: 'start',
+                justifyContent: 'space-between',
                 '& .MuiIconButton-root': { display: { xs: 'none', md: 'inline-flex' } },
               }}
             >
-              <Box sx={{ minWidth: 0 }}>
-                <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
+              <div>
+                <Typography variant="body2" noWrap sx={{ fontWeight: 'medium', mb: 0.5 }}>
                   {templates[templateIndex].name}
                 </Typography>
-                <Box
-                  sx={{
-                    borderRadius: 20,
-                    lineHeight: 1,
-                    px: 0.5,
-                  }}
-                >
-                  <Typography color="grey.500" variant="caption">
-                    {templateIndex + 1} / {templates.length}
-                  </Typography>
-                </Box>
-              </Box>
+                <Typography variant="body2" noWrap sx={{ color: 'grey.500', fontSize: '0.75rem' }}>
+                  Developed by {templates[templateIndex].author}
+                </Typography>
+              </div>
+              <Typography variant="caption" sx={{ color: 'grey.500' }}>
+                {templateIndex + 1} / {templates.length}
+              </Typography>
             </Frame.Info>
           </Frame>
         </Grid>

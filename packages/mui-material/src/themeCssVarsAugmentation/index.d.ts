@@ -6,7 +6,7 @@ import type {
   PaletteColorChannel,
   PaletteTextChannel,
   PaletteActionChannel,
-} from '../styles/experimental_extendTheme';
+} from '../styles/extendTheme';
 
 /**
  * Enhance the theme types to include new properties from the CssVarsProvider.

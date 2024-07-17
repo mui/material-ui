@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import DialogActions, { dialogActionsClasses as classes } from '@mui/material/DialogActions';
 import { expect } from 'chai';
 import describeConformance from '../../test/describeConformance';

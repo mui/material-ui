@@ -16,6 +16,8 @@ describe('createSpacing', () => {
     expect(spacing(2)).to.equal('4px');
     spacing = createSpacing((factor: number) => `${0.25 * factor}rem`);
     expect(spacing(2)).to.equal('0.5rem');
+    spacing = createSpacing('0.5rem');
+    expect(spacing(2)).to.equal('calc(2 * 0.5rem)');
   });
 
   it('should support recursion', () => {

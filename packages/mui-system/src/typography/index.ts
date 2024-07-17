@@ -1,3 +1,3 @@
-'use client'
-export { default } from './typography'
-export * from './typography'
+'use client';
+export { default } from './typography';
+export * from './typography';

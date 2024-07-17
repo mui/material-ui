@@ -9,7 +9,7 @@ import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import useTheme from '../useTheme';
 import { extendSxProp } from '../styleFunctionSx';
-import createTheme from '../createTheme';
+import createTheme, { Breakpoint, Breakpoints } from '../createTheme';
 import {
   generateGridStyles,
   generateGridSizeStyles,
@@ -23,8 +23,7 @@ import {
   generateDirectionClasses,
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
-import { GridTypeMap, GridOwnerState, GridProps } from './GridProps';
-import type { Breakpoint } from '../createTheme';
+import { GridTypeMap, GridOwnerState, GridProps, GridOffset, GridSize } from './GridProps';
 
 const defaultTheme = createTheme();
 
@@ -57,27 +56,52 @@ export default function createGrid(
     componentName = 'MuiGrid',
   } = options;
 
-  const GridOverflowContext = React.createContext<boolean | undefined>(undefined);
-
-  if (process.env.NODE_ENV !== 'production') {
-    GridOverflowContext.displayName = 'GridOverflowContext';
-  }
-
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
-    const { container, direction, spacing, wrap, gridSize } = ownerState;
+    const { container, direction, spacing, wrap, size } = ownerState;
     const slots = {
       root: [
         'root',
         container && 'container',
         wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
         ...generateDirectionClasses(direction),
-        ...generateSizeClassNames(gridSize),
+        ...generateSizeClassNames(size),
         ...(container ? generateSpacingClassNames(spacing, theme.breakpoints.keys[0]) : []),
       ],
     };
 
     return composeClasses(slots, (slot) => generateUtilityClass(componentName, slot), {});
   };
+
+  function parseResponsiveProp<T extends GridSize | GridOffset>(
+    propValue: T | null | (T | null)[] | { [key in Breakpoint]?: T | null },
+    breakpoints: Breakpoints,
+    shouldUseValue: (val: T) => boolean = () => true,
+  ): { [key in Breakpoint]: T } {
+    const parsedProp = {} as { [key in Breakpoint]: T };
+
+    if (propValue === null) {
+      return parsedProp;
+    }
+
+    if (Array.isArray(propValue)) {
+      propValue.forEach((value, index) => {
+        if (value !== null && shouldUseValue(value) && breakpoints.keys[index]) {
+          parsedProp[breakpoints.keys[index]] = value;
+        }
+      });
+    } else if (typeof propValue === 'object') {
+      Object.keys(propValue).forEach((key) => {
+        const value = propValue[key as Breakpoint];
+        if (value !== null && value !== undefined && shouldUseValue(value)) {
+          parsedProp[key as Breakpoint] = value;
+        }
+      });
+    } else {
+      parsedProp[breakpoints.keys[0]] = propValue;
+    }
+
+    return parsedProp;
+  }
 
   const GridRoot = createStyledComponent<{
     ownerState: GridOwnerState;
@@ -95,7 +119,6 @@ export default function createGrid(
     const theme = useTheme();
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'> & GridOwnerState; // `color` type conflicts with html color attribute.
-    const overflow = React.useContext(GridOverflowContext);
     const {
       className,
       children,
@@ -104,32 +127,16 @@ export default function createGrid(
       component = 'div',
       direction = 'row',
       wrap = 'wrap',
+      size: sizeProp = {},
+      offset: offsetProp = {},
       spacing: spacingProp = 0,
       rowSpacing: rowSpacingProp = spacingProp,
       columnSpacing: columnSpacingProp = spacingProp,
-      disableEqualOverflow: themeDisableEqualOverflow,
       unstable_level: level = 0,
-      ...rest
+      ...other
     } = props;
-    // Because `disableEqualOverflow` can be set from the theme's defaultProps, the **nested** grid should look at the instance props instead.
-    let disableEqualOverflow = themeDisableEqualOverflow;
-    if (level && themeDisableEqualOverflow !== undefined) {
-      disableEqualOverflow = inProps.disableEqualOverflow;
-    }
-    // collect breakpoints related props because they can be customized from the theme.
-    const gridSize = {} as GridOwnerState['gridSize'];
-    const gridOffset = {} as GridOwnerState['gridOffset'];
-    const other: Record<string, any> = {};
-
-    Object.entries(rest).forEach(([key, val]) => {
-      if (theme.breakpoints.values[key as Breakpoint] !== undefined) {
-        gridSize[key as Breakpoint] = val;
-      } else if (theme.breakpoints.values[key.replace('Offset', '') as Breakpoint] !== undefined) {
-        gridOffset[key.replace('Offset', '') as Breakpoint] = val;
-      } else {
-        other[key] = val;
-      }
-    });
+    const size = parseResponsiveProp<GridSize>(sizeProp, theme.breakpoints, (val) => val !== false);
+    const offset = parseResponsiveProp<GridOffset>(offsetProp, theme.breakpoints);
 
     const columns = inProps.columns ?? (level ? undefined : columnsProp);
     const spacing = inProps.spacing ?? (level ? undefined : spacingProp);
@@ -147,15 +154,13 @@ export default function createGrid(
       spacing,
       rowSpacing,
       columnSpacing,
-      gridSize,
-      gridOffset,
-      disableEqualOverflow: disableEqualOverflow ?? overflow ?? false, // use context value if exists.
-      parentDisableEqualOverflow: overflow, // for nested grid
+      size,
+      offset,
     };
 
     const classes = useUtilityClasses(ownerState, theme);
 
-    let result = (
+    return (
       <GridRoot
         ref={ref}
         as={component}
@@ -166,26 +171,13 @@ export default function createGrid(
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {
             return React.cloneElement(child, {
-              unstable_level: child.props.unstable_level ?? level + 1,
+              unstable_level: (child.props as any).unstable_level ?? level + 1,
             } as GridProps);
           }
           return child;
         })}
       </GridRoot>
     );
-
-    if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {
-      // There are 2 possibilities that should wrap with the GridOverflowContext to communicate with the nested grids:
-      // 1. It is the root grid with `disableEqualOverflow`.
-      // 2. It is a nested grid with different `disableEqualOverflow` from the context.
-      result = (
-        <GridOverflowContext.Provider value={disableEqualOverflow}>
-          {result}
-        </GridOverflowContext.Provider>
-      );
-    }
-
-    return result;
   }) as OverridableComponent<GridTypeMap>;
 
   Grid.propTypes /* remove-proptypes */ = {
@@ -209,19 +201,25 @@ export default function createGrid(
       PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
       PropTypes.object,
     ]),
-    disableEqualOverflow: PropTypes.bool,
-    lg: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    lgOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-    md: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    mdOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+    offset: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+      PropTypes.object,
+    ]),
     rowSpacing: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
       PropTypes.number,
       PropTypes.object,
       PropTypes.string,
     ]),
-    sm: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    smOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+    size: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool,
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number])),
+      PropTypes.object,
+    ]),
     spacing: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
       PropTypes.number,
@@ -234,10 +232,6 @@ export default function createGrid(
       PropTypes.object,
     ]),
     wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
-    xl: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    xlOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-    xs: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    xsOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   };
 
   // @ts-ignore internal logic for nested grid

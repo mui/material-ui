@@ -1,2 +1,2 @@
-'use client'
-export { default } from './responsivePropType'
+'use client';
+export { default } from './responsivePropType';

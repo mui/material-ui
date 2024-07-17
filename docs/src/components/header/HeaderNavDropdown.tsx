@@ -71,8 +71,8 @@ const PRODUCTS = [
     href: ROUTES.productTemplates,
   },
   {
-    name: 'Design kits',
-    description: 'Our components available in your favorite design tool.',
+    name: 'Design Kits',
+    description: 'Material UI components in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
   {
@@ -232,7 +232,7 @@ export default function HeaderNavDropdown() {
                               />
                             ) : null}
                           </Box>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}
                           </Typography>
                         </Anchor>
@@ -283,7 +283,7 @@ export default function HeaderNavDropdown() {
                               />
                             ) : null}
                           </Box>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}
                           </Typography>
                         </Anchor>

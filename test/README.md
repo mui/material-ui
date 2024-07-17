@@ -18,11 +18,10 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 - [Karma](https://karma-runner.github.io/latest/index.html)
 - [Playwright](https://playwright.dev/)
 - [jsdom](https://github.com/jsdom/jsdom)
-- [enzyme](https://airbnb.io/enzyme/) (old tests only)
 
 ## Writing tests
 
-For all unit tests, please use the return value from `@mui-internal/test-utils/createRenderer`.
+For all unit tests, please use the return value from `@mui/internal-test-utils/createRenderer`.
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
 

@@ -17,11 +17,11 @@ function tabPanelValueGenerator(otherTabPanelValues: Set<string | number>) {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base-ui/react-tabs/#hooks)
+ * - [Tabs](https://next.mui.com/base-ui/react-tabs/#hooks)
  *
  * API:
  *
- * - [useTabPanel API](https://mui.com/base-ui/react-tabs/hooks-api/#use-tab-panel)
+ * - [useTabPanel API](https://next.mui.com/base-ui/react-tabs/hooks-api/#use-tab-panel)
  */
 function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue {
   const { value: valueParam, id: idParam, rootRef: externalRef } = parameters;

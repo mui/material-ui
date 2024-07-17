@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { render } from '@mui-internal/test-utils';
+import { render } from '@mui/internal-test-utils';
 import { CompoundComponentContext, useCompoundParent } from './useCompoundParent';
 import { useCompoundItem } from './useCompoundItem';
 

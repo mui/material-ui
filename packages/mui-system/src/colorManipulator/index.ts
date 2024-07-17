@@ -1,2 +1,2 @@
-'use client'
-export * from './colorManipulator'
+'use client';
+export * from './colorManipulator';

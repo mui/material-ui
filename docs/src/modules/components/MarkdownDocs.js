@@ -8,7 +8,7 @@ import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useUserLanguage } from '@mui/docs/i18n';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 
@@ -54,6 +54,10 @@ export default function MarkdownDocs(props) {
 
   return (
     <AppLayoutDocs
+      cardOptions={{
+        description: localizedDoc.headers.cardDescription,
+        title: localizedDoc.headers.cardTitle,
+      }}
       description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}

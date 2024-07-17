@@ -1,5 +1,6 @@
 {
   "componentDescription": "Must be used as the last child of ListItem to function properly.",
+  "deprecationInfo": "Use the <code>secondaryAction</code> prop in the <code>ListItem</code> component instead. This component will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details.",
   "propDescriptions": {
     "children": {
       "description": "The content of the component, normally an <code>IconButton</code> or selection control."

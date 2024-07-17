@@ -85,12 +85,12 @@ export interface TypographyTypeMap<
  *
  * Demos:
  *
- * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
- * - [Typography](https://mui.com/material-ui/react-typography/)
+ * - [Breadcrumbs](https://next.mui.com/material-ui/react-breadcrumbs/)
+ * - [Typography](https://next.mui.com/material-ui/react-typography/)
  *
  * API:
  *
- * - [Typography API](https://mui.com/material-ui/api/typography/)
+ * - [Typography API](https://next.mui.com/material-ui/api/typography/)
  */
 declare const Typography: OverridableComponent<TypographyTypeMap>;
 

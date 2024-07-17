@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';

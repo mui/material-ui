@@ -28,7 +28,11 @@ export default function InteractiveCard() {
         <Typography level="title-lg" id="card-description">
           Yosemite Park
         </Typography>
-        <Typography level="body-sm" aria-describedby="card-description" mb={1}>
+        <Typography
+          level="body-sm"
+          aria-describedby="card-description"
+          sx={{ mb: 1 }}
+        >
           <Link
             overlay
             underline="none"

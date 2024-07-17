@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Grid2, { grid2Classes as classes } from '@mui/material/Unstable_Grid2';
 import describeConformance from '../../test/describeConformance';
 

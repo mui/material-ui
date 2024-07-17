@@ -20,15 +20,15 @@ Add `dir="rtl"` to the app's root `<html>` to set the global text direction:
 <html dir="rtl"></html>
 ```
 
-If your React app doesn't control the root `<html>`, use the JavaScript API before the component tree is rendered, as a workaround:
+If you can't set the `dir` attribute directly on the root `<html>` element, as a workaround, use the JavaScript API before the page is rendered:
 
 ```js
-document.dir = 'rtl';
+document.documentElement.setAttribute('dir', 'rtl');
 ```
 
 #### Locally
 
-Add the `dir="rtl"` attribute to any other HTML element or React component if you need limit the scope of the text direction to that element and its children.
+Add the `dir="rtl"` attribute to any other HTML element or React component if you need to limit the scope of the text direction to that element and its children.
 
 :::warning
 Components that use React portals (like the [Dialog](/material-ui/react-dialog/)) do _not_ inherit the `dir` attribute from parents, because they actually render outside of their parental DOM trees.

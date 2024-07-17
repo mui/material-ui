@@ -6,7 +6,7 @@ import { styled, useThemeProps } from '@mui/joy/styles';
 const StatRoot = styled('div', {
   name: 'JoyStat',
   slot: 'root',
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(0.5),
@@ -14,10 +14,17 @@ const StatRoot = styled('div', {
   backgroundColor: theme.vars.palette.background.surface,
   borderRadius: theme.vars.radius.sm,
   boxShadow: theme.vars.shadow.md,
-  ...(ownerState.variant === 'outlined' && {
-    border: `2px solid ${theme.palette.divider}`,
-    boxShadow: 'none',
-  }),
+  variants: [
+    {
+      props: {
+        variant: 'outlined',
+      },
+      style: {
+        border: `2px solid ${theme.palette.divider}`,
+        boxShadow: 'none',
+      },
+    },
+  ],
 }));
 
 const StatValue = styled('div', {

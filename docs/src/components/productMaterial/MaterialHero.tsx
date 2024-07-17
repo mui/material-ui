@@ -1,8 +1,5 @@
 import * as React from 'react';
-import {
-  experimental_extendTheme as extendTheme,
-  Experimental_CssVarsProvider as CssVarsProvider,
-} from '@mui/material/styles';
+import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -59,7 +56,7 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { getDesignTokens } from 'docs/src/modules/brandingTheme';
+import { getDesignTokens } from '@mui/docs/branding';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
@@ -177,7 +174,7 @@ function SwitchToggleDemo() {
 function SlideDemo() {
   const [value, setValue] = React.useState([30, 60]);
   return (
-    <Stack spacing={2} direction="row" alignItems="center">
+    <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
       <AcUnitRounded
         fontSize="small"
         color="primary"
@@ -224,18 +221,22 @@ export default function MaterialHero() {
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
-            fontWeight="bold"
             variant="body2"
-            sx={(theme) => ({
-              color: 'primary.600',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 1,
-              justifyContent: { xs: 'center', md: 'flex-start' },
-              ...theme.applyDarkStyles({
-                color: 'primary.300',
+            sx={[
+              {
+                fontWeight: 'bold',
+              },
+              (theme) => ({
+                color: 'primary.600',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                ...theme.applyDarkStyles({
+                  color: 'primary.300',
+                }),
               }),
-            })}
+            ]}
           >
             <IconImage loading="eager" width={28} height={28} name="product-core" />{' '}
             <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
@@ -252,7 +253,7 @@ export default function MaterialHero() {
             <br />
             components
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
+          <Typography sx={{ color: 'text.secondary', mb: 3, maxWidth: 500 }}>
             Material UI is an open-source React component library that implements Google&apos;s
             Material Design. It&apos;s comprehensive and can be used in production out of the box.
           </Typography>
@@ -358,10 +359,9 @@ export default function MaterialHero() {
                       secondary={
                         <React.Fragment>
                           <Typography
-                            sx={{ display: 'inline' }}
                             component="span"
                             variant="body2"
-                            color="text.primary"
+                            sx={{ color: 'text.primary', display: 'inline' }}
                           >
                             Michael Scott
                           </Typography>
@@ -380,10 +380,9 @@ export default function MaterialHero() {
                       secondary={
                         <React.Fragment>
                           <Typography
-                            sx={{ display: 'inline' }}
                             component="span"
                             variant="body2"
-                            color="text.primary"
+                            sx={{ color: 'text.primary', display: 'inline' }}
                           >
                             to Jim, Pam and Ryan
                           </Typography>
@@ -467,7 +466,7 @@ export default function MaterialHero() {
                   image="/static/images/cards/yosemite.jpeg"
                 />
                 <CardContent sx={{ pb: 0 }}>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                     Not just a great valley, but a shrine to human foresight, the strength of
                     granite, the power of glaciers, the persistence of life, and the tranquility of
                     the High Sierra.

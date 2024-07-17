@@ -21,7 +21,7 @@ The `Modal` offers important features:
   and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 :::info
 The term "modal" is sometimes used to mean "dialog", but this is a misnomer.

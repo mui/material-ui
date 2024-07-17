@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, queries } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, queries } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
@@ -200,7 +200,12 @@ describe('<ListItem />', () => {
 
   // TODO remove in v6 in favor of ListItemButton
   describe('prop: focusVisibleClassName', () => {
-    it('should merge the class names', () => {
+    it('should merge the class names', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { getByRole } = render(
         <ListItem button focusVisibleClassName="focusVisibleClassName" />,
       );

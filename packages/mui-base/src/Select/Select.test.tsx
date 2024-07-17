@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  createMount,
   createRenderer,
   fireEvent,
   act,
@@ -10,7 +9,7 @@ import {
   MuiRenderResult,
   RenderOptions,
   flushMicrotasks,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import userEvent from '@testing-library/user-event';
 import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
 import { SelectOption } from '@mui/base/useOption';
@@ -23,7 +22,6 @@ import { describeConformanceUnstyled } from '../../test/describeConformanceUnsty
 // userEvent.setup() requires Safari 14 or up to work
 
 describe('<Select />', () => {
-  const mount = createMount();
   const { render: internalRender } = createRenderer();
 
   async function render(
@@ -46,7 +44,6 @@ describe('<Select />', () => {
   describeConformanceUnstyled(componentToTest, () => ({
     inheritComponent: 'button',
     render,
-    mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
     slots: {
@@ -62,7 +59,7 @@ describe('<Select />', () => {
         testWithElement: 'span',
       },
     },
-    skip: ['componentProp', 'reactTestRenderer'],
+    skip: ['componentProp'],
   }));
 
   describe('selected option rendering', () => {
@@ -1001,8 +998,8 @@ describe('<Select />', () => {
       expect(screen.getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
     });
 
-    it('should have the aria-expanded attribute set to true when the listbox is open', () => {
-      render(
+    it('should have the aria-expanded attribute set to true when the listbox is open', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1016,8 +1013,8 @@ describe('<Select />', () => {
       expect(select).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('should have the aria-controls attribute', () => {
-      render(
+    it('should have the aria-controls attribute', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1036,8 +1033,8 @@ describe('<Select />', () => {
       expect(select).to.have.attribute('aria-controls', listboxId!);
     });
 
-    it('should have the correct tabindex attribute', () => {
-      render(
+    it('should have the correct tabindex attribute', async () => {
+      await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1265,7 +1262,12 @@ describe('<Select />', () => {
     expect(selectButton).to.have.text('1, 2');
   });
 
-  it('perf: does not rerender options unnecessarily', async () => {
+  it('perf: does not rerender options unnecessarily', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const renderOption1Spy = spy();
     const renderOption2Spy = spy();
     const renderOption3Spy = spy();

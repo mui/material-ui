@@ -1,2 +1,2 @@
-'use client'
-export { default } from './styled'
+'use client';
+export { default } from './styled';

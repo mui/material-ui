@@ -1,15 +1,15 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { ComponentClassDefinition } from '@mui/internal-docs-utils';
+import { useTranslate } from '@mui/docs/i18n';
 import { styled, alpha } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 import { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import { useTranslate } from '@mui/docs/i18n';
-import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
+import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
@@ -36,9 +36,6 @@ const StyledTable = styled('table')(
       border: '1px solid',
       borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-    },
-    '& .classes-table-alert': {
-      marginTop: 12,
     },
   }),
   ({ theme }) => ({
@@ -94,11 +91,11 @@ export default function ClassesTable(props: ClassesTableProps) {
                     }}
                   />
                   {isDeprecated && (
-                    <ApiWarning className="classes-table-alert">
-                      {t('api-docs.deprecated')}
+                    <ApiWarningAlert>
+                      <b>{t('api-docs.deprecated')}</b>
                       {deprecationInfo && (
                         <React.Fragment>
-                          {' - '}
+                          {'－'}
                           <span
                             dangerouslySetInnerHTML={{
                               __html: deprecationInfo,
@@ -106,7 +103,7 @@ export default function ClassesTable(props: ClassesTableProps) {
                           />
                         </React.Fragment>
                       )}
-                    </ApiWarning>
+                    </ApiWarningAlert>
                   )}
                 </td>
               </tr>

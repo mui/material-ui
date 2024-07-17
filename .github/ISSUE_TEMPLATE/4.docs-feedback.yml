@@ -1,5 +1,5 @@
 name: Docs feedback
-description: Improve documentation about Material UI, Base UI, MUI System, or Joy UI.
+description: Improve documentation about Material UI, MUI System, or Joy UI.
 labels: ['status: waiting for maintainer', 'support: docs-feedback']
 title: '[docs] '
 body:
@@ -42,3 +42,9 @@ body:
     attributes:
       label: Context
       description: What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world.
+  - type: markdown
+    attributes:
+      value: |
+        ## :heart: Love Material UI?
+
+        Consider donating $10 to sustain our open-source work: [https://opencollective.com/mui-org](https://opencollective.com/mui-org).

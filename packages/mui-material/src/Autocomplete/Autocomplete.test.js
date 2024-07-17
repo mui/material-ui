@@ -7,7 +7,7 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
 import Box from '@mui/system/Box';
@@ -59,20 +59,50 @@ describe('<Autocomplete />', () => {
       testStateOverrides: { prop: 'fullWidth', value: true, styleKey: 'fullWidth' },
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
-      testLegacyComponentsProp: true,
+      slots: {
+        listbox: { expectedClassName: classes.listbox },
+        paper: { expectedClassName: classes.paper },
+        popper: { expectedClassName: classes.popper, testWithElement: null },
+      },
+      skip: ['componentProp', 'componentsProp'],
+    }),
+  );
+
+  describeConformance(
+    <Autocomplete
+      options={['one', 'two']}
+      defaultValue="one"
+      open
+      renderInput={(params) => <TextField {...params} />}
+    />,
+    () => ({
+      classes,
+      render,
+      muiName: 'MuiAutocomplete',
       slots: {
         clearIndicator: { expectedClassName: classes.clearIndicator },
-        paper: { expectedClassName: classes.paper },
-        popper: { expectedClassName: classes.popper },
         popupIndicator: { expectedClassName: classes.popupIndicator },
       },
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'slotsProp',
-        'reactTestRenderer',
-        'slotPropsCallback', // not supported yet
-      ],
+      only: ['slotPropsProp'],
+    }),
+  );
+
+  describeConformance(
+    <Autocomplete
+      options={['one', 'two']}
+      defaultValue={['one']}
+      multiple
+      open
+      renderInput={(params) => <TextField {...params} />}
+    />,
+    () => ({
+      classes,
+      render,
+      muiName: 'MuiAutocomplete',
+      slots: {
+        chip: {},
+      },
+      only: ['slotPropsProp'],
     }),
   );
 
@@ -144,6 +174,23 @@ describe('<Autocomplete />', () => {
       );
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
+    });
+
+    it('should show supplied options to the "options" prop even when loading', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two']}
+          loading
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      expect(document.querySelector(`.${classes.paper}`).textContent).not.to.equal('Loading…');
+
+      const listbox = screen.getByRole('listbox');
+      const htmlOptions = listbox.querySelectorAll('li');
+      expect(htmlOptions[0].innerHTML).to.equal('one');
     });
   });
 
@@ -621,7 +668,10 @@ describe('<Autocomplete />', () => {
           renderTags={(value, getTagProps) =>
             value
               .filter((x, index) => index === 1)
-              .map((option, index) => <Chip label={option.title} {...getTagProps({ index })} />)
+              .map((option, index) => {
+                const { key, ...tagProps } = getTagProps({ index });
+                return <Chip key={key} label={option.title} {...tagProps} />;
+              })
           }
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} autoFocus />}
@@ -1512,9 +1562,9 @@ describe('<Autocomplete />', () => {
       // <button> since it has "pointer-events: none"
       const popupIndicator = container.querySelector(`.${classes.endAdornment}`);
 
-      // TODO v6: refactor using userEvent.setup() which doesn't work until we drop
-      //  iOS Safari 12.x support, see: https://github.com/mui/material-ui/pull/38325
-      await userEvent.pointer([
+      const user = userEvent.setup();
+
+      await user.pointer([
         // this sequence does not work with fireEvent
         // 1. point the cursor somewhere in the textbox and hold down MouseLeft
         { keys: '[MouseLeft>]', target: textbox },
@@ -2475,10 +2525,10 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: onInputChange', () => {
-    it('provides a reason on input change', () => {
+    it('provides a reason on input change', async () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }];
-      render(
+      const { user } = render(
         <Autocomplete
           onInputChange={handleInputChange}
           options={options}
@@ -2486,32 +2536,119 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+
+      await user.type(document.activeElement, 'a');
+
       expect(handleInputChange.callCount).to.equal(1);
       expect(handleInputChange.args[0][1]).to.equal('a');
       expect(handleInputChange.args[0][2]).to.equal('input');
     });
 
-    it('provides a reason on select reset', () => {
+    it('provides a reason on select reset', async () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }, { name: 'bar' }];
+      function MyComponent() {
+        const [value, setValue] = React.useState(options[0]);
+        return (
+          <React.Fragment>
+            <Autocomplete
+              onInputChange={handleInputChange}
+              openOnFocus
+              options={options}
+              getOptionLabel={(option) => option.name}
+              renderInput={(params) => <TextField {...params} autoFocus />}
+              value={value}
+            />
+            <button onClick={() => setValue(options[1])} type="button">
+              Reset
+            </button>
+          </React.Fragment>
+        );
+      }
+      const { user } = render(<MyComponent />);
+
+      await user.click(screen.getByText('Reset'));
+
+      expect(handleInputChange.lastCall.args[1]).to.equal(options[1].name);
+      expect(handleInputChange.lastCall.args[2]).to.equal('reset');
+    });
+
+    it('provides a reason on clear', async () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }];
-      render(
+      const { user } = render(
         <Autocomplete
           onInputChange={handleInputChange}
-          openOnFocus
+          options={options}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          defaultValue={options[0]}
+        />,
+      );
+
+      await user.click(screen.getByLabelText('Clear'));
+
+      expect(handleInputChange.lastCall.args[1]).to.equal('');
+      expect(handleInputChange.lastCall.args[2]).to.equal('clear');
+    });
+
+    it('provides a reason on blur', async () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+      const { user } = render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          clearOnBlur
+        />,
+      );
+
+      await user.type(screen.getByRole('combobox'), options[0].name);
+      await user.tab();
+
+      expect(handleInputChange.lastCall.args[1]).to.equal('');
+      expect(handleInputChange.lastCall.args[2]).to.equal('blur');
+    });
+
+    it('provides a reason on select option', async () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+      const { user } = render(
+        <Autocomplete
+          onInputChange={handleInputChange}
           options={options}
           getOptionLabel={(option) => option.name}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('combobox');
 
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'Enter' });
+      await user.click(screen.getByLabelText('Open'));
+      await user.click(screen.getByRole('option', { name: options[0].name }));
 
-      expect(handleInputChange.callCount).to.equal(1);
-      expect(handleInputChange.args[0][1]).to.equal(options[0].name);
-      expect(handleInputChange.args[0][2]).to.equal('reset');
+      expect(handleInputChange.lastCall.args[1]).to.equal(options[0].name);
+      expect(handleInputChange.lastCall.args[2]).to.equal('selectOption');
+    });
+
+    it('provides a reason on remove option', async () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+      const { user } = render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          defaultValue={options}
+          multiple
+        />,
+      );
+
+      await user.type(screen.getByRole('combobox'), `${options[0].name}{Enter}`);
+
+      expect(handleInputChange.lastCall.args[1]).to.equal('');
+      expect(handleInputChange.lastCall.args[2]).to.equal('removeOption');
     });
   });
 

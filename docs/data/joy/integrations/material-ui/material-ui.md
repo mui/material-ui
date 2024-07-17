@@ -29,8 +29,8 @@ Render Joy UI's `CssVarsProvider` inside Material UI's provider and use `THEME
 
 ```js
 import {
-  experimental_extendTheme as materialExtendTheme,
-  Experimental_CssVarsProvider as MaterialCssVarsProvider,
+  extendTheme as materialExtendTheme,
+  CssVarsProvider as MaterialCssVarsProvider,
   THEME_ID as MATERIAL_THEME_ID,
 } from '@mui/material/styles';
 import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';

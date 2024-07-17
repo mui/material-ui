@@ -2,4 +2,4 @@ type TextFieldProps<A extends boolean> = A extends true ? { testProp: string } :
 
 type Props<A extends boolean = false> = Omit<TextFieldProps<A>, 'b'>
 
-export function Foo<A extends boolean = false>(props: Props<A>): JSX.Element;
+export function Foo<A extends boolean = false>(props: Props<A>): React.JSX.Element;

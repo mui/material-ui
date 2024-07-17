@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grow from '@mui/material/Grow';
@@ -37,8 +37,6 @@ describe('<Popper />', () => {
       'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
       'slotPropsCallback', // not supported yet
     ],
   }));

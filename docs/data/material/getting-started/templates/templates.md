@@ -30,5 +30,10 @@ Please feel free to open an [issue](https://github.com/mui/material-ui/issues/ne
 Looking for something more? You can find complete templates and themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a>.
 
 <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">
-<img src="/static/images/themes-display.png" alt="react templates" width="2280" height="1200" />
+<span class="only-light-mode">
+<img src="/static/images/themes-display-light.png" alt="The MUI Store includes several carefully curated React templates using Material UI" width="2280" height="1200" />
+</span>
+<span class="only-dark-mode">
+<img src="/static/images/themes-display-dark.png" alt="The MUI Store includes several carefully curated React templates using Material UI" width="2280" height="1200" />
+</span>
 </a>

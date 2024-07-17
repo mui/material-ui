@@ -3,16 +3,18 @@ import * as React from 'react';
 import Link from 'next/link';
 import fs from 'fs/promises';
 import path from 'path';
-import { css } from '@pigment-css/react';
+import { css } from '@mui/material-pigment-css';
 
 export default async function MaterialUIPage() {
-  const rootPaths = await fs.readdir(path.join(process.cwd(), `src/app/material-ui`));
+  const rootPaths = (await fs.readdir(path.join(process.cwd(), `src/app/material-ui`))).filter(
+    (p) => !p.startsWith('.'),
+  );
   return (
     <div>
       <h1>Material UI Components</h1>
       <nav>
         <ul
-          className={css({
+          sx={{
             margin: 0,
             marginBlock: '1rem',
             padding: 0,
@@ -20,7 +22,7 @@ export default async function MaterialUIPage() {
             display: 'flex',
             flexDirection: 'column',
             gap: '0.5rem',
-          })}
+          }}
         >
           {rootPaths
             .filter((item) => !item.match(/\.(js|tsx)$/))

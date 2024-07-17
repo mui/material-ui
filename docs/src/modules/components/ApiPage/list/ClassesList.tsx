@@ -10,8 +10,8 @@ import ExpandableApiItem, {
 import {
   brandingLightTheme as lightTheme,
   brandingDarkTheme as darkTheme,
-} from 'docs/src/modules/brandingTheme';
-import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
+} from '@mui/docs/branding';
+import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -33,10 +33,6 @@ const StyledApiItem = styled(ExpandableApiItem)(
       '& .MuiApi-item-note': {
         color: `var(--muidocs-palette-warning-700, ${lightTheme.palette.warning[700]})`,
       },
-    },
-    '& .classes-list-alert': {
-      marginTop: 12,
-      marginBottom: 16,
     },
   }),
   ({ theme }) => ({
@@ -94,12 +90,18 @@ export default function ClassesList(props: ClassesListProps) {
             className={isDeprecated ? 'classes-list-deprecated-item' : ''}
           >
             {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
+            {displayClassKeys && !isGlobal && (
+              <p className="prop-list-class">
+                <span className="prop-list-title">{'Rule name'}:</span>
+                <code className="Api-code">{key}</code>
+              </p>
+            )}
             {isDeprecated && (
-              <ApiWarning className="MuiApi-collapsible classes-list-alert">
-                {t('api-docs.deprecated')}
+              <ApiWarningAlert>
+                <b>{t('api-docs.deprecated')}</b>
                 {deprecationInfo && (
                   <React.Fragment>
-                    {' - '}
+                    {'－'}
                     <span
                       dangerouslySetInnerHTML={{
                         __html: deprecationInfo,
@@ -107,13 +109,7 @@ export default function ClassesList(props: ClassesListProps) {
                     />
                   </React.Fragment>
                 )}
-              </ApiWarning>
-            )}
-            {displayClassKeys && !isGlobal && (
-              <p className="prop-list-class">
-                <span className="prop-list-title">{'Rule name'}:</span>
-                <code className="Api-code">{key}</code>
-              </p>
+              </ApiWarningAlert>
             )}
           </StyledApiItem>
         );

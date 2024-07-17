@@ -1,3 +1,3 @@
-'use client'
-export { default } from './palette'
-export * from './palette'
+'use client';
+export { default } from './palette';
+export * from './palette';

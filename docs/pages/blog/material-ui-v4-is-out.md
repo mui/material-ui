@@ -4,7 +4,7 @@ description: Material UI v4 has finally arrived. We are so excited about this r
 date: 2019-05-23T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes', 'eps1lon']
 tags: ['Material UI', 'Product']
-card: true
+manualCard: true
 ---
 
 > React components for faster and simpler web development. Build your own design system, or start with Material Design.
@@ -201,7 +201,7 @@ function MyButton() {
   <p class="blog-description">React Dev Tools output for one Typography element in production (<a href="https://github.com/mui/material-ui/pull/15023">this POC</a> might further improve the situation).</p>
 
 - **Concurrent mode**. React has shared its [release timeline](https://legacy.reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) for the important features coming into React. [Concurrent mode](https://legacy.reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) should be released within the next few months. Concurrent Mode lets React apps be more responsive by rendering component trees without blocking the main thread. We have worked on getting ready for it. Most of the work was related to fixing the [<React.StrictMode>](https://legacy.reactjs.org/docs/strict-mode.html) warnings. You should soon be able to leverage it 🔥.
-- **Shallow tests.** We have removed the majority of our internal shallow tests to rely on [full mount tests](https://twitter.com/dan_abramov/status/1109461529227866112).
+- **Shallow tests.** We have removed the majority of our internal shallow tests to rely on [full mount tests](https://x.com/dan_abramov/status/1109461529227866112).
 
 ### Material Design
 

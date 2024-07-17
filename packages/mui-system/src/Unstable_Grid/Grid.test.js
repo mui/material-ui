@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grid, { gridClasses as classes } from '@mui/system/Unstable_Grid';
@@ -33,17 +33,17 @@ describe('System <Grid />', () => {
 
   describe('prop: xs', () => {
     it('should apply the flex-grow class', () => {
-      const { container } = render(<Grid xs />);
-      expect(container.firstChild).to.have.class(classes['grid-xs-true']);
+      const { container } = render(<Grid size="grow" />);
+      expect(container.firstChild).to.have.class(classes['grid-xs-grow']);
     });
 
     it('should apply the flex size class', () => {
-      const { container } = render(<Grid xs={3} />);
+      const { container } = render(<Grid size={3} />);
       expect(container.firstChild).to.have.class(classes['grid-xs-3']);
     });
 
     it('should apply the flex auto class', () => {
-      const { container } = render(<Grid xs="auto" />);
+      const { container } = render(<Grid size="auto" />);
       expect(container.firstChild).to.have.class(classes['grid-xs-auto']);
     });
 
@@ -55,10 +55,10 @@ describe('System <Grid />', () => {
 
       render(
         <Grid container>
-          <Grid container xs="auto" data-testid="auto">
+          <Grid container data-testid="auto" size="auto">
             <div style={{ width: '300px' }} />
           </Grid>
-          <Grid xs={11} />
+          <Grid size={11} />
         </Grid>,
       );
       expect(screen.getByTestId('auto')).toHaveComputedStyle({
@@ -140,17 +140,8 @@ describe('System <Grid />', () => {
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        marginBottom: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        marginLeft: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        marginRight: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-      });
-
-      expect(screen.getByTestId('first-custom-theme')).toHaveComputedStyle({
-        paddingTop: `${0.25 * remValue}px`, // 0.25rem
-        paddingBottom: `${0.25 * remValue}px`, // 0.25rem
-        paddingLeft: `${0.25 * remValue}px`, // 0.25rem
-        paddingRight: `${0.25 * remValue}px`, // 0.25rem
+        rowGap: `${0.5 * remValue}px`, // 0.5rem
+        columnGap: `${0.5 * remValue}px`, // 0.5rem
       });
 
       rerender(
@@ -163,17 +154,8 @@ describe('System <Grid />', () => {
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: '-8px',
-        marginBottom: '-8px',
-        marginLeft: '-8px',
-        marginRight: '-8px',
-      });
-
-      expect(screen.getByTestId('first-default-theme')).toHaveComputedStyle({
-        paddingTop: '8px',
-        paddingBottom: '8px',
-        paddingLeft: '8px',
-        paddingRight: '8px',
+        rowGap: '16px',
+        columnGap: '16px',
       });
     });
   });
@@ -213,71 +195,6 @@ describe('System <Grid />', () => {
     });
   });
 
-  describe('prop: disableEqualOverflow', () => {
-    it('should apply to top and left sides only', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-      const { container } = render(
-        <Grid container disableEqualOverflow spacing={2}>
-          <Grid />
-        </Grid>,
-      );
-
-      expect(container.firstChild).toHaveComputedStyle({
-        marginTop: '-16px',
-        marginLeft: '-16px',
-      });
-      expect(container.firstChild.firstChild).toHaveComputedStyle({
-        paddingTop: '16px',
-        paddingLeft: '16px',
-      });
-    });
-
-    it('should use the value from theme and nestable', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-      const { container } = render(
-        <ThemeProvider
-          theme={createTheme({
-            components: {
-              MuiGrid: {
-                defaultProps: {
-                  disableEqualOverflow: true,
-                },
-              },
-            },
-          })}
-        >
-          <Grid container spacing={2}>
-            <Grid container disableEqualOverflow={false} spacing={3}>
-              <Grid />
-            </Grid>
-          </Grid>
-        </ThemeProvider>,
-      );
-      expect(container.firstChild).toHaveComputedStyle({
-        marginTop: '-16px',
-        marginLeft: '-16px',
-      });
-      expect(container.firstChild.firstChild).toHaveComputedStyle({
-        marginTop: '-12px',
-        marginLeft: '-12px',
-        marginRight: '-12px',
-        marginBottom: '-12px',
-        paddingTop: '16px',
-        paddingLeft: '16px',
-      });
-      expect(container.firstChild.firstChild.firstChild).toHaveComputedStyle({
-        paddingTop: '12px',
-        paddingLeft: '12px',
-        paddingRight: '12px',
-        paddingBottom: '12px',
-      });
-    });
-  });
-
   describe('Custom breakpoints', () => {
     it('should apply the custom breakpoint class', () => {
       const { container } = render(
@@ -293,7 +210,13 @@ describe('System <Grid />', () => {
           })}
         >
           {/* `lg` is to mimic mistake, it is not a breakpoint anymore */}
-          <Grid mobile={2} tablet={3} laptop="auto" lg={5} />
+          <Grid
+            size={{
+              mobile: 2,
+              tablet: 3,
+              laptop: 'auto',
+            }}
+          />
         </ThemeProvider>,
       );
 
@@ -303,8 +226,6 @@ describe('System <Grid />', () => {
 
       // The grid should not have class for `lg` prop
       expect(container.firstChild).not.to.have.class('MuiGrid-grid-lg-5');
-      // The `lg` prop is treated as native props that spread to DOM
-      expect(container.firstChild).to.have.attribute('lg', '5');
     });
 
     it('should apply the custom breakpoint spacing class', () => {

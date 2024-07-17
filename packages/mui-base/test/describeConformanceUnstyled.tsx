@@ -9,10 +9,8 @@ import {
   SlotTestingOptions,
   describeRef,
   randomStringValue,
-  testClassName,
   testComponentProp,
-  testReactTestRenderer,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { ClassNameConfigurator } from '@mui/base/utils';
 
 export interface UnstyledConformanceOptions
@@ -60,7 +58,7 @@ function forEachSlot(
 }
 
 function testPropForwarding(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const {
@@ -110,7 +108,10 @@ function testPropForwarding(
   });
 }
 
-function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledConformanceOptions) {
+function testSlotsProp(
+  element: React.ReactElement<any>,
+  getOptions: () => UnstyledConformanceOptions,
+) {
   const {
     render,
     slots,
@@ -224,7 +225,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
 }
 
 function testSlotPropsProp(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const { render, slots } = getOptions();
@@ -266,12 +267,31 @@ function testSlotPropsProp(
   });
 }
 
+function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+  it('applies the className to the root component', async () => {
+    const { render } = getOptions();
+
+    if (!render) {
+      throwMissingPropError('render');
+    }
+
+    const className = randomStringValue();
+    const testId = randomStringValue();
+
+    const { getByTestId } = await render(
+      React.cloneElement(element, { className, 'data-testid': testId }),
+    );
+
+    expect(getByTestId(testId)).to.have.class(className);
+  });
+}
+
 interface TestOwnerState {
   'data-testid'?: string;
 }
 
 function testSlotPropsCallbacks(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const { render, slots } = getOptions();
@@ -307,7 +327,7 @@ function testSlotPropsCallbacks(
 }
 
 function testOwnerStatePropagation(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const {
@@ -359,7 +379,7 @@ function testOwnerStatePropagation(
 }
 
 function testDisablingClassGeneration(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const { render } = getOptions();
@@ -387,14 +407,13 @@ const fullSuite = {
   slotPropsCallbacks: testSlotPropsCallbacks,
   mergeClassName: testClassName,
   propsSpread: testPropForwarding,
-  reactTestRenderer: testReactTestRenderer,
   refForwarding: describeRef,
   ownerStatePropagation: testOwnerStatePropagation,
   disableClassGeneration: testDisablingClassGeneration,
 };
 
 function describeConformance(
-  minimalElement: React.ReactElement,
+  minimalElement: React.ReactElement<any>,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/material/ListItemButton';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -55,6 +55,13 @@ describe('<ListItemButton />', () => {
   });
 
   describe('prop: focusVisibleClassName', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('should merge the class names', () => {
       const { getByRole } = render(
         <ListItemButton focusVisibleClassName="focusVisibleClassName" />,

@@ -37,4 +37,25 @@ describe('grid', () => {
       },
     });
   });
+
+  it('should support container queries', () => {
+    const output1 = grid({
+      gap: {
+        '@sm': 1,
+        '@900/sidebar': 2,
+        '@80rem/sidebar': 3,
+      },
+    });
+    expect(output1).to.deep.equal({
+      '@container (min-width:600px)': {
+        gap: 8,
+      },
+      '@container sidebar (min-width:900px)': {
+        gap: 16,
+      },
+      '@container sidebar (min-width:80rem)': {
+        gap: 24,
+      },
+    });
+  });
 });

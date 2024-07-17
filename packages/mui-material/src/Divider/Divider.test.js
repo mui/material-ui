@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
 import describeConformance from '../../test/describeConformance';
 

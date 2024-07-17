@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
+import { Globals } from '@react-spring/web';
 import TestViewer from './TestViewer';
+
+// Skip charts annimation for screen shots
+Globals.assign({
+  skipAnimation: true,
+});
 
 // Get all the fixtures specifically written for preventing visual regressions.
 const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
@@ -27,6 +33,30 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
+  // The following components are tested by docs-getting-started-templates-dashboard-components/MainGrid.png
+  'docs-getting-started-templates-dashboard/Dashboard.png',
+  'docs-getting-started-templates-dashboard-components/ChartUserByCountry.png',
+  'docs-getting-started-templates-dashboard-components/CustomDatePicker.png',
+  'docs-getting-started-templates-dashboard-components/CustomizedDataGrid.png',
+  'docs-getting-started-templates-dashboard-components/CustomizedTreeView.png',
+  'docs-getting-started-templates-dashboard-components/Header.png',
+  'docs-getting-started-templates-dashboard-components/HighlightedCard.png',
+  'docs-getting-started-templates-dashboard-components/MenuButton.png',
+  'docs-getting-started-templates-dashboard-components/Navbar.png',
+  'docs-getting-started-templates-dashboard-components/NavbarBreadcrumbs.png',
+  'docs-getting-started-templates-dashboard-components/OptionsMenu.png',
+  'docs-getting-started-templates-dashboard-components/PageViewsChart.png',
+  'docs-getting-started-templates-dashboard-components/Search.png',
+  'docs-getting-started-templates-dashboard-components/ToggleColorMode.png',
+  'docs-getting-started-templates-dashboard-internals-components', // No public components
+  'docs-getting-started-templates-dashboard-components/SideNav.png', // No public components
+  'docs-getting-started-templates-dashboard-components/PageViewsBarChart.png', // No public components
+  'docs-getting-started-templates-dashboard-components/StatCard.png', // No public components
+  'docs-getting-started-templates-sign-in-side/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-in/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-up/CustomIcons.png', // Theme file
+  'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png', // Theme file
+  'docs-getting-started-templates-sign-up/getSignUpTheme.png', // Theme file
   'docs-getting-started-templates-checkout/getCheckoutTheme.png', // Theme file
   'docs-getting-started-templates-landing-page/getLPTheme.png', // Theme file
   'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
@@ -135,6 +165,7 @@ const blacklist = [
   'docs-customization-transitions/TransitionHover.png', // Need interaction
   'docs-customization-typography/ResponsiveFontSizesChart.png',
   'docs-customization-right-to-left/RtlDemo.png',
+  'docs-customization-container-queries/ResizableDemo.png', // No public components
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
@@ -164,6 +195,13 @@ const unusedBlacklistPatterns = new Set(blacklist);
 
 function excludeDemoFixture(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
+    return true;
+  }
+
+  // Exclude files that are not images and are not PascalCase
+  // Tantamount to skipping JS/TS files that are not React components or "index.js" files
+  // PascalCase starts with a capital letter and has zero or more capital letters in the middle
+  if (!suite.endsWith('.png') && name !== 'index' && !/^[A-Z][A-Za-z0-9]*$/.test(name)) {
     return true;
   }
 

@@ -12,61 +12,59 @@ import { useTranslate } from '@mui/docs/i18n';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
-function layouts(t) {
+function layouts(translatation) {
   return [
     {
-      title: t('dashboardTitle'),
-      description: t('dashboardDescr'),
-      src: '/static/images/templates/dashboard.png',
+      title: translatation('dashboardTitle'),
+      description: translatation('dashboardDescr'),
       href: '/material-ui/getting-started/templates/dashboard/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/dashboard`,
+      hasDarkMode: true,
     },
     {
-      title: t('landingPageTitle'),
-      description: t('landingPageDescr'),
-      src: '/static/images/templates/landing-page.png',
+      title: translatation('landingPageTitle'),
+      description: translatation('landingPageDescr'),
       href: '/material-ui/getting-started/templates/landing-page/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/landing-page`,
+      hasDarkMode: true,
     },
     {
-      title: t('checkoutTitle'),
-      description: t('checkoutDescr'),
-      src: '/static/images/templates/checkout.png',
+      title: translatation('checkoutTitle'),
+      description: translatation('checkoutDescr'),
       href: '/material-ui/getting-started/templates/checkout/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
+      hasDarkMode: true,
     },
     {
-      title: t('signInTitle'),
-      description: t('signInDescr'),
-      src: '/static/images/templates/sign-in.png',
+      title: translatation('signInTitle'),
+      description: translatation('signInDescr'),
       href: '/material-ui/getting-started/templates/sign-in/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in`,
+      hasDarkMode: true,
     },
     {
-      title: t('signInSideTitle'),
-      description: t('signInSideDescr'),
-      src: '/static/images/templates/sign-in-side.png',
+      title: translatation('signInSideTitle'),
+      description: translatation('signInSideDescr'),
       href: '/material-ui/getting-started/templates/sign-in-side/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in-side`,
+      hasDarkMode: true,
     },
     {
-      title: t('signUpTitle'),
-      description: t('signUpDescr'),
-      src: '/static/images/templates/sign-up.png',
+      title: translatation('signUpTitle'),
+      description: translatation('signUpDescr'),
       href: '/material-ui/getting-started/templates/sign-up/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-up`,
+      hasDarkMode: true,
     },
     {
-      title: t('blogTitle'),
-      description: t('blogDescr'),
-      src: '/static/images/templates/blog.png',
+      title: translatation('blogTitle'),
+      description: translatation('blogDescr'),
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
     },
     {
-      title: t('stickyFooterTitle'),
-      description: t('stickyFooterDescr'),
-      src: '/static/images/templates/sticky-footer.png',
+      title: translatation('stickyFooterTitle'),
+      description: translatation('stickyFooterDescr'),
       href: '/material-ui/getting-started/templates/sticky-footer/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sticky-footer`,
     },
@@ -74,11 +72,11 @@ function layouts(t) {
 }
 
 export default function Templates() {
-  const t = useTranslate();
+  const translatation = useTranslate();
 
   return (
     <Grid container spacing={2} sx={{ py: 2 }}>
-      {layouts(t).map((layout) => (
+      {layouts(translatation).map((layout) => (
         <Grid item xs={12} sm={6} key={layout.title}>
           <Card
             variant="outlined"
@@ -91,20 +89,29 @@ export default function Templates() {
           >
             <CardMedia
               component="img"
-              image={layout.src}
+              // The image source is generated from `pnpm template:screenshot material-ui`, do not modify the image manually.
+              image={`/static/screenshots${layout.href.replace(/\/$/, '')}.jpg`}
               title={layout.title}
-              sx={{
+              sx={(theme) => ({
                 aspectRatio: '16 / 9',
                 objectPosition: 'top',
                 borderBottom: '1px solid',
                 borderColor: 'divider',
+                ...theme.applyStyles('dark', {
+                  content: 'var(--src)',
+                }),
+              })}
+              style={{
+                '--src': layout.hasDarkMode
+                  ? `url(/static/screenshots${layout.href.replace(/\/$/, '')}-dark.jpg)`
+                  : `url(/static/screenshots${layout.href.replace(/\/$/, '')}.jpg)`,
               }}
             />
             <Box sx={{ p: 2, pt: 1.5 }}>
-              <Typography component="h3" variant="body1" fontWeight="semiBold">
+              <Typography component="h3" variant="body1" sx={{ fontWeight: 'semiBold' }}>
                 {layout.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary" mb={2}>
+              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
                 {layout.description}
               </Typography>
               <Box

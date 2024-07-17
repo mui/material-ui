@@ -1,6 +1,0 @@
-{
-  "ignorePatterns": ["**/exports/*.js", "**/theme/*.*"],
-  "rules": {
-    "import/prefer-default-export": "off"
-  }
-}

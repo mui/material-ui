@@ -43,7 +43,7 @@ function ToggleCustomTheme({
         exclusive
         value={showCustomTheme}
         onChange={toggleCustomTheme}
-        aria-label="Platform"
+        aria-label="Toggle design language"
         sx={{
           backgroundColor: 'background.default',
           '& .Mui-selected': {
@@ -55,7 +55,9 @@ function ToggleCustomTheme({
           <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
           Custom theme
         </ToggleButton>
-        <ToggleButton value={false}>Material Design 2</ToggleButton>
+        <ToggleButton data-screenshot="toggle-default-theme" value={false}>
+          Material Design 2
+        </ToggleButton>
       </ToggleButtonGroup>
     </Box>
   );

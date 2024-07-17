@@ -1,5 +1,17 @@
 fn({
   MuiDivider: {
+    defaultProps: {},
+  },
+});
+fn({
+  MuiDivider: {
+    defaultProps: {
+      className: 'my-class'
+    },
+  },
+});
+fn({
+  MuiDivider: {
     defaultProps: {
       sx: {
         opacity: "0.6"
@@ -27,7 +39,6 @@ fn({
     },
   },
 });
-
 fn({
   MuiDivider: {
     defaultProps: {
@@ -39,7 +50,6 @@ fn({
     },
   },
 });
-
 fn({
   MuiDivider: {
     defaultProps: {
@@ -49,6 +59,13 @@ fn({
         bgcolor: 'black',
         opacity: "0.6"
       }
+    },
+  },
+});
+fn({
+  MuiDivider: {
+    defaultProps: {
+      className: 'my-class',
     },
   },
 });

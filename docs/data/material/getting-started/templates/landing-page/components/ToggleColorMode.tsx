@@ -1,34 +1,33 @@
 import * as React from 'react';
 import { PaletteMode } from '@mui/material';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 
-interface ToggleColorModeProps {
+interface ToggleColorModeProps extends IconButtonProps {
   mode: PaletteMode;
   toggleColorMode: () => void;
 }
 
-function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
+export default function ToggleColorMode({
+  mode,
+  toggleColorMode,
+  ...props
+}: ToggleColorModeProps) {
   return (
-    <Box sx={{ maxWidth: '32px' }}>
-      <Button
-        variant="text"
-        onClick={toggleColorMode}
-        size="small"
-        aria-label="button to toggle theme"
-        sx={{ minWidth: '32px', height: '32px', p: '4px' }}
-      >
-        {mode === 'dark' ? (
-          <WbSunnyRoundedIcon fontSize="small" />
-        ) : (
-          <ModeNightRoundedIcon fontSize="small" />
-        )}
-      </Button>
-    </Box>
+    <IconButton
+      onClick={toggleColorMode}
+      color="primary"
+      aria-label="Theme toggle button"
+      size="small"
+      {...props}
+    >
+      {mode === 'dark' ? (
+        <WbSunnyRoundedIcon fontSize="small" />
+      ) : (
+        <ModeNightRoundedIcon fontSize="small" />
+      )}
+    </IconButton>
   );
 }
-
-export default ToggleColorMode;

@@ -12,6 +12,14 @@ export default function transformer(file, api, options) {
   const printOptions = options.printOptions;
 
   findComponentJSX(j, { root, componentName: 'Divider' }, (elementPath) => {
+    const lightProp = elementPath.node.openingElement.attributes.find(
+      (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'light',
+    );
+
+    if (!lightProp) {
+      return;
+    }
+
     elementPath.node.openingElement.attributes = elementPath.node.openingElement.attributes.filter(
       (attr) => {
         if (attr.type === 'JSXAttribute' && attr.name.name === 'light') {
@@ -20,6 +28,12 @@ export default function transformer(file, api, options) {
         return true;
       },
     );
+
+    const isLightPropTruthy = lightProp.value?.expression.value !== false;
+
+    if (!isLightPropTruthy) {
+      return;
+    }
 
     const sxIndex = elementPath.node.openingElement.attributes.findIndex(
       (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'sx',
@@ -52,9 +66,21 @@ export default function transformer(file, api, options) {
       (key) => key.key.name === 'defaultProps',
     );
 
+    const lightProp = defaultPropsObject.value.properties.find((prop) => prop.key.name === 'light');
+
+    if (!lightProp) {
+      return;
+    }
+
     defaultPropsObject.value.properties = defaultPropsObject.value.properties.filter(
       (prop) => !['light'].includes(prop?.key?.name),
     );
+
+    const isLightPropTruthy = lightProp.value?.value !== false;
+
+    if (!isLightPropTruthy) {
+      return;
+    }
 
     const sxIndex = defaultPropsObject.value.properties.findIndex((prop) => prop.key.name === 'sx');
 

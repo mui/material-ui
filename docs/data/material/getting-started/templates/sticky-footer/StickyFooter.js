@@ -8,7 +8,7 @@ import Link from '@mui/material/Link';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary">
+    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -25,13 +25,7 @@ const defaultTheme = createTheme();
 export default function StickyFooter() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
-        }}
-      >
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <CssBaseline />
         <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="sm">
           <Typography variant="h2" component="h1" gutterBottom>
@@ -45,15 +39,15 @@ export default function StickyFooter() {
         </Container>
         <Box
           component="footer"
-          sx={{
+          sx={(theme) => ({
             py: 3,
             px: 2,
             mt: 'auto',
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[200]
-                : theme.palette.grey[800],
-          }}
+            backgroundColor: theme.palette.grey[200],
+            ...theme.applyStyles('dark', {
+              backgroundColor: theme.palette.grey[800],
+            }),
+          })}
         >
           <Container maxWidth="sm">
             <Typography variant="body1">

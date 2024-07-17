@@ -47,21 +47,21 @@ function ColorShowcase({ title, color }) {
   }
 
   return (
-    <Stack gap={1} alignItems="center">
+    <Stack sx={{ gap: 1, alignItems: 'center' }}>
       <span>
         <b>{title}</b>
       </span>
       <span>{caption}</span>
-      <Stack direction="row" gap={1}>
-        <Stack alignItems="center">
+      <Stack direction="row" sx={{ gap: 1 }}>
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">light</Typography>
           <Box sx={{ bgcolor: `${color}.light`, width: 40, height: 20 }} />
         </Stack>
-        <Stack alignItems="center">
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">main</Typography>
           <Box sx={{ bgcolor: `${color}.main`, width: 40, height: 20 }} />
         </Stack>
-        <Stack alignItems="center">
+        <Stack sx={{ alignItems: 'center' }}>
           <Typography variant="body2">dark</Typography>
           <Box sx={{ bgcolor: `${color}.dark`, width: 40, height: 20 }} />
         </Stack>
@@ -77,7 +77,7 @@ ColorShowcase.propTypes = {
 
 export default function TonalOffset() {
   return (
-    <Stack direction={{ xs: 'column', sm: 'row' }} gap={8}>
+    <Stack direction={{ xs: 'column', sm: 'row' }} sx={{ gap: 8 }}>
       <ThemeProvider theme={defaultTonalOffsetTheme}>
         <ColorShowcase title="Default tonal offset" color="primary" />
       </ThemeProvider>

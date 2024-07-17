@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, act, screen } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent, act, screen } from '@mui/internal-test-utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-} from './getInitColorSchemeScript';
+} from '../InitColorSchemeScript/InitColorSchemeScript';
 import useCurrentColorScheme, { getColorScheme } from './useCurrentColorScheme';
 
 describe('useCurrentColorScheme', () => {

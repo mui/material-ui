@@ -59,7 +59,7 @@ export default function Highlights() {
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
         color: 'white',
-        bgcolor: '#06090a',
+        bgcolor: 'hsl(220, 30%, 2%)',
       }}
     >
       <Container
@@ -91,22 +91,23 @@ export default function Highlights() {
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Stack
                 direction="column"
-                color="inherit"
                 component={Card}
                 spacing={1}
                 useFlexGap
                 sx={{
+                  color: 'inherit',
                   p: 3,
                   height: '100%',
                   border: '1px solid',
-                  borderColor: 'grey.800',
+                  borderColor: 'hsla(220, 25%, 25%, .3)',
                   background: 'transparent',
                   backgroundColor: 'grey.900',
+                  boxShadow: 'none',
                 }}
               >
                 <Box sx={{ opacity: '50%' }}>{item.icon}</Box>
                 <div>
-                  <Typography fontWeight="medium" gutterBottom>
+                  <Typography gutterBottom sx={{ fontWeight: 'medium' }}>
                     {item.title}
                   </Typography>
                   <Typography variant="body2" sx={{ color: 'grey.400' }}>

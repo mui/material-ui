@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -20,14 +20,14 @@ function userClick(element) {
 }
 
 /**
- * @param {typeof import('@mui-internal/test-utils').screen} view
+ * @param {typeof import('@mui/internal-test-utils').screen} view
  */
 function findBackdrop(view) {
   return view.getByRole('dialog').parentElement;
 }
 
 /**
- * @param {typeof import('@mui-internal/test-utils').screen} view
+ * @param {typeof import('@mui/internal-test-utils').screen} view
  */
 function clickBackdrop(view) {
   userClick(findBackdrop(view));
@@ -48,13 +48,7 @@ describe('<Dialog />', () => {
       testVariantProps: { variant: 'foo' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
-      ],
+      skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
 
@@ -185,6 +179,28 @@ describe('<Dialog />', () => {
       clickBackdrop(screen);
       expect(onBackdropClick.callCount).to.equal(1);
       expect(onClose.callCount).to.equal(1);
+    });
+
+    it('calls onBackdropClick when onClick callback also exists', () => {
+      const onBackdropClick = spy();
+      const onClick = spy();
+      render(
+        <Dialog
+          onClick={onClick}
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+        >
+          foo
+        </Dialog>,
+      );
+
+      clickBackdrop(screen);
+      expect(onBackdropClick.callCount).to.equal(1);
+      expect(onClick.callCount).to.equal(1);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {

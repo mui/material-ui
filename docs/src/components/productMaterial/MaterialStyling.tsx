@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import DevicesOtherRoundedIcon from '@mui/icons-material/DevicesOtherRounded';
-import ContrastRoundedIcon from '@mui/icons-material/ContrastRounded';
 import SwitchAccessShortcutRoundedIcon from '@mui/icons-material/SwitchAccessShortcutRounded';
 import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
+import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -13,19 +14,12 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
 <Card
   variant="outlined"
-  sx={{
-    p: 2,
-    display: 'flex',
-    flexWrap: 'wrap',
-    zIndex: 1,
-  }}
+  sx={{ p: 2, display: 'flex', flexWrap: 'wrap', zIndex: 1 }}
 >
   <CardMedia
     component="img"
@@ -65,9 +59,9 @@ const code = `
   </Box>
 </Card>`;
 
-const startLine = [32, 21, 17];
-const endLine = [42, 26, 17];
-const scrollTo = [540, 320, 200];
+const startLine = [27, 15, 12];
+const endLine = [37, 20, 12];
+const scrollTo = [27, 10, 4];
 
 export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
@@ -108,7 +102,10 @@ export const useResizeHandle = (
       if (target.current && dragging && clientX) {
         const objectRect = target.current.getBoundingClientRect();
         const newWidth = clientX - objectRect.left + dragOffset;
-        target.current.style.width = `clamp(${minWidth}, ${Math.floor(newWidth)}px, ${maxWidth})`;
+        target.current.style.setProperty(
+          'width',
+          `clamp(${minWidth}, ${Math.floor(newWidth)}px, ${maxWidth})`,
+        );
       }
     }
     function stopResize() {
@@ -143,25 +140,25 @@ export default function MaterialStyling() {
   const objectRef = React.useRef<HTMLDivElement | null>(null);
   const { dragging, getDragHandlers } = useResizeHandle(objectRef, { minWidth: '253px' });
   const infoRef = React.useRef<HTMLDivElement | null>(null);
-  function getSelectedProps(i: number) {
-    return {
-      selected: index === i,
-      sx: { '& svg': { opacity: index === i ? 1 : 0.5 } },
-    };
-  }
+
+  const getSelectedProps = (i: number) => ({
+    selected: index === i,
+    sx: { '& svg': { opacity: index === i ? 1 : 0.5 } },
+  });
+
   React.useEffect(() => {
-    if (infoRef.current) {
-      infoRef.current.scroll({ top: scrollTo[index], behavior: 'smooth' });
-    }
-    if (objectRef.current) {
-      objectRef.current.style.width = '100%';
-    }
+    // 18px line-height
+    // 16px margin-top
+    // 1px border-width
+    infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
+
+    objectRef.current!.style.setProperty('width', '100%');
   }, [index]);
 
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Styling"
             title={
@@ -174,7 +171,7 @@ export default function MaterialStyling() {
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
-                icon={<ContrastRoundedIcon color="primary" />}
+                icon={<StyleRoundedIcon color="primary" />}
                 title="Leverage the tokens from your theme"
                 description="Easily use the design tokens defined in your theme for any CSS property out there."
               />
@@ -195,13 +192,9 @@ export default function MaterialStyling() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
-            <Frame.Demo
-              sx={{
-                overflow: 'auto',
-              }}
-            >
+            <Frame.Demo sx={{ overflow: 'auto' }}>
               <Box
                 ref={objectRef}
                 style={{ touchAction: dragging ? 'none' : 'auto' }}
@@ -313,16 +306,9 @@ export default function MaterialStyling() {
                 overflow: 'auto',
               }}
             >
-              <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
-                <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <HighlightedCode
-                    copyButtonHidden
-                    component={MarkdownElement}
-                    code={code}
-                    language="jsx"
-                  />
-                </Box>
-                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
+              <Box sx={{ position: 'relative' }}>
+                <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+                <FlashCode startLine={startLine[index]} endLine={endLine[index]} />
               </Box>
             </Frame.Info>
           </Frame>

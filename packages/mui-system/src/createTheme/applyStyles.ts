@@ -8,7 +8,7 @@ export interface ApplyStyles<K extends string> {
  * A universal utility to style components with multiple color modes. Always use it from the theme object.
  * It works with:
  *  - [Basic theme](https://mui.com/material-ui/customization/dark-mode/)
- *  - [CSS theme variables](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/)
+ *  - [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview/)
  *  - Zero-runtime engine
  *
  * Tips: Use an array over object spread and place `theme.applyStyles()` last.

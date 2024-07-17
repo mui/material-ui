@@ -13,7 +13,7 @@ unstyled: /base-ui/react-input/
 
 Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic TextField
 

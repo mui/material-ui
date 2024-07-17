@@ -154,7 +154,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const allItems = (
     React.Children.toArray(children).filter((child) => {
       return React.isValidElement(child);
-    }) as Array<React.ReactElement>
+    }) as Array<React.ReactElement<any>>
   ).map((child, index) => (
     <SlotLi key={`child-${index}`} {...liProps}>
       {isMuiElement(child, ['Typography'])

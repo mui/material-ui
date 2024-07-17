@@ -41,10 +41,10 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineDot API](https://mui.com/material-ui/api/timeline-dot/)
+ * - [TimelineDot API](https://next.mui.com/material-ui/api/timeline-dot/)
  */
-export default function TimelineDot(props: TimelineDotProps): JSX.Element;
+export default function TimelineDot(props: TimelineDotProps): React.JSX.Element;

@@ -33,8 +33,8 @@ export default function FAQ() {
       <Typography
         component="h2"
         variant="h4"
-        color="text.primary"
         sx={{
+          color: 'text.primary',
           width: { sm: '100%', md: '60%' },
           textAlign: { sm: 'left', md: 'center' },
         }}

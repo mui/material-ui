@@ -8,7 +8,7 @@ components: Sheet
 
 <p class="description">Sheet is a generic container that supports Joy UI's global variants.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

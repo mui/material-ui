@@ -104,20 +104,20 @@ export interface ExtendButtonTypeMap<TypeMap extends OverridableTypeMap> {
 
 export type ExtendButton<TypeMap extends OverridableTypeMap> = ((
   props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<TypeMap>, 'a'>,
-) => JSX.Element) &
+) => React.JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<TypeMap>>;
 
 /**
  *
  * Demos:
  *
- * - [Button Group](https://mui.com/material-ui/react-button-group/)
- * - [Button](https://mui.com/material-ui/react-button/)
+ * - [Button Group](https://next.mui.com/material-ui/react-button-group/)
+ * - [Button](https://next.mui.com/material-ui/react-button/)
  *
  * API:
  *
- * - [Button API](https://mui.com/material-ui/api/button/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [Button API](https://next.mui.com/material-ui/api/button/)
+ * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
  */
 declare const Button: ExtendButtonBase<ButtonTypeMap>;
 

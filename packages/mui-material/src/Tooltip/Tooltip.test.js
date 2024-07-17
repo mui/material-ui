@@ -9,7 +9,7 @@ import {
   simulatePointerDevice,
   focusVisible,
   programmaticFocusTriggersFocusVisible,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
@@ -58,8 +58,6 @@ describe('<Tooltip />', () => {
         'componentProp',
         'componentsProp',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
         'slotPropsCallback', // not supported yet
       ],
     }),
@@ -473,7 +471,12 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', () => {
+    it('should handle autoFocus + onFocus forwarding', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const handleFocus = spy();
       function AutoFocus(props) {
         return (
@@ -502,6 +505,13 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: delay', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('should take the enterDelay into account', async () => {
       const { queryByRole } = render(
         <Tooltip title="Hello World" enterDelay={111}>
@@ -622,7 +632,12 @@ describe('<Tooltip />', () => {
       });
     });
 
-    it(`should be transparent for the focus and blur event`, () => {
+    it(`should be transparent for the focus and blur event`, function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const handleBlur = spy();
       const handleFocus = spy();
       render(
@@ -868,6 +883,13 @@ describe('<Tooltip />', () => {
   });
 
   describe('focus', () => {
+    before(function beforeCallback() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+    });
+
     it('ignores base focus', () => {
       render(
         <Tooltip enterDelay={0} title="Some information">

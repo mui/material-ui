@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, ErrorBoundary, act, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, screen, ErrorBoundary, act, fireEvent } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import { useAutocomplete, createFilterOptions } from '@mui/base/useAutocomplete';
 
@@ -31,7 +31,12 @@ describe('useAutocomplete', () => {
           {groupedOptions.length > 0 ? (
             <ul {...getListboxProps()}>
               {groupedOptions.map((option, index) => {
-                return <li {...getOptionProps({ option, index })}>{option}</li>;
+                const { key, ...optionProps } = getOptionProps({ option, index });
+                return (
+                  <li key={key} {...optionProps}>
+                    {option}
+                  </li>
+                );
               })}
             </ul>
           ) : null}
@@ -258,7 +263,12 @@ describe('useAutocomplete', () => {
           {groupedOptions.length > 0 ? (
             <ul {...getListboxProps()}>
               {groupedOptions.map((option, index) => {
-                return <li {...getOptionProps({ option, index })}>{option}</li>;
+                const { key, ...optionProps } = getOptionProps({ option, index });
+                return (
+                  <li key={key} {...optionProps}>
+                    {option}
+                  </li>
+                );
               })}
             </ul>
           ) : null}

@@ -4,8 +4,8 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getBottomNavigationUtilityClass } from './bottomNavigationClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -30,7 +30,7 @@ const BottomNavigationRoot = styled('div', {
 }));
 
 const BottomNavigation = React.forwardRef(function BottomNavigation(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBottomNavigation' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBottomNavigation' });
   const {
     children,
     className,

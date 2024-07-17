@@ -63,7 +63,7 @@ export default function usePagination(props = {}) {
       boundaryCount + siblingCount * 2 + 2,
     ),
     // Less than endPages
-    endPages.length > 0 ? endPages[0] - 2 : count - 1,
+    count - boundaryCount - 1,
   );
 
   // Basic list of items to render

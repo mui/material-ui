@@ -1,2 +1,2 @@
-'use client'
-export { default } from './shadows'
+'use client';
+export { default } from './shadows';

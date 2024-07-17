@@ -30,6 +30,11 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
         backgroundPosition: 'center',
         backgroundImage: `url(${post.image})`,
       }}
+      style={
+        {
+          '--post-image': post.image,
+        } as any
+      }
     >
       {/* Increase the priority of the hero background image */}
       {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}

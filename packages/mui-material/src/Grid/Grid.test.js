@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';

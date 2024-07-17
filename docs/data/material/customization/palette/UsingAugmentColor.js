@@ -27,20 +27,20 @@ theme = createTheme(theme, {
 export default function UsingAugmentColor() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack gap={2} alignItems="center">
+      <Stack sx={{ gap: 2, alignItems: 'center' }}>
         <Button variant="contained" color="salmon">
           Salmon
         </Button>
-        <Stack direction="row" gap={1}>
-          <Stack alignItems="center">
+        <Stack direction="row" sx={{ gap: 1 }}>
+          <Stack sx={{ alignItems: 'center' }}>
             <Typography variant="body2">light</Typography>
             <Box sx={{ bgcolor: 'salmon.light', width: 40, height: 20 }} />
           </Stack>
-          <Stack alignItems="center">
+          <Stack sx={{ alignItems: 'center' }}>
             <Typography variant="body2">main</Typography>
             <Box sx={{ bgcolor: 'salmon.main', width: 40, height: 20 }} />
           </Stack>
-          <Stack alignItems="center">
+          <Stack sx={{ alignItems: 'center' }}>
             <Typography variant="body2">dark</Typography>
             <Box sx={{ bgcolor: 'salmon.dark', width: 40, height: 20 }} />
           </Stack>

@@ -4,7 +4,7 @@ description: It has taken us two years to do it, but Material UI v1 has finally
 date: 2018-05-18T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Material UI', 'Product']
-card: true
+manualCard: true
 ---
 
 > React components that implement Google's Material Design.
@@ -32,7 +32,7 @@ Material UI v1 is our second stab at the execution of [the vision](/material-ui
 We want Material UI to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines. Material UI is not only an implementation of the Material Design guidelines, but a general use UI library of components that are needed by many. We are even allowing developers to build non Material themes on top of Material UI components. We will soon open source examples of this.
 
 - **CSS-in-JS**. We have seen [a great potential for **inline-styles** in the past](https://github.com/mui/material-ui/issues/30). It was an opportunity to solve four problems at once: removing the LESS toolchain dependency, allowing dynamic styles, allowing style code splitting and make overrides simpler.
-  Unfortunately, the **[execution didn't deliver](https://github.com/mui/material-ui/issues/4066)**. We were lacking key features only available in CSS: media queries, pseudo selectors, pseudo elements, browser prefixes. Debugging was much harder. Overriding styles was very challenging – developers always had to look the implementation, and couldn't use CSS without relying on !important.
+  Unfortunately, the **[execution didn't deliver](https://github.com/mui/material-ui/issues/4066)**. We were lacking key features only available in CSS: media queries, pseudo selectors, pseudo-elements, browser prefixes. Debugging was much harder. Overriding styles was very challenging – developers always had to look the implementation, and couldn't use CSS without relying on !important.
   Two years ago, we decided to move away [from inline-styles toward **CSS-in-JS**](https://github.com/oliviertassinari/a-journey-toward-better-style). We are very happy with the outcome. We would like to thank [@kof](https://github.com/kof) for the awesome work he has done with [JSS](https://github.com/cssinjs/jss), the internal solution we use. It's allowing us to be [interoperable](/material-ui/integrations/interoperability/) with all the other styling solutions.
 
 - **Theme**. You can't have a good customizability story without a good theming story. We have been redesigning the theme. It's a [JavaScript object](/material-ui/customization/default-theme/) that contains all the variables and utility functions you might need to style your components: a palette, a typography, breakpoints helpers, transition helpers, etc.
@@ -40,14 +40,14 @@ We want Material UI to become whatever is generally useful for application deve
 
 ### Ease of use
 
-We know the ease of use is a critical part of user acquisition. The more user we have, the more likely we can make the project sustainable. Improving the ease of use comes in different flavors:
+We know the ease of use is a critical part of user acquisition. The more users we have, the more likely we can make the project sustainable. Improving the ease of use comes in different flavors:
 
 - **Onboarding**. We have reduced the onboarding friction as much as possible. We know the onboarding is a critical step for user acquisition. The onboarding friction comes in different flavors:
   We have reduced the number of installation steps needed. It should be as simple as 1. npm install @mui/material and 2. import Button from '@mui/material/Button'; . We don't ask for polyfill, custom Webpack plugin or any specific build tool. The usage of MuiThemeProvider is no longer mandatory.
 
 - **Examples**. We are hosting [example projects](https://github.com/mui/material-ui/tree/master/examples) with the most popular solutions to start a project: [create-react-app](https://github.com/facebook/create-react-app), [Next.js](https://github.com/vercel/next.js), [Gatsby](https://github.com/gatsbyjs/gatsby), and CDN.
 
-- **Isolation**. Our components now work in isolation. You should be able to use a single Material UI component in an existing codebase without any side effect. No global CSS override needed, no bundle size bloat.
+- **Isolation**. Our components now work in isolation. You should be able to use a single Material UI component in an existing codebase without any side effects. No global CSS override needed, no bundle size bloat.
 
 - **Documentation**. We have made a huge investment in the documentation. We use [Next.js](https://github.com/vercel/next.js) for a blazingly fast navigation experience. It's also allowing us to provide a first server-side support for the components. We had added a search bar powered by [Algolia's DocSearch](https://docsearch.algolia.com/). (don't miss the s shortcut to focus the search bar). We have added many new documentation sections: guides, FAQ, etc. We have made the demos more interactive thanks to a direct integration with CodeSandbox.
 
@@ -59,19 +59,19 @@ Many people discover web development through Material UI but it's also used in 
 
 - **Best practices.** We are following the best practices as much as possible. We have made the components: fully accessible, fully [HTML5 compliant](https://validator.w3.org/) and SEO friendly.
 
-![[Lighthouse](https://github.com/GoogleChrome/lighthouse) report of the Material UI documentation homepage](https://cdn-images-1.medium.com/max/2000/1*_x_j-jasswGw0WaDyeHk-g.png)
+![[Lighthouse](https://github.com/GoogleChrome/lighthouse) report of the Material UI documentation homepage](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*_x_j-jasswGw0WaDyeHk-g.png)
 
 <p class="blog-description">Lighthouse report of the Material UI documentation homepage</p>
 
 - **Continuous integration.** Every single line of code is tested. We have an impressive [💯% test coverage](https://codecov.io/gh/mui/material-ui/branch/master). With more than 700 contributors, it's really important. All these tests allow us to quickly iterate and with confidence. We run the test suite runs on all the supported platforms. We also run more than [180 visual regression tests](https://app.argos-ci.com/mui/material-ui/builds) thanks to [Argos-CI](https://www.argos-ci.com/).
 
-![An example [BrowserStack](https://www.browserstack.com/) build](https://cdn-images-1.medium.com/max/2000/1*bnWGqotk36ivrYTp3dY7fA.png)
+![An example [BrowserStack](https://www.browserstack.com/) build](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*bnWGqotk36ivrYTp3dY7fA.png)
 
 <p class="blog-description">An example BrowserStack build</p>
 
-- **Bundle size**. If you take all the Material UI components, your bundle will weight more than 100 kB gzipped. Material UI looks like a huge dependency but it's fine in practice with code splitting. You will most likely use ~40% of the library on a given page/screen. The bundle size is important. It's [constantly monitored](https://github.com/mui/material-ui/blob/ca69253843208c21593fff230151e1fffd93a566/.size-limit), which prevents us from introducing size regressions, and allows us to recognize positive efforts.
+- **Bundle size**. If you take all the Material UI components, your bundle will weigh more than 100 kB gzipped. Material UI looks like a huge dependency but it's fine in practice with code splitting. You will most likely use ~40% of the library on a given page/screen. The bundle size is important. It's [constantly monitored](https://github.com/mui/material-ui/blob/ca69253843208c21593fff230151e1fffd93a566/.size-limit), which prevents us from introducing size regressions, and allows us to recognize positive efforts.
 
-![An example of [size-limit](https://github.com/ai/size-limit) output](https://cdn-images-1.medium.com/max/2000/1*AQoyq9OvjFZJE2Ep0UtCzA.png)
+![An example of [size-limit](https://github.com/ai/size-limit) output](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*AQoyq9OvjFZJE2Ep0UtCzA.png)
 
 <p class="blog-description">An example of size-limit</p>
 
@@ -107,25 +107,25 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 We have shipped the long-awaited Material UI v1 stable release. With a new codebase designed to better support customization, it's the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://mui.com/store/) from [Creative Tim](https://mui.com/store/contributors/creative-tim/). More are coming.
 
-![Creative Tim themes](https://cdn-images-1.medium.com/max/2000/1*jPOu6n1EMsqv4Gh652MtPA.png)
+![Creative Tim themes](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*jPOu6n1EMsqv4Gh652MtPA.png)
 
 <p class="blog-description">Creative Tim themes</p>
 
-![A preview of an open source theme we will soon release.](https://cdn-images-1.medium.com/max/2000/1*CThJG6Kuk-XlSM53jM6KLQ.png)
+![A preview of an open-source theme we will soon release.](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*CThJG6Kuk-XlSM53jM6KLQ.png)
 
-<p class="blog-description">A preview of an open source theme we will soon release.</p>
+<p class="blog-description">A preview of an open-source theme we will soon release.</p>
 
 ## Thank you
 
 Finally, one last thank you to everyone who's contributed to Material UI v1.
 I'm so excited at the idea we are making it stable, but rest assured, it's just the beginning. We will keep working hard on delivering the best possible UI library components.
 
-Material UI is an MIT-licensed open source project. It's an independent project with ongoing development helped by the support of these awesome [backers](/material-ui/discover-more/backers/). If you'd like to join them, please consider:
+Material UI is an MIT-licensed open-source project. It's an independent project with ongoing development helped by the support of these awesome [backers](/material-ui/discover-more/backers/). If you'd like to join them, please consider:
 
 - [Become a backer or sponsor on Open Collective](https://opencollective.com/mui-org).
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 
-![Our gold sponsors](https://cdn-images-1.medium.com/max/2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>
+![Our gold sponsors](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>
 
 - GitHub: https://github.com/mui/material-ui ⭐
-- X: https://twitter.com/MUI_hq
+- X: https://x.com/MUI_hq

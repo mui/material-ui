@@ -7,7 +7,7 @@ export default function ContainedToggleTrappedFocus() {
 
   return (
     <FocusTrap open={open} disableRestoreFocus disableAutoFocus>
-      <Stack alignItems="center" spacing={2}>
+      <Stack spacing={2} sx={{ alignItems: 'center' }}>
         <button type="button" onClick={() => setOpen(!open)}>
           {open ? 'Close' : 'Open'}
         </button>

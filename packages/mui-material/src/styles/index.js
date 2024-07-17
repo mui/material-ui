@@ -31,7 +31,7 @@ export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictM
 export { default as createStyles } from './createStyles';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
-export { duration, easing } from './createTransitions';
+export { default as createTransitions, duration, easing } from './createTransitions';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export { default as styled } from './styled';
@@ -45,7 +45,8 @@ export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
 export * from './CssVarsProvider';
-export { default as experimental_extendTheme } from './experimental_extendTheme';
+export { default as extendTheme } from './extendTheme';
+export { default as experimental_extendTheme } from './experimental_extendTheme'; // TODO: Remove in v7
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 
