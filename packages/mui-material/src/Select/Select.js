@@ -77,7 +77,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['variant', 'error'],
+    states: ['variant', 'error', 'disabled'],
   });
 
   const variant = fcs.variant || variantProp;
@@ -86,6 +86,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     ...props,
     variant,
     error: fcs.error,
+    disabled: fcs.disabled,
     classes: { ...classesProp, ...((inputProps ?? {}).classes ?? {}) },
   };
   const classes = useUtilityClasses(ownerState);
