@@ -17,7 +17,7 @@ import {
   screen as rtlScreen,
   Screen,
 } from '@testing-library/react/pure';
-import { userEvent } from '@testing-library/user-event';
+import { userEvent as rtlUserEvent } from '@testing-library/user-event';
 import { useFakeTimers } from 'sinon';
 
 interface Interaction {
@@ -271,7 +271,7 @@ interface ServerRenderConfiguration extends RenderConfiguration {
 export type RenderOptions = Partial<RenderConfiguration>;
 
 export interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
-  user: ReturnType<typeof userEvent.setup>;
+  user: ReturnType<typeof rtlUserEvent.setup>;
   forceUpdate(): void;
   /**
    * convenience helper. Better than repeating all props.
@@ -300,7 +300,7 @@ function render(
   );
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
-    user: userEvent.setup(),
+    user: rtlUserEvent.setup(),
     forceUpdate() {
       traceSync('forceUpdate', () =>
         testingLibraryRenderResult.rerender(
@@ -740,5 +740,5 @@ function act<T>(callback: () => void | T | Promise<T>) {
 const bodyBoundQueries = within(document.body, { ...queries, ...customQueries });
 
 export * from '@testing-library/react/pure';
-export { act, cleanup, fireEvent };
+export { act, cleanup, fireEvent, rtlUserEvent };
 export const screen: Screen = { ...rtlScreen, ...bodyBoundQueries };
