@@ -14,15 +14,19 @@ import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
+import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { getSelectUtilityClasses } from './selectClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes } = ownerState;
+  const { classes, variant, disabled, multiple, open, error } = ownerState;
 
   const slots = {
-    root: ['root'],
+    root:['root'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
+    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
+    nativeInput: ['nativeInput'],
   };
 
   return composeClasses(slots, getSelectUtilityClasses, classes);
@@ -92,7 +96,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     }[variant];
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
-
+  console.log(classes);
   return (
     <React.Fragment>
       {React.cloneElement(InputComponent, {
