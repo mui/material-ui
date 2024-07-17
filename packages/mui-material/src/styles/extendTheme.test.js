@@ -5,6 +5,7 @@ import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
+import { colors } from '..';
 
 describe('extendTheme', () => {
   let originalMatchmedia;
@@ -41,6 +42,13 @@ describe('extendTheme', () => {
     expect(theme.colorSchemes.dark).to.equal(undefined);
   });
 
+  it('should have a light as a default colorScheme regardless of key order', () => {
+    const theme = extendTheme({
+      colorSchemes: { dark: true, light: true },
+    });
+    expect(theme.defaultColorScheme).to.equal('light');
+  });
+
   it('should have "media" colorSchemeSelector', () => {
     const theme = extendTheme({ colorSchemeSelector: 'media' });
     expect(theme.colorSchemeSelector).to.equal('media');
@@ -62,6 +70,25 @@ describe('extendTheme', () => {
         colorScheme: 'dark',
       },
     });
+  });
+
+  it('should throw error if the default color scheme is invalid', () => {
+    expect(() =>
+      extendTheme({ colorSchemes: { dark: false }, defaultColorScheme: 'dark' }),
+    ).to.throw(
+      'MUI: Missing or invalid value of `colorSchemes.dark` from the `extendTheme` function.',
+    );
+  });
+
+  it('should throw error if the default color scheme is missing', () => {
+    expect(() => extendTheme({ defaultColorScheme: 'paper' })).to.throw(
+      'MUI: Missing or invalid value of `colorSchemes.paper` from the `extendTheme` function.',
+    );
+  });
+
+  it('should not attach to `colorSchemes` if the provided scheme is invalid', () => {
+    const theme = extendTheme({ colorSchemes: { dark: null, light: true } });
+    expect(theme.colorSchemes.dark).to.equal(undefined);
   });
 
   it('disableCssColorScheme should remove CSS color-scheme', () => {
@@ -671,6 +698,26 @@ describe('extendTheme', () => {
 
     Object.keys(keys).forEach((key) => {
       expect(theme[key]).to.deep.equal(theme.vars[key]);
+    });
+  });
+
+  describe('dark color scheme only', () => {
+    it('should use dark as default color scheme', () => {
+      expect(extendTheme({ colorSchemes: { dark: true } }).defaultColorScheme).to.deep.equal(
+        'dark',
+      );
+    });
+
+    it('should not have colorSchemeSelector', () => {
+      expect(extendTheme({ colorSchemes: { dark: true } }).colorSchemeSelector).to.deep.equal(
+        undefined,
+      );
+    });
+
+    it('should have dark palette and not light color scheme', () => {
+      const theme = extendTheme({ colorSchemes: { dark: true } });
+      expect(theme.colorSchemes.dark.palette.text.primary).to.equal('#fff');
+      expect(theme.colorSchemes.light).to.equal(undefined);
     });
   });
 
