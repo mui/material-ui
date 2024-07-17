@@ -85,7 +85,7 @@ function isEmpty(display) {
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
-  return classes
+  return classes;
 };
 
 /**

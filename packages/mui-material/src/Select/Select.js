@@ -23,7 +23,7 @@ const useUtilityClasses = (ownerState) => {
   const { classes, variant, disabled, multiple, open, error } = ownerState;
 
   const slots = {
-    root:['root'],
+    root: ['root'],
     select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
@@ -96,7 +96,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     }[variant];
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
-  console.log(classes);
+
   return (
     <React.Fragment>
       {React.cloneElement(InputComponent, {
