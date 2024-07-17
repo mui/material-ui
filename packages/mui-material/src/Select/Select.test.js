@@ -55,6 +55,21 @@ describe('<Select />', () => {
     expect(container.querySelector('input')).to.have.property('value', '10');
   });
 
+  it('should have root class', () => {
+    const { container } = render(
+      <Select value={10}>
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value={10}>Ten</MenuItem>
+        <MenuItem value={20}>Twenty</MenuItem>
+        <MenuItem value={30}>Thirty</MenuItem>
+      </Select>,
+    );
+
+    expect(container.querySelector(classes.root)).not.to.equal(null);
+  });
+
   specify('the trigger is in tab order', () => {
     const { getByRole } = render(
       <Select value="">
