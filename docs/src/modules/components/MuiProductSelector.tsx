@@ -34,7 +34,7 @@ const logoColor = (theme: Theme) => ({
 });
 
 const NavLabel = styled(Typography)(({ theme }) => ({
-  padding: theme.spacing(0.5, 1, 1, 1),
+  padding: theme.spacing(0.5, 1, 0.5, 1),
   fontSize: theme.typography.pxToRem(11),
   fontWeight: theme.typography.fontWeightSemiBold,
   textTransform: 'uppercase',
@@ -196,8 +196,8 @@ const advancedProducts = [
 const toolpadProducts = [
   {
     id: 'toolpad-core',
-    name: 'Toolpad Core',
-    description: 'Dashboard components for internal tools.',
+    name: 'Core',
+    description: 'Components for dashboards and internal tools.',
     icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
     href: ROUTES.toolpadCoreDocs,
   },
@@ -207,24 +207,6 @@ const toolpadProducts = [
     description: 'A self-hosted, low-code internal tool builder.',
     icon: <SvgToolpadStudioLogo width={14} height={14} sx={logoColor} />,
     href: ROUTES.toolpadStudioDocs,
-    chip: (
-      <Chip
-        label="Beta"
-        size="small"
-        color="primary"
-        variant="outlined"
-        sx={{
-          fontSize: '.625rem',
-          fontWeight: 'semiBold',
-          textTransform: 'uppercase',
-          letterSpacing: '.04rem',
-          height: '16px',
-          '& .MuiChip-label': {
-            px: '4px',
-          },
-        }}
-      />
-    ),
   },
 ];
 
@@ -309,7 +291,25 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           },
         }}
       >
-        <NavLabel> Toolpad </NavLabel>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '1px' }}>
+          <NavLabel> Toolpad </NavLabel>
+          <Chip
+            label="Beta"
+            size="small"
+            color="primary"
+            variant="outlined"
+            sx={{
+              fontSize: '.625rem',
+              fontWeight: 'semiBold',
+              textTransform: 'uppercase',
+              letterSpacing: '.04rem',
+              height: '16px',
+              '& .MuiChip-label': {
+                px: '4px',
+              },
+            }}
+          />
+        </Box>
       </Box>
       {toolpadProducts.map((product) => (
         <ProductItem
@@ -319,7 +319,6 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           icon={product.icon}
           href={product.href}
           active={pageContext.productId === product.id}
-          chip={product.chip}
         />
       ))}
     </MenuList>
