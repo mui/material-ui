@@ -1,5 +1,4 @@
 import { alpha, Theme } from '@mui/material/styles';
-import { adShape } from './AdManager';
 
 const adBodyImageStyles = (theme: Theme) => ({
   root: {
@@ -92,9 +91,8 @@ const adBodyInlineStyles = (theme: Theme) => {
   };
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export const adStylesObject = {
   'body-image': adBodyImageStyles,
   'body-inline': adBodyInlineStyles,
 };
-
-export default adStylesObject[`body-${adShape}`];
