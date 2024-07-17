@@ -5,7 +5,6 @@ import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
-import { colors } from '..';
 
 describe('extendTheme', () => {
   let originalMatchmedia;
