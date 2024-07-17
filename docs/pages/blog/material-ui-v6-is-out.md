@@ -232,6 +232,8 @@ It also works with the `sx` prop:
 
 Explore the new and enhanced [Material UI free templates](https://mui.com/material-ui/getting-started/templates/) to see these amazing features in action. We've fully revamped the templates to provide the perfect starting point for your project, whether you're adding sleek styles or using the template's sections.
 
+{{"component": "components/blog/material-ui-v6-is-out/FreeTemplatesBento.js"}}
+
 ### Custom syles
 
 The new custom styles we've added allow you to dive into the best approaches for customization or simply copy and paste some stylish elements.
