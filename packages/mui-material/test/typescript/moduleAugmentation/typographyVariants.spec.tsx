@@ -37,3 +37,5 @@ const theme = createTheme({
 /* This variant is no longer supported */
 // @ts-expect-error
 <Typography variant="h3">h3</Typography>;
+
+<Typography sx={{ typography: { md: 'poster', lg: 'h2' } }}>Custom variants</Typography>;

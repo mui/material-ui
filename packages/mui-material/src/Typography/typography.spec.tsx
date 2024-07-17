@@ -1,24 +1,6 @@
 import * as React from 'react';
 import { Typography, TypographyProps } from '@mui/material';
 
-interface CustomTypographyVariants {
-  ['H1 title']?: React.CSSProperties;
-  ['Body L']?: React.CSSProperties;
-}
-
-declare module '@mui/material/styles' {
-  interface TypographyVariants extends CustomTypographyVariants {}
-
-  interface TypographyVariantsOptions extends CustomTypographyVariants {}
-}
-
-declare module '@mui/material/Typography' {
-  interface TypographyPropsVariantOverrides {
-    ['H1 title']: true;
-    ['Body L']: true;
-  }
-}
-
 const typographyTest = () => {
   const CustomComponent: React.FC<{ prop1: string; prop2: number }> = function CustomComponent() {
     return <div />;
@@ -76,7 +58,6 @@ const typographyTest = () => {
       <Typography sx={{ typography: { xs: 'body1', sm: 'h2', md: 'h1', lg: 'body2' } }} />
       {/* @ts-expect-error */}
       <Typography sx={{ typography: { xs: 'body 1', sm: 'h2', md: 'h1', lg: 'body1' } }} />
-      <Typography sx={{ typography: { xs: 'Body L', sm: 'h2', md: 'h1', lg: 'body2' } }} />
     </div>
   );
 };
