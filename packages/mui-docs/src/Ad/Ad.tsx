@@ -93,7 +93,7 @@ class AdErrorBoundary extends React.Component<{
     const eventLabel = String(this.props.eventLabel);
     // TODO: Use proper error monitoring service (for example Sentry) instead
 
-    window.gtag('event', 'ad', {
+    window.gtag<'event'>('zezsd', 'ad', {
       eventAction: 'crash',
       eventLabel,
     });
