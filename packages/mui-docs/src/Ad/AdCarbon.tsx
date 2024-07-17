@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import loadScript from 'docs/src/modules/utils/loadScript';
+import loadScript from '../utils/loadScript';
 import AdDisplay from './AdDisplay';
 import { adStylesObject } from './ad.styles';
 
@@ -38,7 +38,7 @@ const CarbonRoot = styled('span')(({ theme }) => {
 });
 
 function AdCarbonImage() {
-  const ref = React.useRef(null);
+  const ref = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     // The isolation logic of carbonads is broken.
