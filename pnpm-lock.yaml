@@ -20,7 +20,7 @@ overrides:
   '@types/react': 18.3.3
   '@types/react-dom': 18.3.0
   cross-fetch: ^4.0.0
-  '@pigment-css/react': 0.0.17
+  '@pigment-css/react': ^0.0.17
   '@pigment-css/unplugin': 0.0.17
   '@pigment-css/nextjs-plugin': 0.0.17
   '@pigment-css/vite-plugin': 0.0.17
@@ -106,7 +106,7 @@ importers:
         specifier: ^20.1.1
         version: 20.1.1
       '@pigment-css/react':
-        specifier: 0.0.17
+        specifier: ^0.0.17
         version: 0.0.17(@types/react@18.3.3)(react@18.3.1)
       '@playwright/test':
         specifier: 1.45.1
@@ -1831,7 +1831,7 @@ importers:
         specifier: workspace:*
         version: link:../mui-system/build
       '@pigment-css/react':
-        specifier: 0.0.17
+        specifier: ^0.0.17
         version: 0.0.17(@types/react@18.3.3)(react@18.3.1)
     publishDirectory: build
 
