@@ -97,6 +97,17 @@ async function main(version) {
 
   // add newline for clean diff
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
+
+  console.log('Installing dependencies...');
+  const pnpmInstall = childProcess.spawn('pnpm', ['install', '--no-frozen-lockfile'], {
+    shell: true,
+    stdio: ['inherit', 'inherit', 'inherit'],
+  });
+  pnpmInstall.on('exit', (exitCode) => {
+    if (exitCode !== 0) {
+      throw new Error('Failed to install dependencies');
+    }
+  });
 }
 
 const [version = process.env.REACT_VERSION] = process.argv.slice(2);
