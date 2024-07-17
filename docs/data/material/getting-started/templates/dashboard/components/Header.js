@@ -30,8 +30,11 @@ function Header({ mode, toggleColorMode }) {
         <MenuButton showBadge aria-label="Open notifications">
           <NotificationsRoundedIcon />
         </MenuButton>
-
-        <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+        <ToggleColorMode
+          mode={mode}
+          toggleColorMode={toggleColorMode}
+          data-screenshot="toggle-mode"
+        />
       </Stack>
     </Stack>
   );

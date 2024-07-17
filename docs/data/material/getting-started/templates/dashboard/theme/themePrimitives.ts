@@ -1,5 +1,5 @@
 import { PaletteMode } from '@mui/material';
-import { createTheme, alpha } from '@mui/material/styles';
+import { createTheme, alpha, Shadows } from '@mui/material/styles';
 
 declare module '@mui/material/Paper' {
   interface PaperPropsVariantOverrides {
@@ -223,4 +223,10 @@ export const getDesignTokens = (mode: PaletteMode) => ({
   shape: {
     borderRadius: 8,
   },
+  shadows: [
+    'none',
+    ...(mode === 'dark'
+      ? 'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px'
+      : 'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px'),
+  ] as Shadows,
 });
