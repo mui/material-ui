@@ -85,7 +85,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const ownerState = {
     ...props,
     variant,
-    classes: { ...classesProp, ...(inputProps.classes ?? {}) },
+    classes: { ...classesProp, ...((inputProps ?? {}).classes ?? {}) },
   };
   const classes = useUtilityClasses(ownerState);
   const { root, ...restOfClasses } = classes;
