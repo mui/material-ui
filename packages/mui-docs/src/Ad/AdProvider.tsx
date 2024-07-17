@@ -18,7 +18,8 @@ const AdConfigContext = React.createContext<AdConfig | null>(null);
 
 export function AdProvider(props: AdProviderProps) {
   const { children, config } = props;
-  const value = { GADisplayRatio: 0.1, ...config };
+
+  const value = React.useMemo(() => ({ GADisplayRatio: 0.1, ...config }), [config]);
 
   return <AdConfigContext.Provider value={value}>{children}</AdConfigContext.Provider>;
 }
