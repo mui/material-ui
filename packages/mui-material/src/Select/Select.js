@@ -83,7 +83,11 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 
   const variant = fcs.variant || variantProp;
 
-  const ownerState = { ...props, variant, classes: classesProp };
+  const ownerState = {
+    ...props,
+    variant,
+    classes: { ...classesProp, ...(inputProps.classes ?? {}) },
+  };
   const classes = useUtilityClasses(ownerState);
   const { root, ...restOfClasses } = classes;
 
@@ -125,7 +129,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
                 SelectDisplayProps: { id, ...SelectDisplayProps },
               }),
           ...inputProps,
-          classes: inputProps ? deepmerge(restOfClasses, inputProps.classes) : restOfClasses,
+          classes: restOfClasses,
           ...(input ? input.props.inputProps : {}),
         },
         ...(((multiple && native) || displayEmpty) && variant === 'outlined'
