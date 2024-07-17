@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import deepmerge from '@mui/utils/deepmerge';
 import composeClasses from '@mui/utils/composeClasses';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
