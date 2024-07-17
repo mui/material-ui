@@ -109,7 +109,7 @@ function getOverlays(mode) {
 
 function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
   if (!scheme) {
-    return;
+    return undefined;
   }
   scheme = scheme === true ? {} : scheme;
   const mode = colorScheme === 'dark' ? 'dark' : 'light';
@@ -157,13 +157,14 @@ export default function extendTheme(options = {}, ...args) {
     defaultColorSchemeInput ||
     (colorSchemesInput.light && firstColorScheme !== 'light' ? 'light' : firstColorScheme);
   const getCssVar = createGetCssVar(cssVarPrefix);
-  let {
-    [defaultColorScheme]: defaultScheme,
+  const {
+    [defaultColorScheme]: defaultSchemeInput,
     light: builtInLight,
     dark: builtInDark,
     ...customColorSchemes
   } = colorSchemesInput;
   const colorSchemes = { ...customColorSchemes };
+  let defaultScheme = defaultSchemeInput;
 
   // For built-in light and dark color schemes, ensure that the value is valid if they are the default color scheme.
   if (
@@ -175,7 +176,7 @@ export default function extendTheme(options = {}, ...args) {
 
   if (!defaultScheme) {
     throw new MuiError(
-      'MUI: Missing or invalid value of `colorSchemes.%s` from the `extendTheme` function.',
+      'MUI: The provided `colorSchemes.%s` to the `extendTheme` function is either missing or invalid.',
       defaultColorScheme,
     );
   }

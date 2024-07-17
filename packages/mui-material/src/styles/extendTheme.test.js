@@ -76,13 +76,13 @@ describe('extendTheme', () => {
     expect(() =>
       extendTheme({ colorSchemes: { dark: false }, defaultColorScheme: 'dark' }),
     ).to.throw(
-      'MUI: Missing or invalid value of `colorSchemes.dark` from the `extendTheme` function.',
+      'MUI: The provided `colorSchemes.dark` to the `extendTheme` function is either missing or invalid.',
     );
   });
 
   it('should throw error if the default color scheme is missing', () => {
     expect(() => extendTheme({ defaultColorScheme: 'paper' })).to.throw(
-      'MUI: Missing or invalid value of `colorSchemes.paper` from the `extendTheme` function.',
+      'MUI: The provided `colorSchemes.paper` to the `extendTheme` function is either missing or invalid.',
     );
   });
 
