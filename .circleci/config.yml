@@ -72,7 +72,7 @@ commands:
       - run:
           name: Resolve React version
           command: |
-            node scripts/useReactVersion.mjs
+            pnpm use-react-version
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
 
