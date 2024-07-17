@@ -77,7 +77,11 @@ export default function Blog() {
     <ThemeProvider theme={showCustomTheme ? blogTheme : defaultTheme}>
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
-      <Container maxWidth="lg" component="main" sx={{ my: 16 }}>
+      <Container
+        maxWidth="lg"
+        component="main"
+        sx={{ display: 'flex', flexDirection: 'column', my: 16, gap: 4 }}
+      >
         <MainContent />
         <Latest />
       </Container>

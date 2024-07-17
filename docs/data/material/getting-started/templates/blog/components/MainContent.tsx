@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
@@ -80,6 +80,10 @@ const SyledCard = styled(Card)(({ theme }) => ({
   padding: 0,
   height: '100%',
   backgroundColor: theme.palette.background.paper,
+  '&:hover': {
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+  },
 }));
 
 const SyledCardContent = styled(CardContent)({
@@ -93,11 +97,6 @@ const SyledCardContent = styled(CardContent)({
     paddingBottom: 16,
   },
 });
-
-const SyledCardMedia = styled(CardMedia)(({ theme }) => ({
-  borderBottom: '1px solid',
-  borderColor: theme.palette.divider,
-}));
 
 const StyledTypography = styled(Typography)({
   display: '-webkit-box',
@@ -185,11 +184,39 @@ export default function MainContent() {
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
-          <Chip color="primary" onClick={handleClick} label="All categories" />
-          <Chip onClick={handleClick} label="Company" />
-          <Chip onClick={handleClick} label="Product" />
-          <Chip onClick={handleClick} label="Design" />
-          <Chip onClick={handleClick} label="Engineering" />
+          <Chip onClick={handleClick} label="All categories" />
+          <Chip
+            onClick={handleClick}
+            label="Company"
+            sx={{
+              backgroundColor: 'transparent',
+              border: 'none',
+            }}
+          />
+          <Chip
+            onClick={handleClick}
+            label="Product"
+            sx={{
+              backgroundColor: 'transparent',
+              border: 'none',
+            }}
+          />
+          <Chip
+            onClick={handleClick}
+            label="Design"
+            sx={{
+              backgroundColor: 'transparent',
+              border: 'none',
+            }}
+          />
+          <Chip
+            onClick={handleClick}
+            label="Engineering"
+            sx={{
+              backgroundColor: 'transparent',
+              border: 'none',
+            }}
+          />
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
           <Search />
@@ -201,11 +228,15 @@ export default function MainContent() {
       <Grid container spacing={2} columns={12}>
         <Grid size={{ xs: 12, md: 6 }}>
           <SyledCard variant="outlined">
-            <SyledCardMedia
+            <CardMedia
               component="img"
               alt="green iguana"
-              aspect-ratio="16 / 9"
               image={cardData[0].img}
+              aspect-ratio="16 / 9"
+              sx={{
+                borderBottom: '1px solid',
+                borderColor: 'divider',
+              }}
             />
             <SyledCardContent>
               <Typography gutterBottom variant="caption" component="div">
@@ -223,11 +254,15 @@ export default function MainContent() {
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
           <SyledCard variant="outlined">
-            <SyledCardMedia
+            <CardMedia
               component="img"
               alt="green iguana"
-              aspect-ratio="16 / 9"
               image={cardData[1].img}
+              aspect-ratio="16 / 9"
+              sx={{
+                borderBottom: '1px solid',
+                borderColor: 'divider',
+              }}
             />
             <SyledCardContent>
               <Typography gutterBottom variant="caption" component="div">
@@ -245,12 +280,14 @@ export default function MainContent() {
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
           <SyledCard variant="outlined" sx={{ height: '100%' }}>
-            <SyledCardMedia
+            <CardMedia
               component="img"
               alt="green iguana"
               image={cardData[2].img}
-              aspect-ratio={{ sm: '16 / 9', md: '' }}
-              sx={{ height: { sm: 'auto', md: '50%' } }}
+              sx={{
+                height: { sm: 'auto', md: '50%' },
+                aspectRatio: { sm: '16 / 9', md: '' },
+              }}
             />
             <SyledCardContent>
               <Typography gutterBottom variant="caption" component="div">
@@ -328,12 +365,14 @@ export default function MainContent() {
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
           <SyledCard variant="outlined" sx={{ height: '100%' }}>
-            <SyledCardMedia
+            <CardMedia
               component="img"
               alt="green iguana"
               image={cardData[5].img}
-              aspect-ratio={{ sm: '16 / 9', md: '' }}
-              sx={{ height: { sm: 'auto', md: '50%' } }}
+              sx={{
+                height: { sm: 'auto', md: '50%' },
+                aspectRatio: { sm: '16 / 9', md: '' },
+              }}
             />
             <SyledCardContent>
               <Typography gutterBottom variant="caption" component="div">
