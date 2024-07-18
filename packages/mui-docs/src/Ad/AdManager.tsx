@@ -25,7 +25,7 @@ const randomSession = Math.random();
 // 80% body-image
 export const adShape = randomSession < 0.2 ? 'inline' : 'image';
 
-export default function AdManager({ classSelector = '.description', children }: AdManagerProps) {
+export function AdManager({ classSelector = '.description', children }: AdManagerProps) {
   const [portal, setPortal] = React.useState<AdPortal>({ placement: 'body-top', element: null });
 
   useEnhancedEffect(() => {
