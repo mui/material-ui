@@ -18,3 +18,9 @@ theme.getCssVar('');
 theme.getCssVar('custom-color');
 // @ts-expect-error
 theme.getCssVar('palette-primary-main', '');
+
+// dark only application
+extendTheme({ colorSchemes: { dark: true } });
+
+// built-in light and dark modes
+extendTheme({ colorSchemes: { light: true, dark: true } });
