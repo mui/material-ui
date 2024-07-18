@@ -1,9 +1,6 @@
 import { alpha, Theme } from '@mui/material/styles';
-import { CSSObject } from '@mui/styled-engine';
 
-type BodyImageStylesKeys = 'root' | 'imgWrapper' | 'img' | 'a' | 'description' | 'poweredby';
-
-const adBodyImageStyles = (theme: Theme): Record<BodyImageStylesKeys, CSSObject> => ({
+export const adBodyImageStyles = (theme: Theme) => ({
   root: {
     display: 'block',
     overflow: 'hidden',
@@ -46,9 +43,7 @@ const adBodyImageStyles = (theme: Theme): Record<BodyImageStylesKeys, CSSObject>
   },
 });
 
-type BodyInlineStylesKeys = BodyImageStylesKeys | 'link';
-
-const adBodyInlineStyles = (theme: Theme): Record<BodyInlineStylesKeys, CSSObject> => {
+export const adBodyInlineStyles = (theme: Theme) => {
   const baseline = adBodyImageStyles(theme);
 
   return {
@@ -94,10 +89,4 @@ const adBodyInlineStyles = (theme: Theme): Record<BodyInlineStylesKeys, CSSObjec
       display: 'none',
     },
   };
-};
-
-// eslint-disable-next-line import/prefer-default-export
-export const adStylesObject = {
-  'body-image': adBodyImageStyles,
-  'body-inline': adBodyInlineStyles,
 };

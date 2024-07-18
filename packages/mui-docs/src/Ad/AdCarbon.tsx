@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import loadScript from '../utils/loadScript';
 import AdDisplay from './AdDisplay';
-import { adStylesObject } from './ad.styles';
+import { adBodyImageStyles } from './ad.styles';
 
 type CarbonAd = {
   pixel: string;
@@ -14,7 +14,7 @@ type CarbonAd = {
   description: string;
 };
 const CarbonRoot = styled('span')(({ theme }) => {
-  const styles = adStylesObject['body-image'](theme);
+  const styles = adBodyImageStyles(theme);
 
   return {
     width: '100%',

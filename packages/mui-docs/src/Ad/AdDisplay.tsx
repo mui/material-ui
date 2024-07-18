@@ -2,12 +2,11 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import { useTranslate } from '../i18n';
 import { adShape } from './AdManager';
-import { adStylesObject } from './ad.styles';
+import { adBodyImageStyles, adBodyInlineStyles } from './ad.styles';
 import { useAdConfig } from './AdProvider';
 
 const InlineShape = styled('span')(({ theme }) => {
-  const styles = adStylesObject['body-inline'](theme);
-
+  const styles = adBodyInlineStyles(theme);
   return {
     ...styles.root,
     '& img': styles.img,
@@ -19,8 +18,7 @@ const InlineShape = styled('span')(({ theme }) => {
 });
 
 const ImageShape = styled('span')(({ theme }) => {
-  const styles = adStylesObject['body-image'](theme);
-
+  const styles = adBodyImageStyles(theme);
   return {
     ...styles.root,
     '& img': styles.img,
