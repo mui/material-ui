@@ -39,26 +39,28 @@ describe('styled', () => {
   });
 
   describe('prop: clone', () => {
-    let view;
-
-    beforeEach(() => {
-      view = render(
+    it('should be able to pass props to cloned element', () => {
+      const { container } = render(
         <StyledButton clone data-test="styled">
           <div>Styled Components</div>
         </StyledButton>,
       );
-    });
 
-    it('should be able to pass props to cloned element', () => {
-      expect(view.container.firstChild).to.have.attribute('data-test', 'styled');
+      expect(container.firstChild).to.have.attribute('data-test', 'styled');
     });
 
     it('should be able to clone the child element', () => {
-      expect(view.container.firstChild).to.have.tagName('DIV');
-      view.setProps({
+      const { container, setProps } = render(
+        <StyledButton clone data-test="styled">
+          <div>Styled Components</div>
+        </StyledButton>,
+      );
+
+      expect(container.firstChild).to.have.tagName('DIV');
+      setProps({
         clone: false,
       });
-      expect(view.container.firstChild).to.have.tagName('BUTTON');
+      expect(container.firstChild).to.have.tagName('BUTTON');
     });
   });
 

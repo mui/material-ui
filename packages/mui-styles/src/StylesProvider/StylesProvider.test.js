@@ -88,6 +88,7 @@ describe('StylesProvider', () => {
     it('should be able to extract the styles', () => {
       const sheetsRegistry = new SheetsRegistry();
 
+      // eslint-disable-next-line testing-library/render-result-naming-convention
       const markup = ReactDOMServer.renderToString(
         <StylesProvider
           sheetsManager={new Map()}
@@ -105,6 +106,7 @@ describe('StylesProvider', () => {
       const sheetsCache = new Map();
 
       const sheetsRegistry1 = new SheetsRegistry();
+      // eslint-disable-next-line testing-library/render-result-naming-convention
       const markup1 = ReactDOMServer.renderToString(
         <StylesProvider
           sheetsManager={new Map()}
@@ -118,6 +120,7 @@ describe('StylesProvider', () => {
       assertRendering(markup1, sheetsRegistry1);
 
       const sheetsRegistry2 = new SheetsRegistry();
+      // eslint-disable-next-line testing-library/render-result-naming-convention
       const markup2 = ReactDOMServer.renderToString(
         <StylesProvider
           sheetsManager={new Map()}

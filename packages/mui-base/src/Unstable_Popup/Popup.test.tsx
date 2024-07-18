@@ -52,6 +52,7 @@ describe('<Popup />', () => {
   describeConformanceUnstyled(<Popup {...defaultProps} />, () => ({
     inheritComponent: 'div',
     render: async (...renderArgs) => {
+      // eslint-disable-next-line testing-library/render-result-naming-convention
       const result = render(...renderArgs);
       await waitForPosition();
 

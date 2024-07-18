@@ -132,7 +132,7 @@ describe('useNumberInput', () => {
       expect(handleChange.callCount).to.equal(0);
 
       await userEvent.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(document.body);
+      expect(document.body).toHaveFocus();
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(34);
@@ -180,7 +180,7 @@ describe('useNumberInput', () => {
       await userEvent.keyboard('9');
 
       await userEvent.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(document.body);
+      expect(document.body).toHaveFocus();
 
       expect(handleChange.args[0][1]).to.equal(5);
     });
@@ -204,7 +204,7 @@ describe('useNumberInput', () => {
       await userEvent.keyboard('-9');
 
       await userEvent.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(document.body);
+      expect(document.body).toHaveFocus();
 
       expect(handleChange.args[0][1]).to.equal(5);
     });
@@ -229,7 +229,7 @@ describe('useNumberInput', () => {
       await userEvent.keyboard('4');
 
       await userEvent.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(document.body);
+      expect(document.body).toHaveFocus();
 
       expect(handleChange.args[0][1]).to.equal(5);
     });
@@ -254,7 +254,7 @@ describe('useNumberInput', () => {
       expect(input.value).to.equal('');
 
       await userEvent.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(document.body);
+      expect(document.body).toHaveFocus();
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(null);
@@ -280,7 +280,7 @@ describe('useNumberInput', () => {
       expect(input.value).to.equal('-');
 
       await userEvent.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(document.body);
+      expect(document.body).toHaveFocus();
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(null);

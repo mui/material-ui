@@ -48,9 +48,6 @@ describe('<Collapse />', () => {
 
   describe('transition lifecycle', () => {
     clock.withFakeTimers();
-    let setProps;
-    let collapse;
-    let container;
     let nodeEnterHeightStyle;
     let nodeEnteringHeightStyle;
     let nodeExitHeightStyle;
@@ -77,8 +74,8 @@ describe('<Collapse />', () => {
     const handleExited = spy();
     const handleAddEndListener = spy();
 
-    beforeEach(() => {
-      const renderProps = render(
+    function renderCollapse() {
+      const { container, setProps } = render(
         <Collapse
           addEndListener={handleAddEndListener}
           onEnter={handleEnterWrapper}
@@ -92,13 +89,15 @@ describe('<Collapse />', () => {
           <div />
         </Collapse>,
       );
-      container = renderProps.container;
-      setProps = renderProps.setProps;
-      collapse = container.firstChild;
+      const collapse = container.firstChild;
       stub(collapse.firstChild, 'clientHeight').get(() => 666);
-    });
+
+      return { container, setProps, collapse };
+    }
 
     it('should run in', () => {
+      const { setProps, collapse } = renderCollapse();
+
       setProps({ in: true });
       expect(nodeEnterHeightStyle).to.equal('0px');
       expect(handleEnter.args[0][0]).to.equal(collapse);
@@ -118,6 +117,8 @@ describe('<Collapse />', () => {
     });
 
     it('should run out', () => {
+      const { setProps, collapse } = renderCollapse();
+
       setProps({ in: true });
       setProps({ in: false });
 
@@ -155,12 +156,12 @@ describe('<Collapse />', () => {
           </ThemeProvider>
         );
       }
-      const renderProps1 = render(<Test />);
-      const collapse = renderProps1.container.firstChild;
+      const { container: container1, setProps: setProps1 } = render(<Test />);
+      const collapse = container1.firstChild;
       // Gets wrapper
       stub(collapse.firstChild, 'clientHeight').get(() => 10);
 
-      renderProps1.setProps({
+      setProps1({
         in: true,
       });
 
@@ -174,12 +175,12 @@ describe('<Collapse />', () => {
       expect(next1.callCount).to.equal(1);
 
       const next2 = spy();
-      const renderProps2 = render(
+      const { setProps: setProps2 } = render(
         <Collapse timeout="auto" onEntered={next2}>
           <div />
         </Collapse>,
       );
-      renderProps2.setProps({ in: true });
+      setProps2({ in: true });
 
       expect(next2.callCount).to.equal(0);
       clock.tick(0);
@@ -187,7 +188,7 @@ describe('<Collapse />', () => {
       expect(next2.callCount).to.equal(1);
     });
 
-    it('should use timeout as delay when timeout is number', () => {
+    it('should use timeout as delay when timeout is number', async () => {
       const timeout = 10;
       const next = spy();
       const { setProps } = render(

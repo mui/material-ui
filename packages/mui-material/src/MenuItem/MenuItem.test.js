@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, waitFor } from '@mui/internal-test-utils';
 import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import ListContext from '../List/ListContext';
@@ -64,9 +64,11 @@ describe('<MenuItem />', () => {
         const handler = spy();
         render(<MenuItem {...{ [handlerName]: handler }} />);
 
-        await act(async () => fireEvent[eventName](screen.getByRole('menuitem')));
+        fireEvent[eventName](screen.getByRole('menuitem'));
 
-        expect(handler.callCount).to.equal(1);
+        await waitFor(() => {
+          expect(handler.callCount).to.equal(1);
+        });
       });
     });
 

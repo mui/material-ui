@@ -67,6 +67,7 @@ describe('<Button />', () => {
         const { getByRole } = render(<Button focusableWhenDisabled disabled />);
 
         const button = getByRole('button');
+
         act(() => {
           button.focus();
         });
@@ -83,13 +84,11 @@ describe('<Button />', () => {
         const button = getByRole('button');
         act(() => {
           button.focus();
+          button.click();
         });
 
-        act(() => {
-          button.click();
-          fireEvent.keyDown(button, { key: 'Enter' });
-          fireEvent.keyUp(button, { key: ' ' });
-        });
+        fireEvent.keyDown(button, { key: 'Enter' });
+        fireEvent.keyUp(button, { key: ' ' });
 
         expect(handleClick.callCount).to.equal(0);
       });
@@ -129,13 +128,11 @@ describe('<Button />', () => {
         const button = getByRole('button');
         act(() => {
           button.focus();
+          button.click();
         });
 
-        act(() => {
-          button.click();
-          fireEvent.keyDown(button, { key: 'Enter' });
-          fireEvent.keyUp(button, { key: ' ' });
-        });
+        fireEvent.keyDown(button, { key: 'Enter' });
+        fireEvent.keyUp(button, { key: ' ' });
 
         expect(handleClick.callCount).to.equal(0);
       });

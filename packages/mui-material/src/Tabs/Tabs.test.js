@@ -644,6 +644,8 @@ describe('<Tabs />', () => {
 
         await waitFor(() => {
           expect(hasLeftScrollButton(container)).to.equal(true);
+        });
+        await waitFor(() => {
           expect(hasRightScrollButton(container)).to.equal(false);
         });
       });
@@ -665,6 +667,8 @@ describe('<Tabs />', () => {
 
         await waitFor(() => {
           expect(hasLeftScrollButton(container)).to.equal(false);
+        });
+        await waitFor(() => {
           expect(hasRightScrollButton(container)).to.equal(true);
         });
       });
@@ -685,6 +689,8 @@ describe('<Tabs />', () => {
 
         await waitFor(() => {
           expect(hasLeftScrollButton(container)).to.equal(true);
+        });
+        await waitFor(() => {
           expect(hasRightScrollButton(container)).to.equal(true);
         });
       });
@@ -712,6 +718,8 @@ describe('<Tabs />', () => {
 
       await waitFor(() => {
         expect(hasLeftScrollButton(container)).to.equal(true);
+      });
+      await waitFor(() => {
         expect(hasRightScrollButton(container)).to.equal(true);
       });
 

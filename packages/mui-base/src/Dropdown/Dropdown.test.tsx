@@ -22,6 +22,7 @@ describe('<Dropdown />', () => {
     element: React.ReactElement<any, string | React.JSXElementConstructor<any>>,
     options?: RenderOptions,
   ): Promise<MuiRenderResult> {
+    // eslint-disable-next-line testing-library/render-result-naming-convention
     const rendered = internalRender(element, options);
     await flushMicrotasks();
     return rendered;

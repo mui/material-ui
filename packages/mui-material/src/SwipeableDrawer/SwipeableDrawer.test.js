@@ -450,7 +450,7 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('removes event listeners on unmount', () => {
-      const container = render(
+      const { unmount } = render(
         <SwipeableDrawer
           onOpen={() => {}}
           onClose={() => {}}
@@ -465,7 +465,7 @@ describe('<SwipeableDrawer />', () => {
       fireEvent.touchStart(swipeArea, {
         touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 250, clientY: 0 })],
       });
-      container.unmount();
+      unmount();
       //  trigger setState warning if listeners aren't cleaned.
       fireEvent.touchMove(swipeArea, {
         touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 180, clientY: 0 })],

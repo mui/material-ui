@@ -357,21 +357,21 @@ describe('<NumberInput />', () => {
       const incrementButton = getByTestId('increment-btn');
       const decrementButton = getByTestId('decrement-btn');
 
-      expect(document.activeElement).to.equal(document.body);
+      expect(document.body).toHaveFocus();
 
       await userEvent.click(incrementButton);
 
-      expect(document.activeElement).to.equal(input);
+      expect(input).toHaveFocus();
 
       act(() => {
         input.blur();
       });
 
-      expect(document.activeElement).to.equal(document.body);
+      expect(document.body).toHaveFocus();
 
       await userEvent.click(decrementButton);
 
-      expect(document.activeElement).to.equal(input);
+      expect(input).toHaveFocus();
     });
   });
 
@@ -554,13 +554,13 @@ describe('<NumberInput />', () => {
       const { getByRole } = render(<NumberInput />);
 
       const input = getByRole('textbox') as HTMLInputElement;
-      expect(document.activeElement).to.equal(document.body);
+      expect(document.body).toHaveFocus();
 
       await userEvent.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(input);
+      expect(input).toHaveFocus();
 
       await userEvent.keyboard('[Tab]');
-      expect(document.activeElement).to.equal(document.body);
+      expect(document.body).toHaveFocus();
     });
   });
 
@@ -600,9 +600,7 @@ describe('<NumberInput />', () => {
     const input = getByRole('textbox') as HTMLInputElement;
     const button = getByTestId('button') as HTMLButtonElement;
 
-    act(() => {
-      fireEvent.click(button);
-    });
+    fireEvent.click(button);
 
     await userEvent.click(input);
     expect(input.value).to.equal('20');

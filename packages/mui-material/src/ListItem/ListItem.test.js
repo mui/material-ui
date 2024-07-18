@@ -211,8 +211,9 @@ describe('<ListItem />', () => {
       );
       const button = getByRole('button');
 
+      fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+
       act(() => {
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
         button.focus();
       });
 

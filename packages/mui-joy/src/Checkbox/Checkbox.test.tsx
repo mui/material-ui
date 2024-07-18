@@ -90,10 +90,8 @@ describe('<Checkbox />', () => {
     const { getByRole } = render(<Checkbox defaultChecked />);
 
     // how a user would trigger it
-    act(() => {
-      getByRole('checkbox').click();
-      fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
-    });
+    fireEvent.click(getByRole('checkbox'));
+    fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
 
     expect(getByRole('checkbox')).to.have.property('checked', false);
   });

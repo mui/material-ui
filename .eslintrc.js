@@ -277,6 +277,21 @@ module.exports = {
       },
     },
     {
+      files: [
+        // matching the pattern of the test runner
+        '*.test.mjs',
+        '*.test.js',
+        '*.test.ts',
+        '*.test.tsx',
+      ],
+      excludedFiles: ['packages/markdown/**/*', 'test/e2e/**/*', 'test/regressions/**/*'],
+      extends: ['plugin:testing-library/react'],
+      rules: {
+        'testing-library/no-container': 'off',
+        'testing-library/prefer-screen-queries': 'off',
+      },
+    },
+    {
       files: ['docs/src/modules/components/**/*.js'],
       rules: {
         'material-ui/no-hardcoded-labels': [

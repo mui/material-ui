@@ -616,17 +616,15 @@ describe('Joy <Select />', () => {
         <Option value="1">Eric</Option>
       </Select>,
     );
+
     // Fire Click of the avatar
-    act(() => {
-      fireEvent.click(getByTestId('test-element'));
-    });
+    fireEvent.click(getByTestId('test-element'));
 
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
 
     // click again should close
-    act(() => {
-      fireEvent.click(getByTestId('test-element'));
-    });
+    fireEvent.click(getByTestId('test-element'));
+
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
   });
 
