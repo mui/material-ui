@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Portal from '@mui/material/Portal';
 import { AdContext } from './AdManager';
 
@@ -39,10 +38,5 @@ function AdGuest(props: AdGuestProps) {
     </Portal>
   );
 }
-
-AdGuest.propTypes = {
-  children: PropTypes.node,
-  classSelector: PropTypes.string,
-};
 
 export { AdGuest };

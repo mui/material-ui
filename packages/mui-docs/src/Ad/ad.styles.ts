@@ -1,6 +1,9 @@
 import { alpha, Theme } from '@mui/material/styles';
+import { CSSObject } from '@mui/styled-engine';
 
-const adBodyImageStyles = (theme: Theme) => ({
+type BodyImageStylesKeys = 'root' | 'imgWrapper' | 'img' | 'a' | 'description' | 'poweredby';
+
+const adBodyImageStyles = (theme: Theme): Record<BodyImageStylesKeys, CSSObject> => ({
   root: {
     display: 'block',
     overflow: 'hidden',
@@ -43,7 +46,9 @@ const adBodyImageStyles = (theme: Theme) => ({
   },
 });
 
-const adBodyInlineStyles = (theme: Theme) => {
+type BodyInlineStylesKeys = BodyImageStylesKeys | 'link';
+
+const adBodyInlineStyles = (theme: Theme): Record<BodyInlineStylesKeys, CSSObject> => {
   const baseline = adBodyImageStyles(theme);
 
   return {

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { useTranslate } from '../i18n';
 import { adShape } from './AdManager';
@@ -98,9 +97,3 @@ export default function AdDisplay(props: AdDisplayProps) {
   );
   /* eslint-enable react/no-danger */
 }
-
-AdDisplay.propTypes = {
-  ad: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  shape: PropTypes.oneOf(['inline', 'auto']),
-};

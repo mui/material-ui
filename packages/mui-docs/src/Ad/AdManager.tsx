@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 
 type AdPortal = {
@@ -36,8 +35,3 @@ export default function AdManager({ classSelector = '.description', children }: 
 
   return <AdContext.Provider value={portal}>{children}</AdContext.Provider>;
 }
-
-AdManager.propTypes = {
-  children: PropTypes.node,
-  classSelector: PropTypes.string,
-};

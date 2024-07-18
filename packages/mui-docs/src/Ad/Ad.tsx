@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -77,11 +76,6 @@ class AdErrorBoundary extends React.Component<{
   eventLabel: string | null;
   children?: React.ReactNode | undefined;
 }> {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    eventLabel: PropTypes.string,
-  };
-
   state = { didError: false };
 
   static getDerivedStateFromError() {
