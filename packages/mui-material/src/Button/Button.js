@@ -5,17 +5,16 @@ import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
+import { unstable_useId as useId } from '@mui/material/utils';
+import CircularProgress from '@mui/material/CircularProgress';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import { unstable_useId as useId } from '@mui/material/utils';
-import CircularProgress from '@mui/material/CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
-import { fontSize, fontWeight } from '@mui/system';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
@@ -571,7 +570,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       className={clsx(contextProps.className, classes.root, className, positionClassName)}
       component={component}
       disabled={disabled || loading}
-      loading={loading}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
@@ -591,6 +589,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       ) : (
         <span>{children}</span>
       )}
+
       {endIcon}
     </ButtonRoot>
   );
