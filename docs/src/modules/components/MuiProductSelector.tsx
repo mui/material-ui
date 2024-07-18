@@ -12,7 +12,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
 import SvgToolpadCoreLogo from 'docs/src/icons/SvgToolpadCoreLogo';
-import SvgToolpadStudioLogo from 'docs/src/icons/SvgToolpadStudioLogo';
+// import SvgToolpadStudioLogo from 'docs/src/icons/SvgToolpadStudioLogo';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
