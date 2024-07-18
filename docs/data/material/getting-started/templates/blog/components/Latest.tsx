@@ -130,6 +130,22 @@ function Author({ authors }: { authors: { name: string; avatar: string }[] }) {
 }
 
 function Latest() {
+  const [focusedCardIndex, setFocusedCardIndex] = React.useState<number | null>(
+    null,
+  );
+
+  const handleFocus = (index: number) => {
+    setFocusedCardIndex(index);
+  };
+
+  const handleBlur = () => {
+    setFocusedCardIndex(null);
+  };
+
+  const handleClick = () => {
+    console.info('You clicked the filter chip.');
+  };
+
   return (
     <div>
       <Typography variant="h2" gutterBottom>
@@ -144,14 +160,23 @@ function Latest() {
         {articleInfo.map((article, index) => (
           <Grid key={index} size={{ xs: 12, sm: 6 }}>
             <Box
+              onFocus={() => handleFocus(index)}
+              onBlur={handleBlur}
+              tabIndex={0}
+              className={focusedCardIndex === index ? 'Mui-focused' : ''}
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 gap: 1,
                 height: '100%',
-
                 '&:hover': { opacity: 0.6, cursor: 'pointer' },
+                '&:focus-visible': {
+                  outline: '3px solid',
+                  outlineColor: 'hsla(210, 98%, 48%, 0.5)',
+                  outlineOffset: '6px',
+                  borderRadius: '8px',
+                },
               }}
             >
               <Typography gutterBottom variant="caption" component="div">

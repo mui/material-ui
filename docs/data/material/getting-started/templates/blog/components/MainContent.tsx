@@ -84,6 +84,11 @@ const SyledCard = styled(Card)(({ theme }) => ({
     backgroundColor: 'transparent',
     cursor: 'pointer',
   },
+  '&:focus-visible': {
+    outline: '3px solid',
+    outlineColor: 'hsla(210, 98%, 48%, 0.5)',
+    outlineOffset: '2px',
+  },
 }));
 
 const SyledCardContent = styled(CardContent)({
@@ -92,7 +97,6 @@ const SyledCardContent = styled(CardContent)({
   gap: 4,
   padding: 16,
   flexGrow: 1,
-
   '&:last-child': {
     paddingBottom: 16,
   },
@@ -162,6 +166,18 @@ export function Search() {
 }
 
 export default function MainContent() {
+  const [focusedCardIndex, setFocusedCardIndex] = React.useState<number | null>(
+    null,
+  );
+
+  const handleFocus = (index: number) => {
+    setFocusedCardIndex(index);
+  };
+
+  const handleBlur = () => {
+    setFocusedCardIndex(null);
+  };
+
   const handleClick = () => {
     console.info('You clicked the filter chip.');
   };
@@ -227,7 +243,13 @@ export default function MainContent() {
       </Box>
       <Grid container spacing={2} columns={12}>
         <Grid size={{ xs: 12, md: 6 }}>
-          <SyledCard variant="outlined">
+          <SyledCard
+            variant="outlined"
+            onFocus={() => handleFocus(0)}
+            onBlur={handleBlur}
+            tabIndex={0}
+            className={focusedCardIndex === 0 ? 'Mui-focused' : ''}
+          >
             <CardMedia
               component="img"
               alt="green iguana"
@@ -253,7 +275,13 @@ export default function MainContent() {
           </SyledCard>
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <SyledCard variant="outlined">
+          <SyledCard
+            variant="outlined"
+            onFocus={() => handleFocus(1)}
+            onBlur={handleBlur}
+            tabIndex={0}
+            className={focusedCardIndex === 1 ? 'Mui-focused' : ''}
+          >
             <CardMedia
               component="img"
               alt="green iguana"
@@ -279,7 +307,14 @@ export default function MainContent() {
           </SyledCard>
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
-          <SyledCard variant="outlined" sx={{ height: '100%' }}>
+          <SyledCard
+            variant="outlined"
+            onFocus={() => handleFocus(2)}
+            onBlur={handleBlur}
+            tabIndex={0}
+            className={focusedCardIndex === 2 ? 'Mui-focused' : ''}
+            sx={{ height: '100%' }}
+          >
             <CardMedia
               component="img"
               alt="green iguana"
@@ -307,7 +342,14 @@ export default function MainContent() {
           <Box
             sx={{ display: 'flex', flexDirection: 'column', gap: 2, height: '100%' }}
           >
-            <SyledCard variant="outlined" sx={{ height: '100%' }}>
+            <SyledCard
+              variant="outlined"
+              onFocus={() => handleFocus(3)}
+              onBlur={handleBlur}
+              tabIndex={0}
+              className={focusedCardIndex === 3 ? 'Mui-focused' : ''}
+              sx={{ height: '100%' }}
+            >
               <SyledCardContent
                 sx={{
                   display: 'flex',
@@ -334,7 +376,14 @@ export default function MainContent() {
               </SyledCardContent>
               <Author authors={cardData[3].authors} />
             </SyledCard>
-            <SyledCard variant="outlined" sx={{ height: '100%' }}>
+            <SyledCard
+              variant="outlined"
+              onFocus={() => handleFocus(4)}
+              onBlur={handleBlur}
+              tabIndex={0}
+              className={focusedCardIndex === 4 ? 'Mui-focused' : ''}
+              sx={{ height: '100%' }}
+            >
               <SyledCardContent
                 sx={{
                   display: 'flex',
@@ -364,7 +413,14 @@ export default function MainContent() {
           </Box>
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
-          <SyledCard variant="outlined" sx={{ height: '100%' }}>
+          <SyledCard
+            variant="outlined"
+            onFocus={() => handleFocus(5)}
+            onBlur={handleBlur}
+            tabIndex={0}
+            className={focusedCardIndex === 5 ? 'Mui-focused' : ''}
+            sx={{ height: '100%' }}
+          >
             <CardMedia
               component="img"
               alt="green iguana"
