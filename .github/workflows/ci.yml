@@ -41,7 +41,7 @@ jobs:
         env:
           NODE_OPTIONS: --max_old_space_size=4096
 
-      - run: pnpm dlx pkg-pr-new './packages/*' --template './examples/*' --compact  
+      - run: pnpm dlx pkg-pr-new publish './packages/*' --template './examples/*' --compact
 
       - run: pnpm release:changelog
         env:
