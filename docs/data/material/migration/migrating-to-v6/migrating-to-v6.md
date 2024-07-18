@@ -46,7 +46,7 @@ The exact versions will be pinned on release from the browserslist query: `"> 0.
 
 <!-- #stable-snapshot -->
 
-- Node.js 18 (up from 12)
+- Node.js 14 (up from 12)
 - Chrome 109 (up from 90)
 - Edge 121 (up from 91)
 - Firefox 115 (up from 78)
