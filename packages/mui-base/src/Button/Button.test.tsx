@@ -67,7 +67,10 @@ describe('<Button />', () => {
         const { getByRole } = render(<Button focusableWhenDisabled disabled />);
 
         const button = getByRole('button');
-        button.focus();
+
+        act(() => {
+          button.focus();
+        });
 
         expect(document.activeElement).to.equal(button);
       });
