@@ -193,10 +193,11 @@ export default function MainContent() {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'row',
+          flexDirection: { xs: 'column-reverse', md: 'row' },
           width: '100%',
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: { xs: 'start', md: 'center' },
+          gap: 4,
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
@@ -234,7 +235,14 @@ export default function MainContent() {
             }}
           />
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 1,
+            width: { xs: '100%', md: 'fit-content' },
+          }}
+        >
           <Search />
           <IconButton size="small">
             <RssFeedRoundedIcon />
