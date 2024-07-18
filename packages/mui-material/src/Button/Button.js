@@ -33,13 +33,13 @@ const useUtilityClasses = (ownerState) => {
     ],
     label: ['label'],
     startIcon: [
-      loading && 'icon',
+      'icon',
       'startIcon',
       `iconSize${capitalize(size)}`,
       `startIconLoading${capitalize(loadingPosition)}`,
     ],
     endIcon: [
-      loading && 'icon',
+      'icon',
       'endIcon',
       `iconSize${capitalize(size)}`,
       `endIconLoading${capitalize(loadingPosition)}`,
@@ -523,7 +523,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const id = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+    <CircularProgress aria-labelledby={id} aria-label={`${children}`} color="inherit" size={16} />
   );
 
   const ownerState = {

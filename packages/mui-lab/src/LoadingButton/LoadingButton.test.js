@@ -20,13 +20,13 @@ describe('<LoadingButton />', () => {
   }));
 
   it('is in tab-order by default', () => {
-    render(<LoadingButton />);
+    render(<Button />);
 
     expect(screen.getByRole('button')).to.have.property('tabIndex', 0);
   });
 
   it('prop: classes can be appended to MuiButton', () => {
-    render(<LoadingButton variant="outlined" classes={{ outlined: 'loading-button-outlined' }} />);
+    render(<Button variant="outlined" classes={{ outlined: 'loading-button-outlined' }} />);
     const button = screen.getByRole('button');
 
     expect(button).to.have.class('MuiButton-outlined');
@@ -35,7 +35,7 @@ describe('<LoadingButton />', () => {
 
   describe('prop: loading', () => {
     it('disables the button', () => {
-      render(<LoadingButton loading />);
+      render(<Button loading />);
 
       const button = screen.getByRole('button');
       expect(button).to.have.property('tabIndex', -1);
@@ -43,13 +43,13 @@ describe('<LoadingButton />', () => {
     });
 
     it('cannot be enabled while `loading`', () => {
-      render(<LoadingButton disabled={false} loading />);
+      render(<Button disabled={false} loading />);
 
       expect(screen.getByRole('button')).to.have.property('disabled', true);
     });
 
     it('renders a progressbar that is labelled by the button', () => {
-      render(<LoadingButton loading>Submit</LoadingButton>);
+      render(<Button loading>Submit</Button>);
 
       const button = screen.getByRole('button');
       const progressbar = within(button).getByRole('progressbar');
@@ -59,16 +59,16 @@ describe('<LoadingButton />', () => {
 
   describe('prop: loadingIndicator', () => {
     it('is not rendered by default', () => {
-      render(<LoadingButton loadingIndicator="loading">Test</LoadingButton>);
+      render(<Button loadingIndicator="loading">Test</Button>);
 
       expect(screen.getByRole('button')).to.have.text('Test');
     });
 
     it('is rendered before the children when `loading`', () => {
       render(
-        <LoadingButton loadingIndicator="loading…" loading>
+        <Button loadingIndicator="loading…" loading>
           Test
-        </LoadingButton>,
+        </Button>,
       );
 
       expect(screen.getByRole('button')).to.have.text('loading…Test');
@@ -79,7 +79,7 @@ describe('<LoadingButton />', () => {
     it('correctly passes props to children', () => {
       const { getByRole } = render(
         <ButtonGroup variant="contained" size="large" color="secondary">
-          <LoadingButton />
+          <Button />
         </ButtonGroup>,
       );
       const button = getByRole('button');
@@ -91,9 +91,9 @@ describe('<LoadingButton />', () => {
     it('correctly applies position classes to loading buttons', () => {
       render(
         <ButtonGroup>
-          <LoadingButton>Button 1</LoadingButton>
-          <LoadingButton>Button 2</LoadingButton>
-          <LoadingButton>Button 3</LoadingButton>
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
         </ButtonGroup>,
       );
 
