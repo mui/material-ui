@@ -1,5 +1,12 @@
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/base';
+import { SlotComponentProps } from '@mui/utils';
+
+export type {
+  EventHandlers,
+  WithOptionalOwnerState,
+  SlotComponentProps,
+  SlotComponentPropsWithSlotState,
+} from '@mui/utils';
 
 export type SlotCommonProps = {
   component?: React.ElementType;

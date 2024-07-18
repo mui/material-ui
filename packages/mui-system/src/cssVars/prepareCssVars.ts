@@ -93,7 +93,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     }
     insertStyleSheet(getSelector(undefined, { ...rootCss }), rootCss);
 
-    const { [colorScheme]: defaultSchemeVal, ...rest } = colorSchemesMap;
+    const { [colorScheme]: defaultSchemeVal, ...other } = colorSchemesMap;
 
     if (defaultSchemeVal) {
       // default color scheme has to come before other color schemes
@@ -109,7 +109,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
       );
     }
 
-    Object.entries(rest).forEach(([key, { css }]) => {
+    Object.entries(other).forEach(([key, { css }]) => {
       const cssColorSheme = colorSchemes[key]?.palette?.mode;
       const finalCss =
         !disableCssColorScheme && cssColorSheme

@@ -66,7 +66,7 @@ Material UI will generate both light and dark palette with [`@media (prefers-co
 import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 
 const theme = extendTheme({
-  colorSchemeSelector: 'media',
+  colorSchemes: { light: true, dark: true },
 });
 
 function App() {
@@ -92,7 +92,7 @@ function App() {
 
 </codeblock>
 
-If you want to customize the selector instead of using `prefers-color-scheme`, check out the [advanced configuration](/material-ui/customization/css-theme-variables/configuration/#advanced-configuration).
+If you want to manually toggle the color scheme, check out the [advanced configuration](/material-ui/customization/css-theme-variables/configuration/#advanced-configuration).
 
 ## Applying dark styles
 

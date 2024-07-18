@@ -31,8 +31,8 @@ To toggle between modes manually, set the `colorSchemeSelector` with one of the 
 ```js class
 extendTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'class' }
-);
+  colorSchemeSelector: 'class'
+});
 
 // CSS Result
 .light { ... }
@@ -42,8 +42,8 @@ extendTheme({
 ```js data
 extendTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'data' }
-);
+  colorSchemeSelector: 'data'
+});
 
 // CSS Result
 [data-light] { ... }
