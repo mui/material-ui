@@ -62,14 +62,15 @@ describe('<ListItemButton />', () => {
       }
     });
 
-    it('should merge the class names', () => {
+    it('should merge the class names', async () => {
       const { getByRole } = render(
         <ListItemButton focusVisibleClassName="focusVisibleClassName" />,
       );
       const button = getByRole('button');
 
-      act(() => {
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+      fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+
+      await act(async () => {
         button.focus();
       });
 

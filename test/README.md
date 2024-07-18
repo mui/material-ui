@@ -247,7 +247,7 @@ For example, in https://app.circleci.com/pipelines/github/mui/material-ui/32796/
 You can check integration of different versions of React (for example different [release channels](https://react.dev/community/versioning-policy) or PRs to React) by running:
 
 ```bash
-node scripts/useReactVersion.mjs <version>`
+pnpm use-react-version <version>
 ```
 
 Possible values for `version`:
