@@ -11,18 +11,6 @@ import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import ROUTES from 'docs/src/route';
 
 const tabOneCode = `
-import { createDataProvider } from "@toolpad/studio/server";
-import db from "../db";
-export default createDataProvider({
-  async getRecords({ paginationModel: { start, pageSize } }) {
-    return {
-      records: await db.query("SELECT * FROM USERS"),
-    };
-  },
-});
-`;
-
-const tabTwoCode = `
 apiVersion: v1
 kind: page
 spec:
@@ -40,8 +28,20 @@ spec:
       - field: lastname
         type: string
       rowsSource: dataProvider
-  - component: code~omponent.CustomComponent
-    name: mapCustom
+  - component: codeComponent.map
+    name: map
+`;
+
+const tabTwoCode = `
+import { createDataProvider } from "@toolpad/studio/server";
+import db from "../db";
+export default createDataProvider({
+  async getRecords({ paginationModel: { start, pageSize } }) {
+    return {
+      records: await db.query("SELECT * FROM USERS"),
+    };
+  },
+});
 `;
 
 const tabThreeCode = `
@@ -145,20 +145,29 @@ function a11yProps(index: number) {
 const tabsCodeInfo = [
   {
     code: tabOneCode,
+    label: 'Local first',
     language: 'tsx',
     description:
-      "Write serverless functions that access your project's code, and let Toolpad handle linking your data with the UI.",
+      'Store your app configuration locally in yaml files. Changes in Toolpad are automatically synced to the files, and vice-versa.',
+    imgSrc: '/static/branding/toolpad/ex-1.png',
+    imgAlt: '.yaml file represents Toolpad app',
   },
   {
     code: tabTwoCode,
-    language: 'yaml',
+    label: 'Serverless functions',
+    language: 'tsx',
     description:
-      'Store your app configuration locally in yaml files. Changes in Toolpad are automatically synced to the files, and vice-versa.',
+      "Write serverless functions that access your project's code, and let Toolpad handle linking your data with the UI.",
+    imgSrc: '/static/branding/toolpad/ex-2.png',
+    imgAlt: 'Toolpad user management app',
   },
   {
     code: tabThreeCode,
+    label: 'Customize',
     language: 'tsx',
     description: 'Compose your UI with drag and drop using your own React components.',
+    imgSrc: '/static/branding/toolpad/ex-3.png',
+    imgAlt: 'Toolpad app with custom component',
   },
 ];
 
@@ -180,9 +189,9 @@ export default function ToolpadShowcase() {
             aria-label="Toolpad showcase"
             sx={tabsCustomStyles}
           >
-            <Tab label="Serverless functions" {...a11yProps(0)} />
-            <Tab label="yaml files" {...a11yProps(1)} />
-            <Tab label="React components" {...a11yProps(2)} />
+            {tabsCodeInfo.map((tab, index) => (
+              <Tab label={tab.label} {...a11yProps(index)} />
+            ))}
           </Tabs>
           <Box sx={{ p: 2 }}>
             <Paper
@@ -196,24 +205,9 @@ export default function ToolpadShowcase() {
                 borderRadius: '8px',
               })}
             >
-              <Image
-                index={0}
-                value={value}
-                src="/static/branding/toolpad/ex-1.png"
-                alt="Toolpad user management app"
-              />
-              <Image
-                index={1}
-                value={value}
-                src="/static/branding/toolpad/ex-2.png"
-                alt="yaml file represents Toolpad app"
-              />
-              <Image
-                index={2}
-                value={value}
-                src="/static/branding/toolpad/ex-3.png"
-                alt="Toolpad app with custom component"
-              />
+              {tabsCodeInfo.map((tab, index) => (
+                <Image key={index} index={index} value={value} src={tab.imgSrc} alt={tab.imgAlt} />
+              ))}
             </Paper>
           </Box>
         </Box>
