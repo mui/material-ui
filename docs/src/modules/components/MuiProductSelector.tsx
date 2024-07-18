@@ -196,14 +196,14 @@ const advancedProducts = [
 const toolpadProducts = [
   {
     id: 'toolpad-core',
-    name: 'Core',
+    name: 'Toolpad Core',
     description: 'Components for dashboards and internal tools.',
     icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
     href: ROUTES.toolpadCoreDocs,
   },
   {
     id: 'toolpad-studio',
-    name: 'Studio',
+    name: 'Toolpad Studio',
     description: 'A self-hosted, low-code internal tool builder.',
     icon: <SvgToolpadStudioLogo width={14} height={14} sx={logoColor} />,
     href: ROUTES.toolpadStudioDocs,
