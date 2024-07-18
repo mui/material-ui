@@ -37,12 +37,26 @@ You can follow progress on https://github.com/mui/material-ui/issues/30671.
 
 ### Grid
 
-The `Grid` component was updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
+The `Grid` component was stabilized and updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
 
 - The previous size and offset props were replaced with the `size` and `offset` props
 - The spacing mechanism was reworked to use the `gap` CSS property.
 
 This brings some breaking changes described in the following sections.
+
+#### Stabilized API
+
+The `Grid` component API was stabilized, so its import no longer contains the `Unstable_` prefix:
+
+```diff
+- import { Unstable_Grid as Grid } from '@mui/system';
++ import { Grid } from '@mui/system';
+```
+
+```diff
+- import Grid from '@mui/system/Unstable_Grid';
++ import Grid from '@mui/system/Grid';
+```
 
 #### Size and offset props
 
