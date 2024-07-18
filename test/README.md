@@ -256,12 +256,6 @@ Possible values for `version`:
 - a tag on npm, for example `next`, `experimental` or `latest`
 - an older version, for example `^17.0.0`
 
-Then install the dependencies:
-
-```bash
-pnpm install
-```
-
 #### CI
 
 ##### Circle CI web interface
