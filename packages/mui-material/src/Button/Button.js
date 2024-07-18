@@ -10,12 +10,16 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
+import { unstable_useId as useId } from '@mui/material/utils';
+import CircularProgress from '@mui/material/CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
+import { fontSize, fontWeight } from '@mui/system';
 
 const useUtilityClasses = (ownerState) => {
-  const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
+  const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
+    ownerState;
 
   const slots = {
     root: [
@@ -29,8 +33,22 @@ const useUtilityClasses = (ownerState) => {
       fullWidth && 'fullWidth',
     ],
     label: ['label'],
-    startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`],
-    endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
+    startIcon: [
+      loading && 'icon',
+      'startIcon',
+      `iconSize${capitalize(size)}`,
+      `startIconLoading${capitalize(loadingPosition)}`,
+    ],
+    endIcon: [
+      loading && 'icon',
+      'endIcon',
+      `iconSize${capitalize(size)}`,
+      `endIconLoading${capitalize(loadingPosition)}`,
+    ],
+    loadingIndicator: [
+      'loadingIndicator',
+      loading && `loadingIndicator${capitalize(loadingPosition)}`,
+    ],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
@@ -295,6 +313,27 @@ const ButtonRoot = styled(ButtonBase, {
         props: { fullWidth: true },
         style: { width: '100%' },
       },
+      {
+        props: {
+          loadingPosition: 'center',
+        },
+        style: {
+          transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+            duration: theme.transitions.duration.short,
+          }),
+        },
+      },
+      {
+        props: {
+          loadingPosition: 'center',
+          loading: true,
+        },
+        style: {
+          [`&.${buttonClasses.disabled}`]: {
+            color: 'transparent',
+          },
+        },
+      },
     ],
   };
 });
@@ -307,7 +346,7 @@ const ButtonStartIcon = styled('span', {
 
     return [styles.startIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
   },
-})(() => ({
+})(({ theme }) => ({
   display: 'inherit',
   marginRight: 8,
   marginLeft: -4,
@@ -316,6 +355,15 @@ const ButtonStartIcon = styled('span', {
       props: { size: 'small' },
       style: {
         marginLeft: -2,
+      },
+    },
+    {
+      props: { loadingPosition: 'start', loading: true },
+      style: {
+        transition: theme.transitions.create(['opacity'], {
+          duration: theme.transitions.duration.short,
+        }),
+        opacity: 0,
       },
     },
     ...commonIconStyles,
@@ -330,7 +378,7 @@ const ButtonEndIcon = styled('span', {
 
     return [styles.endIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
   },
-})(() => ({
+})(({ theme }) => ({
   display: 'inherit',
   marginRight: -4,
   marginLeft: 8,
@@ -341,7 +389,108 @@ const ButtonEndIcon = styled('span', {
         marginRight: -2,
       },
     },
+    {
+      props: { loadingPosition: 'end', loading: true },
+      style: {
+        transition: theme.transitions.create(['opacity'], {
+          duration: theme.transitions.duration.short,
+        }),
+        opacity: 0,
+      },
+    },
     ...commonIconStyles,
+  ],
+}));
+
+const LoadingButtonLoadingIndicator = styled('span', {
+  name: 'MuiLoadingButton',
+  slot: 'LoadingIndicator',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    return [
+      styles.loadingIndicator,
+      styles[`loadingIndicator${capitalize(ownerState.loadingPosition)}`],
+    ];
+  },
+})(({ theme }) => ({
+  position: 'absolute',
+  visibility: 'visible',
+  display: 'flex',
+  variants: [
+    {
+      props: {
+        loadingPosition: 'start',
+        size: 'small',
+      },
+      style: {
+        left: 10,
+      },
+    },
+    {
+      props: ({ loadingPosition, ownerState }) =>
+        loadingPosition === 'start' && ownerState.size !== 'small',
+      style: {
+        left: 14,
+      },
+    },
+    {
+      props: {
+        variant: 'text',
+        loadingPosition: 'start',
+      },
+      style: {
+        left: 6,
+      },
+    },
+    {
+      props: {
+        loadingPosition: 'center',
+      },
+      style: {
+        left: '50%',
+        transform: 'translate(-50%)',
+        color: (theme.vars || theme).palette.action.disabled,
+      },
+    },
+    {
+      props: {
+        loadingPosition: 'end',
+        size: 'small',
+      },
+      style: {
+        right: 10,
+      },
+    },
+    {
+      props: ({ loadingPosition, ownerState }) =>
+        loadingPosition === 'end' && ownerState.size !== 'small',
+      style: {
+        right: 14,
+      },
+    },
+    {
+      props: {
+        variant: 'text',
+        loadingPosition: 'end',
+      },
+      style: {
+        right: 6,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.loadingPosition === 'start' && ownerState.fullWidth,
+      style: {
+        position: 'relative',
+        left: -10,
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.loadingPosition === 'end' && ownerState.fullWidth,
+      style: {
+        position: 'relative',
+        right: -10,
+      },
+    },
   ],
 }));
 
@@ -362,12 +511,21 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = false,
+    id: idProp,
+    loading = false,
+    loadingIndicator: loadingIndicatorProp,
+    loadingPosition = 'center',
     size = 'medium',
     startIcon: startIconProp,
     type,
     variant = 'text',
     ...other
   } = props;
+
+  const id = useId(idProp);
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+  );
 
   const ownerState = {
     ...props,
@@ -377,12 +535,21 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     disableElevation,
     disableFocusRipple,
     fullWidth,
+    loading,
+    loadingIndicator,
+    loadingPosition,
     size,
     type,
     variant,
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const loadingButtonLoadingIndicator = loading ? (
+    <LoadingButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+      {loadingIndicator}
+    </LoadingButtonLoadingIndicator>
+  ) : null;
 
   const startIcon = startIconProp && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
@@ -403,7 +570,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       ownerState={ownerState}
       className={clsx(contextProps.className, classes.root, className, positionClassName)}
       component={component}
-      disabled={disabled}
+      disabled={disabled || loading}
+      loading={loading}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
@@ -412,7 +580,17 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {children}
+      {ownerState.loadingPosition === 'end' ? (
+        <span>{children}</span>
+      ) : (
+        loadingButtonLoadingIndicator
+      )}
+
+      {ownerState.loadingPosition === 'end' ? (
+        loadingButtonLoadingIndicator
+      ) : (
+        <span>{children}</span>
+      )}
       {endIcon}
     </ButtonRoot>
   );
@@ -478,6 +656,10 @@ Button.propTypes /* remove-proptypes */ = {
    */
   endIcon: PropTypes.node,
   /**
+   * Styles applied to the endIcon element if `loading={true}` and `loadingPosition="end"`.
+   */
+  endIconLoadingEnd: PropTypes.string,
+  /**
    * @ignore
    */
   focusVisibleClassName: PropTypes.string,
@@ -492,6 +674,39 @@ Button.propTypes /* remove-proptypes */ = {
    */
   href: PropTypes.string,
   /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
+   * If `true`, the loading indicator is shown and the button becomes disabled.
+   * @default false
+   */
+  loading: PropTypes.bool,
+  /**
+   * Element placed before the children if the button is in loading state.
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
+   * @default <CircularProgress color="inherit" size={16} />
+   */
+  loadingIndicator: PropTypes.node,
+  /**
+   * Styles applied to the loadingIndicator element if `loadingPosition="center"`.
+   */
+  loadingIndicatorCenter: PropTypes.string,
+  /**
+   * Styles applied to the loadingIndicator element if `loadingPosition="end"`.
+   */
+  loadingIndicatorEnd: PropTypes.string,
+  /**
+   * Styles applied to the loadingIndicator element if `loadingPosition="start"`.
+   */
+  loadingIndicatorStart: PropTypes.string,
+  /**
+   * The loading indicator can be positioned on the start, end, or the center of the button.
+   * @default 'center'
+   */
+  loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
+  /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
@@ -504,6 +719,10 @@ Button.propTypes /* remove-proptypes */ = {
    * Element placed before the children.
    */
   startIcon: PropTypes.node,
+  /**
+   * Styles applied to the startIcon element if `loading={true}` and `loadingPosition="start"`.
+   */
+  startIconLoadingStart: PropTypes.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
