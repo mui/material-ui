@@ -62,13 +62,16 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     }
     if (colorScheme) {
       if (rule === 'media') {
-        if (theme.defaultColorScheme === colorScheme) {
-          return ':root';
-        }
         const mode = colorSchemes[colorScheme as string]?.palette?.mode || colorScheme;
+        if (theme.defaultColorScheme === colorScheme) {
+          return `:root, @media (prefers-color-scheme: ${mode}) { :root`;
+        }
         return `@media (prefers-color-scheme: ${mode}) { :root`;
       }
       if (rule) {
+        if (theme.defaultColorScheme === colorScheme) {
+          return `:root, ${rule.replace('%s', String(colorScheme))}`;
+        }
         return rule.replace('%s', String(colorScheme));
       }
     }

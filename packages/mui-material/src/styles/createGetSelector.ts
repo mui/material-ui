@@ -43,6 +43,10 @@ export default <
           };
         }
         return { ':root': { ...css, ...excludedVariables } };
+      } else if (rule === 'media') {
+        return `:root, @media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
+      } else if (rule) {
+        return `:root, ${rule.replace('%s', String(colorScheme))}`;
       }
     } else if (colorScheme) {
       if (rule === 'media') {
