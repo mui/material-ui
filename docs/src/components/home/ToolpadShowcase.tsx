@@ -60,36 +60,6 @@ export default createComponent(Leaflet, {
 })
   `;
 
-const tabsCustomStyles = {
-  minHeight: '26px',
-  p: 0,
-  borderBottom: '1px solid',
-  borderColor: 'divider',
-  '& .MuiTabs-flexContainer': {
-    p: 1,
-    gap: '6px',
-  },
-  '& .MuiTab-root': {
-    minHeight: '26px',
-    minWidth: 'fit-content',
-    p: '6px',
-    borderRadius: '6px',
-    fontSize: '.75rem',
-    fontWeight: 'medium',
-    lineHeight: 1,
-    '&:hover': {
-      backgroundColor: 'primaryDark.700',
-    },
-  },
-  '& .MuiTabs-indicator': {
-    height: '1px',
-    opacity: '60%',
-  },
-  '& .Mui-selected': {
-    color: 'primary.300',
-  },
-};
-
 interface ImageProps {
   alt: string;
   index: number;
@@ -146,7 +116,7 @@ const tabsCodeInfo = [
   {
     code: tabOneCode,
     label: 'Local first',
-    language: 'tsx',
+    language: 'yml',
     description:
       'Store your app configuration locally in yaml files. Changes in Toolpad are automatically synced to the files, and vice-versa.',
     imgSrc: '/static/branding/toolpad/ex-1.png',
@@ -187,7 +157,38 @@ export default function ToolpadShowcase() {
             value={value}
             onChange={handleChange}
             aria-label="Toolpad showcase"
-            sx={tabsCustomStyles}
+            sx={(theme) => ({
+              minHeight: '26px',
+              p: 0,
+              borderBottom: '1px solid',
+              borderColor: 'divider',
+              '& .MuiTabs-flexContainer': {
+                p: 1,
+                gap: '6px',
+              },
+              '& .MuiTab-root': {
+                minHeight: '26px',
+                minWidth: 'fit-content',
+                p: '6px',
+                borderRadius: '6px',
+                fontSize: '.75rem',
+                fontWeight: 'medium',
+                lineHeight: 1,
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.grey[100],
+                  ...theme.applyDarkStyles({
+                    backgroundColor: 'primaryDark.700',
+                  }),
+                },
+              },
+              '& .MuiTabs-indicator': {
+                height: '1px',
+                opacity: '60%',
+              },
+              '& .Mui-selected': {
+                color: 'primary.300',
+              },
+            })}
           >
             {tabsCodeInfo.map((tab, index) => (
               <Tab label={tab.label} {...a11yProps(index)} />
