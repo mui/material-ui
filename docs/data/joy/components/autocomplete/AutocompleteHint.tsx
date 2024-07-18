@@ -55,6 +55,9 @@ export default function AutocompleteHint() {
       onBlur={() => {
         hint.current = '';
       }}
+      onChange={(event, newValue) => {
+        setInputValue(newValue && newValue.label ? newValue.label : '');
+      }}
       inputValue={inputValue}
       filterOptions={(options, state) => {
         const displayOptions = options.filter((option) =>

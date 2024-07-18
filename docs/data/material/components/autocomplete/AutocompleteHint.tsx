@@ -19,6 +19,9 @@ export default function AutocompleteHint() {
       onBlur={() => {
         hint.current = '';
       }}
+      onChange={(event, newValue) => {
+        setInputValue(newValue && newValue.label ? newValue.label : '');
+      }}
       disablePortal
       inputValue={inputValue}
       filterOptions={(options, state) => {
