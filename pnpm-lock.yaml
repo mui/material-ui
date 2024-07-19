@@ -19,6 +19,9 @@ overrides:
   '@types/node': ^18.19.44
   types-react-dom>@types/react: npm:types-react@19.0.0-rc.1
   '@types/hoist-non-react-statics>@types/react': npm:types-react@19.0.0-rc.1
+  '@types/react-transition-group>@types/react': npm:types-react@19.0.0-rc.1
+  '@types/react-window>@types/react': npm:types-react@19.0.0-rc.1
+  '@types/react-swipeable-views>@types/react': npm:types-react@19.0.0-rc.1
   cross-fetch: ^4.0.0
   '@pigment-css/react': 0.0.20
   '@pigment-css/unplugin': 0.0.20
