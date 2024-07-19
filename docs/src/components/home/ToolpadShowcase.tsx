@@ -127,7 +127,7 @@ const tabsCodeInfo = [
     label: 'Serverless',
     language: 'tsx',
     description:
-      'Write serverless functions to fetch your data ,Toolpad automatically makes the result available on the page.',
+      'Write serverless functions to fetch your data, Toolpad automatically makes the result available on the page.',
     imgSrc: '/static/branding/toolpad/ex-2.png',
     imgAlt: 'Toolpad user management app',
   },
