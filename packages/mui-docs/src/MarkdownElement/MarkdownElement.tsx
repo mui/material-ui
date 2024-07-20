@@ -174,8 +174,6 @@ const Root = styled('div')(
         boxShadow: 'none',
         fontWeight: 'inherit',
         position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
         userSelect: 'text',
       },
       '& .anchor-icon': {
