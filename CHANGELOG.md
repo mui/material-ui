@@ -1,6 +1,6 @@
 # [Versions](https://mui.com/versions/)
 
-## v5.16.4
+## 5.16.4
 
 <!-- generated comparing v5.16.3..master -->
 
@@ -14,7 +14,7 @@ A big thanks to the 1 contributor who made this release possible.
 
 All contributors of this release in alphabetical order: @mnajdova
 
-## v5.16.3
+## 5.16.3
 
 <!-- generated comparing v5.16.2..master -->
 
@@ -33,7 +33,7 @@ A big thanks to the 3 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @HoFa1997, @mnajdova, @oliviertassinari
 
-## v5.16.2
+## 5.16.2
 
 <!-- generated comparing v5.16.1..master -->
 
@@ -51,7 +51,7 @@ A big thanks to the 2 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @mnajdova, @oliviertassinari
 
-## v5.16.1
+## 5.16.1
 
 _Jul 11, 2024_
 
@@ -86,7 +86,7 @@ A big thanks to the 4 contributors who made this release possible. Here are some
 
 All contributors of this release in alphabetical order: @aarongarciah, @oliviertassinari, @omahs, @ZeeshanTamboli
 
-## v5.16.0
+## 5.16.0
 
 <!-- generated comparing v5.15.21..master -->
 
@@ -114,7 +114,7 @@ A big thanks to the 5 contributors who made this release possible. Here are some
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @jxdp, @oliviertassinari, @siriwatknp
 
-## v5.15.21
+## 5.15.21
 
 <!-- generated comparing v5.15.20..master -->
 
@@ -144,7 +144,7 @@ A big thanks to the 7 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @alexfauquette, @alexismo, @arminmeh, @Danielkhakbaz, @DiegoAndai, @mnajdova, @oliviertassinari
 
-## v5.15.20
+## 5.15.20
 
 <!-- generated comparing v5.15.19..master -->
 
@@ -185,7 +185,7 @@ A big thanks to the 9 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @aarongarciah, @anle9650, @DanailH, @danilo-leal, @erezstmn-doit, @iammminzzy, @oliviertassinari, @sai6855, @ZeeshanTamboli
 
-## v5.15.19
+## 5.15.19
 
 <!-- generated comparing v5.15.18..master -->
 
@@ -224,7 +224,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @aarongarciah, @brijeshb42, @danilo-leal, @DiegoAndai, @KenanYusuf, @lucasgmelo, @Mandar-Pandya, @MatheusEli, @mnajdova, @nikitaa24, @oliviertassinari, @ZeeshanTamboli
 
-## v5.15.18
+## 5.15.18
 
 <!-- generated comparing v5.15.17..master -->
 
@@ -249,7 +249,7 @@ A big thanks to the 5 contributors who made this release possible. Here are some
 
 All contributors of this release in alphabetical order: @arthurbalduini, @oliviertassinari, @samuelsycamore, @TahaRhidouani, @tarunrajput
 
-## v5.15.17
+## 5.15.17
 
 <!-- generated comparing v5.15.16..master -->
 
@@ -280,7 +280,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @github-actions[bot], @joserodolfofreitas, @oliviertassinari, @siriwatknp
 
-## v5.15.16
+## 5.15.16
 
 <!-- generated comparing v5.15.15..master -->
 
@@ -332,7 +332,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @DanailH, @DiegoAndai, @github-actions[bot], @JCQuintas, @mnajdova, @oliviertassinari
 
-## v5.15.15
+## 5.15.15
 
 <!-- generated comparing v5.15.14..master -->
 
@@ -372,7 +372,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @cherniavskii, @danilo-leal, @mnajdova, @oliviertassinari, @ZeeshanTamboli
 
-## v5.15.14
+## 5.15.14
 
 <!-- generated comparing v5.15.13..master -->
 
@@ -428,7 +428,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @EyaOuenniche, @Janpot, @jherr, @michaldudak, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @zanivan
 
-## v5.15.13
+## 5.15.13
 
 <!-- generated comparing v5.15.12..master -->
 
@@ -520,7 +520,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @brijeshb42, @CGNonofr, @cipherlogs, @danilo-leal, @jwithington, @Janpot, @michaeldfoley, @michaldudak, @mnajdova, @oliviertassinari, @peterwangsc, @rakeshmusturi, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
 
-## v5.15.12
+## 5.15.12
 
 <!-- generated comparing v5.15.11..master -->
 
@@ -602,7 +602,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @alexfauquette, @atomiks, @brijeshb42, @DanailH, @danilo-leal, @DiegoAndai, @divyammadhok, @Janpot, @lhilgert9, @matystroia, @michaldudak, @michelengelen, @mj12albert, @oliviertassinari, @prakhargupta1, @PunitSoniME, @sai6855, @siriwatknp, @smox, @zanivan, @ZeeshanTamboli
 
-## v5.15.11
+## 5.15.11
 
 <!-- generated comparing v5.15.10..master -->
 
@@ -718,7 +718,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @danilo-leal, @DiegoAndai, @dpertsin, @flaviendelangle, @gitstart, @gregberge, @harrydigos, @Janpot, @justintoman, @khgiddon, @KirankumarAmbati, @LukasTy, @michaldudak, @mnajdova, @nikosgavalas, @oliviertassinari, @PaulKristoffersson, @Rishi556, @rluzists1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
-## v5.15.10
+## 5.15.10
 
 <!-- generated comparing v5.15.9..master -->
 
@@ -766,7 +766,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @cherniavskii, @danilo-leal, @joserodolfofreitas, @millerized, @oliviertassinari, @sai6855, @siriwatknp, @Smileek
 
-## v5.15.9<!-- generated comparing v5.15.8..master -->
+## 5.15.9<!-- generated comparing v5.15.8..master -->
 
 _Feb 8, 2024_
 
@@ -801,7 +801,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 
 All contributors of this release in alphabetical order: @brijeshb42, @DiegoAndai, @Janpot, @oliviertassinari, @RaghavenderSingh, @sai6855, @siriwatknp
 
-## v5.15.8<!-- generated comparing v5.15.7..master -->
+## 5.15.8<!-- generated comparing v5.15.7..master -->
 
 _Feb 6, 2024_
 
@@ -880,7 +880,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @adebiyial, @brijeshb42, @danilo-leal, @DiegoAndai, @hsmtkk, @Janpot, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Smileek, @xuhdev, @zanivan
 
-## v5.15.7
+## 5.15.7
 
 <!-- generated comparing v5.15.6..master -->
 
@@ -975,7 +975,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @alexfauquette, @colmtuite, @danilo-leal, @DiegoAndai, @EyaOuenniche, @flaviendelangle, @Janpot, @Jaswanth-Sriram-Veturi, @joserodolfofreitas, @michaldudak, @mirus-ua, @mnajdova, @mohamedsaiedd, @Nikhilh26, @oliviertassinari, @romgrk, @sai6855, @siriwatknp, @srinidhi9831, @zanivan, @ZeeshanTamboli
 
-## v5.15.6
+## 5.15.6
 
 <!-- generated comparing v5.15.5..master -->
 
@@ -1034,7 +1034,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @ANUGLYPLUGIN, @brijeshb42, @danilo-leal, @devhik0, @DiegoAndai, @DonikaV, @joserodolfofreitas, @michaldudak, @mj12albert, @mnajdova, @mohamedsaiedd, @oliviertassinari, @pcorpet, @sai6855, @zanivan
 
-## v5.15.5
+## 5.15.5
 
 <!-- generated comparing v5.15.4..master -->
 
@@ -5115,7 +5115,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 All contributors of this release in alphabetical order: @alexfauquette, @danilo-leal, @iamxukai, @Janpot, @MBilalShafi, @michaldudak, @oliviertassinari, @samuelsycamore, @siriwatknp
 
-## v5.10.14
+## 5.10.14
 
 <!-- generated comparing v5.10.13..master -->
 
@@ -5183,7 +5183,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @alexfauquette, @bharatkashyap, @cherniavskii, @danilo-leal, @hbjORbj, @Janpot, @kennethbigler, @kushagra010, @michaldudak, @mnajdova, @ofir5300, @oliviertassinari, @sai6855, @sfavello, @sidtohan, @siriwatknp, @Studio384
 
-## v5.10.13
+## 5.10.13
 
 <!-- generated comparing v5.10.12..master -->
 
@@ -5241,7 +5241,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @akshaya-venkatesh8, @alexfauquette, @hbjORbj, @Janpot, @jesrodri, @michaldudak, @oliviertassinari, @PetroSilenius, @samuelsycamore, @shivam1646, @siriwatknp, @trizotti
 
-## v5.10.12
+## 5.10.12
 
 <!-- generated comparing v5.10.11..master -->
 
@@ -5317,7 +5317,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @cherniavskii, @DanailH, @EduardoSCosta, @emlai, @hbjORbj, @Janpot, @michaldudak, @mnajdova, @oliviertassinari, @punithnayak, @PunitSoniME, @renovate[bot], @RoodyCode, @samuelsycamore, @siriwatknp, @VinceCYLiao
 
-## v5.10.11
+## 5.10.11
 
 <!-- generated comparing v5.10.10..master -->
 
