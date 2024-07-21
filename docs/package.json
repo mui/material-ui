@@ -136,7 +136,7 @@
     "marked": "^13.0.2",
     "playwright": "^1.45.1",
     "prettier": "^3.3.3",
-    "tailwindcss": "^3.4.4",
+    "tailwindcss": "^3.4.6",
     "yargs": "^17.7.2"
   }
 }
