@@ -427,24 +427,30 @@ describe('<Autocomplete />', () => {
         'The Shawshank Redemption',
       ];
       const handleClose = spy();
-      const { getByRole } = render(
+      const handleOpen = spy();
+      const ref = React.createRef();
+      render(
         <Autocomplete
           multiple
           onClose={handleClose}
+          onOpen={handleOpen}
           limitTags={2}
           options={options}
           defaultValue={defaultValue}
-          renderInput={(params) => <TextField {...params} variant="standard" />}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              slotProps={{
+                input: { ...params.InputProps, ref },
+              }}
+              variant="standard"
+            />
+          )}
         />,
       );
 
-      const combobox = getByRole('combobox');
-      fireEvent.mouseDown(combobox);
-
-      act(() => {
-        combobox.focus();
-      });
-
+      fireEvent.mouseDown(ref.current);
+      expect(handleOpen.callCount).to.equal(1);
       expect(handleClose.callCount).to.equal(0);
     });
   });
