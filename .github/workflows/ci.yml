@@ -15,6 +15,26 @@ on:
 permissions: {}
 
 jobs:
+  continuous-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ github.actor }}"
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          # fetch all tags which are required for `pnpm release:changelog`
+          fetch-depth: 0
+      - name: Set up pnpm
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+        with:
+          node-version: 18
+          cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
+      - run: npm install -g npm@latest
+      - run: pnpm install:codesandbox
+      - run: pnpm build:codesandbox
+      - run: pnpm dlx pkg-pr-new publish 'packages/mui-{base,codemod,core-downloads-tracker,docs,icons-material,lab,material-nextjs,material,private-theming,styled-engine,styled-engine-sc,styles,system,types,utils}/build' 'packages-internal/{test-utils,docs-utils,scripts}' 'packages/{mui-babel-macros,markdown}' --template './examples/*' --comment=off
+
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.
@@ -40,8 +60,6 @@ jobs:
       - run: pnpm build:ci
         env:
           NODE_OPTIONS: --max_old_space_size=4096
-
-      - run: pnpm dlx pkg-pr-new publish './packages/*' --template './examples/*' --compact --pnpm --comment=off
 
       - run: pnpm release:changelog
         env:
