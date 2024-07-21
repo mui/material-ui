@@ -36,7 +36,6 @@ export default function CondensedWithMenu() {
         <Button
           size="small"
           onClick={handleClick}
-          variant="outlined"
           color="primary"
         >
           •••
