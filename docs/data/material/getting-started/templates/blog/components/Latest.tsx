@@ -81,7 +81,7 @@ const articleInfo = [
   },
   {
     tag: 'Company',
-    title: 'Our company’s journey: milestones and achievements',
+    title: "Our company's journey: milestones and achievements",
     description:
       "Take a look at our company's journey and the milestones we've achieved along the way. From humble beginnings to industry leader, discover our story of growth and success.",
     authors: [{ name: 'Cindy Baker', avatar: '/static/images/avatar/3.jpg' }],
@@ -140,10 +140,6 @@ function Latest() {
 
   const handleBlur = () => {
     setFocusedCardIndex(null);
-  };
-
-  const handleClick = () => {
-    console.info('You clicked the filter chip.');
   };
 
   return (

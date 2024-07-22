@@ -33,7 +33,21 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
-  // The following components are tested by docs-getting-started-templates-dashboard-components/MainGrid.png
+  // The following components are tested by docs-getting-started-templates-blog-components/MainGrid.png
+  'docs-getting-started-templates-blog-theme-customizations/buttons.png',
+  'docs-getting-started-templates-blog-theme-customizations/buttons.png',
+  'docs-getting-started-templates-blog-theme-customizations/index.png',
+  'docs-getting-started-templates-blog-theme-customizations/inputs.png',
+  'docs-getting-started-templates-blog-theme-customizations/layoutComponents.png',
+  'docs-getting-started-templates-blog-theme-customizations/menus.png',
+  'docs-getting-started-templates-blog-theme-customizations/others.png',
+  'docs-getting-started-templates-blog/Blog.png',
+  'docs-getting-started-templates-blog-components/AppAppbar.png',
+  'docs-getting-started-templates-blog-components/Footer.png', 
+  'docs-getting-started-templates-blog-components/Latest.png', 
+  'docs-getting-started-templates-blog-components/SitemarkIcon.png', 
+  'docs-getting-started-templates-blog-components/ToggleColorMode.png', 
+    // The following components are tested by docs-getting-started-templates-dashboard-components/MainGrid.png
   'docs-getting-started-templates-dashboard-theme-customizations/buttons.png',
   'docs-getting-started-templates-dashboard-theme-customizations/charts.png',
   'docs-getting-started-templates-dashboard-theme-customizations/dataGrid.png',

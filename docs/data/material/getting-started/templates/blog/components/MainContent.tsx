@@ -48,7 +48,7 @@ const cardData = [
   {
     img: 'https://picsum.photos/800/450?random=4',
     tag: 'Company',
-    title: 'Our company’s journey: milestones and achievements',
+    title: "Our company's journey: milestones and achievements",
     description:
       "Take a look at our company's journey and the milestones we've achieved along the way. From humble beginnings to industry leader, discover our story of growth and success.",
     authors: [{ name: 'Cindy Baker', avatar: '/static/images/avatar/3.jpg' }],
@@ -184,12 +184,12 @@ export default function MainContent() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      <Box>
+      <div>
         <Typography variant="h1" gutterBottom>
           Blog
         </Typography>
         <Typography>Stay in the loop with the latest about our products</Typography>
-      </Box>
+      </div>
       <Box
         sx={{
           display: 'flex',
@@ -366,7 +366,7 @@ export default function MainContent() {
                   height: '100%',
                 }}
               >
-                <Box>
+                <div>
                   <Typography gutterBottom variant="caption" component="div">
                     {cardData[3].tag}
                   </Typography>
@@ -380,7 +380,7 @@ export default function MainContent() {
                   >
                     {cardData[3].description}
                   </StyledTypography>
-                </Box>
+                </div>
               </SyledCardContent>
               <Author authors={cardData[3].authors} />
             </SyledCard>
@@ -400,7 +400,7 @@ export default function MainContent() {
                   height: '100%',
                 }}
               >
-                <Box>
+                <div>
                   <Typography gutterBottom variant="caption" component="div">
                     {cardData[4].tag}
                   </Typography>
@@ -414,7 +414,7 @@ export default function MainContent() {
                   >
                     {cardData[4].description}
                   </StyledTypography>
-                </Box>
+                </div>
               </SyledCardContent>
               <Author authors={cardData[4].authors} />
             </SyledCard>

@@ -82,7 +82,7 @@ const articleInfo = [
   },
   {
     tag: 'Company',
-    title: 'Our company’s journey: milestones and achievements',
+    title: "Our company's journey: milestones and achievements",
     description:
       "Take a look at our company's journey and the milestones we've achieved along the way. From humble beginnings to industry leader, discover our story of growth and success.",
     authors: [{ name: 'Cindy Baker', avatar: '/static/images/avatar/3.jpg' }],
@@ -140,6 +140,16 @@ Author.propTypes = {
 };
 
 function Latest() {
+  const [focusedCardIndex, setFocusedCardIndex] = React.useState(null);
+
+  const handleFocus = (index) => {
+    setFocusedCardIndex(index);
+  };
+
+  const handleBlur = () => {
+    setFocusedCardIndex(null);
+  };
+
   return (
     <div>
       <Typography variant="h2" gutterBottom>
@@ -154,6 +164,10 @@ function Latest() {
         {articleInfo.map((article, index) => (
           <Grid key={index} size={{ xs: 12, sm: 6 }}>
             <Box
+              onFocus={() => handleFocus(index)}
+              onBlur={handleBlur}
+              tabIndex={0}
+              className={focusedCardIndex === index ? 'Mui-focused' : ''}
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -161,6 +175,12 @@ function Latest() {
                 gap: 1,
                 height: '100%',
                 '&:hover': { opacity: 0.6, cursor: 'pointer' },
+                '&:focus-visible': {
+                  outline: '3px solid',
+                  outlineColor: 'hsla(210, 98%, 48%, 0.5)',
+                  outlineOffset: '6px',
+                  borderRadius: '8px',
+                },
               }}
             >
               <Typography gutterBottom variant="caption" component="div">

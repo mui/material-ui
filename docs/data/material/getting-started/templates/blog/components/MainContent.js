@@ -49,7 +49,7 @@ const cardData = [
   {
     img: 'https://picsum.photos/800/450?random=4',
     tag: 'Company',
-    title: 'Our company’s journey: milestones and achievements',
+    title: "Our company's journey: milestones and achievements",
     description:
       "Take a look at our company's journey and the milestones we've achieved along the way. From humble beginnings to industry leader, discover our story of growth and success.",
     authors: [{ name: 'Cindy Baker', avatar: '/static/images/avatar/3.jpg' }],
@@ -84,6 +84,11 @@ const SyledCard = styled(Card)(({ theme }) => ({
   '&:hover': {
     backgroundColor: 'transparent',
     cursor: 'pointer',
+  },
+  '&:focus-visible': {
+    outline: '3px solid',
+    outlineColor: 'hsla(210, 98%, 48%, 0.5)',
+    outlineOffset: '2px',
   },
 }));
 
@@ -171,25 +176,36 @@ export function Search() {
 }
 
 export default function MainContent() {
+  const [focusedCardIndex, setFocusedCardIndex] = React.useState(null);
+
+  const handleFocus = (index) => {
+    setFocusedCardIndex(index);
+  };
+
+  const handleBlur = () => {
+    setFocusedCardIndex(null);
+  };
+
   const handleClick = () => {
     console.info('You clicked the filter chip.');
   };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      <Box>
+      <div>
         <Typography variant="h1" gutterBottom>
           Blog
         </Typography>
         <Typography>Stay in the loop with the latest about our products</Typography>
-      </Box>
+      </div>
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'row',
+          flexDirection: { xs: 'column-reverse', md: 'row' },
           width: '100%',
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: { xs: 'start', md: 'center' },
+          gap: 4,
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
@@ -227,7 +243,14 @@ export default function MainContent() {
             }}
           />
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 1,
+            width: { xs: '100%', md: 'fit-content' },
+          }}
+        >
           <Search />
           <IconButton size="small">
             <RssFeedRoundedIcon />
@@ -236,7 +259,13 @@ export default function MainContent() {
       </Box>
       <Grid container spacing={2} columns={12}>
         <Grid size={{ xs: 12, md: 6 }}>
-          <SyledCard variant="outlined">
+          <SyledCard
+            variant="outlined"
+            onFocus={() => handleFocus(0)}
+            onBlur={handleBlur}
+            tabIndex={0}
+            className={focusedCardIndex === 0 ? 'Mui-focused' : ''}
+          >
             <CardMedia
               component="img"
               alt="green iguana"
@@ -262,7 +291,13 @@ export default function MainContent() {
           </SyledCard>
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <SyledCard variant="outlined">
+          <SyledCard
+            variant="outlined"
+            onFocus={() => handleFocus(1)}
+            onBlur={handleBlur}
+            tabIndex={0}
+            className={focusedCardIndex === 1 ? 'Mui-focused' : ''}
+          >
             <CardMedia
               component="img"
               alt="green iguana"
@@ -288,7 +323,14 @@ export default function MainContent() {
           </SyledCard>
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
-          <SyledCard variant="outlined" sx={{ height: '100%' }}>
+          <SyledCard
+            variant="outlined"
+            onFocus={() => handleFocus(2)}
+            onBlur={handleBlur}
+            tabIndex={0}
+            className={focusedCardIndex === 2 ? 'Mui-focused' : ''}
+            sx={{ height: '100%' }}
+          >
             <CardMedia
               component="img"
               alt="green iguana"
@@ -316,7 +358,14 @@ export default function MainContent() {
           <Box
             sx={{ display: 'flex', flexDirection: 'column', gap: 2, height: '100%' }}
           >
-            <SyledCard variant="outlined" sx={{ height: '100%' }}>
+            <SyledCard
+              variant="outlined"
+              onFocus={() => handleFocus(3)}
+              onBlur={handleBlur}
+              tabIndex={0}
+              className={focusedCardIndex === 3 ? 'Mui-focused' : ''}
+              sx={{ height: '100%' }}
+            >
               <SyledCardContent
                 sx={{
                   display: 'flex',
@@ -325,7 +374,7 @@ export default function MainContent() {
                   height: '100%',
                 }}
               >
-                <Box>
+                <div>
                   <Typography gutterBottom variant="caption" component="div">
                     {cardData[3].tag}
                   </Typography>
@@ -339,11 +388,18 @@ export default function MainContent() {
                   >
                     {cardData[3].description}
                   </StyledTypography>
-                </Box>
+                </div>
               </SyledCardContent>
               <Author authors={cardData[3].authors} />
             </SyledCard>
-            <SyledCard variant="outlined" sx={{ height: '100%' }}>
+            <SyledCard
+              variant="outlined"
+              onFocus={() => handleFocus(4)}
+              onBlur={handleBlur}
+              tabIndex={0}
+              className={focusedCardIndex === 4 ? 'Mui-focused' : ''}
+              sx={{ height: '100%' }}
+            >
               <SyledCardContent
                 sx={{
                   display: 'flex',
@@ -352,7 +408,7 @@ export default function MainContent() {
                   height: '100%',
                 }}
               >
-                <Box>
+                <div>
                   <Typography gutterBottom variant="caption" component="div">
                     {cardData[4].tag}
                   </Typography>
@@ -366,14 +422,21 @@ export default function MainContent() {
                   >
                     {cardData[4].description}
                   </StyledTypography>
-                </Box>
+                </div>
               </SyledCardContent>
               <Author authors={cardData[4].authors} />
             </SyledCard>
           </Box>
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
-          <SyledCard variant="outlined" sx={{ height: '100%' }}>
+          <SyledCard
+            variant="outlined"
+            onFocus={() => handleFocus(5)}
+            onBlur={handleBlur}
+            tabIndex={0}
+            className={focusedCardIndex === 5 ? 'Mui-focused' : ''}
+            sx={{ height: '100%' }}
+          >
             <CardMedia
               component="img"
               alt="green iguana"
