@@ -16,7 +16,6 @@ const {
 } = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
   themeId: THEME_ID,
   theme: defaultTheme,
-  attribute: defaultConfig.attribute,
   colorSchemeStorageKey: defaultConfig.colorSchemeStorageKey,
   modeStorageKey: defaultConfig.modeStorageKey,
   defaultColorScheme: {

@@ -111,7 +111,7 @@ const TypographyRoot = styled('span', {
     ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
     fontSize: `var(--Typography-fontSize, ${
       ownerState.level && ownerState.level !== 'inherit'
-        ? theme.typography[ownerState.level]?.fontSize ?? 'inherit'
+        ? (theme.typography[ownerState.level]?.fontSize ?? 'inherit')
         : 'inherit'
     })`,
     ...(ownerState.noWrap && {
@@ -194,7 +194,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...other
   } = props;
 
-  const color = inProps.color ?? (variant ? colorProp ?? 'neutral' : colorProp);
+  const color = inProps.color ?? (variant ? (colorProp ?? 'neutral') : colorProp);
 
   const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 

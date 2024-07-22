@@ -194,7 +194,6 @@ See the complete usage of `createCssVarsProvider` in [Material UI](https://gith
 
 ### `createCssVarsProvider` options
 
-- `attribute?`: DOM attribute for applying color scheme (`data-color-scheme` by default)
 - `modeStorageKey?`: localStorage key used to store application `mode` (`mode` by default)
 - `colorSchemeStorageKey?`: localStorage key used to store `colorScheme`
 - `defaultColorScheme`: Design system default color scheme (string or object depending on if the design system has 1 or more themes, can be `light` or `dark`)
@@ -210,9 +209,12 @@ See the complete usage of `createCssVarsProvider` in [Material UI](https://gith
 
 - `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
-- `theme: ThemeInput` - the theme provided to React's context
+- `theme: ThemeInput` - The theme provided to React's context. It should have these fields:
+  - `colorSchemes: { [key: string]: ColorScheme }` - The color schemes for the application
+  - `colorSchemeSelector: 'media' | 'class' | 'data' | string`: - The method to apply CSS theme variables and component styles
+  - `generateStyleSheets: () => Record<string, string>` - Function to generate CSS variables
+  - `generateThemeVars: () => Record<string, any>` - Function to generate CSS variables reference for the `theme.vars`
 - `modeStorageKey?: string` - localStorage key used to store application `mode`
-- `attribute?: string` - DOM attribute for applying color scheme
 
 ### `useColorScheme: () => ColorSchemeContextValue`
 
