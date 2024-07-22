@@ -24,16 +24,7 @@ export default function AutocompleteHint() {
       }}
       disablePortal
       inputValue={inputValue}
-      filterOptions={(options, state) => {
-        const displayOptions = options.filter((option) =>
-          option.label
-            .toLowerCase()
-            .trim()
-            .includes(state.inputValue.toLowerCase().trim()),
-        );
-
-        return displayOptions;
-      }}
+      blurOnSelect
       id="combo-box-hint-demo"
       options={top100Films}
       sx={{ width: 300 }}
@@ -41,7 +32,15 @@ export default function AutocompleteHint() {
         return (
           <Box sx={{ position: 'relative' }}>
             <Typography
-              sx={{ position: 'absolute', opacity: 0.5, left: 14, top: 16 }}
+              sx={{
+                position: 'absolute',
+                opacity: 0.5,
+                left: 14,
+                top: 16,
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                width: 'calc(100% - 75px)', // Adjust based on padding of TextField
+              }}
             >
               {hint.current}
             </Typography>
