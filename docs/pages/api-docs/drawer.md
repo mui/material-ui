@@ -34,7 +34,7 @@ The `MuiDrawer` name can be used for providing [default props](/customization/gl
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">elevation</span> | <span class="prop-type">number</span> | <span class="prop-default">16</span> | The elevation of the drawer. |
 | <span class="prop-name">ModalProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Modal`](/api/modal/) element. |
-| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
+| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback.<br>*reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`. |
 | <span class="prop-name">open</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the drawer is open. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">SlideProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Slide`](/api/slide/) element. |
