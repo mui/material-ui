@@ -146,7 +146,7 @@ export function Ad() {
   const ad = React.useContext(AdContext);
   const eventLabel = label ? `${label}-${ad.placement}-${adShape}` : null;
 
-  const timerAdblock = React.useRef<NodeJS.Timeout>();
+  const timerAdblock = React.useRef<ReturnType<typeof setTimeout>>();
 
   const checkAdblock = React.useCallback(
     (attempt = 1) => {
