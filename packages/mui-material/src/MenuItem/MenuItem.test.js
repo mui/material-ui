@@ -91,11 +91,11 @@ describe('<MenuItem />', () => {
 
       expect(handleFocus.callCount).to.equal(1);
 
-      await act(async () => fireEvent.keyDown(menuitem));
+      fireEvent.keyDown(menuitem);
 
       expect(handleKeyDown.callCount).to.equal(1);
 
-      await act(async () => fireEvent.keyUp(menuitem));
+      fireEvent.keyUp(menuitem);
 
       expect(handleKeyUp.callCount).to.equal(1);
 

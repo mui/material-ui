@@ -69,13 +69,6 @@ commands:
         description: 'Set to true if you intend to any browser (for example with playwright).'
 
     steps:
-      - run:
-          name: Resolve React version
-          command: |
-            node scripts/useReactVersion.mjs
-            # log a patch for maintainers who want to check out this change
-            git --no-pager diff HEAD
-
       - when:
           condition: << parameters.browsers >>
           steps:
@@ -106,6 +99,14 @@ commands:
           command: |
             node --version
             pnpm --version
+
+      - run:
+          name: Resolve React version
+          command: |
+            pnpm use-react-version
+            # log a patch for maintainers who want to check out this change
+            git --no-pager diff HEAD
+
       - run:
           name: Install js dependencies
           command: pnpm install
