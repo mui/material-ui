@@ -133,7 +133,7 @@ export default function createGrid(
       rowSpacing: rowSpacingProp = spacingProp,
       columnSpacing: columnSpacingProp = spacingProp,
       unstable_level: level = 0,
-      ...rest
+      ...other
     } = props;
     const size = parseResponsiveProp<GridSize>(sizeProp, theme.breakpoints, (val) => val !== false);
     const offset = parseResponsiveProp<GridOffset>(offsetProp, theme.breakpoints);
@@ -166,7 +166,7 @@ export default function createGrid(
         as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
-        {...rest}
+        {...other}
       >
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {

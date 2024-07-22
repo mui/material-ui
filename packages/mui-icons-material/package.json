@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "6.0.0-beta.0",
+  "version": "6.0.0-beta.2",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -61,7 +61,7 @@
     "lodash": "^4.17.21",
     "mustache": "^4.2.0",
     "react": "^18.3.1",
-    "rimraf": "^5.0.8",
+    "rimraf": "^5.0.9",
     "shx": "^0.3.4",
     "svgo": "^3.3.2",
     "yargs": "^17.7.2"
@@ -82,6 +82,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }

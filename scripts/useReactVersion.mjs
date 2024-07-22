@@ -12,7 +12,6 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { promisify } from 'util';
-import { getWorkspaceRoot } from './utils.mjs';
 
 const exec = promisify(childProcess.exec);
 
@@ -37,7 +36,7 @@ async function main(version) {
     return;
   }
 
-  const packageJsonPath = path.resolve(getWorkspaceRoot(), 'package.json');
+  const packageJsonPath = path.resolve(process.cwd(), 'package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: 'utf8' }));
 
   // the version is something in format: "17.0.0"
