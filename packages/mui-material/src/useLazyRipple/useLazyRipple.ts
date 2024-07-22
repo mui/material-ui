@@ -14,7 +14,7 @@ type ControlledPromise<T = unknown> = Promise<T> & {
  */
 export class LazyRipple {
   /** React ref to the ripple instance */
-  ref: React.MutableRefObject<TouchRippleActions | null>;
+  ref: React.RefObject<TouchRippleActions | null>;
 
   /** If the ripple component should be mounted */
   shouldMount: boolean;
