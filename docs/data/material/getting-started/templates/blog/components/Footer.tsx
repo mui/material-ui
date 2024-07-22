@@ -30,7 +30,7 @@ function Copyright() {
 
 export default function Footer() {
   return (
-    <>
+    <React.Fragment>
       <Divider />
       <Container
         sx={{
@@ -222,6 +222,6 @@ export default function Footer() {
           </Stack>
         </Box>
       </Container>
-    </>
+    </React.Fragment>
   );
 }
