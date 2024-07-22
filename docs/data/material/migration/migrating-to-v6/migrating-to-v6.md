@@ -119,6 +119,23 @@ This results in a reduction of the `@mui/material` package size by 2.5MB or 25% 
 Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended.
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
+### Accordion
+
+#### children is required in slots.transition
+
+The children prop in components passed to either `slots.transition` or `TransitionComponent` props in the Accordion component must be required in TypeScript.
+
+```diff
+ function CustomTransition(props: {
+-  children?: React.ReactElement
++  children: React.ReactElement
+ }) {
+   ...
+ }
+
+ <Accordion slots={{ transition: CustomTransition }} />
+```
+
 ### Autocomplete
 
 #### New reason values added to onInputChange
