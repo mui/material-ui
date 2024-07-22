@@ -15,5 +15,7 @@ import { Typography as MyTypography } from '@mui/material';
 <MyTypography paragraph={paragraph} className="my-class" />;
 <Typography paragraph sx={{ marginBottom: "32px" }} />;
 <MyTypography paragraph sx={{ marginBottom: "32px" }} />;
+<Typography paragraph sx={{ mb: "32px" }} />;
+<MyTypography paragraph sx={{ mb: "32px" }} />;
 <Typography paragraph sx={{ color: "black" }} />;
 <MyTypography paragraph sx={{ color: "black" }} />;

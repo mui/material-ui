@@ -65,6 +65,17 @@ fn({
       paragraph,
       className: "my-class",
       sx: {
+        mb: "32px",
+      },
+    },
+  },
+});
+fn({
+  MuiTypography: {
+    defaultProps: {
+      paragraph,
+      className: "my-class",
+      sx: {
         color: "black",
       },
     },

@@ -27,6 +27,8 @@ import { Typography as MyTypography } from '@mui/material';
 }} />;
 <Typography sx={{ marginBottom: "32px" }} />;
 <MyTypography sx={{ marginBottom: "32px" }} />;
+<Typography sx={{ mb: "32px" }} />;
+<MyTypography sx={{ mb: "32px" }} />;
 <Typography
   sx={{
     color: "black",

@@ -68,6 +68,17 @@ fn({
       className: "my-class",
 
       sx: {
+        mb: "32px",
+      }
+    },
+  },
+});
+fn({
+  MuiTypography: {
+    defaultProps: {
+      className: "my-class",
+
+      sx: {
         color: "black",
         marginBottom: "16px"
       }

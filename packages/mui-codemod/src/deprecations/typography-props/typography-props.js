@@ -49,7 +49,9 @@ export default function transformer(file, api, options) {
     } else {
       const hasMarginBottom = elementPath.node.openingElement.attributes[
         sxIndex
-      ].value.expression.properties.some((key) => key.key.name === 'marginBottom');
+      ].value.expression.properties.some(
+        (key) => key.key.name === 'marginBottom' || key.key.name === 'mb',
+      );
 
       if (!hasMarginBottom) {
         assignObject(j, {
@@ -95,7 +97,7 @@ export default function transformer(file, api, options) {
       );
     } else {
       const hasMarginBottom = defaultPropsObject.value.properties[sxIndex].value.properties.some(
-        (key) => key.key.name === 'marginBottom',
+        (key) => key.key.name === 'marginBottom' || key.key.name === 'mb',
       );
 
       if (!hasMarginBottom) {
