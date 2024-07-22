@@ -89,8 +89,8 @@ export default function ProductsSwitcher(props: {
       icon={<IconImage name="product-advanced" height={32} width={32} />}
     />,
     <ProductItem
-      name="Toolpad"
-      description="A low-code tool for building internal applications."
+      name="Toolpad Studio"
+      description="A self-hosted, low-code internal tool builder."
       icon={<IconImage name="product-toolpad" />}
       chip={
         <Chip
