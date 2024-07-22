@@ -46,7 +46,7 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
     ...other
   } = props;
 
-  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(undefined);
+  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
 
   let rootElementName = rootElementNameProp;
 

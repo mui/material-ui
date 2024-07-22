@@ -34,7 +34,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     type,
     rootElementName: rootElementNameProp,
   } = parameters;
-  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(undefined);
+  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
 
   const [active, setActive] = React.useState<boolean>(false);
 
@@ -200,7 +200,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     }
     if (disabled) {
       buttonProps['aria-disabled'] = disabled as boolean;
-      buttonProps.tabIndex = focusableWhenDisabled ? tabIndex ?? 0 : -1;
+      buttonProps.tabIndex = focusableWhenDisabled ? (tabIndex ?? 0) : -1;
     }
   }
 

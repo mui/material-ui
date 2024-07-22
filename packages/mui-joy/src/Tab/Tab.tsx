@@ -150,7 +150,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ...other
   } = props;
 
-  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(undefined);
+  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(tabRef, ref) as React.RefCallback<Element>;
 
   const { active, focusVisible, setFocusVisible, selected, getRootProps } = useTab({

@@ -45,7 +45,7 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
     ...other
   } = props;
 
-  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(undefined);
+  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(tabRef, forwardedRef);
 
   const { active, highlighted, selected, getRootProps } = useTab({
