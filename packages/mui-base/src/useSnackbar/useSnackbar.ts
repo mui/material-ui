@@ -4,12 +4,12 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_useTimeout as useTimeout,
 } from '@mui/utils';
-import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
   UseSnackbarParameters,
   SnackbarCloseReason,
   UseSnackbarReturnValue,
 } from './useSnackbar.types';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 
 /**
@@ -23,7 +23,7 @@ import { EventHandlers } from '../utils/types';
  *
  * - [useSnackbar API](https://next.mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
  */
-function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
+export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
   const {
     autoHideDuration = null,
     disableWindowBlurListener = false,
@@ -162,5 +162,3 @@ function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnV
 
   return { getRootProps, onClickAway: handleClickAway };
 }
-
-export default useSnackbar;

@@ -6,8 +6,7 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_createChainedFunction as createChainedFunction,
 } from '@mui/utils';
-import extractEventHandlers from '@mui/utils/extractEventHandlers';
-import { EventHandlers } from '../utils/types';
+import { EventHandlers, extractEventHandlers } from '../utils';
 import { ModalManager, ariaHidden } from './ModalManager';
 import {
   UseModalParameters,
@@ -37,7 +36,7 @@ const defaultManager = new ModalManager();
  *
  * - [useModal API](https://next.mui.com/base-ui/react-modal/hooks-api/#use-modal)
  */
-function useModal(parameters: UseModalParameters): UseModalReturnValue {
+export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
     disableEscapeKeyDown = false,
@@ -239,5 +238,3 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     hasTransition,
   };
 }
-
-export default useModal;

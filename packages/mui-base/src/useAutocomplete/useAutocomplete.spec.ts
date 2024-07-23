@@ -1,5 +1,5 @@
 import { expectType } from '@mui/types';
-import { useAutocomplete, FilterOptionsState } from '@mui/material/useAutocomplete';
+import { useAutocomplete, FilterOptionsState } from '@mui/base/useAutocomplete';
 
 interface Person {
   id: string;
