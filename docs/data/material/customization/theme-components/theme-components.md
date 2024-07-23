@@ -30,9 +30,10 @@ If you're using TypeScript and [lab components](/material-ui/about-the-lab/), ch
 
 ## Theme style overrides
 
-The theme's `styleOverrides` key makes it possible to potentially change the default styles of any Material UI component.
+The theme's `styleOverrides` key makes it possible to change the default styles of any Material UI component.
 
-The `styleOverrides` requires a slot name as a key (use `root` for targeting the outer-most element), and an object with CSS properties as a value. Nested CSS selectors are supported as a value too.
+The `styleOverrides` requires a slot name as a key (use `root` to target the outer-most element) and an object with CSS properties as a value.
+Nested CSS selectors are also supported as values.
 
 ```js
 const theme = createTheme({
@@ -58,12 +59,14 @@ const theme = createTheme({
 Most components support props that exist to change their design.
 For example, the Card component supports a `variant` prop where you can pick `outlined` as a value that adds a border.
 
-If you want to override styles from a specific prop, create `variants` of the specific slot that contains `props` and `style` keys. When the component's `props` matches, the `style` will be applied.
+If you want to override styles based on a specific prop, you can use the `variants` key in the particular slot that contains `props` and `style` keys. When the component's `props` matches, the `style` will be applied.
 
-The override definition must specified in an array.
+Override definitions are specified as an array.
 Also, ensure that any styles that should take precedence are listed last.
 
-**Example 1**: Overriding styles based on existing props. To increase the border thickness of the `outlined` Card, use this following snippet:
+#### Overriding styles based on existing props
+
+The example below demonstrates the increase of the border thickness of the `outlined` Card:
 
 ```js
 const theme = createTheme({
@@ -86,7 +89,9 @@ const theme = createTheme({
 });
 ```
 
-**Example 2**: Adding styles based on new values. If your project needs a new Button's variant, use the following snippet:
+#### Adding styles based on new values
+
+The example below demonstrates the addition of a new variant `dashed` to the Button component:
 
 ```js
 const theme = createTheme({
@@ -111,7 +116,9 @@ const theme = createTheme({
 });
 ```
 
-**Example 3**: Overriding styles based on existing and new props. To override styles when the Button's variant is `dashed` (a new variant) and color is `secondary` (an existing color), use this following snippet:
+#### Overriding styles based on existing and new props
+
+The example below demonstrates the override of styles when the Button's variant is `dashed` (a new variant) and color is `secondary` (an existing color):
 
 ```js
 const theme = createTheme({
