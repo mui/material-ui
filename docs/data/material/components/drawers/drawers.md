@@ -16,6 +16,10 @@ A navigation drawer can either be permanently on-screen or controlled by a navig
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
+:::info
+A [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) is an extension of a drawer. It provides a header and sidebar with navigation, as well as a scrollable area for page content.
+:::
+
 ## Temporary drawer
 
 Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.

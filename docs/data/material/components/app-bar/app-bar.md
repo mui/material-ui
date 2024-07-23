@@ -16,6 +16,10 @@ It can transform into a contextual action bar or be used as a navbar.
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
+:::info
+A [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) is an extension of a drawer. It provides a header and sidebar with navigation, as well as a scrollable area for page content.
+:::
+
 ## Basic App bar
 
 {{"demo": "ButtonAppBar.js", "bg": true}}

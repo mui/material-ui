@@ -20,6 +20,10 @@ The demo below, inspired by Google Keep, shows a basic Snackbar with a text elem
 
 {{"demo": "SimpleSnackbar.js"}}
 
+:::info
+The [useNotifications](https://mui.com/toolpad/core/react-use-notifications/) hook from @toolpad/core offers a set of abstractions that make it easier to interact with notifications.
+:::
+
 ### Usage
 
 Snackbars differ from [Alerts](/material-ui/react-alert/) in that Snackbars have a fixed position and a high z-index, so they're intended to break out of the document flow; Alerts, on the other hand, are usually part of the flow—except when they're [used as children of a Snackbar](#use-with-alerts).
