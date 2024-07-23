@@ -56,7 +56,7 @@ const theme = createTheme({
 
 ### Variants
 
-Most components support props that exist to change their design.
+Most components include design-related props that affect their appearance.
 For example, the Card component supports a `variant` prop where you can pick `outlined` as a value that adds a border.
 
 If you want to override styles based on a specific prop, you can use the `variants` key in the particular slot that contains `props` and `style` keys. When the component's `props` matches, the `style` will be applied.
