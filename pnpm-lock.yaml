@@ -1362,8 +1362,8 @@ importers:
         specifier: ^0.16.1
         version: 0.16.1(@babel/preset-env@7.24.8(@babel/core@7.24.8))
       jscodeshift-add-imports:
-        specifier: ^1.0.10
-        version: 1.0.10(jscodeshift@0.16.1(@babel/preset-env@7.24.8(@babel/core@7.24.8)))
+        specifier: ^1.0.11
+        version: 1.0.11(jscodeshift@0.16.1(@babel/preset-env@7.24.8(@babel/core@7.24.8)))
       postcss:
         specifier: ^8.4.39
         version: 8.4.39
@@ -8438,10 +8438,10 @@ packages:
   jsc-safe-url@0.2.4:
     resolution: {integrity: sha512-0wM3YBWtYePOjfyXQH5MWQ8H7sdk5EXSwZvmSLKk2RboVQ2Bu239jycHDz5J/8Blf3K0Qnoy2b6xD+z10MFB+Q==}
 
-  jscodeshift-add-imports@1.0.10:
-    resolution: {integrity: sha512-VUe9DJ3zkWIR62zSRQnmsOVeyt77yD8knvYNna/PzRZlF9j799hJw5sqTZu4EX16XLIqS3FxWz3nXuGuiw9iyQ==}
+  jscodeshift-add-imports@1.0.11:
+    resolution: {integrity: sha512-9eJQcskqlBEqdYwu3p28Am8te/cPBakQqT6f8lpeAPs3kxGlm7U23uRHJYcEXJyKPPEwNhCcLghUJGtY5v/luQ==}
     peerDependencies:
-      jscodeshift: ^0.7.0 || ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0
+      jscodeshift: '>=0.7 <1'
 
   jscodeshift-find-imports@2.0.4:
     resolution: {integrity: sha512-HxOzjWDOFFSCf8EKSTQGqCxXeRFqZszOywnZ0HuMB9YPDFHVpxftGRsY+QS+Qq8o2qUojlmNU3JEHts5DWYS1A==}
@@ -19692,7 +19692,7 @@ snapshots:
 
   jsc-safe-url@0.2.4: {}
 
-  jscodeshift-add-imports@1.0.10(jscodeshift@0.16.1(@babel/preset-env@7.24.8(@babel/core@7.24.8))):
+  jscodeshift-add-imports@1.0.11(jscodeshift@0.16.1(@babel/preset-env@7.24.8(@babel/core@7.24.8))):
     dependencies:
       '@babel/traverse': 7.24.8
       jscodeshift: 0.16.1(@babel/preset-env@7.24.8(@babel/core@7.24.8))
