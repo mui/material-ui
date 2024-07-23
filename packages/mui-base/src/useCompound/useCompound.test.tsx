@@ -4,7 +4,7 @@ import { render } from '@mui/internal-test-utils';
 import { CompoundComponentContext, useCompoundParent } from './useCompoundParent';
 import { useCompoundItem } from './useCompoundItem';
 
-type ItemValue = { value: string; ref: React.RefObject<HTMLSpanElement> };
+type ItemValue = { value: string; ref: React.RefObject<HTMLSpanElement | null> };
 
 describe('compound components', () => {
   describe('useCompoundParent', () => {
@@ -188,7 +188,7 @@ describe('compound components', () => {
         const { children } = props;
         const { contextValue } = useCompoundParent<
           string,
-          { ref: React.RefObject<HTMLSpanElement> }
+          { ref: React.RefObject<HTMLSpanElement | null> }
         >();
 
         return (
@@ -240,7 +240,7 @@ describe('compound components', () => {
         const { children } = props;
         const { contextValue } = useCompoundParent<
           number,
-          { ref: React.RefObject<HTMLLIElement> }
+          { ref: React.RefObject<HTMLLIElement | null> }
         >();
 
         return (
