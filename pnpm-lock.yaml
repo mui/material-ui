@@ -1801,9 +1801,6 @@ importers:
       '@babel/runtime':
         specifier: ^7.24.8
         version: 7.24.8
-      '@mui/material':
-        specifier: workspace:*
-        version: link:../mui-material/build
     devDependencies:
       '@emotion/cache':
         specifier: ^11.11.0
