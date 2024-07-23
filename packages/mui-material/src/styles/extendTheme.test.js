@@ -759,7 +759,7 @@ describe('extendTheme', () => {
       });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
-        ':root',
+        ':root, .light',
         '.dark',
       ]);
     });
@@ -771,7 +771,7 @@ describe('extendTheme', () => {
       });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
-        ':root',
+        ':root, .mode-light',
         '.mode-dark',
       ]);
     });
@@ -793,7 +793,7 @@ describe('extendTheme', () => {
       });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
-        ':root',
+        ':root, [data-theme-light]',
         '[data-theme-dark]',
       ]);
     });

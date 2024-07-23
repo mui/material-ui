@@ -44,6 +44,9 @@ export default <
         }
         return { ':root': { ...css, ...excludedVariables } };
       }
+      if (rule && rule !== 'media') {
+        return `:root, ${rule.replace('%s', String(colorScheme))}`;
+      }
     } else if (colorScheme) {
       if (rule === 'media') {
         return `@media (prefers-color-scheme: ${String(colorScheme)}) { :root`;
