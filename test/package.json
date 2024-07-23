@@ -18,7 +18,7 @@
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
     "@playwright/test": "1.45.1",
-    "@testing-library/dom": "^10.3.1",
+    "@testing-library/dom": "^10.4.0",
     "@types/chai": "^4.3.16",
     "@types/react": "^18.3.3",
     "@types/react-is": "^18.3.0",

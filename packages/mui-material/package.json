@@ -56,7 +56,7 @@
   "devDependencies": {
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
-    "@testing-library/dom": "^10.3.1",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/chai": "^4.3.16",
     "@types/prop-types": "^15.7.12",
