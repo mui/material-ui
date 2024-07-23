@@ -58,7 +58,7 @@ export default function MaterialStartingLinksCollection() {
   return (
     <Grid container spacing={2}>
       {content.map(({ icon, title, description, link }) => (
-        <Grid key={title} xs={12} sm={6} md={4}>
+        <Grid key={title} size={{ xs: 12, sm: 6, md: 4 }}>
           <InfoCard
             classNameTitle="algolia-lvl3"
             classNameDescription="algolia-content"

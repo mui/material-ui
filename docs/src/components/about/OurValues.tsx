@@ -70,7 +70,7 @@ export default function OurValues() {
       </Button>
       <Grid container spacing={3} sx={{ mt: { xs: 1, sm: 2 } }}>
         {values.map(({ title, description, darkIcon, lightIcon, height, width }) => (
-          <Grid key={title} xs={12} md={3}>
+          <Grid key={title} size={{ xs: 12, md: 3 }}>
             <Paper
               variant="outlined"
               sx={(theme) => ({

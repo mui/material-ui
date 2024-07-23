@@ -106,7 +106,7 @@ export default function MaterialUIExampleCollection() {
   return (
     <Grid container spacing={2}>
       {examples.map((example) => (
-        <Grid key={example.name} xs={12} sm={6}>
+        <Grid key={example.name} size={{ xs: 12, sm: 6 }}>
           <Paper
             variant="outlined"
             sx={(theme) => ({

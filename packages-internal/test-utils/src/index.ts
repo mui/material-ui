@@ -5,11 +5,10 @@ export { default as describeConformance } from './describeConformance';
 export * from './describeConformance';
 export { default as createDescribe } from './createDescribe';
 export * from './createRenderer';
-export { default as createMount } from './createMount';
-export { default as findOutermostIntrinsic, wrapsIntrinsicElement } from './findOutermostIntrinsic';
 export {
   default as focusVisible,
   simulatePointerDevice,
+  simulateKeyboardDevice,
   programmaticFocusTriggersFocusVisible,
 } from './focusVisible';
 export {} from './initMatchers';

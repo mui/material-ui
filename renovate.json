@@ -68,7 +68,7 @@
     },
     {
       "groupName": "React",
-      "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
+      "matchPackageNames": ["react", "react-dom", "react-is"]
     },
     {
       "groupName": "typescript-eslint",

@@ -10,7 +10,8 @@ export default function AppFrameBanner() {
     return null;
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+  // eslint-disable-next-line react-hooks/rules-of-hooks -- FEATURE_TOGGLE never changes
   const pageContext = React.useContext(PageContext);
   const productName = convertProductIdToName(pageContext) || 'MUI';
   const message = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;

@@ -19,7 +19,7 @@ function MainFeaturedPost(props) {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url(${'var(--post-image)'})`,
+        backgroundImage: `url(${post.image})`,
       }}
       style={{
         '--post-image': post.image,

@@ -138,6 +138,7 @@ const DialogPaper = styled(Paper, {
       style: {
         display: 'inline-block',
         verticalAlign: 'middle',
+        textAlign: 'initial',
       },
     },
     {

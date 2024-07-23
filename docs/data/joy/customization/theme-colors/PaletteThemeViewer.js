@@ -10,7 +10,7 @@ import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
+import { useClipboardCopy } from '@mui/docs/CodeCopy';
 
 const defaultTheme = extendTheme();
 

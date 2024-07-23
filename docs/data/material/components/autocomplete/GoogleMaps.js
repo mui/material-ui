@@ -113,6 +113,7 @@ export default function GoogleMaps() {
         <TextField {...params} label="Add a location" fullWidth />
       )}
       renderOption={(props, option) => {
+        const { key, ...optionProps } = props;
         const matches =
           option.structured_formatting.main_text_matched_substrings || [];
 
@@ -120,9 +121,8 @@ export default function GoogleMaps() {
           option.structured_formatting.main_text,
           matches.map((match) => [match.offset, match.offset + match.length]),
         );
-
         return (
-          <li {...props}>
+          <li key={key} {...optionProps}>
             <Grid container sx={{ alignItems: 'center' }}>
               <Grid item sx={{ display: 'flex', width: 44 }}>
                 <LocationOnIcon sx={{ color: 'text.secondary' }} />

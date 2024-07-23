@@ -284,7 +284,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : (formControl?.color ?? colorProp));
 
   const ownerState = {
     instanceColor: error ? 'danger' : inProps.color,
@@ -359,7 +359,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  autoComplete: PropTypes.string,
+  autoComplete: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * @ignore
    */

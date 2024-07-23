@@ -1,9 +1,5 @@
-import enzyme from 'enzyme';
-import Adapter from '@mnajdova/enzyme-adapter-react-18';
 import * as testingLibrary from '@testing-library/react/pure';
 import './initMatchers';
-
-enzyme.configure({ adapter: new Adapter() });
 
 // checking if an element is hidden is quite expensive
 // this is only done in CI as a fail safe. It can still explicitly be checked
