@@ -255,6 +255,11 @@ Note that the items' position doesn't change.
 We recommend adopting this new behavior and **not trying to replicate the old one**, as this is a more predictable and modern approach.
 :::
 
+### Rating
+
+Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
+This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
+
 ### useMediaQuery
 
 The following deprecated types were removed:
