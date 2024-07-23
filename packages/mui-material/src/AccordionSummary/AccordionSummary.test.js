@@ -142,7 +142,7 @@ describe('<AccordionSummary />', () => {
 
       render(
         <ThemeProvider theme={theme}>
-          <Accordion disableGutters>
+          <Accordion>
             <AccordionSummary />
           </Accordion>
         </ThemeProvider>,
