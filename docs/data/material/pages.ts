@@ -196,11 +196,16 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/customization/css-variables',
         subheader: '/material-ui/customization/css-variables',
+        newFeature: true,
         children: [
           { pathname: '/material-ui/customization/css-theme-variables/overview' },
-          { pathname: '/material-ui/customization/css-theme-variables/usage' },
+          {
+            pathname: '/material-ui/customization/css-theme-variables/usage',
+            title: 'Basic usage',
+          },
           {
             pathname: '/material-ui/customization/css-theme-variables/configuration',
+            title: 'Advanced configuration',
           },
         ],
       },
