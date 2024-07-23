@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material';
+import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 
 const articleInfo = [
   {
@@ -96,6 +97,43 @@ const StyledTypography = styled(Typography)({
   textOverflow: 'ellipsis',
 });
 
+const TitleTypography = styled(Typography)(({ theme }) => ({
+  position: 'relative',
+  textDecoration: 'none',
+  '&:hover': { cursor: 'pointer' },
+  '& .arrow': {
+    visibility: 'hidden',
+    position: 'absolute',
+    right: 0,
+    top: '50%',
+    transform: 'translateY(-50%)',
+  },
+  '&:hover .arrow': {
+    visibility: 'visible',
+    opacity: 0.7,
+  },
+  '&:focus-visible': {
+    outline: '3px solid',
+    outlineColor: 'hsla(210, 98%, 48%, 0.5)',
+    outlineOffset: '3px',
+    borderRadius: '8px',
+  },
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    width: 0,
+    height: '1px',
+    bottom: 0,
+    left: 0,
+    backgroundColor: theme.palette.text.primary,
+    opacity: 0.3,
+    transition: 'width 0.3s ease, opacity 0.3s ease',
+  },
+  '&:hover::before': {
+    width: '100%',
+  },
+}));
+
 function Author({ authors }: { authors: { name: string; avatar: string }[] }) {
   return (
     <Box
@@ -156,31 +194,32 @@ function Latest() {
         {articleInfo.map((article, index) => (
           <Grid key={index} size={{ xs: 12, sm: 6 }}>
             <Box
-              onFocus={() => handleFocus(index)}
-              onBlur={handleBlur}
-              tabIndex={0}
-              className={focusedCardIndex === index ? 'Mui-focused' : ''}
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 gap: 1,
                 height: '100%',
-                '&:hover': { opacity: 0.6, cursor: 'pointer' },
-                '&:focus-visible': {
-                  outline: '3px solid',
-                  outlineColor: 'hsla(210, 98%, 48%, 0.5)',
-                  outlineOffset: '6px',
-                  borderRadius: '8px',
-                },
               }}
             >
               <Typography gutterBottom variant="caption" component="div">
                 {article.tag}
               </Typography>
-              <Typography gutterBottom variant="h6" component="a">
+              <TitleTypography
+                gutterBottom
+                variant="h6"
+                component="a"
+                onFocus={() => handleFocus(index)}
+                onBlur={handleBlur}
+                tabIndex={0}
+                className={focusedCardIndex === index ? 'Mui-focused' : ''}
+              >
                 {article.title}
-              </Typography>
+                <NavigateNextRoundedIcon
+                  className="arrow"
+                  sx={{ fontSize: '1rem' }}
+                />
+              </TitleTypography>
               <StyledTypography variant="body2" color="text.secondary" gutterBottom>
                 {article.description}
               </StyledTypography>

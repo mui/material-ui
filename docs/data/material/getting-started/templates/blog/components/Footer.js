@@ -22,7 +22,10 @@ function Copyright() {
   return (
     <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
       {'Copyright © '}
-      <Link href="https://mui.com/">Sitemark&nbsp;</Link>
+      <Link color="text.secondary" href="https://mui.com/">
+        Sitemark
+      </Link>
+      &nbsp;
       {new Date().getFullYear()}
     </Typography>
   );
@@ -197,6 +200,7 @@ export default function Footer() {
           >
             <IconButton
               color="inherit"
+              size="small"
               href="https://github.com/mui"
               aria-label="GitHub"
               sx={{ alignSelf: 'center' }}
@@ -205,6 +209,7 @@ export default function Footer() {
             </IconButton>
             <IconButton
               color="inherit"
+              size="small"
               href="https://x.com/MaterialUI"
               aria-label="X"
               sx={{ alignSelf: 'center' }}
@@ -213,6 +218,7 @@ export default function Footer() {
             </IconButton>
             <IconButton
               color="inherit"
+              size="small"
               href="https://www.linkedin.com/company/mui/"
               aria-label="LinkedIn"
               sx={{ alignSelf: 'center' }}

@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+
 import ToggleColorMode from './ToggleColorMode';
 
 import Sitemark from './SitemarkIcon';
@@ -37,20 +38,6 @@ function AppAppBar({ mode, toggleColorMode }) {
     setOpen(newOpen);
   };
 
-  const scrollToSection = (sectionId) => {
-    const sectionElement = document.getElementById(sectionId);
-    const offset = 128;
-    if (sectionElement) {
-      const targetScroll = sectionElement.offsetTop - offset;
-      sectionElement.scrollIntoView({ behavior: 'smooth' });
-      window.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth',
-      });
-      setOpen(false);
-    }
-  };
-
   return (
     <AppBar
       position="fixed"
@@ -61,46 +48,23 @@ function AppAppBar({ mode, toggleColorMode }) {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Sitemark />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button
-                variant="text"
-                color="info"
-                size="small"
-                onClick={() => scrollToSection('features')}
-              >
+              <Button variant="text" color="info" size="small">
                 Features
               </Button>
-              <Button
-                variant="text"
-                color="info"
-                size="small"
-                onClick={() => scrollToSection('testimonials')}
-              >
+              <Button variant="text" color="info" size="small">
                 Testimonials
               </Button>
-              <Button
-                variant="text"
-                color="info"
-                size="small"
-                onClick={() => scrollToSection('highlights')}
-              >
+              <Button variant="text" color="info" size="small">
                 Highlights
               </Button>
-              <Button
-                variant="text"
-                color="info"
-                size="small"
-                onClick={() => scrollToSection('pricing')}
-              >
+              <Button variant="text" color="info" size="small">
                 Pricing
               </Button>
-              <Button
-                variant="text"
-                color="info"
-                size="small"
-                onClick={() => scrollToSection('faq')}
-                sx={{ minWidth: 0 }}
-              >
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
                 FAQ
+              </Button>
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+                Blog
               </Button>
             </Box>
           </Box>
@@ -142,19 +106,12 @@ function AppAppBar({ mode, toggleColorMode }) {
                   </IconButton>
                 </Box>
                 <Divider sx={{ my: 3 }} />
-                <MenuItem onClick={() => scrollToSection('features')}>
-                  Features
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('testimonials')}>
-                  Testimonials
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('highlights')}>
-                  Highlights
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('pricing')}>
-                  Pricing
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('faq')}>FAQ</MenuItem>
+                <MenuItem>Features</MenuItem>
+                <MenuItem>Testimonials</MenuItem>
+                <MenuItem>Highlights</MenuItem>
+                <MenuItem>Pricing</MenuItem>
+                <MenuItem>FAQ</MenuItem>
+                <MenuItem>Blog</MenuItem>
                 <MenuItem>
                   <Button color="primary" variant="contained" fullWidth>
                     Sign up

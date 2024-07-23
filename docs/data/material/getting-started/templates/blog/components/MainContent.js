@@ -252,7 +252,7 @@ export default function MainContent() {
           }}
         >
           <Search />
-          <IconButton size="small">
+          <IconButton size="small" aria-label="RSS feed">
             <RssFeedRoundedIcon />
           </IconButton>
         </Box>
