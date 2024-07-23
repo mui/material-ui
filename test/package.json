@@ -7,8 +7,8 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.24.8",
-    "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.4",
+    "@emotion/cache": "^11.13.0",
+    "@emotion/react": "^11.13.0",
     "@mui/base": "workspace:*",
     "@mui/icons-material": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
