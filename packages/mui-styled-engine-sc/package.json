@@ -50,7 +50,7 @@
     "@types/react": "^18.3.3",
     "chai": "^4.4.1",
     "react": "^18.3.1",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.12"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"
@@ -61,6 +61,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }
