@@ -67,8 +67,8 @@ const LoadingButtonRoot = styled(Button, {
       color: 'transparent',
     },
     [`& .${loadingButtonClasses.loading} .MuiButton-icon path`]: {
-    fill: 'transparent'
-  },
+      fill: 'transparent',
+    },
   }),
   ...(ownerState.loadingPosition === 'start' &&
     ownerState.fullWidth && {

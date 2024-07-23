@@ -88,9 +88,9 @@ const SkeletonRoot = styled('span', {
         height: 'auto',
         transformOrigin: '0 55%',
         transform: 'scale(1, 0.60)',
-        borderRadius: `${radiusValue}${radiusUnit}/${
-          Math.round((radiusValue / 0.6) * 10) / 10
-        }${radiusUnit}`,
+        borderRadius: `${radiusValue}${radiusUnit}/${Math.round((radiusValue / 0.6) * 10) / 10}${
+          radiusUnit
+        }`,
         '&:empty:before': {
           content: '"\\00a0"',
         },
