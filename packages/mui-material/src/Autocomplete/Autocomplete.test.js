@@ -414,7 +414,8 @@ describe('<Autocomplete />', () => {
       }
     });
 
-    it('When the input box needs to expand downward, the listbox should remain open.', () => {
+    // Test for https://github.com/mui/material-ui/issues/42432
+    it('when the input box needs to expand downward, the listbox should remain open.', () => {
       const options = [
         'The Lord of the Rings: The Return of the King',
         'The Good, the Bad and the Ugly',
@@ -426,32 +427,24 @@ describe('<Autocomplete />', () => {
         'The Good, the Bad and the Ugly',
         'The Shawshank Redemption',
       ];
-      const handleClose = spy();
-      const handleOpen = spy();
-      const ref = React.createRef();
+
       render(
         <Autocomplete
           multiple
-          onClose={handleClose}
-          onOpen={handleOpen}
           limitTags={2}
           options={options}
           defaultValue={defaultValue}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              slotProps={{
-                input: { ...params.InputProps, ref },
-              }}
-              variant="standard"
-            />
-          )}
+          renderInput={(params) => <TextField {...params} />}
+          sx={{ width: 500 }}
         />,
       );
 
-      fireEvent.mouseDown(ref.current);
-      expect(handleOpen.callCount).to.equal(1);
-      expect(handleClose.callCount).to.equal(0);
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.mouseDown(textbox);
+
+      const listbox = screen.getByRole('listbox');
+      expect(listbox).toBeVisible();
     });
   });
 
