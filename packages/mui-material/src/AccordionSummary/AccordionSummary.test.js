@@ -130,10 +130,10 @@ describe('<AccordionSummary />', () => {
           MuiAccordionSummary: {
             styleOverrides: {
               gutters: {
-                paddingRight: '10px',
+                backgroundColor: 'rgb(0, 0, 255)',
               },
               contentGutters: {
-                paddingRight: '20px',
+                backgroundColor: 'rgb(255, 0, 0)',
               },
             },
           },
@@ -149,11 +149,11 @@ describe('<AccordionSummary />', () => {
       );
       const root = document.querySelector(`.${classes.root}`);
       expect(root).toHaveComputedStyle({
-        paddingRight: '10px',
+        backgroundColor: 'rgb(0, 0, 255)',
       });
       const content = document.querySelector(`.${classes.content}`);
       expect(content).toHaveComputedStyle({
-        paddingRight: '20px',
+        backgroundColor: 'rgb(255, 0, 0)',
       });
     });
   });
