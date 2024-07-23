@@ -122,7 +122,15 @@ function defaultIsEnabled(): boolean {
 }
 
 /**
- * @ignore - internal component.
+ * Utility component that locks focus inside the component.
+ *
+ * Demos:
+ *
+ * - [Focus Trap](https://mui.com/base-ui/react-focus-trap/)
+ *
+ * API:
+ *
+ * - [FocusTrap API](https://mui.com/base-ui/react-focus-trap/components-api/#focus-trap)
  */
 function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   const {
@@ -423,4 +431,4 @@ if (process.env.NODE_ENV !== 'production') {
   (FocusTrap as any)['propTypes' + ''] = exactProp(FocusTrap.propTypes);
 }
 
-export default FocusTrap;
+export { FocusTrap };

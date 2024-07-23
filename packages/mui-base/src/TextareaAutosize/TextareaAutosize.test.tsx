@@ -2,7 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
 import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
@@ -33,6 +34,22 @@ async function raf() {
 
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
+
+  describeConformanceUnstyled(<TextareaAutosize />, () => ({
+    render,
+    inheritComponent: 'textarea',
+    refInstanceof: window.HTMLTextAreaElement,
+    slots: {},
+    skip: [
+      // doesn't have slots, so these tests are irrelevant:
+      'componentProp',
+      'mergeClassName',
+      'ownerStatePropagation',
+      'propsSpread',
+      'refForwarding',
+      'slotsProp',
+    ],
+  }));
 
   // For https://github.com/mui/material-ui/pull/33238
   it('should not crash when unmounting with Suspense', async () => {

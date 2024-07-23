@@ -10,12 +10,10 @@ import {
 } from '@mui/utils';
 import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
 import PropTypes from 'prop-types';
-import composeClasses from '@mui/utils/composeClasses';
-import useSlotProps from '@mui/utils/useSlotProps';
-import Portal from '../Portal';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { Portal } from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
-import { WithOptionalOwnerState } from '../utils/types';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import {
   PopperPlacementType,
   PopperTooltipProps,
@@ -25,7 +23,8 @@ import {
   PopperRootSlotProps,
   PopperTransitionProps,
   PopperTypeMap,
-} from './BasePopper.types';
+} from './Popper.types';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function flipPlacement(placement?: PopperPlacementType, direction?: 'ltr' | 'rtl') {
   if (direction === 'ltr') {
@@ -66,13 +65,12 @@ function isVirtualElement(element: HTMLElement | VirtualElement): element is Vir
   return !isHTMLElement(element);
 }
 
-const useUtilityClasses = (ownerState: any) => {
-  const { classes } = ownerState;
+const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
   };
 
-  return composeClasses(slots, getPopperUtilityClass, classes);
+  return composeClasses(slots, useClassNamesOverride(getPopperUtilityClass));
 };
 
 const defaultPopperOptions = {};
@@ -216,7 +214,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
     childProps.TransitionProps = TransitionProps;
   }
 
-  const classes = useUtilityClasses(props);
+  const classes = useUtilityClasses();
   const Root = slots.root ?? 'div';
 
   const rootProps: WithOptionalOwnerState<PopperRootSlotProps> = useSlotProps({
@@ -237,7 +235,15 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
 }) as PolymorphicComponent<PopperTooltipTypeMap>;
 
 /**
- * @ignore - internal component.
+ * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
+ *
+ * Demos:
+ *
+ * - [Popper](https://mui.com/base-ui/react-popper/)
+ *
+ * API:
+ *
+ * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
  */
 const Popper = React.forwardRef(function Popper<RootComponentType extends React.ElementType>(
   props: PopperProps<RootComponentType>,
@@ -536,4 +542,4 @@ Popper.propTypes /* remove-proptypes */ = {
   transition: PropTypes.bool,
 } as any;
 
-export default Popper;
+export { Popper };
