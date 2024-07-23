@@ -34,7 +34,7 @@ The default implementation of the negative margin in Grid v2 is spread equally o
 
 ```diff
 -import Grid from '@mui/material/Grid';
-+import Grid from '@mui/material/Unstable_Grid2';
++import Grid from '@mui/material/Grid2';
 ```
 
 ### Remove props
@@ -56,7 +56,7 @@ To apply to all grids, add the default props to the theme:
 
 ```js
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 
 const theme = createTheme({
   components: {
