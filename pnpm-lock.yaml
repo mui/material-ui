@@ -2143,6 +2143,9 @@ importers:
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
+      '@mui/types':
+        specifier: workspace:^
+        version: link:../mui-types/build
       '@types/chai':
         specifier: ^4.3.16
         version: 4.3.16

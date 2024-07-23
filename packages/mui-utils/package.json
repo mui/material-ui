@@ -47,6 +47,7 @@
   "devDependencies": {
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
+    "@mui/types": "workspace:^",
     "@types/chai": "^4.3.16",
     "@types/mocha": "^10.0.7",
     "@types/node": "^18.19.39",
