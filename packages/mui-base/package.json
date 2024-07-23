@@ -62,8 +62,8 @@
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
-    "react": "19.0.0-rc-100dfd7dab-20240701",
-    "react-dom": "19.0.0-rc-100dfd7dab-20240701",
+    "react": "19.0.0-rc-d025ddd3-20240722",
+    "react-dom": "19.0.0-rc-d025ddd3-20240722",
     "sinon": "^16.1.3"
   },
   "peerDependencies": {
