@@ -63,7 +63,7 @@
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "sinon": "^16.1.3",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.12"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

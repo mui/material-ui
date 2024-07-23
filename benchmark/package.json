@@ -34,7 +34,7 @@
     "react-redux": "^8.1.3",
     "redux": "^4.2.1",
     "serve-handler": "^6.1.5",
-    "styled-components": "^6.1.11",
+    "styled-components": "^6.1.12",
     "styled-system": "^5.1.5",
     "theme-ui": "^0.16.2",
     "webpack": "^5.92.1"
