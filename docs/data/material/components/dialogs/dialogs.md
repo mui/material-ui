@@ -18,8 +18,7 @@ Dialogs are purposefully interruptive, so they should be used sparingly.
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
 :::info
-The [useDialogs](https://mui.com/toolpad/core/react-use-dialogs/) hook from @toolpad/core offers the functionality to open and close dialogs, and allows dialogs to be stacked on top of each other.
-:::
+The [useDialogs](https://mui.com/toolpad/core/react-use-dialogs/) hook from `@toolpad/core` offers imperative APIs that make interacting with dialogs simpler.
 
 ## Introduction
 

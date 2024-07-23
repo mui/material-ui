@@ -17,7 +17,7 @@ A navigation drawer can either be permanently on-screen or controlled by a navig
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
 :::info
-A [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) is an extension of a drawer. It provides a header and sidebar with navigation, as well as a scrollable area for page content.
+The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) from `@toolpad/core` is an extension of the drawer component. It provides a headerbar, a sidebar with navigation, and a scrollable area for page content.
 :::
 
 ## Temporary drawer
