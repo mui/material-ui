@@ -32,7 +32,7 @@ If you're using TypeScript and [lab components](/material-ui/about-the-lab/), ch
 
 The theme's `styleOverrides` key makes it possible to change the default styles of any Material UI component.
 
-The `styleOverrides` requires a slot name as a key (use `root` to target the outer-most element) and an object with CSS properties as a value.
+`styleOverrides` requires a slot name as a key (use `root` to target the outer-most element) and an object with CSS properties as a value.
 Nested CSS selectors are also supported as values.
 
 ```js
