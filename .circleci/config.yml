@@ -888,7 +888,31 @@ workflows:
     jobs:
       - test_profile:
           <<: *default-context
+
+  # This workflow can be triggered manually on the PR
   react-17:
+    when:
+      equal: [react-17, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_unit-react@17
+      - test_browser:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_browser-react@17
+      - test_regressions:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_regressions-react@17
+      - test_e2e:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_e2e-react@17
+
+  # This workflow is identical to react-17, but scheduled
+  react-17-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -896,20 +920,48 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
       - test_unit:
           <<: *default-context
           react-version: ^17.0.0
+          name: test_unit-react@17
       - test_browser:
           <<: *default-context
           react-version: ^17.0.0
+          name: test_browser-react@17
       - test_regressions:
           <<: *default-context
           react-version: ^17.0.0
+          name: test_regressions-react@17
       - test_e2e:
           <<: *default-context
           react-version: ^17.0.0
+          name: test_e2e-react@17
+
+  # This workflow can be triggered manually on the PR
   react-next:
+    when:
+      equal: [react-next, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: next
+          name: test_unit-react@next
+      - test_browser:
+          <<: *default-context
+          react-version: next
+          name: test_browser-react@next
+      - test_regressions:
+          <<: *default-context
+          react-version: next
+          name: test_regressions-react@next
+      - test_e2e:
+          <<: *default-context
+          react-version: next
+          name: test_e2e-react@next
+  # This workflow is identical to react-next, but scheduled
+  react-next-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -917,19 +969,25 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
       - test_unit:
           <<: *default-context
           react-version: next
+          name: test_unit-react@next
       - test_browser:
           <<: *default-context
           react-version: next
+          name: test_browser-react@next
       - test_regressions:
           <<: *default-context
           react-version: next
+          name: test_regressions-react@next
       - test_e2e:
           <<: *default-context
           react-version: next
+          name: test_e2e-react@next
+
   typescript-next:
     triggers:
       - schedule:
@@ -938,6 +996,7 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
       - test_types_next:
           <<: *default-context
