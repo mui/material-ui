@@ -151,8 +151,8 @@ describe('<AccordionSummary />', () => {
       expect(root).toHaveComputedStyle({
         paddingRight: '10px',
       });
-      const contentGutters = document.querySelector(`.${classes.contentGutters}`);
-      expect(contentGutters).toHaveComputedStyle({
+      const content = document.querySelector(`.${classes.content}`);
+      expect(content).toHaveComputedStyle({
         paddingRight: '20px',
       });
     });
