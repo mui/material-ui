@@ -100,7 +100,7 @@
   "devDependencies": {
     "@argos-ci/core": "^2.4.0",
     "@babel/cli": "^7.24.8",
-    "@babel/core": "^7.24.8",
+    "@babel/core": "^7.24.9",
     "@babel/node": "^7.24.8",
     "@babel/plugin-transform-react-constant-elements": "^7.24.7",
     "@babel/plugin-transform-runtime": "^7.24.7",
@@ -195,14 +195,14 @@
     "pnpm": "9.5.0"
   },
   "resolutions": {
-    "@babel/core": "^7.24.8",
+    "@babel/core": "^7.24.9",
     "@babel/code-frame": "^7.24.7",
     "@babel/plugin-transform-runtime": "^7.24.7",
     "@babel/preset-env": "^7.24.8",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
     "@babel/runtime": "^7.24.8",
-    "@babel/types": "^7.24.8",
+    "@babel/types": "^7.24.9",
     "@definitelytyped/header-parser": "^0.2.11",
     "@definitelytyped/typescript-versions": "^0.1.3",
     "@definitelytyped/utils": "^0.1.7",
