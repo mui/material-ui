@@ -8,6 +8,8 @@ envinfo
       npmPackages: `{${[
         '@mui/*',
         '@toolpad/*',
+        '@pigment-css/*',
+        '@base_ui/*',
         // Peer dependencies
         'react',
         'react-dom',
