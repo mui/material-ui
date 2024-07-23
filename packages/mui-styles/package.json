@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.8",
-    "@emotion/hash": "^0.9.1",
+    "@emotion/hash": "^0.9.2",
     "@mui/private-theming": "workspace:*",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:*",
