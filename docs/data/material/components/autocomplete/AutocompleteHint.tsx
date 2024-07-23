@@ -16,7 +16,7 @@ export default function AutocompleteHint() {
           }
         }
       }}
-      onBlur={() => {
+      onClose={() => {
         hint.current = '';
       }}
       onChange={(event, newValue) => {
@@ -24,7 +24,6 @@ export default function AutocompleteHint() {
       }}
       disablePortal
       inputValue={inputValue}
-      blurOnSelect
       id="combo-box-hint-demo"
       options={top100Films}
       sx={{ width: 300 }}
