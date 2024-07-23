@@ -392,7 +392,7 @@ jobs:
     <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -422,7 +422,7 @@ jobs:
   test_e2e:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -436,7 +436,7 @@ jobs:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -451,7 +451,7 @@ jobs:
   test_profile:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -478,7 +478,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -532,7 +532,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -556,7 +556,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -580,7 +580,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -604,7 +604,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -628,7 +628,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -652,7 +652,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -680,7 +680,7 @@ jobs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -781,7 +781,7 @@ jobs:
   test_benchmark:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.45.1-focal
+      - image: mcr.microsoft.com/playwright:v1.45.3-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -888,7 +888,31 @@ workflows:
     jobs:
       - test_profile:
           <<: *default-context
+
+  # This workflow can be triggered manually on the PR
   react-17:
+    when:
+      equal: [react-17, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_unit-react@17
+      - test_browser:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_browser-react@17
+      - test_regressions:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_regressions-react@17
+      - test_e2e:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_e2e-react@17
+
+  # This workflow is identical to react-17, but scheduled
+  react-17-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -896,20 +920,48 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
       - test_unit:
           <<: *default-context
           react-version: ^17.0.0
+          name: test_unit-react@17
       - test_browser:
           <<: *default-context
           react-version: ^17.0.0
+          name: test_browser-react@17
       - test_regressions:
           <<: *default-context
           react-version: ^17.0.0
+          name: test_regressions-react@17
       - test_e2e:
           <<: *default-context
           react-version: ^17.0.0
+          name: test_e2e-react@17
+
+  # This workflow can be triggered manually on the PR
   react-next:
+    when:
+      equal: [react-next, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: next
+          name: test_unit-react@next
+      - test_browser:
+          <<: *default-context
+          react-version: next
+          name: test_browser-react@next
+      - test_regressions:
+          <<: *default-context
+          react-version: next
+          name: test_regressions-react@next
+      - test_e2e:
+          <<: *default-context
+          react-version: next
+          name: test_e2e-react@next
+  # This workflow is identical to react-next, but scheduled
+  react-next-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -917,19 +969,25 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
       - test_unit:
           <<: *default-context
           react-version: next
+          name: test_unit-react@next
       - test_browser:
           <<: *default-context
           react-version: next
+          name: test_browser-react@next
       - test_regressions:
           <<: *default-context
           react-version: next
+          name: test_regressions-react@next
       - test_e2e:
           <<: *default-context
           react-version: next
+          name: test_e2e-react@next
+
   typescript-next:
     triggers:
       - schedule:
@@ -938,6 +996,7 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
       - test_types_next:
           <<: *default-context
