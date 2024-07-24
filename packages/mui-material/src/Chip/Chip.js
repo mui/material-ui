@@ -342,28 +342,28 @@ const ChipLabel = styled('span', {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   paddingLeft: 12,
-  paddingRight: ownerState.label ? 12 : 0,
+  paddingRight: ownerState?.label ? 12 : 0,
   whiteSpace: 'nowrap',
   variants: [
     {
       props: { variant: 'outlined' },
       style: {
         paddingLeft: 11,
-        paddingRight: ownerState.label ? 11 : 0,
+        paddingRight: ownerState?.label ? 11 : 0,
       },
     },
     {
       props: { size: 'small' },
       style: {
         paddingLeft: 8,
-        paddingRight: ownerState.label ? 8 : 0,
+        paddingRight: ownerState?.label ? 8 : 0,
       },
     },
     {
       props: { size: 'small', variant: 'outlined' },
       style: {
         paddingLeft: 7,
-        paddingRight: ownerState.label ? 7 : 0,
+        paddingRight: ownerState?.label ? 7 : 0,
       },
     },
   ],
