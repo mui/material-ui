@@ -9,10 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mui/icons-material": "6.0.0-beta.0",
-    "@mui/material": "6.0.0-beta.0",
-    "@mui/material-pigment-css": "6.0.0-beta.0",
-    "@next/bundle-analyzer": "14.2.5",
+    "@mui/icons-material": "next",
+    "@mui/material": "next",
+    "@mui/material-pigment-css": "next",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
