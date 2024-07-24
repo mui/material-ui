@@ -1,5 +1,25 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.16.5
+
+<!-- generated comparing v5.16.4..master -->
+
+_Jul 25, 2024_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### `@mui/utils@5.16.5`
+
+- &#8203;<!-- 1 -->[utils] Add dependency to @mui/types (@mnajdova) (#43047) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 4 -->[material-ui][joy-ui][Autocomplete] Fix `Hint` demo (@ManthanGajjar) (#43039) @ManthanGajjar
+- &#8203;<!-- 3 -->Fix CHANGELOG convention @oliviertassinari
+- &#8203;<!-- 2 -->[material-ui] Fix broken image links in blog template on master branch (#42969) @navedqb
+
+All contributors of this release in alphabetical order: @ManthanGajjar, @mnajdova, @navedqb, @oliviertassinari
+
 ## 5.16.4
 
 <!-- generated comparing v5.16.3..master -->
