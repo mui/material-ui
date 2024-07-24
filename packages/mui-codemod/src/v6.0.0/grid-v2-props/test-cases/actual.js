@@ -1,8 +1,9 @@
-import GridA from '@mui/material/Unstable_Grid2';
-import GridB from '@mui/system/Unstable_Grid';
+import GridA from '@mui/material/Grid2';
+import GridV1A from '@mui/material/Grid';
+import GridB from '@mui/system/Grid';
 import GridC from '@mui/joy/Grid';
-import { Unstable_Grid2 as GridD, Grid as GridV1 } from '@mui/material';
-import { Unstable_Grid as GridE } from '@mui/system';
+import { Grid2 as GridD, Grid as GridV1B } from '@mui/material';
+import { Grid as GridE } from '@mui/system';
 import { Grid as GridF } from '@mui/joy';
 
 // Transforms on all the possible imports
@@ -35,4 +36,5 @@ import { Grid as GridF } from '@mui/joy';
 <GridA {...{ xs: 2, sm: 4, xsOffset: 0, smOffset: 2 }} />;
 
 // Doesn't transform Grid v1
-<GridV1 xs={2} />;
+<GridV1A xs={2} />;
+<GridV1B xs={2} />;

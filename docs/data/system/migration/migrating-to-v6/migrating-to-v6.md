@@ -99,6 +99,10 @@ Use this codemod to migrate your project to the new size and offset props:
 npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
 ```
 
+:::warning
+You need to modify the import from `@mui/system/Unstable_Grid` to `@mui/system/Grid` before running the codemod.
+:::
+
 If you have custom breakpoints, the change is the same:
 
 ```diff
