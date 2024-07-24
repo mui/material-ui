@@ -338,36 +338,36 @@ const ChipLabel = styled('span', {
 
     return [styles.label, styles[`label${capitalize(size)}`]];
   },
-})({
+})(({ ownerState }) => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   paddingLeft: 12,
-  paddingRight: 12,
+  paddingRight: ownerState.label ? 12 : 0,
   whiteSpace: 'nowrap',
   variants: [
     {
       props: { variant: 'outlined' },
       style: {
         paddingLeft: 11,
-        paddingRight: 11,
+        paddingRight: ownerState.label ? 11 : 0,
       },
     },
     {
       props: { size: 'small' },
       style: {
         paddingLeft: 8,
-        paddingRight: 8,
+        paddingRight: ownerState.label ? 8 : 0,
       },
     },
     {
       props: { size: 'small', variant: 'outlined' },
       style: {
         paddingLeft: 7,
-        paddingRight: 7,
+        paddingRight: ownerState.label ? 7 : 0,
       },
     },
   ],
-});
+}));
 
 function isDeleteKeyboardEvent(keyboardEvent) {
   return keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';
