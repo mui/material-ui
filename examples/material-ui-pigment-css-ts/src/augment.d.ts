@@ -1,7 +1,7 @@
-import { Theme, SxProps } from "@mui/material/styles";
-import {} from "@mui/material/themeCssVarsAugmentation";
+import { Theme, SxProps } from '@mui/material/styles';
+import {} from '@mui/material/themeCssVarsAugmentation';
 
-declare module "@mui/material-pigment-css/theme" {
+declare module '@mui/material-pigment-css/theme' {
   interface ThemeArgs {
     theme: Theme;
   }
