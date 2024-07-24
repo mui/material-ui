@@ -1925,8 +1925,8 @@ importers:
   packages/mui-utils:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.8
-        version: 7.24.8
+        specifier: ^7.23.9
+        version: 7.23.9
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -1949,9 +1949,6 @@ importers:
       '@mui/internal-babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
-      '@mui/internal-test-utils':
-        specifier: workspace:^
-        version: link:../../packages-internal/test-utils
       '@types/chai':
         specifier: ^4.3.12
         version: 4.3.12
