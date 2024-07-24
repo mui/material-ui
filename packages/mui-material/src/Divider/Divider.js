@@ -106,14 +106,48 @@ const DividerRoot = styled('div', {
         content: '""',
         alignSelf: 'center',
       },
-    }),
-  }),
-  ({ theme, ownerState }) => ({
-    ...(ownerState.children &&
-      ownerState.orientation !== 'vertical' && {
+    },
+    {
+      props: {
+        orientation: 'vertical',
+      },
+      style: {
+        height: '100%',
+        borderBottomWidth: 0,
+        borderRightWidth: 'thin',
+      },
+    },
+    {
+      props: {
+        flexItem: true,
+      },
+      style: {
+        alignSelf: 'stretch',
+        height: 'auto',
+      },
+    },
+    {
+      props: ({ ownerState }) => !!ownerState.children,
+      style: {
+        display: 'flex',
+        whiteSpace: 'nowrap',
+        textAlign: 'center',
+        border: 0,
+        borderTopStyle: 'solid',
+        borderLeftStyle: 'solid',
+        '&::before, &::after': {
+          content: '""',
+          alignSelf: 'center',
+        },
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.children && ownerState.orientation !== 'vertical',
+      style: {
         '&::before, &::after': {
           width: '100%',
           borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderTopStyle: 'inherit',
         },
       }),
   }),
@@ -124,6 +158,7 @@ const DividerRoot = styled('div', {
         '&::before, &::after': {
           height: '100%',
           borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderLeftStyle: 'inherit',
         },
       }),
   }),
