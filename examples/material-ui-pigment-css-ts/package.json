@@ -1,0 +1,29 @@
+{
+  "name": "material-ui-pigment-css-nextjs-ts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mui/icons-material": "6.0.0-beta.0",
+    "@mui/material": "6.0.0-beta.0",
+    "@mui/material-pigment-css": "6.0.0-beta.0",
+    "@next/bundle-analyzer": "14.2.5",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@pigment-css/nextjs-plugin": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "typescript": "latest"
+  }
+}
