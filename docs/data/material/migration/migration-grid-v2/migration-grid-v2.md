@@ -73,9 +73,9 @@ function Demo() {
 }
 ```
 
-### With Material UI v6
+### With Material UI v6
 
-The Grid v2 is marked as stable in Material UI v6, so the `Unstable_` prefix is removed:
+The Grid v2 is marked as stable in Material UI v6, so the `Unstable_` prefix is removed:
 
 ```diff
 -import Grid from '@mui/material/Unstable_Grid2';
@@ -83,7 +83,7 @@ The Grid v2 is marked as stable in Material UI v6, so the `Unstable_` prefix is 
 ```
 
 Alongside the stabilization, the API has been improved.
-You can see the changes and further details of how to migrate in [the Material UI v6 migration guide](/material-ui/migrating-to-v6/).
+You can see the changes and further details of how to migrate in [the Material UI v6 migration guide](/material-ui/migrating-to-v6/).
 
 Finally, the original Grid component is deprecated and will be removed in the future, so we highly encourage you to migrate to Grid v2.
 
