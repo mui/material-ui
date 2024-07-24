@@ -61,7 +61,7 @@ npx @mui/codemod@next <transform> <path> --jscodeshift="--printOptions='{\"quote
 
 ## Included scripts
 
-- [Deprecation](#deprecations)
+- [Deprecations](#deprecations)
 - [v6](#v600)
 - [v5](#v500)
 - [v4](#v400)
@@ -1640,6 +1640,28 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@next deprecations/table-sort-label-classes <path>
+```
+
+#### `typography-props`
+
+```diff
+ <Typography
+-  paragraph
++  sx={{ marginBottom: '16px' }}
+ />
+```
+
+```diff
+ MuiTypography: {
+   defaultProps: {
+-    paragraph: true
++    sx: { marginBottom: '16px' },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/typography-props <path>
 ```
 
 ### v6.0.0
