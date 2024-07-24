@@ -2121,6 +2121,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.24.8
         version: 7.24.8
+      '@mui/types':
+        specifier: workspace:^
+        version: link:../mui-types/build
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -2140,9 +2143,6 @@ importers:
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
-      '@mui/types':
-        specifier: workspace:^
-        version: link:../mui-types/build
       '@types/chai':
         specifier: ^4.3.16
         version: 4.3.16
