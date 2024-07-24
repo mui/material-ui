@@ -33,7 +33,7 @@ jobs:
       - run: npm install -g npm@latest
       - run: pnpm install:codesandbox
       - run: pnpm build:codesandbox
-      - run: pnpm dlx pkg-pr-new publish 'packages/mui-{base,codemod,core-downloads-tracker,docs,icons-material,lab,material-nextjs,material,private-theming,styled-engine,styled-engine-sc,styles,system,types,utils}/build' 'packages-internal/{test-utils,docs-utils,scripts}' 'packages/{mui-babel-macros,markdown}' --template './examples/*' --comment=off
+      - run: pnpm dlx pkg-pr-new publish 'packages/mui-{base,codemod,core-downloads-tracker,docs,icons-material,lab,material-nextjs,material,private-theming,styled-engine,styled-engine-sc,styles,system,types,utils}/build' 'packages-internal/{test-utils,docs-utils,scripts}' 'packages/{mui-babel-macros,markdown}' --template './examples/*' --comment=off --pnpm
 
   # Tests dev-only scripts across all supported dev environments
   test-dev:
