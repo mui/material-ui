@@ -14,6 +14,7 @@ export const CodeTabList = styled(TabsListBase)<{
   gap: theme.spacing(0.5),
   borderLeft: '1px solid',
   borderRight: '1px solid',
+  overflowX: 'auto',
   ...theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[800], 0.2),
   }),
@@ -258,6 +259,7 @@ export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contain
       },
     ],
     ...theme.unstable_sx({
+      flex: '0 0 auto',
       height: 26,
       p: '2px 8px',
       bgcolor: 'transparent',

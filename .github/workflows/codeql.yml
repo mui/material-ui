@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@b611370bb5703a7efb587f9d136a52ea24c5c38c # v3.25.11
+        uses: github/codeql-action/init@2d790406f505036ef40ecba973cc774a50395aac # v3.25.13
         with:
           languages: typescript
           config-file: ./.github/codeql/codeql-config.yml
@@ -30,4 +30,4 @@ jobs:
           # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
           # queries: security-extended,security-and-quality
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@b611370bb5703a7efb587f9d136a52ea24c5c38c # v3.25.11
+        uses: github/codeql-action/analyze@2d790406f505036ef40ecba973cc774a50395aac # v3.25.13

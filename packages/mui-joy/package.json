@@ -38,7 +38,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.7",
+    "@babel/runtime": "^7.24.8",
     "@mui/base": "workspace:*",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:*",
@@ -87,6 +87,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }
