@@ -180,10 +180,24 @@ const theme = createTheme({
 });
 ```
 
-#### Slot ownerState callback
+### Slot ownerState callback (deprecated)
 
-Using callback to access slot's `ownerState` has been deprecated.
-Check out the [migration guide](/material-ui/material-ui/migration/migrating-to-v6/#theme-components-variants).
+Using callback to access slot's `ownerState` has been deprecated, use [variants](#variants) instead.
+
+```diff
+ const theme = createTheme({
+   components: {
+     MuiButton: {
+       styleOverrides: {
+-        root: ({ ownerState, theme }) => ({ ... }),
++        root: {
++          variants: [...],
+         },
+       },
+     },
+   },
+ });
+```
 
 ### The `sx` syntax (experimental)
 
