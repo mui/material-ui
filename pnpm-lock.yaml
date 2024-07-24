@@ -16480,15 +16480,15 @@ snapshots:
 
   '@types/react-swipeable-views@0.13.5':
     dependencies:
-      '@types/react': 18.3.3
+      '@types/react': types-react@19.0.0-rc.1
 
   '@types/react-transition-group@4.4.11':
     dependencies:
-      '@types/react': 18.3.3
+      '@types/react': types-react@19.0.0-rc.1
 
   '@types/react-window@1.8.8':
     dependencies:
-      '@types/react': 18.3.3
+      '@types/react': types-react@19.0.0-rc.1
 
   '@types/react@18.3.3':
     dependencies:
