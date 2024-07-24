@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mui/icons-material": "next",
     "@mui/material": "next",
     "@mui/material-pigment-css": "next",
     "next": "latest",
