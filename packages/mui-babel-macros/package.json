@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-babel-macros",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "MUI Team",
   "description": "MUI Babel macros. This is an internal package not meant for general use.",
   "main": "./MuiError.macro.js",
