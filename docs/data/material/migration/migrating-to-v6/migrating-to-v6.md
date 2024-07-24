@@ -167,12 +167,26 @@ The `children` passed to the Loading Button component is now wrapped in a `<span
 
 ### Grid v2 (Unstable_Grid)
 
-The `Grid` v2 component was updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
+The `Grid` v2 component was stabilized and updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
 
 - The previous size and offset props were replaced with the `size` and `offset` props
 - The spacing mechanism was reworked to use the `gap` CSS property.
 
 This brings some breaking changes described in the following sections.
+
+#### Stabilized API
+
+The `Grid` v2 component API was stabilized, so its import no longer contains the `Unstable_` prefix:
+
+```diff
+- import { Unstable_Grid2 as Grid2 } from '@mui/material';
++ import { Grid2 } from '@mui/material';
+```
+
+```diff
+- import Grid from '@mui/material/Unstable_Grid2';
++ import Grid from '@mui/material/Grid2';
+```
 
 #### Size and offset props
 

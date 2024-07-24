@@ -19,6 +19,10 @@ Material Design's responsive UI is based on a 12-column grid layout.
 The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
 :::
 
+:::warning
+The `Grid` component has been deprecated. Please use the [Grid v2](/material-ui/react-grid2/) instead. See how to migrate in the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/) and [Material UI v6 migration guide](/material-ui/migration/migrating-to-v6/).
+:::
+
 ## How it works
 
 The grid system is implemented with the `Grid` component:
