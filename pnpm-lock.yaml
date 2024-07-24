@@ -1927,6 +1927,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.23.9
         version: 7.23.9
+      '@mui/types':
+        specifier: workspace:^
+        version: link:../mui-types/build
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -1946,9 +1949,6 @@ importers:
       '@mui/internal-babel-macros':
         specifier: workspace:^
         version: link:../mui-babel-macros
-      '@mui/types':
-        specifier: workspace:^
-        version: link:../mui-types/build
       '@types/chai':
         specifier: ^4.3.12
         version: 4.3.12
