@@ -192,4 +192,20 @@ export const otherComponentsCustomizations: Components<Theme> = {
       }),
     },
   },
+  MuiPaginationItem: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        '&.Mui-selected': {
+          color: 'white',
+          backgroundColor: theme.palette.grey[900],
+        },
+        ...theme.applyStyles('dark', {
+          '&.Mui-selected': {
+            color: 'black',
+            backgroundColor: theme.palette.grey[50],
+          },
+        }),
+      }),
+    },
+  },
 };

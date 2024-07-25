@@ -4,6 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
+import Pagination from '@mui/material/Pagination';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material';
 import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
@@ -177,7 +178,7 @@ Author.propTypes = {
   ).isRequired,
 };
 
-function Latest() {
+export default function Latest() {
   const [focusedCardIndex, setFocusedCardIndex] = React.useState(null);
 
   const handleFocus = (index) => {
@@ -197,7 +198,7 @@ function Latest() {
         container
         spacing={8}
         columns={12}
-        sx={{ mt: (theme) => theme.spacing(4) }}
+        sx={{ my: (theme) => theme.spacing(4) }}
       >
         {articleInfo.map((article, index) => (
           <Grid key={index} size={{ xs: 12, sm: 6 }}>
@@ -216,7 +217,6 @@ function Latest() {
               <TitleTypography
                 gutterBottom
                 variant="h6"
-                component="a"
                 onFocus={() => handleFocus(index)}
                 onBlur={handleBlur}
                 tabIndex={0}
@@ -237,8 +237,9 @@ function Latest() {
           </Grid>
         ))}
       </Grid>
+      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 4 }}>
+        <Pagination hidePrevButton hideNextButton count={10} boundaryCount={10} />
+      </Box>
     </div>
   );
 }
-
-export default Latest;
