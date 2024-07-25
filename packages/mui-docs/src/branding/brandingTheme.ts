@@ -1398,6 +1398,21 @@ export function getThemedComponents(): ThemeOptions {
           },
         },
       },
+      MuiCard: {
+        styleOverrides: {
+          root: ({ theme, ownerState }) => ({
+            ...(ownerState.variant === 'elevation' && {
+              border: '1px solid',
+              borderColor: (theme.vars || theme).palette.grey[100],
+              boxShadow: `${alpha(theme.palette.grey[200], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[300], 0.5)} 0 1px 8px 0`,
+              ...theme.applyDarkStyles({
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                boxShadow: `${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 8px 0`,
+              }),
+            }),
+          }),
+        },
+      },
     },
   };
 }
