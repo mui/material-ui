@@ -37,9 +37,9 @@ You can follow progress on https://github.com/mui/material-ui/issues/30671.
 
 ### Grid
 
-The `Grid` component was stabilized and updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
+The `Grid` component was updated and stabilized:
 
-- The previous size (`xs`, `sm`, `md`, ...) and offset (`xsOffset`, `smOffset`, `mdOffset`, ...) props, which were named after the theme's breakpoints, were replaced with the `size` and `offset` props. This makes the API more consistent overall.
+- The previous size (`xs`, `sm`, `md`, ...) and offset (`xsOffset`, `smOffset`, `mdOffset`, ...) props, which were named after the theme's breakpoints, were replaced with the `size` and `offset` props.
 - The spacing mechanism was reworked to use the `gap` CSS property.
 
 This brings some breaking changes described in the following sections.
