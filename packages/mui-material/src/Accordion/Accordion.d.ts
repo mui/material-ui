@@ -10,7 +10,7 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 export interface AccordionSlots {
   /**
    * The component that renders the heading.
-   * @default 'div'
+   * @default 'h3'
    */
   heading?: React.ElementType;
   /**
@@ -30,7 +30,7 @@ export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AccordionSlots,
   {
     heading: SlotProps<
-      React.ElementType<React.HTMLProps<HTMLDivElement>>,
+      React.ElementType<React.HTMLProps<HTMLHeadingElement>>,
       AccordionHeadingSlotPropsOverrides,
       AccordionOwnerState
     >;

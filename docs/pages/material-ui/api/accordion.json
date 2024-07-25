@@ -47,7 +47,7 @@
     {
       "name": "heading",
       "description": "The component that renders the heading.",
-      "default": "'div'",
+      "default": "'h3'",
       "class": "MuiAccordion-heading"
     },
     {

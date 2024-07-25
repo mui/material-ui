@@ -40,7 +40,6 @@ const AccordionRoot = styled(Paper, {
 
     return [
       { [`& .${accordionClasses.region}`]: styles.region },
-      { [`& .${accordionClasses.heading}`]: styles.heading },
       styles.root,
       !ownerState.square && styles.rounded,
       !ownerState.disableGutters && styles.gutters,
@@ -126,6 +125,14 @@ const AccordionRoot = styled(Paper, {
   }),
 );
 
+const AccordionHeading = styled('h3', {
+  name: 'MuiAccordion',
+  slot: 'Heading',
+  overridesResolver: (props, styles) => styles.heading,
+})({
+  all: 'unset',
+});
+
 const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAccordion' });
   const {
@@ -187,12 +194,8 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   };
 
   const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
-    elementType: 'div',
+    elementType: AccordionHeading,
     externalForwardedProps,
-    additionalProps: {
-      role: 'heading',
-      'aria-level': 3,
-    },
     className: classes.heading,
     ownerState,
   });
