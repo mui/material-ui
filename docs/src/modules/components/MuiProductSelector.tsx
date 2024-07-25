@@ -165,28 +165,28 @@ const advancedProducts = [
   {
     id: 'x-data-grid',
     name: 'Data Grid',
-    description: 'A fast and extendable data table.',
+    description: 'Fast and extendable data table.',
     icon: <BackupTableRoundedIcon sx={iconStyles} />,
     href: ROUTES.dataGridOverview,
   },
   {
     id: 'x-date-pickers',
     name: 'Date and Time Pickers',
-    description: 'Let users select date or time values.',
+    description: 'Date, time, and range components.',
     icon: <CalendarMonthRoundedIcon sx={iconStyles} />,
     href: ROUTES.datePickersOverview,
   },
   {
     id: 'x-charts',
     name: 'Charts',
-    description: 'Multiple types of charts for data viz.',
+    description: 'Data visualization components.',
     icon: <BarChartRoundedIcon sx={iconStyles} />,
     href: ROUTES.chartsOverview,
   },
   {
     id: 'x-tree-view',
     name: 'Tree View',
-    description: 'Let users navigate hierarchical lists.',
+    description: 'Hierarchical list components.',
     icon: <AccountTreeRoundedIcon sx={iconStyles} />,
     href: ROUTES.treeViewOverview,
   },
@@ -268,7 +268,7 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
         name="Toolpad"
         href={ROUTES.toolpadStudioDocs}
         icon={<SvgToolpadLogo width={14} height={14} sx={logoColor} />}
-        description="A self-hosted, low-code internal tool builder."
+        description="Self-hosted, low-code internal tool builder."
         active={pageContext.productId === 'toolpad-core'}
         chip={
           <Chip
