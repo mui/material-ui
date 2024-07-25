@@ -2,6 +2,31 @@
 
 <p class="description">This guide explains why and how to migrate from Material UI v5 to v6.</p>
 
+## Why you should migrate
+
+### React Server Component support
+
+Material UI v6 introduces Pigment CSS, a zero-runtime CSS-in-JS styling engine to replace Emotion and styled-components as a more future-proof solution for writing styles.
+With Pigment CSS, styles are extracted at build time rather than runtime, avoiding client-side recalcuations and unlocking React Server Component (RSC) compatibility.
+This also leads to significant reductions in bundle sizes for Material UI apps.
+
+**In v6, Pigment CSS migration is opt-in.**
+Future major versions of Material UI will likely use Pigment CSS as the default styling solution.
+We highly recommend migrating your Material UI app to Pigment CSS while upgrading to v6.
+
+### Quality-of-life improvements
+
+Material UI v6 includes several other quality-of-life improvements regarding styling:
+
+- The `CssVarsProvider` API is now stable. That enables you to rely on CSS variables, allowing for more intricate and performant customization possibilities, along with improved overall developer experience.
+- Support for container queries within the theme.
+- A new theme utility for adding styles to specific color modes.
+
+## Breaking changes
+
+Namely, browser support updates, a Node.js version bump, and the removal of the UMD bundle.
+These updates reduced the Material UI package size by 2.5MB, 25% of the total size, and can be, for the most part, migrated automatically via codemods.
+
 ## Start using the beta release
 
 In your `package.json` file, change the package version from `latest` to `next`.
@@ -22,21 +47,6 @@ Optionally, if you are using one of these packages, you can also change their ve
 
 Using `next` ensures your project always uses the latest v6 beta release.
 Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-beta.0`.
-
-## Why you should migrate
-
-Material UI v6's biggest highlight is the introduction of Pigment CSS, a next-gen zero-runtime CSS-in-JS library, as an opt-in styling engine.
-Using it will make your project compatible with React Server Components, as well as help reduce its bundle size due to styles being extracted at build time, avoiding client-side recalculation.
-
-As a lesson learned from v5, this major release introduces minimal breaking changes.
-Namely, browser support updates, a Node.js version bump, and the removal of the UMD bundle.
-These updates reduced the Material UI package size by 2.5MB, 25% of the total size, and can be, for the most part, migrated automatically via codemods.
-
-Aside from that, v6 also includes a few quality-of-life improvements regarding styling:
-
-- The `CssVarsProvider` API is now stable. That enables you to rely on CSS variables, allowing for more intricate and performant customization possibilities, along with improved overall developer experience.
-- Support for container queries within the theme.
-- A new theme utility for adding styles to specific color modes.
 
 ## Supported browsers and Node versions
 
