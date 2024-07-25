@@ -414,7 +414,7 @@ describe('<Tooltip />', () => {
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
 
-    it('should open on long press', () => {
+    it('should open on long press', async () => {
       const enterTouchDelay = 700;
       const enterDelay = 100;
       const leaveTouchDelay = 1500;
@@ -436,7 +436,7 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
 
       fireEvent.touchEnd(screen.getByRole('button'));
-      act(() => {
+      await act(async () => {
         screen.getByRole('button').blur();
       });
       clock.tick(leaveTouchDelay);
@@ -530,7 +530,7 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
 
-    it('should use hysteresis with the enterDelay', () => {
+    it('should use hysteresis with the enterDelay', async () => {
       render(
         <Tooltip
           title="Hello World"
@@ -553,7 +553,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      act(() => {
+      await act(async () => {
         document.activeElement.blur();
       });
       clock.tick(5);
@@ -565,14 +565,14 @@ describe('<Tooltip />', () => {
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      act(() => {
+      await act(async () => {
         clock.tick(30);
       });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
 
-    it('should take the leaveDelay into account', () => {
+    it('should take the leaveDelay into account', async () => {
       const leaveDelay = 111;
       const enterDelay = 0;
       const transitionTimeout = 10;
@@ -595,7 +595,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      act(() => {
+      await act(async () => {
         screen.getByRole('button').blur();
       });
 
@@ -632,7 +632,7 @@ describe('<Tooltip />', () => {
       });
     });
 
-    it(`should be transparent for the focus and blur event`, function test() {
+    it(`should be transparent for the focus and blur event`, async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM doesn't support :focus-visible
         this.skip();
@@ -649,14 +649,14 @@ describe('<Tooltip />', () => {
       );
       const button = screen.getByRole('button');
 
-      act(() => {
+      await act(async () => {
         button.focus();
       });
 
       expect(handleBlur.callCount).to.equal(0);
       expect(handleFocus.callCount).to.equal(1);
 
-      act(() => {
+      await act(async () => {
         button.blur();
       });
 
@@ -890,7 +890,7 @@ describe('<Tooltip />', () => {
       }
     });
 
-    it('ignores base focus', () => {
+    it('ignores base focus', async () => {
       render(
         <Tooltip enterDelay={0} title="Some information">
           <button />
@@ -900,7 +900,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      act(() => {
+      await act(async () => {
         screen.getByRole('button').focus();
       });
 
@@ -928,7 +928,7 @@ describe('<Tooltip />', () => {
       expect(eventLog).to.deep.equal(['focus', 'open']);
     });
 
-    it('closes on blur', () => {
+    it('closes on blur', async () => {
       const eventLog = [];
       const transitionTimeout = 0;
       render(
@@ -945,10 +945,10 @@ describe('<Tooltip />', () => {
       );
       const button = screen.getByRole('button');
 
-      act(() => {
+      await act(async () => {
         button.focus();
       });
-      act(() => {
+      await act(async () => {
         button.blur();
       });
       clock.tick(transitionTimeout);
@@ -958,7 +958,7 @@ describe('<Tooltip />', () => {
     });
 
     // https://github.com/mui/material-ui/issues/19883
-    it('should not prevent event handlers of children', () => {
+    it('should not prevent event handlers of children', async () => {
       const handleFocus = spy((event) => event.currentTarget);
       // Tooltip should not assume that event handlers of children are attached to the
       // outermost host
@@ -977,7 +977,7 @@ describe('<Tooltip />', () => {
       );
       const input = screen.getByRole('textbox');
 
-      act(() => {
+      await act(async () => {
         input.focus();
       });
 
@@ -987,7 +987,7 @@ describe('<Tooltip />', () => {
     });
 
     // https://github.com/mui/mui-x/issues/12248
-    it('should support event handlers with extra parameters', () => {
+    it('should support event handlers with extra parameters', async () => {
       const handleFocus = spy((event, extra) => extra);
       const handleBlur = spy((event, ...params) => params);
 
@@ -1010,14 +1010,14 @@ describe('<Tooltip />', () => {
       );
       const input = screen.getByRole('textbox');
 
-      act(() => {
+      await act(async () => {
         input.focus();
       });
 
       expect(handleFocus.callCount).to.equal(1);
       expect(handleFocus.returnValues[0]).to.equal('focus');
 
-      act(() => {
+      await act(async () => {
         input.blur();
       });
 

@@ -15,7 +15,7 @@ It can work alongside Emotion to ease the migration process, but it is recommend
 
 Pigment CSS can be used with one of the following frameworks:
 
-- [Next.js App Router](https://nextjs.org/docs/app/) with Webpack 5 (Turbo is not supported yet)
+- [Next.js App Router](https://nextjs.org/docs/app) with Webpack 5 (Turbo is not supported yet)
 - [Vite](https://vitejs.dev/)
 
 ## Installation
@@ -171,7 +171,7 @@ Integrating Pigment CSS with Material UI requires you to configure the theme t
 Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
 ```diff
-+ import { extendTheme, stringifyTheme } from '@mui/material';
++ import { extendTheme } from '@mui/material';
 
 + const pigmentConfig = {
 +   theme: extendTheme(),
