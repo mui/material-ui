@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import createBreakpoints from '../createTheme/createBreakpoints';
+import createBreakpoints from '../createBreakpoints/createBreakpoints';
 import { traverseBreakpoints, filterBreakpointKeys } from './traverseBreakpoints';
 
 const breakpoints = createBreakpoints({});
