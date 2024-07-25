@@ -1,0 +1,3 @@
+<Button variant="contained" fullWidth>
+  Full width button
+</Button>
