@@ -1,1 +1,3 @@
-await dialogs.open(MyCustomDialog);
+<DialogsProvider>
+  <DemoContent />
+</DialogsProvider>
