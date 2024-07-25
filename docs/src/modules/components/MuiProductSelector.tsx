@@ -134,7 +134,7 @@ const coreProducts = [
   {
     id: 'material-ui',
     name: 'Material UI',
-    description: 'Ready-to-use foundational components.',
+    description: 'Comprehensive foundational components.',
     icon: <SvgMuiLogomark width={14} height={14} sx={logoColor} />,
     href: ROUTES.materialDocs,
   },
@@ -148,14 +148,14 @@ const coreProducts = [
   {
     id: 'joy-ui',
     name: 'Joy UI',
-    description: 'Beautiful foudational components.',
+    description: 'Delightful modern components.',
     icon: <WebRoundedIcon sx={iconStyles} />,
     href: ROUTES.joyDocs,
   },
   {
     id: 'system',
     name: 'MUI System',
-    description: 'A set of CSS utilities.',
+    description: 'Ergonomic CSS utilities.',
     icon: <StyleRoundedIcon sx={iconStyles} />,
     href: ROUTES.systemDocs,
   },
