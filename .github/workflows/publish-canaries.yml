@@ -1,10 +1,7 @@
 name: Publish canary packages to npm
 
 on:
-  push:
-    branches:
-      - main
-      - next
+  - pull_request
 
 jobs:
   publish:
