@@ -102,48 +102,17 @@ const DividerRoot = styled('div', {
       whiteSpace: 'nowrap',
       textAlign: 'center',
       border: 0,
+      borderTopStyle: 'solid',
+      borderLeftStyle: 'solid',
       '&::before, &::after': {
         content: '""',
         alignSelf: 'center',
       },
-    },
-    {
-      props: {
-        orientation: 'vertical',
-      },
-      style: {
-        height: '100%',
-        borderBottomWidth: 0,
-        borderRightWidth: 'thin',
-      },
-    },
-    {
-      props: {
-        flexItem: true,
-      },
-      style: {
-        alignSelf: 'stretch',
-        height: 'auto',
-      },
-    },
-    {
-      props: ({ ownerState }) => !!ownerState.children,
-      style: {
-        display: 'flex',
-        whiteSpace: 'nowrap',
-        textAlign: 'center',
-        border: 0,
-        borderTopStyle: 'solid',
-        borderLeftStyle: 'solid',
-        '&::before, &::after': {
-          content: '""',
-          alignSelf: 'center',
-        },
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.children && ownerState.orientation !== 'vertical',
-      style: {
+    }),
+  }),
+  ({ theme, ownerState }) => ({
+    ...(ownerState.children &&
+      ownerState.orientation !== 'vertical' && {
         '&::before, &::after': {
           width: '100%',
           borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
