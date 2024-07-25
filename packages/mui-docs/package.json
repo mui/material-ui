@@ -44,7 +44,6 @@
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
-    "@mui/styled-engine": "workspace:*",
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^18.19.41",
     "@types/prop-types": "^15.7.12",
