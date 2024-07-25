@@ -61,6 +61,55 @@ describe('InitColorSchemeScript', () => {
     expect(document.documentElement.getAttribute('data-mui-baz-scheme')).to.equal('flash');
   });
 
+  it('should switch between light and dark with class attribute', () => {
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'foo';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'bar';
+
+    const { container, rerender } = render(<InitColorSchemeScript attribute=".mode-%s" />);
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.classList.value).to.equal('mode-foo');
+
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
+    rerender(<InitColorSchemeScript attribute=".mode-%s" />);
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.classList.value).to.equal('mode-bar');
+
+    document.documentElement.classList.remove('mode-bar'); // cleanup
+  });
+
+  it('should switch between light and dark with data-%s attribute', () => {
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'foo';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'bar';
+
+    const { container, rerender } = render(<InitColorSchemeScript attribute="[data-mode-%s]" />);
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.getAttribute('data-mode-foo')).to.equal('');
+    expect(document.documentElement.getAttribute('data-mode-bar')).to.equal(null);
+
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
+    rerender(<InitColorSchemeScript attribute="[data-mode-%s]" />);
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.getAttribute('data-mode-bar')).to.equal('');
+    expect(document.documentElement.getAttribute('data-mode-foo')).to.equal(null);
+  });
+
+  it('should switch between light and dark with data="%s" attribute', () => {
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'foo';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'bar';
+
+    const { container, rerender } = render(<InitColorSchemeScript attribute="[data-mode='%s']" />);
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.getAttribute('data-mode')).to.equal('foo');
+
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
+    rerender(<InitColorSchemeScript attribute="[data-mode='%s']" />);
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.getAttribute('data-mode')).to.equal('bar');
+  });
+
   it('should set `dark` color scheme to body', () => {
     storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
     storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'bar';
@@ -90,19 +139,11 @@ describe('InitColorSchemeScript', () => {
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('bright');
   });
 
-  it('defaultMode: `dark`', () => {
-    const { container } = render(<InitColorSchemeScript defaultMode="dark" />);
-    eval(container.firstChild.textContent);
-    expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dark');
-  });
-
-  describe('defaultMode: `system`', () => {
+  describe('system preference', () => {
     it('should set dark color scheme to body, given prefers-color-scheme is `dark`', () => {
       window.matchMedia = createMatchMedia(true);
 
-      const { container } = render(
-        <InitColorSchemeScript defaultMode="system" defaultDarkColorScheme="trueDark" />,
-      );
+      const { container } = render(<InitColorSchemeScript defaultDarkColorScheme="trueDark" />);
       eval(container.firstChild.textContent);
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('trueDark');
     });
@@ -110,9 +151,7 @@ describe('InitColorSchemeScript', () => {
     it('should set light color scheme to body, given prefers-color-scheme is NOT `dark`', () => {
       window.matchMedia = createMatchMedia(false);
 
-      const { container } = render(
-        <InitColorSchemeScript defaultMode="system" defaultLightColorScheme="yellow" />,
-      );
+      const { container } = render(<InitColorSchemeScript defaultLightColorScheme="yellow" />);
       eval(container.firstChild.textContent);
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('yellow');
     });

@@ -6,6 +6,7 @@ import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import { useTheme } from '../zero-styled';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
+import getChildRef from '../utils/getChildRef';
 
 const styles = {
   entering: {
@@ -48,7 +49,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
 
   const enableStrictModeCompat = true;
   const nodeRef = React.useRef(null);
-  const handleRef = useForkRef(nodeRef, children.ref, ref);
+  const handleRef = useForkRef(nodeRef, getChildRef(children), ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {

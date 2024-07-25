@@ -244,7 +244,11 @@ For example, in https://app.circleci.com/pipelines/github/mui/material-ui/32796/
 
 ### Testing multiple versions of React
 
-You can check integration of different versions of React (for example different [release channels](https://react.dev/community/versioning-policy) or PRs to React) by running `node scripts/useReactVersion.mjs <version>`.
+You can check integration of different versions of React (for example different [release channels](https://react.dev/community/versioning-policy) or PRs to React) by running:
+
+```bash
+pnpm use-react-version <version>
+```
 
 Possible values for `version`:
 
@@ -253,6 +257,27 @@ Possible values for `version`:
 - an older version, for example `^17.0.0`
 
 #### CI
+
+##### Circle CI web interface
+
+There are two workflows that can be triggered for any given PR manually in the CircleCI web interface:
+
+- `react-next`
+- `react-17`
+
+Follow these steps:
+
+1. Go to https://app.circleci.com/pipelines/github/mui/material-ui?branch=pull/PR_NUMBER/head and replace `PR_NUMBER` with the PR number you want to test.
+2. Click `Trigger Pipeline` button.
+3. Expand `Add parameters (optional)` and add the following parameter:
+
+   | Parameter type | Name       | Value                      |
+   | :------------- | :--------- | :------------------------- |
+   | `string`       | `workflow` | `react-next` or `react-17` |
+
+4. Click `Trigger Pipeline` button.
+
+##### API request
 
 You can pass the same `version` to our CircleCI pipeline as well:
 

@@ -10,6 +10,7 @@ import useForkRef from '../utils/useForkRef';
 import { useTheme } from '../zero-styled';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
+import getChildRef from '../utils/getChildRef';
 
 // Translate the node so it can't be seen on the screen.
 // Later, we're going to translate the node back to its original location with `none`.
@@ -119,7 +120,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   } = props;
 
   const childrenRef = React.useRef(null);
-  const handleRef = useForkRef(children.ref, childrenRef, ref);
+  const handleRef = useForkRef(getChildRef(children), childrenRef, ref);
 
   const normalizedTransitionCallback = (callback) => (isAppearing) => {
     if (callback) {

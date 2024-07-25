@@ -46,7 +46,7 @@ The exact versions will be pinned on release from the browserslist query: `"> 0.
 
 <!-- #stable-snapshot -->
 
-- Node.js 18 (up from 12)
+- Node.js 14 (up from 12)
 - Chrome 109 (up from 90)
 - Edge 121 (up from 91)
 - Firefox 115 (up from 78)
@@ -254,6 +254,11 @@ Both of these changes might slightly affect your layout.
 Note that the items' position doesn't change.
 We recommend adopting this new behavior and **not trying to replicate the old one**, as this is a more predictable and modern approach.
 :::
+
+### Rating
+
+Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
+This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
 
 ### useMediaQuery
 
