@@ -169,7 +169,7 @@ The `children` passed to the Loading Button component is now wrapped in a `<span
 
 The `Grid` v2 component was stabilized and updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
 
-- The previous size and offset props were replaced with the `size` and `offset` props
+- The previous size (`xs`, `sm`, `md`, ...) and offset (`xsOffset`, `smOffset`, `mdOffset`, ...) props, which were named after the theme's breakpoints, were replaced with the `size` and `offset` props. This makes the API more consistent overall.
 - The spacing mechanism was reworked to use the `gap` CSS property.
 
 This brings some breaking changes described in the following sections.
