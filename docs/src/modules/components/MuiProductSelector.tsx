@@ -165,7 +165,7 @@ const advancedProducts = [
   {
     id: 'x-data-grid',
     name: 'Data Grid',
-    description: 'Fast and extendable data table.',
+    description: 'Fast and extensible data table.',
     icon: <BackupTableRoundedIcon sx={iconStyles} />,
     href: ROUTES.dataGridOverview,
   },
