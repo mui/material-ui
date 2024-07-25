@@ -46,7 +46,7 @@ The exact versions will be pinned on release from the browserslist query: `"> 0.
 
 <!-- #stable-snapshot -->
 
-- Node.js 18 (up from 12)
+- Node.js 14 (up from 12)
 - Chrome 109 (up from 90)
 - Edge 121 (up from 91)
 - Firefox 115 (up from 78)
@@ -225,7 +225,7 @@ If you have custom breakpoints, the change is the same:
 Which you can cover with the same codemod by providing the custom breakpoints as an argument:
 
 ```bash
-npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshit='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 #### Removal of the disableEqualOverflow prop
@@ -254,6 +254,11 @@ Both of these changes might slightly affect your layout.
 Note that the items' position doesn't change.
 We recommend adopting this new behavior and **not trying to replicate the old one**, as this is a more predictable and modern approach.
 :::
+
+### Rating
+
+Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
+This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
 
 ### useMediaQuery
 

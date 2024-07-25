@@ -638,7 +638,7 @@ export default function Demo(props) {
           key={demoKey}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
-          productId={demoData.productId}
+          usesCssVarsTheme={demoData.productId === 'joy-ui'}
           name={demoName}
           onResetDemoClick={resetDemo}
         >

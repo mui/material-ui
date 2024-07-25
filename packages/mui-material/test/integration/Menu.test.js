@@ -105,22 +105,22 @@ describe('<Menu /> integration', () => {
     });
     const menuitems = getAllByRole('menuitem');
 
-    await act(async () => fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' }));
+    fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
     expect(menuitems[1]).toHaveFocus();
 
-    await act(async () => fireEvent.keyDown(menuitems[1], { key: 'ArrowUp' }));
+    fireEvent.keyDown(menuitems[1], { key: 'ArrowUp' });
     expect(menuitems[0]).toHaveFocus();
 
-    await act(async () => fireEvent.keyDown(menuitems[0], { key: 'ArrowUp' }));
+    fireEvent.keyDown(menuitems[0], { key: 'ArrowUp' });
     expect(menuitems[2]).toHaveFocus();
 
-    await act(async () => fireEvent.keyDown(menuitems[2], { key: 'Home' }));
+    fireEvent.keyDown(menuitems[2], { key: 'Home' });
     expect(menuitems[0]).toHaveFocus();
 
-    await act(async () => fireEvent.keyDown(menuitems[0], { key: 'End' }));
+    fireEvent.keyDown(menuitems[0], { key: 'End' });
     expect(menuitems[2]).toHaveFocus();
 
-    await act(async () => fireEvent.keyDown(menuitems[2], { key: 'ArrowRight' }));
+    fireEvent.keyDown(menuitems[2], { key: 'ArrowRight' });
     expect(menuitems[2], 'no change on unassociated keys').toHaveFocus();
   });
 
@@ -318,7 +318,7 @@ describe('<Menu /> integration', () => {
     });
 
     // react-transition-group uses one commit per state transition so we need to wait a bit
-    await act(async () => fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' }));
+    fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
     clock.tick(0);
 
     expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();
@@ -330,9 +330,8 @@ describe('<Menu /> integration', () => {
     await act(async () => {
       button.focus();
       button.click();
+      getByTestId('Backdrop').click();
     });
-
-    await act(async () => getByTestId('Backdrop').click());
 
     expect(getByRole('menu', { hidden: true })).toBeInaccessible();
   });

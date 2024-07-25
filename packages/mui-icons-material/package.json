@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "6.0.0-beta.0",
+  "version": "6.0.0-beta.3",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -82,6 +82,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }
