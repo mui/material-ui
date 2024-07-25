@@ -304,7 +304,7 @@ export default function HeaderNavBar() {
                         icon={<IconImage name="product-toolpad" />}
                         name="Toolpad"
                         chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
-                        description="Low-code admin builder."
+                        description="Low-code admin builder for Material UI apps."
                       />
                     </li>
                     <li>
@@ -313,7 +313,7 @@ export default function HeaderNavBar() {
                         href={ROUTES.productTemplates}
                         icon={<IconImage name="product-templates" />}
                         name="Templates"
-                        description="Fully built, out-of-the-box, templates for your application."
+                        description="Fully built templates for your application."
                       />
                     </li>
                     <li>
