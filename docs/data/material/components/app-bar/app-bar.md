@@ -153,7 +153,6 @@ You can override this behavior by setting the `enableColorOnDark` prop to `true`
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}
 
-
 ## Experimental APIs
 
 ### DashboardLayout

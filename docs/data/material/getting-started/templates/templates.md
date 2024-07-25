@@ -25,7 +25,6 @@ the purpose of each file.
 See any room for improvement?
 Please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or [pull request](https://github.com/mui/material-ui/pulls) on GitHub.
 
-
 ## Premium templates
 
 Looking for something more? You can find complete templates and themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a>.
@@ -39,8 +38,6 @@ Looking for something more? You can find complete templates and themes in the <a
 </span>
 </a>
 
-
 ## Toolpad Core
 
 [Toolpad Core](https://mui.com/toolpad/core/introduction/) is a framework designed to build full-stack apps. It leverages the existing suite of components offered by MUI and ties them together to help you create dashboards and internal tools quickly.
-

@@ -173,7 +173,4 @@ Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility
 
 [useDialogs](https://mui.com/toolpad/core/react-use-dialogs/) exported from `@toolpad/core` is an imperative API to manage dialogs in your application. System dialogs that adapt to your application theme are also included.
 
-
 {{"demo": "ToolpadDialogDemo.js"}}
-
-
