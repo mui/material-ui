@@ -75,6 +75,28 @@ The Accordion component can be controlled or uncontrolled.
 Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
+### Custom heading level
+
+By default, the Accordion uses a heading element set appropriately for the information architecture of the page. If needed, you can customize the heading level.
+
+```jsx
+<Accordion slots={{ heading: 'h4' }}>
+  <AccordionSummary
+    expandIcon={<ExpandMoreIcon />}
+    aria-controls="panel1-content"
+    id="panel1-header"
+  >
+    Accordion 1
+  </AccordionSummary>
+  <AccordionDetails>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+    lacus ex, sit amet blandit leo lobortis eget.
+  </AccordionDetails>
+</Accordion>
+```
+
+The default heading level is `h3`. Adjust the `slots.heading` prop to ensure the correct heading hierarchy in your document.
+
 ## Customization
 
 ### Only one expanded at a time
