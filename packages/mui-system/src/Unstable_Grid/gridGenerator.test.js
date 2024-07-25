@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import createSpacing from '../createTheme/createSpacing';
-import createBreakpoints from '../createTheme/createBreakpoints';
+import createBreakpoints from '../createBreakpoints/createBreakpoints';
 import {
   generateGridStyles,
   generateGridSizeStyles,

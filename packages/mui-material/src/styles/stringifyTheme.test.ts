@@ -9,8 +9,8 @@ describe('StringifyTheme', () => {
       breakpoints: theme.breakpoints,
       transitions: theme.transitions,
     });
-    expect(result).to.equal(`import { createBreakpoints } from '@mui/system';
-import { createTransitions } from '@mui/material/styles';
+    expect(result).to
+      .equal(`import { unstable_createBreakpoints as createBreakpoints, createTransitions } from '@mui/material/styles';
 
 const theme = {
   "breakpoints": {
@@ -80,8 +80,8 @@ export default theme;`);
       breakpoints: theme.breakpoints,
       transitions: theme.transitions,
     });
-    expect(result).to.equal(`import { createBreakpoints } from '@mui/system';
-import { createTransitions } from '@mui/material/styles';
+    expect(result).to
+      .equal(`import { unstable_createBreakpoints as createBreakpoints, createTransitions } from '@mui/material/styles';
 
 const theme = {
   "breakpoints": {
@@ -130,8 +130,7 @@ export default theme;`);
   it('works with framework toRuntimeSource', () => {
     const theme = { palette: { primary: { main: '#ff5252' } }, toRuntimeSource: stringifyTheme };
     expect(theme.toRuntimeSource.call(theme, theme)).to
-      .equal(`import { createBreakpoints } from '@mui/system';
-import { createTransitions } from '@mui/material/styles';
+      .equal(`import { unstable_createBreakpoints as createBreakpoints, createTransitions } from '@mui/material/styles';
 
 const theme = {
   "palette": {
