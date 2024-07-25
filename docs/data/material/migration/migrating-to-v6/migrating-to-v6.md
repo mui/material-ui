@@ -1,6 +1,6 @@
 # Migrating to v6
 
-<p class="description">This guide explains how and why to migrate from Material UI v5 to v6.</p>
+<p class="description">This guide explains why and how to migrate from Material UI v5 to v6.</p>
 
 ## Start using the beta release
 
