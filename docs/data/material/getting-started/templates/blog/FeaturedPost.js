@@ -26,7 +26,7 @@ function FeaturedPost(props) {
             >
               {post.date}
             </Typography>
-            <Typography variant="subtitle1" paragraph>
+            <Typography variant="subtitle1" sx={{ marginBottom: 2 }}>
               {post.description}
             </Typography>
             <Typography variant="subtitle1" color="primary">

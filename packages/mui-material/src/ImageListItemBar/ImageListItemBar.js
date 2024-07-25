@@ -12,7 +12,11 @@ const useUtilityClasses = (ownerState) => {
   const { classes, position, actionIcon, actionPosition } = ownerState;
 
   const slots = {
-    root: ['root', `position${capitalize(position)}`],
+    root: [
+      'root',
+      `position${capitalize(position)}`,
+      `actionPosition${capitalize(actionPosition)}`,
+    ],
     titleWrap: [
       'titleWrap',
       `titleWrap${capitalize(position)}`,

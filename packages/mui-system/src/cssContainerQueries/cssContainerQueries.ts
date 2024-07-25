@@ -1,5 +1,5 @@
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-import { Breakpoints, Breakpoint } from '../createTheme/createBreakpoints';
+import { Breakpoints, Breakpoint } from '../createBreakpoints/createBreakpoints';
 
 interface ContainerQueries {
   up: Breakpoints['up'];
