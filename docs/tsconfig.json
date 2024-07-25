@@ -2,6 +2,7 @@
   "extends": "../tsconfig.json",
   "include": ["next-env.d.ts", "types", "src", "pages", "data", "next.config.mjs"],
   "compilerOptions": {
+    "paths": {},
     "allowJs": true,
     "isolatedModules": true,
     /* files are emitted by babel */

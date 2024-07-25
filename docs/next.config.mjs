@@ -50,7 +50,7 @@ export default withDocsInfra({
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
     // We need tell webpack to not consider those packages as externals.
-    /* if (
+    if (
       options.isServer &&
       // Next executes this twice on the server with React 18 (once per runtime).
       // We only care about Node runtime at this point.
@@ -81,7 +81,7 @@ export default withDocsInfra({
         },
         ...externals,
       ];
-    } */
+    }
 
     // @ts-ignore
     config.module.rules.forEach((rule) => {
@@ -100,6 +100,10 @@ export default withDocsInfra({
           // for 3rd party packages with dependencies in this repository
           '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
           '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
+          '@mui/icons-material$': path.resolve(
+            workspaceRoot,
+            'packages/mui-icons-material/lib/esm/index.js',
+          ),
           '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
