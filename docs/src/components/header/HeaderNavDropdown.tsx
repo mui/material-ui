@@ -77,7 +77,7 @@ const PRODUCTS = [
   },
   {
     name: 'Toolpad',
-    description: 'Low-code admin builder for Material UI apps.',
+    description: 'Self-hosted, low-code internal tool builder.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
   },
@@ -111,7 +111,7 @@ const DOCS = [
   },
   {
     name: 'Toolpad',
-    description: 'Low-code admin builder for Material UI apps.',
+    description: 'Self-hosted, low-code internal tool builder.',
     href: ROUTES.toolpadStudioDocs,
     chip: 'Beta',
   },
