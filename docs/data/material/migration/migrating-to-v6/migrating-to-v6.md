@@ -12,7 +12,7 @@ This also leads to significant reductions in bundle sizes for Material UI apps.
 
 **In v6, Pigment CSS migration is opt-in.**
 Future major versions of Material UI will likely use Pigment CSS as the default styling solution.
-We highly recommend migrating your Material UI app to Pigment CSS while upgrading to v6.
+Though optional, we highly recommend migrating your Material UI app to Pigment CSS while upgrading to v6.
 
 ### Quality-of-life improvements
 
