@@ -80,6 +80,17 @@ export default function BrandingThemeTest() {
               <GitHubIcon fontSize="small" />
             </IconButton>
           </Stack>
+          <Stack direction="column" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
+            <Button variant="contained" size="large" color="primary">
+              Large
+            </Button>
+            <Button variant="contained" size="medium" color="primary">
+              Medium
+            </Button>
+            <Button variant="contained" size="small" color="primary">
+              Small
+            </Button>
+          </Stack>
           <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
             <FormControl sx={{ width: 120 }}>
               <InputLabel id="demo-simple-select-label">Age</InputLabel>
