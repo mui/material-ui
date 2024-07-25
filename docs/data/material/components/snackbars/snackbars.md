@@ -20,9 +20,6 @@ The demo below, inspired by Google Keep, shows a basic Snackbar with a text elem
 
 {{"demo": "SimpleSnackbar.js"}}
 
-:::info
-The [useNotifications](https://mui.com/toolpad/core/react-use-notifications/) hook from `@toolpad/core` offers imperative APIs that make interacting with app notifications simpler.
-:::
 
 ### Usage
 
@@ -143,3 +140,12 @@ The Snackbar component is composed of a root `<div>` that houses interior elemen
   </div>
 </div>
 ```
+
+## Experimental APIs
+
+### useNotifications
+
+The [useNotifications](https://mui.com/toolpad/core/react-use-notifications/) hook from `@toolpad/core` offers imperative APIs that make interacting with app notifications simpler.
+
+
+{{"demo": "ToolpadNotificationDemo.js"}}

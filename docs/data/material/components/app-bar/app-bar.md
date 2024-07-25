@@ -16,10 +16,6 @@ It can transform into a contextual action bar or be used as a navbar.
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
-:::info
-The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) from `@toolpad/core` is an extension of the app bar component. It provides a headerbar, a sidebar with navigation, and a scrollable area for page content.
-:::
-
 ## Basic App bar
 
 {{"demo": "ButtonAppBar.js", "bg": true}}
@@ -156,3 +152,12 @@ Following the [Material Design guidelines](https://m2.material.io/design/color/d
 You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}
+
+
+## Experimental APIs
+
+### DashboardLayout
+
+The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) from `@toolpad/core` is an extension of the app bar component. It provides a headerbar, a sidebar with navigation, and a scrollable area for page content.
+
+{{"demo": "DashboardLayoutBasic.js", "height": 500, "iframe": true}}

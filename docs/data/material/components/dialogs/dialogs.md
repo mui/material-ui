@@ -17,9 +17,6 @@ Dialogs are purposefully interruptive, so they should be used sparingly.
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
-:::info
-The [useDialogs](https://mui.com/toolpad/core/react-use-dialogs/) hook from `@toolpad/core` offers imperative APIs that make interacting with dialogs simpler.
-
 ## Introduction
 
 Dialogs are implemented using a collection of related components:
@@ -169,3 +166,14 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 ## Accessibility
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
+
+## Experimental APIs
+
+### useDialogs
+
+[useDialogs](https://mui.com/toolpad/core/react-use-dialogs/) exported from `@toolpad/core` is an imperative API to manage dialogs in your application. System dialogs that adapt to your application theme are also included.
+
+
+{{"demo": "ToolpadDialogDemo.js"}}
+
+

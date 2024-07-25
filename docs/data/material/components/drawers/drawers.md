@@ -16,10 +16,6 @@ A navigation drawer can either be permanently on-screen or controlled by a navig
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
-:::info
-The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) from `@toolpad/core` is an extension of the drawer component. It provides a headerbar, a sidebar with navigation, and a scrollable area for page content.
-:::
-
 ## Temporary drawer
 
 Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.
@@ -138,3 +134,12 @@ Apps focused on information consumption that use a left-to-right hierarchy.
 Apps focused on productivity that require balance across the screen.
 
 {{"demo": "ClippedDrawer.js", "iframe": true}}
+
+
+## Experimental APIs
+
+### DashboardLayout
+
+The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) from `@toolpad/core` is an extension of the drawer component. It provides a headerbar, a sidebar with navigation, and a scrollable area for page content.
+
+{{"demo": "../app-bar/DashboardLayoutBasic.js", "height": 500, "iframe": true}}

@@ -1,0 +1,3 @@
+notifications.show('Consider yourself notified!', {
+  autoHideDuration: 3000,
+});
