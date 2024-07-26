@@ -8,6 +8,7 @@ export default function useTheme() {
   const theme = useThemeSystem(defaultTheme);
 
   if (process.env.NODE_ENV !== 'production') {
+    // TODO: uncomment when compiler enabled // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useDebugValue(theme);
   }
