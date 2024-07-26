@@ -568,7 +568,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       wrapper: InnerWrapper = React.Fragment,
     } = options;
 
-    const usesLegacyRoot = !React.version.startsWith('18');
+    const usesLegacyRoot = Number(React.version.split('.')[0]) < 18;
     const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
     return function Wrapper({ children }: { children?: React.ReactNode }) {
       return (

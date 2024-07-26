@@ -9,6 +9,8 @@ import classes from './switchBaseClasses';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
+const reactVersion = Number(React.version.split('.')[0]);
+
 describe('<SwitchBase />', () => {
   const { render } = createRenderer();
 
@@ -410,9 +412,12 @@ describe('<SwitchBase />', () => {
         setProps({ checked: true });
         global.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
-        React.version.startsWith('16')
-          ? 'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.'
-          : 'Warning: A component is changing an uncontrolled input to be controlled.',
+        reactVersion === 16 &&
+          'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
+        reactVersion >= 19 && 'A component is changing an uncontrolled input to be controlled.',
+        reactVersion < 19 &&
+          reactVersion !== 16 &&
+          'Warning: A component is changing an uncontrolled input to be controlled.',
         'MUI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
       ]);
     });
@@ -433,9 +438,12 @@ describe('<SwitchBase />', () => {
         setProps({ checked: undefined });
         global.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
-        React.version.startsWith('16')
-          ? 'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.'
-          : 'Warning: A component is changing an uncontrolled input to be controlled.',
+        reactVersion === 16 &&
+          'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
+        reactVersion >= 19 && 'A component is changing an uncontrolled input to be controlled.',
+        reactVersion < 19 &&
+          reactVersion !== 16 &&
+          'Warning: A component is changing an uncontrolled input to be controlled.',
         'MUI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
       ]);
     });

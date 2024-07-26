@@ -4,6 +4,8 @@ import { createRenderer, screen, ErrorBoundary, act, fireEvent } from '@mui/inte
 import { spy } from 'sinon';
 import useAutocomplete, { createFilterOptions } from '@mui/material/useAutocomplete';
 
+const reactVersion = Number(React.version.split('.')[0]);
+
 describe('useAutocomplete', () => {
   const { render } = createRenderer();
 
@@ -289,14 +291,14 @@ describe('useAutocomplete', () => {
       'MUI: Unable to find the input element.',
       errorMessage,
       // strict effects runs effects twice
-      React.version.startsWith('18') && 'MUI: Unable to find the input element.',
-      React.version.startsWith('18') && errorMessage,
+      reactVersion >= 18 && 'MUI: Unable to find the input element.',
+      reactVersion >= 18 && errorMessage,
       'The above error occurred in the <ul> component',
-      React.version.startsWith('16') && 'The above error occurred in the <ul> component',
+      reactVersion === 16 && 'The above error occurred in the <ul> component',
       'The above error occurred in the <Test> component',
       // strict effects runs effects twice
-      React.version.startsWith('18') && 'The above error occurred in the <Test> component',
-      React.version.startsWith('16') && 'The above error occurred in the <Test> component',
+      reactVersion >= 18 && 'The above error occurred in the <Test> component',
+      reactVersion === 16 && 'The above error occurred in the <Test> component',
     ];
 
     expect(() => {

@@ -21,6 +21,8 @@ import Option from '@mui/joy/Option';
 import { ThemeProvider, styled } from '@mui/joy/styles';
 import describeConformance from '../../test/describeConformance';
 
+const reactVersion = Number(React.version.split('.')[0]);
+
 function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
   const focused = listbox.querySelector(`.${classes.focused}`);
 
@@ -1217,8 +1219,8 @@ describe('Joy <Autocomplete />', () => {
         'None of the options match with `"not a good value"`',
         !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
         // React 18 Strict Effects run mount effects twice which lead to a cascading update
-        React.version.startsWith('18') && 'None of the options match with `"not a good value"`',
-        React.version.startsWith('18') &&
+        reactVersion >= 18 && 'None of the options match with `"not a good value"`',
+        reactVersion >= 18 &&
           !strictModeDoubleLoggingSuppressed &&
           'None of the options match with `"not a good value"`',
       ]);
@@ -2186,10 +2188,10 @@ describe('Joy <Autocomplete />', () => {
       );
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 2 : 1,
+        reactVersion >= 18 ? 2 : 1,
       );
       expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-      if (React.version.startsWith('18')) {
+      if (reactVersion >= 18) {
         expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
       }
     });
@@ -2206,9 +2208,9 @@ describe('Joy <Autocomplete />', () => {
 
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 4 : 3,
+        reactVersion >= 18 ? 4 : 3,
       );
-      if (React.version.startsWith('18')) {
+      if (reactVersion >= 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
         expect(handleHighlightChange.args[2][1]).to.equal(null);
         expect(handleHighlightChange.args[2][2]).to.equal('auto');
@@ -2220,7 +2222,7 @@ describe('Joy <Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 5 : 4,
+        reactVersion >= 18 ? 5 : 4,
       );
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[1]);
@@ -2237,9 +2239,9 @@ describe('Joy <Autocomplete />', () => {
       fireEvent.mouseMove(firstOption);
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 4 : 3,
+        reactVersion >= 18 ? 4 : 3,
       );
-      if (React.version.startsWith('18')) {
+      if (reactVersion >= 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
         expect(handleHighlightChange.args[2][1]).to.equal(null);
         expect(handleHighlightChange.args[2][2]).to.equal('auto');

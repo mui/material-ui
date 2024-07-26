@@ -14,6 +14,8 @@ import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
 
+const reactVersion = Number(React.version.split('.')[0]);
+
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
@@ -378,7 +380,7 @@ describe('<Select />', () => {
         ).toWarnDev([
           'MUI: You have provided an out-of-range value `20` for the select component.',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
+          reactVersion >= 18 &&
             'MUI: You have provided an out-of-range value `20` for the select component.',
           'MUI: You have provided an out-of-range value `20` for the select component.',
         ]);
@@ -1175,7 +1177,7 @@ describe('<Select />', () => {
         }).toErrorDev([
           'MUI: The `value` prop must be an array',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'MUI: The `value` prop must be an array',
+          reactVersion >= 18 && 'MUI: The `value` prop must be an array',
           'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {

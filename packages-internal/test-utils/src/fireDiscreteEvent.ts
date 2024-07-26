@@ -8,7 +8,7 @@ const noWrapper = (callback: () => void) => callback();
  * @returns {void}
  */
 function withMissingActWarningsIgnored(callback: () => void) {
-  if (React.version.startsWith('18')) {
+  if (Number(React.version.split('.')[0]) >= 18) {
     callback();
     return;
   }

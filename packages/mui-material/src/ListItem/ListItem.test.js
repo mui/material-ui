@@ -9,6 +9,8 @@ import ListItem, { listItemClasses as classes } from '@mui/material/ListItem';
 import ListContext from '../List/ListContext';
 import describeConformance from '../../test/describeConformance';
 
+const reactVersion = Number(React.version.split('.')[0]);
+
 const NoContent = React.forwardRef(() => {
   return null;
 });
@@ -191,7 +193,7 @@ describe('<ListItem />', () => {
         }).toErrorDev([
           'MUI: Unable to set focus to a ListItem whose component has not been rendered.',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
+          reactVersion === 18 &&
             'MUI: Unable to set focus to a ListItem whose component has not been rendered.',
         ]);
       });

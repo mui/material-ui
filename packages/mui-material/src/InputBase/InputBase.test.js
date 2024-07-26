@@ -12,6 +12,8 @@ import InputBase, { inputBaseClasses as classes } from '@mui/material/InputBase'
 import { createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
+const reactVersion = Number(React.version.split('.')[0]);
+
 describe('<InputBase />', () => {
   const { render } = createRenderer();
 
@@ -283,7 +285,7 @@ describe('<InputBase />', () => {
         }).toErrorDev([
           'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
+          reactVersion >= 18 &&
             'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
         ]);
       });
@@ -510,7 +512,7 @@ describe('<InputBase />', () => {
         }).toErrorDev([
           'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
+          reactVersion >= 18 &&
             'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
         ]);
       });

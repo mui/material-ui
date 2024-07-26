@@ -13,6 +13,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import { paperClasses } from '../Paper';
 
+const reactVersion = Number(React.version.split('.')[0]);
+
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
@@ -59,7 +61,7 @@ describe('<Menu />', () => {
 
         expect(handleEnter.callCount).to.equal(
           // onEnter is called on mount which is run twice with Strict Effects
-          React.version.startsWith('18') ? 2 : 1,
+          reactVersion >= 18 ? 2 : 1,
         );
         expect(handleEnter.args[0].length).to.equal(2);
         expect(handleEntering.callCount).to.equal(1);

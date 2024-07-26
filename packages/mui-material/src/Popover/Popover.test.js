@@ -12,6 +12,8 @@ import useForkRef from '../utils/useForkRef';
 import styled from '../styles/styled';
 import describeConformance from '../../test/describeConformance';
 
+const reactVersion = Number(React.version.split('.')[0]);
+
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
   const handleMocks = React.useCallback((paperInstance) => {
     if (paperInstance) {
@@ -206,7 +208,7 @@ describe('<Popover />', () => {
 
       expect(handleEnter.callCount).to.equal(
         // onEnter is called on mount which is run twice with Strict Effects
-        React.version.startsWith('18') ? 2 : 1,
+        reactVersion >= 18 ? 2 : 1,
       );
     });
 
@@ -245,7 +247,7 @@ describe('<Popover />', () => {
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
         // onEnter is called on mount which is run twice with Strict Effects
-        onEnter: React.version.startsWith('18') ? 2 : 1,
+        onEnter: reactVersion >= 18 ? 2 : 1,
         onEntering: 1,
         onEntered: 0,
         onExit: 0,
@@ -264,7 +266,7 @@ describe('<Popover />', () => {
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
         // onEnter is called on mount which is run twice with Strict Effects
-        onEnter: React.version.startsWith('18') ? 2 : 1,
+        onEnter: reactVersion >= 18 ? 2 : 1,
         onEntering: 1,
         onEntered: 1,
         onExit: 0,
@@ -283,7 +285,7 @@ describe('<Popover />', () => {
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
         // onEnter is called on mount which is run twice with Strict Effects
-        onEnter: React.version.startsWith('18') ? 2 : 1,
+        onEnter: reactVersion >= 18 ? 2 : 1,
         onEntering: 1,
         onEntered: 1,
         onExit: 1,
@@ -302,7 +304,7 @@ describe('<Popover />', () => {
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
         // onEnter is called on mount which is run twice with Strict Effects
-        onEnter: React.version.startsWith('18') ? 2 : 1,
+        onEnter: reactVersion >= 18 ? 2 : 1,
         onEntering: 1,
         onEntered: 1,
         onExit: 1,
