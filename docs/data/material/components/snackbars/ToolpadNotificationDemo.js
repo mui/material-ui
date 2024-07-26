@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 import { useNotifications } from '@toolpad/core/useNotifications';
 import Button from '@mui/material/Button';

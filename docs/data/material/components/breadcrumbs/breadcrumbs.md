@@ -58,3 +58,11 @@ The accessibility of this component relies on:
 - The set of links is structured using an ordered list (`<ol>` element).
 - To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
 - A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
+
+## Experimental APIs
+
+### Page Container
+
+The [Page Container](https://mui.com/toolpad/core/react-page-container/) from `@toolpad/core` is the ideal wrapper for the content of your dashboard. It shows the current page title, and provides breadcrumbs to navigate back into the current hierarchy. It makes your page responsive through the use of the Material UI Container component under the hood.
+
+{{"demo": "BasicPageContainer.js", "height": 300}}
