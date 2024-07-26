@@ -49,7 +49,7 @@
     "@types/hoist-non-react-statics": "^3.3.5",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "chai": "^4.5.0",
-    "react": "19.0.0-rc-d025ddd3-20240722",
+    "react": "19.0.0-rc-14a4699f-20240725",
     "styled-components": "^6.1.12"
   },
   "peerDependencies": {

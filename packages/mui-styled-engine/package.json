@@ -50,7 +50,7 @@
     "@types/chai": "^4.3.17",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "chai": "^4.5.0",
-    "react": "19.0.0-rc-d025ddd3-20240722"
+    "react": "19.0.0-rc-14a4699f-20240725"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",
