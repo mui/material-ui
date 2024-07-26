@@ -30,6 +30,22 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
+  transpilePackages: [
+    '@mui/x-charts',
+    '@mui/x-data-grid-generator',
+
+    '@mui/material',
+    '@mui/docs',
+    '@mui/lab',
+    '@mui/styled-engine',
+    '@mui/styles',
+    '@mui/system',
+    '@mui/private-theming',
+    '@mui/utils',
+    '@mui/base',
+    '@mui/material-nextjs',
+    '@mui/joy',
+  ],
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -47,42 +63,6 @@ export default withDocsInfra({
       );
     }
 
-    // next includes node_modules in webpack externals. Some of those have dependencies
-    // on the aliases defined above. If a module is an external those aliases won't be used.
-    // We need tell webpack to not consider those packages as externals.
-    if (
-      options.isServer &&
-      // Next executes this twice on the server with React 18 (once per runtime).
-      // We only care about Node runtime at this point.
-      (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
-    ) {
-      const [nextExternals, ...externals] = config.externals;
-
-      config.externals = [
-        // @ts-ignore
-        (ctx, callback) => {
-          const { request } = ctx;
-          const hasDependencyOnRepoPackages = [
-            'notistack',
-            '@mui/x-data-grid',
-            '@mui/x-data-grid-pro',
-            '@mui/x-date-pickers',
-            '@mui/x-date-pickers-pro',
-            '@mui/x-data-grid-generator',
-            '@mui/x-charts',
-            '@mui/x-tree-view',
-            '@mui/x-license-pro',
-          ].some((dep) => request.startsWith(dep));
-
-          if (hasDependencyOnRepoPackages) {
-            return callback(null);
-          }
-          return nextExternals(ctx, callback);
-        },
-        ...externals,
-      ];
-    }
-
     // @ts-ignore
     config.module.rules.forEach((rule) => {
       rule.resourceQuery = { not: [/raw/] };
@@ -98,20 +78,13 @@ export default withDocsInfra({
           ...config.resolve.alias,
 
           // for 3rd party packages with dependencies in this repository
-          '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
-          '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
           '@mui/icons-material$': path.resolve(
             workspaceRoot,
             'packages/mui-icons-material/lib/esm/index.js',
           ),
           '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
-          '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
-          '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
-          '@mui/styles': path.resolve(workspaceRoot, 'packages/mui-styles/src'),
-          '@mui/system': path.resolve(workspaceRoot, 'packages/mui-system/src'),
-          '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
-          '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
-          '@mui/base': path.resolve(workspaceRoot, 'packages/mui-base/src'),
+
+          // For some reason transpilePackages doesn't seem to work on _document.js
           '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
           '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
         },
