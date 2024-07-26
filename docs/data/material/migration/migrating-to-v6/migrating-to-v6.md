@@ -1,12 +1,12 @@
-# Migrating to v6
+# Upgrade to v6
 
-<p class="description">This guide explains why and how to migrate from Material UI v5 to v6.</p>
+<p class="description">This guide explains why and how to upgrade from Material UI v5 to v6.</p>
 
-## Why you should migrate
+## Why you should upgrade
 
 ### React Server Component support
 
-Material UI v6 introduces Pigment CSS, a zero-runtime CSS-in-JS styling engine to replace Emotion and styled-components as a more future-proof solution for writing styles.
+Material UI v6 introduces Pigment CSS, a zero-runtime CSS-in-JS styling engine to replace Emotion and styled-components as a more future-proof solution for writing styles in React 19 and beyond.
 With Pigment CSS, styles are extracted at build time rather than runtime, avoiding client-side recalcuations and unlocking React Server Component (RSC) compatibility.
 This also leads to significant reductions in bundle sizes for Material UI apps.
 
@@ -16,41 +16,15 @@ Though optional, we highly recommend migrating your Material UI app to Pigment C
 
 ### Quality-of-life improvements
 
-Material UI v6 includes several other quality-of-life improvements regarding styling:
+Material UI v6 includes several other quality-of-life improvements, including:
 
-- The `CssVarsProvider` API is now stable. That enables you to rely on CSS variables, allowing for more intricate and performant customization possibilities, along with improved overall developer experience.
-- Support for container queries within the theme.
+- The `CssVarsProvider` API (now stable). CSS variables provide more performant customization possibilities along with a cleaner developer experience.
+- Support for container queries in themes.
 - A new theme utility for adding styles to specific color modes.
 
-## Breaking changes
+## Supported browsers and versions
 
-Namely, browser support updates, a Node.js version bump, and the removal of the UMD bundle.
-These updates reduced the Material UI package size by 2.5MB, 25% of the total size, and can be, for the most part, migrated automatically via codemods.
-
-## Start using the beta release
-
-In your `package.json` file, change the package version from `latest` to `next`.
-
-```diff title="package.json"
--"@mui/material": "latest",
-+"@mui/material": "next",
-```
-
-Optionally, if you are using one of these packages, you can also change their version to `next`:
-
-- `@mui/icons-material`
-- `@mui/system`
-- `@mui/lab`
-- `@mui/material-nextjs`
-- `@mui/styled-engine-sc`
-- `@mui/utils`
-
-Using `next` ensures your project always uses the latest v6 beta release.
-Alternatively, you can also target and fix it to a specific version, for example, `6.0.0-beta.0`.
-
-## Supported browsers and Node versions
-
-The targets of the default bundle have changed in v6.
+The default bundle targets have changed in v6.
 
 The exact versions will be pinned on release from the browserslist query: `"> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"`.
 
@@ -65,15 +39,13 @@ The exact versions will be pinned on release from the browserslist query: `"> 0.
 
 ### Removed support for IE 11
 
-Support for IE 11－that is, the legacy bundle and all IE 11-related code－is completely removed.
+Support for IE 11－the legacy bundle and all IE 11-related code－has been completely removed in v6.
 This decreases Material UI's bundle size and eases future development.
 
 If you need to support IE 11, you can use v5's [legacy bundle](https://v5.mui.com/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
-However, note that it won't get updates or bug fixes.
+Note that it will not receive updates or bug fixes in the future.
 
-## Update React & TypeScript version
-
-### Update React
+### Minimum React version
 
 The minimum supported version of React is v17.0.0 (the same as v5).
 Use the snippet below to update your project (replace the `<version>` with the one you want):
@@ -94,7 +66,7 @@ pnpm add react@<version> react-dom@<version>
 
 </codeblock>
 
-### Update TypeScript
+### Minimum TypeScript version
 
 The minimum supported version of TypeScript has been increased from v3.5 to 4.1.
 
@@ -116,31 +88,36 @@ Make sure that your application is still running without errors, and commit the 
 
 ## Breaking changes
 
+Material UI v6 was designed to introduce minimal breaking changes when upgrading from v5.
+These include browser support updates, a Node.js version bump, and the removal of the UMD bundle.
+These updates reduce the Material UI package size by 2.5MB—nearly 25% of the total size in v5.
+
+Codemods are provided to handle the majority of these breaking changes.
+
 :::info
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
-### UMD bundle was removed
+### UMD bundle removed
 
 To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle.
-This results in a reduction of the `@mui/material` package size by 2.5MB or 25% of the total package size.
 
-Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended.
+Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/).
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
 ### Autocomplete
 
-#### New reason values added to onInputChange
+#### onInputChange reason values
 
-Three new possible values have been added to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
-These three were previously treated as `"reset"`, so if you are relying on that, you might need to adjust your code accordingly:
+Three new values have been introduced to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
+These values offer more granular options for three specific use cases previously covered by `"reset"`:
 
-- `"blur"`: like `"reset"` but triggered when the focus is moved off the input. `clearOnBlur` must be `true`.
-- `"selectOption"`: triggered when the input value changes after an option has been selected.
-- `"removeOption"`: triggered in multiple selection when a chip gets removed due to the corresponding option being selected.
+- `"blur"`: similar to `"reset"` but triggered when the focus moves away from the input. `clearOnBlur` must be `true`.
+- `"selectOption"`: triggered when the input value changes after an option is selected.
+- `"removeOption"`: triggered in multiple selection mode when a chip is removed as a result of its corresponding option being selected.
 
-These are added on top of the existing ones: `"input"`, `"reset"`, and `"clear"`.
+These are available in addition to the existing `"input"`, `"reset"`, and `"clear"` values.
 
 ### Chip
 
