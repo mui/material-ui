@@ -25,7 +25,6 @@ export default function useScrollTrigger(options = {}) {
   const { getTrigger = defaultTrigger, target = defaultTarget, ...other } = options;
   const store = React.useRef();
   const [trigger, setTrigger] = React.useState(() => getTrigger(store, other));
-  const otherOptionsStr = JSON.stringify(other);
   React.useEffect(() => {
     const handleScroll = () => {
       setTrigger(getTrigger(store, { target, ...other }));
@@ -37,8 +36,9 @@ export default function useScrollTrigger(options = {}) {
       target.removeEventListener('scroll', handleScroll, { passive: true });
     };
     // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
-
-  }, [target, getTrigger, otherOptionsStr, other]);
+  // TODO: uncomment when compiler enabled //eslint-disable-next-line react-compiler/react-compiler - fixing this causes tests to fail
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target, getTrigger, JSON.stringify(other)]);
 
   return trigger;
 }
