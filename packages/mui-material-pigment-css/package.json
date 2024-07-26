@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@mui/system": "workspace:*",
-    "@pigment-css/react": "0.0.17"
+    "@pigment-css/react": "0.0.18"
   },
   "sideEffects": false,
   "publishConfig": {
