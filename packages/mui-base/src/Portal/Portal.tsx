@@ -33,8 +33,11 @@ const Portal = React.forwardRef(function Portal(
 ) {
   const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<ReturnType<typeof getContainer>>(null);
-  // @ts-expect-error TODO upstream fix
-  const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, forwardedRef);
+  const handleRef = useForkRef(
+    // @ts-expect-error TODO upstream fix
+    React.isValidElement(children) ? (children.props.ref ?? (children as any).ref) : null,
+    forwardedRef,
+  );
 
   useEnhancedEffect(() => {
     if (!disablePortal) {
