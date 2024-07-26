@@ -91,6 +91,7 @@ export default function Footer() {
                       'aria-label': 'Enter your email address',
                     },
                   }}
+                  sx={{ width: '250px' }}
                 />
                 <Button
                   variant="contained"

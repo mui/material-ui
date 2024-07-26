@@ -71,6 +71,9 @@ export const inputsCustomizations = {
   },
   MuiOutlinedInput: {
     styleOverrides: {
+      input: {
+        padding: 0,
+      },
       root: ({ theme }) => ({
         color: theme.palette.text.primary,
         borderRadius: theme.shape.borderRadius,
