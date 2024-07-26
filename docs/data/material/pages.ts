@@ -106,7 +106,7 @@ const pages: MuiPage[] = [
         children: [
           { pathname: '/material-ui/react-box' },
           { pathname: '/material-ui/react-container' },
-          { pathname: '/material-ui/react-grid', legacy: true },
+          { pathname: '/material-ui/react-grid', deprecated: true },
           { pathname: '/material-ui/react-grid2', title: 'Grid v2' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
