@@ -282,7 +282,7 @@ Head to the [Customized hook](#customized-hook) section for a customization exam
 
 ### Hint
 
-The following demo shows how to add a hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+The following demo shows how to add a hint feature to the Autocomplete:
 
 {{"demo": "AutocompleteHint.js"}}
 
