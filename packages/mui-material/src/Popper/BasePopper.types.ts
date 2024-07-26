@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Instance, Options, OptionsGeneric, VirtualElement } from '@popperjs/core';
 import { PortalProps } from '../Portal';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import { SlotComponentProps } from '../utils/types';
+import { PolymorphicProps } from '../utils/PolymorphicComponent';
 
 export type PopperPlacementType = Options['placement'];
 
