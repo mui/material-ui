@@ -75,12 +75,21 @@ The Accordion component can be controlled or uncontrolled.
 Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
-### Custom heading level
+## Customization
 
-By default, the Accordion uses a heading element set appropriately for the information architecture of the page. If needed, you can customize the heading level.
+### Only one expanded at a time
+
+Use the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.
+The demo below also shows a bit of visual customization.
+
+{{"demo": "CustomizedAccordions.js", "bg": true}}
+
+### Changing heading level
+
+By default, the Accordion uses an `h3` element for the heading. You can change the heading element using the `slotProps.heading.component` prop to ensure the correct heading hierarchy in your document.
 
 ```jsx
-<Accordion slots={{ heading: 'h4' }}>
+<Accordion slotProps={{ heading: { component: 'h4' } }}>
   <AccordionSummary
     expandIcon={<ExpandMoreIcon />}
     aria-controls="panel1-content"
@@ -94,17 +103,6 @@ By default, the Accordion uses a heading element set appropriately for the infor
   </AccordionDetails>
 </Accordion>
 ```
-
-The default heading level is `h3`. Adjust the `slots.heading` prop to ensure the correct heading hierarchy in your document.
-
-## Customization
-
-### Only one expanded at a time
-
-Use the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.
-The demo below also shows a bit of visual customization.
-
-{{"demo": "CustomizedAccordions.js", "bg": true}}
 
 ## Performance
 
