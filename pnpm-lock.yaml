@@ -323,7 +323,7 @@ importers:
     dependencies:
       '@emotion/cache':
         specifier: latest
-        version: 11.13.0
+        version: 11.13.1
       '@mui/base':
         specifier: workspace:^
         version: link:../../packages/mui-base/build
@@ -550,7 +550,7 @@ importers:
         version: 3.6.1(@algolia/client-search@4.23.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.13.0)
       '@emotion/cache':
         specifier: ^11.13.0
-        version: 11.13.0
+        version: 11.13.1
       '@emotion/react':
         specifier: ^11.13.0
         version: 11.13.0(@types/react@18.3.3)(react@18.3.1)
@@ -984,7 +984,7 @@ importers:
         version: 7.24.8
       '@emotion/cache':
         specifier: ^11.13.0
-        version: 11.13.0
+        version: 11.13.1
       '@emotion/react':
         specifier: ^11.13.0
         version: 11.13.0(@types/react@18.3.3)(react@18.3.1)
@@ -1804,7 +1804,7 @@ importers:
     devDependencies:
       '@emotion/cache':
         specifier: ^11.13.0
-        version: 11.13.0
+        version: 11.13.1
       '@emotion/react':
         specifier: ^11.13.0
         version: 11.13.0(@types/react@18.3.3)(react@18.3.1)
@@ -1871,7 +1871,7 @@ importers:
         version: 7.24.8
       '@emotion/cache':
         specifier: ^11.13.0
-        version: 11.13.0
+        version: 11.13.1
       csstype:
         specifier: ^3.1.3
         version: 3.1.3
@@ -2219,7 +2219,7 @@ importers:
         version: 7.24.8
       '@emotion/cache':
         specifier: ^11.13.0
-        version: 11.13.0
+        version: 11.13.1
       '@emotion/react':
         specifier: ^11.13.0
         version: 11.13.0(@types/react@18.3.3)(react@18.3.1)
@@ -3306,8 +3306,8 @@ packages:
   '@emotion/babel-plugin@11.12.0':
     resolution: {integrity: sha512-y2WQb+oP8Jqvvclh8Q55gLUyb7UFvgv7eJfsj7td5TToBrIUtPay2kMrZi4xjq9qw2vD0ZR5fSho0yqoFgX7Rw==}
 
-  '@emotion/cache@11.13.0':
-    resolution: {integrity: sha512-hPV345J/tH0Cwk2wnU/3PBzORQ9HeX+kQSbwI+jslzpRCHE6fSGTohswksA/Ensr8znPzwfzKZCmAM9Lmlhp7g==}
+  '@emotion/cache@11.13.1':
+    resolution: {integrity: sha512-iqouYkuEblRcXmylXIwwOodiEK5Ifl7JcX7o6V4jI3iW4mLXX3dmt5xwBtIkJiQEXFAI+pC8X0i67yiPkH9Ucw==}
 
   '@emotion/css@11.11.2':
     resolution: {integrity: sha512-VJxe1ucoMYMS7DkiMdC2T7PWNbrEI0a39YRiyDvK2qq4lXwjRbVP/z4lpG+odCsRzadlR+1ywwrTzhdm5HNdew==}
@@ -13476,7 +13476,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@emotion/cache@11.13.0':
+  '@emotion/cache@11.13.1':
     dependencies:
       '@emotion/memoize': 0.9.0
       '@emotion/sheet': 1.4.0
@@ -13487,7 +13487,7 @@ snapshots:
   '@emotion/css@11.11.2':
     dependencies:
       '@emotion/babel-plugin': 11.12.0
-      '@emotion/cache': 11.13.0
+      '@emotion/cache': 11.13.1
       '@emotion/serialize': 1.3.0
       '@emotion/sheet': 1.4.0
       '@emotion/utils': 1.4.0
@@ -13526,7 +13526,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.24.8
       '@emotion/babel-plugin': 11.12.0
-      '@emotion/cache': 11.13.0
+      '@emotion/cache': 11.13.1
       '@emotion/serialize': 1.3.0
       '@emotion/use-insertion-effect-with-fallbacks': 1.1.0(react@18.3.1)
       '@emotion/utils': 1.4.0
@@ -14116,7 +14116,7 @@ snapshots:
   '@mui/styled-engine@5.15.14(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.8
-      '@emotion/cache': 11.13.0
+      '@emotion/cache': 11.13.1
       csstype: 3.1.3
       prop-types: 15.8.1
       react: 18.3.1
@@ -14127,7 +14127,7 @@ snapshots:
   '@mui/styled-engine@6.0.0-alpha.3(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.0(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.8
-      '@emotion/cache': 11.13.0
+      '@emotion/cache': 11.13.1
       csstype: 3.1.3
       prop-types: 15.8.1
       react: 18.3.1
