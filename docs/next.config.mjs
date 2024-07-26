@@ -72,6 +72,7 @@ export default withDocsInfra({
             '@mui/x-charts',
             '@mui/x-tree-view',
             '@mui/x-license-pro',
+            '@toolpad/core',
           ].some((dep) => request.startsWith(dep));
 
           if (hasDependencyOnRepoPackages) {
