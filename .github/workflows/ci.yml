@@ -32,7 +32,7 @@ jobs:
       - run: npm install -g npm@latest
       - run: pnpm install:codesandbox
       - run: pnpm build:codesandbox
-      - run: pnpm pkg-pr-new-publish
+      - run: pnpm pkg-pr-new-release
 
   # Tests dev-only scripts across all supported dev environments
   test-dev:
