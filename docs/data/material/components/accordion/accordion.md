@@ -95,7 +95,7 @@ By default, the Accordion uses an `h3` element for the heading. You can change t
     aria-controls="panel1-content"
     id="panel1-header"
   >
-    Accordion 1
+    Accordion
   </AccordionSummary>
   <AccordionDetails>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada

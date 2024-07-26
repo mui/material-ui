@@ -147,7 +147,7 @@ If your styles or DOM manipulations depend on the old structure, you will need t
     aria-controls="panel1-content"
     id="panel1-header"
   >
-    Accordion 1
+    Accordion
   </AccordionSummary>
   <AccordionDetails>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
