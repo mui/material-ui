@@ -19,9 +19,6 @@ export * from './AccordionDetails';
 export { default as AccordionSummary } from './AccordionSummary';
 export * from './AccordionSummary';
 
-export { default as Alert } from './Alert';
-export * from './Alert';
-
 export { default as AlertTitle } from './AlertTitle';
 export * from './AlertTitle';
 
