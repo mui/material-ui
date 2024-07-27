@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
-import AdGuest from 'docs/src/modules/components/AdGuest';
+import { Ad, AdGuest } from '@mui/docs/Ad';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
@@ -13,7 +13,6 @@ import { BrandingProvider } from '@mui/docs/branding';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import Ad from 'docs/src/modules/components/Ad';
 import PropertiesSection, {
   getPropsToC,
 } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';

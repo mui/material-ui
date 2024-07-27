@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import loadScript from 'docs/src/modules/utils/loadScript';
-import AdDisplay from 'docs/src/modules/components/AdDisplay';
-import { adStylesObject } from 'docs/src/modules/components/ad.styles';
+import loadScript from '../utils/loadScript';
+import AdDisplay from './AdDisplay';
+import { adBodyImageStyles } from './ad.styles';
 
 type CarbonAd = {
   pixel: string;
@@ -14,7 +14,7 @@ type CarbonAd = {
   description: string;
 };
 const CarbonRoot = styled('span')(({ theme }) => {
-  const styles = adStylesObject['body-image'](theme);
+  const styles = adBodyImageStyles(theme);
 
   return {
     width: '100%',
@@ -38,7 +38,7 @@ const CarbonRoot = styled('span')(({ theme }) => {
 });
 
 function AdCarbonImage() {
-  const ref = React.useRef(null);
+  const ref = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     // The isolation logic of carbonads is broken.
