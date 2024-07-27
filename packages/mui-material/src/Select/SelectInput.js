@@ -335,6 +335,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   delete other['aria-invalid'];
+  delete other.id;
 
   let display;
   let displaySingle;
