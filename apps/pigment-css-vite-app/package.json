@@ -26,7 +26,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
-    "@pigment-css/vite-plugin": "0.0.17",
+    "@pigment-css/vite-plugin": "0.0.18",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
