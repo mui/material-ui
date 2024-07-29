@@ -121,10 +121,10 @@ These are available in addition to the existing `"input"`, `"reset"`, and `"clea
 
 ### Chip
 
-Previously, the Chip component lost focus when the escape button was pressed, which differed from how other button-like components work.
-This issue has been resolved, and the Chip now retains focus as expected.
+In earlier versions, the Chip component would lose focus when the user pressed the <kbd class="key">esc</kbd> button, which differs from how other button-like components work.
+In v6 the Chip now retains focus as expected.
 
-If you want to keep the previous behavior, add a custom `onKeyUp` handler, as shown below:
+To preserve the previous behavior, add a custom `onKeyUp` handler as shown below:
 
 ```js
 import * as React from 'react';
