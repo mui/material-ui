@@ -549,7 +549,7 @@ importers:
         specifier: ^3.6.1
         version: 3.6.1(@algolia/client-search@4.23.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.13.0)
       '@emotion/cache':
-        specifier: ^11.13.0
+        specifier: ^11.13.1
         version: 11.13.1
       '@emotion/react':
         specifier: ^11.13.0
@@ -980,7 +980,7 @@ importers:
         specifier: ^7.24.8
         version: 7.24.8
       '@emotion/cache':
-        specifier: ^11.13.0
+        specifier: ^11.13.1
         version: 11.13.1
       '@emotion/react':
         specifier: ^11.13.0
@@ -1806,7 +1806,7 @@ importers:
         version: 7.24.8
     devDependencies:
       '@emotion/cache':
-        specifier: ^11.13.0
+        specifier: ^11.13.1
         version: 11.13.1
       '@emotion/react':
         specifier: ^11.13.0
@@ -1873,7 +1873,7 @@ importers:
         specifier: ^7.24.8
         version: 7.24.8
       '@emotion/cache':
-        specifier: ^11.13.0
+        specifier: ^11.13.1
         version: 11.13.1
       csstype:
         specifier: ^3.1.3
@@ -2221,7 +2221,7 @@ importers:
         specifier: ^7.24.8
         version: 7.24.8
       '@emotion/cache':
-        specifier: ^11.13.0
+        specifier: ^11.13.1
         version: 11.13.1
       '@emotion/react':
         specifier: ^11.13.0
