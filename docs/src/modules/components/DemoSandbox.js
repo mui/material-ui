@@ -16,8 +16,6 @@ import { useTranslate } from '@mui/docs/i18n';
 import { getDesignTokens } from '@mui/docs/branding';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
 import { deepmerge } from '@mui/utils';
-import * as MUI from '@mui/material';
-import * as jsx from 'react/jsx-runtime';
 
 const iframeDefaultJoyTheme = extendTheme({
   cssVarPrefix: 'demo-iframe',
@@ -210,14 +208,23 @@ function DemoSandbox(props) {
   const children = <Sandbox {...sandboxProps}>{childrenProp}</Sandbox>;
 
   React.useEffect(() => {
-    window.MaterialMUI = MUI;
-    window.jsx = jsx;
-    window.React = React;
+    async function loadMUI() {
+      if (typeof window.getInjectTheme === 'function') {
+        window.React = React;
+        Promise.all([import('@mui/material'), import('react/jsx-runtime')])
+          .then(([MaterialMUI, jsx]) => {
+            window.MaterialMUI = MaterialMUI;
+            window.jsx = jsx;
 
-    if (typeof window.getInjectTheme === 'function') {
-      const themeOptions = window.getInjectTheme();
-      setInjectTheme(themeOptions);
+            const themeOptions = window.getInjectTheme();
+            setInjectTheme(themeOptions);
+          })
+          .catch(() => {
+            // ignore error
+          });
+      }
     }
+    loadMUI();
   }, []);
 
   return (
