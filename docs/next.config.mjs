@@ -98,7 +98,9 @@ export default withDocsInfra({
           ...config.resolve.alias,
 
           // for 3rd party packages with dependencies in this repository
+          '@mui/material$': path.resolve(workspaceRoot, 'packages/mui-material/src/index.js'),
           '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
+
           '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
           '@mui/icons-material$': path.resolve(
             workspaceRoot,
