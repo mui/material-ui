@@ -777,8 +777,8 @@ importers:
         specifier: ^0.14.1
         version: 0.14.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-spring:
-        specifier: ^9.7.3
-        version: 9.7.3(@react-three/fiber@8.16.0(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)(three@0.162.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(three@0.162.0)(zdog@1.1.3)
+        specifier: ^9.7.4
+        version: 9.7.4(@react-three/fiber@8.16.0(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)(three@0.162.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(three@0.162.0)(zdog@1.1.3)
       react-swipeable-views:
         specifier: ^0.14.0
         version: 0.14.0(react@18.3.1)
@@ -4639,17 +4639,17 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@react-spring/konva@9.7.3':
-    resolution: {integrity: sha512-R9sY6SiPGYqz1383P5qppg5z57YfChVknOC1UxxaGxpw+WiZa8fZ4zmZobslrw+os3/+HAXZv8O+EvU/nQpf7g==}
+  '@react-spring/konva@9.7.4':
+    resolution: {integrity: sha512-B2IRytWM2ixifoKxE5DXTUXxNAhPsPqozrZEXXkwKhet1P2xvxXpTYrmDi0NnqTijVbAA3n1hUv8/DqqMKoI0Q==}
     peerDependencies:
       konva: '>=2.6'
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-konva: ^16.8.0 || ^16.8.7-0 || ^16.9.0-0 || ^16.10.1-0 || ^16.12.0-0 || ^16.13.0-0 || ^17.0.0-0 || ^17.0.1-0 || ^17.0.2-0 || ^18.0.0-0
 
-  '@react-spring/native@9.7.3':
-    resolution: {integrity: sha512-4mpxX3FuEBCUT6ae2fjhxcJW6bhr2FBwFf274eXB7n+U30Gdg8Wo2qYwcUnmiAA0S3dvP8vLTazx3+CYWFShnA==}
+  '@react-spring/native@9.7.4':
+    resolution: {integrity: sha512-mBaDq8MA1O42QS1vlw06cf+GiwWZWPi0n6reZAjAfpO1mShi63uHCBcRrez8JGw2F/JSMaRQ5Ya1n5s47S3VlQ==}
     peerDependencies:
-      react: ^16.8.0  || >=17.0.0 || >=18.0.0
+      react: 16.8.0  || >=17.0.0 || >=18.0.0
       react-native: '>=0.58'
 
   '@react-spring/rafz@9.7.4':
@@ -4660,8 +4660,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@react-spring/three@9.7.3':
-    resolution: {integrity: sha512-Q1p512CqUlmMK8UMBF/Rj79qndhOWq4XUTayxMP9S892jiXzWQuj+xC3Xvm59DP/D4JXusXpxxqfgoH+hmOktA==}
+  '@react-spring/three@9.7.4':
+    resolution: {integrity: sha512-HKUhrrvWW7F/MAroObOloqcYyFqsUHp1ANIDvPVxk9cSh7veW7gQbJm2Sc7Ka+L4gVJEwSkS+MRfr8kk+sRZBw==}
     peerDependencies:
       '@react-three/fiber': '>=6.0'
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -4676,8 +4676,8 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@react-spring/zdog@9.7.3':
-    resolution: {integrity: sha512-L+yK/1PvNi9n8cldiJ309k4LdxcPkeWE0W18l1zrP1IBIyd5NB5EPA8DMsGr9gtNnnIujtEzZk+4JIOjT8u/tw==}
+  '@react-spring/zdog@9.7.4':
+    resolution: {integrity: sha512-uKAzQqKXxHYyGo36EYQEIZzNB60gxQsCG6aaXO2LY5aa7kq44pJX/92D1YigOIhJ/sbfJOXYfdJC/ntvATvzCQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -10368,8 +10368,8 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  react-spring@9.7.3:
-    resolution: {integrity: sha512-oTxDpFV5gzq7jQX6+bU0SVq+vX8VnuuT5c8Zwn6CpDErOPvCmV+DRkPiEBtaL3Ozgzwiy5yFx83N0h303j/r3A==}
+  react-spring@9.7.4:
+    resolution: {integrity: sha512-ypxdsOwmCfbDZGTBRyBo7eLjF55xNFN86e/QkflZ1Rfo8QMzVjCAWocrEEbsuFKkQAg2RRdhNkinWJ6BpCvJoQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -15126,7 +15126,7 @@ snapshots:
       '@react-spring/types': 9.7.4
       react: 18.3.1
 
-  '@react-spring/konva@9.7.3(konva@9.3.6)(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@react-spring/konva@9.7.4(konva@9.3.6)(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@react-spring/animated': 9.7.4(react@18.3.1)
       '@react-spring/core': 9.7.4(react@18.3.1)
@@ -15136,7 +15136,7 @@ snapshots:
       react: 18.3.1
       react-konva: 18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
-  '@react-spring/native@9.7.3(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)':
+  '@react-spring/native@9.7.4(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@react-spring/animated': 9.7.4(react@18.3.1)
       '@react-spring/core': 9.7.4(react@18.3.1)
@@ -15153,7 +15153,7 @@ snapshots:
       '@react-spring/types': 9.7.4
       react: 18.3.1
 
-  '@react-spring/three@9.7.3(@react-three/fiber@8.16.0(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)(three@0.162.0))(react@18.3.1)(three@0.162.0)':
+  '@react-spring/three@9.7.4(@react-three/fiber@8.16.0(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)(three@0.162.0))(react@18.3.1)(three@0.162.0)':
     dependencies:
       '@react-spring/animated': 9.7.4(react@18.3.1)
       '@react-spring/core': 9.7.4(react@18.3.1)
@@ -15174,7 +15174,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@react-spring/zdog@9.7.3(react-dom@18.3.1(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(zdog@1.1.3)':
+  '@react-spring/zdog@9.7.4(react-dom@18.3.1(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(zdog@1.1.3)':
     dependencies:
       '@react-spring/animated': 9.7.4(react@18.3.1)
       '@react-spring/core': 9.7.4(react@18.3.1)
@@ -22056,14 +22056,14 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  react-spring@9.7.3(@react-three/fiber@8.16.0(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)(three@0.162.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(three@0.162.0)(zdog@1.1.3):
+  react-spring@9.7.4(@react-three/fiber@8.16.0(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)(three@0.162.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(three@0.162.0)(zdog@1.1.3):
     dependencies:
       '@react-spring/core': 9.7.4(react@18.3.1)
-      '@react-spring/konva': 9.7.3(konva@9.3.6)(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@react-spring/native': 9.7.3(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)
-      '@react-spring/three': 9.7.3(@react-three/fiber@8.16.0(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)(three@0.162.0))(react@18.3.1)(three@0.162.0)
+      '@react-spring/konva': 9.7.4(konva@9.3.6)(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      '@react-spring/native': 9.7.4(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)
+      '@react-spring/three': 9.7.4(@react-three/fiber@8.16.0(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(encoding@0.1.13)(react@18.3.1))(react@18.3.1)(three@0.162.0))(react@18.3.1)(three@0.162.0)
       '@react-spring/web': 9.7.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-spring/zdog': 9.7.3(react-dom@18.3.1(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(zdog@1.1.3)
+      '@react-spring/zdog': 9.7.4(react-dom@18.3.1(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(zdog@1.1.3)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
