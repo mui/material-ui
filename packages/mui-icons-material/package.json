@@ -45,7 +45,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.8"
+    "@babel/runtime": "^7.25.0"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
@@ -53,7 +53,7 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.16",
     "@types/react": "^18.3.3",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "chalk": "^5.3.0",
     "cross-fetch": "^4.0.0",
     "fast-glob": "^3.3.2",

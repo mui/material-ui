@@ -329,6 +329,7 @@ function AppWrapper(props) {
       </NextHead>
       <DocsProvider
         config={config}
+        adConfig={{ GADisplayRatio: 0.1 }}
         defaultUserLanguage={pageProps.userLanguage}
         translations={pageProps.translations}
       >

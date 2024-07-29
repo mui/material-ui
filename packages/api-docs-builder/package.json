@@ -10,7 +10,7 @@
   "dependencies": {
     "@babel/core": "^7.24.9",
     "@babel/preset-typescript": "^7.24.7",
-    "@babel/traverse": "^7.24.8",
+    "@babel/traverse": "^7.25.1",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
@@ -32,10 +32,10 @@
     "@types/doctrine": "^0.0.9",
     "@types/mdast": "4.0.4",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^18.19.41",
+    "@types/node": "^18.19.42",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "^17.0.3",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "sinon": "^16.1.3"
   }
 }

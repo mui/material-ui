@@ -106,7 +106,30 @@ To align with React 19's removal of UMD builds, Material UI has also removed it
 Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/).
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
-### Autocomplete onInputChange values added
+### Autocomplete 
+
+#### Accordion Summary heading
+
+To meet the [W3C Accordion Pattern standard](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), the Accordion Summary is now wrapped with a default `h3` heading element. This change may affect customizations relying on the previous DOM structure and CSS specificity. Additionally, the default heading element might conflict with existing heading structures on your page.
+
+If your styles or DOM manipulations depend on the old structure, you will need to update them to accommodate the new heading element. If the default heading element conflicts with your existing structure, you can change the heading element using the `slotProps.heading.component` prop.
+
+```jsx
+<Accordion slotProps={{ heading: { component: 'h4' } }}>
+  <AccordionSummary
+    expandIcon={<ExpandMoreIcon />}
+    aria-controls="panel1-content"
+    id="panel1-header"
+  >
+    Accordion
+  </AccordionSummary>
+  <AccordionDetails>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+    lacus ex, sit amet blandit leo lobortis eget.
+  </AccordionDetails>
+</Accordion>
+```
+#### onInputChange reason values added
 
 Three new values have been introduced to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
 These values offer more granular options for three specific use cases previously covered by `"reset"`:
@@ -116,8 +139,6 @@ These values offer more granular options for three specific use cases previously
 - `"removeOption"`: triggered in multiple selection mode when a chip is removed as a result of its corresponding option being selected.
 
 These are available in addition to the existing `"input"`, `"reset"`, and `"clear"` values.
-
-### Chip focus
 
 In earlier versions, the Chip component would lose focus when the user pressed the <kbd class="key">esc</kbd> key, which differs from how other button-like components work.
 In v6 the Chip now retains focus as expected.
