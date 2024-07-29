@@ -119,9 +119,9 @@ These values offer more granular options for three specific use cases previously
 
 These are available in addition to the existing `"input"`, `"reset"`, and `"clear"` values.
 
-### Chip
+### Chip focus
 
-In earlier versions, the Chip component would lose focus when the user pressed the <kbd class="key">esc</kbd> button, which differs from how other button-like components work.
+In earlier versions, the Chip component would lose focus when the user pressed the <kbd class="key">esc</kbd> key, which differs from how other button-like components work.
 In v6 the Chip now retains focus as expected.
 
 To preserve the previous behavior, add a custom `onKeyUp` handler as shown below:
@@ -148,23 +148,23 @@ export default function ChipExample() {
 }
 ```
 
-### Loading Button
+### Loading Button children
 
-The `children` passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
+In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
 
 ### Grid v2 (Unstable_Grid)
 
-The `Grid` v2 component was updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
+The Grid v2 component was updated to match the API of the new Pigment Grid component to enable interoperability between the two:
 
 - The previous size and offset props were replaced with the `size` and `offset` props
-- The spacing mechanism was reworked to use the `gap` CSS property.
+- The spacing mechanism was reworked to use the `gap` CSS property
 
-This brings some breaking changes described in the following sections.
+This introduces breaking changes described in the sections that follow:
 
 #### Size and offset props
 
-Previously, the size and offset props were named corresponding to the theme's breakpoints.
-For the default theme this was:
+In v5, the size and offset props were named to correspond with the theme's breakpoints.
+For the default theme, these were:
 
 - Size: `xs`, `sm`, `md`, `lg`, `xl`
 - Offset: `xsOffset`, `smOffset`, `mdOffset`, `lgOffset`, `xlOffset`
@@ -182,67 +182,75 @@ In v6, these props are renamed to `size` and `offset`:
   />
 ```
 
-Note that if the size or offset is the same for all breakpoints, you can use a single value:
+If the size or offset is the same for all breakpoints then you can use a single value:
 
 ```diff
 - <Grid xs={6} xsOffset={2} >
 + <Grid size={6} offset={2} >
 ```
 
-Besides that, the `true` value for the size prop was renamed to `"grow"`:
+Additionally, the `true` value for the `size` prop was renamed to `"grow"`:
 
 ```diff
 - <Grid xs />
 + <Grid size="grow" />
 ```
 
-Use this codemod to migrate your project to the new size and offset props:
+Use this codemod to migrate your project to the new `size` and `offset` props:
 
 ```bash
 npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
 ```
 
-If you have custom breakpoints, the change is the same:
+##### Custom breakpoints
+
+The usage described above also applies to custom breakpoints:
 
 ```diff
 - <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
 + <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
 ```
 
-Which you can cover with the same codemod by providing the custom breakpoints as an argument:
+You can use the same codemod for custom breakpoints by providing the breakpoints as an argument:
 
 ```bash
 npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
-#### Removal of the disableEqualOverflow prop
+#### disableEqualOverflow prop removed
 
-Previously, the Grid overflowed its parent.
-In v6, this is fixed, with the Grid being contained inside its parent's padding:
+In v5, the Grid overflowed its parent.
+In v6 the Grid is correctly contained within its parent's padding:
 
 <img src="/static/material-ui/migration-v5/grid-overflow-change.png" style="width: 814px;" alt="Before and after of the Grid no longer overflowing its parent in v6." width="1628" height="400" />
 
-This removes the need for the `disableEqualOverflow` prop:
+This eliminates the need for the `disableEqualOverflow` prop:
 
 ```diff
 - <Grid disableEqualOverflow />
 + <Grid />
 ```
 
-#### Spacing is no longer considered inside the Grid item's box
-
-Previously, Grid items included spacing in their boxes.
-In v6, this is fixed:
-
-<img src="/static/material-ui/migration-v5/grid-spacing-change.png" style="width: 814px;" alt="Before and after of the Grid items no longer including spacing in their box." width="1628" height="400" />
-
 :::warning
-Both of these changes might slightly affect your layout.
-Note that the items' position doesn't change.
-We recommend adopting this new behavior and **not trying to replicate the old one**, as this is a more predictable and modern approach.
+This update may lead to unexpected changes to your app's layout.
+Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
 :::
 
-### Rating
+#### Grid item spacing
+
+In v5, Grid items included spacing in their boxes.
+In v6, Grid items no longer inclue spacing in their boxes.
+
+Note that the item position doesn't change.
+
+:::warning
+This update may lead to unexpected changes to your app's layout.
+Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
+:::
+
+<img src="/static/material-ui/migration-v5/grid-spacing-change.png" style="width: 814px;" alt="Before and after of the Grid items no longer including spacing in their boxes." width="1628" height="400" />
+
+### Rating aria-label
 
 Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
 This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
