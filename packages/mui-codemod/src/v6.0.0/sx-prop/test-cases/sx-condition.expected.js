@@ -26,8 +26,8 @@
         flexDirection: 'column',
         pb: 0.5,
       })]}
-  onClick={(ev) => {
-    ev.preventDefault();
+  onClick={(event) => {
+    event.preventDefault();
     navigate(href);
   }}
 >

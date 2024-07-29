@@ -45,8 +45,8 @@ export default function AutocompleteHint() {
             </Typography>
             <TextField
               {...params}
-              onChange={(e) => {
-                const newValue = e.target.value;
+              onChange={(event) => {
+                const newValue = event.target.value;
                 setInputValue(newValue);
                 const matchingOption = top100Films.find((option) =>
                   option.label.startsWith(newValue),
