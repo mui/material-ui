@@ -25,14 +25,14 @@ import createThemeWithVars, {
  * To disable custom properties, use module augmentation
  *
  * declare module '@mui/material/styles' {
- *   interface ThemeCustomProperties {
+ *   interface CssThemeVariables {
  *     disabled: true;
  *   }
  * }
  */
-export interface ThemeCustomProperties {}
+export interface CssThemeVariables {}
 
-type CssVarsOptions = ThemeCustomProperties extends { disabled: true } ? {} : ColorSystemOptions;
+type CssVarsOptions = CssThemeVariables extends { disabled: true } ? {} : ColorSystemOptions;
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions;
@@ -48,13 +48,13 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
 
 interface BaseTheme extends SystemTheme {
   mixins: Mixins;
-  palette: Palette & (ThemeCustomProperties extends { disabled: true } ? {} : CssVarsPalette);
+  palette: Palette & (CssThemeVariables extends { disabled: true } ? {} : CssVarsPalette);
   shadows: Shadows;
   transitions: Transitions;
   typography: Typography;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
-  vars: ThemeCustomProperties extends { disabled: true } ? undefined : ThemeVars;
+  vars: CssThemeVariables extends { disabled: true } ? undefined : ThemeVars;
 }
 
 export interface Theme extends BaseTheme {
