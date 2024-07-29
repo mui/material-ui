@@ -132,6 +132,30 @@ These three were previously treated as `"reset"`, so if you are relying on that,
 
 These are added on top of the existing ones: `"input"`, `"reset"`, and `"clear"`.
 
+### Accordion
+
+#### Heading element wrapping Accordion Summary
+
+To meet the [W3C Accordion Pattern standard](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), the Accordion Summary is now wrapped with a default `h3` heading element. This change may affect customizations relying on the previous DOM structure and CSS specificity. Additionally, the default heading element might conflict with existing heading structures on your page.
+
+If your styles or DOM manipulations depend on the old structure, you will need to update them to accommodate the new heading element. If the default heading element conflicts with your existing structure, you can change the heading element using the `slotProps.heading.component` prop.
+
+```jsx
+<Accordion slotProps={{ heading: { component: 'h4' } }}>
+  <AccordionSummary
+    expandIcon={<ExpandMoreIcon />}
+    aria-controls="panel1-content"
+    id="panel1-header"
+  >
+    Accordion
+  </AccordionSummary>
+  <AccordionDetails>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+    lacus ex, sit amet blandit leo lobortis eget.
+  </AccordionDetails>
+</Accordion>
+```
+
 ### Chip
 
 Previously, the Chip component lost focus when the escape button was pressed, which differed from how other button-like components work.

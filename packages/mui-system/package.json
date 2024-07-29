@@ -58,7 +58,7 @@
     "@types/prop-types": "^15.7.12",
     "@types/react": "^18.3.3",
     "@types/sinon": "^17.0.3",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
