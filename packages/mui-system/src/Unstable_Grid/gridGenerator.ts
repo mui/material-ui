@@ -1,4 +1,4 @@
-import { Breakpoints } from '../createTheme/createBreakpoints';
+import { Breakpoints } from '../createBreakpoints/createBreakpoints';
 import { Spacing } from '../createTheme/createSpacing';
 import { ResponsiveStyleValue } from '../styleFunctionSx';
 import { GridDirection, GridOwnerState } from './GridProps';

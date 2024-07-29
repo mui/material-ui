@@ -4,10 +4,7 @@ import Alert from '@mui/material/Alert';
 
 let warnedOnce = false;
 
-/**
- * @ignore - do not document.
- */
-export default React.forwardRef(function DeprecatedAlert(props, ref) {
+const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
@@ -20,6 +17,13 @@ export default React.forwardRef(function DeprecatedAlert(props, ref) {
 
     warnedOnce = true;
   }
+};
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedAlert(props, ref) {
+  warn();
 
   return <Alert ref={ref} {...props} />;
 });

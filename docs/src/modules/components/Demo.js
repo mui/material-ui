@@ -12,14 +12,14 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import { HighlightedCode, CodeTab, CodeTabList } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { CodeTab, CodeTabList } from '@mui/docs/HighlightedCodeWithTabs';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
 import ReactRunner from 'docs/src/modules/components/ReactRunner';
 import DemoEditor from 'docs/src/modules/components/DemoEditor';
 import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
-import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
@@ -27,6 +27,7 @@ import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
+import { AdCarbonInline } from '@mui/docs/Ad';
 import { BrandingProvider, blue, blueDark, grey } from '@mui/docs/branding';
 
 /**
@@ -637,7 +638,7 @@ export default function Demo(props) {
           key={demoKey}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
-          productId={demoData.productId}
+          usesCssVarsTheme={demoData.productId === 'joy-ui'}
           name={demoName}
           onResetDemoClick={resetDemo}
         >

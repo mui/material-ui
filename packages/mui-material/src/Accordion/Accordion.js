@@ -25,6 +25,7 @@ const useUtilityClasses = (ownerState) => {
       disabled && 'disabled',
       !disableGutters && 'gutters',
     ],
+    heading: ['heading'],
     region: ['region'],
   };
 
@@ -124,6 +125,14 @@ const AccordionRoot = styled(Paper, {
   }),
 );
 
+const AccordionHeading = styled('h3', {
+  name: 'MuiAccordion',
+  slot: 'Heading',
+  overridesResolver: (props, styles) => styles.heading,
+})({
+  all: 'unset',
+});
+
 const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAccordion' });
   const {
@@ -179,12 +188,21 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
   const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
 
+  const externalForwardedProps = {
+    slots: backwardCompatibleSlots,
+    slotProps: backwardCompatibleSlotProps,
+  };
+
+  const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
+    elementType: AccordionHeading,
+    externalForwardedProps,
+    className: classes.heading,
+    ownerState,
+  });
+
   const [TransitionSlot, transitionProps] = useSlot('transition', {
     elementType: Collapse,
-    externalForwardedProps: {
-      slots: backwardCompatibleSlots,
-      slotProps: backwardCompatibleSlotProps,
-    },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -196,7 +214,9 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
       square={square}
       {...other}
     >
-      <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
+      <AccordionHeadingSlot {...accordionProps}>
+        <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
+      </AccordionHeadingSlot>
       <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
         <div
           aria-labelledby={summary.props.id}
@@ -274,6 +294,7 @@ Accordion.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    heading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -281,6 +302,7 @@ Accordion.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    heading: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
@@ -299,13 +321,11 @@ Accordion.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps: PropTypes.object,
 };

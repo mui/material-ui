@@ -22,7 +22,7 @@ const iframeDefaultJoyTheme = extendTheme({
 });
 
 function FramedDemo(props) {
-  const { children, document, productId } = props;
+  const { children, document, usesCssVarsTheme } = props;
 
   const theme = useTheme();
   React.useEffect(() => {
@@ -52,15 +52,14 @@ function FramedDemo(props) {
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);
 
-  const Wrapper = productId === 'joy-ui' ? CssVarsProvider : React.Fragment;
-  const wrapperProps =
-    productId === 'joy-ui'
-      ? {
-          documentNode: document,
-          colorSchemeNode: document.documentElement,
-          theme: iframeDefaultJoyTheme,
-        }
-      : {};
+  const Wrapper = usesCssVarsTheme ? CssVarsProvider : React.Fragment;
+  const wrapperProps = usesCssVarsTheme
+    ? {
+        documentNode: document,
+        colorSchemeNode: document.documentElement,
+        theme: iframeDefaultJoyTheme,
+      }
+    : {};
 
   return (
     <StylesProvider jss={jss} sheetsManager={sheetsManager}>
@@ -82,7 +81,7 @@ function FramedDemo(props) {
 FramedDemo.propTypes = {
   children: PropTypes.node,
   document: PropTypes.object.isRequired,
-  productId: PropTypes.string,
+  usesCssVarsTheme: PropTypes.bool,
 };
 
 const Iframe = styled('iframe')(({ theme }) => ({
@@ -94,7 +93,7 @@ const Iframe = styled('iframe')(({ theme }) => ({
 }));
 
 function DemoIframe(props) {
-  const { children, name, productId, ...other } = props;
+  const { children, name, usesCssVarsTheme, ...other } = props;
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
    */
@@ -124,7 +123,7 @@ function DemoIframe(props) {
       <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
-            <FramedDemo document={document} productId={productId}>
+            <FramedDemo document={document} usesCssVarsTheme={usesCssVarsTheme}>
               {children}
             </FramedDemo>,
             document.body,
@@ -137,7 +136,7 @@ function DemoIframe(props) {
 DemoIframe.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
-  productId: PropTypes.string,
+  usesCssVarsTheme: PropTypes.bool,
 };
 
 // Use the default Material UI theme for the demos
@@ -178,7 +177,6 @@ function getTheme(outerTheme, injectTheme) {
   return resultTheme;
 }
 
-// TODO: Let demos decide whether they need JSS
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
   insertionPoint:
@@ -195,12 +193,12 @@ function DemoSandbox(props) {
     iframe = false,
     name,
     onResetDemoClick,
-    productId,
+    usesCssVarsTheme,
     ...other
   } = props;
   const [injectTheme, setInjectTheme] = React.useState();
   const Sandbox = iframe ? DemoIframe : React.Fragment;
-  const sandboxProps = iframe ? { name, productId, ...other } : {};
+  const sandboxProps = iframe ? { name, usesCssVarsTheme, ...other } : {};
 
   const t = useTranslate();
 
@@ -229,7 +227,7 @@ function DemoSandbox(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {productId === 'joy-ui' ? (
+      {usesCssVarsTheme ? (
         children
       ) : (
         <StylesProvider jss={jss}>
@@ -247,7 +245,7 @@ DemoSandbox.propTypes = {
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
-  productId: PropTypes.string,
+  usesCssVarsTheme: PropTypes.bool,
 };
 
 export default React.memo(DemoSandbox);
