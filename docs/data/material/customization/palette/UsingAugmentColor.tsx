@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/system';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 // Augment the palette to include a salmon color
 declare module '@mui/material/styles' {
