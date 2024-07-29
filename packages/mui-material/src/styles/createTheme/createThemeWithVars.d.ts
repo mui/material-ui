@@ -1,11 +1,11 @@
 import { OverridableStringUnion } from '@mui/types';
 import { SxConfig, SxProps, CSSObject, ApplyStyles } from '@mui/system';
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
-import { ThemeOptions, Theme } from './createTheme';
-import { Palette, PaletteOptions } from './createPalette';
-import { Shadows } from './shadows';
-import { ZIndex } from './zIndex';
-import { Components } from './components';
+import { ThemeOptions, Theme } from './createThemeWithoutVars';
+import { Palette, PaletteOptions } from '../createPalette';
+import { Shadows } from '../shadows';
+import { ZIndex } from '../zIndex';
+import { Components } from '../components';
 
 /**
  * default MD color-schemes
@@ -470,7 +470,7 @@ export interface CssVarsTheme extends ColorSystem {
  * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready-to-use theme object.
  */
-export default function extendTheme(
+export default function createThemeWithVars(
   options?: CssVarsThemeOptions,
   ...args: object[]
 ): Omit<Theme, 'applyStyles'> & CssVarsTheme;
