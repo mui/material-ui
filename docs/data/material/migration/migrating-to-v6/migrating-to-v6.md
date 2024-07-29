@@ -18,7 +18,7 @@ Though optional, we highly recommend migrating your Material UI app to Pigment C
 
 Material UI v6 includes several other quality-of-life improvements, including:
 
-- The `CssVarsProvider` API (now stable). CSS variables provide more performant customization possibilities along with a cleaner developer experience.
+- Stabilizing the `CssVarsProvider` API. CSS variables provide more performant customization possibilities along with a cleaner developer experience.
 - Support for container queries in themes.
 - A new theme utility for adding styles to specific color modes.
 
