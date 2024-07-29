@@ -110,9 +110,12 @@ For alternative installation methods, refer to the [CDN documentation](/material
 
 #### Accordion Summary heading
 
-To meet the [W3C Accordion Pattern standard](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), the Accordion Summary is now wrapped with a default `h3` heading element. This change may affect customizations relying on the previous DOM structure and CSS specificity. Additionally, the default heading element might conflict with existing heading structures on your page.
+To meet the [W3C Accordion Pattern standard](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), the Accordion Summary is now wrapped with a default `<h3>` heading element.
+This change may affect customizations relying on the previous DOM structure and CSS specificity.
+Additionally, the default heading element might conflict with existing heading structures on your page.
 
-If your styles or DOM manipulations depend on the old structure, you will need to update them to accommodate the new heading element. If the default heading element conflicts with your existing structure, you can change the heading element using the `slotProps.heading.component` prop.
+If your styles or DOM manipulations depend on the old structure, you will need to update them to accommodate the new heading element.
+If the default heading element conflicts with your existing structure, you can change the heading element using the `slotProps.heading.component` prop.
 
 ```jsx
 <Accordion slotProps={{ heading: { component: 'h4' } }}>
@@ -141,6 +144,8 @@ These values offer more granular options for three specific use cases previously
 
 These are available in addition to the existing `"input"`, `"reset"`, and `"clear"` values.
 
+### Chip
+
 In earlier versions, the Chip component would lose focus when the user pressed the <kbd class="key">esc</kbd> key, which differs from how other button-like components work.
 In v6 the Chip now retains focus as expected.
 
@@ -168,11 +173,11 @@ export default function ChipExample() {
 }
 ```
 
-### Loading Button children
+### Loading Button
 
 In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
 
-### Grid v2 (Unstable_Grid) changes
+### Grid v2 (Unstable_Grid)
 
 The Grid v2 component was updated to match the API of the new Pigment Grid component to enable interoperability between the two:
 
@@ -270,12 +275,12 @@ Still, we strongly recommend adopting this new behavior rather than trying to re
 
 <img src="/static/material-ui/migration-v5/grid-spacing-change.png" style="width: 814px;" alt="Before and after of the Grid items no longer including spacing in their boxes." width="1628" height="400" />
 
-### Rating aria-label fixed
+### Rating
 
 Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
 This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
 
-### useMediaQuery types removed
+### useMediaQuery
 
 The following deprecated types are removed in v6:
 
@@ -297,7 +302,7 @@ If you're already using them in v5 you can now drop the experimental prefix:
 
 See [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) for more details.
 
-### Add styles for specific color modes
+### Color mode theme utility
 
 Material UI v6 introduces a new utility for adding styles to specific color modes called `theme.applyStyles`, designed to replace `theme.palette.mode` when applying light or dark styles:
 
