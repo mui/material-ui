@@ -1,7 +1,7 @@
 import { OverridableStringUnion } from '@mui/types';
 import { SxConfig, SxProps, CSSObject, ApplyStyles } from '@mui/system';
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
-import { ThemeOptions, Theme } from './createThemeWithoutVars';
+import { ThemeOptions, Theme } from './createThemeNoVars';
 import { Palette, PaletteOptions } from '../createPalette';
 import { Shadows } from '../shadows';
 import { ZIndex } from '../zIndex';

@@ -20,7 +20,7 @@ import {
   hslToRgb,
 } from '@mui/system/colorManipulator';
 
-import createThemeWithoutVars from './createThemeWithoutVars';
+import createThemeNoVars from './createThemeNoVars';
 import defaultShouldSkipGeneratingVar from '../shouldSkipGeneratingVar';
 import getOverlayAlpha from '../getOverlayAlpha';
 import defaultGetSelector from '../createGetSelector';
@@ -113,7 +113,7 @@ function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
   }
   scheme = scheme === true ? {} : scheme;
   const mode = colorScheme === 'dark' ? 'dark' : 'light';
-  const { palette, ...muiTheme } = createThemeWithoutVars({
+  const { palette, ...muiTheme } = createThemeNoVars({
     ...restTheme,
     palette: {
       mode,

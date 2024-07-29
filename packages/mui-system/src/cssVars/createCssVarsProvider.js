@@ -83,7 +83,8 @@ export default function createCssVarsProvider(options) {
     const defaultMode =
       colorSchemes[defaultLightColorScheme] && colorSchemes[defaultDarkColorScheme]
         ? 'system'
-        : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode;
+        : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode ||
+          restThemeProp.palette?.mode;
 
     // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
     const {
@@ -239,7 +240,11 @@ export default function createCssVarsProvider(options) {
     );
 
     let shouldGenerateStyleSheet = true;
-    if (disableStyleSheetGeneration || (nested && upperTheme?.cssVarPrefix === cssVarPrefix)) {
+    if (
+      disableStyleSheetGeneration ||
+      restThemeProp.customProperties === false ||
+      (nested && upperTheme?.cssVarPrefix === cssVarPrefix)
+    ) {
       shouldGenerateStyleSheet = false;
     }
 
@@ -261,7 +266,7 @@ export default function createCssVarsProvider(options) {
       </React.Fragment>
     );
 
-    if (nested) {
+    if (nested && restThemeProp.customProperties !== false) {
       return element;
     }
 

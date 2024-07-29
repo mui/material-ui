@@ -1,68 +1,25 @@
-import {
-  ThemeOptions as SystemThemeOptions,
-  Theme as SystemTheme,
-  SxProps,
-  CSSObject,
-  SxConfig,
-} from '@mui/system';
-import { Mixins, MixinsOptions } from '../createMixins';
-import { Palette, PaletteOptions } from '../createPalette';
-import { Typography, TypographyOptions } from '../createTypography';
-import { Shadows } from '../shadows';
-import { Transitions, TransitionsOptions } from '../createTransitions';
-import { ZIndex, ZIndexOptions } from '../zIndex';
-import { Components } from '../components';
-import createThemeWithoutVars from './createThemeWithoutVars';
-import createThemeWithVars, {
-  CssVarsThemeOptions,
-  ColorSystemOptions,
-  CssVarsPalette,
-  ThemeVars,
-  SupportedColorScheme,
-} from './createThemeWithVars';
+import createPalette from '../createPalette';
+import createThemeWithVars, { CssVarsThemeOptions, ColorSystem } from './createThemeWithVars';
+import createThemeNoVars, { Theme, ThemeOptions } from './createThemeNoVars';
 
-/**
- * To disable custom properties, use module augmentation
- *
- * declare module '@mui/material/styles' {
- *   interface CssThemeVariables {
- *     disabled: true;
- *   }
- * }
- */
-export interface CssThemeVariables {}
-
-type CssVarsOptions = CssThemeVariables extends { disabled: true } ? {} : ColorSystemOptions;
-
-export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
-  mixins?: MixinsOptions;
-  components?: Components<Omit<Theme, 'components'>>;
-  palette?: PaletteOptions;
-  shadows?: Shadows;
-  transitions?: TransitionsOptions;
-  typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
-  zIndex?: ZIndexOptions;
-  unstable_strictMode?: boolean;
-  unstable_sxConfig?: SxConfig;
-}
-
-interface BaseTheme extends SystemTheme {
-  mixins: Mixins;
-  palette: Palette & (CssThemeVariables extends { disabled: true } ? {} : CssVarsPalette);
-  shadows: Shadows;
-  transitions: Transitions;
-  typography: Typography;
-  zIndex: ZIndex;
-  unstable_strictMode?: boolean;
-  vars: CssThemeVariables extends { disabled: true } ? undefined : ThemeVars;
-}
-
-export interface Theme extends BaseTheme {
-  customProperties?: false;
-  defaultColorScheme: SupportedColorScheme;
-  components?: Components<BaseTheme>;
-  unstable_sx: (props: SxProps<Theme>) => CSSObject;
-  unstable_sxConfig: SxConfig;
+// eslint-disable-next-line consistent-return
+function attachColorScheme(
+  theme: { colorSchemes?: Partial<Record<string, any>> },
+  scheme: 'light' | 'dark',
+  colorScheme: boolean | Record<string, any> | undefined,
+) {
+  if (!theme.colorSchemes) {
+    return undefined;
+  }
+  if (colorScheme) {
+    theme.colorSchemes[scheme] = {
+      ...(colorScheme !== true && colorScheme),
+      palette: createPalette({
+        ...(colorScheme === true ? {} : colorScheme),
+        mode: scheme,
+      }),
+    };
+  }
 }
 
 export default function createTheme(
@@ -80,11 +37,6 @@ export default function createTheme(
     } = {},
   ...args: object[]
 ): Theme {
-  if (options.customProperties === false) {
-    // @ts-expect-error `vars` can be undefined
-    return createThemeWithoutVars(options, ...args);
-  }
-
   const {
     palette,
     colorSchemes: initialColorSchemes = !palette ? { light: true } : undefined,
@@ -107,12 +59,34 @@ export default function createTheme(
       : undefined),
   };
 
+  if (customProperties === false) {
+    // @ts-expect-error ignore mismatch types here
+    const theme = createThemeNoVars(options, ...args) as unknown as Theme;
+    if (!('colorSchemes' in options)) {
+      return theme;
+    }
+
+    theme.colorSchemes = {};
+
+    if (theme.palette.mode === 'light') {
+      theme.colorSchemes = { light: { palette: theme.palette } as ColorSystem };
+      attachColorScheme(theme, 'dark', colorSchemesInput.dark);
+    }
+    if (theme.palette.mode === 'dark') {
+      theme.colorSchemes = { dark: { palette: theme.palette } as ColorSystem };
+      attachColorScheme(theme, 'light', colorSchemesInput.light);
+    }
+
+    theme.defaultColorScheme = defaultColorSchemeInput;
+    return theme;
+  }
+
   return createThemeWithVars(
     {
       ...rest,
       colorSchemes: colorSchemesInput,
       defaultColorScheme: defaultColorSchemeInput,
-      ...(typeof customProperties !== 'boolean' ? customProperties : undefined),
+      ...(typeof customProperties !== 'boolean' && customProperties),
     },
     ...args,
   );

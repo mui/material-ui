@@ -12,10 +12,37 @@ import { Shadows } from '../shadows';
 import { Transitions, TransitionsOptions } from '../createTransitions';
 import { ZIndex, ZIndexOptions } from '../zIndex';
 import { Components } from '../components';
+import {
+  CssVarsPalette,
+  ColorSystemOptions,
+  ColorSystem,
+  ThemeVars,
+  SupportedColorScheme,
+} from './createThemeWithVars';
 
-export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
+/**
+ * To disable custom properties, use module augmentation
+ *
+ * @example
+ * declare module '@mui/material/styles' {
+ *   interface CssThemeVariables {
+ *     disabled: true;
+ *   }
+ * }
+ */
+export interface CssThemeVariables {}
+
+type CssVarsOptions<CustomProperties = CssThemeVariables> = CustomProperties extends {
+  disabled: true;
+}
+  ? {}
+  : ColorSystemOptions;
+
+export interface ThemeOptions<CustomProperties = CssThemeVariables>
+  extends Omit<SystemThemeOptions, 'zIndex'>,
+    CssVarsOptions {
   mixins?: MixinsOptions;
-  components?: Components<Omit<Theme, 'components'>>;
+  components?: Components<Omit<Theme<CustomProperties>, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
@@ -25,15 +52,15 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   unstable_sxConfig?: SxConfig;
 }
 
-interface BaseTheme extends SystemTheme {
+interface BaseTheme<CustomProperties = CssThemeVariables> extends SystemTheme {
   mixins: Mixins;
-  palette: Palette;
+  palette: Palette & (CustomProperties extends { disabled: true } ? {} : CssVarsPalette);
   shadows: Shadows;
   transitions: Transitions;
   typography: Typography;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
-  vars: undefined;
+  vars: CssThemeVariables extends { disabled: true } ? undefined : ThemeVars;
 }
 
 // shut off automatic exporting for the `BaseTheme` above
@@ -42,8 +69,15 @@ export {};
 /**
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
-export interface Theme extends BaseTheme {
-  defaultColorScheme: 'light' | 'dark';
+export interface Theme<CustomProperties = CssThemeVariables> extends BaseTheme {
+  colorSchemes?: Partial<
+    Record<
+      SupportedColorScheme,
+      CustomProperties extends { disabled: true } ? { palette: Palette } : ColorSystem
+    >
+  >;
+  defaultColorScheme: SupportedColorScheme;
+  customProperties?: false;
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
@@ -55,4 +89,4 @@ export interface Theme extends BaseTheme {
  * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready-to-use theme object.
  */
-export default function createThemeWithoutVars(options?: ThemeOptions, ...args: object[]): Theme;
+export default function createThemeNoVars(options?: ThemeOptions, ...args: object[]): Theme;
