@@ -1,5 +1,43 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.0-beta.4
+
+<!-- generated comparing v6.0.0-beta.3..next -->
+
+_Jul 29, 2024_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@6.0.0-beta.4`
+
+- [Accordion] Render a heading wrapping `AccordionSummary` button per W3C Accordion Pattern standards (#42914) @ZeeshanTamboli
+- [Divider] Enable borderStyle enhancement in divider with children (#42715) @anuujj
+- [ImageListItemBar] Deprecate composed classes (#42905) @sai6855
+
+### `@mui/system@6.0.0-beta.4`
+
+- Make `createBreakpoints` independent for stringify theme (#43048) @siriwatknp
+
+### `@mui/utils@6.0.0-beta.4`
+
+- Fix issues reported by the React Compiler (#43051) @markliu2013
+
+### Docs
+
+- [material-ui] Polish out data table demo (#43072) @zanivan
+- [material-ui][Snackbar] Improve reason type in demos (#43077) @sai6855
+- Fix page description line break @oliviertassinari
+
+### Core
+
+- Revert "Include history from the @mui/base components" (#43078) @mnajdova
+- Fix event naming convention @oliviertassinari
+- Include history from the @mui/base components (#43076) @mnajdova
+- [docs-infra] Move ads to the `@mui/docs` package (#42944) @alexfauquette
+- [website] Fine-tune button styles on the branding theme (#43082) @zanivan
+
+All contributors of this release in alphabetical order: @alexfauquette, @anuujj, @markliu2013, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
+
 ## 6.0.0-beta.3
 
 <!-- generated comparing v6.0.0-beta.2..next -->
