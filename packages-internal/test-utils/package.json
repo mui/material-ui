@@ -35,7 +35,7 @@
     "@babel/preset-typescript": "^7.24.7",
     "@babel/register": "^7.24.6",
     "@babel/runtime": "^7.24.8",
-    "@emotion/cache": "^11.13.0",
+    "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.0",
