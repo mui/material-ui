@@ -1144,6 +1144,62 @@ The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
  />;
 ```
 
+## ImageListItemBar
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#image-list-item-bar-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/image-list-item-bar-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the following props were deprecated:
+
+- `position` prop and `titleWrap` class
+- `actionPosition` prop and `titleWrap` class
+- `actionPosition` prop and `actionIcon` class
+
+Here's how to migrate:
+
+```diff
+- .MuiImageListItemBar-titleWrapBelow
++.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap
+- .MuiImageListItemBar-titleWrapActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap
+- .MuiImageListItemBar-titleWrapActionPosRight
++.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap
+- .MuiImageListItemBar-actionIconActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon
+```
+
+```diff
+ import { imageListItemBarClasses } from '@mui/material/ImageListItemBar';
+
+ MuiImageListItemBar: {
+   styleOverrides: {
+     root: {
+-      [`& .${imageListItemBarClasses.titleWrapBelow}`]: {
++      [`&.${imageListItemBarClasses.positionBelow} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosRight}`]: {
++      [`&.${imageListItemBarClasses.actionPositionRight} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.actionIconActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.actionIcon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
 ## Modal
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#modal-props) below to migrate the code as described in the following sections:
@@ -1498,6 +1554,32 @@ The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
 +  slotProps={{ arrow: { testid: 'test-id' } }}
  />
 ```
+
+## Typography
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#typography-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+### paragraph
+
+The Typography's `paragraph` prop was deprecated. If you want to render `p` when using Typography, pass `component="p"`.
+
+```diff
+ <Typography
+   variant="subtitle1"
+-  paragraph
++  component="p"
+ />
+```
+
+Note that Typography already renders a `p` by default, so there's no need to pass `component="p"` when not explicitly passing a variant.
+This is because `body1` is the default variant in Typography, and `body1` and `body2` variants render `p`, so there's no need to pass `component="p"` when using one of these variants.
+
+The `16px` of margin-bottom that was automatically added to the element when using `paragraph` must be manually handled now.
+The codemod that removes the `paragraph` prop adds `sx={{ marginBottom: '16px' }}` to the Typography component.
 
 ## StepLabel
 

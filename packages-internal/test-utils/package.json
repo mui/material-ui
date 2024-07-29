@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -35,8 +35,8 @@
     "@babel/preset-typescript": "^7.24.7",
     "@babel/register": "^7.24.6",
     "@babel/runtime": "^7.24.8",
-    "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.4",
+    "@emotion/cache": "^11.13.1",
+    "@emotion/react": "^11.13.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
@@ -48,7 +48,7 @@
     "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
     "mocha": "^10.6.0",
-    "playwright": "^1.45.1",
+    "playwright": "^1.45.3",
     "prop-types": "^15.8.1",
     "sinon": "^16.1.3"
   },
