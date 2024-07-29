@@ -1,5 +1,27 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.16.6
+
+<!-- generated comparing v5.16.5..master -->
+
+_Jul 29, 2024_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@5.16.6`
+
+- [Divider] Enable borderStyle enhancement in divider with children (#43059) @anuujj
+
+### Docs
+
+- [material-ui][Snackbar] Improve close `reason` type in demos (#43105) @sai6855
+
+### Core
+
+- [code-infra] Use the same CI names on master & next (#43064) @mnajdova
+
+All contributors of this release in alphabetical order: @anuujj, @mnajdova, @sai6855
+
 ## 5.16.5
 
 <!-- generated comparing v5.16.4..master -->
