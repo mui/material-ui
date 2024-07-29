@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@babel/core": "^7.24.9",
-    "@babel/runtime": "^7.24.8",
-    "@babel/runtime-corejs2": "^7.24.8",
+    "@babel/runtime": "^7.25.0",
+    "@babel/runtime-corejs2": "^7.25.0",
     "@docsearch/react": "^3.6.1",
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.0",
@@ -112,7 +112,7 @@
     "webpack-bundle-analyzer": "^4.10.2"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-constant-elements": "^7.24.7",
+    "@babel/plugin-transform-react-constant-elements": "^7.25.1",
     "@babel/preset-typescript": "^7.24.7",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
