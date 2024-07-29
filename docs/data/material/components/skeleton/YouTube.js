@@ -45,7 +45,6 @@ function Media(props) {
           ) : (
             <Skeleton variant="rectangular" width={210} height={118} />
           )}
-
           {item ? (
             <Box sx={{ pr: 2 }}>
               <Typography gutterBottom variant="body2">

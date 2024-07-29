@@ -57,7 +57,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             <ClearIcon />
           </StyledClearIndicator>
         )}
-
         <StyledPopupIndicator
           {...getPopupIndicatorProps()}
           className={popupOpen ? 'popupOpen' : undefined}
