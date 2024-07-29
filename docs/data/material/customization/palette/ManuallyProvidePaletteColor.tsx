@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/system';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 const theme = createTheme({
   palette: {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import { Box, Stack } from '@mui/system';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 const defaultTonalOffsetTheme = createTheme({
   palette: {
