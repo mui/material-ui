@@ -336,13 +336,13 @@ See [Deprecations](/material-ui/migration/migrating-from-deprecated-apis/) for d
 ### System props
 
 MUI System props (such as `mt={*}`, `bgcolor={*}`, and more) have been deprecated in the Box, Typography, Link, Grid, and Stack components.
-Move all System props into the `sx` prop by using the codemod below:
+Use the codemod below to move all System props to the `sx` prop:
 
 ```bash
 npx @mui/codemod@next v6.0.0/system-props <path/to/folder>
 ```
 
-Or do it manually like the example below:
+You can also manually update your components as shown in the snippet below:
 
 ```diff
 - <Button mr={2}>...</Button>
@@ -352,13 +352,14 @@ Or do it manually like the example below:
 ### Theme component variants
 
 Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
-Update the theme file using the codemod:
+
+Use this codemod to update your project's theme file:
 
 ```bash
 npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme>
 ```
 
-Or do it manually like the example below:
+You can also manually update your theme as shown in the snippet below:
 
 ```diff
  createTheme({
@@ -379,4 +380,4 @@ This reduces the API surface and lets you define variants in other slots of the 
 
 ## Pigment CSS integration (optional)
 
-Check out the [Pigment CSS migration page](/material-ui/migration/migrating-to-pigment-css/) to learn how to integrate it into your project.
+Once you've finished upgrading your app to v6, you'll be ready to start [migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) for RSC support and a smaller bundle size.
