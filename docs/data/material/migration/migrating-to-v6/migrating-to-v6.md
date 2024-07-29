@@ -106,9 +106,7 @@ To align with React 19's removal of UMD builds, Material UI has also removed it
 Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/).
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
-### Autocomplete
-
-#### onInputChange reason values
+### Autocomplete onInputChange values added
 
 Three new values have been introduced to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
 These values offer more granular options for three specific use cases previously covered by `"reset"`:
@@ -152,7 +150,7 @@ export default function ChipExample() {
 
 In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
 
-### Grid v2 (Unstable_Grid)
+### Grid v2 (Unstable_Grid) changes
 
 The Grid v2 component was updated to match the API of the new Pigment Grid component to enable interoperability between the two:
 
@@ -161,7 +159,7 @@ The Grid v2 component was updated to match the API of the new Pigment Grid compo
 
 This introduces breaking changes described in the sections that follow:
 
-#### Size and offset props
+#### Size and offset props renamed
 
 In v5, the size and offset props were named to correspond with the theme's breakpoints.
 For the default theme, these were:
@@ -202,7 +200,7 @@ Use this codemod to migrate your project to the new `size` and `offset` props:
 npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
 ```
 
-##### Custom breakpoints
+##### Using custom breakpoints
 
 The usage described above also applies to custom breakpoints:
 
@@ -236,7 +234,7 @@ This update may lead to unexpected changes to your app's layout.
 Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
 :::
 
-#### Grid item spacing
+#### Grid item spacing change
 
 In v5, Grid items included spacing in their boxes.
 In v6, Grid items no longer inclue spacing in their boxes.
@@ -250,14 +248,14 @@ Still, we strongly recommend adopting this new behavior rather than trying to re
 
 <img src="/static/material-ui/migration-v5/grid-spacing-change.png" style="width: 814px;" alt="Before and after of the Grid items no longer including spacing in their boxes." width="1628" height="400" />
 
-### Rating aria-label
+### Rating aria-label fixed
 
 Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
 This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
 
-### useMediaQuery
+### useMediaQuery types removed
 
-The following deprecated types were removed:
+The following deprecated types are removed in v6:
 
 - `MuiMediaQueryList`: use `MediaQueryList` (from lib.dom.d.ts) instead.
 - `MuiMediaQueryListEvent`: use `MediaQueryListEvent` (from lib.dom.d.ts) instead.
@@ -268,19 +266,18 @@ The following deprecated types were removed:
 ### CssVarsProvider and extendTheme
 
 The `CssVarsProvider` and `extendTheme` APIs are now stable.
-If you already use them in v5, you can now drop the experimental prefix.
+If you're already using them in v5 you can now drop the experimental prefix:
 
 ```diff
 - import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 + import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 ```
 
-Check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/) to learn more about it.
+See [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) for more details.
 
 ### Add styles for specific color modes
 
-Material UI v6 introduces a new utility for adding styles to specific color modes called `theme.applyStyles`.
-It's designed to replace `theme.palette.mode` when applying light or dark styles.
+Material UI v6 introduces a new utility for adding styles to specific color modes called `theme.applyStyles`, designed to replace `theme.palette.mode` when applying light or dark styles:
 
 ```diff
  const MyComponent = styled('button')(({ theme }) => ({
@@ -303,21 +300,22 @@ npx @mui/codemod@next v6.0.0/theme-v6 <path/to/theme-file>
 ```
 
 :::info
-Run `v6.0.0/theme-v6` against the file that contains the custom `styleOverrides`. Ignore this codemod if you don't have a custom theme.
+If you have a custom theme, run `v6.0.0/theme-v6` against the file that contains your custom `styleOverrides`.
+Otherwise you can ignore this codemod.
 :::
 
 ## Deprecations
 
-### Components props
+### Overriding props
 
-The `components` and `componentsProps` props have been deprecated in favor of `slots` and `slotProps`, making the API surface of the components more consistent.
+The `components` and `componentsProps` props have been deprecated in favor of `slots` and `slotProps` for a more consistent component API surface.
 
-Check out the [deprecations page](/material-ui/migration/migrating-from-deprecated-apis/) to learn which component no longer has these props.
+See [Deprecations](/material-ui/migration/migrating-from-deprecated-apis/) for details about specific components as they relate to this change.
 
 ### System props
 
-System props, such as `mt={*}`, `bgcolor={*}`, and others, are deprecated in the Box, Typography, Link, Grid, and Stack components.
-Move all system props into the `sx` prop by using the codemod below:
+MUI System props (such as `mt={*}`, `bgcolor={*}`, and more) have been deprecated in the Box, Typography, Link, Grid, and Stack components.
+Move all System props into the `sx` prop by using the codemod below:
 
 ```bash
 npx @mui/codemod@next v6.0.0/system-props <path/to/folder>
