@@ -39,7 +39,7 @@ export default <
         if (rule) {
           return {
             [rule.replace('%s', colorScheme)]: excludedVariables,
-            ':root': css,
+            [`:root, ${rule.replace('%s', colorScheme)}`]: css,
           };
         }
         return { ':root': { ...css, ...excludedVariables } };
