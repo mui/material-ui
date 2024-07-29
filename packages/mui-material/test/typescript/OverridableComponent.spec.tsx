@@ -76,7 +76,7 @@ declare const Foo: OverridableComponent<{
     expectType<HTMLButtonElement | null, typeof elem>(elem);
   }}
   onClick={(event) => {
-    expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
+    expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof event>(event);
     event.currentTarget.checkValidity();
   }}
 />;
