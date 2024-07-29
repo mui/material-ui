@@ -42,6 +42,7 @@
       "@mui/material-nextjs/*": ["./packages/mui-material-nextjs/src/*"],
       "@mui/joy": ["./packages/mui-joy/src"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
+      "@mui/icons-material": ["./packages/mui-icons-material/lib/esm/index.js"],
       "@mui/icons-material/*": ["./packages/mui-icons-material/src/icon.d.ts"],
       "@mui/internal-docs-utils": ["./packages-internal/docs-utils/src"],
       "@mui/internal-scripts/typescript-to-proptypes": [

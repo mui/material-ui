@@ -36,14 +36,14 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.8"
+    "@babel/runtime": "^7.25.0"
   },
   "devDependencies": {
-    "@emotion/cache": "^11.13.0",
+    "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.0",
     "@emotion/server": "^11.11.0",
     "@types/react": "^18.3.3",
-    "next": "13.5.1",
+    "next": "14.2.5",
     "react": "^18.3.1"
   },
   "peerDependencies": {

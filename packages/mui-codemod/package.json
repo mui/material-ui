@@ -31,18 +31,18 @@
   },
   "dependencies": {
     "@babel/core": "^7.24.9",
-    "@babel/runtime": "^7.24.8",
-    "@babel/traverse": "^7.24.8",
+    "@babel/runtime": "^7.25.0",
+    "@babel/traverse": "^7.25.1",
     "jscodeshift": "^0.16.1",
     "jscodeshift-add-imports": "^1.0.11",
-    "postcss": "^8.4.39",
+    "postcss": "^8.4.40",
     "postcss-cli": "^11.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@types/chai": "^4.3.16",
     "@types/jscodeshift": "0.11.11",
-    "chai": "^4.4.1"
+    "chai": "^4.5.0"
   },
   "sideEffects": false,
   "publishConfig": {
