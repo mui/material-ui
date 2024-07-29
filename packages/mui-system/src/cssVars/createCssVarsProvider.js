@@ -47,7 +47,7 @@ export default function createCssVarsProvider(options) {
   function CssVarsProvider(props) {
     const {
       children,
-      theme: themeProp = defaultTheme,
+      theme: themeProp,
       modeStorageKey = defaultModeStorageKey,
       colorSchemeStorageKey = defaultColorSchemeStorageKey,
       disableTransitionOnChange = designSystemTransitionOnChange,
@@ -62,13 +62,13 @@ export default function createCssVarsProvider(options) {
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
 
-    const scopedTheme = themeProp[themeId];
-    const {
-      colorSchemes = {},
-      components = {},
-      cssVarPrefix,
-      ...restThemeProp
-    } = scopedTheme || themeProp;
+    const scopedTheme = React.useMemo(() => {
+      if (themeProp) {
+        return themeProp[themeId] || themeProp;
+      }
+      return typeof defaultTheme === 'function' ? defaultTheme() : defaultTheme;
+    }, [themeProp]);
+    const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = scopedTheme;
     const joinedColorSchemes = Object.keys(colorSchemes)
       .filter((k) => !!colorSchemes[k])
       .join(',');

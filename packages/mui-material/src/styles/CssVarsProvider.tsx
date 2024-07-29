@@ -7,15 +7,13 @@ import createTypography from './createTypography';
 import THEME_ID from './identifier';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
-const defaultTheme = extendTheme();
-
 const {
   CssVarsProvider,
   useColorScheme,
   getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
 } = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
   themeId: THEME_ID,
-  theme: defaultTheme,
+  theme: extendTheme,
   colorSchemeStorageKey: defaultConfig.colorSchemeStorageKey,
   modeStorageKey: defaultConfig.modeStorageKey,
   defaultColorScheme: {
