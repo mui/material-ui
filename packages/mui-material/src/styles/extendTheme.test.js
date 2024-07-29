@@ -807,5 +807,19 @@ describe('extendTheme', () => {
       expect(theme.getColorSchemeSelector('light')).to.equal('[data-theme-light] &');
       expect(theme.getColorSchemeSelector('dark')).to.equal('[data-theme-dark] &');
     });
+
+    it('should use a custom class selector when dark is the default', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: '.mode-%s',
+        defaultColorScheme: 'dark',
+      });
+      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+        ':root',
+        '.mode-dark', // specific variables for dark
+        ':root, .mode-dark',
+        '.mode-light',
+      ]);
+    });
   });
 });
