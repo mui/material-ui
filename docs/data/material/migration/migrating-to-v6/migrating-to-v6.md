@@ -7,7 +7,7 @@
 ### React Server Component support
 
 Material UI v6 introduces Pigment CSS, a zero-runtime CSS-in-JS styling engine to replace Emotion and styled-components as a more future-proof solution for writing styles in React 19 and beyond.
-With Pigment CSS, styles are extracted at build time rather than runtime, avoiding client-side recalcuations and unlocking React Server Component (RSC) compatibility.
+With Pigment CSS, styles are extracted at build time rather than runtime, avoiding client-side recalculations and unlocking React Server Component (RSC) compatibility.
 This also leads to significant reductions in bundle sizes for Material UI apps.
 
 **In v6, Pigment CSS migration is opt-in.**
@@ -106,7 +106,7 @@ To align with React 19's removal of UMD builds, Material UI has also removed it
 Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/).
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
-### Autocomplete 
+### Autocomplete
 
 #### Accordion Summary heading
 
@@ -129,6 +129,7 @@ If your styles or DOM manipulations depend on the old structure, you will need t
   </AccordionDetails>
 </Accordion>
 ```
+
 #### onInputChange reason values added
 
 Three new values have been introduced to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
