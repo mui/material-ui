@@ -45,7 +45,7 @@
     "@types/node": "^18.19.42",
     "@types/react": "^18.3.3",
     "@types/uuid": "^9.0.8",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.3.3",
     "rimraf": "^5.0.9"

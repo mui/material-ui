@@ -34,7 +34,7 @@
     "@types/mocha": "^10.0.7",
     "@types/node": "^18.19.42",
     "babel-plugin-tester": "^11.0.4",
-    "chai": "^4.4.1"
+    "chai": "^4.5.0"
   },
   "peerDependencies": {
     "@mui/utils": "^5.0.0"
