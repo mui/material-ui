@@ -458,6 +458,8 @@ describe('createCssVarsProvider', () => {
 
       expect(document.documentElement.classList.contains('light')).to.equal(false);
       expect(document.documentElement.classList.contains('dark')).to.equal(true);
+
+      document.documentElement.classList.remove('dark'); // cleanup
     });
 
     it('attach data- on html', () => {
