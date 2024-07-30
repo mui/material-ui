@@ -20,17 +20,17 @@ import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeW
  * @example
  * declare module '@mui/material/styles' {
  *   interface CssThemeVariables {
- *     disabled: true;
+ *     enabled: true;
  *   }
  * }
  */
 export interface CssThemeVariables {}
 
 type CssVarsOptions = CssThemeVariables extends {
-  disabled: true;
+  enabled: true;
 }
-  ? {}
-  : ColorSystemOptions;
+  ? ColorSystemOptions
+  : {};
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions;
@@ -46,7 +46,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
 
 interface BaseTheme extends SystemTheme {
   mixins: Mixins;
-  palette: Palette & (CssThemeVariables extends { disabled: true } ? {} : CssVarsPalette);
+  palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;
   transitions: Transitions;
   typography: Typography;
@@ -57,9 +57,8 @@ interface BaseTheme extends SystemTheme {
 // shut off automatic exporting for the `BaseTheme` above
 export {};
 
-type CssVarsProperties = CssThemeVariables extends { disabled: true }
-  ? {}
-  : Pick<
+type CssVarsProperties = CssThemeVariables extends { enabled: true }
+  ? Pick<
       CssVarsTheme,
       | 'applyStyles'
       | 'colorSchemes'
@@ -73,7 +72,8 @@ type CssVarsProperties = CssThemeVariables extends { disabled: true }
       | 'generateSpacing'
       | 'shouldSkipGeneratingVar'
       | 'vars'
-    >;
+    >
+  : {};
 
 /**
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.

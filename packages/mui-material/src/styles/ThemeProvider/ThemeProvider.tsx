@@ -5,9 +5,8 @@ import { CssVarsProvider } from './ThemeProviderWithVars';
 import { CssThemeVariables } from '../createTheme/createThemeNoVars';
 import THEME_ID from '../identifier';
 
-type ThemeProviderCssVariablesProps = CssThemeVariables extends { disabled: true }
-  ? {}
-  : {
+type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true }
+  ? {
       /**
        * The node for attaching the `theme.colorSchemeSelector`.
        * @default document
@@ -24,7 +23,8 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { disabled: true
        * @default false
        */
       disableStyleSheetGeneration?: boolean;
-    };
+    }
+  : {};
 
 export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderCssVariablesProps {
   children?: React.ReactNode;

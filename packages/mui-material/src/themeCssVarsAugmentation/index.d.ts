@@ -1,5 +1,9 @@
 /**
- * @deprecated
- * CSS theme variables are included in the types by default. There is no need to use this module.
+ * Enhance the theme types to include new properties from the CssVarsProvider.
+ * The theme is typed with CSS variables in `styled`, `sx`, `useTheme`, etc.
  */
-export {};
+declare module '@mui/material/styles' {
+  interface CssThemeVariables {
+    enabled: true;
+  }
+}

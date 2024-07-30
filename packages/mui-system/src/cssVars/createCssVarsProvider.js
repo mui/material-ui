@@ -64,11 +64,16 @@ export default function createCssVarsProvider(options) {
 
     const scopedTheme = React.useMemo(() => {
       if (themeProp) {
-        return themeProp[themeId] || themeProp;
+        return themeProp[themeId];
       }
       return typeof defaultTheme === 'function' ? defaultTheme() : defaultTheme;
     }, [themeProp]);
-    const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = scopedTheme;
+    const {
+      colorSchemes = {},
+      components = {},
+      cssVarPrefix,
+      ...restThemeProp
+    } = scopedTheme || themeProp;
     const joinedColorSchemes = Object.keys(colorSchemes)
       .filter((k) => !!colorSchemes[k])
       .join(',');
