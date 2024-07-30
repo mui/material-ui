@@ -71,7 +71,7 @@ export default function createTheme(
   };
 
   if (cssVariables === false) {
-    const theme = createThemeNoVars(options, ...args) as unknown as Theme & {
+    const theme = createThemeNoVars(options as ThemeOptions, ...args) as unknown as Theme & {
       defaultColorScheme?: 'light' | 'dark';
       colorSchemes?: Partial<Record<string, any>>;
     };

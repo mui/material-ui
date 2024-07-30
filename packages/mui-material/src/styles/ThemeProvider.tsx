@@ -4,6 +4,7 @@ import { DefaultTheme } from '@mui/system';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
 import { CssVarsProvider } from './ThemeProviderWithVars';
 import { CssThemeVariables } from './createThemeNoVars';
+import { CssVarsTheme } from './createThemeWithVars';
 import THEME_ID from './identifier';
 
 type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true }
@@ -58,6 +59,5 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   if (!('colorSchemes' in muiTheme)) {
     return <ThemeProviderNoVars theme={theme} {...props} />;
   }
-  // @ts-expect-error `theme` is created by `createTheme`, typing is handled there.
-  return <CssVarsProvider theme={theme} {...props} />;
+  return <CssVarsProvider theme={theme as unknown as CssVarsTheme} {...props} />;
 }
