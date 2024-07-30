@@ -162,16 +162,25 @@ export default function createCssVarsProvider(options) {
         colorSchemeSelector &&
         colorSchemeSelector !== 'media'
       ) {
-        const selector = colorSchemeSelector.replace('%s', colorScheme);
-        if (selector.startsWith('.')) {
+        const selector = colorSchemeSelector;
+        let rule = colorSchemeSelector;
+        if (selector === 'class') {
+          rule = `.%s`;
+        }
+        if (selector === 'data') {
+          rule = `[data-%s]`;
+        }
+        if (selector?.startsWith('data-') && !selector.includes('%s')) {
+          // 'data-mui-color-scheme' -> '[data-mui-color-scheme="%s"]'
+          rule = `[${selector}="%s"]`;
+        }
+        if (rule.startsWith('.')) {
           colorSchemeNode.classList.remove(
-            ...allColorSchemes.map((scheme) =>
-              colorSchemeSelector.substring(1).replace('%s', scheme),
-            ),
+            ...allColorSchemes.map((scheme) => rule.substring(1).replace('%s', scheme)),
           );
-          colorSchemeNode.classList.add(selector.substring(1));
+          colorSchemeNode.classList.add(rule.substring(1).replace('%s', colorScheme));
         } else {
-          const matches = selector.match(/\[([^\]]+)\]/);
+          const matches = rule.replace('%s', colorScheme).match(/\[([^\]]+)\]/);
           if (matches) {
             const [attr, value] = matches[1].split('=');
             if (!value) {
@@ -183,7 +192,7 @@ export default function createCssVarsProvider(options) {
             }
             colorSchemeNode.setAttribute(attr, value ? value.replace(/"|'/g, '') : '');
           } else {
-            colorSchemeNode.setAttribute(selector, colorScheme);
+            colorSchemeNode.setAttribute(rule, colorScheme);
           }
         }
       }

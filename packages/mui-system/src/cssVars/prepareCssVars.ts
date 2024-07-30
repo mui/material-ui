@@ -69,6 +69,9 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
         return `@media (prefers-color-scheme: ${mode}) { :root`;
       }
       if (rule) {
+        if (theme.defaultColorScheme === colorScheme) {
+          return `:root, ${rule.replace('%s', String(colorScheme))}`;
+        }
         return rule.replace('%s', String(colorScheme));
       }
     }
