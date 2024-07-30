@@ -14,7 +14,7 @@ const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
  */
 function addTypeDeps(deps: Record<string, string>): void {
   const packagesWithDTPackage = Object.keys(deps)
-    .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
+    .filter((name) => !packagesWithBundledTypes.includes(name))
     // All the MUI packages come with bundled types
     .filter((name) => !muiNpmOrgs.some((org) => name.startsWith(org)));
 

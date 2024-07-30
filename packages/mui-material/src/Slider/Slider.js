@@ -728,7 +728,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 
           let markActive;
           if (track === false) {
-            markActive = values.indexOf(mark.value) !== -1;
+            markActive = values.includes(mark.value);
           } else {
             markActive =
               (track === 'normal' &&

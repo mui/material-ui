@@ -167,7 +167,7 @@ const oppositeDirection = {
 };
 
 export function isHorizontal(anchor) {
-  return ['left', 'right'].indexOf(anchor) !== -1;
+  return ['left', 'right'].includes(anchor);
 }
 
 export function getAnchor({ direction }, anchor) {

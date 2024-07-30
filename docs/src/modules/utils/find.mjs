@@ -38,15 +38,11 @@ export function findPages(
       .replace(/^\/index$/, '/') // Replace `index` by `/`.
       .replace(/\/index$/, '');
 
-    if (pathname.indexOf('.eslintrc') !== -1) {
+    if (pathname.includes('.eslintrc')) {
       return;
     }
 
-    if (
-      options.front &&
-      pathname.indexOf('/components') === -1 &&
-      pathname.indexOf('/api-docs') === -1
-    ) {
+    if (options.front && !pathname.includes('/components') && !pathname.includes('/api-docs')) {
       return;
     }
 

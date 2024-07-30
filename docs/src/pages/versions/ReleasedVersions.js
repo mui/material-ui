@@ -31,8 +31,7 @@ function ReleasedVersions() {
                 </Link>
               </TableCell>
               <TableCell>
-                {doc.version.length >= 6 &&
-                doc.version.indexOf('pre-release') === -1 ? (
+                {doc.version.length >= 6 && !doc.version.includes('pre-release') ? (
                   <Link
                     variant="body2"
                     rel="nofollow"

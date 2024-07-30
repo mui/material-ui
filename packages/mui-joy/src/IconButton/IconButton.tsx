@@ -233,7 +233,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   if (toggleButtonGroup?.value) {
     if (Array.isArray(toggleButtonGroup.value)) {
-      ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
+      ariaPressed = toggleButtonGroup.value.includes(props.value as string);
     } else {
       ariaPressed = toggleButtonGroup.value === props.value;
     }
