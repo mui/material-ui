@@ -4,7 +4,6 @@ import {
   SxProps,
   CSSObject,
   SxConfig,
-  ApplyStyles,
 } from '@mui/system';
 import { Mixins, MixinsOptions } from '../createMixins';
 import { Palette, PaletteOptions } from '../createPalette';
@@ -13,13 +12,7 @@ import { Shadows } from '../shadows';
 import { Transitions, TransitionsOptions } from '../createTransitions';
 import { ZIndex, ZIndexOptions } from '../zIndex';
 import { Components } from '../components';
-import {
-  CssVarsPalette,
-  ColorSystemOptions,
-  ColorSystem,
-  ThemeVars,
-  SupportedColorScheme,
-} from './createThemeWithVars';
+import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
 
 /**
  * To disable custom properties, use module augmentation
@@ -33,17 +26,15 @@ import {
  */
 export interface CssThemeVariables {}
 
-type CssVarsOptions<CssVariables = CssThemeVariables> = CssVariables extends {
+type CssVarsOptions = CssThemeVariables extends {
   disabled: true;
 }
   ? {}
   : ColorSystemOptions;
 
-export interface ThemeOptions<CssVariables = CssThemeVariables>
-  extends Omit<SystemThemeOptions, 'zIndex'>,
-    CssVarsOptions {
+export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions;
-  components?: Components<Omit<Theme<CssVariables>, 'components'>>;
+  components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
@@ -53,36 +44,45 @@ export interface ThemeOptions<CssVariables = CssThemeVariables>
   unstable_sxConfig?: SxConfig;
 }
 
-interface BaseTheme<CssVariables = CssThemeVariables> extends SystemTheme {
+interface BaseTheme extends SystemTheme {
   mixins: Mixins;
-  palette: Palette & (CssVariables extends { disabled: true } ? {} : CssVarsPalette);
+  palette: Palette & (CssThemeVariables extends { disabled: true } ? {} : CssVarsPalette);
   shadows: Shadows;
   transitions: Transitions;
   typography: Typography;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
-  vars: CssThemeVariables extends { disabled: true } ? undefined : ThemeVars;
 }
 
 // shut off automatic exporting for the `BaseTheme` above
 export {};
 
+type CssVarsProperties = CssThemeVariables extends { disabled: true }
+  ? {}
+  : Pick<
+      CssVarsTheme,
+      | 'applyStyles'
+      | 'colorSchemes'
+      | 'colorSchemeSelector'
+      | 'cssVarPrefix'
+      | 'defaultColorScheme'
+      | 'getCssVar'
+      | 'getColorSchemeSelector'
+      | 'generateThemeVars'
+      | 'generateStyleSheets'
+      | 'generateSpacing'
+      | 'shouldSkipGeneratingVar'
+      | 'vars'
+    >;
+
 /**
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
-export interface Theme<CssVariables = CssThemeVariables> extends BaseTheme<CssVariables> {
-  colorSchemes?: Partial<
-    Record<
-      SupportedColorScheme,
-      CssVariables extends { disabled: true } ? { palette: Palette } : ColorSystem
-    >
-  >;
-  defaultColorScheme: SupportedColorScheme;
+export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false;
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
-  applyStyles: ApplyStyles<SupportedColorScheme>;
 }
 
 /**

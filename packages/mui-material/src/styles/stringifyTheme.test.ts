@@ -1,10 +1,10 @@
 import { expect } from 'chai';
+import { createTheme } from '@mui/material/styles';
 import { stringifyTheme } from './stringifyTheme';
-import extendTheme from './extendTheme';
 
 describe('StringifyTheme', () => {
   it('should serialize the theme', () => {
-    const theme = extendTheme();
+    const theme = createTheme();
     const result = stringifyTheme({
       breakpoints: theme.breakpoints,
       transitions: theme.transitions,
@@ -59,7 +59,7 @@ export default theme;`);
   });
 
   it('should serialize the custom theme', () => {
-    const theme = extendTheme({
+    const theme = createTheme({
       breakpoints: {
         values: {
           mobile: 0,

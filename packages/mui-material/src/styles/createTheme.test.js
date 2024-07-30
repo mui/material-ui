@@ -72,6 +72,18 @@ describe('createTheme', () => {
       expect(light?.palette.primary.main).to.deep.equal(lightPalette.primary.main);
       expect(dark?.palette.primary.main).to.deep.equal(darkPalette.primary.main);
     });
+
+    it('should provide spacing in px', () => {
+      const theme = createTheme({ cssVariables: false });
+      expect(theme.spacing(1)).to.equal('8px');
+    });
+  });
+
+  describe('spacing', () => {
+    it('should provide the default spacing', () => {
+      const theme = createTheme();
+      expect(theme.spacing(1)).to.equal(`calc(1 * var(--mui-spacing, 8px))`);
+    });
   });
 
   describe('transitions', () => {
