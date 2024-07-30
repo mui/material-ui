@@ -86,7 +86,7 @@ pnpm add react@<version> react-dom@<version>
 
 ### Update TypeScript
 
-The minimum supported version of TypeScript has been increased from v3.5 to 4.1.
+The minimum supported version of TypeScript has been increased from v3.5 to 4.7.
 
 :::info
 We align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (published on npm under the `@types` namespace).
