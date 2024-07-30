@@ -30,9 +30,7 @@ A big thanks to the 9 contributors who made this release possible.
 
 ### Core
 
-- Revert "Include history from the @mui/base components" (#43078) @mnajdova
 - Fix event naming convention @oliviertassinari
-- Include history from the @mui/base components (#43076) @mnajdova
 - [docs-infra] Move ads to the `@mui/docs` package (#42944) @alexfauquette
 - [website] Fine-tune button styles on the branding theme (#43082) @zanivan
 
