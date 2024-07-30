@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { DefaultTheme } from '@mui/system';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
