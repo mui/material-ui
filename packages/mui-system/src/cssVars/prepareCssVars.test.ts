@@ -152,7 +152,7 @@ describe('prepareCssVars', () => {
     const stylesheets = result.generateStyleSheets();
     expect(stylesheets).to.deep.equal([
       { ':root': { '--fontSize-base': '1rem' } },
-      { '[data-color-scheme="dark"]': { '--color': 'red' } },
+      { ':root, [data-color-scheme="dark"]': { '--color': 'red' } },
       { '[data-color-scheme="light"]': { '--color': 'green' } },
     ]);
   });
