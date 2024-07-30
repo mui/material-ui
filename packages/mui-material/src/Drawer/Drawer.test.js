@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import defaultTheme from '@mui/material/styles/defaultTheme';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { getAnchor, isHorizontal } from './Drawer';
 import describeConformance from '../../test/describeConformance';
@@ -38,8 +37,8 @@ describe('<Drawer />', () => {
         if (/jsdom/.test(window.navigator.userAgent)) {
           this.skip();
         }
-        const enteringScreenDurationInSeconds =
-          defaultTheme.transitions.duration.enteringScreen / 1000;
+        const theme = createTheme();
+        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
         render(
           <Drawer open>
             <div />
@@ -322,13 +321,16 @@ describe('<Drawer />', () => {
 
   describe('zIndex', () => {
     it('should set correct zIndex on the root element', () => {
+      const theme = createTheme();
       render(
-        <Drawer open>
-          <div />
-        </Drawer>,
+        <ThemeProvider theme={theme}>
+          <Drawer open>
+            <div />
+          </Drawer>
+        </ThemeProvider>,
       );
       expect(document.querySelector(`.${classes.root}`)).toHaveComputedStyle({
-        zIndex: String(defaultTheme.zIndex.drawer),
+        zIndex: String(theme.zIndex.drawer),
       });
     });
   });

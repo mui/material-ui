@@ -243,10 +243,6 @@ describe('createCssVarsProvider', () => {
     describe('[option]: `disableTransitionOnChange`', () => {
       clock.withFakeTimers();
 
-      beforeEach(() => {
-        document.head.replaceChildren([]);
-      });
-
       it('disable all css transitions when switching between modes, given `disableTransitionOnChange` is true', () => {
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
           theme: createCssVarsTheme({
@@ -272,7 +268,7 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-        clock.runToLast();
+
         expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
@@ -313,7 +309,7 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-        clock.runToLast();
+
         expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );

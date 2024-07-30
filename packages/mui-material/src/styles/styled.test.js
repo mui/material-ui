@@ -62,7 +62,6 @@ describe('styled', () => {
     `;
 
     const theme = createTheme({
-      cssVariables: false,
       spacing: 10,
     });
 
@@ -83,7 +82,6 @@ describe('styled', () => {
     }));
 
     const theme = createTheme({
-      cssVariables: false,
       spacing: 10,
     });
 
@@ -142,7 +140,6 @@ describe('styled', () => {
 
     before(() => {
       theme = createTheme({
-        cssVariables: false,
         palette: {
           primary: {
             main: 'rgb(0, 0, 255)',

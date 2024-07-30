@@ -4,7 +4,7 @@ import getTextDecoration from './getTextDecoration';
 
 describe('getTextDecoration', () => {
   describe('without theme.vars', () => {
-    const theme = createTheme({ cssVariables: false });
+    const theme = createTheme();
 
     it('deprecated color', () => {
       expect(getTextDecoration({ theme, ownerState: { color: 'textPrimary' } })).to.equal(

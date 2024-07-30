@@ -25,7 +25,7 @@ describe('<Masonry />', () => {
     }),
   );
 
-  const theme = createTheme({ cssVariables: false, spacing: 8 });
+  const theme = createTheme({ spacing: 8 });
   const maxColumnHeight = 100;
 
   describe('render', () => {

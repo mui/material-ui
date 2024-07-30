@@ -155,13 +155,14 @@ describe('Material UI <Grid />', () => {
     });
 
     it('should generate correct responsive styles regardless of breakpoints order', () => {
+      const theme = createTheme();
       expect(
         generateDirection({
           ownerState: {
             container: true,
             direction: { sm: 'column', xs: 'row' },
           },
-          theme: defaultTheme,
+          theme,
         }),
       ).to.deep.equal({
         '@media (min-width:0px)': {
@@ -209,7 +210,6 @@ describe('Material UI <Grid />', () => {
 
     it('should generate correct responsive styles regardless of custom breakpoints order', () => {
       const theme = createTheme({
-        cssVariables: false,
         breakpoints: {
           keys: ['mobile', 'desktop'],
           values: {
@@ -713,13 +713,14 @@ describe('Material UI <Grid />', () => {
 
   describe('prop: rowSpacing, columnSpacing', () => {
     it('should generate correct responsive styles', () => {
+      const theme = createTheme();
       expect(
         generateRowGap({
           ownerState: {
             container: true,
             rowSpacing: { xs: 1, sm: 2 },
           },
-          theme: defaultTheme,
+          theme,
         }),
       ).to.deep.equal({
         '@media (min-width:0px)': {
@@ -742,7 +743,7 @@ describe('Material UI <Grid />', () => {
             container: true,
             columnSpacing: { xs: 1, sm: 2 },
           },
-          theme: defaultTheme,
+          theme,
         }),
       ).to.deep.equal({
         '@media (min-width:0px)': {
@@ -764,7 +765,6 @@ describe('Material UI <Grid />', () => {
 
     it('should support custom breakpoints and generate correct responsive styles', () => {
       const theme = createTheme({
-        cssVariables: false,
         breakpoints: {
           keys: ['mobile', 'desktop'],
           values: {
@@ -824,7 +824,6 @@ describe('Material UI <Grid />', () => {
 
     it("shouldn't support custom breakpoints with values of zeros and shouldn't generate responsive styles", () => {
       const theme = createTheme({
-        cssVariables: false,
         breakpoints: {
           keys: ['mobile', 'desktop'],
           values: {
@@ -873,7 +872,6 @@ describe('Material UI <Grid />', () => {
 
     it("shouldn't support custom breakpoints without its spacing values and shouldn't generate responsive styles", () => {
       const theme = createTheme({
-        cssVariables: false,
         breakpoints: {
           keys: ['mobile', 'desktop'],
           values: {
@@ -920,7 +918,6 @@ describe('Material UI <Grid />', () => {
 
     it("should ignore custom breakpoints that doesn't exist in the theme and shouldn't generate responsive styles", () => {
       const theme = createTheme({
-        cssVariables: false,
         breakpoints: {
           keys: ['mobile', 'desktop'],
           values: {
@@ -966,13 +963,14 @@ describe('Material UI <Grid />', () => {
     });
 
     it('should generate correct responsive styles regardless of breakpoints order ', () => {
+      const theme = createTheme();
       expect(
         generateRowGap({
           ownerState: {
             container: true,
             rowSpacing: { sm: 2, xs: 1 },
           },
-          theme: defaultTheme,
+          theme,
         }),
       ).to.deep.equal({
         '@media (min-width:0px)': {
@@ -995,7 +993,7 @@ describe('Material UI <Grid />', () => {
             container: true,
             columnSpacing: { sm: 2, xs: 1 },
           },
-          theme: defaultTheme,
+          theme,
         }),
       ).to.deep.equal({
         '@media (min-width:0px)': {
@@ -1017,7 +1015,6 @@ describe('Material UI <Grid />', () => {
 
     it('should generate correct responsive styles regardless of custom breakpoints order ', () => {
       const theme = createTheme({
-        cssVariables: false,
         breakpoints: {
           keys: ['mobile', 'desktop'],
           values: {
@@ -1077,7 +1074,6 @@ describe('Material UI <Grid />', () => {
 
     it('should generate correct responsive styles for overriding with zero value styles for higher breakpoints', () => {
       const theme = createTheme({
-        cssVariables: false,
         breakpoints: {
           values: {
             mobile: 0,
@@ -1212,7 +1208,6 @@ describe('Material UI <Grid />', () => {
 
     it('should not generate responsive styles for lower breakpoints below a given non-zero breakpoint', () => {
       const theme = createTheme({
-        cssVariables: false,
         breakpoints: {
           values: {
             mobile: 0,

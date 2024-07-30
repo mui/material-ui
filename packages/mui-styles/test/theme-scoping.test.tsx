@@ -66,7 +66,6 @@ describe('Theme scoping', () => {
       <material.ThemeProvider
         theme={{
           [material.THEME_ID]: material.createTheme({
-            cssVariables: false,
             palette: {
               divider: 'darken',
             },
