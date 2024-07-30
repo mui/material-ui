@@ -62,18 +62,19 @@ export default function createCssVarsProvider(options) {
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
 
-    const scopedTheme = React.useMemo(() => {
+    const initialTheme = React.useMemo(() => {
       if (themeProp) {
-        return themeProp[themeId];
+        return themeProp;
       }
       return typeof defaultTheme === 'function' ? defaultTheme() : defaultTheme;
     }, [themeProp]);
+    const scopedTheme = initialTheme[themeId];
     const {
       colorSchemes = {},
       components = {},
       cssVarPrefix,
       ...restThemeProp
-    } = scopedTheme || themeProp;
+    } = scopedTheme || initialTheme;
     const joinedColorSchemes = Object.keys(colorSchemes)
       .filter((k) => !!colorSchemes[k])
       .join(',');
