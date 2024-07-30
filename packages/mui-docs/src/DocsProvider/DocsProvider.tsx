@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Translations, UserLanguageProvider } from '../i18n';
+import { AdConfig, AdProvider } from '../Ad';
 
 export interface DocsConfig {
   LANGUAGES: string[];
@@ -12,6 +13,7 @@ const DocsConfigContext = React.createContext<DocsConfig | null>(null);
 
 export interface DocsProviderProps {
   config: DocsConfig;
+  adConfig?: Partial<AdConfig>;
   defaultUserLanguage: string;
   children?: React.ReactNode;
   translations?: Translations;
@@ -19,15 +21,18 @@ export interface DocsProviderProps {
 
 export function DocsProvider({
   config,
+  adConfig,
   defaultUserLanguage,
   translations,
   children,
 }: DocsProviderProps) {
   return (
     <DocsConfigContext.Provider value={config}>
-      <UserLanguageProvider defaultUserLanguage={defaultUserLanguage} translations={translations}>
-        {children}
-      </UserLanguageProvider>
+      <AdProvider config={adConfig}>
+        <UserLanguageProvider defaultUserLanguage={defaultUserLanguage} translations={translations}>
+          {children}
+        </UserLanguageProvider>
+      </AdProvider>
     </DocsConfigContext.Provider>
   );
 }

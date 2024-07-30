@@ -1,5 +1,5 @@
 import deepmerge from '@mui/utils/deepmerge';
-import createBreakpoints from './createBreakpoints';
+import createBreakpoints from '../createBreakpoints/createBreakpoints';
 import cssContainerQueries from '../cssContainerQueries';
 import shape from './shape';
 import createSpacing from './createSpacing';

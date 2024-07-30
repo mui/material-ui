@@ -77,8 +77,8 @@ export * from './styled';
 export { default as createTheme } from './createTheme';
 export * from './createTheme';
 
-export { default as createBreakpoints } from './createTheme/createBreakpoints';
-export * from './createTheme/createBreakpoints';
+export { default as createBreakpoints } from './createBreakpoints/createBreakpoints';
+export * from './createBreakpoints/createBreakpoints';
 
 export { default as createSpacing } from './createTheme/createSpacing';
 export { SpacingOptions, Spacing } from './createTheme/createSpacing';

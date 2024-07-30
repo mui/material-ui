@@ -25,8 +25,6 @@ describe('<Zoom />', () => {
         'themeDefaultProps',
         'themeStyleOverrides',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
       ],
     }),
   );

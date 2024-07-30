@@ -1,4 +1,4 @@
-import { generateAtomics } from '@pigment-css/react';
+import { generateAtomics } from '@mui/material-pigment-css';
 
 const atomics = generateAtomics(({ theme }) => ({
   conditions: Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
@@ -51,9 +51,9 @@ const atomics = generateAtomics(({ theme }) => ({
 }));
 
 // eslint-disable-next-line react/prop-types
-export function Box({ children, as = 'div', className = '', style = undefined, ...rest }) {
+export function Box({ children, as = 'div', className = '', style = undefined, ...other }) {
   const Component = as;
-  const atomicsResult = atomics(rest);
+  const atomicsResult = atomics(other);
   const componentClass = `${atomicsResult.className} ${className ?? ''}`.trim();
   const finalStyles = {
     ...(atomicsResult.style ?? {}),

@@ -19,7 +19,9 @@ export function describeJscodeshiftTransform({ transformName, transform, testCas
           { source: read(dirname, testCase.actual) },
           { jscodeshift },
           {
+            ...testCase.options,
             printOptions: {
+              ...testCase.options?.printOptions,
               lineTerminator: EOL,
             },
           },
@@ -34,7 +36,9 @@ export function describeJscodeshiftTransform({ transformName, transform, testCas
           { source: read(dirname, testCase.expected) },
           { jscodeshift },
           {
+            ...testCase.options,
             printOptions: {
+              ...testCase.options?.printOptions,
               lineTerminator: EOL,
             },
           },

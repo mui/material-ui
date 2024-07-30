@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, act, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
 import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<Fab />', () => {
   const { render, renderToString } = createRenderer();
@@ -90,19 +91,24 @@ describe('<Fab />', () => {
     expect(button).to.have.class(classes.sizeMedium);
   });
 
-  it('should have a ripple by default', () => {
-    const { container } = render(<Fab>Fab</Fab>);
-
+  it('should have a ripple', async () => {
+    const { container, getByRole } = render(<Fab>Fab</Fab>);
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(null);
   });
 
-  it('should pass disableRipple to ButtonBase', () => {
-    const { container } = render(<Fab disableRipple>Fab</Fab>);
-
+  it('should pass disableRipple to ButtonBase', async () => {
+    const { container, getByRole } = render(<Fab disableRipple>Fab</Fab>);
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
-  it('should have a focusRipple by default', async () => {
+  it('should have a focusRipple', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const { getByRole } = render(
       <Fab
         TouchRippleProps={{
@@ -114,10 +120,7 @@ describe('<Fab />', () => {
     );
     const button = getByRole('button');
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'TAB' });
-      button.focus();
-    });
+    await ripple.startFocus(button);
 
     expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
@@ -135,10 +138,7 @@ describe('<Fab />', () => {
     );
     const button = getByRole('button');
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'TAB' });
-      button.focus();
-    });
+    await ripple.startFocus(button);
 
     expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });

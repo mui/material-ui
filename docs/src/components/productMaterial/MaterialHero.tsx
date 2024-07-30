@@ -197,6 +197,7 @@ const { palette: lightPalette } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
 const customTheme = extendTheme({
   cssVarPrefix: 'hero',
+  colorSchemeSelector: 'data-mui-color-scheme',
   colorSchemes: {
     light: {
       palette: {

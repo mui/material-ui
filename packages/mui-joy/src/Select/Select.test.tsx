@@ -49,14 +49,7 @@ describe('Joy <Select />', () => {
       startDecorator: { expectedClassName: classes.startDecorator },
       endDecorator: { expectedClassName: classes.endDecorator },
     },
-    skip: [
-      'classesRoot',
-      'propsSpread',
-      'componentProp',
-      'componentsProp',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
-    ],
+    skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
   }));
 
   it('should be able to mount the component', () => {

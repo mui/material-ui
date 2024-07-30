@@ -104,7 +104,7 @@ const Input = React.forwardRef(function Input<RootComponentType extends React.El
     value,
   });
 
-  const type = !multiline ? typeProp ?? 'text' : undefined;
+  const type = !multiline ? (typeProp ?? 'text') : undefined;
 
   const ownerState: InputOwnerState = {
     ...props,
@@ -145,7 +145,7 @@ const Input = React.forwardRef(function Input<RootComponentType extends React.El
     ownerState,
     className: [classes.root, className],
   });
-  const InputComponent = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
+  const InputComponent = multiline ? (slots.textarea ?? 'textarea') : (slots.input ?? 'input');
   const inputProps: WithOptionalOwnerState<InputInputSlotProps> = useSlotProps({
     elementType: InputComponent,
     getSlotProps: (otherHandlers: EventHandlers) => {

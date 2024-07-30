@@ -5,7 +5,8 @@ import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useFormControl } from '../FormControl';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Stack from '../Stack';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
@@ -14,8 +15,6 @@ import formControlLabelClasses, {
 } from './formControlLabelClasses';
 import formControlState from '../FormControl/formControlState';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiFormControlLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, labelPlacement, error, required } = ownerState;
@@ -108,7 +107,7 @@ const AsteriskComponent = styled('span', {
  * Use this component if you want to display an extra label.
  */
 const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormControlLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormControlLabel' });
   const {
     checked,
     className,

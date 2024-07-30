@@ -1,0 +1,17 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "defer": { "type": { "name": "bool" }, "default": "false" },
+    "fallback": { "type": { "name": "node" }, "default": "null" }
+  },
+  "name": "NoSsr",
+  "imports": ["import NoSsr from '@mui/material/NoSsr';", "import { NoSsr } from '@mui/material';"],
+  "classes": [],
+  "spread": false,
+  "themeDefaultProps": null,
+  "muiName": "MuiNoSsr",
+  "filename": "/packages/mui-material/src/NoSsr/NoSsr.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-no-ssr/\">No SSR</a></li></ul>",
+  "cssComponent": false
+}

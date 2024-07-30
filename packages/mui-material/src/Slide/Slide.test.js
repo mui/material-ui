@@ -33,8 +33,6 @@ describe('<Slide />', () => {
         'themeDefaultProps',
         'themeStyleOverrides',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
       ],
     }),
   );

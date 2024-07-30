@@ -31,7 +31,7 @@ export default function HalfBorderedGrid() {
         })}
       >
         {[...Array(6)].map((_, index) => (
-          <Grid key={index} {...colWidth} minHeight={160} />
+          <Grid key={index} size={colWidth} minHeight={160} />
         ))}
       </Grid>
     </Box>

@@ -21,7 +21,7 @@ function ColorSchemeToggle({ onClick, sx, ...props }: IconButtonProps) {
   }
   return (
     <IconButton
-      id="toggle-mode"
+      data-screenshot="toggle-mode"
       size="sm"
       variant="outlined"
       color="neutral"

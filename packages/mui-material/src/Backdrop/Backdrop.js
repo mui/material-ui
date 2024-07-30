@@ -3,12 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
 import Fade from '../Fade';
 import { getBackdropUtilityClass } from './backdropClasses';
-
-const useThemeProps = createUseThemeProps('MuiBackdrop');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, invisible } = ownerState;
@@ -50,7 +49,7 @@ const BackdropRoot = styled('div', {
 });
 
 const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBackdrop' });
   const {
     children,
     className,
@@ -190,7 +189,6 @@ Backdrop.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**

@@ -66,6 +66,7 @@ export {
   StyledEngineProvider,
   SxProps,
 } from '@mui/system';
+export { unstable_createBreakpoints } from '@mui/system/createBreakpoints';
 // TODO: Remove this function in v6.
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function experimental_sx(): any;
@@ -100,8 +101,6 @@ export { default as withTheme } from './withTheme';
 export * from './CssVarsProvider';
 
 export { default as extendTheme } from './extendTheme';
-
-export * from './stringifyTheme';
 
 export type {
   ColorSchemeOverrides,

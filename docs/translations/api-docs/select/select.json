@@ -88,6 +88,11 @@
       "nodeName": "the select component",
       "conditions": "<code>variant=\"filled\"</code>"
     },
+    "focused": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
+      "conditions": "it is focused"
+    },
     "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
     "iconFilled": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

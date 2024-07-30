@@ -81,6 +81,12 @@
       "isGlobal": false
     },
     {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "Styles applied to the select component if it is focused.",
+      "isGlobal": true
+    },
+    {
       "key": "icon",
       "className": "MuiSelect-icon",
       "description": "Styles applied to the icon component.",

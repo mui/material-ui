@@ -277,6 +277,10 @@ export interface ColorSystem {
 
 export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'components'> {
   /**
+   * @default 'light'
+   */
+  defaultColorScheme?: SupportedColorScheme;
+  /**
    * Prefix of the generated CSS variables
    * @default 'mui'
    */
@@ -288,27 +292,27 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
   /**
    * Color schemes configuration
    */
-  colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
+  colorSchemes?: Partial<Record<DefaultColorScheme, boolean | ColorSystemOptions>> &
+    (ExtendedColorScheme extends string ? Record<ExtendedColorScheme, ColorSystemOptions> : {});
   /**
-   * If provided, it will be used to create a selector for the color scheme.
-   * This is useful if you want to use class or data-* attributes to apply the color scheme.
+   * The strategy to generate CSS variables
    *
-   * The callback receives the colorScheme with the possible values of:
-   * - undefined: the selector for tokens that are not color scheme dependent
-   * - string: the selector for the color scheme
+   * @example 'media'
+   * Generate CSS variables using [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
    *
-   * @example
-   * // class selector
-   * (colorScheme) => colorScheme !== 'light' ? `.theme-${colorScheme}` : ":root"
+   * @example '.mode-%s'
+   * Generate CSS variables within a class .mode-light, .mode-dark
    *
-   * @example
-   * // data-* attribute selector
-   * (colorScheme) => colorScheme !== 'light' ? `[data-theme="${colorScheme}"`] : ":root"
+   * @example '[data-mode-%s]'
+   * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
    */
-  getSelector?: (
-    colorScheme: SupportedColorScheme | undefined,
-    css: Record<string, any>,
-  ) => string | Record<string, any>;
+  colorSchemeSelector?: 'media' | 'class' | 'data' | string;
+  /**
+   * If `true`, the CSS color-scheme will not be set.
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * @default false
+   */
+  disableCssColorScheme?: boolean;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
@@ -427,6 +431,7 @@ export type ThemeCssVar = OverridableStringUnion<
  */
 export interface CssVarsTheme extends ColorSystem {
   colorSchemes: Record<SupportedColorScheme, ColorSystem>;
+  colorSchemeSelector: 'media' | 'class' | 'data' | string;
   cssVarPrefix: string;
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;

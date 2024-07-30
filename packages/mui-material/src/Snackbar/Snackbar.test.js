@@ -30,13 +30,7 @@ describe('<Snackbar />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSnackbar',
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'themeVariants',
-      // react-transition-group issue
-      'reactTestRenderer',
-    ],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   describe('prop: onClose', () => {

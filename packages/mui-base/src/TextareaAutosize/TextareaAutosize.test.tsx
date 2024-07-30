@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
-import {
-  act,
-  screen,
-  waitFor,
-  createMount,
-  createRenderer,
-  fireEvent,
-} from '@mui/internal-test-utils';
+import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
@@ -41,11 +34,9 @@ async function raf() {
 
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
-  const mount = createMount();
 
   describeConformanceUnstyled(<TextareaAutosize />, () => ({
     render,
-    mount,
     inheritComponent: 'textarea',
     refInstanceof: window.HTMLTextAreaElement,
     slots: {},

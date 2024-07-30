@@ -84,6 +84,26 @@ The demo below also shows a bit of visual customization.
 
 {{"demo": "CustomizedAccordions.js", "bg": true}}
 
+### Changing heading level
+
+By default, the Accordion uses an `h3` element for the heading. You can change the heading element using the `slotProps.heading.component` prop to ensure the correct heading hierarchy in your document.
+
+```jsx
+<Accordion slotProps={{ heading: { component: 'h4' } }}>
+  <AccordionSummary
+    expandIcon={<ExpandMoreIcon />}
+    aria-controls="panel1-content"
+    id="panel1-header"
+  >
+    Accordion
+  </AccordionSummary>
+  <AccordionDetails>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+    lacus ex, sit amet blandit leo lobortis eget.
+  </AccordionDetails>
+</Accordion>
+```
+
 ## Performance
 
 The Accordion content is mounted by default even if it's not expanded.

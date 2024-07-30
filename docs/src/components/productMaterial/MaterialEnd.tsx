@@ -59,7 +59,7 @@ export default function MaterialEnd({ noFaq }: MaterialEndProps) {
         </Box>
       ) : (
         <Grid container spacing={{ xs: 6, sm: 10 }} alignItems="center">
-          <Grid xs={12} sm={6}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <SectionHeadline
               overline="Community"
               title={
@@ -82,7 +82,7 @@ export default function MaterialEnd({ noFaq }: MaterialEndProps) {
               altInstallation="npm install @mui/material @emotion/react @emotion/styled"
             />
           </Grid>
-          <Grid xs={12} sm={6}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <List sx={{ '& > li': { alignItems: 'flex-start' } }}>
               <ListItem sx={{ p: 0, mb: 4, gap: 2.5 }}>
                 <GlowingIconContainer icon={<CompareIcon color="primary" />} />

@@ -45,6 +45,7 @@ const darkColorScheme = {
 };
 
 function extendTheme({ cssVarPrefix = 'system-demo' } = {}) {
+  const colorSchemeSelector = 'data-system-demo-color-scheme';
   const { vars: themeVars, ...params } = prepareCssVars(
     {
       colorSchemes: {
@@ -54,9 +55,11 @@ function extendTheme({ cssVarPrefix = 'system-demo' } = {}) {
     },
     {
       prefix: cssVarPrefix,
+      colorSchemeSelector,
     },
   );
-  const theme: Theme = {
+  const theme: Theme & { colorSchemeSelector: string } = {
+    colorSchemeSelector,
     colorSchemes: {
       light: lightColorScheme,
       dark: darkColorScheme,
@@ -79,7 +82,6 @@ const myCustomDefaultTheme = extendTheme();
 const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
   theme: myCustomDefaultTheme,
   modeStorageKey: 'system-demo-mode',
-  attribute: 'data-system-demo-color-scheme',
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',

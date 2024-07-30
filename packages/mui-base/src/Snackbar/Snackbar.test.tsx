@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, createMount, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { Snackbar, snackbarClasses as classes } from '@mui/base/Snackbar';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
@@ -23,8 +23,6 @@ describe('<Snackbar />', () => {
     return result;
   }
 
-  const mount = createMount();
-
   describeConformanceUnstyled(
     <Snackbar open>
       <div />
@@ -33,7 +31,6 @@ describe('<Snackbar />', () => {
       classes,
       inheritComponent: 'div',
       render,
-      mount,
       refInstanceof: window.HTMLDivElement,
       slots: {
         root: {

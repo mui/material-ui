@@ -1,7 +1,6 @@
 /* eslint-env mocha */
 import * as React from 'react';
 import { expect } from 'chai';
-import ReactTestRenderer from 'react-test-renderer';
 import createDescribe from './createDescribe';
 import { MuiRenderResult } from './createRenderer';
 
@@ -243,22 +242,6 @@ export function testRootClass(
       // Test that `classes` does not spread to DOM
       expect(document.querySelectorAll('[classes]').length).to.equal(0);
     }
-  });
-}
-
-/**
- * Tests that the component can be rendered with react-test-renderer.
- * This is important for snapshot testing with Jest (even if we don't encourage it).
- */
-export function testReactTestRenderer(element: React.ReactElement<any>) {
-  it('should render without errors in ReactTestRenderer', () => {
-    ReactTestRenderer.act(() => {
-      ReactTestRenderer.create(element, {
-        createNodeMock: (node) => {
-          return document.createElement(node.type as keyof HTMLElementTagNameMap);
-        },
-      });
-    });
   });
 }
 
@@ -1018,7 +1001,6 @@ const fullSuite = {
   propsSpread: testPropsSpread,
   refForwarding: describeRef,
   rootClass: testRootClass,
-  reactTestRenderer: testReactTestRenderer,
   slotPropsProp: testSlotPropsProp,
   slotPropsCallback: testSlotPropsCallback,
   slotsProp: testSlotsProp,

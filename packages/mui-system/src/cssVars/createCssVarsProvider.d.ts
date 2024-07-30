@@ -1,6 +1,6 @@
 import * as React from 'react';
 import InitColorSchemeScript from '../InitColorSchemeScript';
-import { Mode, Result } from './useCurrentColorScheme';
+import { Result } from './useCurrentColorScheme';
 
 export interface ColorSchemeContextValue<SupportedColorScheme extends string>
   extends Result<SupportedColorScheme> {
@@ -30,11 +30,6 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
   /**
-   * Design system default mode
-   * @default 'light'
-   */
-  defaultMode?: Mode;
-  /**
    * Disable CSS transitions when switching between modes or color schemes
    * @default false
    */
@@ -55,6 +50,7 @@ export interface CreateCssVarsProviderResult<
           {
             cssVarPrefix?: string;
             colorSchemes: Record<ColorScheme, Record<string, any>>;
+            colorSchemeSelector?: 'media' | 'class' | 'data' | string;
           }
         >;
         /**
@@ -67,11 +63,6 @@ export interface CreateCssVarsProviderResult<
          * @default document
          */
         colorSchemeNode?: Element | null;
-        /**
-         * The CSS selector for attaching the generated custom properties
-         * @default ':root'
-         */
-        colorSchemeSelector?: string;
         /**
          * The window that attaches the 'storage' event listener
          * @default window

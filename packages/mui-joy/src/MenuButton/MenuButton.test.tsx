@@ -32,7 +32,7 @@ describe('<MenuButton />', () => {
     slots: {
       root: { expectedClassName: classes.root },
     },
-    skip: ['reactTestRenderer', 'componentsProp', 'classesRoot'],
+    skip: ['componentsProp', 'classesRoot'],
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'soft' },
     ThemeProvider,

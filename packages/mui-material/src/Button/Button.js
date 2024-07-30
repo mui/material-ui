@@ -6,14 +6,13 @@ import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
-
-const useThemeProps = createUseThemeProps('MuiButton');
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
@@ -351,7 +350,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const contextProps = React.useContext(ButtonGroupContext);
   const buttonGroupButtonContextPositionClassName = React.useContext(ButtonGroupButtonContext);
   const resolvedProps = resolveProps(contextProps, inProps);
-  const props = useThemeProps({ props: resolvedProps, name: 'MuiButton' });
+  const props = useDefaultProps({ props: resolvedProps, name: 'MuiButton' });
   const {
     children,
     color = 'primary',

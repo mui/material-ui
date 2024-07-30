@@ -39,4 +39,4 @@ So, it renders the "outlined" background variant.
 
 ## Multiple Tabs demo
 
-{{"demo": "DemoMultiTabs.js" }}
+{{"demo": "DemoMultiTabs.js", "bg": "inline" }}

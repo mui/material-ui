@@ -4,10 +4,11 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
-import { styled, createUseThemeProps, useTheme } from '../zero-styled';
+import useSlotProps from '@mui/utils/useSlotProps';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
@@ -16,8 +17,6 @@ import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
-
-const useThemeProps = createUseThemeProps('MuiTabs');
 
 const nextItem = (list, item) => {
   if (list === item) {
@@ -274,7 +273,7 @@ const defaultIndicatorStyle = {};
 let warnedOnceTabPresent = false;
 
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTabs' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
   const isRtl = useRtl();
   const {

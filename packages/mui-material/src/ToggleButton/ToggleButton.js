@@ -8,13 +8,12 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import { createUseThemeProps, styled } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from '../ToggleButtonGroup/ToggleButtonGroupButtonContext';
 import isValueSelected from '../ToggleButtonGroup/isValueSelected';
-
-const useThemeProps = createUseThemeProps('MuiToggleButton');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, fullWidth, selected, disabled, size, color } = ownerState;
@@ -147,7 +146,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
     { ...contextProps, selected: isValueSelected(inProps.value, contextValue) },
     inProps,
   );
-  const props = useThemeProps({ props: resolvedProps, name: 'MuiToggleButton' });
+  const props = useDefaultProps({ props: resolvedProps, name: 'MuiToggleButton' });
   const {
     children,
     className,

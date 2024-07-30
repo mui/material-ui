@@ -1,0 +1,15 @@
+.MuiImageListItemBar-root .MuiImageListItemBar-titleWrapBelow {
+  color: red;
+}
+
+.MuiImageListItemBar-root .MuiImageListItemBar-titleWrapActionPosLeft {
+  color: red;
+}
+
+.MuiImageListItemBar-root .MuiImageListItemBar-titleWrapActionPosRight {
+  color: red;
+}
+
+.MuiImageListItemBar-root .MuiImageListItemBar-actionIconActionPosLeft {
+  color: red;
+}

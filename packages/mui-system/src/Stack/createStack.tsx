@@ -12,7 +12,7 @@ import createTheme from '../createTheme';
 import { CreateMUIStyled } from '../createStyled';
 import { StackTypeMap, StackOwnerState } from './StackProps';
 import type { Breakpoint } from '../createTheme';
-import { Breakpoints } from '../createTheme/createBreakpoints';
+import { Breakpoints } from '../createBreakpoints/createBreakpoints';
 import {
   handleBreakpoints,
   mergeBreakpointsInOrder,

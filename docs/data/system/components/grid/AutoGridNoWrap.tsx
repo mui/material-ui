@@ -25,7 +25,7 @@ export default function AutoGridNoWrap() {
           <Grid>
             <Avatar>W</Avatar>
           </Grid>
-          <Grid xs>
+          <Grid size="grow">
             <Typography noWrap>{message}</Typography>
           </Grid>
         </Grid>
@@ -35,7 +35,7 @@ export default function AutoGridNoWrap() {
           <Grid>
             <Avatar>W</Avatar>
           </Grid>
-          <Grid xs>
+          <Grid size="grow">
             <Typography
               sx={{
                 display: '-webkit-box',

@@ -3,18 +3,17 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
-import { NoSsr } from '@mui/base';
+import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import useForkRef from '../utils/useForkRef';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import { createUseThemeProps, useTheme } from '../zero-styled';
+import { useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTransitionProps } from '../transitions/utils';
 import SwipeArea from './SwipeArea';
-
-const useThemeProps = createUseThemeProps('MuiSwipeableDrawer');
 
 // This value is closed to what browsers are using internally to
 // trigger a native scroll.
@@ -136,7 +135,7 @@ function computeHasNativeHandler({ domTreeShapes, start, current, anchor }) {
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiSwipeableDrawer', props: inProps });
+  const props = useDefaultProps({ name: 'MuiSwipeableDrawer', props: inProps });
   const theme = useTheme();
   const transitionDurationDefault = {
     enter: theme.transitions.duration.enteringScreen,

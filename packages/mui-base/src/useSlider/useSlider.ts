@@ -6,7 +6,7 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_isFocusVisible as isFocusVisible,
   visuallyHidden,
   clamp,
 } from '@mui/utils';
@@ -265,23 +265,15 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const marksValues = (marks as Mark[]).map((mark: Mark) => mark.value);
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
   const sliderRef = React.useRef<HTMLSpanElement>();
-  const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
-  const handleRef = useForkRef(ref, handleFocusRef);
+  const handleRef = useForkRef(ref, sliderRef);
 
   const createHandleHiddenInputFocus =
     (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
       const index = Number(event.currentTarget.getAttribute('data-index'));
-      handleFocusVisible(event);
-      if (isFocusVisibleRef.current === true) {
+      if (isFocusVisible(event.target)) {
         setFocusedThumbIndex(index);
       }
       setOpen(index);
@@ -289,8 +281,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
   const createHandleHiddenInputBlur =
     (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
-      handleBlurVisible(event);
-      if (isFocusVisibleRef.current === false) {
+      if (!isFocusVisible(event.target)) {
         setFocusedThumbIndex(-1);
       }
       setOpen(-1);

@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getIconUtilityClass } from './iconClasses';
-
-const useThemeProps = createUseThemeProps('MuiIcon');
 
 const useUtilityClasses = (ownerState) => {
   const { color, fontSize, classes } = ownerState;
@@ -114,7 +113,7 @@ const IconRoot = styled('span', {
 }));
 
 const Icon = React.forwardRef(function Icon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiIcon' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiIcon' });
   const {
     baseClassName = 'material-icons',
     className,

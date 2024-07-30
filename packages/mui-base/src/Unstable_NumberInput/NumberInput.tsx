@@ -85,7 +85,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     value,
     slotProps = {},
     slots = {},
-    ...rest
+    ...other
   } = props;
 
   const {
@@ -140,7 +140,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     elementType: Root,
     getSlotProps: getRootProps,
     externalSlotProps: slotProps.root,
-    externalForwardedProps: rest,
+    externalForwardedProps: other,
     additionalProps: {
       ref: forwardedRef,
     },

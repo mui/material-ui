@@ -7,7 +7,7 @@
     "emptyLabelText": { "type": { "name": "node" }, "default": "'Empty'" },
     "getLabelText": {
       "type": { "name": "func" },
-      "default": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}",
+      "default": "function defaultLabelText(value) {\n  return `${value || '0'} Star${value !== 1 ? 's' : ''}`;\n}",
       "signature": { "type": "function(value: number) => string", "describedArgs": ["value"] }
     },
     "highlightSelectedOnly": { "type": { "name": "bool" }, "default": "false" },

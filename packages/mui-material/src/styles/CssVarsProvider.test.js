@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
-import { CssVarsProvider, useTheme } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme, useTheme } from '@mui/material/styles';
 
 describe('[Material UI] CssVarsProvider', () => {
   let originalMatchmedia;
@@ -57,7 +57,7 @@ describe('[Material UI] CssVarsProvider', () => {
       }
 
       render(
-        <CssVarsProvider>
+        <CssVarsProvider theme={extendTheme({ colorSchemes: { light: true, dark: true } })}>
           <Vars />
         </CssVarsProvider>,
       );
@@ -328,7 +328,7 @@ describe('[Material UI] CssVarsProvider', () => {
     }
 
     const { getByTestId } = render(
-      <CssVarsProvider enableColorScheme enableSystem>
+      <CssVarsProvider>
         <Box
           data-testid="box-1"
           sx={{

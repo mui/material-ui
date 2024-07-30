@@ -6,6 +6,7 @@ Custom eslint rules for MUI.
 
 - `disallow-active-element-as-key-event-target`
 - `docgen-ignore-before-comment`
+- `mui-name-matches-component-name`
 - `no-hardcoded-labels`
 - `rules-of-use-theme-variants`
 - ~~`restricted-path-imports`~~
@@ -19,6 +20,10 @@ we use already verifies that the passed target can be the target of a
 ### docgen-ignore-before-comment
 
 Enforce correct usage of `@ignore` in the prop-types block comments.
+
+### mui-name-matches-component-name
+
+Enforce that the name passed to the `useThemeProps` and `useDefaultProps` hooks matches the component name.
 
 ### no-hardcoded-labels
 

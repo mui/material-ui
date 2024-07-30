@@ -436,23 +436,17 @@ module.exports = {
             ],
           },
         ],
-        'import/no-cycle': ['error', { ignoreExternal: true }],
+        // TODO: Consider setting back to `ignoreExternal: true` when the expected behavior is fixed:
+        // https://github.com/import-js/eslint-plugin-import/issues/2348#issuecomment-1587320057
+        // Reevaluate when https://github.com/import-js/eslint-plugin-import/pull/2998 is released.
+        'import/no-cycle': ['error', { ignoreExternal: false }],
       },
     },
     {
       files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
       excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**/*{.ts,.tsx,.js}'],
       rules: {
-        'material-ui/mui-name-matches-component-name': [
-          'error',
-          {
-            customHooks: [
-              'useDatePickerDefaultizedProps',
-              'useDateTimePickerDefaultizedProps',
-              'useTimePickerDefaultizedProps',
-            ],
-          },
-        ],
+        'material-ui/mui-name-matches-component-name': 'error',
       },
     },
     {
@@ -473,7 +467,7 @@ module.exports = {
       rules: {
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
-        ...(ENABLE_REACT_COMPILER_PLUGIN ? { 'react-compiler/react-compiler': 'off' } : {}),
+        'react-compiler/react-compiler': 'off',
       },
     },
     {

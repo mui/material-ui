@@ -20,7 +20,7 @@ export default function GridDisableEqualOverflow() {
             alignItems="center"
             justifyContent="center"
             textAlign="center"
-            xs
+            size="grow"
           >
             ver.2 <br />
             Top and left overflow

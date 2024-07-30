@@ -3,12 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getFormGroupUtilityClass } from './formGroupClasses';
 import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';
-
-const useThemeProps = createUseThemeProps('MuiFormGroup');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, row, error } = ownerState;
@@ -48,7 +47,7 @@ const FormGroupRoot = styled('div', {
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
 const FormGroup = React.forwardRef(function FormGroup(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiFormGroup',
   });

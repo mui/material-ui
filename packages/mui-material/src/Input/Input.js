@@ -6,7 +6,8 @@ import deepmerge from '@mui/utils/deepmerge';
 import refType from '@mui/utils/refType';
 import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -14,8 +15,6 @@ import {
   InputBaseRoot,
   InputBaseInput,
 } from '../InputBase/InputBase';
-
-const useThemeProps = createUseThemeProps('MuiInput');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline } = ownerState;
@@ -133,7 +132,7 @@ const InputInput = styled(InputBaseInput, {
 })({});
 
 const Input = React.forwardRef(function Input(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiInput' });
   const {
     disableUnderline = false,
     components = {},
@@ -153,7 +152,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const inputComponentsProps = { root: { ownerState } };
 
   const componentsProps =
-    slotProps ?? componentsPropsProp
+    (slotProps ?? componentsPropsProp)
       ? deepmerge(slotProps ?? componentsPropsProp, inputComponentsProps)
       : inputComponentsProps;
 

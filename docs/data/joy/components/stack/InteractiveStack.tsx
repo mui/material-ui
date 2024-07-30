@@ -64,7 +64,7 @@ export default function InteractiveStack() {
         })}
       >
         <Grid container spacing={3}>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl>
               <FormLabel sx={{ mb: 0.5 }}>direction</FormLabel>
               <RadioGroup
@@ -85,7 +85,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl>
               <FormLabel sx={{ mb: 0.5 }}>alignItems</FormLabel>
               <RadioGroup
@@ -107,7 +107,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl>
               <FormLabel sx={{ mb: 0.5 }}>justifyContent</FormLabel>
               <RadioGroup
@@ -130,7 +130,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <FormControl>
               <FormLabel sx={{ mb: 0.5 }}>spacing</FormLabel>
               <RadioGroup

@@ -6,11 +6,10 @@ import * as React from 'react';
 import StepContext from '../Step/StepContext';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
-import { createUseThemeProps, styled } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiStepLabel');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, active, completed, error, disabled, alternativeLabel } = ownerState;
@@ -124,7 +123,7 @@ const StepLabelLabelContainer = styled('span', {
 }));
 
 const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepLabel' });
   const {
     children,
     className,
@@ -268,12 +267,10 @@ StepLabel.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
-   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   StepIconComponent: PropTypes.elementType,
   /**
    * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
-   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   StepIconProps: PropTypes.object,
   /**

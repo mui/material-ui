@@ -27,6 +27,9 @@ export const projectSettings: ProjectSettings = {
   getHookInfo: getBaseUiHookInfo,
   translationLanguages: LANGUAGES,
   skipComponent: () => false,
+  skipHook: (filename) => {
+    return filename.match(/(useSlotProps)/) !== null;
+  },
   onCompleted: async () => {
     await generateBaseUIApiPages();
   },

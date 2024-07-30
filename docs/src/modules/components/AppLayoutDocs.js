@@ -4,20 +4,20 @@ import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import { exactProp } from '@mui/utils';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import Head from 'docs/src/modules/components/Head';
-import AppFrame from 'docs/src/modules/components/AppFrame';
-import AppContainer from 'docs/src/modules/components/AppContainer';
-import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
-import AdManager from 'docs/src/modules/components/AdManager';
-import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
-import BackToTop from 'docs/src/modules/components/BackToTop';
-import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import {
+  AdManager,
   AD_MARGIN_TOP,
   AD_HEIGHT,
   AD_HEIGHT_MOBILE,
   AD_MARGIN_BOTTOM,
-} from 'docs/src/modules/components/Ad';
+} from '@mui/docs/Ad';
+import Head from 'docs/src/modules/components/Head';
+import AppFrame from 'docs/src/modules/components/AppFrame';
+import AppContainer from 'docs/src/modules/components/AppContainer';
+import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
+import BackToTop from 'docs/src/modules/components/BackToTop';
+import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 const TOC_WIDTH = 242;

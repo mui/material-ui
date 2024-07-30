@@ -60,6 +60,7 @@
     }
   },
   "slotDescriptions": {
+    "heading": "The component that renders the heading.",
     "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

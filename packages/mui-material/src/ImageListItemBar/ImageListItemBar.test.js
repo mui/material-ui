@@ -43,6 +43,22 @@ describe('<ImageListItemBar />', () => {
       });
     });
 
+    describe('prop:actionPosition', () => {
+      it('should render the actionPositionLeft class', () => {
+        const { container } = render(<ImageListItemBar title="text" actionPosition="left" />);
+
+        expect(container.querySelector('div')).to.have.class(classes.root);
+        expect(container.querySelector('div')).to.have.class(classes.actionPositionLeft);
+      });
+
+      it('should render the actionPositionRight class', () => {
+        const { container } = render(<ImageListItemBar title="text" actionPosition="right" />);
+
+        expect(container.querySelector('div')).to.have.class(classes.root);
+        expect(container.querySelector('div')).to.have.class(classes.actionPositionRight);
+      });
+    });
+
     describe('prop: position', () => {
       describe('position="top"', () => {
         it('should render the positionTop class', () => {

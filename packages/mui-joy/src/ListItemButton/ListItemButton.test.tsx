@@ -56,7 +56,12 @@ describe('Joy <ListItemButton />', () => {
   });
 
   describe('prop: focusVisibleClassName', () => {
-    it('should have focusVisible classes', () => {
+    it('should have focusVisible classes', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { getByRole } = render(<ListItemButton />);
       const button = getByRole('button');
 

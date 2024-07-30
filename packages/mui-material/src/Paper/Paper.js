@@ -6,11 +6,10 @@ import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps, useTheme } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import getOverlayAlpha from '../styles/getOverlayAlpha';
 import { getPaperUtilityClass } from './paperClasses';
-
-const useThemeProps = createUseThemeProps('MuiPaper');
 
 const useUtilityClasses = (ownerState) => {
   const { square, elevation, variant, classes } = ownerState;
@@ -72,7 +71,7 @@ const PaperRoot = styled('div', {
 }));
 
 const Paper = React.forwardRef(function Paper(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPaper' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPaper' });
   const theme = useTheme();
 
   const {
@@ -116,7 +115,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
         ...(variant === 'elevation' && {
           '--Paper-shadow': (theme.vars || theme).shadows[elevation],
           ...(theme.vars && {
-            '--Paper-overlay': theme.overlays?.[elevation],
+            '--Paper-overlay': theme.vars.overlays?.[elevation],
           }),
           ...(!theme.vars &&
             theme.palette.mode === 'dark' && {

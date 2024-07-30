@@ -6,12 +6,11 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import capitalize from '../utils/capitalize';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
 import ButtonGroupButtonContext from './ButtonGroupButtonContext';
-
-const useThemeProps = createUseThemeProps('MuiButtonGroup');
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -247,7 +246,7 @@ const ButtonGroupRoot = styled('div', {
 }));
 
 const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiButtonGroup' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiButtonGroup' });
   const {
     children,
     className,

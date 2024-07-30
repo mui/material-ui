@@ -7,7 +7,7 @@ import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';

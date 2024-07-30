@@ -4,14 +4,13 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import useSlotProps from '@mui/utils/useSlotProps';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
-
-const useThemeProps = createUseThemeProps('MuiBreadcrumbs');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -81,7 +80,7 @@ function insertSeparators(items, className, separator, ownerState) {
 }
 
 const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBreadcrumbs' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBreadcrumbs' });
   const {
     children,
     className,

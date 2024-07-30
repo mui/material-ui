@@ -3,19 +3,19 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import { isHostComponent, useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
-import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
-import { styled, createUseThemeProps } from '../zero-styled';
+import useSlotProps from '@mui/utils/useSlotProps';
+import { useSlider, valueToPercent } from './useSlider';
+import isHostComponent from '../utils/isHostComponent';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
-
-const useThemeProps = createUseThemeProps('MuiSlider');
 
 function Identity(x) {
   return x;
@@ -531,7 +531,7 @@ const useUtilityClasses = (ownerState) => {
 const Forward = ({ children }) => children;
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
-  const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
+  const props = useDefaultProps({ props: inputProps, name: 'MuiSlider' });
 
   const isRtl = useRtl();
 

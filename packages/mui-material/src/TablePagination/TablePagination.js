@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import { isHostComponent } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import isHostComponent from '../utils/isHostComponent';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
 import Select from '../Select';
@@ -15,8 +16,6 @@ import Toolbar from '../Toolbar';
 import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
-
-const useThemeProps = createUseThemeProps('MuiTablePagination');
 
 const TablePaginationRoot = styled(TableCell, {
   name: 'MuiTablePagination',
@@ -140,7 +139,7 @@ const useUtilityClasses = (ownerState) => {
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
 const TablePagination = React.forwardRef(function TablePagination(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTablePagination' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTablePagination' });
   const {
     ActionsComponent = TablePaginationActions,
     backIconButtonProps,

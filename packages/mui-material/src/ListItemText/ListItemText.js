@@ -5,10 +5,9 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
-
-const useThemeProps = createUseThemeProps('MuiListItemText');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, inset, primary, secondary, dense } = ownerState;
@@ -60,7 +59,7 @@ const ListItemTextRoot = styled('div', {
 });
 
 const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemText' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemText' });
   const {
     children,
     className,

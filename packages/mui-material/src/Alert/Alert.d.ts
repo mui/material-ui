@@ -9,8 +9,9 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertPropsVariantOverrides {}
-
 export interface AlertPropsColorOverrides {}
+export interface AlertCloseButtonSlotPropsOverrides {}
+export interface AlertCloseIconSlotPropsOverrides {}
 
 export interface AlertSlots {
   /**
@@ -28,8 +29,16 @@ export interface AlertSlots {
 export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AlertSlots,
   {
-    closeButton: SlotProps<React.ElementType<IconButtonProps>, {}, AlertOwnerState>;
-    closeIcon: SlotProps<React.ElementType<SvgIconProps>, {}, AlertOwnerState>;
+    closeButton: SlotProps<
+      React.ElementType<IconButtonProps>,
+      AlertCloseButtonSlotPropsOverrides,
+      AlertOwnerState
+    >;
+    closeIcon: SlotProps<
+      React.ElementType<SvgIconProps>,
+      AlertCloseIconSlotPropsOverrides,
+      AlertOwnerState
+    >;
   }
 >;
 

@@ -13,9 +13,9 @@ import LastPageIcon from '../internal/svg-icons/LastPage';
 import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
 import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import useSlot from '../utils/useSlot';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
 
-const useThemeProps = createUseThemeProps('MuiPaginationItem');
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -302,7 +302,7 @@ const PaginationItemPageIcon = styled('div', {
 }));
 
 const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPaginationItem' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPaginationItem' });
   const {
     className,
     color = 'standard',

@@ -8,7 +8,7 @@ import {
   getSliderUtilityClass,
 } from '@mui/material/Slider';
 import { isHostComponent, useSlotProps } from '@mui/base/utils';
-import { styled } from '@pigment-css/react';
+import { styled } from '@mui/material-pigment-css';
 import { capitalize } from '@mui/material/utils';
 import { SliderValueLabel } from '@mui/material/Slider';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';

@@ -67,7 +67,14 @@
     "import Popper from '@mui/material/Popper';",
     "import { Popper } from '@mui/material';"
   ],
-  "classes": [],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiPopper-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiPopper",

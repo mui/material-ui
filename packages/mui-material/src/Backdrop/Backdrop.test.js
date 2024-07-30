@@ -24,12 +24,7 @@ describe('<Backdrop />', () => {
         testWithElement: null,
       },
     },
-    skip: [
-      'componentProp',
-      'componentsProp',
-      // react-transition-group issue
-      'reactTestRenderer',
-    ],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render a backdrop div with content of nested children', () => {

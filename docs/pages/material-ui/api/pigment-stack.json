@@ -1,0 +1,38 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "direction": {
+      "type": {
+        "name": "union",
+        "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;{ lg?: 'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row', md?: 'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row', sm?: 'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row', xl?: 'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row', xs?: 'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row' }"
+      },
+      "default": "'column'"
+    },
+    "divider": { "type": { "name": "node" } },
+    "spacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
+      },
+      "default": "0"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "PigmentStack",
+  "imports": [
+    "import PigmentStack from '@mui/material/PigmentStack';",
+    "import { PigmentStack } from '@mui/material';"
+  ],
+  "classes": [],
+  "muiName": "MuiPigmentStack",
+  "filename": "/packages/mui-material/src/PigmentStack/PigmentStack.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-stack/\">Stack</a></li></ul>",
+  "cssComponent": false
+}

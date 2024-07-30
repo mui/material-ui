@@ -4,9 +4,7 @@ import * as fse from 'fs-extra';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
 import { writePrettifiedFile } from './buildApiUtils';
-import generateComponentApi, {
-  ReactApi as ComponentReactApi,
-} from './ApiBuilders/ComponentApiBuilder';
+import generateComponentApi from './ApiBuilders/ComponentApiBuilder';
 import generateHookApi from './ApiBuilders/HookApiBuilder';
 import {
   CreateTypeScriptProjectOptions,
@@ -14,6 +12,7 @@ import {
   createTypeScriptProjectBuilder,
 } from './utils/createTypeScriptProject';
 import { ProjectSettings } from './ProjectSettings';
+import { ComponentReactApi } from './types/ApiBuilder.types';
 
 async function removeOutdatedApiDocsTranslations(
   components: readonly ComponentReactApi[],
@@ -135,6 +134,9 @@ async function buildSingleProject(
     );
 
     const projectHooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
+      if (projectSettings.skipHook?.(hook.filename)) {
+        return false;
+      }
       if (grep === null) {
         return true;
       }

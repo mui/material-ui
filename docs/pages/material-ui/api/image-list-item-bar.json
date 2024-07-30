@@ -39,6 +39,19 @@
       "key": "actionIconActionPosLeft",
       "className": "MuiImageListItemBar-actionIconActionPosLeft",
       "description": "Styles applied to the actionIcon if `actionPosition=\"left\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "actionPositionLeft",
+      "className": "MuiImageListItemBar-actionPositionLeft",
+      "description": "Styles applied to the action container element if `actionPosition=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "actionPositionRight",
+      "className": "MuiImageListItemBar-actionPositionRight",
+      "description": "Styles applied to the action container element if `actionPosition=\"right\"`.",
       "isGlobal": false
     },
     {
@@ -87,19 +100,22 @@
       "key": "titleWrapActionPosLeft",
       "className": "MuiImageListItemBar-titleWrapActionPosLeft",
       "description": "Styles applied to the container element if `actionPosition=\"left\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "titleWrapActionPosRight",
       "className": "MuiImageListItemBar-titleWrapActionPosRight",
       "description": "Styles applied to the container element if `actionPosition=\"right\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "titleWrapBelow",
       "className": "MuiImageListItemBar-titleWrapBelow",
       "description": "Styles applied to the title and subtitle container element if `position=\"below\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     }
   ],
   "spread": true,

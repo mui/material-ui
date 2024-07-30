@@ -5,11 +5,10 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { darken, lighten } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
-import { keyframes, css, styled, createUseThemeProps } from '../zero-styled';
+import { keyframes, css, styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
-
-const useThemeProps = createUseThemeProps('MuiLinearProgress');
 
 const TRANSITION_DURATION = 4; // seconds
 const indeterminate1Keyframe = keyframes`
@@ -372,7 +371,7 @@ const LinearProgressBar2 = styled('span', {
  * attribute to `true` on that region until it has finished loading.
  */
 const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiLinearProgress' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiLinearProgress' });
   const {
     className,
     color = 'primary',

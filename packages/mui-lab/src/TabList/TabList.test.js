@@ -20,14 +20,12 @@ describe('<TabList />', () => {
      */
     render: (node) => render(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
-    // TODO: no idea why reactTestRenderer fails
     skip: [
       'componentsProp',
       'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
       'rootClass',
-      'reactTestRenderer',
     ],
   }));
 

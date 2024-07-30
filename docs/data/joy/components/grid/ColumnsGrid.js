@@ -18,11 +18,11 @@ const Item = styled(Sheet)(({ theme }) => ({
 export default function ColumnsGrid() {
   return (
     <Grid container spacing={2} columns={16} sx={{ flexGrow: 1 }}>
-      <Grid xs={8}>
-        <Item>xs=8</Item>
+      <Grid size={8}>
+        <Item>size=8</Item>
       </Grid>
-      <Grid xs={8}>
-        <Item>xs=8</Item>
+      <Grid size={8}>
+        <Item>size=8</Item>
       </Grid>
     </Grid>
   );

@@ -33,6 +33,10 @@ describe('<Accordion />', () => {
       transition: {
         testWithElement: null,
       },
+      heading: {
+        testWithElement: 'h4',
+        expectedClassName: classes.heading,
+      },
     },
     skip: ['componentProp', 'componentsProp'],
   }));

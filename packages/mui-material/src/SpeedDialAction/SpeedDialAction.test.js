@@ -20,7 +20,7 @@ describe('<SpeedDialAction />', () => {
       muiName: 'MuiSpeedDialAction',
       testRootOverrides: { slotName: 'fab' },
       testVariantProps: { tooltipPlacement: 'right' },
-      skip: ['componentProp', 'reactTestRenderer', 'componentsProp'],
+      skip: ['componentProp', 'componentsProp'],
     }),
   );
 

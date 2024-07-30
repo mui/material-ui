@@ -40,36 +40,6 @@ The composed CSS classes are going to be deprecated and eventually removed in fa
 For example, the `.MuiAccordionSummary-contentGutters` class was deprecated in favor of the `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes.
 This improves the developer experience by reducing bloat and cognitive load.
 
-## Accordion
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/accordion-props <path>
-```
-
-### TransitionComponent
-
-The Accordion's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
-
-```diff
- <Accordion
--  TransitionComponent={CustomTransition}
-+  slots={{ transition: CustomTransition }}
- />
-```
-
-### TransitionProps
-
-The Accordion's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
-
-```diff
- <Accordion
--  TransitionProps={{ unmountOnExit: true }}
-+  slotProps={{ transition: { unmountOnExit: true } }}
- />
-```
-
 ## AccordionSummary
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-summary-classes) below to migrate the code as described in the following sections:
@@ -235,38 +205,6 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 npx @mui/codemod@next deprecations/autocomplete-props <path>
 ```
 
-### \*Component props
-
-All of the Autocomplete's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
-
-```diff
- <Autocomplete
--    ListboxComponent={CustomListboxComponent}
--    PaperComponent={CustomPaperComponent}
--    PopperComponent={CustomPopperComponent}
-+    slots={{
-+        listbox: CustomListboxComponent,
-+        paper: CustomPaperComponent,
-+        popper: CustomPopperComponent,
-+    }}
- />
-```
-
-### \*Props props
-
-All of the Autocomplete's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
-
-```diff
- <Autocomplete
--    ChipProps={CustomChipProps}
--    ListboxProps={CustomListboxProps}
-+    slotProps={{
-+        chip: CustomChipProps,
-+        listbox: CustomListboxProps,
-+    }}
- />
-```
-
 ### componentsProps
 
 The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`:
@@ -285,32 +223,6 @@ The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`
 +    popupIndicator: { width: 16 },
     }}
  />
-```
-
-## Avatar
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/avatar-props <path>
-```
-
-### imgProps
-
-The Avatar's `imgProps` prop was deprecated in favor of `slotProps.img`:
-
-```diff
- <Avatar
--  imgProps={{
--    onError: () => {},
--    onLoad: () => {},
-+  slotProps={{
-+    img: {
-+      onError: () => {},
-+      onLoad: () => {},
-+    }
-   }}
- />;
 ```
 
 ## AvatarGroup
@@ -399,16 +311,6 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
 -  componentsProps={{ root: { testid: 'test-id' } }}
 +  slotProps={{ root: { testid: 'test-id' } }}
  />
-```
-
-### TransitionComponent
-
-The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
-
-```diff
- <Slider
--  TransitionComponent={CustomTransition}
-+  slots={{ transition: CustomTransition }}
 ```
 
 ## Badge
@@ -1242,6 +1144,62 @@ The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
  />;
 ```
 
+## ImageListItemBar
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#image-list-item-bar-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/image-list-item-bar-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the following props were deprecated:
+
+- `position` prop and `titleWrap` class
+- `actionPosition` prop and `titleWrap` class
+- `actionPosition` prop and `actionIcon` class
+
+Here's how to migrate:
+
+```diff
+- .MuiImageListItemBar-titleWrapBelow
++.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap
+- .MuiImageListItemBar-titleWrapActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap
+- .MuiImageListItemBar-titleWrapActionPosRight
++.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap
+- .MuiImageListItemBar-actionIconActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon
+```
+
+```diff
+ import { imageListItemBarClasses } from '@mui/material/ImageListItemBar';
+
+ MuiImageListItemBar: {
+   styleOverrides: {
+     root: {
+-      [`& .${imageListItemBarClasses.titleWrapBelow}`]: {
++      [`&.${imageListItemBarClasses.positionBelow} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosRight}`]: {
++      [`&.${imageListItemBarClasses.actionPositionRight} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.actionIconActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.actionIcon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
 ## Modal
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#modal-props) below to migrate the code as described in the following sections:
@@ -1597,6 +1555,32 @@ The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
  />
 ```
 
+## Typography
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#typography-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+### paragraph
+
+The Typography's `paragraph` prop was deprecated. If you want to render `p` when using Typography, pass `component="p"`.
+
+```diff
+ <Typography
+   variant="subtitle1"
+-  paragraph
++  component="p"
+ />
+```
+
+Note that Typography already renders a `p` by default, so there's no need to pass `component="p"` when not explicitly passing a variant.
+This is because `body1` is the default variant in Typography, and `body1` and `body2` variants render `p`, so there's no need to pass `component="p"` when using one of these variants.
+
+The `16px` of margin-bottom that was automatically added to the element when using `paragraph` must be manually handled now.
+The codemod that removes the `paragraph` prop adds `sx={{ marginBottom: '16px' }}` to the Typography component.
+
 ## StepLabel
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-label-props) below to migrate the code as described in the following sections:
@@ -1613,28 +1597,6 @@ The StepLabel's `componentsProps` prop was deprecated in favor of `slotProps`:
  <StepLabel
 -  componentsProps={{ label: labelProps }}
 +  slotProps={{ label: labelProps }}
- />
-```
-
-### StepIconComponent
-
-The StepLabel's `StepIconComponent` prop was deprecated in favor of `slots.stepIcon`:
-
-```diff
- <StepLabel
--  StepIconComponent={StepIconComponent}
-+  slots={{ stepIcon: StepIconComponent }}
- />
-```
-
-### StepIconProps
-
-The StepLabel's `StepIconProps` prop was deprecated in favor of `slotProps.stepIcon`:
-
-```diff
- <StepLabel
--  StepIconProps={StepIconProps}
-+  slotProps={{ stepIcon: StepIconProps }}
  />
 ```
 
@@ -1676,33 +1638,4 @@ Here's how to migrate:
      },
    },
  },
-```
-
-## SpeedDial
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@next deprecations/speed-dial-props <path>
-```
-
-### TransitionComponent
-
-The SpeedDial's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
-
-```diff
- <SpeedDial
--  TransitionComponent={CustomTransition}
-+  slots={{ transition: CustomTransition }}
-```
-
-### TransitionProps
-
-The SpeedDial's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
-
-```diff
- <SpeedDial
--  TransitionProps={{ unmountOnExit: true }}
-+  slotProps={{ transition: { unmountOnExit: true } }}
- />
 ```

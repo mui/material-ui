@@ -481,7 +481,7 @@ export * from './GlobalStyles';
  */
 export { StyledEngineProvider } from './styles';
 
-export { unstable_composeClasses } from '@mui/base/composeClasses';
+export { unstable_composeClasses } from '@mui/utils';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';

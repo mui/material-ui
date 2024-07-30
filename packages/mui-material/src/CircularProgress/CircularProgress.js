@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { keyframes, css, createUseThemeProps, styled } from '../zero-styled';
+import { keyframes, css, styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
-
-const useThemeProps = createUseThemeProps('MuiCircularProgress');
 
 const SIZE = 44;
 
@@ -170,7 +169,7 @@ const CircularProgressCircle = styled('circle', {
  * attribute to `true` on that region until it has finished loading.
  */
 const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCircularProgress' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCircularProgress' });
   const {
     className,
     color = 'primary',

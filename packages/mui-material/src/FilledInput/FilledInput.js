@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -15,8 +16,6 @@ import {
   InputBaseInput,
 } from '../InputBase/InputBase';
 import { capitalize } from '../utils';
-
-const useThemeProps = createUseThemeProps('MuiFilledInput');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline, startAdornment, endAdornment, size, hiddenLabel, multiline } =
@@ -270,7 +269,7 @@ const FilledInputInput = styled(InputBaseInput, {
 }));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFilledInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFilledInput' });
 
   const {
     disableUnderline = false,
@@ -299,7 +298,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
 
   const componentsProps =
-    slotProps ?? componentsPropsProp
+    (slotProps ?? componentsPropsProp)
       ? deepmerge(filledInputComponentsProps, slotProps ?? componentsPropsProp)
       : filledInputComponentsProps;
 

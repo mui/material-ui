@@ -41,7 +41,7 @@ export function SelectOption(props: OptionProps<string>) {
     slotProps = {
       root: {},
     },
-    ...rest
+    ...other
   } = props;
   return (
     <Option
@@ -57,7 +57,7 @@ export function SelectOption(props: OptionProps<string>) {
           ),
         }),
       }}
-      {...rest}
+      {...other}
     />
   );
 }
@@ -72,11 +72,11 @@ export const Select = React.forwardRef(function Select<TValue extends {}, Multip
       listbox: {},
       popper: {},
     },
-    ...rest
+    ...other
   } = props;
   return (
     <BaseSelect
-      {...rest}
+      {...other}
       ref={ref}
       slots={{
         root: SelectButton,
@@ -119,11 +119,11 @@ export const Slider = React.forwardRef(function Slider(
       markLabel: {},
       valueLabel: {},
     },
-    ...rest
+    ...other
   } = props;
   return (
     <BaseSlider
-      {...rest}
+      {...other}
       slotProps={{
         root: (ownerState: SliderOwnerState) => ({
           ...slotProps.root,

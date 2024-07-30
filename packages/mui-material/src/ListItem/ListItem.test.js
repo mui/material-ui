@@ -200,7 +200,12 @@ describe('<ListItem />', () => {
 
   // TODO remove in v6 in favor of ListItemButton
   describe('prop: focusVisibleClassName', () => {
-    it('should merge the class names', () => {
+    it('should merge the class names', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { getByRole } = render(
         <ListItem button focusVisibleClassName="focusVisibleClassName" />,
       );

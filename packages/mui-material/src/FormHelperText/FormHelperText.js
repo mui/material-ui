@@ -5,11 +5,10 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
-
-const useThemeProps = createUseThemeProps('MuiFormHelperText');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, contained, size, disabled, error, filled, focused, required } = ownerState;
@@ -76,7 +75,7 @@ const FormHelperTextRoot = styled('p', {
 }));
 
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormHelperText' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormHelperText' });
   const {
     children,
     className,

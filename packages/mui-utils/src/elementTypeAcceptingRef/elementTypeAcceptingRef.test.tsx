@@ -1,11 +1,13 @@
 /* eslint-disable react/prefer-stateless-function */
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
+import { createRenderer, waitFor } from '@mui/internal-test-utils';
 import elementTypeAcceptingRef from './elementTypeAcceptingRef';
 
 describe('elementTypeAcceptingRef', () => {
+  const { render } = createRenderer();
+
   function checkPropType(elementType: any) {
     PropTypes.checkPropTypes(
       { component: elementTypeAcceptingRef },
@@ -20,20 +22,11 @@ describe('elementTypeAcceptingRef', () => {
   });
 
   describe('acceptance', () => {
-    let rootNode: HTMLElement;
-
     function assertPass(Component: any, { failsOnMount = false, shouldMount = true } = {}) {
       function testAct() {
         checkPropType(Component);
         if (shouldMount) {
-          // TODO: replace with React 18 implementation after https://github.com/testing-library/react-testing-library/issues/1216 is closed.
-          // eslint-disable-next-line react/no-deprecated
-          ReactDOM.render(
-            <React.Suspense fallback={<p />}>
-              <Component ref={React.createRef()} />
-            </React.Suspense>,
-            rootNode,
-          );
+          render(<Component ref={React.createRef()} />);
         }
       }
 
@@ -43,15 +36,6 @@ describe('elementTypeAcceptingRef', () => {
         expect(testAct).not.toErrorDev();
       }
     }
-
-    before(() => {
-      rootNode = document.createElement('div');
-    });
-
-    afterEach(() => {
-      // eslint-disable-next-line react/no-deprecated
-      ReactDOM.unmountComponentAtNode(rootNode);
-    });
 
     it('accepts nully values', () => {
       assertPass(undefined, { shouldMount: false });
@@ -94,14 +78,25 @@ describe('elementTypeAcceptingRef', () => {
       assertPass(Component);
     });
 
-    it('accepts lazy', () => {
+    it('accepts lazy', async () => {
       const Component = React.lazy(() =>
         Promise.resolve({
           default: React.forwardRef((props, ref) => <div ref={ref} {...props} />),
         }),
       );
 
-      assertPass(Component);
+      function testAct() {
+        checkPropType(Component);
+        render(
+          <React.Suspense fallback={<p />}>
+            <Component ref={React.createRef()} />
+          </React.Suspense>,
+        );
+      }
+
+      await waitFor(() => {
+        expect(testAct).not.toErrorDev();
+      });
     });
 
     it('technically allows other exotics like strict mode', () => {

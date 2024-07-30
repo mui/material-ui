@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base';
+import { SlotComponentProps } from '../utils/types';
 import { PortalProps } from '../Portal';
 import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';

@@ -7,7 +7,8 @@ import NotchedOutline from './NotchedOutline';
 import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -15,8 +16,6 @@ import InputBase, {
   InputBaseRoot,
   InputBaseInput,
 } from '../InputBase/InputBase';
-
-const useThemeProps = createUseThemeProps('MuiOutlinedInput');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -181,7 +180,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
 }));
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiOutlinedInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiOutlinedInput' });
   const {
     components = {},
     fullWidth = false,

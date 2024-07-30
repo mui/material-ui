@@ -39,7 +39,6 @@ function Identifier() {
 export default function IdentifySystemMode() {
   return (
     <CssVarsProvider
-      defaultMode="system"
       // The props below are specific to this demo,
       // you might not need them in your app.
       //

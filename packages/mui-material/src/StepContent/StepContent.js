@@ -3,13 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepContentUtilityClass } from './stepContentClasses';
-
-const useThemeProps = createUseThemeProps('MuiStepContent');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, last } = ownerState;
@@ -53,7 +52,7 @@ const StepContentTransition = styled(Collapse, {
 })({});
 
 const StepContent = React.forwardRef(function StepContent(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepContent' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepContent' });
   const {
     children,
     className,

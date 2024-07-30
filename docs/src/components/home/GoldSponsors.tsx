@@ -78,7 +78,7 @@ export default function GoldSponsors() {
         variant="h6"
         sx={[
           {
-            fontWeight: 'bold',
+            fontWeight: 'semiBold',
           },
           (theme) => ({
             mt: 4,
@@ -102,11 +102,11 @@ export default function GoldSponsors() {
       </Typography>
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {GOLDs.map((item) => (
-          <Grid key={item.name} xs={12} sm={6} md={4} lg={3}>
+          <Grid key={item.name} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
             <SponsorCard inView={inView} item={item} />
           </Grid>
         ))}
-        <Grid xs={12} sm={6} md={4} lg={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
           <Paper
             variant="outlined"
             sx={{
@@ -129,7 +129,7 @@ export default function GoldSponsors() {
               <AddRounded />
             </IconButton>
             <div>
-              <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
+              <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
                 Become a sponsor
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>

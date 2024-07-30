@@ -1,32 +1,48 @@
 import * as React from 'react';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import Search from './Search';
-import CustomDatePicker from './CustomDatePicker';
+import PropTypes from 'prop-types';
 
-export default function Header() {
+import Stack from '@mui/material/Stack';
+import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
+import CustomDatePicker from './CustomDatePicker';
+import NavbarBreadcrumbs from './NavbarBreadcrumbs';
+import ToggleColorMode from './ToggleColorMode';
+import MenuButton from './MenuButton';
+
+import Search from './Search';
+
+function Header({ mode, toggleColorMode }) {
   return (
     <Stack
-      direction={{ xs: 'column', md: 'row' }}
+      direction="row"
       sx={{
-        alignItems: { xs: 'flex-start', md: 'flex-end' },
+        display: { xs: 'none', md: 'flex' },
+        width: '100%',
+        alignItems: { xs: 'flex-start', md: 'center' },
         justifyContent: 'space-between',
-        gap: 2,
-        my: 2,
+        maxWidth: { sm: '100%', md: '1700px' },
       }}
+      spacing={2}
     >
-      <Stack sx={{ maxWidth: 500 }}>
-        <Typography variant="h4" component="h1">
-          Dashboard
-        </Typography>
-        <Typography sx={{ color: 'text.secondary' }}>
-          Real-time analytics to improve user engagement and guide strategy.
-        </Typography>
-      </Stack>
-      <Stack direction="row" sx={{ gap: 1, width: { xs: '100%', sm: 'auto' } }}>
+      <NavbarBreadcrumbs />
+      <Stack direction="row" sx={{ gap: 1 }}>
         <Search />
         <CustomDatePicker />
+        <MenuButton showBadge aria-label="Open notifications">
+          <NotificationsRoundedIcon />
+        </MenuButton>
+        <ToggleColorMode
+          mode={mode}
+          toggleColorMode={toggleColorMode}
+          data-screenshot="toggle-mode"
+        />
       </Stack>
     </Stack>
   );
 }
+
+Header.propTypes = {
+  mode: PropTypes.oneOf(['dark', 'light']).isRequired,
+  toggleColorMode: PropTypes.func.isRequired,
+};
+
+export default Header;

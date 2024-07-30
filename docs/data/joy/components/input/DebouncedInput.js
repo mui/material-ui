@@ -5,7 +5,7 @@ import Typography from '@mui/joy/Typography';
 import Box from '@mui/joy/Box';
 
 function DebounceInput(props) {
-  const { handleDebounce, debounceTimeout, ...rest } = props;
+  const { handleDebounce, debounceTimeout, ...other } = props;
 
   const timerRef = React.useRef();
 
@@ -16,7 +16,7 @@ function DebounceInput(props) {
     }, debounceTimeout);
   };
 
-  return <Input {...rest} onChange={handleChange} />;
+  return <Input {...other} onChange={handleChange} />;
 }
 
 DebounceInput.propTypes = {
