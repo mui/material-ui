@@ -2,7 +2,10 @@
 import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
-import extendTheme, { SupportedColorScheme, CssVarsTheme } from './extendTheme';
+import createThemeWithVars, {
+  SupportedColorScheme,
+  CssVarsTheme,
+} from './createTheme/createThemeWithVars';
 import createTypography from './createTypography';
 import THEME_ID from './identifier';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
@@ -13,7 +16,7 @@ const {
   getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
 } = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
   themeId: THEME_ID,
-  theme: extendTheme,
+  theme: createThemeWithVars,
   colorSchemeStorageKey: defaultConfig.colorSchemeStorageKey,
   modeStorageKey: defaultConfig.modeStorageKey,
   defaultColorScheme: {
