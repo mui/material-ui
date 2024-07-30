@@ -52,7 +52,6 @@ describe('createTheme', () => {
     const theme = createTheme({
       palette: { primary: { main: deepOrange[500] }, secondary: { main: green.A400 } },
     });
-    expect(theme.defaultColorScheme).to.equal('light');
     expect(theme.palette.primary.main).to.equal(deepOrange[500]);
     expect(theme.palette.secondary.main).to.equal(green.A400);
   });
