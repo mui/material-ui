@@ -17,7 +17,7 @@ function attachColorScheme(
       palette: createPalette({
         ...(colorScheme === true ? {} : colorScheme),
         mode: scheme,
-      }),
+      } as any), // cast type to skip module augmentation test
     };
   }
 }
@@ -40,7 +40,7 @@ export default function createTheme(
             | 'cssVarPrefix'
             | 'shouldSkipGeneratingVar'
           >;
-    } = {},
+    } = {} as any, // cast type to skip module augmentation test
   ...args: object[]
 ): Theme {
   const {
