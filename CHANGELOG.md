@@ -1,5 +1,29 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.16.6
+
+<!-- generated comparing v5.16.5..master -->
+
+_Jul 30, 2024_
+
+A big thanks to the 5 contributors who made this release possible.
+
+### `@mui/material@5.16.6`
+
+- [Divider] Enable borderStyle enhancement in divider with children (#43059) @anuujj
+
+### Docs
+
+- [material-ui][Card] Update CardMedia description (#43121) @shahzaibdev1
+- [material-ui] Replace deprecated `<ListItem button/>` with `ListItemButton` component in routing libraries list example (#43114) @aliharis99
+- [material-ui][Snackbar] Improve close `reason` type in demos (#43105) @sai6855
+
+### Core
+
+- [code-infra] Use the same CI names on master & next (#43064) @mnajdova
+
+All contributors of this release in alphabetical order: @aliharis99, @anuujj, @mnajdova, @sai6855, @shahzaibdev1
+
 ## 5.16.5
 
 <!-- generated comparing v5.16.4..master -->
