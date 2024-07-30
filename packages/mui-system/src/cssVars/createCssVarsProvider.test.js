@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { ThemeProvider } from '@mui/system';
 import createCssVarsTheme from './createCssVarsTheme';
 import createCssVarsProvider, { DISABLE_CSS_TRANSITION } from './createCssVarsProvider';
 import {
@@ -895,6 +896,35 @@ describe('createCssVarsProvider', () => {
       expect(getByTestId('outer')).to.have.text('system');
 
       expect(getByTestId('inner')).to.have.text('dark');
+    });
+
+    it('themeId should not exist in the theme if not provided as a prop', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        themeId: '$$foo',
+        theme: createCssVarsTheme({
+          colorSchemes: {
+            light: {
+              color: 'light',
+            },
+            dark: {
+              color: 'dark',
+            },
+          },
+        }),
+        defaultColorScheme: 'light',
+      });
+      function Text() {
+        const theme = useTheme();
+        return theme.$$foo ? 'failed' : 'passed';
+      }
+      const { container } = render(
+        <ThemeProvider theme={{ renderText: () => 'foo-bar' }}>
+          <CssVarsProvider>
+            <Text />
+          </CssVarsProvider>
+        </ThemeProvider>,
+      );
+      expect(container.textContent).to.equal('passed');
     });
   });
 });
