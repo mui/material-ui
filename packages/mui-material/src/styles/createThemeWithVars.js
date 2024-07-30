@@ -21,10 +21,10 @@ import {
 } from '@mui/system/colorManipulator';
 
 import createThemeNoVars from './createThemeNoVars';
-import defaultShouldSkipGeneratingVar from '../shouldSkipGeneratingVar';
-import getOverlayAlpha from '../getOverlayAlpha';
-import defaultGetSelector from '../createGetSelector';
-import { stringifyTheme } from '../stringifyTheme';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
+import getOverlayAlpha from './getOverlayAlpha';
+import defaultGetSelector from './createGetSelector';
+import { stringifyTheme } from './stringifyTheme';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {

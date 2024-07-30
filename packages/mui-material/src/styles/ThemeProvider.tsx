@@ -3,8 +3,8 @@ import * as React from 'react';
 import { DefaultTheme } from '@mui/system';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
 import { CssVarsProvider } from './ThemeProviderWithVars';
-import { CssThemeVariables } from '../createTheme/createThemeNoVars';
-import THEME_ID from '../identifier';
+import { CssThemeVariables } from './createThemeNoVars';
+import THEME_ID from './identifier';
 
 type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true }
   ? {

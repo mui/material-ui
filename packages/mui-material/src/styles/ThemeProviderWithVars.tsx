@@ -2,13 +2,10 @@
 import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
-import createThemeWithVars, {
-  SupportedColorScheme,
-  CssVarsTheme,
-} from '../createTheme/createThemeWithVars';
-import createTypography from '../createTypography';
-import THEME_ID from '../identifier';
-import { defaultConfig } from '../../InitColorSchemeScript/InitColorSchemeScript';
+import createThemeWithVars, { SupportedColorScheme, CssVarsTheme } from './createThemeWithVars';
+import createTypography from './createTypography';
+import THEME_ID from './identifier';
+import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 const {
   CssVarsProvider,

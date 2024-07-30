@@ -1,4 +1,4 @@
-import extendTheme from './createTheme/createThemeWithVars';
+import extendTheme from './createThemeWithVars';
 
 let warnedOnce = false;
 

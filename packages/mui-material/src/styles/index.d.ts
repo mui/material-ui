@@ -101,7 +101,7 @@ export { default as withTheme } from './withTheme';
 
 export * from './CssVarsProvider';
 
-export { default as extendTheme } from './createTheme/createThemeWithVars';
+export { default as extendTheme } from './createThemeWithVars';
 
 export type {
   ColorSchemeOverrides,
@@ -135,7 +135,7 @@ export type {
   ThemeCssVar,
   ThemeCssVarOverrides,
   ColorSystemOptions,
-} from './createTheme/createThemeWithVars';
+} from './createThemeWithVars';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 

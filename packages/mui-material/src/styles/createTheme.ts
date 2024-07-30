@@ -1,6 +1,12 @@
-import createPalette from '../createPalette';
-import createThemeWithVars, { CssVarsThemeOptions, ColorSystem } from './createThemeWithVars';
+import createPalette from './createPalette';
+import createThemeWithVars, {
+  CssVarsThemeOptions,
+  ColorSystem,
+  DefaultColorScheme,
+} from './createThemeWithVars';
 import createThemeNoVars, { Theme, ThemeOptions } from './createThemeNoVars';
+
+export { createMuiTheme, ThemeOptions, Theme, CssThemeVariables } from './createThemeNoVars';
 
 // eslint-disable-next-line consistent-return
 function attachColorScheme(
@@ -50,15 +56,14 @@ export default function createTheme(
     defaultColorScheme: initialDefaultColorScheme = palette?.mode,
     ...rest
   } = options;
-  const defaultColorSchemeInput = initialDefaultColorScheme || 'light';
+  const defaultColorSchemeInput = (initialDefaultColorScheme as DefaultColorScheme) || 'light';
+  const defaultScheme = initialColorSchemes?.[defaultColorSchemeInput];
   const colorSchemesInput = {
     ...initialColorSchemes,
     ...(palette
       ? {
           [defaultColorSchemeInput]: {
-            ...(initialColorSchemes as undefined | Record<'light' | 'dark', any>)?.[
-              defaultColorSchemeInput
-            ],
+            ...(typeof defaultScheme !== 'boolean' && defaultScheme),
             palette,
           },
         }
@@ -66,7 +71,6 @@ export default function createTheme(
   };
 
   if (cssVariables === false) {
-    // @ts-expect-error ignore mismatch types here
     const theme = createThemeNoVars(options, ...args) as unknown as Theme & {
       defaultColorScheme?: 'light' | 'dark';
       colorSchemes?: Partial<Record<string, any>>;

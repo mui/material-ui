@@ -5,13 +5,13 @@ import {
   CSSObject,
   SxConfig,
 } from '@mui/system';
-import { Mixins, MixinsOptions } from '../createMixins';
-import { Palette, PaletteOptions } from '../createPalette';
-import { Typography, TypographyOptions } from '../createTypography';
-import { Shadows } from '../shadows';
-import { Transitions, TransitionsOptions } from '../createTransitions';
-import { ZIndex, ZIndexOptions } from '../zIndex';
-import { Components } from '../components';
+import { Mixins, MixinsOptions } from './createMixins';
+import { Palette, PaletteOptions } from './createPalette';
+import { Typography, TypographyOptions } from './createTypography';
+import { Shadows } from './shadows';
+import { Transitions, TransitionsOptions } from './createTransitions';
+import { ZIndex, ZIndexOptions } from './zIndex';
+import { Components } from './components';
 import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
 
 /**
