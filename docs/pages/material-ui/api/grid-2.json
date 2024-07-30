@@ -51,58 +51,15 @@
       }
     }
   },
-  "name": "Grid",
-  "imports": ["import Grid from '@mui/system/Grid';", "import { Grid } from '@mui/system';"],
-  "classes": [
-    {
-      "key": "container",
-      "className": "MuiGrid-container",
-      "description": "Styles applied to the root element if `container={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "direction-xs-column",
-      "className": "MuiGrid-direction-xs-column",
-      "description": "Styles applied to the root element if `direction=\"column\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "direction-xs-column-reverse",
-      "className": "MuiGrid-direction-xs-column-reverse",
-      "description": "Styles applied to the root element if `direction=\"column-reverse\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "direction-xs-row-reverse",
-      "className": "MuiGrid-direction-xs-row-reverse",
-      "description": "Styles applied to the root element if `direction=\"row-reverse\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiGrid-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    },
-    {
-      "key": "wrap-xs-nowrap",
-      "className": "MuiGrid-wrap-xs-nowrap",
-      "description": "Styles applied to the root element if `wrap=\"nowrap\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "wrap-xs-wrap-reverse",
-      "className": "MuiGrid-wrap-xs-wrap-reverse",
-      "description": "Styles applied to the root element if `wrap=\"reverse\"`.",
-      "isGlobal": false
-    }
-  ],
+  "name": "Grid2",
+  "imports": ["import Grid2 from '@mui/material/Grid2';", "import { Grid2 } from '@mui/material';"],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
-  "muiName": "MuiGrid",
+  "muiName": "MuiGrid2",
   "forwardsRefTo": "HTMLElement",
-  "filename": "/packages/mui-system/src/Grid/Grid.tsx",
+  "filename": "/packages/mui-material/src/Grid2/Grid2.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-grid/\">Grid (Joy UI)</a></li>\n<li><a href=\"/material-ui/react-grid/\">Grid (Material UI)</a></li></ul>",
-  "cssComponent": true
+  "demos": "<ul><li><a href=\"/material-ui/react-grid2/\">Grid version 2</a></li></ul>",
+  "cssComponent": false
 }

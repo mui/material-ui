@@ -288,6 +288,7 @@ function reduceChildRoutes(context) {
         planned={page.planned}
         unstable={page.unstable}
         beta={page.beta}
+        deprecated={page.deprecated}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -322,6 +323,7 @@ function reduceChildRoutes(context) {
         planned={page.planned}
         unstable={page.unstable}
         beta={page.beta}
+        deprecated={page.deprecated}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
