@@ -9,13 +9,13 @@ const darkPalette = createPalette({ mode: 'dark' });
 describe('createTheme', () => {
   describe('Without custom properties', () => {
     it('should not have custom properties', () => {
-      const theme = createTheme({ customProperties: false });
-      expect(theme.customProperties).to.equal(false);
+      const theme = createTheme({ cssVariables: false });
+      expect(theme.cssVariables).to.equal(false);
       expect('vars' in theme).to.equal(false);
     });
 
     it('color schemes dark: true', () => {
-      const theme = createTheme({ customProperties: false, colorSchemes: { dark: true } });
+      const theme = createTheme({ cssVariables: false, colorSchemes: { dark: true } });
       const { light, dark } = theme.colorSchemes || {};
       expect(light?.palette.primary.main).to.deep.equal(lightPalette.primary.main);
       expect(dark?.palette.primary.main).to.deep.equal(darkPalette.primary.main);
@@ -23,7 +23,7 @@ describe('createTheme', () => {
 
     it('color schemes light: true', () => {
       const theme = createTheme({
-        customProperties: false,
+        cssVariables: false,
         colorSchemes: { light: true },
         palette: { mode: 'dark' },
       });

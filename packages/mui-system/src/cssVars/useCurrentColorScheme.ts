@@ -150,6 +150,13 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
       darkColorScheme,
     } as State<SupportedColorScheme>;
   });
+  // This could be improved with `React.useSyncExternalStore` in the future.
+  const [, setHasMounted] = React.useState(false);
+  const hasMounted = React.useRef(false);
+  React.useEffect(() => {
+    setHasMounted(true); // to rerender the component after hydration
+    hasMounted.current = true;
+  }, []);
 
   const colorScheme = getColorScheme(state);
 
@@ -332,7 +339,9 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
 
   return {
     ...state,
-    colorScheme,
+    mode: hasMounted.current ? state.mode : undefined,
+    systemMode: hasMounted.current ? state.systemMode : undefined,
+    colorScheme: hasMounted.current ? colorScheme : undefined,
     setMode,
     setColorScheme,
   };

@@ -25,7 +25,7 @@ function attachColorScheme(
 export default function createTheme(
   options: Omit<ThemeOptions, 'components'> &
     Pick<CssVarsThemeOptions, 'defaultColorScheme' | 'colorSchemes' | 'components'> & {
-      customProperties?:
+      cssVariables?:
         | boolean
         | Pick<
             CssVarsThemeOptions,
@@ -41,7 +41,7 @@ export default function createTheme(
     palette,
     colorSchemes: initialColorSchemes = !palette ? { light: true } : undefined,
     defaultColorScheme: initialDefaultColorScheme = palette?.mode,
-    customProperties,
+    cssVariables,
     ...rest
   } = options;
   const defaultColorSchemeInput = initialDefaultColorScheme || 'light';
@@ -59,7 +59,7 @@ export default function createTheme(
       : undefined),
   };
 
-  if (customProperties === false) {
+  if (cssVariables === false) {
     // @ts-expect-error ignore mismatch types here
     const theme = createThemeNoVars(options, ...args) as unknown as Theme;
     if (!('colorSchemes' in options)) {
@@ -86,7 +86,7 @@ export default function createTheme(
       ...rest,
       colorSchemes: colorSchemesInput,
       defaultColorScheme: defaultColorSchemeInput,
-      ...(typeof customProperties !== 'boolean' && customProperties),
+      ...(typeof cssVariables !== 'boolean' && cssVariables),
     },
     ...args,
   );

@@ -48,7 +48,7 @@ export interface CreateCssVarsProviderResult<
         theme?: Identify<
           Identifier,
           {
-            customProperties?: false;
+            cssVariables?: false;
             cssVarPrefix?: string;
             colorSchemes: Record<ColorScheme, Record<string, any>>;
             colorSchemeSelector?: 'media' | 'class' | 'data' | string;

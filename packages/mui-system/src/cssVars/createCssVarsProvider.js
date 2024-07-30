@@ -113,7 +113,7 @@ export default function createCssVarsProvider(options) {
       colorScheme = ctx.colorScheme;
     }
 
-    // `colorScheme` is undefined on the server
+    // `colorScheme` is undefined on the server and hydration phase
     const calculatedColorScheme = colorScheme || restThemeProp.defaultColorScheme;
 
     // 2. get the `vars` object that refers to the CSS custom properties
@@ -242,7 +242,7 @@ export default function createCssVarsProvider(options) {
     let shouldGenerateStyleSheet = true;
     if (
       disableStyleSheetGeneration ||
-      restThemeProp.customProperties === false ||
+      restThemeProp.cssVariables === false ||
       (nested && upperTheme?.cssVarPrefix === cssVarPrefix)
     ) {
       shouldGenerateStyleSheet = false;
@@ -266,7 +266,7 @@ export default function createCssVarsProvider(options) {
       </React.Fragment>
     );
 
-    if (nested && restThemeProp.customProperties !== false) {
+    if (nested && restThemeProp.cssVariables !== false) {
       return element;
     }
 

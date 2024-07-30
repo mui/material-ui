@@ -32,17 +32,17 @@ import {
  */
 export interface CssThemeVariables {}
 
-type CssVarsOptions<CustomProperties = CssThemeVariables> = CustomProperties extends {
+type CssVarsOptions<CssVariables = CssThemeVariables> = CssVariables extends {
   disabled: true;
 }
   ? {}
   : ColorSystemOptions;
 
-export interface ThemeOptions<CustomProperties = CssThemeVariables>
+export interface ThemeOptions<CssVariables = CssThemeVariables>
   extends Omit<SystemThemeOptions, 'zIndex'>,
     CssVarsOptions {
   mixins?: MixinsOptions;
-  components?: Components<Omit<Theme<CustomProperties>, 'components'>>;
+  components?: Components<Omit<Theme<CssVariables>, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
@@ -52,9 +52,9 @@ export interface ThemeOptions<CustomProperties = CssThemeVariables>
   unstable_sxConfig?: SxConfig;
 }
 
-interface BaseTheme<CustomProperties = CssThemeVariables> extends SystemTheme {
+interface BaseTheme<CssVariables = CssThemeVariables> extends SystemTheme {
   mixins: Mixins;
-  palette: Palette & (CustomProperties extends { disabled: true } ? {} : CssVarsPalette);
+  palette: Palette & (CssVariables extends { disabled: true } ? {} : CssVarsPalette);
   shadows: Shadows;
   transitions: Transitions;
   typography: Typography;
@@ -69,15 +69,15 @@ export {};
 /**
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
-export interface Theme<CustomProperties = CssThemeVariables> extends BaseTheme {
+export interface Theme<CssVariables = CssThemeVariables> extends BaseTheme {
   colorSchemes?: Partial<
     Record<
       SupportedColorScheme,
-      CustomProperties extends { disabled: true } ? { palette: Palette } : ColorSystem
+      CssVariables extends { disabled: true } ? { palette: Palette } : ColorSystem
     >
   >;
   defaultColorScheme: SupportedColorScheme;
-  customProperties?: false;
+  cssVariables?: false;
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;

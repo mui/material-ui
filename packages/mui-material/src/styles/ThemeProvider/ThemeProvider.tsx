@@ -7,30 +7,30 @@ export interface ThemeProviderProps<Theme = DefaultTheme> {
   children?: React.ReactNode;
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme);
   /**
-   * [Configurable if `colorSchemes` is provided]
+   * [Configurable if `theme.colorSchemes` is provided]
    * The document used to perform `disableTransitionOnChange` feature
    * @default document
    */
   documentNode?: Document | null;
   /**
-   * [Configurable if `colorSchemes` is provided]
+   * [Configurable if `theme.colorSchemes` is provided]
    * The node used to attach the color-scheme attribute
    * @default document
    */
   colorSchemeNode?: Element | null;
   /**
-   * [Configurable if `colorSchemes` is provided]
+   * [Configurable if `theme.colorSchemes` is provided]
    * The window that attaches the 'storage' event listener
    * @default window
    */
   storageWindow?: Window | null;
   /**
-   * [Configurable if `customProperties` is not `false`]
+   * [Configurable if `cssVariables` is not `false`]
    * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
    */
   disableNestedContext?: boolean;
   /**
-   * [Configurable if `customProperties` is not `false`]
+   * [Configurable if `cssVariables` is not `false`]
    * If `true`, the style sheet won't be generated.
    *
    * This is useful for controlling nested CssVarsProvider behavior.
@@ -38,7 +38,7 @@ export interface ThemeProviderProps<Theme = DefaultTheme> {
    */
   disableStyleSheetGeneration?: boolean;
   /**
-   * [Configurable if `colorSchemes` is provided]
+   * [Configurable if `theme.colorSchemes` is provided]
    * Disable CSS transitions when switching between modes or color schemes
    * @default false
    */
