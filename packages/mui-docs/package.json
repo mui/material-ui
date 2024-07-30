@@ -34,7 +34,7 @@
     "test": "exit 0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.8",
+    "@babel/runtime": "^7.25.0",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
@@ -45,7 +45,7 @@
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/gtag.js": "^0.0.20",
-    "@types/node": "^18.19.41",
+    "@types/node": "^18.19.42",
     "@types/prop-types": "^15.7.12",
     "@types/react": "^18.3.3",
     "next": "^14.2.5",
