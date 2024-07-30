@@ -12,7 +12,7 @@ export default function ThemeProviderNoVars<Theme = DefaultTheme>({
   theme: themeInput,
   ...props
 }: ThemeProviderNoVarsProps<Theme>): React.ReactElement<ThemeProviderNoVarsProps<Theme>> {
-  const scopedTheme = THEME_ID in themeInput ? themeInput[THEME_ID] : themeInput;
+  const scopedTheme = THEME_ID in themeInput ? themeInput[THEME_ID] : undefined;
   return (
     <SystemThemeProvider
       {...props}

@@ -45,9 +45,9 @@ export default function createTheme(
 ): Theme {
   const {
     palette,
+    cssVariables = false,
     colorSchemes: initialColorSchemes = !palette ? { light: true } : undefined,
     defaultColorScheme: initialDefaultColorScheme = palette?.mode,
-    cssVariables,
     ...rest
   } = options;
   const defaultColorSchemeInput = initialDefaultColorScheme || 'light';
@@ -68,6 +68,8 @@ export default function createTheme(
   if (cssVariables === false) {
     // @ts-expect-error ignore mismatch types here
     const theme = createThemeNoVars(options, ...args) as unknown as Theme;
+    theme.defaultColorScheme = defaultColorSchemeInput;
+
     if (!('colorSchemes' in options)) {
       return theme;
     }
@@ -83,7 +85,6 @@ export default function createTheme(
       attachColorScheme(theme, 'light', colorSchemesInput.light);
     }
 
-    theme.defaultColorScheme = defaultColorSchemeInput;
     return theme;
   }
 

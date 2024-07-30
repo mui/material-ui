@@ -4,7 +4,7 @@ import { stringifyTheme } from './stringifyTheme';
 
 describe('StringifyTheme', () => {
   it('should serialize the theme', () => {
-    const theme = createTheme();
+    const theme = createTheme({ cssVariables: true });
     const result = stringifyTheme({
       breakpoints: theme.breakpoints,
       transitions: theme.transitions,
@@ -60,6 +60,7 @@ export default theme;`);
 
   it('should serialize the custom theme', () => {
     const theme = createTheme({
+      cssVariables: true,
       breakpoints: {
         values: {
           mobile: 0,
@@ -126,7 +127,10 @@ export default theme;`);
   });
 
   it('works with framework toRuntimeSource', () => {
-    const theme = { palette: { primary: { main: '#ff5252' } }, toRuntimeSource: stringifyTheme };
+    const theme = {
+      palette: { primary: { main: '#ff5252' } },
+      toRuntimeSource: stringifyTheme,
+    };
     expect(theme.toRuntimeSource.call(theme, theme)).to
       .equal(`import { unstable_createBreakpoints as createBreakpoints, createTransitions } from '@mui/material/styles';
 

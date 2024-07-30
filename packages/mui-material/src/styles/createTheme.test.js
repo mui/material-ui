@@ -13,6 +13,35 @@ const darkPalette = createPalette({ mode: 'dark' });
 describe('createTheme', () => {
   const { render } = createRenderer();
 
+  it('should not have custom properties', () => {
+    const theme = createTheme({ cssVariables: false });
+    expect(theme.cssVariables).to.equal(false);
+    expect('vars' in theme).to.equal(false);
+  });
+
+  it('color schemes dark: true', () => {
+    const theme = createTheme({ cssVariables: false, colorSchemes: { dark: true } });
+    const { light, dark } = theme.colorSchemes || {};
+    expect(light?.palette.primary.main).to.deep.equal(lightPalette.primary.main);
+    expect(dark?.palette.primary.main).to.deep.equal(darkPalette.primary.main);
+  });
+
+  it('color schemes light: true', () => {
+    const theme = createTheme({
+      cssVariables: false,
+      colorSchemes: { light: true },
+      palette: { mode: 'dark' },
+    });
+    const { light, dark } = theme.colorSchemes || {};
+    expect(light?.palette.primary.main).to.deep.equal(lightPalette.primary.main);
+    expect(dark?.palette.primary.main).to.deep.equal(darkPalette.primary.main);
+  });
+
+  it('should provide spacing in px', () => {
+    const theme = createTheme({ cssVariables: false });
+    expect(theme.spacing(1)).to.equal('8px');
+  });
+
   it('should have a palette', () => {
     const theme = createTheme();
     expect(typeof createTheme).to.equal('function');
@@ -26,63 +55,40 @@ describe('createTheme', () => {
     expect(theme.defaultColorScheme).to.equal('light');
     expect(theme.palette.primary.main).to.equal(deepOrange[500]);
     expect(theme.palette.secondary.main).to.equal(green.A400);
-    expect(theme.vars.palette.primary.main).to.equal(
-      `var(--mui-palette-primary-main, ${deepOrange[500]})`,
-    );
-    expect(theme.vars.palette.secondary.main).to.equal(
-      `var(--mui-palette-secondary-main, ${green.A400})`,
-    );
   });
 
-  it('should have a dark as a default colorScheme if only `palette` is provided', () => {
-    const theme = createTheme({
-      palette: {
-        mode: 'dark',
-        primary: { main: deepOrange[500] },
-      },
-    });
-    expect(theme.defaultColorScheme).to.equal('dark');
-    expect(theme.palette.primary.main).to.equal(deepOrange[500]);
-    expect(theme.vars.palette.primary.main).to.equal(
-      `var(--mui-palette-primary-main, ${deepOrange[500]})`,
-    );
-  });
-
-  describe('Without custom properties', () => {
-    it('should not have custom properties', () => {
-      const theme = createTheme({ cssVariables: false });
-      expect(theme.cssVariables).to.equal(false);
-      expect('vars' in theme).to.equal(false);
-    });
-
-    it('color schemes dark: true', () => {
-      const theme = createTheme({ cssVariables: false, colorSchemes: { dark: true } });
-      const { light, dark } = theme.colorSchemes || {};
-      expect(light?.palette.primary.main).to.deep.equal(lightPalette.primary.main);
-      expect(dark?.palette.primary.main).to.deep.equal(darkPalette.primary.main);
-    });
-
-    it('color schemes light: true', () => {
+  describe('CSS variables', () => {
+    it('should have a light as a default colorScheme if only `palette` is provided', () => {
       const theme = createTheme({
-        cssVariables: false,
-        colorSchemes: { light: true },
-        palette: { mode: 'dark' },
+        cssVariables: true,
+        palette: { primary: { main: deepOrange[500] } },
       });
-      const { light, dark } = theme.colorSchemes || {};
-      expect(light?.palette.primary.main).to.deep.equal(lightPalette.primary.main);
-      expect(dark?.palette.primary.main).to.deep.equal(darkPalette.primary.main);
+      expect(theme.defaultColorScheme).to.equal('light');
+      expect(theme.vars.palette.primary.main).to.equal(
+        `var(--mui-palette-primary-main, ${deepOrange[500]})`,
+      );
     });
 
-    it('should provide spacing in px', () => {
-      const theme = createTheme({ cssVariables: false });
-      expect(theme.spacing(1)).to.equal('8px');
+    it('should have a dark as a default colorScheme if only `palette` is provided', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        palette: {
+          mode: 'dark',
+          primary: { main: deepOrange[500] },
+        },
+      });
+      expect(theme.defaultColorScheme).to.equal('dark');
+      expect(theme.palette.primary.main).to.equal(deepOrange[500]);
+      expect(theme.vars.palette.primary.main).to.equal(
+        `var(--mui-palette-primary-main, ${deepOrange[500]})`,
+      );
     });
-  });
 
-  describe('spacing', () => {
-    it('should provide the default spacing', () => {
-      const theme = createTheme();
-      expect(theme.spacing(1)).to.equal(`calc(1 * var(--mui-spacing, 8px))`);
+    describe('spacing', () => {
+      it('should provide the default spacing', () => {
+        const theme = createTheme({ cssVariables: true });
+        expect(theme.spacing(1)).to.equal(`calc(1 * var(--mui-spacing, 8px))`);
+      });
     });
   });
 

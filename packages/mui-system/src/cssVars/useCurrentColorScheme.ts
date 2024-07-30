@@ -54,7 +54,11 @@ export type Result<SupportedColorScheme extends string> = State<SupportedColorSc
 };
 
 export function getSystemMode(mode: undefined | string): SystemMode | undefined {
-  if (typeof window !== 'undefined' && mode === 'system') {
+  if (
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    mode === 'system'
+  ) {
     const mql = window.matchMedia('(prefers-color-scheme: dark)');
     if (mql.matches) {
       return 'dark';
@@ -282,17 +286,20 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   mediaListener.current = handleMediaQuery;
 
   React.useEffect(() => {
-    const handler = (...args: any) => mediaListener.current(...args);
+    if (typeof window.matchMedia === 'function') {
+      const handler = (...args: any) => mediaListener.current(...args);
 
-    // Always listen to System preference
-    const media = window.matchMedia('(prefers-color-scheme: dark)');
+      // Always listen to System preference
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-    // Intentionally use deprecated listener methods to support iOS & old browsers
-    media.addListener(handler);
-    handler(media);
-    return () => {
-      media.removeListener(handler);
-    };
+      // Intentionally use deprecated listener methods to support iOS & old browsers
+      media.addListener(handler);
+      handler(media);
+      return () => {
+        media.removeListener(handler);
+      };
+    }
+    return undefined;
   }, []);
 
   // Handle when localStorage has changed
