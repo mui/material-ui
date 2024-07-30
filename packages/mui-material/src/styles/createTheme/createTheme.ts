@@ -67,13 +67,16 @@ export default function createTheme(
 
   if (cssVariables === false) {
     // @ts-expect-error ignore mismatch types here
-    const theme = createThemeNoVars(options, ...args) as unknown as Theme;
-    theme.defaultColorScheme = defaultColorSchemeInput;
+    const theme = createThemeNoVars(options, ...args) as unknown as Theme & {
+      defaultColorScheme?: 'light' | 'dark';
+      colorSchemes?: Partial<Record<string, any>>;
+    };
 
     if (!('colorSchemes' in options)) {
       return theme;
     }
 
+    theme.defaultColorScheme = defaultColorSchemeInput;
     theme.colorSchemes = {};
 
     if (theme.palette.mode === 'light') {
