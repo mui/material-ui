@@ -19,6 +19,7 @@ import useForkRef from '../utils/useForkRef';
 import useId from '../utils/useId';
 import useControlled from '../utils/useControlled';
 import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
+import getChildRef from '../utils/getChildRef';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -545,7 +546,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
-  const handleRef = useForkRef(children.ref, setChildNode, ref);
+  const handleRef = useForkRef(getChildRef(children), setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
   // So we exclude all falsy values, except 0, which is valid.

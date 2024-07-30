@@ -1,6 +1,6 @@
 {
   "name": "@mui/private-theming",
-  "version": "6.0.0-beta.0",
+  "version": "6.0.0-beta.3",
   "private": false,
   "author": "MUI Team",
   "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
@@ -37,7 +37,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.8",
+    "@babel/runtime": "^7.25.0",
     "@mui/utils": "workspace:*",
     "prop-types": "^15.8.1"
   },
@@ -46,7 +46,7 @@
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.16",
     "@types/react": "^18.3.3",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "react": "^18.3.1"
   },
   "peerDependencies": {
@@ -64,6 +64,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   }
 }
