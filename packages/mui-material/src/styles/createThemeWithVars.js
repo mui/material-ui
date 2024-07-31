@@ -133,14 +133,14 @@ function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
 }
 
 /**
- * A default `extendTheme` comes with a single color scheme, either `light` or `dark` based on the `defaultColorScheme`.
+ * A default `createThemeWithVars` comes with a single color scheme, either `light` or `dark` based on the `defaultColorScheme`.
  * This is better suited for apps that only need a single color scheme.
  *
  * To enable built-in `light` and `dark` color schemes, either:
  * 1. provide a `colorSchemeSelector` to define how the color schemes will change.
  * 2. provide `colorSchemes.dark` will set `colorSchemeSelector: 'media'` by default.
  */
-export default function extendTheme(options = {}, ...args) {
+export default function createThemeWithVars(options = {}, ...args) {
   const {
     colorSchemes: colorSchemesInput = { light: true },
     defaultColorScheme: defaultColorSchemeInput,
@@ -176,7 +176,7 @@ export default function extendTheme(options = {}, ...args) {
 
   if (!defaultScheme) {
     throw new MuiError(
-      'MUI: The provided `colorSchemes.%s` to the `extendTheme` function is either missing or invalid.',
+      'MUI: The provided `colorSchemes.%s` to the `createThemeWithVars` function is either missing or invalid.',
       defaultColorScheme,
     );
   }
