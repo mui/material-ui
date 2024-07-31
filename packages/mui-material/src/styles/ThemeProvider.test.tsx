@@ -5,6 +5,32 @@ import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles
 
 describe('ThemeProvider', () => {
   const { render } = createRenderer();
+  let originalMatchmedia: typeof window.matchMedia;
+  let storage: Record<string, string> = {};
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    // Create mocks of localStorage getItem and setItem functions
+    storage = {};
+    Object.defineProperty(global, 'localStorage', {
+      value: {
+        getItem: (key: string) => storage[key],
+        setItem: (key: string, value: string) => {
+          storage[key] = value;
+        },
+      },
+      configurable: true,
+    });
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      }) as unknown as MediaQueryList;
+  });
+
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
 
   it('When theme is a function, it should not show warning', () => {
     expect(() =>
@@ -17,7 +43,7 @@ describe('ThemeProvider', () => {
   });
 
   describe('light & dark', () => {
-    const ModeSwitcher = () => {
+    function ModeSwitcher() {
       const { mode, setMode } = useColorScheme();
       if (!mode) {
         return null;
@@ -35,7 +61,8 @@ describe('ThemeProvider', () => {
           <option value="dark">Dark</option>
         </select>
       );
-    };
+    }
+
     it('should be able to use `useColorScheme`', () => {
       const theme = createTheme({
         colorSchemes: { dark: true },
