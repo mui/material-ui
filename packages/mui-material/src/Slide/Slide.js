@@ -5,12 +5,12 @@ import { Transition } from 'react-transition-group';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getElementRef from '@mui/utils/getElementRef';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import { useTheme } from '../zero-styled';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
-import getChildRef from '../utils/getChildRef';
 
 // Translate the node so it can't be seen on the screen.
 // Later, we're going to translate the node back to its original location with `none`.
@@ -120,7 +120,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   } = props;
 
   const childrenRef = React.useRef(null);
-  const handleRef = useForkRef(getChildRef(children), childrenRef, ref);
+  const handleRef = useForkRef(getElementRef(children), childrenRef, ref);
 
   const normalizedTransitionCallback = (callback) => (isAppearing) => {
     if (callback) {

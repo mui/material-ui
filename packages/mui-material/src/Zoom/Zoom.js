@@ -3,10 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getElementRef from '@mui/utils/getElementRef';
 import { useTheme } from '../zero-styled';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
-import getChildRef from '../utils/getChildRef';
 
 const styles = {
   entering: {
@@ -49,7 +49,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   } = props;
 
   const nodeRef = React.useRef(null);
-  const handleRef = useForkRef(nodeRef, getChildRef(children), ref);
+  const handleRef = useForkRef(nodeRef, getElementRef(children), ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
