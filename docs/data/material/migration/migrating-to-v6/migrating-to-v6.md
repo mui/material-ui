@@ -198,6 +198,15 @@ The `Grid2` was updated and stabilized:
 
 This brings some breaking changes described in the following sections.
 
+### ListItem
+
+`ListItem`'s props `autoFocus`, `button`, `disabled`, and `selected`, deprecated in v5, have been removed. To replace the `button` prop, use `ListItemButton` instead. The other removed props are available in the `ListItemButton` component as well.
+
+```diff
+-<ListItem button />
++<ListItemButton />
+```
+
 #### Stabilized API
 
 The `Grid2` component API was stabilized, so its import no longer contains the `Unstable_` prefix:
