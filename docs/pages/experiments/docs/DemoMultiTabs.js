@@ -10,7 +10,7 @@ import {
   randomRating,
   randomStatusOptions,
 } from '@mui/x-data-grid-generator';
- 
+// eslint-disable-next-line no-restricted-imports
 import {
   COUNTRY_ISO_OPTIONS_SORTED,
   INCOTERM_OPTIONS,
