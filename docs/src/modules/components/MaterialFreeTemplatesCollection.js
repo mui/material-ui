@@ -4,10 +4,13 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import { useTranslate } from '@mui/docs/i18n';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
@@ -87,27 +90,57 @@ export default function Templates() {
               borderColor: 'divider',
             }}
           >
-            <CardMedia
-              component="img"
-              // The image source is generated from `pnpm template:screenshot material-ui`, do not modify the image manually.
-              image={`/static/screenshots${layout.href.replace(/\/$/, '')}.jpg`}
-              title={layout.title}
-              sx={(theme) => ({
-                aspectRatio: '16 / 9',
-                objectPosition: 'top',
-                borderBottom: '1px solid',
-                borderColor: 'divider',
-                ...theme.applyStyles('dark', {
-                  content: 'var(--src)',
-                }),
-              })}
-              style={{
-                '--src': layout.hasDarkMode
-                  ? `url(/static/screenshots${layout.href.replace(/\/$/, '')}-dark.jpg)`
-                  : `url(/static/screenshots${layout.href.replace(/\/$/, '')}.jpg)`,
+            <Box
+              sx={{
+                position: 'relative',
+                '&:hover > .MuiCardMedia-root': {
+                  filter: 'blur(4px)',
+                  overflow: 'clip',
+                },
+                '&:hover > .MuiButtonBase-root': {
+                  opacity: 1,
+                },
               }}
-            />
-            <Box sx={{ p: 2, pt: 1.5 }}>
+            >
+              <CardMedia
+                component="img"
+                // The image source is generated from `pnpm template:screenshot material-ui`, do not modify the image manually.
+                image={`/static/screenshots${layout.href.replace(/\/$/, '')}.jpg`}
+                title={layout.title}
+                sx={(theme) => ({
+                  aspectRatio: '16 / 9',
+                  objectPosition: 'top',
+                  ...theme.applyStyles('dark', {
+                    content: 'var(--src)',
+                  }),
+                })}
+                style={{
+                  '--src': layout.hasDarkMode
+                    ? `url(/static/screenshots${layout.href.replace(/\/$/, '')}-dark.jpg)`
+                    : `url(/static/screenshots${layout.href.replace(/\/$/, '')}.jpg)`,
+                }}
+              />
+              <Button
+                variant="text"
+                endIcon={<OpenInNewRoundedIcon />}
+                component={Link}
+                href={layout.href}
+                data-ga-event-category="material-ui-template"
+                data-ga-event-label={layout.title}
+                data-ga-event-action="preview-img"
+                sx={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  opacity: 0,
+                  transition: 'opacity 0.3s',
+                }}
+              >
+                See live preview
+              </Button>
+            </Box>
+            <Box sx={{ p: 2, pt: 1.5, borderTop: '1px solid', borderColor: 'divider' }}>
               <Typography component="h3" variant="body1" sx={{ fontWeight: 'semiBold' }}>
                 {layout.title}
               </Typography>
