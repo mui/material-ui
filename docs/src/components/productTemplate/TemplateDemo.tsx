@@ -3,7 +3,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';

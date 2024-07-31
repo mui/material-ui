@@ -1,9 +1,8 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Portal from '@mui/material/Portal';
-import { AdContext } from 'docs/src/modules/components/AdManager';
+import { AdContext } from './AdManager';
 
-interface AdGuestProps {
+export interface AdGuestProps {
   /**
    * The querySelector use to target the element which will include the ad.
    */
@@ -11,7 +10,7 @@ interface AdGuestProps {
   children?: React.ReactNode | undefined;
 }
 
-export default function AdGuest(props: AdGuestProps) {
+function AdGuest(props: AdGuestProps) {
   const { classSelector = '.description', children } = props;
   const ad = React.useContext(AdContext);
 
@@ -40,7 +39,4 @@ export default function AdGuest(props: AdGuestProps) {
   );
 }
 
-AdGuest.propTypes = {
-  children: PropTypes.node,
-  classSelector: PropTypes.string,
-};
+export { AdGuest };
