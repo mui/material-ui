@@ -74,8 +74,8 @@ export { default as createContainer } from './Container/createContainer';
 export { default as Container } from './Container';
 export * from './Container';
 
-export { default as Unstable_Grid } from './Unstable_Grid/Grid';
-export * from './Unstable_Grid';
+export { default as Grid } from './Grid/Grid';
+export * from './Grid';
 
 export { default as Stack } from './Stack/Stack';
 export * from './Stack';

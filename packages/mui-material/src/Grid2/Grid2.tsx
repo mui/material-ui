@@ -1,18 +1,11 @@
-import * as React from 'react';
-import clsx from 'clsx';
+'use client';
 import PropTypes from 'prop-types';
+import { createGrid as createGrid2 } from '@mui/system/Grid';
+import { SxProps, SystemProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/types';
-import { SxProps } from '@mui/system';
-// @ts-ignore
-import Grid from '@mui/material-pigment-css/Grid';
-import composeClasses from '@mui/utils/composeClasses';
-import generateUtilityClass from '@mui/utils/generateUtilityClass';
-import {
-  generateDirectionClasses,
-  generateSizeClassNames,
-  generateSpacingClassNames,
-} from '@mui/system/Grid/gridGenerator';
-import { Breakpoint, Theme } from '../styles';
+import { Theme, styled, useThemeProps, Breakpoint } from '../styles';
+
+export type Grid2Slot = 'root';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
@@ -22,7 +15,9 @@ export type GridSpacing = number | string;
 
 export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
-export type GridSize = 'auto' | 'grow' | number;
+export type GridSize = 'auto' | 'grow' | number | false;
+
+export type GridOffset = 'auto' | number;
 
 export interface GridBaseProps {
   /**
@@ -52,9 +47,9 @@ export interface GridBaseProps {
    */
   direction?: ResponsiveStyleValue<GridDirection>;
   /**
-   * Defines the offset of the grid.
+   * Defines the offset value for the type `item` components.
    */
-  offset?: ResponsiveStyleValue<number> | undefined;
+  offset?: ResponsiveStyleValue<GridOffset>;
   /**
    * @internal
    * The level of the grid starts from `0`
@@ -84,15 +79,15 @@ export interface GridBaseProps {
    */
   rowSpacing?: ResponsiveStyleValue<GridSpacing>;
   /**
+   * Defines the size of the the type `item` components.
+   */
+  size?: ResponsiveStyleValue<GridSize>;
+  /**
    * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
    * @default 0
    */
   spacing?: ResponsiveStyleValue<GridSpacing> | undefined;
-  /**
-   * Defines the column size of the grid.
-   */
-  size?: ResponsiveStyleValue<GridSize> | undefined;
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
@@ -101,46 +96,18 @@ export interface GridBaseProps {
   wrap?: GridWrap;
 }
 
-export interface GridTypeMap<
-  AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
-> {
-  props: AdditionalProps & GridBaseProps & { sx?: SxProps<Theme> };
-  defaultComponent: DefaultComponent;
+export interface Grid2TypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & GridBaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
+  defaultComponent: D;
 }
 
-export type GridProps<
-  RootComponent extends React.ElementType = GridTypeMap['defaultComponent'],
-  AdditionalProps = {
+export type Grid2Props<
+  D extends React.ElementType = Grid2TypeMap['defaultComponent'],
+  P = {
     component?: React.ElementType;
   },
-> = OverrideProps<GridTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<Grid2TypeMap<P, D>, D>;
 
-const useUtilityClasses = (ownerState: GridBaseProps) => {
-  const { container, direction, size, spacing } = ownerState;
-  let gridSize = {};
-  if (size) {
-    if (Array.isArray(size)) {
-      size.forEach((value, index) => {
-        gridSize = { ...gridSize, [index]: value };
-      });
-    }
-    if (typeof size === 'object') {
-      gridSize = size;
-    }
-  }
-  const slots = {
-    root: [
-      'root',
-      container && 'container',
-      ...generateDirectionClasses(direction),
-      ...generateSizeClassNames(gridSize),
-      ...(container ? generateSpacingClassNames(spacing) : []),
-    ],
-  };
-
-  return composeClasses(slots, (slot: string) => generateUtilityClass('MuiGrid2', slot), {});
-};
 /**
  *
  * Demos:
@@ -149,17 +116,19 @@ const useUtilityClasses = (ownerState: GridBaseProps) => {
  *
  * API:
  *
- * - [PigmentGrid API](https://next.mui.com/material-ui/api/pigment-grid/)
+ * - [Grid2 API](https://next.mui.com/material-ui/api/grid-2/)
  */
-const PigmentGrid = React.forwardRef(function PigmentGrid(props, ref) {
-  const { className, ...other } = props;
+const Grid2 = createGrid2({
+  createStyledComponent: styled('div', {
+    name: 'MuiGrid2',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root,
+  }),
+  componentName: 'MuiGrid2',
+  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiGrid2' }),
+}) as OverridableComponent<Grid2TypeMap>;
 
-  const classes = useUtilityClasses(props);
-
-  return <Grid ref={ref} className={clsx(classes.root, className)} {...(other as any)} />;
-}) as OverridableComponent<GridTypeMap>;
-
-PigmentGrid.propTypes /* remove-proptypes */ = {
+Grid2.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -168,10 +137,6 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The number of columns.
    * @default 12
@@ -186,7 +151,7 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * It overrides the value of the `spacing` prop.
    */
   columnSpacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     PropTypes.number,
     PropTypes.object,
     PropTypes.string,
@@ -203,16 +168,17 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * @default 'row'
    */
   direction: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['column', 'column-reverse', 'row', 'row-reverse']),
-    PropTypes.arrayOf(PropTypes.oneOf(['column', 'column-reverse', 'row', 'row-reverse'])),
+    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
     PropTypes.object,
   ]),
   /**
-   * Defines the offset of the grid.
+   * Defines the offset value for the type `item` components.
    */
   offset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.string,
     PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     PropTypes.object,
   ]),
   /**
@@ -220,17 +186,19 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * It overrides the value of the `spacing` prop.
    */
   rowSpacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     PropTypes.number,
     PropTypes.object,
     PropTypes.string,
   ]),
   /**
-   * Defines the column size of the grid.
+   * Defines the size of the the type `item` components.
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.string,
+    PropTypes.bool,
     PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number])),
     PropTypes.object,
   ]),
   /**
@@ -239,7 +207,7 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   spacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     PropTypes.number,
     PropTypes.object,
     PropTypes.string,
@@ -283,7 +251,4 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
 } as any;
 
-// @ts-ignore internal logic for nested grid
-PigmentGrid.muiName = 'Grid';
-
-export default PigmentGrid;
+export default Grid2;
