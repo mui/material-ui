@@ -76,8 +76,8 @@ const PRODUCTS = [
     href: ROUTES.productDesignKits,
   },
   {
-    name: 'Toolpad',
-    description: 'Low-code admin builder.',
+    name: 'Toolpad Core',
+    description: 'Components for dashboards and internal tools.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
   },
@@ -110,8 +110,8 @@ const DOCS = [
     href: ROUTES.xIntro,
   },
   {
-    name: 'Toolpad',
-    description: 'Low-code admin builder',
+    name: 'Toolpad Core',
+    description: 'Components for dashboards and internal tools.',
     href: ROUTES.toolpadStudioDocs,
     chip: 'Beta',
   },
