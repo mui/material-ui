@@ -205,24 +205,17 @@ function DemoSandbox(props) {
   // `childrenProp` needs to be a child of `Sandbox` since the iframe implementation rely on `cloneElement`.
   const children = <Sandbox {...sandboxProps}>{childrenProp}</Sandbox>;
 
-  React.useEffect(() => {
-    async function loadMaterialUI() {
+  React.useLayoutEffect(() => {
+    async function setupMaterialUITheme() {
       if (typeof window.getInjectTheme === 'function') {
         window.React = React;
-        Promise.all([import('@mui/material'), import('react/jsx-runtime')])
-          .then(([MaterialUI, jsx]) => {
-            window.MaterialUI = MaterialUI;
-            window.jsx = jsx;
-
-            const themeOptions = window.getInjectTheme();
-            setInjectTheme(themeOptions);
-          })
-          .catch(() => {
-            // ignore error
-          });
+        const jsx = await import('react/jsx-runtime');
+        window.jsx = jsx;
+        const themeOptions = window.getInjectTheme();
+        setInjectTheme(themeOptions);
       }
     }
-    loadMaterialUI();
+    setupMaterialUITheme();
   }, []);
 
   return (
