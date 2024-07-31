@@ -286,20 +286,20 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   mediaListener.current = handleMediaQuery;
 
   React.useEffect(() => {
-    if (typeof window.matchMedia === 'function') {
-      const handler = (...args: any) => mediaListener.current(...args);
-
-      // Always listen to System preference
-      const media = window.matchMedia('(prefers-color-scheme: dark)');
-
-      // Intentionally use deprecated listener methods to support iOS & old browsers
-      media.addListener(handler);
-      handler(media);
-      return () => {
-        media.removeListener(handler);
-      };
+    if (typeof window.matchMedia !== 'function') {
+      return undefined;
     }
-    return undefined;
+    const handler = (...args: any) => mediaListener.current(...args);
+
+    // Always listen to System preference
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+    // Intentionally use deprecated listener methods to support iOS & old browsers
+    media.addListener(handler);
+    handler(media);
+    return () => {
+      media.removeListener(handler);
+    };
   }, []);
 
   // Handle when localStorage has changed
