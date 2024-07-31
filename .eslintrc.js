@@ -13,6 +13,22 @@ const forbidCreateStylesMessage =
 
 const ENABLE_REACT_COMPILER_PLUGIN = false;
 
+const BASIC_RESTRICTED_IMPORTS_PATHS = [];
+const BASIC_RESTRICTED_IMPORTS_PATTERNS = [
+  {
+    group: [
+      '@mui/*/*/*',
+      '@pigment-css/*/*/*',
+      '@base_ui/*/*/*',
+      // Allow any import depth with any internal packages
+      '!@mui/internal-*/**',
+      // TODO delete, @mui/docs should be @mui/internal-docs
+      '!@mui/docs/**',
+    ],
+    message: OneLevelImportMessage,
+  },
+];
+
 module.exports = {
   root: true, // So parent files don't get applied
   env: {
@@ -67,20 +83,8 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: [
-          {
-            group: [
-              '@mui/*/*/*',
-              '@pigment-css/*/*/*',
-              '@base_ui/*/*/*',
-              // Allow any import depth with any internal packages
-              '!@mui/internal-*/**',
-              // TODO delete, @mui/docs should be @mui/internal-docs
-              '!@mui/docs/**',
-            ],
-            message: OneLevelImportMessage,
-          },
-        ],
+        paths: BASIC_RESTRICTED_IMPORTS_PATHS,
+        patterns: BASIC_RESTRICTED_IMPORTS_PATTERNS,
       },
     ],
     'no-continue': 'off',
@@ -354,6 +358,7 @@ module.exports = {
           'error',
           {
             paths: [
+              ...BASIC_RESTRICTED_IMPORTS_PATHS,
               {
                 name: '@mui/material/styles',
                 importNames: ['createStyles'],
@@ -370,8 +375,11 @@ module.exports = {
               },
             ],
             patterns: [
-              // Allow deeper imports for TypeScript types. TODO?
-              '@mui/*/*/*/*',
+              ...BASIC_RESTRICTED_IMPORTS_PATTERNS,
+              {
+                // Allow deeper imports for TypeScript types. TODO?
+                group: ['@mui/*/*/*/*'],
+              },
             ],
           },
         ],
@@ -418,15 +426,21 @@ module.exports = {
       },
     },
     {
-      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
-      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
+      files: ['docs/**/*.{ts,tsx,js}', 'packages/*/src/**/*.{ts,tsx,js}'],
+      excludedFiles: ['*.d.ts', '*.{spec,test}.{ts,tsx,js}'],
       rules: {
         'no-restricted-imports': [
           'error',
           {
+            patterns: BASIC_RESTRICTED_IMPORTS_PATTERNS,
             paths: [
+              ...BASIC_RESTRICTED_IMPORTS_PATHS,
               {
                 name: '@mui/material',
+                message: OneLevelImportMessage,
+              },
+              {
+                name: '@mui/icons-material',
                 message: OneLevelImportMessage,
               },
               {
