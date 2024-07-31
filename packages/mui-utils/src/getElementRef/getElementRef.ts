@@ -10,9 +10,11 @@ export default function getElementRef(element: React.ReactElement<any>): React.R
   if (!element || !React.isValidElement(element)) {
     return null;
   }
+
   // 'ref' is passed as prop in React 19, whereas 'ref' is directly attached to children in older versions
   return (element.props as any).propertyIsEnumerable('ref')
     ? (element.props as any).ref
-    : // @ts-expect-error child.ref is incompatible with types prior to React 19
+    : // @ts-expect-error element.ref is not included in the ReactElement type
+      // We cannot check for it, but isValidElement is true at this point
       element.ref;
 }
