@@ -210,7 +210,7 @@ function DemoSandbox(props) {
       if (typeof window.getInjectTheme === 'function') {
         window.React = React;
         Promise.all([import('@mui/material'), import('react/jsx-runtime')])
-          .then(([MaterialMUI, jsx]) => {
+          .then(([MaterialUI, jsx]) => {
             window.MaterialUI = MaterialUI;
             window.jsx = jsx;
 
