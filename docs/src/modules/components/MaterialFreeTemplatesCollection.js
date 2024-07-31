@@ -89,7 +89,6 @@ export default function Templates() {
                 position: 'relative',
                 '&:hover > .MuiCardMedia-root': {
                   filter: 'blur(4px)',
-                  overflow: 'clip',
                 },
                 '&:hover > .MuiButtonBase-root': {
                   opacity: 1,
@@ -104,6 +103,7 @@ export default function Templates() {
                 sx={(theme) => ({
                   aspectRatio: '16 / 9',
                   objectPosition: 'top',
+                  transition: 'filter 0.3s',
                   ...theme.applyStyles('dark', {
                     content: 'var(--src)',
                   }),
@@ -128,7 +128,7 @@ export default function Templates() {
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
                   opacity: 0,
-                  transition: 'opacity 0.3s',
+                  transition: 'opacity 0.5s ease',
                 }}
               >
                 See live preview
