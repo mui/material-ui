@@ -159,4 +159,4 @@ You can override this behavior by setting the `enableColorOnDark` prop to `true`
 
 The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) from `@toolpad/core` is an extension of the app bar component. It provides a headerbar, a sidebar with navigation, and a scrollable area for page content.
 
-{{"demo": "DashboardLayoutBasic.js", "height": 500, "iframe": true}}
+{{"demo": "DashboardLayoutBasic.js", "height": 300, "iframe": true, "hideToolbar": true}}
