@@ -15,12 +15,6 @@ CSS theme variables replace raw values in Material UI components for a better d
 
 In addition with these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
 
-:::info
-The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
-
-If you have an existing theme, you can migrate to CSS theme variables by following the [migration guide](/material-ui/migration/migration-css-theme-variables/).
-:::
-
 ## Advantages
 
 - It lets you prevent [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651).
@@ -67,10 +61,10 @@ const darkTheme = createTheme({
 **CSS theme variables**: Light and dark colors are consolidated into a theme.
 
 ```js
-import { extendTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
-// `extendTheme` is a new API
-const theme = extendTheme({
+const theme = createTheme({
+  cssVariables: true,
   colorSchemes: {
     light: { // palette for light mode
       palette: {...}
@@ -101,20 +95,18 @@ createTheme({
 });
 ```
 
-**CSS theme variables**: Styling leans toward cascading and specificity by using the appropriate selector which lets you prevent [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651):
+**CSS theme variables**: Styling leans toward cascading and specificity by using `theme.applyStyles()` function which lets you prevent [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651):
 
 ```js
-extendTheme({
+createTheme({
   components: {
     MuiButton: {
       styleOverrides: {
         root: ({ theme }) => ({
           color: theme.vars.palette.primary.main,
-          // When the mode switches to dark, the attribute selector is attached to
-          // the <html> tag by default.
-          '*:where([data-mui-color-scheme="dark"]) &': {
+          ...theme.applyStyles('dark', {
             color: '#fff',
-          },
+          }),
         }),
       },
     },
