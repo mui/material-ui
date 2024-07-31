@@ -1,5 +1,5 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { createTheme, ThemeOptions, alpha , PaletteMode } from '@mui/material/styles';
+import { createTheme, ThemeOptions, alpha, PaletteMode } from '@mui/material/styles';
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {

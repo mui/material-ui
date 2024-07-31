@@ -1,5 +1,5 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { ThemeOptions , PaletteMode } from '@mui/material/styles';
+import { ThemeOptions, PaletteMode } from '@mui/material/styles';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 import type {} from '@mui/x-charts/themeAugmentation';
 import type {} from '@mui/x-data-grid/themeAugmentation';

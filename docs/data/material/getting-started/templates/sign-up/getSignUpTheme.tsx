@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { createTheme, ThemeOptions, alpha , PaletteMode } from '@mui/material/styles';
+import { createTheme, ThemeOptions, alpha, PaletteMode } from '@mui/material/styles';
 
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
