@@ -15,7 +15,7 @@ fn({
     defaultProps: {
       sx: {
         opacity: "0.6"
-      },
+      }
     },
   },
 });
@@ -23,9 +23,10 @@ fn({
   MuiDivider: {
     defaultProps: {
       className: 'my-class',
+
       sx: {
         opacity: "0.6"
-      },
+      }
     },
   },
 });
@@ -33,9 +34,10 @@ fn({
   MuiDivider: {
     defaultProps: {
       className: 'my-class',
+
       sx: {
         opacity: "0.6"
-      },
+      }
     },
   },
 });
