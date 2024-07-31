@@ -18,6 +18,6 @@ jobs:
           node-version: 18
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
-      - run: pnpm canary:release --ignore @mui/icons-material --yes
+      - run: pnpm canary:release --ignore @mui/icons-material --yes --skip-last-commit-comparison
         env:
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
