@@ -44,17 +44,17 @@ The price is essentially the same for customers with 10 developers or fewer, but
 
 After two years since the [introduction of our Premium plan](/blog/premium-plan-release/), we've added numerous features and are on the verge of releasing the Pivot mode for the Data Grid. We consider the product mature and battle tested enough and as a result, the early bird discount for the Premium plan finally reaches its end.
 
-However, we want to ensure that our valued early customers continue to enjoy the benefits of an earlier purchase. Current customers will still benefit from a 20% renewal discount. You'll receive the discount per email, or by reaching out to our support team[sales@mui.com](mailto:sales@mui.com).
+However, we want to ensure that our valued early customers continue to enjoy the benefits of an earlier purchase. Current customers will still benefit from a 20% renewal discount. You'll receive the discount per email, or by reaching out to our [support team](mailto:sales@mui.com).
 
 ## Effective Date
 
-The new pricing updates will take effect on September 1st, 2024. However, you can already purchase the new Pro plan today by visiting our [store](/).
+The new pricing updates will take effect on September 1st, 2024. However, you can already purchase the new Pro plan today by visiting our [store](https://mui.com/store/items/mui-x-pro-q3-2024/).
 
 ### We value your feedback
 
 Your feedback is invaluable to us.
 We invite you to share your thoughts and any questions you might have about these changes.
-Please feel free to contact our sales team at [sales@mui.com](mailto:sales@mui.com).
+Please feel free to contact our [sales team](mailto:sales@mui.com).
 We are here to listen and ensure that our updates meet your needs and expectations.
 
 Thank you for your continued support and for being a part of the MUI community. We look forward to bringing you even more powerful tools and features to help you succeed.
