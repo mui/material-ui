@@ -7,8 +7,6 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import LayersIcon from '@mui/icons-material/Layers';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-// eslint-disable-next-line no-restricted-imports
-import { useDemoRouter } from '@toolpad/core/internals/demo';
 
 const NAVIGATION = [
   {
@@ -69,6 +67,20 @@ const demoTheme = extendTheme({
     },
   },
 });
+
+function useDemoRouter(initialPath) {
+  const [pathname, setPathname] = React.useState(initialPath);
+
+  const router = React.useMemo(() => {
+    return {
+      pathname,
+      searchParams: new URLSearchParams(),
+      navigate: (path) => setPathname(String(path)),
+    };
+  }, [pathname]);
+
+  return router;
+}
 
 export default function DashboardLayoutBasic(props) {
   const { window } = props;
