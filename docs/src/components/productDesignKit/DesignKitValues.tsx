@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Palette from '@mui/icons-material/Palette';
 import LibraryBooks from '@mui/icons-material/LibraryBooks';
 import { InfoCard } from '@mui/docs/InfoCard';

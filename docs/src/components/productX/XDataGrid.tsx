@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGridPro, useGridApiRef } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';

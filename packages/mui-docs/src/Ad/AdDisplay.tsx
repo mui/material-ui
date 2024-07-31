@@ -1,13 +1,12 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { adShape } from 'docs/src/modules/components/AdManager';
-import { adStylesObject } from 'docs/src/modules/components/ad.styles';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '../i18n';
+import { adShape } from './AdManager';
+import { adBodyImageStyles, adBodyInlineStyles } from './ad.styles';
+import { useAdConfig } from './AdProvider';
 
 const InlineShape = styled('span')(({ theme }) => {
-  const styles = adStylesObject['body-inline'](theme);
-
+  const styles = adBodyInlineStyles(theme);
   return {
     ...styles.root,
     '& img': styles.img,
@@ -19,8 +18,7 @@ const InlineShape = styled('span')(({ theme }) => {
 });
 
 const ImageShape = styled('span')(({ theme }) => {
-  const styles = adStylesObject['body-image'](theme);
-
+  const styles = adBodyImageStyles(theme);
   return {
     ...styles.root,
     '& img': styles.img,
@@ -31,7 +29,7 @@ const ImageShape = styled('span')(({ theme }) => {
   };
 });
 
-export interface Ad {
+export interface AdParameters {
   name: string;
   link: string;
   img?: string;
@@ -40,7 +38,7 @@ export interface Ad {
   label: string;
 }
 interface AdDisplayProps {
-  ad: Ad;
+  ad: AdParameters;
   className?: string;
   shape?: 'auto' | 'inline' | 'image';
 }
@@ -49,9 +47,11 @@ export default function AdDisplay(props: AdDisplayProps) {
   const { ad, className, shape: shapeProp = 'auto' } = props;
   const t = useTranslate();
 
+  const { GADisplayRatio } = useAdConfig();
+
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
-    if (Math.random() > ((process.env.GA_ADS_DISPLAY_RATIO ?? 0.1) as number) || !ad.label) {
+    if (Math.random() > (GADisplayRatio ?? 0.1) || !ad.label) {
       return;
     }
 
@@ -59,7 +59,7 @@ export default function AdDisplay(props: AdDisplayProps) {
       eventAction: 'display',
       eventLabel: ad.label,
     });
-  }, [ad.label]);
+  }, [GADisplayRatio, ad.label]);
 
   const shape = shapeProp === 'auto' ? adShape : shapeProp;
 
@@ -95,9 +95,3 @@ export default function AdDisplay(props: AdDisplayProps) {
   );
   /* eslint-enable react/no-danger */
 }
-
-AdDisplay.propTypes = {
-  ad: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  shape: PropTypes.oneOf(['inline', 'auto']),
-};

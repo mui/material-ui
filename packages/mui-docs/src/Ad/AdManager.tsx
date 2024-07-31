@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 
 type AdPortal = {
@@ -26,7 +25,7 @@ const randomSession = Math.random();
 // 80% body-image
 export const adShape = randomSession < 0.2 ? 'inline' : 'image';
 
-export default function AdManager({ classSelector = '.description', children }: AdManagerProps) {
+export function AdManager({ classSelector = '.description', children }: AdManagerProps) {
   const [portal, setPortal] = React.useState<AdPortal>({ placement: 'body-top', element: null });
 
   useEnhancedEffect(() => {
@@ -36,8 +35,3 @@ export default function AdManager({ classSelector = '.description', children }: 
 
   return <AdContext.Provider value={portal}>{children}</AdContext.Provider>;
 }
-
-AdManager.propTypes = {
-  children: PropTypes.node,
-  classSelector: PropTypes.string,
-};
