@@ -36,7 +36,7 @@ export const projectSettings: ProjectSettings = {
   skipComponent(filename: string) {
     return (
       filename.match(
-        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|InitColorSchemeScript|Grid2)/,
+        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|InitColorSchemeScript)/,
       ) !== null
     );
   },

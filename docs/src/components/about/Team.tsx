@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
