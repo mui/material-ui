@@ -9,7 +9,6 @@ import { alpha } from '@mui/system/colorManipulator';
 import isHostComponent from '../utils/isHostComponent';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';

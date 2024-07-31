@@ -10,7 +10,7 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  //Rename components that have ListItem button to ListItemButton
+  // Rename components that have ListItem button to ListItemButton
   findComponentJSX(j, { root, componentName: 'ListItem' }, (elementPath) => {
     const index = elementPath.node.openingElement.attributes.findIndex(
       (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'button',
@@ -23,7 +23,7 @@ export default function transformer(file, api, options) {
     }
   });
 
-  let defaultPropsPathCollection = findComponentDefaultProps(j, {
+  const defaultPropsPathCollection = findComponentDefaultProps(j, {
     root,
     componentName: 'ListItem',
   });
@@ -31,10 +31,9 @@ export default function transformer(file, api, options) {
   defaultPropsPathCollection.find(j.ObjectProperty, { key: { name: 'button' } }).forEach((path) => {
     const defaultProps = path.parent.value;
 
-    let hasButton = false;
     defaultProps.properties.forEach((property) => {
       if (property.key?.name === 'button') {
-        hasButton = true;
+        // Remove the button property from the defaultProps object
         const newListButtonProps = defaultProps.properties.filter(
           (prop) => prop.key.name !== 'button',
         );
@@ -59,15 +58,15 @@ export default function transformer(file, api, options) {
   });
 
   let containsListItem = false;
-  //Find components that use ListItem. If they do, we shouldn't remove it
+  // Find components that use ListItem. If they do, we shouldn't remove it
   findComponentJSX(j, { root, componentName: 'ListItem' }, (elementPath) => {
     if (elementPath.node.openingElement.name.name === 'ListItem') {
       containsListItem = true;
     }
   });
 
-  //Find if there are ListItem named imports.
-  let containsListItemNamedImport = root
+  // Find if there are ListItem named imports.
+  const containsListItemNamedImport = root
     .find(j.ImportSpecifier)
     .filter((path) => path.node.imported.name === 'ListItem');
 
@@ -104,13 +103,13 @@ export default function transformer(file, api, options) {
       });
   }
 
-  //If ListItemButton does not already exist, add it at the end
-  let imports = root
+  // If ListItemButton does not already exist, add it at the end
+  const imports = root
     .find(j.ImportDeclaration)
     .filter((path) => path.node.source.value === '@mui/material/ListItemButton');
 
   if (imports.length === 0) {
-    let lastImport = root.find(j.ImportDeclaration).at(-1);
+    const lastImport = root.find(j.ImportDeclaration).at(-1);
 
     // Insert the import for 'ListItemButton' after the last import declaration
     lastImport.insertAfter(
