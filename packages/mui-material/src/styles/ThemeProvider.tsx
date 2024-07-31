@@ -2,8 +2,8 @@
 import * as React from 'react';
 import { DefaultTheme } from '@mui/system';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
-import { CssVarsProvider } from './ThemeProviderWithVars';
 import { CssThemeVariables } from './createThemeNoVars';
+import { CssVarsProvider } from './ThemeProviderWithVars';
 import { CssVarsTheme } from './createThemeWithVars';
 import THEME_ID from './identifier';
 

@@ -281,7 +281,7 @@ export default function createCssVarsProvider(options) {
       </React.Fragment>
     );
 
-    if (nested && restThemeProp.cssVariables !== false) {
+    if (nested) {
       return element;
     }
 
