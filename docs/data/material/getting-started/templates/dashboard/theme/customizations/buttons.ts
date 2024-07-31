@@ -1,5 +1,4 @@
-import { Components } from '@mui/materia/styles';
-import { alpha, Theme } from '@mui/material/styles';
+import { Components, alpha, Theme } from '@mui/material/styles';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 import { toggleButtonClasses } from '@mui/material/ToggleButton';
