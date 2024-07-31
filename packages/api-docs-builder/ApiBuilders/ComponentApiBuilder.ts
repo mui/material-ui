@@ -25,7 +25,11 @@ import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses from '../utils/parseSlotsAndClasses';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';
-import { AdditionalPropsInfo, ComponentReactApi } from '../types/ApiBuilder.types';
+import {
+  AdditionalPropsInfo,
+  ComponentApiContent,
+  ComponentReactApi,
+} from '../types/ApiBuilder.types';
 import { Slot, ComponentInfo } from '../types/utils.types';
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
@@ -301,7 +305,7 @@ const generateApiPage = async (
   /**
    * Gather the metadata needed for the component's API page.
    */
-  const pageContent = {
+  const pageContent: ComponentApiContent = {
     // Sorted by required DESC, name ASC
     props: _.fromPairs(
       Object.entries(reactApi.propsTable).sort(([aName, aData], [bName, bData]) => {

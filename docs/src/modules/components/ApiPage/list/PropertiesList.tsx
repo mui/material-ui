@@ -145,7 +145,7 @@ export interface Properties {
   isPremiumPlan?: boolean;
   propDefault?: string;
   propName: string;
-  requiresRef?: string;
+  requiresRef?: boolean;
   seeMoreDescription?: string;
   signature?: string;
   signatureArgs?: { argName: string; argDescription?: string }[];

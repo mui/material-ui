@@ -1,16 +1,16 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp } from '@mui/utils';
+import { ComponentApiContent } from '@mui-internal/api-docs-builder';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import { Ad, AdGuest } from '@mui/docs/Ad';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
-import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { Translator, useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
-import { SectionTitle } from '@mui/docs/SectionTitle';
+import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import PropertiesSection, {
@@ -20,9 +20,24 @@ import ClassesSection, {
   getClassesToC,
 } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import {
+  ApiDisplayOptions,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
+} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import { PropsTranslations } from 'packages/api-docs-builder/types/ApiBuilder.types';
+import { TableOfContentsEntry } from '@mui/internal-markdown';
 
-export function getTranslatedHeader(t, header) {
+type ApiHeaderKeys =
+  | 'demos'
+  | 'import'
+  | 'props'
+  | 'theme-default-props'
+  | 'inheritance'
+  | 'slots'
+  | 'classes'
+  | 'css';
+
+export function getTranslatedHeader(t: Translator, header: ApiHeaderKeys) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
@@ -46,7 +61,7 @@ export function getTranslatedHeader(t, header) {
   return translations[header] || header;
 }
 
-function Heading(props) {
+function Heading(props: Pick<SectionTitleProps<ApiHeaderKeys>, 'hash' | 'level'>) {
   const { hash, level = 'h2' } = props;
   const t = useTranslate();
   return <SectionTitle title={getTranslatedHeader(t, hash)} hash={hash} level={level} />;
@@ -57,7 +72,30 @@ Heading.propTypes = {
   level: PropTypes.string,
 };
 
-export default function ApiPage(props) {
+export interface LayoutStorageKeys {
+  slots: string;
+  props: string;
+  classes: string;
+}
+
+interface ApiPageProps {
+  descriptions: {
+    [lang: string]: PropsTranslations & {
+      // Table of Content added by the mapApiPageTranslations function
+      componentDescriptionToc: TableOfContentsEntry[];
+    };
+  };
+  disableAd?: boolean;
+  pageContent: ComponentApiContent;
+  defaultLayout?: ApiDisplayOptions;
+  /**
+   * The localStorage key used to save the user layout for each section.
+   * It's useful to dave different preferences on different pages.
+   * For example, the data grid has a different key that the core.
+   */
+  layoutStorageKey?: LayoutStorageKeys;
+}
+export default function ApiPage(props: ApiPageProps) {
   const {
     descriptions,
     disableAd = false,
@@ -77,7 +115,7 @@ export default function ApiPage(props) {
     inheritance,
     props: componentProps,
     spread,
-    slots: componentSlots,
+    slots: componentSlots = [],
     classes,
   } = pageContent;
 
@@ -106,14 +144,14 @@ export default function ApiPage(props) {
     classDescriptions,
     deprecationInfo,
     propDescriptions,
-    slotDescriptions,
+    slotDescriptions = {},
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, pageContent.name);
 
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
-  function createTocEntry(sectionName) {
+  function createTocEntry(sectionName: ApiHeaderKeys) {
     return {
       text: getTranslatedHeader(t, sectionName),
       hash: sectionName,
@@ -288,6 +326,7 @@ export default function ApiPage(props) {
             />
           </React.Fragment>
         )}
+        (
         <SlotsSection
           componentSlots={componentSlots}
           slotDescriptions={slotDescriptions}
@@ -299,6 +338,7 @@ export default function ApiPage(props) {
           defaultLayout={defaultLayout}
           layoutStorageKey={layoutStorageKey.slots}
         />
+        )
         <ClassesSection
           componentClasses={componentClasses}
           componentName={pageContent.name}
@@ -317,20 +357,4 @@ export default function ApiPage(props) {
       </svg>
     </AppLayoutDocs>
   );
-}
-
-ApiPage.propTypes = {
-  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
-  descriptions: PropTypes.object.isRequired,
-  disableAd: PropTypes.bool,
-  layoutStorageKey: PropTypes.shape({
-    classes: PropTypes.string,
-    props: PropTypes.string,
-    slots: PropTypes.string,
-  }),
-  pageContent: PropTypes.object.isRequired,
-};
-
-if (process.env.NODE_ENV !== 'production') {
-  ApiPage.propTypes = exactProp(ApiPage.propTypes);
 }

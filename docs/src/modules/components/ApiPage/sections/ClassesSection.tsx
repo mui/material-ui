@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { useTranslate } from '@mui/docs/i18n';
+import { Translator, useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import Box from '@mui/material/Box';
@@ -14,7 +14,7 @@ import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable
 export type GetCssToCParams = {
   componentName: string;
   componentClasses: ComponentClassDefinition[];
-  t: (key: any, options?: {}) => any;
+  t: Translator;
   hash?: string;
 };
 
@@ -47,8 +47,18 @@ export type ClassesSectionProps = {
   classDescriptions: ClassDescription;
   componentName: string;
   spreadHint?: string;
-  title: string;
-  titleHash: string;
+  /**
+   * The translation key of the section title.
+   * @default 'api-docs.classes'
+   */
+  title?: string;
+  /**
+   * @default 'classes'
+   */
+  titleHash?: string;
+  /**
+   * @default 'h2'
+   */
   level?: 'h2' | 'h3' | 'h4';
   defaultLayout: ApiDisplayOptions;
   layoutStorageKey: string;
