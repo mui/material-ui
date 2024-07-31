@@ -431,14 +431,25 @@ module.exports = {
       },
     },
     {
-      files: ['docs/**/*{.ts,.tsx,.js}', 'packages/*/src/**/*{.ts,.tsx,.js}'],
-      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', '*.test.ts', '*.test.tsx', '*.test.js'],
+      files: ['docs/**/*{.ts,.tsx,.js}'],
       rules: {
         'no-restricted-imports': [
           'error',
           {
             paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
             patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
+          },
+        ],
+      },
+    },
+    {
+      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
+      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
           },
         ],
         // TODO: Consider setting back to `ignoreExternal: true` when the expected behavior is fixed:
