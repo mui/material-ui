@@ -65,12 +65,6 @@ function layouts(translatation) {
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
     },
-    {
-      title: translatation('stickyFooterTitle'),
-      description: translatation('stickyFooterDescr'),
-      href: '/material-ui/getting-started/templates/sticky-footer/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/sticky-footer`,
-    },
   ];
 }
 
