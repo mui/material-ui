@@ -42,6 +42,16 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
    */
   storageWindow?: Window | null;
   /**
+   * localStorage key used to store application `mode`
+   * @default 'mui-mode'
+   */
+  modeStorageKey?: string;
+  /**
+   * localStorage key used to store `colorScheme`
+   * @default 'mui-color-scheme'
+   */
+  colorSchemeStorageKey?: string;
+  /**
    * Disable CSS transitions when switching between modes or color schemes
    * @default false
    */
