@@ -7,7 +7,7 @@ import {
 } from './generatePropTypeDescription';
 import { DescribeablePropDescriptor } from './createDescribeableProp';
 import escapeCell from './escapeCell';
-import { SeeMore } from '../ApiBuilders/ComponentApiBuilder';
+import { SeeMore } from '../types/utils.types';
 
 function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   if (type.type === 'AllLiteral') {

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import Box from '@mui/material/Box';
+import ListItemButton from '@mui/material/ListItemButton';
 import Paper from '@mui/material/Paper';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -17,7 +19,6 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
-import { ListItemButton } from '@mui/material';
 
 function Router(props: { children?: React.ReactNode }) {
   const { children } = props;
@@ -48,12 +49,10 @@ function ListItemLink(props: ListItemLinkProps) {
   const { icon, primary, to } = props;
 
   return (
-    <li>
-      <ListItemButton component={Link} to={to}>
-        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-        <ListItemText primary={primary} />
-      </ListItemButton>
-    </li>
+    <ListItemButton component={Link} to={to}>
+      {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+      <ListItemText primary={primary} />
+    </ListItemButton>
   );
 }
 
@@ -76,13 +75,21 @@ export default function ListRouter() {
 
         <Paper elevation={0}>
           <List aria-label="main mailbox folders">
-            <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
-            <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+            <ListItem disablePadding>
+              <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+            </ListItem>
           </List>
           <Divider />
           <List aria-label="secondary mailbox folders">
-            <ListItemLink to="/trash" primary="Trash" />
-            <ListItemLink to="/spam" primary="Spam" />
+            <ListItem disablePadding>
+              <ListItemLink to="/trash" primary="Trash" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemLink to="/spam" primary="Spam" />
+            </ListItem>
           </List>
         </Paper>
       </Box>

@@ -5,12 +5,11 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
-
-const useThemeProps = createUseThemeProps('MuiIconButton');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, color, edge, size } = ownerState;
@@ -157,7 +156,7 @@ const IconButtonRoot = styled(ButtonBase, {
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiIconButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiIconButton' });
   const {
     edge = false,
     children,

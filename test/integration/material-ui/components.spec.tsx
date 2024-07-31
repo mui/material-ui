@@ -222,7 +222,7 @@ function CardTest() {
           be-nev-o-lent
         </Typography>
         <Typography variant="body1">adjective</Typography>
-        <Typography component="p">
+        <Typography>
           well meaning and kindly.
           <br />a benevolent smile
         </Typography>
@@ -246,7 +246,7 @@ function CardMediaTest() {
         <img src="image/src.png" alt="Contemplative Reptile" />
       </CardMedia>
       <CardContent>
-        <Typography component="p">
+        <Typography>
           This impressive paella is a perfect party dish and a fun meal to cook together with your
           guests. Add 1 cup of frozen peas along with the mussels, if you like.
         </Typography>
@@ -264,14 +264,12 @@ function CardMediaTest() {
       </CardActions>
       <Collapse in timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph variant="body2">
-            Method:
-          </Typography>
-          <Typography paragraph>
+          <Typography variant="body2">Method:</Typography>
+          <Typography>
             Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
             minutes.
           </Typography>
-          <Typography paragraph>
+          <Typography>
             Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
             heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
             browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
@@ -279,7 +277,7 @@ function CardMediaTest() {
             pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
             saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
           </Typography>
-          <Typography paragraph>
+          <Typography>
             Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
             without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
             medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook

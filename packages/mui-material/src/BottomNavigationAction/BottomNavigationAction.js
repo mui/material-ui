@@ -3,14 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
 import bottomNavigationActionClasses, {
   getBottomNavigationActionUtilityClass,
 } from './bottomNavigationActionClasses';
-
-const useThemeProps = createUseThemeProps('MuiBottomNavigationAction');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, showLabel, selected } = ownerState;
@@ -85,7 +84,7 @@ const BottomNavigationActionLabel = styled('span', {
 }));
 
 const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBottomNavigationAction' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBottomNavigationAction' });
   const {
     className,
     icon,

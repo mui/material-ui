@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
 import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
@@ -50,7 +50,7 @@ export default function BaseUISummary() {
       <Box sx={{ mt: 6 }}>
         <Grid container spacing={3}>
           {content.map(({ icon, title, description, link }) => (
-            <Grid key={title} xs={12} md={4}>
+            <Grid key={title} size={{ xs: 12, md: 4 }}>
               <InfoCard link={link} title={title} icon={icon} description={description} />
             </Grid>
           ))}

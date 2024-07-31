@@ -5,15 +5,13 @@ import clsx from 'clsx';
 import { alpha } from '@mui/system/colorManipulator';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
+import isFocusVisible from '@mui/utils/isFocusVisible';
 import capitalize from '../utils/capitalize';
-import { styled, createUseThemeProps, useTheme } from '../zero-styled';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
-import useForkRef from '../utils/useForkRef';
+import { styled, useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import getTextDecoration, { colorTransformations } from './getTextDecoration';
-
-const useThemeProps = createUseThemeProps('MuiLink');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, component, focusVisible, underline } = ownerState;
@@ -124,7 +122,7 @@ const LinkRoot = styled(Typography, {
 });
 
 const Link = React.forwardRef(function Link(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiLink',
   });
@@ -143,17 +141,9 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ...other
   } = props;
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
-  const handlerRef = useForkRef(ref, focusVisibleRef);
   const handleBlur = (event) => {
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
     }
     if (onBlur) {
@@ -161,8 +151,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     }
   };
   const handleFocus = (event) => {
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event.target)) {
       setFocusVisible(true);
     }
     if (onFocus) {
@@ -189,7 +178,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       component={component}
       onBlur={handleBlur}
       onFocus={handleFocus}
-      ref={handlerRef}
+      ref={ref}
       ownerState={ownerState}
       variant={variant}
       {...other}

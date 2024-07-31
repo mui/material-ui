@@ -5,7 +5,6 @@ describe('defaultTheme', () => {
   it('the output contains required fields', () => {
     Object.keys(defaultTheme).forEach((field) => {
       expect([
-        'attribute',
         'colorSchemeSelector',
         'defaultColorScheme',
         'breakpoints',

@@ -5,7 +5,8 @@ import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 import useSlot from '../utils/useSlot';
@@ -14,8 +15,6 @@ const SPACINGS = {
   small: -16,
   medium: -8,
 };
-
-const useThemeProps = createUseThemeProps('MuiAlert');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -49,7 +48,7 @@ const AvatarGroupRoot = styled('div', {
 }));
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiAvatarGroup',
   });

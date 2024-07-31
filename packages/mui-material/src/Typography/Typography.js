@@ -3,11 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps, internal_createExtendSxProp } from '../zero-styled';
+import { styled, internal_createExtendSxProp } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
 
-const useThemeProps = createUseThemeProps('MuiTypography');
 const extendSxProp = internal_createExtendSxProp();
 
 const useUtilityClasses = (ownerState) => {
@@ -127,7 +127,7 @@ const colorTransformations = {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const { color, ...themeProps } = useThemeProps({ props: inProps, name: 'MuiTypography' });
+  const { color, ...themeProps } = useDefaultProps({ props: inProps, name: 'MuiTypography' });
   const textColor = colorTransformations[color];
   const props = extendSxProp({
     ...themeProps,
@@ -226,6 +226,7 @@ Typography.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
+   * @deprecated Use the `component` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   paragraph: PropTypes.bool,
   /**

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -18,8 +18,7 @@ const DIAMONDs = [
   {
     src: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
-    description:
-      'Delivers technology and cloud expertise to buy, optimize and manage public cloud.',
+    description: 'Technology and cloud expertise to buy, optimize and manage public cloud.',
     href: 'https://www.doit.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -45,7 +44,7 @@ export default function DiamondSponsors() {
         variant="h6"
         sx={[
           {
-            fontWeight: 'bold',
+            fontWeight: 'semiBold',
           },
           (theme) => ({
             mt: 4,
@@ -62,12 +61,12 @@ export default function DiamondSponsors() {
       </Typography>
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {DIAMONDs.map((item) => (
-          <Grid key={item.name} xs={12} sm={6} md={4}>
+          <Grid key={item.name} size={{ xs: 12, sm: 6, md: 4 }}>
             <SponsorCard logoSize={64} inView={inView} item={item} />
           </Grid>
         ))}
         {spotIsAvailable && (
-          <Grid xs={12} sm={6} md={4}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }}>
             <Paper
               variant="outlined"
               sx={{
@@ -97,7 +96,7 @@ export default function DiamondSponsors() {
                 <AddRounded />
               </IconButton>
               <div>
-                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
+                <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
                   Become our sponsor!
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>

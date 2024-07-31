@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses } from '@mui/material/Button';
 import ButtonGroupContext from './ButtonGroupContext';
 import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
@@ -122,12 +123,13 @@ describe('<ButtonGroup />', () => {
     expect(button).to.have.class('MuiButton-outlinedSizeLarge');
   });
 
-  it('should have a ripple by default', () => {
-    const { container } = render(
+  it('should have a ripple', async () => {
+    const { container, getByRole } = render(
       <ButtonGroup>
         <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
       </ButtonGroup>,
     );
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touchRipple')).not.to.equal(null);
   });
 
@@ -141,12 +143,13 @@ describe('<ButtonGroup />', () => {
     expect(button).to.have.class('MuiButton-disableElevation');
   });
 
-  it('can disable the ripple', () => {
-    const { container } = render(
+  it('can disable the ripple', async () => {
+    const { container, getByRole } = render(
       <ButtonGroup disableRipple>
         <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
       </ButtonGroup>,
     );
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touchRipple')).to.equal(null);
   });
 

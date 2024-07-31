@@ -20,24 +20,24 @@
         "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;object"
       }
     },
-    "lg": {
-      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
+    "offset": {
+      "type": {
+        "name": "union",
+        "description": "string<br>&#124;&nbsp;number<br>&#124;&nbsp;Array&lt;string<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;object"
+      }
     },
-    "lgOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
-    "md": {
-      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
-    },
-    "mdOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
     "rowSpacing": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
       }
     },
-    "sm": {
-      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "string<br>&#124;&nbsp;bool<br>&#124;&nbsp;number<br>&#124;&nbsp;Array&lt;string<br>&#124;&nbsp;bool<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;object"
+      }
     },
-    "smOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
     "spacing": {
       "type": {
         "name": "union",
@@ -49,21 +49,10 @@
         "name": "enum",
         "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
       }
-    },
-    "xl": {
-      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
-    },
-    "xlOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
-    "xs": {
-      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
-    },
-    "xsOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } }
+    }
   },
   "name": "Grid",
-  "imports": [
-    "import Grid from '@mui/system/Unstable_Grid';",
-    "import { Unstable_Grid as Grid } from '@mui/system';"
-  ],
+  "imports": ["import Grid from '@mui/system/Grid';", "import { Grid } from '@mui/system';"],
   "classes": [
     {
       "key": "container",
@@ -112,7 +101,7 @@
   "themeDefaultProps": true,
   "muiName": "MuiGrid",
   "forwardsRefTo": "HTMLElement",
-  "filename": "/packages/mui-system/src/Unstable_Grid/Grid.tsx",
+  "filename": "/packages/mui-system/src/Grid/Grid.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-grid/\">Grid (Joy UI)</a></li>\n<li><a href=\"/material-ui/react-grid/\">Grid (Material UI)</a></li></ul>",
   "cssComponent": true

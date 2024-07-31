@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
@@ -41,7 +41,7 @@ export default function ConnectFeatures() {
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid md={6} sx={{ minWidth: 0 }}>
+        <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Available in Beta"
             title={
@@ -75,7 +75,7 @@ export default function ConnectFeatures() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{ overflow: 'clip', height: { xs: 240, sm: 420 }, perspective: '1000px' }}

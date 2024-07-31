@@ -146,7 +146,7 @@ Most notably:
   - New UI for column management
   - Pivoting for the [Premium](/x/react-data-grid/#premium-plan) version
 
-We'll continue to expand our portfolio of Charts, including [Heatmap](/x/react-charts/heat-map/), [Funnel](/x/react-charts/funnel/), and [Gantt](/x/react-charts/gantt/); and explore virtualization and other advanced use cases for the Tree View component.
+We'll continue to expand our portfolio of Charts, including [Heatmap](/x/react-charts/heatmap/), [Funnel](/x/react-charts/funnel/), and [Gantt](/x/react-charts/gantt/); and explore virtualization and other advanced use cases for the Tree View component.
 
 We encourage you to upvote issues on GitHub to help us prioritize.
 Your input directly influences our development schedule, so don't hesitate to let us know what matters most to you!

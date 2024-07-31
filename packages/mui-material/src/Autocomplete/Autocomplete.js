@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import { useAutocomplete, createFilterOptions } from '@mui/base';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
+import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
@@ -18,12 +18,11 @@ import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import filledInputClasses from '../FilledInput/filledInputClasses';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiAutocomplete');
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -411,7 +410,7 @@ const AutocompleteGroupUl = styled('ul', {
 export { createFilterOptions };
 
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAutocomplete' });
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
@@ -815,7 +814,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
    * Props applied to the [`Chip`](/material-ui/api/chip/) element.
-   * @deprecated Use `slotProps.chip` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ChipProps: PropTypes.object,
   /**
@@ -1023,12 +1021,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The component used to render the listbox.
    * @default 'ul'
-   * @deprecated Use `slots.listbox` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxComponent: PropTypes.elementType,
   /**
    * Props applied to the Listbox element.
-   * @deprecated Use `slotProps.listbox` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxProps: PropTypes.object,
   /**
@@ -1086,7 +1082,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
    */
   onInputChange: PropTypes.func,
   /**
@@ -1123,13 +1119,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The component used to render the body of the popup.
    * @default Paper
-   * @deprecated Use `slots.paper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperComponent: PropTypes.elementType,
   /**
    * The component used to position the popup.
    * @default Popper
-   * @deprecated Use `slots.popper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PopperComponent: PropTypes.elementType,
   /**

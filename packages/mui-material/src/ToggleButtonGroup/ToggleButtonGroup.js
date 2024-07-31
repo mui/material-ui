@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import toggleButtonGroupClasses, {
   getToggleButtonGroupUtilityClass,
@@ -13,8 +14,6 @@ import toggleButtonGroupClasses, {
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from './ToggleButtonGroupButtonContext';
 import toggleButtonClasses from '../ToggleButton/toggleButtonClasses';
-
-const useThemeProps = createUseThemeProps('MuiToggleButtonGroup');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, fullWidth, disabled } = ownerState;
@@ -125,7 +124,7 @@ const ToggleButtonGroupRoot = styled('div', {
 }));
 
 const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiToggleButtonGroup' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiToggleButtonGroup' });
   const {
     children,
     className,

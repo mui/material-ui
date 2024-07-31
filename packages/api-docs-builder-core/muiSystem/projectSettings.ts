@@ -24,7 +24,9 @@ export const projectSettings: ProjectSettings = {
   translationLanguages: LANGUAGES,
   skipComponent(filename) {
     return (
-      filename.match(/(ThemeProvider|CssVarsProvider|GlobalStyles|InitColorSchemeScript)/) !== null
+      filename.match(
+        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|GlobalStyles|InitColorSchemeScript)/,
+      ) !== null
     );
   },
   translationPagesDirectory: 'docs/translations/api-docs',

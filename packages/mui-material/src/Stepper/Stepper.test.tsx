@@ -258,4 +258,17 @@ describe('<Stepper />', () => {
     expect(stepContent[0]).not.to.have.class(stepContentClasses.last);
     expect(stepContent[1]).to.have.class(stepContentClasses.last);
   });
+
+  it('should apply non-linear class', () => {
+    const { container } = render(
+      <Stepper nonLinear activeStep={0}>
+        <Step />
+        <Step />
+        <Step />
+      </Stepper>,
+    );
+
+    const stepper = container.querySelector(`.${classes.root}`);
+    expect(stepper).to.have.class(classes.nonLinear);
+  });
 });

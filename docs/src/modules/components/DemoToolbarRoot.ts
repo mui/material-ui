@@ -15,7 +15,7 @@ const DemoToolbarRoot = styled('div', {
       maxHeight: 50,
       display: 'block',
       marginTop: -1,
-      padding: theme.spacing(0.5, 1),
+      padding: theme.spacing('2px', 1),
       border: `1px solid ${(theme.vars || theme).palette.divider}`,
       borderTopWidth: 0,
       backgroundColor: alpha(theme.palette.grey[50], 0.2),
@@ -32,14 +32,18 @@ const DemoToolbarRoot = styled('div', {
       {
         props: ({ demoOptions }) => demoOptions.bg === 'inline',
         style: {
-          marginTop: theme.spacing(1),
-          borderTopWidth: 1,
+          [theme.breakpoints.up('sm')]: {
+            marginTop: theme.spacing(1),
+            borderTopWidth: 1,
+          },
         },
       },
       {
         props: ({ openDemoSource }) => openDemoSource,
         style: {
-          borderRadius: 0,
+          [theme.breakpoints.up('sm')]: {
+            borderRadius: 0,
+          },
         },
       },
     ],
@@ -50,4 +54,5 @@ const DemoToolbarRoot = styled('div', {
     },
   }),
 ]);
+
 export default DemoToolbarRoot;

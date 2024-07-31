@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -101,7 +101,7 @@ export default function XRoadmap() {
       }}
     >
       <Grid container spacing={2} alignItems="center" justifyContent="space-between">
-        <Grid xs={12} md={5}>
+        <Grid size={{ xs: 12, md: 5 }}>
           <SectionHeadline
             overline="Roadmap"
             title={
@@ -123,9 +123,7 @@ export default function XRoadmap() {
           </Button>
         </Grid>
         <Grid
-          xs={12}
-          md={7}
-          lg="auto"
+          size={{ xs: 12, md: 7, lg: 'auto' }}
           container
           spacing={2}
           sx={{
@@ -139,7 +137,7 @@ export default function XRoadmap() {
             },
           }}
         >
-          <Grid xs={12} sm={4} lg="auto">
+          <Grid size={{ xs: 12, sm: 4, lg: 'auto' }}>
             <Paper variant="outlined">
               <Typography
                 component="div"
@@ -163,7 +161,7 @@ export default function XRoadmap() {
               )}
             </Paper>
           </Grid>
-          <Grid xs={12} sm={4} lg="auto">
+          <Grid size={{ xs: 12, sm: 4, lg: 'auto' }}>
             <Paper variant="outlined">
               <Typography
                 component="div"
@@ -225,7 +223,7 @@ export default function XRoadmap() {
               )}
             </Paper>
           </Grid>
-          <Grid xs={12} sm={4} lg="auto">
+          <Grid size={{ xs: 12, sm: 4, lg: 'auto' }}>
             <Paper variant="outlined">
               <Typography
                 component="div"

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -19,15 +19,36 @@ const companyInfo = [
   },
   {
     title: 'Handbook',
-    description: 'Learn everything about how MUI as a company is run.',
+    description: 'Learn everything about how MUI as a company.',
     routeUrl: ROUTES.handbook,
   },
   {
     title: 'Blog',
-    description: 'Check behind-the-scenes and news about the company.',
+    description: 'Learn about our products and team.',
     routeUrl: ROUTES.blog,
   },
 ];
+
+interface CardContentBlockProps {
+  description: string;
+  title: string;
+}
+
+function CardContentBlock({ title, description }: CardContentBlockProps) {
+  return (
+    <React.Fragment>
+      <Typography component="h2" variant="body2" sx={{ fontWeight: 'semiBold' }}>
+        {title}
+      </Typography>
+      <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
+        {description}
+      </Typography>
+      <Typography variant="body2" color="primary" sx={{ fontWeight: 'bold', mt: 'auto' }}>
+        Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+      </Typography>
+    </React.Fragment>
+  );
+}
 
 function RemoteAwardCard() {
   return (
@@ -36,13 +57,15 @@ function RemoteAwardCard() {
       href="/blog/remote-award-win-2024/"
       noLinkStyle
       variant="outlined"
-      sx={{ p: 2 }}
+      sx={{ p: 2, display: 'flex', flexDirection: 'column ' }}
     >
       <Box
         sx={{
           mb: 2,
           maxWidth: { xs: 315, sm: 325 },
           maxHeight: 315,
+          display: 'flex',
+          aspectRatio: '1 / 1',
           border: '1px solid',
           borderColor: 'divider',
           borderRadius: '6px',
@@ -68,17 +91,12 @@ function RemoteAwardCard() {
           ]}
         />
       </Box>
-      <div>
-        <Typography component="h2" variant="body2" sx={{ fontWeight: 'semiBold' }}>
-          Remote Excellence Awards
-        </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
-          Winners in the first-ever Remote Excellence Awards, in the Small & Mighty category! 🎉
-        </Typography>
-        <Typography variant="body2" color="primary" sx={{ fontWeight: 'bold' }}>
-          Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-        </Typography>
-      </div>
+      <Box sx={{ mt: 'auto' }}>
+        <CardContentBlock
+          title="Remote Excellence Awards"
+          description={`Winners in the first-ever Remote Excellence Awards, in the Small & Mighty category! 🎉`}
+        />
+      </Box>
     </Paper>
   );
 }
@@ -87,7 +105,7 @@ export default function PerksBenefits() {
   return (
     <Section bg="gradient" cozy>
       <Grid container spacing={5} alignItems="center">
-        <Grid md={6}>
+        <Grid size={{ md: 6 }}>
           <SectionHeadline
             overline="Working at MUI"
             title={
@@ -131,14 +149,13 @@ export default function PerksBenefits() {
           </Box>
         </Grid>
         <Grid
-          xs={12}
-          md={6}
           sx={{
             p: { xs: 2, sm: 0 },
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             gap: 2,
           }}
+          size={{ xs: 12, md: 6 }}
         >
           <RemoteAwardCard />
           <Stack spacing={2} useFlexGap>
@@ -151,16 +168,7 @@ export default function PerksBenefits() {
                 variant="outlined"
                 sx={{ p: 2, width: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column' }}
               >
-                <Typography variant="body2" sx={{ fontWeight: 'bold', mb: 0.5 }}>
-                  {title}
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
-                  {description}
-                </Typography>
-                <Typography variant="body2" color="primary" sx={{ fontWeight: 'bold', mt: 'auto' }}>
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
+                <CardContentBlock title={title} description={description} />
               </Paper>
             ))}
           </Stack>

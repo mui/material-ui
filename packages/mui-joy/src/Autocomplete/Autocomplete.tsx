@@ -338,7 +338,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const formControl = React.useContext(FormControlContext);
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : (formControl?.color ?? colorProp));
   const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {
@@ -409,13 +409,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       selectedOptions = renderTags(value as Array<unknown>, getCustomizedTagProps, ownerState);
     } else {
       selectedOptions = (value as Array<unknown>).map((option, index) => {
+        const { key: endDecoratorKey, ...endDecoratorProps } = getCustomizedTagProps({ index });
         return (
           <Chip
             key={index}
             size={size}
             variant="soft"
             color="neutral"
-            endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
+            endDecorator={<ChipDelete key={endDecoratorKey} {...endDecoratorProps} />}
             sx={{ minWidth: 0 }}
           >
             {getOptionLabel(option)}
@@ -632,9 +633,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     },
   });
 
-  const defaultRenderOption = (optionProps: any, option: unknown) => (
-    <SlotOption {...optionProps}>{getOptionLabel(option)}</SlotOption>
-  );
+  const defaultRenderOption = (optionProps: any, option: unknown) => {
+    const { key, ...rest } = optionProps;
+    return (
+      <SlotOption key={key} {...rest}>
+        {getOptionLabel(option)}
+      </SlotOption>
+    );
+  };
 
   const renderOption = renderOptionProp || defaultRenderOption;
 
@@ -1043,7 +1049,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
    */
   onInputChange: PropTypes.func,
   /**

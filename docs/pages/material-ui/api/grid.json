@@ -255,5 +255,6 @@
   "filename": "/packages/mui-material/src/Grid/Grid.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-grid/\">Grid</a></li></ul>",
-  "cssComponent": true
+  "cssComponent": true,
+  "deprecated": true
 }

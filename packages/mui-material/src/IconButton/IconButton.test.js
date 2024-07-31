@@ -8,6 +8,7 @@ import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButt
 import Icon from '@mui/material/Icon';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<IconButton />', () => {
   const { render } = createRenderer();
@@ -30,19 +31,21 @@ describe('<IconButton />', () => {
     expect(getByTestId('icon')).to.have.class(childClassName);
   });
 
-  it('should have a ripple by default', () => {
-    const { container } = render(
+  it('should have a ripple', async () => {
+    const { container, getByRole } = render(
       <IconButton TouchRippleProps={{ className: 'touch-ripple' }}>book</IconButton>,
     );
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
-  it('can disable the ripple and hover effect', () => {
-    const { container } = render(
+  it('can disable the ripple and hover effect', async () => {
+    const { container, getByRole } = render(
       <IconButton disableRipple TouchRippleProps={{ className: 'touch-ripple' }}>
         book
       </IconButton>,
     );
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 

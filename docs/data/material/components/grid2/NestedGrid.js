@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -19,11 +19,11 @@ export default function NestedGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid xs={12} md={5} lg={4}>
+        <Grid size={{ xs: 12, md: 5, lg: 4 }}>
           <Item>Email subscribe section</Item>
         </Grid>
-        <Grid container xs={12} md={7} lg={8} spacing={4}>
-          <Grid xs={6} lg={3}>
+        <Grid container spacing={4} size={{ xs: 12, md: 7, lg: 8 }}>
+          <Grid size={{ xs: 6, lg: 3 }}>
             <Item>
               <Box
                 id="category-a"
@@ -38,7 +38,7 @@ export default function NestedGrid() {
               </Box>
             </Item>
           </Grid>
-          <Grid xs={6} lg={3}>
+          <Grid size={{ xs: 6, lg: 3 }}>
             <Item>
               <Box
                 id="category-b"
@@ -53,7 +53,7 @@ export default function NestedGrid() {
               </Box>
             </Item>
           </Grid>
-          <Grid xs={6} lg={3}>
+          <Grid size={{ xs: 6, lg: 3 }}>
             <Item>
               <Box
                 id="category-c"
@@ -68,7 +68,7 @@ export default function NestedGrid() {
               </Box>
             </Item>
           </Grid>
-          <Grid xs={6} lg={3}>
+          <Grid size={{ xs: 6, lg: 3 }}>
             <Item>
               <Box
                 id="category-d"
@@ -85,12 +85,12 @@ export default function NestedGrid() {
           </Grid>
         </Grid>
         <Grid
-          xs={12}
           container
           justifyContent="space-between"
           alignItems="center"
           flexDirection={{ xs: 'column', sm: 'row' }}
           sx={{ fontSize: '12px' }}
+          size={12}
         >
           <Grid sx={{ order: { xs: 2, sm: 1 } }}>
             <Item>© Copyright</Item>

@@ -7,10 +7,9 @@ import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
-
-const useThemeProps = createUseThemeProps('MuiInputAdornment');
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -88,7 +87,7 @@ const InputAdornmentRoot = styled('div', {
 }));
 
 const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiInputAdornment' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiInputAdornment' });
   const {
     children,
     className,

@@ -8,7 +8,7 @@ import Sheet from '@mui/joy/Sheet';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import Check from '@mui/icons-material/CheckCircle';
-import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
+import { useClipboardCopy } from '@mui/docs/CodeCopy';
 
 const Table = styled('table')(({ theme }) => ({
   border: '1px solid',

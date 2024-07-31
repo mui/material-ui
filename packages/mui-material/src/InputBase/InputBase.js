@@ -5,20 +5,19 @@ import clsx from 'clsx';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import refType from '@mui/utils/refType';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-import { TextareaAutosize } from '@mui/base';
-import { isHostComponent } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
+import TextareaAutosize from '../TextareaAutosize';
+import isHostComponent from '../utils/isHostComponent';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
-import { styled, createUseThemeProps, globalCss } from '../zero-styled';
+import { styled, globalCss } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
-
-const useThemeProps = createUseThemeProps('MuiInputBase');
 
 export const rootOverridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -263,7 +262,7 @@ const InputGlobalStyles = globalCss({
  * It contains a load of style reset and some state logic.
  */
 const InputBase = React.forwardRef(function InputBase(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiInputBase' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiInputBase' });
   const {
     'aria-describedby': ariaDescribedby,
     autoComplete,

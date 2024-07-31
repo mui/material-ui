@@ -193,6 +193,7 @@ function PersistScroll(props) {
     }
 
     return () => {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- useEnhancedEffect uses useEffect under the hood
       savedScrollTop[slot] = scrollContainer.scrollTop;
     };
   }, [enabled, slot]);
@@ -287,6 +288,7 @@ function reduceChildRoutes(context) {
         planned={page.planned}
         unstable={page.unstable}
         beta={page.beta}
+        deprecated={page.deprecated}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -321,6 +323,7 @@ function reduceChildRoutes(context) {
         planned={page.planned}
         unstable={page.unstable}
         beta={page.beta}
+        deprecated={page.deprecated}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}

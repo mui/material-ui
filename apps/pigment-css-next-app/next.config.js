@@ -1,7 +1,7 @@
 /* eslint-env node */
 // eslint-ignore-next-line import/no-unresolved
 const { withPigment } = require('@pigment-css/nextjs-plugin');
-const { extendTheme, stringifyTheme } = require('@mui/material/styles');
+const { extendTheme } = require('@mui/material/styles');
 
 /**
  * @typedef {import('@pigment-css/nextjs-plugin').PigmentOptions} PigmentOptions
@@ -95,46 +95,17 @@ const theme = extendTheme({
 theme.getColorSchemeSelector = (colorScheme) => {
   return `@media (prefers-color-scheme: ${colorScheme})`;
 };
-theme.toRuntimeSource = stringifyTheme;
-
-function innerNoop() {
-  return null;
-}
-function outerNoop() {
-  return innerNoop;
-}
 
 /**
  * @type {PigmentOptions}
  */
 const pigmentOptions = {
   theme,
-  transformLibraries: ['local-ui-lib'],
   sourceMap: true,
   displayName: true,
-  overrideContext: (context) => {
-    if (!context.$RefreshSig$) {
-      context.$RefreshSig$ = outerNoop;
-    }
-    return {
-      ...context,
-      require: (id) => {
-        if (id === '@mui/styled-engine' || id === '@mui/styled-engine-sc') {
-          return {
-            __esModule: true,
-            default: () => () => () => null,
-            internal_processStyles: () => {},
-            keyframes: () => '',
-            css: () => '',
-          };
-        }
-        return context.require(id);
-      },
-    };
-  },
 };
 
-/** @type {import('next').NextConfig} */
+/** @type {import('@pigment-css/nextjs-plugin').NextConfig} */
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,

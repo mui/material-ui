@@ -40,10 +40,17 @@
       "isGlobal": false
     },
     {
+      "key": "icon",
+      "className": "MuiTab-icon",
+      "description": "Styles applied to the `icon` HTML element if both `icon` and `label` are provided.",
+      "isGlobal": false
+    },
+    {
       "key": "iconWrapper",
       "className": "MuiTab-iconWrapper",
       "description": "Styles applied to the `icon` HTML element if both `icon` and `label` are provided.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "labelIcon",
