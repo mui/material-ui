@@ -32,7 +32,7 @@ describe('@mui/codemod', () => {
       });
     });
 
-    describe('[theme] divider-props', () => {
+    describe('[theme] button-props', () => {
       it('transforms props as needed', () => {
         const actual = transform(
           { source: read('./test-cases/theme.actual.js') },

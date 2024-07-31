@@ -2,7 +2,15 @@ fn({
   MuiListItem: {
     defaultProps: {
       anotherProp: 'value',
-      button,
+      button: true,
+    }
+  }
+});
+
+fn({
+  MuiListItem: {
+    defaultProps: {
+      anotherProp: 'value'
     }
   }
 });

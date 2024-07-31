@@ -1,1 +1,1 @@
-export { default } from './list-item-button-prop'
+export { default } from './list-item-button-prop';

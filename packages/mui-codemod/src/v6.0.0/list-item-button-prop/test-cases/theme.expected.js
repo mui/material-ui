@@ -4,10 +4,18 @@ fn({
       anotherProp: 'value'
     }
   },
+
   MuiListItemButton: {
     defaultProps: {
-      anotherProp: 'value',
-      autoFocus: true
+      anotherProp: 'value'
+    }
+  }
+});
+
+fn({
+  MuiListItem: {
+    defaultProps: {
+      anotherProp: 'value'
     }
   }
 });
