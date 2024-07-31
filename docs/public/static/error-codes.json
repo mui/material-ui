@@ -21,5 +21,6 @@
   "20": "MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.For more details, see https://github.com/mui/material-ui/pull/35150.",
   "21": "MUI: The provided shorthand %s is invalid. The format should be `@<breakpoint | number>` or `@<breakpoint | number>/<container>`.\nFor example, `@sm` or `@600` or `@40rem/sidebar`.",
   "22": "MUI: Missing or invalid value of `colorSchemes.%s` from the `extendTheme` function.",
-  "23": "MUI: The provided `colorSchemes.%s` to the `extendTheme` function is either missing or invalid."
+  "23": "MUI: The provided `colorSchemes.%s` to the `extendTheme` function is either missing or invalid.",
+  "24": "MUI: The provided `colorSchemes.%s` is either missing or invalid."
 }
