@@ -74,14 +74,12 @@ describe('extendTheme', () => {
   it('should throw error if the default color scheme is invalid', () => {
     expect(() =>
       extendTheme({ colorSchemes: { dark: false }, defaultColorScheme: 'dark' }),
-    ).to.throw(
-      'MUI: The provided `colorSchemes.dark` to the `extendTheme` function is either missing or invalid.',
-    );
+    ).to.throw('MUI: The provided `colorSchemes.dark` is either missing or invalid.');
   });
 
   it('should throw error if the default color scheme is missing', () => {
     expect(() => extendTheme({ defaultColorScheme: 'paper' })).to.throw(
-      'MUI: The provided `colorSchemes.paper` to the `extendTheme` function is either missing or invalid.',
+      'MUI: The provided `colorSchemes.paper` is either missing or invalid.',
     );
   });
 

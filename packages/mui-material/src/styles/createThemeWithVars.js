@@ -176,7 +176,7 @@ export default function createThemeWithVars(options = {}, ...args) {
 
   if (!defaultScheme) {
     throw new MuiError(
-      'MUI: The provided `colorSchemes.%s` to the `createThemeWithVars` function is either missing or invalid.',
+      'MUI: The provided `colorSchemes.%s` is either missing or invalid.',
       defaultColorScheme,
     );
   }
