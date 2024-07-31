@@ -19,6 +19,8 @@ export {
   TypeText,
   TypeAction,
   TypeBackground,
+  PaletteMode,
+  Color,
 } from './createPalette';
 export { default as createStyles } from './createStyles';
 export {

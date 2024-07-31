@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Components, inputBaseClasses } from '@mui/material';
-import { alpha, Theme } from '@mui/material/styles';
+import { Components, alpha, Theme } from '@mui/material/styles';
+import { inputBaseClasses } from '@mui/material/InputBase';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
