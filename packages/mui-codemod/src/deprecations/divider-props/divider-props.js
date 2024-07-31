@@ -62,9 +62,16 @@ export default function transformer(file, api, options) {
   });
 
   root.find(j.ObjectProperty, { key: { name: 'MuiDivider' } }).forEach((path) => {
+    if (!path.value.value.properties) {
+      return;
+    }
     const defaultPropsObject = path.value.value.properties.find(
       (key) => key.key.name === 'defaultProps',
     );
+
+    if (!defaultPropsObject) {
+      return;
+    }
 
     const lightProp = defaultPropsObject.value.properties.find((prop) => prop.key.name === 'light');
 
