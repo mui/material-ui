@@ -206,12 +206,12 @@ function DemoSandbox(props) {
   const children = <Sandbox {...sandboxProps}>{childrenProp}</Sandbox>;
 
   React.useEffect(() => {
-    async function loadMUI() {
+    async function loadMaterialUI() {
       if (typeof window.getInjectTheme === 'function') {
         window.React = React;
         Promise.all([import('@mui/material'), import('react/jsx-runtime')])
           .then(([MaterialMUI, jsx]) => {
-            window.MaterialMUI = MaterialMUI;
+            window.MaterialUI = MaterialUI;
             window.jsx = jsx;
 
             const themeOptions = window.getInjectTheme();
@@ -222,7 +222,7 @@ function DemoSandbox(props) {
           });
       }
     }
-    loadMUI();
+    loadMaterialUI();
   }, []);
 
   return (
