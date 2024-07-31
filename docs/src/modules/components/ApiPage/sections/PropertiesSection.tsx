@@ -2,57 +2,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { Translator, useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import ToggleDisplayOption, {
   ApiDisplayOptions,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import PropertiesList, { getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+import PropertiesList from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
-import { ComponentApiContent } from '@mui-internal/api-docs-builder';
 import {
   PropsTableItem,
   PropsTranslations,
 } from 'packages/api-docs-builder/types/ApiBuilder.types';
-import { LayoutStorageKeys } from '../../ApiPage';
-
-interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
-  componentProps: ComponentApiContent['props'];
-  componentName: ComponentApiContent['name'];
-  t: Translator;
-  /**
-   * @default 'props'
-   */
-  hash?: string;
-}
-
-export function getPropsToC({
-  componentName,
-  componentProps,
-  inheritance,
-  themeDefaultProps,
-  t,
-  hash = 'props',
-}: GetPropsToCParams) {
-  return {
-    text: t('api-docs.props'),
-    hash,
-    children: [
-      ...Object.entries(componentProps).map(([propName]) => ({
-        text: propName,
-        hash: getHash({ propName, componentName }),
-        children: [],
-      })),
-      ...(inheritance
-        ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-        : []),
-      ...(themeDefaultProps
-        ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-        : []),
-    ],
-  };
-}
+import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
 
 interface PropertiesSectionProps {
   properties: {

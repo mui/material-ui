@@ -1,16 +1,19 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import kebabCase from 'lodash/kebabCase';
 import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
 import ExpandableApiItem, {
-  ApiItemContaier,
+  ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
 import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
+import {
+  getPropertiesHash,
+  PropertyDefinition,
+} from 'docs/src/modules/components/ApiPage/common/properties';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -111,50 +114,8 @@ function PropDescription(props: { description: string }) {
   );
 }
 
-export function getHash({
-  componentName,
-  propName,
-  hooksParameters,
-  hooksReturnValue,
-}: {
-  componentName: string;
-  propName: string;
-  hooksParameters?: boolean;
-  hooksReturnValue?: boolean;
-}) {
-  let sectionName = 'prop';
-  if (hooksParameters) {
-    sectionName = 'parameters';
-  } else if (hooksReturnValue) {
-    sectionName = 'return-value';
-  }
-  return `${kebabCase(componentName)}-${sectionName}-${propName}`;
-}
-
-export interface Properties {
-  additionalInfo: string[];
-  componentName: string;
-  deprecationInfo?: string;
-  description?: string;
-  hooksParameters?: boolean;
-  hooksReturnValue?: boolean;
-  isDeprecated?: boolean;
-  isOptional?: boolean;
-  isRequired?: boolean;
-  isProPlan?: boolean;
-  isPremiumPlan?: boolean;
-  propDefault?: string;
-  propName: string;
-  requiresRef?: boolean;
-  seeMoreDescription?: string;
-  signature?: string;
-  signatureArgs?: { argName: string; argDescription?: string }[];
-  signatureReturnDescription?: string;
-  typeName: string;
-}
-
 interface PropertiesListProps {
-  properties: Properties[];
+  properties: PropertyDefinition[];
   displayOption: 'collapsed' | 'expanded';
 }
 
@@ -162,7 +123,7 @@ export default function PropertiesList(props: PropertiesListProps) {
   const { properties, displayOption } = props;
   const t = useTranslate();
   return (
-    <ApiItemContaier>
+    <ApiItemContainer>
       {properties.map((params) => {
         const {
           componentName,
@@ -196,7 +157,7 @@ export default function PropertiesList(props: PropertiesListProps) {
         return (
           <StyledApiItem
             key={propName}
-            id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
+            id={getPropertiesHash({ componentName, propName, hooksParameters, hooksReturnValue })}
             title={
               <React.Fragment>
                 {propName}
@@ -310,6 +271,6 @@ export default function PropertiesList(props: PropertiesListProps) {
           </StyledApiItem>
         );
       })}
-    </ApiItemContaier>
+    </ApiItemContainer>
   );
 }

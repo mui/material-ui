@@ -7,7 +7,7 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
-import { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
+import { getClassesHash } from 'docs/src/modules/components/ApiPage/common/classes';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
@@ -54,7 +54,7 @@ const StyledTable = styled('table')(
 
 interface ClassesTableProps {
   componentName: string;
-  classes: ComponentClassDefinition[];
+  classes: ClassDefinition[];
   displayClassKeys?: boolean;
 }
 
@@ -77,7 +77,7 @@ export default function ClassesTable(props: ClassesTableProps) {
             const { className, key, description, isGlobal, isDeprecated, deprecationInfo } = params;
 
             return (
-              <tr key={className} id={getHash({ componentName, className: key })}>
+              <tr key={className} id={getClassesHash({ componentName, className: key })}>
                 <td className="algolia-lvl3">
                   <span className="class-name">.{className}</span>
                 </td>

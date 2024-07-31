@@ -1,12 +1,14 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import kebabCase from 'lodash/kebabCase';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { useTranslate } from '@mui/docs/i18n';
 import ExpandableApiItem, {
-  ApiItemContaier,
+  ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
+import {
+  ClassDefinition,
+  getClassesHash,
+} from 'docs/src/modules/components/ApiPage/common/classes';
 import {
   brandingLightTheme as lightTheme,
   brandingDarkTheme as darkTheme,
@@ -49,16 +51,13 @@ const StyledApiItem = styled(ExpandableApiItem)(
   }),
 );
 
-type HashParams = { componentName: string; className: string };
-
-export function getHash({ componentName, className }: HashParams) {
-  return `${kebabCase(componentName)}-classes-${className}`;
-}
-
 type ClassesListProps = {
   componentName: string;
-  classes: ComponentClassDefinition[];
+  classes: ClassDefinition[];
   displayOption: 'collapsed' | 'expanded';
+  /**
+   * If `true` the the associated key in the classes object is visible.
+   */
   displayClassKeys?: boolean;
 };
 
@@ -67,7 +66,7 @@ export default function ClassesList(props: ClassesListProps) {
   const t = useTranslate();
 
   return (
-    <ApiItemContaier>
+    <ApiItemContainer>
       {classes.map((classDefinition) => {
         const { className, key, description, isGlobal, isDeprecated, deprecationInfo } =
           classDefinition;
@@ -80,7 +79,7 @@ export default function ClassesList(props: ClassesListProps) {
 
         return (
           <StyledApiItem
-            id={getHash({ componentName, className: key })}
+            id={getClassesHash({ componentName, className: key })}
             key={key}
             note={note}
             title={`.${className}`}
@@ -114,6 +113,6 @@ export default function ClassesList(props: ClassesListProps) {
           </StyledApiItem>
         );
       })}
-    </ApiItemContaier>
+    </ApiItemContainer>
   );
 }

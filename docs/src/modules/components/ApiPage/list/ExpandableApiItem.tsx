@@ -221,7 +221,7 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
   );
 }
 
-export const ApiItemContaier = styled('div')({
+export const ApiItemContainer = styled('div')({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',

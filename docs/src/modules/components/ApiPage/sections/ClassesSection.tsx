@@ -8,8 +8,9 @@ import ToggleDisplayOption, {
   ApiDisplayOptions,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import ClassesList, { getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
+import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
+import { getClassesHash } from '../common/classes';
 
 export type GetCssToCParams = {
   componentName: string;
@@ -28,12 +29,13 @@ export const getClassesToC = ({ componentName, componentClasses, t, hash }: GetC
           children: [
             ...componentClasses.map((styles) => ({
               text: styles.key,
-              hash: getHash({ componentName, className: styles.key }),
+              hash: getClassesHash({ componentName, className: styles.key }),
               children: [],
             })),
           ],
         },
       ];
+
 type ClassDescription = {
   [classKey: string]: {
     description: string;
@@ -42,6 +44,7 @@ type ClassDescription = {
     deprecationInfo?: string;
   };
 };
+
 export type ClassesSectionProps = {
   componentClasses: ComponentClassDefinition[];
   classDescriptions: ClassDescription;

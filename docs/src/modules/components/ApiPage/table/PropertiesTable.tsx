@@ -6,7 +6,10 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
-import { Properties, getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+import {
+  PropertyDefinition,
+  getPropertiesHash,
+} from 'docs/src/modules/components/ApiPage/common/properties';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
@@ -119,7 +122,7 @@ function PropDescription({ description }: { description: string }) {
 }
 
 interface PropertiesTableProps {
-  properties: Properties[];
+  properties: PropertyDefinition[];
 }
 
 export default function PropertiesTable(props: PropertiesTableProps) {
@@ -166,7 +169,12 @@ export default function PropertiesTable(props: PropertiesTableProps) {
             return (
               <tr
                 key={propName}
-                id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
+                id={getPropertiesHash({
+                  componentName,
+                  propName,
+                  hooksParameters,
+                  hooksReturnValue,
+                })}
               >
                 <td className="MuiApi-table-item-title algolia-lvl3">
                   {propName}
