@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-
 /**
  * Add keys, values of `defaultProps` that does not exist in `props`
  * @param defaultProps
