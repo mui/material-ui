@@ -17,7 +17,7 @@ import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
-import getLPTheme from './getMPTheme';
+import getMPTheme from './getMPTheme';
 
 function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
   return (
@@ -66,7 +66,7 @@ ToggleCustomTheme.propTypes = {
 export default function MarketingPage() {
   const [mode, setMode] = React.useState('light');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
-  const LPtheme = createTheme(getLPTheme(mode));
+  const MPTheme = createTheme(getMPTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
 
   const toggleColorMode = () => {
@@ -78,7 +78,7 @@ export default function MarketingPage() {
   };
 
   return (
-    <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
+    <ThemeProvider theme={showCustomTheme ? MPTheme : defaultTheme}>
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
