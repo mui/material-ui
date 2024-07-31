@@ -72,13 +72,14 @@ export default function transformer(file, api, options) {
       path.node.specifiers.forEach((specifier) => {
         if (specifier.type === 'ImportDefaultSpecifier') {
           if (importsToRemove.indexOf(specifier.local.name) >= 0) {
-            path.node.specifiers = path.node.specifiers.filter((spec) => spec != specifier);
+            path.node.specifiers = path.node.specifiers.filter((spec) => spec !== specifier);
           }
         }
       });
       if (path.node.specifiers.length === 0) {
         return true;
       }
+      return false;
     })
     .remove();
 
@@ -92,12 +93,13 @@ export default function transformer(file, api, options) {
           specifier.imported.name === 'ListItem' &&
           importsToRemove.indexOf(specifier.local.name) >= 0
         ) {
-          path.node.specifiers = path.node.specifiers.filter((spec) => spec != specifier);
+          path.node.specifiers = path.node.specifiers.filter((spec) => spec !== specifier);
         }
       });
       if (path.node.specifiers.length === 0) {
         return true;
       }
+      return false;
     })
     .remove();
   // If ListItemButton does not already exist, add it at the end
