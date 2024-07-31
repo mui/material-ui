@@ -25,10 +25,10 @@ function layouts(translatation) {
       hasDarkMode: true,
     },
     {
-      title: translatation('landingPageTitle'),
-      description: translatation('landingPageDescr'),
-      href: '/material-ui/getting-started/templates/landing-page/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/landing-page`,
+      title: translatation('marketingPageTitle'),
+      description: translatation('marketingPageDescr'),
+      href: '/material-ui/getting-started/templates/marketing-page/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/marketing-page`,
       hasDarkMode: true,
     },
     {
