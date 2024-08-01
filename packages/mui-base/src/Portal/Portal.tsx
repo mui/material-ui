@@ -2,6 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import getReactNodeRef from '@mui/utils/getReactNodeRef';
 import {
   exactProp,
   HTMLElementType,
@@ -33,8 +34,7 @@ const Portal = React.forwardRef(function Portal(
 ) {
   const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<ReturnType<typeof getContainer>>(null);
-  // @ts-expect-error TODO upstream fix
-  const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, forwardedRef);
+  const handleRef = useForkRef(getReactNodeRef(children), forwardedRef);
 
   useEnhancedEffect(() => {
     if (!disablePortal) {

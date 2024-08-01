@@ -8,6 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import appendOwnerState from '@mui/utils/appendOwnerState';
+import getReactNodeRef from '@mui/utils/getReactNodeRef';
 import { styled, useTheme } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
@@ -19,7 +20,6 @@ import useId from '../utils/useId';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
 import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
-import getChildRef from '../utils/getChildRef';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -486,7 +486,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
-  const handleRef = useForkRef(getChildRef(children), focusVisibleRef, setChildNode, ref);
+  const handleRef = useForkRef(getReactNodeRef(children), focusVisibleRef, setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
   // So we exclude all falsy values, except 0, which is valid.

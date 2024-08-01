@@ -7,6 +7,7 @@ import {
   unstable_ownerDocument as ownerDocument,
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
+  unstable_getReactNodeRef as getReactNodeRef,
 } from '@mui/utils';
 
 // TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
@@ -94,11 +95,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
     };
   }, []);
 
-  const handleRef = useForkRef(
-    // @ts-expect-error TODO upstream fix
-    children.ref,
-    nodeRef,
-  );
+  const handleRef = useForkRef(getReactNodeRef(children), nodeRef);
 
   // The handler doesn't take event.defaultPrevented into account:
   //
