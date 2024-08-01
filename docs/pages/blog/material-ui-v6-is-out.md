@@ -55,13 +55,40 @@ With Pigment CSS integration, all JSX elements support the `sx` prop out of the 
 Box component is **no** longer required to use the `sx` prop.
 :::
 
+## Built-in support for light and dark modes
+
+Material UI v6 introduces built-in support for switching between light and dark modes.
+
+The new `colorSchemes` node lets you define the color schemes for your application. The built-in light and dark color schemes can be enabled by setting the value to `true`:
+
+```js
+const theme = createTheme({ colorSchemes: { dark: true } });
+
+function App() {
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
+}
+```
+
+When `light` and `dark` color schemes are used, Material UI supports these features out of the box:
+
+- CSS media `prefers-color-scheme` is used as the default method for switching between modes.
+- You can achieve instant transitions between modes with `disableTransitionOnChange` prop.
+- Selected mode is stored in the local storage to persist the user's preference.
+
+### CSS media `prefers-color-scheme`
+
+When `light` and `dark` color schemes are enabled, Material UI v6 uses the `prefers-color-scheme` media query as the default method for switching between modes.
+
+###
+
 ## CSS theme variables
 
-The `CssVarsProvider` has been stablized with additional improvements and features.
+The `CssVarsProvider` has been stablized and merged to `ThemeProvider`.
 
-```diff
-- import { ThemeProvider } from '@mui/material/styles';
-+ import { CssVarsProvider } from '@mui/material/styles';
+To start using CSS variables, create a theme with `cssVariables` set to `true`:
+
+```js
+createTheme({ cssVariables: true, ... });
 ```
 
 Serializable values like palette, spacing, typography, etc., are converted to CSS variables.
