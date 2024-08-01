@@ -69,6 +69,9 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
         return `@media (prefers-color-scheme: ${mode}) { :root`;
       }
       if (rule) {
+        if (theme.defaultColorScheme === colorScheme) {
+          return `:root, ${rule.replace('%s', String(colorScheme))}`;
+        }
         return rule.replace('%s', String(colorScheme));
       }
     }
@@ -109,7 +112,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
       );
     }
 
-    Object.entries(rest).forEach(([key, { css }]) => {
+    Object.entries(other).forEach(([key, { css }]) => {
       const cssColorSheme = colorSchemes[key]?.palette?.mode;
       const finalCss =
         !disableCssColorScheme && cssColorSheme

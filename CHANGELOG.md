@@ -1,6 +1,105 @@
 # [Versions](https://mui.com/versions/)
 
-## v6.0.0-beta.2
+## 6.0.0-beta.4
+
+<!-- generated comparing v6.0.0-beta.3..next -->
+
+_Jul 30, 2024_
+
+A big thanks to the 12 contributors who made this release possible.
+
+### `@mui/material@6.0.0-beta.4`
+
+- [Accordion] Render a heading wrapping `AccordionSummary` button per W3C Accordion Pattern standards (#42914) @ZeeshanTamboli
+- [Divider] Enable borderStyle enhancement in divider with children (#42715) @anuujj
+- [ImageListItemBar] Deprecate composed classes (#42905) @sai6855
+- Attach selector for default color scheme (#43035) @siriwatknp
+- Stabilize Grid v2 and deprecate Grid v1 (#43054) @DiegoAndai
+
+### `@mui/system@6.0.0-beta.4`
+
+- Make `createBreakpoints` independent for stringify theme (#43048) @siriwatknp
+
+### `@mui/utils@6.0.0-beta.4`
+
+- Fix issues reported by the React Compiler (#43051) @markliu2013
+
+### Docs
+
+- [material-ui] Replace deprecated `<ListItem button/>` with `ListItemButton` component in routing libraries list example (#43110) @aliharis99
+- [material-ui][Card] Update CardMedia description (#43067) @shahzaibdev1
+- [material-ui] Polish out data table demo (#43072) @zanivan
+- [material-ui][Snackbar] Improve reason type in demos (#43077) @sai6855
+- [pigment-css] Fix syntax in migrating-to-pigment-css guide (#43107) @KevinVandy
+- Fix page description line break @oliviertassinari
+
+### Core
+
+- Fix event naming convention @oliviertassinari
+- [docs-infra] Move ads to the `@mui/docs` package (#42944) @alexfauquette
+- [website] Fine-tune button styles on the branding theme (#43082) @zanivan
+
+All contributors of this release in alphabetical order: @alexfauquette, @aliharis99, @anuujj, @DiegoAndai, @KevinVandy, @markliu2013, @oliviertassinari, @sai6855, @shahzaibdev1, @siriwatknp, @zanivan, @ZeeshanTamboli
+
+## 6.0.0-beta.3
+
+<!-- generated comparing v6.0.0-beta.2..next -->
+
+_Jul 24, 2024_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 New version of the free Dashboard template, now with more components and an improved layout.
+
+### `@mui/codemod@6.0.0-beta.3`
+
+- &#8203;<!-- 17 -->Fix Divider props codemod (#42919) @aarongarciah
+
+### `@mui/material@6.0.0-beta.3`
+
+- &#8203;<!-- 06 -->Fix Accessing element.ref (#42818) @sai6855
+- &#8203;<!-- 05 -->Refine `extendTheme` and `CssVarsProvider` API (#42839) @siriwatknp
+- &#8203;<!-- 03 -->[Typography] Deprecate `paragraph` prop (#42383) @walston
+- &#8203;<!-- 03 -->[Rating] fix defaultLabelText a11y issue with undefine value input and hint (#42810) @ZouYouShun
+
+### `@mui/material-nextjs@6.0.0-beta.3`
+
+- &#8203;<!-- 04 -->[material-ui-nextjs] Add @emotion/react as peer dependency (#42885) @jeloagnasin
+- &#8203;<!-- 02 -->[material-ui-nextjs] Remove @mui/material as peer dependency (#43041) @brijeshb42
+
+### `@mui/utils@6.0.0-beta.3`
+
+- &#8203;<!-- 02 -->[utils] Add dependency to @mui/types (#43029) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 22 -->[material-ui][joy-ui][Autocomplete] Fix `Hint` demo (#42990) @ManthanGajjar
+- &#8203;<!-- 19 -->[docs] Make `DemoSandbox` agnostic of `productId` (#43042) @Janpot
+- &#8203;<!-- 16 -->[docs] Use slot variants over `theme.variants` (#42614) @siriwatknp
+- &#8203;<!-- 13 -->[docs] Remove stringify theme import (#43032) @siriwatknp
+- &#8203;<!-- 12 -->[docs] Bring v5.x changes to the CHANGELOG @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Fix migration typo (#42976) @mnajdova
+- &#8203;<!-- 08 -->[material-ui] Add improvements to Dashboard template (#42445) @zanivan
+- &#8203;<!-- 07 -->[material-ui] Fix broken image links in blog template (#42956) @navedqb
+
+### Core
+
+- &#8203;<!-- 23 -->[code-infra] Add toolpad npm scope to envinfo (#41942) @Janpot
+- &#8203;<!-- 21 -->[code-infra] Fix pnpm lock file (#43030) @Janpot
+- &#8203;<!-- 20 -->[code-infra] Run `react-17` and `react-next` workflows on the next branch (#42690) @cherniavskii
+- &#8203;<!-- 19 -->[code-infra] Make `useReactVersion` script reusable in other repos (#42828) @cherniavskii
+- &#8203;<!-- 18 -->[code-infra] Add toolpad npm scope to envinfo (#41942) @Janpot
+- &#8203;<!-- 16 -->[core] Add pigment and Base UI scopes to envinfo (#43002) @Janpot
+- &#8203;<!-- 15 -->[core] Update minimum version of Node.js to 14.0.0 (#42920) @DiegoAndai
+- &#8203;<!-- 14 -->[core] Expose missing screen methods from Testing Library (#42968) @aarongarciah
+- &#8203;<!-- 10 -->[docs-infra] Leave TODO for warnOnce to reduce bundle size @oliviertassinari
+- &#8203;<!-- 09 -->[docs-infra] Remove `display: flex` from `SectionTitle` (#42979) @LukasTy
+- &#8203;<!-- 02 -->[test][material-ui] Remove unnecessary async act calls (#42942) @aarongarciah
+- &#8203;<!-- 01 -->[website] Fix strange focus-visible on hover (#42924) @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @brijeshb42, @cherniavskii, @DiegoAndai, @Janpot, @jeloagnasin, @LukasTy, @ManthanGajjar, @mnajdova, @navedqb, @oliviertassinari, @sai6855, @siriwatknp, @walston, @zanivan, @ZouYouShun
+
+## 6.0.0-beta.2
 
 <!-- generated comparing v6.0.0-beta.1..next -->
 
@@ -16,7 +115,7 @@ _Jul 16, 2024_
 
 All contributors of this release in alphabetical order: @mnajdova, @oliviertassinari
 
-## v6.0.0-beta.1
+## 6.0.0-beta.1
 
 <!-- generated comparing v6.0.0-beta.0..next -->
 
@@ -48,7 +147,7 @@ A big thanks to the 6 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @alexfauquette, @arminmeh, @flaviendelangle, @mnajdova, @oliviertassinari, @siriwatknp
 
-## v6.0.0-beta.0
+## 6.0.0-beta.0
 
 <!-- generated comparing v6.0.0-alpha.14..next -->
 
@@ -93,7 +192,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @DiegoAndai, @Janpot, @lhilgert9, @LukasTy, @mbrookes, @oliviertassinari, @omahs, @romgrk, @sai6855, @ZeeshanTamboli
 
-## v6.0.0-alpha.14
+## 6.0.0-alpha.14
 
 <!-- generated comparing v6.0.0-alpha.13..next -->
 
@@ -145,7 +244,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @danilo-leal, @DiegoAndai, @Janpot, @jxdp, @LukasTy, @ohgree, @oliviertassinari, @renovate[bot], @sai6855, @siriwatknp
 
-## v6.0.0-alpha.13
+## 6.0.0-alpha.13
 
 <!-- generated comparing v6.0.0-alpha.12..next -->
 
@@ -184,7 +283,7 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @aarongarciah, @alelthomas, @appleSimple, @cjl750, @Janpot, @joetats, @LukasTy, @sai6855, @siriwatknp, @wbt
 
-## v6.0.0-alpha.12
+## 6.0.0-alpha.12
 
 <!-- generated comparing v6.0.0-alpha.11..next -->
 
@@ -253,7 +352,7 @@ A big thanks to the 17 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @alexismo, @anuujj, @arminmeh, @BartJanvanAssen, @Danielkhakbaz, @danilo-leal, @DiegoAndai, @Janpot, @LukasTy, @michaldudak, @Mini-ghost, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp
 
-## v6.0.0-alpha.11
+## 6.0.0-alpha.11
 
 <!-- generated comparing v6.0.0-alpha.10..next -->
 
@@ -329,7 +428,7 @@ A big thanks to the 18 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @anle9650, @DanailH, @danilo-leal, @devnyxie, @DiegoAndai, @iammminzzy, @jacobmoshipco, @michaldudak, @necatiozmen, @oliviertassinari, @sai6855, @shrilsharma, @siriwatknp, @tonygravell, @zanivan, @ZeeshanTamboli
 
-## v6.0.0-alpha.10
+## 6.0.0-alpha.10
 
 <!-- generated comparing v6.0.0-alpha.9..next -->
 
@@ -376,7 +475,7 @@ A big thanks to the 7 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @aarongarciah, @ChronicusUA, @danilo-leal, @DiegoAndai, @erezstmn-doit, @oliviertassinari, @sai6855
 
-## v6.0.0-alpha.9
+## 6.0.0-alpha.9
 
 <!-- generated comparing v6.0.0-alpha.8..next -->
 
@@ -452,7 +551,7 @@ A big thanks to the 23 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @apedroferreira, @brijeshb42, @cherniavskii, @ChronicusUA, @danilo-leal, @DiegoAndai, @fedirjh, @j4marcos, @Janpot, @KenanYusuf, @lhilgert9, @lucasgmelo, @MatheusEli, @mihilt, @mnajdova, @nikitaa24, @oliviertassinari, @sayoubiaf, @siriwatknp, @tjcouch-sil, @ZeeshanTamboli
 
-## v6.0.0-alpha.8
+## 6.0.0-alpha.8
 
 <!-- generated comparing v6.0.0-alpha.7..next -->
 
@@ -487,7 +586,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @danilo-leal, @DiegoAndai, @Janpot, @Mandar-Pandya, @oliviertassinari, @siriwatknp, @ZeeshanTamboli
 
-## v6.0.0-alpha.7
+## 6.0.0-alpha.7
 
 <!-- generated comparing v6.0.0-alpha.6..next -->
 
@@ -534,7 +633,7 @@ A big thanks to the 14 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @arthurbalduini, @bharatkashyap, @danilo-leal, @DiegoAndai, @heath-freenome, @lhilgert9, @noraleonte, @oliviertassinari, @sai6855, @samuelsycamore, @TahaRhidouani, @tarunrajput
 
-## v6.0.0-alpha.6
+## 6.0.0-alpha.6
 
 <!-- generated comparing v6.0.0-alpha.5..next -->
 
@@ -582,7 +681,7 @@ A big thanks to the 10 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @aarongarciah, @danilo-leal, @harry-whorlow, @Janpot, @joserodolfofreitas, @LukasTy, @michaldudak, @oliviertassinari, @sai6855, @siriwatknp
 
-## v6.0.0-alpha.5
+## 6.0.0-alpha.5
 
 <!-- generated comparing v6.0.0-alpha.4..next -->
 
@@ -620,7 +719,7 @@ A big thanks to the 9 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @5-tom, @aarongarciah, @bricker, @danilo-leal, @mnajdova, @oliviertassinari, @ryanhartwig, @sai6855, @ZeeshanTamboli
 
-## v6.0.0-alpha.4
+## 6.0.0-alpha.4
 
 <!-- generated comparing v6.0.0-alpha.3..next -->
 
@@ -675,7 +774,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @alexfauquette, @danilo-leal, @gijsbotje, @Janpot, @lhilgert9, @michaldudak, @Miguelrom, @mnajdova, @oliviertassinari, @rluzists1, @sai6855, @siriwatknp, @soler1212, @zanivan, @ZeeshanTamboli
 
-## v6.0.0-alpha.3
+## 6.0.0-alpha.3
 
 <!-- generated comparing v6.0.0-alpha.2..next -->
 
@@ -748,7 +847,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @brijeshb42, @cherniavskii, @danilo-leal, @DiegoAndai, @EyaOuenniche, @gijsbotje, @iammminzzy, @Janpot, @kealjones-wk, @lhilgert9, @magnimarels, @michaldudak, @mithun522, @mnajdova, @MoazMirza-13, @MohammadShehadeh, @oliviertassinari, @ryanburr, @sai6855, @siriwatknp, @zanivan
 
-## v6.0.0-alpha.2
+## 6.0.0-alpha.2
 
 <!-- generated comparing v6.0.0-alpha.1..next -->
 
@@ -787,7 +886,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @brijeshb42, @EyaOuenniche, @oliviertassinari
 
-## v6.0.0-alpha.1
+## 6.0.0-alpha.1
 
 <!-- generated comparing v6.0.0-alpha.0..next -->
 
@@ -874,7 +973,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @aarongarciah, @adriancuadrado, @alexfauquette, @bharatkashyap, @brijeshb42, @connorshea, @danilo-leal, @DiegoAndai, @iammminzzy, @Janpot, @JCQuintas, @levigunz, @mnajdova, @oliviertassinari, @ppaskaris-plooto, @siriwatknp, @skmanoj322, @zanivan, @ZeeshanTamboli
 
-## v6.0.0-alpha.0
+## 6.0.0-alpha.0
 
 <!-- generated comparing v5.15.14..next -->
 
@@ -953,7 +1052,339 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @aacevski, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @harry-whorlow, @Janpot, @joserodolfofreitas, @michael-land, @michaldudak, @mnajdova, @nekoya, @sai6855, @siriwatknp, @StylesTrip, @zanivan, @ZeeshanTamboli
 
-## v5.15.15
+## 5.16.4
+
+<!-- generated comparing v5.16.3..master -->
+
+_Jul 16, 2024_
+
+A big thanks to the 1 contributor who made this release possible.
+
+### `@mui/material@5.16.4`
+
+- &#8203;<!-- 1 -->Fix wrong import in Popover types (#42967) @mnajdova
+
+All contributors of this release in alphabetical order: @mnajdova
+
+## 5.16.3
+
+<!-- generated comparing v5.16.2..master -->
+
+_Jul 16, 2024_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@5.16.3`
+
+- &#8203;<!-- 1 -->[material] Add missing dependency (#42959) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 3 -->[material-ui][Autocomplete] Add instructions about `autosuggest-highlight` dependency (#42953) @HoFa1997
+- &#8203;<!-- 2 -->Move feedback from Canny to GitHub @oliviertassinari
+
+All contributors of this release in alphabetical order: @HoFa1997, @mnajdova, @oliviertassinari
+
+## 5.16.2
+
+<!-- generated comparing v5.16.1..master -->
+
+_Jul 16, 2024_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### `@mui/material@5.16.2`
+
+- &#8203;<!-- 2 -->[material] Remove dependency to @mui/base (@mnajdova) (#42917) @mnajdova
+
+### Core
+
+- &#8203;<!-- 1 -->[website] Sync /about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @mnajdova, @oliviertassinari
+
+## 5.16.1
+
+_Jul 11, 2024_
+
+A big thanks to the 4 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚛️ All packages, including Material UI, are now compatible with React 18.3.1
+
+### `@mui/material@5.16.1`
+
+- [AppBar] Fix inherit color is inconsistent between ThemeProvider and CssVarsProvider (#42713) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-beta.48`
+
+- [Autocomplete] Fix React spread key warning (#42856) @aarongarciah
+
+### Docs
+
+- [material-ui] Fix React 18.3 key spread warnings in Autocomplete demos (#42854) @aarongarciah
+- [material-ui] Fix type error in virtualized table demo (#42852) @aarongarciah
+- Fix typos (@omahs) (#42888) @omahs
+- Fix 301 @oliviertassinari
+
+### Core
+
+- [core] Bump React to 18.3.1 (#42846) @aarongarciah
+- [core] Remove react-test-renderer (#42853) @aarongarciah
+- [core] Replace enzyme in describeConformance (#42847) @aarongarciah
+- [test] Remove enzyme (#42850) @aarongarciah
+- [test] Remove createMount test util (#42849) @aarongarciah
+- [base-ui] Fix React spread key warning in test (#42855) @aarongarciah
+- [styles][withStyles] Expect React defaultProps warning in test (#42752) (#42851) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @oliviertassinari, @omahs, @ZeeshanTamboli
+
+## 5.16.0
+
+<!-- generated comparing v5.15.21..master -->
+
+_Jul 5, 2024_
+
+A big thanks to the 5 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added `InitColorSchemeScript` for Next.js App Router (#42829) @siriwatknp
+
+### `@mui/material@5.16.0`
+
+- [Alert] Add ability to override slot props (@alexey-kozlenkov) (#42808) @alexey-kozlenkov
+- Add `InitColorSchemeScript` for Next.js App Router (#42829) @siriwatknp
+- Add `DefaultPropsProvider` (#42820) @siriwatknp
+- Support `CssVarsTheme` in `responsiveFontSizes` return type (@jxdp) (#42806) @jxdp
+- Remove warning from `getInitColorSchemeScript` (#42838) @siriwatknp
+
+### Docs
+
+- [docs] Fix 301 MDN redirections @oliviertassinari
+
+### Core
+
+- [mui-utils][test] Remove usages of deprecated react-dom APIs (@aarongarciah) (#42813) @aarongarciah
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexey-kozlenkov, @jxdp, @oliviertassinari, @siriwatknp
+
+## 5.15.21
+
+<!-- generated comparing v5.15.20..master -->
+
+_Jun 28, 2024_
+
+A big thanks to the 7 contributors who made this release possible.
+
+### `@mui/material@5.15.21`
+
+- [Autocomplete] Fix renderOption props type (@DiegoAndai) (#42709) @DiegoAndai
+- [Stepper] Generate class for `nonLinear` prop (@alexismo) (#42677) @alexismo
+
+### Docs
+
+- Use new email for sponsoring @oliviertassinari
+- Fix 301 links (@alexfauquette) (#42700) @alexfauquette
+- [material-ui][Select] Fix the `SelectAutoWidth` demo menu item value (@Danielkhakbaz) (#42696) @Danielkhakbaz
+- [material-ui][Autocomplete] Fix more React 18.3 key spread warnings in demos (#42766) @wbt
+- [material-ui] Fix sign in side image (#42708) @zanivan
+- [website] Add Ale to team (#42769) @alelthomas
+
+### Core
+
+- [core] Cherry pick pnpm updates (#42763) @DiegoAndai
+- [website] Add Armin to the team members (@arminmeh) (#42681) @arminmeh
+- [website] Open Staff Engineer role for Pigment CSS (@mnajdova) (#42669) @mnajdova
+
+All contributors of this release in alphabetical order: @alexfauquette, @alexismo, @arminmeh, @Danielkhakbaz, @DiegoAndai, @mnajdova, @oliviertassinari
+
+## 5.15.20
+
+<!-- generated comparing v5.15.19..master -->
+
+_Jun 12, 2024_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@5.15.20`
+
+- &#8203;<!-- 17 -->[Autocomplete] Shouldn't resize when hovering (@ZeeshanTamboli) (#42535) @ZeeshanTamboli
+- &#8203;<!-- 07 -->[Tab] Fix applying `iconWrapper` styles from theme and update its description (@sai6855) (#42570) @sai6855
+
+### `@mui/utils@5.15.15`
+
+- &#8203;<!-- 06 -->Allow passing `NaN` as `defaultValue` to `useControlled` (@iammminzzy) (#42571) @iammminzzy
+- &#8203;<!-- 17 -->Fix GitHub-reported prototype pollution vulnerability in `deepmerge` (#41652) (#42608) @DiegoAndai
+
+### Docs
+
+- &#8203;<!-- 16 -->[docs] Add Pigment CSS and Base UI logos SVGs (#42513) @danilo-leal
+- &#8203;<!-- 15 -->[docs] Update twitter.com to x.com @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Simplify Example projects page @oliviertassinari
+- &#8203;<!-- 13 -->[material-ui] Add docs for complementary stepper components (@anle9650) (#42613) @anle9650
+- &#8203;<!-- 12 -->[docs] Add changelog section to the design kits page (@danilo-leal) (#42463) @danilo-leal
+- &#8203;<!-- 11 -->[material-ui] Fix sentence in the All components page (@danilo-leal) (#42462) @danilo-leal
+- &#8203;<!-- 10 -->[material-ui] Update Figma design kit doc redirect link (@danilo-leal) (#42456) @danilo-leal
+- &#8203;<!-- 09 -->[system] Add "dynamic values" section to sx prop page (@aarongarciah) (#42453) @aarongarciah
+
+### Core
+
+- &#8203;<!-- 18 -->[website] Move the `React Engineer - X` role to future roles (#42532) @DanailH
+- &#8203;<!-- 08 -->[examples] Remove Pigment CSS examples (#42538) @sai6855
+- &#8203;<!-- 05 -->[website] Close Developer Advocate / Content Engineer role @oliviertassinari
+- &#8203;<!-- 04 -->[website] Update DoiT description and link in Sponsors section (@erezstmn-doit) (#42511) @erezstmn-doit
+- &#8203;<!-- 03 -->[website] Clean up the docs-infra job ad (@danilo-leal) (#42509) @danilo-leal
+- &#8203;<!-- 02 -->[website] Open the Docs-infra engineer role (@danilo-leal) (#42496) @danilo-leal
+- &#8203;<!-- 01 -->[website] Fix locationCountry in about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @anle9650, @DanailH, @danilo-leal, @erezstmn-doit, @iammminzzy, @oliviertassinari, @sai6855, @ZeeshanTamboli
+
+## 5.15.19
+
+<!-- generated comparing v5.15.18..master -->
+
+_May 29, 2024_
+
+A big thanks to the 12 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.19`
+
+- &#8203;<!-- 19 -->[AlertTitle] Enable extending Typography props (@lucasgmelo) (#42334) @github-actions[bot]
+- &#8203;<!-- 06 -->[responsiveFontSizes] Handled undefined variants (@brijeshb42) (#42419) @github-actions[bot]
+- &#8203;<!-- 05 -->[Slider] Fix wrong CSS value (@mnajdova) (#42373) @github-actions[bot]
+
+### Docs
+
+- &#8203;<!-- 13 -->Link to pnpm installation docs (#42420) @aarongarciah
+- &#8203;<!-- 12 -->Remove LocalMonero (@oliviertassinari) (#42315) @github-actions[bot]
+- &#8203;<!-- 10 -->[material-ui] Fix typo in style interoperability with Tailwind CSS docs (@ZeeshanTamboli) (#42312) @github-actions[bot]
+- &#8203;<!-- 09 -->[material-ui][Pagination] Clarify pagination `page` prop API (@Mandar-Pandya) (#42265) @github-actions[bot]
+- &#8203;<!-- 08 -->[material-ui][Tabs] Improve the Basic Tabs demo (@MatheusEli) (#42426) @github-actions[bot]
+- &#8203;<!-- 07 -->[pigment-css] Fix duplication of content (#42410) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 18 -->[blog] Add the "Product" tag to the Pigment CSS post (@danilo-leal) (#42366) @github-actions[bot]
+- &#8203;<!-- 17 -->[blog] Update blog post OG image (@danilo-leal) (#42306) @github-actions[bot]
+- &#8203;<!-- 16 -->[blog] Update Pigment CSS post (@danilo-leal) (#42267) @github-actions[bot]
+- &#8203;<!-- 15 -->[core] Fix React 18.3 warnings about spreading keys in the Material UI `Autocomplete` component (#42099) (#42241) @DiegoAndai
+- &#8203;<!-- 14 -->[core] Fix a few more key spread issues (@oliviertassinari) (#42318) @github-actions[bot]
+- &#8203;<!-- 11 -->[docs-infra] Allow JSDoc tags (#42327) @aarongarciah
+- &#8203;<!-- 04 -->[website] Add Nikita to the about page (@nikitaa24) (#42421) @github-actions[bot]
+- &#8203;<!-- 03 -->[website] Fix hero spacing changes applying at the wrong breakpoint (@KenanYusuf) (#42357) @github-actions[bot]
+- &#8203;<!-- 02 -->[website] Adds Kenan Yusuf to about page (@KenanYusuf) (#42330) @github-actions[bot]
+- &#8203;<!-- 01 -->[website] Improve about page @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @brijeshb42, @danilo-leal, @DiegoAndai, @KenanYusuf, @lucasgmelo, @Mandar-Pandya, @MatheusEli, @mnajdova, @nikitaa24, @oliviertassinari, @ZeeshanTamboli
+
+## 5.15.18
+
+<!-- generated comparing v5.15.17..master -->
+
+_May 14, 2024_
+
+A big thanks to the 5 contributors who made this release possible. Here are some highlights ✨:
+
+### `@mui/material@5.15.18`
+
+- &#8203;<!-- 6 -->[Autocomplete] Improve design when there's a start adornment for small autocomplete (@TahaRhidouani) (#42176) @github-actions[bot]
+- &#8203;<!-- 3 -->[ToggleButtonGroup] Add missing `selected` class in ToggleButtonGroupClasses type (@tarunrajput) (#42250) @github-actions[bot]
+
+### Docs
+
+- &#8203;<!-- 4 -->[docs] Fix 301 to Figma @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 5 -->[blog] Introducing Pigment CSS blog post (#42198) (#42255) @samuelsycamore
+- &#8203;<!-- 2 -->[website] Add redirection for talk @oliviertassinari
+- &#8203;<!-- 1 -->[website] Adds Arthur Balduini team info (@arthurbalduini) (#42226) @github-actions[bot]
+
+All contributors of this release in alphabetical order: @arthurbalduini, @oliviertassinari, @samuelsycamore, @TahaRhidouani, @tarunrajput
+
+## 5.15.17
+
+<!-- generated comparing v5.15.16..master -->
+
+_May 8, 2024_
+
+A big thanks to the 4 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.17`
+
+- [Slider] Move palette styles to the bottom (#41676) @siriwatknp
+
+### Docs
+
+- Fix SEO redirection issues @oliviertassinari
+- [material-ui] Fix broken link (@aarongarciah) (#42143) @github-actions[bot]
+- [material-ui] Fix link on the Sync page (@danilo-leal) (#42089) @github-actions[bot]
+
+### Core
+
+- [blog] Shorten title to fit @oliviertassinari
+- [blog] Update Sync post OG image (@danilo-leal) (#42117) @github-actions[bot]
+- [blog] A few tweaks in introducing-sync-plugin (@oliviertassinari) (#42094) @github-actions[bot]
+- [docs-infra] Fix code block layout shift (#41917) @oliviertassinari
+- [website] Fix home page slider's track position (@aarongarciah) (#42144) @github-actions[bot]
+- [website] Closing the survey @oliviertassinari
+- [website] Remove Survey banner from website and Core docs (#42104) @joserodolfofreitas
+
+All contributors of this release in alphabetical order: @github-actions[bot], @joserodolfofreitas, @oliviertassinari, @siriwatknp
+
+## 5.15.16
+
+<!-- generated comparing v5.15.15..master -->
+
+_May 1, 2024_
+
+A big thanks to the 8 contributors who made this release possible. Here are some highlights ✨:
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.16`
+
+- [material-ui][Dialog] Prevent onClick on the root element from being overwritten (@ryanburr) (#41914) @github-actions[bot]
+- [material-ui][Select] Fix `muiName` property TypeScript error (@EyaOuenniche) (#41786) @github-actions[bot]
+- —>[material-ui][l10n] Fix typo in is-IS locale (@magnimarels) (#41815) @github-actions[bot]
+
+### Docs
+
+- Fix small SEO issues @oliviertassinari
+- Fix 301 Toolpad links @oliviertassinari
+- Fix 301 Toolpad links @oliviertassinari
+- Fix 301 image redirections @oliviertassinari
+- Fix small SEO issues @oliviertassinari
+- Fix 301 redirection @oliviertassinari
+- Fix format git diff regression (#41882) @oliviertassinari
+- Fix 301 links @oliviertassinari
+- [material-ui] Fix import statement in migration guide (@sai6855) (#41864) @github-actions[bot]
+- [material-ui] Update Figma plugin name (@danilo-leal) (#42057) @github-actions[bot]
+- [material-ui] Fix minor spelling error in the "About the lab" page (@ryanhartwig) (#42075) @github-actions[bot]
+- [material-ui] Add missing backticks to HTML tag in the installation page (@Miguelrom) (#42009) @github-actions[bot]
+- [material-ui] Add Connect-related content (@danilo-leal) (#41924) @DiegoAndai
+- [material-ui] Fix Material 3 message typo (@aarongarciah) (#41822) @github-actions[bot]
+- [material-ui] Remove Data Grid v7 beta callout (@cherniavskii) (#41842) @github-actions[bot]
+- [material-ui][templates] Fix input props attributes in Landing Page template (@5-tom) (#42034) @github-actions[bot]
+- [system] Update typo on the sx prop page (@bricker) (#42078) @github-actions[bot]
+
+### Core
+
+- [blog] Add post to introduce the Connect plugin (@danilo-leal) (#41929) @DiegoAndai
+- [core] Automate cherry-pick of PRs from `next` -> `master` (#41742) @aarongarciah
+- [docs-infra] Improve Twitter OG:image (#41860) @oliviertassinari
+- [docs-infra] Use edge function for card generation (#41188) @alexfauquette
+- [docs-infra] Fix drawer performances (#41807) (#41820) @alexfauquette
+- [docs-infra] Fix analytics about inline ads (#41474) @alexfauquette
+- [website] Sync career roles (@oliviertassinari) (#42059) @github-actions[bot]
+- [website] Add content about the Sync plugin in the Material UI page (@danilo-leal) (#42074) @github-actions[bot]
+- [website] Add Nadja on the about page (#42054) @mnajdova
+- [website] Close the `Design Engineer - X` role (#42014) @DanailH
+- [website] Remove customer support agent role from website (@rluzists1) (#41996) @github-actions[bot]
+- [website] Add Jose to About Us (#41759) @JCQuintas
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @DanailH, @DiegoAndai, @github-actions[bot], @JCQuintas, @mnajdova, @oliviertassinari
+
+## 5.15.15
 
 <!-- generated comparing v5.15.14..master -->
 
@@ -993,7 +1424,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @cherniavskii, @danilo-leal, @mnajdova, @oliviertassinari, @ZeeshanTamboli
 
-## v5.15.14
+## 5.15.14
 
 <!-- generated comparing v5.15.13..master -->
 
@@ -1049,7 +1480,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @bharatkashyap, @brijeshb42, @cherniavskii, @cipherlogs, @danilo-leal, @DiegoAndai, @EyaOuenniche, @Janpot, @jherr, @michaldudak, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @zanivan
 
-## v5.15.13
+## 5.15.13
 
 <!-- generated comparing v5.15.12..master -->
 
@@ -1141,7 +1572,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @brijeshb42, @CGNonofr, @cipherlogs, @danilo-leal, @jwithington, @Janpot, @michaeldfoley, @michaldudak, @mnajdova, @oliviertassinari, @peterwangsc, @rakeshmusturi, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
 
-## v5.15.12
+## 5.15.12
 
 <!-- generated comparing v5.15.11..master -->
 
@@ -1223,7 +1654,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @alexfauquette, @atomiks, @brijeshb42, @DanailH, @danilo-leal, @DiegoAndai, @divyammadhok, @Janpot, @lhilgert9, @matystroia, @michaldudak, @michelengelen, @mj12albert, @oliviertassinari, @prakhargupta1, @PunitSoniME, @sai6855, @siriwatknp, @smox, @zanivan, @ZeeshanTamboli
 
-## v5.15.11
+## 5.15.11
 
 <!-- generated comparing v5.15.10..master -->
 
@@ -1339,7 +1770,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @danilo-leal, @DiegoAndai, @dpertsin, @flaviendelangle, @gitstart, @gregberge, @harrydigos, @Janpot, @justintoman, @khgiddon, @KirankumarAmbati, @LukasTy, @michaldudak, @mnajdova, @nikosgavalas, @oliviertassinari, @PaulKristoffersson, @Rishi556, @rluzists1, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
-## v5.15.10
+## 5.15.10
 
 <!-- generated comparing v5.15.9..master -->
 
@@ -1387,7 +1818,9 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @cherniavskii, @danilo-leal, @joserodolfofreitas, @millerized, @oliviertassinari, @sai6855, @siriwatknp, @Smileek
 
-## v5.15.9<!-- generated comparing v5.15.8..master -->
+## 5.15.9
+
+<!-- generated comparing v5.15.8..master -->
 
 _Feb 8, 2024_
 
@@ -1422,7 +1855,9 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 
 All contributors of this release in alphabetical order: @brijeshb42, @DiegoAndai, @Janpot, @oliviertassinari, @RaghavenderSingh, @sai6855, @siriwatknp
 
-## v5.15.8<!-- generated comparing v5.15.7..master -->
+## 5.15.8
+
+<!-- generated comparing v5.15.7..master -->
 
 _Feb 6, 2024_
 
@@ -1501,7 +1936,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @adebiyial, @brijeshb42, @danilo-leal, @DiegoAndai, @hsmtkk, @Janpot, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @rluzists1, @romgrk, @sai6855, @siriwatknp, @Smileek, @xuhdev, @zanivan
 
-## v5.15.7
+## 5.15.7
 
 <!-- generated comparing v5.15.6..master -->
 
@@ -1596,7 +2031,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @alexfauquette, @colmtuite, @danilo-leal, @DiegoAndai, @EyaOuenniche, @flaviendelangle, @Janpot, @Jaswanth-Sriram-Veturi, @joserodolfofreitas, @michaldudak, @mirus-ua, @mnajdova, @mohamedsaiedd, @Nikhilh26, @oliviertassinari, @romgrk, @sai6855, @siriwatknp, @srinidhi9831, @zanivan, @ZeeshanTamboli
 
-## v5.15.6
+## 5.15.6
 
 <!-- generated comparing v5.15.5..master -->
 
@@ -1655,7 +2090,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @ANUGLYPLUGIN, @brijeshb42, @danilo-leal, @devhik0, @DiegoAndai, @DonikaV, @joserodolfofreitas, @michaldudak, @mj12albert, @mnajdova, @mohamedsaiedd, @oliviertassinari, @pcorpet, @sai6855, @zanivan
 
-## v5.15.5
+## 5.15.5
 
 <!-- generated comparing v5.15.4..master -->
 
@@ -5736,7 +6171,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 All contributors of this release in alphabetical order: @alexfauquette, @danilo-leal, @iamxukai, @Janpot, @MBilalShafi, @michaldudak, @oliviertassinari, @samuelsycamore, @siriwatknp
 
-## v5.10.14
+## 5.10.14
 
 <!-- generated comparing v5.10.13..master -->
 
@@ -5804,7 +6239,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @alexfauquette, @bharatkashyap, @cherniavskii, @danilo-leal, @hbjORbj, @Janpot, @kennethbigler, @kushagra010, @michaldudak, @mnajdova, @ofir5300, @oliviertassinari, @sai6855, @sfavello, @sidtohan, @siriwatknp, @Studio384
 
-## v5.10.13
+## 5.10.13
 
 <!-- generated comparing v5.10.12..master -->
 
@@ -5862,7 +6297,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @akshaya-venkatesh8, @alexfauquette, @hbjORbj, @Janpot, @jesrodri, @michaldudak, @oliviertassinari, @PetroSilenius, @samuelsycamore, @shivam1646, @siriwatknp, @trizotti
 
-## v5.10.12
+## 5.10.12
 
 <!-- generated comparing v5.10.11..master -->
 
@@ -5938,7 +6373,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @cherniavskii, @DanailH, @EduardoSCosta, @emlai, @hbjORbj, @Janpot, @michaldudak, @mnajdova, @oliviertassinari, @punithnayak, @PunitSoniME, @renovate[bot], @RoodyCode, @samuelsycamore, @siriwatknp, @VinceCYLiao
 
-## v5.10.11
+## 5.10.11
 
 <!-- generated comparing v5.10.10..master -->
 

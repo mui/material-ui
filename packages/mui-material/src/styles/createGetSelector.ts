@@ -39,10 +39,13 @@ export default <
         if (rule) {
           return {
             [rule.replace('%s', colorScheme)]: excludedVariables,
-            ':root': css,
+            [`:root, ${rule.replace('%s', colorScheme)}`]: css,
           };
         }
         return { ':root': { ...css, ...excludedVariables } };
+      }
+      if (rule && rule !== 'media') {
+        return `:root, ${rule.replace('%s', String(colorScheme))}`;
       }
     } else if (colorScheme) {
       if (rule === 'media') {

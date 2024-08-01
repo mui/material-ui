@@ -8,4 +8,5 @@
   }}
   pageSizeOptions={[5, 10]}
   checkboxSelection
+  sx={{ overflow: 'clip' }}
 />

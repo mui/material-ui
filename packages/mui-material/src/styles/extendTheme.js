@@ -1,3 +1,4 @@
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import deepmerge from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
@@ -107,7 +108,10 @@ function getOverlays(mode) {
 }
 
 function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
-  scheme = typeof scheme === 'boolean' ? {} : scheme;
+  if (!scheme) {
+    return undefined;
+  }
+  scheme = scheme === true ? {} : scheme;
   const mode = colorScheme === 'dark' ? 'dark' : 'light';
   const { palette, ...muiTheme } = createThemeWithoutVars({
     ...restTheme,
@@ -139,9 +143,7 @@ function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
 export default function extendTheme(options = {}, ...args) {
   const {
     colorSchemes: colorSchemesInput = { light: true },
-    defaultColorScheme = Object.keys(colorSchemesInput).length > 1
-      ? 'light'
-      : Object.keys(colorSchemesInput)[0],
+    defaultColorScheme: defaultColorSchemeInput,
     disableCssColorScheme = false,
     cssVarPrefix = 'mui',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
@@ -150,14 +152,34 @@ export default function extendTheme(options = {}, ...args) {
       : undefined,
     ...input
   } = options;
+  const firstColorScheme = Object.keys(colorSchemesInput)[0];
+  const defaultColorScheme =
+    defaultColorSchemeInput ||
+    (colorSchemesInput.light && firstColorScheme !== 'light' ? 'light' : firstColorScheme);
   const getCssVar = createGetCssVar(cssVarPrefix);
   const {
-    [defaultColorScheme]: defaultScheme,
+    [defaultColorScheme]: defaultSchemeInput,
     light: builtInLight,
     dark: builtInDark,
     ...customColorSchemes
   } = colorSchemesInput;
   const colorSchemes = { ...customColorSchemes };
+  let defaultScheme = defaultSchemeInput;
+
+  // For built-in light and dark color schemes, ensure that the value is valid if they are the default color scheme.
+  if (
+    (defaultColorScheme === 'dark' && !('dark' in colorSchemesInput)) ||
+    (defaultColorScheme === 'light' && !('light' in colorSchemesInput))
+  ) {
+    defaultScheme = true;
+  }
+
+  if (!defaultScheme) {
+    throw new MuiError(
+      'MUI: The provided `colorSchemes.%s` to the `extendTheme` function is either missing or invalid.',
+      defaultColorScheme,
+    );
+  }
 
   // Create the palette for the default color scheme, either `light`, `dark`, or custom color scheme.
   const muiTheme = attachColorScheme(colorSchemes, defaultScheme, input, defaultColorScheme);

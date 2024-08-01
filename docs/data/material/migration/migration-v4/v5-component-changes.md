@@ -772,7 +772,7 @@ If you need negative margins on all sides, we recommend using the new Grid v2 in
 
 ```diff
 - import Grid from '@mui/material/Grid';
-+ import Grid from '@mui/material/Unstable_Grid2';
++ import Grid from '@mui/material/Grid2';
 ```
 
 To learn more about the Grid v2, check out the [demos](/material-ui/react-grid2/#whats-changed) and the [Grid migration guide](/material-ui/migration/migration-grid-v2/).
