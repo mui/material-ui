@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Pagination from '@mui/material/Pagination';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material';
@@ -194,12 +194,7 @@ export default function Latest() {
       <Typography variant="h2" gutterBottom>
         Latest
       </Typography>
-      <Grid
-        container
-        spacing={8}
-        columns={12}
-        sx={{ my: (theme) => theme.spacing(4) }}
-      >
+      <Grid container spacing={8} columns={12} sx={{ my: 4 }}>
         {articleInfo.map((article, index) => (
           <Grid key={index} size={{ xs: 12, sm: 6 }}>
             <Box
