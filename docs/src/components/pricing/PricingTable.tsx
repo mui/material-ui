@@ -170,7 +170,7 @@ export function PlanPrice(props: PlanPriceProps) {
             No extra fees for orders with over 10 devs&nbsp;
             <span>
               <Tooltip title="Our pricing policies are changing. Read more on our blog.">
-                <Link href="https://mui.com/pricing">
+                <Link href="/blog/mui-x-sep-2024-price-update/">
                   by Aug 30
                   <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />
                 </Link>
@@ -256,7 +256,7 @@ export function PlanPrice(props: PlanPriceProps) {
           🐦 Early Bird: <strong>25% off</strong> if ordered &nbsp;
           <span>
             <Tooltip title="Our pricing policies are changing. Read more on our blog.">
-              <Link href="https://mui.com/pricing">
+              <Link href="/blog/mui-x-sep-2024-price-update/">
                 by Aug 30
                 <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />{' '}
               </Link>
