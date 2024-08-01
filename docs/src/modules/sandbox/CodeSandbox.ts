@@ -33,6 +33,15 @@ function openSandbox({ files, codeVariant, initialFile }: any) {
   document.body.removeChild(form);
 }
 
+function replaceRelativeImports(rawCode: string, relativeModulesPaths: string[] = []) {
+  let newCode = rawCode;
+  relativeModulesPaths.forEach((path: string) => {
+    const pathWithoutExtension = path.replace(/\.[a-z]*$/g, '');
+    const newPath = `./${pathWithoutExtension.replace(/^.*[\\/]/g, '')}`;
+    newCode = newCode.replace(pathWithoutExtension, newPath);
+  });
+  return newCode;
+}
 function createReactApp(demoData: DemoData) {
   const ext = getFileExtension(demoData.codeVariant);
   const { title, githubLocation: description } = demoData;
@@ -45,7 +54,10 @@ function createReactApp(demoData: DemoData) {
       content: CRA.getRootIndex(demoData),
     },
     [`src/Demo.${ext}`]: {
-      content: demoData.raw,
+      content: replaceRelativeImports(
+        demoData.raw,
+        demoData.relativeModules?.map((file) => file.module!),
+      ),
     },
     // Spread the relative modules
     ...(demoData.relativeModules &&
@@ -53,8 +65,8 @@ function createReactApp(demoData: DemoData) {
       demoData.relativeModules.reduce(
         (acc, curr) => ({
           ...acc,
-          // Remove the `./` from the module path
-          [`src/${curr.module.replace(/.\//g, '')}`]: {
+          // Only keep the filename from the module path
+          [`src/${curr.module.replace(/^.*[\\/]/g, '')}`]: {
             content: curr.raw,
           },
         }),
