@@ -151,8 +151,6 @@ If the default heading element conflicts with your existing structure, you can c
 
 ### Autocomplete
 
-#### onInputChange reason values added
-
 Three new values have been introduced to the `reason` argument in the `onInputChange` callback of the Autocomplete component.
 These values offer more granular options for three specific use cases previously covered by `"reset"`:
 
