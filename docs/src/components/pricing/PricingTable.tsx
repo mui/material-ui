@@ -10,6 +10,7 @@ import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 import { Link } from '@mui/docs/Link';
@@ -142,7 +143,16 @@ export function PlanPrice(props: PlanPriceProps) {
             {priceUnit}
           </Typography>
         </Box>
-        <Box sx={{ minHeight: planPriceMinHeight }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+            mb: 2,
+            minHeight: planPriceMinHeight,
+          }}
+        >
           {(annual || monthlyDisplay) && (
             <Typography variant="body2" color="text.secondary" textAlign="center">
               {priceExplanation}
@@ -216,7 +226,16 @@ export function PlanPrice(props: PlanPriceProps) {
           {priceUnit}
         </Typography>
       </Box>
-      <Box sx={{ minHeight: planPriceMinHeight }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+          mb: 2,
+          minHeight: planPriceMinHeight,
+        }}
+      >
         {(annual || monthlyDisplay) && (
           <Typography variant="body2" color="text.secondary" textAlign="center">
             {priceExplanation}
