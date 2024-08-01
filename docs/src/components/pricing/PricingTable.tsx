@@ -148,8 +148,18 @@ export function PlanPrice(props: PlanPriceProps) {
               {priceExplanation}
             </Typography>
           )}
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }} textAlign="center">
-            {'No additional fee beyond 10 devs.'}
+
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+            No extra fees for orders with over 10 devs&nbsp;
+            <span>
+              <Tooltip title="Our pricing policies are changing. Read more on our blog.">
+                <Link href="/blog/mui-x-sep-2024-price-update/">
+                  by Aug 30
+                  <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />
+                </Link>
+              </Tooltip>
+            </span>
+            .
           </Typography>
         </Box>
       </React.Fragment>
@@ -212,8 +222,17 @@ export function PlanPrice(props: PlanPriceProps) {
             {priceExplanation}
           </Typography>
         )}
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }} textAlign="center">
-          🐦 Early bird special (25% off).
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+          🐦 Early Bird: <strong>25% off</strong> if ordered &nbsp;
+          <span>
+            <Tooltip title="Our pricing policies are changing. Read more on our blog.">
+              <Link href="/blog/mui-x-sep-2024-price-update/">
+                by Aug 30
+                <OpenInNewRoundedIcon sx={{ fontSize: '16px', ml: 0.5 }} />{' '}
+              </Link>
+            </Tooltip>
+          </span>
+          .
         </Typography>
       </Box>
     </React.Fragment>
