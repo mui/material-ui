@@ -124,9 +124,7 @@ To align with React 19's removal of UMD builds, Material UI has also removed it
 Instead, we recommend using ESM-based CDNs such as [esm.sh](https://esm.sh/).
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
 
-### Autocomplete
-
-#### Accordion Summary heading
+### Accordion
 
 To meet the [W3C Accordion Pattern standard](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), the Accordion Summary is now wrapped with a default `<h3>` heading element.
 This change may affect customizations relying on the previous DOM structure and CSS specificity.
@@ -150,6 +148,8 @@ If the default heading element conflicts with your existing structure, you can c
   </AccordionDetails>
 </Accordion>
 ```
+
+### Autocomplete
 
 #### onInputChange reason values added
 
