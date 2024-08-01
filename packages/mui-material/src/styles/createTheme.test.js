@@ -21,9 +21,9 @@ describe('createTheme', () => {
 
   it('color schemes dark: true', () => {
     const theme = createTheme({ cssVariables: false, colorSchemes: { dark: true } });
-    const { light, dark } = theme.colorSchemes || {};
-    expect(light?.palette.primary.main).to.deep.equal(lightPalette.primary.main);
-    expect(dark?.palette.primary.main).to.deep.equal(darkPalette.primary.main);
+    const { light, dark } = theme.colorSchemes;
+    expect(light.palette.primary.main).to.deep.equal(lightPalette.primary.main);
+    expect(dark.palette.primary.main).to.deep.equal(darkPalette.primary.main);
   });
 
   it('color schemes light: true', () => {
