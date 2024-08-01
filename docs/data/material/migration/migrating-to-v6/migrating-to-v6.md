@@ -314,12 +314,13 @@ The following deprecated types were removed:
 
 ### CssVarsProvider and extendTheme
 
-The `CssVarsProvider` and `extendTheme` APIs are now stable.
-If you already use them in v5, you can now drop the experimental prefix.
+The `CssVarsProvider` and `extendTheme` has been merged into `ThemeProvider` and `createTheme`.
+If you are using them in v5 or v6-beta, you should migrate as shown below:
 
 ```diff
 - import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-+ import { extendTheme, CssVarsProvider } from '@mui/material/styles';
+- import { extendTheme, CssVarsProvider } from '@mui/material/styles';
++ import { createTheme, ThemeProvider } from '@mui/material/styles';
 ```
 
 Check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/) to learn more about it.
