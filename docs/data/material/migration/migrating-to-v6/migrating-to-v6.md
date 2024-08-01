@@ -16,11 +16,29 @@ Though optional, we highly recommend migrating your Material UI app to Pigment C
 
 ### Quality-of-life improvements
 
-Material UI v6 includes several other quality-of-life improvements, including:
+Material UI v6 features several other quality-of-life improvements, including:
 
-- Stabilizing the `CssVarsProvider` API. CSS variables provide more performant customization possibilities along with a cleaner developer experience.
-- Support for container queries in themes.
-- A new theme utility for adding styles to specific color modes.
+- stabilizing [the `CssVarsProvider` API](#cssvarsprovider-and-extendtheme)
+- support for container queries in themes
+- a [new theme utility](#color-mode-theme-utility) for adding styles to specific color modes
+
+## Start using the beta release
+
+In your `package.json` file, change the package version from `"latest"` to `"next"`.
+
+```diff title="package.json"
+-"@mui/material": "latest",
++"@mui/material": "next",
+```
+
+If you're using any of these packages, you can also change their version to `"next"`:
+
+- `@mui/icons-material`
+- `@mui/system`
+- `@mui/lab`
+- `@mui/material-nextjs`
+- `@mui/styled-engine-sc`
+- `@mui/utils`
 
 ## Supported browsers and versions
 
@@ -280,7 +298,7 @@ Still, we strongly recommend adopting this new behavior rather than trying to re
 Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
 This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
 
-### useMediaQuery
+### useMediaQuery types
 
 The following deprecated types are removed in v6:
 
@@ -300,7 +318,7 @@ If you're already using them in v5 you can now drop the experimental prefix:
 + import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 ```
 
-See [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) for more details.
+See [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) for more details about working with these APIs.
 
 ### Color mode theme utility
 
