@@ -43,7 +43,7 @@ import { FormGroupProps } from '../FormGroup';
 import { FormHelperTextProps } from '../FormHelperText';
 import { FormLabelProps } from '../FormLabel';
 import { GridProps } from '../Grid';
-import { Grid2Props } from '../Unstable_Grid2';
+import { Grid2Props } from '../Grid2';
 import { IconButtonProps } from '../IconButton';
 import { IconProps } from '../Icon';
 import { ImageListProps } from '../ImageList';

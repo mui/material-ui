@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "6.0.0-beta.3",
+  "version": "6.0.0-beta.4",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -37,7 +37,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.8",
+    "@babel/runtime": "^7.25.0",
     "csstype": "^3.1.3",
     "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.8.1"
@@ -48,7 +48,7 @@
     "@types/chai": "^4.3.16",
     "@types/hoist-non-react-statics": "^3.3.5",
     "@types/react": "^18.3.3",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "react": "^18.3.1",
     "styled-components": "^6.1.12"
   },

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';

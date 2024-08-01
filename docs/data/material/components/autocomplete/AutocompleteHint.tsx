@@ -1,7 +1,8 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { Box, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 export default function AutocompleteHint() {
   const hint = React.useRef('');
@@ -45,8 +46,8 @@ export default function AutocompleteHint() {
             </Typography>
             <TextField
               {...params}
-              onChange={(e) => {
-                const newValue = e.target.value;
+              onChange={(event) => {
+                const newValue = event.target.value;
                 setInputValue(newValue);
                 const matchingOption = top100Films.find((option) =>
                   option.label.startsWith(newValue),

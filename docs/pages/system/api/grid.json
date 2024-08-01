@@ -52,10 +52,7 @@
     }
   },
   "name": "Grid",
-  "imports": [
-    "import Grid from '@mui/system/Unstable_Grid';",
-    "import { Unstable_Grid as Grid } from '@mui/system';"
-  ],
+  "imports": ["import Grid from '@mui/system/Grid';", "import { Grid } from '@mui/system';"],
   "classes": [
     {
       "key": "container",
@@ -104,7 +101,7 @@
   "themeDefaultProps": true,
   "muiName": "MuiGrid",
   "forwardsRefTo": "HTMLElement",
-  "filename": "/packages/mui-system/src/Unstable_Grid/Grid.tsx",
+  "filename": "/packages/mui-system/src/Grid/Grid.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-grid/\">Grid (Joy UI)</a></li>\n<li><a href=\"/material-ui/react-grid/\">Grid (Material UI)</a></li></ul>",
   "cssComponent": true
