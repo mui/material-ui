@@ -5,11 +5,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import DescriptionIcon from '@mui/icons-material/Description';
 import LayersIcon from '@mui/icons-material/Layers';
-// @ts-ignore TODO: provide types in Toolpad that are resolvable under moduleResolution: node
 import { AppProvider } from '@toolpad/core/AppProvider';
-// @ts-ignore TODO: provide types in Toolpad that are resolvable under moduleResolution: node
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-// @ts-ignore TODO: provide types in Toolpad that are resolvable under moduleResolution: node
 import { PageContainer } from '@toolpad/core/PageContainer';
 import Grid from '@mui/material/Grid2';
 import { styled } from '@mui/material/styles';
