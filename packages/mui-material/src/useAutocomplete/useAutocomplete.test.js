@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen, ErrorBoundary, act, fireEvent } from '@mui/internal-test-utils';
+import getReactMajor from '@mui/utils/getReactMajor';
 import { spy } from 'sinon';
 import useAutocomplete, { createFilterOptions } from '@mui/material/useAutocomplete';
-
-const reactVersion = Number(React.version.split('.')[0]);
 
 describe('useAutocomplete', () => {
   const { render } = createRenderer();
@@ -278,28 +277,41 @@ describe('useAutocomplete', () => {
       );
     }
 
+    const muiErrorMessage = 'MUI: Unable to find the input element.';
+    const aboveErrorUlElementMessage = 'The above error occurred in the <ul> component';
+    const aboveErrorTestComponentMessage = 'The above error occurred in the <Test> component';
     const node16ErrorMessage =
-      "Error: Uncaught [TypeError: Cannot read properties of null (reading 'removeAttribute')]";
-    const olderNodeErrorMessage =
-      "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]";
+      "TypeError: Cannot read properties of null (reading 'removeAttribute')";
+    const olderNodeErrorMessage = "TypeError: Cannot read property 'removeAttribute' of null";
 
     const nodeVersion = Number(process.versions.node.split('.')[0]);
-    const errorMessage = nodeVersion >= 16 ? node16ErrorMessage : olderNodeErrorMessage;
+    const nodeErrorMessage = nodeVersion >= 16 ? node16ErrorMessage : olderNodeErrorMessage;
 
-    const devErrorMessages = [
-      errorMessage,
-      'MUI: Unable to find the input element.',
-      errorMessage,
-      // strict effects runs effects twice
-      reactVersion >= 18 && 'MUI: Unable to find the input element.',
-      reactVersion >= 18 && errorMessage,
-      'The above error occurred in the <ul> component',
-      reactVersion === 16 && 'The above error occurred in the <ul> component',
-      'The above error occurred in the <Test> component',
-      // strict effects runs effects twice
-      reactVersion >= 18 && 'The above error occurred in the <Test> component',
-      reactVersion === 16 && 'The above error occurred in the <Test> component',
+    const defaultErrorMessages = [
+      nodeErrorMessage,
+      muiErrorMessage,
+      nodeErrorMessage,
+      aboveErrorUlElementMessage,
+      aboveErrorTestComponentMessage,
     ];
+
+    const errorMessagesByReactMajor = {
+      19: [muiErrorMessage, nodeErrorMessage, nodeErrorMessage],
+      18: [
+        nodeErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        aboveErrorUlElementMessage,
+        aboveErrorTestComponentMessage,
+        aboveErrorTestComponentMessage,
+      ],
+    };
+
+    const reactMajor = getReactMajor();
+
+    const devErrorMessages = errorMessagesByReactMajor[reactMajor] || defaultErrorMessages;
 
     expect(() => {
       render(

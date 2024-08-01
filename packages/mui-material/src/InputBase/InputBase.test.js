@@ -4,6 +4,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@emotion/react';
+import getReactMajor from '@mui/utils/getReactMajor';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -12,7 +13,7 @@ import InputBase, { inputBaseClasses as classes } from '@mui/material/InputBase'
 import { createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
-const reactVersion = Number(React.version.split('.')[0]);
+const reactMajor = getReactMajor();
 
 describe('<InputBase />', () => {
   const { render } = createRenderer();
@@ -278,16 +279,20 @@ describe('<InputBase />', () => {
 
         const triggerChangeRef = React.createRef();
 
+        const errorMessage =
+          'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.';
+
+        let expectedOccurrences = 1;
+
+        if (reactMajor === 18) {
+          expectedOccurrences = 2;
+        }
+
         expect(() => {
           render(
             <InputBase inputProps={{ ref: triggerChangeRef }} inputComponent={BadInputComponent} />,
           );
-        }).toErrorDev([
-          'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
-          // React 18 Strict Effects run mount effects twice
-          reactVersion >= 18 &&
-            'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
-        ]);
+        }).toErrorDev(Array(expectedOccurrences).fill(errorMessage));
       });
     });
   });
@@ -499,6 +504,14 @@ describe('<InputBase />', () => {
 
     describe('registering input', () => {
       it("should warn if more than one input is rendered regardless how it's nested", () => {
+        const errorMessage =
+          'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.';
+
+        let expectedOccurrences = 1;
+
+        if (reactMajor === 18) {
+          expectedOccurrences = 2;
+        }
         expect(() => {
           render(
             <FormControl>
@@ -509,12 +522,7 @@ describe('<InputBase />', () => {
               </div>
             </FormControl>,
           );
-        }).toErrorDev([
-          'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
-          // React 18 Strict Effects run mount effects twice
-          reactVersion >= 18 &&
-            'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
-        ]);
+        }).toErrorDev(Array(expectedOccurrences).fill(errorMessage));
       });
 
       it('should not warn if only one input is rendered', () => {

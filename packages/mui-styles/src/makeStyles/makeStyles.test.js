@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import { createRenderer, screen, renderHook, fireEvent } from '@mui/internal-test-utils';
+import getReactMajor from '@mui/utils/getReactMajor';
 import { createTheme } from '@mui/material/styles';
 import createGenerateClassName from '../createGenerateClassName';
 import makeStyles from './makeStyles';
@@ -81,19 +82,29 @@ describe('makeStyles', () => {
     it('should warn if missing theme', () => {
       const useStyles2 = makeStyles((theme) => ({ root: { padding: theme.spacing(2) } }));
 
+      const reactMajor = getReactMajor();
+      const muiErrorMessage =
+        'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.';
+      const nodeErrorMessage = 'TypeError: theme.spacing is not a function';
+
+      let devErrorMessages = [muiErrorMessage, muiErrorMessage];
+
+      if (reactMajor !== 19) {
+        devErrorMessages = [
+          ...devErrorMessages,
+          nodeErrorMessage,
+          muiErrorMessage,
+          muiErrorMessage,
+          nodeErrorMessage,
+          'The above error occurred in the <TestComponent> component',
+        ];
+      }
+
       expect(() => {
         expect(() => {
           renderHook(() => useStyles2({}));
         }).to.throw('theme.spacing is not a function');
-      }).toErrorDev([
-        'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
-        'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
-        'Uncaught [TypeError: theme.spacing is not a function',
-        'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
-        'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
-        'Uncaught [TypeError: theme.spacing is not a function',
-        'The above error occurred in the <TestComponent> component',
-      ]);
+      }).toErrorDev(devErrorMessages);
     });
 
     it('should warn but not throw if providing an invalid styles type', () => {

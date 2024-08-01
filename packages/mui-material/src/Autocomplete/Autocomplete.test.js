@@ -8,6 +8,7 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
+import getReactMajor from '@mui/utils/getReactMajor';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
 import Box from '@mui/system/Box';
@@ -1724,6 +1725,17 @@ describe('<Autocomplete />', () => {
       const value = 'not a good value';
       const options = ['first option', 'second option'];
 
+      const reactMajor = getReactMajor();
+      const errorMessage = 'None of the options match with `"not a good value"`';
+
+      let expectedOccurrences = 2;
+
+      if (reactMajor === 18) {
+        expectedOccurrences = 6;
+      } else if (reactMajor === 19) {
+        expectedOccurrences = 4;
+      }
+
       expect(() => {
         render(
           <Autocomplete
@@ -1732,17 +1744,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} />}
           />,
         );
-      }).toWarnDev([
-        'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
-        // React 18 Strict Effects run mount effects twice which lead to a cascading update
-        reactVersion >= 18 && 'None of the options match with `"not a good value"`',
-        reactVersion >= 18 &&
-          !strictModeDoubleLoggingSuppressed &&
-          'None of the options match with `"not a good value"`',
-      ]);
+      }).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
     });
 
     it('warn if groups options are not sorted', () => {

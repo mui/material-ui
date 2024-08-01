@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import getReactMajor from '@mui/utils/getReactMajor';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -14,7 +15,7 @@ import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
 
-const reactVersion = Number(React.version.split('.')[0]);
+const reactMajor = getReactMajor();
 
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -370,6 +371,15 @@ describe('<Select />', () => {
 
     describe('warnings', () => {
       it('warns when the value is not present in any option', () => {
+        const errorMessage =
+          'MUI: You have provided an out-of-range value `20` for the select component.';
+
+        let expectedOccurrences = 2;
+
+        if (reactMajor === 18) {
+          expectedOccurrences = 3;
+        }
+
         expect(() =>
           render(
             <Select value={20}>
@@ -377,13 +387,7 @@ describe('<Select />', () => {
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>,
           ),
-        ).toWarnDev([
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-          // React 18 Strict Effects run mount effects twice
-          reactVersion >= 18 &&
-            'MUI: You have provided an out-of-range value `20` for the select component.',
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-        ]);
+        ).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
       });
     });
   });
@@ -1177,8 +1181,9 @@ describe('<Select />', () => {
         }).toErrorDev([
           'MUI: The `value` prop must be an array',
           // React 18 Strict Effects run mount effects twice
-          reactVersion >= 18 && 'MUI: The `value` prop must be an array',
-          'The above error occurred in the <ForwardRef(SelectInput)> component',
+          reactMajor === 18 && 'MUI: The `value` prop must be an array',
+          reactMajor !== 19 &&
+            'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },
