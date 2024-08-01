@@ -17,5 +17,6 @@ export default function getReactNodeRef(element: React.ReactNode): React.Ref<any
     ? (element.props as any).ref
     : // @ts-expect-error element.ref is not included in the ReactElement type
       // We cannot check for it, but isValidElement is true at this point
+      // https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/70189
       element.ref;
 }
