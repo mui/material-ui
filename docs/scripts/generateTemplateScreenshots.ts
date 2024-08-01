@@ -26,11 +26,6 @@ import { chromium } from 'playwright';
 
 const host = process.env.DEPLOY_PREVIEW || 'http://localhost:3000';
 
-type ExtraShots = Record<
-  string,
-  undefined | { tags?: string[]; mobile?: { width: number; height: number } }
->;
-
 /**
  * project key should be `mui.com/<project-key>/*`
  */
@@ -39,20 +34,11 @@ const projects = {
     input: path.join(process.cwd(), 'docs/pages/material-ui/getting-started/templates'),
     output: 'docs/public/static/screenshots',
     viewport: { width: 1680, height: 1092 },
-    extraShots: {
-      'landing-page': {
-        tags: ['pricing'],
-      },
-      'sign-in': {
-        mobile: { width: 393, height: 800 },
-      },
-    } as ExtraShots,
   },
   'joy-ui': {
     input: path.join(process.cwd(), 'docs/pages/joy-ui/getting-started/templates'),
     output: 'docs/public/static/screenshots',
     viewport: { width: 1600, height: 800 },
-    extraShots: {} as ExtraShots,
   },
 };
 
@@ -66,7 +52,7 @@ const names = new Set(process.argv.slice(2));
   await Promise.all(
     Object.entries(projects)
       .filter(([project]) => names.size === 0 || names.has(project))
-      .map(async ([project, { input, output, viewport, extraShots }]) => {
+      .map(async ([project, { input, output, viewport }]) => {
         const page = await browser.newPage({
           viewport,
           reducedMotion: 'reduce',
@@ -74,18 +60,16 @@ const names = new Set(process.argv.slice(2));
 
         names.delete(project);
 
-        function getRouteName(file: string) {
-          return file.replace(/\.(js|tsx)$/, '');
-        }
-
-        let files = await fs.readdir(input);
-        files = files.filter(
-          (file) =>
-            !file.startsWith('index') && (names.size === 0 || names.has(getRouteName(file))),
-        );
-        const urls = files.map(
-          (file) => `/${project}/getting-started/templates/${getRouteName(file)}/`,
-        );
+        const files = await fs.readdir(input);
+        const urls = files
+          .filter(
+            (file) =>
+              !file.startsWith('index') &&
+              (names.size === 0 || names.has(file.replace(/\.(js|tsx)$/, ''))),
+          )
+          .map(
+            (file) => `/${project}/getting-started/templates/${file.replace(/\.(js|tsx)$/, '/')}`,
+          );
 
         async function captureDarkMode(outputPath: string) {
           const btn = await page.$('[data-screenshot="toggle-mode"]');
@@ -103,7 +87,7 @@ const names = new Set(process.argv.slice(2));
 
         try {
           await Promise.resolve().then(() =>
-            urls.reduce(async (sequence, aUrl, index) => {
+            urls.reduce(async (sequence, aUrl) => {
               await sequence;
               await page.goto(`${host}${aUrl}`, { waitUntil: 'networkidle' });
 
@@ -124,30 +108,6 @@ const names = new Set(process.argv.slice(2));
                 });
 
                 await captureDarkMode(filePath.replace('.jpg', '-default-dark.jpg'));
-              }
-
-              const extraShot = extraShots[getRouteName(files[index])];
-
-              if (extraShot?.mobile) {
-                await page.setViewportSize(extraShot.mobile);
-                await page.reload({ waitUntil: 'networkidle' });
-                await page.screenshot({
-                  path: filePath.replace('.jpg', '-mobile.jpg'),
-                });
-                await captureDarkMode(filePath.replace('.jpg', '-mobile-dark.jpg'));
-              }
-
-              if (extraShot?.tags) {
-                await Promise.all(
-                  extraShot.tags.map(async (tag) => {
-                    await page.reload({ waitUntil: 'networkidle' });
-                    await page.goto(`${host}${aUrl}#${tag}`);
-                    await page.screenshot({
-                      path: filePath.replace('.jpg', `-${tag}.jpg`),
-                    });
-                    await captureDarkMode(filePath.replace('.jpg', `-${tag}-dark.jpg`));
-                  }),
-                );
               }
 
               return Promise.resolve();
