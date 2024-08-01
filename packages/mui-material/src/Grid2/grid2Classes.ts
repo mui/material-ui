@@ -1,4 +1,4 @@
-import { GridClasses } from '@mui/system/Unstable_Grid';
+import { GridClasses } from '@mui/system/Grid';
 import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 

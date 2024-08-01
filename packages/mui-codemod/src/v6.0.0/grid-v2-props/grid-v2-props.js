@@ -1,11 +1,7 @@
-const possibleDefaultImports = [
-  '@mui/material/Unstable_Grid2',
-  '@mui/system/Unstable_Grid',
-  '@mui/joy/Grid',
-];
+const possibleDefaultImports = ['@mui/material/Grid2', '@mui/system/Grid', '@mui/joy/Grid'];
 const possibleNamedImports = {
-  '@mui/material': 'Unstable_Grid2',
-  '@mui/system': 'Unstable_Grid',
+  '@mui/material': 'Grid2',
+  '@mui/system': 'Grid',
   '@mui/joy': 'Grid',
 };
 
