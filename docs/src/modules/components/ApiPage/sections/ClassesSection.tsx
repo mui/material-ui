@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { Translator, useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import Box from '@mui/material/Box';
@@ -10,31 +10,7 @@ import ToggleDisplayOption, {
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
-import { getClassesHash } from '../common/classes';
-
-export type GetCssToCParams = {
-  componentName: string;
-  componentClasses: ComponentClassDefinition[];
-  t: Translator;
-  hash?: string;
-};
-
-export const getClassesToC = ({ componentName, componentClasses, t, hash }: GetCssToCParams) =>
-  !componentClasses || componentClasses.length === 0
-    ? []
-    : [
-        {
-          text: t('api-docs.classes'),
-          hash: hash ?? 'classes',
-          children: [
-            ...componentClasses.map((styles) => ({
-              text: styles.key,
-              hash: getClassesHash({ componentName, className: styles.key }),
-              children: [],
-            })),
-          ],
-        },
-      ];
+import kebabCase from 'lodash/kebabCase';
 
 type ClassDescription = {
   [classKey: string]: {
@@ -100,6 +76,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
           ?.replace(/{{nodeName}}/, classDescriptions[classDefinition.key].nodeName!) ??
         classDefinition.description,
       deprecationInfo: classDescriptions[classDefinition.key]?.deprecationInfo,
+      hash: `${kebabCase(componentName)}-classes-${classDefinition.className}`,
     };
   });
 
@@ -117,13 +94,11 @@ export default function ClassesSection(props: ClassesSectionProps) {
       {displayOption === 'table' ? (
         <ClassesTable
           classes={classesWithTranslatedDescriptions}
-          componentName={componentName}
           displayClassKeys={displayClassKeys}
         />
       ) : (
         <ClassesList
           classes={classesWithTranslatedDescriptions}
-          componentName={componentName}
           displayOption={displayOption}
           displayClassKeys={displayClassKeys}
         />

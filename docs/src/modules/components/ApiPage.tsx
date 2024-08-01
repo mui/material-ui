@@ -13,12 +13,8 @@ import { BrandingProvider } from '@mui/docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import PropertiesSection, {
-  getPropsToC,
-} from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import ClassesSection, {
-  getClassesToC,
-} from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 import {
   ApiDisplayOptions,
@@ -26,6 +22,7 @@ import {
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import { PropsTranslations } from 'packages/api-docs-builder/types/ApiBuilder.types';
 import { TableOfContentsEntry } from '@mui/internal-markdown';
+import { propsApiProcessor } from './ApiPage/processors/properties';
 
 type ApiHeaderKeys =
   | 'demos'
@@ -170,19 +167,9 @@ export default function ApiPage(props: ApiPageProps) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    getPropsToC({
-      t,
-      componentName: pageContent.name,
-      componentProps,
-      inheritance,
-      themeDefaultProps: pageContent.themeDefaultProps,
-    }),
+    createTocEntry('props'),
     componentSlots?.length > 0 && createTocEntry('slots'),
-    ...getClassesToC({
-      t,
-      componentName: pageContent.name,
-      componentClasses,
-    }),
+    createTocEntry('classes'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -273,9 +260,11 @@ export default function ApiPage(props: ApiPageProps) {
           </React.Fragment>
         ) : null}
         <PropertiesSection
-          properties={componentProps}
-          propertiesDescriptions={propDescriptions}
-          componentName={pageContent.name}
+          properties={propsApiProcessor({
+            componentName: pageContent.name,
+            properties: componentProps,
+            propertiesDescriptions: propDescriptions,
+          })}
           spreadHint={spreadHint}
           defaultLayout={defaultLayout}
           layoutStorageKey={layoutStorageKey.props}

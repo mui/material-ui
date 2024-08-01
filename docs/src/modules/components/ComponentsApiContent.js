@@ -11,6 +11,7 @@ import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
+import { propsApiProcessor } from 'docs/src/modules/components/ApiPage/processors/properties';
 import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 function getTranslatedHeader(t, header, text) {
@@ -144,9 +145,11 @@ export default function ComponentsApiContent(props) {
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           )}
           <PropertiesSection
-            properties={componentProps}
-            propertiesDescriptions={propDescriptions}
-            componentName={componentName}
+            properties={propsApiProcessor({
+              componentName: pageContent.name,
+              properties: componentProps,
+              propertiesDescriptions: propDescriptions,
+            })}
             spreadHint={spreadHint}
             level="h3"
             titleHash={`${componentNameKebabCase}-props`}

@@ -10,10 +10,7 @@ import ExpandableApiItem, {
   ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
 import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
-import {
-  getPropertiesHash,
-  PropertyDefinition,
-} from 'docs/src/modules/components/ApiPage/common/properties';
+import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/common/properties';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -126,7 +123,6 @@ export default function PropertiesList(props: PropertiesListProps) {
     <ApiItemContainer>
       {properties.map((params) => {
         const {
-          componentName,
           propName,
           seeMoreDescription,
           description,
@@ -136,8 +132,6 @@ export default function PropertiesList(props: PropertiesListProps) {
           isDeprecated,
           isProPlan,
           isPremiumPlan,
-          hooksParameters,
-          hooksReturnValue,
           deprecationInfo,
           typeName,
           propDefault,
@@ -145,6 +139,7 @@ export default function PropertiesList(props: PropertiesListProps) {
           signature,
           signatureArgs,
           signatureReturnDescription,
+          hash,
         } = params;
 
         let note =
@@ -157,7 +152,7 @@ export default function PropertiesList(props: PropertiesListProps) {
         return (
           <StyledApiItem
             key={propName}
-            id={getPropertiesHash({ componentName, propName, hooksParameters, hooksReturnValue })}
+            id={hash}
             title={
               <React.Fragment>
                 {propName}
@@ -189,7 +184,7 @@ export default function PropertiesList(props: PropertiesListProps) {
                 />
               </ApiWarningAlert>
             )}
-            {additionalInfo.map((key) => (
+            {additionalInfo?.map((key) => (
               <p
                 className="prop-list-additional-description  MuiApi-collapsible"
                 key={key}

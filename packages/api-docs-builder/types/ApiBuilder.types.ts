@@ -134,6 +134,14 @@ export interface HooksTranslations {
   };
 }
 
+interface AttributeDefinition {
+  default: string | undefined;
+  required: boolean | undefined;
+  type: { name: string; description: string | undefined };
+  deprecated: true | undefined;
+  deprecationInfo: string | undefined;
+}
+
 export interface HookReactApi extends CommonReactApi {
   parameters?: ParsedProperty[];
   returnValue?: ParsedProperty[];
@@ -142,20 +150,17 @@ export interface HookReactApi extends CommonReactApi {
    * @example 'useButton'
    */
   name: string;
-
-  parametersTable: _.Dictionary<{
-    default: string | undefined;
-    required: boolean | undefined;
-    type: { name: string | undefined; description: string | undefined };
-    deprecated: true | undefined;
-    deprecationInfo: string | undefined;
-  }>;
-  returnValueTable: _.Dictionary<{
-    default: string | undefined;
-    required: boolean | undefined;
-    type: { name: string | undefined; description: string | undefined };
-    deprecated: true | undefined;
-    deprecationInfo: string | undefined;
-  }>;
+  parametersTable: _.Dictionary<AttributeDefinition>;
+  returnValueTable: _.Dictionary<AttributeDefinition>;
   translations: HooksTranslations;
+}
+
+export interface HookApiContent {
+  parameters: Record<string, AttributeDefinition>;
+  returnValue: Record<string, AttributeDefinition>;
+  name: string;
+  filename: string;
+  imports: string[];
+  demos: string;
+  deprecated: boolean | undefined;
 }

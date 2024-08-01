@@ -1,34 +1,23 @@
-import { Translator } from '@mui/docs/i18n';
 import kebabCase from 'lodash/kebabCase';
-import { ComponentApiContent } from 'packages/api-docs-builder';
 
-export function getPropertiesHash({
-  componentName,
-  propName,
-  hooksParameters,
-  hooksReturnValue,
-}: {
+export type GetHashParams = {
   componentName: string;
   propName: string;
-  hooksParameters?: boolean;
-  hooksReturnValue?: boolean;
-}) {
-  let sectionName = 'prop';
-  if (hooksParameters) {
-    sectionName = 'parameters';
-  } else if (hooksReturnValue) {
-    sectionName = 'return-value';
-  }
-  return `${kebabCase(componentName)}-${sectionName}-${propName}`;
+};
+
+export function getHookParamsHash({ componentName, propName }: GetHashParams) {
+  return `${kebabCase(componentName)}-parameters-${propName}`;
+}
+
+export function getHookReturnHash({ componentName, propName }: GetHashParams) {
+  return `${kebabCase(componentName)}-return-value-${propName}`;
 }
 
 export interface PropertyDefinition {
-  additionalInfo: string[];
-  componentName: string;
+  additionalInfo?: string[];
+  hash: string;
   deprecationInfo?: string;
   description?: string;
-  hooksParameters?: boolean;
-  hooksReturnValue?: boolean;
   isDeprecated?: boolean;
   isOptional?: boolean;
   isRequired?: boolean;
@@ -48,41 +37,4 @@ export interface PropertyDefinition {
    * Used by MUI X interface documentation
    */
   isPremiumPlan?: boolean;
-}
-
-interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
-  componentProps: ComponentApiContent['props'];
-  componentName: ComponentApiContent['name'];
-  t: Translator;
-  /**
-   * @default 'props'
-   */
-  hash?: string;
-}
-
-export function getPropsToC({
-  componentName,
-  componentProps,
-  inheritance,
-  themeDefaultProps,
-  t,
-  hash = 'props',
-}: GetPropsToCParams) {
-  return {
-    text: t('api-docs.props'),
-    hash,
-    children: [
-      ...Object.entries(componentProps).map(([propName]) => ({
-        text: propName,
-        hash: getPropertiesHash({ propName, componentName }),
-        children: [],
-      })),
-      ...(inheritance
-        ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-        : []),
-      ...(themeDefaultProps
-        ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-        : []),
-    ],
-  };
 }

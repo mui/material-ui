@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import { useTranslate } from '@mui/docs/i18n';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
@@ -10,26 +9,14 @@ import ToggleDisplayOption, {
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import PropertiesList from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
-import {
-  PropsTableItem,
-  PropsTranslations,
-} from 'packages/api-docs-builder/types/ApiBuilder.types';
+import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/common/properties';
 import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
 
 interface PropertiesSectionProps {
-  properties: {
-    // isProPlan and isPremiumPlan are added for the MUI X interface documentation.
-    [name: string]: PropsTableItem & { isProPlan?: true; isPremiumPlan?: true };
-  };
-  propertiesDescriptions: PropsTranslations['propDescriptions'];
-  componentName: string;
+  properties: PropertyDefinition[];
   spreadHint: string;
   defaultLayout: ApiDisplayOptions;
   layoutStorageKey: LayoutStorageKeys['props'];
-  /**
-   * Add indicators that the properties is optional instead of showing it is required.
-   */
-  showOptionalAbbr?: boolean;
   /**
    * The translation key of the section title.
    * @default 'api-docs.props'
@@ -45,81 +32,21 @@ interface PropertiesSectionProps {
    * @default 'h2'
    */
   level?: SectionTitleProps['level'];
-  hooksParameters?: true;
-  hooksReturnValue?: true;
 }
+
 export default function PropertiesSection(props: PropertiesSectionProps) {
   const {
     properties,
-    propertiesDescriptions,
-    componentName = '',
-    showOptionalAbbr = false,
     title = 'api-docs.props',
     titleHash = 'props',
     level = 'h2',
     spreadHint,
-    hooksParameters = false,
-    hooksReturnValue = false,
     defaultLayout,
     layoutStorageKey,
   } = props;
   const t = useTranslate();
 
   const [displayOption, setDisplayOption] = useApiPageOption(layoutStorageKey, defaultLayout);
-  const formattedProperties = Object.entries(properties).map(([propName, propData]) => {
-    const isRequired = propData.required && !showOptionalAbbr;
-    const isOptional = !propData.required && showOptionalAbbr;
-
-    const isDeprecated = propData.deprecated;
-    const deprecationInfo = propData.deprecationInfo;
-
-    const typeName = propData.type?.description || propData.type.name;
-    const propDefault = propData.default;
-    const propDescription = propertiesDescriptions[propName];
-
-    const additionalInfo = (
-      ['cssApi', 'sx', 'slotsApi', 'joy-size', 'joy-color', 'joy-variant'] as const
-    ).filter((key) => propData.additionalInfo?.[key]);
-
-    const seeMoreDescription =
-      propDescription?.seeMoreText &&
-      propData.seeMoreLink &&
-      propDescription.seeMoreText.replace(
-        '{{link}}',
-        `<a href="${propData.seeMoreLink.url}">${propData.seeMoreLink.text}</a>`,
-      );
-
-    const signature = propData.signature?.type;
-    const signatureArgs = propData.signature?.describedArgs?.map((argName) => ({
-      argName,
-      argDescription: propertiesDescriptions[propName].typeDescriptions?.[argName],
-    }));
-    const signatureReturnDescription =
-      propData.signature?.returned &&
-      propertiesDescriptions[propName].typeDescriptions?.[propData.signature.returned];
-
-    return {
-      componentName,
-      propName,
-      seeMoreDescription,
-      description: propDescription?.description,
-      requiresRef: propDescription?.requiresRef,
-      isOptional,
-      isRequired,
-      isProPlan: propData.isProPlan,
-      isPremiumPlan: propData.isPremiumPlan,
-      isDeprecated,
-      hooksParameters,
-      hooksReturnValue,
-      deprecationInfo,
-      typeName,
-      propDefault,
-      additionalInfo,
-      signature,
-      signatureArgs,
-      signatureReturnDescription,
-    };
-  });
 
   return (
     <React.Fragment>
@@ -133,25 +60,10 @@ export default function PropertiesSection(props: PropertiesSectionProps) {
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
       {displayOption === 'table' ? (
-        <PropertiesTable properties={formattedProperties} />
+        <PropertiesTable properties={properties} />
       ) : (
-        <PropertiesList properties={formattedProperties} displayOption={displayOption} />
+        <PropertiesList properties={properties} displayOption={displayOption} />
       )}
     </React.Fragment>
   );
 }
-
-PropertiesSection.propTypes = {
-  componentName: PropTypes.string,
-  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']).isRequired,
-  hooksParameters: PropTypes.bool,
-  hooksReturnValue: PropTypes.bool,
-  layoutStorageKey: PropTypes.string.isRequired,
-  level: PropTypes.string,
-  properties: PropTypes.object.isRequired,
-  propertiesDescriptions: PropTypes.object.isRequired,
-  showOptionalAbbr: PropTypes.bool,
-  spreadHint: PropTypes.string,
-  title: PropTypes.string,
-  titleHash: PropTypes.string,
-};

@@ -5,10 +5,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import ExpandableApiItem, {
   ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import {
-  ClassDefinition,
-  getClassesHash,
-} from 'docs/src/modules/components/ApiPage/common/classes';
+import { ClassDefinition } from 'docs/src/modules/components/ApiPage/common/classes';
 import {
   brandingLightTheme as lightTheme,
   brandingDarkTheme as darkTheme,
@@ -52,7 +49,6 @@ const StyledApiItem = styled(ExpandableApiItem)(
 );
 
 type ClassesListProps = {
-  componentName: string;
   classes: ClassDefinition[];
   displayOption: 'collapsed' | 'expanded';
   /**
@@ -62,13 +58,13 @@ type ClassesListProps = {
 };
 
 export default function ClassesList(props: ClassesListProps) {
-  const { classes, displayOption, componentName, displayClassKeys } = props;
+  const { classes, displayOption, displayClassKeys } = props;
   const t = useTranslate();
 
   return (
     <ApiItemContainer>
       {classes.map((classDefinition) => {
-        const { className, key, description, isGlobal, isDeprecated, deprecationInfo } =
+        const { hash, className, key, description, isGlobal, isDeprecated, deprecationInfo } =
           classDefinition;
 
         let note = isGlobal ? t('api-docs.state') : '';
@@ -79,7 +75,7 @@ export default function ClassesList(props: ClassesListProps) {
 
         return (
           <StyledApiItem
-            id={getClassesHash({ componentName, className: key })}
+            id={hash}
             key={key}
             note={note}
             title={`.${className}`}

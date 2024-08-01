@@ -6,10 +6,7 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
-import {
-  PropertyDefinition,
-  getPropertiesHash,
-} from 'docs/src/modules/components/ApiPage/common/properties';
+import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/common/properties';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
@@ -145,7 +142,6 @@ export default function PropertiesTable(props: PropertiesTableProps) {
         <tbody>
           {properties.map((params) => {
             const {
-              componentName,
               propName,
               description,
               seeMoreDescription,
@@ -155,8 +151,6 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               isProPlan,
               isPremiumPlan,
               isDeprecated,
-              hooksParameters,
-              hooksReturnValue,
               deprecationInfo,
               typeName,
               propDefault,
@@ -164,18 +158,11 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               signature,
               signatureArgs,
               signatureReturnDescription,
+              hash,
             } = params;
 
             return (
-              <tr
-                key={propName}
-                id={getPropertiesHash({
-                  componentName,
-                  propName,
-                  hooksParameters,
-                  hooksReturnValue,
-                })}
-              >
+              <tr key={propName} id={hash}>
                 <td className="MuiApi-table-item-title algolia-lvl3">
                   {propName}
                   {isRequired ? '*' : ''}
@@ -218,7 +205,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                       className="prop-table-additional-description"
                     />
                   )}
-                  {additionalInfo.map((key) => (
+                  {additionalInfo?.map((key) => (
                     <p
                       className="prop-table-additional-description"
                       key={key}
