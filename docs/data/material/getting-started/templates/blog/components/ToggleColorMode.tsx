@@ -1,8 +1,6 @@
 import * as React from 'react';
-
 import { PaletteMode } from '@mui/material';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 
