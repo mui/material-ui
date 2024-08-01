@@ -44,7 +44,9 @@ The price is essentially the same for customers with 10 developers or fewer, but
 
 After two years since the [introduction of our Premium plan](/blog/premium-plan-release/), we've added numerous features and are on the verge of releasing the Pivot mode for the Data Grid. We consider the product mature and battle tested enough and as a result, the early bird discount for the Premium plan finally reaches its end.
 
-However, we want to ensure that our valued early customers continue to enjoy the benefits of an earlier purchase. Current customers will still benefit from a 20% renewal discount. You'll receive the discount per email, or by reaching out to our [support team](mailto:sales@mui.com).
+However, we want to ensure that our valued early customers continue to enjoy the benefits of an earlier purchase.
+Current customers will still benefit from a 20% renewal discount.
+You'll receive the discount per email, or by reaching out to our [sales team](mailto:sales@mui.com).
 
 ## Effective Date
 
