@@ -7,6 +7,9 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import LayersIcon from '@mui/icons-material/Layers';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import Grid from '@mui/material/Grid2';
+import Container from '@mui/material/Container';
+import { styled } from '@mui/material/styles';
 
 const NAVIGATION = [
   {
@@ -82,6 +85,13 @@ function useDemoRouter(initialPath) {
   return router;
 }
 
+const Skeleton = styled('div')(({ theme, height }) => ({
+  backgroundColor: theme.palette.action.hover,
+  borderRadius: theme.shape.borderRadius,
+  height,
+  content: '" "',
+}));
+
 export default function DashboardLayoutBasic(props) {
   const { window } = props;
 
@@ -97,7 +107,32 @@ export default function DashboardLayoutBasic(props) {
       theme={demoTheme}
       window={demoWindow}
     >
-      <DashboardLayout>Page Content</DashboardLayout>
+      <DashboardLayout>
+        <Container sx={{ my: 2 }}>
+          <Grid container spacing={1}>
+            <Grid size={7}>
+              <Skeleton height={24} />
+            </Grid>
+            <Grid size={5} />
+            <Grid size={12}>
+              <Skeleton height={14} />
+            </Grid>
+            <Grid size={12}>
+              <Skeleton height={14} />
+            </Grid>
+            <Grid size={4}>
+              <Skeleton variant="rounded" height={100} />
+            </Grid>
+            <Grid size={8}>
+              <Skeleton variant="rounded" height={100} />
+            </Grid>
+
+            <Grid size={12}>
+              <Skeleton variant="rounded" height={150} />
+            </Grid>
+          </Grid>
+        </Container>
+      </DashboardLayout>
     </AppProvider>
   );
 }

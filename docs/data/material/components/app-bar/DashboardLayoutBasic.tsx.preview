@@ -1,8 +1,0 @@
-<AppProvider
-  navigation={NAVIGATION}
-  router={router}
-  theme={demoTheme}
-  window={demoWindow}
->
-  <DashboardLayout>Page Content</DashboardLayout>
-</AppProvider>
