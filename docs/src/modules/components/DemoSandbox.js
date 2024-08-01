@@ -15,7 +15,7 @@ import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
 import { getDesignTokens } from '@mui/docs/branding';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
-import { deepmerge } from '@mui/utils';
+import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 
 const iframeDefaultJoyTheme = extendTheme({
   cssVarPrefix: 'demo-iframe',
@@ -205,7 +205,7 @@ function DemoSandbox(props) {
   // `childrenProp` needs to be a child of `Sandbox` since the iframe implementation rely on `cloneElement`.
   const children = <Sandbox {...sandboxProps}>{childrenProp}</Sandbox>;
 
-  React.useLayoutEffect(() => {
+  useEnhancedEffect(() => {
     async function setupMaterialUITheme() {
       if (typeof window.getInjectTheme === 'function') {
         window.React = React;
