@@ -1,7 +1,0 @@
-<AppProvider navigation={NAVIGATION} router={router} theme={theme}>
-  <Paper sx={{ width: '100%' }}>
-    {/* preview-start */}
-    <PageContainer>Page content</PageContainer>
-    {/* preview-end */}
-  </Paper>
-</AppProvider>

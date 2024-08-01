@@ -63,6 +63,4 @@ The accessibility of this component relies on:
 
 ### Page Container
 
-The [Page Container](https://mui.com/toolpad/core/react-page-container/) from `@toolpad/core` is the ideal wrapper for the content of your dashboard. It shows the current page title, and provides breadcrumbs to navigate back into the current hierarchy. It makes your page responsive through the use of the Material UI Container component under the hood.
-
-{{"demo": "BasicPageContainer.js", "height": 300, "hideToolbar": true}}
+The [Page Container](https://mui.com/toolpad/core/react-page-container/) from `@toolpad/core` is the ideal wrapper for the content of your dashboard. It makes the Material UI Container navigation aware and extends it with page title, breadcrumbs, actions and more.
