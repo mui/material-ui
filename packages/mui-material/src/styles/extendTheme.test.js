@@ -718,6 +718,7 @@ describe('extendTheme', () => {
       expect(theme.colorSchemes.dark.palette.text.primary).to.equal('#fff');
       expect(theme.colorSchemes.light).to.equal(undefined);
     });
+  });
 
   describe('light and dark color schemes', () => {
     it('should use prefers-color-scheme (`media`) by default', () => {

@@ -96,7 +96,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     }
     insertStyleSheet(getSelector(undefined, { ...rootCss }), rootCss);
 
-    const { [colorScheme]: defaultSchemeVal, ...rest } = colorSchemesMap;
+    const { [colorScheme]: defaultSchemeVal, ...other } = colorSchemesMap;
 
     if (defaultSchemeVal) {
       // default color scheme has to come before other color schemes
