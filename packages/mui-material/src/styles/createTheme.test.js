@@ -83,6 +83,25 @@ describe('createTheme', () => {
       );
     });
 
+    it('should have light and dark colorSchemes', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        colorSchemes: { dark: true },
+      });
+      expect(theme.colorSchemes.light).to.not.equal(undefined);
+      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+    });
+
+    it('should not have light if default color scheme is set to dark', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        colorSchemes: { dark: true },
+        defaultColorScheme: 'dark',
+      });
+      expect(theme.colorSchemes.light).to.equal(undefined);
+      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+    });
+
     describe('spacing', () => {
       it('should provide the default spacing', () => {
         const theme = createTheme({ cssVariables: true });
