@@ -239,7 +239,6 @@ export interface ColorSystemOptions {
 }
 
 export interface CssVarsPalette {
-  colorScheme: SupportedColorScheme; // TODO: remove
   common: PaletteCommonChannel;
   primary: PaletteColorChannel;
   secondary: PaletteColorChannel;
