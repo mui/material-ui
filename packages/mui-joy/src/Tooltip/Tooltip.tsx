@@ -11,7 +11,7 @@ import {
   unstable_useId as useId,
   unstable_useTimeout as useTimeout,
   unstable_Timeout as Timeout,
-  unstable_getElementRef as getElementRef,
+  unstable_getReactNodeRef as getReactNodeRef,
 } from '@mui/utils';
 import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
@@ -416,7 +416,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }, [handleClose, open]);
 
   const handleUseRef = useForkRef(setChildNode, ref);
-  const handleRef = useForkRef(getElementRef(children), handleUseRef);
+  const handleRef = useForkRef(getReactNodeRef(children), handleUseRef);
 
   // There is no point in displaying an empty tooltip.
   if (typeof title !== 'number' && !title) {

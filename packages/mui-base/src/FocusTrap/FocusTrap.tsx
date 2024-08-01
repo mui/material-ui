@@ -7,7 +7,7 @@ import {
   elementAcceptingRef,
   unstable_useForkRef as useForkRef,
   unstable_ownerDocument as ownerDocument,
-  unstable_getElementRef as getElementRef,
+  unstable_getReactNodeRef as getReactNodeRef,
 } from '@mui/utils';
 import { FocusTrapProps } from './FocusTrap.types';
 
@@ -153,7 +153,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   const activated = React.useRef(false);
 
   const rootRef = React.useRef<HTMLElement>(null);
-  const handleRef = useForkRef(getElementRef(children), rootRef);
+  const handleRef = useForkRef(getReactNodeRef(children), rootRef);
   const lastKeydown = React.useRef<KeyboardEvent | null>(null);
 
   React.useEffect(() => {
