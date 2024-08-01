@@ -30,19 +30,24 @@ export default function createCssVarsProvider(options) {
     resolveTheme,
   } = options;
 
+  const defaultContext = {
+    allColorSchemes: [],
+    colorScheme: undefined,
+    darkColorScheme: undefined,
+    lightColorScheme: undefined,
+    mode: undefined,
+    setColorScheme: () => {},
+    setMode: () => {},
+    systemMode: undefined,
+  };
+
   const ColorSchemeContext = React.createContext(undefined);
 
   if (process.env.NODE_ENV !== 'production') {
     ColorSchemeContext.displayName = 'ColorSchemeContext';
   }
 
-  const useColorScheme = () => {
-    const value = React.useContext(ColorSchemeContext);
-    if (!value) {
-      throw new MuiError('MUI: `useColorScheme` must be called under <CssVarsProvider />');
-    }
-    return value;
-  };
+  const useColorScheme = () => React.useContext(ColorSchemeContext) || defaultContext;
 
   function CssVarsProvider(props) {
     const {
