@@ -136,6 +136,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   } = options;
 
   const joinedColorSchemes = supportedColorSchemes.join(',');
+  const isMultiSchemes = supportedColorSchemes.length > 1;
 
   const [state, setState] = React.useState(() => {
     const initialMode = initializeValue(modeStorageKey, defaultMode);
@@ -158,9 +159,11 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   const [, setHasMounted] = React.useState(false);
   const hasMounted = React.useRef(false);
   React.useEffect(() => {
-    setHasMounted(true); // to rerender the component after hydration
+    if (isMultiSchemes) {
+      setHasMounted(true); // to rerender the component after hydration
+    }
     hasMounted.current = true;
-  }, []);
+  }, [isMultiSchemes]);
 
   const colorScheme = getColorScheme(state);
 
@@ -286,7 +289,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   mediaListener.current = handleMediaQuery;
 
   React.useEffect(() => {
-    if (typeof window.matchMedia !== 'function') {
+    if (typeof window.matchMedia !== 'function' || !isMultiSchemes) {
       return undefined;
     }
     const handler = (...args: any) => mediaListener.current(...args);
@@ -300,11 +303,11 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     return () => {
       media.removeListener(handler);
     };
-  }, []);
+  }, [isMultiSchemes]);
 
   // Handle when localStorage has changed
   React.useEffect(() => {
-    if (storageWindow) {
+    if (storageWindow && isMultiSchemes) {
       const handleStorage = (event: StorageEvent) => {
         const value = event.newValue;
         if (
@@ -342,13 +345,14 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     joinedColorSchemes,
     defaultMode,
     storageWindow,
+    isMultiSchemes,
   ]);
 
   return {
     ...state,
-    mode: hasMounted.current ? state.mode : undefined,
-    systemMode: hasMounted.current ? state.systemMode : undefined,
-    colorScheme: hasMounted.current ? colorScheme : undefined,
+    mode: hasMounted.current || !isMultiSchemes ? state.mode : undefined,
+    systemMode: hasMounted.current || !isMultiSchemes ? state.systemMode : undefined,
+    colorScheme: hasMounted.current || !isMultiSchemes ? colorScheme : undefined,
     setMode,
     setColorScheme,
   };
