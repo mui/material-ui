@@ -5,8 +5,11 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import DescriptionIcon from '@mui/icons-material/Description';
 import LayersIcon from '@mui/icons-material/Layers';
+
 import { AppProvider } from '@toolpad/core/AppProvider';
+
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+
 import { PageContainer } from '@toolpad/core/PageContainer';
 import Grid from '@mui/material/Grid2';
 import { styled } from '@mui/material/styles';
@@ -118,30 +121,30 @@ export default function DashboardLayoutBasic(props) {
               <Skeleton height={14} />
             </Grid>
             <Grid size={4}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
             <Grid size={8}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
 
             <Grid size={12}>
-              <Skeleton variant="rounded" height={150} />
+              <Skeleton height={150} />
             </Grid>
             <Grid size={12}>
               <Skeleton height={14} />
             </Grid>
 
             <Grid size={3}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
             <Grid size={3}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
             <Grid size={3}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
             <Grid size={3}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
           </Grid>
         </PageContainer>

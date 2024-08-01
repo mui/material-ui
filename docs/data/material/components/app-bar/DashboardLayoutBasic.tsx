@@ -5,8 +5,11 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import DescriptionIcon from '@mui/icons-material/Description';
 import LayersIcon from '@mui/icons-material/Layers';
+// @ts-ignore TODO: provide types in Toolpad that are resolvable under moduleResolution: node
 import { AppProvider } from '@toolpad/core/AppProvider';
+// @ts-ignore TODO: provide types in Toolpad that are resolvable under moduleResolution: node
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+// @ts-ignore TODO: provide types in Toolpad that are resolvable under moduleResolution: node
 import { PageContainer } from '@toolpad/core/PageContainer';
 import Grid from '@mui/material/Grid2';
 import { styled } from '@mui/material/styles';
@@ -78,7 +81,7 @@ function useDemoRouter(initialPath: string) {
     return {
       pathname,
       searchParams: new URLSearchParams(),
-      navigate: (path) => setPathname(String(path)),
+      navigate: (path: string) => setPathname(String(path)),
     };
   }, [pathname]);
 
@@ -92,7 +95,7 @@ const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
   content: '" "',
 }));
 
-export default function DashboardLayoutBasic(props) {
+export default function DashboardLayoutBasic(props: any) {
   const { window } = props;
 
   const router = useDemoRouter('/dashboard');
@@ -118,30 +121,30 @@ export default function DashboardLayoutBasic(props) {
               <Skeleton height={14} />
             </Grid>
             <Grid size={4}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
             <Grid size={8}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
 
             <Grid size={12}>
-              <Skeleton variant="rounded" height={150} />
+              <Skeleton height={150} />
             </Grid>
             <Grid size={12}>
               <Skeleton height={14} />
             </Grid>
 
             <Grid size={3}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
             <Grid size={3}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
             <Grid size={3}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
             <Grid size={3}>
-              <Skeleton variant="rounded" height={100} />
+              <Skeleton height={100} />
             </Grid>
           </Grid>
         </PageContainer>
