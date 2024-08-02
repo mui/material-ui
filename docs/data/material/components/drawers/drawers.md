@@ -139,6 +139,6 @@ Apps focused on productivity that require balance across the screen.
 
 ### DashboardLayout
 
-The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation and more. An example usage of this component:
+The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:
 
 {{"demo": "../app-bar/DashboardLayoutBasic.js", "height": 400, "iframe": true, "hideToolbar": true}}

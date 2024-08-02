@@ -40,4 +40,4 @@ Looking for something more? You can find complete templates and themes in the <a
 
 ## Toolpad Core
 
-[Toolpad Core](https://mui.com/toolpad/core/introduction/) is a framework designed to build full-stack apps. It leverages the existing suite of components offered by MUI and ties them together to help you create dashboards and internal tools quickly.
+[Toolpad Core](https://mui.com/toolpad/core/introduction/) is a framework designed to build full-stack apps. It leverages the existing suite of components offered by Material UI and ties them together to help you create dashboards and internal tools quickly.
