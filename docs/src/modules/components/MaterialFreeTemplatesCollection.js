@@ -115,8 +115,7 @@ export default function Templates() {
                 }}
               />
               <Button
-                variant="outlined"
-                color="secondary"
+                variant="text"
                 endIcon={<OpenInNewRoundedIcon />}
                 component={Link}
                 href={layout.href}
@@ -130,18 +129,25 @@ export default function Templates() {
                   transform: 'translate(-50%, -50%)',
                   opacity: 0,
                   transition: 'opacity 0.5s ease',
-                  bgcolor: 'background.paper',
-                  // boxShadow: 'none',
+                  backgroundColor: 'background.paper',
+                  '&:hover': {
+                    backgroundColor: 'background.default',
+                  },
                 }}
               >
                 See live preview
               </Button>
             </Box>
             <Box sx={{ p: 2, pt: 1.5, borderTop: '1px solid', borderColor: 'divider' }}>
-              <Typography component="h3" variant="body1" sx={{ fontWeight: 'semiBold' }}>
+              <Typography
+                component="h3"
+                variant="body1"
+                gutterBottom
+                sx={{ fontWeight: 'semiBold' }}
+              >
                 {layout.title}
               </Typography>
-              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
+              <Typography variant="body2" gutterBottom sx={{ color: 'text.secondary', mb: 2 }}>
                 {layout.description}
               </Typography>
               <Box
