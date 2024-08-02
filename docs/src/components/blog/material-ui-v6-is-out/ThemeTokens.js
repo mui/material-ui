@@ -50,7 +50,10 @@ const Table = styled('table')(({ theme }) => ({
     padding: '4px 10px',
     fontSize: '0.75rem',
     fontFamily: 'Menlo,Consolas,"Droid Sans Mono",monospace',
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.common.white,
+    ...theme.applyStyles('dark', {
+      backgroundColor: 'var(--muidocs-palette-primaryDark-900)',
+    }),
   },
 }));
 
