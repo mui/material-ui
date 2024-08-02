@@ -647,7 +647,12 @@ describe('Material UI <Grid />', () => {
       });
     });
 
-    it('should ignore grid item with spacing object', () => {
+    it('should ignore grid item with spacing object', function test() {
+      if (reactMajor < 19) {
+        // React 19 removed prop types support
+        this.skip();
+      }
+
       const theme = createTheme({
         breakpoints: {
           keys: ['mobile', 'desktop'],
@@ -693,9 +698,19 @@ describe('Material UI <Grid />', () => {
         this.skip();
       }
 
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+      });
+
       expect(() => {
         render(
-          <ThemeProvider>
+          <ThemeProvider theme={theme}>
             <Grid item spacing={{ mobile: 1, desktop: 3 }} />
           </ThemeProvider>,
         );
