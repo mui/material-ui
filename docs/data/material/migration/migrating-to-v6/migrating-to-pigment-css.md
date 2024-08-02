@@ -6,7 +6,9 @@ Before going through this guide, make sure you have [migrated to Material UI v6
 
 ## Introduction
 
-The default styling engine of Material UI v6 is [Emotion](https://emotion.sh/docs/introduction). It lets you write styles in a CSS-in-JS fashion, which is great for dynamic styles that depend on states and props. However, it has some performance drawbacks when it comes to frequent re-renders because the style recalculation happens on the client-side. It also does not fully support [React Server Components](https://react.dev/reference/rsc/server-components), a new rendering paradigm that renders components ahead of time on the server.
+The default styling engine of Material UI v6 is [Emotion](https://emotion.sh/docs/introduction).
+It lets you write styles in a CSS-in-JS fashion, which is great for dynamic styles that depend on states and props. However, it has some performance drawbacks when it comes to frequent re-renders because the style recalculation happens on the client-side.
+It also does not fully support [React Server Components](https://react.dev/reference/rsc/server-components), a new rendering paradigm that renders components ahead of time on the server.
 
 Pigment CSS aims to solve these problems while keeping the same developer experience of writing styles in a CSS-in-JS fashion.
 It can work alongside Emotion to ease the migration process, but it is recommended to fully migrate to Pigment CSS in the end.
@@ -15,7 +17,7 @@ It can work alongside Emotion to ease the migration process, but it is recommend
 
 Pigment CSS can be used with one of the following frameworks:
 
-- [Next.js App Router](https://nextjs.org/docs/app) with Webpack 5 (Turbo is not supported yet)
+- [Next.js App Router](https://nextjs.org/docs/app) with Webpack v5 (Turbopack is not supported yet)
 - [Vite](https://vitejs.dev/)
 
 ## Installation
@@ -102,7 +104,7 @@ Finally, import the stylesheet at the top of the layout file.
  import type { Metadata } from 'next';
  import { Inter } from 'next/font/google';
 
-+ import '@mui/material-pigment-css/styles.css';
++import '@mui/material-pigment-css/styles.css';
 
  export default function RootLayout(props) {
    return (
@@ -155,7 +157,7 @@ Finally, add the Pigment CSS stylesheet to the top of the main file.
 
 ```diff title="src/main.(js|tsx)"
  import * as React from 'react';
-+ import '@mui/material-pigment-css/styles.css';
++import '@mui/material-pigment-css/styles.css';
  import App from './App';
 
  ReactDOM.createRoot(document.getElementById('root')).render(
@@ -171,11 +173,11 @@ Integrating Pigment CSS with Material UI requires you to configure the theme t
 Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
 ```diff
-+ import { extendTheme } from '@mui/material';
++import { extendTheme } from '@mui/material';
 
-+ const pigmentConfig = {
-+   theme: extendTheme(),
-+ };
++const pigmentConfig = {
++  theme: extendTheme(),
++};
 ```
 
 If you don't have a custom theme, you are ready to go. Start a development server by running:
@@ -211,6 +213,7 @@ import Card from '@mui/material/Card';
 
 function App() {
   const [color, setColor] = useState('#000000');
+
   return (
     <Card
       sx={{
@@ -434,8 +437,8 @@ With Pigment CSS, any JSX element can accept the `sx` prop so it is **no** long
 If you have custom components that are using `styled` from `@mui/material/styles`, change the import source to `@mui/material-pigment-css`:
 
 ```diff
-- import { styled } from '@mui/material/styles';
-+ import { styled } from '@mui/material-pigment-css';
+-import { styled } from '@mui/material/styles';
++import { styled } from '@mui/material-pigment-css';
 ```
 
 Then, run the following codemod:
@@ -506,17 +509,17 @@ export default FlashCode;
 To use layout components that are compatible with Pigment CSS, replace the following components with those from the adapter package:
 
 ```diff
-- import Container from '@mui/material/Container';
-+ import Container from '@mui/material-pigment-css/Container';
+-import Container from '@mui/material/Container';
++import Container from '@mui/material-pigment-css/Container';
 
-- import Grid from '@mui/material/Grid';
-+ import Grid from '@mui/material-pigment-css/Grid';
+-import Grid from '@mui/material/Grid';
++import Grid from '@mui/material-pigment-css/Grid';
 
-- import Stack from '@mui/material/Stack';
-+ import Stack from '@mui/material-pigment-css/Stack';
+-import Stack from '@mui/material/Stack';
++import Stack from '@mui/material-pigment-css/Stack';
 
-- import Hidden from '@mui/material/Hidden';
-+ import Hidden from '@mui/material-pigment-css/Hidden';
+-import Hidden from '@mui/material/Hidden';
++import Hidden from '@mui/material-pigment-css/Hidden';
 ```
 
 :::info
@@ -533,8 +536,8 @@ Choose one of the following approaches:
 Replace the `Box` component with the one from the adapter package:
 
 ```diff
-- import Box from '@mui/material/Box';
-+ import Box from '@mui/material-pigment-css/Box';
+-import Box from '@mui/material/Box';
++import Box from '@mui/material-pigment-css/Box';
 ```
 
 ### Use HTML element
@@ -542,7 +545,7 @@ Replace the `Box` component with the one from the adapter package:
 Pigment CSS can extract the `sx` prop from any JSX element, so there is no need to use the Box component.
 
 ```diff
-- import Box from '@mui/material/Box';
+-import Box from '@mui/material/Box';
 
  function CustomCard() {
    return (
@@ -554,7 +557,7 @@ Pigment CSS can extract the `sx` prop from any JSX element, so there is no need
 +      <img src="..." sx={{ width: 24, height: 24 }}>
 +      ...
 +    </div>
-   )
+   );
  }
 ```
 
@@ -577,8 +580,8 @@ declare global {
 If you are using the `useTheme` hook, replace the import source:
 
 ```diff
-- import { useTheme } from '@mui/material/styles';
-+ import { useTheme } from '@mui/material-pigment-css';
+-import { useTheme } from '@mui/material/styles';
++import { useTheme } from '@mui/material-pigment-css';
 ```
 
 :::info
