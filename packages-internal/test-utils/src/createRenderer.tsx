@@ -15,6 +15,7 @@ import {
   within,
   RenderResult,
   screen as rtlScreen,
+  Screen,
 } from '@testing-library/react/pure';
 import { userEvent } from '@testing-library/user-event';
 import { useFakeTimers } from 'sinon';
@@ -740,4 +741,4 @@ const bodyBoundQueries = within(document.body, { ...queries, ...customQueries })
 
 export * from '@testing-library/react/pure';
 export { act, fireEvent };
-export const screen = { ...rtlScreen, ...bodyBoundQueries };
+export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };
