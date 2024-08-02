@@ -45,4 +45,5 @@ export { default as unstable_useSlotProps } from './useSlotProps';
 export type { UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
 export { default as unstable_resolveComponentProps } from './resolveComponentProps';
 export { default as unstable_extractEventHandlers } from './extractEventHandlers';
+export { default as unstable_getReactNodeRef } from './getReactNodeRef';
 export * from './types';

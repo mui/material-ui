@@ -67,7 +67,7 @@ const PRODUCTS = [
   },
   {
     name: 'Templates',
-    description: 'Fully built, out-of-the-box, templates for your application.',
+    description: 'Fully built templates for your application.',
     href: ROUTES.productTemplates,
   },
   {
@@ -76,8 +76,8 @@ const PRODUCTS = [
     href: ROUTES.productDesignKits,
   },
   {
-    name: 'Toolpad Core',
-    description: 'Components for dashboards and internal tools.',
+    name: 'Toolpad',
+    description: 'Components and tools for dashboards and internal apps.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
   },
@@ -111,7 +111,7 @@ const DOCS = [
   },
   {
     name: 'Toolpad Core',
-    description: 'Components for dashboards and internal tools.',
+    description: 'Components and tools for dashboards and internal apps.',
     href: ROUTES.toolpadStudioDocs,
     chip: 'Beta',
   },
