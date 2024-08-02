@@ -3,7 +3,7 @@ import { CssVarsProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';

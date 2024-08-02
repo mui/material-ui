@@ -1,5 +1,46 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.0-beta.4
+
+<!-- generated comparing v6.0.0-beta.3..next -->
+
+_Jul 30, 2024_
+
+A big thanks to the 12 contributors who made this release possible.
+
+### `@mui/material@6.0.0-beta.4`
+
+- [Accordion] Render a heading wrapping `AccordionSummary` button per W3C Accordion Pattern standards (#42914) @ZeeshanTamboli
+- [Divider] Enable borderStyle enhancement in divider with children (#42715) @anuujj
+- [ImageListItemBar] Deprecate composed classes (#42905) @sai6855
+- Attach selector for default color scheme (#43035) @siriwatknp
+- Stabilize Grid v2 and deprecate Grid v1 (#43054) @DiegoAndai
+
+### `@mui/system@6.0.0-beta.4`
+
+- Make `createBreakpoints` independent for stringify theme (#43048) @siriwatknp
+
+### `@mui/utils@6.0.0-beta.4`
+
+- Fix issues reported by the React Compiler (#43051) @markliu2013
+
+### Docs
+
+- [material-ui] Replace deprecated `<ListItem button/>` with `ListItemButton` component in routing libraries list example (#43110) @aliharis99
+- [material-ui][Card] Update CardMedia description (#43067) @shahzaibdev1
+- [material-ui] Polish out data table demo (#43072) @zanivan
+- [material-ui][Snackbar] Improve reason type in demos (#43077) @sai6855
+- [pigment-css] Fix syntax in migrating-to-pigment-css guide (#43107) @KevinVandy
+- Fix page description line break @oliviertassinari
+
+### Core
+
+- Fix event naming convention @oliviertassinari
+- [docs-infra] Move ads to the `@mui/docs` package (#42944) @alexfauquette
+- [website] Fine-tune button styles on the branding theme (#43082) @zanivan
+
+All contributors of this release in alphabetical order: @alexfauquette, @aliharis99, @anuujj, @DiegoAndai, @KevinVandy, @markliu2013, @oliviertassinari, @sai6855, @shahzaibdev1, @siriwatknp, @zanivan, @ZeeshanTamboli
+
 ## 6.0.0-beta.3
 
 <!-- generated comparing v6.0.0-beta.2..next -->
