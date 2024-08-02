@@ -12,7 +12,7 @@ import {
 } from '@mui/system';
 import cssContainerQueries from '@mui/system/cssContainerQueries';
 import { unstable_applyStyles as applyStyles } from '@mui/system/createTheme';
-import { prepareTypographyVars } from '@mui/system/cssVars';
+import { prepareTypographyVars, createGetColorSchemeSelector } from '@mui/system/cssVars';
 import { createUnarySpacing } from '@mui/system/spacing';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
@@ -83,6 +83,23 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    * // { ..., typography: { body1: { fontSize: 'var(--fontSize-md)' } }, ... }
    */
   cssVarPrefix?: string;
+  /**
+   * The strategy to generate CSS variables
+   *
+   * @example 'media'
+   * Generate CSS variables using [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
+   *
+   * @example '.mode-%s'
+   * Generate CSS variables within a class .mode-light, .mode-dark
+   *
+   * @example '[data-mode-%s]'
+   * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
+   */
+  colorSchemeSelector?: 'media' | 'class' | 'data' | string;
+  /**
+   * @default 'light'
+   */
+  defaultColorScheme?: DefaultColorScheme | ExtendedColorScheme;
   direction?: 'ltr' | 'rtl';
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystemOptions>;
@@ -100,26 +117,6 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
-  /**
-   * If provided, it will be used to create a selector for the color scheme.
-   * This is useful if you want to use class or data-* attributes to apply the color scheme.
-   *
-   * The callback receives the colorScheme with the possible values of:
-   * - undefined: the selector for tokens that are not color scheme dependent
-   * - string: the selector for the color scheme
-   *
-   * @example
-   * // class selector
-   * (colorScheme) => colorScheme !== 'light' ? `.theme-${colorScheme}` : ":root"
-   *
-   * @example
-   * // data-* attribute selector
-   * (colorScheme) => colorScheme !== 'light' ? `[data-theme="${colorScheme}"`] : ":root"
-   */
-  getSelector?: (
-    colorScheme: SupportedColorScheme | undefined,
-    css: Record<string, any>,
-  ) => string | Record<string, any>;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -133,7 +130,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     components: componentsInput,
     variants: variantsInput,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    getSelector,
+    colorSchemeSelector = 'data-joy-color-scheme',
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -563,6 +560,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     : defaultScales;
 
   let theme = {
+    colorSchemeSelector,
     colorSchemes,
     defaultColorScheme: 'light',
     ...mergedScales,
@@ -608,7 +606,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     getCssVar,
     spacing: getSpacingVal(spacing),
     font: { ...prepareTypographyVars(mergedScales.typography), ...mergedScales.font },
-  } as unknown as Theme & { attribute: string; colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
+  } as unknown as Theme & { colorSchemeSelector: string }; // Need type casting due to module augmentation inside the repo
   theme = cssContainerQueries(theme);
 
   /**
@@ -651,28 +649,17 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   // ===============================================================
   // Create `theme.vars` that contain `var(--*)` as values
   // ===============================================================
-  const parserConfig = {
+  const parserConfig: Parameters<typeof prepareCssVars<Theme, ThemeVars>>[1] = {
     prefix: cssVarPrefix,
+    colorSchemeSelector,
+    disableCssColorScheme: true,
     shouldSkipGeneratingVar,
-    getSelector:
-      getSelector ||
-      ((colorScheme) => {
-        if (theme.defaultColorScheme === colorScheme) {
-          return `${theme.colorSchemeSelector}, [${theme.attribute}="${colorScheme}"]`;
-        }
-        if (colorScheme) {
-          return `[${theme.attribute}="${colorScheme}"]`;
-        }
-        return theme.colorSchemeSelector;
-      }),
   };
 
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars<Theme, ThemeVars>(
     theme,
     parserConfig,
   );
-  theme.attribute = 'data-joy-color-scheme';
-  theme.colorSchemeSelector = ':root';
   theme.vars = vars;
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
@@ -691,8 +678,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       theme: this,
     });
   };
-  theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) =>
-    `[${theme.attribute}="${colorScheme}"] &`;
+  theme.getColorSchemeSelector = createGetColorSchemeSelector(colorSchemeSelector);
 
   const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
   theme.variants = deepmerge(

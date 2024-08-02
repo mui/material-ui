@@ -171,7 +171,7 @@ Integrating Pigment CSS with Material UI requires you to configure the theme t
 Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
 ```diff
-+ import { extendTheme, stringifyTheme } from '@mui/material';
++ import { extendTheme } from '@mui/material';
 
 + const pigmentConfig = {
 +   theme: extendTheme(),
@@ -550,8 +550,8 @@ Pigment CSS can extract the `sx` prop from any JSX element, so there is no need
 -      <Box component="img" src="..." sx={{ width: 24, height: 24 }}>
 -      ...
 -    </Box>
-+    <div style={{ display: 'flex' }}>
-+      <img src="..." style={{ width: 24, height: 24 }}>
++    <div sx={{ display: 'flex' }}>
++      <img src="..." sx={{ width: 24, height: 24 }}>
 +      ...
 +    </div>
    )

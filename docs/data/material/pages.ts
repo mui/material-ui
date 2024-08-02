@@ -106,8 +106,8 @@ const pages: MuiPage[] = [
         children: [
           { pathname: '/material-ui/react-box' },
           { pathname: '/material-ui/react-container' },
-          { pathname: '/material-ui/react-grid' },
-          { pathname: '/material-ui/react-grid2', title: 'Grid v2', newFeature: true },
+          { pathname: '/material-ui/react-grid', deprecated: true },
+          { pathname: '/material-ui/react-grid2', title: 'Grid v2' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
           { pathname: '/material-ui/react-hidden' },
@@ -196,11 +196,16 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/customization/css-variables',
         subheader: '/material-ui/customization/css-variables',
+        newFeature: true,
         children: [
           { pathname: '/material-ui/customization/css-theme-variables/overview' },
-          { pathname: '/material-ui/customization/css-theme-variables/usage' },
+          {
+            pathname: '/material-ui/customization/css-theme-variables/usage',
+            title: 'Basic usage',
+          },
           {
             pathname: '/material-ui/customization/css-theme-variables/configuration',
+            title: 'Advanced configuration',
           },
         ],
       },

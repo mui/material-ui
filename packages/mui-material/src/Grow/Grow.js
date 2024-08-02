@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import useTimeout from '@mui/utils/useTimeout';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getReactNodeRef from '@mui/utils/getReactNodeRef';
 import { Transition } from 'react-transition-group';
 import { useTheme } from '../zero-styled';
 import { getTransitionProps, reflow } from '../transitions/utils';
@@ -61,7 +62,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const theme = useTheme();
 
   const nodeRef = React.useRef(null);
-  const handleRef = useForkRef(nodeRef, children.ref, ref);
+  const handleRef = useForkRef(nodeRef, getReactNodeRef(children), ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {

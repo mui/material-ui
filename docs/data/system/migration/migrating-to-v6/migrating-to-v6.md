@@ -37,12 +37,26 @@ You can follow progress on https://github.com/mui/material-ui/issues/30671.
 
 ### Grid
 
-The `Grid` component was updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
+The `Grid` component was updated and stabilized:
 
-- The previous size and offset props were replaced with the `size` and `offset` props
+- The previous size (`xs`, `sm`, `md`, ...) and offset (`xsOffset`, `smOffset`, `mdOffset`, ...) props, which were named after the theme's breakpoints, were replaced with the `size` and `offset` props.
 - The spacing mechanism was reworked to use the `gap` CSS property.
 
 This brings some breaking changes described in the following sections.
+
+#### Stabilized API
+
+The `Grid` component API was stabilized, so its import no longer contains the `Unstable_` prefix:
+
+```diff
+- import { Unstable_Grid as Grid } from '@mui/system';
++ import { Grid } from '@mui/system';
+```
+
+```diff
+- import Grid from '@mui/system/Unstable_Grid';
++ import Grid from '@mui/system/Grid';
+```
 
 #### Size and offset props
 
@@ -85,6 +99,10 @@ Use this codemod to migrate your project to the new size and offset props:
 npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
 ```
 
+:::warning
+You need to modify the import from `@mui/system/Unstable_Grid` to `@mui/system/Grid` before running the codemod.
+:::
+
 If you have custom breakpoints, the change is the same:
 
 ```diff
@@ -95,7 +113,7 @@ If you have custom breakpoints, the change is the same:
 Which you can cover with the same codemod by providing the custom breakpoints as an argument:
 
 ```bash
-npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshit='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 #### Removal of the disableEqualOverflow prop
