@@ -39,7 +39,7 @@ If you are using an experimental API, namely `CssVarsProvider`, replace it with 
 
 ## Dark mode only application
 
-To switch the default light to dark palette, set `colorSchemes: { dark: true }` to the `createTheme`.
+To switch the default light to dark palette, set `palette: { mode: 'dark' }` to the `createTheme`.
 Material UI will generate the dark palette instead.
 
 ```jsx
@@ -47,7 +47,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   cssVariables: true,
-  colorSchemes: { dark: true },
+  palette: { mode: 'dark' },
 });
 
 function App() {
@@ -57,8 +57,8 @@ function App() {
 
 ## Light and dark mode application
 
-To support both light and dark modes, set `colorSchemes: { light: true, dark: true }` to the `createTheme`.
-Material UI will generate both light and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) as the default method.
+To support both light and dark modes, set `colorSchemes: { dark: true }` to the `createTheme`.
+Material UI will generate both light (default) and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) as the default method.
 
 <codeblock>
 
@@ -67,7 +67,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   cssVariables: true,
-  colorSchemes: { light: true, dark: true },
+  colorSchemes: { dark: true },
 });
 
 function App() {
@@ -93,7 +93,13 @@ function App() {
 
 </codeblock>
 
-If you want to manually toggle the color scheme, check out the [advanced configuration](/material-ui/customization/css-theme-variables/configuration/#advanced-configuration).
+:::info
+You can explicitly set `colorSchemes: { light: true, dark: true }` which will produce the same result as the snippet above because light is the default color scheme.
+:::
+
+The CSS media `prefers-color-scheme` method works with server-side rendering without extra configuration but you will not be able to add an interface for switching between the modes because the styles is based on user preference.
+
+If you want to manually toggle the modes, check out the [Toggling dark mode manually](/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually) guide.
 
 ## Applying dark styles
 
@@ -114,6 +120,20 @@ import Card from '@mui/material/Card';
   })}
 />;
 ```
+
+:::warning
+**Don't** use `theme.palette.mode` to apply between light and dark styles because it will produce a flickering effect.
+
+```js
+<Card
+  sx={{
+    // 🚫 this will cause flickering
+    backgroundColor: theme.palette.mode === 'dark' ? '…' : '…',
+  }}
+/>
+```
+
+:::
 
 ## Using theme variables
 
