@@ -13,7 +13,7 @@ const darkPalette = createPalette({ mode: 'dark' });
 describe('createTheme', () => {
   const { render } = createRenderer();
 
-  it('should not have custom properties', () => {
+  it('should not create vars if cssVariables: false', () => {
     const theme = createTheme({ cssVariables: false });
     expect(theme.cssVariables).to.equal(false);
     expect('vars' in theme).to.equal(false);
