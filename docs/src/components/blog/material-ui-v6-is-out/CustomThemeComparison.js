@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import DragHandleIcon from '@mui/icons-material/DragHandle';
 
 import useResizeHandle from 'docs/src/modules/utils/useResizeHandle';
 import Frame from '../../action/Frame';
@@ -53,6 +51,8 @@ export default function CustomThemeComparison() {
           component="img"
           src="/static/screenshots/material-ui/getting-started/templates/dashboard-default.jpg"
           sx={(theme) => ({
+            userSelect: 'none',
+            pointerEvents: 'none',
             width: '100%',
             height: '100%',
             objectFit: 'cover',
@@ -84,6 +84,8 @@ export default function CustomThemeComparison() {
           component="img"
           src="/static/screenshots/material-ui/getting-started/templates/dashboard.jpg"
           sx={(theme) => ({
+            userSelect: 'none',
+            pointerEvents: 'none',
             width: '100%',
             height: '100%',
             objectFit: 'cover',
@@ -97,7 +99,7 @@ export default function CustomThemeComparison() {
       </Frame.Demo>
       <Box
         {...getDragHandlers()}
-        sx={(theme) => ({
+        sx={{
           position: 'absolute',
           top: 0,
           bottom: 0,
@@ -105,58 +107,32 @@ export default function CustomThemeComparison() {
           left: 'var(--split-point)',
           transform: 'translateX(-50%)',
           cursor: 'col-resize',
-          '&:hover': {
-            '& .handleButton': {
-              bgcolor: 'primary.50',
-              borderColor: 'primary.300',
-            },
-          },
-          ...theme.applyDarkStyles({
-            '&:hover': {
-              '& .handleButton': {
-                bgcolor: 'primary.900',
-                borderColor: 'primary.400',
-              },
-            },
-          }),
-        })}
+        }}
       >
         <Box
-          sx={(theme) => ({
+          sx={{
             margin: '0 auto',
-            width: 2,
-            bgcolor: alpha(theme.palette.grey[200], 0.5),
+            width: 10,
+            bgcolor: 'background.default',
             height: '100%',
-            ...theme.applyDarkStyles({
-              bgcolor: 'divider',
-            }),
-          })}
+            borderInline: '1px solid',
+            borderColor: 'divider',
+          }}
         />
         <Box
           className="handleButton"
-          sx={(theme) => ({
+          sx={{
             position: 'absolute',
-            width: 42,
-            height: 20,
+            width: 2,
+            height: 14,
             borderRadius: '12px',
-            border: '1px solid',
-            borderColor: 'divider',
-            bgcolor: 'background.paper',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            top: { xs: '10%', sm: '20%' },
+            bgcolor: 'text.primary',
+            top: '50%',
             left: '50%',
-            transform: 'translateX(-50%) rotate(90deg)',
+            transform: 'translate(-50%)',
             transition: '0.15s',
-            boxShadow: `2px 0 2px ${(theme.vars || theme).palette.grey[200]}`,
-            ...theme.applyDarkStyles({
-              boxShadow: `2px 0 2px ${(theme.vars || theme).palette.common.black}`,
-            }),
-          })}
-        >
-          <DragHandleIcon />
-        </Box>
+          }}
+        />
       </Box>
     </Frame>
   );
