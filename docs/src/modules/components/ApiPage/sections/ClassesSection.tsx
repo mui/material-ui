@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { TranslateOptions, useTranslate } from '@mui/docs/i18n';
+import { Translate, useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import Box from '@mui/material/Box';
@@ -14,7 +14,7 @@ import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable
 export type GetCssToCParams = {
   componentName: string;
   componentClasses: ComponentClassDefinition[];
-  t: (key: string, options?: TranslateOptions) => string;
+  t: Translate;
   hash?: string;
 };
 

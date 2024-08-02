@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { TranslateOptions, useTranslate } from '@mui/docs/i18n';
+import { Translate, useTranslate } from '@mui/docs/i18n';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import {
   ComponentApiContent,
@@ -20,7 +20,7 @@ import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
 interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
   componentProps: ComponentApiContent['props'];
   componentName: ComponentApiContent['name'];
-  t: (key: string, options?: TranslateOptions) => string;
+  t: Translate;
   /**
    * @default 'props'
    */

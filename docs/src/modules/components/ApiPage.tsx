@@ -7,7 +7,7 @@ import Alert from '@mui/material/Alert';
 import { Ad, AdGuest } from '@mui/docs/Ad';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
-import { TranslateOptions, useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
@@ -36,10 +36,7 @@ type ApiHeaderKeys =
   | 'classes'
   | 'css';
 
-export function getTranslatedHeader(
-  t: (key: string, options?: TranslateOptions) => string,
-  header: ApiHeaderKeys,
-) {
+export function getTranslatedHeader(t: Translate, header: ApiHeaderKeys) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
