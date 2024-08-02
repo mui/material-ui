@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 
 describe('ThemeProvider', () => {
@@ -76,11 +76,11 @@ describe('ThemeProvider', () => {
       ).not.toErrorDev();
     });
 
-    it('should be able to switch between modes', () => {
+    it('should be able to switch between modes', async () => {
       const theme = createTheme({
         colorSchemes: { dark: true },
       });
-      const { getByTestId } = render(
+      const { getByTestId, user } = render(
         <ThemeProvider theme={theme}>
           <ModeSwitcher />
         </ThemeProvider>,
@@ -88,7 +88,7 @@ describe('ThemeProvider', () => {
 
       expect(getByTestId('mode-switcher')).to.have.property('value', 'system');
 
-      fireEvent.change(getByTestId('mode-switcher'), { target: { value: 'dark' } });
+      await user.selectOptions(getByTestId('mode-switcher'), 'dark');
 
       expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
     });
