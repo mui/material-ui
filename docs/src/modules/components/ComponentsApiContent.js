@@ -12,6 +12,7 @@ import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/Prop
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 import { propsApiProcessor } from 'docs/src/modules/components/ApiPage/processors/properties';
+import { classesApiProcessor } from 'docs/src/modules/components/ApiPage/processors/classes';
 import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 function getTranslatedHeader(t, header, text) {
@@ -225,9 +226,11 @@ export default function ComponentsApiContent(props) {
             layoutStorageKey={layoutStorageKey.slots}
           />
           <ClassesSection
-            componentClasses={componentClasses}
-            componentName={pageContent.name}
-            classDescriptions={classDescriptions}
+            classes={classesApiProcessor({
+              componentClasses,
+              componentName: pageContent.name,
+              classDescriptions,
+            })}
             spreadHint={t('api-docs.classesDescription')}
             titleHash={`${componentNameKebabCase}-classes`}
             level="h3"

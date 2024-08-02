@@ -21,7 +21,8 @@ import {
   ApiDisplayOptions,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import { propsApiProcessor } from './ApiPage/processors/properties';
+import { propsApiProcessor } from 'docs/src/modules/components/ApiPage/processors/properties';
+import { classesApiProcessor } from 'docs/src/modules/components/ApiPage/processors/classes';
 
 type ApiHeaderKeys =
   | 'demos'
@@ -328,9 +329,11 @@ export default function ApiPage(props: ApiPageProps) {
         />
         )
         <ClassesSection
-          componentClasses={componentClasses}
-          componentName={pageContent.name}
-          classDescriptions={classDescriptions}
+          classes={classesApiProcessor({
+            componentClasses,
+            componentName: pageContent.name,
+            classDescriptions,
+          })}
           spreadHint={t('api-docs.classesDescription')}
           styleOverridesLink={styleOverridesLink}
           defaultLayout={defaultLayout}

@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import Box from '@mui/material/Box';
 import ToggleDisplayOption, {
   ApiDisplayOptions,
@@ -10,21 +9,10 @@ import ToggleDisplayOption, {
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
-import kebabCase from 'lodash/kebabCase';
-
-type ClassDescription = {
-  [classKey: string]: {
-    description: string;
-    nodeName?: string;
-    conditions?: string;
-    deprecationInfo?: string;
-  };
-};
+import { ClassDefinition } from '../common/classes';
 
 export type ClassesSectionProps = {
-  componentClasses: ComponentClassDefinition[];
-  classDescriptions: ClassDescription;
-  componentName: string;
+  classes: ClassDefinition[];
   spreadHint?: string;
   /**
    * The translation key of the section title.
@@ -47,9 +35,7 @@ export type ClassesSectionProps = {
 
 export default function ClassesSection(props: ClassesSectionProps) {
   const {
-    componentClasses,
-    classDescriptions,
-    componentName,
+    classes,
     spreadHint,
     title = 'api-docs.classes',
     titleHash = 'classes',
@@ -63,22 +49,9 @@ export default function ClassesSection(props: ClassesSectionProps) {
 
   const [displayOption, setDisplayOption] = useApiPageOption(layoutStorageKey, defaultLayout);
 
-  if (!componentClasses || componentClasses.length === 0) {
+  if (!classes || classes.length === 0) {
     return null;
   }
-
-  const classesWithTranslatedDescriptions = componentClasses.map((classDefinition) => {
-    return {
-      ...classDefinition,
-      description:
-        classDescriptions[classDefinition.key]?.description
-          ?.replace(/{{conditions}}/, classDescriptions[classDefinition.key].conditions!)
-          ?.replace(/{{nodeName}}/, classDescriptions[classDefinition.key].nodeName!) ??
-        classDefinition.description,
-      deprecationInfo: classDescriptions[classDefinition.key]?.deprecationInfo,
-      hash: `${kebabCase(componentName)}-classes-${classDefinition.className}`,
-    };
-  });
 
   return (
     <React.Fragment>
@@ -92,13 +65,10 @@ export default function ClassesSection(props: ClassesSectionProps) {
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
       {displayOption === 'table' ? (
-        <ClassesTable
-          classes={classesWithTranslatedDescriptions}
-          displayClassKeys={displayClassKeys}
-        />
+        <ClassesTable classes={classes} displayClassKeys={displayClassKeys} />
       ) : (
         <ClassesList
-          classes={classesWithTranslatedDescriptions}
+          classes={classes}
           displayOption={displayOption}
           displayClassKeys={displayClassKeys}
         />
