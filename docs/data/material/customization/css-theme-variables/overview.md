@@ -117,5 +117,4 @@ createTheme({
 ## What's next
 
 - To start a new project with CSS theme variables, check out the [basic usage guide](/material-ui/customization/css-theme-variables/usage/).
-- For an existing Material UI project, check out the [migration guide](/material-ui/migration/migration-css-theme-variables/).
 - For theming and customization, check out the [how-to guide](/material-ui/customization/css-theme-variables/configuration/).

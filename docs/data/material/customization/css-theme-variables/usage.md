@@ -35,8 +35,6 @@ function App() {
 
 :::info
 If you are using an experimental API, namely `CssVarsProvider`, replace it with the `ThemeProvider`.
-
-To learn more about it, check out the [migration guide](/material-ui/migration/migration-css-theme-variables/).
 :::
 
 ## Dark mode only application
