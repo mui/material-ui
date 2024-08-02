@@ -129,7 +129,7 @@ export function useTranslate() {
           warn(userLanguage, key, ignoreWarning);
 
           const enTranslation = getPath(translations.en, key);
-          return enTranslation ?? key;
+          return enTranslation ?? null;
         }
 
         return translation;
