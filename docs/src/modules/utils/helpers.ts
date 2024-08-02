@@ -1,6 +1,7 @@
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 import { LANGUAGES } from 'docs/config';
+import { Translate } from '@mui/docs/i18n';
 
 function pascalCase(str: string) {
   return upperFirst(camelCase(str));
@@ -41,8 +42,6 @@ export function pageToTitle(page: Page): string | null {
 
   return titleize(name);
 }
-
-export type Translate = (id: string, options?: Partial<{ ignoreWarning: boolean }>) => string;
 
 export function pageToTitleI18n(page: Page, t: Translate): string | null {
   const path = page.subheader || page.pathname;

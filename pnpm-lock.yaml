@@ -816,6 +816,9 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.24.7
         version: 7.24.7(@babel/core@7.24.9)
+      '@mui-internal/api-docs-builder':
+        specifier: workspace:^
+        version: link:../packages/api-docs-builder
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../packages-internal/docs-utils
