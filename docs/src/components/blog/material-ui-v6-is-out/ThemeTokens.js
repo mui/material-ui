@@ -33,19 +33,24 @@ const Table = styled('table')(({ theme }) => ({
   overflowY: 'scroll',
   th: {
     textAlign: 'left',
-    padding: 8,
+    padding: 10,
     position: 'sticky',
     top: 0,
     zIndex: 1,
-    backgroundColor: theme.vars.palette.background.paper,
     borderBottom: '1px solid',
-    borderColor: theme.vars.palette.divider,
+    borderColor: theme.palette.divider,
+    backgroundColor: theme.palette.grey[50],
+    ...theme.applyStyles('dark', {
+      borderColor: 'var(--muidocs-palette-primaryDark-700)',
+      backgroundColor: 'hsl(210, 25%, 9%)',
+    }),
   },
   td: {
     verticalAlign: 'top',
-    padding: '3px 6px',
+    padding: '4px 10px',
     fontSize: '0.75rem',
     fontFamily: 'Menlo,Consolas,"Droid Sans Mono",monospace',
+    backgroundColor: theme.palette.background.default,
   },
 }));
 
@@ -75,45 +80,97 @@ export default function TemplateCarousel() {
   return (
     <CssVarsProvider theme={defaultTheme}>
       <Box
-        sx={{
+        sx={(theme) => ({
           mb: 4,
-          overflowX: 'auto',
-        }}
+          border: '1px solid',
+          borderColor: 'divider',
+          borderRadius: '10px',
+          position: 'relative',
+          overflow: 'hidden',
+          ...theme.applyStyles('dark', {
+            borderColor: 'var(--muidocs-palette-primaryDark-700)',
+          }),
+        })}
       >
-        <Table>
-          <thead>
-            <tr>
-              <th>Light colors</th>
-              <th>Dark colors</th>
-              <th>Font</th>
-              <th>Overlay</th>
-              <th>Shadow</th>
-              <th>Spacing</th>
-              <th>Shape</th>
-              <th>z Index</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(colors).map((color, index) => (
-              <tr key={index}>
-                <td>
-                  <ColorSwatch data-mui-color-scheme="light" style={{ color: color[1] }} />
-                  --mui-{color[0].replace('.', '-')}
-                </td>
-                <td>
-                  <ColorSwatch data-mui-color-scheme="dark" style={{ color: color[1] }} />
-                  --mui-{color[0].replace('.', '-')}
-                </td>
-                <td>{fonts[index]}</td>
-                <td>{overlay[index]}</td>
-                <td>{shadow[index]}</td>
-                <td>{spacing[index]}</td>
-                <td>{shape[index]}</td>
-                <td>{zIndex[index]}</td>
+        <Box
+          sx={(theme) => ({
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            height: 56,
+            pointerEvents: 'none',
+            opacity: 0.4,
+            background:
+              'linear-gradient(180deg, hsla(0, 0%, 100%, 0) 80%, hsla(215, 15%, 80%, 0.7) 100%)',
+            ...theme.applyStyles('dark', {
+              opacity: 0.5,
+              background:
+                'linear-gradient(180deg, hsla(0, 0%, 0%, 0) 80%, hsla(215, 15%, 0%, 0.8) 100%)',
+            }),
+          })}
+        />
+        <Box
+          sx={(theme) => ({
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            height: '100%',
+            width: 56,
+            pointerEvents: 'none',
+            opacity: 0.4,
+            background:
+              'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 80%, hsla(215, 15%, 80%, 0.7) 100%)',
+            ...theme.applyStyles('dark', {
+              opacity: 0.5,
+              background:
+                'linear-gradient(90deg, hsla(0, 0%, 0%, 0) 80%, hsla(215, 15%, 0%, 0.8) 100%)',
+            }),
+          })}
+        />
+        <Box
+          sx={{
+            display: 'block',
+            height: 'clamp(30vmax, 40vmax, 40vmin)',
+            maxHeight: '40vmin',
+            overflowY: 'scroll',
+          }}
+        >
+          <Table>
+            <thead>
+              <tr>
+                <th>Light colors</th>
+                <th>Dark colors</th>
+                <th>Font</th>
+                <th>Overlay</th>
+                <th>Shadow</th>
+                <th>Spacing</th>
+                <th>Shape</th>
+                <th>z Index</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {Object.entries(colors).map((color, index) => (
+                <tr key={index}>
+                  <td>
+                    <ColorSwatch data-mui-color-scheme="light" style={{ color: color[1] }} />
+                    --mui-{color[0].replace('.', '-')}
+                  </td>
+                  <td>
+                    <ColorSwatch data-mui-color-scheme="dark" style={{ color: color[1] }} />
+                    --mui-{color[0].replace('.', '-')}
+                  </td>
+                  <td>{fonts[index]}</td>
+                  <td>{overlay[index]}</td>
+                  <td>{shadow[index]}</td>
+                  <td>{spacing[index]}</td>
+                  <td>{shape[index]}</td>
+                  <td>{zIndex[index]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Box>
       </Box>
     </CssVarsProvider>
   );
