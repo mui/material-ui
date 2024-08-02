@@ -37,25 +37,14 @@ function App() {
 If you are using an experimental API, namely `CssVarsProvider`, replace it with the `ThemeProvider`.
 :::
 
-## Dark mode only application
+## Dark mode only variables
 
 To switch the default light to dark palette, set `palette: { mode: 'dark' }` to the `createTheme`.
 Material UI will generate the dark palette instead.
 
-```jsx
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+{{"demo": "DarkThemeCssVariables.js"}}
 
-const theme = createTheme({
-  cssVariables: true,
-  palette: { mode: 'dark' },
-});
-
-function App() {
-  return <ThemeProvider theme={theme}>{/* ...you app */}</ThemeProvider>;
-}
-```
-
-## Light and dark mode application
+## Light and dark modes
 
 To support both light and dark modes, set `colorSchemes: { dark: true }` to the `createTheme`.
 Material UI will generate both light (default) and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) as the default method.

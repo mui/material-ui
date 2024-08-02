@@ -295,3 +295,5 @@ To disable CSS transition when switching between modes, use `disableTransitionOn
 ```js
 <ThemeProvider disableTransitionOnChange />
 ```
+
+{{"demo": "DisableTransitionOnChange.js"}}
