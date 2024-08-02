@@ -4,6 +4,7 @@ import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
+import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
 import { DemoData, CodeVariant, CodeStyling } from 'docs/src/modules/sandbox/types';
 
 function compress(object: any) {
@@ -45,7 +46,10 @@ function createReactApp(demoData: DemoData) {
       content: CRA.getRootIndex(demoData),
     },
     [`src/Demo.${ext}`]: {
-      content: demoData.raw,
+      content: flattenRelativeImports(
+        demoData.raw,
+        demoData.relativeModules?.map((file) => file.module),
+      ),
     },
     // Spread the relative modules
     ...(demoData.relativeModules &&
@@ -53,8 +57,8 @@ function createReactApp(demoData: DemoData) {
       demoData.relativeModules.reduce(
         (acc, curr) => ({
           ...acc,
-          // Remove the `./` from the module path
-          [`src/${curr.module.replace(/.\//g, '')}`]: {
+          // Remove the path and keep the filename
+          [`src/${curr.module.replace(/^.*[\\/]/g, '')}`]: {
             content: curr.raw,
           },
         }),

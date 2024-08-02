@@ -3,6 +3,7 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
+import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
 import { DemoData } from 'docs/src/modules/sandbox/types';
 
 function createReactApp(demoData: DemoData) {
@@ -12,15 +13,18 @@ function createReactApp(demoData: DemoData) {
   const files: Record<string, string> = {
     'index.html': CRA.getHtml(demoData),
     [`index.${ext}`]: CRA.getRootIndex(demoData),
-    [`Demo.${ext}`]: demoData.raw,
+    [`Demo.${ext}`]: flattenRelativeImports(
+      demoData.raw,
+      demoData.relativeModules?.map((file) => file.module),
+    ),
     // Spread the relative modules
     ...(demoData.relativeModules &&
       // Transform the relative modules array into an object
       demoData.relativeModules.reduce(
         (acc, curr) => ({
           ...acc,
-          // Remove the `./` from the module path
-          [`${curr.module.replace(/.\//g, '')}`]: curr.raw,
+          // Remove the path and keep the filename
+          [`${curr.module.replace(/^.*[\\/]/g, '')}`]: curr.raw,
         }),
         {},
       )),
