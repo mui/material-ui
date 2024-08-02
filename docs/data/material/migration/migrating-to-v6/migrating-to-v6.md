@@ -207,6 +207,19 @@ This brings some breaking changes described in the following sections.
 +<ListItemButton />
 ```
 
+Use this codemod to migrate your project to the` ListItemButton` component:
+
+```bash
+npx @mui/codemod@next v6.0.0/list-item-button-prop <path/to/folder>
+```
+
+As the `ListItem` no longer supports these props, the class names related to these props were removed. You should use the `listItemButtonClasses` object instead.
+
+```diff
+-import { listItemClasses } from '@mui/material/ListItem';
++import { listItemButtonClasses } from '@mui/material/ListItemButton';
+```
+
 #### Stabilized API
 
 The `Grid2` component API was stabilized, so its import no longer contains the `Unstable_` prefix:

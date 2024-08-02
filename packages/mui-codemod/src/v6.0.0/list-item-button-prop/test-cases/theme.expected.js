@@ -7,7 +7,10 @@ fn({
 
   MuiListItemButton: {
     defaultProps: {
-      anotherProp: 'value'
+      anotherProp: 'value',
+      autoFocus: true,
+      disabled: false,
+      selected: true
     }
   }
 });

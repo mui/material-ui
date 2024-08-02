@@ -41,6 +41,14 @@ export default function transformer(file, api, options) {
         parentObject.properties.push(muiListItemButtonNode);
       }
     });
+
+    defaultProps.properties = defaultProps.properties.filter(
+      (prop) =>
+        prop.key.name !== 'button' &&
+        prop.key.name !== 'autoFocus' &&
+        prop.key.name !== 'disabled' &&
+        prop.key.name !== 'selected',
+    );
     path.prune();
   });
 
