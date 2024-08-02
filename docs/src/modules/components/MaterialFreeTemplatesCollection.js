@@ -63,6 +63,7 @@ function layouts(translatation) {
       description: translatation('blogDescr'),
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
+      hasDarkMode: true,
     },
   ];
 }
