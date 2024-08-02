@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, queries } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, queries, reactMajor } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItem, { listItemClasses as classes } from '@mui/material/ListItem';
 import ListContext from '../List/ListContext';
 import describeConformance from '../../test/describeConformance';
-
-const reactVersion = Number(React.version.split('.')[0]);
 
 const NoContent = React.forwardRef(() => {
   return null;
@@ -170,7 +168,12 @@ describe('<ListItem />', () => {
         PropTypes.resetWarningCache();
       });
 
-      it('warns if it cant detect the secondary action properly', () => {
+      it('warns if it cant detect the secondary action properly', function test() {
+        if (reactMajor >= 19) {
+          // React 19 removed prop types support
+          this.skip();
+        }
+
         expect(() => {
           PropTypes.checkPropTypes(
             ListItem.propTypes,
@@ -193,7 +196,7 @@ describe('<ListItem />', () => {
         }).toErrorDev([
           'MUI: Unable to set focus to a ListItem whose component has not been rendered.',
           // React 18 Strict Effects run mount effects twice
-          reactVersion === 18 &&
+          reactMajor === 18 &&
             'MUI: Unable to set focus to a ListItem whose component has not been rendered.',
         ]);
       });

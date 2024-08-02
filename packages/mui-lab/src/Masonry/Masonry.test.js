@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
@@ -100,7 +100,7 @@ describe('<Masonry />', () => {
     });
 
     it('should throw console error when children are empty', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!/jsdom/.test(window.navigator.userAgent) || reactMajor === 19) {
         this.skip();
       }
       expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(

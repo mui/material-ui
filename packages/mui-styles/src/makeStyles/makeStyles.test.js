@@ -2,8 +2,13 @@ import { expect } from 'chai';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
-import { createRenderer, screen, renderHook, fireEvent } from '@mui/internal-test-utils';
-import getReactMajor from '@mui/utils/getReactMajor';
+import {
+  createRenderer,
+  screen,
+  renderHook,
+  fireEvent,
+  reactMajor,
+} from '@mui/internal-test-utils';
 import { createTheme } from '@mui/material/styles';
 import createGenerateClassName from '../createGenerateClassName';
 import makeStyles from './makeStyles';
@@ -82,7 +87,6 @@ describe('makeStyles', () => {
     it('should warn if missing theme', () => {
       const useStyles2 = makeStyles((theme) => ({ root: { padding: theme.spacing(2) } }));
 
-      const reactMajor = getReactMajor();
       const muiErrorMessage =
         'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.';
       const nodeErrorMessage = 'TypeError: theme.spacing is not a function';

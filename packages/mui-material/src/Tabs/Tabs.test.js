@@ -5,6 +5,7 @@ import {
   act,
   createRenderer,
   fireEvent,
+  reactMajor,
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
@@ -16,8 +17,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createSvgIcon } from '@mui/material/utils';
 import capitalize from '../utils/capitalize';
 import describeConformance from '../../test/describeConformance';
-
-const reactVersion = Number(React.version.split('.')[0]);
 
 const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
 const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');
@@ -360,10 +359,10 @@ describe('<Tabs />', () => {
         }).toErrorDev([
           'You can provide one of the following values: 1, 3',
           // React 18 Strict Effects run mount effects twice
-          reactVersion === 18 && 'You can provide one of the following values: 1, 3',
+          reactMajor === 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
           // React 18 Strict Effects run mount effects twice
-          reactVersion === 18 && 'You can provide one of the following values: 1, 3',
+          reactMajor === 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
         ]);

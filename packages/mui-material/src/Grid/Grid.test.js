@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, reactMajor } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
@@ -673,19 +673,32 @@ describe('Material UI <Grid />', () => {
           },
         },
       });
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Grid item spacing={{ mobile: 1.5, desktop: 3 }} />
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).to.not.have.class('MuiGrid-spacing-mobile-1.5');
+      expect(container.firstChild).to.not.have.class('MuiGrid-spacing-desktop-3');
+      expect(container.firstChild).to.not.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
+    });
+
+    it('should warn of failed prop types when providing spacing object without the `container` prop', function test() {
+      if (reactMajor >= 19) {
+        // React 19 removed prop types support
+        this.skip();
+      }
+
       expect(() => {
-        const { container } = render(
-          <ThemeProvider theme={theme}>
-            <Grid item spacing={{ mobile: 1.5, desktop: 3 }} />
+        render(
+          <ThemeProvider>
+            <Grid item spacing={{ mobile: 1, desktop: 3 }} />
           </ThemeProvider>,
         );
-        expect(container.firstChild).to.not.have.class('MuiGrid-spacing-mobile-1.5');
-        expect(container.firstChild).to.not.have.class('MuiGrid-spacing-desktop-3');
-        expect(container.firstChild).to.not.toHaveComputedStyle({
-          position: 'relative',
-          top: '30px',
-          left: '50px',
-        });
       }).toErrorDev(
         'Warning: Failed prop type: The prop `spacing` of `Grid` can only be used together with the `container` prop.',
       );

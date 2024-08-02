@@ -2,9 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, reactMajor } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@emotion/react';
-import getReactMajor from '@mui/utils/getReactMajor';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -12,8 +11,6 @@ import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material/InputBase';
 import { createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
-
-const reactMajor = getReactMajor();
 
 describe('<InputBase />', () => {
   const { render } = createRenderer();

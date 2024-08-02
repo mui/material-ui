@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, ErrorBoundary, act, fireEvent } from '@mui/internal-test-utils';
-import getReactMajor from '@mui/utils/getReactMajor';
+import {
+  createRenderer,
+  screen,
+  ErrorBoundary,
+  act,
+  fireEvent,
+  reactMajor,
+} from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import useAutocomplete, { createFilterOptions } from '@mui/material/useAutocomplete';
 
@@ -308,8 +314,6 @@ describe('useAutocomplete', () => {
         aboveErrorTestComponentMessage,
       ],
     };
-
-    const reactMajor = getReactMajor();
 
     const devErrorMessages = errorMessagesByReactMajor[reactMajor] || defaultErrorMessages;
 

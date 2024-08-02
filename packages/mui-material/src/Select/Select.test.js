@@ -1,8 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
-import getReactMajor from '@mui/utils/getReactMajor';
+import {
+  ErrorBoundary,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+  reactMajor,
+} from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -14,8 +20,6 @@ import Divider from '@mui/material/Divider';
 import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
-
-const reactMajor = getReactMajor();
 
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });

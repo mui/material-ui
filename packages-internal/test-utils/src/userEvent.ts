@@ -1,8 +1,6 @@
-import * as React from 'react';
 import { click, mouseDown, mouseUp, keyDown, keyUp } from './fireDiscreteEvent';
 import { act, fireEvent } from './createRenderer';
-
-const reactVersion = Number(React.version.split('.')[0]);
+import reactMajor from './reactMajor';
 
 export function touch(target: Element): void {
   fireEvent.touchStart(target);
@@ -13,7 +11,7 @@ export const mousePress: (...args: Parameters<(typeof fireEvent)['mouseUp']>) =>
   target,
   options,
 ) => {
-  if (reactVersion >= 18) {
+  if (reactMajor >= 18) {
     fireEvent.mouseDown(target, options);
     fireEvent.mouseUp(target, options);
     fireEvent.click(target, options);
@@ -26,7 +24,7 @@ export const mousePress: (...args: Parameters<(typeof fireEvent)['mouseUp']>) =>
 };
 
 export function keyPress(target: Element, options: { key: string; [key: string]: any }): void {
-  if (reactVersion >= 18) {
+  if (reactMajor >= 18) {
     fireEvent.keyDown(target, options);
     fireEvent.keyUp(target, options);
   } else {
