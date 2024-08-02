@@ -10,6 +10,7 @@ import ToggleDisplayOption, {
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
+import { getSlotsHash } from '../common/slots';
 
 export type SlotsSectionProps = {
   componentSlots: ComponentApiContent['slots'];
@@ -43,15 +44,17 @@ export default function SlotsSection(props: SlotsSectionProps) {
     return null;
   }
 
-  const formattedSlots = componentSlots?.map(({ class: className, name, default: defaultValue }) => {
-    return {
-      description: slotDescriptions[name],
-      className,
-      name,
-      defaultValue,
-      componentName,
-    };
-  });
+  const formattedSlots = componentSlots?.map(
+    ({ class: className, name, default: defaultValue }) => {
+      return {
+        description: slotDescriptions[name],
+        className,
+        name,
+        defaultValue,
+        hash: getSlotsHash({ componentName, className, name }),
+      };
+    },
+  );
 
   return (
     <React.Fragment>

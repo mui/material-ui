@@ -9,7 +9,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import ExpandableApiItem, {
   ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import { getSlotsHash, SlotsDefinition } from 'docs/src/modules/components/ApiPage/common/slots';
+import { SlotsDefinition } from 'docs/src/modules/components/ApiPage/common/slots';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -56,13 +56,13 @@ export default function SlotsList(props: SlotsListProps) {
   return (
     <ApiItemContainer className="MuiApi-slot-list">
       {slots.map((params) => {
-        const { description, className, name, defaultValue, componentName } = params;
+        const { description, className, name, defaultValue, hash } = params;
 
         const isExtendable = description || defaultValue || className;
 
         return (
           <StyledApiItem
-            id={getSlotsHash({ componentName, className, name })}
+            id={hash}
             key={name}
             title={name}
             note=""

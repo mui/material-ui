@@ -6,5 +6,7 @@ export type {
   HookReactApi,
   PropsTableItem,
   PropsTranslations,
+  HooksTranslations,
+  HookApiContent,
 } from './types/ApiBuilder.types';
 export type { Slot } from './types/utils.types';

@@ -107,9 +107,9 @@ export interface TranslateOptions {
   ignoreWarning?: boolean;
 }
 
-export type Translator = (key: string, options?: TranslateOptions) => string;
+export type Translate = (key: string, options?: TranslateOptions) => any;
 
-export function useTranslate(): Translator {
+export function useTranslate(): Translate {
   const userLanguage = useUserLanguage();
 
   const translations = React.useContext(TranslationsContext);
@@ -131,7 +131,7 @@ export function useTranslate(): Translator {
           warn(userLanguage, key, ignoreWarning);
 
           const enTranslation = getPath(translations.en, key);
-          return enTranslation ?? key;
+          return enTranslation ?? null;
         }
 
         return translation;

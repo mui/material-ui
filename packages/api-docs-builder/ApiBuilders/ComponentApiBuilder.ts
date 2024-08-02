@@ -628,7 +628,7 @@ export default async function generateComponentApi(
   const filename = componentInfo.filename;
   let reactApi: ComponentReactApi;
 
-  if (componentInfo.isSystemComponent) {
+  if (componentInfo.isSystemComponent || componentInfo.name === 'Grid2') {
     try {
       reactApi = docgenParse(
         src,

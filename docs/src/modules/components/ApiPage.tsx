@@ -1,13 +1,14 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ComponentApiContent } from '@mui-internal/api-docs-builder';
+import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
+import { TableOfContentsEntry } from '@mui/internal-markdown';
 import { Ad, AdGuest } from '@mui/docs/Ad';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
-import { Translator, useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
@@ -20,8 +21,6 @@ import {
   ApiDisplayOptions,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import { PropsTranslations } from 'packages/api-docs-builder/types/ApiBuilder.types';
-import { TableOfContentsEntry } from '@mui/internal-markdown';
 import { propsApiProcessor } from './ApiPage/processors/properties';
 
 type ApiHeaderKeys =
@@ -34,7 +33,7 @@ type ApiHeaderKeys =
   | 'classes'
   | 'css';
 
-export function getTranslatedHeader(t: Translator, header: ApiHeaderKeys) {
+export function getTranslatedHeader(t: Translate, header: ApiHeaderKeys) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),

@@ -7,7 +7,7 @@ import {
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import { getSlotsHash, SlotsDefinition } from 'docs/src/modules/components/ApiPage/common/slots';
+import { SlotsDefinition } from 'docs/src/modules/components/ApiPage/common/slots';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
@@ -89,10 +89,10 @@ export default function SlotsTable(props: SlotsTableProps) {
         </thead>
         <tbody>
           {slots.map((params) => {
-            const { description, className, name, defaultValue, componentName } = params;
+            const { description, className, name, defaultValue, hash } = params;
 
             return (
-              <tr key={className} id={getSlotsHash({ componentName, className, name })}>
+              <tr key={className} id={hash}>
                 <td className="slot-name" style={{ fontWeight: '600' }}>
                   {name}
                 </td>
