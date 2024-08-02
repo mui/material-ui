@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Visibility from '@mui/icons-material/Visibility';
@@ -74,7 +74,7 @@ export default function Templates() {
   return (
     <Grid container spacing={2} sx={{ py: 2 }}>
       {layouts(translatation).map((layout) => (
-        <Grid item xs={12} sm={6} key={layout.title}>
+        <Grid size={{ xs: 12, sm: 6 }} key={layout.title}>
           <Card
             variant="outlined"
             sx={{
@@ -115,7 +115,8 @@ export default function Templates() {
                 }}
               />
               <Button
-                variant="text"
+                variant="outlined"
+                color="secondary"
                 endIcon={<OpenInNewRoundedIcon />}
                 component={Link}
                 href={layout.href}
@@ -129,6 +130,8 @@ export default function Templates() {
                   transform: 'translate(-50%, -50%)',
                   opacity: 0,
                   transition: 'opacity 0.5s ease',
+                  bgcolor: 'background.paper',
+                  // boxShadow: 'none',
                 }}
               >
                 See live preview
