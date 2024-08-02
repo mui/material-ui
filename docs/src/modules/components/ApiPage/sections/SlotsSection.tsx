@@ -43,15 +43,17 @@ export default function SlotsSection(props: SlotsSectionProps) {
     return null;
   }
 
-  const formattedSlots = componentSlots?.map(({ class: className, name, default: defaultValue }) => {
-    return {
-      description: slotDescriptions[name],
-      className,
-      name,
-      defaultValue,
-      componentName,
-    };
-  });
+  const formattedSlots = componentSlots?.map(
+    ({ class: className, name, default: defaultValue }) => {
+      return {
+        description: slotDescriptions[name],
+        className,
+        name,
+        defaultValue,
+        componentName,
+      };
+    },
+  );
 
   return (
     <React.Fragment>
