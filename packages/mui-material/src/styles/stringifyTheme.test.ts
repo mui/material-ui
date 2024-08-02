@@ -127,10 +127,7 @@ export default theme;`);
   });
 
   it('works with framework toRuntimeSource', () => {
-    const theme = {
-      palette: { primary: { main: '#ff5252' } },
-      toRuntimeSource: stringifyTheme,
-    };
+    const theme = { palette: { primary: { main: '#ff5252' } }, toRuntimeSource: stringifyTheme };
     expect(theme.toRuntimeSource.call(theme, theme)).to
       .equal(`import { unstable_createBreakpoints as createBreakpoints, createTransitions } from '@mui/material/styles';
 
