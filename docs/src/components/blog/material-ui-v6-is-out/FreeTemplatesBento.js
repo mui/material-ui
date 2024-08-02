@@ -1,18 +1,26 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 
 export default function FreeTemplatesBento() {
   return (
     <Box sx={{ position: 'relative' }}>
       <Box
-        sx={{
+        sx={(theme) => ({
           width: '100vw',
           position: 'relative',
           left: '50%',
           transform: 'translateX(-50%)',
           py: 3,
-          background: 'var(--muidocs-palette-gradients-linearSubtle)',
-        }}
+          borderBlock: '1px solid',
+          borderColor: 'divider',
+          background:
+            'linear-gradient(180deg, var(--muidocs-palette-primary-50) 0%, hsla(215, 15%, 97%, 0.6) 100%)',
+          ...theme.applyStyles('dark', {
+            background:
+              'linear-gradient(180deg, hsla(210, 100%, 23%, 0.1) 0%, hsla(210, 14%, 4%, 0.5) 100%)',
+          }),
+        })}
       >
         <Box
           component="img"

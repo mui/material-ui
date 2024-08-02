@@ -126,7 +126,7 @@ export default function CustomThemeComparison() {
             width: 2,
             height: 14,
             borderRadius: '12px',
-            bgcolor: 'text.primary',
+            bgcolor: 'primary.main',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%)',
