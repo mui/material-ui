@@ -1210,8 +1210,8 @@ importers:
         version: 9.0.1
     optionalDependencies:
       aws-sdk:
-        specifier: ^2.1664.0
-        version: 2.1664.0
+        specifier: ^2.1667.0
+        version: 2.1667.0
     devDependencies:
       claudia:
         specifier: ^5.14.1
@@ -5729,8 +5729,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-sdk@2.1664.0:
-    resolution: {integrity: sha512-S2IA1cCGz38d8ZKsuQGwlK3LE+9cXFt7OFsSGQtKX1Mc40xFXpiqQy7jX1r0vZIiy9ZMnxeTcBPM28G/yYu2kA==}
+  aws-sdk@2.1667.0:
+    resolution: {integrity: sha512-hE4FmdZRMc3bYeC5LUAAU/ryYpjhEm1xdi4aVtUiZ14rrfMd0li6XQIM00a9ctZwDJpwJppcSXfDj6bVBCzvXQ==}
     engines: {node: '>= 10.0.0'}
 
   axe-core@4.7.2:
@@ -16424,7 +16424,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  aws-sdk@2.1664.0:
+  aws-sdk@2.1667.0:
     dependencies:
       buffer: 4.9.2
       events: 1.1.1
@@ -16899,7 +16899,7 @@ snapshots:
   claudia@5.14.1:
     dependencies:
       archiver: 3.1.1
-      aws-sdk: 2.1664.0
+      aws-sdk: 2.1667.0
       fs-extra: 6.0.1
       glob: 7.2.3
       gunzip-maybe: 1.4.2
