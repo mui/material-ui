@@ -104,7 +104,7 @@
     "react-transition-group": "^4.4.5",
     "react-virtuoso": "^4.7.13",
     "react-window": "^1.8.10",
-    "rimraf": "^5.0.9",
+    "rimraf": "^5.0.10",
     "styled-components": "^6.1.12",
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "^2.1.1",

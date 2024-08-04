@@ -48,7 +48,7 @@
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.3.3",
-    "rimraf": "^5.0.9"
+    "rimraf": "^5.0.10"
   },
   "publishConfig": {
     "access": "public"
