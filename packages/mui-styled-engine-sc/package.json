@@ -45,7 +45,7 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/styled-engine-sc": "workspace:*",
-    "@types/chai": "^4.3.16",
+    "@types/chai": "^4.3.17",
     "@types/hoist-non-react-statics": "^3.3.5",
     "@types/react": "^18.3.3",
     "chai": "^4.5.0",

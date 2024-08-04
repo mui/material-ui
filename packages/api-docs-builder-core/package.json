@@ -15,7 +15,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.16",
+    "@types/chai": "^4.3.17",
     "@types/mocha": "^10.0.7",
     "@types/node": "^18.19.42",
     "@types/sinon": "^17.0.3",
