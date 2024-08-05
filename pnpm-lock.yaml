@@ -46,8 +46,8 @@ importers:
         version: 9.12.0(encoding@0.1.13)
     devDependencies:
       '@argos-ci/core':
-        specifier: ^2.4.0
-        version: 2.4.0
+        specifier: ^2.4.1
+        version: 2.4.1
       '@babel/cli':
         specifier: ^7.24.8
         version: 7.24.8(@babel/core@7.24.9)
@@ -2432,8 +2432,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@argos-ci/core@2.4.0':
-    resolution: {integrity: sha512-CY8IQsc71cuIeF2U47aePzH8+YWK4ePG1j+gK5aQ0r744Wc467U4xej7gChMVrAaGlZKsgoIIeXE1ezF+rCryw==}
+  '@argos-ci/core@2.4.1':
+    resolution: {integrity: sha512-Sl+5Zq4LBZF+CDB0eXGdTOLv3E9bubO2tfpDncQku5/s/N+2Ptn0JAw/Vc3EdJAtMWj1G8uy+6cvtV+eaVNnFg==}
     engines: {node: '>=18.0.0'}
 
   '@argos-ci/util@2.1.0':
@@ -12510,7 +12510,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@argos-ci/core@2.4.0':
+  '@argos-ci/core@2.4.1':
     dependencies:
       '@argos-ci/util': 2.1.0
       axios: 1.6.8(debug@4.3.5)
