@@ -3,6 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
+import { ComponentApiContent } from '@mui-internal/api-docs-builder';
 import ToggleDisplayOption, {
   ApiDisplayOptions,
   useApiPageOption,
@@ -11,7 +12,7 @@ import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
 
 export type SlotsSectionProps = {
-  componentSlots: { class: string; name: string; default: string }[];
+  componentSlots: ComponentApiContent['slots'];
   slotDescriptions: { [key: string]: string };
   componentName: string;
   title?: string;
@@ -42,15 +43,17 @@ export default function SlotsSection(props: SlotsSectionProps) {
     return null;
   }
 
-  const formatedSlots = componentSlots?.map(({ class: className, name, default: defaultValue }) => {
-    return {
-      description: slotDescriptions[name],
-      className,
-      name,
-      defaultValue,
-      componentName,
-    };
-  });
+  const formattedSlots = componentSlots?.map(
+    ({ class: className, name, default: defaultValue }) => {
+      return {
+        description: slotDescriptions[name],
+        className,
+        name,
+        defaultValue,
+        componentName,
+      };
+    },
+  );
 
   return (
     <React.Fragment>
@@ -64,9 +67,9 @@ export default function SlotsSection(props: SlotsSectionProps) {
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
       {displayOption === 'table' ? (
-        <SlotsTable slots={formatedSlots} />
+        <SlotsTable slots={formattedSlots} />
       ) : (
-        <SlotsList slots={formatedSlots} displayOption={displayOption} />
+        <SlotsList slots={formattedSlots} displayOption={displayOption} />
       )}
     </React.Fragment>
   );

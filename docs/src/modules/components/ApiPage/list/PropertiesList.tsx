@@ -145,7 +145,7 @@ export interface Properties {
   isPremiumPlan?: boolean;
   propDefault?: string;
   propName: string;
-  requiresRef?: string;
+  requiresRef?: boolean;
   seeMoreDescription?: string;
   signature?: string;
   signatureArgs?: { argName: string; argDescription?: string }[];
@@ -233,7 +233,7 @@ export default function PropertiesList(props: PropertiesListProps) {
                 className="prop-list-additional-description  MuiApi-collapsible"
                 key={key}
                 dangerouslySetInnerHTML={{
-                  __html: t(`api-docs.additional-info.${key}`),
+                  __html: t(`api-docs.additional-info.${key}`)!,
                 }}
               />
             ))}

@@ -823,6 +823,7 @@ function handleHeaderClick(event: Event) {
 export interface MarkdownElementProps {
   className?: string;
   renderedMarkdown?: string;
+  children?: React.ReactNode;
 }
 
 export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
