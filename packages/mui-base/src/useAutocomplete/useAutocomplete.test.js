@@ -293,16 +293,16 @@ describe('useAutocomplete', () => {
     const nodeVersion = Number(process.versions.node.split('.')[0]);
     const nodeErrorMessage = nodeVersion >= 16 ? node16ErrorMessage : olderNodeErrorMessage;
 
-    const defaultErrorMessages = [
-      nodeErrorMessage,
-      muiErrorMessage,
-      nodeErrorMessage,
-      aboveErrorUlElementMessage,
-      aboveErrorTestComponentMessage,
-    ];
+    const defaultErrorMessages = [muiErrorMessage, nodeErrorMessage, nodeErrorMessage];
 
     const errorMessagesByReactMajor = {
-      19: [muiErrorMessage, nodeErrorMessage, nodeErrorMessage],
+      17: [
+        nodeErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        aboveErrorUlElementMessage,
+        aboveErrorTestComponentMessage,
+      ],
       18: [
         nodeErrorMessage,
         muiErrorMessage,

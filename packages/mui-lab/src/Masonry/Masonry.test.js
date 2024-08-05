@@ -100,7 +100,7 @@ describe('<Masonry />', () => {
     });
 
     it('should throw console error when children are empty', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent) || reactMajor === 19) {
+      if (!/jsdom/.test(window.navigator.userAgent) || reactMajor >= 19) {
         this.skip();
       }
       expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(

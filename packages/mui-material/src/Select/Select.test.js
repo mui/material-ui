@@ -1186,8 +1186,7 @@ describe('<Select />', () => {
           'MUI: The `value` prop must be an array',
           // React 18 Strict Effects run mount effects twice
           reactMajor === 18 && 'MUI: The `value` prop must be an array',
-          reactMajor !== 19 &&
-            'The above error occurred in the <ForwardRef(SelectInput)> component',
+          reactMajor < 19 && 'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },

@@ -1212,12 +1212,12 @@ describe('Joy <Autocomplete />', () => {
 
       const errorMessage = 'None of the options match with `"not a good value"`';
 
-      let expectedOccurrences = 2;
+      let expectedOccurrences = 4;
 
       if (reactMajor === 18) {
         expectedOccurrences = 6;
-      } else if (reactMajor === 19) {
-        expectedOccurrences = 4;
+      } else if (reactMajor === 17) {
+        expectedOccurrences = 2;
       }
 
       expect(() => {
@@ -2289,7 +2289,7 @@ describe('Joy <Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'four');
 
       const expectedCallHistory =
-        reactMajor === 19 ? [null, 'one', 'one', 'four'] : [null, 'one', 'four'];
+        reactMajor >= 19 ? [null, 'one', 'one', 'four'] : [null, 'one', 'four'];
 
       expect(handleHighlightChange).to.deep.equal(expectedCallHistory);
     });

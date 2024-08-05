@@ -93,7 +93,7 @@ describe('makeStyles', () => {
 
       let devErrorMessages = [muiErrorMessage, muiErrorMessage];
 
-      if (reactMajor !== 19) {
+      if (reactMajor < 19) {
         devErrorMessages = [
           ...devErrorMessages,
           nodeErrorMessage,
