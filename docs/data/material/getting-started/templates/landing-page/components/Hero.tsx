@@ -19,7 +19,7 @@ const StyledBox = styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   outline: '1px solid',
   boxShadow: '0 0 12px 8px hsla(220, 25%, 80%, 0.2)',
-  backgroundImage: `url(${'/static/images/templates/templates-images/hero-light.png'})`,
+  backgroundImage: `url(${'/static/screenshots/material-ui/getting-started/templates/dashboard.jpg'})`,
   outlineColor: 'hsla(220, 25%, 80%, 0.5)',
   backgroundSize: 'cover',
   [theme.breakpoints.up('sm')]: {
@@ -28,7 +28,7 @@ const StyledBox = styled('div')(({ theme }) => ({
   },
   ...theme.applyStyles('dark', {
     boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
-    backgroundImage: `url(${'/static/images/templates/templates-images/hero-dark.png'})`,
+    backgroundImage: `url(${'/static/screenshots/material-ui/getting-started/templates/dashboard-dark.jpg'})`,
     outlineColor: 'hsla(210, 100%, 80%, 0.1)',
   }),
 }));
@@ -120,7 +120,7 @@ export default function Hero() {
                 },
               }}
             />
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" size="small">
               Start now
             </Button>
           </Stack>
