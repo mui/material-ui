@@ -110,9 +110,9 @@ const DOCS = [
     href: ROUTES.xIntro,
   },
   {
-    name: 'Toolpad Core',
+    name: 'Toolpad',
     description: 'Components and tools for dashboards and internal apps.',
-    href: ROUTES.toolpadStudioDocs,
+    href: ROUTES.toolpadCoreDocs,
     chip: 'Beta',
   },
 ];
