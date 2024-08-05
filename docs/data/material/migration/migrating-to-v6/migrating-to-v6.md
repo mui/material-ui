@@ -207,7 +207,7 @@ This brings some breaking changes described in the following sections.
 +<ListItemButton />
 ```
 
-Use this codemod to migrate your project to the` ListItemButton` component:
+Use this codemod to migrate your project to the `ListItemButton` component:
 
 ```bash
 npx @mui/codemod@next v6.0.0/list-item-button-prop <path/to/folder>
