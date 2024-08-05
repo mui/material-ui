@@ -21,7 +21,7 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
 import ForgotPassword from './ForgotPassword';
-import getSignInTheme from './getSignInTheme';
+import getSignInTheme from './theme/getSignInTheme';
 import ToggleColorMode from './ToggleColorMode';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 

@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
@@ -31,7 +30,6 @@ function Copyright() {
 export default function Footer() {
   return (
     <React.Fragment>
-      <Divider />
       <Container
         sx={{
           display: 'flex',
