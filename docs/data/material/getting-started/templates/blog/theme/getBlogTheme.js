@@ -7,7 +7,7 @@ import {
   surfacesCustomizations,
 } from './customizations';
 
-export default function getMPTheme(mode) {
+export default function getBlogTheme(mode) {
   return {
     ...getDesignTokens(mode),
     components: {
