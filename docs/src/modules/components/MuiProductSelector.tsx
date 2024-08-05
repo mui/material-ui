@@ -197,7 +197,7 @@ const toolpadProducts = [
   {
     id: 'toolpad-core',
     name: 'Toolpad Core',
-    description: 'Components for dashboards and internal tools.',
+    description: 'Components for building dashboards.',
     icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
     href: ROUTES.toolpadCoreDocs,
   },
