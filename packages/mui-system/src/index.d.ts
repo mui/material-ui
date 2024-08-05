@@ -1,6 +1,8 @@
 // disable automatic export
 export {};
 
+export const version: string;
+
 export * from './borders';
 
 export { default as breakpoints, handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';

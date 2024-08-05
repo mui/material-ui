@@ -2,6 +2,8 @@ import * as React from 'react';
 import { DistributiveOmit } from '@mui/types';
 import { StyledComponentProps } from './styles';
 
+export const version: string;
+
 export { StyledComponentProps };
 
 /**

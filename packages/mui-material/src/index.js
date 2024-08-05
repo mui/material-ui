@@ -1,6 +1,8 @@
 /* eslint-disable import/export */
 import * as colors from './colors';
 
+export const version = '6.0.0-beta.4';
+
 export { colors };
 export * from './styles';
 

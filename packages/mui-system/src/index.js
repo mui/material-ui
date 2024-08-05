@@ -1,5 +1,7 @@
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
+export const version = '6.0.0-beta.4';
+
 export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';
 export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
