@@ -19,4 +19,6 @@ import Grid2 from '../Grid2';
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const Unstable_Grid2 = Grid2;
 
+export * from '../Grid2';
+
 export default Unstable_Grid2;
