@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Components, alpha, Theme } from '@mui/material/styles';
+
+import { alpha } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
@@ -10,7 +11,7 @@ import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import { gray, brand } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
-export const inputsCustomizations: Components<Theme> = {
+export const inputsCustomizations = {
   MuiButtonBase: {
     defaultProps: {
       disableTouchRipple: true,
@@ -128,7 +129,6 @@ export const inputsCustomizations: Components<Theme> = {
               ...theme.applyStyles('dark', {
                 backgroundColor: gray[800],
                 borderColor: gray[700],
-
                 '&:hover': {
                   backgroundColor: gray[900],
                   borderColor: gray[600],
@@ -425,14 +425,6 @@ export const inputsCustomizations: Components<Theme> = {
         ...theme.applyStyles('dark', {
           color: theme.palette.grey[400],
         }),
-      }),
-    },
-  },
-  MuiFormLabel: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        typography: theme.typography.caption,
-        marginBottom: 8,
       }),
     },
   },

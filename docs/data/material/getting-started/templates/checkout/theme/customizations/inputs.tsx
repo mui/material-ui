@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Components, alpha, Theme } from '@mui/material/styles';
+import { Components } from '@mui/material';
+import { alpha, Theme } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';

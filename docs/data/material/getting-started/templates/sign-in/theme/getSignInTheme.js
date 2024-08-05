@@ -1,5 +1,3 @@
-import type {} from '@mui/material/themeCssVarsAugmentation';
-import { ThemeOptions, PaletteMode } from '@mui/material/styles';
 import { getDesignTokens } from './themePrimitives';
 import {
   inputsCustomizations,
@@ -9,7 +7,7 @@ import {
   surfacesCustomizations,
 } from './customizations';
 
-export default function getBlogTheme(mode: PaletteMode): ThemeOptions {
+export default function getSignInTheme(mode) {
   return {
     ...getDesignTokens(mode),
     components: {

@@ -1,95 +1,16 @@
 import * as React from 'react';
-import { Components, Theme, alpha } from '@mui/material/styles';
-import { svgIconClasses, SvgIconProps } from '@mui/material/SvgIcon';
-import { typographyClasses } from '@mui/material/Typography';
+
+import { alpha } from '@mui/material/styles';
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { dividerClasses } from '@mui/material/Divider';
-import { listItemButtonClasses } from '@mui/material/ListItemButton';
 import { menuItemClasses } from '@mui/material/MenuItem';
 import { selectClasses } from '@mui/material/Select';
+import { tabClasses } from '@mui/material/Tab';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
-import { gray } from '../themePrimitives';
+import { gray, brand } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
-export const menuComponentsCustomizations: Components<Theme> = {
-  MuiList: {
-    styleOverrides: {
-      root: {
-        padding: '8px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 0,
-      },
-    },
-  },
-  MuiListItem: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        [`& .${svgIconClasses.root}`]: {
-          width: '1rem',
-          height: '1rem',
-          color: theme.palette.text.secondary,
-        },
-        [`& .${typographyClasses.root}`]: {
-          fontWeight: 500,
-        },
-        [`& .${buttonBaseClasses.root}`]: {
-          display: 'flex',
-          gap: 8,
-          padding: '2px 8px',
-          borderRadius: theme.shape.borderRadius,
-          opacity: 0.7,
-          [`&.${listItemButtonClasses.selected}`]: {
-            opacity: 1,
-            backgroundColor: alpha(theme.palette.action.selected, 0.3),
-            [`& .${svgIconClasses.root}`]: {
-              color: theme.palette.text.primary,
-            },
-            [`&.${listItemButtonClasses.focusVisible}`]: {
-              backgroundColor: alpha(theme.palette.action.selected, 0.3),
-            },
-            '&:hover': {
-              backgroundColor: alpha(theme.palette.action.selected, 0.5),
-            },
-          },
-          [`&.${listItemButtonClasses.focusVisible}`]: {
-            backgroundColor: 'transparent',
-          },
-        },
-      }),
-    },
-  },
-  MuiListItemText: {
-    styleOverrides: {
-      primary: ({ theme }) => ({
-        fontSize: theme.typography.body2.fontSize,
-        fontWeight: 500,
-        lineHeight: theme.typography.body2.lineHeight,
-      }),
-      secondary: ({ theme }) => ({
-        fontSize: theme.typography.caption.fontSize,
-        lineHeight: theme.typography.caption.lineHeight,
-      }),
-    },
-  },
-  MuiListSubheader: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        backgroundColor: 'transparent',
-        padding: '4px 8px',
-        fontSize: theme.typography.caption.fontSize,
-        fontWeight: 500,
-        lineHeight: theme.typography.caption.lineHeight,
-      }),
-    },
-  },
-  MuiListItemIcon: {
-    styleOverrides: {
-      root: {
-        minWidth: 0,
-      },
-    },
-  },
+export const navigationCustomizations = {
   MuiMenuItem: {
     styleOverrides: {
       root: ({ theme }) => ({
@@ -137,7 +58,7 @@ export const menuComponentsCustomizations: Components<Theme> = {
   },
   MuiSelect: {
     defaultProps: {
-      IconComponent: React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
+      IconComponent: React.forwardRef((props, ref) => (
         <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />
       )),
     },
@@ -160,7 +81,6 @@ export const menuComponentsCustomizations: Components<Theme> = {
         '&:before, &:after': {
           display: 'none',
         },
-
         ...theme.applyStyles('dark', {
           borderRadius: theme.shape.borderRadius,
           borderColor: gray[700],
@@ -188,6 +108,106 @@ export const menuComponentsCustomizations: Components<Theme> = {
           alignItems: 'center',
           '&:focus-visible': {
             backgroundColor: gray[900],
+          },
+        }),
+      }),
+    },
+  },
+  MuiLink: {
+    defaultProps: {
+      underline: 'none',
+    },
+    styleOverrides: {
+      root: ({ theme }) => ({
+        color: theme.palette.text.primary,
+        fontWeight: 500,
+        position: 'relative',
+        textDecoration: 'none',
+        width: 'fit-content',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          width: '100%',
+          height: '1px',
+          bottom: 0,
+          left: 0,
+          backgroundColor: theme.palette.text.secondary,
+          opacity: 0.3,
+          transition: 'width 0.3s ease, opacity 0.3s ease',
+        },
+        '&:hover::before': {
+          width: 0,
+        },
+        '&:focus-visible': {
+          outline: `3px solid ${alpha(brand[500], 0.5)}`,
+          outlineOffset: '4px',
+          borderRadius: '2px',
+        },
+      }),
+    },
+  },
+  MuiDrawer: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        backgroundColor: theme.palette.background.default,
+      }),
+    },
+  },
+  MuiPaginationItem: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        '&.Mui-selected': {
+          color: 'white',
+          backgroundColor: theme.palette.grey[900],
+        },
+        ...theme.applyStyles('dark', {
+          '&.Mui-selected': {
+            color: 'black',
+            backgroundColor: theme.palette.grey[50],
+          },
+        }),
+      }),
+    },
+  },
+  MuiTabs: {
+    styleOverrides: {
+      root: { minHeight: 'fit-content' },
+      indicator: ({ theme }) => ({
+        backgroundColor: theme.palette.grey[800],
+        ...theme.applyStyles('dark', {
+          backgroundColor: theme.palette.grey[200],
+        }),
+      }),
+    },
+  },
+  MuiTab: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        padding: '6px 8px',
+        marginBottom: '8px',
+        textTransform: 'none',
+        minWidth: 'fit-content',
+        minHeight: 'fit-content',
+        color: theme.palette.text.secondary,
+        borderRadius: theme.shape.borderRadius,
+        border: '1px solid',
+        borderColor: 'transparent',
+        ':hover': {
+          color: theme.palette.text.primary,
+          backgroundColor: gray[100],
+          borderColor: gray[200],
+        },
+        [`&.${tabClasses.selected}`]: {
+          color: gray[900],
+        },
+        ...theme.applyStyles('dark', {
+          ':hover': {
+            color: theme.palette.text.primary,
+            backgroundColor: gray[800],
+            borderColor: gray[700],
+          },
+          [`&.${tabClasses.selected}`]: {
+            color: '#fff',
           },
         }),
       }),

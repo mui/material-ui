@@ -1,41 +1,86 @@
 import { Components, Theme, alpha } from '@mui/material/styles';
 import { chipClasses } from '@mui/material/Chip';
 import { iconButtonClasses } from '@mui/material/IconButton';
-import { gray, red, brand, green } from '../themePrimitives';
+import { gray, red, green } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
-export const otherComponentsCustomizations: Components<Theme> = {
-  MuiLink: {
-    defaultProps: {
-      underline: 'none',
+export const dataDisplayCustomizations: Components<Theme> = {
+  MuiList: {
+    styleOverrides: {
+      root: {
+        padding: '8px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 0,
+      },
     },
+  },
+  MuiListItem: {
     styleOverrides: {
       root: ({ theme }) => ({
-        color: theme.palette.text.primary,
-        fontWeight: 500,
-        position: 'relative',
-        textDecoration: 'none',
-        width: 'fit-content',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          width: '100%',
-          height: '1px',
-          bottom: 0,
-          left: 0,
-          backgroundColor: theme.palette.text.secondary,
-          opacity: 0.3,
-          transition: 'width 0.3s ease, opacity 0.3s ease',
+        [`& .${svgIconClasses.root}`]: {
+          width: '1rem',
+          height: '1rem',
+          color: theme.palette.text.secondary,
         },
-        '&:hover::before': {
-          width: 0,
+        [`& .${typographyClasses.root}`]: {
+          fontWeight: 500,
         },
-        '&:focus-visible': {
-          outline: `3px solid ${alpha(brand[500], 0.5)}`,
-          outlineOffset: '4px',
-          borderRadius: '2px',
+        [`& .${buttonBaseClasses.root}`]: {
+          display: 'flex',
+          gap: 8,
+          padding: '2px 8px',
+          borderRadius: theme.shape.borderRadius,
+          opacity: 0.7,
+          [`&.${listItemClasses.selected}`]: {
+            opacity: 1,
+            backgroundColor: alpha(theme.palette.action.selected, 0.3),
+            [`& .${svgIconClasses.root}`]: {
+              color: theme.palette.text.primary,
+            },
+            [`&.${listItemClasses.focusVisible}`]: {
+              backgroundColor: alpha(theme.palette.action.selected, 0.3),
+            },
+            '&:hover': {
+              backgroundColor: alpha(theme.palette.action.selected, 0.5),
+            },
+          },
+          [`&.${listItemClasses.focusVisible}`]: {
+            backgroundColor: 'transparent',
+          },
         },
       }),
+    },
+  },
+  MuiListItemText: {
+    styleOverrides: {
+      primary: ({ theme }) => ({
+        fontSize: theme.typography.body2.fontSize,
+        fontWeight: 500,
+        lineHeight: theme.typography.body2.lineHeight,
+      }),
+      secondary: ({ theme }) => ({
+        fontSize: theme.typography.caption.fontSize,
+        lineHeight: theme.typography.caption.lineHeight,
+      }),
+    },
+  },
+  MuiListSubheader: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        backgroundColor: 'transparent',
+        padding: '4px 8px',
+        fontSize: theme.typography.caption.fontSize,
+        fontWeight: 500,
+        lineHeight: theme.typography.caption.lineHeight,
+      }),
+    },
+  },
+  MuiListItemIcon: {
+    styleOverrides: {
+      root: {
+        minWidth: 0,
+      },
     },
   },
   MuiChip: {
@@ -139,18 +184,6 @@ export const otherComponentsCustomizations: Components<Theme> = {
       }),
     },
   },
-  MuiLinearProgress: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        height: 8,
-        borderRadius: 8,
-        backgroundColor: gray[200],
-        ...theme.applyStyles('dark', {
-          backgroundColor: gray[800],
-        }),
-      }),
-    },
-  },
   MuiTablePagination: {
     styleOverrides: {
       actions: {
@@ -182,29 +215,6 @@ export const otherComponentsCustomizations: Components<Theme> = {
           },
         ],
       },
-    },
-  },
-  MuiDrawer: {
-    styleOverrides: {
-      paper: ({ theme }) => ({
-        backgroundColor: theme.palette.background.default,
-      }),
-    },
-  },
-  MuiPaginationItem: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        '&.Mui-selected': {
-          color: 'white',
-          backgroundColor: theme.palette.grey[900],
-        },
-        ...theme.applyStyles('dark', {
-          '&.Mui-selected': {
-            color: 'black',
-            backgroundColor: theme.palette.grey[50],
-          },
-        }),
-      }),
     },
   },
 };

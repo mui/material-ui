@@ -22,7 +22,7 @@ import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 import AddressForm from './AddressForm';
-import getCheckoutTheme from './getCheckoutTheme';
+import getCheckoutTheme from './theme/getCheckoutTheme';
 import Info from './Info';
 import InfoMobile from './InfoMobile';
 import PaymentForm from './PaymentForm';
