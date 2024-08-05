@@ -6,9 +6,7 @@
 
 You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme` helper:
 
-<codeblock>
-
-```js Default
+```js
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -28,30 +26,6 @@ export default function App() {
 }
 ```
 
-```js Custom
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { pink } from '@mui/material/colors';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: pink[200], // to learn more, check out the Color customization page
-    },
-  },
-});
-
-export default function App() {
-  return (
-    <ThemeProvider theme={darkTheme}>
-      <main>This app is using the dark mode</main>
-    </ThemeProvider>
-  );
-}
-```
-
-</codeblock>
-
 Adding `mode: 'dark'` to the `createTheme` helper modifies several palette values, as shown in the following demo:
 
 {{"demo": "DarkTheme.js", "bg": "inline", "hideToolbar": true}}
@@ -62,17 +36,35 @@ Adding `<CssBaseline />` inside of the `<ThemeProvider>` component will also ena
 Setting the dark mode this way only works if you are using [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, make sure that you have the correct values based on the `mode`. The next section explains how to do this.
 :::
 
+### Overriding dark palette
+
+To override the default palette, provide a [palette object](/material-ui/customization/palette/#default-colors) with custom colors in hex, RGB, or HSL format:
+
+```jsx
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#ff5252',
+    },
+  },
+});
+```
+
+For a comprehensive understanding of the palette structure, refer to the [palette page](/material-ui/customization/palette/).
+
 ## System preference
 
 Users might have a preference for light or dark mode that they've set through their operating system—either systemwide, or for a single user agent.
 
 ### Built-in support
 
-Material UI has built-in support for system preference when dark color scheme is provided:
+To build an application with multiple color schemes, use `colorSchemes` node.
+The built-in color schemes are `light` and `dark` which can be enabled by setting the value to `true`.
 
-<codeblock>
+The light color scheme is enabled by default, so you only need to set the dark color scheme:
 
-```js Default
+```js
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -86,25 +78,7 @@ function App() {
 }
 ```
 
-```js Custom
-import { pink } from '@mui/material/colors';
-
-const theme = createTheme({
-  colorSchemes: {
-    dark: {
-      palette: {
-        primary: {
-          main: pink[200], // to learn more, check out the Palette tokens page
-        },
-      },
-    },
-  },
-});
-```
-
-</codeblock>
-
-The built-in support includes the following features:
+When `colorSchemes` is provided, the following features are activated:
 
 - Automatic switching between light and dark color schemes based on the user's preference.
 - Synchronize between window tabs. If the user changes the color scheme in one tab, the other tabs will also update.
@@ -251,3 +225,34 @@ Apply styles for a specific mode.
 
 - `mode` (`'light' | 'dark'`) - The mode for which the styles should be applied.
 - `styles` (`CSSObject`) - An object which contains the styles to be applied for the specified mode.
+
+## Dark mode flicker
+
+### The problem
+
+Server-rendered apps are built before they reach the user's device. This means they can't automatically adjust to the user's preferred color scheme when first loaded.
+
+Here's what typically happens:
+
+1. You load the app and set it to dark mode.
+2. You refresh the page.
+3. The app briefly shows in light mode (the default).
+4. Then it switches back to dark mode once the app fully loads.
+
+This "flash" of light mode happens every time you open the app, as long as your browser remembers your dark mode preference.
+
+This sudden change can be jarring, especially in low-light environments. It can strain your eyes and disrupt your experience, particularly if you interact with the app during this transition.
+
+To better understand this issue, take a look at the GIF below:
+
+<img src="/static/joy-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="An example video that shows a page that initially loads correctly in dark mode but quickly flickers to light mode." width="1628" height="400" />
+
+### The solution: CSS variables
+
+Solving this problem required us to take a novel approach to styling and theming.
+(See this [RFC on CSS variables support](https://github.com/mui/material-ui/issues/27651) to learn more about the implementation of this feature.)
+
+For applications that want to support light and dark mode using CSS media `prefers-color-scheme`, enabling the [CSS variables feature](/material-ui/customization/css-theme-variables/usage/#light-and-dark-modes) will fix the issue.
+
+However, if you want to toggle between modes manually, it requires a combination of CSS variables and the `InitColorSchemeScript` component to avoid the flicker.
+Check out the [Preventing SSR flicker](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering) section for more details.
