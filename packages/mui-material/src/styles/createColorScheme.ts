@@ -1,5 +1,5 @@
 import type { ColorSystemOptions } from './createThemeWithVars';
-import createPalette from './createPalette';
+import createPalette, { PaletteOptions } from './createPalette';
 import getOverlayAlpha from './getOverlayAlpha';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
@@ -23,11 +23,17 @@ export function getOverlays(mode: 'light' | 'dark') {
 }
 
 export default function createColorScheme(options: ColorSystemOptions) {
-  const { palette = {}, opacity, overlays, ...rest } = options;
+  const {
+    palette: paletteInput = { mode: 'light' } as PaletteOptions, // need to cast to avoid module augmentation test
+    opacity,
+    overlays,
+    ...rest
+  } = options;
+  const palette = createPalette(paletteInput);
   return {
-    palette: createPalette(palette),
-    opacity: { ...getOpacity(palette.mode || 'light'), ...opacity },
-    overlays: overlays || getOverlays(palette.mode || 'light'),
+    palette,
+    opacity: { ...getOpacity(palette.mode), ...opacity },
+    overlays: overlays || getOverlays(palette.mode),
     ...rest,
   } as unknown as ColorSystemOptions;
 }
