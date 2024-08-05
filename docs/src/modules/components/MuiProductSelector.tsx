@@ -204,7 +204,7 @@ const toolpadProducts = [
   {
     id: 'toolpad-studio',
     name: 'Toolpad Studio',
-    description: 'A self-hosted, low-code internal tool builder.',
+    description: 'Self-hosted, low-code internal tool builder.',
     icon: <BrushIcon sx={iconStyles} />,
     href: ROUTES.toolpadStudioDocs,
   },
