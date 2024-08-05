@@ -1,6 +1,15 @@
 import { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
-import { ClassDefinition } from 'docs/src/modules/components/ApiPage/common/classes';
 import kebabCase from 'lodash/kebabCase';
+
+export interface ClassDefinition {
+  className: string;
+  key: string;
+  hash: string;
+  description?: string;
+  isGlobal?: boolean;
+  isDeprecated?: boolean;
+  deprecationInfo?: string;
+}
 
 export interface ClassesApiProcessorParams {
   componentClasses: ComponentApiContent['classes'];

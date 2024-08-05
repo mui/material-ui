@@ -9,11 +9,28 @@ import ToggleDisplayOption, {
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import PropertiesList from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
-import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/common/properties';
+import {
+  PropertyDefinition,
+  propsApiProcessor,
+} from 'docs/src/modules/components/ApiPage/processors/properties';
 import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
+import { PropsTableItem, PropsTranslations } from 'packages/api-docs-builder';
 
-interface PropertiesSectionProps {
-  properties: PropertyDefinition[];
+type PropertiesSectionProps = (
+  | {
+      properties: {
+        // isProPlan and isPremiumPlan are added for the MUI X interface documentation.
+        [name: string]: PropsTableItem & { isProPlan?: true; isPremiumPlan?: true };
+      };
+      propertiesDescriptions: PropsTranslations['propDescriptions'];
+      componentName: string;
+    }
+  | {
+      properties: PropertyDefinition[];
+      propertiesDescriptions: undefined;
+      componentName: undefined;
+    }
+) & {
   spreadHint: string;
   defaultLayout: ApiDisplayOptions;
   layoutStorageKey: LayoutStorageKeys['props'];
@@ -32,11 +49,13 @@ interface PropertiesSectionProps {
    * @default 'h2'
    */
   level?: SectionTitleProps['level'];
-}
+};
 
 export default function PropertiesSection(props: PropertiesSectionProps) {
   const {
     properties,
+    propertiesDescriptions,
+    componentName,
     title = 'api-docs.props',
     titleHash = 'props',
     level = 'h2',
@@ -47,6 +66,14 @@ export default function PropertiesSection(props: PropertiesSectionProps) {
   const t = useTranslate();
 
   const [displayOption, setDisplayOption] = useApiPageOption(layoutStorageKey, defaultLayout);
+
+  const formattedProperties = Array.isArray(properties)
+    ? properties
+    : propsApiProcessor({
+        properties,
+        propertiesDescriptions: propertiesDescriptions!,
+        componentName: componentName!,
+      });
 
   return (
     <React.Fragment>
@@ -60,9 +87,9 @@ export default function PropertiesSection(props: PropertiesSectionProps) {
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
       {displayOption === 'table' ? (
-        <PropertiesTable properties={properties} />
+        <PropertiesTable properties={formattedProperties} />
       ) : (
-        <PropertiesList properties={properties} displayOption={displayOption} />
+        <PropertiesList properties={formattedProperties} displayOption={displayOption} />
       )}
     </React.Fragment>
   );

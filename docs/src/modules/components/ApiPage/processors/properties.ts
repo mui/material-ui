@@ -1,10 +1,35 @@
 import { PropsTableItem, PropsTranslations } from '@mui-internal/api-docs-builder';
-import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/common/properties';
 import kebabCase from 'lodash/kebabCase';
 import {
   HookApiContent,
   HooksTranslations,
 } from 'packages/api-docs-builder/types/ApiBuilder.types';
+
+export interface PropertyDefinition {
+  additionalInfo?: string[];
+  hash: string;
+  deprecationInfo?: string;
+  description?: string;
+  isDeprecated?: boolean;
+  isOptional?: boolean;
+  isRequired?: boolean;
+  propDefault?: string;
+  propName: string;
+  requiresRef?: boolean;
+  seeMoreDescription?: string;
+  signature?: string;
+  signatureArgs?: { argName: string; argDescription?: string }[];
+  signatureReturnDescription?: string;
+  typeName: string;
+  /**
+   * Used by MUI X interface documentation
+   */
+  isProPlan?: boolean;
+  /**
+   * Used by MUI X interface documentation
+   */
+  isPremiumPlan?: boolean;
+}
 
 interface PropsApiProcessorParams {
   componentName: string;
