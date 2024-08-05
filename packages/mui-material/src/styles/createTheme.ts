@@ -82,14 +82,14 @@ export default function createTheme(
     }
 
     theme.defaultColorScheme = defaultColorSchemeInput;
-    theme.colorSchemes = {};
+    theme.colorSchemes = colorSchemesInput as Record<string, ColorSystem>;
 
     if (theme.palette.mode === 'light') {
-      theme.colorSchemes = { light: { palette: theme.palette } as ColorSystem };
+      theme.colorSchemes.light = { palette: theme.palette } as ColorSystem;
       attachColorScheme(theme, 'dark', colorSchemesInput.dark);
     }
     if (theme.palette.mode === 'dark') {
-      theme.colorSchemes = { dark: { palette: theme.palette } as ColorSystem };
+      theme.colorSchemes.dark = { palette: theme.palette } as ColorSystem;
       attachColorScheme(theme, 'light', colorSchemesInput.light);
     }
 
