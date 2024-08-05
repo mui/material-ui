@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import fs from 'fs';
 import yargs from 'yargs';
 import { getWorkspaceRoot } from './utils.mjs';
@@ -52,6 +53,8 @@ function run() {
               if (writeErr) {
                 console.error('Error writing the file:', writeErr);
               }
+
+              console.info(`Updated the version const in the ${indexPath} file to ${version}.`);
             });
           });
         }
