@@ -78,7 +78,7 @@ function PageToolbar() {
   );
 }
 
-export default function pageContainerBasic(props: any) {
+export default function PageContainerBasic(props: any) {
   const { window } = props;
   const router = useDemoRouter('/orders');
 
