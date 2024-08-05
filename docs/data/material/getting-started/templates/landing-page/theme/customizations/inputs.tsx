@@ -429,4 +429,12 @@ export const inputsCustomizations: Components<Theme> = {
       }),
     },
   },
+  MuiFormLabel: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        typography: theme.typography.caption,
+        marginBottom: 8,
+      }),
+    },
+  },
 };
