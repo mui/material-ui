@@ -9,7 +9,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import ExpandableApiItem, {
   ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import { SlotsDefinition } from 'docs/src/modules/components/ApiPage/common/slots';
+import { SlotsDefinition } from 'docs/src/modules/components/ApiPage/processors/slots';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({

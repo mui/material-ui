@@ -5,7 +5,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import ExpandableApiItem, {
   ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import { ClassDefinition } from 'docs/src/modules/components/ApiPage/common/classes';
+import { ClassDefinition } from 'docs/src/modules/components/ApiPage/processors/classes';
 import {
   brandingLightTheme as lightTheme,
   brandingDarkTheme as darkTheme,

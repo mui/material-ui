@@ -6,7 +6,7 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
-import { ClassDefinition } from 'docs/src/modules/components/ApiPage/common/classes';
+import { ClassDefinition } from 'docs/src/modules/components/ApiPage/processors/classes';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
