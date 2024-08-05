@@ -200,7 +200,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     }
     if (disabled) {
       buttonProps['aria-disabled'] = disabled as boolean;
-      buttonProps.tabIndex = focusableWhenDisabled ? tabIndex ?? 0 : -1;
+      buttonProps.tabIndex = focusableWhenDisabled ? (tabIndex ?? 0) : -1;
     }
   }
 

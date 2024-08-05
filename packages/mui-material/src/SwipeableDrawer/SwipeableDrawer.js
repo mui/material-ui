@@ -238,6 +238,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     if (!touchDetected.current) {
       return;
     }
+    // TODO: uncomment when compiler enabled -- there is a comment up about using singleton so didn't change here more // eslint-disable-next-line react-compiler/react-compiler
     claimedSwipeInstance = null;
     touchDetected.current = false;
     ReactDOM.flushSync(() => {

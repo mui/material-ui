@@ -300,6 +300,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     const positioning = getPositioningStyle(element);
 
     if (positioning.top !== null) {
+      // TODO: uncomment when compiler enabled // eslint-disable-next-line react-compiler/react-compiler
       element.style.top = positioning.top;
     }
     if (positioning.left !== null) {
