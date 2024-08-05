@@ -86,7 +86,7 @@ pnpm add react@<version> react-dom@<version>
 
 ### Update TypeScript
 
-The minimum supported version of TypeScript has been increased from v3.5 to 4.1.
+The minimum supported version of TypeScript has been increased from v3.5 to 4.7.
 
 :::info
 We align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (published on npm under the `@types` namespace).
@@ -191,12 +191,26 @@ The `children` passed to the Loading Button component is now wrapped in a `<span
 
 ### Grid v2 (Unstable_Grid)
 
-The `Grid` v2 component was updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
+The `Grid2` was updated and stabilized:
 
-- The previous size and offset props were replaced with the `size` and `offset` props
+- The previous size (`xs`, `sm`, `md`, ...) and offset (`xsOffset`, `smOffset`, `mdOffset`, ...) props, which were named after the theme's breakpoints, were replaced with the `size` and `offset` props.
 - The spacing mechanism was reworked to use the `gap` CSS property.
 
 This brings some breaking changes described in the following sections.
+
+#### Stabilized API
+
+The `Grid2` component API was stabilized, so its import no longer contains the `Unstable_` prefix:
+
+```diff
+- import { Unstable_Grid2 as Grid2 } from '@mui/material';
++ import { Grid2 } from '@mui/material';
+```
+
+```diff
+- import Grid from '@mui/material/Unstable_Grid2';
++ import Grid from '@mui/material/Grid2';
+```
 
 #### Size and offset props
 
@@ -238,6 +252,10 @@ Use this codemod to migrate your project to the new size and offset props:
 ```bash
 npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
 ```
+
+:::warning
+You need to modify the import from `@mui/material/Unstable_Grid2` to `@mui/material/Grid2` before running the codemod.
+:::
 
 If you have custom breakpoints, the change is the same:
 

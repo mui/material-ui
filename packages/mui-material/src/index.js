@@ -152,10 +152,9 @@ export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
 export { default as Grid } from './Grid';
-export * from './Grid';
 
-export { default as Unstable_Grid2 } from './Unstable_Grid2';
-export * from './Unstable_Grid2';
+export { default as Grid2 } from './Grid2';
+export * from './Grid2';
 
 export { default as Grow } from './Grow';
 export * from './Grow';
