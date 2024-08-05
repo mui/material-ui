@@ -1,5 +1,5 @@
-export { buttonsCustomizations } from './buttons';
 export { inputsCustomizations } from './inputs';
-export { layoutComponentsCustomizations } from './layoutComponents';
-export { menuComponentsCustomizations } from './menus';
-export { otherComponentsCustomizations } from './others';
+export { dataDisplayCustomizations } from './dataDisplay';
+export { feedbackCustomizations } from './feedback';
+export { navigationCustomizations } from './navigation';
+export { surfacesCustomizations } from './surfaces';

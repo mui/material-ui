@@ -10,7 +10,7 @@ import {
   surfacesCustomizations,
 } from './customizations';
 
-export default function getBlogTheme(mode: PaletteMode): ThemeOptions {
+export default function getSignInTheme(mode: PaletteMode): ThemeOptions {
   return {
     ...getDesignTokens(mode),
     components: {

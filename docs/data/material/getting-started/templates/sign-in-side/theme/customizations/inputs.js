@@ -1,13 +1,17 @@
-import { Components } from '@mui/material';
-import { alpha, Theme } from '@mui/material/styles';
+import * as React from 'react';
+
+import { alpha } from '@mui/material/styles';
+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 import { toggleButtonClasses } from '@mui/material/ToggleButton';
-import { tabClasses } from '@mui/material/Tab';
+import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import { gray, brand } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
-export const buttonsCustomizations: Components<Theme> = {
+export const inputsCustomizations = {
   MuiButtonBase: {
     defaultProps: {
       disableTouchRipple: true,
@@ -71,7 +75,8 @@ export const buttonsCustomizations: Components<Theme> = {
                 color: 'black',
                 backgroundColor: gray[50],
                 backgroundImage: `linear-gradient(to bottom, ${gray[100]}, ${gray[50]})`,
-                boxShadow: 'inset 0 2px 0 hsl(220, 0%, 100%), inset 0 -2px 0 hsl(220, 30%, 90%)',
+                boxShadow:
+                  'inset 0 2px 0 hsl(220, 0%, 100%), inset 0 -2px 0 hsl(220, 30%, 90%)',
                 border: `1px solid ${gray[100]}`,
                 '&:hover': {
                   backgroundImage: 'none',
@@ -124,7 +129,6 @@ export const buttonsCustomizations: Components<Theme> = {
               ...theme.applyStyles('dark', {
                 backgroundColor: gray[800],
                 borderColor: gray[700],
-
                 '&:hover': {
                   backgroundColor: gray[900],
                   borderColor: gray[600],
@@ -307,46 +311,119 @@ export const buttonsCustomizations: Components<Theme> = {
       }),
     },
   },
-  MuiTabs: {
+  MuiCheckbox: {
+    defaultProps: {
+      disableRipple: true,
+      icon: (
+        <CheckBoxOutlineBlankRoundedIcon sx={{ color: 'hsla(210, 0%, 0%, 0.0)' }} />
+      ),
+      checkedIcon: <CheckRoundedIcon sx={{ height: 14, width: 14 }} />,
+      indeterminateIcon: <RemoveRoundedIcon sx={{ height: 14, width: 14 }} />,
+    },
     styleOverrides: {
-      root: { minHeight: 'fit-content' },
-      indicator: ({ theme }) => ({
-        backgroundColor: theme.palette.grey[800],
+      root: ({ theme }) => ({
+        margin: 10,
+        height: 16,
+        width: 16,
+        borderRadius: 5,
+        border: '1px solid ',
+        borderColor: alpha(gray[300], 0.8),
+        boxShadow: '0 0 0 1.5px hsla(210, 0%, 0%, 0.04) inset',
+        backgroundColor: alpha(gray[100], 0.4),
+        transition: 'border-color, background-color, 120ms ease-in',
+        '&:hover': {
+          borderColor: brand[300],
+        },
+        '&.Mui-focusVisible': {
+          outline: `3px solid ${alpha(brand[500], 0.5)}`,
+          outlineOffset: '2px',
+          borderColor: brand[400],
+        },
+        '&.Mui-checked': {
+          color: 'white',
+          backgroundColor: brand[500],
+          borderColor: brand[500],
+          boxShadow: `none`,
+          '&:hover': {
+            backgroundColor: brand[600],
+          },
+        },
         ...theme.applyStyles('dark', {
-          backgroundColor: theme.palette.grey[200],
+          borderColor: alpha(gray[700], 0.8),
+          boxShadow: '0 0 0 1.5px hsl(210, 0%, 0%) inset',
+          backgroundColor: alpha(gray[900], 0.8),
+          '&:hover': {
+            borderColor: brand[300],
+          },
+          '&.Mui-focusVisible': {
+            borderColor: brand[400],
+            outline: `3px solid ${alpha(brand[500], 0.5)}`,
+            outlineOffset: '2px',
+          },
         }),
       }),
     },
   },
-  MuiTab: {
+  MuiInputBase: {
     styleOverrides: {
+      root: {
+        border: 'none',
+      },
+    },
+  },
+  MuiOutlinedInput: {
+    styleOverrides: {
+      input: {
+        padding: 0,
+      },
       root: ({ theme }) => ({
-        padding: '6px 8px',
-        marginBottom: '8px',
-        textTransform: 'none',
-        minWidth: 'fit-content',
-        minHeight: 'fit-content',
-        color: theme.palette.text.secondary,
+        color: theme.palette.text.primary,
         borderRadius: theme.shape.borderRadius,
-        border: '1px solid',
-        borderColor: 'transparent',
-        ':hover': {
-          color: theme.palette.text.primary,
-          backgroundColor: gray[100],
-          borderColor: gray[200],
+        border: `1px solid ${theme.palette.divider}`,
+        transition: 'border 120ms ease-in',
+        '&:hover': {
+          borderColor: gray[400],
         },
-        [`&.${tabClasses.selected}`]: {
-          color: gray[900],
+        [`&.${outlinedInputClasses.focused}`]: {
+          outline: `3px solid ${alpha(brand[500], 0.5)}`,
+          borderColor: brand[400],
         },
         ...theme.applyStyles('dark', {
-          ':hover': {
-            color: theme.palette.text.primary,
-            backgroundColor: gray[800],
-            borderColor: gray[700],
+          '&:hover': {
+            borderColor: gray[500],
           },
-          [`&.${tabClasses.selected}`]: {
-            color: '#fff',
+        }),
+        variants: [
+          {
+            props: {
+              size: 'small',
+            },
+            style: {
+              height: '2rem',
+              padding: '0 0.5rem',
+            },
           },
+          {
+            props: {
+              size: 'medium',
+            },
+            style: {
+              height: '2.5rem',
+            },
+          },
+        ],
+      }),
+      notchedOutline: {
+        border: 'none',
+      },
+    },
+  },
+  MuiInputAdornment: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        color: theme.palette.grey[500],
+        ...theme.applyStyles('dark', {
+          color: theme.palette.grey[400],
         }),
       }),
     },
