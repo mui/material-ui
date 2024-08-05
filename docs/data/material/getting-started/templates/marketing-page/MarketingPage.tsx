@@ -81,7 +81,7 @@ export default function MarketingPage() {
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
-      <Box sx={{ bgcolor: 'background.default' }}>
+      <Box>
         <LogoCollection />
         <Features />
         <Divider />
