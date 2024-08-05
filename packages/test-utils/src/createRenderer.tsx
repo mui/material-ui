@@ -16,6 +16,7 @@ import {
   RenderResult,
 } from '@testing-library/react/pure';
 import { useFakeTimers } from 'sinon';
+import reactMajor from './reactMajor';
 
 interface Interaction {
   id: number;
@@ -563,7 +564,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       wrapper: InnerWrapper = React.Fragment,
     } = options;
 
-    const usesLegacyRoot = !React.version.startsWith('18');
+    const usesLegacyRoot = reactMajor < 18;
     const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
     return function Wrapper({ children }: { children?: React.ReactNode }) {
       return (
