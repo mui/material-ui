@@ -21,6 +21,7 @@ export {
   TypeAction,
   TypeBackground,
 } from './createPalette';
+export { default as createColorScheme } from './createColorScheme';
 export { default as createStyles } from './createStyles';
 export {
   Typography as TypographyVariants,

@@ -21,18 +21,10 @@ import {
 } from '@mui/system/colorManipulator';
 
 import createThemeNoVars from './createThemeNoVars';
+import createColorScheme, { getOpacity, getOverlays } from './createColorScheme';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
-import getOverlayAlpha from './getOverlayAlpha';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
-
-const defaultDarkOverlays = [...Array(25)].map((_, index) => {
-  if (index === 0) {
-    return undefined;
-  }
-  const overlay = getOverlayAlpha(index);
-  return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
-});
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -95,30 +87,22 @@ const silent = (fn) => {
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
-function getOpacity(mode) {
-  return {
-    inputPlaceholder: mode === 'dark' ? 0.5 : 0.42,
-    inputUnderline: mode === 'dark' ? 0.7 : 0.42,
-    switchTrackDisabled: mode === 'dark' ? 0.2 : 0.12,
-    switchTrack: mode === 'dark' ? 0.3 : 0.38,
-  };
-}
-function getOverlays(mode) {
-  return mode === 'dark' ? defaultDarkOverlays : [];
-}
-
 function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
   if (!scheme) {
     return undefined;
   }
   scheme = scheme === true ? {} : scheme;
   const mode = colorScheme === 'dark' ? 'dark' : 'light';
+  if (!restTheme) {
+    colorSchemes[colorScheme] = createColorScheme({
+      ...scheme,
+      palette: { mode, ...scheme?.palette },
+    });
+    return undefined;
+  }
   const { palette, ...muiTheme } = createThemeNoVars({
     ...restTheme,
-    palette: {
-      mode,
-      ...scheme?.palette,
-    },
+    palette: { mode, ...scheme?.palette },
   });
   colorSchemes[colorScheme] = {
     ...scheme,

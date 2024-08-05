@@ -33,6 +33,7 @@ export { default as createStyles } from './createStyles';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { default as createTransitions, duration, easing } from './createTransitions';
+export { default as createColorScheme } from './createColorScheme';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export { default as styled } from './styled';
