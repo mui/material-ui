@@ -21,8 +21,15 @@ import {
   ApiDisplayOptions,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import { propsApiProcessor } from 'docs/src/modules/components/ApiPage/processors/properties';
-import { classesApiProcessor } from 'docs/src/modules/components/ApiPage/processors/classes';
+import {
+  getPropertiesToC,
+  propsApiProcessor,
+} from 'docs/src/modules/components/ApiPage/processors/properties';
+import {
+  classesApiProcessor,
+  getClassesToC,
+} from 'docs/src/modules/components/ApiPage/processors/classes';
+import { slotsApiProcessor } from './ApiPage/processors/slots';
 
 type ApiHeaderKeys =
   | 'demos'
@@ -148,6 +155,23 @@ export default function ApiPage(props: ApiPageProps) {
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
+  // Merge data and translation
+  const propertiesDef = propsApiProcessor({
+    componentName: pageContent.name,
+    properties: componentProps,
+    propertiesDescriptions: propDescriptions,
+  });
+  const classesDef = classesApiProcessor({
+    componentClasses,
+    componentName: pageContent.name,
+    classDescriptions,
+  });
+  const slotsDef = slotsApiProcessor({
+    componentSlots,
+    componentName: pageContent.name,
+    slotDescriptions,
+  });
+
   function createTocEntry(sectionName: ApiHeaderKeys) {
     return {
       text: getTranslatedHeader(t, sectionName),
@@ -167,9 +191,9 @@ export default function ApiPage(props: ApiPageProps) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    createTocEntry('props'),
+    getPropertiesToC({ properties: propertiesDef, t }),
     componentSlots?.length > 0 && createTocEntry('slots'),
-    createTocEntry('classes'),
+    getClassesToC({ classes: classesDef, t }),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -260,11 +284,7 @@ export default function ApiPage(props: ApiPageProps) {
           </React.Fragment>
         ) : null}
         <PropertiesSection
-          properties={propsApiProcessor({
-            componentName: pageContent.name,
-            properties: componentProps,
-            propertiesDescriptions: propDescriptions,
-          })}
+          properties={propertiesDef}
           spreadHint={spreadHint}
           defaultLayout={defaultLayout}
           layoutStorageKey={layoutStorageKey.props}
@@ -317,9 +337,7 @@ export default function ApiPage(props: ApiPageProps) {
         )}
         (
         <SlotsSection
-          componentSlots={componentSlots}
-          slotDescriptions={slotDescriptions}
-          componentName={pageContent.name}
+          slots={slotsDef}
           spreadHint={
             slotGuideLink &&
             t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
@@ -329,11 +347,7 @@ export default function ApiPage(props: ApiPageProps) {
         />
         )
         <ClassesSection
-          classes={classesApiProcessor({
-            componentClasses,
-            componentName: pageContent.name,
-            classDescriptions,
-          })}
+          classes={classesDef}
           spreadHint={t('api-docs.classesDescription')}
           styleOverridesLink={styleOverridesLink}
           defaultLayout={defaultLayout}

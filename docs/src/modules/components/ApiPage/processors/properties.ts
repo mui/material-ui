@@ -1,4 +1,5 @@
 import { PropsTableItem, PropsTranslations } from '@mui-internal/api-docs-builder';
+import { Translate } from '@mui/docs/i18n';
 import kebabCase from 'lodash/kebabCase';
 import {
   HookApiContent,
@@ -30,6 +31,38 @@ export interface PropertyDefinition {
    */
   isPremiumPlan?: boolean;
 }
+
+export type GetCssToCParams = {
+  properties: PropertyDefinition[];
+  inheritance?: boolean;
+  themeDefaultProps?: boolean;
+  t: Translate;
+  hash?: string;
+};
+
+export const getPropertiesToC = ({
+  properties,
+  inheritance,
+  themeDefaultProps,
+  t,
+  hash,
+}: GetCssToCParams) => ({
+  text: t('api-docs.props'),
+  hash,
+  children: [
+    ...properties.map(({ propName, hash: propertyHash }) => ({
+      text: propName,
+      hash: propertyHash,
+      children: [],
+    })),
+    ...(inheritance
+      ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+      : []),
+    ...(themeDefaultProps
+      ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
+      : []),
+  ],
+});
 
 interface PropsApiProcessorParams {
   componentName: string;

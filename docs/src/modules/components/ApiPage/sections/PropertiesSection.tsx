@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { useTranslate } from '@mui/docs/i18n';
+import { Translate, useTranslate } from '@mui/docs/i18n';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import ToggleDisplayOption, {
   ApiDisplayOptions,
@@ -14,7 +14,48 @@ import {
   propsApiProcessor,
 } from 'docs/src/modules/components/ApiPage/processors/properties';
 import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
-import { PropsTableItem, PropsTranslations } from 'packages/api-docs-builder';
+import { ComponentApiContent, PropsTableItem, PropsTranslations } from 'packages/api-docs-builder';
+import kebabCase from 'lodash/kebabCase';
+
+interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
+  componentProps: ComponentApiContent['props'];
+  componentName: ComponentApiContent['name'];
+  t: Translate;
+  /**
+   * @default 'props'
+   */
+  hash?: string;
+}
+
+/**
+ * @deprecated Use the one from ApiPage/processors
+ */
+export function getPropsToC({
+  componentName,
+  componentProps,
+  inheritance,
+  themeDefaultProps,
+  t,
+  hash = 'props',
+}: GetPropsToCParams) {
+  return {
+    text: t('api-docs.props'),
+    hash,
+    children: [
+      ...Object.entries(componentProps).map(([propName]) => ({
+        text: propName,
+        hash: `${kebabCase(componentName)}-prop-${propName}`,
+        children: [],
+      })),
+      ...(inheritance
+        ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+        : []),
+      ...(themeDefaultProps
+        ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
+        : []),
+    ],
+  };
+}
 
 type PropertiesSectionProps = (
   | {
@@ -27,8 +68,8 @@ type PropertiesSectionProps = (
     }
   | {
       properties: PropertyDefinition[];
-      propertiesDescriptions: undefined;
-      componentName: undefined;
+      propertiesDescriptions?: undefined;
+      componentName?: undefined;
     }
 ) & {
   spreadHint: string;

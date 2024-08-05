@@ -18,9 +18,9 @@ import {
 export type SlotsSectionProps = (
   | {
       slots: SlotDefinition[];
-      componentSlots: undefined;
-      slotDescriptions: undefined;
-      componentName: undefined;
+      componentSlots?: undefined;
+      slotDescriptions?: undefined;
+      componentName?: undefined;
     }
   | {
       slots: undefined;

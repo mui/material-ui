@@ -1,4 +1,5 @@
 import { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
+import { Translate } from '@mui/docs/i18n';
 import kebabCase from 'lodash/kebabCase';
 
 export interface ClassDefinition {
@@ -10,6 +11,29 @@ export interface ClassDefinition {
   isDeprecated?: boolean;
   deprecationInfo?: string;
 }
+
+export type GetCssToCParams = {
+  classes: ClassDefinition[];
+  t: Translate;
+  hash?: string;
+};
+
+export const getClassesToC = ({ classes, t, hash }: GetCssToCParams) =>
+  !classes || classes.length === 0
+    ? []
+    : [
+        {
+          text: t('api-docs.classes'),
+          hash: hash ?? 'classes',
+          children: [
+            ...classes.map(({ key, hash: classeHash }) => ({
+              text: key,
+              hash: classeHash,
+              children: [],
+            })),
+          ],
+        },
+      ];
 
 export interface ClassesApiProcessorParams {
   componentClasses: ComponentApiContent['classes'];

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { useTranslate } from '@mui/docs/i18n';
+import { Translate, useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import Box from '@mui/material/Box';
 import ToggleDisplayOption, {
@@ -15,13 +15,41 @@ import {
 } from 'docs/src/modules/components/ApiPage/processors/classes';
 import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { PropsTranslations } from '@mui-internal/api-docs-builder';
+import kebabCase from 'lodash/kebabCase';
+
+export type GetCssToCParams = {
+  componentName: string;
+  componentClasses: ComponentClassDefinition[];
+  t: Translate;
+  hash?: string;
+};
+
+/**
+ * @deprecated Use the function from ApiPage/processors
+ */
+export const getClassesToC = ({ componentName, componentClasses, t, hash }: GetCssToCParams) =>
+  !componentClasses || componentClasses.length === 0
+    ? []
+    : [
+        {
+          text: t('api-docs.classes'),
+          hash: hash ?? 'classes',
+          children: [
+            ...componentClasses.map((styles) => ({
+              text: styles.key,
+              hash: `${kebabCase(componentName)}-classes-${styles.key}`,
+              children: [],
+            })),
+          ],
+        },
+      ];
 
 export type ClassesSectionProps = (
   | {
       classes: ClassDefinition[];
-      componentClasses: undefined;
-      classDescriptions: undefined;
-      componentName: undefined;
+      componentClasses?: undefined;
+      classDescriptions?: undefined;
+      componentName?: undefined;
     }
   | {
       classes: undefined;
