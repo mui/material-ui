@@ -120,7 +120,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@types/autosuggest-highlight": "^3.2.3",
-    "@types/chai": "^4.3.16",
+    "@types/chai": "^4.3.17",
     "@types/css-mediaquery": "^0.1.4",
     "@types/gtag.js": "^0.0.20",
     "@types/json2mq": "^0.2.2",
