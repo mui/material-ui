@@ -111,7 +111,7 @@ import Card from '@mui/material/Card';
 ```
 
 :::warning
-**Don't** use `theme.palette.mode` to apply between light and dark styles because it will produce a flickering effect.
+**Don't** use `theme.palette.mode` to switch between light and dark styles because it will produce a [flickering effect](/material-ui/customization/dark-mode/#dark-mode-flicker).
 
 ```js
 <Card
@@ -126,8 +126,7 @@ import Card from '@mui/material/Card';
 
 ## Using theme variables
 
-All of these variables are accessible in an object in the theme called `vars`.
-The structure of this object is a serializable theme structure with the values represent CSS variables.
+When the CSS variables feature is enabled, the `vars` node is added to the theme. This `vars` object mirrors the structure of a serializable theme, with each value corresponding to a CSS variable.
 
 - `theme.vars` (recommended): an object that refers to the CSS theme variables.
 
@@ -161,9 +160,9 @@ The structure of this object is a serializable theme structure with the values r
 
 ## Color channel tokens
 
-A channel token is used for creating translucent color. It is a variable that consists of [color space channels](https://www.w3.org/TR/css-color-4/#color-syntax) but without the alpha component. The value of a channel token is separated by a space, for example `12 223 31`, which can be combined with the [color functions](https://www.w3.org/TR/css-color-4/#color-functions) to create a translucent color.
+Enabling `cssVariables` automatically generates channel tokens, which are used to create translucent colors. These tokens consist of color space channels without the alpha component, separated by **spaces**.
 
-When `cssVariables` is enabled, channel tokens are generated automatically. Those colors are suffixed with `Channel`, for example:
+Those colors are suffixed with `Channel`, for example:
 
 ```js
 const theme = createTheme({ cssVariables: true });
