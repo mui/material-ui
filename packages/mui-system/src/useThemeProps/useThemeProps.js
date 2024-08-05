@@ -1,5 +1,4 @@
 'use client';
-import * as React from 'react';
 import getThemeProps from './getThemeProps';
 import useTheme from '../useTheme';
 
@@ -8,5 +7,5 @@ export default function useThemeProps({ props, name, defaultTheme, themeId }) {
   if (themeId) {
     theme = theme[themeId] || theme;
   }
-  return React.useMemo(() => getThemeProps({ theme, name, props }), [theme, name, props]);
+  return getThemeProps({ theme, name, props });
 }
