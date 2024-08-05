@@ -139,3 +139,9 @@ The Snackbar component is composed of a root `<div>` that houses interior elemen
   </div>
 </div>
 ```
+
+## Experimental APIs
+
+### Imperative API
+
+You can create and manipulate notifications imperatively with the [`useNotifications`](https://mui.com/toolpad/core/react-use-notifications/) API in `@toolpad/core`. This API provides state management for opening and closing snackbars. It also allows for queueing multiple notifications at once.
