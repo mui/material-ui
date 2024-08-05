@@ -16,6 +16,7 @@ import Grid2 from '../Grid2';
  *
  * @deprecated `Unstable_Grid2` is deprecated. Use `Grid2` instead.
  */
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const Unstable_Grid2 = Grid2;
 
 export default Unstable_Grid2;
