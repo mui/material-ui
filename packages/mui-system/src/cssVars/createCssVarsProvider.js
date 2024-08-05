@@ -142,8 +142,9 @@ export default function createCssVarsProvider(options) {
     }
 
     // 4. Resolve the color scheme and merge it to the theme
-    Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      if (key === calculatedColorScheme) {
+    if (calculatedColorScheme) {
+      const scheme = colorSchemes[calculatedColorScheme];
+      if (scheme && typeof scheme === 'object') {
         // 4.1 Merge the selected color scheme to the theme
         Object.keys(scheme).forEach((schemeKey) => {
           if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
@@ -156,11 +157,8 @@ export default function createCssVarsProvider(options) {
             theme[schemeKey] = scheme[schemeKey];
           }
         });
-        if (theme.palette) {
-          theme.palette.colorScheme = key;
-        }
       }
-    });
+    }
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
