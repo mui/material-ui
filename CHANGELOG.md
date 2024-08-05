@@ -1,5 +1,104 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.0-beta.4
+
+<!-- generated comparing v6.0.0-beta.3..next -->
+
+_Jul 30, 2024_
+
+A big thanks to the 12 contributors who made this release possible.
+
+### `@mui/material@6.0.0-beta.4`
+
+- [Accordion] Render a heading wrapping `AccordionSummary` button per W3C Accordion Pattern standards (#42914) @ZeeshanTamboli
+- [Divider] Enable borderStyle enhancement in divider with children (#42715) @anuujj
+- [ImageListItemBar] Deprecate composed classes (#42905) @sai6855
+- Attach selector for default color scheme (#43035) @siriwatknp
+- Stabilize Grid v2 and deprecate Grid v1 (#43054) @DiegoAndai
+
+### `@mui/system@6.0.0-beta.4`
+
+- Make `createBreakpoints` independent for stringify theme (#43048) @siriwatknp
+
+### `@mui/utils@6.0.0-beta.4`
+
+- Fix issues reported by the React Compiler (#43051) @markliu2013
+
+### Docs
+
+- [material-ui] Replace deprecated `<ListItem button/>` with `ListItemButton` component in routing libraries list example (#43110) @aliharis99
+- [material-ui][Card] Update CardMedia description (#43067) @shahzaibdev1
+- [material-ui] Polish out data table demo (#43072) @zanivan
+- [material-ui][Snackbar] Improve reason type in demos (#43077) @sai6855
+- [pigment-css] Fix syntax in migrating-to-pigment-css guide (#43107) @KevinVandy
+- Fix page description line break @oliviertassinari
+
+### Core
+
+- Fix event naming convention @oliviertassinari
+- [docs-infra] Move ads to the `@mui/docs` package (#42944) @alexfauquette
+- [website] Fine-tune button styles on the branding theme (#43082) @zanivan
+
+All contributors of this release in alphabetical order: @alexfauquette, @aliharis99, @anuujj, @DiegoAndai, @KevinVandy, @markliu2013, @oliviertassinari, @sai6855, @shahzaibdev1, @siriwatknp, @zanivan, @ZeeshanTamboli
+
+## 6.0.0-beta.3
+
+<!-- generated comparing v6.0.0-beta.2..next -->
+
+_Jul 24, 2024_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 New version of the free Dashboard template, now with more components and an improved layout.
+
+### `@mui/codemod@6.0.0-beta.3`
+
+- &#8203;<!-- 17 -->Fix Divider props codemod (#42919) @aarongarciah
+
+### `@mui/material@6.0.0-beta.3`
+
+- &#8203;<!-- 06 -->Fix Accessing element.ref (#42818) @sai6855
+- &#8203;<!-- 05 -->Refine `extendTheme` and `CssVarsProvider` API (#42839) @siriwatknp
+- &#8203;<!-- 03 -->[Typography] Deprecate `paragraph` prop (#42383) @walston
+- &#8203;<!-- 03 -->[Rating] fix defaultLabelText a11y issue with undefine value input and hint (#42810) @ZouYouShun
+
+### `@mui/material-nextjs@6.0.0-beta.3`
+
+- &#8203;<!-- 04 -->[material-ui-nextjs] Add @emotion/react as peer dependency (#42885) @jeloagnasin
+- &#8203;<!-- 02 -->[material-ui-nextjs] Remove @mui/material as peer dependency (#43041) @brijeshb42
+
+### `@mui/utils@6.0.0-beta.3`
+
+- &#8203;<!-- 02 -->[utils] Add dependency to @mui/types (#43029) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 22 -->[material-ui][joy-ui][Autocomplete] Fix `Hint` demo (#42990) @ManthanGajjar
+- &#8203;<!-- 19 -->[docs] Make `DemoSandbox` agnostic of `productId` (#43042) @Janpot
+- &#8203;<!-- 16 -->[docs] Use slot variants over `theme.variants` (#42614) @siriwatknp
+- &#8203;<!-- 13 -->[docs] Remove stringify theme import (#43032) @siriwatknp
+- &#8203;<!-- 12 -->[docs] Bring v5.x changes to the CHANGELOG @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Fix migration typo (#42976) @mnajdova
+- &#8203;<!-- 08 -->[material-ui] Add improvements to Dashboard template (#42445) @zanivan
+- &#8203;<!-- 07 -->[material-ui] Fix broken image links in blog template (#42956) @navedqb
+
+### Core
+
+- &#8203;<!-- 23 -->[code-infra] Add toolpad npm scope to envinfo (#41942) @Janpot
+- &#8203;<!-- 21 -->[code-infra] Fix pnpm lock file (#43030) @Janpot
+- &#8203;<!-- 20 -->[code-infra] Run `react-17` and `react-next` workflows on the next branch (#42690) @cherniavskii
+- &#8203;<!-- 19 -->[code-infra] Make `useReactVersion` script reusable in other repos (#42828) @cherniavskii
+- &#8203;<!-- 18 -->[code-infra] Add toolpad npm scope to envinfo (#41942) @Janpot
+- &#8203;<!-- 16 -->[core] Add pigment and Base UI scopes to envinfo (#43002) @Janpot
+- &#8203;<!-- 15 -->[core] Update minimum version of Node.js to 14.0.0 (#42920) @DiegoAndai
+- &#8203;<!-- 14 -->[core] Expose missing screen methods from Testing Library (#42968) @aarongarciah
+- &#8203;<!-- 10 -->[docs-infra] Leave TODO for warnOnce to reduce bundle size @oliviertassinari
+- &#8203;<!-- 09 -->[docs-infra] Remove `display: flex` from `SectionTitle` (#42979) @LukasTy
+- &#8203;<!-- 02 -->[test][material-ui] Remove unnecessary async act calls (#42942) @aarongarciah
+- &#8203;<!-- 01 -->[website] Fix strange focus-visible on hover (#42924) @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @bharatkashyap, @brijeshb42, @cherniavskii, @DiegoAndai, @Janpot, @jeloagnasin, @LukasTy, @ManthanGajjar, @mnajdova, @navedqb, @oliviertassinari, @sai6855, @siriwatknp, @walston, @zanivan, @ZouYouShun
+
 ## 6.0.0-beta.2
 
 <!-- generated comparing v6.0.0-beta.1..next -->

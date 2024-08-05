@@ -56,7 +56,6 @@ Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the com
 ```diff
 -.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
 +.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
- />
 ```
 
 ```diff
@@ -221,7 +220,7 @@ The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`
 +    paper: { width: 12 },
 +    popper: { width: 14 },
 +    popupIndicator: { width: 16 },
-    }}
+   }}
  />
 ```
 
@@ -240,18 +239,18 @@ The AvatarGroup's `slotProps.additionalAvatar` was deprecated in favor of `slotP
 ```diff
  <AvatarGroup
    slotProps={{
--    additionalAvatar: {color: "red"}
-+    surplus: {color: "red"}
+-    additionalAvatar: { color: 'red' },
++    surplus: { color: 'red' },
    }}
- />;
+ >
 ```
 
 ```diff
  MuiAvatarGroup: {
    defaultProps: {
      slotProps: {
--      additionalAvatar: {color: "red"}
-+      surplus: {color: "red"}
+-      additionalAvatar: { color: 'red' },
++      surplus: { color: 'red' },
      },
    },
  },
@@ -264,11 +263,11 @@ The AvatarGroup's `componentsProps` was deprecated in favor of `slotProps`:
 ```diff
  <AvatarGroup
 -  componentsProps={{
--    additionalAvatar: {color: "red"}
+-    additionalAvatar: { color: 'red' },
 +  slotProps={{
-+    surplus: {color: "red"}
++    surplus: { color: 'red' },
    }}
- />;
+ >
 ```
 
 ```diff
@@ -329,7 +328,7 @@ The Badge's `components` prop was deprecated in favor of `slots`:
  <Badge
 -  components={{ root: CustomRoot }}
 +  slots={{ root: CustomRoot }}
- />
+ >
 ```
 
 ### componentsProps
@@ -340,7 +339,7 @@ The Badge's `componentsProps` prop was deprecated in favor of `slotProps`:
  <Badge
 -  componentsProps={{ root: { testid: 'test-id' } }}
 +  slotProps={{ root: { testid: 'test-id' } }}
- />
+ >
 ```
 
 ## Button
@@ -782,7 +781,7 @@ Here's how to migrate:
 
  import { chipClasses } from '@mui/material/Chip';
 
-  MuiChip: {
+ MuiChip: {
    styleOverrides: {
      root: {
 -      [`&.${chipClasses.clickableColorPrimary}`]: {
@@ -888,11 +887,10 @@ Here's how to migrate:
 -      [`& .${chipClasses.deleteIconFilledColorSecondary}`]: {
 +      [`&.${chipClasses.filled}.${chipClasses.colorSecondary} > .${chipClasses.deleteIcon}`]: {
          color: 'red',
-     },
+       },
      },
    },
-  },
-
+ },
 ```
 
 ## CircularProgress
@@ -910,9 +908,9 @@ The CSS classes that composed the `circle` CSS class and `variant` prop values w
 Here's how to migrate:
 
 ```diff
-- .MuiCircularProgress-circleDeterminate
+-.MuiCircularProgress-circleDeterminate
+-.MuiCircularProgress-circleIndeterminate
 +.MuiCircularProgress-determinate > .MuiCircularProgress-circle
-- .MuiCircularProgress-circleIndeterminate
 +.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle
 ```
 
@@ -929,7 +927,7 @@ Here's how to migrate:
 -      [`& .${circularProgressClasses.circleIndeterminate}`]: {
 +      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1141,7 +1139,63 @@ The Grid's `wrap` prop was deprecated in favor of `flexWrap` MUI System prop:
  <Grid
 -  wrap="nowrap"
 +  flexWrap="nowrap"
- />;
+ >
+```
+
+## ImageListItemBar
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#image-list-item-bar-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@next deprecations/image-list-item-bar-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the following props were deprecated:
+
+- `position` prop and `titleWrap` class
+- `actionPosition` prop and `titleWrap` class
+- `actionPosition` prop and `actionIcon` class
+
+Here's how to migrate:
+
+```diff
+-.MuiImageListItemBar-titleWrapBelow
++.MuiImageListItemBar-positionBelow > .MuiImageListItemBar-titleWrap
+-.MuiImageListItemBar-titleWrapActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-titleWrap
+-.MuiImageListItemBar-titleWrapActionPosRight
++.MuiImageListItemBar-actionPositionRight > .MuiImageListItemBar-titleWrap
+-.MuiImageListItemBar-actionIconActionPosLeft
++.MuiImageListItemBar-actionPositionLeft > .MuiImageListItemBar-actionIcon
+```
+
+```diff
+ import { imageListItemBarClasses } from '@mui/material/ImageListItemBar';
+
+ MuiImageListItemBar: {
+   styleOverrides: {
+     root: {
+-      [`& .${imageListItemBarClasses.titleWrapBelow}`]: {
++      [`&.${imageListItemBarClasses.positionBelow} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.titleWrapActionPosRight}`]: {
++      [`&.${imageListItemBarClasses.actionPositionRight} > .${imageListItemBarClasses.titleWrap}`]: {
+         color: 'red',
+       },
+-      [`& .${imageListItemBarClasses.actionIconActionPosLeft}`]: {
++      [`&.${imageListItemBarClasses.actionPositionLeft} > .${imageListItemBarClasses.actionIcon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
 ```
 
 ## Modal
@@ -1160,7 +1214,7 @@ The Modal's `components` prop was deprecated in favor of `slots`:
  <Modal
 -  components={{ Root: CustomRoot, Backdrop: CustomBackdrop }}
 +  slots={{ root: CustomRoot, backdrop: CustomBackdrop }}
- />
+ >
 ```
 
 ### componentsProps
@@ -1171,7 +1225,7 @@ The Modal's `componentsProps` prop was deprecated in favor of `slotProps`:
  <Modal
 -  componentsProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
 +  slotProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
- />
+ >
 ```
 
 ## OutlinedInput
@@ -1352,7 +1406,7 @@ Here's how to migrate:
 
  import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 
-  MuiButtonGroup: {
+ MuiButtonGroup: {
    styleOverrides: {
      root: {
 -      [`& .${toggleButtonGroupClasses.groupedHorizontal}`]: {
@@ -1362,9 +1416,10 @@ Here's how to migrate:
 -      [`& .${toggleButtonGroupClasses.groupedVertical}`]: {
 +      [`&.${toggleButtonGroupClasses.vertical} > .${toggleButtonGroupClasses.grouped}`]: {
           color: 'red',
-        },
+       },
+     },
    },
-  },
+ },
 ```
 
 ## Tab
@@ -1395,7 +1450,8 @@ Here's how to migrate:
 -      [`& .${tabClasses.iconWrapper}`]: {
 +      [`& .${tabClasses.icon}`]: {
          color: 'red',
-        },
+       },
+     },
    },
  },
 ```
@@ -1415,9 +1471,9 @@ The CSS classes that composed the `direction` prop and `icon` prop were removed.
 Here's how to migrate:
 
 ```diff
-- .MuiTableSortLabel-iconDirectionDesc
+-.MuiTableSortLabel-iconDirectionDesc
 +.MuiTableSortLabel-directionDesc > .MuiTableSortLabel-icon
-- .MuiTableSortLabel-iconDirectionAsc
+-.MuiTableSortLabel-iconDirectionAsc
 +.MuiTableSortLabel-directionAsc > .MuiTableSortLabel-icon
 ```
 
@@ -1434,7 +1490,7 @@ Here's how to migrate:
 -      [`& .${tableSortLabelClasses.iconDirectionAsc}`]: {
 +      [`&.${tableSortLabelClasses.directionAsc} > .${tableSortLabelClasses.icon}`]: {
          color: 'red',
-        },
+       },
      },
    },
  },
@@ -1454,18 +1510,18 @@ All of the TextField's slot props (`*Props`) props were deprecated in favor of e
 
 ```diff
  <TextField
--    InputProps={CustomInputProps}
--    inputProps={CustomHtmlInputProps}
--    SelectProps={CustomSelectProps}
--    InputLabelProps={CustomInputLabelProps}
--    FormHelperTextProps={CustomFormHelperProps}
-+    slotProps={{
-+        input: CustomInputProps
-+        htmlInput: CustomHtmlInputProps
-+        select: CustomSelectProps
-+        inputLabel: CustomInputLabelProps
-+        formHelper: CustomFormHelperProps
-+    }}
+-  InputProps={CustomInputProps}
+-  inputProps={CustomHtmlInputProps}
+-  SelectProps={CustomSelectProps}
+-  InputLabelProps={CustomInputLabelProps}
+-  FormHelperTextProps={CustomFormHelperProps}
++  slotProps={{
++    input: CustomInputProps
++    htmlInput: CustomHtmlInputProps
++    select: CustomSelectProps
++    inputLabel: CustomInputLabelProps
++    formHelper: CustomFormHelperProps
++  }}
  />
 ```
 
@@ -1559,9 +1615,9 @@ The CSS classes that composed the `line` CSS class and `orientation` prop values
 Here's how to migrate:
 
 ```diff
-- .MuiStepConnector-lineHorizontal
+-.MuiStepConnector-lineHorizontal
 +.MuiStepConnector-horizontal > .MuiStepConnector-line
-- .MuiStepConnector-lineVertical
+-.MuiStepConnector-lineVertical
 +.MuiStepConnector-vertical > .MuiStepConnector-line
 ```
 
