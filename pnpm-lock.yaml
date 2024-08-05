@@ -226,11 +226,11 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       karma:
-        specifier: ^6.4.3
-        version: 6.4.3
+        specifier: ^6.4.4
+        version: 6.4.4
       karma-browserstack-launcher:
         specifier: ~1.6.0
-        version: 1.6.0(karma@6.4.3)
+        version: 1.6.0(karma@6.4.4)
       karma-chrome-launcher:
         specifier: ^3.2.0
         version: 3.2.0
@@ -8734,8 +8734,8 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
 
-  karma@6.4.3:
-    resolution: {integrity: sha512-LuucC/RE92tJ8mlCwqEoRWXP38UMAqpnq98vktmS9SznSoUPPUJQbc91dHcxcunROvfQjdORVA/YFviH+Xci9Q==}
+  karma@6.4.4:
+    resolution: {integrity: sha512-LrtUxbdvt1gOpo3gxG+VAJlJAEMhbWlM4YrFQgql98FwF7+K8K12LYO4hnDdUkNjeztYrOXEMqgTajSWgmtI/w==}
     engines: {node: '>= 10'}
     hasBin: true
 
@@ -20319,11 +20319,11 @@ snapshots:
       jwa: 2.0.0
       safe-buffer: 5.2.1
 
-  karma-browserstack-launcher@1.6.0(karma@6.4.3):
+  karma-browserstack-launcher@1.6.0(karma@6.4.4):
     dependencies:
       browserstack: 1.5.3
       browserstack-local: 1.5.1
-      karma: 6.4.3
+      karma: 6.4.4
       q: 1.5.1
     transitivePeerDependencies:
       - supports-color
@@ -20362,7 +20362,7 @@ snapshots:
       webpack: 5.92.1(webpack-cli@5.1.4)
       webpack-merge: 4.2.2
 
-  karma@6.4.3:
+  karma@6.4.4:
     dependencies:
       '@colors/colors': 1.5.0
       body-parser: 1.20.2
