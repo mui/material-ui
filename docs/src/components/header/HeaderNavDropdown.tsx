@@ -67,7 +67,7 @@ const PRODUCTS = [
   },
   {
     name: 'Templates',
-    description: 'Fully built, out-of-the-box, templates for your application.',
+    description: 'Fully built templates for your application.',
     href: ROUTES.productTemplates,
   },
   {
@@ -77,7 +77,7 @@ const PRODUCTS = [
   },
   {
     name: 'Toolpad',
-    description: 'Low-code admin builder.',
+    description: 'Self-hosted, low-code internal tool builder.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
   },
@@ -111,7 +111,7 @@ const DOCS = [
   },
   {
     name: 'Toolpad',
-    description: 'Low-code admin builder',
+    description: 'Self-hosted, low-code internal tool builder.',
     href: ROUTES.toolpadStudioDocs,
     chip: 'Beta',
   },

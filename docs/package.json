@@ -118,6 +118,7 @@
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
+    "@mui-internal/api-docs-builder": "workspace:^",
     "@types/autosuggest-highlight": "^3.2.3",
     "@types/chai": "^4.3.16",
     "@types/css-mediaquery": "^0.1.4",

@@ -21,7 +21,7 @@ import {
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import generateApiTranslations from '../utils/generateApiTranslation';
-import { HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
+import { HookApiContent, HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
 import { HookInfo } from '../types/utils.types';
 
 const parseProperty = async (
@@ -352,7 +352,7 @@ const generateApiJson = async (outputDirectory: string, reactApi: HookReactApi) 
   /**
    * Gather the metadata needed for the component's API page.
    */
-  const pageContent = {
+  const pageContent: HookApiContent = {
     // Sorted by required DESC, name ASC
     parameters: _.fromPairs(
       Object.entries(reactApi.parametersTable).sort(([aName, aData], [bName, bData]) => {
