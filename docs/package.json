@@ -97,7 +97,7 @@
     "react-intersection-observer": "^9.13.0",
     "react-is": "^18.3.1",
     "react-number-format": "^5.4.0",
-    "react-router-dom": "^6.24.1",
+    "react-router-dom": "^6.26.0",
     "react-runner": "^1.0.5",
     "react-simple-code-editor": "^0.14.1",
     "react-spring": "^9.7.4",
