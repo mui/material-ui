@@ -417,5 +417,4 @@ export { default as generateUtilityClasses } from './generateUtilityClasses';
 
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
 
-export { default as version } from './version';
 export * from './version';

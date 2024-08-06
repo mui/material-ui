@@ -123,5 +123,4 @@ export * from './Grid';
 export { default as Stack } from './Stack';
 export * from './Stack';
 
-export { default as version } from './version';
 export * from './version';

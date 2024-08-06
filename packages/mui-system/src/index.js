@@ -67,7 +67,6 @@ export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsT
 export { default as responsivePropType } from './responsivePropType';
 export { default as RtlProvider } from './RtlProvider';
 export * from './RtlProvider';
-export { default as version } from './version';
 export * from './version';
 
 /** ----------------- */

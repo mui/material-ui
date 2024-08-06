@@ -475,7 +475,6 @@ export * from './useAutocomplete';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
-export { default as version } from './version';
 export * from './version';
 
 /**
