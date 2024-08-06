@@ -1266,15 +1266,6 @@ importers:
       '@types/babel-plugin-macros':
         specifier: ^3.1.3
         version: 3.1.3
-      '@types/chai':
-        specifier: ^4.3.17
-        version: 4.3.17
-      '@types/mocha':
-        specifier: ^10.0.7
-        version: 10.0.7
-      '@types/node':
-        specifier: ^18.19.43
-        version: 18.19.43
       babel-plugin-tester:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.24.9)
