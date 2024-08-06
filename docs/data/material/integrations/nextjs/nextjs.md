@@ -73,9 +73,10 @@ Use the `options` prop to override the default [cache options](https://emotion.s
   </AppRouterCacheProvider>
 ```
 
-### Theming
+### Font optimization
 
-Create a new file and export a custom theme that includes the `'use client';` directive:
+To integrate Next.js font optimization with Material UI, create a new file with `'use client';` directive.
+Then, pass the `<font>.variable` as a value to the `typography.fontFamily` theme.
 
 ```js title="src/theme.ts"
 'use client';
@@ -86,18 +87,19 @@ const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-roboto',
 });
 
 const theme = createTheme({
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: roboto.variable,
   },
 });
 
 export default theme;
 ```
 
-Then in `src/app/layout.tsx`, pass the theme to `ThemeProvider`:
+Finally, in `src/app/layout.tsx`, pass the theme to the `ThemeProvider`:
 
 ```diff title="app/layout.tsx"
  import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
@@ -326,9 +328,10 @@ If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props
  }
 ```
 
-### Theming
+### Font optimization
 
-In `pages/_app.tsx`, create a new theme and pass it to `ThemeProvider`:
+To integrate Next.js font optimization with Material UI, opens `pages/_app.tsx` and pass the `<font>.variable` as a value to the `typography.fontFamily` theme.
+
 
 ```diff title="pages/_app.tsx"
  import * as React from 'react';
@@ -342,11 +345,12 @@ In `pages/_app.tsx`, create a new theme and pass it to `ThemeProvider`:
 +  weight: ['300', '400', '500', '700'],
 +  subsets: ['latin'],
 +  display: 'swap',
++  variable: '--font-roboto',
 +});
 
 +const theme = createTheme({
 +  typography: {
-+    fontFamily: roboto.style.fontFamily,
++    fontFamily: roboto.variable,
 +  },
 +});
 
