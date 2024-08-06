@@ -47,21 +47,6 @@ export interface PropsTableItem {
   seeMoreLink?: SeeMore['link'];
 }
 
-export interface PropDescription {
-  description: string;
-  requiresRef?: boolean;
-  deprecated?: string;
-  typeDescriptions?: { [t: string]: string };
-  seeMoreText?: string;
-}
-
-export interface ClassDescription {
-  description: string;
-  conditions?: string;
-  nodeName?: string;
-  deprecationInfo?: string;
-}
-
 export interface PropsTranslations {
   componentDescription: string;
   deprecationInfo: string | undefined;
@@ -72,6 +57,21 @@ export interface PropsTranslations {
     [key: string]: ClassDescription;
   };
   slotDescriptions?: { [key: string]: string };
+}
+
+interface PropDescription {
+  description: string;
+  requiresRef?: boolean;
+  deprecated?: string;
+  typeDescriptions?: { [t: string]: string };
+  seeMoreText?: string;
+}
+
+interface ClassDescription {
+  description: string;
+  conditions?: string;
+  nodeName?: string;
+  deprecationInfo?: string;
 }
 
 export interface ComponentReactApi extends CommonReactApi {
