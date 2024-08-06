@@ -58,7 +58,7 @@ index a76cac2b82b733fa72d9be6ca9b764415d4ed8b4..5e166d7b485e98aa08ef684d7e0450fa
      defaultProps?: (ExecutionProps & Partial<Props>) | undefined;
      toString: () => string;
  }
--export type IStyledComponent<R extends Runtime, Props extends object = BaseObject> = IStyledComponentBase<R, Props> &
+-export type IStyledComponent<R extends Runtime, Props extends object = BaseObject> = IStyledComponentBase<R, Props> & 
 +export type IStyledComponent<R extends Runtime, Props extends object = BaseObject> = IStyledComponentBase<R, Props> &
  /**
   * TypeScript doesn't allow using a styled component as a key inside object
@@ -121,7 +121,7 @@ index a76cac2b82b733fa72d9be6ca9b764415d4ed8b4..5e166d7b485e98aa08ef684d7e0450fa
      defaultProps?: (ExecutionProps & Partial<Props>) | undefined;
      toString: () => string;
  }
--export type IStyledComponent<R extends Runtime, Props extends object = BaseObject> = IStyledComponentBase<R, Props> &
+-export type IStyledComponent<R extends Runtime, Props extends object = BaseObject> = IStyledComponentBase<R, Props> & 
 +export type IStyledComponent<R extends Runtime, Props extends object = BaseObject> = IStyledComponentBase<R, Props> &
  /**
   * TypeScript doesn't allow using a styled component as a key inside object
