@@ -12,7 +12,7 @@ import shadows from './shadows';
 import createTransitions from './createTransitions';
 import zIndex from './zIndex';
 
-function createTheme(options = {}, ...args) {
+function createThemeNoVars(options = {}, ...args) {
   const {
     breakpoints: breakpointsInput,
     mixins: mixinsInput = {},
@@ -138,7 +138,7 @@ export function createMuiTheme(...args) {
     }
   }
 
-  return createTheme(...args);
+  return createThemeNoVars(...args);
 }
 
-export default createTheme;
+export default createThemeNoVars;
