@@ -1263,6 +1263,9 @@ importers:
       '@mui/internal-babel-macros':
         specifier: workspace:*
         version: 'link:'
+      '@types/babel-plugin-macros':
+        specifier: ^3.1.3
+        version: 3.1.3
       babel-plugin-tester:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.24.9)
@@ -5051,6 +5054,9 @@ packages:
 
   '@types/autosuggest-highlight@3.2.3':
     resolution: {integrity: sha512-8Mb21KWtpn6PvRQXjsKhrXIcxbSloGqNH50RntwGeJsGPW4xvNhfml+3kKulaKpO/7pgZfOmzsJz7VbepArlGQ==}
+
+  '@types/babel-plugin-macros@3.1.3':
+    resolution: {integrity: sha512-JU+MgpsHK3taY18mBETy5XlwY6LVngte7QXYzUuXEaaX0CN8dBqbjXtADe+gJmkSQE1FJHufzPj++OWZlhRmGw==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -15883,6 +15889,10 @@ snapshots:
   '@types/aria-query@5.0.1': {}
 
   '@types/autosuggest-highlight@3.2.3': {}
+
+  '@types/babel-plugin-macros@3.1.3':
+    dependencies:
+      '@types/babel__core': 7.20.5
 
   '@types/babel__core@7.20.5':
     dependencies:
