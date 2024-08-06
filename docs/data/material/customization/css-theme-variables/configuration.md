@@ -99,7 +99,7 @@ function ModeSwitcher() {
 ```
 
 :::success
-After React's hydrate the tree, the mode will be `system` to follow the user's preference.
+After React hydrates the tree, the mode will be `system` to follow the user's preference.
 :::
 
 ### Determining the system mode
@@ -268,7 +268,7 @@ In the example below, all the components inside the `div` will always be dark:
 
 ## Disabling CSS color scheme
 
-By default, the `createTheme` attach [CSS color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. If you want to disable it, set `disableCssColorScheme` to `true`:
+By default, `createTheme` attaches [CSS color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. If you want to disable it, use `disableCssColorScheme`:
 
 ```js
 createTheme({

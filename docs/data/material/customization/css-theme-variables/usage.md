@@ -4,10 +4,10 @@
 
 ## Getting started
 
-To enable CSS theme variables, create a theme with `cssVariables: true` and pass it to the `ThemeProvider`.
+To use CSS theme variables, create a theme with `cssVariables: true` and wrap your app with `ThemeProvider`.
 
-Once the `App` renders on the screen, you will see the CSS theme variables in the HTML `:root` stylesheet.
-The variables are flattened and prefixed with `--mui` by default:
+After rendering, you'll see CSS variables in the `:root` stylesheet of your HTML document.
+By default, these variables are flattened and prefixed with `--mui`:
 
 <codeblock>
 
@@ -34,7 +34,7 @@ function App() {
 </codeblock>
 
 :::info
-If you are using an experimental API, namely `CssVarsProvider`, replace it with the `ThemeProvider`.
+If you're using the experimental `CssVarsProvider` API, replace it with `ThemeProvider`.
 :::
 
 ## Dark mode only variables
@@ -46,8 +46,8 @@ Material UI will generate the dark palette instead.
 
 ## Light and dark modes
 
-To support both light and dark modes, set `colorSchemes: { dark: true }` to the `createTheme`.
-Material UI will generate both light (default) and dark palette with [`@media (prefers-color-scheme)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) as the default method.
+To enable both light and dark modes, add `colorSchemes: { dark: true }` to `createTheme`.
+This generates light (default) and dark palettes using `@media (prefers-color-scheme)` as a default method.
 
 <codeblock>
 
@@ -86,7 +86,7 @@ function App() {
 You can explicitly set `colorSchemes: { light: true, dark: true }` which will produce the same result as the snippet above because light is the default color scheme.
 :::
 
-The CSS media `prefers-color-scheme` method works with server-side rendering without extra configuration but you will not be able to add an interface for switching between the modes because the styles is based on user preference.
+The CSS media `prefers-color-scheme` method works with server-side rendering without extra configuration but you will not be able to toggle between the modes because the styles is based on the browser media.
 
 If you want to manually toggle the modes, check out the [Toggling dark mode manually](/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually) guide.
 
@@ -126,7 +126,7 @@ import Card from '@mui/material/Card';
 
 ## Using theme variables
 
-When the CSS variables feature is enabled, the `vars` node is added to the theme. This `vars` object mirrors the structure of a serializable theme, with each value corresponding to a CSS variable.
+When CSS variables feature is enabled, the `vars` node is added to the theme. This `vars` object mirrors the structure of a serializable theme, with each value corresponding to a CSS variable.
 
 - `theme.vars` (recommended): an object that refers to the CSS theme variables.
 
