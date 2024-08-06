@@ -1,13 +1,15 @@
 import { withPigment } from '@pigment-css/nextjs-plugin';
-import { extendTheme } from '@mui/material';
+import { createTheme } from '@mui/material';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {};
 
 export default withPigment(nextConfig, {
-  theme: extendTheme({
+  theme: createTheme({
+    cssVariables: true,
+    colorSchemes: { light: true, dark: true },
     typography: {
-      fontFamily: 'var(--font-family)',
+      fontFamily: 'var(--font-roboto)',
     },
   }),
   transformLibraries: ['@mui/material'],
