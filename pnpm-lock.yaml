@@ -1260,6 +1260,9 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
     devDependencies:
+      '@mui/internal-babel-macros':
+        specifier: workspace:*
+        version: 'link:'
       babel-plugin-tester:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.24.9)
