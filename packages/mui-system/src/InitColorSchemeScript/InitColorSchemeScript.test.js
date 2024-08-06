@@ -46,6 +46,26 @@ describe('InitColorSchemeScript', () => {
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('foo');
   });
 
+  it('should set `light` color scheme with class', () => {
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'foo';
+    document.documentElement.classList.remove(...document.documentElement.classList);
+
+    const { container } = render(<InitColorSchemeScript attribute="class" />);
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.classList.value).to.equal('foo');
+    document.documentElement.classList.remove('foo'); // cleanup
+  });
+
+  it('should set `light` color scheme with data', () => {
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'foo';
+
+    const { container } = render(<InitColorSchemeScript attribute="data" />);
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.getAttribute('data-foo')).to.equal('');
+  });
+
   it('should set custom color scheme to body with custom attribute', () => {
     storage['mui-foo-mode'] = 'light';
     storage[`mui-bar-color-scheme-light`] = 'flash';

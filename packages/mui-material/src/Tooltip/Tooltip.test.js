@@ -9,6 +9,7 @@ import {
   simulatePointerDevice,
   focusVisible,
   programmaticFocusTriggersFocusVisible,
+  reactMajor,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -1057,7 +1058,12 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should warn when children is a string', () => {
+    it('should warn when children is a string', function test() {
+      if (reactMajor >= 19) {
+        // React 19 removed prop types support
+        this.skip();
+      }
+
       expect(() => {
         render(<Tooltip title="Hello World">Hello World</Tooltip>);
       }).toErrorDev('Invalid prop `children` of type `string` supplied');

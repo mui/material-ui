@@ -5,9 +5,42 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
+import createPalette from './createPalette';
+
+const lightPalette = createPalette({ mode: 'light' });
+const darkPalette = createPalette({ mode: 'dark' });
 
 describe('createTheme', () => {
   const { render } = createRenderer();
+
+  it('should not create vars if cssVariables: false', () => {
+    const theme = createTheme({ cssVariables: false });
+    expect(theme.cssVariables).to.equal(false);
+    expect('vars' in theme).to.equal(false);
+  });
+
+  it('color schemes dark: true', () => {
+    const theme = createTheme({ cssVariables: false, colorSchemes: { dark: true } });
+    const { light, dark } = theme.colorSchemes;
+    expect(light.palette.primary.main).to.deep.equal(lightPalette.primary.main);
+    expect(dark.palette.primary.main).to.deep.equal(darkPalette.primary.main);
+  });
+
+  it('color schemes light: true', () => {
+    const theme = createTheme({
+      cssVariables: false,
+      colorSchemes: { light: true },
+      palette: { mode: 'dark' },
+    });
+    const { light, dark } = theme.colorSchemes || {};
+    expect(light?.palette.primary.main).to.deep.equal(lightPalette.primary.main);
+    expect(dark?.palette.primary.main).to.deep.equal(darkPalette.primary.main);
+  });
+
+  it('should provide spacing in px', () => {
+    const theme = createTheme({ cssVariables: false });
+    expect(theme.spacing(1)).to.equal('8px');
+  });
 
   it('should have a palette', () => {
     const theme = createTheme();
@@ -21,6 +54,60 @@ describe('createTheme', () => {
     });
     expect(theme.palette.primary.main).to.equal(deepOrange[500]);
     expect(theme.palette.secondary.main).to.equal(green.A400);
+  });
+
+  describe('CSS variables', () => {
+    it('should have a light as a default colorScheme if only `palette` is provided', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        palette: { primary: { main: deepOrange[500] } },
+      });
+      expect(theme.defaultColorScheme).to.equal('light');
+      expect(theme.vars.palette.primary.main).to.equal(
+        `var(--mui-palette-primary-main, ${deepOrange[500]})`,
+      );
+    });
+
+    it('should have a dark as a default colorScheme if only `palette` is provided', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        palette: {
+          mode: 'dark',
+          primary: { main: deepOrange[500] },
+        },
+      });
+      expect(theme.defaultColorScheme).to.equal('dark');
+      expect(theme.palette.primary.main).to.equal(deepOrange[500]);
+      expect(theme.vars.palette.primary.main).to.equal(
+        `var(--mui-palette-primary-main, ${deepOrange[500]})`,
+      );
+    });
+
+    it('should have light and dark colorSchemes', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        colorSchemes: { dark: true },
+      });
+      expect(theme.colorSchemes.light).to.not.equal(undefined);
+      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+    });
+
+    it('should not have light if default color scheme is set to dark', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        colorSchemes: { dark: true },
+        defaultColorScheme: 'dark',
+      });
+      expect(theme.colorSchemes.light).to.equal(undefined);
+      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+    });
+
+    describe('spacing', () => {
+      it('should provide the default spacing', () => {
+        const theme = createTheme({ cssVariables: true });
+        expect(theme.spacing(1)).to.equal(`calc(1 * var(--mui-spacing, 8px))`);
+      });
+    });
   });
 
   describe('transitions', () => {
