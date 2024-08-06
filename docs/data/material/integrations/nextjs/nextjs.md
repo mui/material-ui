@@ -75,7 +75,7 @@ Use the `options` prop to override the default [cache options](https://emotion.s
 
 ### Font optimization
 
-To integrate Next.js font optimization with Material UI, create a new file with `'use client';` directive.
+To integrate [Next.js font optimization](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) with Material UI, create a new file with `'use client';` directive.
 Then, pass the `<font>.variable` as a value to the `typography.fontFamily` theme.
 
 ```js title="src/theme.ts"
@@ -330,7 +330,7 @@ If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props
 
 ### Font optimization
 
-To integrate Next.js font optimization with Material UI, opens `pages/_app.tsx` and pass the `<font>.variable` as a value to the `typography.fontFamily` theme.
+To integrate [Next.js font optimization](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) with Material UI, opens `pages/_app.tsx` and pass the `<font>.variable` as a value to the `typography.fontFamily` theme.
 
 
 ```diff title="pages/_app.tsx"
