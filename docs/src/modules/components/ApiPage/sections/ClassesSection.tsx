@@ -74,8 +74,8 @@ export type ClassesSectionProps = (
   level?: 'h2' | 'h3' | 'h4';
   defaultLayout: ApiDisplayOptions;
   layoutStorageKey: string;
-  displayClassKeys: boolean;
-  styleOverridesLink: string;
+  displayClassKeys?: boolean;
+  styleOverridesLink?: string;
 };
 
 export default function ClassesSection(props: ClassesSectionProps) {

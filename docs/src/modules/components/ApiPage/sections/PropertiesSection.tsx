@@ -72,7 +72,7 @@ type PropertiesSectionProps = (
       componentName?: undefined;
     }
 ) & {
-  spreadHint: string;
+  spreadHint?: string;
   defaultLayout: ApiDisplayOptions;
   layoutStorageKey: LayoutStorageKeys['props'];
   /**
