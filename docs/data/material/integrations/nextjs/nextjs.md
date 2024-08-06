@@ -332,7 +332,6 @@ If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props
 
 To integrate [Next.js font optimization](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) with Material UI, opens `pages/_app.tsx` and pass the `<font>.variable` as a value to the `typography.fontFamily` theme.
 
-
 ```diff title="pages/_app.tsx"
  import * as React from 'react';
  import Head from 'next/head';
