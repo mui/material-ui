@@ -412,9 +412,6 @@ importers:
       react-error-boundary:
         specifier: ^4.0.13
         version: 4.0.13(react@18.3.1)
-      react-router:
-        specifier: ^6.24.1
-        version: 6.24.1(react@18.3.1)
       react-router-dom:
         specifier: ^6.24.1
         version: 6.24.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -448,7 +445,7 @@ importers:
         version: 5.3.2(@types/node@18.19.43)(terser@5.29.2)
       vite-plugin-pages:
         specifier: ^0.32.3
-        version: 0.32.3(react-router@6.24.1(react@18.3.1))(vite@5.3.2(@types/node@18.19.43)(terser@5.29.2))
+        version: 0.32.3(vite@5.3.2(@types/node@18.19.43)(terser@5.29.2))
 
   benchmark:
     dependencies:
@@ -24230,7 +24227,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-pages@0.32.3(react-router@6.24.1(react@18.3.1))(vite@5.3.2(@types/node@18.19.43)(terser@5.29.2)):
+  vite-plugin-pages@0.32.3(vite@5.3.2(@types/node@18.19.43)(terser@5.29.2)):
     dependencies:
       '@types/debug': 4.1.12
       debug: 4.3.5(supports-color@8.1.1)
@@ -24242,8 +24239,6 @@ snapshots:
       picocolors: 1.0.1
       vite: 5.3.2(@types/node@18.19.43)(terser@5.29.2)
       yaml: 2.4.5
-    optionalDependencies:
-      react-router: 6.24.1(react@18.3.1)
     transitivePeerDependencies:
       - supports-color
 
