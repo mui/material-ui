@@ -19,8 +19,8 @@
     "@mui/utils": "workspace:^",
     "@pigment-css/react": "^0.0.16",
     "clsx": "^2.1.1",
-    "react": "19.0.0-rc-14a4699f-20240725",
-    "react-dom": "19.0.0-rc-14a4699f-20240725",
+    "react": "19.0.0-rc-65903583-20240805",
+    "react-dom": "19.0.0-rc-65903583-20240805",
     "react-error-boundary": "^4.0.13",
     "react-router-dom": "^6.26.0"
   },
