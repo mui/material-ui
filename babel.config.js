@@ -81,6 +81,12 @@ module.exports = function getBabelConfig(api) {
         mode: 'unsafe-wrap',
       },
     ],
+    [
+      'transform-inline-environment-variables',
+      {
+        include: ['MUI_PACKAGE_VERSION'],
+      },
+    ],
   ];
 
   if (process.env.NODE_ENV === 'production') {

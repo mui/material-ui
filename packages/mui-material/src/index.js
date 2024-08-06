@@ -1,7 +1,7 @@
 /* eslint-disable import/export */
 import * as colors from './colors';
 
-export const version = '6.0.0-beta.4';
+export const version = process.env.MUI_PACKAGE_VERSION;
 
 export { colors };
 export * from './styles';
