@@ -1,7 +1,5 @@
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
-export const version = process.env.MUI_PACKAGE_VERSION;
-
 export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';
 export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
@@ -69,6 +67,8 @@ export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsT
 export { default as responsivePropType } from './responsivePropType';
 export { default as RtlProvider } from './RtlProvider';
 export * from './RtlProvider';
+export { default as version } from './version';
+export * from './version';
 
 /** ----------------- */
 /** Layout components */

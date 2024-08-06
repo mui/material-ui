@@ -2,8 +2,6 @@ import * as React from 'react';
 import { DistributiveOmit } from '@mui/types';
 import { StyledComponentProps } from './styles';
 
-export const version: string;
-
 export { StyledComponentProps };
 
 /**
@@ -476,6 +474,9 @@ export * from './useAutocomplete';
 
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
+
+export { default as version } from './version';
+export * from './version';
 
 /**
  * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
