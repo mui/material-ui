@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, reactMajor } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -158,7 +158,12 @@ describe('<Accordion />', () => {
 
   describe('prop: children', () => {
     describe('first child', () => {
-      beforeEach(() => {
+      beforeEach(function beforeEachCallback() {
+        if (reactMajor >= 19) {
+          // React 19 removed prop types support
+          this.skip();
+        }
+
         PropTypes.resetWarningCache();
       });
 

@@ -39,16 +39,16 @@
   "devDependencies": {
     "@babel/register": "^7.24.6",
     "@types/babel__core": "^7.20.5",
-    "@types/chai": "^4.3.16",
+    "@types/chai": "^4.3.17",
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.7",
-    "@types/node": "^18.19.42",
+    "@types/node": "^18.19.43",
     "@types/react": "^18.3.3",
     "@types/uuid": "^9.0.8",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.3.3",
-    "rimraf": "^5.0.9"
+    "rimraf": "^5.0.10"
   },
   "publishConfig": {
     "access": "public"

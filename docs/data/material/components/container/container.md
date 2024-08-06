@@ -33,3 +33,11 @@ The max-width matches the min-width of the current breakpoint.
 ```jsx
 <Container fixed>
 ```
+
+## Experimental APIs
+
+### Page Container
+
+The [PageContainer](https://mui.com/toolpad/core/react-page-container/) component in `@toolpad/core` is the ideal wrapper for the content of your dashboard. It makes the Material UI Container navigation aware and extends it with page title, breadcrumbs, actions, and more.
+
+{{"demo": "../breadcrumbs/PageContainerBasic.js", "height": 400, "hideToolbar": true}}
