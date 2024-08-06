@@ -1,6 +1,7 @@
 import { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
 import { Translate } from '@mui/docs/i18n';
 import kebabCase from 'lodash/kebabCase';
+import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
 
 export interface ClassDefinition {
   className: string;
@@ -18,7 +19,7 @@ export type GetCssToCParams = {
   hash?: string;
 };
 
-export const getClassesToC = ({ classes, t, hash }: GetCssToCParams) =>
+export const getClassesToC = ({ classes, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
   !classes || classes.length === 0
     ? []
     : [

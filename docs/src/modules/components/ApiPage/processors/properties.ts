@@ -5,6 +5,7 @@ import {
   HookApiContent,
   HooksTranslations,
 } from 'packages/api-docs-builder/types/ApiBuilder.types';
+import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
 
 export interface PropertyDefinition {
   additionalInfo?: string[];
@@ -37,7 +38,7 @@ export type GetCssToCParams = {
   inheritance?: boolean;
   themeDefaultProps?: boolean;
   t: Translate;
-  hash?: string;
+  hash: string;
 };
 
 export const getPropertiesToC = ({
@@ -46,7 +47,7 @@ export const getPropertiesToC = ({
   themeDefaultProps,
   t,
   hash,
-}: GetCssToCParams) => ({
+}: GetCssToCParams): TableOfContentsParams => ({
   text: t('api-docs.props'),
   hash,
   children: [
