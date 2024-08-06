@@ -128,7 +128,7 @@ You might face the following problems:
 To avoid these problems, you can use this playground:
 
 ```bash
-pnpm docs:create-playground && pnpm start
+pnpm docs:create-playground && pnpm dev
 ```
 
 Access it locally at: http://localhost:3000/playground/.
