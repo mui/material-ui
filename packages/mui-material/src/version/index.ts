@@ -1,25 +1,8 @@
-const version = process.env.MUI_PACKAGE_VERSION || null;
+export const version = process.env.MUI_VERSION;
+export const major = Number(process.env.MUI_MAJOR_VERSION);
+export const minor = Number(process.env.MUI_MINOR_VERSION);
+export const patch = Number(process.env.MUI_PATCH_VERSION);
+export const preReleaseLabel = process.env.MUI_PRERELEASE_LABEL || null;
+export const preReleaseNumber = Number(process.env.MUI_PRERELEASE_NUMBER) || null;
 
-let versionNumber: string | null = null;
-let preReleaseInfo: string | null = null;
-
-if (version) {
-  [versionNumber, preReleaseInfo] = version.split('-');
-}
-
-let destructuredVersion: number[] | null[] = [null, null, null];
-let destructuredPreReleaseInfo: [string, number] | null[] = [null, null];
-
-if (versionNumber) {
-  destructuredVersion = versionNumber.split('.').map(Number);
-}
-
-if (preReleaseInfo) {
-  destructuredPreReleaseInfo = [preReleaseInfo.split('.')[0], Number(preReleaseInfo.split('.')[1])];
-}
-
-const [major, minor, patch] = destructuredVersion;
-const [preReleaseLabel, preReleaseNumber] = destructuredPreReleaseInfo;
-
-export { version, major, minor, patch, preReleaseLabel, preReleaseNumber };
 export default version;

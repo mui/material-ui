@@ -3,8 +3,7 @@ import glob from 'fast-glob';
 import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
-import fse from 'fs-extra';
-import { getWorkspaceRoot } from './utils.mjs';
+import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
 const exec = promisify(childProcess.exec);
 
@@ -26,13 +25,11 @@ async function run(argv) {
     );
   }
 
-  const packageJsonData = await fse.readFile(path.resolve('./package.json'), 'utf8');
-
   const env = {
     NODE_ENV: 'production',
     BABEL_ENV: bundle,
     MUI_BUILD_VERBOSE: verbose,
-    MUI_PACKAGE_VERSION: JSON.parse(packageJsonData).version,
+    ...(await getVersionEnvVariables()),
   };
 
   const babelConfigPath = path.resolve(getWorkspaceRoot(), 'babel.config.js');
