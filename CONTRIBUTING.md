@@ -110,7 +110,7 @@ This is the best place to experiment with your changes—it's the local developm
 To get started, run:
 
 ```bash
-pnpm start
+pnpm dev
 ```
 
 You can now access the documentation site locally: http://localhost:3000.
