@@ -40,8 +40,8 @@ export const inputsCustomizations: Components<Theme> = {
               size: 'small',
             },
             style: {
-              height: '2rem', // 32px
-              padding: '0 0.5rem',
+              height: '2.25rem',
+              padding: '8px 12px',
             },
           },
           {
@@ -61,7 +61,7 @@ export const inputsCustomizations: Components<Theme> = {
               color: 'white',
               backgroundColor: gray[900],
               backgroundImage: `linear-gradient(to bottom, ${gray[700]}, ${gray[800]})`,
-              boxShadow: `inset 0 2px 0 ${gray[600]}, inset 0 -2px 0 hsl(220, 0%, 0%)`,
+              boxShadow: `inset 0 1px 0 ${gray[600]}, inset 0 -1px 0 1px hsl(220, 0%, 0%)`,
               border: `1px solid ${gray[700]}`,
               '&:hover': {
                 backgroundImage: 'none',
@@ -75,9 +75,8 @@ export const inputsCustomizations: Components<Theme> = {
                 color: 'black',
                 backgroundColor: gray[50],
                 backgroundImage: `linear-gradient(to bottom, ${gray[100]}, ${gray[50]})`,
-                boxShadow:
-                  'inset 0 2px 0 hsl(220, 0%, 100%), inset 0 -2px 0 hsl(220, 30%, 90%)',
-                border: `1px solid ${gray[100]}`,
+                boxShadow: 'inset 0 -1px 0  hsl(220, 30%, 80%)',
+                border: `1px solid ${gray[50]}`,
                 '&:hover': {
                   backgroundImage: 'none',
                   backgroundColor: gray[300],
@@ -259,8 +258,8 @@ export const inputsCustomizations: Components<Theme> = {
               size: 'small',
             },
             style: {
-              width: '2rem',
-              height: '2rem',
+              width: '2.25rem',
+              height: '2.25rem',
               padding: '0.25rem',
               [`& .${svgIconClasses.root}`]: { fontSize: '1rem' },
             },
@@ -370,18 +369,22 @@ export const inputsCustomizations: Components<Theme> = {
       root: {
         border: 'none',
       },
+      input: {
+        '&::placeholder': {
+          opacity: 0.7,
+          color: gray[500],
+        },
+      },
     },
   },
   MuiOutlinedInput: {
     styleOverrides: {
-      input: {
-        padding: 0,
-        //paddingLeft: 10,
-      },
+      input: {},
       root: ({ theme }) => ({
         color: theme.palette.text.primary,
         borderRadius: theme.shape.borderRadius,
         border: `1px solid ${theme.palette.divider}`,
+        backgroundColor: theme.palette.background.default,
         transition: 'border 120ms ease-in',
         '&:hover': {
           borderColor: gray[400],
@@ -401,8 +404,7 @@ export const inputsCustomizations: Components<Theme> = {
               size: 'small',
             },
             style: {
-              height: '2rem',
-              padding: '0 0.5rem',
+              height: '2.25rem',
             },
           },
           {
