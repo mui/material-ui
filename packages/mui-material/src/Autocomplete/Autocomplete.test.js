@@ -7,6 +7,7 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
+  reactMajor,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
@@ -1722,6 +1723,16 @@ describe('<Autocomplete />', () => {
       const value = 'not a good value';
       const options = ['first option', 'second option'];
 
+      const errorMessage = 'None of the options match with `"not a good value"`';
+
+      let expectedOccurrences = 4;
+
+      if (reactMajor === 18) {
+        expectedOccurrences = 6;
+      } else if (reactMajor === 17) {
+        expectedOccurrences = 2;
+      }
+
       expect(() => {
         render(
           <Autocomplete
@@ -1730,17 +1741,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} />}
           />,
         );
-      }).toWarnDev([
-        'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
-        // React 18 Strict Effects run mount effects twice which lead to a cascading update
-        React.version.startsWith('18') && 'None of the options match with `"not a good value"`',
-        React.version.startsWith('18') &&
-          !strictModeDoubleLoggingSuppressed &&
-          'None of the options match with `"not a good value"`',
-      ]);
+      }).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
     });
 
     it('warn if groups options are not sorted', () => {
@@ -2866,10 +2867,10 @@ describe('<Autocomplete />', () => {
     );
     expect(handleHighlightChange.callCount).to.equal(
       // FIXME: highlighted index implementation should be implemented using React not the DOM.
-      React.version.startsWith('18') ? 2 : 1,
+      reactMajor >= 18 ? 2 : 1,
     );
     expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-    if (React.version.startsWith('18')) {
+    if (reactMajor >= 18) {
       expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
     }
   });
@@ -2889,10 +2890,10 @@ describe('<Autocomplete />', () => {
       );
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 2 : 1,
+        reactMajor >= 18 ? 2 : 1,
       );
       expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-      if (React.version.startsWith('18')) {
+      if (reactMajor >= 18) {
         expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
       }
     });
@@ -2914,9 +2915,9 @@ describe('<Autocomplete />', () => {
 
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 4 : 3,
+        reactMajor >= 18 ? 4 : 3,
       );
-      if (React.version.startsWith('18')) {
+      if (reactMajor >= 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
         expect(handleHighlightChange.args[2][1]).to.equal(null);
         expect(handleHighlightChange.args[2][2]).to.equal('auto');
@@ -2928,7 +2929,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 5 : 4,
+        reactMajor >= 18 ? 5 : 4,
       );
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[1]);
@@ -2950,9 +2951,9 @@ describe('<Autocomplete />', () => {
       fireEvent.mouseMove(firstOption);
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 4 : 3,
+        reactMajor >= 18 ? 4 : 3,
       );
-      if (React.version.startsWith('18')) {
+      if (reactMajor >= 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
         expect(handleHighlightChange.args[2][1]).to.equal(null);
         expect(handleHighlightChange.args[2][2]).to.equal('auto');
@@ -3001,7 +3002,11 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
       setProps({ options: ['four', 'five'] });
       checkHighlightIs(getByRole('listbox'), 'four');
-      expect(handleHighlightChange).to.deep.equal([null, 'one', 'four']);
+
+      const expectedCallHistory =
+        reactMajor >= 19 ? [null, 'one', 'one', 'four'] : [null, 'one', 'four'];
+
+      expect(handleHighlightChange).to.deep.equal(expectedCallHistory);
     });
   });
 

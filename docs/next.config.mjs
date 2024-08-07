@@ -72,6 +72,7 @@ export default withDocsInfra({
             '@mui/x-charts',
             '@mui/x-tree-view',
             '@mui/x-license-pro',
+            '@toolpad/core',
           ].some((dep) => request.startsWith(dep));
 
           if (hasDependencyOnRepoPackages) {
@@ -98,8 +99,14 @@ export default withDocsInfra({
           ...config.resolve.alias,
 
           // for 3rd party packages with dependencies in this repository
+          '@mui/material$': path.resolve(workspaceRoot, 'packages/mui-material/src/index.js'),
           '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
+
           '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
+          '@mui/icons-material$': path.resolve(
+            workspaceRoot,
+            'packages/mui-icons-material/lib/esm/index.js',
+          ),
           '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),

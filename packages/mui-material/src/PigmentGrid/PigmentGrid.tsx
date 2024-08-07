@@ -11,7 +11,7 @@ import {
   generateDirectionClasses,
   generateSizeClassNames,
   generateSpacingClassNames,
-} from '@mui/system/Unstable_Grid/gridGenerator';
+} from '@mui/system/Grid/gridGenerator';
 import { Breakpoint, Theme } from '../styles';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };

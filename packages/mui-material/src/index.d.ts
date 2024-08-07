@@ -222,10 +222,9 @@ export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
 export { default as Grid } from './Grid';
-export * from './Grid';
 
-export { default as Unstable_Grid2 } from './Unstable_Grid2';
-export * from './Unstable_Grid2';
+export { default as Grid2 } from './Grid2';
+export * from './Grid2';
 
 export { default as Grow } from './Grow';
 export * from './Grow';
@@ -475,6 +474,8 @@ export * from './useAutocomplete';
 
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
+
+export * from './version';
 
 /**
  * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead

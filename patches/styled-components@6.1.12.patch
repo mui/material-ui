@@ -1,0 +1,184 @@
+diff --git a/dist/hoc/withTheme.d.ts b/dist/hoc/withTheme.d.ts
+index f3452c16983a0b45ca314c7c717de9f6da75f90a..21fec5f48cc060f485520c0d77afc59bf7e7d487 100644
+--- a/dist/hoc/withTheme.d.ts
++++ b/dist/hoc/withTheme.d.ts
+@@ -1,3 +1,3 @@
+ import React from 'react';
+ import { AnyComponent, ExecutionProps } from '../types';
+-export default function withTheme<T extends AnyComponent>(Component: T): React.ForwardRefExoticComponent<React.PropsWithoutRef<JSX.LibraryManagedAttributes<T, ExecutionProps>> & React.RefAttributes<T>> & { [key in Exclude<keyof T, T extends React.MemoExoticComponent<any> ? "defaultProps" | "$$typeof" | "displayName" | "type" | "propTypes" | "compare" : T extends React.ForwardRefExoticComponent<any> ? "defaultProps" | "$$typeof" | "displayName" | "propTypes" | "render" : "prototype" | "length" | "arguments" | "caller" | "name" | "defaultProps" | "displayName" | "type" | "propTypes" | "contextType" | "contextTypes" | "childContextTypes" | "getDerivedStateFromProps" | "getDerivedStateFromError" | "getDefaultProps" | "mixins" | "callee" | "arity">]: T[key]; };
++export default function withTheme<T extends AnyComponent>(Component: T): React.ForwardRefExoticComponent<React.PropsWithoutRef<React.JSX.LibraryManagedAttributes<T, ExecutionProps>> & React.RefAttributes<T>> & { [key in Exclude<keyof T, T extends React.MemoExoticComponent<any> ? "defaultProps" | "$$typeof" | "displayName" | "type" | "propTypes" | "compare" : T extends React.ForwardRefExoticComponent<any> ? "defaultProps" | "$$typeof" | "displayName" | "propTypes" | "render" : "prototype" | "length" | "arguments" | "caller" | "name" | "defaultProps" | "displayName" | "type" | "propTypes" | "contextType" | "contextTypes" | "childContextTypes" | "getDerivedStateFromProps" | "getDerivedStateFromError" | "getDefaultProps" | "mixins" | "callee" | "arity">]: T[key]; };
+diff --git a/dist/models/ServerStyleSheet.d.ts b/dist/models/ServerStyleSheet.d.ts
+index b47f4589f4da7b7413b37907c491dadc433c019b..d3f07db75a689eb9d45ddf412537a2b8a0e374b4 100644
+--- a/dist/models/ServerStyleSheet.d.ts
++++ b/dist/models/ServerStyleSheet.d.ts
+@@ -8,9 +8,9 @@ export default class ServerStyleSheet {
+     sealed: boolean;
+     constructor();
+     _emitSheetCSS: () => string;
+-    collectStyles(children: any): JSX.Element;
++    collectStyles(children: any): React.JSX.Element;
+     getStyleTags: () => string;
+     getStyleElement: () => React.JSX.Element[];
+     interleaveWithNodeStream(input: Readable): streamInternal.Transform;
+     seal: () => void;
+ }
+diff --git a/dist/models/StyleSheetManager.d.ts b/dist/models/StyleSheetManager.d.ts
+index a2e4ac7f0ed10ea0e6827956c65a2e066948e3d1..0008e83fba4f3d84e90928da9d9af7cd2c85ad4e 100644
+--- a/dist/models/StyleSheetManager.d.ts
++++ b/dist/models/StyleSheetManager.d.ts
+@@ -62,4 +62,4 @@ export type IStyleSheetManager = React.PropsWithChildren<{
+      */
+     target?: undefined | HTMLElement;
+ }>;
+-export declare function StyleSheetManager(props: IStyleSheetManager): JSX.Element;
++export declare function StyleSheetManager(props: IStyleSheetManager): React.JSX.Element;
+diff --git a/dist/models/ThemeProvider.d.ts b/dist/models/ThemeProvider.d.ts
+index b5d7d32bd1748d30ccba747db5c8c54438124eb4..2511ae972a2cc124b8d703d990865c31264eb528 100644
+--- a/dist/models/ThemeProvider.d.ts
++++ b/dist/models/ThemeProvider.d.ts
+@@ -43,5 +43,5 @@ export declare function useTheme(): DefaultTheme;
+ /**
+  * Provide a theme to an entire react component tree via context
+  */
+-export default function ThemeProvider(props: Props): JSX.Element | null;
++export default function ThemeProvider(props: Props): React.JSX.Element | null;
+ export {};
+diff --git a/dist/types.d.ts b/dist/types.d.ts
+index a76cac2b82b733fa72d9be6ca9b764415d4ed8b4..5e166d7b485e98aa08ef684d7e0450fa601acee3 100644
+--- a/dist/types.d.ts
++++ b/dist/types.d.ts
+@@ -130,13 +130,13 @@ export type PolymorphicComponentProps<R extends Runtime, BaseProps extends objec
+  * any specialized props in the target component.
+  */
+ export interface PolymorphicComponent<R extends Runtime, BaseProps extends object> extends React.ForwardRefExoticComponent<BaseProps> {
+-    <AsTarget extends StyledTarget<R> | void = void, ForwardedAsTarget extends StyledTarget<R> | void = void>(props: PolymorphicComponentProps<R, BaseProps, AsTarget, ForwardedAsTarget>): JSX.Element;
++    <AsTarget extends StyledTarget<R> | void = void, ForwardedAsTarget extends StyledTarget<R> | void = void>(props: PolymorphicComponentProps<R, BaseProps, AsTarget, ForwardedAsTarget>): React.JSX.Element;
+ }
+ export interface IStyledComponentBase<R extends Runtime, Props extends object = BaseObject> extends PolymorphicComponent<R, Props>, IStyledStatics<R, Props>, StyledComponentBrand {
+     defaultProps?: (ExecutionProps & Partial<Props>) | undefined;
+     toString: () => string;
+ }
+-export type IStyledComponent<R extends Runtime, Props extends object = BaseObject> = IStyledComponentBase<R, Props> & 
++export type IStyledComponent<R extends Runtime, Props extends object = BaseObject> = IStyledComponentBase<R, Props> &
+ /**
+  * TypeScript doesn't allow using a styled component as a key inside object
+  * styles because "A computed property name must be of type 'string', 'number',
+diff --git a/native/dist/dist/hoc/withTheme.d.ts b/native/dist/dist/hoc/withTheme.d.ts
+index f3452c16983a0b45ca314c7c717de9f6da75f90a..21fec5f48cc060f485520c0d77afc59bf7e7d487 100644
+--- a/native/dist/dist/hoc/withTheme.d.ts
++++ b/native/dist/dist/hoc/withTheme.d.ts
+@@ -1,3 +1,3 @@
+ import React from 'react';
+ import { AnyComponent, ExecutionProps } from '../types';
+-export default function withTheme<T extends AnyComponent>(Component: T): React.ForwardRefExoticComponent<React.PropsWithoutRef<JSX.LibraryManagedAttributes<T, ExecutionProps>> & React.RefAttributes<T>> & { [key in Exclude<keyof T, T extends React.MemoExoticComponent<any> ? "defaultProps" | "$$typeof" | "displayName" | "type" | "propTypes" | "compare" : T extends React.ForwardRefExoticComponent<any> ? "defaultProps" | "$$typeof" | "displayName" | "propTypes" | "render" : "prototype" | "length" | "arguments" | "caller" | "name" | "defaultProps" | "displayName" | "type" | "propTypes" | "contextType" | "contextTypes" | "childContextTypes" | "getDerivedStateFromProps" | "getDerivedStateFromError" | "getDefaultProps" | "mixins" | "callee" | "arity">]: T[key]; };
++export default function withTheme<T extends AnyComponent>(Component: T): React.ForwardRefExoticComponent<React.PropsWithoutRef<React.JSX.LibraryManagedAttributes<T, ExecutionProps>> & React.RefAttributes<T>> & { [key in Exclude<keyof T, T extends React.MemoExoticComponent<any> ? "defaultProps" | "$$typeof" | "displayName" | "type" | "propTypes" | "compare" : T extends React.ForwardRefExoticComponent<any> ? "defaultProps" | "$$typeof" | "displayName" | "propTypes" | "render" : "prototype" | "length" | "arguments" | "caller" | "name" | "defaultProps" | "displayName" | "type" | "propTypes" | "contextType" | "contextTypes" | "childContextTypes" | "getDerivedStateFromProps" | "getDerivedStateFromError" | "getDefaultProps" | "mixins" | "callee" | "arity">]: T[key]; };
+diff --git a/native/dist/dist/models/ServerStyleSheet.d.ts b/native/dist/dist/models/ServerStyleSheet.d.ts
+index b47f4589f4da7b7413b37907c491dadc433c019b..086123ea82646c4e42a36abfa34b029c1339dc7e 100644
+--- a/native/dist/dist/models/ServerStyleSheet.d.ts
++++ b/native/dist/dist/models/ServerStyleSheet.d.ts
+@@ -8,7 +8,7 @@ export default class ServerStyleSheet {
+     sealed: boolean;
+     constructor();
+     _emitSheetCSS: () => string;
+-    collectStyles(children: any): JSX.Element;
++    collectStyles(children: any): React.JSX.Element;
+     getStyleTags: () => string;
+     getStyleElement: () => React.JSX.Element[];
+     interleaveWithNodeStream(input: Readable): streamInternal.Transform;
+diff --git a/native/dist/dist/models/StyleSheetManager.d.ts b/native/dist/dist/models/StyleSheetManager.d.ts
+index a2e4ac7f0ed10ea0e6827956c65a2e066948e3d1..0008e83fba4f3d84e90928da9d9af7cd2c85ad4e 100644
+--- a/native/dist/dist/models/StyleSheetManager.d.ts
++++ b/native/dist/dist/models/StyleSheetManager.d.ts
+@@ -62,4 +62,4 @@ export type IStyleSheetManager = React.PropsWithChildren<{
+      */
+     target?: undefined | HTMLElement;
+ }>;
+-export declare function StyleSheetManager(props: IStyleSheetManager): JSX.Element;
++export declare function StyleSheetManager(props: IStyleSheetManager): React.JSX.Element;
+diff --git a/native/dist/dist/models/ThemeProvider.d.ts b/native/dist/dist/models/ThemeProvider.d.ts
+index b5d7d32bd1748d30ccba747db5c8c54438124eb4..2511ae972a2cc124b8d703d990865c31264eb528 100644
+--- a/native/dist/dist/models/ThemeProvider.d.ts
++++ b/native/dist/dist/models/ThemeProvider.d.ts
+@@ -43,5 +43,5 @@ export declare function useTheme(): DefaultTheme;
+ /**
+  * Provide a theme to an entire react component tree via context
+  */
+-export default function ThemeProvider(props: Props): JSX.Element | null;
++export default function ThemeProvider(props: Props): React.JSX.Element | null;
+ export {};
+diff --git a/native/dist/dist/types.d.ts b/native/dist/dist/types.d.ts
+index a76cac2b82b733fa72d9be6ca9b764415d4ed8b4..5e166d7b485e98aa08ef684d7e0450fa601acee3 100644
+--- a/native/dist/dist/types.d.ts
++++ b/native/dist/dist/types.d.ts
+@@ -130,13 +130,13 @@ export type PolymorphicComponentProps<R extends Runtime, BaseProps extends objec
+  * any specialized props in the target component.
+  */
+ export interface PolymorphicComponent<R extends Runtime, BaseProps extends object> extends React.ForwardRefExoticComponent<BaseProps> {
+-    <AsTarget extends StyledTarget<R> | void = void, ForwardedAsTarget extends StyledTarget<R> | void = void>(props: PolymorphicComponentProps<R, BaseProps, AsTarget, ForwardedAsTarget>): JSX.Element;
++    <AsTarget extends StyledTarget<R> | void = void, ForwardedAsTarget extends StyledTarget<R> | void = void>(props: PolymorphicComponentProps<R, BaseProps, AsTarget, ForwardedAsTarget>): React.JSX.Element;
+ }
+ export interface IStyledComponentBase<R extends Runtime, Props extends object = BaseObject> extends PolymorphicComponent<R, Props>, IStyledStatics<R, Props>, StyledComponentBrand {
+     defaultProps?: (ExecutionProps & Partial<Props>) | undefined;
+     toString: () => string;
+ }
+-export type IStyledComponent<R extends Runtime, Props extends object = BaseObject> = IStyledComponentBase<R, Props> & 
++export type IStyledComponent<R extends Runtime, Props extends object = BaseObject> = IStyledComponentBase<R, Props> &
+ /**
+  * TypeScript doesn't allow using a styled component as a key inside object
+  * styles because "A computed property name must be of type 'string', 'number',
+diff --git a/native/dist/hoc/withTheme.d.ts b/native/dist/hoc/withTheme.d.ts
+index 7d244d05cbfd990881338c15ec8d53afc578f5bd..21a2eafb196fb5372b0ad2dbae6af015b16b4587 100644
+--- a/native/dist/hoc/withTheme.d.ts
++++ b/native/dist/hoc/withTheme.d.ts
+@@ -1,3 +1,3 @@
+ import React from 'react';
+ import { AnyComponent, ExecutionProps } from '../types';
+-export default function withTheme<T extends AnyComponent>(Component: T): React.ForwardRefExoticComponent<React.PropsWithoutRef<JSX.LibraryManagedAttributes<T, ExecutionProps>> & React.RefAttributes<T>> & { [key in Exclude<keyof T, T extends React.MemoExoticComponent<any> ? "propTypes" | "defaultProps" | "displayName" | "$$typeof" | "type" | "compare" : T extends React.ForwardRefExoticComponent<any> ? "propTypes" | "defaultProps" | "displayName" | "$$typeof" | "render" : "length" | "propTypes" | "contextType" | "contextTypes" | "childContextTypes" | "defaultProps" | "displayName" | "getDerivedStateFromProps" | "getDerivedStateFromError" | "type" | "getDefaultProps" | "mixins" | "name" | "prototype" | "caller" | "callee" | "arguments" | "arity">]: T[key]; };
++export default function withTheme<T extends AnyComponent>(Component: T): React.ForwardRefExoticComponent<React.PropsWithoutRef<React.JSX.LibraryManagedAttributes<T, ExecutionProps>> & React.RefAttributes<T>> & { [key in Exclude<keyof T, T extends React.MemoExoticComponent<any> ? "propTypes" | "defaultProps" | "displayName" | "$$typeof" | "type" | "compare" : T extends React.ForwardRefExoticComponent<any> ? "propTypes" | "defaultProps" | "displayName" | "$$typeof" | "render" : "length" | "propTypes" | "contextType" | "contextTypes" | "childContextTypes" | "defaultProps" | "displayName" | "getDerivedStateFromProps" | "getDerivedStateFromError" | "type" | "getDefaultProps" | "mixins" | "name" | "prototype" | "caller" | "callee" | "arguments" | "arity">]: T[key]; };
+diff --git a/native/dist/models/ServerStyleSheet.d.ts b/native/dist/models/ServerStyleSheet.d.ts
+index b47f4589f4da7b7413b37907c491dadc433c019b..086123ea82646c4e42a36abfa34b029c1339dc7e 100644
+--- a/native/dist/models/ServerStyleSheet.d.ts
++++ b/native/dist/models/ServerStyleSheet.d.ts
+@@ -8,7 +8,7 @@ export default class ServerStyleSheet {
+     sealed: boolean;
+     constructor();
+     _emitSheetCSS: () => string;
+-    collectStyles(children: any): JSX.Element;
++    collectStyles(children: any): React.JSX.Element;
+     getStyleTags: () => string;
+     getStyleElement: () => React.JSX.Element[];
+     interleaveWithNodeStream(input: Readable): streamInternal.Transform;
+diff --git a/native/dist/models/StyleSheetManager.d.ts b/native/dist/models/StyleSheetManager.d.ts
+index a2e4ac7f0ed10ea0e6827956c65a2e066948e3d1..0008e83fba4f3d84e90928da9d9af7cd2c85ad4e 100644
+--- a/native/dist/models/StyleSheetManager.d.ts
++++ b/native/dist/models/StyleSheetManager.d.ts
+@@ -62,4 +62,4 @@ export type IStyleSheetManager = React.PropsWithChildren<{
+      */
+     target?: undefined | HTMLElement;
+ }>;
+-export declare function StyleSheetManager(props: IStyleSheetManager): JSX.Element;
++export declare function StyleSheetManager(props: IStyleSheetManager): React.JSX.Element;
+diff --git a/native/dist/models/ThemeProvider.d.ts b/native/dist/models/ThemeProvider.d.ts
+index b5d7d32bd1748d30ccba747db5c8c54438124eb4..2511ae972a2cc124b8d703d990865c31264eb528 100644
+--- a/native/dist/models/ThemeProvider.d.ts
++++ b/native/dist/models/ThemeProvider.d.ts
+@@ -43,5 +43,5 @@ export declare function useTheme(): DefaultTheme;
+ /**
+  * Provide a theme to an entire react component tree via context
+  */
+-export default function ThemeProvider(props: Props): JSX.Element | null;
++export default function ThemeProvider(props: Props): React.JSX.Element | null;
+ export {};
+diff --git a/native/dist/types.d.ts b/native/dist/types.d.ts
+index 4a6953c145bbd6c0880378e09e0de80b7a2113f0..1e023c172fe4b569ec1a03710305458109931022 100644
+--- a/native/dist/types.d.ts
++++ b/native/dist/types.d.ts
+@@ -130,7 +130,7 @@ export type PolymorphicComponentProps<R extends Runtime, BaseProps extends objec
+  * any specialized props in the target component.
+  */
+ export interface PolymorphicComponent<R extends Runtime, BaseProps extends object> extends React.ForwardRefExoticComponent<BaseProps> {
+-    <AsTarget extends StyledTarget<R> | void = void, ForwardedAsTarget extends StyledTarget<R> | void = void>(props: PolymorphicComponentProps<R, BaseProps, AsTarget, ForwardedAsTarget>): JSX.Element;
++    <AsTarget extends StyledTarget<R> | void = void, ForwardedAsTarget extends StyledTarget<R> | void = void>(props: PolymorphicComponentProps<R, BaseProps, AsTarget, ForwardedAsTarget>): React.JSX.Element;
+ }
+ export interface IStyledComponent<R extends Runtime, Props extends object = BaseObject> extends PolymorphicComponent<R, Props>, IStyledStatics<R, Props>, StyledComponentBrand {
+     defaultProps?: (ExecutionProps & Partial<Props>) | undefined;

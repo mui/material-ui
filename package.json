@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "6.0.0-beta.3",
+  "version": "6.0.0-beta.4",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -95,16 +95,16 @@
     "@netlify/functions": "^2.8.1",
     "@slack/bolt": "^3.19.0",
     "execa": "^9.3.0",
-    "google-auth-library": "^9.12.0"
+    "google-auth-library": "^9.13.0"
   },
   "devDependencies": {
-    "@argos-ci/core": "^2.4.0",
+    "@argos-ci/core": "^2.4.1",
     "@babel/cli": "^7.24.8",
-    "@babel/core": "^7.24.9",
+    "@babel/core": "^7.25.2",
     "@babel/node": "^7.25.0",
     "@babel/plugin-transform-react-constant-elements": "^7.25.1",
     "@babel/plugin-transform-runtime": "^7.24.7",
-    "@babel/preset-env": "^7.25.0",
+    "@babel/preset-env": "^7.25.3",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
     "@babel/register": "^7.24.6",
@@ -123,7 +123,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.7",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^18.19.42",
+    "@types/node": "^18.19.43",
     "@types/react": "^18.3.3",
     "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
@@ -134,6 +134,7 @@
     "babel-plugin-module-resolver": "^5.0.2",
     "babel-plugin-optimize-clsx": "^2.6.2",
     "babel-plugin-react-remove-properties": "^0.3.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chalk": "^5.3.0",
     "compression-webpack-plugin": "^11.1.0",
@@ -151,14 +152,14 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-material-ui": "workspace:^",
-    "eslint-plugin-mocha": "^10.4.3",
+    "eslint-plugin-mocha": "^10.5.0",
     "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-react-compiler": "0.0.0-experimental-0998c1e-20240625",
+    "eslint-plugin-react-compiler": "0.0.0-experimental-9ed098e-20240725",
     "eslint-plugin-react-hooks": "^4.6.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "globby": "^14.0.2",
-    "karma": "^6.4.3",
+    "karma": "^6.4.4",
     "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.2.0",
     "karma-coverage-istanbul-reporter": "^3.0.3",
@@ -170,14 +171,14 @@
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.13.0",
     "mocha": "^10.7.0",
-    "nx": "^19.4.3",
+    "nx": "^19.5.6",
     "nyc": "^17.0.0",
     "piscina": "^4.6.1",
     "postcss-styled-syntax": "^0.6.4",
     "prettier": "^3.3.3",
     "pretty-quick": "^4.0.0",
     "process": "^0.11.10",
-    "rimraf": "^5.0.9",
+    "rimraf": "^5.0.10",
     "serve": "^14.2.3",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
@@ -190,23 +191,23 @@
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@9.6.0",
   "engines": {
-    "pnpm": "9.5.0"
+    "pnpm": "9.6.0"
   },
   "resolutions": {
-    "@babel/core": "^7.24.9",
+    "@babel/core": "^7.25.2",
     "@babel/code-frame": "^7.24.7",
     "@babel/plugin-transform-runtime": "^7.24.7",
-    "@babel/preset-env": "^7.25.0",
+    "@babel/preset-env": "^7.25.3",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
     "@babel/runtime": "^7.25.0",
-    "@babel/types": "^7.25.0",
+    "@babel/types": "^7.25.2",
     "@definitelytyped/header-parser": "^0.2.11",
     "@definitelytyped/typescript-versions": "^0.1.3",
     "@definitelytyped/utils": "^0.1.7",
-    "@types/node": "^18.19.42",
+    "@types/node": "^18.19.43",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "cross-fetch": "^4.0.0",
@@ -278,6 +279,11 @@
           "@mui/internal-test-utils:build"
         ]
       }
+    }
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "styled-components@6.1.12": "patches/styled-components@6.1.12.patch"
     }
   }
 }

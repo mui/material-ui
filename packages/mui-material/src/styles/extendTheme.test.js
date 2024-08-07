@@ -74,14 +74,12 @@ describe('extendTheme', () => {
   it('should throw error if the default color scheme is invalid', () => {
     expect(() =>
       extendTheme({ colorSchemes: { dark: false }, defaultColorScheme: 'dark' }),
-    ).to.throw(
-      'MUI: The provided `colorSchemes.dark` to the `extendTheme` function is either missing or invalid.',
-    );
+    ).to.throw('MUI: The `colorSchemes.dark` option is either missing or invalid.');
   });
 
   it('should throw error if the default color scheme is missing', () => {
     expect(() => extendTheme({ defaultColorScheme: 'paper' })).to.throw(
-      'MUI: The provided `colorSchemes.paper` to the `extendTheme` function is either missing or invalid.',
+      'MUI: The `colorSchemes.paper` option is either missing or invalid.',
     );
   });
 
@@ -759,7 +757,7 @@ describe('extendTheme', () => {
       });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
-        ':root',
+        ':root, .light',
         '.dark',
       ]);
     });
@@ -771,7 +769,7 @@ describe('extendTheme', () => {
       });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
-        ':root',
+        ':root, .mode-light',
         '.mode-dark',
       ]);
     });
@@ -793,7 +791,7 @@ describe('extendTheme', () => {
       });
       expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
         ':root',
-        ':root',
+        ':root, [data-theme-light]',
         '[data-theme-dark]',
       ]);
     });
@@ -806,6 +804,20 @@ describe('extendTheme', () => {
 
       expect(theme.getColorSchemeSelector('light')).to.equal('[data-theme-light] &');
       expect(theme.getColorSchemeSelector('dark')).to.equal('[data-theme-dark] &');
+    });
+
+    it('should use a custom class selector when dark is the default', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: '.mode-%s',
+        defaultColorScheme: 'dark',
+      });
+      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+        ':root',
+        '.mode-dark', // specific variables for dark
+        ':root, .mode-dark',
+        '.mode-light',
+      ]);
     });
   });
 });
