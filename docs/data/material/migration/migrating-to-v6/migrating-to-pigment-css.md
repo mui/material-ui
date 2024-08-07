@@ -76,7 +76,9 @@ const nextConfig = {
 /**
  * @type {import('@pigment-css/nextjs-plugin').PigmentOptions}
  */
-const pigmentConfig = {}; // we will refer to this later
+const pigmentConfig = {
+  transformLibraries: ['@mui/material'],
+};
 
 export default withPigment(nextConfig, pigmentConfig);
 ```
@@ -91,7 +93,9 @@ const nextConfig = {
 /**
  * @type {import('@pigment-css/nextjs-plugin').PigmentOptions}
  */
-const pigmentConfig = {}; // we will refer to this later
+const pigmentConfig = {
+  transformLibraries: ['@mui/material'],
+};
 
 module.exports = withPigment(nextConfig, pigmentConfig);
 ```
@@ -143,7 +147,12 @@ Next, open vite config file, usually named `vite.config.js`, and add the plugin:
 import { defineConfig } from 'vite';
 import { pigment } from '@pigment-css/vite-plugin';
 
-const pigmentConfig = {}; // we will refer to this later
+/**
+ * @type {import('@pigment-css/nextjs-plugin').PigmentOptions}
+ */
+const pigmentConfig = {
+  transformLibraries: ['@mui/material'],
+};
 
 export default defineConfig({
   plugins: [
@@ -152,6 +161,10 @@ export default defineConfig({
   ],
 });
 ```
+
+:::warning
+There is an [issue with `pnpm`](https://github.com/mui/pigment-css/issues/176) that prevents the plugin from working correctly. Consider using `npm` or `yarn` instead.
+:::
 
 Finally, add the Pigment CSS stylesheet to the top of the main file.
 
@@ -173,14 +186,14 @@ Integrating Pigment CSS with Material UI requires you to configure the theme t
 Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
 ```diff
-+import { extendTheme } from '@mui/material';
++import { createTheme } from '@mui/material';
 
 +const pigmentConfig = {
-+  theme: extendTheme(),
++  theme: createTheme(…parameters if any),
 +};
 ```
 
-If you don't have a custom theme, you are ready to go. Start a development server by running:
+If you have a custom theme, follow the [theme migration](#migrating-custom-theme), otherwise you are ready to go. Start a development server by running:
 
 <codeblock storageKey="package-manager">
 
