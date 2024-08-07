@@ -2,7 +2,7 @@
 
 <p class="description">This guide explains why and how to upgrade from Material UI v5 to v6.</p>
 
-## Why you should upgrade
+## Why you should upgrade to Material UI v6
 
 ### React Server Component support
 
