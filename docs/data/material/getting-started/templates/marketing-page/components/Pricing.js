@@ -7,7 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
@@ -25,6 +25,7 @@ const tiers = [
     ],
     buttonText: 'Sign up for free',
     buttonVariant: 'outlined',
+    buttonColor: 'primary',
   },
   {
     title: 'Professional',
@@ -40,6 +41,7 @@ const tiers = [
     ],
     buttonText: 'Start now',
     buttonVariant: 'contained',
+    buttonColor: 'secondary',
   },
   {
     title: 'Enterprise',
@@ -52,6 +54,7 @@ const tiers = [
     ],
     buttonText: 'Contact us',
     buttonVariant: 'outlined',
+    buttonColor: 'primary',
   },
 ];
 
@@ -75,7 +78,12 @@ export default function Pricing() {
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
-        <Typography component="h2" variant="h4" sx={{ color: 'text.primary' }}>
+        <Typography
+          component="h2"
+          variant="h4"
+          gutterBottom
+          sx={{ color: 'text.primary' }}
+        >
           Pricing
         </Typography>
         <Typography variant="body1" sx={{ color: 'text.secondary' }}>
@@ -88,15 +96,12 @@ export default function Pricing() {
       <Grid
         container
         spacing={3}
-        sx={{ alignItems: 'center', justifyContent: 'center' }}
+        sx={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}
       >
         {tiers.map((tier) => (
           <Grid
-            item
+            size={{ xs: 12, sm: tier.title === 'Enterprise' ? 12 : 6, md: 4 }}
             key={tier.title}
-            xs={12}
-            sm={tier.title === 'Enterprise' ? 12 : 6}
-            md={4}
           >
             <Card
               sx={[
@@ -110,9 +115,11 @@ export default function Pricing() {
                   ((theme) => ({
                     border: 'none',
                     background:
-                      'radial-gradient(circle at 50% 0%, hsl(210, 98%, 35%), hsl(210, 100%, 16%))',
-                    boxShadow: `0 8px 12px hsla(210, 98%, 42%, 0.2)`,
+                      'radial-gradient(circle at 50% 0%, hsl(220, 20%, 35%), hsl(220, 30%, 6%))',
+                    boxShadow: `0 8px 12px hsla(220, 20%, 42%, 0.2)`,
                     ...theme.applyStyles('dark', {
+                      background:
+                        'radial-gradient(circle at 50% 0%, hsl(220, 20%, 20%), hsl(220, 30%, 16%))',
                       boxShadow: `0 8px 12px hsla(0, 0%, 0%, 0.8)`,
                     }),
                   })),
@@ -203,7 +210,11 @@ export default function Pricing() {
                 ))}
               </CardContent>
               <CardActions>
-                <Button fullWidth variant={tier.buttonVariant}>
+                <Button
+                  fullWidth
+                  variant={tier.buttonVariant}
+                  color={tier.buttonColor}
+                >
                   {tier.buttonText}
                 </Button>
               </CardActions>
