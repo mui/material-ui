@@ -8,7 +8,7 @@ To install the required packages, from `/docs`, run:
 pnpm install
 ```
 
-To start the docs site in development mode, from the project root, run:
+To start the docs site in development mode, from `/docs`, run:
 
 ```bash
 pnpm dev
