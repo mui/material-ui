@@ -553,7 +553,7 @@ export default function SearchIcons() {
         eventLabel: deferredQuery,
       });
     }
-  }, [deferredQuery, icons]);
+  }, [deferredQuery, icons.length]);
 
   const dialogSelectedIcon = useLatest(
     selectedIcon ? allIconsMap[selectedIcon] : null,
