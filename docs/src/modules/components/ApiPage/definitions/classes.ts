@@ -55,7 +55,7 @@ export function getClassApiDefinitions(params: GetClassApiDefinitionsParams): Cl
       );
     }
 
-    if (!conditions && description.search(/{{nodeName}}/) !== -1) {
+    if (!nodeName && description.search(/{{nodeName}}/) !== -1) {
       throw Error(
         `In ${componentName} the class "${classDefinition.className}" description with "{{nodeName}}" but without \`nodeName\` to replace it.`,
       );
