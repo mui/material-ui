@@ -3,7 +3,7 @@ import * as React from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { styled } from '@mui/system';
 
@@ -15,7 +15,7 @@ const FormGrid = styled(Grid)(() => ({
 export default function AddressForm() {
   return (
     <Grid container spacing={3}>
-      <FormGrid item xs={12} md={6}>
+      <FormGrid size={{ xs: 12, md: 6 }}>
         <FormLabel htmlFor="first-name" required>
           First name
         </FormLabel>
@@ -28,7 +28,7 @@ export default function AddressForm() {
           required
         />
       </FormGrid>
-      <FormGrid item xs={12} md={6}>
+      <FormGrid size={{ xs: 12, md: 6 }}>
         <FormLabel htmlFor="last-name" required>
           Last name
         </FormLabel>
@@ -41,7 +41,7 @@ export default function AddressForm() {
           required
         />
       </FormGrid>
-      <FormGrid item xs={12}>
+      <FormGrid size={{ xs: 12 }}>
         <FormLabel htmlFor="address1" required>
           Address line 1
         </FormLabel>
@@ -54,7 +54,7 @@ export default function AddressForm() {
           required
         />
       </FormGrid>
-      <FormGrid item xs={12}>
+      <FormGrid size={{ xs: 12 }}>
         <FormLabel htmlFor="address2">Address line 2</FormLabel>
         <OutlinedInput
           id="address2"
@@ -65,7 +65,7 @@ export default function AddressForm() {
           required
         />
       </FormGrid>
-      <FormGrid item xs={6}>
+      <FormGrid size={{ xs: 6 }}>
         <FormLabel htmlFor="city" required>
           City
         </FormLabel>
@@ -78,7 +78,7 @@ export default function AddressForm() {
           required
         />
       </FormGrid>
-      <FormGrid item xs={6}>
+      <FormGrid size={{ xs: 6 }}>
         <FormLabel htmlFor="state" required>
           State
         </FormLabel>
@@ -91,7 +91,7 @@ export default function AddressForm() {
           required
         />
       </FormGrid>
-      <FormGrid item xs={6}>
+      <FormGrid size={{ xs: 6 }}>
         <FormLabel htmlFor="zip" required>
           Zip / Postal code
         </FormLabel>
@@ -104,7 +104,7 @@ export default function AddressForm() {
           required
         />
       </FormGrid>
-      <FormGrid item xs={6}>
+      <FormGrid size={{ xs: 6 }}>
         <FormLabel htmlFor="country" required>
           Country
         </FormLabel>
@@ -117,7 +117,7 @@ export default function AddressForm() {
           required
         />
       </FormGrid>
-      <FormGrid item xs={12}>
+      <FormGrid size={{ xs: 12 }}>
         <FormControlLabel
           control={<Checkbox name="saveAddress" value="yes" />}
           label="Use this address for payment details"

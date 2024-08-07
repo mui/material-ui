@@ -376,6 +376,7 @@ export const inputsCustomizations: Components<Theme> = {
     styleOverrides: {
       input: {
         padding: 0,
+        //paddingLeft: 10,
       },
       root: ({ theme }) => ({
         color: theme.palette.text.primary,
