@@ -50,7 +50,7 @@ The following packages should remain unchanged during the upgrade process:
 - `@mui/x-date-pickers-pro`
 - `@mui/x-charts`
 - `@mui/x-tree-view`
-- `@mui/x-tree-view-proå`
+- `@mui/x-tree-view-pro`
 
 ## Supported browsers and versions
 
