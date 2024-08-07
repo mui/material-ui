@@ -1,17 +1,14 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import MuiChip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import { styled } from '@mui/material/styles';
 
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
@@ -63,6 +60,76 @@ const Chip = styled(MuiChip)(({ theme }) => ({
   ],
 }));
 
+function MobileLayout({ selectedItemIndex, handleItemClick, selectedFeature }) {
+  if (!items[selectedItemIndex]) {
+    return null;
+  }
+
+  return (
+    <Box
+      sx={{ display: { xs: 'flex', sm: 'none' }, flexDirection: 'column', gap: 4 }}
+    >
+      <Box sx={{ display: 'flex', gap: 2 }}>
+        {items.map(({ title }, index) => (
+          <Chip
+            size="medium"
+            key={index}
+            label={title}
+            onClick={() => handleItemClick(index)}
+            selected={selectedItemIndex === index}
+          />
+        ))}
+      </Box>
+      <Card variant="outlined">
+        <Box
+          sx={(theme) => ({
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: 280,
+            backgroundImage: 'var(--items-imageLight)',
+            ...theme.applyStyles('dark', {
+              backgroundImage: 'var(--items-imageDark)',
+            }),
+          })}
+          style={
+            items[selectedItemIndex]
+              ? {
+                  '--items-imageLight': items[selectedItemIndex].imageLight,
+                  '--items-imageDark': items[selectedItemIndex].imageDark,
+                }
+              : {}
+          }
+        />
+        <Box sx={{ px: 2, pb: 2 }}>
+          <Typography
+            gutterBottom
+            sx={{ color: 'text.primary', fontWeight: 'medium' }}
+          >
+            {selectedFeature.title}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1.5 }}>
+            {selectedFeature.description}
+          </Typography>
+        </Box>
+      </Card>
+    </Box>
+  );
+}
+
+MobileLayout.propTypes = {
+  handleItemClick: PropTypes.func.isRequired,
+  selectedFeature: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    icon: PropTypes.element,
+    imageDark: PropTypes.string.isRequired,
+    imageLight: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  selectedItemIndex: PropTypes.number.isRequired,
+};
+
+export { MobileLayout };
+
 export default function Features() {
   const [selectedItemIndex, setSelectedItemIndex] = React.useState(0);
 
@@ -74,193 +141,96 @@ export default function Features() {
 
   return (
     <Container id="features" sx={{ py: { xs: 8, sm: 16 } }}>
-      <Grid container spacing={6}>
-        <Grid item xs={12} md={6}>
-          <div>
-            <Typography component="h2" variant="h4" sx={{ color: 'text.primary' }}>
-              Product features
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
-            >
-              Provide a brief overview of the key features of the product. For
-              example, you could list the number of features, their types or
-              benefits, and add-ons.
-            </Typography>
-          </div>
-          <Grid container item sx={{ gap: 1, display: { xs: 'auto', sm: 'none' } }}>
-            {items.map(({ title }, index) => (
-              <Chip
-                key={index}
-                label={title}
-                onClick={() => handleItemClick(index)}
-                selected={selectedItemIndex === index}
-              />
-            ))}
-          </Grid>
-          <Card
-            variant="outlined"
-            sx={{ display: { xs: 'auto', sm: 'none' }, mt: 4 }}
-          >
-            <Box
-              sx={(theme) => ({
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                minHeight: 280,
-                backgroundImage: 'var(--items-imageLight)',
-                ...theme.applyStyles('dark', {
-                  backgroundImage: 'var(--items-imageDark)',
-                }),
-              })}
-              style={{
-                '--items-imageLight': items[selectedItemIndex].imageLight,
-                '--items-imageDark': items[selectedItemIndex].imageDark,
-              }}
-            />
-            <Box sx={{ px: 2, pb: 2 }}>
-              <Typography
-                gutterBottom
-                sx={{ color: 'text.primary', fontWeight: 'medium' }}
-              >
-                {selectedFeature.title}
-              </Typography>
-              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1.5 }}>
-                {selectedFeature.description}
-              </Typography>
-              <Link
-                color="primary"
-                variant="body2"
-                sx={{
-                  fontWeight: 'bold',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  '& > svg': { transition: '0.2s' },
-                  '&:hover > svg': { transform: 'translateX(2px)' },
-                }}
-              >
-                <span>Learn more</span>
-                <ChevronRightRoundedIcon
-                  fontSize="small"
-                  sx={{ mt: '1px', ml: '2px' }}
-                />
-              </Link>
-            </Box>
-          </Card>
-          <Stack
-            direction="column"
-            spacing={2}
-            useFlexGap
+      <Box sx={{ width: { sm: '100%', md: '60%' } }}>
+        <Typography
+          component="h2"
+          variant="h4"
+          gutterBottom
+          sx={{ color: 'text.primary' }}
+        >
+          Product features
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
+        >
+          Provide a brief overview of the key features of the product. For example,
+          you could list the number of features, their types or benefits, and
+          add-ons.
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row-reverse' },
+          gap: 2,
+        }}
+      >
+        <div>
+          <Box
             sx={{
-              justifyContent: 'center',
-              alignItems: 'flex-start',
-              width: '100%',
               display: { xs: 'none', sm: 'flex' },
+              flexDirection: 'column',
+              gap: 2,
+              height: '100%',
             }}
           >
             {items.map(({ icon, title, description }, index) => (
-              <Card
+              <Box
                 key={index}
                 component={Button}
                 onClick={() => handleItemClick(index)}
                 sx={[
                   (theme) => ({
-                    p: 3,
-                    height: 'fit-content',
+                    p: 2,
+                    height: '100%',
                     width: '100%',
-                    background: 'none',
                     '&:hover': {
-                      background:
-                        'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
-                      borderColor: 'primary.light',
-                      boxShadow: '0px 2px 8px hsla(0, 0%, 0%, 0.1)',
-                      ...theme.applyStyles('dark', {
-                        background:
-                          'linear-gradient(to right bottom, hsla(210, 100%, 12%, 0.2) 25%, hsla(210, 100%, 16%, 0.2) 100%)',
-                        borderColor: 'primary.dark',
-                        boxShadow: '0px 1px 8px hsla(210, 100%, 25%, 0.5) ',
-                      }),
+                      backgroundColor: theme.palette.action.hover,
                     },
                   }),
-                  selectedItemIndex === index &&
-                    ((theme) => ({
-                      backgroundColor: 'action.selected',
-                      borderColor: 'primary.light',
-                      ...theme.applyStyles('dark', {
-                        borderColor: 'primary.dark',
-                      }),
-                    })),
+                  selectedItemIndex === index && {
+                    backgroundColor: 'action.selected',
+                  },
                 ]}
               >
                 <Box
-                  sx={{
-                    width: '100%',
-                    display: 'flex',
-                    textAlign: 'left',
-                    flexDirection: { xs: 'column', md: 'row' },
-                    alignItems: { md: 'center' },
-                    gap: 2.5,
-                  }}
+                  sx={[
+                    {
+                      width: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'left',
+                      gap: 1,
+                      textAlign: 'left',
+                      textTransform: 'none',
+                      color: 'text.secondary',
+                    },
+                    selectedItemIndex === index && {
+                      color: 'text.primary',
+                    },
+                  ]}
                 >
-                  <Box
-                    sx={[
-                      (theme) => ({
-                        color: 'grey.400',
-                        ...theme.applyStyles('dark', {
-                          color: 'grey.600',
-                        }),
-                      }),
-                      selectedItemIndex === index && {
-                        color: 'primary.main',
-                      },
-                    ]}
-                  >
-                    {icon}
-                  </Box>
-                  <div>
-                    <Typography
-                      gutterBottom
-                      sx={{ color: 'text.primary', fontWeight: 'medium' }}
-                    >
-                      {title}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: 'text.secondary', mb: 1.5 }}
-                    >
-                      {description}
-                    </Typography>
-                    <Link
-                      color="primary"
-                      variant="body2"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                      }}
-                      sx={{
-                        fontWeight: 'bold',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        '& > svg': { transition: '0.2s' },
-                        '&:hover > svg': { transform: 'translateX(2px)' },
-                      }}
-                    >
-                      <span>Learn more</span>
-                      <ChevronRightRoundedIcon
-                        fontSize="small"
-                        sx={{ mt: '1px', ml: '2px' }}
-                      />
-                    </Link>
-                  </div>
+                  {icon}
+
+                  <Typography variant="h6">{title}</Typography>
+                  <Typography variant="body2">{description}</Typography>
                 </Box>
-              </Card>
+              </Box>
             ))}
-          </Stack>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{ display: { xs: 'none', sm: 'flex' }, width: '100%' }}
+          </Box>
+          <MobileLayout
+            selectedItemIndex={selectedItemIndex}
+            handleItemClick={handleItemClick}
+            selectedFeature={selectedFeature}
+          />
+        </div>
+        <Box
+          sx={{
+            display: { xs: 'none', sm: 'flex' },
+            width: '70%',
+            height: 'var(--items-image-height)',
+          }}
         >
           <Card
             variant="outlined"
@@ -282,14 +252,18 @@ export default function Features() {
                   backgroundImage: 'var(--items-imageDark)',
                 }),
               })}
-              style={{
-                '--items-imageLight': items[selectedItemIndex].imageLight,
-                '--items-imageDark': items[selectedItemIndex].imageDark,
-              }}
+              style={
+                items[selectedItemIndex]
+                  ? {
+                      '--items-imageLight': items[selectedItemIndex].imageLight,
+                      '--items-imageDark': items[selectedItemIndex].imageDark,
+                    }
+                  : {}
+              }
             />
           </Card>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </Container>
   );
 }

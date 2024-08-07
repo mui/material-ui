@@ -81,7 +81,7 @@ export default function MarketingPage() {
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
-      <Box>
+      <div>
         <LogoCollection />
         <Features />
         <Divider />
@@ -94,7 +94,7 @@ export default function MarketingPage() {
         <FAQ />
         <Divider />
         <Footer />
-      </Box>
+      </div>
       <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
