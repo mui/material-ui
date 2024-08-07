@@ -4,7 +4,7 @@ import { createRenderer, screen } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import { CssVarsProvider, extendTheme, useTheme } from '@mui/material/styles';
 
-describe('[Material UI] CssVarsProvider', () => {
+describe('[Material UI] ThemeProviderWithVars', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
   const storage = {};

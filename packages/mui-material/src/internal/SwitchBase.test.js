@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer } from '@mui/internal-test-utils';
+import { act, createRenderer, reactMajor } from '@mui/internal-test-utils';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import ButtonBase from '../ButtonBase';
@@ -410,9 +410,12 @@ describe('<SwitchBase />', () => {
         setProps({ checked: true });
         global.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
-        React.version.startsWith('16')
-          ? 'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.'
-          : 'Warning: A component is changing an uncontrolled input to be controlled.',
+        reactMajor === 16 &&
+          'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
+        reactMajor >= 19 && 'A component is changing an uncontrolled input to be controlled.',
+        reactMajor < 19 &&
+          reactMajor !== 16 &&
+          'Warning: A component is changing an uncontrolled input to be controlled.',
         'MUI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
       ]);
     });
@@ -433,9 +436,12 @@ describe('<SwitchBase />', () => {
         setProps({ checked: undefined });
         global.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
-        React.version.startsWith('16')
-          ? 'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.'
-          : 'Warning: A component is changing an uncontrolled input to be controlled.',
+        reactMajor === 16 &&
+          'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
+        reactMajor >= 19 && 'A component is changing an uncontrolled input to be controlled.',
+        reactMajor < 19 &&
+          reactMajor !== 16 &&
+          'Warning: A component is changing an uncontrolled input to be controlled.',
         'MUI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
       ]);
     });
