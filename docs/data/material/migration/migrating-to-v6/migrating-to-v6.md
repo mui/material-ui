@@ -6,17 +6,17 @@
 
 ### React Server Component support
 
-Material UI v6 introduces Pigment CSS, a zero-runtime CSS-in-JS styling engine to replace Emotion and styled-components as a more future-proof solution for writing styles in React 19 and beyond.
-With Pigment CSS, styles are extracted at build time rather than runtime, avoiding client-side recalculations and unlocking React Server Component (RSC) compatibility.
-This also leads to significant reductions in bundle sizes for Material UI apps.
+Material UI v6 introduces Pigment CSS, a zero-runtime CSS-in-JS styling engine to replace Emotion and styled-components as a more future-proof solution for writing styles in React 19 and beyond.
+With Pigment CSS, styles are extracted at build time rather than runtime, avoiding client-side recalculations and unlocking React Server Component (RSC) compatibility.
+This also leads to significant reductions in bundle sizes for Material UI apps.
 
-**In v6, Pigment CSS migration is opt-in.**
-Future major versions of Material UI will likely use Pigment CSS as the default styling solution.
-Though optional, we highly recommend migrating your Material UI app to Pigment CSS while upgrading to v6.
+**In v6, Pigment CSS migration is opt-in.**
+Future major versions of Material UI will likely use Pigment CSS as the default styling solution.
+Though optional, we highly recommend migrating your Material UI app to Pigment CSS while upgrading to v6.
 
 ### Quality-of-life improvements
 
-Material UI v6 features several other quality-of-life improvements, including:
+Material UI v6 features several other quality-of-life improvements, including:
 
 - stabilizing [the `CssVarsProvider` API](#cssvarsprovider-and-extendtheme)
 - support for container queries in themes
@@ -106,7 +106,7 @@ Make sure that your application is still running without errors, and commit the 
 
 ## Breaking changes
 
-Material UI v6 was designed to introduce minimal breaking changes when upgrading from v5.
+Material UI v6 was designed to introduce minimal breaking changes when upgrading from v5.
 These include browser support updates, a Node.js version bump, and the removal of the UMD bundle.
 These updates reduce the Material UI package size by 2.5MB—nearly 25% of the total size in v5.
 
@@ -263,7 +263,9 @@ npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
 You need to modify the import from `@mui/material/Unstable_Grid2` to `@mui/material/Grid2` before running the codemod.
 :::
 
-If you have custom breakpoints, the change is the same:
+##### Using custom breakpoints
+
+The usage described above also applies to custom breakpoints:
 
 ```diff
 -<Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4}>
@@ -375,7 +377,7 @@ See [Deprecations](/material-ui/migration/migrating-from-deprecated-apis/) for d
 
 ### System props
 
-MUI System props (such as `mt={*}`, `bgcolor={*}`, and more) have been deprecated in the Box, Typography, Link, Grid, and Stack components.
+MUI System props (such as `mt={*}`, `bgcolor={*}`, and more) have been deprecated in the Box, Typography, Link, Grid, and Stack components.
 Use the codemod below to move all System props to the `sx` prop:
 
 ```bash
@@ -420,4 +422,4 @@ This reduces the API surface and lets you define variants in other slots of the 
 
 ## Pigment CSS integration (optional)
 
-Once you've finished upgrading your app to v6, you'll be ready to start [migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) for RSC support and a smaller bundle size.
+Once you've finished upgrading your app to v6, you'll be ready to start [migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) for RSC support and a smaller bundle size.
