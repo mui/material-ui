@@ -2,7 +2,7 @@
 
 <p class="description">This guide explains why and how to upgrade from Material UI v5 to v6.</p>
 
-## Why you should upgrade to Material UI v6
+## Why you should upgrade to Material UI v6
 
 ### React Server Component support
 
@@ -40,7 +40,7 @@ If you're using any of these packages, you can also change their version to `"ne
 - `@mui/styled-engine-sc`
 - `@mui/utils`
 
-Note that MUI X packages _do not_ follow the same versioning strategy as Material UI.
+Note that MUI X packages _do not_ follow the same versioning strategy as Material UI.
 If you're using any of the following packages, they should remain unchanged during the upgrade process:
 
 - `@mui/x-data-grid`
