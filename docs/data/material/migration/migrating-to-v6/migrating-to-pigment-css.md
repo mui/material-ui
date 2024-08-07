@@ -215,7 +215,7 @@ Open the browser and navigate to the localhost URL, you should see the app runni
 
 ### Typescript
 
-If you are using TypeScript, you need to extend the Pigment CSS theme types with Material UI `Theme`.
+If you are using TypeScript, you need to extend the Pigment CSS theme types with Material UI `Theme`.
 Add the following code to a file that is included in your `tsconfig.json`:
 
 ```ts
@@ -229,7 +229,7 @@ declare module '@mui/material-pigment-css' {
 }
 ```
 
-Then, verify that the types is correctly picked up by Pigment CSS with the following code:
+Then, verify that the types is correctly picked up by Pigment CSS with the following code:
 
 ```ts
 // e.g. App.tsx
