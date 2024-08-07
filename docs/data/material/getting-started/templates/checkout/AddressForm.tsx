@@ -26,6 +26,7 @@ export default function AddressForm() {
           placeholder="John"
           autoComplete="first name"
           required
+          size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 12, md: 6 }}>
@@ -39,6 +40,7 @@ export default function AddressForm() {
           placeholder="Snow"
           autoComplete="last name"
           required
+          size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 12 }}>
@@ -52,6 +54,7 @@ export default function AddressForm() {
           placeholder="Street name and number"
           autoComplete="shipping address-line1"
           required
+          size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 12 }}>
@@ -63,6 +66,7 @@ export default function AddressForm() {
           placeholder="Apartment, suite, unit, etc. (optional)"
           autoComplete="shipping address-line2"
           required
+          size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 6 }}>
@@ -76,6 +80,7 @@ export default function AddressForm() {
           placeholder="New York"
           autoComplete="City"
           required
+          size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 6 }}>
@@ -89,6 +94,7 @@ export default function AddressForm() {
           placeholder="NY"
           autoComplete="State"
           required
+          size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 6 }}>
@@ -102,6 +108,7 @@ export default function AddressForm() {
           placeholder="12345"
           autoComplete="shipping postal-code"
           required
+          size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 6 }}>
@@ -115,6 +122,7 @@ export default function AddressForm() {
           placeholder="United States"
           autoComplete="shipping country"
           required
+          size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 12 }}>
