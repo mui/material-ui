@@ -36,13 +36,13 @@ export const getClassesToC = ({ classes, t, hash }: GetCssToCParams): TableOfCon
         },
       ];
 
-export interface ClassesApiProcessorParams {
+export interface GetClassApiDefinitionsParams {
   componentClasses: ComponentApiContent['classes'];
   classDescriptions: PropsTranslations['classDescriptions'];
   componentName: string;
 }
 
-export function classesApiProcessor(params: ClassesApiProcessorParams): ClassDefinition[] {
+export function getClassApiDefinitions(params: GetClassApiDefinitionsParams): ClassDefinition[] {
   const { componentClasses, classDescriptions, componentName } = params;
 
   return componentClasses.map((classDefinition) => {

@@ -11,8 +11,8 @@ import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import { propsApiProcessor } from 'docs/src/modules/components/ApiPage/processors/properties';
-import { classesApiProcessor } from 'docs/src/modules/components/ApiPage/processors/classes';
+import { getPropsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
+import { getClassApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/classes';
 import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 function getTranslatedHeader(t, header, text) {
@@ -146,7 +146,7 @@ export default function ComponentsApiContent(props) {
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           )}
           <PropertiesSection
-            properties={propsApiProcessor({
+            properties={getPropsApiDefinitions({
               componentName: pageContent.name,
               properties: componentProps,
               propertiesDescriptions: propDescriptions,
@@ -226,7 +226,7 @@ export default function ComponentsApiContent(props) {
             layoutStorageKey={layoutStorageKey.slots}
           />
           <ClassesSection
-            classes={classesApiProcessor({
+            classes={getClassApiDefinitions({
               componentClasses,
               componentName: pageContent.name,
               classDescriptions,

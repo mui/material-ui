@@ -6,7 +6,7 @@ import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import { hookApiProcessor } from 'docs/src/modules/components/ApiPage/processors/properties';
+import { getHookApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
@@ -70,7 +70,7 @@ export default function HooksApiContent(props) {
           )}
           {Object.keys(parameters).length > 0 ? (
             <PropertiesSection
-              properties={hookApiProcessor({
+              properties={getHookApiDefinitions({
                 kind: 'parameters',
                 hookName,
                 properties: parameters,
@@ -86,7 +86,7 @@ export default function HooksApiContent(props) {
             <span>{t('api-docs.hooksNoParameters')}</span>
           )}
           <PropertiesSection
-            properties={hookApiProcessor({
+            properties={getHookApiDefinitions({
               kind: 'return',
               hookName,
               properties: returnValue,

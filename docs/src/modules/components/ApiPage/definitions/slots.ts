@@ -8,13 +8,13 @@ export type SlotDefinition = {
   defaultValue?: string;
 };
 
-export interface SlotsApiProcessorParams {
+export interface GetSlotsApiDefinitionsParams {
   componentSlots: ComponentApiContent['slots'];
   slotDescriptions: PropsTranslations['slotDescriptions'];
   componentName: string;
 }
 
-export function slotsApiProcessor(params: SlotsApiProcessorParams): SlotDefinition[] {
+export function getSlotsApiDefinitions(params: GetSlotsApiDefinitionsParams): SlotDefinition[] {
   const { componentSlots, slotDescriptions, componentName } = params;
 
   if (!componentSlots) {

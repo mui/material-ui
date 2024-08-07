@@ -11,8 +11,8 @@ import PropertiesList from 'docs/src/modules/components/ApiPage/list/PropertiesL
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
 import {
   PropertyDefinition,
-  propsApiProcessor,
-} from 'docs/src/modules/components/ApiPage/processors/properties';
+  getPropsApiDefinitions,
+} from 'docs/src/modules/components/ApiPage/definitions/properties';
 import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
 import { ComponentApiContent, PropsTableItem, PropsTranslations } from 'packages/api-docs-builder';
 import kebabCase from 'lodash/kebabCase';
@@ -110,7 +110,7 @@ export default function PropertiesSection(props: PropertiesSectionProps) {
 
   const formattedProperties = Array.isArray(properties)
     ? properties
-    : propsApiProcessor({
+    : getPropsApiDefinitions({
         properties,
         propertiesDescriptions: propertiesDescriptions!,
         componentName: componentName!,

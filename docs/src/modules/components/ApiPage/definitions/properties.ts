@@ -65,7 +65,7 @@ export const getPropertiesToC = ({
   ],
 });
 
-interface PropsApiProcessorParams {
+interface GetPropsApiDefinitionsParams {
   componentName: string;
   properties: {
     [name: string]: PropsTableItem;
@@ -77,7 +77,7 @@ interface PropsApiProcessorParams {
   showOptionalAbbr?: boolean;
 }
 
-export function propsApiProcessor(params: PropsApiProcessorParams): PropertyDefinition[] {
+export function getPropsApiDefinitions(params: GetPropsApiDefinitionsParams): PropertyDefinition[] {
   const { properties, propertiesDescriptions, componentName, showOptionalAbbr = false } = params;
 
   return Object.entries(properties).map(([propName, propData]) => {
@@ -142,20 +142,20 @@ interface HookCommonApiParams {
   hookName: string;
 }
 
-interface HookReturnApiProcessorParams extends HookCommonApiParams {
+interface GetHookReturnApiDefinitionsParams extends HookCommonApiParams {
   kind: 'return';
   properties: HookApiContent['returnValue'];
   translations: HooksTranslations['returnValueDescriptions'];
 }
 
-interface HookParametersApiProcessorParams extends HookCommonApiParams {
+interface GetHookParametersApiDefinitions extends HookCommonApiParams {
   kind: 'parameters';
   properties: HookApiContent['parameters'];
   translations: HooksTranslations['parametersDescriptions'];
 }
 
-export function hookApiProcessor(
-  params: HookReturnApiProcessorParams | HookParametersApiProcessorParams,
+export function getHookApiDefinitions(
+  params: GetHookReturnApiDefinitionsParams | GetHookParametersApiDefinitions,
 ): PropertyDefinition[] {
   const { properties, translations, hookName, kind } = params;
 

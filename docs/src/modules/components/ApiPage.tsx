@@ -24,13 +24,13 @@ import {
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import {
   getPropertiesToC,
-  propsApiProcessor,
-} from 'docs/src/modules/components/ApiPage/processors/properties';
+  getPropsApiDefinitions,
+} from 'docs/src/modules/components/ApiPage/definitions/properties';
 import {
-  classesApiProcessor,
+  getClassApiDefinitions,
   getClassesToC,
-} from 'docs/src/modules/components/ApiPage/processors/classes';
-import { slotsApiProcessor } from './ApiPage/processors/slots';
+} from 'docs/src/modules/components/ApiPage/definitions/classes';
+import { getSlotsApiDefinitions } from './ApiPage/definitions/slots';
 
 // TODO Move this type definition to the AppLayoutDocs file when moved to TS
 export interface TableOfContentsParams {
@@ -164,17 +164,17 @@ export default function ApiPage(props: ApiPageProps) {
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
   // Merge data and translation
-  const propertiesDef = propsApiProcessor({
+  const propertiesDef = getPropsApiDefinitions({
     componentName: pageContent.name,
     properties: componentProps,
     propertiesDescriptions: propDescriptions,
   });
-  const classesDef = classesApiProcessor({
+  const classesDef = getClassApiDefinitions({
     componentClasses,
     componentName: pageContent.name,
     classDescriptions,
   });
-  const slotsDef = slotsApiProcessor({
+  const slotsDef = getSlotsApiDefinitions({
     componentSlots,
     componentName: pageContent.name,
     slotDescriptions,
