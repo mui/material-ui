@@ -76,9 +76,7 @@ const nextConfig = {
 /**
  * @type {import('@pigment-css/nextjs-plugin').PigmentOptions}
  */
-const pigmentConfig = {
-  transformLibraries: ['@mui/material'],
-};
+const pigmentConfig = {}; // we will refer to this later
 
 export default withPigment(nextConfig, pigmentConfig);
 ```
@@ -93,9 +91,7 @@ const nextConfig = {
 /**
  * @type {import('@pigment-css/nextjs-plugin').PigmentOptions}
  */
-const pigmentConfig = {
-  transformLibraries: ['@mui/material'],
-};
+const pigmentConfig = {}; // we will refer to this later
 
 module.exports = withPigment(nextConfig, pigmentConfig);
 ```
@@ -147,12 +143,7 @@ Next, open vite config file, usually named `vite.config.js`, and add the plugin:
 import { defineConfig } from 'vite';
 import { pigment } from '@pigment-css/vite-plugin';
 
-/**
- * @type {import('@pigment-css/nextjs-plugin').PigmentOptions}
- */
-const pigmentConfig = {
-  transformLibraries: ['@mui/material'],
-};
+const pigmentConfig = {}; // we will refer to this later
 
 export default defineConfig({
   plugins: [
@@ -161,10 +152,6 @@ export default defineConfig({
   ],
 });
 ```
-
-:::warning
-There is an [issue with `pnpm`](https://github.com/mui/pigment-css/issues/176) that prevents the plugin from working correctly. Consider using `npm` or `yarn` instead.
-:::
 
 Finally, add the Pigment CSS stylesheet to the top of the main file.
 
