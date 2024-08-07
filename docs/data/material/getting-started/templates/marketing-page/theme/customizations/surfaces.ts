@@ -11,26 +11,25 @@ export const surfacesCustomizations: Components<Theme> = {
     },
     styleOverrides: {
       root: ({ theme }) => ({
-        padding: 8,
+        padding: 4,
         overflow: 'clip',
-        backgroundColor: 'hsl(0, 0%, 100%)',
+        backgroundColor: theme.palette.background.default,
         border: '1px solid',
-        borderColor: gray[100],
+        borderColor: theme.palette.divider,
         ':before': {
           backgroundColor: 'transparent',
         },
+        '&:not(:last-of-type)': {
+          borderBottom: 'none',
+        },
         '&:first-of-type': {
-          borderTopLeftRadius: 10,
-          borderTopRightRadius: 10,
+          borderTopLeftRadius: theme.shape.borderRadius,
+          borderTopRightRadius: theme.shape.borderRadius,
         },
         '&:last-of-type': {
-          borderBottomLeftRadius: 10,
-          borderBottomRightRadius: 10,
+          borderBottomLeftRadius: theme.shape.borderRadius,
+          borderBottomRightRadius: theme.shape.borderRadius,
         },
-        ...theme.applyStyles('dark', {
-          backgroundColor: gray[900],
-          borderColor: gray[800],
-        }),
       }),
     },
   },
@@ -39,7 +38,7 @@ export const surfacesCustomizations: Components<Theme> = {
       root: ({ theme }) => ({
         border: 'none',
         borderRadius: 8,
-        '&:hover': { backgroundColor: gray[100] },
+        '&:hover': { backgroundColor: gray[50] },
         '&:focus-visible': { backgroundColor: 'transparent' },
         ...theme.applyStyles('dark', {
           '&:hover': { backgroundColor: gray[800] },
@@ -62,6 +61,7 @@ export const surfacesCustomizations: Components<Theme> = {
       root: ({ theme }) => {
         return {
           padding: 16,
+          gap: 16,
           transition: 'all 100ms ease',
           backgroundColor: gray[50],
           borderRadius: theme.shape.borderRadius,
@@ -94,6 +94,20 @@ export const surfacesCustomizations: Components<Theme> = {
       root: {
         padding: 0,
         '&:last-child': { paddingBottom: 0 },
+      },
+    },
+  },
+  MuiCardHeader: {
+    styleOverrides: {
+      root: {
+        padding: 0,
+      },
+    },
+  },
+  MuiCardActions: {
+    styleOverrides: {
+      root: {
+        padding: 0,
       },
     },
   },
