@@ -5,6 +5,7 @@ export {
   createMuiTheme,
   ThemeOptions,
   Theme,
+  CssThemeVariables,
 } from './createTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';
@@ -22,6 +23,7 @@ export {
   PaletteMode,
   Color,
 } from './createPalette';
+export { default as createColorScheme } from './createColorScheme';
 export { default as createStyles } from './createStyles';
 export {
   Typography as TypographyVariants,
@@ -100,9 +102,9 @@ export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
-export * from './CssVarsProvider';
+export * from './ThemeProviderWithVars';
 
-export { default as extendTheme } from './extendTheme';
+export { default as extendTheme } from './createThemeWithVars';
 
 export type {
   ColorSchemeOverrides,
@@ -136,7 +138,7 @@ export type {
   ThemeCssVar,
   ThemeCssVarOverrides,
   ColorSystemOptions,
-} from './extendTheme';
+} from './createThemeWithVars';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 

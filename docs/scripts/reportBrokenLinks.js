@@ -10,8 +10,8 @@ function getPageLinks(markdown) {
   const hrefs = [];
 
   const renderer = new marked.Renderer();
-  renderer.link = (href) => {
-    if (href[0] === '/') {
+  renderer.link = ({ href }) => {
+    if (href.startsWith('/')) {
       hrefs.push(href);
     }
   };
@@ -211,8 +211,12 @@ if (require.main === module) {
     .filter((link) => UNSUPPORTED_PATHS.every((unsupportedPath) => !link.includes(unsupportedPath)))
     .sort()
     .forEach((linkKey) => {
+      //
+      // <!-- #default-branch-switch -->
+      //
       write(`- https://mui.com${linkKey}`);
       console.log(`https://mui.com${linkKey}`);
+
       console.log(`used in`);
       usedLinks[linkKey].forEach((f) => console.log(`- ${path.relative(docsSpaceRoot, f)}`));
       console.log('available anchors on the same page:');

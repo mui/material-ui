@@ -2,11 +2,12 @@ import { mkdirSync } from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import { writePrettifiedFile } from '../buildApiUtils';
+import { HooksTranslations, PropsTranslations } from '../types/ApiBuilder.types';
 
 interface MinimalReactAPI {
   name: string;
   apiDocsTranslationFolder?: string;
-  translations: object;
+  translations: PropsTranslations | HooksTranslations;
 }
 
 export default async function generateApiTranslations<ReactApi extends MinimalReactAPI>(

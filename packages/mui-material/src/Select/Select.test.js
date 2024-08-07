@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import {
+  ErrorBoundary,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+  reactMajor,
+} from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -368,6 +375,15 @@ describe('<Select />', () => {
 
     describe('warnings', () => {
       it('warns when the value is not present in any option', () => {
+        const errorMessage =
+          'MUI: You have provided an out-of-range value `20` for the select component.';
+
+        let expectedOccurrences = 2;
+
+        if (reactMajor === 18) {
+          expectedOccurrences = 3;
+        }
+
         expect(() =>
           render(
             <Select value={20}>
@@ -375,13 +391,7 @@ describe('<Select />', () => {
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>,
           ),
-        ).toWarnDev([
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
-            'MUI: You have provided an out-of-range value `20` for the select component.',
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-        ]);
+        ).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
       });
     });
   });
@@ -1175,8 +1185,8 @@ describe('<Select />', () => {
         }).toErrorDev([
           'MUI: The `value` prop must be an array',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'MUI: The `value` prop must be an array',
-          'The above error occurred in the <ForwardRef(SelectInput)> component',
+          reactMajor === 18 && 'MUI: The `value` prop must be an array',
+          reactMajor < 19 && 'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },
