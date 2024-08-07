@@ -132,6 +132,7 @@
     "babel-plugin-module-resolver": "^5.0.0",
     "babel-plugin-optimize-clsx": "^2.6.2",
     "babel-plugin-react-remove-properties": "^0.3.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chalk": "^5.3.0",
     "compression-webpack-plugin": "^11.1.0",
