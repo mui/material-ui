@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Typography from '@mui/material/Typography';
 import DialogTitle, { dialogTitleClasses as classes } from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';

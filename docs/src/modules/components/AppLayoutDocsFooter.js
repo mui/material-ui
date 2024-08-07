@@ -21,28 +21,29 @@ import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import PanToolRoundedIcon from '@mui/icons-material/PanToolRounded';
+import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
-import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
 import DiscordIcon from 'docs/src/icons/DiscordIcon';
 // Other imports
 import { Link } from '@mui/docs/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
-import EditPage from 'docs/src/modules/components/EditPage';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
+import EditPage from 'docs/src/modules/components/EditPage';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 
-const FooterLink = styled(Typography)(({ theme }) => {
+const FooterLink = styled(Link)(({ theme }) => {
   return {
-    ...theme.typography.body2,
     display: 'flex',
     alignItems: 'center',
-    gap: 4,
-    fontWeight: (theme.vars || theme).typography.fontWeightSemiBold,
-    color: (theme.vars || theme).palette.primary.main,
-    '& > svg': { transition: '0.2s' },
+    gap: 2,
+    fontFamily: (theme.vars || theme).typography.fontFamily,
+    fontSize: (theme.vars || theme).typography.pxToRem(13),
+    fontWeight: (theme.vars || theme).typography.fontWeightMedium,
+    color: (theme.vars || theme).palette.primary[600],
+    '& > svg': { fontSize: '13px', transition: '0.2s' },
     '&:hover > svg': { transform: 'translateX(2px)' },
     ...theme.applyDarkStyles({
       color: (theme.vars || theme).palette.primary[300],
@@ -96,7 +97,7 @@ async function postFeedback(data) {
 }
 
 async function postFeedbackOnSlack(data) {
-  const { rating, comment, commentedSection } = data;
+  const { rating, comment, commentedSection, productId } = data;
 
   const sentData = {
     callback_id: 'send_feedback',
@@ -106,6 +107,7 @@ async function postFeedbackOnSlack(data) {
     commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
     commmentSectionTitle: commentedSection.text,
     githubRepo: process.env.SOURCE_CODE_REPO,
+    productId,
   };
   if (!comment || comment.length < 10) {
     return 'ignored';
@@ -187,7 +189,7 @@ async function getUserFeedback(id) {
   }
 }
 
-async function submitFeedback(page, rating, comment, language, commentedSection) {
+async function submitFeedback(page, rating, comment, language, commentedSection, productId) {
   const data = {
     id: getCookie('feedbackId'),
     page,
@@ -197,7 +199,7 @@ async function submitFeedback(page, rating, comment, language, commentedSection)
     language,
   };
 
-  const resultSlack = await postFeedbackOnSlack({ ...data, commentedSection });
+  const resultSlack = await postFeedbackOnSlack({ ...data, productId, commentedSection });
   if (rating !== undefined) {
     const resultVote = await postFeedback(data);
     if (resultVote) {
@@ -253,13 +255,15 @@ const EMPTY_SECTION = { hash: '', text: '' };
 // This dead code is here to simplify the creation of special feedback channel
 const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
+const iconColor = 'grey.500';
+
 export default function AppLayoutDocsFooter(props) {
   const { tableOfContents = [], location } = props;
 
   const theme = useTheme();
   const t = useTranslate();
   const userLanguage = useUserLanguage();
-  const { activePage } = React.useContext(PageContext);
+  const { activePage, productId } = React.useContext(PageContext);
   const [rating, setRating] = React.useState();
   const [comment, setComment] = React.useState('');
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
@@ -303,6 +307,7 @@ export default function AppLayoutDocsFooter(props) {
       comment,
       userLanguage,
       commentedSection,
+      productId,
     );
     if (result) {
       setSnackbarMessage(t('feedbackSubmitted'));
@@ -388,36 +393,28 @@ export default function AppLayoutDocsFooter(props) {
 
   return (
     <React.Fragment>
-      <Stack component="footer" direction="column" spacing={2.5} sx={{ my: 6 }}>
+      <Stack component="footer" direction="column" sx={{ my: 4 }}>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
-          alignItems="center"
-          justifyContent="space-between"
           spacing={{ xs: 3, sm: 1 }}
+          sx={{ alignItems: 'center', justifyContent: 'space-between' }}
         >
           <EditPage sourceLocation={location} />
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Typography
-              id="feedback-message"
-              variant="body2"
-              fontWeight="medium"
-              color="text.secondary"
-            >
+          <Stack direction="row" spacing={0.5} useFlexGap sx={{ alignItems: 'center' }}>
+            <Typography id="feedback-message" variant="body2" sx={{ color: 'text.secondary' }}>
               {t('feedbackMessage')}
             </Typography>
             <Tooltip title={t('feedbackYes')}>
-              <IconButton color="info" onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
+              <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
                 <ThumbUpAltRoundedIcon
-                  color={rating === 1 ? 'primary' : undefined}
-                  sx={{ fontSize: 15 }}
+                  sx={{ fontSize: 15, color: rating === 1 ? 'primary' : 'text.secondary' }}
                 />
               </IconButton>
             </Tooltip>
             <Tooltip title={t('feedbackNo')}>
-              <IconButton color="info" onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
+              <IconButton onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
                 <ThumbDownAltRoundedIcon
-                  color={rating === 0 ? 'error' : undefined}
-                  sx={{ fontSize: 15 }}
+                  sx={{ fontSize: 15, color: rating === 0 ? 'error' : 'text.secondary' }}
                 />
               </IconButton>
             </Tooltip>
@@ -431,6 +428,7 @@ export default function AppLayoutDocsFooter(props) {
             onEntered={handleEntered}
             timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
           >
+            <Divider sx={{ my: 2, borderStyle: 'dashed' }} />
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
             <form
               aria-labelledby="feedback-message"
@@ -443,16 +441,16 @@ export default function AppLayoutDocsFooter(props) {
                   <Typography
                     variant="body2"
                     id="feedback-description"
-                    color="text.secondary"
                     dangerouslySetInnerHTML={{
                       __html: t('feedbackSectionSpecific').replace(
                         '{{sectionName}}',
                         `"${commentedSection.text}"`,
                       ),
                     }}
+                    sx={{ color: 'text.secondary' }}
                   />
                 ) : (
-                  <Typography variant="body2" id="feedback-description" color="text.secondary">
+                  <Typography id="feedback-description" sx={{ color: 'text.secondary' }}>
                     {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
                   </Typography>
                 )}
@@ -461,7 +459,7 @@ export default function AppLayoutDocsFooter(props) {
                   margin="dense"
                   name="comment"
                   fullWidth
-                  rows={4}
+                  rows={2}
                   value={comment}
                   onChange={handleChangeTextfield}
                   inputProps={{
@@ -483,9 +481,7 @@ export default function AppLayoutDocsFooter(props) {
                         href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
                         target="_blank"
                         underline="always"
-                        sx={{
-                          fontWeight: 'semiBold',
-                        }}
+                        sx={{ fontWeight: 'semiBold' }}
                       >
                         {t('feedbackMessageToGitHub.callToAction.link')}
                       </Link>{' '}
@@ -505,12 +501,13 @@ export default function AppLayoutDocsFooter(props) {
             </form>
           </Collapse>
         </div>
-        <Divider />
+        <Divider sx={{ my: 2 }} />
         {hidePagePagination ? null : (
-          <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
+          <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
             {prevPage !== null ? (
               <Button
                 size="small"
+                variant="text"
                 component={Link}
                 noLinkStyle
                 prefetch={false}
@@ -538,73 +535,65 @@ export default function AppLayoutDocsFooter(props) {
             ) : null}
           </Stack>
         )}
-        <Divider />
+        <Divider sx={{ my: 2 }} />
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
-          alignItems="center"
           spacing={{ xs: 3, sm: 1 }}
+          sx={{ alignItems: 'center' }}
         >
-          <Stack direction="row" alignItems="center" spacing={1.2} sx={{ flexGrow: 1 }}>
-            <Link href="https://mui.com/" aria-label="Go to homepage" sx={{ mb: 2 }}>
-              <SvgMuiLogotype height={24} width={72} />
+          <Stack direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center', flexGrow: 1 }}>
+            <Link href="https://mui.com/" aria-label="Go to homepage">
+              <SvgMuiLogotype height={28} width={64} />
             </Link>
-            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
-              &bull;
-            </Typography>
-            <Link href="https://mui.com/blog/" target="_blank" rel="noopener noreferrer">
-              <FooterLink>
-                Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
-              </FooterLink>
-            </Link>
-            <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
-              &bull;
-            </Typography>
-            <Link href="https://mui.com/store/" target="_blank" rel="noopener noreferrer">
-              <FooterLink>
-                Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
-              </FooterLink>
-            </Link>
+            <Typography sx={{ color: 'grey.500', fontSize: 13, opacity: '70%' }}>&bull;</Typography>
+            <FooterLink href="https://mui.com/blog/" target="_blank" rel="noopener">
+              Blog <ArrowOutwardRoundedIcon />
+            </FooterLink>
+            <Typography sx={{ color: 'grey.500', fontSize: 13, opacity: '70%' }}>&bull;</Typography>
+            <FooterLink href="https://mui.com/store/" target="_blank" rel="noopener">
+              Store <ArrowOutwardRoundedIcon />
+            </FooterLink>
           </Stack>
-          <Stack spacing={1} direction="row">
+          <Stack spacing={1} direction="row" useFlexGap>
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
-              href="https://mui.com/feed/blog/rss.xml"
-              aria-label="RSS Feed"
-              title="RSS Feed"
-              size="small"
-            >
-              <RssFeedIcon fontSize="small" sx={{ color: 'grey.500' }} />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://twitter.com/MUI_hq"
-              aria-label="twitter"
+              rel="noopener"
+              href="https://x.com/MUI_hq"
+              aria-label="X/twitter"
               title="X"
               size="small"
             >
-              <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <XIcon fontSize="small" sx={{ color: iconColor }} />
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.youtube.com/@MUI_hq"
-              aria-label="YouTube"
-              title="YouTube"
-              size="small"
-            >
-              <YouTubeIcon fontSize="small" sx={{ color: 'grey.500' }} />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               href="https://mui.com/r/discord/"
               aria-label="Discord"
               title="Discord"
               size="small"
             >
-              <DiscordIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <DiscordIcon fontSize="small" sx={{ color: iconColor }} />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://www.youtube.com/@MUI_hq"
+              aria-label="YouTube"
+              title="YouTube"
+              size="small"
+            >
+              <YouTubeIcon fontSize="small" sx={{ color: iconColor }} />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://mui.com/feed/blog/rss.xml"
+              aria-label="RSS Feed"
+              title="RSS Feed"
+              size="small"
+            >
+              <RssFeedIcon fontSize="small" sx={{ color: iconColor }} />
             </IconButton>
           </Stack>
         </Stack>

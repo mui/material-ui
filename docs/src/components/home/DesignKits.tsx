@@ -29,10 +29,10 @@ const Image = styled('img')(({ theme }) => ({
   objectFit: 'cover',
   transitionProperty: 'all',
   transitionDuration: '150ms',
-  boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
+  boxShadow: '0 4px 20px rgba(61, 71, 82, 0.2)',
   ...theme.applyDarkStyles({
     borderColor: (theme.vars || theme).palette.grey[800],
-    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.6)',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.6)',
   }),
 }));
 
@@ -40,23 +40,26 @@ const Anchor = styled('a')(({ theme }) => [
   {
     display: 'inline-block',
     position: 'relative',
-    transitionProperty: 'all',
-    transitionDuration: '150ms',
+    transition: 'all 120ms ease',
     borderRadius: '50%',
     border: '1px solid',
     borderColor: (theme.vars || theme).palette.grey[200],
-    boxShadow: `0px 2px 12px ${alpha(theme.palette.primary[200], 0.3)}`,
+    boxShadow: `0 2px 12px ${alpha(theme.palette.primary[200], 0.3)}`,
+    backgroundColor: '#FFF',
     '&:hover, &:focus': {
       borderColor: (theme.vars || theme).palette.primary[300],
-      boxShadow: `0px 4px 20px ${alpha(theme.palette.primary[400], 0.3)}`,
+      boxShadow: `0 4px 20px ${alpha(theme.palette.primary[400], 0.3)}`,
+      backgroundColor: (theme.vars || theme).palette.primary[50],
     },
   } as const,
   theme.applyDarkStyles({
-    borderColor: (theme.vars || theme).palette.primary[900],
-    boxShadow: `0px 2px 12px ${alpha(theme.palette.primaryDark[800], 0.5)}`,
+    backgroundColor: alpha(theme.palette.primaryDark[900], 0.8),
+    borderColor: (theme.vars || theme).palette.primaryDark[600],
+    boxShadow: `0 2px 12px ${alpha(theme.palette.primaryDark[800], 0.5)}`,
     '&:hover, &:focus': {
+      backgroundColor: alpha(theme.palette.primary[900], 0.8),
       borderColor: (theme.vars || theme).palette.primary[700],
-      boxShadow: `0 2px 20px 0 ${alpha(theme.palette.primary[800], 0.5)}`,
+      boxShadow: `0 2px 16px 0 ${alpha(theme.palette.primary[800], 0.5)}`,
     },
   }),
 ]);
@@ -94,18 +97,12 @@ const DesignToolLogo = React.forwardRef<
     <Box
       ref={ref}
       {...props}
-      sx={[
-        (theme) => ({
-          display: 'flex',
-          backgroundColor: '#FFF',
-          p: 2,
-          borderRadius: '50%',
-          ...theme.applyDarkStyles({
-            backgroundColor: alpha(theme.palette.primary[900], 0.5),
-          }),
-        }),
+      sx={{
+        display: 'flex',
+        p: 2,
+        borderRadius: '50%',
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
-      ]}
+      }}
     >
       <img
         src={`/static/branding/design-kits/${brand}-logo.svg`}

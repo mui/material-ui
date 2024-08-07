@@ -23,8 +23,6 @@
       "@mui/lab/*": ["./mui-lab/src/*"],
       "@mui/internal-markdown": ["./markdown"],
       "@mui/internal-markdown/*": ["./markdown/*"],
-      "@mui/material-next": ["./mui-material-next/src"],
-      "@mui/material-next/*": ["./mui-material-next/src/*"],
       "@mui/material-nextjs": ["./mui-material-nextjs/src"],
       "@mui/material-nextjs/*": ["./mui-material-nextjs/src/*"],
       "@mui/material": ["./mui-material/src"],
@@ -42,12 +40,6 @@
       "@mui/types": ["./mui-types"],
       "@mui/utils": ["./mui-utils/src"],
       "@mui/utils/*": ["./mui-utils/src/*"],
-      "@pigmentcss/nextjs-plugin": ["./pigment-nextjs-plugin/src"],
-      "@pigmentcss/nextjs-plugin/*": ["./pigment-nextjs-plugin/src/*"],
-      "@pigmentcss/react": ["./pigment-react/src"],
-      "@pigmentcss/react/*": ["./pigment-react/src/*"],
-      "@pigmentcss/vite-plugin": ["./pigment-vite-plugin/src"],
-      "@pigmentcss/vite-plugin/*": ["./pigment-vite-plugin/src/*"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "../packages-internal/scripts/typescript-to-proptypes/src"
       ]

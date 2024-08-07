@@ -21,10 +21,6 @@ export default {
     rootPath: path.join(process.cwd(), 'packages/mui-system'),
     entryPointPath: 'src/index.d.ts',
   },
-  'material-next': {
-    rootPath: path.join(process.cwd(), 'packages/mui-material-next'),
-    entryPointPath: 'src/index.ts',
-  },
   docs: {
     rootPath: path.join(process.cwd(), 'docs'),
     tsConfigPath: 'tsconfig.json',

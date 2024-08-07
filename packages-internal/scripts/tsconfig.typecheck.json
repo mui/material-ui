@@ -7,5 +7,5 @@
   },
   "include": ["./**/*.ts"],
   "exclude": ["./build", "./node_modules"],
-  "references": [{ "path": "../../packages/docs-utils/tsconfig.build.json" }]
+  "references": [{ "path": "../../packages-internal/docs-utils/tsconfig.build.json" }]
 }

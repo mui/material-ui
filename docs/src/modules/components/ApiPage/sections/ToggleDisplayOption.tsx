@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
-import CalendarViewDayRoundedIcon from '@mui/icons-material/CalendarViewDayRounded';
-import TableChartRoundedIcon from '@mui/icons-material/TableChartRounded';
-import ReorderRoundedIcon from '@mui/icons-material/ReorderRounded';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import CheckIcon from '@mui/icons-material/Check';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 
 export type ApiDisplayOptions = 'collapsed' | 'expanded' | 'table';
@@ -42,6 +42,7 @@ export function useApiPageOption(
   const [option, setOption] = React.useState(getOption(storageKey, defaultValue));
 
   useEnhancedEffect(() => {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- useEnhancedEffect uses useEffect under the hood
     neverHydrated = false;
     const newOption = getOption(storageKey, defaultValue);
     setOption(newOption);
@@ -71,26 +72,6 @@ export function useApiPageOption(
   return [option, updateOption];
 }
 
-// Fix Toggle buton highlight (taken from https://github.com/mui/material-ui/issues/18091)
-type TooltipToggleButtonProps = ToggleButtonProps & {
-  /**
-   * The title passed to the Tooltip
-   */
-  title: string;
-  TooltipProps?: Omit<TooltipProps, 'children' | 'title'>;
-};
-
-// Catch props and forward to ToggleButton
-const TooltipToggleButton = React.forwardRef<HTMLButtonElement, TooltipToggleButtonProps>(
-  ({ title, TooltipProps: tooltipProps, ...props }, ref) => {
-    return (
-      <Tooltip {...tooltipProps} title={title}>
-        <ToggleButton ref={ref} {...props} />
-      </Tooltip>
-    );
-  },
-);
-
 interface ToggleDisplayOptionProps {
   displayOption: ApiDisplayOptions;
   setDisplayOption: (newValue: ApiDisplayOptions) => void;
@@ -103,72 +84,90 @@ interface ToggleDisplayOptionProps {
 export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
   const { displayOption, setDisplayOption, sectionType } = props;
 
-  const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
-    newDisplayOption: ApiDisplayOptions | null,
-  ) => {
-    if (newDisplayOption === null) {
-      return;
-    }
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const [open, setOpen] = React.useState(false);
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpen(false);
+  };
+
+  const handleMenuItemClick = (newDisplayOption: ApiDisplayOptions) => {
     setDisplayOption(newDisplayOption);
+    handleClose();
   };
 
   return (
-    <ToggleButtonGroup
-      size="small"
-      value={displayOption}
-      exclusive
-      onChange={handleAlignment}
-      aria-label="API display option"
-      sx={{
-        '& .MuiSvgIcon-root': {
-          height: '18px',
-          width: '18px',
-        },
-        '&.MuiToggleButtonGroup-root .MuiToggleButton-root': {
-          padding: '4px 6px',
-          borderRadius: '6px',
-          '&.MuiToggleButtonGroup-grouped:not(:last-of-type)': {
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
-          },
-          '&.MuiToggleButtonGroup-grouped:not(:first-of-type)': {
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
-          },
-        },
-      }}
-    >
-      <TooltipToggleButton
-        value="collapsed"
-        aria-label="colapsed list"
-        title="Collapse list view"
-        data-ga-event-category="layout"
-        data-ga-event-action={sectionType}
-        data-ga-event-label="collapsed"
+    <React.Fragment>
+      <Button
+        size="small"
+        variant="outlined"
+        color="secondary"
+        id="view-switching-button"
+        aria-controls={open ? 'view-switching-button' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleMenuClick}
+        endIcon={<ArrowDropDownRoundedIcon />}
+        sx={{ height: '1.875rem', p: '6px 4px 6px 8px', textTransform: 'capitalize' }}
       >
-        <ReorderRoundedIcon size="small" />
-      </TooltipToggleButton>
-      <TooltipToggleButton
-        value="expanded"
-        aria-label="expanded list"
-        title="Expand list view"
-        data-ga-event-category="layout"
-        data-ga-event-action={sectionType}
-        data-ga-event-label="expanded"
+        <Box component="span" sx={{ fontWeight: 'medium', mr: 0.5 }}>
+          View:
+        </Box>
+        {displayOption}
+      </Button>
+      <Menu
+        id="view-options-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        sx={{ mt: 1, '.MuiMenuItem-root': { pl: 1 } }}
       >
-        <CalendarViewDayRoundedIcon />
-      </TooltipToggleButton>
-      <TooltipToggleButton
-        value="table"
-        aria-label="table"
-        title="Table view"
-        data-ga-event-category="layout"
-        data-ga-event-action={sectionType}
-        data-ga-event-label="table"
-      >
-        <TableChartRoundedIcon />
-      </TooltipToggleButton>
-    </ToggleButtonGroup>
+        <MenuItem
+          value="table"
+          onClick={() => handleMenuItemClick('table')}
+          selected={displayOption === 'table'}
+          data-ga-event-category="layout"
+          data-ga-event-action={sectionType}
+          data-ga-event-label="table"
+        >
+          Table
+          <CheckIcon
+            sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'table' ? 1 : 0 }}
+          />
+        </MenuItem>
+        <MenuItem
+          value="expanded"
+          onClick={() => handleMenuItemClick('expanded')}
+          selected={displayOption === 'expanded'}
+          data-ga-event-category="layout"
+          data-ga-event-action={sectionType}
+          data-ga-event-label="expanded"
+        >
+          Expanded list
+          <CheckIcon
+            sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'expanded' ? 1 : 0 }}
+          />
+        </MenuItem>
+        <MenuItem
+          value="collapsed"
+          onClick={() => handleMenuItemClick('collapsed')}
+          selected={displayOption === 'collapsed'}
+          data-ga-event-category="layout"
+          data-ga-event-action={sectionType}
+          data-ga-event-label="collapsed"
+        >
+          Collapsed list
+          <CheckIcon
+            sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'collapsed' ? 1 : 0 }}
+          />
+        </MenuItem>
+      </Menu>
+    </React.Fragment>
   );
 }

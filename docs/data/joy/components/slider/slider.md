@@ -10,7 +10,7 @@ unstyled: /base-ui/react-slider/
 
 <p class="description">Slider generates a background element that can be used for various purposes.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

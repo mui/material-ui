@@ -72,7 +72,7 @@ export const FormControlRoot = styled('div', {
     '--FormHelperText-color': theme.variants.plainDisabled?.[ownerState.color || 'neutral']?.color,
   },
   display: 'flex',
-  position: 'relative', // for keeping the control action area, e.g. Switch
+  position: 'relative', // for keeping the control action area, for example Switch
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   ...(ownerState.orientation === 'horizontal' && {
     [`& > label ~ .${switchClasses.root}`]: {
@@ -128,6 +128,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 
   let registerEffect: undefined | (() => () => void);
   if (process.env.NODE_ENV !== 'production') {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const registeredInput = React.useRef(false);
     registerEffect = () => {

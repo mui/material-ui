@@ -4,7 +4,7 @@ import {
   createRenderer,
   RenderCounter,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
 

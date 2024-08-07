@@ -29,9 +29,9 @@ export default function Page() {
 
 
   return (
-    <StyledSomeNamespaceSomeComponent>
+    (<StyledSomeNamespaceSomeComponent>
       <h1 className={classes.header}></h1>
       <img className={classes.img}></img>
-    </StyledSomeNamespaceSomeComponent>
+    </StyledSomeNamespaceSomeComponent>)
   );
 }

@@ -7,8 +7,9 @@ import composeClasses from '@mui/utils/composeClasses';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
-import useThemeProps from '../styles/useThemeProps';
-import styled, { slotShouldForwardProp } from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -33,39 +34,49 @@ const MobileStepperRoot = styled(Paper, {
 
     return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
   background: (theme.vars || theme).palette.background.default,
   padding: 8,
-  ...(ownerState.position === 'bottom' && {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: (theme.vars || theme).zIndex.mobileStepper,
-  }),
-  ...(ownerState.position === 'top' && {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: (theme.vars || theme).zIndex.mobileStepper,
-  }),
+  variants: [
+    {
+      props: ({ position }) => position === 'top' || position === 'bottom',
+      style: {
+        position: 'fixed',
+        left: 0,
+        right: 0,
+        zIndex: (theme.vars || theme).zIndex.mobileStepper,
+      },
+    },
+    {
+      props: { position: 'top' },
+      style: { top: 0 },
+    },
+    {
+      props: { position: 'bottom' },
+      style: { bottom: 0 },
+    },
+  ],
 }));
 
 const MobileStepperDots = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dots',
   overridesResolver: (props, styles) => styles.dots,
-})(({ ownerState }) => ({
-  ...(ownerState.variant === 'dots' && {
-    display: 'flex',
-    flexDirection: 'row',
-  }),
-}));
+})({
+  variants: [
+    {
+      props: { variant: 'dots' },
+      style: {
+        display: 'flex',
+        flexDirection: 'row',
+      },
+    },
+  ],
+});
 
 const MobileStepperDot = styled('div', {
   name: 'MuiMobileStepper',
@@ -76,34 +87,47 @@ const MobileStepperDot = styled('div', {
 
     return [styles.dot, dotActive && styles.dotActive];
   },
-})(({ theme, ownerState, dotActive }) => ({
-  ...(ownerState.variant === 'dots' && {
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    backgroundColor: (theme.vars || theme).palette.action.disabled,
-    borderRadius: '50%',
-    width: 8,
-    height: 8,
-    margin: '0 2px',
-    ...(dotActive && {
-      backgroundColor: (theme.vars || theme).palette.primary.main,
-    }),
-  }),
+})(({ theme }) => ({
+  variants: [
+    {
+      props: { variant: 'dots' },
+      style: {
+        transition: theme.transitions.create('background-color', {
+          duration: theme.transitions.duration.shortest,
+        }),
+        backgroundColor: (theme.vars || theme).palette.action.disabled,
+        borderRadius: '50%',
+        width: 8,
+        height: 8,
+        margin: '0 2px',
+      },
+    },
+    {
+      props: { variant: 'dots', dotActive: true },
+      style: {
+        backgroundColor: (theme.vars || theme).palette.primary.main,
+      },
+    },
+  ],
 }));
 
 const MobileStepperProgress = styled(LinearProgress, {
   name: 'MuiMobileStepper',
   slot: 'Progress',
   overridesResolver: (props, styles) => styles.progress,
-})(({ ownerState }) => ({
-  ...(ownerState.variant === 'progress' && {
-    width: '50%',
-  }),
-}));
+})({
+  variants: [
+    {
+      props: { variant: 'progress' },
+      style: {
+        width: '50%',
+      },
+    },
+  ],
+});
 
 const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMobileStepper' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiMobileStepper' });
   const {
     activeStep = 0,
     backButton,

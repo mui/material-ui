@@ -191,7 +191,7 @@ export interface SelectType {
     >['defaultComponent'],
   >(
     props: PolymorphicProps<SelectTypeMap<OptionValue, Multiple>, RootComponentType>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   propTypes?: any;
   displayName?: string | undefined;
 }

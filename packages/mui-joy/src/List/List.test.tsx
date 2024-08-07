@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import List, { listClasses as classes } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -102,6 +102,7 @@ describe('Joy <List />', () => {
   describe('Menu - integration', () => {
     const element = document.createElement('div');
     element.setAttribute('aria-controls', 'test');
+
     it('should have role="group" inside Menu', () => {
       render(
         <Menu open anchorEl={() => element}>

@@ -4,27 +4,6 @@ import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import { getThemeProps } from '../useThemeProps';
 import useTheme from '../useThemeWithoutDefault';
 
-/**
- * @deprecated Not used internally. Use `MediaQueryListEvent` from lib.dom.d.ts instead.
- */
-export interface MuiMediaQueryListEvent {
-  matches: boolean;
-}
-
-/**
- * @deprecated Not used internally. Use `MediaQueryList` from lib.dom.d.ts instead.
- */
-export interface MuiMediaQueryList {
-  matches: boolean;
-  addListener: (listener: MuiMediaQueryListListener) => void;
-  removeListener: (listener: MuiMediaQueryListListener) => void;
-}
-
-/**
- * @deprecated Not used internally. Use `(event: MediaQueryListEvent) => void` instead.
- */
-export type MuiMediaQueryListListener = (event: MuiMediaQueryListEvent) => void;
-
 export interface UseMediaQueryOptions {
   /**
    * As `window.matchMedia()` is unavailable on the server,
@@ -72,27 +51,20 @@ function useMediaQueryOld(
   });
 
   useEnhancedEffect(() => {
-    let active = true;
-
     if (!matchMedia) {
       return undefined;
     }
 
     const queryList = matchMedia!(query);
     const updateMatch = () => {
-      // Workaround Safari wrong implementation of matchMedia
-      // TODO can we remove it?
-      // https://github.com/mui/material-ui/pull/17315#issuecomment-528286677
-      if (active) {
-        setMatch(queryList.matches);
-      }
+      setMatch(queryList.matches);
     };
+
     updateMatch();
-    // TODO: Use `addEventListener` once support for Safari < 14 is dropped
-    queryList.addListener(updateMatch);
+    queryList.addEventListener('change', updateMatch);
+
     return () => {
-      active = false;
-      queryList.removeListener(updateMatch);
+      queryList.removeEventListener('change', updateMatch);
     };
   }, [query, matchMedia]);
 
@@ -131,10 +103,9 @@ function useMediaQueryNew(
     return [
       () => mediaQueryList.matches,
       (notify: () => void) => {
-        // TODO: Use `addEventListener` once support for Safari < 14 is dropped
-        mediaQueryList.addListener(notify);
+        mediaQueryList.addEventListener('change', notify);
         return () => {
-          mediaQueryList.removeListener(notify);
+          mediaQueryList.removeEventListener('change', notify);
         };
       },
     ];

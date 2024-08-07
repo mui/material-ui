@@ -3,8 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import { getAlertTitleUtilityClass } from './alertTitleClasses';
 
@@ -30,7 +30,7 @@ const AlertTitleRoot = styled(Typography, {
 });
 
 const AlertTitle = React.forwardRef(function AlertTitle(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiAlertTitle',
   });

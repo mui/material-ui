@@ -3,8 +3,8 @@ import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getImageListItemBarUtilityClass } from './imageListItemBarClasses';
 
@@ -12,7 +12,11 @@ const useUtilityClasses = (ownerState) => {
   const { classes, position, actionIcon, actionPosition } = ownerState;
 
   const slots = {
-    root: ['root', `position${capitalize(position)}`],
+    root: [
+      'root',
+      `position${capitalize(position)}`,
+      `actionPosition${capitalize(actionPosition)}`,
+    ],
     titleWrap: [
       'titleWrap',
       `titleWrap${capitalize(position)}`,
@@ -34,7 +38,7 @@ const ImageListItemBarRoot = styled('div', {
 
     return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
   },
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   return {
     position: 'absolute',
     left: 0,
@@ -43,17 +47,34 @@ const ImageListItemBarRoot = styled('div', {
     display: 'flex',
     alignItems: 'center',
     fontFamily: theme.typography.fontFamily,
-    ...(ownerState.position === 'bottom' && {
-      bottom: 0,
-    }),
-    ...(ownerState.position === 'top' && {
-      top: 0,
-    }),
-    ...(ownerState.position === 'below' && {
-      position: 'relative',
-      background: 'transparent',
-      alignItems: 'normal',
-    }),
+    variants: [
+      {
+        props: {
+          position: 'bottom',
+        },
+        style: {
+          bottom: 0,
+        },
+      },
+      {
+        props: {
+          position: 'top',
+        },
+        style: {
+          top: 0,
+        },
+      },
+      {
+        props: {
+          position: 'below',
+        },
+        style: {
+          position: 'relative',
+          background: 'transparent',
+          alignItems: 'normal',
+        },
+      },
+    ],
   };
 });
 
@@ -69,24 +90,35 @@ const ImageListItemBarTitleWrap = styled('div', {
       ownerState.actionIcon && styles[`titleWrapActionPos${capitalize(ownerState.actionPosition)}`],
     ];
   },
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   return {
     flexGrow: 1,
     padding: '12px 16px',
     color: (theme.vars || theme).palette.common.white,
     overflow: 'hidden',
-    ...(ownerState.position === 'below' && {
-      padding: '6px 0 12px',
-      color: 'inherit',
-    }),
-    ...(ownerState.actionIcon &&
-      ownerState.actionPosition === 'left' && {
-        paddingLeft: 0,
-      }),
-    ...(ownerState.actionIcon &&
-      ownerState.actionPosition === 'right' && {
-        paddingRight: 0,
-      }),
+    variants: [
+      {
+        props: {
+          position: 'below',
+        },
+        style: {
+          padding: '6px 0 12px',
+          color: 'inherit',
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.actionIcon && ownerState.actionPosition === 'left',
+        style: {
+          paddingLeft: 0,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.actionIcon && ownerState.actionPosition === 'right',
+        style: {
+          paddingRight: 0,
+        },
+      },
+    ],
   };
 });
 
@@ -129,16 +161,21 @@ const ImageListItemBarActionIcon = styled('div', {
       styles[`actionIconActionPos${capitalize(ownerState.actionPosition)}`],
     ];
   },
-})(({ ownerState }) => {
-  return {
-    ...(ownerState.actionPosition === 'left' && {
-      order: -1,
-    }),
-  };
+})({
+  variants: [
+    {
+      props: {
+        actionPosition: 'left',
+      },
+      style: {
+        order: -1,
+      },
+    },
+  ],
 });
 
 const ImageListItemBar = React.forwardRef(function ImageListItemBar(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiImageListItemBar',
   });

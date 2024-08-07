@@ -147,5 +147,5 @@ export interface ButtonOwnerState extends ApplyColorInversion<ButtonProps> {
 
 export type ExtendButton<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendButtonTypeMap<M>, 'a'>,
-) => JSX.Element) &
+) => React.JSX.Element) &
   OverridableComponent<ExtendButtonTypeMap<M>>;

@@ -9,7 +9,7 @@ githubLabel: 'component: ButtonGroup'
 
 <p class="description">The ButtonGroup component can be used to group related buttons.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic button group
 
@@ -55,16 +55,3 @@ You can remove the elevation with the `disableElevation` prop.
 You can use the [`<LoadingButton />`](/material-ui/react-button/#loading-button) from [`@mui/lab`](/material-ui/about-the-lab/) in the button group.
 
 {{"demo": "LoadingButtonGroup.js"}}
-
-### Material Design 3
-
-The default Material UI Button Group component follows the Material Design 2 specs.
-To use the [M3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
-
-```js
-import ButtonGroup from '@mui/material-next/ButtonGroup';
-```
-
-{{"demo": "ButtonGroupMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
-
-To learn more about Material UI's M3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).

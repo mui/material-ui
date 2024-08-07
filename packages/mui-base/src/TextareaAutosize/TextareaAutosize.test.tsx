@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
-import {
-  act,
-  screen,
-  waitFor,
-  createMount,
-  createRenderer,
-  fireEvent,
-} from '@mui-internal/test-utils';
+import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
@@ -41,11 +34,9 @@ async function raf() {
 
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
-  const mount = createMount();
 
   describeConformanceUnstyled(<TextareaAutosize />, () => ({
     render,
-    mount,
     inheritComponent: 'textarea',
     refInstanceof: window.HTMLTextAreaElement,
     slots: {},
@@ -456,6 +447,19 @@ describe('<TextareaAutosize />', () => {
 
       // the input should be 2 lines
       expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+    });
+  });
+
+  it('should apply the inline styles using the "style" prop', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container } = render(<TextareaAutosize style={{ backgroundColor: 'yellow' }} />);
+    const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
+
+    expect(input).toHaveComputedStyle({
+      backgroundColor: 'rgb(255, 255, 0)',
     });
   });
 });

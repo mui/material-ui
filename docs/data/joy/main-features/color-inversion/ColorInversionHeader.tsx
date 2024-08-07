@@ -27,18 +27,20 @@ export default function ColorInversionHeader() {
       variant="solid"
       color={color}
       invertedColors
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        flexGrow: 1,
-        p: 2,
-        borderRadius: { xs: 0, sm: 'sm' },
-        minWidth: 'min-content',
-        ...(color !== 'warning' && {
-          background: (theme) =>
-            `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,
-        }),
-      }}
+      sx={[
+        {
+          display: 'flex',
+          alignItems: 'center',
+          flexGrow: 1,
+          p: 2,
+          borderRadius: { xs: 0, sm: 'sm' },
+          minWidth: 'min-content',
+        },
+        color !== 'warning' &&
+          ((theme) => ({
+            background: `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,
+          })),
+      ]}
     >
       <IconButton
         variant="soft"
@@ -60,9 +62,7 @@ export default function ColorInversionHeader() {
       <Box sx={{ flex: 1, display: 'flex', gap: 1, px: 2 }}>
         <Dropdown>
           <MenuButton
-            sx={{
-              '--Button-radius': '1.5rem',
-            }}
+            sx={{ '--Button-radius': '1.5rem' }}
             variant="outlined"
             endDecorator={<KeyboardArrowDownIcon />}
           >
@@ -93,11 +93,10 @@ export default function ColorInversionHeader() {
               <Chip
                 variant="outlined"
                 size="sm"
-                sx={{
+                sx={(theme) => ({
                   ml: 'auto',
-                  bgcolor: (theme) =>
-                    `rgba(${theme.vars.palette.primary.mainChannel} / 0.1)`,
-                }}
+                  bgcolor: `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`,
+                })}
               >
                 Beta
               </Chip>

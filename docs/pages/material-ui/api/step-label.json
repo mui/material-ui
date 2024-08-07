@@ -4,13 +4,22 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ label?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
     "optional": { "type": { "name": "node" } },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ label?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ label?: func<br>&#124;&nbsp;object, stepIcon?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ label?: elementType, stepIcon?: elementType }" },
       "default": "{}"
     },
     "StepIconComponent": { "type": { "name": "elementType" } },
@@ -27,6 +36,19 @@
   "imports": [
     "import StepLabel from '@mui/material/StepLabel';",
     "import { StepLabel } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "label",
+      "description": "The component that renders the label.",
+      "default": "span",
+      "class": "MuiStepLabel-label"
+    },
+    {
+      "name": "stepIcon",
+      "description": "The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).",
+      "class": null
+    }
   ],
   "classes": [
     {
@@ -69,12 +91,6 @@
       "key": "iconContainer",
       "className": "MuiStepLabel-iconContainer",
       "description": "Styles applied to the `icon` container element.",
-      "isGlobal": false
-    },
-    {
-      "key": "label",
-      "className": "MuiStepLabel-label",
-      "description": "Styles applied to the label element that wraps `children`.",
       "isGlobal": false
     },
     {

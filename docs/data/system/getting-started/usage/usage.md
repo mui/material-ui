@@ -96,12 +96,7 @@ return (
     sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }}
   />
   <Box
-    sx={{
-      color: 'success.dark',
-      display: 'inline',
-      fontWeight: 'medium',
-      mx: 0.5,
-    }}
+    sx={{ color: 'success.dark', display: 'inline', fontWeight: 'medium', mx: 0.5 }}
   >
     18.77%
   </Box>
@@ -152,18 +147,18 @@ It works with both Emotion and styled-components.
 
 #### Cons
 
-- Runtime performance takes a hit.
+Runtime performance takes a hit.
 
-  | Benchmark case                    | Code snippet          | Time normalized |
-  | :-------------------------------- | :-------------------- | --------------: |
-  | a. Render 1,000 primitives        | `<div className="…">` |           100ms |
-  | b. Render 1,000 components        | `<Div>`               |           112ms |
-  | c. Render 1,000 styled components | `<StyledDiv>`         |           181ms |
-  | d. Render 1,000 Box               | `<Box sx={…}>`        |           296ms |
+| Benchmark case                    | Code snippet          | Time normalized |
+| :-------------------------------- | :-------------------- | --------------: |
+| a. Render 1,000 primitives        | `<div className="…">` |           100ms |
+| b. Render 1,000 components        | `<Div>`               |           112ms |
+| c. Render 1,000 styled components | `<StyledDiv>`         |           181ms |
+| d. Render 1,000 Box               | `<Box sx={…}>`        |           296ms |
 
 <!-- #default-branch-switch -->
 
-_Head to the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+Visit the [benchmark folder](https://github.com/mui/material-ui/tree/next/benchmark/browser) for a reproduction of the metrics above.
 
 We believe that for most use cases it's fast enough, but there are simple workarounds when performance becomes critical.
 For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
@@ -183,7 +178,7 @@ The `sx` prop can be used in four different locations:
 
 ### Core components
 
-All Material UI, and Joy UI components support the `sx` prop.
+All Material UI and Joy UI components support the `sx` prop.
 
 ### Box
 
@@ -202,7 +197,7 @@ const Div = styled('div')``;
 
 ### Any element with the babel plugin
 
-TODO [#23220](https://github.com/mui/material-ui/issues/23220).
+Visit [the open GitHub issue](https://github.com/mui/material-ui/issues/23220) regarding this topic to learn more.
 
 ## How to use MUI System
 
@@ -218,8 +213,7 @@ Here is an example of a few:
 
 ```jsx
 <Box
-  sx={{
-    boxShadow: 1, // theme.shadows[1]
+  sx={{  boxShadow: 1, // theme.shadows[1]
     color: 'primary.main', // theme.palette.primary.main
     m: 1, // margin: theme.spacing(1)
     p: {
@@ -241,8 +235,7 @@ Here are a few examples of how you can implement these CSS features:
 
   ```jsx
   <Box
-    sx={{
-      // some styles
+    sx={{    // some styles
       ":hover": {
         boxShadow: 6,
       },
@@ -254,8 +247,7 @@ Here are a few examples of how you can implement these CSS features:
 
   ```jsx
   <Box
-    sx={{
-      // some styles
+    sx={{    // some styles
       '@media print': {
         width: 300,
       },
@@ -267,8 +259,7 @@ Here are a few examples of how you can implement these CSS features:
 
   ```jsx
   <Box
-    sx={{
-      // some styles
+    sx={{    // some styles
       '& .ChildSelector': {
         bgcolor: 'primary.main',
       },
@@ -291,6 +282,19 @@ The following demo shows how to define a set of breakpoints using the object syn
 
 {{"demo": "BreakpointsAsObject.js"}}
 
+:::info
+📣 Starting from v6, the object structure supports [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) shorthand with `@`.
+
+We recommend you to check the [browser support](https://caniuse.com/?search=container%20que) before using CSS container queries.
+:::
+
+The shorthand syntax is `@{breakpoint}/{container}`:
+
+- **breakpoint**: a number for `px` unit or a breakpoint key (e.g. `sm`, `md`, `lg`, `xl` for default breakpoints) or a valid CSS value (e.g. `40em`).
+- **container** (optional): the name of the [containment context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries#naming_containment_contexts).
+
+{{"demo": "ContainerQueries.js"}}
+
 #### Breakpoints as an array
 
 The second option is to define your breakpoints as an array, from smallest to largest.
@@ -299,7 +303,7 @@ Here's what that looks like:
 {{"demo": "BreakpointsAsArray.js"}}
 
 :::success
-This option should only be considered when the theme has a limited number of breakpoints, e.g. 3.
+This option should only be considered when the theme has a limited number of breakpoints, for example 3.
 
 We recommend using the object API instead if you need to define more than a few breakpoints.
 :::

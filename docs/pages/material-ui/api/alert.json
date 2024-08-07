@@ -17,13 +17,13 @@
       },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "icon": { "type": { "name": "node" } },
     "iconMapping": {

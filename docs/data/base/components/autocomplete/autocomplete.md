@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 <p class="description">An autocomplete component is a text input enhanced by a panel of suggested options.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 

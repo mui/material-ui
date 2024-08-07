@@ -3,8 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import AccordionContext from '../Accordion/AccordionContext';
 import accordionSummaryClasses, {
@@ -28,7 +28,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme, ownerState }) => {
+})(({ theme }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -47,11 +47,16 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
       cursor: 'pointer',
     },
-    ...(!ownerState.disableGutters && {
-      [`&.${accordionSummaryClasses.expanded}`]: {
-        minHeight: 64,
+    variants: [
+      {
+        props: (props) => !props.disableGutters,
+        style: {
+          [`&.${accordionSummaryClasses.expanded}`]: {
+            minHeight: 64,
+          },
+        },
       },
-    }),
+    ],
   };
 });
 
@@ -59,18 +64,23 @@ const AccordionSummaryContent = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   flexGrow: 1,
   margin: '12px 0',
-  ...(!ownerState.disableGutters && {
-    transition: theme.transitions.create(['margin'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    [`&.${accordionSummaryClasses.expanded}`]: {
-      margin: '20px 0',
+  variants: [
+    {
+      props: (props) => !props.disableGutters,
+      style: {
+        transition: theme.transitions.create(['margin'], {
+          duration: theme.transitions.duration.shortest,
+        }),
+        [`&.${accordionSummaryClasses.expanded}`]: {
+          margin: '20px 0',
+        },
+      },
     },
-  }),
+  ],
 }));
 
 const AccordionSummaryExpandIconWrapper = styled('div', {
@@ -90,7 +100,7 @@ const AccordionSummaryExpandIconWrapper = styled('div', {
 }));
 
 const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAccordionSummary' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAccordionSummary' });
   const { children, className, expandIcon, focusVisibleClassName, onClick, ...other } = props;
 
   const { disabled = false, disableGutters, expanded, toggle } = React.useContext(AccordionContext);

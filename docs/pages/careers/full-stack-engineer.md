@@ -1,12 +1,12 @@
 # Full-stack Engineer — Toolpad (future role)
 
-<p class="description">You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.</p>
+<p class="description">You will join the Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.</p>
 
 ## Details of the role
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Leveling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## About the company
@@ -16,7 +16,7 @@ It has gained a large following, not only due to its fidelity to Material Design
 Today, countless teams and organizations rely on our open-source projects to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
-We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
+We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design Kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2x per year) and we have more to come.
 We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
@@ -40,7 +40,7 @@ We need talented people to keep that going!
 
 ### Why this is interesting
 
-The MUI Toolpad application offers a wide variety of engineering challenges. Including
+The Toolpad application offers a wide variety of engineering challenges. Including
 
 - In-browser sandboxing and manipulation of live web applications
 - Drag & drop visual editor
@@ -54,8 +54,8 @@ Depending on the day, you'll:
 
 - **Help guide architectural decisions**. You'll join us in defining and refining the initial product and also help bring the conversation public as the MVP grows. You'll also interface with other teams at MUI as you'll be building on top of their work.
 - **Contribute to implementing new features**. MUI is a complex codebase. It's built on top of cutting-edge web technologies to build the low-code tool for the future.
-- **Reduce friction**. A large amount of the work on MUI Toolpad is reducing friction and making it easier to use. As our MVP grows, our focus will shift from "making it work" towards "making it easy to work with".
-- **Collaborate with the community**. MUI Toolpad will be open-sourced. As the community grows you'll act as a steward to steer it towards success. This includes reviewing issues, pull requests and questions, and guiding aspiring contributors to make meaningful contributions.
+- **Reduce friction**. A large amount of the work on Toolpad is reducing friction and making it easier to use. As our MVP grows, our focus will shift from "making it work" towards "making it easy to work with".
+- **Collaborate with the community**. Toolpad will be open-sourced. As the community grows you'll act as a lead to steer it towards success. This includes reviewing issues, pull requests and questions, and guiding aspiring contributors to make meaningful contributions.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
 - **Take ownership of features from idea/mockup to live deployment**. You'll shape and guide the direction of crucial new features.
 - **Ship. Early and often**. You'll iterate and ship frequently. You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
@@ -65,7 +65,7 @@ Depending on the day, you'll:
 
 - **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
 - **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
-- **Your role will be key to making MUI Toolpad the go-to low code tool** for internal application building.
+- **Your role will be key to making Toolpad the go-to low code tool** for internal application building.
 
 ## The worst parts of this job
 
@@ -79,8 +79,8 @@ We're looking for someone with both strong front-end and back-end skills. More i
 
 ### Required
 
-- **Expertise in the modern JavaScript ecosystem**. MUI Toolpad is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, Webpack, and Babel.
-- **Expertise in backend development**. MUI Toolpad interfaces with multiple databases, both SQL and NoSQL, as well as APIs such as REST and GraphQL. You'll need to be comfortable in learning and integrating new backend technologies fast. You'll need to have a good understanding of distributed systems and some knowledge of CRDTs is a plus.
+- **Expertise in the modern JavaScript ecosystem**. Toolpad is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, Webpack, and Babel.
+- **Expertise in backend development**. Toolpad interfaces with multiple databases, both SQL and NoSQL, as well as APIs such as REST and GraphQL. You'll need to be comfortable in learning and integrating new backend technologies fast. You'll need to have a good understanding of distributed systems and some knowledge of CRDTs is a plus.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**. As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
@@ -96,7 +96,7 @@ We're looking for someone with both strong front-end and back-end skills. More i
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

@@ -9,13 +9,13 @@ export async function generateBaseUIApiPages() {
   await Promise.all(
     findPagesMarkdown().map(async (markdown) => {
       const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-      const markdownHeaders = getHeaders(markdownContent) as any;
+      const markdownHeaders = getHeaders(markdownContent);
       const pathnameTokens = markdown.pathname.split('/');
       const productName = pathnameTokens[1];
       const componentName = pathnameTokens[3];
 
       // TODO: fix `productName` should be called `productId` and include the full name,
-      // e.g. base-ui below.
+      // for example base-ui below.
       if (
         productName === 'base' &&
         (markdown.filename.indexOf('\\components\\') >= 0 ||

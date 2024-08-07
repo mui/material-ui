@@ -8,9 +8,9 @@ We use GitHub issues as a bug and feature request tracker.
 
 If you think you've found a bug, or you have a new feature idea:
 
-1. Please start by [making sure it hasn't already been reported or fixed](https://github.com/mui/material-ui/issues?q=is%3Aopen+is%3Aclosed).
+1. Please start by [making sure it hasn't already been reported or fixed](https://github.com/mui/base-ui/issues?q=is%3Aopen+is%3Aclosed).
    You can search through existing issues and pull requests to see if someone has reported one similar to yours.
-2. Then, if no duplicates exist, [open an issue](https://github.com/mui/material-ui/issues/new/choose) in the Base UI repository.
+2. Then, if no duplicates exist, [open an issue](https://github.com/mui/base-ui/issues/new/choose) in the Base UI repository.
 
 ### New issue guidelines
 
@@ -78,7 +78,7 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 ### Social media
 
-The Base UI community is active on both [X/Twitter](https://twitter.com/MaterialUI) and [LinkedIn](https://www.linkedin.com/company/mui/).
+The Base UI community is active on both [X/Twitter](https://x.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/mui/).
 These are great platforms to share what you're working on and connect with other developers.
 
 ### Discord

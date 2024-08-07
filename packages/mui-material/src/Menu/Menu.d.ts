@@ -86,12 +86,12 @@ export declare const MenuPaper: React.FC<PaperProps>;
  *
  * Demos:
  *
- * - [App Bar](https://mui.com/material-ui/react-app-bar/)
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [App Bar](https://next.mui.com/material-ui/react-app-bar/)
+ * - [Menu](https://next.mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [Menu API](https://mui.com/material-ui/api/menu/)
- * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
+ * - [Menu API](https://next.mui.com/material-ui/api/menu/)
+ * - inherits [Popover API](https://next.mui.com/material-ui/api/popover/)
  */
-export default function Menu(props: MenuProps): JSX.Element;
+export default function Menu(props: MenuProps): React.JSX.Element;

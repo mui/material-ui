@@ -8,8 +8,8 @@ import composeClasses from '@mui/utils/composeClasses';
 import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -48,7 +48,7 @@ const SwitchRoot = styled('span', {
       styles[`size${capitalize(ownerState.size)}`],
     ];
   },
-})(({ ownerState }) => ({
+})({
   display: 'inline-flex',
   width: 34 + 12 * 2,
   height: 14 + 12 * 2,
@@ -62,28 +62,35 @@ const SwitchRoot = styled('span', {
   '@media print': {
     colorAdjust: 'exact',
   },
-  ...(ownerState.edge === 'start' && {
-    marginLeft: -8,
-  }),
-  ...(ownerState.edge === 'end' && {
-    marginRight: -8,
-  }),
-  ...(ownerState.size === 'small' && {
-    width: 40,
-    height: 24,
-    padding: 7,
-    [`& .${switchClasses.thumb}`]: {
-      width: 16,
-      height: 16,
+  variants: [
+    {
+      props: { edge: 'start' },
+      style: { marginLeft: -8 },
     },
-    [`& .${switchClasses.switchBase}`]: {
-      padding: 4,
-      [`&.${switchClasses.checked}`]: {
-        transform: 'translateX(16px)',
+    {
+      props: { edge: 'end' },
+      style: { marginRight: -8 },
+    },
+    {
+      props: { size: 'small' },
+      style: {
+        width: 40,
+        height: 24,
+        padding: 7,
+        [`& .${switchClasses.thumb}`]: {
+          width: 16,
+          height: 16,
+        },
+        [`& .${switchClasses.switchBase}`]: {
+          padding: 4,
+          [`&.${switchClasses.checked}`]: {
+            transform: 'translateX(16px)',
+          },
+        },
       },
     },
-  }),
-}));
+  ],
+});
 
 const SwitchSwitchBase = styled(SwitchBase, {
   name: 'MuiSwitch',
@@ -130,7 +137,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
       width: '300%',
     },
   }),
-  ({ theme, ownerState }) => ({
+  ({ theme }) => ({
     '&:hover': {
       backgroundColor: theme.vars
         ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
@@ -140,33 +147,38 @@ const SwitchSwitchBase = styled(SwitchBase, {
         backgroundColor: 'transparent',
       },
     },
-    ...(ownerState.color !== 'default' && {
-      [`&.${switchClasses.checked}`]: {
-        color: (theme.vars || theme).palette[ownerState.color].main,
-        '&:hover': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
-                theme.vars.palette.action.hoverOpacity
-              })`
-            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(([, value]) => value && value.main && value.light) // check all the used fields in the style below
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            [`&.${switchClasses.checked}`]: {
+              color: (theme.vars || theme).palette[color].main,
+              '&:hover': {
+                backgroundColor: theme.vars
+                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                  : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                '@media (hover: none)': {
+                  backgroundColor: 'transparent',
+                },
+              },
+              [`&.${switchClasses.disabled}`]: {
+                color: theme.vars
+                  ? theme.vars.palette.Switch[`${color}DisabledColor`]
+                  : `${
+                      theme.palette.mode === 'light'
+                        ? lighten(theme.palette[color].main, 0.62)
+                        : darken(theme.palette[color].main, 0.55)
+                    }`,
+              },
+            },
+            [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
+              backgroundColor: (theme.vars || theme).palette[color].main,
+            },
           },
-        },
-        [`&.${switchClasses.disabled}`]: {
-          color: theme.vars
-            ? theme.vars.palette.Switch[`${ownerState.color}DisabledColor`]
-            : `${
-                theme.palette.mode === 'light'
-                  ? lighten(theme.palette[ownerState.color].main, 0.62)
-                  : darken(theme.palette[ownerState.color].main, 0.55)
-              }`,
-        },
-      },
-      [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
-        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
-      },
-    }),
+        })),
+    ],
   }),
 );
 
@@ -203,7 +215,7 @@ const SwitchThumb = styled('span', {
 }));
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSwitch' });
   const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
 
   const ownerState = {

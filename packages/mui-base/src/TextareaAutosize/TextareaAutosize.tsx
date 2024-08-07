@@ -65,6 +65,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const handleRef = useForkRef(forwardedRef, inputRef);
+  const heightRef = React.useRef<number | null>(null);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
 
   const calculateTextareaStyles = React.useCallback(() => {
@@ -130,8 +131,12 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       return;
     }
 
+    const outerHeightStyle = textareaStyles.outerHeightStyle;
     const input = inputRef.current!;
-    input.style.height = `${textareaStyles.outerHeightStyle}px`;
+    if (heightRef.current !== outerHeightStyle) {
+      heightRef.current = outerHeightStyle;
+      input.style.height = `${outerHeightStyle}px`;
+    }
     input.style.overflow = textareaStyles.overflowing ? 'hidden' : '';
   }, [calculateTextareaStyles]);
 
@@ -197,6 +202,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
         rows={minRows as number}
+        style={style}
         {...other}
       />
       <textarea

@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
@@ -37,7 +37,7 @@ const SpeedDialActionFab = styled(Fab, {
 
     return [styles.fab, !ownerState.open && styles.fabClosed];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   margin: 8,
   color: (theme.vars || theme).palette.text.secondary,
   backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -50,10 +50,15 @@ const SpeedDialActionFab = styled(Fab, {
     duration: theme.transitions.duration.shorter,
   })}, opacity 0.8s`,
   opacity: 1,
-  ...(!ownerState.open && {
-    opacity: 0,
-    transform: 'scale(0)',
-  }),
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.open,
+      style: {
+        opacity: 0,
+        transform: 'scale(0)',
+      },
+    },
+  ],
 }));
 
 const SpeedDialActionStaticTooltip = styled('span', {
@@ -68,7 +73,7 @@ const SpeedDialActionStaticTooltip = styled('span', {
       styles[`tooltipPlacement${capitalize(ownerState.tooltipPlacement)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -77,21 +82,42 @@ const SpeedDialActionStaticTooltip = styled('span', {
       duration: theme.transitions.duration.shorter,
     }),
     opacity: 1,
-    ...(!ownerState.open && {
-      opacity: 0,
-      transform: 'scale(0.5)',
-    }),
-    ...(ownerState.tooltipPlacement === 'left' && {
-      transformOrigin: '100% 50%',
-      right: '100%',
-      marginRight: 8,
-    }),
-    ...(ownerState.tooltipPlacement === 'right' && {
-      transformOrigin: '0% 50%',
-      left: '100%',
-      marginLeft: 8,
-    }),
   },
+  variants: [
+    {
+      props: ({ ownerState }) => !ownerState.open,
+      style: {
+        [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+          opacity: 0,
+          transform: 'scale(0.5)',
+        },
+      },
+    },
+    {
+      props: {
+        tooltipPlacement: 'left',
+      },
+      style: {
+        [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+          transformOrigin: '100% 50%',
+          right: '100%',
+          marginRight: 8,
+        },
+      },
+    },
+    {
+      props: {
+        tooltipPlacement: 'right',
+      },
+      style: {
+        [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+          transformOrigin: '0% 50%',
+          left: '100%',
+          marginLeft: 8,
+        },
+      },
+    },
+  ],
 }));
 
 const SpeedDialActionStaticTooltipLabel = styled('span', {
@@ -110,7 +136,7 @@ const SpeedDialActionStaticTooltipLabel = styled('span', {
 }));
 
 const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDialAction' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialAction' });
   const {
     className,
     delay = 0,

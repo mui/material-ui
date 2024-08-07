@@ -40,7 +40,7 @@ function isLink(event) {
  * @param {MouseEvent} event
  */
 function handleClick(event) {
-  // Ignore click events meant for native link handling, e.g. open in new tab
+  // Ignore click events meant for native link handling, for example open in new tab
   if (samePageLinkNavigation(event)) {
     return;
   }

@@ -43,7 +43,7 @@ Currently, we have five main projects that are not at all related to MD:
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
 - [MUI X](https://mui.com/x/): as mentioned, a growing set of advanced components.
   Today, the flagship is the [Data Grid](https://mui.com/x/react-data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
-- MUI Toolpad: a very recent endeavor aimed at exploring how our users can visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
+- Toolpad: a very recent endeavor aimed at exploring how our users can visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
 
 We also know, especially due to [our annual Developer Survey](https://mui.com/blog/2021-developer-survey-results/), that design quality plays a huge part when developers are considering component library options.
 Therefore, we need to grow the design team to help us push these initiatives further.
@@ -57,14 +57,14 @@ Some criteria for applying to this role:
 - **Level**: [3 or above](https://mui-org.notion.site/Design-levels-aa01996ca7e0481e80479ad47c8f28a4).
 
 We need someone experienced enough to help two different teams with hard problems.
-You'll be responsible for ensuring that the MUI Toolpad and MUI X teams have spot-on design and product work.
+You'll be responsible for ensuring that the Toolpad and MUI X teams have spot-on design and product work.
 Given that each product is at a different stage, at this moment we believe that one person is enough to oversee the design function for both teams.
 You'll have the freedom, trust, and help you need to balance and tackle all the work.
 You'll also be the second designer of a growing design team, so we'll also need your help to shape this growth.
 
 ### Here are a few initiatives you might work on
 
-- Help design the first version of MUI Toolpad, from early strategy to its look and feel.
+- Help design the first version of Toolpad, from early strategy to its look and feel.
 - Evolve and refine the Data Grid UX for features such as filtering, column pinning, row editing, and more.
 - Help set the bar higher for MUI X documentation, from visual design to copywriting.
 - Support the design team growth by promoting design/product culture, and hiring new members.

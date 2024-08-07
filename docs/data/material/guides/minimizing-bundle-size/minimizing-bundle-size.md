@@ -19,8 +19,9 @@ If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack`
 import { Button, TextField } from '@mui/material';
 ```
 
-⚠️ The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler
-that doesn't support tree-shaking.
+:::warning
+The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler that doesn't support tree-shaking.
+:::
 
 ## Development environment
 
@@ -213,10 +214,7 @@ It will perform the following diffs:
 
 The packages published on npm are **transpiled** with [Babel](https://github.com/babel/babel), optimized for performance with the [supported platforms](/material-ui/getting-started/supported-platforms/).
 
-Custom bundles are also available:
-
-- [Modern bundle](#modern-bundle)
-- [Legacy bundle](#legacy-bundle)
+A [modern bundle](#modern-bundle) is also available.
 
 ### How to use custom bundles?
 
@@ -263,9 +261,3 @@ A great way to use these bundles is to configure bundler aliases, for example wi
 The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/).
 It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
 This can be used to make separate bundles targeting different browsers.
-
-### Legacy bundle
-
-If you need to support IE 11 you cannot use the default or modern bundle without transpilation.
-However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/).
-You don't need any additional polyfills.

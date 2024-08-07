@@ -123,5 +123,5 @@ export interface ListItemButtonOwnerState extends ApplyColorInversion<ListItemBu
 
 export type ExtendListItemButton<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendListItemButtonTypeMap<M>, 'a'>,
-) => JSX.Element) &
+) => React.JSX.Element) &
   OverridableComponent<ExtendListItemButtonTypeMap<M>>;

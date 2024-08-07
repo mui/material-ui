@@ -104,7 +104,7 @@
     "ListboxComponent": { "description": "The component used to render the listbox." },
     "ListboxProps": { "description": "Props applied to the Listbox element." },
     "loading": {
-      "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, e.g. <code>options</code> are empty)."
+      "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, for example <code>options</code> are empty)."
     },
     "loadingText": {
       "description": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
@@ -143,7 +143,7 @@
       "typeDescriptions": {
         "event": "The event source of the callback.",
         "value": "The new value of the text input.",
-        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>."
+        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>"
       }
     },
     "onOpen": {
@@ -189,6 +189,7 @@
     },
     "size": { "description": "The size of the component." },
     "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -245,10 +246,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Input element"
     },
-    "listbox": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the listbox component"
-    },
     "loading": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the loading wrapper"
@@ -260,14 +257,6 @@
     "option": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the option elements"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
-    },
-    "popper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the popper element"
     },
     "popperDisablePortal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -287,17 +276,22 @@
     "tag": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
-      "conditions": "e.g. the chips"
+      "conditions": "for example the chips"
     },
     "tagSizeMedium": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
-      "conditions": "e.g. the chips if <code>size=\"medium\"</code>"
+      "conditions": "for example the chips if <code>size=\"medium\"</code>"
     },
     "tagSizeSmall": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
-      "conditions": "e.g. the chips if <code>size=\"small\"</code>"
+      "conditions": "for example the chips if <code>size=\"small\"</code>"
     }
+  },
+  "slotDescriptions": {
+    "listbox": "The component used to render the listbox.",
+    "paper": "The component used to render the body of the popup.",
+    "popper": "The component used to position the popup."
   }
 }

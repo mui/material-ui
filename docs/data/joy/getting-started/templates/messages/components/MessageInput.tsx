@@ -42,10 +42,10 @@ export default function MessageInput(props: MessageInputProps) {
           endDecorator={
             <Stack
               direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              flexGrow={1}
               sx={{
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexGrow: 1,
                 py: 1,
                 pr: 1,
                 borderTop: '1px solid',

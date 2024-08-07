@@ -26,6 +26,10 @@
       "matchPackagePatterns": "@emotion/*"
     },
     {
+      "groupName": "Pigment CSS",
+      "matchPackagePatterns": ["@pigment-css/*"]
+    },
+    {
       "groupName": "Font awesome SVG icons",
       "matchPackagePatterns": "@fortawesome/*"
     },
@@ -64,7 +68,7 @@
     },
     {
       "groupName": "React",
-      "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
+      "matchPackageNames": ["react", "react-dom", "react-is"]
     },
     {
       "groupName": "typescript-eslint",
@@ -105,6 +109,10 @@
     {
       "groupName": "@definitelytyped tools",
       "matchPackagePatterns": ["@definitelytyped/*"]
+    },
+    {
+      "groupName": "Testing libraries",
+      "matchPackagePatterns": ["@testing-library/*"]
     },
     {
       "groupName": "envinfo tests",

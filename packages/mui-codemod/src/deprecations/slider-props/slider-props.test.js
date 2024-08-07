@@ -31,7 +31,7 @@ describe('@mui/codemod', () => {
         const actual = transform(
           { source: read('./test-cases/theme.actual.js') },
           { jscodeshift },
-          { printOptions: { trailingComma: true } },
+          { printOptions: { trailingComma: false } },
         );
 
         const expected = read('./test-cases/theme.expected.js');

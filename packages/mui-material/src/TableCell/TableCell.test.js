@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import TableCell, { tableCellClasses as classes } from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -31,16 +31,6 @@ describe('<TableCell />', () => {
         </table>,
       );
       return { container: container.firstChild.firstChild.firstChild, ...other };
-    },
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(
-        <table>
-          <tbody>
-            <tr>{node}</tr>
-          </tbody>
-        </table>,
-      );
-      return wrapper.find('tr').childAt(0);
     },
     muiName: 'MuiTableCell',
     testVariantProps: { variant: 'body' },
@@ -97,6 +87,7 @@ describe('<TableCell />', () => {
     const { container } = renderInTable(<TableCell component="th" scope="row" />);
     expect(container.querySelector('th')).not.to.have.attribute('role');
   });
+
   it('should not set scope attribute when TableCell is rendered as <td> within table head', () => {
     const { container } = render(
       <Table>

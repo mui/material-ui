@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -115,7 +115,7 @@ Do not add the `ref` parameter to the button element manually, as the correct re
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Custom elements

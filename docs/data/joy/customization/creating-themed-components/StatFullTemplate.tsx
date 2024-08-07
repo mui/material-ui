@@ -16,7 +16,7 @@ interface StatOwnerState extends StatProps {
 const StatRoot = styled('div', {
   name: 'JoyStat',
   slot: 'root',
-})<{ ownerState: StatOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: StatOwnerState }>(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(0.5),
@@ -24,10 +24,17 @@ const StatRoot = styled('div', {
   backgroundColor: theme.vars.palette.background.surface,
   borderRadius: theme.vars.radius.sm,
   boxShadow: theme.vars.shadow.md,
-  ...(ownerState.variant === 'outlined' && {
-    border: `2px solid ${theme.palette.divider}`,
-    boxShadow: 'none',
-  }),
+  variants: [
+    {
+      props: {
+        variant: 'outlined',
+      },
+      style: {
+        border: `2px solid ${theme.palette.divider}`,
+        boxShadow: 'none',
+      },
+    },
+  ],
 }));
 
 const StatValue = styled('div', {

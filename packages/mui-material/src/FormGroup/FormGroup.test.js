@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import FormGroup, { formGroupClasses as classes } from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
 import describeConformance from '../../test/describeConformance';
@@ -27,6 +27,7 @@ describe('<FormGroup />', () => {
 
     expect(queryByTestId('test-children')).not.to.equal(null);
   });
+
   describe('with FormControl', () => {
     describe('error', () => {
       it(`should have the error class`, () => {

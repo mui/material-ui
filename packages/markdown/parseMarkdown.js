@@ -188,6 +188,7 @@ function getContents(markdown) {
     .replace(headerRegExp, '') // Remove header information
     .split(/^{{("(?:demo|component)":.*)}}$/gm) // Split markdown into an array, separating demos
     .flatMap((text) => text.split(/^(<codeblock.*?<\/codeblock>)$/gmsu))
+    .flatMap((text) => text.split(/^(<featureList.*?<\/featureList>)$/gmsu))
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
   return rep;
 }
@@ -212,23 +213,37 @@ function getDescription(markdown) {
 }
 
 function getCodeblock(content) {
-  if (content.startsWith('<codeblock')) {
-    const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
-    const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
-      ([, language, tab, code]) => ({ language, tab, code }),
-    );
-
-    const blocksData = blocks.filter(
-      (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
-    );
-
-    return {
-      type: 'codeblock',
-      data: blocksData,
-      storageKey,
-    };
+  if (!content.startsWith('<codeblock')) {
+    return undefined;
   }
-  return undefined;
+  const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+  const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
+    ([, language, tab, code]) => ({ language, tab, code }),
+  );
+
+  const blocksData = blocks.filter(
+    (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+  );
+
+  return {
+    type: 'codeblock',
+    data: blocksData,
+    storageKey,
+  };
+}
+
+function getFeatureList(content) {
+  if (!content.startsWith('<featureList')) {
+    return undefined;
+  }
+  const lines = content
+    .split('\n')
+    .filter((line) => line.startsWith('- '))
+    .map((line) => line.slice(2));
+
+  return ['<ul class="feature-list">', ...lines.map((line) => `<li>${line}</li>`), '</ul>'].join(
+    '',
+  );
 }
 
 /**
@@ -265,6 +280,7 @@ const noSEOadvantage = [
   'https://headlessui.com/',
   'https://refine.dev/',
   'https://scaffoldhub.io/',
+  'https://marmelab.com/',
 ];
 
 /**
@@ -293,12 +309,13 @@ function createRender(context) {
    */
   function render(markdown) {
     const renderer = new marked.Renderer();
-    renderer.heading = (headingHtml, level) => {
+    renderer.heading = function heading({ tokens, depth: level }) {
       // Main title, no need for an anchor.
       // It adds noises to the URL.
       //
       // Small title, no need for an anchor.
       // It reduces the risk of duplicated id and it's fewer elements in the DOM.
+      const headingHtml = this.parser.parseInline(tokens);
       if (level === 1 || level >= 4) {
         return `<h${level}>${headingHtml}</h${level}>`;
       }
@@ -349,22 +366,19 @@ function createRender(context) {
       }
 
       return [
-        `<h${level} id="${hash}">`,
-        headingHtml,
-        `<a aria-labelledby="${hash}" class="anchor-link" href="#${hash}" tabindex="-1">`,
-        '<svg><use xlink:href="#anchor-link-icon" /></svg>',
-        '</a>',
+        `<h${level} id="${hash}"><a href="#${hash}" class="title-link-to-anchor">${headingHtml}<span class="anchor-icon"><svg><use xlink:href="#anchor-link-icon" /></svg></span></a>`,
         `<button title="Post a comment" class="comment-link" data-feedback-hash="${hash}">`,
         '<svg><use xlink:href="#comment-link-icon" /></svg>',
         `</button>`,
         `</h${level}>`,
       ].join('');
     };
-    renderer.link = (href, linkTitle, linkText) => {
+    renderer.link = function link({ href, title, tokens }) {
+      const linkText = this.parser.parseInline(tokens);
       let more = '';
 
-      if (linkTitle) {
-        more += ` title="${linkTitle}"`;
+      if (title) {
+        more += ` title="${title}"`;
       }
 
       if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
@@ -392,29 +406,28 @@ function createRender(context) {
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
     };
-    renderer.code = (code, infostring, escaped) => {
+    renderer.code = ({ lang, text, escaped }) => {
       // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
-      const lang = (infostring || '').match(/\S*/)[0];
-      const out = prism(code, lang);
-      if (out != null && out !== code) {
+      const langString = (lang || '').match(/\S*/)[0];
+      const title = (lang || '').match(/title="([^"]*)"/)?.[1];
+      const out = prism(text, langString);
+      if (out != null && out !== text) {
         escaped = true;
-        code = out;
+        text = out;
       }
 
-      code = `${code.replace(/\n$/, '')}\n`;
+      const code = `${text.replace(/\n$/, '')}\n`;
 
       if (!lang) {
         return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
       }
 
-      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
+      return `<div class="MuiCode-root">${title ? `<div class="MuiCode-title">${title}</div>` : ''}<pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
       }</code></pre>${[
         '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
-        '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
-        '<use class="MuiCode-copy-icon" xlink:href="#copy-icon" />',
-        '<use class="MuiCode-copied-icon" xlink:href="#copied-icon" />',
-        '</svg>',
+        '<span class="MuiCode-copy-label">Copy</span>',
+        '<span class="MuiCode-copied-label">Copied</span>',
         '<span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
       ].join('')}\n`;
     };
@@ -451,9 +464,11 @@ function createRender(context) {
             ${
               ['info', 'success', 'warning', 'error'].includes(token.severity)
                 ? [
+                    '<div class="MuiCallout-icon-container">',
                     '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
                     `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
                     '</svg>',
+                    '</div>',
                   ].join('\n')
                 : ''
             }
@@ -475,6 +490,7 @@ module.exports = {
   getContents,
   getDescription,
   getCodeblock,
+  getFeatureList,
   getHeaders,
   getTitle,
   renderMarkdown,

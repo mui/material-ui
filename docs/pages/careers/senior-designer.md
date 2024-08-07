@@ -52,7 +52,7 @@ However, despite Material UI – our biggest library – being [the leading](ht
 More importantly, our challenges go way beyond the ones of design systems.
 
 We envision a future where MUI becomes the default toolkit for web developers to create UIs.
-It's why we've been expanding our offering with Joy UI, Base UI, and MUI Toolpad.
+It's why we've been expanding our offering with Joy UI, Base UI, and Toolpad.
 Design is foundational to achieving this goal.
 
 ## The role
@@ -80,7 +80,7 @@ We imagine a world where design execution is a definitive product differentiator
 
 - Design a new component for one of the MUI Core libraries from scratch in partnership with a developer
 - Design new templates for either Joy UI or Material UI and support their implementation
-- Review new Figma Design kit versions and coordinate their next release
+- Review new Figma Design Kit versions and coordinate their next release
 
 ### What you'll have done in your first year
 

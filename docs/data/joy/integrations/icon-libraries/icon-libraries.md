@@ -13,8 +13,12 @@ This section assumes that you've already installed Joy UI in your app—see [In
 
 #### yarn
 
+:::info
+The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
+:::
+
 ```bash
-yarn add @mui/icons-material @mui/material
+yarn add @mui/icons-material@next @mui/material@next
 ```
 
 :::warning
@@ -39,8 +43,14 @@ You can keep track of the progress in [this issue](https://github.com/mui/materi
 
 #### npm
 
+:::info
+The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
+:::
+
+<!-- #default-branch-switch -->
+
 ```bash
-npm install @mui/icons-material @mui/material
+npm install @mui/icons-material@next @mui/material@next
 ```
 
 :::warning
@@ -179,7 +189,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 ### Font Awesome Icons
 
 - [Browse icons](https://fontawesome.com/icons)
-- [Installation](https://fontawesome.com/docs/web/use-with/react/)
+- [Installation](https://docs.fontawesome.com/web/use-with/react)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-fontawesome-kjbnqj?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
      style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"

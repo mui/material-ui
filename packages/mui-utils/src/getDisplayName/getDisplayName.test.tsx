@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import * as React from 'react';
 import { expect } from 'chai';
-import getDisplayName, { getFunctionName } from './getDisplayName';
+import getDisplayName from './getDisplayName';
 
 describe('utils/getDisplayName.js', () => {
   describe('getDisplayName', () => {
@@ -73,16 +73,6 @@ describe('utils/getDisplayName.js', () => {
       expect(getDisplayName({})).to.equal(undefined);
       // @ts-expect-error
       expect(getDisplayName(false)).to.equal(undefined);
-    });
-  });
-
-  describe('getFunctionName', () => {
-    it('gets the name of a function', () => {
-      function SomeFunction() {
-        return <div />;
-      }
-
-      expect(getFunctionName(SomeFunction)).to.equal('SomeFunction');
     });
   });
 });

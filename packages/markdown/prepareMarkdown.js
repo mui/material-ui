@@ -7,6 +7,7 @@ const {
   getContents,
   getDescription,
   getCodeblock,
+  getFeatureList,
   getHeaders,
   getTitle,
 } = require('./parseMarkdown');
@@ -37,6 +38,9 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
+  }
+  if (productId === 'toolpad-core') {
+    return `/toolpad/core/api/${kebabCase(component)}/`;
   }
   return `/${productId}/api/${kebabCase(component)}/`;
 }
@@ -109,7 +113,7 @@ This unstyled version of the component is the ideal choice for heavy customizati
         `);
       }
 
-      if (headers.components.length > 0) {
+      if (headers.components.length > 0 && headers.productId !== 'base-ui') {
         contents.push(`
 ## API
 
@@ -155,11 +159,16 @@ ${headers.hooks
             return null;
           }
         }
-
         const codeblock = getCodeblock(content);
 
         if (codeblock) {
           return codeblock;
+        }
+
+        const featureList = getFeatureList(content);
+
+        if (featureList) {
+          return featureList;
         }
 
         return render(content);

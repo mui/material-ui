@@ -81,7 +81,7 @@ For example, here's how you'd make the Joy UI Button match the colors of anothe
 {{"demo": "BootstrapVariantTokens.js"}}
 
 - Bootstrap's default buttons are comparable to Joy UI's `solid` variant.
-- Bootstrap's `secondary` variant uses a grey color, similar to Joy UI's `neutral`.
+- Bootstrap's `secondary` variant uses a gray color, similar to Joy UI's `neutral`.
 - Bootstrap's `btn-light` is similar to Joy UI's button using the `soft` variant and `neutral` color palette.
 - Joy UI's defaults don't include anything similar to Bootstrap's `btn-dark`.
   - We can recreate it using one of the three main customization approaches.

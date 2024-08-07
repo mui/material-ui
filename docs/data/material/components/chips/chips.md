@@ -16,7 +16,7 @@ While included here as a standalone component, the most common use will
 be in some form of input, so some of the behavior demonstrated here is
 not shown in context.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic chip
 
@@ -97,21 +97,6 @@ gain depth while clicked or touched.
 
 {{"demo": "ChipsPlayground.js", "hideToolbar": true}}
 
-## Experimental API
-
-### Material Design 3
-
-The default Material UI Chip component follows the Material Design 2 specs.
-To use the [M3](https://m3.material.io/) version, install the experimental `@mui/material-next` package.
-
-```js
-import Chip from '@mui/material-next/Chip';
-```
-
-{{"demo": "ChipMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
-
-To learn more about Material UI's M3 implementation, visit the [M3 Components documentation](/material-ui/guides/material-3-components/).
-
 ## Accessibility
 
-If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
+If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (for example when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

@@ -14,7 +14,7 @@ The top App bar provides content and actions related to the current screen. It's
 
 It can transform into a contextual action bar or be used as a navbar.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Basic App bar
 
@@ -62,7 +62,7 @@ A prominent app bar.
 
 When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
 
-1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE11.
+1. You can use `position="sticky"` instead of fixed.
 2. You can render a second `<Toolbar />` component:
 
 ```jsx
@@ -152,3 +152,11 @@ Following the [Material Design guidelines](https://m2.material.io/design/color/d
 You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}
+
+## Experimental APIs
+
+### DashboardLayout
+
+The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:
+
+{{"demo": "DashboardLayoutBasic.js", "height": 400, "iframe": true, "hideToolbar": true}}

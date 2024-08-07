@@ -4,7 +4,7 @@ description: Our internationally distributed startup gathered on a remote island
 date: 2022-07-28T00:00:00.000Z
 authors: ['samuelsycamore']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 One of the toughest challenges to overcome as a fully remote team is fostering a supportive and inclusive company culture.
@@ -125,7 +125,7 @@ One of the key goals of the retreat was to outline mid- to long-term goals for o
 
 We had some great conversations about what we hope to accomplish over the next several months on the way to our next major release: Material UI v6.
 It's still hard to say when that release day might come, but we're optimistic that we could see it in mid to late 2023.
-[@RemindMe_OfThis](https://twitter.com/RemindMe_OfThis) September 2023 🙃
+[@RemindMe_OfThis](https://x.com/RemindMe_OfThis) September 2023 🙃
 
 <img alt="The product teams are seen spread out around a large indoor/outdoor workspace" src="/static/blog/2022-tenerife-retreat/focus-groups.jpeg" loading="lazy" />
 

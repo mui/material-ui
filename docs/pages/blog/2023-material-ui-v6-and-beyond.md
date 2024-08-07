@@ -3,7 +3,7 @@ title: The road to Material UI v6 and beyond
 description: We're tightening up the Material UI release schedule and shipping two major versions in 2024. Here's what to expect.
 date: 2023-12-23T00:00:00.000Z
 authors: ['mnajdova']
-card: true
+manualCard: true
 tags: ['Material UI', 'Product']
 ---
 
@@ -40,14 +40,6 @@ It's tentatively planned for Q4 of 2024.
 
 <img alt="Side-to-side comparison of a Card component using Material Design 2 and 3, respectively." src="/static/blog/2023-material-ui-v6-and-beyond/m2-m3.jpg" width="1200" height="600" loading="lazy" />
 
-The development for this version is already in progress, though!
-See which components already support the M3 specs, through the experimental `@mui/material-next` package, by visiting the newly released [All Components page](/material-ui/all-components/).
-
-```diff
--import Button from '@mui/material/Button';
-+import Button from '@mui/material-next/Button';
-```
-
 ## From design to development
 
 In addition to the updates to the React library, we've also been working on a long-requested Figma plug-in to help bridge the gap between designers and developers using Material UI.
@@ -69,7 +61,7 @@ Expect to hear more about that towards the end of Q2 '24.
 ## Follow along and contribute
 
 We've consolidated the v6 changes in [this GitHub issue](https://github.com/mui/material-ui/issues/30660)—please feel free to chime in and participate in the discussions!
-You can also always check the [public Material UI GitHub project](https://github.com/mui/material-ui/projects/26) to see the planned releases and their respective umbrella issues.
+You can also always check the [Material UI GitHub project](https://github.com/orgs/mui/projects/23/views/12) to see the planned releases and their respective umbrella issues.
 
 We hope you're as excited as we are about these changes!
 Have a wonderful holiday season and a Happy New Year! 🎉

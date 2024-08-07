@@ -27,9 +27,7 @@ export default function MouseOverPopover() {
       </Typography>
       <Popover
         id="mouse-over-popover"
-        sx={{
-          pointerEvents: 'none',
-        }}
+        sx={{ pointerEvents: 'none' }}
         open={open}
         anchorEl={anchorEl}
         anchorOrigin={{

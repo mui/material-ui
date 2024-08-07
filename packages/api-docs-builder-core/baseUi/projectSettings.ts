@@ -27,6 +27,9 @@ export const projectSettings: ProjectSettings = {
   getHookInfo: getBaseUiHookInfo,
   translationLanguages: LANGUAGES,
   skipComponent: () => false,
+  skipHook: (filename) => {
+    return filename.match(/(useSlotProps)/) !== null;
+  },
   onCompleted: async () => {
     await generateBaseUIApiPages();
   },
@@ -43,4 +46,6 @@ export const projectSettings: ProjectSettings = {
   translationPagesDirectory: 'docs/translations/api-docs-base',
   generateClassName: generateUtilityClass,
   isGlobalClassName: isGlobalState,
+  // #default-branch-switch
+  baseApiUrl: 'https://next.mui.com',
 };

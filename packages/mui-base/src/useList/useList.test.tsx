@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
-import { createRenderer, createEvent, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, createEvent, fireEvent } from '@mui/internal-test-utils';
 import { useList } from './useList';
 
 describe('useList', () => {
   const { render } = createRenderer();
+
   describe('preventing default behavior on keyDown', () => {
     ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown', 'Enter', ' '].forEach((key) =>
       it(`prevents default behavior when ${key} is pressed in activeDescendant focus management mode`, () => {

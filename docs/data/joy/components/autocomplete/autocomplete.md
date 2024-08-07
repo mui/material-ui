@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 <p class="description">The autocomplete is a text input enhanced by a panel of suggested options when users start typing.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -147,7 +147,7 @@ It displays a progress state as long as the network request is pending.
 
 ### Search input
 
-Use `freeSolo` to create a **search input** with suggestions experience, e.g. Google search or [react-autowhatever](https://github.com/moroshko/react-autowhatever).
+Use `freeSolo` to create a **search input** with suggestions experience, for example Google search or [react-autowhatever](https://github.com/moroshko/react-autowhatever).
 
 {{"demo": "FreeSolo.js"}}
 
@@ -324,7 +324,7 @@ A possible workaround is to remove the `id` to have the component generate a ran
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
 In the event you want the avoid autofill, you can try the following:
 
-- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Name the input without leaking any information the browser can use. For example `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
@@ -337,7 +337,7 @@ In the event you want the avoid autofill, you can try the following:
   />
   ```
 
-Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 

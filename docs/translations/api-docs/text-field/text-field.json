@@ -70,6 +70,8 @@
       "description": "Props applied to the <a href=\"/material-ui/api/select/\"><code>Select</code></a> element."
     },
     "size": { "description": "The size of the component." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -81,5 +83,12 @@
     },
     "variant": { "description": "The variant to use." }
   },
-  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } },
+  "slotDescriptions": {
+    "formHelperText": "The component that renders the helper text.",
+    "htmlInput": "The html input element.",
+    "input": "The component that renders the input.",
+    "inputLabel": "The component that renders the input&#39;s label.",
+    "select": "The component that renders the select."
+  }
 }

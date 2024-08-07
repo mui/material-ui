@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { SectionTitle } from '@mui/docs/SectionTitle';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 function getTranslatedHeader(t, header, text) {
@@ -22,19 +23,10 @@ function getTranslatedHeader(t, header, text) {
 }
 
 function Heading(props) {
-  const { hash, text, level: Level = 'h2' } = props;
+  const { hash, text, level = 'h2' } = props;
   const t = useTranslate();
 
-  return (
-    <Level id={hash}>
-      {getTranslatedHeader(t, hash, text)}
-      <a aria-labelledby={hash} className="anchor-link" href={`#${hash}`} tabIndex={-1}>
-        <svg>
-          <use xlinkHref="#anchor-link-icon" />
-        </svg>
-      </a>
-    </Level>
-  );
+  return <SectionTitle hash={hash} title={getTranslatedHeader(t, hash, text)} level={level} />;
 }
 
 Heading.propTypes = {
@@ -72,7 +64,9 @@ export default function HooksApiContent(props) {
           <Heading hash={hookNameKebabCase} text={`${hookName} API`} />
           <Heading text="import" hash={`${hookNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
-          <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          {imports.length > 1 && (
+            <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          )}
           {Object.keys(parameters).length > 0 ? (
             <PropertiesSection
               properties={parameters}

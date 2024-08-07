@@ -21,7 +21,7 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
           boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
           }),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -33,24 +33,21 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
         height="100"
         alt="123 Main St, Phoenix, AZ cover"
         src="/static/images/cards/real-estate.png"
-        sx={{
-          borderRadius: '6px',
-          width: 'clamp(100px, (304px - 100%) * 999 , 100%)',
-        }}
+        sx={{ borderRadius: '6px', width: 'clamp(100px, (304px - 100%) * 999 , 100%)' }}
       />
       <Box sx={{ width: 'clamp(15px, (304px - 100%) * 999 , 100%)', height: 15 }} />
       <Box sx={{ alignSelf: 'center' }}>
-        <Typography variant="caption" color="text.secondary" fontWeight="regular">
+        <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 'regular' }}>
           123 Main St, Phoenix, AZ, USA
         </Typography>
-        <Typography fontWeight="bold" noWrap gutterBottom>
+        <Typography noWrap gutterBottom sx={{ fontWeight: 'bold' }}>
           $280k - $310k
         </Typography>
         <Chip
           size="small"
           variant="outlined"
           icon={<InfoRounded />}
-          label="Confidence score: 85%"
+          label="Score: 85%"
           sx={(theme) => ({
             '.MuiChip-icon': { fontSize: 16, ml: '4px', color: 'success.500' },
             bgcolor: 'success.50',

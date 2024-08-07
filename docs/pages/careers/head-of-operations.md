@@ -85,7 +85,7 @@ Depending on the day, you'll:
 - Strong analytical, and problem-solving skills, with the ability to make data-driven decisions.
 - A high sense of curiosity, enjoying self-learning to get things done. You are [versatile](https://review.firstround.com/the-adaptable-leader-is-the-new-holy-grail-become-one-hire-one).
 - Excited about the ambiguity of an entrepreneurial, growing company, and able to juggle many projects and responsibilities.
-- Bachelor's degree in a related field (e.g. computer science, business management).
+- Bachelor's degree in a related field (for example computer science, business management).
 - 1+ year of experience in a similar role.
 
 ### Nice to have (but not required)
@@ -95,7 +95,7 @@ Depending on the day, you'll:
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

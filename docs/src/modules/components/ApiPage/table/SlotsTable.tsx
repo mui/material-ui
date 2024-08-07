@@ -5,8 +5,8 @@ import { styled, alpha } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
-import { SlotsFormatedParams, getHash } from 'docs/src/modules/components/ApiPage/list/SlotsList';
+} from '@mui/docs/branding';
+import { SlotsFormattedParams, getHash } from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 
 const StyledTable = styled('table')(
@@ -69,7 +69,7 @@ const StyledTable = styled('table')(
 );
 
 interface SlotsTableProps {
-  slots: SlotsFormatedParams[];
+  slots: SlotsFormattedParams[];
 }
 
 export default function SlotsTable(props: SlotsTableProps) {
@@ -92,7 +92,7 @@ export default function SlotsTable(props: SlotsTableProps) {
             const { description, className, name, defaultValue, componentName } = params;
 
             return (
-              <tr key={className} id={getHash({ componentName, className })}>
+              <tr key={className} id={getHash({ componentName, className, name })}>
                 <td className="slot-name" style={{ fontWeight: '600' }}>
                   {name}
                 </td>

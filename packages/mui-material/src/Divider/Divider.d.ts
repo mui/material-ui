@@ -30,7 +30,7 @@ export interface DividerOwnProps {
   /**
    * If `true`, the divider will have a lighter color.
    * @default false
-   * @deprecated Use <Divider sx={{ opacity: 0.6 }} /> (or any opacity or color) instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   * @deprecated Use <Divider sx={{ opacity: 0.6 }} /> (or any opacity or color) instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   light?: boolean;
   /**
@@ -66,12 +66,12 @@ export interface DividerTypeMap<
  *
  * Demos:
  *
- * - [Divider](https://mui.com/material-ui/react-divider/)
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Divider](https://next.mui.com/material-ui/react-divider/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [Divider API](https://mui.com/material-ui/api/divider/)
+ * - [Divider API](https://next.mui.com/material-ui/api/divider/)
  */
 declare const Divider: OverridableComponent<DividerTypeMap>;
 

@@ -10,7 +10,7 @@ githubLabel: 'component: snackbar'
 
 <p class="description">The Snackbar component informs users that an action has been or will be performed by the app.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -109,7 +109,7 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Transitions

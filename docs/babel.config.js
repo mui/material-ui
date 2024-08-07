@@ -32,8 +32,6 @@ module.exports = {
       },
     ],
     'babel-plugin-optimize-clsx',
-    // for IE11 support
-    '@babel/plugin-transform-object-assign',
   ],
   ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
   env: {

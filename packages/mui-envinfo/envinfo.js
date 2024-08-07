@@ -7,6 +7,9 @@ envinfo
     {
       npmPackages: `{${[
         '@mui/*',
+        '@toolpad/*',
+        '@pigment-css/*',
+        '@base_ui/*',
         // Peer dependencies
         'react',
         'react-dom',
@@ -26,7 +29,7 @@ envinfo
       // `markdown: true` uses level 2 headings. It doesn't necessarily fit our issue template
       json,
       duplicates: true,
-      // include transitive dependencies and important packages that are transitive dependencies (e.g. `jsdom` is usually a transitive dependency inside jest)
+      // include transitive dependencies and important packages that are transitive dependencies (for example `jsdom` is usually a transitive dependency inside jest)
       fullTree: true,
       showNotFound: true,
     },

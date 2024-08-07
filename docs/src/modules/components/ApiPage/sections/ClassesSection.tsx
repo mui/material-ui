@@ -1,7 +1,8 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { useTranslate } from '@mui/docs/i18n';
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { Translate, useTranslate } from '@mui/docs/i18n';
+import { SectionTitle } from '@mui/docs/SectionTitle';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import Box from '@mui/material/Box';
 import ToggleDisplayOption, {
   ApiDisplayOptions,
@@ -13,7 +14,7 @@ import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable
 export type GetCssToCParams = {
   componentName: string;
   componentClasses: ComponentClassDefinition[];
-  t: (key: any, options?: {}) => any;
+  t: Translate;
   hash?: string;
 };
 
@@ -46,8 +47,18 @@ export type ClassesSectionProps = {
   classDescriptions: ClassDescription;
   componentName: string;
   spreadHint?: string;
-  title: string;
-  titleHash: string;
+  /**
+   * The translation key of the section title.
+   * @default 'api-docs.classes'
+   */
+  title?: string;
+  /**
+   * @default 'classes'
+   */
+  titleHash?: string;
+  /**
+   * @default 'h2'
+   */
   level?: 'h2' | 'h3' | 'h4';
   defaultLayout: ApiDisplayOptions;
   layoutStorageKey: string;
@@ -63,7 +74,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
     spreadHint,
     title = 'api-docs.classes',
     titleHash = 'classes',
-    level: Level = 'h2',
+    level = 'h2',
     displayClassKeys,
     styleOverridesLink,
     defaultLayout,
@@ -92,19 +103,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 1 }}>
-        <Level id={titleHash} style={{ flexGrow: 1 }}>
-          {t(title)}
-          <a
-            aria-labelledby={titleHash}
-            className="anchor-link"
-            href={`#${titleHash}`}
-            tabIndex={-1}
-          >
-            <svg>
-              <use xlinkHref="#anchor-link-icon" />
-            </svg>
-          </a>
-        </Level>
+        <SectionTitle title={t(title)} hash={titleHash} level={level} />
         <ToggleDisplayOption
           displayOption={displayOption}
           setDisplayOption={setDisplayOption}

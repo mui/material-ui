@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/joy/Checkbox';
 import { ThemeProvider } from '@mui/joy/styles';
 import CloseIcon from '../internal/svg-icons/Close';
@@ -142,6 +142,7 @@ describe('<Checkbox />', () => {
       const { getByTestId } = render(<Checkbox indeterminate checked />);
       expect(getByTestId('HorizontalRuleIcon')).not.to.equal(null);
     });
+
     it('should render checked icon', () => {
       const { getByTestId } = render(<Checkbox checked />);
       expect(getByTestId('CheckIcon')).not.to.equal(null);
@@ -151,6 +152,7 @@ describe('<Checkbox />', () => {
       const { getByTestId } = render(<Checkbox uncheckedIcon={<CloseIcon />} />);
       expect(getByTestId('CloseIcon')).not.to.equal(null);
     });
+
     it('should not render icon', () => {
       const { queryByTestId } = render(
         <Checkbox disableIcon checked indeterminate uncheckedIcon={<CloseIcon />} />,

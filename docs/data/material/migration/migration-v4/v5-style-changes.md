@@ -29,12 +29,14 @@ All other changes must be handled manually.
 
 ## Migrate theme styleOverrides to Emotion
 
+### Refactor local rule references
+
 Although your style overrides defined in the theme may partially work, there is an important difference regarding how the nested elements are styled.
 
 The `$` syntax (local rule reference) used with JSS will not work with Emotion.
 You need to replace those selectors with a valid class selector.
 
-### Replace state class names
+#### Replace state class names
 
 ```diff
  const theme = createTheme({
@@ -53,7 +55,7 @@ You need to replace those selectors with a valid class selector.
  });
 ```
 
-### Replace nested classes selectors with global class names
+#### Replace nested classes selectors with global class names
 
 ```diff
  const theme = createTheme({
@@ -99,6 +101,79 @@ You can rely on this instead of hardcoding the classes.
 
 Take a look at the complete [list of global state classnames](/material-ui/customization/how-to-customize/#state-classes) available.
 
+### Refactor alternative syntax for space- and comma-separated values
+
+The alternative, array-based syntax JSS supports for space- and comma-separated values is not supported by Emotion.
+
+#### Replace array-based values with string-based values
+
+**Before**
+
+```jsx
+const theme = createTheme({
+  overrides: {
+    MuiBox: {
+      root: {
+        background: [
+          ['url(image1.png)', 'no-repeat', 'top'],
+          ['url(image2.png)', 'no-repeat', 'center'],
+          '!important',
+        ],
+      },
+    },
+  },
+});
+```
+
+**After**
+
+```jsx
+const theme = createTheme({
+  components: {
+    MuiBox: {
+      styleOverrides: {
+        root: {
+          background:
+            'url(image1.png) no-repeat top, url(image2.png) no-repeat center !important',
+        },
+      },
+    },
+  },
+});
+```
+
+Be sure to add units to numeric values as appropriate.
+
+**Before**
+
+```jsx
+const theme = createTheme({
+  overrides: {
+    MuiOutlinedInput: {
+      root: {
+        padding: [[5, 8, 6]],
+      },
+    },
+  },
+});
+```
+
+**After**
+
+```jsx
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          padding: '5px 8px 6px',
+        },
+      },
+    },
+  },
+});
+```
+
 ## ref
 
 ### Refactor non-ref-forwarding class components
@@ -108,7 +183,7 @@ Support for non-ref-forwarding class components in the `component` prop or as im
 If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to take any further action.
 
 Otherwise check out the [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs) section in the Composition guide to find out how to migrate.
-This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`).
+This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (for example `<MenuList><CustomMenuItem /></MenuList>`).
 
 ### Fix ref type specificity
 

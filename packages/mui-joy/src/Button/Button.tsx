@@ -118,7 +118,7 @@ export const getButtonStyles = ({
         '--Button-gap': '0.5rem',
         minHeight: 'var(--Button-minHeight, 2.25rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
-        // internal --Button-paddingBlock is used to control the padding-block of the button from the outside, e.g. as a decorator of an Input
+        // internal --Button-paddingBlock is used to control the padding-block of the button from the outside, for example as a decorator of an Input
         paddingBlock: 'var(--Button-paddingBlock, 0.375rem)', // the padding-block act as a minimum spacing between content and root element
         paddingInline: '1rem',
       }),
@@ -134,11 +134,12 @@ export const getButtonStyles = ({
       }),
       WebkitTapHighlightColor: 'transparent',
       boxSizing: 'border-box',
-      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
-      margin: `var(--Button-margin)`, // to be controlled by other components, e.g. Input
+      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, for example Input
+      margin: `var(--Button-margin)`, // to be controlled by other components, for example Input
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
+      userSelect: 'none',
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',

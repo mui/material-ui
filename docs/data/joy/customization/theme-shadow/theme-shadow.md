@@ -116,7 +116,7 @@ const theme = extendTheme({
 ```
 
 :::warning
-The `shadowChannel` value must be rgb channels, e.g. `187 187 187`.
+The `shadowChannel` value must be rgb channels, for example `187 187 187`.
 :::
 
 ## Customizing shadows on an element

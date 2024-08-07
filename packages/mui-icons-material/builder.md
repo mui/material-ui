@@ -28,7 +28,7 @@ through command line options.
 - `--output-dir` - Directory to output generated components.
 - `--svg-dir` - Directory containing the source SVG icons.
 - `--inner-path` - "Reach into" subdirs, since libraries like material-design-icons
-  use arbitrary build directories to organize icons, e.g. "action/svg/production/".
+  use arbitrary build directories to organize icons, for example "action/svg/production/".
 - `--file-suffix` - Process only files ending with the specified suffix/
 - `--rename-filter` - Apply a custom filter to rename the generated icons.
   The default and Material Design filters can be found in `filters/rename`.

@@ -6,18 +6,14 @@ import clamp from '@mui/utils/clamp';
 import visuallyHidden from '@mui/utils/visuallyHidden';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import useTheme from '../styles/useTheme';
-import {
-  capitalize,
-  useForkRef,
-  useIsFocusVisible,
-  useControlled,
-  unstable_useId as useId,
-} from '../utils';
+import { useRtl } from '@mui/system/RtlProvider';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import { capitalize, useForkRef, useControlled, unstable_useId as useId } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
-import useThemeProps from '../styles/useThemeProps';
-import styled, { slotShouldForwardProp } from '../styles/styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 
 function getDecimalPrecision(num) {
@@ -73,7 +69,7 @@ const RatingRoot = styled('span', {
       ownerState.readOnly && styles.readOnly,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'inline-flex',
   // Required to position the pristine input absolutely
   position: 'relative',
@@ -91,16 +87,31 @@ const RatingRoot = styled('span', {
     outline: '1px solid #999',
   },
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
-  ...(ownerState.size === 'small' && {
-    fontSize: theme.typography.pxToRem(18),
-  }),
-  ...(ownerState.size === 'large' && {
-    fontSize: theme.typography.pxToRem(30),
-  }),
-  // TODO v6: use the .Mui-readOnly global state class
-  ...(ownerState.readOnly && {
-    pointerEvents: 'none',
-  }),
+  variants: [
+    {
+      props: {
+        size: 'small',
+      },
+      style: {
+        fontSize: theme.typography.pxToRem(18),
+      },
+    },
+    {
+      props: {
+        size: 'large',
+      },
+      style: {
+        fontSize: theme.typography.pxToRem(30),
+      },
+    },
+    {
+      // TODO v6: use the .Mui-readOnly global state class
+      props: ({ ownerState }) => ownerState.readOnly,
+      style: {
+        pointerEvents: 'none',
+      },
+    },
+  ],
 }));
 
 const RatingLabel = styled('label', {
@@ -110,16 +121,21 @@ const RatingLabel = styled('label', {
     styles.label,
     ownerState.emptyValueFocused && styles.labelEmptyValueActive,
   ],
-})(({ ownerState }) => ({
+})({
   cursor: 'inherit',
-  ...(ownerState.emptyValueFocused && {
-    top: 0,
-    bottom: 0,
-    position: 'absolute',
-    outline: '1px solid #999',
-    width: '100%',
-  }),
-}));
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.emptyValueFocused,
+      style: {
+        top: 0,
+        bottom: 0,
+        position: 'absolute',
+        outline: '1px solid #999',
+        width: '100%',
+      },
+    },
+  ],
+});
 
 const RatingIcon = styled('span', {
   name: 'MuiRating',
@@ -136,7 +152,7 @@ const RatingIcon = styled('span', {
       ownerState.iconActive && styles.iconActive,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   // Fit wrapper to actual icon size.
   display: 'flex',
   transition: theme.transitions.create('transform', {
@@ -145,12 +161,20 @@ const RatingIcon = styled('span', {
   // Fix mouseLeave issue.
   // https://github.com/facebook/react/issues/4492
   pointerEvents: 'none',
-  ...(ownerState.iconActive && {
-    transform: 'scale(1.2)',
-  }),
-  ...(ownerState.iconEmpty && {
-    color: (theme.vars || theme).palette.action.disabled,
-  }),
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.iconActive,
+      style: {
+        transform: 'scale(1.2)',
+      },
+    },
+    {
+      props: ({ ownerState }) => ownerState.iconEmpty,
+      style: {
+        color: (theme.vars || theme).palette.action.disabled,
+      },
+    },
+  ],
 }));
 
 const RatingDecimal = styled('span', {
@@ -162,12 +186,17 @@ const RatingDecimal = styled('span', {
 
     return [styles.decimal, iconActive && styles.iconActive];
   },
-})(({ iconActive }) => ({
+})({
   position: 'relative',
-  ...(iconActive && {
-    transform: 'scale(1.2)',
-  }),
-}));
+  variants: [
+    {
+      props: ({ iconActive }) => iconActive,
+      style: {
+        transform: 'scale(1.2)',
+      },
+    },
+  ],
+});
 
 function IconContainer(props) {
   const { value, ...other } = props;
@@ -292,11 +321,11 @@ const defaultIcon = <Star fontSize="inherit" />;
 const defaultEmptyIcon = <StarBorder fontSize="inherit" />;
 
 function defaultLabelText(value) {
-  return `${value} Star${value !== 1 ? 's' : ''}`;
+  return `${value || '0'} Star${value !== 1 ? 's' : ''}`;
 }
 
 const Rating = React.forwardRef(function Rating(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiRating', props: inProps });
+  const props = useDefaultProps({ name: 'MuiRating', props: inProps });
   const {
     className,
     defaultValue = null,
@@ -329,7 +358,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   });
 
   const valueRounded = roundValueToPrecision(valueDerived, precision);
-  const theme = useTheme();
+  const isRtl = useRtl();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
     focus: -1,
@@ -343,16 +372,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     value = focus;
   }
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   const rootRef = React.useRef();
-  const handleRef = useForkRef(focusVisibleRef, rootRef, ref);
+  const handleRef = useForkRef(rootRef, ref);
 
   const handleMouseMove = (event) => {
     if (onMouseMove) {
@@ -364,7 +387,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
     let percent;
 
-    if (theme.direction === 'rtl') {
+    if (isRtl) {
       percent = (right - event.clientX) / containerWidth;
     } else {
       percent = (event.clientX - left) / containerWidth;
@@ -441,8 +464,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   };
 
   const handleFocus = (event) => {
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event.target)) {
       setFocusVisible(true);
     }
 
@@ -458,8 +480,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       return;
     }
 
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
+    if (!isFocusVisible(event.target)) {
       setFocusVisible(false);
     }
 
@@ -649,7 +670,7 @@ Rating.propTypes /* remove-proptypes */ = {
    * @param {number} value The rating label's value to format.
    * @returns {string}
    * @default function defaultLabelText(value) {
-   *   return `${value} Star${value !== 1 ? 's' : ''}`;
+   *   return `${value || '0'} Star${value !== 1 ? 's' : ''}`;
    * }
    */
   getLabelText: PropTypes.func,

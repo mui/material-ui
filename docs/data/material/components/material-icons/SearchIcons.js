@@ -46,7 +46,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.Index;
@@ -217,9 +217,11 @@ const CanvasComponent = styled('div')(({ theme }) => ({
   backgroundColor: 'transparent',
   backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
   backgroundImage:
-    theme.palette.mode === 'light'
-      ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
-      : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
+    'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)',
+  ...theme.applyStyles('dark', {
+    backgroundImage:
+      'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
+  }),
 }));
 
 const FontSizeComponent = styled('span')(({ theme }) => ({
@@ -228,32 +230,64 @@ const FontSizeComponent = styled('span')(({ theme }) => ({
 
 const ContextComponent = styled('div', {
   shouldForwardProp: (prop) => prop !== 'contextColor' && prop !== 'as',
-})(({ theme, contextColor }) => ({
+})(({ theme }) => ({
   margin: theme.spacing(0.5),
   padding: theme.spacing(1, 2),
   borderRadius: theme.shape.borderRadius,
   boxSizing: 'content-box',
-  ...(contextColor === 'primary' && {
-    color: theme.palette.primary.main,
-  }),
-  ...(contextColor === 'primaryInverse' && {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main,
-  }),
-  ...(contextColor === 'textPrimary' && {
-    color: theme.palette.text.primary,
-  }),
-  ...(contextColor === 'textPrimaryInverse' && {
-    color: theme.palette.background.paper,
-    backgroundColor: theme.palette.text.primary,
-  }),
-  ...(contextColor === 'textSecondary' && {
-    color: theme.palette.text.secondary,
-  }),
-  ...(contextColor === 'textSecondaryInverse' && {
-    color: theme.palette.background.paper,
-    backgroundColor: theme.palette.text.secondary,
-  }),
+  variants: [
+    {
+      props: {
+        contextColor: 'primary',
+      },
+      style: {
+        color: theme.palette.primary.main,
+      },
+    },
+    {
+      props: {
+        contextColor: 'primaryInverse',
+      },
+      style: {
+        color: theme.palette.primary.contrastText,
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+    {
+      props: {
+        contextColor: 'textPrimary',
+      },
+      style: {
+        color: theme.palette.text.primary,
+      },
+    },
+    {
+      props: {
+        contextColor: 'textPrimaryInverse',
+      },
+      style: {
+        color: theme.palette.background.paper,
+        backgroundColor: theme.palette.text.primary,
+      },
+    },
+    {
+      props: {
+        contextColor: 'textSecondary',
+      },
+      style: {
+        color: theme.palette.text.secondary,
+      },
+    },
+    {
+      props: {
+        contextColor: 'textSecondaryInverse',
+      },
+      style: {
+        color: theme.palette.background.paper,
+        backgroundColor: theme.palette.text.secondary,
+      },
+    },
+  ],
 }));
 
 const DialogDetails = React.memo(function DialogDetails(props) {
@@ -322,12 +356,15 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           <DialogContent>
             <Grid container>
               <Grid item xs>
-                <Grid container justifyContent="center">
+                <Grid container sx={{ justifyContent: 'center' }}>
                   <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
               <Grid item xs>
-                <Grid container alignItems="flex-end" justifyContent="center">
+                <Grid
+                  container
+                  sx={{ alignItems: 'flex-end', justifyContent: 'center' }}
+                >
                   <Grid item>
                     <Tooltip title="fontSize small">
                       <FontSizeComponent
@@ -350,7 +387,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     </Tooltip>
                   </Grid>
                 </Grid>
-                <Grid container justifyContent="center">
+                <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="primary"
@@ -360,7 +397,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     contextColor="primaryInverse"
                   />
                 </Grid>
-                <Grid container justifyContent="center">
+                <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="textPrimary"
@@ -370,7 +407,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     contextColor="textPrimaryInverse"
                   />
                 </Grid>
-                <Grid container justifyContent="center">
+                <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="textSecondary"

@@ -4,6 +4,8 @@
 
 ## Tabs
 
+### Codeblock version
+
 <codeblock storageKey="package-manager">
 
 ```bash npm
@@ -23,22 +25,23 @@ pnpm add @mui/material @emotion/react @emotion/styled
 
 </codeblock>
 
-<codeblock storageKey="license">
+### Component version
 
-```bash MIT
-npm install @mui/data-grid
+{{"component": "@mui/docs/HighlightedCodeWithTabs", "tabs": [{"tab":"JS", "code":"<div>Hello</div>", "language": "jsx"}, {"tab": "TS", "code": "type A = {}"}]}}
+
+## With header path
+
+```jsx title="PlainCssSliderDeep1.js"
+import * as React from 'react';
+import Slider from '@mui/material/Slider';
+import './PlainCssSliderDeep1.css';
+
+export default function PlainCssSliderDeep1() {
+  return (
+    <div>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className="slider" />
+    </div>
+  );
+}
 ```
-
-```bash Pro
-npm install @mui/data-grid-pro
-```
-
-```bash Premium
-npm install @mui/data-grid-premium
-```
-
-</codeblock>
-
-## Component
-
-{{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"JS", "code":"<div>Hello</div>", "language": "jsx"}, {"tab": "TS", "code": "type A = {}"}]}}

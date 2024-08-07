@@ -12,12 +12,12 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
-2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
+1. The value for the textbox must be chosen from a predefined set of allowed values, for example a location field must contain a valid location name: [combo box](#combo-box).
+2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, for example a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Combo box
 
@@ -108,7 +108,7 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value.
 
 ### Search input
 
-The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
+The prop is designed to cover the primary use case of a **search input** with suggestions, for example Google search or react-autowhatever.
 
 {{"demo": "FreeSolo.js"}}
 
@@ -210,6 +210,10 @@ overriding the `filterOptions` prop:
 A customized UI for Google Maps Places Autocomplete.
 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
 
+:::info
+The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+:::
+
 {{"demo": "GoogleMaps.js"}}
 
 :::error
@@ -278,7 +282,7 @@ Head to the [Customized hook](#customized-hook) section for a customization exam
 
 ### Hint
 
-The following demo shows how to add a hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+The following demo shows how to add a hint feature to the Autocomplete:
 
 {{"demo": "AutocompleteHint.js"}}
 
@@ -375,7 +379,7 @@ A possible workaround is to remove the `id` to have the component generate a ran
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
 In the event you want the avoid autofill, you can try the following:
 
-- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Name the input without leaking any information the browser can use. For example `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
@@ -388,7 +392,7 @@ In the event you want the avoid autofill, you can try the following:
   />
   ```
 
-Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 

@@ -8,7 +8,7 @@ components: NoSsr
 
 <p class="description">The No-SSR component defers the rendering of children components from the server to the client.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
 {{"component": "modules/components/ComponentPageTabs.js"}}
 
@@ -38,7 +38,7 @@ At its core, the No-SSR component's purpose is to defer rendering from the serve
 
 ### Delay client-side rendering
 
-You can also use No-SSR to delay the rendering of specific components on the client side—for example, to let the rest of the application load before an especially complex or data-heavy component.
+You can also use No-SSR to delay the rendering of specific components on the client-side—for example, to let the rest of the application load before an especially complex or data-heavy component.
 
 The following demo shows how to use the `defer` prop to prioritize rendering the rest of the app outside of what is nested within No-SSR:
 

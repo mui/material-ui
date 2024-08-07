@@ -9,3 +9,4 @@ import { Divider as MyDivider } from '@mui/material';
 <MyDivider light={light} className="test" />;
 <Divider light sx={{ opacity: '0.7' }} />;
 <MyDivider light sx={{ bgcolor: 'black' }} />;
+<Divider className="test" />;

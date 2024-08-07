@@ -17,10 +17,14 @@ Please use [`@mui/system`](/system/getting-started/) instead.
 
 To install and save in your `package.json` dependencies, run:
 
+:::info
+The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
+:::
+
 <!-- #default-branch-switch -->
 
 ```bash
-npm install @mui/styles
+npm install @mui/styles@next
 ```
 
 ## Getting started

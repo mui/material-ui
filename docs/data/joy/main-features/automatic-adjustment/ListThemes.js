@@ -9,8 +9,8 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { BrandingProvider } from '@mui/docs/branding';
 
 export default function ListThemes() {
   const [preset, setPreset] = React.useState('');
@@ -123,11 +123,10 @@ export default function ListThemes() {
 <List${
               preset
                 ? `
-  sx={{
-    ${JSON.stringify(rootPresets[preset], null, 4)
-      .replace('{', '')
-      .replace('}', '')
-      .trim()}
+  sx={{  ${JSON.stringify(rootPresets[preset], null, 4)
+    .replace('{', '')
+    .replace('}', '')
+    .trim()}
   }}
 `
                 : ''
@@ -137,11 +136,10 @@ export default function ListThemes() {
     <List${
       nestedPresets[preset]
         ? `
-      sx={{
-        ${JSON.stringify(nestedPresets[preset], null, 8)
-          .replace('{', '')
-          .replace('}', '')
-          .trim()}
+      sx={{      ${JSON.stringify(nestedPresets[preset], null, 8)
+        .replace('{', '')
+        .replace('}', '')
+        .trim()}
       }}
     `
         : ''
@@ -162,10 +160,7 @@ export default function ListThemes() {
 `}
             copyButtonHidden
             language="jsx"
-            sx={{
-              display: { xs: 'none', md: 'block' },
-              borderRadius: '7px',
-            }}
+            sx={{ display: { xs: 'none', md: 'block' }, borderRadius: '7px' }}
           />
         </BrandingProvider>
       }

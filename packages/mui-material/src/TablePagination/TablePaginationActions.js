@@ -1,9 +1,9 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useRtl } from '@mui/system/RtlProvider';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import useTheme from '../styles/useTheme';
 import IconButton from '../IconButton';
 import LastPageIconDefault from '../internal/svg-icons/LastPage';
 import FirstPageIconDefault from '../internal/svg-icons/FirstPage';
@@ -28,7 +28,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     ...other
   } = props;
 
-  const theme = useTheme();
+  const isRtl = useRtl();
 
   const handleFirstPageButtonClick = (event) => {
     onPageChange(event, 0);
@@ -55,19 +55,15 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const NextButtonIcon = slots.nextButtonIcon ?? KeyboardArrowRight;
   const PreviousButtonIcon = slots.previousButtonIcon ?? KeyboardArrowLeft;
 
-  const FirstButtonSlot = theme.direction === 'rtl' ? LastButton : FirstButton;
-  const PreviousButtonSlot = theme.direction === 'rtl' ? NextButton : PreviousButton;
-  const NextButtonSlot = theme.direction === 'rtl' ? PreviousButton : NextButton;
-  const LastButtonSlot = theme.direction === 'rtl' ? FirstButton : LastButton;
+  const FirstButtonSlot = isRtl ? LastButton : FirstButton;
+  const PreviousButtonSlot = isRtl ? NextButton : PreviousButton;
+  const NextButtonSlot = isRtl ? PreviousButton : NextButton;
+  const LastButtonSlot = isRtl ? FirstButton : LastButton;
 
-  const firstButtonSlotProps =
-    theme.direction === 'rtl' ? slotProps.lastButton : slotProps.firstButton;
-  const previousButtonSlotProps =
-    theme.direction === 'rtl' ? slotProps.nextButton : slotProps.previousButton;
-  const nextButtonSlotProps =
-    theme.direction === 'rtl' ? slotProps.previousButton : slotProps.nextButton;
-  const lastButtonSlotProps =
-    theme.direction === 'rtl' ? slotProps.firstButton : slotProps.lastButton;
+  const firstButtonSlotProps = isRtl ? slotProps.lastButton : slotProps.firstButton;
+  const previousButtonSlotProps = isRtl ? slotProps.nextButton : slotProps.previousButton;
+  const nextButtonSlotProps = isRtl ? slotProps.previousButton : slotProps.nextButton;
+  const lastButtonSlotProps = isRtl ? slotProps.firstButton : slotProps.lastButton;
 
   return (
     <div ref={ref} {...other}>
@@ -79,7 +75,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           title={getItemAriaLabel('first', page)}
           {...firstButtonSlotProps}
         >
-          {theme.direction === 'rtl' ? (
+          {isRtl ? (
             <LastButtonIcon {...slotProps.lastButtonIcon} />
           ) : (
             <FirstButtonIcon {...slotProps.firstButtonIcon} />
@@ -94,7 +90,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         title={getItemAriaLabel('previous', page)}
         {...(previousButtonSlotProps ?? backIconButtonProps)}
       >
-        {theme.direction === 'rtl' ? (
+        {isRtl ? (
           <NextButtonIcon {...slotProps.nextButtonIcon} />
         ) : (
           <PreviousButtonIcon {...slotProps.previousButtonIcon} />
@@ -108,7 +104,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         title={getItemAriaLabel('next', page)}
         {...(nextButtonSlotProps ?? nextIconButtonProps)}
       >
-        {theme.direction === 'rtl' ? (
+        {isRtl ? (
           <PreviousButtonIcon {...slotProps.previousButtonIcon} />
         ) : (
           <NextButtonIcon {...slotProps.nextButtonIcon} />
@@ -122,7 +118,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           title={getItemAriaLabel('last', page)}
           {...lastButtonSlotProps}
         >
-          {theme.direction === 'rtl' ? (
+          {isRtl ? (
             <FirstButtonIcon {...slotProps.firstButtonIcon} />
           ) : (
             <LastButtonIcon {...slotProps.lastButtonIcon} />

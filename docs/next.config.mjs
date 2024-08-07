@@ -30,10 +30,6 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
-  experimental: {
-    workerThreads: true,
-    cpus: 3,
-  },
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -76,6 +72,7 @@ export default withDocsInfra({
             '@mui/x-charts',
             '@mui/x-tree-view',
             '@mui/x-license-pro',
+            '@toolpad/core',
           ].some((dep) => request.startsWith(dep));
 
           if (hasDependencyOnRepoPackages) {
@@ -102,9 +99,15 @@ export default withDocsInfra({
           ...config.resolve.alias,
 
           // for 3rd party packages with dependencies in this repository
+          '@mui/material$': path.resolve(workspaceRoot, 'packages/mui-material/src/index.js'),
           '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
+
           '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
-          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
+          '@mui/icons-material$': path.resolve(
+            workspaceRoot,
+            'packages/mui-icons-material/lib/esm/index.js',
+          ),
+          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
           '@mui/styles': path.resolve(workspaceRoot, 'packages/mui-styles/src'),
@@ -112,7 +115,6 @@ export default withDocsInfra({
           '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
           '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
           '@mui/base': path.resolve(workspaceRoot, 'packages/mui-base/src'),
-          '@mui/material-next': path.resolve(workspaceRoot, 'packages/mui-material-next/src'),
           '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
           '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
         },
@@ -190,7 +192,7 @@ export default withDocsInfra({
     // docs-infra
     LIB_VERSION: pkg.version,
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
+    SOURCE_GITHUB_BRANCH: 'next', // #default-branch-switch
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related
@@ -257,7 +259,7 @@ export default withDocsInfra({
 
     return map;
   },
-  // Used to signal we run yarn build
+  // Used to signal we run pnpm build
   ...(process.env.NODE_ENV === 'production'
     ? {
         output: 'export',

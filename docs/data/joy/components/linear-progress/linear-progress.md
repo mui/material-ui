@@ -9,7 +9,7 @@ githubLabel: 'component: LinearProgress'
 
 <p class="description">Linear Progress indicators, commonly known as loaders, express an unspecified wait time or display the length of a process.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

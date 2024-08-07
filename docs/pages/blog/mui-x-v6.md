@@ -3,7 +3,7 @@ title: Introducing MUI X v6
 description: Introducing the new major version of the advanced components.
 date: 2023-03-06T00:00:00.000Z
 authors: ['josefreitas']
-card: true
+manualCard: true
 tags: ['MUI X', 'Product']
 ---
 
@@ -66,7 +66,7 @@ And if you want to understand more about our view of the open-source/commercial 
 ### Improved column menu
 
 Another significant step in terms of customization but also usability; the v6 [column menu](/x/react-data-grid/column-menu/) now provides support for icons, menu groups, custom items and actions, and more.
-We've redesigned this sub-component to make it as extensible as possible.
+We've redesigned this subcomponent to make it as extensible as possible.
 
 <a href="/x/react-data-grid/column-menu/">
 <img src="/static/blog/mui-x-v6/column-menu-custom-action.png" loading="lazy" alt="Column menu custom action" width="1636" height="808" />
@@ -176,7 +176,7 @@ import { DateField } from '@mui/x-date-pickers/DateField';
 
 ### Improved layout customization
 
-Combining the slots concept with the grid layout, you can now rearrange, extend, and customize most of the sub-components used in the Pickers UI.
+Combining the slots concept with the grid layout, you can now rearrange, extend, and customize most of the subcomponents used in the Pickers UI.
 See [the documentation about it](/x/react-date-pickers/custom-layout/) and this quick overview:
 
 ```tsx

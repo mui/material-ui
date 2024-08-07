@@ -4,7 +4,7 @@ description: The latest team retreat left MUIers feeling more connected and invi
 date: 2023-12-13T00:00:00.000Z
 authors: ['mikailaread']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 ## What is MUI's Together Week?
