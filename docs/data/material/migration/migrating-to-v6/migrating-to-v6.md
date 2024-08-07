@@ -40,6 +40,18 @@ If you're using any of these packages, you can also change their version to `"ne
 - `@mui/styled-engine-sc`
 - `@mui/utils`
 
+Note that MUI X packages _do not_ follow the same versioning strategy as Material UI.
+The following packages should remain unchanged during the upgrade process:
+
+- `@mui/x-data-grid`
+- `@mui/x-data-grid-pro`
+- `@mui/x-data-grid-premium`
+- `@mui/x-date-pickers`
+- `@mui/x-date-pickers-pro`
+- `@mui/x-charts`
+- `@mui/x-tree-view`
+- `@mui/x-tree-view-proå`
+
 ## Supported browsers and versions
 
 The default bundle targets have changed in v6.
