@@ -173,14 +173,14 @@ Integrating Pigment CSS with Material UI requires you to configure the theme t
 Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 
 ```diff
-+import { createTheme } from '@mui/material';
++import { extendTheme } from '@mui/material';
 
 +const pigmentConfig = {
-+  theme: createTheme(…parameters if any),
++  theme: extendTheme(),
 +};
 ```
 
-If you have a custom theme, follow the [theme migration](#migrating-custom-theme), otherwise you are ready to go. Start a development server by running:
+If you don't have a custom theme, you are ready to go. Start a development server by running:
 
 <codeblock storageKey="package-manager">
 
