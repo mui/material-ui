@@ -77,6 +77,7 @@ const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (par
 };
 
 /**
+ * TODO: remove this export in v7
  * @deprecated
  * The `CssVarsProvider` component has been deprecated and merged to `ThemeProvider`.
  *
