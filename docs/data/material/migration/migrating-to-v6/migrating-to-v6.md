@@ -41,7 +41,7 @@ If you're using any of these packages, you can also change their version to `"ne
 - `@mui/utils`
 
 Note that MUI X packages _do not_ follow the same versioning strategy as Material UI.
-The following packages should remain unchanged during the upgrade process:
+If you're using any of the following packages, they should remain unchanged during the upgrade process:
 
 - `@mui/x-data-grid`
 - `@mui/x-data-grid-pro`
