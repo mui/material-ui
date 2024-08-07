@@ -49,9 +49,14 @@ export function getClassApiDefinitions(params: GetClassApiDefinitionsParams): Cl
   const { componentClasses, classDescriptions, componentName } = params;
 
   return componentClasses.map((classDefinition) => {
-    const { conditions, nodeName, deprecationInfo } = classDescriptions[classDefinition.key];
+    const {
+      conditions,
+      nodeName,
+      deprecationInfo,
+      description: translatedDescription,
+    } = classDescriptions[classDefinition.key] ?? {}; // Not all classes have a description.
 
-    let description = classDescriptions[classDefinition.key].description;
+    let description = translatedDescription ?? classDefinition.description;
 
     if (description.includes('{{conditions}}')) {
       if (!conditions) {
