@@ -46,14 +46,27 @@ export function classesApiProcessor(params: ClassesApiProcessorParams): ClassDef
   const { componentClasses, classDescriptions, componentName } = params;
 
   return componentClasses.map((classDefinition) => {
+    const { description, conditions, nodeName, deprecationInfo } =
+      classDescriptions[classDefinition.key];
+
+    if (!conditions && description.search(/{{conditions}}/) !== -1) {
+      throw Error(
+        `In ${componentName} the class "${classDefinition.className}" description with "{{conditions}}" but without \`conditions\` to replace it.`,
+      );
+    }
+
+    if (!conditions && description.search(/{{nodeName}}/) !== -1) {
+      throw Error(
+        `In ${componentName} the class "${classDefinition.className}" description with "{{nodeName}}" but without \`nodeName\` to replace it.`,
+      );
+    }
+
     return {
       ...classDefinition,
-      description:
-        classDescriptions[classDefinition.key]?.description
-          ?.replace(/{{conditions}}/, classDescriptions[classDefinition.key].conditions!)
-          ?.replace(/{{nodeName}}/, classDescriptions[classDefinition.key].nodeName!) ??
-        classDefinition.description,
-      deprecationInfo: classDescriptions[classDefinition.key]?.deprecationInfo,
+      description: description
+        .replace(/{{conditions}}/, conditions!)
+        .replace(/{{nodeName}}/, nodeName!),
+      deprecationInfo,
       hash: `${kebabCase(componentName)}-classes-${classDefinition.className}`,
     };
   });
