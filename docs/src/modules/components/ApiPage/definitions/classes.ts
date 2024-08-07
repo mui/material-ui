@@ -42,30 +42,34 @@ export interface GetClassApiDefinitionsParams {
   componentName: string;
 }
 
+const errorMessage = (componentName: string, className: string, slotName: string): string =>
+  `${className} description from component ${componentName} should include ${slotName} since its definition includes "{{${slotName}}}"`;
+
 export function getClassApiDefinitions(params: GetClassApiDefinitionsParams): ClassDefinition[] {
   const { componentClasses, classDescriptions, componentName } = params;
 
   return componentClasses.map((classDefinition) => {
-    const { description, conditions, nodeName, deprecationInfo } =
-      classDescriptions[classDefinition.key];
+    const { conditions, nodeName, deprecationInfo } = classDescriptions[classDefinition.key];
 
-    if (!conditions && description.search(/{{conditions}}/) !== -1) {
-      throw Error(
-        `In ${componentName} the class "${classDefinition.className}" description with "{{conditions}}" but without \`conditions\` to replace it.`,
-      );
+    let description = classDescriptions[classDefinition.key].description;
+
+    if (description.includes('{{conditions}}')) {
+      if (!conditions) {
+        throw Error(errorMessage(componentName, classDefinition.className, 'conditions'));
+      }
+      description = description.replace(/{{conditions}}/, conditions);
     }
 
-    if (!nodeName && description.search(/{{nodeName}}/) !== -1) {
-      throw Error(
-        `In ${componentName} the class "${classDefinition.className}" description with "{{nodeName}}" but without \`nodeName\` to replace it.`,
-      );
+    if (description.includes('{{nodeName}}')) {
+      if (!nodeName) {
+        throw Error(errorMessage(componentName, classDefinition.className, 'nodeName'));
+      }
+      description = description.replace(/{{nodeName}}/, nodeName);
     }
 
     return {
       ...classDefinition,
-      description: description
-        .replace(/{{conditions}}/, conditions!)
-        .replace(/{{nodeName}}/, nodeName!),
+      description,
       deprecationInfo,
       hash: `${kebabCase(componentName)}-classes-${classDefinition.className}`,
     };
