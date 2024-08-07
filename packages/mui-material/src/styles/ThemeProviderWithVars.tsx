@@ -9,7 +9,7 @@ import THEME_ID from './identifier';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 const {
-  CssVarsProvider,
+  CssVarsProvider: InternalCssVarsProvider,
   useColorScheme,
   getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
 } = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
@@ -44,16 +44,17 @@ function Experimental_CssVarsProvider(props: any) {
   if (!warnedOnce) {
     console.warn(
       [
-        'MUI: The Experimental_CssVarsProvider component has been stabilized.',
+        'MUI: The Experimental_CssVarsProvider component has been merged to ThemeProvider.',
         '',
-        "You should use `import { CssVarsProvider } from '@mui/material/styles'`",
+        "You should use `import { ThemeProvider } from '@mui/material/styles'` instead.",
+        'For more details, check out https://mui.com/material-ui/customization/css-theme-variables/usage/',
       ].join('\n'),
     );
 
     warnedOnce = true;
   }
 
-  return <CssVarsProvider {...props} />;
+  return <InternalCssVarsProvider {...props} />;
 }
 
 let warnedInitScriptOnce = false;
@@ -75,4 +76,28 @@ const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (par
   return deprecatedGetInitColorSchemeScript(params);
 };
 
-export { useColorScheme, CssVarsProvider, getInitColorSchemeScript, Experimental_CssVarsProvider };
+/**
+ * @deprecated
+ * The `CssVarsProvider` component has been deprecated and merged to `ThemeProvider`.
+ *
+ * You should use `ThemeProvider` and `createTheme` instead:
+ *
+ * ```diff
+ * - import { CssVarsProvider, extendTheme } from '@mui/material/styles';
+ * + import { ThemeProvider, createTheme } from '@mui/material/styles';
+ *
+ * - const theme = extendTheme();
+ * + const theme = createTheme({
+ * +   cssVariables: true,
+ * +   colorSchemes: { light: true, dark: true },
+ * + });
+ *
+ * - <CssVarsProvider theme={theme}>
+ * + <ThemeProvider theme={theme}>
+ * ```
+ *
+ * To see the full documentation, check out https://mui.com/material-ui/customization/css-theme-variables/usage/.
+ */
+export const CssVarsProvider = InternalCssVarsProvider;
+
+export { useColorScheme, getInitColorSchemeScript, Experimental_CssVarsProvider };
