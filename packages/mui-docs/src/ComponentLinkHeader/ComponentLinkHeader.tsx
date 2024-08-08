@@ -195,7 +195,7 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
           )}
         </React.Fragment>
       )}
-	  {headers.githubSource ? (
+      {headers.githubSource ? (
         <li>
           <Chip
             clickable
@@ -211,7 +211,7 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
             data-ga-event-label="Source"
             data-ga-event-split="0.1"
             label="Source"
-			target="_blank"
+            target="_blank"
           />
         </li>
       ) : null}
