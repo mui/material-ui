@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { VirtuosoGrid } from 'react-virtuoso';
 import { styled } from '@mui/material/styles';
 import MuiPaper from '@mui/material/Paper';
 import copy from 'clipboard-copy';
@@ -128,55 +129,56 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   },
 }));
 
-const Icons = React.memo(function Icons(props) {
-  const { icons, handleOpenClick } = props;
-
-  const handleIconClick = (icon) => () => {
-    if (Math.random() < 0.1) {
-      window.gtag('event', 'material-icons', {
-        eventAction: 'click',
-        eventLabel: icon.name,
-      });
-      window.gtag('event', 'material-icons-theme', {
-        eventAction: 'click',
-        eventLabel: icon.theme,
-      });
-    }
-  };
-
-  const handleLabelClick = (event) => {
-    selectNode(event.currentTarget);
-  };
-
+const ListWrapper = React.forwardRef(({ style, children, ...props }, ref) => {
   return (
-    <div>
-      {icons.map((icon) => {
-        /* eslint-disable jsx-a11y/click-events-have-key-events */
-        return (
-          <StyledIcon key={icon.importName} onClick={handleIconClick(icon)}>
-            <StyledSvgIcon
-              component={icon.Component}
-              fontSize="large"
-              tabIndex={-1}
-              onClick={handleOpenClick}
-              title={icon.importName}
-            />
-            <div>
-              {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
-              <div onClick={handleLabelClick}>{icon.importName}</div>
-            </div>
-            {/* eslint-enable jsx-a11y/click-events-have-key-events */}
-          </StyledIcon>
-        );
-      })}
+    <div
+      ref={ref}
+      {...props}
+      style={{ display: 'flex', flexWrap: 'wrap', ...style }}
+    >
+      {children}
     </div>
   );
 });
 
-Icons.propTypes = {
-  handleOpenClick: PropTypes.func.isRequired,
-  icons: PropTypes.array.isRequired,
-};
+function Icon(handleOpenClick) {
+  return function itemContent(_, icon) {
+    const handleIconClick = () => {
+      if (Math.random() < 0.1) {
+        window.gtag('event', 'material-icons', {
+          eventAction: 'click',
+          eventLabel: icon.name,
+        });
+        window.gtag('event', 'material-icons-theme', {
+          eventAction: 'click',
+          eventLabel: icon.theme,
+        });
+      }
+    };
+
+    const handleLabelClick = (event) => {
+      selectNode(event.currentTarget);
+    };
+
+    return (
+      /* eslint-disable jsx-a11y/click-events-have-key-events */
+      <StyledIcon key={icon.importName} onClick={handleIconClick}>
+        <StyledSvgIcon
+          component={icon.Component}
+          fontSize="large"
+          tabIndex={-1}
+          onClick={handleOpenClick}
+          title={icon.importName}
+        />
+        <div>
+          {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+          <div onClick={handleLabelClick}>{icon.importName}</div>
+        </div>
+        {/* eslint-enable jsx-a11y/click-events-have-key-events */}
+      </StyledIcon>
+    );
+  };
+}
 
 const ImportLink = styled(Link)(({ theme }) => ({
   textAlign: 'right',
@@ -437,14 +439,7 @@ DialogDetails.propTypes = {
   selectedIcon: PropTypes.object,
 };
 
-const Form = styled('form')({
-  position: 'sticky',
-  top: 80,
-});
-
 const Paper = styled(MuiPaper)(({ theme }) => ({
-  position: 'sticky',
-  top: 80,
   display: 'flex',
   alignItems: 'center',
   marginBottom: theme.spacing(2),
@@ -562,7 +557,7 @@ export default function SearchIcons() {
   return (
     <Grid container sx={{ minHeight: 500 }}>
       <Grid item xs={12} sm={3}>
-        <Form>
+        <form>
           <Typography fontWeight={500} sx={{ mb: 1 }}>
             Filter the style
           </Typography>
@@ -583,7 +578,7 @@ export default function SearchIcons() {
               },
             )}
           </RadioGroup>
-        </Form>
+        </form>
       </Grid>
       <Grid item xs={12} sm={9}>
         <Paper>
@@ -608,7 +603,12 @@ export default function SearchIcons() {
         <Typography sx={{ mb: 1 }}>{`${formatNumber(
           icons.length,
         )} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        <VirtuosoGrid
+          style={{ height: 500 }}
+          data={icons}
+          components={{ List: ListWrapper }}
+          itemContent={Icon(handleOpenClick)}
+        />
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
