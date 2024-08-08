@@ -78,18 +78,17 @@ const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignSelf: 'center',
-  gap: theme.spacing(4),
   width: '100%',
-  padding: theme.spacing(2),
+  padding: theme.spacing(4),
+  gap: theme.spacing(2),
   [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(4),
     width: '450px',
   },
   boxShadow:
-    'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
+    'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
   ...theme.applyStyles('dark', {
     boxShadow:
-      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px, hsla(220, 30%, 5%, 0.05) 0px 0px 0px 1px',
+      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
   }),
 }));
 
@@ -205,7 +204,7 @@ export default function SignIn() {
             p: 2,
           }}
         >
-          <Card>
+          <Card variant="outlined">
             <SitemarkIcon />
             <Typography
               component="h1"
@@ -283,13 +282,18 @@ export default function SignIn() {
               >
                 Sign in
               </Button>
-              <Link
-                href="/material-ui/getting-started/templates/sign-up/"
-                variant="body2"
-                sx={{ alignSelf: 'center' }}
-              >
-                Don&apos;t have an account? Sign up
-              </Link>
+              <Typography sx={{ textAlign: 'center' }}>
+                Don&apos;t have an account?{' '}
+                <span>
+                  <Link
+                    href="/material-ui/getting-started/templates/sign-in/"
+                    variant="body2"
+                    sx={{ alignSelf: 'center' }}
+                  >
+                    Sign up
+                  </Link>
+                </span>
+              </Typography>
             </Box>
             <Divider>or</Divider>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -297,7 +301,6 @@ export default function SignIn() {
                 type="submit"
                 fullWidth
                 variant="outlined"
-                color="secondary"
                 onClick={() => alert('Sign in with Google')}
                 startIcon={<GoogleIcon />}
               >
@@ -307,7 +310,6 @@ export default function SignIn() {
                 type="submit"
                 fullWidth
                 variant="outlined"
-                color="secondary"
                 onClick={() => alert('Sign in with Facebook')}
                 startIcon={<FacebookIcon />}
               >
