@@ -198,7 +198,7 @@ const getDesignTokens = (mode) => ({
   },
 });
 
-export default function getLPTheme(mode) {
+export default function getMPTheme(mode) {
   return {
     ...getDesignTokens(mode),
     components: {

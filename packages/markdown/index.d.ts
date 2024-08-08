@@ -1,5 +1,5 @@
 interface TableOfContentsEntry {
-  children: TableOfContentsEntry;
+  children: TableOfContentsEntry[];
   hash: string;
   level: number;
   text: string;
