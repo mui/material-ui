@@ -87,7 +87,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     ...other
   } = props;
 
-  const color = inProps.color || (variant ? colorProp ?? 'neutral' : colorProp);
+  const color = inProps.color || (variant ? (colorProp ?? 'neutral') : colorProp);
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
 

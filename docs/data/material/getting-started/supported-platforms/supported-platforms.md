@@ -37,5 +37,5 @@ Have a look at the older [versions](https://mui.com/versions/) for backward comp
 
 ## TypeScript
 
-Material UI requires a minimum version of TypeScript 3.5.
+Material UI requires a minimum version of TypeScript 4.7.
 This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.

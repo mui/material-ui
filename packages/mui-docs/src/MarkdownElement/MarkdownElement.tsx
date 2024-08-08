@@ -174,8 +174,6 @@ const Root = styled('div')(
         boxShadow: 'none',
         fontWeight: 'inherit',
         position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
         userSelect: 'text',
       },
       '& .anchor-icon': {
@@ -825,6 +823,7 @@ function handleHeaderClick(event: Event) {
 export interface MarkdownElementProps {
   className?: string;
   renderedMarkdown?: string;
+  children?: React.ReactNode;
 }
 
 export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(

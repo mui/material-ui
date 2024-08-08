@@ -280,6 +280,9 @@ describe('extendTheme', () => {
 
     it('applyStyles', () => {
       const attribute = 'data-custom-color-scheme';
+      const customTheme2 = extendTheme({
+        colorSchemeSelector: attribute,
+      });
       let darkStyles = {};
       const Test = styled('div')(({ theme }) => {
         darkStyles = theme.applyStyles('dark', {
@@ -289,7 +292,7 @@ describe('extendTheme', () => {
       });
 
       render(
-        <CssVarsProvider attribute={attribute}>
+        <CssVarsProvider theme={customTheme2}>
           <Test />
         </CssVarsProvider>,
       );

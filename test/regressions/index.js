@@ -33,7 +33,31 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
+  // The following components are tested by docs-getting-started-templates-blog-components/MainGrid.png
+  'docs-getting-started-templates-blog-theme-customizations/buttons.png',
+  'docs-getting-started-templates-blog-theme-customizations/buttons.png',
+  'docs-getting-started-templates-blog-theme-customizations/index.png',
+  'docs-getting-started-templates-blog-theme-customizations/inputs.png',
+  'docs-getting-started-templates-blog-theme-customizations/layoutComponents.png',
+  'docs-getting-started-templates-blog-theme-customizations/menus.png',
+  'docs-getting-started-templates-blog-theme-customizations/others.png',
+  'docs-getting-started-templates-blog/Blog.png',
+  'docs-getting-started-templates-blog-components/AppAppbar.png',
+  'docs-getting-started-templates-blog-components/Footer.png',
+  'docs-getting-started-templates-blog-components/Latest.png',
+  'docs-getting-started-templates-blog-components/SitemarkIcon.png',
+  'docs-getting-started-templates-blog-components/ToggleColorMode.png',
   // The following components are tested by docs-getting-started-templates-dashboard-components/MainGrid.png
+  'docs-getting-started-templates-dashboard-theme-customizations/buttons.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/charts.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/dataGrid.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/datePickers.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/index.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/inputs.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/layoutComponents.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/menus.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/others.png',
+  'docs-getting-started-templates-dashboard-theme-customizations/treeView.png',
   'docs-getting-started-templates-dashboard/Dashboard.png',
   'docs-getting-started-templates-dashboard-components/ChartUserByCountry.png',
   'docs-getting-started-templates-dashboard-components/CustomDatePicker.png',
@@ -45,11 +69,11 @@ const blacklist = [
   'docs-getting-started-templates-dashboard-components/Navbar.png',
   'docs-getting-started-templates-dashboard-components/NavbarBreadcrumbs.png',
   'docs-getting-started-templates-dashboard-components/OptionsMenu.png',
-  'docs-getting-started-templates-dashboard-components/PageViewsChart.png',
+  'docs-getting-started-templates-dashboard-components/SessionsChart.png',
   'docs-getting-started-templates-dashboard-components/Search.png',
   'docs-getting-started-templates-dashboard-components/ToggleColorMode.png',
   'docs-getting-started-templates-dashboard-internals-components', // No public components
-  'docs-getting-started-templates-dashboard-components/SideNav.png', // No public components
+  'docs-getting-started-templates-dashboard-components/SideMenuMobile.png', // No public components
   'docs-getting-started-templates-dashboard-components/PageViewsBarChart.png', // No public components
   'docs-getting-started-templates-dashboard-components/StatCard.png', // No public components
   'docs-getting-started-templates-sign-in-side/CustomIcons.png', // Theme file
@@ -58,7 +82,7 @@ const blacklist = [
   'docs-getting-started-templates-sign-in-side/getSignInSideTheme.png', // Theme file
   'docs-getting-started-templates-sign-up/getSignUpTheme.png', // Theme file
   'docs-getting-started-templates-checkout/getCheckoutTheme.png', // Theme file
-  'docs-getting-started-templates-landing-page/getLPTheme.png', // Theme file
+  'docs-getting-started-templates-marketing-page/getMPTheme.png', // Theme file
   'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
   'docs-joy-core-features-automatic-adjustment/ListThemes.png', // No public components
   'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
@@ -169,7 +193,7 @@ const blacklist = [
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
-  'docs-getting-started-templates-landing-page/LandingPage.png', // Flaky image loading
+  'docs-getting-started-templates-marketing-page/MarketingPage.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Flaky random images
   'docs-getting-started-templates-checkout/AddressForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
   'docs-getting-started-templates-checkout/PaymentForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout

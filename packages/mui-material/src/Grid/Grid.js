@@ -397,6 +397,9 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getGridUtilityClass, classes);
 };
 
+/**
+ * @deprecated Use the [`Grid2`](https://next.mui.com/material-ui/react-grid2/) component instead.
+ */
 const Grid = React.forwardRef(function Grid(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiGrid' });
   const { breakpoints } = useTheme();

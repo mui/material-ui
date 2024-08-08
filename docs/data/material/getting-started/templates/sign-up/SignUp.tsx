@@ -13,8 +13,13 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { PaletteMode, Card as MuiCard } from '@mui/material';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import MuiCard from '@mui/material/Card';
+import {
+  createTheme,
+  ThemeProvider,
+  styled,
+  PaletteMode,
+} from '@mui/material/styles';
 
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
@@ -60,7 +65,9 @@ function ToggleCustomTheme({
           <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
           Custom theme
         </ToggleButton>
-        <ToggleButton value={false}>Material Design 2</ToggleButton>
+        <ToggleButton data-screenshot="toggle-default-theme" value={false}>
+          Material Design 2
+        </ToggleButton>
       </ToggleButtonGroup>
     </Box>
   );
@@ -189,7 +196,11 @@ export default function SignUp() {
           >
             Back
           </Button>
-          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+          <ToggleColorMode
+            data-screenshot="toggle-mode"
+            mode={mode}
+            toggleColorMode={toggleColorMode}
+          />
         </Stack>
         <Stack
           sx={{

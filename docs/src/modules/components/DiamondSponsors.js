@@ -27,7 +27,7 @@ const NativeLink = styled('a')(({ theme }) => ({
     backgroundColor: (theme.vars || theme).palette.grey[50],
   },
   '&:focus-visible': {
-    outline: `3px solid ${alpha((theme.vars || theme).palette.primary[500], 0.5)}`,
+    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
     outlineOffset: '-3px',
   },
   '& img': {

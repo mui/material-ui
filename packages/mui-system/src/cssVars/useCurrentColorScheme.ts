@@ -13,11 +13,11 @@ export interface State<SupportedColorScheme extends string> {
    * User selected mode.
    * Note: on the server, mode is always undefined
    */
-  mode: Mode | undefined;
+  mode: 'light' | 'dark' | 'system' | undefined;
   /**
    * Only valid if `mode: 'system'`, either 'light' | 'dark'.
    */
-  systemMode: SystemMode | undefined;
+  systemMode: 'light' | 'dark' | undefined;
   /**
    * The color scheme for the light mode.
    */
@@ -54,7 +54,11 @@ export type Result<SupportedColorScheme extends string> = State<SupportedColorSc
 };
 
 export function getSystemMode(mode: undefined | string): SystemMode | undefined {
-  if (typeof window !== 'undefined' && mode === 'system') {
+  if (
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    mode === 'system'
+  ) {
     const mql = window.matchMedia('(prefers-color-scheme: dark)');
     if (mql.matches) {
       return 'dark';
@@ -132,6 +136,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   } = options;
 
   const joinedColorSchemes = supportedColorSchemes.join(',');
+  const isMultiSchemes = supportedColorSchemes.length > 1;
 
   const [state, setState] = React.useState(() => {
     const initialMode = initializeValue(modeStorageKey, defaultMode);
@@ -150,6 +155,15 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
       darkColorScheme,
     } as State<SupportedColorScheme>;
   });
+  // This could be improved with `React.useSyncExternalStore` in the future.
+  const [, setHasMounted] = React.useState(false);
+  const hasMounted = React.useRef(false);
+  React.useEffect(() => {
+    if (isMultiSchemes) {
+      setHasMounted(true); // to rerender the component after hydration
+    }
+    hasMounted.current = true;
+  }, [isMultiSchemes]);
 
   const colorScheme = getColorScheme(state);
 
@@ -275,6 +289,9 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   mediaListener.current = handleMediaQuery;
 
   React.useEffect(() => {
+    if (typeof window.matchMedia !== 'function' || !isMultiSchemes) {
+      return undefined;
+    }
     const handler = (...args: any) => mediaListener.current(...args);
 
     // Always listen to System preference
@@ -286,11 +303,11 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     return () => {
       media.removeListener(handler);
     };
-  }, []);
+  }, [isMultiSchemes]);
 
   // Handle when localStorage has changed
   React.useEffect(() => {
-    if (storageWindow) {
+    if (storageWindow && isMultiSchemes) {
       const handleStorage = (event: StorageEvent) => {
         const value = event.newValue;
         if (
@@ -328,11 +345,14 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     joinedColorSchemes,
     defaultMode,
     storageWindow,
+    isMultiSchemes,
   ]);
 
   return {
     ...state,
-    colorScheme,
+    mode: hasMounted.current || !isMultiSchemes ? state.mode : undefined,
+    systemMode: hasMounted.current || !isMultiSchemes ? state.systemMode : undefined,
+    colorScheme: hasMounted.current || !isMultiSchemes ? colorScheme : undefined,
     setMode,
     setColorScheme,
   };

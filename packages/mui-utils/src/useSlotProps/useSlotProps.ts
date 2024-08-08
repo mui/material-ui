@@ -82,13 +82,13 @@ function useSlotProps<
     externalSlotProps,
     ownerState,
     skipResolvingSlotProps = false,
-    ...rest
+    ...other
   } = parameters;
   const resolvedComponentsProps = skipResolvingSlotProps
     ? {}
     : resolveComponentProps(externalSlotProps, ownerState);
   const { props: mergedProps, internalRef } = mergeSlotProps({
-    ...rest,
+    ...other,
     externalSlotProps: resolvedComponentsProps,
   });
 
