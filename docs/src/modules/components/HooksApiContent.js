@@ -6,6 +6,7 @@ import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import { getHookApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
@@ -69,10 +70,12 @@ export default function HooksApiContent(props) {
           )}
           {Object.keys(parameters).length > 0 ? (
             <PropertiesSection
-              properties={parameters}
-              propertiesDescriptions={parametersDescriptions}
-              componentName={hookName}
-              hooksParameters
+              properties={getHookApiDefinitions({
+                kind: 'parameters',
+                hookName,
+                properties: parameters,
+                translations: parametersDescriptions,
+              })}
               level="h3"
               title="api-docs.parameters"
               titleHash={`${hookNameKebabCase}-parameters`}
@@ -83,11 +86,13 @@ export default function HooksApiContent(props) {
             <span>{t('api-docs.hooksNoParameters')}</span>
           )}
           <PropertiesSection
-            properties={returnValue}
-            propertiesDescriptions={returnValueDescriptions}
-            componentName={hookName}
-            showOptionalAbbr
-            hooksReturnValue
+            properties={getHookApiDefinitions({
+              kind: 'return',
+              hookName,
+              properties: returnValue,
+              translations: returnValueDescriptions,
+              showOptionalAbbr: true,
+            })}
             level="h3"
             title="api-docs.returnValue"
             titleHash={`${hookNameKebabCase}-return-value`}
