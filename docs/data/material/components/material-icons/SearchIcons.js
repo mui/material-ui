@@ -610,11 +610,14 @@ export default function SearchIcons() {
           itemContent={Icon(handleOpenClick)}
         />
       </Grid>
-      <DialogDetails
-        open={!!selectedIcon}
-        selectedIcon={dialogSelectedIcon}
-        handleClose={handleClose}
-      />
+      {/* Temporary fix for Dialog not closing sometimes and Backdrop stuck at opacity 0 (see issue https://github.com/mui/material-ui/issues/32286). */}
+      {selectedIcon ? (
+        <DialogDetails
+          open={!!selectedIcon}
+          selectedIcon={dialogSelectedIcon}
+          handleClose={handleClose}
+        />
+      ) : null}
     </Grid>
   );
 }
