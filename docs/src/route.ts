@@ -52,6 +52,7 @@ const ROUTES = {
   // Toolpad pages
   toolpadLandingPage: '/toolpad/',
   toolpadStudioDocs: '/toolpad/studio/getting-started/',
+  toolpadCoreDocs: '/toolpad/core/introduction/',
   toolpadWhy: '/toolpad/studio/getting-started/why-toolpad/',
   // External pages
   rssFeed: '/feed/blog/rss.xml',
