@@ -5,6 +5,7 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
 materialDesign: https://m2.material.io/components/selection-controls#radio-buttons
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
+githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/RadioGroup
 ---
 
 # Radio Group

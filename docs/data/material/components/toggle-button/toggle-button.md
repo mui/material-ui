@@ -4,6 +4,7 @@ title: Toggle Button React component
 components: ToggleButton, ToggleButtonGroup
 githubLabel: 'component: toggle button'
 materialDesign: https://m2.material.io/components/buttons#toggle-button
+githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/ToggleButton
 ---
 
 # Toggle Button
