@@ -1,7 +1,7 @@
 import { Theme, SxProps } from '@mui/material/styles';
 import {} from '@mui/material/themeCssVarsAugmentation';
 
-declare module '@mui/material-pigment-css/theme' {
+declare module '@mui/material-pigment-css' {
   interface ThemeArgs {
     theme: Theme;
   }
@@ -9,7 +9,7 @@ declare module '@mui/material-pigment-css/theme' {
 
 declare global {
   namespace React {
-    interface HTMLAttributes<T> {
+    interface HTMLAttributes {
       sx?: SxProps<Theme>;
     }
   }
