@@ -343,7 +343,6 @@ export default function ApiPage(props: ApiPageProps) {
             />
           </React.Fragment>
         )}
-        (
         <SlotsSection
           slots={slotsDef}
           spreadHint={
@@ -353,7 +352,6 @@ export default function ApiPage(props: ApiPageProps) {
           defaultLayout={defaultLayout}
           layoutStorageKey={layoutStorageKey.slots}
         />
-        )
         <ClassesSection
           classes={classesDef}
           spreadHint={t('api-docs.classesDescription')}
