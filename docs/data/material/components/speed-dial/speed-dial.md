@@ -5,6 +5,7 @@ components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: speed dial'
 materialDesign: https://m2.material.io/components/buttons-floating-action-button#types-of-transitions
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
+githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/SpeedDial
 ---
 
 # Speed Dial
