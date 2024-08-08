@@ -224,7 +224,7 @@ As the `ListItem` no longer supports these props, the class names related to the
 + listItemButtonClasses.root
 
 - listItemClasses.focusVisible
-- listItemButtonClasses.focusVisible
++ listItemButtonClasses.focusVisible
 
 - listItemClasses.disabled
 + listItemButtonClasses.disabled
