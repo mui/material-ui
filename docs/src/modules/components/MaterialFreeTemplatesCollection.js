@@ -4,10 +4,12 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import { useTranslate } from '@mui/docs/i18n';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
@@ -22,10 +24,10 @@ function layouts(translatation) {
       hasDarkMode: true,
     },
     {
-      title: translatation('landingPageTitle'),
-      description: translatation('landingPageDescr'),
-      href: '/material-ui/getting-started/templates/landing-page/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/landing-page`,
+      title: translatation('marketingPageTitle'),
+      description: translatation('marketingPageDescr'),
+      href: '/material-ui/getting-started/templates/marketing-page/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/marketing-page`,
       hasDarkMode: true,
     },
     {
@@ -61,12 +63,7 @@ function layouts(translatation) {
       description: translatation('blogDescr'),
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
-    },
-    {
-      title: translatation('stickyFooterTitle'),
-      description: translatation('stickyFooterDescr'),
-      href: '/material-ui/getting-started/templates/sticky-footer/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/sticky-footer`,
+      hasDarkMode: true,
     },
   ];
 }
@@ -77,7 +74,7 @@ export default function Templates() {
   return (
     <Grid container spacing={2} sx={{ py: 2 }}>
       {layouts(translatation).map((layout) => (
-        <Grid item xs={12} sm={6} key={layout.title}>
+        <Grid size={{ xs: 12, sm: 6 }} key={layout.title}>
           <Card
             variant="outlined"
             sx={{
@@ -87,31 +84,70 @@ export default function Templates() {
               borderColor: 'divider',
             }}
           >
-            <CardMedia
-              component="img"
-              // The image source is generated from `pnpm template:screenshot material-ui`, do not modify the image manually.
-              image={`/static/screenshots${layout.href.replace(/\/$/, '')}.jpg`}
-              title={layout.title}
-              sx={(theme) => ({
-                aspectRatio: '16 / 9',
-                objectPosition: 'top',
-                borderBottom: '1px solid',
-                borderColor: 'divider',
-                ...theme.applyStyles('dark', {
-                  content: 'var(--src)',
-                }),
-              })}
-              style={{
-                '--src': layout.hasDarkMode
-                  ? `url(/static/screenshots${layout.href.replace(/\/$/, '')}-dark.jpg)`
-                  : `url(/static/screenshots${layout.href.replace(/\/$/, '')}.jpg)`,
+            <Box
+              sx={{
+                position: 'relative',
+                '&:hover > .MuiCardMedia-root': {
+                  filter: 'blur(4px)',
+                },
+                '&:hover > .MuiButtonBase-root': {
+                  opacity: 1,
+                },
               }}
-            />
-            <Box sx={{ p: 2, pt: 1.5 }}>
-              <Typography component="h3" variant="body1" sx={{ fontWeight: 'semiBold' }}>
+            >
+              <CardMedia
+                component="img"
+                // The image source is generated from `pnpm template:screenshot material-ui`, do not modify the image manually.
+                image={`/static/screenshots${layout.href.replace(/\/$/, '')}.jpg`}
+                title={layout.title}
+                sx={(theme) => ({
+                  aspectRatio: '16 / 9',
+                  objectPosition: 'top',
+                  transition: 'filter 0.3s',
+                  ...theme.applyStyles('dark', {
+                    content: 'var(--src)',
+                  }),
+                })}
+                style={{
+                  '--src': layout.hasDarkMode
+                    ? `url(/static/screenshots${layout.href.replace(/\/$/, '')}-dark.jpg)`
+                    : `url(/static/screenshots${layout.href.replace(/\/$/, '')}.jpg)`,
+                }}
+              />
+              <Button
+                variant="text"
+                endIcon={<OpenInNewRoundedIcon />}
+                component={Link}
+                href={layout.href}
+                data-ga-event-category="material-ui-template"
+                data-ga-event-label={layout.title}
+                data-ga-event-action="preview-img"
+                sx={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  opacity: 0,
+                  transition: 'opacity 0.5s ease',
+                  backgroundColor: 'background.paper',
+                  '&:hover': {
+                    backgroundColor: 'background.default',
+                  },
+                }}
+              >
+                See live preview
+              </Button>
+            </Box>
+            <Box sx={{ p: 2, pt: 1.5, borderTop: '1px solid', borderColor: 'divider' }}>
+              <Typography
+                component="h3"
+                variant="body1"
+                gutterBottom
+                sx={{ fontWeight: 'semiBold' }}
+              >
                 {layout.title}
               </Typography>
-              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
+              <Typography variant="body2" gutterBottom sx={{ color: 'text.secondary', mb: 2 }}>
                 {layout.description}
               </Typography>
               <Box

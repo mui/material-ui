@@ -12,13 +12,13 @@ import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-b
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import { propsApiProcessor } from 'docs/src/modules/components/ApiPage/processors/properties';
-import { classesApiProcessor } from 'docs/src/modules/components/ApiPage/processors/classes';
+import { getPropsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
+import { getClassApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/classes';
 import {
   ApiDisplayOptions,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import { slotsApiProcessor } from 'docs/src/modules/components/ApiPage/processors/slots';
+import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
 import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
@@ -163,7 +163,7 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           )}
           <PropertiesSection
-            properties={propsApiProcessor({
+            properties={getPropsApiDefinitions({
               componentName: pageContent.name,
               properties: componentProps,
               propertiesDescriptions: propDescriptions,
@@ -230,7 +230,7 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
             </React.Fragment>
           )}
           <SlotsSection
-            slots={slotsApiProcessor({
+            slots={getSlotsApiDefinitions({
               componentSlots,
               slotDescriptions,
               componentName,
@@ -245,7 +245,7 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
             layoutStorageKey={layoutStorageKey.slots}
           />
           <ClassesSection
-            classes={classesApiProcessor({
+            classes={getClassApiDefinitions({
               componentClasses,
               componentName: pageContent.name,
               classDescriptions,

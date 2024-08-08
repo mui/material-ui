@@ -74,6 +74,21 @@ export interface PropsTranslations {
   slotDescriptions?: { [key: string]: string };
 }
 
+interface PropDescription {
+  description: string;
+  requiresRef?: boolean;
+  deprecated?: string;
+  typeDescriptions?: { [t: string]: string };
+  seeMoreText?: string;
+}
+
+interface ClassDescription {
+  description: string;
+  conditions?: string;
+  nodeName?: string;
+  deprecationInfo?: string;
+}
+
 export interface ComponentReactApi extends CommonReactApi {
   forwardsRefTo: string | undefined;
   inheritance: ReturnType<ComponentInfo['getInheritance']>;

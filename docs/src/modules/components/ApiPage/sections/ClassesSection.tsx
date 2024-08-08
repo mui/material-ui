@@ -11,8 +11,8 @@ import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
 import {
   ClassDefinition,
-  classesApiProcessor,
-} from 'docs/src/modules/components/ApiPage/processors/classes';
+  getClassApiDefinitions,
+} from 'docs/src/modules/components/ApiPage/definitions/classes';
 import { ComponentClassDefinition } from '@mui/internal-docs-utils';
 import { PropsTranslations } from '@mui-internal/api-docs-builder';
 import kebabCase from 'lodash/kebabCase';
@@ -99,7 +99,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
 
   const formattedClasses =
     classes ||
-    classesApiProcessor({
+    getClassApiDefinitions({
       componentClasses,
       classDescriptions,
       componentName,

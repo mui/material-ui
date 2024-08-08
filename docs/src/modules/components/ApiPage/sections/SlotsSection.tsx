@@ -12,8 +12,8 @@ import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
 import {
   SlotDefinition,
-  slotsApiProcessor,
-} from 'docs/src/modules/components/ApiPage/processors/slots';
+  getSlotsApiDefinitions,
+} from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 export type SlotsSectionProps = (
   | {
@@ -56,7 +56,7 @@ export default function SlotsSection(props: SlotsSectionProps) {
 
   const formattedSlots =
     slots ??
-    slotsApiProcessor({
+    getSlotsApiDefinitions({
       componentSlots,
       slotDescriptions,
       componentName,
