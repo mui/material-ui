@@ -60,7 +60,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ### `@mui/material-pigment-css@6.0.0-beta.5`
 
-- &#8203;<!-- 13 -->Reexport Pigment CSS from index file (#43218) @siriwatknp
+- &#8203;<!-- 13 -->Reexport Pigment CSS from index file (#43218) @siriwatknp
 
 ### `@mui/codemod@6.0.0-beta.5`
 
@@ -72,7 +72,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 25 -->Refine and polish out Templates page (#43131) @zanivan
 - &#8203;<!-- 24 -->Fix the link test script (#43195) @alexfauquette
 - &#8203;<!-- 23 -->Fix alpha usage (#43194) @siriwatknp
-- &#8203;<!-- 22 -->Link Toolpad Core components from Material Ui docs (#43036) @prakhargupta1
+- &#8203;<!-- 22 -->Link Toolpad Core components from Material UI docs (#43036) @prakhargupta1
 - &#8203;<!-- 21 -->Link Toolpad core docs to the docs menu (#42952) @prakhargupta1
 - &#8203;<!-- 20 -->Polish migration guide (#43021) @oliviertassinari
 - &#8203;<!-- 19 -->Fix 404 link to migration pages @oliviertassinari
