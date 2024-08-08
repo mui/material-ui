@@ -51,7 +51,7 @@ The exact versions will be pinned on release from the browserslist query: `"> 0.
 - Edge 121 (up from 91)
 - Firefox 115 (up from 78)
 - Safari 15.4 in both macOS and iOS (up from 14 in macOS and 12.5 in iOS)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v6.0.0/.browserslistrc#L11))
+- and more (see [.browserslistrc `stable` entry](https://github.com/mui/material-ui/blob/v6.0.0/.browserslistrc#L11))
 
 ### Removed support for IE 11
 
@@ -115,6 +115,7 @@ Expect updates as new breaking changes are introduced.
 
 To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle.
 This results in a reduction of the `@mui/material` package size by 2.5MB or 25% of the total package size.
+See [Package Phobia](https://packagephobia.com/result?p=@mui/material) for more details.
 
 Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended.
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
@@ -225,13 +226,13 @@ As the `ListItem` no longer supports these props, the class names related to the
 The `Grid2` component API was stabilized, so its import no longer contains the `Unstable_` prefix:
 
 ```diff
-- import { Unstable_Grid2 as Grid2 } from '@mui/material';
-+ import { Grid2 } from '@mui/material';
+-import { Unstable_Grid2 as Grid2 } from '@mui/material';
++import { Grid2 } from '@mui/material';
 ```
 
 ```diff
-- import Grid from '@mui/material/Unstable_Grid2';
-+ import Grid from '@mui/material/Grid2';
+-import Grid from '@mui/material/Unstable_Grid2';
++import Grid from '@mui/material/Grid2';
 ```
 
 #### Size and offset props
@@ -245,28 +246,28 @@ For the default theme this was:
 In v6, these props are renamed to `size` and `offset`:
 
 ```diff
-  <Grid
--   xs={12}
--   sm={6}
--   xsOffset={2}
--   smOffset={3}
-+   size={{ xs: 12, sm: 6 }}
-+   offset={{ xs: 2, sm: 3 }}
-  />
+ <Grid
+-  xs={12}
+-  sm={6}
+-  xsOffset={2}
+-  smOffset={3}
++  size={{ xs: 12, sm: 6 }}
++  offset={{ xs: 2, sm: 3 }}
+ >
 ```
 
 Note that if the size or offset is the same for all breakpoints, you can use a single value:
 
 ```diff
-- <Grid xs={6} xsOffset={2} >
-+ <Grid size={6} offset={2} >
+-<Grid xs={6} xsOffset={2}>
++<Grid size={6} offset={2}>
 ```
 
 Besides that, the `true` value for the size prop was renamed to `"grow"`:
 
 ```diff
-- <Grid xs />
-+ <Grid size="grow" />
+-<Grid xs>
++<Grid size="grow">
 ```
 
 Use this codemod to migrate your project to the new size and offset props:
@@ -282,8 +283,8 @@ You need to modify the import from `@mui/material/Unstable_Grid2` to `@mui/mater
 If you have custom breakpoints, the change is the same:
 
 ```diff
-- <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
-+ <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
+-<Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4}>
++<Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }}>
 ```
 
 Which you can cover with the same codemod by providing the custom breakpoints as an argument:
@@ -302,8 +303,8 @@ In v6, this is fixed, with the Grid being contained inside its parent's padding:
 This removes the need for the `disableEqualOverflow` prop:
 
 ```diff
-- <Grid disableEqualOverflow />
-+ <Grid />
+-<Grid disableEqualOverflow>
++<Grid>
 ```
 
 #### Spacing is no longer considered inside the Grid item's box
@@ -340,8 +341,8 @@ The `CssVarsProvider` and `extendTheme` APIs are now stable.
 If you already use them in v5, you can now drop the experimental prefix.
 
 ```diff
-- import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-+ import { extendTheme, CssVarsProvider } from '@mui/material/styles';
+-import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
++import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 ```
 
 Check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/) to learn more about it.
@@ -395,8 +396,8 @@ npx @mui/codemod@next v6.0.0/system-props <path/to/folder>
 Or do it manually like the example below:
 
 ```diff
-- <Button mr={2}>...</Button>
-+ <Button sx={{ mr: 2 }}>...</Button>
+-<Button mr={2}>
++<Button sx={{ mr: 2 }}>
 ```
 
 ### Theme component variants

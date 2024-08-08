@@ -49,3 +49,5 @@ export interface Transitions {
   create: typeof create;
   getAutoHeightDuration: typeof getAutoHeightDuration;
 }
+
+export default function createTransitions(inputTransitions: TransitionsOptions): Transitions;

@@ -54,7 +54,7 @@
     "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/system": "workspace:*",
-    "@types/chai": "^4.3.16",
+    "@types/chai": "^4.3.17",
     "@types/prop-types": "^15.7.12",
     "@types/react": "^18.3.3",
     "@types/sinon": "^17.0.3",
