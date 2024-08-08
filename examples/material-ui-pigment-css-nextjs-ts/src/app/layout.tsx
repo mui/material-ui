@@ -1,22 +1,7 @@
+import * as React from 'react';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import { Theme, SxProps } from '@mui/material/styles';
-import {} from '@mui/material/themeCssVarsAugmentation';
 import '@mui/material-pigment-css/styles.css';
-
-declare module '@mui/material-pigment-css' {
-  interface ThemeArgs {
-    theme: Theme;
-  }
-}
-
-declare global {
-  namespace React {
-    interface HTMLAttributes<T> {
-      sx?: SxProps<Theme>;
-    }
-  }
-}
 
 const roboto = Roboto({
   subsets: ['latin'],

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import DefaultPropsProvider from '@mui/material/DefaultPropsProvider';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material-pigment-css/Container';
