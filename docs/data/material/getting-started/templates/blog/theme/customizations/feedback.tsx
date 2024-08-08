@@ -1,5 +1,4 @@
-import { Components } from '@mui/material';
-import { Theme, alpha } from '@mui/material/styles';
+import { Theme, alpha, Components } from '@mui/material/styles';
 import { gray, orange } from '../themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
