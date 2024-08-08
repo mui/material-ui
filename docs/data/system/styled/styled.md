@@ -9,6 +9,12 @@ This utility is built on top of the `styled()` module of `@mui/styled-engine` an
 
 ### Import path
 
+```ts
+import { styled } from '@mui/system';
+// if you are using @mui/material
+import { styled } from '@mui/material/styles';
+```
+
 You can use the utility coming from the `@mui/system` package, or if you are using `@mui/material`, you can import it from `@mui/material/styles`.
 The difference is in the default `theme` that is used (if no theme is available in the React context).
 
