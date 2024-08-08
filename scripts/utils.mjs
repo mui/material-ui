@@ -1,6 +1,6 @@
 import path from 'path';
 import url from 'url';
-import fse from 'fs-extra';
+import fs from 'fs';
 
 /**
  * Returns the full path of the root directory of this repository.
@@ -15,8 +15,8 @@ export function getWorkspaceRoot() {
 /**
  * Returns the version and destructured values of the version as env variables to be replaced.
  */
-export async function getVersionEnvVariables() {
-  const packageJsonData = await fse.readFile(path.resolve('./package.json'), 'utf8');
+export function getVersionEnvVariables() {
+  const packageJsonData = fs.readFileSync(path.resolve('./package.json'), 'utf8');
   const { version = null } = JSON.parse(packageJsonData);
 
   if (!version) {
