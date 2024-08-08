@@ -5,6 +5,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 githubLabel: 'component: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 materialDesign: https://m2.material.io/components/data-tables
+githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Table
 ---
 
 # Table
