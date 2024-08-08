@@ -211,23 +211,6 @@ const tabsCodeInfo = [
     imgSrc: '/static/branding/toolpad/ex-1.png',
     imgAlt: '.yaml file represents Toolpad app',
   },
-  // {
-  //   code: tabTwoCode,
-  //   label: 'Serverless',
-  //   language: 'tsx',
-  //   description:
-  //     'Write serverless functions to fetch your data, Toolpad automatically makes the result available on the page.',
-  //   imgSrc: '/static/branding/toolpad/ex-2.png',
-  //   imgAlt: 'Toolpad user management app',
-  // },
-  // {
-  //   code: tabThreeCode,
-  //   label: 'Customizable',
-  //   language: 'tsx',
-  //   description: 'Bring your own React components into Toolpad Studio.',
-  //   imgSrc: '/static/branding/toolpad/ex-3.png',
-  //   imgAlt: 'Toolpad app with custom component',
-  // },
 ];
 
 export default function ToolpadShowcase() {
