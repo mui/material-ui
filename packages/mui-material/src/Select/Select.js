@@ -2,8 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import composeClasses from '@mui/utils/composeClasses';
+import deepmerge from '@mui/utils/deepmerge';
 import getReactNodeRef from '@mui/utils/getReactNodeRef';
+import composeClasses from '@mui/utils/composeClasses';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -14,22 +15,20 @@ import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
-import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { getSelectUtilityClasses } from './selectClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, multiple, open, error } = ownerState;
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
-    select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
-    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
-    nativeInput: ['nativeInput'],
   };
 
-  return composeClasses(slots, getSelectUtilityClasses, classes);
+  const composedClasses = composeClasses(slots, getSelectUtilityClasses, classes);
+
+  return { ...classes, ...composedClasses };
 };
 
 const styledRootConfig = {
@@ -78,18 +77,12 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['variant', 'error', 'disabled'],
+    states: ['variant', 'error'],
   });
 
   const variant = fcs.variant || variantProp;
 
-  const ownerState = {
-    ...props,
-    variant,
-    error: fcs.error,
-    disabled: fcs.disabled,
-    classes: { ...classesProp, ...((inputProps ?? {}).classes ?? {}) },
-  };
+  const ownerState = { ...props, variant, classes: classesProp };
   const classes = useUtilityClasses(ownerState);
   const { root, ...restOfClasses } = classes;
 
@@ -131,7 +124,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
                 SelectDisplayProps: { id, ...SelectDisplayProps },
               }),
           ...inputProps,
-          classes: restOfClasses,
+          classes: inputProps ? deepmerge(restOfClasses, inputProps.classes) : restOfClasses,
           ...(input ? input.props.inputProps : {}),
         },
         ...(((multiple && native) || displayEmpty) && variant === 'outlined'

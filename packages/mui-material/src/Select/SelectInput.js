@@ -4,6 +4,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/internal-babel-macros/MuiError.macro';
+import composeClasses from '@mui/utils/composeClasses';
 import useId from '@mui/utils/useId';
 import refType from '@mui/utils/refType';
 import ownerDocument from '../utils/ownerDocument';
@@ -15,7 +16,7 @@ import { styled } from '../zero-styled';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
-import selectClasses from './selectClasses';
+import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
 const SelectSelect = styled(StyledSelectSelect, {
   name: 'MuiSelect',
@@ -83,9 +84,15 @@ function isEmpty(display) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes } = ownerState;
+  const { classes, variant, disabled, multiple, open, error } = ownerState;
 
-  return classes;
+  const slots = {
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
+    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
+    nativeInput: ['nativeInput'],
+  };
+
+  return composeClasses(slots, getSelectUtilityClasses, classes);
 };
 
 /**
