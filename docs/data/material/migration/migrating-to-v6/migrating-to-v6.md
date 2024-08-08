@@ -219,6 +219,18 @@ As the `ListItem` no longer supports these props, the class names related to the
 ```diff
 -import { listItemClasses } from '@mui/material/ListItem';
 +import { listItemButtonClasses } from '@mui/material/ListItemButton';
+
+- listItemClasses.button
++ listItemButtonClasses.root
+
+- listItemClasses.focusVisible
+- listItemButtonClasses.focusVisible
+
+- listItemClasses.disabled
++ listItemButtonClasses.disabled
+
+- listItemClasses.selected
++ listItemButtonClasses.selected
 ```
 
 #### Stabilized API
