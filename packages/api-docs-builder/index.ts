@@ -8,6 +8,5 @@ export type {
   PropsTranslations,
   HooksTranslations,
   HookApiContent,
-  ClassDescription,
 } from './types/ApiBuilder.types';
 export type { Slot } from './types/utils.types';

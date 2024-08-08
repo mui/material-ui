@@ -28,7 +28,7 @@ interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 't
 }
 
 /**
- * @deprecated Use the one from ApiPage/processors
+ * @deprecated Use the one from ApiPage/definitions
  */
 export function getPropsToC({
   componentName,
