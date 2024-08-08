@@ -2,16 +2,10 @@
 
 This is the website of the company (MUI), the documentation of Material UI, Base UI, MUI System, and Joy UI.
 
-To install the required packages, from `/docs`, run:
+To start the docs site in development mode, from the project root, run:
 
 ```bash
-pnpm install
-```
-
-To start the docs site in development mode, from `/docs`, run:
-
-```bash
-pnpm dev
+pnpm docs:dev
 ```
 
 If you do not have pnpm installed, select your OS and follow the instructions on the [pnpm website](https://pnpm.io/installation).
