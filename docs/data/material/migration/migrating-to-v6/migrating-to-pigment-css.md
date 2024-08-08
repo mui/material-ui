@@ -135,20 +135,16 @@ npm install --save-dev @pigment-css/vite-plugin
 yarn add -D @pigment-css/vite-plugin
 ```
 
-```bash pnpm
-pnpm add -D @pigment-css/vite-plugin
-```
-
 </codeblock>
 
-Next, open vite config file, usually named `vite.config.js`, and add the plugin:
+Next, open vite config file, usually named `vite.config.mjs` or `vite.config.js`, and add the plugin:
 
 ```js
 import { defineConfig } from 'vite';
 import { pigment } from '@pigment-css/vite-plugin';
 
 /**
- * @type {import('@pigment-css/nextjs-plugin').PigmentOptions}
+ * @type {import('@pigment-css/vite-plugin').PigmentOptions}
  */
 const pigmentConfig = {
   transformLibraries: ['@mui/material'],
@@ -163,7 +159,8 @@ export default defineConfig({
 ```
 
 :::warning
-There is an [issue with `pnpm`](https://github.com/mui/pigment-css/issues/176) that prevents the plugin from working correctly. Consider using `npm` or `yarn` instead.
+There is [a known issue with pnpm](https://github.com/mui/pigment-css/issues/176) that currently prevents the plugin from working correctly with this package manager.
+Until it's resolved, you must use npm or yarn instead.
 :::
 
 Finally, add the Pigment CSS stylesheet to the top of the main file.
@@ -188,12 +185,14 @@ Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
 ```diff
 +import { createTheme } from '@mui/material';
 
-+const pigmentConfig = {
+ const pigmentConfig = {
+   transformLibraries: ['@mui/material'],
 +  theme: createTheme(…parameters if any),
-+};
+ };
 ```
 
-If you have a custom theme, follow the [theme migration](#migrating-custom-theme), otherwise you are ready to go. Start a development server by running:
+If you have a custom theme, follow the [theme migration instructions](#migrating-custom-theme) next.
+Otherwise you're now ready to start the development server:
 
 <codeblock storageKey="package-manager">
 
