@@ -68,7 +68,16 @@ export const getPropertiesToC = ({
 interface GetPropsApiDefinitionsParams {
   componentName: string;
   properties: {
-    [name: string]: PropsTableItem;
+    [name: string]: PropsTableItem & {
+      /**
+       * Only to be compatible the time of the migration for X
+       */
+      isProPlan?: boolean;
+      /**
+       * Only to be compatible the time of the migration for X
+       */
+      isPremiumPlan?: boolean;
+    };
   };
   propertiesDescriptions: PropsTranslations['propDescriptions'];
   /**
@@ -128,6 +137,8 @@ export function getPropsApiDefinitions(params: GetPropsApiDefinitionsParams): Pr
       signature,
       signatureArgs,
       signatureReturnDescription,
+      isProPlan: propData.isProPlan,
+      isPremiumPlan: propData.isPremiumPlan,
     };
   });
 }
