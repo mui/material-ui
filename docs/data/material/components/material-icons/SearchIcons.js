@@ -610,7 +610,7 @@ export default function SearchIcons() {
           itemContent={Icon(handleOpenClick)}
         />
       </Grid>
-      {/* Temporary fix for Dialog not closing sometimes and Backdrop stuck at opacity 0 (see issue https://github.com/mui/material-ui/issues/32286). */}
+      {/* Temporary fix for Dialog not closing sometimes and Backdrop stuck at opacity 0 (see issue https://github.com/mui/material-ui/issues/32286). One disadvantage is that the closing animation is not applied. */}
       {selectedIcon ? (
         <DialogDetails
           open={!!selectedIcon}
