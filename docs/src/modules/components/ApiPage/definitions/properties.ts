@@ -140,6 +140,7 @@ export function getPropsApiDefinitions(params: GetPropsApiDefinitionsParams): Pr
 
 interface HookCommonApiParams {
   hookName: string;
+  showOptionalAbbr?: boolean;
 }
 
 interface GetHookReturnApiDefinitionsParams extends HookCommonApiParams {
@@ -157,10 +158,11 @@ interface GetHookParametersApiDefinitions extends HookCommonApiParams {
 export function getHookApiDefinitions(
   params: GetHookReturnApiDefinitionsParams | GetHookParametersApiDefinitions,
 ): PropertyDefinition[] {
-  const { properties, translations, hookName, kind } = params;
+  const { properties, translations, hookName, kind, showOptionalAbbr } = params;
 
   return Object.entries(properties).map(([propName, propData]) => {
-    const isOptional = !propData.required;
+    const isRequired = propData.required && !showOptionalAbbr;
+    const isOptional = !propData.required && showOptionalAbbr;
 
     const isDeprecated = propData.deprecated;
     const deprecationInfo = propData.deprecationInfo;
@@ -173,6 +175,7 @@ export function getHookApiDefinitions(
       hash: `${kebabCase(hookName)}-${kind === 'parameters' ? 'parameters' : 'return-value'}-${propName}`,
       propName,
       description: propDescription?.description,
+      isRequired,
       isOptional,
       isDeprecated,
       deprecationInfo,

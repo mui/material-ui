@@ -91,6 +91,7 @@ export default function HooksApiContent(props) {
               hookName,
               properties: returnValue,
               translations: returnValueDescriptions,
+              showOptionalAbbr: true,
             })}
             level="h3"
             title="api-docs.returnValue"

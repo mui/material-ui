@@ -65,8 +65,13 @@ type PropertiesSectionProps = (
       };
       propertiesDescriptions: PropsTranslations['propDescriptions'];
       componentName: string;
+      /**
+       * Add indicators that the properties is optional instead of showing it is required.
+       */
+      showOptionalAbbr?: boolean;
     }
   | {
+      showOptionalAbbr?: undefined;
       properties: PropertyDefinition[];
       propertiesDescriptions?: undefined;
       componentName?: undefined;
@@ -103,6 +108,7 @@ export default function PropertiesSection(props: PropertiesSectionProps) {
     spreadHint,
     defaultLayout,
     layoutStorageKey,
+    showOptionalAbbr,
   } = props;
   const t = useTranslate();
 
@@ -114,6 +120,7 @@ export default function PropertiesSection(props: PropertiesSectionProps) {
         properties,
         propertiesDescriptions: propertiesDescriptions!,
         componentName: componentName!,
+        showOptionalAbbr,
       });
 
   return (
