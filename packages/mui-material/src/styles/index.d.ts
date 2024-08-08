@@ -20,6 +20,8 @@ export {
   TypeText,
   TypeAction,
   TypeBackground,
+  PaletteMode,
+  Color,
 } from './createPalette';
 export { default as createColorScheme } from './createColorScheme';
 export { default as createStyles } from './createStyles';

@@ -213,6 +213,35 @@ pnpm dev
 
 Open the browser and navigate to the localhost URL, you should see the app running with Pigment CSS.
 
+### Typescript
+
+If you are using TypeScript, you need to extend the Pigment CSS theme types with Material UI `Theme`.
+Add the following code to a file that is included in your `tsconfig.json`:
+
+```ts
+// e.g. App.tsx
+import { Theme } from '@mui/material/styles';
+
+declare module '@mui/material-pigment-css' {
+  interface ThemeArgs {
+    theme: Theme;
+  }
+}
+```
+
+Then, verify that the types is correctly picked up by Pigment CSS with the following code:
+
+```ts
+// e.g. App.tsx
+import { styled } from '@mui/material-pigment-css';
+
+const TestThemeTypes = styled('div')(({ theme }) => ({
+  color: theme.palette.primary.main,
+}));
+```
+
+You should see no TypeScript errors in your editor. Finally, remove the test code.
+
 ## How it works
 
 When a Pigment CSS plugin is configured through a framework bundler, it intercepts the styling APIs that Material UI uses and replaces them with those from Pigment CSS instead. Pigment CSS then extracts the styles at build time and injects them into the stylesheet.

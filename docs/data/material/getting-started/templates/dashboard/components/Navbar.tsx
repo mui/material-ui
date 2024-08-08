@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
+import { styled, PaletteMode } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';

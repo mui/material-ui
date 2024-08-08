@@ -1,12 +1,10 @@
 import * as React from 'react';
-import {
-  Chip,
-  ListItemIcon,
-  ListItemText,
-  MenuItem,
-  Select,
-  styled,
-} from '@mui/material';
+import Chip from '@mui/material/Chip';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import { styled } from '@mui/material/styles';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import InfoIcon from '@mui/icons-material/Info';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
