@@ -10,7 +10,92 @@ import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import ROUTES from 'docs/src/route';
 
+const ToolpadCoreShowcase = React.lazy(() => import('./ToolpadCoreShowcaseDemo'));
+
 const tabOneCode = `
+const NAVIGATION: Navigation = [
+  {
+    kind: 'header',
+    title: 'Main items',
+  },
+  {
+    segment: 'dashboard',
+    title: 'Dashboard',
+    icon: <DashboardIcon />,
+  },
+  {
+    segment: 'orders',
+    title: 'Orders',
+    icon: <ShoppingCartIcon />,
+  },
+  {
+    kind: 'divider',
+  },
+  {
+    kind: 'header',
+    title: 'Analytics',
+  },
+  {
+    segment: 'reports',
+    title: 'Reports',
+    icon: <BarChartIcon />,
+    children: [
+      {
+        segment: 'sales',
+        title: 'Sales',
+        icon: <DescriptionIcon />,
+      },
+      {
+        segment: 'traffic',
+        title: 'Traffic',
+        icon: <DescriptionIcon />,
+      },
+    ],
+  },
+  {
+    segment: 'integrations',
+    title: 'Integrations',
+    icon: <LayersIcon />,
+  },
+];
+
+function DashboardLayoutBasic(props: DemoProps) {
+  const { window } = props;
+
+  const [pathname, setPathname] = React.useState('/page');
+
+  const router = React.useMemo<Router>(() => {
+    return {
+      pathname,
+      searchParams: new URLSearchParams(),
+      navigate: (path) => setPathname(String(path)),
+    };
+  }, [pathname]);
+
+  const demoWindow = window !== undefined ? window() : undefined;
+
+  return (
+    <AppProvider navigation={NAVIGATION} router={router} window={demoWindow}>
+      <DashboardLayout>
+        <PageContainer>
+          <Grid container spacing={2}>
+            <Grid size={6}>
+              <PlaceHolder height={100} />
+            </Grid>
+            <Grid size={6}>
+              <PlaceHolder height={100} />
+            </Grid>
+            <Grid size={12}>
+              <PlaceHolder height={200} />
+            </Grid>
+          </Grid>
+        </PageContainer>
+      </DashboardLayout>
+    </AppProvider>
+  );
+}`;
+
+const tabTwoCode = `
 apiVersion: v1
 kind: page
 spec:
@@ -31,35 +116,6 @@ spec:
   - component: codeComponent.map
     name: map
 `;
-
-const tabTwoCode = `
-import { createDataProvider } from "@toolpad/studio/server";
-import db from "../db";
-export default createDataProvider({
-  async getRecords({ paginationModel: { start, pageSize } }) {
-    return {
-      records: await db.query("SELECT * FROM USERS"),
-    };
-  },
-});
-`;
-
-const tabThreeCode = `
-import * as React from "react";
-import { createComponent } from "@toolpad/studio/browser";
-import * as L from "leaflet";
-function Leaflet({ lat, long, zoom }: LeafletProps) {
-  const root: any = React.useRef(null);
-  return (
-    <div ref={root} style={{ height: 400 }} />
-  );
-}
-export default createComponent(Leaflet, {
-  argTypes: {
-    lat: { type: "number", }
-})
-  `;
-
 interface ImageProps {
   alt: string;
   index: number;
@@ -82,6 +138,29 @@ function Image({ alt, index, src, value }: ImageProps) {
         objectPosition: 'right',
       }}
     />
+  );
+}
+
+interface DemoProps {
+  value: number;
+  index: number;
+}
+
+function ToolpadCoreShowcaseDemo({ value, index }: DemoProps) {
+  return (
+    <Box hidden={value !== index}>
+      <React.Suspense
+        fallback={
+          <Box
+            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}
+          >
+            <p>Loading...</p>
+          </Box>
+        }
+      >
+        <ToolpadCoreShowcase />
+      </React.Suspense>
+    </Box>
   );
 }
 
@@ -115,37 +194,47 @@ function a11yProps(index: number) {
 const tabsCodeInfo = [
   {
     code: tabOneCode,
-    label: 'Local first',
-    language: 'yml',
+    label: 'Core',
+    language: 'tsx',
     description:
-      "Store your app's configuration locally in yaml files. Changes made in Toolpad Studio are automatically synced to the files, and vice-versa.",
+      'Drop-in components that abstract away the complexity of dashboard layouts, authentication, navigation, and more.',
     imgSrc: '/static/branding/toolpad/ex-1.png',
-    imgAlt: '.yaml file represents Toolpad app',
+    imgAlt: 'Toolpad app',
+    Demo: ToolpadCoreShowcaseDemo,
   },
   {
     code: tabTwoCode,
-    label: 'Serverless',
-    language: 'tsx',
+    label: 'Studio',
+    language: 'yml',
     description:
-      'Write serverless functions to fetch your data, Toolpad automatically makes the result available on the page.',
-    imgSrc: '/static/branding/toolpad/ex-2.png',
-    imgAlt: 'Toolpad user management app',
+      "Use a drag-and-drop interface to build your app's configuration. Changes made in Studio are automatically synced to .yml files, and vice-versa. Bring your own components and data.",
+    imgSrc: '/static/branding/toolpad/ex-1.png',
+    imgAlt: '.yaml file represents Toolpad app',
   },
-  {
-    code: tabThreeCode,
-    label: 'Customizable',
-    language: 'tsx',
-    description: 'Bring your own React components into Toolpad Studio.',
-    imgSrc: '/static/branding/toolpad/ex-3.png',
-    imgAlt: 'Toolpad app with custom component',
-  },
+  // {
+  //   code: tabTwoCode,
+  //   label: 'Serverless',
+  //   language: 'tsx',
+  //   description:
+  //     'Write serverless functions to fetch your data, Toolpad automatically makes the result available on the page.',
+  //   imgSrc: '/static/branding/toolpad/ex-2.png',
+  //   imgAlt: 'Toolpad user management app',
+  // },
+  // {
+  //   code: tabThreeCode,
+  //   label: 'Customizable',
+  //   language: 'tsx',
+  //   description: 'Bring your own React components into Toolpad Studio.',
+  //   imgSrc: '/static/branding/toolpad/ex-3.png',
+  //   imgAlt: 'Toolpad app with custom component',
+  // },
 ];
 
 export default function ToolpadShowcase() {
-  const [value, setValue] = React.useState(0);
+  const [tabValue, setTabValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+    setTabValue(newValue);
   };
 
   return (
@@ -154,7 +243,7 @@ export default function ToolpadShowcase() {
       preview={
         <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
           <Tabs
-            value={value}
+            value={tabValue}
             onChange={handleChange}
             aria-label="Toolpad showcase"
             sx={(theme) => ({
@@ -206,9 +295,19 @@ export default function ToolpadShowcase() {
                 borderRadius: '8px',
               })}
             >
-              {tabsCodeInfo.map((tab, index) => (
-                <Image key={index} index={index} value={value} src={tab.imgSrc} alt={tab.imgAlt} />
-              ))}
+              {tabsCodeInfo.map((tab, index) =>
+                tab.Demo ? (
+                  <tab.Demo index={index} value={tabValue} key={index} />
+                ) : (
+                  <Image
+                    key={index}
+                    index={index}
+                    value={tabValue}
+                    src={tab.imgSrc}
+                    alt={tab.imgAlt}
+                  />
+                ),
+              )}
             </Paper>
           </Box>
         </Box>
@@ -217,7 +316,7 @@ export default function ToolpadShowcase() {
         <React.Fragment>
           <ShowcaseCodeWrapper maxHeight={250}>
             {tabsCodeInfo.map((tab, index) => (
-              <CustomTabPanel key={index} value={value} index={index}>
+              <CustomTabPanel key={index} value={tabValue} index={index}>
                 <Typography
                   variant="body2"
                   sx={{
@@ -240,10 +339,12 @@ export default function ToolpadShowcase() {
             ))}
           </ShowcaseCodeWrapper>
           <MoreInfoBox
-            primaryBtnLabel="Start using Toolpad"
-            primaryBtnHref={ROUTES.toolpadLandingPage}
-            secondaryBtnLabel="Learn more about why to use Toolpad"
-            secondaryBtnHref={ROUTES.toolpadWhy}
+            primaryBtnLabel={`Start using Toolpad ${tabValue === 0 ? 'Core' : 'Studio'}`}
+            primaryBtnHref={
+              tabValue === 0 ? ROUTES.toolpadLandingPage : ROUTES.toolpadStudioLandingPage
+            }
+            secondaryBtnLabel={`Learn more about Toolpad ${tabValue === 0 ? 'Core' : 'Studio'}`}
+            secondaryBtnHref={tabValue === 0 ? ROUTES.toolpadCoreDocs : ROUTES.toolpadStudioWhy}
           />
         </React.Fragment>
       }
