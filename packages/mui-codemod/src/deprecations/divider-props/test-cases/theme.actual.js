@@ -1,6 +1,21 @@
 fn({
   MuiDivider: {
     defaultProps: {
+      light: false,
+    },
+  },
+});
+fn({
+  MuiDivider: {
+    defaultProps: {
+      light: false,
+      className: 'my-class',
+    },
+  },
+});
+fn({
+  MuiDivider: {
+    defaultProps: {
       light: true,
     },
   },
@@ -21,7 +36,6 @@ fn({
     },
   },
 });
-
 fn({
   MuiDivider: {
     defaultProps: {
@@ -33,7 +47,6 @@ fn({
     },
   },
 });
-
 fn({
   MuiDivider: {
     defaultProps: {
@@ -45,11 +58,16 @@ fn({
     },
   },
 });
-
 fn({
   MuiDivider: {
     defaultProps: {
       className: 'my-class',
     },
   },
+});
+fn({
+  MuiDivider: {},
+});
+fn({
+  MuiDivider: 123,
 });

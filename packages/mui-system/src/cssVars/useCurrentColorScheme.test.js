@@ -58,6 +58,27 @@ describe('useCurrentColorScheme', () => {
     window.matchMedia = originalMatchmedia;
   });
 
+  it('does not trigger a re-render for a single color scheme', () => {
+    function Data() {
+      const { mode } = useCurrentColorScheme({
+        defaultMode: 'dark',
+        supportedColorSchemes: ['dark'],
+      });
+      const count = React.useRef(0);
+      React.useEffect(() => {
+        count.current += 1;
+      });
+      return (
+        <div>
+          {mode}:{count.current}
+        </div>
+      );
+    }
+    const { container } = render(<Data />);
+
+    expect(container.firstChild.textContent).to.equal('dark:0');
+  });
+
   describe('getColorScheme', () => {
     it('use lightColorScheme given mode=light', () => {
       expect(getColorScheme({ mode: 'light', lightColorScheme: 'light' })).to.equal('light');

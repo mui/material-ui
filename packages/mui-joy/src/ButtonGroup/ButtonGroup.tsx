@@ -3,7 +3,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { unstable_traverseBreakpoints as traverseBreakpoints } from '@mui/system/Unstable_Grid';
+import { unstable_traverseBreakpoints as traverseBreakpoints } from '@mui/system/Grid';
 import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,

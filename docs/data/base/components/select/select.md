@@ -60,7 +60,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
   return <Select {...props} ref={ref} />;
 }) as <TValue>(
   props: SelectProps<TValue> & React.RefAttributes<HTMLUListElement>,
-) => JSX.Element;
+) => React.JSX.Element;
 ```
 
 For the sake of brevity, the rest of the demos throughout this doc will not use `forwardRef`.

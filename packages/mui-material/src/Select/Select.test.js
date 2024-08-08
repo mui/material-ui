@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import {
+  ErrorBoundary,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+  reactMajor,
+} from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -131,14 +138,15 @@ describe('<Select />', () => {
     );
     const trigger = getByRole('combobox');
 
-    await act(async () => fireEvent.mouseDown(trigger));
+    fireEvent.mouseDown(trigger);
 
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).not.to.equal(null);
 
+    const options = getAllByRole('option');
+    fireEvent.mouseDown(options[0]);
+
     await act(async () => {
-      const options = getAllByRole('option');
-      fireEvent.mouseDown(options[0]);
       options[0].click();
     });
 
@@ -160,14 +168,14 @@ describe('<Select />', () => {
   });
 
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
-    it(`should open menu when pressed ${key} key on select`, () => {
+    it(`should open menu when pressed ${key} key on select`, async () => {
       render(
         <Select value="">
           <MenuItem value="">none</MenuItem>
         </Select>,
       );
       const trigger = screen.getByRole('combobox');
-      act(() => {
+      await act(async () => {
         trigger.focus();
       });
 
@@ -179,7 +187,7 @@ describe('<Select />', () => {
     });
   });
 
-  it('should pass "name" as part of the event.target for onBlur', () => {
+  it('should pass "name" as part of the event.target for onBlur', async () => {
     const handleBlur = stub().callsFake((event) => event.target.name);
     const { getByRole } = render(
       <Select onBlur={handleBlur} name="blur-testing" value="">
@@ -187,11 +195,8 @@ describe('<Select />', () => {
       </Select>,
     );
     const button = getByRole('combobox');
-    act(() => {
+    await act(async () => {
       button.focus();
-    });
-
-    act(() => {
       button.blur();
     });
 
@@ -199,7 +204,7 @@ describe('<Select />', () => {
     expect(handleBlur.firstCall.returnValue).to.equal('blur-testing');
   });
 
-  it('should call onClose when the backdrop is clicked', () => {
+  it('should call onClose when the backdrop is clicked', async () => {
     const handleClose = spy();
     const { getByTestId } = render(
       <Select
@@ -212,7 +217,7 @@ describe('<Select />', () => {
       </Select>,
     );
 
-    act(() => {
+    await act(async () => {
       getByTestId('backdrop').click();
     });
 
@@ -258,7 +263,7 @@ describe('<Select />', () => {
   });
 
   describe('prop: onChange', () => {
-    it('should get selected element from arguments', () => {
+    it('should get selected element from arguments', async () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
         <Select onChange={onChangeHandler} value="0">
@@ -268,7 +273,7 @@ describe('<Select />', () => {
         </Select>,
       );
       fireEvent.mouseDown(getByRole('combobox'));
-      act(() => {
+      await act(async () => {
         getAllByRole('option')[1].click();
       });
 
@@ -277,7 +282,7 @@ describe('<Select />', () => {
       expect(React.isValidElement(selected)).to.equal(true);
     });
 
-    it('should call onChange before onClose', () => {
+    it('should call onChange before onClose', async () => {
       const eventLog = [];
       const onChangeHandler = spy(() => eventLog.push('CHANGE_EVENT'));
       const onCloseHandler = spy(() => eventLog.push('CLOSE_EVENT'));
@@ -289,14 +294,14 @@ describe('<Select />', () => {
       );
 
       fireEvent.mouseDown(getByRole('combobox'));
-      act(() => {
+      await act(async () => {
         getAllByRole('option')[1].click();
       });
 
       expect(eventLog).to.deep.equal(['CHANGE_EVENT', 'CLOSE_EVENT']);
     });
 
-    it('should not be called if selected element has the current value (value did not change)', () => {
+    it('should not be called if selected element has the current value (value did not change)', async () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
         <Select onChange={onChangeHandler} value="1">
@@ -306,7 +311,7 @@ describe('<Select />', () => {
         </Select>,
       );
       fireEvent.mouseDown(getByRole('combobox'));
-      act(() => {
+      await act(async () => {
         getAllByRole('option')[1].click();
       });
 
@@ -385,6 +390,15 @@ describe('<Select />', () => {
 
     describe('warnings', () => {
       it('warns when the value is not present in any option', () => {
+        const errorMessage =
+          'MUI: You have provided an out-of-range value `20` for the select component.';
+
+        let expectedOccurrences = 2;
+
+        if (reactMajor === 18) {
+          expectedOccurrences = 3;
+        }
+
         expect(() =>
           render(
             <Select value={20}>
@@ -392,13 +406,7 @@ describe('<Select />', () => {
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>,
           ),
-        ).toWarnDev([
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
-            'MUI: You have provided an out-of-range value `20` for the select component.',
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-        ]);
+        ).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
       });
     });
   });
@@ -494,10 +502,10 @@ describe('<Select />', () => {
       expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-controls', listboxId);
     });
 
-    specify('the listbox is focusable', () => {
+    specify('the listbox is focusable', async () => {
       const { getByRole } = render(<Select open value="" />);
 
-      act(() => {
+      await act(async () => {
         getByRole('listbox').focus();
       });
 
@@ -544,11 +552,9 @@ describe('<Select />', () => {
         const options = getAllByRole('option');
         expect(options[1]).to.have.attribute('tabindex', '0');
 
-        act(() => {
-          fireEvent.keyDown(options[1], { key: 'ArrowDown' });
-          fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-          fireEvent.keyDown(options[4], { key: 'Enter' });
-        });
+        fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+        fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+        fireEvent.keyDown(options[4], { key: 'Enter' });
 
         expect(options[4]).to.have.attribute('aria-selected', 'true');
       });
@@ -570,11 +576,9 @@ describe('<Select />', () => {
           const options = getAllByRole('option');
           expect(options[2]).to.have.attribute('tabindex', '0');
 
-          act(() => {
-            fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-            fireEvent.keyDown(options[3], { key: 'ArrowDown' });
-            fireEvent.keyDown(options[5], { key: 'Enter' });
-          });
+          fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[3], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[5], { key: 'Enter' });
 
           expect(options[5]).to.have.attribute('aria-selected', 'true');
         });
@@ -597,11 +601,9 @@ describe('<Select />', () => {
           const options = getAllByRole('option');
           expect(options[1]).to.have.attribute('tabindex', '0');
 
-          act(() => {
-            fireEvent.keyDown(options[1], { key: 'ArrowDown' });
-            fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-            fireEvent.keyDown(options[4], { key: 'Enter' });
-          });
+          fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[4], { key: 'Enter' });
 
           expect(options[4]).to.have.attribute('aria-selected', 'true');
         });
@@ -625,11 +627,9 @@ describe('<Select />', () => {
             const options = getAllByRole('option');
             expect(options[1]).to.have.attribute('tabindex', '0');
 
-            act(() => {
-              fireEvent.keyDown(options[1], { key: 'ArrowDown' });
-              fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-              fireEvent.keyDown(options[4], { key: 'Enter' });
-            });
+            fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[4], { key: 'Enter' });
 
             expect(options[4]).to.have.attribute('aria-selected', 'true');
           });
@@ -705,11 +705,9 @@ describe('<Select />', () => {
         const options = getAllByRole('option');
         expect(options[2]).to.have.attribute('tabindex', '0');
 
-        act(() => {
-          fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-          fireEvent.keyDown(options[3], { key: 'ArrowDown' });
-          fireEvent.keyDown(options[5], { key: 'Enter' });
-        });
+        fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+        fireEvent.keyDown(options[3], { key: 'ArrowDown' });
+        fireEvent.keyDown(options[5], { key: 'Enter' });
 
         expect(options[5]).to.have.attribute('aria-selected', 'true');
       });
@@ -799,7 +797,7 @@ describe('<Select />', () => {
   });
 
   describe('prop: readOnly', () => {
-    it('should not trigger any event with readOnly', () => {
+    it('should not trigger any event with readOnly', async () => {
       render(
         <Select readOnly value="10">
           <MenuItem value={10}>Ten</MenuItem>
@@ -807,7 +805,7 @@ describe('<Select />', () => {
         </Select>,
       );
       const trigger = screen.getByRole('combobox');
-      act(() => {
+      await act(async () => {
         trigger.focus();
       });
 
@@ -955,7 +953,7 @@ describe('<Select />', () => {
   });
 
   describe('prop: open (controlled)', () => {
-    it('should not focus on close controlled select', () => {
+    it('should not focus on close controlled select', async () => {
       function ControlledWrapper() {
         const [open, setOpen] = React.useState(false);
 
@@ -977,7 +975,7 @@ describe('<Select />', () => {
       }
       const { container, getByRole } = render(<ControlledWrapper />);
       const openSelect = container.querySelector('#open-select');
-      act(() => {
+      await act(async () => {
         openSelect.focus();
       });
       fireEvent.click(openSelect);
@@ -990,7 +988,7 @@ describe('<Select />', () => {
       expect(openSelect).toHaveFocus();
     });
 
-    it('should allow to control closing by passing onClose props', () => {
+    it('should allow to control closing by passing onClose props', async () => {
       function ControlledWrapper() {
         const [open, setOpen] = React.useState(false);
 
@@ -1011,7 +1009,7 @@ describe('<Select />', () => {
       fireEvent.mouseDown(getByRole('combobox'));
       expect(getByRole('listbox')).not.to.equal(null);
 
-      act(() => {
+      await act(async () => {
         getByRole('option').click();
       });
       // react-transition-group uses one extra commit for exit to completely remove
@@ -1202,8 +1200,8 @@ describe('<Select />', () => {
         }).toErrorDev([
           'MUI: The `value` prop must be an array',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'MUI: The `value` prop must be an array',
-          'The above error occurred in the <ForwardRef(SelectInput)> component',
+          reactMajor === 18 && 'MUI: The `value` prop must be an array',
+          reactMajor < 19 && 'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },
@@ -1214,7 +1212,7 @@ describe('<Select />', () => {
     });
 
     describe('prop: onChange', () => {
-      it('should call onChange when clicking an item', () => {
+      it('should call onChange when clicking an item', async () => {
         function ControlledSelectInput(props) {
           const { onChange } = props;
           const [values, clickedValue] = React.useReducer((currentValues, valueClicked) => {
@@ -1254,7 +1252,7 @@ describe('<Select />', () => {
         expect(onChange.callCount).to.equal(1);
         expect(onChange.firstCall.returnValue).to.deep.equal({ name: 'age', value: [30] });
 
-        act(() => {
+        await act(async () => {
           options[0].click();
         });
 
@@ -1347,11 +1345,11 @@ describe('<Select />', () => {
 
     // TODO: This might be confusing a prop called input!Ref can imperatively
     // focus a button. This implies <input type="button" /> is still used.
-    it('should be able focus the trigger imperatively', () => {
+    it('should be able focus the trigger imperatively', async () => {
       const ref = React.createRef();
       const { getByRole } = render(<Select inputRef={ref} value="" />);
 
-      act(() => {
+      await act(async () => {
         ref.current.focus();
       });
 
@@ -1588,7 +1586,7 @@ describe('<Select />', () => {
   });
 
   describe('form submission', () => {
-    it('includes Select value in formData only if the `name` attribute is provided', function test() {
+    it('includes Select value in formData only if the `name` attribute is provided', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // FormData is not available in JSDOM
         this.skip();
@@ -1617,7 +1615,7 @@ describe('<Select />', () => {
       );
 
       const button = getByText('Submit');
-      act(() => {
+      await act(async () => {
         button.click();
       });
     });

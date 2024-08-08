@@ -2,6 +2,7 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
@@ -86,6 +87,29 @@ export default function ProductsSwitcher(props: {
       name="MUI X"
       description="Advanced components for complex use cases."
       icon={<IconImage name="product-advanced" height={32} width={32} />}
+    />,
+    <ProductItem
+      name="Toolpad Studio"
+      description="Self-hosted, low-code internal tool builder."
+      icon={<IconImage name="product-toolpad" />}
+      chip={
+        <Chip
+          size="small"
+          label="Beta"
+          color="primary"
+          variant="outlined"
+          sx={{
+            fontSize: (theme) => theme.typography.pxToRem(10),
+            fontWeight: 'semiBold',
+            textTransform: 'uppercase',
+            letterSpacing: '.04rem',
+            height: '16px',
+            '& .MuiChip-label': {
+              px: '5px',
+            },
+          }}
+        />
+      }
     />,
     <ProductItem
       name="Templates"

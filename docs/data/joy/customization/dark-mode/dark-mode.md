@@ -2,39 +2,23 @@
 
 <p class="description">Learn about the different methods for applying dark mode to a Joy UI app.</p>
 
-## Set as default
+## Media prefers-color-scheme
 
-To set dark mode as the default for your app, add `defaultMode: 'dark'` to your `<CssVarsProvider>` wrapper component:
-
-:::warning
-When you change the `defaultMode` to another value, you must clear the local storage for it to take effect.
-:::
-
-{{"demo": "DarkModeByDefault.js"}}
-
-For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `InitColorSchemeScript` component:
+Create a theme with `colorSchemeSelector: 'media'` to use `@media (prefers-color-scheme)` instead of the default `data-joy-color-scheme` attribute.
 
 ```js
-<InitColorSchemeScript defaultMode="dark" />
+import { extendTheme } from '@mui/joy/styles';
+
+const theme = extendTheme({
+  colorSchemeSelector: 'media',
+});
+
+function App() {
+  return <CssVarsProvider theme={theme}>...</CssVarsProvider>;
+}
 ```
 
-## Matching device's preference
-
-Use `defaultMode: 'system'` to set your app's default mode to match the user's chosen preference on their device.
-
-```jsx
-import { CssVarsProvider } from '@mui/joy/styles';
-
-<CssVarsProvider defaultMode="system">...</CssVarsProvider>;
-```
-
-For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `InitColorSchemeScript` component:
-
-```js
-<InitColorSchemeScript defaultMode="system" />
-```
-
-### Identify the system mode
+## Identify the system mode
 
 Use the `useColorScheme` React hook to check if the user's preference is in light or dark mode:
 
@@ -58,25 +42,7 @@ The `useColorScheme()` hook only works with components nested inside of `<CssVar
 
 You can create a toggle component to give users the option to select between modes.
 
-In the example below, we're using a `Button` component that calls `setMode` from the `useColorSchemes()` hook to handle the mode toggling.
-
-```js
-import { useColorScheme } from '@mui/joy/styles';
-import Button from '@mui/joy/Button';
-
-function ModeToggle() {
-  const { mode, setMode } = useColorScheme();
-  return (
-    <Button
-      variant="outlined"
-      color="neutral"
-      onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
-    >
-      {mode === 'dark' ? 'Turn light' : 'Turn dark'}
-    </Button>
-  );
-}
-```
+In the example below, we're using a `Select` component that calls `setMode` from the `useColorSchemes()` hook to handle the mode switching.
 
 {{"demo": "ModeToggle.js"}}
 

@@ -3,7 +3,7 @@ import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 
 const TESTIMONIALS = [

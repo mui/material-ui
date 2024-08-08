@@ -11,13 +11,14 @@ import ROUTES from 'docs/src/route';
 import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
-import SvgToolpadLogo from 'docs/src/icons/SvgToolpadLogo';
+import SvgToolpadCoreLogo from 'docs/src/icons/SvgToolpadCoreLogo';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
+import BrushIcon from '@mui/icons-material/Brush';
 
 const iconStyles = (theme: Theme) => ({
   fontSize: '.875rem',
@@ -33,7 +34,7 @@ const logoColor = (theme: Theme) => ({
 });
 
 const NavLabel = styled(Typography)(({ theme }) => ({
-  padding: theme.spacing(0.5, 1, 1, 1),
+  padding: theme.spacing(0.5, 1, 0.5, 1),
   fontSize: theme.typography.pxToRem(11),
   fontWeight: theme.typography.fontWeightSemiBold,
   textTransform: 'uppercase',
@@ -134,7 +135,7 @@ const coreProducts = [
   {
     id: 'material-ui',
     name: 'Material UI',
-    description: 'Ready-to-use foundational components.',
+    description: 'Comprehensive foundational components.',
     icon: <SvgMuiLogomark width={14} height={14} sx={logoColor} />,
     href: ROUTES.materialDocs,
   },
@@ -148,14 +149,14 @@ const coreProducts = [
   {
     id: 'joy-ui',
     name: 'Joy UI',
-    description: 'Beautiful foudational components.',
+    description: 'Delightful modern components.',
     icon: <WebRoundedIcon sx={iconStyles} />,
     href: ROUTES.joyDocs,
   },
   {
     id: 'system',
     name: 'MUI System',
-    description: 'A set of CSS utilities.',
+    description: 'Ergonomic CSS utilities.',
     icon: <StyleRoundedIcon sx={iconStyles} />,
     href: ROUTES.systemDocs,
   },
@@ -165,30 +166,47 @@ const advancedProducts = [
   {
     id: 'x-data-grid',
     name: 'Data Grid',
-    description: 'A fast and extendable data table.',
+    description: 'Fast and extensible data table.',
     icon: <BackupTableRoundedIcon sx={iconStyles} />,
     href: ROUTES.dataGridOverview,
   },
   {
     id: 'x-date-pickers',
     name: 'Date and Time Pickers',
-    description: 'Let users select date or time values.',
+    description: 'Date, time, and range components.',
     icon: <CalendarMonthRoundedIcon sx={iconStyles} />,
     href: ROUTES.datePickersOverview,
   },
   {
     id: 'x-charts',
     name: 'Charts',
-    description: 'Multiple types of charts for data viz.',
+    description: 'Data visualization components.',
     icon: <BarChartRoundedIcon sx={iconStyles} />,
     href: ROUTES.chartsOverview,
   },
   {
     id: 'x-tree-view',
     name: 'Tree View',
-    description: 'Let users navigate hierarchical lists.',
+    description: 'Hierarchical list components.',
     icon: <AccountTreeRoundedIcon sx={iconStyles} />,
     href: ROUTES.treeViewOverview,
+  },
+];
+
+const toolpadProducts = [
+  {
+    id: 'toolpad-core',
+    name: 'Toolpad Core',
+    description: 'Components for building dashboards.',
+    icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
+    href: ROUTES.toolpadCoreDocs,
+  },
+  {
+    id: 'toolpad-studio',
+    name: 'Toolpad Studio',
+    description: 'Self-hosted, low-code internal tool builder.',
+    icon: <BrushIcon sx={iconStyles} />,
+    href: ROUTES.toolpadStudioDocs,
   },
 ];
 
@@ -263,14 +281,18 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           },
         }}
       />
-      <ProductItem
+      <Box
         key="Toolpad"
-        name="Toolpad"
-        href={ROUTES.toolpadStudioDocs}
-        icon={<SvgToolpadLogo width={14} height={14} sx={logoColor} />}
-        description="A self-hosted, low-code internal tool builder."
-        active={pageContext.productId === 'toolpad-core'}
-        chip={
+        role="none"
+        sx={{
+          gridColumn: {
+            xs: '1 / span 1',
+            sm: '1 / span 2',
+          },
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '1px' }}>
+          <NavLabel> Toolpad </NavLabel>
           <Chip
             label="Beta"
             size="small"
@@ -287,14 +309,18 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
               },
             }}
           />
-        }
-        sx={{
-          gridColumn: {
-            xs: '1 / span 1',
-            sm: '1 / span 2',
-          },
-        }}
-      />
+        </Box>
+      </Box>
+      {toolpadProducts.map((product) => (
+        <ProductItem
+          key={product.name}
+          name={product.name}
+          description={product.description}
+          icon={product.icon}
+          href={product.href}
+          active={pageContext.productId === product.id}
+        />
+      ))}
     </MenuList>
   );
 });

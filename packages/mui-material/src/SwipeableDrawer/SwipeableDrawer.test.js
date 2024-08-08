@@ -574,8 +574,8 @@ describe('<SwipeableDrawer />', () => {
         render(
           <SwipeableDrawer
             anchor={'bottom'}
-            allowSwipeInChildren={(e) => {
-              const elem = e.target;
+            allowSwipeInChildren={(event) => {
+              const elem = event.target;
               // ignore touch events from .ignore &^ from swipe area
               return (
                 !elem.classList.contains('ignore') &&

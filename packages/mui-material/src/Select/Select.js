@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import getReactNodeRef from '@mui/utils/getReactNodeRef';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -100,7 +101,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       filled: <StyledFilledInput ownerState={ownerState} />,
     }[variant];
 
-  const inputComponentRef = useForkRef(ref, InputComponent.ref);
+  const inputComponentRef = useForkRef(ref, getReactNodeRef(InputComponent));
 
   return (
     <React.Fragment>

@@ -46,12 +46,12 @@ The exact versions will be pinned on release from the browserslist query: `"> 0.
 
 <!-- #stable-snapshot -->
 
-- Node.js 18 (up from 12)
+- Node.js 14 (up from 12)
 - Chrome 109 (up from 90)
 - Edge 121 (up from 91)
 - Firefox 115 (up from 78)
 - Safari 15.4 in both macOS and iOS (up from 14 in macOS and 12.5 in iOS)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/v6.0.0/.browserslistrc#L11))
+- and more (see [.browserslistrc `stable` entry](https://github.com/mui/material-ui/blob/v6.0.0/.browserslistrc#L11))
 
 ### Removed support for IE 11
 
@@ -86,7 +86,7 @@ pnpm add react@<version> react-dom@<version>
 
 ### Update TypeScript
 
-The minimum supported version of TypeScript has been increased from v3.5 to 4.1.
+The minimum supported version of TypeScript has been increased from v3.5 to 4.7.
 
 :::info
 We align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (published on npm under the `@types` namespace).
@@ -115,6 +115,7 @@ Expect updates as new breaking changes are introduced.
 
 To align with React 19's removal of UMD builds, Material UI has also removed its UMD bundle.
 This results in a reduction of the `@mui/material` package size by 2.5MB or 25% of the total package size.
+See [Package Phobia](https://packagephobia.com/result?p=@mui/material) for more details.
 
 Instead, using ESM-based CDNs such as [esm.sh](https://esm.sh/) is recommended.
 For alternative installation methods, refer to the [CDN documentation](/material-ui/getting-started/installation/#cdn).
@@ -131,6 +132,30 @@ These three were previously treated as `"reset"`, so if you are relying on that,
 - `"removeOption"`: triggered in multiple selection when a chip gets removed due to the corresponding option being selected.
 
 These are added on top of the existing ones: `"input"`, `"reset"`, and `"clear"`.
+
+### Accordion
+
+#### Heading element wrapping Accordion Summary
+
+To meet the [W3C Accordion Pattern standard](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), the Accordion Summary is now wrapped with a default `h3` heading element. This change may affect customizations relying on the previous DOM structure and CSS specificity. Additionally, the default heading element might conflict with existing heading structures on your page.
+
+If your styles or DOM manipulations depend on the old structure, you will need to update them to accommodate the new heading element. If the default heading element conflicts with your existing structure, you can change the heading element using the `slotProps.heading.component` prop.
+
+```jsx
+<Accordion slotProps={{ heading: { component: 'h4' } }}>
+  <AccordionSummary
+    expandIcon={<ExpandMoreIcon />}
+    aria-controls="panel1-content"
+    id="panel1-header"
+  >
+    Accordion
+  </AccordionSummary>
+  <AccordionDetails>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+    lacus ex, sit amet blandit leo lobortis eget.
+  </AccordionDetails>
+</Accordion>
+```
 
 ### Chip
 
@@ -167,12 +192,26 @@ The `children` passed to the Loading Button component is now wrapped in a `<span
 
 ### Grid v2 (Unstable_Grid)
 
-The `Grid` v2 component was updated to match the API of the new `PigmentGrid` component, to allow interoperability between the two:
+The `Grid2` was updated and stabilized:
 
-- The previous size and offset props were replaced with the `size` and `offset` props
+- The previous size (`xs`, `sm`, `md`, ...) and offset (`xsOffset`, `smOffset`, `mdOffset`, ...) props, which were named after the theme's breakpoints, were replaced with the `size` and `offset` props.
 - The spacing mechanism was reworked to use the `gap` CSS property.
 
 This brings some breaking changes described in the following sections.
+
+#### Stabilized API
+
+The `Grid2` component API was stabilized, so its import no longer contains the `Unstable_` prefix:
+
+```diff
+-import { Unstable_Grid2 as Grid2 } from '@mui/material';
++import { Grid2 } from '@mui/material';
+```
+
+```diff
+-import Grid from '@mui/material/Unstable_Grid2';
++import Grid from '@mui/material/Grid2';
+```
 
 #### Size and offset props
 
@@ -185,28 +224,28 @@ For the default theme this was:
 In v6, these props are renamed to `size` and `offset`:
 
 ```diff
-  <Grid
--   xs={12}
--   sm={6}
--   xsOffset={2}
--   smOffset={3}
-+   size={{ xs: 12, sm: 6 }}
-+   offset={{ xs: 2, sm: 3 }}
-  />
+ <Grid
+-  xs={12}
+-  sm={6}
+-  xsOffset={2}
+-  smOffset={3}
++  size={{ xs: 12, sm: 6 }}
++  offset={{ xs: 2, sm: 3 }}
+ >
 ```
 
 Note that if the size or offset is the same for all breakpoints, you can use a single value:
 
 ```diff
-- <Grid xs={6} xsOffset={2} >
-+ <Grid size={6} offset={2} >
+-<Grid xs={6} xsOffset={2}>
++<Grid size={6} offset={2}>
 ```
 
 Besides that, the `true` value for the size prop was renamed to `"grow"`:
 
 ```diff
-- <Grid xs />
-+ <Grid size="grow" />
+-<Grid xs>
++<Grid size="grow">
 ```
 
 Use this codemod to migrate your project to the new size and offset props:
@@ -215,17 +254,21 @@ Use this codemod to migrate your project to the new size and offset props:
 npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder>
 ```
 
+:::warning
+You need to modify the import from `@mui/material/Unstable_Grid2` to `@mui/material/Grid2` before running the codemod.
+:::
+
 If you have custom breakpoints, the change is the same:
 
 ```diff
-- <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
-+ <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
+-<Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4}>
++<Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }}>
 ```
 
 Which you can cover with the same codemod by providing the custom breakpoints as an argument:
 
 ```bash
-npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshit='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod@next v6.0.0/grid-v2-props <path/to/folder> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 #### Removal of the disableEqualOverflow prop
@@ -238,8 +281,8 @@ In v6, this is fixed, with the Grid being contained inside its parent's padding:
 This removes the need for the `disableEqualOverflow` prop:
 
 ```diff
-- <Grid disableEqualOverflow />
-+ <Grid />
+-<Grid disableEqualOverflow>
++<Grid>
 ```
 
 #### Spacing is no longer considered inside the Grid item's box
@@ -254,6 +297,11 @@ Both of these changes might slightly affect your layout.
 Note that the items' position doesn't change.
 We recommend adopting this new behavior and **not trying to replicate the old one**, as this is a more predictable and modern approach.
 :::
+
+### Rating
+
+Previously, due to a bug, the `aria-label` attribute was "null Stars" when no value was set in the Rating component.
+This is fixed in v6, with the `aria-label` attribute being "0 Stars" when no value is set.
 
 ### useMediaQuery
 
@@ -271,8 +319,8 @@ The `CssVarsProvider` and `extendTheme` APIs are now stable.
 If you already use them in v5, you can now drop the experimental prefix.
 
 ```diff
-- import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-+ import { extendTheme, CssVarsProvider } from '@mui/material/styles';
+-import { experimental_extendTheme as extendTheme, Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
++import { extendTheme, CssVarsProvider } from '@mui/material/styles';
 ```
 
 Check out the [CSS theme variables page](/material-ui/customization/css-theme-variables/overview/) to learn more about it.
@@ -326,8 +374,8 @@ npx @mui/codemod@next v6.0.0/system-props <path/to/folder>
 Or do it manually like the example below:
 
 ```diff
-- <Button mr={2}>...</Button>
-+ <Button sx={{ mr: 2 }}>...</Button>
+-<Button mr={2}>
++<Button sx={{ mr: 2 }}>
 ```
 
 ### Theme component variants
