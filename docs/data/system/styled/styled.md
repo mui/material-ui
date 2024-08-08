@@ -11,7 +11,7 @@ This utility is built on top of the `styled()` module of `@mui/styled-engine` an
 
 ```ts
 import { styled } from '@mui/system';
-// if you are using @mui/material
+// If you are using @mui/material
 import { styled } from '@mui/material/styles';
 ```
 
