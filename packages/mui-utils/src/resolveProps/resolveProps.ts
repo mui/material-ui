@@ -27,11 +27,9 @@ export default function resolveProps<
         const defaultSlotProps = defaultProps[propName] as T[keyof T] | undefined;
         const slotProps = props[propName] as {} as T[keyof T] | undefined;
 
-        if (!slotProps || isObjectEmpty(slotProps)) {
-          // Reduce the iteration if the slot props is empty
+        if (!slotProps) {
           output[propName] = defaultSlotProps || ({} as T[keyof T]);
-        } else if (!defaultSlotProps || isObjectEmpty(defaultSlotProps)) {
-          // Reduce the iteration if the default slot props is empty
+        } else if (!defaultSlotProps) {
           output[propName] = slotProps;
         } else {
           output[propName] = { ...slotProps };
@@ -53,12 +51,4 @@ export default function resolveProps<
   }
 
   return output;
-}
-
-function isObjectEmpty(object: Object) {
-  // eslint-disable-next-line
-  for (const _ in object) {
-    return false;
-  }
-  return true;
 }
