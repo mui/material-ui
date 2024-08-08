@@ -84,7 +84,7 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   typography: {
-    fontFamily: roboto.variable,
+    fontFamily: 'var(--font-roboto)',
   },
 });
 
