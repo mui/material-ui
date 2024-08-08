@@ -1,5 +1,107 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.0.0-beta.5
+
+<!-- generated comparing v6.0.0-beta.4..next -->
+
+_Aug 8, 2024_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- Remove some deprecated props from the ListItem component (#41566) @thathva
+- Bumped the minimum supported version of TypeScript (#43116) @mnajdova
+
+### `@mui/material@6.0.0-beta.5`
+
+#### BREAKING CHANGES
+
+- &#8203;<!-- 14 -->[material-ui][ListItem] Removing deprecated props (#41566) @thathva
+
+  `ListItem`'s props `autoFocus`, `button`, `disabled`, and `selected`, deprecated in v5, have been removed. To replace the `button` prop, use `ListItemButton` instead. The other removed props are available in the `ListItemButton` component as well.
+
+  ```diff
+  -<ListItem button />
+  +<ListItemButton />
+  ```
+
+  Use this codemod to migrate your project to the `ListItemButton` component:
+
+  ```bash
+  npx @mui/codemod@next v6.0.0/list-item-button-prop <path/to/folder>
+  ```
+
+  As the `ListItem` no longer supports these props, the class names related to these props were removed. You should use the `listItemButtonClasses` object instead.
+
+  ```diff
+  -import { listItemClasses } from '@mui/material/ListItem';
+  +import { listItemButtonClasses } from '@mui/material/ListItemButton';
+
+  - listItemClasses.button
+  + listItemButtonClasses.root
+
+  - listItemClasses.focusVisible
+  + listItemButtonClasses.focusVisible
+
+  - listItemClasses.disabled
+  + listItemButtonClasses.disabled
+
+  - listItemClasses.selected
+  + listItemButtonClasses.selected
+  ```
+
+#### Changes
+
+- &#8203;<!-- 36 -->[material-ui][Autocomplete] Fix default value for multiple mode getting redefined with React 19 (#43189) @DiegoAndai
+- &#8203;<!-- 12 -->[material-ui] Merge `CssVarsProvider` into `ThemeProvider` (#43115) @siriwatknp
+- &#8203;<!-- 11 -->[material-ui] Make tests compatible with React 19 (#43155) @DiegoAndai
+- &#8203;<!-- 10 -->[material-ui] Refine Blog template (#42825) @zanivan
+- &#8203;<!-- 09 -->[material-ui] Element ref access React 19 compatibility (#43132) @DiegoAndai
+- &#8203;<!-- 08 -->[material-ui][mui-system] Add support for version runtime checks (#43190) @DiegoAndai
+
+### `@mui/material-pigment-css@6.0.0-beta.5`
+
+- &#8203;<!-- 13 -->Reexport Pigment CSS from index file (#43218) @siriwatknp
+
+### `@mui/codemod@6.0.0-beta.5`
+
+- &#8203;<!-- 31 -->Fix codemod crash on MuiDivider property (#43125) @Janpot
+
+### Docs
+
+- &#8203;<!-- 37 -->Fix resolution of @mui/material-ui in docs (#43108) @Janpot
+- &#8203;<!-- 25 -->Refine and polish out Templates page (#43131) @zanivan
+- &#8203;<!-- 24 -->Fix the link test script (#43195) @alexfauquette
+- &#8203;<!-- 23 -->Fix alpha usage (#43194) @siriwatknp
+- &#8203;<!-- 22 -->Link Toolpad Core components from Material Ui docs (#43036) @prakhargupta1
+- &#8203;<!-- 21 -->Link Toolpad core docs to the docs menu (#42952) @prakhargupta1
+- &#8203;<!-- 20 -->Polish migration guide (#43021) @oliviertassinari
+- &#8203;<!-- 19 -->Fix 404 link to migration pages @oliviertassinari
+- &#8203;<!-- 18 -->Support inject dynamic theme (#42879) @Vxee
+- &#8203;<!-- 17 -->Fix 301 @oliviertassinari
+- &#8203;<!-- 35 -->[blog] Announcing pricing changes Sep 2024 (#43061) @joserodolfofreitas
+- &#8203;<!-- 15 -->[material-ui][TextField] Remove mentions of `redux-form` from TextField documentation (#43176) @AbdurRahman2004
+
+### Core
+
+- &#8203;<!-- 34 -->[code-infra] Fix `@mui/internal-test-utils` `screen` export type (#43150) @LukasTy
+- &#8203;<!-- 33 -->[code-infra] Do not look for changes with previous commit when releasing a canary version (#43129) @michaldudak
+- &#8203;<!-- 32 -->[code-infra] Automate canary releases (#43066) @michaldudak
+- &#8203;<!-- 30 -->[core] Apply top-level eslint rule to docs and fix violations (#43126) @Janpot
+- &#8203;<!-- 29 -->[core] Patch styled-components to use React.JSX namespace (#43205) @aarongarciah
+- &#8203;<!-- 28 -->[core] Replace JSX namespace usages with React.JSX (#43204) @aarongarciah
+- &#8203;<!-- 27 -->[core] Remove `react-router` package from `pigment-css-vite-app` (#43201) @ZeeshanTamboli
+- &#8203;<!-- 26 -->[core] Remove unnecessary types packages from `@mui/internal-babel-macros` (#43193) @ZeeshanTamboli
+- &#8203;<!-- 16 -->[docs-infra] Move `ApiPage` to TS (#43149) @alexfauquette
+- &#8203;<!-- 07 -->[test] Remove unnecessary prop type check in test (#43211) @aarongarciah
+- &#8203;<!-- 06 -->[test] Make conformance tests work with async render function (#43156) @michaldudak
+- &#8203;<!-- 05 -->[typescript] Update the minimum supported version (#43116) @mnajdova
+- &#8203;<!-- 04 -->[website] Add icons to core page products (#43151) @zanivan
+- &#8203;<!-- 03 -->[website] Copyedit Docs and Product menu taglines (#43075) @samuelsycamore
+- &#8203;<!-- 02 -->[website] Fix wrong link in pricing table (#43141) @zanivan
+- &#8203;<!-- 01 -->[website] Add blog link to pricing table (#43123) @zanivan
+
+All contributors of this release in alphabetical order: @aarongarciah, @AbdurRahman2004, @alexfauquette, @DiegoAndai, @Janpot, @joserodolfofreitas, @LukasTy, @michaldudak, @mnajdova, @oliviertassinari, @prakhargupta1, @samuelsycamore, @siriwatknp, @thathva, @Vxee, @zanivan, @ZeeshanTamboli
+
 ## 6.0.0-beta.4
 
 <!-- generated comparing v6.0.0-beta.3..next -->
