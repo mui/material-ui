@@ -181,3 +181,5 @@ export * from './Unstable_Grid';
 
 export { default as Stack } from './Stack';
 export * from './Stack';
+
+export * from './version';
