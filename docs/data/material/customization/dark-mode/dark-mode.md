@@ -56,6 +56,7 @@ For a comprehensive understanding of the palette structure, refer to the [palett
 ## System preference
 
 Users might have a preference for light or dark mode that they've set through their operating system—either systemwide, or for a single user agent.
+The following sections explain how to enable it.
 
 ### Built-in support
 
