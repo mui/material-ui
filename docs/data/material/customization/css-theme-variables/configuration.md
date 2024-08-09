@@ -183,7 +183,7 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         {/* must come before the <main> element */}
         <InitColorSchemeScript attribute="class" />
@@ -193,6 +193,10 @@ export default function RootLayout({ children }) {
   );
 }
 ```
+
+:::warning
+If you do not add `suppressHydrationWarning` to your <html>, you will get warnings `"Extra attributes from the server"` because the InitColorSchemeScript updates that element.
+:::
 
 ### Next.js Pages Router
 
