@@ -1,4 +1,4 @@
-# Material UI x Pigment CSS - Vite.js example
+# Material UI x Pigment CSS - Vite.js example
 
 ## How to use
 
@@ -29,7 +29,7 @@ or:
 ## The idea behind the example
 
 This example uses [Vite.js](https://github.com/vitejs/vite).
-It includes `@mui/material` and [Pigment CSS](https://github.com/mui/pigment-css) as the style engine.
+It includes `@mui/material` and [Pigment CSS](https://github.com/mui/pigment-css) as the style engine.
 
 ## What's next?
 
