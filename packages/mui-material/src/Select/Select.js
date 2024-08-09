@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import deepmerge from '@mui/utils/deepmerge';
 import getReactNodeRef from '@mui/utils/getReactNodeRef';
+import composeClasses from '@mui/utils/composeClasses';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -16,11 +17,18 @@ import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
 import { styled } from '../zero-styled';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { getSelectUtilityClasses } from './selectClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
-  return classes;
+  const slots = {
+    root: ['root'],
+  };
+
+  const composedClasses = composeClasses(slots, getSelectUtilityClasses, classes);
+
+  return { ...classes, ...composedClasses };
 };
 
 const styledRootConfig = {
