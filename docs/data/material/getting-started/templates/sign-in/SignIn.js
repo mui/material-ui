@@ -99,7 +99,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
   ...theme.applyStyles('dark', {
     backgroundImage:
-      'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.3), hsl(220, 30%, 5%))',
+      'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
   }),
 }));
 
