@@ -23,7 +23,7 @@ const FlashCodeRoot = styled('div', {
 }));
 
 const FlashCode = React.forwardRef(function FlashCode(
-  props: JSX.IntrinsicElements['div'] & {
+  props: React.JSX.IntrinsicElements['div'] & {
     sx?: SxProps;
     endLine?: number;
     startLine?: number;

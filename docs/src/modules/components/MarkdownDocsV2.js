@@ -146,8 +146,8 @@ export default function MarkdownDocsV2(props) {
       const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
       const {
         name: componentName,
-        inheritance,
         slots,
+        inheritance,
         themeDefaultProps,
         classes,
         props: componentProps,
