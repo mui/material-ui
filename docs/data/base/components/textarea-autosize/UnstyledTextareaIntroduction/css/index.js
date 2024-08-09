@@ -6,7 +6,7 @@ export default function UnstyledTextareaIntroduction() {
   return (
     <React.Fragment>
       <TextareaAutosize
-        className="CustomTextareaIntrocudtion"
+        className="CustomTextareaIntroduction"
         aria-label="empty textarea"
         placeholder="Empty"
       />
@@ -52,7 +52,7 @@ function Styles() {
   return (
     <style>
       {`
-      .CustomTextareaIntrocudtion {
+      .CustomTextareaIntroduction {
         box-sizing: border-box;
         width: 320px;
         font-family: 'IBM Plex Sans', sans-serif;
@@ -67,18 +67,18 @@ function Styles() {
         box-shadow: 0px 2px 24px ${isDarkMode ? cyan[900] : cyan[100]};
       }
 
-     .CustomTextareaIntrocudtion:hover {
+     .CustomTextareaIntroduction:hover {
         border-color: ${cyan[400]};
       }
 
-     .CustomTextareaIntrocudtion:focus {
+     .CustomTextareaIntroduction:focus {
         border-color: ${cyan[400]};
         box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
         outline: none;
       }
 
       // firefox
-      .CustomTextareaIntrocudtion:focus-visible {
+      .CustomTextareaIntroduction:focus-visible {
         outline: 0;
       }
     `}
