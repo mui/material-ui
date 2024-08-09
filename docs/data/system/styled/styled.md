@@ -18,7 +18,7 @@ The utility can be used as a replacement for emotion's or styled-components' sty
 It aims to solve the same problem, but also provides the following benefits:
 
 1. It uses a default `theme` if no theme is available in React context.
-2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#theme-style-overrides) and [`variants`](/material-ui/customization/theme-components/#creating-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
+2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#theme-style-overrides) and [`variants`](/material-ui/customization/theme-components/#variants) to be applied, based on the `name` applied in the options (can be skipped).
 3. It adds support for the [the `sx` prop](/system/getting-started/the-sx-prop/) (can be skipped).
 4. It adds by default the `shouldForwardProp` option (that can be overridden), taking into account: `ownerState`, `theme`, `sx`, and `as`.
 

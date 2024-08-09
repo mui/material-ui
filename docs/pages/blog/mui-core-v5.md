@@ -236,7 +236,7 @@ declare module '@mui/material/Button' {
 
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/stupefied-mclaren-ho4zs?file=/src/App.tsx">CodeSandbox</a></p>
 
-**Second**, you can add [custom variants](/material-ui/customization/theme-components/#creating-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
+**Second**, you can add [custom variants](https://v5.mui.com/material-ui/customization/theme-components/#creating-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
 
 ```jsx
 import { createTheme, Button } from '@mui/material';
