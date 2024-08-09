@@ -21,8 +21,17 @@ function isOverflowing(container: Element): boolean {
 
 export function ariaHidden(element: Element, show: boolean): void {
   if (show) {
+    const active = ownerDocument(element).activeElement;
+    if (active && element.contains(active)) {
+      if (active instanceof HTMLElement) {
+        active.blur();
+      }
+    }
+
+    element.setAttribute('inert', '');
     element.setAttribute('aria-hidden', 'true');
   } else {
+    element.removeAttribute('inert');
     element.removeAttribute('aria-hidden');
   }
 }
