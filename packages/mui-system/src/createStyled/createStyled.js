@@ -46,13 +46,13 @@ function defaultOverridesResolver(slot) {
   return (props, styles) => styles[slot];
 }
 
-function processStyleArg(callableStyle, { ownerState, ...props }) {
+function processBaseStyleArg(callableStyle, { ownerState, ...props }) {
   const resolvedStylesArg =
     typeof callableStyle === 'function' ? callableStyle({ ownerState, ...props }) : callableStyle;
 
   if (Array.isArray(resolvedStylesArg)) {
     return resolvedStylesArg.flatMap((resolvedStyle) =>
-      processStyleArg(resolvedStyle, { ownerState, ...props }),
+      processBaseStyleArg(resolvedStyle, { ownerState, ...props }),
     );
   }
 
@@ -65,6 +65,28 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
   ) {
     const { variants = [], ...otherStyles } = resolvedStylesArg;
     let result = otherStyles;
+    return result;
+  }
+  return resolvedStylesArg;
+}
+
+function processVariantStyleArg(callableStyle, { ownerState, ...props }) {
+  const resolvedStylesArg =
+    typeof callableStyle === 'function' ? callableStyle({ ownerState, ...props }) : callableStyle;
+
+  if (Array.isArray(resolvedStylesArg)) {
+    return resolvedStylesArg.flatMap((resolvedStyle) =>
+      processVariantStyleArg(resolvedStyle, { ownerState, ...props }),
+    );
+  }
+
+  if (
+    !!resolvedStylesArg &&
+    typeof resolvedStylesArg === 'object' &&
+    Array.isArray(resolvedStylesArg.variants)
+  ) {
+    const { variants = [] } = resolvedStylesArg;
+    let result = [];
     variants.forEach((variant) => {
       let isMatch = true;
       if (typeof variant.props === 'function') {
@@ -87,7 +109,7 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
     });
     return result;
   }
-  return resolvedStylesArg;
+  return [];
 }
 
 export default function createStyled(input = {}) {
@@ -158,7 +180,7 @@ export default function createStyled(input = {}) {
       ...options,
     });
 
-    const transformStyleArg = (stylesArg) => {
+    const transformStyleArg = (stylesArg, stylePresedence = 'base') => {
       // On the server Emotion doesn't use React.forwardRef for creating components, so the created
       // component stays as a function. This condition makes sure that we do not interpolate functions
       // which are basically components used as a selectors.
@@ -166,18 +188,51 @@ export default function createStyled(input = {}) {
         (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) ||
         isPlainObject(stylesArg)
       ) {
-        return (props) =>
-          processStyleArg(stylesArg, {
+        return (props) => {
+          const fn = stylePresedence === 'base' ? processBaseStyleArg : processVariantStyleArg;
+          return fn(stylesArg, {
             ...props,
             theme: resolveTheme({ theme: props.theme, defaultTheme, themeId }),
           });
+        };
+      }
+
+      return stylesArg;
+    };
+
+    const transformVariantsStyleArg = (stylesArg, stylePresedence = 'base') => {
+      // On the server Emotion doesn't use React.forwardRef for creating components, so the created
+      // component stays as a function. This condition makes sure that we do not interpolate functions
+      // which are basically components used as a selectors.
+      if (
+        (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) ||
+        isPlainObject(stylesArg)
+      ) {
+        return (props) => {
+          const fn = stylePresedence === 'base' ? processBaseStyleArg : processVariantStyleArg;
+          return fn(stylesArg, {
+            ...props,
+            theme: resolveTheme({ theme: props.theme, defaultTheme, themeId }),
+          });
+        };
       }
       return stylesArg;
     };
     const muiStyledResolver = (styleArg, ...expressions) => {
       let transformedStyleArg = transformStyleArg(styleArg);
+      const trasfnormedVariantsStyleArg = transformStyleArg(styleArg, 'variants');
       const expressionsWithDefaultTheme = expressions ? expressions.map(transformStyleArg) : [];
 
+      const variantsExpressions = [];
+      // Collect variants from the styled variants definition
+      variantsExpressions.push(trasfnormedVariantsStyleArg);
+      if (expressionsWithDefaultTheme.length > 0) {
+        variantsExpressions.push(
+          ...(expressions ? expressions.map(transformVariantsStyleArg) : []),
+        );
+      }
+
+      // Collect base style overrides
       if (componentName && overridesResolver) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = resolveTheme({ ...props, defaultTheme, themeId });
@@ -192,19 +247,46 @@ export default function createStyled(input = {}) {
           const resolvedStyleOverrides = {};
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
-            resolvedStyleOverrides[slotKey] = processStyleArg(slotStyle, { ...props, theme });
+            resolvedStyleOverrides[slotKey] = processBaseStyleArg(slotStyle, { ...props, theme });
+          });
+          return overridesResolver(props, resolvedStyleOverrides);
+        });
+      }
+
+      // Collect variant style overrides
+      if (componentName && overridesResolver) {
+        variantsExpressions.push((props) => {
+          const theme = resolveTheme({ ...props, defaultTheme, themeId });
+          if (
+            !theme.components ||
+            !theme.components[componentName] ||
+            !theme.components[componentName].styleOverrides
+          ) {
+            return null;
+          }
+          const styleOverrides = theme.components[componentName].styleOverrides;
+          const resolvedStyleOverrides = {};
+          // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
+          Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
+            resolvedStyleOverrides[slotKey] = processVariantStyleArg(slotStyle, {
+              ...props,
+              theme,
+            });
           });
           return overridesResolver(props, resolvedStyleOverrides);
         });
       }
 
       if (componentName && !skipVariantsResolver) {
-        expressionsWithDefaultTheme.push((props) => {
+        variantsExpressions.push((props) => {
           const theme = resolveTheme({ ...props, defaultTheme, themeId });
           const themeVariants = theme?.components?.[componentName]?.variants;
-          return processStyleArg({ variants: themeVariants }, { ...props, theme });
+          return processVariantStyleArg({ variants: themeVariants }, { ...props, theme });
         });
       }
+
+      // add all variants collected
+      expressionsWithDefaultTheme.push(...variantsExpressions);
 
       if (!skipSx) {
         expressionsWithDefaultTheme.push(systemSx);
