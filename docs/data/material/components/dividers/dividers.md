@@ -4,6 +4,7 @@ title: React Divider component
 components: Divider
 githubLabel: 'component: divider'
 materialDesign: https://m2.material.io/components/dividers
+githubSource: https://github.com/mui/material-ui/tree/next/packages/mui-material/src/Divider
 ---
 
 # Divider
