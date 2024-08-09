@@ -60,7 +60,7 @@ export const SliderRoot = styled('span', {
   },
   variants: [
     ...Object.keys((theme.vars ?? theme).palette)
-      .filter((key) => (theme.vars ?? theme).palette[key].main)
+      .filter((key) => typeof (theme.vars ?? theme).palette[key].main === 'string')
       .map((color) => ({
         props: { color },
         style: {
@@ -202,7 +202,7 @@ export const SliderTrack = styled('span', {
         },
       },
       ...Object.keys((theme.vars ?? theme).palette)
-        .filter((key) => (theme.vars ?? theme).palette[key].main)
+        .filter((key) => typeof (theme.vars ?? theme).palette[key].main === 'string')
         .map((color) => ({
           props: { color, track: 'inverted' },
           style: {
@@ -302,7 +302,7 @@ export const SliderThumb = styled('span', {
       },
     },
     ...Object.keys((theme.vars ?? theme).palette)
-      .filter((key) => (theme.vars ?? theme).palette[key].main)
+      .filter((key) => typeof (theme.vars ?? theme).palette[key].main === 'string')
       .map((color) => ({
         props: { color },
         style: {
