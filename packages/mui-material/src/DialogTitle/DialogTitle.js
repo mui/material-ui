@@ -42,7 +42,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
 
   return (
     <DialogTitleRoot
-      component="h2"
+      component="h1"
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
